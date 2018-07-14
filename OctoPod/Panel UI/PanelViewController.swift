@@ -129,7 +129,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     // MARK: - OctoPrintClientDelegate
     
     // Notification that the current state of the printer has changed
-    func currentStateUpdated(event: CurrentStateEvent) {
+    func printerStateUpdated(event: CurrentStateEvent) {
         if let closed = event.closedOrError {
             updateConnectButton(printerConnected: !closed)
         }

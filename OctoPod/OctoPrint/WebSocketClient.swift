@@ -1,6 +1,9 @@
 import Foundation
 import Starscream
 
+// Classic websocket client that connects to "<octoprint>/sockjs/websocket"
+// To receive socket events and received messages, create a WebSocketClientDelegate
+// and add it as a delegate of this WebSocketClient
 class WebSocketClient : NSObject, WebSocketDelegate {
     var serverURL: String!
     var apiKey: String!

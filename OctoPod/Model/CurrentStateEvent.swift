@@ -1,7 +1,7 @@
 import Foundation
 
 // Event fired when printer state has changed. When using websockets, this information is being pushed to this client.
-// If websockets is not available then this event is fired with a polling mechanism
+// If websockets is not available then this event is fired with a polling mechanism (future idea)
 class CurrentStateEvent {
     
     // Bed temperatures

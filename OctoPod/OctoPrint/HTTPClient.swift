@@ -1,6 +1,11 @@
 import Foundation
 import UIKit   // Used for network indicator in the UI
 
+// Basic HTTP Client that offers support for basic HTTP verbs.
+// Authentication (user/password) is supported in case a reverse proxy
+// is configured properly in front of the OctoPrint server.
+// Requests will include the 'X-Api-Key' header that will be processed by
+// the OctoPrint server.
 class HTTPClient: NSObject, URLSessionTaskDelegate {
     var serverURL: String!
     var apiKey: String!

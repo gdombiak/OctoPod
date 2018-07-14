@@ -1,12 +1,13 @@
 import Foundation
 
+// Listener that reacts to changes in OctoPrint server events and also to printer events
 protocol OctoPrintClientDelegate {
     
     // Notification that we are about to connect to OctoPrint server
     func notificationAboutToConnectToServer()
  
     // Notification that the current state of the printer has changed
-    func currentStateUpdated(event: CurrentStateEvent)
+    func printerStateUpdated(event: CurrentStateEvent)
     
     // Notification that HTTP request failed (connection error, authentication error or unexpect http status code)
     func handleConnectionError(error: Error?, response: HTTPURLResponse)

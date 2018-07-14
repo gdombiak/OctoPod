@@ -1,6 +1,6 @@
 import Foundation
 
-// Listener that view controllers should use to react to changes in the printer status
+// Listener that reacts to changes in the websocket connection and received updates via websocket
 protocol WebSocketClientDelegate {
     
     // Notification that the current state of the printer has changed

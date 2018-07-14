@@ -1,6 +1,8 @@
 import Foundation
 import CoreData
 
+// Manager of persistent printer information (OctoPrint servers) that are stored in the iPhone
+// Printer information (OctoPrint server info) is used for connecting to the server
 class PrinterManager {
     var managedObjectContext: NSManagedObjectContext?
     

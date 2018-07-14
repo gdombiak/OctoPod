@@ -1,5 +1,11 @@
 import Foundation
 
+// OctoPrint client that exposes the REST API described
+// here: http://docs.octoprint.org/en/master/api/index.html
+// A OctoPrintClient can connect to a single OctoPrint server at a time
+//
+// OctoPrintClient uses websockets for getting realtime updates from OctoPrint (read operations only)
+// and an HTTP Client is used for requesting services on the OctoPrint server.
 class OctoPrintClient: WebSocketClientDelegate {
     
     var httpClient: HTTPClient?
@@ -87,7 +93,7 @@ class OctoPrintClient: WebSocketClientDelegate {
     // Notification that the current state of the printer has changed
     func currentStateUpdated(event: CurrentStateEvent) {
         for delegate in delegates {
-            delegate.currentStateUpdated(event: event)
+            delegate.printerStateUpdated(event: event)
         }
     }
     
