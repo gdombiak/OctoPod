@@ -1,7 +1,7 @@
 # OctoPod
-OctoPod is a free open source iPhone client for OctoPrint.
+OctoPod is a free open source iPhone app for OctoPrint.
 
-![](screenshots/OctoPod_Panel.png)
+<img src="screenshots/OctoPod_Panel.png" alt="" width="500px"/>
 
 ## Build Instructions
 
