@@ -28,8 +28,17 @@ class PrinterDetailsViewController: UITableViewController {
             usernameLabel.text = selectedPrinter.username
             passwordLabel.text = selectedPrinter.password
         }
+
+        // Register for keyboard notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        // Unregister for keyboard notifications
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -97,5 +106,22 @@ class PrinterDetailsViewController: UITableViewController {
             return result
         }
         return false
+    }
+
+    fileprivate func adjustingHeight(show: Bool, notification: Notification) {
+        var userInfo = notification.userInfo!
+        let keyboardFrame: CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        //        let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+        let changeInHeight = (keyboardFrame.height + 40) * (show ? 1 : -1)
+        // Set the table content inset to the keyboard height
+        tableView.contentInset.bottom = changeInHeight
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        adjustingHeight(show: true, notification: notification)
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        adjustingHeight(show: false, notification: notification)
     }
 }

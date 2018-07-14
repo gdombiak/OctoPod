@@ -18,12 +18,6 @@ class FileDetailsViewController: UITableViewController {
         
         // Hide empty rows at the bottom of the table
         tableView.tableFooterView = UIView()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +30,7 @@ class FileDetailsViewController: UITableViewController {
         printButton.isEnabled = printFile != nil && printFile!.canBePrinted()
         deleteButton.isEnabled = printFile != nil && printFile!.canBeDeleted()
     }
-
+    
     @IBAction func printClicked(_ sender: Any) {
         performSegue(withIdentifier: "backFromPrint", sender: self)
     }
@@ -80,5 +74,5 @@ class FileDetailsViewController: UITableViewController {
             return DateFormatter.localizedString(from: dateToConvert, dateStyle: DateFormatter.Style.medium, timeStyle: DateFormatter.Style.medium)
         }
         return ""
-    }
+    }    
 }
