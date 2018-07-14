@@ -1,0 +1,577 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2F004D774AE5079BD52FED7D /* Pods_OctoPod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F913620E58D596BED0BDF3 /* Pods_OctoPod.framework */; };
+		3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */; };
+		3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */; };
+		3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */; };
+		3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */; };
+		3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D45280120E15A370094CCB7 /* AppDelegate.swift */; };
+		3D45280720E15A370094CCB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280520E15A370094CCB7 /* Main.storyboard */; };
+		3D45280A20E15A370094CCB7 /* OctoPod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */; };
+		3D45280C20E15A380094CCB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280B20E15A380094CCB7 /* Assets.xcassets */; };
+		3D45280F20E15A380094CCB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280D20E15A380094CCB7 /* LaunchScreen.storyboard */; };
+		3D82873720E3EBC80035AE0B /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873620E3EBC80035AE0B /* Printer.swift */; };
+		3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873820E3EC3B0035AE0B /* PrinterManager.swift */; };
+		3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873A20E407370035AE0B /* PrintersTableViewController.swift */; };
+		3D82873D20E419960035AE0B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873C20E419960035AE0B /* CameraViewController.swift */; };
+		3D82874120E421610035AE0B /* MjpegStreamingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873F20E421610035AE0B /* MjpegStreamingController.swift */; };
+		3D8873F820F534C400DCE987 /* PrintFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8873F720F534C400DCE987 /* PrintFile.swift */; };
+		3D8873FA20F5BD2700DCE987 /* FileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8873F920F5BD2700DCE987 /* FileDetailsViewController.swift */; };
+		3D8B292A20E54F7300296D9D /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292920E54F7300296D9D /* PanelViewController.swift */; };
+		3D8B292D20E5514A00296D9D /* PrinterSubpanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */; };
+		3D8B293020E5549B00296D9D /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292F20E5549B00296D9D /* HTTPClient.swift */; };
+		3D8B293220E556D400296D9D /* OctoPrintClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B293120E556D400296D9D /* OctoPrintClient.swift */; };
+		3D968DDB20E336F5006774A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D968DDA20E336F5006774A5 /* Default-568h@2x.png */; };
+		3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D968DDC20E337C7006774A5 /* ScannerViewController.swift */; };
+		3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */; };
+		3D98C1DA20E5D096007BB13F /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D98C1D920E5D096007BB13F /* WebSocketClient.swift */; };
+		3DBAE49F20E6821900D2137D /* SelectDefaultPrinterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */; };
+		3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */; };
+		3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */; };
+		3DC57D5D20F419320061A87E /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC57D5C20F419320061A87E /* FilesViewController.swift */; };
+		3DF232E020F150CC00550652 /* MoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF232DF20F150CC00550652 /* MoveViewController.swift */; };
+		8267C0CF229350E955F7AF71 /* Pods_OctoPod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF04586ED8A4BC29EF06604 /* Pods_OctoPod.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewController.swift; sourceTree = "<group>"; };
+		3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraEmbeddedViewController.swift; sourceTree = "<group>"; };
+		3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTargetTempViewController.swift; sourceTree = "<group>"; };
+		3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClientDelegate.swift; sourceTree = "<group>"; };
+		3D4527FE20E15A370094CCB7 /* OctoPod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OctoPod.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D45280120E15A370094CCB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3D45280620E15A370094CCB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3D45280920E15A370094CCB7 /* OctoPod.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OctoPod.xcdatamodel; sourceTree = "<group>"; };
+		3D45280B20E15A380094CCB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3D45280E20E15A380094CCB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3D45281020E15A380094CCB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D82873620E3EBC80035AE0B /* Printer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Printer.swift; sourceTree = "<group>"; };
+		3D82873820E3EC3B0035AE0B /* PrinterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManager.swift; sourceTree = "<group>"; };
+		3D82873A20E407370035AE0B /* PrintersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintersTableViewController.swift; sourceTree = "<group>"; };
+		3D82873C20E419960035AE0B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		3D82873F20E421610035AE0B /* MjpegStreamingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MjpegStreamingController.swift; sourceTree = "<group>"; };
+		3D82874020E421610035AE0B /* MjpegStreamingKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MjpegStreamingKit.h; sourceTree = "<group>"; };
+		3D8873F720F534C400DCE987 /* PrintFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintFile.swift; sourceTree = "<group>"; };
+		3D8873F920F5BD2700DCE987 /* FileDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDetailsViewController.swift; sourceTree = "<group>"; };
+		3D8B292920E54F7300296D9D /* PanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
+		3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterSubpanelViewController.swift; sourceTree = "<group>"; };
+		3D8B292F20E5549B00296D9D /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		3D8B293120E556D400296D9D /* OctoPrintClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClient.swift; sourceTree = "<group>"; };
+		3D968DDA20E336F5006774A5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		3D968DDC20E337C7006774A5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetailsViewController.swift; sourceTree = "<group>"; };
+		3D98C1D920E5D096007BB13F /* WebSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
+		3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDefaultPrinterViewController.swift; sourceTree = "<group>"; };
+		3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateEvent.swift; sourceTree = "<group>"; };
+		3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClientDelegate.swift; sourceTree = "<group>"; };
+		3DC57D5C20F419320061A87E /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
+		3DF232DF20F150CC00550652 /* MoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveViewController.swift; sourceTree = "<group>"; };
+		A9F913620E58D596BED0BDF3 /* Pods_OctoPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctoPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDF04586ED8A4BC29EF06604 /* Pods_OctoPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctoPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA67A6E786F508F8752C975C /* Pods-OctoPod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctoPod.release.xcconfig"; path = "Pods/Target Support Files/Pods-OctoPod/Pods-OctoPod.release.xcconfig"; sourceTree = "<group>"; };
+		CC04C91AD1D77F22FA7EAFFB /* Pods-OctoPod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctoPod.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OctoPod/Pods-OctoPod.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3D4527FB20E15A370094CCB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8267C0CF229350E955F7AF71 /* Pods_OctoPod.framework in Frameworks */,
+				2F004D774AE5079BD52FED7D /* Pods_OctoPod.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2AF93107507B57283430D6F0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BDF04586ED8A4BC29EF06604 /* Pods_OctoPod.framework */,
+				A9F913620E58D596BED0BDF3 /* Pods_OctoPod.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3D0E1CA020E8670C0036B5FE /* Setup UI */ = {
+			isa = PBXGroup;
+			children = (
+				3D82873A20E407370035AE0B /* PrintersTableViewController.swift */,
+				3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */,
+				3D968DDC20E337C7006774A5 /* ScannerViewController.swift */,
+			);
+			path = "Setup UI";
+			sourceTree = "<group>";
+		};
+		3D0E1CA120E8674D0036B5FE /* Panel UI */ = {
+			isa = PBXGroup;
+			children = (
+				3D8B292920E54F7300296D9D /* PanelViewController.swift */,
+				3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */,
+				3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */,
+				3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */,
+				3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */,
+			);
+			path = "Panel UI";
+			sourceTree = "<group>";
+		};
+		3D4527F520E15A370094CCB7 = {
+			isa = PBXGroup;
+			children = (
+				3D968DDA20E336F5006774A5 /* Default-568h@2x.png */,
+				3D45280020E15A370094CCB7 /* OctoPod */,
+				3D4527FF20E15A370094CCB7 /* Products */,
+				8A0275A97AEECD00BBCBA6F6 /* Pods */,
+				2AF93107507B57283430D6F0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3D4527FF20E15A370094CCB7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3D4527FE20E15A370094CCB7 /* OctoPod.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D45280020E15A370094CCB7 /* OctoPod */ = {
+			isa = PBXGroup;
+			children = (
+				3D82873E20E421480035AE0B /* MJPEG Streaming */,
+				3D8B292E20E5542800296D9D /* OctoPrint */,
+				3D82873520E3EB730035AE0B /* Model */,
+				3D45280120E15A370094CCB7 /* AppDelegate.swift */,
+				3D0E1CA120E8674D0036B5FE /* Panel UI */,
+				3DF232DE20F150A900550652 /* Move UI */,
+				3DC57D5B20F4190B0061A87E /* File UI */,
+				3D0E1CA020E8670C0036B5FE /* Setup UI */,
+				3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */,
+				3D82873C20E419960035AE0B /* CameraViewController.swift */,
+				3D45280520E15A370094CCB7 /* Main.storyboard */,
+				3D45280B20E15A380094CCB7 /* Assets.xcassets */,
+				3D45280D20E15A380094CCB7 /* LaunchScreen.storyboard */,
+				3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */,
+				3D45281020E15A380094CCB7 /* Info.plist */,
+			);
+			path = OctoPod;
+			sourceTree = "<group>";
+		};
+		3D82873520E3EB730035AE0B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */,
+				3D82873620E3EBC80035AE0B /* Printer.swift */,
+				3D82873820E3EC3B0035AE0B /* PrinterManager.swift */,
+				3D8873F720F534C400DCE987 /* PrintFile.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D82873E20E421480035AE0B /* MJPEG Streaming */ = {
+			isa = PBXGroup;
+			children = (
+				3D82873F20E421610035AE0B /* MjpegStreamingController.swift */,
+				3D82874020E421610035AE0B /* MjpegStreamingKit.h */,
+			);
+			path = "MJPEG Streaming";
+			sourceTree = "<group>";
+		};
+		3D8B292E20E5542800296D9D /* OctoPrint */ = {
+			isa = PBXGroup;
+			children = (
+				3D8B292F20E5549B00296D9D /* HTTPClient.swift */,
+				3D8B293120E556D400296D9D /* OctoPrintClient.swift */,
+				3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */,
+				3D98C1D920E5D096007BB13F /* WebSocketClient.swift */,
+				3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */,
+			);
+			path = OctoPrint;
+			sourceTree = "<group>";
+		};
+		3DC57D5B20F4190B0061A87E /* File UI */ = {
+			isa = PBXGroup;
+			children = (
+				3DC57D5C20F419320061A87E /* FilesViewController.swift */,
+				3D8873F920F5BD2700DCE987 /* FileDetailsViewController.swift */,
+			);
+			path = "File UI";
+			sourceTree = "<group>";
+		};
+		3DF232DE20F150A900550652 /* Move UI */ = {
+			isa = PBXGroup;
+			children = (
+				3DF232DF20F150CC00550652 /* MoveViewController.swift */,
+			);
+			path = "Move UI";
+			sourceTree = "<group>";
+		};
+		8A0275A97AEECD00BBCBA6F6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC04C91AD1D77F22FA7EAFFB /* Pods-OctoPod.debug.xcconfig */,
+				CA67A6E786F508F8752C975C /* Pods-OctoPod.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3D4527FD20E15A370094CCB7 /* OctoPod */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3D45281320E15A380094CCB7 /* Build configuration list for PBXNativeTarget "OctoPod" */;
+			buildPhases = (
+				FE3B7D0BABBF528BF90BAA09 /* [CP] Check Pods Manifest.lock */,
+				3D4527FA20E15A370094CCB7 /* Sources */,
+				3D4527FB20E15A370094CCB7 /* Frameworks */,
+				3D4527FC20E15A370094CCB7 /* Resources */,
+				DED305FD14E905DF8C73ED2C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OctoPod;
+			productName = OctoPod;
+			productReference = 3D4527FE20E15A370094CCB7 /* OctoPod.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3D4527F620E15A370094CCB7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Gaston Dombiak";
+				TargetAttributes = {
+					3D4527FD20E15A370094CCB7 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 3D4527F920E15A370094CCB7 /* Build configuration list for PBXProject "OctoPod" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3D4527F520E15A370094CCB7;
+			productRefGroup = 3D4527FF20E15A370094CCB7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3D4527FD20E15A370094CCB7 /* OctoPod */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3D4527FC20E15A370094CCB7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D45280F20E15A380094CCB7 /* LaunchScreen.storyboard in Resources */,
+				3D968DDB20E336F5006774A5 /* Default-568h@2x.png in Resources */,
+				3D45280C20E15A380094CCB7 /* Assets.xcassets in Resources */,
+				3D45280720E15A370094CCB7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DED305FD14E905DF8C73ED2C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OctoPod/Pods-OctoPod-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OctoPod/Pods-OctoPod-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE3B7D0BABBF528BF90BAA09 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OctoPod-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3D4527FA20E15A370094CCB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */,
+				3D8B293220E556D400296D9D /* OctoPrintClient.swift in Sources */,
+				3DBAE49F20E6821900D2137D /* SelectDefaultPrinterViewController.swift in Sources */,
+				3D82874120E421610035AE0B /* MjpegStreamingController.swift in Sources */,
+				3D98C1DA20E5D096007BB13F /* WebSocketClient.swift in Sources */,
+				3D82873720E3EBC80035AE0B /* Printer.swift in Sources */,
+				3D8873F820F534C400DCE987 /* PrintFile.swift in Sources */,
+				3D8B293020E5549B00296D9D /* HTTPClient.swift in Sources */,
+				3D8B292D20E5514A00296D9D /* PrinterSubpanelViewController.swift in Sources */,
+				3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */,
+				3DC57D5D20F419320061A87E /* FilesViewController.swift in Sources */,
+				3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */,
+				3D45280A20E15A370094CCB7 /* OctoPod.xcdatamodeld in Sources */,
+				3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */,
+				3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */,
+				3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */,
+				3DF232E020F150CC00550652 /* MoveViewController.swift in Sources */,
+				3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */,
+				3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */,
+				3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */,
+				3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */,
+				3D82873D20E419960035AE0B /* CameraViewController.swift in Sources */,
+				3D8B292A20E54F7300296D9D /* PanelViewController.swift in Sources */,
+				3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */,
+				3D8873FA20F5BD2700DCE987 /* FileDetailsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3D45280520E15A370094CCB7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D45280620E15A370094CCB7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3D45280D20E15A380094CCB7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D45280E20E15A380094CCB7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3D45281120E15A380094CCB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3D45281220E15A380094CCB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3D45281420E15A380094CCB7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC04C91AD1D77F22FA7EAFFB /* Pods-OctoPod.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ALV53VY374;
+				INFOPLIST_FILE = OctoPod/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.OctoPod.OctoPod;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3D45281520E15A380094CCB7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA67A6E786F508F8752C975C /* Pods-OctoPod.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ALV53VY374;
+				INFOPLIST_FILE = OctoPod/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.OctoPod.OctoPod;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3D4527F920E15A370094CCB7 /* Build configuration list for PBXProject "OctoPod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D45281120E15A380094CCB7 /* Debug */,
+				3D45281220E15A380094CCB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3D45281320E15A380094CCB7 /* Build configuration list for PBXNativeTarget "OctoPod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3D45281420E15A380094CCB7 /* Debug */,
+				3D45281520E15A380094CCB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3D45280920E15A370094CCB7 /* OctoPod.xcdatamodel */,
+			);
+			currentVersion = 3D45280920E15A370094CCB7 /* OctoPod.xcdatamodel */;
+			path = OctoPod.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3D4527F620E15A370094CCB7 /* Project object */;
+}
