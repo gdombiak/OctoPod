@@ -50,17 +50,14 @@ class FilesViewController: UITableViewController {
         return cell
     }
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            deleteRow(forRowAt: indexPath)
+            tableView.reloadData()
+        }
     }
-    */
 
     @IBAction func refreshFiles(_ sender: UIRefreshControl) {
         loadFiles(done: {
@@ -104,19 +101,7 @@ class FilesViewController: UITableViewController {
     }
 
     @IBAction func backFromDelete(_ sender: UIStoryboardSegue) {
-        if let printFile = files?[(tableView.indexPathForSelectedRow?.row)!] {
-            // Remove file from UI
-            files?.remove(at: (tableView.indexPathForSelectedRow?.row)!)
-            // Delete from server (if failed then show error message and reload)
-            octoprintClient.deleteFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
-                if !success {
-                    let message = response.statusCode == 409 ? "File currently being printed" : "Failed to delete file"
-                    self.showAlert("Alert", message: message, done: {
-                        self.loadFiles(done: nil)
-                    })
-                }
-            }
-        }
+        deleteRow(forRowAt: tableView.indexPathForSelectedRow!)
     }
 
     // MARK: - Private functions
@@ -127,9 +112,18 @@ class FilesViewController: UITableViewController {
             // TODO Handle connection errors
             if let json = result as? NSDictionary {
                 if let files = json["files"] as? NSArray {
+                    let trashRegEx = "^trash[-\\w]+~1\\/.+"
+                    let trashTest = NSPredicate(format: "SELF MATCHES %@", trashRegEx)
+
                     for case let file as NSDictionary in files {
                         let printFile = PrintFile()
                         printFile.parse(json: file)
+                        
+                        if let path = printFile.path {
+                            if trashTest.evaluate(with: path) {
+                                continue
+                            }
+                        }
 
                         // Only add files that are not folders
                         if printFile.type != "folder" {
@@ -147,6 +141,22 @@ class FilesViewController: UITableViewController {
         }
     }
     
+    fileprivate func deleteRow(forRowAt indexPath: IndexPath) {
+        if let printFile = files?[indexPath.row] {
+            // Remove file from UI
+            files?.remove(at: indexPath.row)
+            // Delete from server (if failed then show error message and reload)
+            octoprintClient.deleteFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
+                if !success {
+                    let message = response.statusCode == 409 ? "File currently being printed" : "Failed to delete file"
+                    self.showAlert("Alert", message: message, done: {
+                        self.loadFiles(done: nil)
+                    })
+                }
+            }
+        }
+    }
+
     fileprivate func showAlert(_ title: String, message: String, done: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (UIAlertAction) -> Void in
