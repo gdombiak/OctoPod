@@ -183,12 +183,12 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     fileprivate func showDefaultPrinter() {
         if let printer = printerManager.getDefaultPrinter() {
             // Update window title to Camera name
-            navigationItem.title = printer.name
+            DispatchQueue.main.async { self.navigationItem.title = printer.name }
             
             // Ask octoprintClient to connect to OctoPrint server
             octoprintClient.connectToServer(printer: printer)
         } else {
-            notRefreshingAlertLabel.isHidden = true
+            DispatchQueue.main.async { self.notRefreshingAlertLabel.isHidden = true }
             // Assume printer is not connected
             updateConnectButton(printerConnected: false)
             // Ask octoprintClient to disconnect from OctoPrint server
