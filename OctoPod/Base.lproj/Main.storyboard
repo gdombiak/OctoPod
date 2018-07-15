@@ -20,16 +20,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n53-As-HXW">
-                                <rect key="frame" x="0.0" y="288" width="375" height="330"/>
+                                <rect key="frame" x="0.0" y="308" width="375" height="310"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="999" constant="330" id="ucF-8j-zec"/>
+                                    <constraint firstAttribute="height" priority="999" constant="310" id="ucF-8j-zec"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="eqt-ME-zgd" kind="embed" id="fib-Pg-LZo"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uff-mu-aBi">
-                                <rect key="frame" x="0.0" y="64" width="375" height="224"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="244"/>
                                 <connections>
                                     <segue destination="htf-Hq-pLO" kind="embed" id="VPr-On-X9X"/>
                                 </connections>
@@ -87,11 +87,12 @@
             <objects>
                 <viewController id="htf-Hq-pLO" customClass="CameraEmbeddedViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fPR-Va-Els">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="224"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xgR-KO-IvE">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="224"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xgR-KO-IvE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -722,8 +723,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wz7-AS-8Cp">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wz7-AS-8Cp">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

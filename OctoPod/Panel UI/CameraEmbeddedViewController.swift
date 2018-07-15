@@ -21,6 +21,9 @@ class CameraEmbeddedViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
 
         if !embedded {
+            // Hide the navigation bar on the this view controller
+            self.navigationController?.setNavigationBarHidden(true, animated: animated)
+
             // Add a gesture recognizer to camera view so we can handle taps
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCameraTap))
             imageView.isUserInteractionEnabled = true
@@ -36,8 +39,11 @@ class CameraEmbeddedViewController: UIViewController {
 
         stopRenderingPrinter()
         
-        // When running full screen we are forcing landscape so we go back to portrait when leaving
         if !embedded {
+            // Show the navigation bar on other view controllers
+            self.navigationController?.setNavigationBarHidden(false, animated: animated)
+
+            // When running full screen we are forcing landscape so we go back to portrait when leaving
             UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
         }
     }
