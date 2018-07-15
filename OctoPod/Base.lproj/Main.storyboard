@@ -182,26 +182,26 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Print Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfz-1j-Keo">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Print Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfz-1j-Keo">
                                                     <rect key="frame" x="16" y="11" width="78" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About 10m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88V-gh-sQd">
-                                                    <rect key="frame" x="276" y="34.5" width="83" height="20.5"/>
+                                                    <rect key="frame" x="133" y="34.5" width="226" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Print Time Left" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hR-SK-V2r">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Print Time Left" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5hR-SK-V2r">
                                                     <rect key="frame" x="16" y="34.5" width="112" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1hr 25m 13sec" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwm-QC-qD1">
-                                                    <rect key="frame" x="247.5" y="11" width="111.5" height="20.5"/>
+                                                    <rect key="frame" x="99" y="11" width="260" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -214,6 +214,8 @@
                                                 <constraint firstItem="Qfz-1j-Keo" firstAttribute="top" secondItem="qKl-bK-F0z" secondAttribute="topMargin" id="Lcf-gh-Mwj"/>
                                                 <constraint firstItem="Qfz-1j-Keo" firstAttribute="leading" secondItem="qKl-bK-F0z" secondAttribute="leadingMargin" id="O0l-UG-P0b"/>
                                                 <constraint firstItem="88V-gh-sQd" firstAttribute="trailing" secondItem="qKl-bK-F0z" secondAttribute="trailingMargin" id="Rxx-Fz-meK"/>
+                                                <constraint firstItem="rwm-QC-qD1" firstAttribute="leading" secondItem="Qfz-1j-Keo" secondAttribute="trailing" constant="5" id="SOT-kr-M1b"/>
+                                                <constraint firstItem="88V-gh-sQd" firstAttribute="leading" secondItem="5hR-SK-V2r" secondAttribute="trailing" constant="5" id="aIv-Jw-38y"/>
                                                 <constraint firstItem="rwm-QC-qD1" firstAttribute="top" secondItem="qKl-bK-F0z" secondAttribute="topMargin" id="tZT-dh-XF1"/>
                                                 <constraint firstItem="5hR-SK-V2r" firstAttribute="leading" secondItem="qKl-bK-F0z" secondAttribute="leadingMargin" id="uto-HK-fwk"/>
                                             </constraints>
@@ -230,20 +232,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="37.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Printer status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnD-Rc-TYw">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Printer status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VnD-Rc-TYw">
                                                     <rect key="frame" x="16" y="13" width="102.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Printing from SD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJx-aQ-4FM">
-                                                    <rect key="frame" x="233" y="12" width="126" height="20.5"/>
+                                                    <rect key="frame" x="123.5" y="12" width="235.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="gJx-aQ-4FM" firstAttribute="leading" secondItem="VnD-Rc-TYw" secondAttribute="trailing" constant="5" id="GPI-OJ-VzI"/>
                                                 <constraint firstItem="VnD-Rc-TYw" firstAttribute="leading" secondItem="D4n-DH-IhL" secondAttribute="leadingMargin" id="bUE-hX-GjR"/>
                                                 <constraint firstItem="gJx-aQ-4FM" firstAttribute="top" secondItem="D4n-DH-IhL" secondAttribute="topMargin" constant="1" id="h85-mI-EVM"/>
                                                 <constraint firstItem="VnD-Rc-TYw" firstAttribute="top" secondItem="D4n-DH-IhL" secondAttribute="topMargin" constant="2" id="svL-Hm-GT3"/>
