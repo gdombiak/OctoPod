@@ -72,12 +72,12 @@ class FilesViewController: UITableViewController {
         octoprintClient.refreshSD { (success: Bool, error: Error?, response: HTTPURLResponse) in
             if success {
                 // SD Card refreshed so now fetch files
-                self.loadFiles(done: nil)
+                self.loadFiles(delay: 1)
             } else if response.statusCode == 409 {
                 // SD Card is not initialized so initialize it now
                 self.octoprintClient.initSD(callback: { (success: Bool, error: Error?, response: HTTPURLResponse) in
                     if success {
-                        self.loadFiles(done: nil)
+                        self.loadFiles(delay: 1)
                     } else {
                         self.showAlert("Alert", message: "Failed to initialize SD card", done: nil)
                     }
@@ -126,6 +126,13 @@ class FilesViewController: UITableViewController {
     }
 
     // MARK: - Private functions
+    
+    fileprivate func loadFiles(delay seconds: Double) {
+        // Wait requested seconds before loading files (so SD card has time to be read)
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            self.loadFiles(done: nil)
+        }
+    }
     
     fileprivate func loadFiles(done: (() -> Void)?) {
         self.octoprintClient.files { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
