@@ -29,9 +29,11 @@ class PrintFile {
                 return "Octoprint"
             } else if currentOrigin == "sdcard" {
                 return "SD Card"
+            } else {
+                return "Unknown"
             }
         }
-        return "Unknown"
+        return ""
     }
     
     func displayType() -> String {
