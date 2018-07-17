@@ -67,6 +67,27 @@ class FilesViewController: UITableViewController {
         })
     }
     
+    // Initialize SD card if needed and refresh files from SD card
+    @IBAction func refreshSDCard(_ sender: Any) {
+        octoprintClient.refreshSD { (success: Bool, error: Error?, response: HTTPURLResponse) in
+            if success {
+                // SD Card refreshed so now fetch files
+                self.loadFiles(done: nil)
+            } else if response.statusCode == 409 {
+                // SD Card is not initialized so initialize it now
+                self.octoprintClient.initSD(callback: { (success: Bool, error: Error?, response: HTTPURLResponse) in
+                    if success {
+                        self.loadFiles(done: nil)
+                    } else {
+                        self.showAlert("Alert", message: "Failed to initialize SD card", done: nil)
+                    }
+                })
+            } else {
+                self.showAlert("Alert", message: "Failed to refresh SD card", done: nil)
+            }
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

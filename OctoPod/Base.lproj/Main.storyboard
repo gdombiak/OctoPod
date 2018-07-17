@@ -878,7 +878,13 @@
                             <outlet property="delegate" destination="IAn-jo-jmu" id="IXh-0G-uhn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="5rj-hw-B62"/>
+                    <navigationItem key="navigationItem" id="5rj-hw-B62">
+                        <barButtonItem key="leftBarButtonItem" title="Refresh SD" id="DuV-QS-2fp">
+                            <connections>
+                                <action selector="refreshSDCard:" destination="IAn-jo-jmu" id="MjW-O2-1M4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="8cW-9b-WPd">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>

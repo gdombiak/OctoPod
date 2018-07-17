@@ -327,6 +327,35 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
 
+    // MARK: - SD Card operations
+
+    // Initialize the SD Card. Files will be read from the SD card during this operation
+    func initSD(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "init"
+            sdPost(httpClient: client, json: json, callback: callback)
+        }
+    }
+
+    // Read files from the SD card during this operation. You will need to call #files() when this operation was run successfully
+    func refreshSD(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "refresh"
+            sdPost(httpClient: client, json: json, callback: callback)
+        }
+    }
+    
+    // Release the SD card from the printer. The reverse operation to initSD()
+    func releaseSD(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "release"
+            sdPost(httpClient: client, json: json, callback: callback)
+        }
+    }
+
     // MARK: - Low level operations
 
     fileprivate func connectionPost(httpClient: HTTPClient, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
@@ -349,6 +378,12 @@ class OctoPrintClient: WebSocketClientDelegate {
     
     fileprivate func printerToolPost(httpClient: HTTPClient, json: NSDictionary, toolNumber: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         httpClient.post("/api/printer/tool", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            callback(response.statusCode == 204, error, response)
+        }
+    }
+
+    fileprivate func sdPost(httpClient: HTTPClient, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        httpClient.post("/api/printer/sd", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
             callback(response.statusCode == 204, error, response)
         }
     }
