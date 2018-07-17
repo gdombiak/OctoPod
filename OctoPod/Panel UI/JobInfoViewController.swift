@@ -22,9 +22,6 @@ class JobInfoViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Ugly hack to hide the extra space above the tableView
-        tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +80,14 @@ class JobInfoViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
     }
     
     @IBAction func cancelJob(_ sender: Any) {

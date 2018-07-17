@@ -34,9 +34,6 @@ class PrinterSubpanelViewController: UITableViewController, UIPopoverPresentatio
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Ugly hack to hide the extra space above the tableView
-        tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
-        
         // Round the corners of the progres bar
         progressView.layer.cornerRadius = 8
         progressView.clipsToBounds = true
@@ -55,6 +52,14 @@ class PrinterSubpanelViewController: UITableViewController, UIPopoverPresentatio
         clearValues()
     }
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+
      // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
