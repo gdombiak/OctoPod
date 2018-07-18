@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F004D774AE5079BD52FED7D /* Pods_OctoPod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F913620E58D596BED0BDF3 /* Pods_OctoPod.framework */; };
 		3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */; };
 		3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */; };
 		3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */; };
@@ -87,7 +86,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8267C0CF229350E955F7AF71 /* Pods_OctoPod.framework in Frameworks */,
-				2F004D774AE5079BD52FED7D /* Pods_OctoPod.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,7 +438,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -494,7 +492,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
