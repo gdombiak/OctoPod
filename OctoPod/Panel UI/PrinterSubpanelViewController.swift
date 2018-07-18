@@ -187,7 +187,7 @@ class PrinterSubpanelViewController: UITableViewController, UIPopoverPresentatio
             self.tool0ActualLabel.text = ""
             self.tool0TargetLabel.text = ""
             self.tool0SplitLabel.isHidden = true
-            // Hide second hotend unless printe reports that it has one
+            // Hide second extruder unless printe reports that it has one
             self.tool1Row.isHidden = true
             
             self.bedActualLabel.text = "            " // Use empty spaces to position Bed label in a good place

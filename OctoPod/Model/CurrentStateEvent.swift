@@ -8,11 +8,11 @@ class CurrentStateEvent {
     var bedTempActual: Double?
     var bedTempTarget: Double?
     
-    // Hotend 0 temperatures
+    // Extruder 0 temperatures
     var tool0TempActual: Double?
     var tool0TempTarget: Double?
 
-    // Hotend 1 temperatures (if present)
+    // Extruder 1 temperatures (if present)
     var tool1TempActual: Double?
     var tool1TempTarget: Double?
     
