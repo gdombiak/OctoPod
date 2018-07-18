@@ -1124,7 +1124,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Printer Connection" id="uRd-RD-eAS">
+                            <tableViewSection headerTitle="Printer Connection (REQUIRED)" id="uRd-RD-eAS">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GyY-5L-8Wa">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
@@ -1151,33 +1151,40 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="t37-IA-rZ5">
-                                        <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="t37-IA-rZ5">
+                                        <rect key="frame" x="0.0" y="99.5" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t37-IA-rZ5" id="adQ-Zb-AdA">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hostname (e.g. https://myoctoprint.com)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tMP-2W-Iam">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hostname (e.g. http://octopi.local)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tMP-2W-Iam">
                                                     <rect key="frame" x="16" y="6" width="343" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="URL" textContentType="url"/>
                                                     <connections>
-                                                        <action selector="fieldChanged:" destination="RQs-UQ-7OZ" eventType="editingChanged" id="s6D-1A-gAM"/>
+                                                        <action selector="urlChanged:" destination="RQs-UQ-7OZ" eventType="editingChanged" id="epM-jx-XEB"/>
                                                     </connections>
                                                 </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a valid URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6d-lk-BaS">
+                                                    <rect key="frame" x="16" y="42" width="110" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="K6d-lk-BaS" firstAttribute="bottom" secondItem="adQ-Zb-AdA" secondAttribute="bottomMargin" id="Fi2-kL-lxm"/>
                                                 <constraint firstAttribute="trailing" secondItem="tMP-2W-Iam" secondAttribute="trailing" constant="16" id="S3O-mx-HEU"/>
-                                                <constraint firstAttribute="bottom" secondItem="tMP-2W-Iam" secondAttribute="bottom" constant="7.5" id="gGD-pr-pZc"/>
                                                 <constraint firstItem="tMP-2W-Iam" firstAttribute="top" secondItem="adQ-Zb-AdA" secondAttribute="top" constant="6" id="jaE-fV-Pmo"/>
                                                 <constraint firstItem="tMP-2W-Iam" firstAttribute="leading" secondItem="adQ-Zb-AdA" secondAttribute="leading" constant="16" id="nof-s2-cUU"/>
+                                                <constraint firstItem="K6d-lk-BaS" firstAttribute="leading" secondItem="adQ-Zb-AdA" secondAttribute="leadingMargin" id="pDP-ts-nZj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="v4K-7f-hjB">
-                                        <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="169.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v4K-7f-hjB" id="Cmw-nV-kXu">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1202,7 +1209,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="fFY-oA-XQc">
-                                        <rect key="frame" x="0.0" y="187.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="213.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fFY-oA-XQc" id="vld-CD-MYM">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1229,7 +1236,7 @@
                             <tableViewSection headerTitle="Authentication (printer and camera)" id="WKG-83-bZQ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="zbS-HA-yK0">
-                                        <rect key="frame" x="0.0" y="287.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="313.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zbS-HA-yK0" id="qxS-DT-JDX">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1254,7 +1261,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="IfG-g8-Jvm">
-                                        <rect key="frame" x="0.0" y="331.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="357.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IfG-g8-Jvm" id="NGh-kP-8P2">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1299,12 +1306,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="apiKeyLabel" destination="cQd-kb-e8D" id="eBb-eA-7r9"/>
-                        <outlet property="hostnameLabel" destination="tMP-2W-Iam" id="Nk3-u1-OIb"/>
-                        <outlet property="passwordLabel" destination="9dR-Sn-lbP" id="2xT-jt-Aga"/>
-                        <outlet property="printerNameLabel" destination="aFa-Qd-yIr" id="dYn-Mk-F12"/>
+                        <outlet property="apiKeyField" destination="cQd-kb-e8D" id="eBb-eA-7r9"/>
+                        <outlet property="hostnameField" destination="tMP-2W-Iam" id="Nk3-u1-OIb"/>
+                        <outlet property="passwordField" destination="9dR-Sn-lbP" id="2xT-jt-Aga"/>
+                        <outlet property="printerNameField" destination="aFa-Qd-yIr" id="dYn-Mk-F12"/>
                         <outlet property="saveButton" destination="Ptk-bD-UEk" id="RmJ-nb-Y9C"/>
-                        <outlet property="usernameLabel" destination="sLc-Jv-G0H" id="n1O-OE-Z9w"/>
+                        <outlet property="urlErrorMessageLabel" destination="K6d-lk-BaS" id="kFf-mh-yR5"/>
+                        <outlet property="usernameField" destination="sLc-Jv-G0H" id="n1O-OE-Z9w"/>
                         <segue destination="7mC-U2-bLa" kind="unwind" identifier="unwindPrintersUpdated" unwindAction="unwindPrintersUpdated:" id="R1q-a8-wh9"/>
                     </connections>
                 </tableViewController>

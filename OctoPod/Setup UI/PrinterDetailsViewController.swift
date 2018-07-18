@@ -7,12 +7,13 @@ class PrinterDetailsViewController: UITableViewController {
     var updatePrinter: Printer? = nil
     var scannedKey: String?
 
-    @IBOutlet weak var printerNameLabel: UITextField!
-    @IBOutlet weak var hostnameLabel: UITextField!
-    @IBOutlet weak var apiKeyLabel: UITextField!
+    @IBOutlet weak var printerNameField: UITextField!
+    @IBOutlet weak var hostnameField: UITextField!
+    @IBOutlet weak var urlErrorMessageLabel: UILabel!
+    @IBOutlet weak var apiKeyField: UITextField!
     
-    @IBOutlet weak var usernameLabel: UITextField!
-    @IBOutlet weak var passwordLabel: UITextField!
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -22,11 +23,16 @@ class PrinterDetailsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if let selectedPrinter = updatePrinter {
-            printerNameLabel.text = selectedPrinter.name
-            hostnameLabel.text = selectedPrinter.hostname
-            apiKeyLabel.text = scannedKey == nil ? selectedPrinter.apiKey : scannedKey
-            usernameLabel.text = selectedPrinter.username
-            passwordLabel.text = selectedPrinter.password
+            printerNameField.text = selectedPrinter.name
+            hostnameField.text = selectedPrinter.hostname
+            // Hide or show URL error message
+            urlErrorMessageLabel.isHidden = isValidURL()
+            apiKeyField.text = scannedKey == nil ? selectedPrinter.apiKey : scannedKey
+            usernameField.text = selectedPrinter.username
+            passwordField.text = selectedPrinter.password
+        } else {
+            // Hide URL error message
+            urlErrorMessageLabel.isHidden = true
         }
 
         // Register for keyboard notifications
@@ -51,25 +57,44 @@ class PrinterDetailsViewController: UITableViewController {
     @IBAction func saveChanges(_ sender: Any) {
         if let printer = updatePrinter {
             // Update existing printer
-            printer.name = printerNameLabel.text!
-            printer.hostname = hostnameLabel.text!
-            printer.apiKey = apiKeyLabel.text!
+            printer.name = printerNameField.text!
+            printer.hostname = hostnameField.text!
+            printer.apiKey = apiKeyField.text!
             
-            printer.username = usernameLabel.text
-            printer.password = passwordLabel.text
+            printer.username = usernameField.text
+            printer.password = passwordField.text
             
             printerManager.updatePrinter(printer)
         } else {
             // Add new printer (that will become default if it's the first one)
-            printerManager.addPrinter(name: printerNameLabel.text!, hostname: hostnameLabel.text!, apiKey: apiKeyLabel.text!, username: usernameLabel.text, password: passwordLabel.text)
+            printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text)
         }
         
         // Go back to previous page and execute the unwinsScanQRCode IBAction
         performSegue(withIdentifier: "unwindPrintersUpdated", sender: self)
     }
     
+    @IBAction func urlChanged(_ sender: Any) {
+        // Hide or show URL error message
+        urlErrorMessageLabel.isHidden = isValidURL()
+        // Refresh row height that will handle error message
+        tableView.beginUpdates()
+        tableView.endUpdates()
+        updateSaveButton()
+    }
+    
     @IBAction func fieldChanged(_ sender: Any) {
         updateSaveButton()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            if indexPath.row == 1 && !urlErrorMessageLabel.isHidden {
+                // Show higher row height so we can display error message
+                return 70
+            }
+        }
+        return 44
     }
     
     /*
@@ -84,14 +109,14 @@ class PrinterDetailsViewController: UITableViewController {
     
     @IBAction func unwindScanQRCode(_ sender: UIStoryboardSegue) {
         if let scanner = sender.source as? ScannerViewController {
-            self.apiKeyLabel.text = scanner.scannedQRCode
+            self.apiKeyField.text = scanner.scannedQRCode
             scannedKey = scanner.scannedQRCode
             self.updateSaveButton()
         }
     }
 
     fileprivate func updateSaveButton() {
-        if !(printerNameLabel.text?.isEmpty)! && !(hostnameLabel.text?.isEmpty)! && !(apiKeyLabel.text?.isEmpty)! {
+        if !(printerNameField.text?.isEmpty)! && !(hostnameField.text?.isEmpty)! && !(apiKeyField.text?.isEmpty)! {
             saveButton.isEnabled = isValidURL()
         } else {
             saveButton.isEnabled = false
@@ -99,7 +124,7 @@ class PrinterDetailsViewController: UITableViewController {
     }
     
     fileprivate func isValidURL() -> Bool {
-        if let inputURL = hostnameLabel.text {
+        if let inputURL = hostnameField.text {
             let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+(:[0-9]+)?"
             let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx)
             let result = urlTest.evaluate(with: inputURL)
