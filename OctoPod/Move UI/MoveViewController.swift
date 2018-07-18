@@ -1,6 +1,6 @@
 import UIKit
 
-class MoveViewController: UITableViewController {
+class MoveViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -143,6 +143,37 @@ class MoveViewController: UITableViewController {
                 }
             })
         }
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "send_gcode", let controller = segue.destination as? SendGCodeViewController {
+            controller.popoverPresentationController!.delegate = self
+        }
+    }
+    
+    // MARK: - Unwind operations
+    
+    @IBAction func backFromSendGCode(_ sender: UIStoryboardSegue) {
+        if let controller = sender.source as? SendGCodeViewController, let text = controller.gCodeField.text {
+            octoprintClient.sendCommand(gcode: text.uppercased()) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                if !requested {
+                    // Handle error
+                    var message = "Failed to send GCode command"
+                    if response.statusCode == 409 {
+                        message = "Printer not operational"
+                    }
+                    self.showAlert("Alert", message: message)
+                }
+            }
+        }
+    }
+    
+    // MARK: - UIPopoverPresentationControllerDelegate
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
     }
     
     // MARK: - Private fuctions

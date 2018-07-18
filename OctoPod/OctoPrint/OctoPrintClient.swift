@@ -255,6 +255,17 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
     
+    func sendCommand(gcode: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = gcode
+            
+            client.post("/api/printer/command", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+    
     // MARK: - Print head operations (move operations)
     
     func move(x delta: Float, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {

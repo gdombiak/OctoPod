@@ -11,6 +11,7 @@
 		3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */; };
 		3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */; };
 		3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */; };
+		3D3B1D4D20FED9D40000A319 /* SendGCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3B1D4C20FED9D40000A319 /* SendGCodeViewController.swift */; };
 		3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */; };
 		3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D45280120E15A370094CCB7 /* AppDelegate.swift */; };
 		3D45280720E15A370094CCB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280520E15A370094CCB7 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewController.swift; sourceTree = "<group>"; };
 		3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraEmbeddedViewController.swift; sourceTree = "<group>"; };
 		3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTargetTempViewController.swift; sourceTree = "<group>"; };
+		3D3B1D4C20FED9D40000A319 /* SendGCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendGCodeViewController.swift; sourceTree = "<group>"; };
 		3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClientDelegate.swift; sourceTree = "<group>"; };
 		3D4527FE20E15A370094CCB7 /* OctoPod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OctoPod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D45280120E15A370094CCB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				3DF232DF20F150CC00550652 /* MoveViewController.swift */,
+				3D3B1D4C20FED9D40000A319 /* SendGCodeViewController.swift */,
 			);
 			path = "Move UI";
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */,
 				3D82873D20E419960035AE0B /* CameraViewController.swift in Sources */,
 				3D8B292A20E54F7300296D9D /* PanelViewController.swift in Sources */,
+				3D3B1D4D20FED9D40000A319 /* SendGCodeViewController.swift in Sources */,
 				3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */,
 				3D8873FA20F5BD2700DCE987 /* FileDetailsViewController.swift in Sources */,
 			);
