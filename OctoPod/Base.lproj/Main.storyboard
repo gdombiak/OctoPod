@@ -157,7 +157,7 @@
                                                     <state key="normal" image="Print Job"/>
                                                     <connections>
                                                         <segue destination="PnN-DP-ud9" kind="popoverPresentation" identifier="print_job_info" popoverAnchorView="25h-1L-QYm" id="YBV-Yx-yq8">
-                                                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES"/>
+                                                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" right="YES"/>
                                                         </segue>
                                                     </connections>
                                                 </button>
@@ -577,7 +577,7 @@
             <objects>
                 <tableViewController id="PnN-DP-ud9" customClass="JobInfoViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" id="ym8-l3-crm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="191"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -671,26 +671,35 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cxb-Rv-BSm">
-                                                    <rect key="frame" x="233.5" y="6" width="48" height="30"/>
-                                                    <state key="normal" title="Cancel"/>
-                                                    <connections>
-                                                        <action selector="cancelJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="caK-gc-esk"/>
-                                                    </connections>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2Y-RO-6Yg">
-                                                    <rect key="frame" x="96.5" y="6" width="42" height="30"/>
+                                                    <rect key="frame" x="166.5" y="6" width="42" height="30"/>
                                                     <state key="normal" title="Pause"/>
                                                     <connections>
                                                         <action selector="pauseOrResumeJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="O9B-vc-VDa"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XV8-g9-QIc">
+                                                    <rect key="frame" x="16" y="6" width="50" height="30"/>
+                                                    <state key="normal" title="Restart"/>
+                                                    <connections>
+                                                        <action selector="restartJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="Jkt-67-9aP"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cxb-Rv-BSm">
+                                                    <rect key="frame" x="311" y="6" width="48" height="30"/>
+                                                    <state key="normal" title="Cancel"/>
+                                                    <connections>
+                                                        <action selector="cancelJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="caK-gc-esk"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="d2Y-RO-6Yg" firstAttribute="centerY" secondItem="rnb-Kp-osr" secondAttribute="centerY" id="EwB-Dy-XMO"/>
-                                                <constraint firstItem="Cxb-Rv-BSm" firstAttribute="centerX" secondItem="rnb-Kp-osr" secondAttribute="centerX" constant="70" id="KFS-hM-egy"/>
-                                                <constraint firstItem="d2Y-RO-6Yg" firstAttribute="centerX" secondItem="rnb-Kp-osr" secondAttribute="centerX" constant="-70" id="KYV-nA-uzq"/>
+                                                <constraint firstItem="XV8-g9-QIc" firstAttribute="centerY" secondItem="rnb-Kp-osr" secondAttribute="centerY" id="LC3-ab-eJc"/>
+                                                <constraint firstItem="XV8-g9-QIc" firstAttribute="leading" secondItem="rnb-Kp-osr" secondAttribute="leading" constant="16" id="W7b-qw-USg"/>
                                                 <constraint firstItem="Cxb-Rv-BSm" firstAttribute="centerY" secondItem="rnb-Kp-osr" secondAttribute="centerY" id="YeG-Fr-tLR"/>
+                                                <constraint firstAttribute="trailing" secondItem="Cxb-Rv-BSm" secondAttribute="trailing" constant="16" id="Z1B-rb-Ana"/>
+                                                <constraint firstItem="d2Y-RO-6Yg" firstAttribute="centerX" secondItem="rnb-Kp-osr" secondAttribute="centerX" id="myt-3v-83O"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -703,12 +712,13 @@
                         </connections>
                     </tableView>
                     <value key="contentSizeForViewInPopover" type="size" width="375" height="170"/>
-                    <size key="freeformSize" width="375" height="170"/>
+                    <size key="freeformSize" width="375" height="191"/>
                     <connections>
                         <outlet property="cancelButton" destination="Cxb-Rv-BSm" id="wnq-KH-23c"/>
                         <outlet property="fileLabel" destination="MkX-iW-NWa" id="9eI-r0-WAl"/>
                         <outlet property="originLabel" destination="eFZ-Jg-XkM" id="Kqh-fp-TPC"/>
                         <outlet property="pauseOrResumeButton" destination="d2Y-RO-6Yg" id="evV-25-rF8"/>
+                        <outlet property="restartButton" destination="XV8-g9-QIc" id="0cZ-0V-Jrd"/>
                         <outlet property="sizeLabel" destination="Qgx-ZJ-4dm" id="vip-WZ-UMm"/>
                         <segue destination="We3-ys-YSc" kind="unwind" identifier="backFromFailedJobRequest" unwindAction="backFromFailedJobRequest:" id="xaS-Tw-LdY"/>
                     </connections>

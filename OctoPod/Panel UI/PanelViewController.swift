@@ -121,6 +121,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 showAlert("Job", message: "Failed to request to pause print job")
             case .resume:
                 showAlert("Job", message: "Failed to request to resume print job")
+            case .restart:
+                showAlert("Job", message: "Failed to request to restart print job")
             }
         }
     }
@@ -131,6 +133,11 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         return UIModalPresentationStyle.none
     }
 
+    // We need to add this so it works on iPhone plus in landscape mode
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
     // MARK: - OctoPrintClientDelegate
     
     // Notification that OctoPrint state has changed. This may include printer status information

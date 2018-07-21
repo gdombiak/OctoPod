@@ -152,6 +152,11 @@ class PrinterSubpanelViewController: UITableViewController, UIPopoverPresentatio
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
+    
+    // We need to add this so it works on iPhone plus in landscape mode
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
 
     // MARK: - Private functions
     

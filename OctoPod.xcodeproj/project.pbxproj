@@ -22,7 +22,6 @@
 		3D82873720E3EBC80035AE0B /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873620E3EBC80035AE0B /* Printer.swift */; };
 		3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873820E3EC3B0035AE0B /* PrinterManager.swift */; };
 		3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873A20E407370035AE0B /* PrintersTableViewController.swift */; };
-		3D82873D20E419960035AE0B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873C20E419960035AE0B /* CameraViewController.swift */; };
 		3D82874120E421610035AE0B /* MjpegStreamingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873F20E421610035AE0B /* MjpegStreamingController.swift */; };
 		3D8873F820F534C400DCE987 /* PrintFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8873F720F534C400DCE987 /* PrintFile.swift */; };
 		3D8873FA20F5BD2700DCE987 /* FileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8873F920F5BD2700DCE987 /* FileDetailsViewController.swift */; };
@@ -60,7 +59,6 @@
 		3D82873620E3EBC80035AE0B /* Printer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Printer.swift; sourceTree = "<group>"; };
 		3D82873820E3EC3B0035AE0B /* PrinterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManager.swift; sourceTree = "<group>"; };
 		3D82873A20E407370035AE0B /* PrintersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintersTableViewController.swift; sourceTree = "<group>"; };
-		3D82873C20E419960035AE0B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		3D82873F20E421610035AE0B /* MjpegStreamingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MjpegStreamingController.swift; sourceTree = "<group>"; };
 		3D82874020E421610035AE0B /* MjpegStreamingKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MjpegStreamingKit.h; sourceTree = "<group>"; };
 		3D8873F720F534C400DCE987 /* PrintFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintFile.swift; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 				3D36DD782103008F00884BD6 /* Terminal UI */,
 				3D0E1CA020E8670C0036B5FE /* Setup UI */,
 				3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */,
-				3D82873C20E419960035AE0B /* CameraViewController.swift */,
 				3D45280520E15A370094CCB7 /* Main.storyboard */,
 				3D45280B20E15A380094CCB7 /* Assets.xcassets */,
 				3D45280D20E15A380094CCB7 /* LaunchScreen.storyboard */,
@@ -373,7 +370,6 @@
 				3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */,
 				3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */,
 				3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */,
-				3D82873D20E419960035AE0B /* CameraViewController.swift in Sources */,
 				3D8B292A20E54F7300296D9D /* PanelViewController.swift in Sources */,
 				3D78BAA12103C7CA0090D79A /* MoveViewController.swift in Sources */,
 				3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */,

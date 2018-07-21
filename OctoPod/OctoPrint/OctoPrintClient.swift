@@ -205,6 +205,16 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
     
+    // There needs to be an active job that has been paused in order to be able to restart
+    func restartCurrentJob(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "restart"
+            
+            jobPost(httpClient: client, json: json, callback: callback)
+        }
+    }
+    
     // MARK: - Printer operations
     
     // Retrieves the current state of the printer. Returned information includes:

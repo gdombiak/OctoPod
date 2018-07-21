@@ -6,6 +6,7 @@ class JobInfoViewController: UITableViewController {
         case cancel
         case pause
         case resume
+        case restart
     }
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -17,6 +18,7 @@ class JobInfoViewController: UITableViewController {
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var originLabel: UILabel!
     
+    @IBOutlet weak var restartButton: UIButton!
     @IBOutlet weak var pauseOrResumeButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
@@ -44,9 +46,12 @@ class JobInfoViewController: UITableViewController {
                     DispatchQueue.main.async {
                         if let newTitle = buttonTitle {
                             self.pauseOrResumeButton.setTitle(newTitle, for: UIControlState.normal)
+                            self.pauseOrResumeButton.isEnabled = true
                         } else {
                             self.pauseOrResumeButton.isEnabled = false
                         }
+                        // Only enable option to restart when print job is paused
+                        self.restartButton.isEnabled = event.paused == true
                     }
                 }
             } else {
@@ -54,6 +59,7 @@ class JobInfoViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self.pauseOrResumeButton.isEnabled = false
                     self.cancelButton.isEnabled = false
+                    self.restartButton.isEnabled = false
                 }
             }
         }
@@ -82,6 +88,8 @@ class JobInfoViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Table view operations
+
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
@@ -89,6 +97,8 @@ class JobInfoViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1
     }
+    
+    // MARK: - Button actions
     
     @IBAction func cancelJob(_ sender: Any) {
         self.octoprintClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
@@ -127,4 +137,17 @@ class JobInfoViewController: UITableViewController {
             }
         }
     }
+    
+    @IBAction func restartJob(_ sender: Any) {
+        self.octoprintClient.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if requested {
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                NSLog("Error requesting to restart current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                self.requestedJobOperation = .restart
+                self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+            }
+        }
+    }
+    
 }
