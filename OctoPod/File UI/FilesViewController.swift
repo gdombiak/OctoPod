@@ -191,8 +191,11 @@ class FilesViewController: UITableViewController {
             // Execute done block on dismiss
             done?()
         }))
-        self.present(alert, animated: true) { () -> Void in
-            // Nothing to do here
+        // Present dialog on main thread to prevent crashes
+        DispatchQueue.main.async {
+            self.present(alert, animated: true) { () -> Void in
+                // Nothing to do here
+            }
         }
     }
 }

@@ -196,8 +196,11 @@ class MoveViewController: UITableViewController, UIPopoverPresentationController
         alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (UIAlertAction) -> Void in
             // Nothing to do here
         }))
-        self.present(alert, animated: true) { () -> Void in
-            // Nothing to do here
+        // Present dialog on main thread to prevent crashes
+        DispatchQueue.main.async {
+            self.present(alert, animated: true) { () -> Void in
+                // Nothing to do here
+            }
         }
     }
 }

@@ -240,8 +240,11 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (UIAlertAction) -> Void in
             // Nothing to do here
         }))
-        self.present(alert, animated: true) { () -> Void in
-            // Nothing to do here
+        // We are not always on the main thread so present dialog on main thread to prevent crashes
+        DispatchQueue.main.async {
+            self.present(alert, animated: true) { () -> Void in
+                // Nothing to do here
+            }
         }
     }
     
