@@ -47,8 +47,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     @IBAction func toggleConnection(_ sender: Any) {
         if printerConnected! {
             // Prompt for comfirmation that we want to disconnect from printer
-            let alert = UIAlertController(title: "Confirm", message: "Do you want to disconnect from Printer?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (UIAlertAction) -> Void in
+            showConfirm(message: "Do you want to disconnect from the printer?", yes: { (UIAlertAction) -> Void in
                 self.octoprintClient.disconnectFromPrinter { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
                         self.printerSubpanelViewController?.printerSelectedChanged()
@@ -56,14 +55,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                         self.handleConnectionError(error: error, response: response)
                     }
                 }
-            }))
-            // Use default style and not cancel style for NO so it appears on the right
-            alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (UIAlertAction) -> Void in
+            }, no: { (UIAlertAction) -> Void in
                 // Do nothing
-            }))
-            self.present(alert, animated: true) { () -> Void in
-                // Nothing to do here
-            }
+            })
         } else {
             octoprintClient.connectToPrinter { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
@@ -251,4 +245,13 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
+    fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
+        let alert = UIAlertController(title: "Confirm", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: yes))
+        // Use default style and not cancel style for NO so it appears on the right
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: no))
+        self.present(alert, animated: true) { () -> Void in
+            // Nothing to do here
+        }
+    }
 }
