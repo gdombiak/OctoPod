@@ -18,6 +18,7 @@
 		3D45280C20E15A380094CCB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280B20E15A380094CCB7 /* Assets.xcassets */; };
 		3D45280F20E15A380094CCB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280D20E15A380094CCB7 /* LaunchScreen.storyboard */; };
 		3D78BA9F21039D770090D79A /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78BA9E21039D770090D79A /* Terminal.swift */; };
+		3D78BAA12103C7CA0090D79A /* MoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78BAA02103C7CA0090D79A /* MoveViewController.swift */; };
 		3D82873720E3EBC80035AE0B /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873620E3EBC80035AE0B /* Printer.swift */; };
 		3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873820E3EC3B0035AE0B /* PrinterManager.swift */; };
 		3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873A20E407370035AE0B /* PrintersTableViewController.swift */; };
@@ -37,7 +38,7 @@
 		3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */; };
 		3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */; };
 		3DC57D5D20F419320061A87E /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC57D5C20F419320061A87E /* FilesViewController.swift */; };
-		3DF232E020F150CC00550652 /* MoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF232DF20F150CC00550652 /* MoveViewController.swift */; };
+		3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF232DF20F150CC00550652 /* MoveSubViewController.swift */; };
 		8267C0CF229350E955F7AF71 /* Pods_OctoPod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF04586ED8A4BC29EF06604 /* Pods_OctoPod.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		3D45280E20E15A380094CCB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D45281020E15A380094CCB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D78BA9E21039D770090D79A /* Terminal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terminal.swift; sourceTree = "<group>"; };
+		3D78BAA02103C7CA0090D79A /* MoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveViewController.swift; sourceTree = "<group>"; };
 		3D82873620E3EBC80035AE0B /* Printer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Printer.swift; sourceTree = "<group>"; };
 		3D82873820E3EC3B0035AE0B /* PrinterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManager.swift; sourceTree = "<group>"; };
 		3D82873A20E407370035AE0B /* PrintersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintersTableViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +77,7 @@
 		3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateEvent.swift; sourceTree = "<group>"; };
 		3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClientDelegate.swift; sourceTree = "<group>"; };
 		3DC57D5C20F419320061A87E /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
-		3DF232DF20F150CC00550652 /* MoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveViewController.swift; sourceTree = "<group>"; };
+		3DF232DF20F150CC00550652 /* MoveSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveSubViewController.swift; sourceTree = "<group>"; };
 		A9F913620E58D596BED0BDF3 /* Pods_OctoPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctoPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF04586ED8A4BC29EF06604 /* Pods_OctoPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctoPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA67A6E786F508F8752C975C /* Pods-OctoPod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctoPod.release.xcconfig"; path = "Pods/Target Support Files/Pods-OctoPod/Pods-OctoPod.release.xcconfig"; sourceTree = "<group>"; };
@@ -220,7 +222,8 @@
 		3DF232DE20F150A900550652 /* Move UI */ = {
 			isa = PBXGroup;
 			children = (
-				3DF232DF20F150CC00550652 /* MoveViewController.swift */,
+				3DF232DF20F150CC00550652 /* MoveSubViewController.swift */,
+				3D78BAA02103C7CA0090D79A /* MoveViewController.swift */,
 			);
 			path = "Move UI";
 			sourceTree = "<group>";
@@ -365,13 +368,14 @@
 				3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */,
 				3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */,
 				3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */,
-				3DF232E020F150CC00550652 /* MoveViewController.swift in Sources */,
+				3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */,
 				3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */,
 				3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */,
 				3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */,
 				3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */,
 				3D82873D20E419960035AE0B /* CameraViewController.swift in Sources */,
 				3D8B292A20E54F7300296D9D /* PanelViewController.swift in Sources */,
+				3D78BAA12103C7CA0090D79A /* MoveViewController.swift in Sources */,
 				3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */,
 				3D8873FA20F5BD2700DCE987 /* FileDetailsViewController.swift in Sources */,
 			);
