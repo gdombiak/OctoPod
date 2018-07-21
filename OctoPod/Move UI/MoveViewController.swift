@@ -1,5 +1,8 @@
 import UIKit
 
+// OctoPrint does not report current fan speed or extruder flow rate so we
+// initially assume 100% and then just leave last value set by user. Display
+// value will go back to 100% if app is terminated
 class MoveViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
@@ -19,6 +22,9 @@ class MoveViewController: UITableViewController, UIPopoverPresentationController
     
     @IBOutlet weak var retractButton: UIButton!
     @IBOutlet weak var extrudeButton: UIButton!
+    @IBOutlet weak var flowRateLabel: UILabel!
+    
+    @IBOutlet weak var fanSpeedLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +46,8 @@ class MoveViewController: UITableViewController, UIPopoverPresentationController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    // MARK: - XY Operations
 
     @IBAction func goBack(_ sender: Any) {
         if let selected = xyStepSegmentedControl.titleForSegment(at: xyStepSegmentedControl.selectedSegmentIndex) {
@@ -93,6 +101,8 @@ class MoveViewController: UITableViewController, UIPopoverPresentationController
         }
     }
     
+    // MARK: - Z Operations
+
     @IBAction func goUp(_ sender: Any) {
         if let selected = zStepSegmentedControl.titleForSegment(at: zStepSegmentedControl.selectedSegmentIndex) {
             let delta = Float(selected)!
@@ -119,6 +129,8 @@ class MoveViewController: UITableViewController, UIPopoverPresentationController
         }
     }
     
+    // MARK: - E Operations
+
     @IBAction func retract(_ sender: Any) {
         if let selected = eStepSegmentedControl.titleForSegment(at: eStepSegmentedControl.selectedSegmentIndex) {
             let delta = Int(selected)! * -1
@@ -143,6 +155,68 @@ class MoveViewController: UITableViewController, UIPopoverPresentationController
                 }
             })
         }
+    }
+    
+    @IBAction func flowRateChanging(_ sender: UISlider) {
+        // Update label with value of slider
+        flowRateLabel.text = "\(String(format: "%.0f", sender.value))%"
+    }
+    
+    @IBAction func flowRateChanged(_ sender: UISlider) {
+        // Ask OctoPrint to set new flow rate for extruder
+        let newFlowRate = Int(String(format: "%.0f", sender.value))!
+        octoprintClient.toolFlowRate(toolNumber: 0, newFlowRate: newFlowRate, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if !requested {
+                // Handle error
+                NSLog("Error setting new flow rate. HTTP status code \(response.statusCode)")
+                self.showAlert("Alert", message: "Failed to set new flow rate")
+            }
+        })
+    }
+    
+    // MARK: - Fan and Motors Operations
+    
+    @IBAction func fanSpeedChanging(_ sender: UISlider) {
+        // Update label with value of slider
+        fanSpeedLabel.text = "\(String(format: "%.0f", sender.value))%"
+    }
+    
+    @IBAction func fanSpeedChanged(_ sender: UISlider) {
+        // Ask OctoPrint to set new fan speed
+        let newSpeed = Int(String(format: "%.0f", sender.value))!
+        octoprintClient.fanSpeed(speed: newSpeed, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if !requested {
+                // Handle error
+                NSLog("Error setting new fan speed. HTTP status code \(response.statusCode)")
+                self.showAlert("Alert", message: "Failed to set new fan speed")
+            }
+        })
+    }
+    
+    @IBAction func disableMotorX(_ sender: Any) {
+        disableMotor(axis: .X)
+    }
+    
+    @IBAction func disableMotorY(_ sender: Any) {
+        disableMotor(axis: .Y)
+    }
+    
+    @IBAction func disableMotorZ(_ sender: Any) {
+        disableMotor(axis: .Z)
+    }
+    
+    @IBAction func disableMotorE(_ sender: Any) {
+        disableMotor(axis: .E)
+    }
+    
+    // MARK: - Table view operations
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
     }
     
     // MARK: - Navigation
@@ -189,6 +263,16 @@ class MoveViewController: UITableViewController, UIPopoverPresentationController
         
         retractButton.isEnabled = enable
         extrudeButton.isEnabled = enable
+    }
+    
+    fileprivate func disableMotor(axis: OctoPrintClient.axis) {
+        octoprintClient.disableMotor(axis: axis, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if !requested {
+                // Handle error
+                NSLog("Error disabling \(axis) motor. HTTP status code \(response.statusCode)")
+                self.showAlert("Alert", message: "Failed to disable \(axis) motor")
+            }
+        })
     }
 
     fileprivate func showAlert(_ title: String, message: String) {

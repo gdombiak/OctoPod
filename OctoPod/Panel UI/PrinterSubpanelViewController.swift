@@ -52,6 +52,8 @@ class PrinterSubpanelViewController: UITableViewController, UIPopoverPresentatio
         clearValues()
     }
     
+    // MARK: - Table view operations
+
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }

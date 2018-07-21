@@ -8,6 +8,13 @@ import Foundation
 // and an HTTP Client is used for requesting services on the OctoPrint server.
 class OctoPrintClient: WebSocketClientDelegate {
     
+    enum axis {
+        case X
+        case Y
+        case Z
+        case E
+    }
+    
     var httpClient: HTTPClient?
     var webSocketClient: WebSocketClient?
     
@@ -232,6 +239,30 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
     
+    // Set the new flow rate for the requested extruder. Currently there is no way to read current flow rate value
+    func toolFlowRate(toolNumber: Int, newFlowRate: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            // We first need to select the tool and then set flow rate (using the selected tool)
+            // This means that we need to make 2 HTTP requests
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "select"
+            json["tool"] = "tool\(toolNumber)"
+            
+            // Select Tool to use to set flow rate
+            printerToolPost(httpClient: client, json: json, toolNumber: toolNumber) { (success: Bool, error: Error?, response: HTTPURLResponse) in
+                if success {
+                    let json : NSMutableDictionary = NSMutableDictionary()
+                    json["command"] = "flowrate"
+                    json["factor"] = newFlowRate
+                    // Select worked fine so now set new flow rate
+                    self.printerToolPost(httpClient: client, json: json, toolNumber: toolNumber, callback: callback)
+                } else {
+                    callback(false, error, response)
+                }
+            }
+        }
+    }
+    
     func extrude(toolNumber: Int, delta: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             // We first need to select the tool and then extrude/retract (using the selected tool)
@@ -246,7 +277,7 @@ class OctoPrintClient: WebSocketClientDelegate {
                     let json : NSMutableDictionary = NSMutableDictionary()
                     json["command"] = "extrude"
                     json["amount"] = delta
-                    // Select worked so now request extrude/retract
+                    // Select worked fine so now request extrude/retract
                     self.printerToolPost(httpClient: client, json: json, toolNumber: toolNumber, callback: callback)
                 } else {
                     callback(false, error, response)
@@ -367,6 +398,23 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
 
+    // MARK: - Fan operations
+    
+    // Set the new fan speed. We receive a value between 0 and 100 and need to convert to rante 0-255
+    // There is no way to read current fan speed
+    func fanSpeed(speed: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        let newSpeed: Int = speed * 255 / 100
+        let command = "M106 S\(newSpeed)"
+        sendCommand(gcode: command, callback: callback)
+    }
+
+    // MARK: - Motor operations
+    
+    func disableMotor(axis: axis, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        let command = "M18 \(axis)"
+        sendCommand(gcode: command, callback: callback)
+    }
+    
     // MARK: - Low level operations
 
     fileprivate func connectionPost(httpClient: HTTPClient, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
