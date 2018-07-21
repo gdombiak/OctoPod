@@ -88,6 +88,7 @@ class PrinterSubpanelViewController: UITableViewController, UIPopoverPresentatio
     
     // MARK: - Notifications from Main Panel Controller
 
+    // Notification that OctoPrint state has changed. This may include printer status information
     func currentStateUpdated(event: CurrentStateEvent) {
         DispatchQueue.main.async {
             if let state = event.state {

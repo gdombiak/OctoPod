@@ -29,6 +29,8 @@ class CurrentStateEvent {
     var progressPrintTime: Int?
     var progressPrintTimeLeft: Int?
     
+    var logs: Array<String>?
+    
     // MARK: - Parse operations
 
     // Parse temps from received JSON.
@@ -64,5 +66,14 @@ class CurrentStateEvent {
         progressCompletion = progress["completion"] as? Double
         progressPrintTime = progress["printTime"] as? Int
         progressPrintTimeLeft = progress["printTimeLeft"] as? Int
+    }
+    
+    // Parse received logs (coming from Serial port)
+    func parseLogs(logs: NSArray) {
+        var newLogs = Array<String>()
+        for log in logs {
+            newLogs.append(log as! String)
+        }
+        self.logs = newLogs
     }
 }

@@ -115,6 +115,10 @@ class WebSocketClient : NSObject, WebSocketDelegate {
                             event.parseProgress(progress: progress)
                         }
                         
+                        if let logs = current["logs"] as? NSArray {
+                            event.parseLogs(logs: logs)
+                        }
+
                         listener.currentStateUpdated(event: event)
                     } else {
 //                        NSLog("Websocket message received: \(text)")

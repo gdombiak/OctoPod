@@ -18,6 +18,8 @@ class OctoPrintClient: WebSocketClientDelegate {
     var httpClient: HTTPClient?
     var webSocketClient: WebSocketClient?
     
+    let terminal = Terminal()
+    
     var delegates: Array<OctoPrintClientDelegate> = Array()
     
     // MARK: - OctoPrint server connection
@@ -65,7 +67,7 @@ class OctoPrintClient: WebSocketClientDelegate {
                     event!.state = "Offline"
                 }
                 if let _ = event {
-                    // Notify that we received new status information from 3d printer
+                    // Notify that we received new status information from OctoPrint
                     self.currentStateUpdated(event: event!)
                 }
             } else {
@@ -97,8 +99,11 @@ class OctoPrintClient: WebSocketClientDelegate {
 
     // MARK: - WebSocketClientDelegate
     
-    // Notification that the current state of the printer has changed
+    // Notification that OctoPrint state has changed. This may include printer status information
     func currentStateUpdated(event: CurrentStateEvent) {
+        // Notify the terminal that OctoPrint and/or Printer state has changed
+        terminal.currentStateUpdated(event: event)
+        // Notify other listeners that OctoPrint and/or Printer state has changed
         for delegate in delegates {
             delegate.printerStateUpdated(event: event)
         }
@@ -106,6 +111,9 @@ class OctoPrintClient: WebSocketClientDelegate {
     
     // Notification sent when websockets got connected
     func websocketConnected() {
+        // Notify the terminal that we connected to OctoPrint
+        terminal.websocketConnected()
+        // Notify other listeners that we connected to OctoPrint
         for delegate in delegates {
             delegate.websocketConnected()
         }

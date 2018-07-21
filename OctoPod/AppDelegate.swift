@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // If no printers were defined then send to Setup window, if not go to first tab
         if let tabBarController = self.window!.rootViewController as? UITabBarController {
-            tabBarController.selectedIndex = printerManager!.getPrinters().count == 0 ? 3 : 0
+            tabBarController.selectedIndex = printerManager!.getPrinters().count == 0 ? 4 : 0
         }
 
         // Override point for customization after application launch.
