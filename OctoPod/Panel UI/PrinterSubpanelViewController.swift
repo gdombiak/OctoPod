@@ -98,7 +98,7 @@ class PrinterSubpanelViewController: UITableViewController, UIPopoverPresentatio
             if let progress = event.progressCompletion {
                 let progressText = String(format: "%.1f", progress)
                 self.progressLabel.text = "\(progressText)%"
-                self.progressView.progress = Float(progressText)! / 100  // Convert Float from String to prevent weird behaviors
+                self.progressView.setProgress(Float(progressText)! / 100, animated: true) // Convert Float from String to prevent weird behaviors
                 self.printJobButton.isEnabled = progress > 0
             }
             
@@ -186,7 +186,7 @@ class PrinterSubpanelViewController: UITableViewController, UIPopoverPresentatio
         DispatchQueue.main.async {
             self.printerStatusLabel.text = "Offline"
 
-            self.progressView.progress = 0
+            self.progressView.setProgress(0, animated: false)
             self.progressLabel.text = "0%"
             self.printTimeLabel.text = ""
             self.printTimeLeftLabel.text = ""
