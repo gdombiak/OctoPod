@@ -36,10 +36,10 @@ class JobInfoViewController: UITableViewController {
 
                     var buttonTitle: String?
                     if event.printing == true {
-                        buttonTitle = "Pause"
+                        buttonTitle = "Pause Print"
                         self.printerPrinting = true
                     } else if event.paused == true {
-                        buttonTitle = "Resume"
+                        buttonTitle = "Resume Print"
                         self.printerPrinting = false
                     }
 

@@ -672,22 +672,22 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2Y-RO-6Yg">
-                                                    <rect key="frame" x="166.5" y="6" width="42" height="30"/>
-                                                    <state key="normal" title="Pause"/>
+                                                    <rect key="frame" x="148.5" y="6" width="78" height="30"/>
+                                                    <state key="normal" title="Pause Print"/>
                                                     <connections>
                                                         <action selector="pauseOrResumeJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="O9B-vc-VDa"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XV8-g9-QIc">
-                                                    <rect key="frame" x="16" y="6" width="50" height="30"/>
-                                                    <state key="normal" title="Restart"/>
+                                                    <rect key="frame" x="16" y="6" width="86" height="30"/>
+                                                    <state key="normal" title="Restart Print"/>
                                                     <connections>
                                                         <action selector="restartJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="Jkt-67-9aP"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cxb-Rv-BSm">
-                                                    <rect key="frame" x="311" y="6" width="48" height="30"/>
-                                                    <state key="normal" title="Cancel"/>
+                                                    <rect key="frame" x="275" y="6" width="84" height="30"/>
+                                                    <state key="normal" title="Cancel Print"/>
                                                     <connections>
                                                         <action selector="cancelJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="caK-gc-esk"/>
                                                     </connections>
@@ -1328,6 +1328,7 @@
                         </connections>
                     </tableView>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="PVT-gw-zE5">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle">
                             <fragment content="Pull down to refresh">
