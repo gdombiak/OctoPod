@@ -101,15 +101,21 @@ class JobInfoViewController: UITableViewController {
     // MARK: - Button actions
     
     @IBAction func cancelJob(_ sender: Any) {
-        self.octoprintClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if requested {
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                NSLog("Error requesting to cancel current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
-                self.requestedJobOperation = .cancel
-                self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+        // Prompt for confirmation that we want to cancel the print job
+        showConfirm(message: "Do you want to cancel print job?", yes: { (UIAlertAction) in
+            self.octoprintClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                if requested {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    NSLog("Error requesting to cancel current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                    self.requestedJobOperation = .cancel
+                    self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+                }
             }
-        }
+        }, no: { (UIAlertAction) -> Void in
+            // Do nothing
+        })
+        
     }
     
     @IBAction func pauseOrResumeJob(_ sender: Any) {
@@ -150,4 +156,15 @@ class JobInfoViewController: UITableViewController {
         }
     }
     
+    // MARK: - Private functions
+    
+    fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
+        let alert = UIAlertController(title: "Confirm", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: yes))
+        // Use default style and not cancel style for NO so it appears on the right
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: no))
+        self.present(alert, animated: true) { () -> Void in
+            // Nothing to do here
+        }
+    }
 }

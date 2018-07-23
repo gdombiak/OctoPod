@@ -46,7 +46,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     @IBAction func toggleConnection(_ sender: Any) {
         if printerConnected! {
-            // Prompt for comfirmation that we want to disconnect from printer
+            // Prompt for confirmation that we want to disconnect from printer
             showConfirm(message: "Do you want to disconnect from the printer?", yes: { (UIAlertAction) -> Void in
                 self.octoprintClient.disconnectFromPrinter { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
