@@ -350,9 +350,10 @@ class OctoPrintClient: WebSocketClientDelegate {
     // MARK: - File operations
     
     // Returns list of existing files
-    func files(recursive: Bool = true, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+    func files(folder: PrintFile? = nil, recursive: Bool = true, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
-            client.get("/api/files?recursive=\(recursive)") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            let location = folder == nil ? "" : "/\(folder!.origin!)/\(folder!.path!)"
+            client.get("/api/files\(location)?recursive=\(recursive)") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                 // Check if there was an error
                 if let _ = error {
                     NSLog("Error getting files. Error: \(error!.localizedDescription)")
