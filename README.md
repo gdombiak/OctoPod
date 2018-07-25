@@ -30,6 +30,10 @@ OctoPod is an Open Source project covered by the [Apache License 2.0](LICENSE).
 
 ## Resources
 
+### Build and Deployment Tips
+
+https://github.com/gdombiak/OctoPod/wiki/Building-and-Deployment-Tips
+
 ### To report an issue
 
 https://github.com/gdombiak/OctoPod/issues
