@@ -1,6 +1,6 @@
 import UIKit
 
-class PrinterDetailsViewController: UITableViewController {
+class PrinterDetailsViewController: ThemedStaticUITableViewController {
     
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     
@@ -22,6 +22,7 @@ class PrinterDetailsViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if let selectedPrinter = updatePrinter {
             printerNameField.text = selectedPrinter.name
             hostnameField.text = selectedPrinter.hostname

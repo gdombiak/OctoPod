@@ -1,9 +1,15 @@
 import UIKit
 
-class FileDetailsViewController: UITableViewController {
+class FileDetailsViewController: ThemedStaticUITableViewController {
     
     var printFile: PrintFile?
 
+    @IBOutlet weak var fileTextLabel: UILabel!
+    @IBOutlet weak var sizeTextLabel: UILabel!
+    @IBOutlet weak var originTextLabel: UILabel!
+    @IBOutlet weak var printTimeTextLabel: UILabel!
+    @IBOutlet weak var uploadedTextLabel: UILabel!
+    
     @IBOutlet weak var fileNameLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var originLabel: UILabel!
@@ -21,6 +27,7 @@ class FileDetailsViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fileNameLabel.text = printFile?.display
         sizeLabel.text = printFile?.displaySize()
         originLabel.text = printFile?.displayOrigin()
@@ -29,6 +36,8 @@ class FileDetailsViewController: UITableViewController {
         
         printButton.isEnabled = printFile != nil && printFile!.canBePrinted()
         deleteButton.isEnabled = printFile != nil && printFile!.canBeDeleted()
+        
+        themeLabels()
     }
     
     @IBAction func printClicked(_ sender: Any) {
@@ -75,4 +84,22 @@ class FileDetailsViewController: UITableViewController {
         }
         return ""
     }    
+
+    fileprivate func themeLabels() {
+        let theme = Theme.currentTheme()
+        let textLabelColor = theme.labelColor()
+        let textColor = theme.textColor()
+        
+        fileTextLabel.textColor = textLabelColor
+        sizeTextLabel.textColor = textLabelColor
+        originTextLabel.textColor = textLabelColor
+        printTimeTextLabel.textColor = textLabelColor
+        uploadedTextLabel.textColor = textLabelColor
+
+        fileNameLabel.textColor = textColor
+        sizeLabel.textColor = textColor
+        originLabel.textColor = textColor
+        estimatedPrintTimeLabel.textColor = textColor
+        uploadedDateLabel.textColor = textColor
+    }
 }

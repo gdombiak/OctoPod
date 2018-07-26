@@ -2,7 +2,7 @@ import UIKit
 
 // VC that renders content of a folder
 // Files were already fetched by FilesTreeViewController
-class FolderViewController: UITableViewController {
+class FolderViewController: ThemedDynamicUITableViewController {
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
@@ -11,19 +11,25 @@ class FolderViewController: UITableViewController {
     var files: Array<PrintFile> = Array()  // Track files of the folder
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         // Update window title to folder we are browsing
         navigationItem.title = folder.display
         
         files = folder.children!
+        
+        // Clear selected row when going back to this VC
+        if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectionIndexPath, animated: animated)
+        }
     }
 
     // MARK: - Table view data source

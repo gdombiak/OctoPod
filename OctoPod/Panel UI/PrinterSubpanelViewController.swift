@@ -1,11 +1,19 @@
 import UIKit
 
-class PrinterSubpanelViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
+class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopoverPresentationControllerDelegate {
     
     enum buttonsScope {
         case all
         case all_except_connect
     }
+    
+    @IBOutlet weak var printedTextLabel: UILabel!
+    @IBOutlet weak var printTimeTextLabel: UILabel!
+    @IBOutlet weak var printTimeLeftTextLabel: UILabel!
+    @IBOutlet weak var printerStatusTextLabel: UILabel!
+    @IBOutlet weak var tool0TextLabel: UILabel!
+    @IBOutlet weak var bedTextLabel: UILabel!
+    @IBOutlet weak var tool1TextLabel: UILabel!
     
     @IBOutlet weak var printerStatusLabel: UILabel!
     
@@ -41,6 +49,11 @@ class PrinterSubpanelViewController: UITableViewController, UIPopoverPresentatio
         progressView.subviews[1].clipsToBounds = true
         
         clearValues()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        themeLabels()
     }
     
     override func didReceiveMemoryWarning() {
@@ -94,7 +107,7 @@ class PrinterSubpanelViewController: UITableViewController, UIPopoverPresentatio
             if let state = event.state {
                 self.printerStatusLabel.text = state
             }
-            
+
             if let progress = event.progressCompletion {
                 let progressText = String(format: "%.1f", progress)
                 self.progressLabel.text = "\(progressText)%"
@@ -207,5 +220,33 @@ class PrinterSubpanelViewController: UITableViewController, UIPopoverPresentatio
             self.tool0SetTempButton.isEnabled = false
             self.tool1SetTempButton.isEnabled = false
         }
+    }
+    
+    fileprivate func themeLabels() {
+        let theme = Theme.currentTheme()
+        let textLabelColor = theme.labelColor()
+        let textColor = theme.textColor()
+        
+        printedTextLabel.textColor = textLabelColor
+        printTimeTextLabel.textColor = textLabelColor
+        printTimeLeftTextLabel.textColor = textLabelColor
+        printerStatusTextLabel.textColor = textLabelColor
+        tool0TextLabel.textColor = textLabelColor
+        bedTextLabel.textColor = textLabelColor
+        tool1TextLabel.textColor = textLabelColor
+        tool0SplitLabel.textColor = textLabelColor
+        tool1SplitLabel.textColor = textLabelColor
+        bedSplitLabel.textColor = textLabelColor
+
+        printerStatusLabel.textColor = textColor
+        progressLabel.textColor = textColor
+        printTimeLabel.textColor = textColor
+        printTimeLeftLabel.textColor = textColor
+        tool0ActualLabel.textColor = textColor
+        tool0TargetLabel.textColor = textColor
+        tool1ActualLabel.textColor = textColor
+        tool1TargetLabel.textColor = textColor
+        bedActualLabel.textColor = textColor
+        bedTargetLabel.textColor = textColor
     }
 }

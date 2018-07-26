@@ -2,17 +2,24 @@ import UIKit
 
 class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    private var currentTheme: Theme.ThemeChoice!
+
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var sortByTextLabel: UILabel!
     @IBOutlet weak var sortByControl: UISegmentedControl!
+    @IBOutlet weak var refreshSDButton: UIButton!
     var refreshControl: UIRefreshControl?
 
     var files: Array<PrintFile> = Array()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Remember current theme so we know when to repaint
+        currentTheme = Theme.currentTheme()
 
         // Create, configure and add UIRefreshControl to table view
         refreshControl = UIRefreshControl()
@@ -26,12 +33,23 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if currentTheme != Theme.currentTheme() {
+            // Theme changed so repaint table now (to prevent quick flash in the UI with the old theme)
+            tableView.reloadData()
+            currentTheme = Theme.currentTheme()
+        }
+
         if let printer = printerManager.getDefaultPrinter() {
             // Update window title to Camera name
             navigationItem.title = printer.name
             
             loadFiles(done: nil)
         }
+        
+        ThemeUIUtils.applyTheme(table: tableView, staticCells: false)
+        applyTheme()
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,6 +96,10 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             self.deleteRow(forRowAt: indexPath)
             self.tableView.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        ThemeUIUtils.themeCell(cell: cell)
     }
     
     // MARK: - Unwind operations
@@ -165,8 +187,23 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         })
     }
     
-    // MARK: - Private functions
+    // MARK: - Theme functions
     
+    fileprivate func applyTheme() {
+        let theme = Theme.currentTheme()
+        let tintColor = theme.tintColor()
+        
+        // Set background color to the view
+        view.backgroundColor = theme.backgroundColor()
+        // Set background color to the refresh SD button
+        refreshSDButton.tintColor = tintColor
+        // Set background color to the sort control
+        sortByTextLabel.textColor = theme.labelColor()
+        sortByControl.tintColor = tintColor
+    }
+
+    // MARK: - Private functions
+
     fileprivate func loadFiles(delay seconds: Double) {
         // Wait requested seconds before loading files (so SD card has time to be read)
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {

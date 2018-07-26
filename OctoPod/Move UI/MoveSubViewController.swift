@@ -3,10 +3,14 @@ import UIKit
 // OctoPrint does not report current fan speed or extruder flow rate so we
 // initially assume 100% and then just leave last value set by user. Display
 // value will go back to 100% if app is terminated
-class MoveSubViewController: UITableViewController {
+class MoveSubViewController: ThemedStaticUITableViewController {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    
+    @IBOutlet weak var flowRateTextLabel: UILabel!
+    @IBOutlet weak var fanTextLabel: UILabel!
+    @IBOutlet weak var disableMotorLabel: UILabel!
     
     @IBOutlet weak var xyStepSegmentedControl: UISegmentedControl!
     @IBOutlet weak var zStepSegmentedControl: UISegmentedControl!
@@ -31,11 +35,13 @@ class MoveSubViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if let _ = printerManager.getDefaultPrinter() {
             enableButtons(enable: true)
         } else {
             enableButtons(enable: false)
         }
+        themeLabels()
     }
 
     override func didReceiveMemoryWarning() {
@@ -238,6 +244,19 @@ class MoveSubViewController: UITableViewController {
                 self.showAlert("Alert", message: "Failed to disable \(axis) motor")
             }
         })
+    }
+
+    fileprivate func themeLabels() {
+        let theme = Theme.currentTheme()
+        let textLabelColor = theme.labelColor()
+        let textColor = theme.textColor()
+        
+        flowRateTextLabel.textColor = textLabelColor
+        fanTextLabel.textColor = textLabelColor
+        disableMotorLabel.textColor = textLabelColor
+        
+        flowRateLabel.textColor = textColor
+        fanSpeedLabel.textColor = textColor
     }
 
     fileprivate func showAlert(_ title: String, message: String) {

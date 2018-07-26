@@ -1,7 +1,7 @@
 import Foundation
 
 class PrintFile {
-    static let SORT_BY_PREFERENCE = "filesSortBy"
+    private static let SORT_BY_PREFERENCE = "filesSortBy"
     
     enum SortBy: Int {
         case uploadDate = 0

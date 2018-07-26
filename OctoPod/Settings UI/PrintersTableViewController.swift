@@ -1,6 +1,6 @@
 import UIKit
 
-class PrintersTableViewController: UITableViewController {
+class PrintersTableViewController: ThemedDynamicUITableViewController {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     

@@ -5,6 +5,9 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate {
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
+    @IBOutlet weak var refreshEnabledTextLabel: UILabel!
+    @IBOutlet weak var gcodeTextLabel: UILabel!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var terminalTextView: UITextView!
     @IBOutlet weak var refreshSwitch: UISwitch!
@@ -21,6 +24,7 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate {
     override func viewWillAppear(_ animated: Bool) {
         terminalTextView.layer.borderWidth = 1
         terminalTextView.layer.borderColor = UIColor.black.cgColor
+        themeLabels()
 
         if let printer = printerManager.getDefaultPrinter() {
             // Update window title to Camera name
@@ -122,6 +126,20 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate {
         }
     }
 
+    fileprivate func themeLabels() {
+        let theme = Theme.currentTheme()
+        let textLabelColor = theme.labelColor()
+        let textColor = theme.textColor()
+
+        view.backgroundColor = theme.backgroundColor()
+        
+        refreshEnabledTextLabel.textColor = textLabelColor
+        gcodeTextLabel.textColor = textLabelColor
+        
+        terminalTextView.backgroundColor = theme.cellBackgroundColor()
+        terminalTextView.textColor = textColor
+    }
+    
     fileprivate func showAlert(_ title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (UIAlertAction) -> Void in
