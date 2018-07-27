@@ -40,6 +40,13 @@ class FileDetailsViewController: ThemedStaticUITableViewController {
         themeLabels()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Button operations
+
     @IBAction func printClicked(_ sender: Any) {
         performSegue(withIdentifier: "backFromPrint", sender: self)
     }
@@ -48,21 +55,6 @@ class FileDetailsViewController: ThemedStaticUITableViewController {
         performSegue(withIdentifier: "backFromDelete", sender: self)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     // MARK: - Private functions
     
     // Converts number of seconds into a string that represents aproximate time (e.g. About 23h 10m)

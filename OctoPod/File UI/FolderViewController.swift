@@ -94,6 +94,29 @@ class FolderViewController: ThemedDynamicUITableViewController {
     
     // MARK: - Unwind operations
     
+    @IBAction func backFromPrint(_ sender: UIStoryboardSegue) {
+        if let row = tableView.indexPathForSelectedRow?.row {
+            let printFile = files[row]
+            // Request to print file
+            octoprintClient.printFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
+                if !success {
+                    var message = "Failed to request to print file"
+                    if response.statusCode == 409 {
+                        message = "Printer not operational"
+                    } else if response.statusCode == 415 {
+                        message = "Cannot print this file type"
+                    }
+                    self.showAlert("Alert", message: message, done: nil)
+                } else {
+                    // Request to print file was successful so go to print window
+                    DispatchQueue.main.async {
+                        self.tabBarController?.selectedIndex = 0
+                    }
+                }
+            }
+        }
+    }
+
     @IBAction func backFromDelete(_ sender: UIStoryboardSegue) {
         deleteRow(forRowAt: tableView.indexPathForSelectedRow!)
     }
