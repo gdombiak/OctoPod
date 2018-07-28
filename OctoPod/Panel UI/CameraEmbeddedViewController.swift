@@ -1,8 +1,9 @@
 import UIKit
 
-class CameraEmbeddedViewController: UIViewController {
+class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
+    let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
     @IBOutlet weak var imageView: UIImageView!
 
@@ -31,11 +32,17 @@ class CameraEmbeddedViewController: UIViewController {
         }
         
         renderPrinter()
+        
+        // Listen to changes to OctoPrint Settings in case the camera orientation has changed
+        octoprintClient.octoPrintSettingsDelegates.append(self)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         // Stop listening to events when app comes back from background
         NotificationCenter.default.removeObserver(self)
+
+        // Stop listening to changes to OctoPrint Settings
+        octoprintClient.remove(octoPrintSettingsDelegate: self)
 
         stopRenderingPrinter()
         
@@ -65,11 +72,23 @@ class CameraEmbeddedViewController: UIViewController {
         }
     }
 
+    // MARK: - OctoPrintSettingsDelegate
+    
+    func sdSupportChanged(sdSupport: Bool) {
+        // Do nothing
+    }
+    
+    func cameraOrientationChanged(newOrientation: UIImageOrientation) {
+        setCameraOrientation(newOrientation: newOrientation)
+    }
+    
     // MARK: - Private functions
 
     fileprivate func renderPrinter() {
         if let printer = printerManager.getDefaultPrinter() {
             
+            setCameraOrientation(newOrientation: UIImageOrientation(rawValue: Int(printer.cameraOrientation))!)
+
             let url = URL(string: printer.hostname + "/webcam/?action=stream")
             
             // User authentication credentials if configured for the printer
@@ -115,6 +134,21 @@ class CameraEmbeddedViewController: UIViewController {
 
             // Start rendering the camera
             streamingController?.play(url: url!)
+        }
+    }
+    
+    fileprivate func setCameraOrientation(newOrientation: UIImageOrientation) {
+        streamingController?.imageOrientation = newOrientation
+        if embedded {
+            if newOrientation == UIImageOrientation.left || newOrientation == UIImageOrientation.leftMirrored || newOrientation == UIImageOrientation.rightMirrored || newOrientation == UIImageOrientation.right {
+                DispatchQueue.main.async {
+                    self.imageView.contentMode = .scaleAspectFit
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.imageView.contentMode = .scaleToFill
+                }
+            }
         }
     }
     

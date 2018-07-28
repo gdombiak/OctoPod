@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import CoreData
 
 // Manager of persistent printer information (OctoPrint servers) that are stored in the iPhone
@@ -58,6 +59,9 @@ class PrinterManager {
         printer.username = username
         printer.password = password
         
+        printer.sdSupport = true // Assume that printer supports SD card. Will get updated later with actual value
+        printer.cameraOrientation = Int16(UIImageOrientation.up.rawValue) // Assume no flips or rotations for camera. Will get updated later with actual value
+
         // Check if there is already a default Printer
         if let _ = getDefaultPrinter() {
             // We found an existing default printer

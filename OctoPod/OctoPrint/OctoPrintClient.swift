@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 // OctoPrint client that exposes the REST API described
 // here: http://docs.octoprint.org/en/master/api/index.html
@@ -15,12 +16,18 @@ class OctoPrintClient: WebSocketClientDelegate {
         case E
     }
     
+    var printerManager: PrinterManager!
     var httpClient: HTTPClient?
     var webSocketClient: WebSocketClient?
     
     let terminal = Terminal()
     
     var delegates: Array<OctoPrintClientDelegate> = Array()
+    var octoPrintSettingsDelegates: Array<OctoPrintSettingsDelegate> = Array()
+    
+    init(printerManager: PrinterManager) {
+        self.printerManager = printerManager
+    }
     
     // MARK: - OctoPrint server connection
     
@@ -77,6 +84,9 @@ class OctoPrintClient: WebSocketClientDelegate {
                 }
             }
         }
+        
+        // Verify that last known settings are still current
+        reviewOctoPrintSettings(printer: printer)
     }
     
     // Disconnect from OctoPrint server
@@ -109,6 +119,14 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
     
+    // Notifcation that OctoPrint's settings has changed
+    func octoPrintSettingsUpdated() {
+        if let printer = printerManager.getDefaultPrinter() {
+            // Verify that last known settings are still current
+            reviewOctoPrintSettings(printer: printer)
+        }
+    }
+
     // Notification sent when websockets got connected
     func websocketConnected() {
         // Notify the terminal that we connected to OctoPrint
@@ -434,6 +452,28 @@ class OctoPrintClient: WebSocketClientDelegate {
         sendCommand(gcode: command, callback: callback)
     }
     
+    // MARK: - Settings operations
+    
+    func octoPrintSettings(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/api/settings") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting OctoPrint settings. Error: \(error!.localizedDescription)")
+                }
+                callback(result, error, response)
+            }
+        }
+    }
+    
+    // MARK: - Delegates operations
+    
+    func remove(octoPrintSettingsDelegate toRemove: OctoPrintSettingsDelegate) {
+        octoPrintSettingsDelegates = octoPrintSettingsDelegates.filter({ (delegate) -> Bool in
+            return delegate !== toRemove
+        })
+    }
+
     // MARK: - Low level operations
 
     fileprivate func connectionPost(httpClient: HTTPClient, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
@@ -463,6 +503,81 @@ class OctoPrintClient: WebSocketClientDelegate {
     fileprivate func sdPost(httpClient: HTTPClient, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         httpClient.post("/api/printer/sd", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
             callback(response.statusCode == 204, error, response)
+        }
+    }
+    
+    // MARK: - Private settings functions
+    
+    fileprivate func reviewOctoPrintSettings(printer: Printer) {
+        octoPrintSettings { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            if response.statusCode == 200 {
+                if let json = result as? NSDictionary {
+                    self.updatePrinterFromSettings(printer: printer, json: json)
+                }
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromSettings(printer: Printer, json: NSDictionary) {
+        if let feature = json["feature"] as? NSDictionary {
+            if let sdSupport = feature["sdSupport"] as? Bool {
+                if printer.sdSupport != sdSupport {
+                    // Update sd support
+                    printer.sdSupport = sdSupport
+                    // Persist updated printer
+                    printerManager.updatePrinter(printer)
+
+                    // Notify listeners of change
+                    for delegate in octoPrintSettingsDelegates {
+                        delegate.sdSupportChanged(sdSupport: sdSupport)
+                    }
+                }
+            }
+        }
+
+        if let webcam = json["webcam"] as? NSDictionary {
+            if let flipH = webcam["flipH"] as? Bool, let flipV = webcam["flipV"] as? Bool, let rotate90 = webcam["rotate90"] as? Bool {
+                let newOrientation = calculateImageOrientation(flipH: flipH, flipV: flipV, rotate90: rotate90)
+                if printer.cameraOrientation != newOrientation.rawValue {
+                    // Update camera orientation
+                    printer.cameraOrientation = Int16(newOrientation.rawValue)
+                    // Persist updated printer
+                    printerManager.updatePrinter(printer)
+
+                    // Notify listeners of change
+                    for delegate in octoPrintSettingsDelegates {
+                        delegate.cameraOrientationChanged(newOrientation: newOrientation)
+                    }
+                }
+            }
+        }
+    }
+    
+    fileprivate func calculateImageOrientation(flipH: Bool, flipV: Bool, rotate90: Bool) -> UIImageOrientation {
+        if !flipH && !flipV && !rotate90 {
+             // No flips selected
+            return UIImageOrientation.up
+        } else if flipH && !flipV && !rotate90 {
+            // Flip webcam horizontally
+            return UIImageOrientation.upMirrored
+        } else if !flipH && flipV && !rotate90 {
+            // Flip webcam vertically
+            return UIImageOrientation.downMirrored
+        } else if !flipH && !flipV && rotate90 {
+            // Rotate webcam 90 degrees counter clockwise
+            return UIImageOrientation.left
+        } else if flipH && flipV && !rotate90 {
+            // Flip webcam horizontally AND Flip webcam vertically
+            return UIImageOrientation.down
+        } else if flipH && !flipV && rotate90 {
+            // Flip webcam horizontally AND Rotate webcam 90 degrees counter clockwise
+            return UIImageOrientation.leftMirrored
+        } else if !flipH && flipV && rotate90 {
+            // Flip webcam vertically AND Rotate webcam 90 degrees counter clockwise
+            return UIImageOrientation.rightMirrored
+        } else {
+            // Flip webcam horizontally AND Flip webcam vertically AND Rotate webcam 90 degrees counter clockwise
+            return UIImageOrientation.right
         }
     }
 }

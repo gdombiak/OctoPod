@@ -74,6 +74,7 @@
                         <outlet property="connectButton" destination="uRz-Gy-YAf" id="9Bq-Q2-xMe"/>
                         <outlet property="notRefreshingAlertLabel" destination="GKZ-HN-xVC" id="K1T-Ik-jIj"/>
                         <outlet property="printerSelectButton" destination="PyK-FO-APL" id="wK4-vf-paq"/>
+                        <outlet property="printerSubpanelHeightConstraint" destination="ucF-8j-zec" id="9Sr-7L-Nms"/>
                         <outlet property="smallCameraView" destination="uff-mu-aBi" id="vPI-Br-Lky"/>
                         <segue destination="SqB-ww-g1i" kind="show" identifier="full_camera" id="87W-4S-kKd"/>
                     </connections>
@@ -2198,6 +2199,9 @@
                         <viewLayoutGuide key="safeArea" id="Wna-aq-7Ke"/>
                     </view>
                     <navigationItem key="navigationItem" id="Td9-YL-xMy"/>
+                    <connections>
+                        <outlet property="printerSubpanelHeightConstraint" destination="QNK-qc-QT2" id="yeG-eB-GmU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bGd-1f-cJY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2264,6 +2268,6 @@
         <segue reference="M9h-xm-xYq"/>
         <segue reference="06R-xh-V19"/>
         <segue reference="Rs9-4F-Pao"/>
-        <segue reference="VPr-On-X9X"/>
+        <segue reference="cpl-jc-4Wa"/>
     </inferredMetricsTieBreakers>
 </document>

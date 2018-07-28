@@ -11,4 +11,7 @@ class Printer: NSManagedObject {
 
     @NSManaged var username: String?
     @NSManaged var password: String?
+
+    @NSManaged var sdSupport: Bool
+    @NSManaged var cameraOrientation: Int16  // Raw value of UIImageOrientation enum
 }

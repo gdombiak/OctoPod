@@ -1,6 +1,6 @@
 import UIKit
 
-class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate {
+class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -14,6 +14,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     var printerSubpanelViewController: PrinterSubpanelViewController?
     var cameraEmbeddedViewController: CameraEmbeddedViewController?
+    
+    @IBOutlet weak var printerSubpanelHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +35,17 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // Listen to changes to OctoPrint Settings in case the camera orientation has changed
+        octoprintClient.octoPrintSettingsDelegates.append(self)
         // Show default printer
         showDefaultPrinter()
         // Enable or disable printer select button depending on number of printers configured
         printerSelectButton.isEnabled = printerManager.getPrinters().count > 1
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // Stop listening to changes to OctoPrint Settings
+        octoprintClient.remove(octoPrintSettingsDelegate: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -190,6 +199,16 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
+    // MARK: - OctoPrintSettingsDelegate
+    
+    func sdSupportChanged(sdSupport: Bool) {
+        // Do nothing
+    }
+    
+    func cameraOrientationChanged(newOrientation: UIImageOrientation) {
+        updateForCameraOrientation(orientation: newOrientation)
+    }
+    
     // MARK: - Private functions
     
     fileprivate func showDefaultPrinter() {
@@ -197,6 +216,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             // Update window title to Camera name
             DispatchQueue.main.async { self.navigationItem.title = printer.name }
             
+            // Update layout depending on camera orientation
+            updateForCameraOrientation(orientation: UIImageOrientation(rawValue: Int(printer.cameraOrientation))!)
+
             // Ask octoprintClient to connect to OctoPrint server
             octoprintClient.connectToServer(printer: printer)
         } else {
@@ -216,6 +238,18 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             } else {
                 self.printerConnected = true
                 self.connectButton.title = "Disconnect"
+            }
+        }
+    }
+    
+    fileprivate func updateForCameraOrientation(orientation: UIImageOrientation) {
+        if orientation == UIImageOrientation.left || orientation == UIImageOrientation.leftMirrored || orientation == UIImageOrientation.rightMirrored || orientation == UIImageOrientation.right {
+            DispatchQueue.main.async {
+                self.printerSubpanelHeightConstraint.constant = 280
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.printerSubpanelHeightConstraint.constant = 310
             }
         }
     }

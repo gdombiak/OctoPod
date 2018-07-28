@@ -96,6 +96,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return printerManager
     }()
 
-    let octoprintClient = OctoPrintClient()
+    lazy var octoprintClient: OctoPrintClient = {
+        return OctoPrintClient(printerManager: self.printerManager!)
+    }()
 
 }

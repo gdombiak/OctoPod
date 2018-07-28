@@ -6,6 +6,7 @@
 //  Copyright © 2016 Stefano Vettor. All rights reserved.
 //
 //  Modified for better error handling
+//  Modified to allow image rotation
 //
 
 import UIKit
@@ -31,6 +32,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     open var didFinishWithHTTPErrors: ((HTTPURLResponse)->Void)?
     open var contentURL: URL?
     open var imageView: UIImageView
+    open var imageOrientation: UIImageOrientation?
     
     public init(imageView: UIImageView) {
         self.imageView = imageView
@@ -84,7 +86,11 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
             }
         }
         if let imageData = receivedData , imageData.length > 0,
-            let receivedImage = UIImage(data: imageData as Data) {
+            var receivedImage = UIImage(data: imageData as Data) {
+            if let orientation = imageOrientation, let cgImage = receivedImage.cgImage {
+                // Rotate image based on requested orientation
+                receivedImage = UIImage(cgImage: cgImage, scale: CGFloat(1.0), orientation: orientation)
+            }
             // I'm creating the UIImage before performing didFinishLoading to minimize the interval
             // between the actions done by didFinishLoading and the appearance of the first image
             if status == .loading {
