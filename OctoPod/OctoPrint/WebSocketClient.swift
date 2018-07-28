@@ -17,6 +17,7 @@ class WebSocketClient : NSObject, WebSocketDelegate {
     var active: Bool = false
     var connecting: Bool = false
     var openRetries: Int = -1;
+    var parseFailures: Int = 0;
     var closedByUser: Bool = false
 
     var heartbeatTimer : Timer?
@@ -93,6 +94,8 @@ class WebSocketClient : NSObject, WebSocketDelegate {
         if let listener = delegate {
             do {
                 if let json = try JSONSerialization.jsonObject(with: text.data(using: String.Encoding.utf8)!, options: [.mutableLeaves, .mutableContainers]) as? NSDictionary {
+                    // Reset counter of parse failures
+                    parseFailures = 0
                     if let current = json["current"] as? NSDictionary {
 //                        NSLog("Websocket current state received: \(json)")
                         let event = CurrentStateEvent()
@@ -120,12 +123,32 @@ class WebSocketClient : NSObject, WebSocketDelegate {
                         }
 
                         listener.currentStateUpdated(event: event)
+                    } else if let event = json["event"] as? NSDictionary {
+                        // Check if settings were updated
+                        if let type = event["type"] as? String {
+                            if type == "SettingsUpdated" {
+                                listener.octoPrintSettingsUpdated()
+                            }
+                        }
                     } else {
 //                        NSLog("Websocket message received: \(text)")
                     }
                 }
             } catch {
-                NSLog("Error parsing websocket new accessory into NSDictionary: " + text)
+                // Increment counter of parse failures
+                parseFailures = parseFailures + 1
+                NSLog("Error parsing websocket message: \(text)")
+                NSLog("Parsing error: \(error)" )
+                if parseFailures > 6 {
+                    // If we had 6 consecutive parse failures then retry recreating the socket
+                    // Websocket may be corrupted and needs to be recreated
+                    recreateSocket()
+                    establishConnection()
+                } else if parseFailures > 12 {
+                    // We keep failing so just close the connection
+                    // and alert we are no longer connected
+                    abortConnection(error: error)
+                }
             }
         }
     }
@@ -161,6 +184,17 @@ class WebSocketClient : NSObject, WebSocketDelegate {
         openRetries = -1
         closedByUser = true
         socket?.disconnect()
+    }
+    
+    func abortConnection(error: Error) {
+        openRetries = -1
+        closedByUser = false
+        socket?.disconnect()
+
+        NSLog("Websocket corrupted?. Error: \(String(describing: error.localizedDescription)) - \(self.hash)")
+        if let listener = delegate {
+            listener.websocketConnectionFailed(error: error)
+        }
     }
     
     // Return true if websocket is connected to the URL of the specified printer
