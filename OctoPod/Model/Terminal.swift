@@ -23,7 +23,11 @@ class Terminal {
             // Make sure that we do not go over the limit of logs we keep in memory
             if logs.count + newLogs.count > MAX_LOG_SIZE {
                 let toDeleteCount = logs.count + newLogs.count - MAX_LOG_SIZE
-                logs.removeFirst(toDeleteCount)
+                if toDeleteCount >= logs.count {
+                    logs.removeAll()
+                } else {
+                    logs.removeFirst(toDeleteCount)
+                }
             }
             
             // Add new logs
