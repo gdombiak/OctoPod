@@ -45,6 +45,9 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             // Update window title to Camera name
             navigationItem.title = printer.name
             
+            // Only enable refresh SD buttom if printer has an SD card
+            refreshSDButton.isEnabled = printer.sdSupport
+            
             loadFiles(done: nil)
         }
         
