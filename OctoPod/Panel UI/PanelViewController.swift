@@ -1,6 +1,8 @@
 import UIKit
 
 class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate {
+    
+    private static let CONNECT_CONFIRMATION = "PANEL_CONNECT_CONFIRMATION"
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -53,6 +55,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Connect / Disconnect
+
     @IBAction func toggleConnection(_ sender: Any) {
         if printerConnected! {
             // Prompt for confirmation that we want to disconnect from printer
@@ -68,12 +72,30 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 // Do nothing
             })
         } else {
-            octoprintClient.connectToPrinter { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if requested {
-                    self.printerSubpanelViewController?.printerSelectedChanged()
-                } else {
-                    self.handleConnectionError(error: error, response: response)
+            // Define connect logic that will be reused in 2 places. Variable to prevent copy/paste
+            let connect = {
+                self.octoprintClient.connectToPrinter { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    if requested {
+                        self.printerSubpanelViewController?.printerSelectedChanged()
+                    } else {
+                        self.handleConnectionError(error: error, response: response)
+                    }
                 }
+            }
+            let defaults = UserDefaults.standard
+            if defaults.bool(forKey: PanelViewController.CONNECT_CONFIRMATION) {
+                // Confirmation was accepted so just connect
+                connect()
+            } else {
+                // Prompt for one time confirmation so users know that if printing then print will be lost
+                showConfirm(message: "Some printers might reboot when connecting. Proceed?", yes: { (UIAlertAction) -> Void in
+                    // Mark that user accepted so never again display this message
+                    defaults.set(true, forKey: PanelViewController.CONNECT_CONFIRMATION)
+                    // Connect now
+                    connect()
+                }, no: { (UIAlertAction) -> Void in
+                    // Do nothing
+                })
             }
         }
     }
