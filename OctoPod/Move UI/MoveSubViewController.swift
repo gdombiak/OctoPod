@@ -3,7 +3,7 @@ import UIKit
 // OctoPrint does not report current fan speed or extruder flow rate so we
 // initially assume 100% and then just leave last value set by user. Display
 // value will go back to 100% if app is terminated
-class MoveSubViewController: ThemedStaticUITableViewController {
+class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -30,18 +30,39 @@ class MoveSubViewController: ThemedStaticUITableViewController {
     
     @IBOutlet weak var fanSpeedLabel: UILabel!
     
+    // Track if axis are inverted
+    var invertedX = false
+    var invertedY = false
+    var invertedZ = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let _ = printerManager.getDefaultPrinter() {
+        
+        // Listen to PrintProfile events
+        octoprintClient.printerProfilesDelegates.append(self)
+
+        if let printer = printerManager.getDefaultPrinter() {
             enableButtons(enable: true)
+            // Remember if axis are inverted
+            invertedX = printer.invertX
+            invertedY = printer.invertY
+            invertedZ = printer.invertZ
+
         } else {
             enableButtons(enable: false)
         }
         themeLabels()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Stop listening to PrintProfile events
+        octoprintClient.remove(printerProfilesDelegate: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,7 +74,7 @@ class MoveSubViewController: ThemedStaticUITableViewController {
 
     @IBAction func goBack(_ sender: Any) {
         if let selected = xyStepSegmentedControl.titleForSegment(at: xyStepSegmentedControl.selectedSegmentIndex) {
-            let delta = (selected as NSString).floatValue * -1
+            let delta = (selected as NSString).floatValue * (invertedY ? 1 : -1)
             octoprintClient.move(y: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
                     // Handle error
@@ -66,7 +87,7 @@ class MoveSubViewController: ThemedStaticUITableViewController {
     
     @IBAction func goFront(_ sender: Any) {
         if let selected = xyStepSegmentedControl.titleForSegment(at: xyStepSegmentedControl.selectedSegmentIndex) {
-            let delta = (selected as NSString).floatValue
+            let delta = (selected as NSString).floatValue * (invertedY ? -1 : 1)
             octoprintClient.move(y: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
                     // Handle error
@@ -79,7 +100,7 @@ class MoveSubViewController: ThemedStaticUITableViewController {
     
     @IBAction func goLeft(_ sender: Any) {
         if let selected = xyStepSegmentedControl.titleForSegment(at: xyStepSegmentedControl.selectedSegmentIndex) {
-            let delta = Float(selected)! * -1
+            let delta = Float(selected)! * (invertedX ? 1 : -1)
             octoprintClient.move(x: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
                     // Handle error
@@ -92,7 +113,7 @@ class MoveSubViewController: ThemedStaticUITableViewController {
     
     @IBAction func goRight(_ sender: Any) {
         if let selected = xyStepSegmentedControl.titleForSegment(at: xyStepSegmentedControl.selectedSegmentIndex) {
-            let delta = Float(selected)!
+            let delta = Float(selected)! * (invertedX ? -1 : 1)
             octoprintClient.move(x: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
                     // Handle error
@@ -107,7 +128,7 @@ class MoveSubViewController: ThemedStaticUITableViewController {
 
     @IBAction func goUp(_ sender: Any) {
         if let selected = zStepSegmentedControl.titleForSegment(at: zStepSegmentedControl.selectedSegmentIndex) {
-            let delta = Float(selected)!
+            let delta = Float(selected)! * (invertedZ ? -1 : 1)
             octoprintClient.move(z: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
                     // Handle error
@@ -120,7 +141,7 @@ class MoveSubViewController: ThemedStaticUITableViewController {
     
     @IBAction func goDown(_ sender: Any) {
         if let selected = zStepSegmentedControl.titleForSegment(at: zStepSegmentedControl.selectedSegmentIndex) {
-            let delta = Float(selected)! * -1
+            let delta = Float(selected)! * (invertedZ ? 1 : -1)
             octoprintClient.move(z: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
                     // Handle error
@@ -219,6 +240,22 @@ class MoveSubViewController: ThemedStaticUITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1
+    }
+    
+    // MARK: - PrinterProfilesDelegate
+    
+    func axisDirectionChanged(axis: OctoPrintClient.axis, inverted: Bool) {
+        switch axis {
+        case .X:
+            invertedX = inverted
+        case .Y:
+            invertedY = inverted
+        case .Z:
+            invertedZ = inverted
+        case .E:
+            // Do nothing
+            break
+        }
     }
     
     // MARK: - Private fuctions

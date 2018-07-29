@@ -49,6 +49,7 @@
 		3DD9E9572108479000726DFD /* ThemedStaticUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */; };
 		3DD9E95921084BFD00726DFD /* ThemedUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */; };
 		3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF232DF20F150CC00550652 /* MoveSubViewController.swift */; };
+		3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */; };
 		8267C0CF229350E955F7AF71 /* Pods_OctoPod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF04586ED8A4BC29EF06604 /* Pods_OctoPod.framework */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +100,7 @@
 		3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedStaticUITableViewController.swift; sourceTree = "<group>"; };
 		3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUITableViewController.swift; sourceTree = "<group>"; };
 		3DF232DF20F150CC00550652 /* MoveSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveSubViewController.swift; sourceTree = "<group>"; };
+		3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterProfilesDelegate.swift; sourceTree = "<group>"; };
 		A9F913620E58D596BED0BDF3 /* Pods_OctoPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctoPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF04586ED8A4BC29EF06604 /* Pods_OctoPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctoPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA67A6E786F508F8752C975C /* Pods-OctoPod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctoPod.release.xcconfig"; path = "Pods/Target Support Files/Pods-OctoPod/Pods-OctoPod.release.xcconfig"; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				3D98C1D920E5D096007BB13F /* WebSocketClient.swift */,
 				3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */,
 				3D5849E3210CC8720068D87A /* OctoPrintSettingsDelegate.swift */,
+				3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */,
 			);
 			path = OctoPrint;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */,
 				3D6350EA21080AD3001C10F7 /* Theme.swift in Sources */,
 				3D0FA48321047AFA0084FF52 /* FilesTreeViewController.swift in Sources */,
+				3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */,
 				3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */,
 				3D8B292A20E54F7300296D9D /* PanelViewController.swift in Sources */,
 				3D78BAA12103C7CA0090D79A /* MoveViewController.swift in Sources */,

@@ -24,6 +24,7 @@ class OctoPrintClient: WebSocketClientDelegate {
     
     var delegates: Array<OctoPrintClientDelegate> = Array()
     var octoPrintSettingsDelegates: Array<OctoPrintSettingsDelegate> = Array()
+    var printerProfilesDelegates: Array<PrinterProfilesDelegate> = Array()
     
     init(printerManager: PrinterManager) {
         self.printerManager = printerManager
@@ -466,10 +467,30 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
     
+    // MARK: - Printer Profile operations
+    
+    func printerProfiles(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/api/printerprofiles") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting printer profiles. Error: \(error!.localizedDescription)")
+                }
+                callback(result, error, response)
+            }
+        }
+    }
+    
     // MARK: - Delegates operations
     
     func remove(octoPrintSettingsDelegate toRemove: OctoPrintSettingsDelegate) {
         octoPrintSettingsDelegates = octoPrintSettingsDelegates.filter({ (delegate) -> Bool in
+            return delegate !== toRemove
+        })
+    }
+    
+    func remove(printerProfilesDelegate toRemove: PrinterProfilesDelegate) {
+        printerProfilesDelegates = printerProfilesDelegates.filter({ (delegate) -> Bool in
             return delegate !== toRemove
         })
     }
@@ -506,9 +527,10 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
     
-    // MARK: - Private settings functions
+    // MARK: - Private - Settings functions
     
     fileprivate func reviewOctoPrintSettings(printer: Printer) {
+        // Update Printer from /api/settings information
         octoPrintSettings { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
             if response.statusCode == 200 {
                 if let json = result as? NSDictionary {
@@ -516,6 +538,8 @@ class OctoPrintClient: WebSocketClientDelegate {
                 }
             }
         }
+        // Update Printer from /api/printerprofiles information
+        reviewPrinterProfile(printer: printer)
     }
     
     fileprivate func updatePrinterFromSettings(printer: Printer, json: NSDictionary) {
@@ -578,6 +602,93 @@ class OctoPrintClient: WebSocketClientDelegate {
         } else {
             // Flip webcam horizontally AND Flip webcam vertically AND Rotate webcam 90 degrees counter clockwise
             return UIImageOrientation.right
+        }
+    }
+    
+    // MARK: - Private - Printer Profile functions
+    
+    fileprivate func reviewPrinterProfile(printer: Printer) {
+        connectionPrinterStatus { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            if response.statusCode == 200 {
+                if let json = result as? NSDictionary {
+                    if let current = json["current"] as? NSDictionary {
+                        if let printerProfile = current["printerProfile"] as? String {
+                            self.printerProfiles(callback: { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                                if response.statusCode == 200 {
+                                    if let json = result as? NSDictionary {
+                                        self.updatePrinterFromPrinterProfile(printer: printer, json: json, currentProfile: printerProfile)
+                                    }
+                                }
+                            })
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromPrinterProfile(printer: Printer, json: NSDictionary, currentProfile: String) {
+        var invertedX = false
+        var invertedY = false
+        var invertedZ = false
+        
+        if let profiles = json["profiles"] as? NSDictionary {
+            if let currentProfile = profiles[currentProfile] as? NSDictionary {
+                if let axes = currentProfile["axes"] as? NSDictionary {
+                    if let xAxis = axes["x"] as? NSDictionary {
+                        if let inverted = xAxis["inverted"] as? Bool {
+                            invertedX = inverted
+                        }
+                    }
+                    if let yAxis = axes["y"] as? NSDictionary {
+                        if let inverted = yAxis["inverted"] as? Bool {
+                            invertedY = inverted
+                        }
+                    }
+                    if let zAxis = axes["z"] as? NSDictionary {
+                        if let inverted = zAxis["inverted"] as? Bool {
+                            invertedZ = inverted
+                        }
+                    }
+                    
+                    var changedX = false
+                    var changedY = false
+                    var changedZ = false
+                    // Update camera orientation
+                    if printer.invertX != invertedX {
+                        printer.invertX = invertedX
+                        changedX = true
+                    }
+                    if printer.invertY != invertedY {
+                        printer.invertY = invertedY
+                        changedY = true
+                    }
+                    if printer.invertZ != invertedZ {
+                        printer.invertZ = invertedZ
+                        changedZ = true
+                    }
+                    // Persist updated printer
+                    if changedX || changedY || changedZ {
+                        printerManager.updatePrinter(printer)
+                    }
+                    // Notify listeners of change
+                    if changedX {
+                        for delegate in printerProfilesDelegates {
+                            delegate.axisDirectionChanged(axis: .X, inverted: invertedX)
+                        }
+                    }
+                    if changedY {
+                        for delegate in printerProfilesDelegates {
+                            delegate.axisDirectionChanged(axis: .Y, inverted: invertedY)
+                        }
+                    }
+                    if changedZ {
+                        for delegate in printerProfilesDelegates {
+                            delegate.axisDirectionChanged(axis: .Z, inverted: invertedZ)
+                        }
+                    }
+                }
+            }
         }
     }
 }

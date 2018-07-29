@@ -62,6 +62,10 @@ class PrinterManager {
         printer.sdSupport = true // Assume that printer supports SD card. Will get updated later with actual value
         printer.cameraOrientation = Int16(UIImageOrientation.up.rawValue) // Assume no flips or rotations for camera. Will get updated later with actual value
 
+        printer.invertX = false // Assume control of X axis is not inverted. Will get updated later with actual value
+        printer.invertY = false // Assume control of Y axis is not inverted. Will get updated later with actual value
+        printer.invertZ = false // Assume control of Z axis is not inverted. Will get updated later with actual value
+
         // Check if there is already a default Printer
         if let _ = getDefaultPrinter() {
             // We found an existing default printer
