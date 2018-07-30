@@ -1,5 +1,21 @@
 # Change Log
 
+## [1.3](https://github.com/gdombiak/OctoPod/tree/1.3) (2018-07-29)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.2...1.3)
+
+**Implemented enhancements:**
+
+- Recreate websocket when traffic is not working fine [\#40](https://github.com/gdombiak/OctoPod/issues/40)
+- Disable 'Refresh SD' button if printer does not support SD [\#39](https://github.com/gdombiak/OctoPod/issues/39)
+- Interrupted print when connecting [\#35](https://github.com/gdombiak/OctoPod/issues/35)
+- Follow X, Y and Z axis invert settings from OctoPrint [\#34](https://github.com/gdombiak/OctoPod/issues/34)
+- Ability to rotate or flip camera via settings [\#33](https://github.com/gdombiak/OctoPod/issues/33)
+
+**Fixed bugs:**
+
+- Fatal error: Can't remove more items from a collection than it has [\#38](https://github.com/gdombiak/OctoPod/issues/38)
+- Print not starting from iPhone X IOS 12 beta 3 [\#37](https://github.com/gdombiak/OctoPod/issues/37)
+
 ## [1.2](https://github.com/gdombiak/OctoPod/tree/1.2) (2018-07-26)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.1...1.2)
 
@@ -40,8 +56,7 @@
 - Show visual indication when input text has invalid URL [\#9](https://github.com/gdombiak/OctoPod/issues/9)
 - Add support for sending g-code commands [\#3](https://github.com/gdombiak/OctoPod/issues/3)
 - Add support for refreshing files from SD card [\#1](https://github.com/gdombiak/OctoPod/issues/1)
-- Add support for iOS 10.2 [\#5](https://github.com/gdombiak/OctoPod/issues/5)
- 
+
 **Fixed bugs:**
 
 - Job information dialog shows "Unknown" origin when there is no job [\#4](https://github.com/gdombiak/OctoPod/issues/4)
@@ -49,7 +64,10 @@
 **Closed issues:**
 
 - Update Starscream dependency to 3.0.5 [\#10](https://github.com/gdombiak/OctoPod/issues/10)
+- ios 10 support [\#8](https://github.com/gdombiak/OctoPod/issues/8)
 - Rename Label "HOTEND" to "EXTRUDER" [\#7](https://github.com/gdombiak/OctoPod/issues/7)
+- Increment version to 1.1 before release [\#6](https://github.com/gdombiak/OctoPod/issues/6)
+- Add support for iOS 10.2 [\#5](https://github.com/gdombiak/OctoPod/issues/5)
 
 ## [1.0](https://github.com/gdombiak/OctoPod/tree/1.0) (2018-07-15)
 
