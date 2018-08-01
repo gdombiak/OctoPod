@@ -3,7 +3,7 @@ import Foundation
 // Object that represent the Serial Terminal. It keeps track of the logs that were received
 // Logs are cleaned up when connecting to a new printer
 class Terminal {
-    let MAX_LOG_SIZE = 100
+    private let MAX_LOG_SIZE = 200
     
     var logs = Array<String>()
     
