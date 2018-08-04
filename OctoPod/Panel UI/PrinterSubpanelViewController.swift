@@ -1,6 +1,9 @@
 import UIKit
+import StoreKit  // Import for rating app
 
 class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopoverPresentationControllerDelegate {
+    
+    private static let RATE_APP = "PANEL_RATE_APP"
     
     enum buttonsScope {
         case all
@@ -103,6 +106,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
 
     // Notification that OctoPrint state has changed. This may include printer status information
     func currentStateUpdated(event: CurrentStateEvent) {
+        // Check if we should prompt user to rate app
+        checkRateApp(event: event)
+        
         DispatchQueue.main.async {
             if let state = event.state {
                 self.printerStatusLabel.text = state
@@ -171,6 +177,37 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         return UIModalPresentationStyle.none
     }
 
+    // MARK: - Rate app - Private functions
+
+    // Ask user to rate app. We will ask a maximum of 3 times and only after a job is 100% done.
+    // We will ask when job #10, #50 or #90 are done. Only for iOS 10.3 or newer installations
+    fileprivate func checkRateApp(event: CurrentStateEvent) {
+        if let progress = event.progressCompletion {
+            // Ask users to rate the app only when print job was completed (and after X number of jobs were done)
+            if progress == 100 && progressView.progress < 1 {
+                let defaults = UserDefaults.standard
+                let counter = defaults.integer(forKey: PrinterSubpanelViewController.RATE_APP)
+                if counter > 90 {
+                    // Stop asking user to rate app
+                    return
+                }
+                if counter == 9 || counter == 49 || counter == 89 {
+                    // Prompt user to rate the app
+                    // Only prompt to rate the app if device has iOS 10.3 or later
+                    // Not many people use older than 10.3 based on App Store Connect so only implementing this
+                    if #available(iOS 10.3, *) {
+                        // Wait 2 seconds before prompting so UI can refresh progress
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            SKStoreReviewController.requestReview()
+                        }
+                    }
+                }
+                // Increment count
+                defaults.set(counter + 1, forKey: PrinterSubpanelViewController.RATE_APP)
+            }
+        }
+    }
+    
     // MARK: - Private functions
     
     // Converts number of seconds into a string that represents time (e.g. 23h 10m)
