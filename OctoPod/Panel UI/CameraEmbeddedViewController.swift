@@ -1,6 +1,6 @@
 import UIKit
 
-class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate {
+class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate, UIScrollViewDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -80,6 +80,12 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate 
     
     func cameraOrientationChanged(newOrientation: UIImageOrientation) {
         setCameraOrientation(newOrientation: newOrientation)
+    }
+    
+    // MARK: - UIScrollViewDelegate
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
     }
     
     // MARK: - Private functions
