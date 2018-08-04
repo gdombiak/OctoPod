@@ -186,6 +186,10 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     func secondsToTimeLeft(seconds: Int) -> String {
         if seconds == 0 {
             return ""
+        } else if seconds < 0 {
+            // Should never happen but an OctoPrint plugin is returning negative values
+            // so return 'Unknown' when this happens
+            return "Unknown"
         }
         let duration = TimeInterval(seconds)
         let formatter = DateComponentsFormatter()
