@@ -147,13 +147,13 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         if let controller = sender.source as? JobInfoViewController, let jobOperation = controller.requestedJobOperation {
             switch jobOperation {
             case .cancel:
-                showAlert("Job", message: "Failed to request to cancel print job")
+                showAlert("Job", message: "Failed to request to cancel job")
             case .pause:
-                showAlert("Job", message: "Failed to request to pause print job")
+                showAlert("Job", message: "Failed to request to pause job")
             case .resume:
-                showAlert("Job", message: "Failed to request to resume print job")
+                showAlert("Job", message: "Failed to request to resume job")
             case .restart:
-                showAlert("Job", message: "Failed to request to restart print job")
+                showAlert("Job", message: "Failed to request to restart job")
             }
         }
     }

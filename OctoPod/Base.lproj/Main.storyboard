@@ -697,22 +697,22 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2Y-RO-6Yg">
-                                                    <rect key="frame" x="148.5" y="6" width="78" height="30"/>
-                                                    <state key="normal" title="Pause Print"/>
+                                                    <rect key="frame" x="152" y="6" width="71" height="30"/>
+                                                    <state key="normal" title="Pause Job"/>
                                                     <connections>
                                                         <action selector="pauseOrResumeJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="O9B-vc-VDa"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XV8-g9-QIc">
-                                                    <rect key="frame" x="16" y="6" width="86" height="30"/>
-                                                    <state key="normal" title="Restart Print"/>
+                                                    <rect key="frame" x="16" y="6" width="80" height="30"/>
+                                                    <state key="normal" title="Restart Job"/>
                                                     <connections>
                                                         <action selector="restartJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="Jkt-67-9aP"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cxb-Rv-BSm">
-                                                    <rect key="frame" x="275" y="6" width="84" height="30"/>
-                                                    <state key="normal" title="Cancel Print"/>
+                                                    <rect key="frame" x="282" y="6" width="77" height="30"/>
+                                                    <state key="normal" title="Cancel Job"/>
                                                     <connections>
                                                         <action selector="cancelJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="caK-gc-esk"/>
                                                     </connections>

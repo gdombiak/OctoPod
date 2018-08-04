@@ -36,10 +36,10 @@ class JobInfoViewController: UITableViewController {
 
                     var buttonTitle: String?
                     if event.printing == true {
-                        buttonTitle = "Pause Print"
+                        buttonTitle = "Pause Job"
                         self.printerPrinting = true
                     } else if event.paused == true {
-                        buttonTitle = "Resume Print"
+                        buttonTitle = "Resume Job"
                         self.printerPrinting = false
                     }
 
@@ -102,7 +102,7 @@ class JobInfoViewController: UITableViewController {
     
     @IBAction func cancelJob(_ sender: Any) {
         // Prompt for confirmation that we want to cancel the print job
-        showConfirm(message: "Do you want to cancel print job?", yes: { (UIAlertAction) in
+        showConfirm(message: "Do you want to cancel job?", yes: { (UIAlertAction) in
             self.octoprintClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
                     self.dismiss(animated: true, completion: nil)
