@@ -19,7 +19,7 @@ class CurrentStateEvent {
     // Operational, Connecting, Printing from SD, etc.
     var state: String?
     var closedOrError: Bool?
-    var printing: Bool?
+    var printing: Bool?  // This could represent that printer is printing or printer is uploading file to SD Card. IOW, this means if printer is busy
     var paused: Bool?
     
     // Current Z position (if present)

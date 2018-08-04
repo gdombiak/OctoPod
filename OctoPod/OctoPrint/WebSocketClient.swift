@@ -128,6 +128,35 @@ class WebSocketClient : NSObject, WebSocketDelegate {
                         if let type = event["type"] as? String {
                             if type == "SettingsUpdated" {
                                 listener.octoPrintSettingsUpdated()
+                            } else if type == "TransferDone" || type == "TransferFailed" {
+                                // Events denoting that upload to SD card is done or was cancelled
+                                let event = CurrentStateEvent()
+                                event.printing = false
+                                event.progressCompletion = 100
+                                event.progressPrintTimeLeft = 0
+                                // Notify listener
+                                listener.currentStateUpdated(event: event)
+                            } else if type == "PrinterStateChanged" {
+                                if let payload =  event["payload"] as? NSDictionary {
+                                    if let state_id = payload["state_id"] as? String, let state_string = payload["state_string"] as? String {
+                                        var event: CurrentStateEvent?
+                                        if state_id == "PRINTING" {
+                                            // Event indicating that printer is busy. Could be printing or uploading file to SD Card
+                                            event = CurrentStateEvent()
+                                            event!.printing = true
+                                            event!.state = state_string
+                                        } else if state_id == "OPERATIONAL" {
+                                            // Event indicating that printer is ready to be used
+                                            event = CurrentStateEvent()
+                                            event!.printing = false
+                                            event!.state = state_string
+                                        }
+                                        if let _ = event {
+                                            // Notify listener
+                                            listener.currentStateUpdated(event: event!)
+                                        }
+                                    }
+                                }
                             }
                         }
                     } else {
