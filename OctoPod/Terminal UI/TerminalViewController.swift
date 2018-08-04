@@ -1,4 +1,5 @@
 import UIKit
+import SafariServices  // Used for opening browser in-app
 
 class TerminalViewController: UIViewController, OctoPrintClientDelegate {
 
@@ -77,6 +78,15 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate {
         }
     }
 
+    // MARK: - OctoPrint Web operations
+    
+    @IBAction func openOctoPrintWeb(_ sender: Any) {
+        if let printer = printerManager.getDefaultPrinter() {            
+            let svc = SFSafariViewController(url: URL(string: printer.hostname)!)
+            self.present(svc, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: - Refresh switch operations
     
     @IBAction func refreshChanged(_ sender: Any) {

@@ -1100,7 +1100,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jaj-dp-ycd"/>
                     </view>
-                    <navigationItem key="navigationItem" id="kB3-mB-80I"/>
+                    <navigationItem key="navigationItem" id="kB3-mB-80I">
+                        <barButtonItem key="leftBarButtonItem" title="OctoPrint Web" id="Hdi-Ra-Fgd">
+                            <connections>
+                                <action selector="openOctoPrintWeb:" destination="j5o-fo-R5v" id="r1J-oh-Sfo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="gcodeField" destination="RZc-hr-pTu" id="Z8m-vZ-dTp"/>
                         <outlet property="gcodeTextLabel" destination="uge-6J-pcC" id="MIV-sG-J3g"/>
