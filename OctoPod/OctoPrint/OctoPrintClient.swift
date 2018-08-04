@@ -26,6 +26,9 @@ class OctoPrintClient: WebSocketClientDelegate {
     var octoPrintSettingsDelegates: Array<OctoPrintSettingsDelegate> = Array()
     var printerProfilesDelegates: Array<PrinterProfilesDelegate> = Array()
     
+    // Remember last CurrentStateEvent that was reported from OctoPrint (via websockets)
+    var lastKnownState: CurrentStateEvent?
+    
     init(printerManager: PrinterManager) {
         self.printerManager = printerManager
     }
@@ -36,6 +39,9 @@ class OctoPrintClient: WebSocketClientDelegate {
     // A websocket connection will be attempted to get real time updates from OctoPrint
     // An HTTPClient is created for sending requests to OctoPrint
     func connectToServer(printer: Printer) {
+        // Clean up any known printer state
+        lastKnownState = nil
+        
         // Create and keep httpClient while default printer does not change
         httpClient = HTTPClient(printer: printer)
         
@@ -112,6 +118,8 @@ class OctoPrintClient: WebSocketClientDelegate {
     
     // Notification that OctoPrint state has changed. This may include printer status information
     func currentStateUpdated(event: CurrentStateEvent) {
+        // Track event as last known state. Will be reset when changing printers or on app cold startup
+        lastKnownState = event
         // Notify the terminal that OctoPrint and/or Printer state has changed
         terminal.currentStateUpdated(event: event)
         // Notify other listeners that OctoPrint and/or Printer state has changed
@@ -406,6 +414,23 @@ class OctoPrintClient: WebSocketClientDelegate {
             }
         }
     }
+    
+    // Uploads file to the specified location in OctoPrint's local file system
+    // If no folder is specified then file will be uploaded to root folder in OctoPrint
+    func uploadFileToOctoPrint(folder: PrintFile? = nil, filename: String, fileContent: Data , callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let parameters: [String: String]? = folder == nil ? nil : ["path": "\(folder!.path!)"]
+            client.upload("/api/files/local", parameters: parameters, filename: filename, fileContent: fileContent, expected: 201, callback: callback)
+        }
+    }
+    
+    // Uploads file to the SD Card (OctoPrint will first upload to OctoPrint and then copy to SD Card so we will end up with a copy in OctoPrint as well)
+    func uploadFileToSDCard(filename: String, fileContent: Data , callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.upload("/api/files/sdcard", parameters: nil, filename: filename, fileContent: fileContent, expected: 201, callback: callback)
+        }
+    }
+
 
     // MARK: - SD Card operations
 

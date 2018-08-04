@@ -88,6 +88,35 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         requestWithBody(url, verb: "POST", expected: expected, json: json, callback: callback)
     }
     
+    func upload(_ service: String, parameters: [String: String]?, filename: String, fileContent: Data, expected: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        let url: URL = URL(string: serverURL! + service)!
+
+        // Get session with the provided configuration
+        let session = Foundation.URLSession(configuration: getConfiguration(false), delegate: self, delegateQueue: nil)
+        
+        // Create background task that will perform the HTTP request
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        // Set multipart boundary
+        let boundary = "Boundary-\(UUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        // Add API Key header
+        request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
+        // Create multipart that includes file
+        request.httpBody = createMultiPartBody(parameters: parameters, boundary: boundary, data: fileContent, mimeType: "application/octet-stream", filename: filename)
+        // Send request
+        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = false })
+            if let httpRes = response as? HTTPURLResponse {
+                callback(httpRes.statusCode == 201, error, httpRes)
+            } else {
+                callback(false, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
+            }
+        })
+        DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = true })
+        task.resume()
+    }
+    
     // MARK: Private functions
     
     fileprivate func requestWithBody(_ url: URL, verb: String, expected: Int, json: NSObject?, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
@@ -147,6 +176,33 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         }
     }
 
+    fileprivate func createMultiPartBody(parameters: [String: String]?,
+                                boundary: String,
+                                data: Data,
+                                mimeType: String,
+                                filename: String) -> Data {
+        var body = Data()
+        
+        let boundaryPrefix = "--\(boundary)\r\n"
+        
+        if let params = parameters {
+            for (key, value) in params {
+                body.append(Data(boundaryPrefix.utf8))
+                body.append(Data("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".utf8))
+                body.append(Data("\(value)\r\n".utf8))
+            }
+        }
+        
+        body.append(Data(boundaryPrefix.utf8))
+        body.append(Data("Content-Disposition: form-data; name=\"file\"; filename=\"\(filename)\"\r\n".utf8))
+        body.append(Data("Content-Type: \(mimeType)\r\n\r\n".utf8))
+        body.append(data)
+        body.append(Data("\r\n".utf8))
+        body.append(Data("--".appending(boundary.appending("--")).utf8))
+        
+        return body
+    }
+    
     fileprivate func getConfiguration(_ preemptive: Bool) -> URLSessionConfiguration {
         let config = URLSessionConfiguration.default
         if preemptive && username != nil && password != nil {

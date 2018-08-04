@@ -2,7 +2,7 @@ import UIKit
 
 // VC that renders content of a folder
 // Files were already fetched by FilesTreeViewController
-class FolderViewController: ThemedDynamicUITableViewController {
+class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresentationControllerDelegate {
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
@@ -75,21 +75,7 @@ class FolderViewController: ThemedDynamicUITableViewController {
     }
 
     @IBAction func refreshFiles(_ sender: UIRefreshControl) {
-        filesTreeVC.refreshFolderFiles(folder: folder) { (updatedFile: PrintFile?) in
-            if let updated = updatedFile {
-                self.folder = updated
-                self.files = updated.children!
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    sender.endRefreshing()
-                }
-            } else {
-                // Go back to root folder since folder no longer exists
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "gobackToRootFolder", sender: self)
-                }
-            }
-        }
+        refreshFiles(refreshControl: sender)
     }
     
     // MARK: - Unwind operations
@@ -121,6 +107,22 @@ class FolderViewController: ThemedDynamicUITableViewController {
         deleteRow(forRowAt: tableView.indexPathForSelectedRow!)
     }
     
+    @IBAction func backFromUploadFile(_ sender: UIStoryboardSegue) {
+        if let controller = sender.source as? FileUploadViewController {
+            if controller.uploaded {
+                if controller.selectedLocation == CloudFilesManager.Location.SDCard {
+                    // File is in OctoPrint and is being copied to SD Card so send user to main page
+                    self.showAlert("SD Card", message: "File is being copied to SD Card", done: {
+                        self.tabBarController?.selectedIndex = 0
+                    })
+                } else {
+                    // Refresh files since file was uploaded
+                    self.refreshFiles(refreshControl: nil)
+                }
+            }
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -134,9 +136,25 @@ class FolderViewController: ThemedDynamicUITableViewController {
                 controller.filesTreeVC = filesTreeVC
                 controller.folder = files[(tableView.indexPathForSelectedRow?.row)!]
             }
+        } else if segue.identifier == "gotoUploadLocation" {
+            if let controller = segue.destination as? FileUploadViewController {
+                controller.popoverPresentationController!.delegate = self
+                controller.currentFolder = folder // Indicate that it is being called from this folder
+            }
         }
     }
 
+    // MARK: - UIPopoverPresentationControllerDelegate
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    // We need to add this so it works on iPhone plus in landscape mode
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
     // MARK: - Private functions
     
     fileprivate func deleteRow(forRowAt indexPath: IndexPath) {
@@ -159,6 +177,24 @@ class FolderViewController: ThemedDynamicUITableViewController {
                     // Refresh UI
                     DispatchQueue.main.async { self.tableView.reloadData() }
                 })
+            }
+        }
+    }
+    
+    fileprivate func refreshFiles(refreshControl: UIRefreshControl?) {
+        filesTreeVC.refreshFolderFiles(folder: folder) { (updatedFile: PrintFile?) in
+            if let updated = updatedFile {
+                self.folder = updated
+                self.files = updated.children!
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    refreshControl?.endRefreshing()
+                }
+            } else {
+                // Go back to root folder since folder no longer exists
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "gobackToRootFolder", sender: self)
+                }
             }
         }
     }

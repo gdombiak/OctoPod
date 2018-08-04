@@ -100,4 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return OctoPrintClient(printerManager: self.printerManager!)
     }()
 
+    lazy var cloudFilesManager: CloudFilesManager = {
+        return CloudFilesManager(octoprintClient: self.octoprintClient)
+    }()
 }

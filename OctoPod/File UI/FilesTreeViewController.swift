@@ -1,6 +1,6 @@
 import UIKit
 
-class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate {
     
     private var currentTheme: Theme.ThemeChoice!
 
@@ -139,6 +139,22 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         self.tableView.reloadData()
     }
     
+    @IBAction func backFromUploadFile(_ sender: UIStoryboardSegue) {
+        if let controller = sender.source as? FileUploadViewController {
+            if controller.uploaded {
+                if controller.selectedLocation == CloudFilesManager.Location.SDCard {
+                    // File is in OctoPrint and is being copied to SD Card so send user to main page
+                    self.showAlert("SD Card", message: "File is being copied to SD Card", done: {
+                        self.tabBarController?.selectedIndex = 0
+                    })
+                } else {
+                    // Refresh files since file was uploaded
+                    self.loadFiles(done: nil)
+                }
+            }
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -152,9 +168,25 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
                 controller.filesTreeVC = self
                 controller.folder = files[(tableView.indexPathForSelectedRow?.row)!]
             }
+        } else if segue.identifier == "gotoUploadLocation" {
+            if let controller = segue.destination as? FileUploadViewController {
+                controller.popoverPresentationController!.delegate = self
+                controller.currentFolder = nil // Indicate that it is being called from root folder
+            }
         }
     }
 
+    // MARK: - UIPopoverPresentationControllerDelegate
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    // We need to add this so it works on iPhone plus in landscape mode
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
     // MARK: - Button actions
 
     // Initialize SD card if needed and refresh files from SD card
