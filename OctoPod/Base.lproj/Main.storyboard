@@ -2313,12 +2313,12 @@
         <!--Move View Controller-->
         <scene sceneID="vrq-2B-vf0">
             <objects>
-                <viewController id="qob-5L-aPH" customClass="MoveViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="qob-5L-aPH" customClass="MoveViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r9l-57-ki7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMi-Ri-ZkX">
+                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMi-Ri-ZkX" userLabel="Small Camera View">
                                 <rect key="frame" x="0.0" y="64" width="375" height="244"/>
                                 <connections>
                                     <segue destination="htf-Hq-pLO" kind="embed" id="cpl-jc-4Wa"/>
@@ -2336,8 +2336,8 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="vMi-Ri-ZkX" firstAttribute="trailing" secondItem="Wna-aq-7Ke" secondAttribute="trailing" id="6hN-hE-M08"/>
+                            <constraint firstItem="zlp-qX-RJJ" firstAttribute="top" secondItem="vMi-Ri-ZkX" secondAttribute="bottom" id="8iR-5w-K1k"/>
                             <constraint firstItem="zlp-qX-RJJ" firstAttribute="trailing" secondItem="Wna-aq-7Ke" secondAttribute="trailing" id="Oza-YX-KiG"/>
-                            <constraint firstItem="zlp-qX-RJJ" firstAttribute="top" secondItem="vMi-Ri-ZkX" secondAttribute="bottom" id="eUv-70-ZfV"/>
                             <constraint firstItem="vMi-Ri-ZkX" firstAttribute="top" secondItem="Wna-aq-7Ke" secondAttribute="top" id="fx9-6E-bne"/>
                             <constraint firstItem="vMi-Ri-ZkX" firstAttribute="leading" secondItem="Wna-aq-7Ke" secondAttribute="leading" id="pz5-lA-dZz"/>
                             <constraint firstItem="zlp-qX-RJJ" firstAttribute="bottom" secondItem="Wna-aq-7Ke" secondAttribute="bottom" id="rbL-gS-ETz"/>
@@ -2416,6 +2416,6 @@
         <segue reference="dlk-YT-PiH"/>
         <segue reference="iMc-Wi-01S"/>
         <segue reference="Rs9-4F-Pao"/>
-        <segue reference="VPr-On-X9X"/>
+        <segue reference="cpl-jc-4Wa"/>
     </inferredMetricsTieBreakers>
 </document>
