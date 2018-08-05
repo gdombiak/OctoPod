@@ -38,12 +38,20 @@ class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate 
         sdCardLabel.isEnabled = false
         if let printer = printerManager.getDefaultPrinter(), let printeState = octoprintClient.lastKnownState {
             // Enable SD Card option only if printer has SD Card and is not printing
-            let sdUsable = printer.sdSupport && printeState.printing != true
+            let sdUsable = printer.sdSupport && printeState.printing != true && printeState.closedOrError == false
             sdCardLabel.isEnabled = sdUsable
-            sdCardCell.isUserInteractionEnabled = sdUsable
+            sdCardCell.selectionStyle = .none
         }
     }
-
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            if cell.selectionStyle != .none {
+                return indexPath
+            }
+        }
+        return nil
+    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
