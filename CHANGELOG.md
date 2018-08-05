@@ -1,5 +1,18 @@
 # Change Log
 
+## [1.4](https://github.com/gdombiak/OctoPod/tree/1.4) (2018-08-05)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.3...1.4)
+
+**Implemented enhancements:**
+
+- Rename 'Print' to 'Job' in Job information dialog [\#45](https://github.com/gdombiak/OctoPod/issues/45)
+- Display 'unknown' when remaining time is negative [\#44](https://github.com/gdombiak/OctoPod/issues/44)
+- Increase terminal buffer size [\#43](https://github.com/gdombiak/OctoPod/issues/43)
+- Allow to zoom in the webcam image [\#42](https://github.com/gdombiak/OctoPod/issues/42)
+- Allow to navigate to OctoPrint's admin console [\#41](https://github.com/gdombiak/OctoPod/issues/41)
+- Ask in a non-intrusive way to rate the app [\#25](https://github.com/gdombiak/OctoPod/issues/25)
+- Allow to upload files from iCloud [\#2](https://github.com/gdombiak/OctoPod/issues/2)
+
 ## [1.3](https://github.com/gdombiak/OctoPod/tree/1.3) (2018-07-29)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.2...1.3)
 
