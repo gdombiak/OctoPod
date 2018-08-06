@@ -40,7 +40,7 @@ class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate 
             // Enable SD Card option only if printer has SD Card and is not printing
             let sdUsable = printer.sdSupport && printeState.printing != true && printeState.closedOrError == false
             sdCardLabel.isEnabled = sdUsable
-            sdCardCell.selectionStyle = .none
+            sdCardCell.selectionStyle = sdUsable ? .default : .none
         }
     }
     
