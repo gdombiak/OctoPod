@@ -35,7 +35,9 @@ class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate 
         // Clean up any previous selection
         uploaded = false
         
+        // Disable upload to SD Card by default
         sdCardLabel.isEnabled = false
+        sdCardCell.selectionStyle = .none
         if let printer = printerManager.getDefaultPrinter(), let printeState = octoprintClient.lastKnownState {
             // Enable SD Card option only if printer has SD Card and is not printing
             let sdUsable = printer.sdSupport && printeState.printing != true && printeState.closedOrError == false
