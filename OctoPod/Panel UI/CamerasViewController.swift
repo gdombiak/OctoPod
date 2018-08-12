@@ -199,6 +199,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         }
         controller.cameraURL = url
         controller.cameraOrientation = cameraOrientation
+        controller.infoGesturesAvailable = infoGesturesAvailable
         return controller
     }
     
