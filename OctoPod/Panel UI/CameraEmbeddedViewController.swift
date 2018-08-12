@@ -1,4 +1,4 @@
-import UIKit
+    import UIKit
 
 class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate, UIScrollViewDelegate {
 
@@ -13,6 +13,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     @IBOutlet weak var pinchMessageLabel: UILabel!
     
     var streamingController: MjpegStreamingController?
+    
+    var cameraURL: String!
+    var cameraOrientation: UIImageOrientation!
     
     var embedded: Bool = true
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
@@ -73,15 +76,21 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         }
     }
 
-    func printerSelectedChanged() {
-        renderPrinter()
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: - Notifications
+
+    func printerSelectedChanged() {
+        renderPrinter()
+    }
+    
+    func cameraSelectedChanged() {
+        renderPrinter()
+    }
+    
     // MARK: - Navigation
     
     @objc func handleCameraTap() {
@@ -95,14 +104,23 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
 
     // MARK: - OctoPrintSettingsDelegate
     
+    // Notification that sd support has changed
     func sdSupportChanged(sdSupport: Bool) {
         // Do nothing
     }
     
+    // Notification that orientation of the camera hosted by OctoPrint has changed
     func cameraOrientationChanged(newOrientation: UIImageOrientation) {
         setCameraOrientation(newOrientation: newOrientation)
     }
     
+    // Notification that a new camera has been added or removed. We rely on MultiCam
+    // plugin to be installed on OctoPrint so there is no need to re-enter this information
+    // URL to cameras is returned in /api/settings under plugins->multicam
+    func camerasChanged(camerasURLs: Array<String>) {
+        // Do nothing. Parent view controller will take care of this
+    }
+
     // MARK: - UIScrollViewDelegate
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -125,9 +143,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     fileprivate func renderPrinter() {
         if let printer = printerManager.getDefaultPrinter() {
             
-            setCameraOrientation(newOrientation: UIImageOrientation(rawValue: Int(printer.cameraOrientation))!)
+            setCameraOrientation(newOrientation: cameraOrientation)
 
-            let url = URL(string: printer.hostname + "/webcam/?action=stream")
+            let url = URL(string: cameraURL)
             
             // User authentication credentials if configured for the printer
             if let username = printer.username, let password = printer.password {

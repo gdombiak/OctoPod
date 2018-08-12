@@ -7,8 +7,13 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate {
 
     @IBOutlet weak var printerSubpanelHeightConstraint: NSLayoutConstraint!
     
+    var camerasViewController: CamerasViewController?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Keep track of children controllers
+        trackChildrenControllers()        
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +51,22 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate {
         updateForCameraOrientation(orientation: newOrientation)
     }
     
+    // Notification that a new camera has been added or removed. We rely on MultiCam
+    // plugin to be installed on OctoPrint so there is no need to re-enter this information
+    // URL to cameras is returned in /api/settings under plugins->multicam
+    func camerasChanged(camerasURLs: Array<String>) {
+        camerasViewController?.camerasChanged(camerasURLs: camerasURLs)
+    }
+
     // MARK: - Private functions
+    
+    // We are using Container Views so this is how we keep a reference to the contained view controllers
+    fileprivate func trackChildrenControllers() {
+        guard let camerasChild = childViewControllers.first as? CamerasViewController else {
+            fatalError("Check storyboard for missing CamerasViewController")
+        }
+        camerasViewController = camerasChild
+    }
     
     fileprivate func updateForCameraOrientation(orientation: UIImageOrientation) {
         if orientation == UIImageOrientation.left || orientation == UIImageOrientation.leftMirrored || orientation == UIImageOrientation.rightMirrored || orientation == UIImageOrientation.right {

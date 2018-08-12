@@ -600,6 +600,44 @@ class OctoPrintClient: WebSocketClientDelegate {
                 }
             }
         }
+        
+        if let plugins = json["plugins"] as? NSDictionary {
+            updatePrinterFromPlugins(printer: printer, plugins: plugins)
+        }
+    }
+    
+    fileprivate func updatePrinterFromPlugins(printer: Printer, plugins: NSDictionary) {
+        // Check if MultiCam plugin is installed. If so then copy URL to cameras so there is
+        // no need to reenter this information
+        var camerasURLs: Array<String> = Array()
+        if let multicam = plugins["multicam"] as? NSDictionary {
+            if let profiles = multicam["multicam_profiles"] as? NSArray {
+                for case let profile as NSDictionary in profiles {
+                    if let url = profile["URL"] as? String {
+                        camerasURLs.append(url)
+                    }
+                }
+            }
+        }
+        // Check if url to cameras has changed
+        var update = false
+        if let existing = printer.cameras {
+            update = !existing.elementsEqual(camerasURLs)
+        } else {
+            update = true
+        }
+        
+        if update {
+            // Update array
+            printer.cameras = camerasURLs
+            // Persist updated printer
+            printerManager.updatePrinter(printer)
+            
+            // Notify listeners of change
+            for delegate in octoPrintSettingsDelegates {
+                delegate.camerasChanged(camerasURLs: camerasURLs)
+            }
+        }
     }
     
     fileprivate func calculateImageOrientation(flipH: Bool, flipV: Bool, rotate90: Bool) -> UIImageOrientation {

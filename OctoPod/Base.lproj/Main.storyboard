@@ -31,7 +31,7 @@
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uff-mu-aBi">
                                 <rect key="frame" x="0.0" y="64" width="375" height="244"/>
                                 <connections>
-                                    <segue destination="htf-Hq-pLO" kind="embed" id="VPr-On-X9X"/>
+                                    <segue destination="1GM-lb-iPS" kind="embed" id="KKl-Fj-b9B"/>
                                 </connections>
                             </containerView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not refreshing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKZ-HN-xVC">
@@ -83,10 +83,37 @@
             </objects>
             <point key="canvasLocation" x="1581.5999999999999" y="-343.17841079460271"/>
         </scene>
+        <!--Cameras View Controller-->
+        <scene sceneID="buj-rn-YqY">
+            <objects>
+                <viewController id="1GM-lb-iPS" customClass="CamerasViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6jn-US-pKP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Tnd-hd-ss6">
+                                <rect key="frame" x="168" y="207" width="39" height="37"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Tnd-hd-ss6" firstAttribute="centerX" secondItem="6jn-US-pKP" secondAttribute="centerX" id="M9e-C1-Gvl"/>
+                            <constraint firstItem="Tnd-hd-ss6" firstAttribute="bottom" secondItem="PCg-yT-Z7v" secondAttribute="bottom" id="xvL-ov-qIG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PCg-yT-Z7v"/>
+                    </view>
+                    <connections>
+                        <outlet property="pageControl" destination="Tnd-hd-ss6" id="Vz6-pk-2cT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e3P-Aq-05F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2335" y="-844"/>
+        </scene>
         <!--Camera Embedded View Controller-->
         <scene sceneID="kGo-JW-KXt">
             <objects>
-                <viewController id="htf-Hq-pLO" customClass="CameraEmbeddedViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CameraEmbeddedViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="htf-Hq-pLO" customClass="CameraEmbeddedViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fPR-Va-Els">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,6 +165,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="E0W-I9-H9X"/>
                     </view>
+                    <size key="freeformSize" width="375" height="244"/>
                     <connections>
                         <outlet property="imageView" destination="xgR-KO-IvE" id="LnF-OF-iU2"/>
                         <outlet property="pinchMessageLabel" destination="q4H-Sg-7Zd" id="ZmK-ZT-6nU"/>
@@ -146,7 +174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kf0-1f-80q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2360.8000000000002" y="-551.42428785607206"/>
+            <point key="canvasLocation" x="3033" y="-843"/>
         </scene>
         <!--Printer Subpanel View Controller-->
         <scene sceneID="D6p-nT-pbi">
@@ -2339,7 +2367,7 @@
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMi-Ri-ZkX" userLabel="Small Camera View">
                                 <rect key="frame" x="0.0" y="64" width="375" height="244"/>
                                 <connections>
-                                    <segue destination="htf-Hq-pLO" kind="embed" id="cpl-jc-4Wa"/>
+                                    <segue destination="1GM-lb-iPS" kind="embed" id="Adu-Ep-5Wc"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zlp-qX-RJJ">
@@ -2434,6 +2462,6 @@
         <segue reference="dlk-YT-PiH"/>
         <segue reference="iMc-Wi-01S"/>
         <segue reference="Rs9-4F-Pao"/>
-        <segue reference="cpl-jc-4Wa"/>
+        <segue reference="KKl-Fj-b9B"/>
     </inferredMetricsTieBreakers>
 </document>

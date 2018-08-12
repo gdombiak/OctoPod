@@ -15,7 +15,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     @IBOutlet weak var notRefreshingAlertLabel: UILabel!
     
     var printerSubpanelViewController: PrinterSubpanelViewController?
-    var cameraEmbeddedViewController: CameraEmbeddedViewController?
+    var camerasViewController: CamerasViewController?
     
     @IBOutlet weak var printerSubpanelHeightConstraint: NSLayoutConstraint!
     
@@ -31,7 +31,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         
         // Indicate that we want to instruct users that gestures can be used to manipulate image
         // Messages will not be visible after user used these features
-        cameraEmbeddedViewController?.infoGesturesAvailable = true
+        camerasViewController?.infoGesturesAvailable = true
 
         // Listen to events when app comes back from background
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
@@ -113,13 +113,15 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             // Refresh based on new default printer
             controller.onCompletion = {
                 self.printerSubpanelViewController?.printerSelectedChanged()
-                self.cameraEmbeddedViewController?.printerSelectedChanged()
+                self.camerasViewController?.printerSelectedChanged()
                 self.showDefaultPrinter()
             }
         }
         
         if segue.identifier == "full_camera", let controller = segue.destination as? CameraEmbeddedViewController {
             controller.embedded = false
+            controller.cameraURL = camerasViewController?.cameraURL()
+            controller.cameraOrientation = camerasViewController?.cameraOrientation()
             
             UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeRight.rawValue), forKey: "orientation")
         }
@@ -235,6 +237,13 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         updateForCameraOrientation(orientation: newOrientation)
     }
     
+    // Notification that a new camera has been added or removed. We rely on MultiCam
+    // plugin to be installed on OctoPrint so there is no need to re-enter this information
+    // URL to cameras is returned in /api/settings under plugins->multicam
+    func camerasChanged(camerasURLs: Array<String>) {
+        camerasViewController?.camerasChanged(camerasURLs: camerasURLs)
+    }
+
     // MARK: - Private functions
     
     fileprivate func showDefaultPrinter() {
@@ -295,11 +304,11 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             fatalError("Check storyboard for missing PrinterSubpanelViewController")
         }
         
-        guard let cameraChild = childViewControllers.last as? CameraEmbeddedViewController else {
-            fatalError("Check storyboard for missing CameraEmbeddedViewController")
+        guard let camerasChild = childViewControllers.last as? CamerasViewController else {
+            fatalError("Check storyboard for missing CamerasViewController")
         }
         printerSubpanelViewController = printerSubpanel
-        cameraEmbeddedViewController = cameraChild
+        camerasViewController = camerasChild
     }
     
     fileprivate func showAlert(_ title: String, message: String) {
