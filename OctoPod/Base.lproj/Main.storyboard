@@ -98,14 +98,30 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap = Full Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MT2-fR-HJD">
+                                        <rect key="frame" x="261.5" y="200" width="103.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pinch = Zoom in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q4H-Sg-7Zd">
+                                        <rect key="frame" x="268.5" y="219.5" width="96.5" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="xgR-KO-IvE" firstAttribute="height" secondItem="9ix-ve-DAs" secondAttribute="height" id="5HL-jX-IZN"/>
                                     <constraint firstAttribute="trailing" secondItem="xgR-KO-IvE" secondAttribute="trailing" id="91p-9b-PNd"/>
+                                    <constraint firstAttribute="bottom" secondItem="q4H-Sg-7Zd" secondAttribute="bottom" constant="10" id="9Xa-S7-Niv"/>
                                     <constraint firstItem="xgR-KO-IvE" firstAttribute="top" secondItem="9ix-ve-DAs" secondAttribute="top" id="Af9-uo-CDN"/>
+                                    <constraint firstItem="q4H-Sg-7Zd" firstAttribute="top" secondItem="MT2-fR-HJD" secondAttribute="bottom" constant="5" id="a3p-kc-Xfp"/>
+                                    <constraint firstAttribute="trailing" secondItem="q4H-Sg-7Zd" secondAttribute="trailing" constant="10" id="aHa-Oh-GCz"/>
                                     <constraint firstItem="xgR-KO-IvE" firstAttribute="width" secondItem="9ix-ve-DAs" secondAttribute="width" id="aQF-LN-dZR"/>
                                     <constraint firstAttribute="bottom" secondItem="xgR-KO-IvE" secondAttribute="bottom" id="gMe-8X-Zh4"/>
+                                    <constraint firstAttribute="trailing" secondItem="MT2-fR-HJD" secondAttribute="trailing" constant="10" id="sYB-je-Vdq"/>
                                     <constraint firstItem="xgR-KO-IvE" firstAttribute="leading" secondItem="9ix-ve-DAs" secondAttribute="leading" id="xUI-YZ-DXd"/>
                                 </constraints>
                                 <connections>
@@ -124,6 +140,8 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="xgR-KO-IvE" id="LnF-OF-iU2"/>
+                        <outlet property="pinchMessageLabel" destination="q4H-Sg-7Zd" id="ZmK-ZT-6nU"/>
+                        <outlet property="tapMessageLabel" destination="MT2-fR-HJD" id="5w6-TE-ELN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kf0-1f-80q" userLabel="First Responder" sceneMemberID="firstResponder"/>

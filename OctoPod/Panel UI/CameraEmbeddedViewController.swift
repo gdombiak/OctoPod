@@ -2,14 +2,20 @@ import UIKit
 
 class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate, UIScrollViewDelegate {
 
+    private static let CAMERA_INFO_GESTURES = "CAMERA_INFO_GESTURES"
+
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
     @IBOutlet weak var imageView: UIImageView!
-
+    
+    @IBOutlet weak var tapMessageLabel: UILabel!
+    @IBOutlet weak var pinchMessageLabel: UILabel!
+    
     var streamingController: MjpegStreamingController?
     
     var embedded: Bool = true
+    var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +35,18 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCameraTap))
             imageView.isUserInteractionEnabled = true
             imageView.addGestureRecognizer(tapGesture)
+        } else {
+            let defaults = UserDefaults.standard
+            if defaults.bool(forKey: CameraEmbeddedViewController.CAMERA_INFO_GESTURES) {
+                // User already used gestures so hide information labels
+                tapMessageLabel.isHidden = true
+                pinchMessageLabel.isHidden = true
+            } else {
+                // User did not use gestures so parent window decides if messages should be displayed
+                tapMessageLabel.isHidden = !infoGesturesAvailable
+                pinchMessageLabel.isHidden = !infoGesturesAvailable
+            }
+
         }
         
         renderPrinter()
@@ -67,6 +85,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     // MARK: - Navigation
     
     @objc func handleCameraTap() {
+        // Record that user used this feature
+        userUsedGestures()
+        
         if !embedded {
             navigationController?.popViewController(animated: true)
         }
@@ -86,6 +107,17 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
+    }
+    
+    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        // Record that user used this feature
+        userUsedGestures()
+
+        if infoGesturesAvailable {
+            // Hide info labels
+            tapMessageLabel.isHidden = true
+            pinchMessageLabel.isHidden = true
+        }
     }
     
     // MARK: - Private functions
@@ -160,6 +192,11 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     fileprivate func stopRenderingPrinter() {
         streamingController?.stop()
+    }
+    
+    fileprivate func userUsedGestures() {
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: CameraEmbeddedViewController.CAMERA_INFO_GESTURES)
     }
 
     @objc func appWillEnterForeground() {

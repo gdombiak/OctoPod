@@ -28,6 +28,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         // Add a gesture recognizer to camera view so we can handle taps
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCameraTap))
         smallCameraView.addGestureRecognizer(tapGesture)
+        
+        // Indicate that we want to instruct users that gestures can be used to manipulate image
+        // Messages will not be visible after user used these features
+        cameraEmbeddedViewController?.infoGesturesAvailable = true
 
         // Listen to events when app comes back from background
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
