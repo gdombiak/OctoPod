@@ -159,6 +159,17 @@ class WebSocketClient : NSObject, WebSocketDelegate {
                                 }
                             }
                         }
+                    } else if let history = json["history"] as? NSDictionary {
+                        if let temps = history["temps"] as? NSArray {
+                            var historyTemps = Array<TempHistory.Temp>()
+                            for case let temp as NSDictionary in temps {
+                                var historyTemp = TempHistory.Temp()
+                                historyTemp.parseTemps(temp: temp)
+                                historyTemps.append(historyTemp)
+                            }
+                            // Notify listener
+                            listener.historyTemp(history: historyTemps)
+                        }
                     } else {
 //                        NSLog("Websocket message received: \(text)")
                     }

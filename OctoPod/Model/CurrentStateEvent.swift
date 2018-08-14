@@ -4,6 +4,9 @@ import Foundation
 // If websockets is not available then this event is fired with a polling mechanism (future idea)
 class CurrentStateEvent {
     
+    // Time when temps were measured
+    var tempTime: Int?
+    
     // Bed temperatures
     var bedTempActual: Double?
     var bedTempTarget: Double?
@@ -47,6 +50,9 @@ class CurrentStateEvent {
         if let tool1 = temp["tool1"] as? NSDictionary {
             tool1TempActual = tool1["actual"] as? Double
             tool1TempTarget = tool1["target"] as? Double
+        }
+        if let time = temp["time"] as? Int {
+            tempTime = time
         }
     }
 

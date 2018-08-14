@@ -25,7 +25,7 @@
                                     <constraint firstAttribute="height" priority="999" constant="310" id="ucF-8j-zec"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="eqt-ME-zgd" kind="embed" id="fib-Pg-LZo"/>
+                                    <segue destination="Ssy-4U-x9b" kind="embed" id="QJF-Hj-FjS"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uff-mu-aBi">
@@ -108,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3P-Aq-05F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2335" y="-844"/>
+            <point key="canvasLocation" x="2334" y="-706"/>
         </scene>
         <!--Camera Embedded View Controller-->
         <scene sceneID="kGo-JW-KXt">
@@ -174,12 +174,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kf0-1f-80q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3033" y="-843"/>
+            <point key="canvasLocation" x="3087" y="-706"/>
         </scene>
         <!--Printer Subpanel View Controller-->
         <scene sceneID="D6p-nT-pbi">
             <objects>
-                <tableViewController id="eqt-ME-zgd" customClass="PrinterSubpanelViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PrinterSubpanelViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eqt-ME-zgd" customClass="PrinterSubpanelViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" id="vCl-Jw-w6u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -512,7 +512,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="arI-ui-M4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2360.8000000000002" y="-210.49475262368819"/>
+            <point key="canvasLocation" x="3049" y="-230"/>
         </scene>
         <!--Set Target Temp View Controller-->
         <scene sceneID="u1R-Ze-839">
@@ -641,7 +641,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLa-et-C2y" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="LCC-ht-12A" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2360" y="206"/>
+            <point key="canvasLocation" x="2778" y="183"/>
+        </scene>
+        <!--Temp History View Controller-->
+        <scene sceneID="up9-XL-whu">
+            <objects>
+                <viewController storyboardIdentifier="TempHistoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dn1-in-CgW" customClass="TempHistoryViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dVc-kX-aUv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yvQ-Wh-oYL" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yvQ-Wh-oYL" firstAttribute="bottom" secondItem="p8l-V9-dKo" secondAttribute="bottom" id="3b4-OU-Qre"/>
+                            <constraint firstItem="yvQ-Wh-oYL" firstAttribute="leading" secondItem="p8l-V9-dKo" secondAttribute="leading" id="4hA-Se-0cf"/>
+                            <constraint firstItem="yvQ-Wh-oYL" firstAttribute="top" secondItem="p8l-V9-dKo" secondAttribute="top" id="cUY-hE-k8P"/>
+                            <constraint firstItem="yvQ-Wh-oYL" firstAttribute="trailing" secondItem="p8l-V9-dKo" secondAttribute="trailing" id="zAR-nV-sBS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="p8l-V9-dKo"/>
+                    </view>
+                    <size key="freeformSize" width="375" height="370"/>
+                    <connections>
+                        <outlet property="lineChartView" destination="yvQ-Wh-oYL" id="jcp-yf-6wp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MAC-Wx-QNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3800.8000000000002" y="-230.28485757121442"/>
         </scene>
         <!--Job Info View Controller-->
         <scene sceneID="sKV-My-3Dx">
@@ -797,7 +828,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pda-QU-PEB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="We3-ys-YSc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3048.8000000000002" y="343.17841079460271"/>
+            <point key="canvasLocation" x="3482" y="218"/>
         </scene>
         <!--Camera-->
         <scene sceneID="V4m-VI-8ac">
@@ -844,7 +875,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eta-dv-NDf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3053.5999999999999" y="-334.18290854572717"/>
+            <point key="canvasLocation" x="3802" y="-896"/>
+        </scene>
+        <!--Subpanels View Controller-->
+        <scene sceneID="aOv-h6-hBV">
+            <objects>
+                <viewController id="Ssy-4U-x9b" customClass="SubpanelsViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V2n-bo-PZB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Heg-2U-jxe">
+                                <rect key="frame" x="168" y="278" width="39" height="37"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Heg-2U-jxe" firstAttribute="centerX" secondItem="V2n-bo-PZB" secondAttribute="centerX" id="ZM3-xJ-U9a"/>
+                            <constraint firstItem="Heg-2U-jxe" firstAttribute="bottom" secondItem="biJ-K9-jXt" secondAttribute="bottom" constant="5" id="haT-sr-fHF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="biJ-K9-jXt"/>
+                    </view>
+                    <connections>
+                        <outlet property="pageControl" destination="Heg-2U-jxe" id="1JC-UY-PCh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nxz-kC-aLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2334" y="-257"/>
         </scene>
         <!--Panel-->
         <scene sceneID="LPb-RX-Crj">
@@ -2366,9 +2424,6 @@
                         <subviews>
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMi-Ri-ZkX" userLabel="Small Camera View">
                                 <rect key="frame" x="0.0" y="64" width="375" height="244"/>
-                                <connections>
-                                    <segue destination="1GM-lb-iPS" kind="embed" id="Adu-Ep-5Wc"/>
-                                </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zlp-qX-RJJ">
                                 <rect key="frame" x="0.0" y="308" width="375" height="310"/>
@@ -2462,6 +2517,5 @@
         <segue reference="dlk-YT-PiH"/>
         <segue reference="iMc-Wi-01S"/>
         <segue reference="Rs9-4F-Pao"/>
-        <segue reference="KKl-Fj-b9B"/>
     </inferredMetricsTieBreakers>
 </document>

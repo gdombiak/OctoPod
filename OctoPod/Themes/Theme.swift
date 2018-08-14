@@ -82,6 +82,25 @@ class Theme {
                 return UIColor(red: 0/255, green: 122.4/255, blue: 255/255, alpha: 1.0)
             }
         }
+
+        func currentPageIndicatorTintColor() -> UIColor {
+            switch self {
+            case .Light:
+                return UIColor(red: 93/255, green: 97/255, blue: 101/255, alpha: 1.0)
+            case .Dark:
+                return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+            }
+        }
+
+        func pageIndicatorTintColor() -> UIColor {
+            switch self {
+            case .Light:
+                return UIColor(red: 182/255, green: 182/255, blue: 182/255, alpha: 1.0)
+            case .Dark:
+                return UIColor(red: 93/255, green: 97/255, blue: 101/255, alpha: 1.0)
+            }
+        }
+
     }
 
     class func currentTheme() -> ThemeChoice {

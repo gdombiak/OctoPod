@@ -14,9 +14,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     @IBOutlet weak var connectButton: UIBarButtonItem!
     @IBOutlet weak var notRefreshingAlertLabel: UILabel!
     
-    var printerSubpanelViewController: PrinterSubpanelViewController?
     var camerasViewController: CamerasViewController?
-    
+    var subpanelsViewController: SubpanelsViewController?
+
     @IBOutlet weak var printerSubpanelHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -67,7 +67,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             showConfirm(message: "Do you want to disconnect from the printer?", yes: { (UIAlertAction) -> Void in
                 self.octoprintClient.disconnectFromPrinter { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        self.printerSubpanelViewController?.printerSelectedChanged()
+                        self.subpanelsViewController?.printerSelectedChanged()
                     } else {
                         self.handleConnectionError(error: error, response: response)
                     }
@@ -80,7 +80,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             let connect = {
                 self.octoprintClient.connectToPrinter { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        self.printerSubpanelViewController?.printerSelectedChanged()
+                        self.subpanelsViewController?.printerSelectedChanged()
                     } else {
                         self.handleConnectionError(error: error, response: response)
                     }
@@ -112,7 +112,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             controller.popoverPresentationController!.delegate = self
             // Refresh based on new default printer
             controller.onCompletion = {
-                self.printerSubpanelViewController?.printerSelectedChanged()
+                self.subpanelsViewController?.printerSelectedChanged()
                 self.camerasViewController?.printerSelectedChanged()
                 self.showDefaultPrinter()
             }
@@ -182,7 +182,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         if let closed = event.closedOrError {
             updateConnectButton(printerConnected: !closed)
         }
-        printerSubpanelViewController?.currentStateUpdated(event: event)
+        subpanelsViewController?.currentStateUpdated(event: event)
     }
 
     // Notification sent when websockets got connected
@@ -300,14 +300,14 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     // We are using Container Views so this is how we keep a reference to the contained view controllers
     fileprivate func trackChildrenControllers() {
-        guard let printerSubpanel = childViewControllers.first as? PrinterSubpanelViewController else  {
-            fatalError("Check storyboard for missing PrinterSubpanelViewController")
+        guard let subpanelsChild = childViewControllers.first as? SubpanelsViewController else  {
+            fatalError("Check storyboard for missing SubpanelsViewController")
         }
         
         guard let camerasChild = childViewControllers.last as? CamerasViewController else {
             fatalError("Check storyboard for missing CamerasViewController")
         }
-        printerSubpanelViewController = printerSubpanel
+        subpanelsViewController = subpanelsChild
         camerasViewController = camerasChild
     }
     

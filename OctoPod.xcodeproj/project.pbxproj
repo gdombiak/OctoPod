@@ -39,6 +39,7 @@
 		3D8B292D20E5514A00296D9D /* PrinterSubpanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */; };
 		3D8B293020E5549B00296D9D /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292F20E5549B00296D9D /* HTTPClient.swift */; };
 		3D8B293220E556D400296D9D /* OctoPrintClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B293120E556D400296D9D /* OctoPrintClient.swift */; };
+		3D92E6C821213B2400F58BA5 /* TempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92E6C721213B2400F58BA5 /* TempHistory.swift */; };
 		3D968DDB20E336F5006774A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D968DDA20E336F5006774A5 /* Default-568h@2x.png */; };
 		3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D968DDC20E337C7006774A5 /* ScannerViewController.swift */; };
 		3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */; };
@@ -50,6 +51,8 @@
 		3DD69AA121150F43005555ED /* FileUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD69AA021150F43005555ED /* FileUploadViewController.swift */; };
 		3DD9E9572108479000726DFD /* ThemedStaticUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */; };
 		3DD9E95921084BFD00726DFD /* ThemedUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */; };
+		3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */; };
+		3DF0157621227ACB002B4C14 /* TempHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */; };
 		3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF232DF20F150CC00550652 /* MoveSubViewController.swift */; };
 		3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */; };
 		3DFA8074210E30C100B5BFAA /* CloudFilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA8073210E30C100B5BFAA /* CloudFilesManager.swift */; };
@@ -94,6 +97,7 @@
 		3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterSubpanelViewController.swift; sourceTree = "<group>"; };
 		3D8B292F20E5549B00296D9D /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		3D8B293120E556D400296D9D /* OctoPrintClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClient.swift; sourceTree = "<group>"; };
+		3D92E6C721213B2400F58BA5 /* TempHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHistory.swift; sourceTree = "<group>"; };
 		3D968DDA20E336F5006774A5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3D968DDC20E337C7006774A5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetailsViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 		3DD69AA021150F43005555ED /* FileUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadViewController.swift; sourceTree = "<group>"; };
 		3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedStaticUITableViewController.swift; sourceTree = "<group>"; };
 		3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUITableViewController.swift; sourceTree = "<group>"; };
+		3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpanelsViewController.swift; sourceTree = "<group>"; };
+		3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHistoryViewController.swift; sourceTree = "<group>"; };
 		3DF232DF20F150CC00550652 /* MoveSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveSubViewController.swift; sourceTree = "<group>"; };
 		3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterProfilesDelegate.swift; sourceTree = "<group>"; };
 		3DFA8071210E2EF100B5BFAA /* OctoPod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OctoPod.entitlements; sourceTree = "<group>"; };
@@ -151,10 +157,9 @@
 		3D0E1CA120E8674D0036B5FE /* Panel UI */ = {
 			isa = PBXGroup;
 			children = (
+				3DF0157A21227CE8002B4C14 /* Cameras */,
+				3DF0157721227C42002B4C14 /* Subpanels */,
 				3D8B292920E54F7300296D9D /* PanelViewController.swift */,
-				3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */,
-				3D5D613521209F52000B66E7 /* CamerasViewController.swift */,
-				3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */,
 				3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */,
 				3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */,
 				3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */,
@@ -235,6 +240,7 @@
 				3D82873820E3EC3B0035AE0B /* PrinterManager.swift */,
 				3D8873F720F534C400DCE987 /* PrintFile.swift */,
 				3D78BA9E21039D770090D79A /* Terminal.swift */,
+				3D92E6C721213B2400F58BA5 /* TempHistory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -271,6 +277,25 @@
 				3DD69AA021150F43005555ED /* FileUploadViewController.swift */,
 			);
 			path = "File UI";
+			sourceTree = "<group>";
+		};
+		3DF0157721227C42002B4C14 /* Subpanels */ = {
+			isa = PBXGroup;
+			children = (
+				3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */,
+				3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */,
+				3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */,
+			);
+			path = Subpanels;
+			sourceTree = "<group>";
+		};
+		3DF0157A21227CE8002B4C14 /* Cameras */ = {
+			isa = PBXGroup;
+			children = (
+				3D5D613521209F52000B66E7 /* CamerasViewController.swift */,
+				3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */,
+			);
+			path = Cameras;
 			sourceTree = "<group>";
 		};
 		3DF232DE20F150A900550652 /* Move UI */ = {
@@ -381,10 +406,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-OctoPod/Pods-OctoPod-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */,
 				3D0E3B1121097E7A0087F7E4 /* ThemeUIUtils.swift in Sources */,
 				3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */,
 				3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */,
@@ -440,6 +468,7 @@
 				3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */,
 				3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */,
 				3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */,
+				3D92E6C821213B2400F58BA5 /* TempHistory.swift in Sources */,
 				3DFA8074210E30C100B5BFAA /* CloudFilesManager.swift in Sources */,
 				3D5849E4210CC8720068D87A /* OctoPrintSettingsDelegate.swift in Sources */,
 				3DA252442105028300B60E31 /* FolderViewController.swift in Sources */,
@@ -449,6 +478,7 @@
 				3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */,
 				3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */,
 				3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */,
+				3DF0157621227ACB002B4C14 /* TempHistoryViewController.swift in Sources */,
 				3D6350EA21080AD3001C10F7 /* Theme.swift in Sources */,
 				3D0FA48321047AFA0084FF52 /* FilesTreeViewController.swift in Sources */,
 				3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */,

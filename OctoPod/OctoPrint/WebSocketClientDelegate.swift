@@ -6,6 +6,10 @@ protocol WebSocketClientDelegate: class {
     // Notification that OctoPrint state has changed. This may include printer status information
     func currentStateUpdated(event: CurrentStateEvent)
     
+    // Notification that contains history of temperatures. This information is received once after
+    // websocket connection was established. #currentStateUpdated contains new temps after this event
+    func historyTemp(history: Array<TempHistory.Temp>)
+    
     // Notifcation that OctoPrint's settings has changed
     func octoPrintSettingsUpdated()
 

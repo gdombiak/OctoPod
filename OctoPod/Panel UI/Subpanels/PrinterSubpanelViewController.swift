@@ -64,10 +64,6 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         // Dispose of any resources that can be recreated.
     }
     
-    func printerSelectedChanged() {
-        clearValues()
-    }
-    
     // MARK: - Table view operations
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -104,6 +100,10 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     // MARK: - Notifications from Main Panel Controller
 
+    func printerSelectedChanged() {
+        clearValues()
+    }
+    
     // Notification that OctoPrint state has changed. This may include printer status information
     func currentStateUpdated(event: CurrentStateEvent) {
         // Check if we should prompt user to rate app

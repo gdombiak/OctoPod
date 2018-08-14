@@ -21,6 +21,7 @@ class OctoPrintClient: WebSocketClientDelegate {
     var webSocketClient: WebSocketClient?
     
     let terminal = Terminal()
+    let tempHistory = TempHistory()
     
     var delegates: Array<OctoPrintClientDelegate> = Array()
     var octoPrintSettingsDelegates: Array<OctoPrintSettingsDelegate> = Array()
@@ -122,10 +123,22 @@ class OctoPrintClient: WebSocketClientDelegate {
         lastKnownState = event
         // Notify the terminal that OctoPrint and/or Printer state has changed
         terminal.currentStateUpdated(event: event)
+        // Track temp history
+        if event.bedTempActual != nil || event.tool0TempActual != nil {
+            var temp = TempHistory.Temp()
+            temp.parseTemps(event: event)
+            tempHistory.addTemp(temp: temp)
+        }
         // Notify other listeners that OctoPrint and/or Printer state has changed
         for delegate in delegates {
             delegate.printerStateUpdated(event: event)
         }
+    }
+    
+    // Notification that contains history of temperatures. This information is received once after
+    // websocket connection was established. #currentStateUpdated contains new temps after this event
+    func historyTemp(history: Array<TempHistory.Temp>) {
+        tempHistory.addHistory(history: history)
     }
     
     // Notifcation that OctoPrint's settings has changed

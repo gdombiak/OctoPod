@@ -7,5 +7,6 @@ target 'OctoPod' do
 
   # Pods for OctoPod
   pod 'Starscream', '~> 3.0.2'
+  pod 'Charts', '~> 3.1'
 
 end
