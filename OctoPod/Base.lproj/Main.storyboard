@@ -2424,6 +2424,9 @@
                         <subviews>
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMi-Ri-ZkX" userLabel="Small Camera View">
                                 <rect key="frame" x="0.0" y="64" width="375" height="244"/>
+                                <connections>
+                                    <segue destination="1GM-lb-iPS" kind="embed" id="JlG-hL-vqd"/>
+                                </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zlp-qX-RJJ">
                                 <rect key="frame" x="0.0" y="308" width="375" height="310"/>
@@ -2517,5 +2520,6 @@
         <segue reference="dlk-YT-PiH"/>
         <segue reference="iMc-Wi-01S"/>
         <segue reference="Rs9-4F-Pao"/>
+        <segue reference="JlG-hL-vqd"/>
     </inferredMetricsTieBreakers>
 </document>
