@@ -52,6 +52,9 @@ class TempHistoryViewController: UIViewController {
     // MARK: - Private functions
     
     fileprivate func paintChart() {
+        let theme = Theme.currentTheme()
+        let labelColor = theme.labelColor()
+        
         let lineChartData = LineChartData()
         var bedActualEntries = Array<ChartDataEntry>()
         var bedTargetEntries = Array<ChartDataEntry>()
@@ -119,6 +122,8 @@ class TempHistoryViewController: UIViewController {
         }
         
         lineChartView.chartDescription?.text = "Temperature"
+        lineChartView.chartDescription?.textColor = labelColor        
+        lineChartView.legend.textColor = labelColor
         
         // Add data to chart view. This will cause an update in the UI
         lineChartView.data = lineChartData
