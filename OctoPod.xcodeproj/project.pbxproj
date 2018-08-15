@@ -13,6 +13,7 @@
 		3D0E3B1121097E7A0087F7E4 /* ThemeUIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E3B1021097E7A0087F7E4 /* ThemeUIUtils.swift */; };
 		3D0FA48321047AFA0084FF52 /* FilesTreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0FA48221047AFA0084FF52 /* FilesTreeViewController.swift */; };
 		3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D36DD79210300C500884BD6 /* TerminalViewController.swift */; };
+		3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */; };
 		3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */; };
 		3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D45280120E15A370094CCB7 /* AppDelegate.swift */; };
 		3D45280720E15A370094CCB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280520E15A370094CCB7 /* Main.storyboard */; };
@@ -66,6 +67,7 @@
 		3D0E3B1021097E7A0087F7E4 /* ThemeUIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeUIUtils.swift; sourceTree = "<group>"; };
 		3D0FA48221047AFA0084FF52 /* FilesTreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTreeViewController.swift; sourceTree = "<group>"; };
 		3D36DD79210300C500884BD6 /* TerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalViewController.swift; sourceTree = "<group>"; };
+		3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpanelViewController.swift; sourceTree = "<group>"; };
 		3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClientDelegate.swift; sourceTree = "<group>"; };
 		3D4527FE20E15A370094CCB7 /* OctoPod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OctoPod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D45280120E15A370094CCB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */,
 				3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */,
 				3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */,
+				3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */,
 			);
 			path = Subpanels;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */,
 				3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */,
 				3D8B293220E556D400296D9D /* OctoPrintClient.swift in Sources */,
+				3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */,
 				3DBAE49F20E6821900D2137D /* SelectDefaultPrinterViewController.swift in Sources */,
 				3D82874120E421610035AE0B /* MjpegStreamingController.swift in Sources */,
 				3D831E53210850E60004B7A5 /* SettingsViewController.swift in Sources */,

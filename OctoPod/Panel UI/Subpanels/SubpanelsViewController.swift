@@ -60,13 +60,15 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
     // MARK: - Notifications
     
     func printerSelectedChanged() {
-        (orderedViewControllers.first as! PrinterSubpanelViewController).printerSelectedChanged()
-        (orderedViewControllers.last as! TempHistoryViewController).printerSelectedChanged()
+        for case let subpanel as SubpanelViewController in orderedViewControllers {
+            subpanel.printerSelectedChanged()
+        }
     }
     
     func currentStateUpdated(event: CurrentStateEvent) {
-        (orderedViewControllers.first as! PrinterSubpanelViewController).currentStateUpdated(event: event)
-        (orderedViewControllers.last as! TempHistoryViewController).currentStateUpdated(event: event)
+        for case let subpanel as SubpanelViewController in orderedViewControllers {
+            subpanel.currentStateUpdated(event: event)
+        }
     }
 
     // MARK: - UIPageViewControllerDataSource

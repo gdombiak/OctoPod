@@ -1,7 +1,7 @@
 import UIKit
 import StoreKit  // Import for rating app
 
-class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopoverPresentationControllerDelegate {
+class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopoverPresentationControllerDelegate, SubpanelViewController {
     
     private static let RATE_APP = "PANEL_RATE_APP"
     

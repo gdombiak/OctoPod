@@ -1,7 +1,7 @@
 import UIKit
 import Charts
 
-class TempHistoryViewController: UIViewController {
+class TempHistoryViewController: UIViewController, SubpanelViewController {
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
@@ -33,6 +33,10 @@ class TempHistoryViewController: UIViewController {
     // MARK: - Notifications from Main Panel Controller
     
     func printerSelectedChanged() {
+        if lineChartView == nil {
+            // UI is still not ready so do not refresh yet
+            return
+        }
         DispatchQueue.main.async {
             self.paintChart()
         }
