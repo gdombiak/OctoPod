@@ -98,7 +98,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         }
     }
     
-    // MARK: - Notifications from Main Panel Controller
+    // MARK: - SubpanelViewController
 
     func printerSelectedChanged() {
         clearValues()

@@ -620,6 +620,12 @@ class OctoPrintClient: WebSocketClientDelegate {
     }
     
     fileprivate func updatePrinterFromPlugins(printer: Printer, plugins: NSDictionary) {
+        updatePrinterFromMultiCamPlugin(printer: printer, plugins: plugins)
+        updatePrinterFromPSUControlPlugin(printer: printer, plugins: plugins)
+        updatePrinterFromTPLinkSmartplugPlugin(printer: printer, plugins: plugins)
+    }
+    
+    fileprivate func updatePrinterFromMultiCamPlugin(printer: Printer, plugins: NSDictionary) {
         // Check if MultiCam plugin is installed. If so then copy URL to cameras so there is
         // no need to reenter this information
         var camerasURLs: Array<String> = Array()
@@ -649,6 +655,62 @@ class OctoPrintClient: WebSocketClientDelegate {
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
                 delegate.camerasChanged(camerasURLs: camerasURLs)
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromPSUControlPlugin(printer: Printer, plugins: NSDictionary) {
+        var installed = false
+        if let _ = plugins["psucontrol"] as? NSDictionary {
+            // PSUControl plugin is installed
+            installed = true
+        }
+        if printer.psuControlInstalled != installed {
+            // Update flag that tracks if PSU Control plugin is installed
+            printer.psuControlInstalled = installed
+            // Persist updated printer
+            printerManager.updatePrinter(printer)
+            
+            // Notify listeners of change
+            for delegate in octoPrintSettingsDelegates {
+                delegate.psuControlAvailabilityChanged(installed: installed)
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromTPLinkSmartplugPlugin(printer: Printer, plugins: NSDictionary) {
+        // Check if MultiCam plugin is installed. If so then copy URL to cameras so there is
+        // no need to reenter this information
+        var plugs: Array<Printer.TPLinkSmartplug> = []
+        if let tplinksmartplug = plugins["tplinksmartplug"] as? NSDictionary {
+            if let arrSmartplugs = tplinksmartplug["arrSmartplugs"] as? NSArray {
+                for case let plug as NSDictionary in arrSmartplugs {
+                    if let ip = plug["ip"] as? String, let label = plug["label"] as? String {
+                        if !ip.isEmpty && !label.isEmpty {
+                            plugs.append(Printer.TPLinkSmartplug(ip: ip, label: label))
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Check if plugs have changed
+        var update = false
+        if let existing = printer.getTPLinkSmartplugs() {
+            update = !existing.elementsEqual(plugs)
+        } else {
+            update = true
+        }
+        
+        if update {
+            // Update array
+            printer.setTPLinkSmartplugs(plugs: plugs)
+            // Persist updated printer
+            printerManager.updatePrinter(printer)
+            
+            // Notify listeners of change
+            for delegate in octoPrintSettingsDelegates {
+                delegate.tplinkSmartpluglChanged(plugs: plugs)
             }
         }
     }

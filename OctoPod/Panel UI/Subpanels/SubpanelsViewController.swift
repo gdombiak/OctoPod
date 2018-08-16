@@ -1,6 +1,9 @@
 import UIKit
 
-class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, OctoPrintSettingsDelegate {
+
+    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
+    let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
     @IBOutlet weak var pageControl: UIPageControl!
     
@@ -28,35 +31,46 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         
         // Configure our custom pageControl
         view.bringSubview(toFront: pageControl)
-        
+
+        // Reset subpanels
+        orderedViewControllers = []
         let mainboard = UIStoryboard(name: "Main", bundle: nil)
         orderedViewControllers.append(mainboard.instantiateViewController(withIdentifier: "PrinterSubpanelViewController"))
         orderedViewControllers.append(mainboard.instantiateViewController(withIdentifier: "TempHistoryViewController"))
-
+        
+        if let printer = printerManager.getDefaultPrinter() {
+            if printer.psuControlInstalled {
+                orderedViewControllers.append(createPSUControlVC(mainboard))
+            }
+            if let plugs = printer.getTPLinkSmartplugs() {
+                if !plugs.isEmpty {
+                    orderedViewControllers.append(createTPLinkSmartplugVC(mainboard))
+                }
+            }
+        }
+        
         // Set number of pages in the page control
         pageControl.numberOfPages = orderedViewControllers.count
         
-        // Show first page as the initial page
-        if let firstViewController = orderedViewControllers.first {
-            pageContainer.setViewControllers([firstViewController],
-                                             direction: .forward,
-                                             animated: true,
-                                             completion: nil)
-            pageControl.currentPage = 0
-        }
+        renderFirstVC()
+        
+        // Listen to changes to OctoPrint Settings
+        octoprintClient.octoPrintSettingsDelegates.append(self)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // Theme the UI
         let theme = Theme.currentTheme()
         pageControl.pageIndicatorTintColor = theme.pageIndicatorTintColor()
         pageControl.currentPageIndicatorTintColor = theme.currentPageIndicatorTintColor()
+
     }
-    
+
     // MARK: - Notifications
     
     func printerSelectedChanged() {
@@ -70,7 +84,7 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             subpanel.currentStateUpdated(event: event)
         }
     }
-
+    
     // MARK: - UIPageViewControllerDataSource
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -126,5 +140,73 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                 pageControl.currentPage = index
             }
         }
+    }
+    
+    // MARK: - OctoPrintSettingsDelegate
+    
+    func psuControlAvailabilityChanged(installed: Bool) {
+        addRemoveVC(add: installed, vcType: PSUControlViewController.self, createVC: createPSUControlVC)
+    }
+    
+    func tplinkSmartpluglChanged(plugs: Array<Printer.TPLinkSmartplug>) {
+        addRemoveVC(add: !plugs.isEmpty, vcType: TPLinkSmartplugViewController.self, createVC: createTPLinkSmartplugVC)
+    }
+    
+    // MARK: - Private functions
+    
+    fileprivate func renderFirstVC() {
+        // Show first page as the initial page
+        if let firstViewController = orderedViewControllers.first {
+            pageContainer.setViewControllers([firstViewController],
+                                             direction: .forward,
+                                             animated: true,
+                                             completion: nil)
+            pageControl.currentPage = 0
+        }
+    }
+    
+    fileprivate func addRemoveVC<T: UIViewController>(add: Bool, vcType: T.Type, createVC: (UIStoryboard) -> UIViewController) {
+        if add {
+            // Make sure that we render requested VC
+            if let _ = orderedViewControllers.first(where: { $0.isMember(of: vcType) }) {
+                // Do nothing since we already have it installed
+            } else {
+                let mainboard = UIStoryboard(name: "Main", bundle: nil)
+                orderedViewControllers.append(createVC(mainboard))
+                DispatchQueue.main.async {
+                    // Force refresh of cached VCs
+                    self.pageContainer.dataSource = nil
+                    self.pageContainer.dataSource = self
+                    // Update number of pages in page control
+                    self.pageControl.numberOfPages = self.orderedViewControllers.count
+                }
+            }
+        } else {
+            // Make sure that we are not rendering PSUControlViewController
+            if let found = orderedViewControllers.first(where: { $0.isMember(of: vcType) }) {
+                if let index = orderedViewControllers.index(of: found) {
+                    orderedViewControllers.remove(at: index)
+                    DispatchQueue.main.async {
+                        // Force refresh of cached VCs
+                        self.pageContainer.dataSource = nil
+                        self.pageContainer.dataSource = self
+                        // Check if we need to go to first page (only if deleted VC was active VC)
+                        if self.pageControl.currentPage == index {
+                            self.renderFirstVC()
+                        }
+                        // Update number of pages in page control
+                        self.pageControl.numberOfPages = self.orderedViewControllers.count
+                    }
+                }
+            }
+        }
+    }
+
+    fileprivate func createPSUControlVC(_ mainboard: UIStoryboard) -> UIViewController {
+        return mainboard.instantiateViewController(withIdentifier: "PSUControlViewController")
+    }
+
+    fileprivate func createTPLinkSmartplugVC(_ mainboard: UIStoryboard) -> UIViewController {
+        return mainboard.instantiateViewController(withIdentifier: "TPLinkSmartplugViewController")
     }
 }

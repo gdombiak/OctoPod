@@ -674,6 +674,76 @@
             </objects>
             <point key="canvasLocation" x="3800.8000000000002" y="-230.28485757121442"/>
         </scene>
+        <!--Control View Controller-->
+        <scene sceneID="bT5-SU-6gA">
+            <objects>
+                <tableViewController storyboardIdentifier="PSUControlViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VtJ-8k-QQI" customClass="PSUControlViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kgd-AN-UlQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections>
+                            <tableViewSection id="j7z-v9-ybo">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="d4d-Kd-z0p">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d4d-Kd-z0p" id="S6z-qd-QZM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Control ATX/AUX power supply via PSU Control" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ysy-LO-1dL">
+                                                    <rect key="frame" x="16" y="12" width="343" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ysy-LO-1dL" firstAttribute="top" secondItem="S6z-qd-QZM" secondAttribute="topMargin" constant="1" id="Hns-yS-muA"/>
+                                                <constraint firstItem="Ysy-LO-1dL" firstAttribute="centerX" secondItem="S6z-qd-QZM" secondAttribute="centerX" id="iXI-wr-Bx2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="vA8-MQ-uCX">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vA8-MQ-uCX" id="Z90-zX-Dy2">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="58T-co-wGt">
+                                                    <rect key="frame" x="123" y="11" width="128" height="128"/>
+                                                    <state key="normal" image="PSUPowerOn"/>
+                                                    <connections>
+                                                        <action selector="powerButtonPressed:" destination="VtJ-8k-QQI" eventType="touchUpInside" id="93N-An-uUj"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="58T-co-wGt" firstAttribute="centerX" secondItem="Z90-zX-Dy2" secondAttribute="centerX" id="9Ls-n9-dVF"/>
+                                                <constraint firstItem="58T-co-wGt" firstAttribute="centerY" secondItem="Z90-zX-Dy2" secondAttribute="centerY" id="lax-9r-EMW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="VtJ-8k-QQI" id="cPS-to-mSl"/>
+                            <outlet property="delegate" destination="VtJ-8k-QQI" id="Rx3-ZJ-VGI"/>
+                        </connections>
+                    </tableView>
+                    <size key="freeformSize" width="375" height="370"/>
+                    <connections>
+                        <outlet property="infoLabel" destination="Ysy-LO-1dL" id="Cfn-02-SsY"/>
+                        <outlet property="powerButton" destination="58T-co-wGt" id="lZ9-OT-N9Z"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vW0-4C-MaC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4522" y="-230"/>
+        </scene>
         <!--Job Info View Controller-->
         <scene sceneID="sKV-My-3Dx">
             <objects>
@@ -2496,6 +2566,53 @@
             </objects>
             <point key="canvasLocation" x="641" y="1550"/>
         </scene>
+        <!--Link Smartplug View Controller-->
+        <scene sceneID="2g8-hn-bxr">
+            <objects>
+                <tableViewController storyboardIdentifier="TPLinkSmartplugViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OaB-w8-VpS" customClass="TPLinkSmartplugViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="lXQ-Nd-TOB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tplink_plug_cell" rowHeight="51" id="beT-5d-tXP">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="51"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="beT-5d-tXP" id="w5u-rR-oAz">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qZ-S9-9Zh">
+                                            <rect key="frame" x="311" y="2" width="48" height="48"/>
+                                            <state key="normal" image="TPPowerOn"/>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlM-dP-k5T">
+                                            <rect key="frame" x="16" y="15" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="1qZ-S9-9Zh" secondAttribute="trailing" constant="16" id="Ba8-TL-CHb"/>
+                                        <constraint firstItem="RlM-dP-k5T" firstAttribute="centerY" secondItem="w5u-rR-oAz" secondAttribute="centerY" id="SyJ-hy-rNV"/>
+                                        <constraint firstItem="1qZ-S9-9Zh" firstAttribute="centerY" secondItem="w5u-rR-oAz" secondAttribute="centerY" id="chm-Uv-cMR"/>
+                                        <constraint firstItem="RlM-dP-k5T" firstAttribute="leading" secondItem="w5u-rR-oAz" secondAttribute="leadingMargin" id="cxF-kA-XMx"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OaB-w8-VpS" id="HVs-bw-X8s"/>
+                            <outlet property="delegate" destination="OaB-w8-VpS" id="f4F-A4-TeF"/>
+                        </connections>
+                    </tableView>
+                    <size key="freeformSize" width="375" height="370"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JSR-Fy-vC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5252" y="-230"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Appearance" width="32" height="32"/>
@@ -2503,10 +2620,12 @@
         <image name="Files" width="24" height="24"/>
         <image name="Folder" width="24" height="24"/>
         <image name="Move" width="24" height="24"/>
+        <image name="PSUPowerOn" width="128" height="128"/>
         <image name="Panel" width="24" height="24"/>
         <image name="Print Job" width="22" height="22"/>
         <image name="Printers" width="32" height="32"/>
         <image name="Settings" width="24" height="24"/>
+        <image name="TPPowerOn" width="48" height="48"/>
         <image name="Terminal" width="24" height="24"/>
         <image name="back" width="16" height="16"/>
         <image name="down" width="16" height="16"/>

@@ -30,7 +30,7 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
     }
     
 
-    // MARK: - Notifications from Main Panel Controller
+    // MARK: - SubpanelViewController
     
     func printerSelectedChanged() {
         if lineChartView == nil {

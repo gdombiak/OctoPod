@@ -11,10 +11,12 @@
         <attribute name="invertZ" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="psuControlInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="sdSupport" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tpLinkSmartplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Printer" positionX="-63" positionY="-18" width="128" height="225"/>
+        <element name="Printer" positionX="-63" positionY="-18" width="128" height="255"/>
     </elements>
 </model>
