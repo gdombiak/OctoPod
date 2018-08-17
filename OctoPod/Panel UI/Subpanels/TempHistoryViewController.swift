@@ -128,9 +128,13 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         lineChartView.chartDescription?.text = "Temperature"
         lineChartView.chartDescription?.textColor = labelColor        
         lineChartView.legend.textColor = labelColor
+        lineChartView.noDataTextColor = labelColor
+        lineChartView.noDataText = "No temperature history available"
         
-        // Add data to chart view. This will cause an update in the UI
-        lineChartView.data = lineChartData
+        if !lineChartData.dataSets.isEmpty {
+            // Add data to chart view. This will cause an update in the UI
+            lineChartView.data = lineChartData
+        }
     }
     
     fileprivate func createLine(values: [ChartDataEntry], label: String, lineColor: UIColor) -> LineChartDataSet {
