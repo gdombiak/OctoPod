@@ -33,8 +33,10 @@ class SelectDefaultPrinterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "printerCell", for: indexPath)
 
-        cell.textLabel?.text = printers[indexPath.row].name  // + (printers[indexPath.row].defaultPrinter ? " (Selected)" : "")
+        cell.textLabel?.text = printers[indexPath.row].name // + (printers[indexPath.row].defaultPrinter ? " (Active)" : "")
         cell.detailTextLabel?.text = printers[indexPath.row].hostname
+        // Show a checkmark next to active printer
+        cell.accessoryType = printers[indexPath.row].defaultPrinter ? .checkmark : .none
 
         return cell
     }
