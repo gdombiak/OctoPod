@@ -13,6 +13,13 @@ protocol WebSocketClientDelegate: class {
     // Notifcation that OctoPrint's settings has changed
     func octoPrintSettingsUpdated()
 
+    // Notification sent by plugin via websockets
+    // plugin - identifier of the OctoPrint plugin
+    // data - whatever JSON data structure sent by the plugin
+    //
+    // Example: {data: {isPSUOn: false, hasGPIO: true}, plugin: "psucontrol"}
+    func pluginMessage(plugin: String, data: NSDictionary)
+
     // Notification sent when websockets got connected
     func websocketConnected()
     

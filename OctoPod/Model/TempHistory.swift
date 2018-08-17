@@ -75,5 +75,8 @@ class TempHistory {
         temps.append(temp)
     }
     
+    func clear() {
+        temps = Array()
+    }
     
 }

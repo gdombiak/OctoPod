@@ -37,6 +37,7 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
             // UI is still not ready so do not refresh yet
             return
         }
+        // Refresh UI
         DispatchQueue.main.async {
             self.paintChart()
         }
@@ -134,6 +135,8 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         if !lineChartData.dataSets.isEmpty {
             // Add data to chart view. This will cause an update in the UI
             lineChartView.data = lineChartData
+        } else {
+            lineChartView.data = nil
         }
     }
     

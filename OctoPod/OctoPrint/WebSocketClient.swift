@@ -170,6 +170,11 @@ class WebSocketClient : NSObject, WebSocketDelegate {
                             // Notify listener
                             listener.historyTemp(history: historyTemps)
                         }
+                    } else if let plugin = json["plugin"] as? NSDictionary {
+                        if let identifier = plugin["plugin"] as? String, let data = plugin["data"] as? NSDictionary {
+                            // Notify listener
+                            listener.pluginMessage(plugin: identifier, data: data)
+                        }
                     } else {
 //                        NSLog("Websocket message received: \(text)")
                     }

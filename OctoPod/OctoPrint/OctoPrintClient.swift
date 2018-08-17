@@ -26,7 +26,8 @@ class OctoPrintClient: WebSocketClientDelegate {
     var delegates: Array<OctoPrintClientDelegate> = Array()
     var octoPrintSettingsDelegates: Array<OctoPrintSettingsDelegate> = Array()
     var printerProfilesDelegates: Array<PrinterProfilesDelegate> = Array()
-    
+    var octoPrintPluginsDelegates: Array<OctoPrintPluginsDelegate> = Array()
+
     // Remember last CurrentStateEvent that was reported from OctoPrint (via websockets)
     var lastKnownState: CurrentStateEvent?
     
@@ -54,6 +55,10 @@ class OctoPrintClient: WebSocketClientDelegate {
         for delegate in delegates {
             delegate.notificationAboutToConnectToServer()
         }
+        
+        // Clean up any temp history
+        tempHistory.clear()
+        
         // Close any previous connection
         webSocketClient?.closeConnection()
         
@@ -146,6 +151,18 @@ class OctoPrintClient: WebSocketClientDelegate {
         if let printer = printerManager.getDefaultPrinter() {
             // Verify that last known settings are still current
             reviewOctoPrintSettings(printer: printer)
+        }
+    }
+    
+    // Notification sent by plugin via websockets
+    // plugin - identifier of the OctoPrint plugin
+    // data - whatever JSON data structure sent by the plugin
+    //
+    // Example: {data: {isPSUOn: false, hasGPIO: true}, plugin: "psucontrol"}
+    func pluginMessage(plugin: String, data: NSDictionary) {
+        // Notify other listeners that we connected to OctoPrint
+        for delegate in octoPrintPluginsDelegates {
+            delegate.pluginMessage(plugin: plugin, data: data)
         }
     }
 
@@ -519,6 +536,38 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
     
+    // MARK: - PSU Control Plugin operations
+    
+    func turnPSU(on: Bool, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = on ? "turnPSUOn" : "turnPSUOff"
+            client.post("/api/plugin/psucontrol", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+    
+    func getPSUState(callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "getPSUState"
+            client.post("/api/plugin/psucontrol", json: json, expected: 200) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting PSUState. Error: \(error!.localizedDescription)")
+                }
+                if let json = result as? NSDictionary {
+                    if let isPSUOn = json["isPSUOn"] as? Bool {
+                        callback(isPSUOn, error, response)
+                        return
+                    }
+                }
+                callback(nil, error, response)
+            }
+        }
+    }
+
     // MARK: - Delegates operations
     
     func remove(octoPrintSettingsDelegate toRemove: OctoPrintSettingsDelegate) {
@@ -529,6 +578,12 @@ class OctoPrintClient: WebSocketClientDelegate {
     
     func remove(printerProfilesDelegate toRemove: PrinterProfilesDelegate) {
         printerProfilesDelegates = printerProfilesDelegates.filter({ (delegate) -> Bool in
+            return delegate !== toRemove
+        })
+    }
+    
+    func remove(octoPrintPluginsDelegate toRemove: OctoPrintPluginsDelegate) {
+        octoPrintPluginsDelegates = octoPrintPluginsDelegates.filter({ (delegate) -> Bool in
             return delegate !== toRemove
         })
     }

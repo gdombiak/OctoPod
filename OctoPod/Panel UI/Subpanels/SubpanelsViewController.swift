@@ -74,6 +74,16 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
     // MARK: - Notifications
     
     func printerSelectedChanged() {
+        // Add or remove subpanels depending on configuration
+        if let printer = printerManager.getDefaultPrinter() {
+            addRemoveVC(add: printer.psuControlInstalled, vcType: PSUControlViewController.self, createVC: createPSUControlVC)
+            var addVC = false
+            if let plugs = printer.getTPLinkSmartplugs() {
+                addVC = !plugs.isEmpty
+            }
+            addRemoveVC(add: addVC, vcType: TPLinkSmartplugViewController.self, createVC: createTPLinkSmartplugVC)
+        }
+        // Notify subpanels of change of printer (OctoPrint)
         for case let subpanel as SubpanelViewController in orderedViewControllers {
             subpanel.printerSelectedChanged()
         }
@@ -165,18 +175,17 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         }
     }
     
-    fileprivate func addRemoveVC<T: UIViewController>(add: Bool, vcType: T.Type, createVC: (UIStoryboard) -> UIViewController) {
+    fileprivate func addRemoveVC<T: UIViewController>(add: Bool, vcType: T.Type, createVC: @escaping (UIStoryboard) -> UIViewController) {
         if add {
             // Make sure that we render requested VC
             if let _ = orderedViewControllers.first(where: { $0.isMember(of: vcType) }) {
                 // Do nothing since we already have it installed
             } else {
-                let mainboard = UIStoryboard(name: "Main", bundle: nil)
-                orderedViewControllers.append(createVC(mainboard))
                 DispatchQueue.main.async {
+                    let mainboard = UIStoryboard(name: "Main", bundle: nil)
+                    self.orderedViewControllers.append(createVC(mainboard))
                     // Force refresh of cached VCs
-                    self.pageContainer.dataSource = nil
-                    self.pageContainer.dataSource = self
+                    self.renderFirstVC()
                     // Update number of pages in page control
                     self.pageControl.numberOfPages = self.orderedViewControllers.count
                 }
@@ -188,8 +197,7 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                     orderedViewControllers.remove(at: index)
                     DispatchQueue.main.async {
                         // Force refresh of cached VCs
-                        self.pageContainer.dataSource = nil
-                        self.pageContainer.dataSource = self
+                        self.renderFirstVC()
                         // Check if we need to go to first page (only if deleted VC was active VC)
                         if self.pageControl.currentPage == index {
                             self.renderFirstVC()
