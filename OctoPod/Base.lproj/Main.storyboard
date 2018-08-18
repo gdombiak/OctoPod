@@ -2596,19 +2596,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tplink_plug_cell" rowHeight="51" id="beT-5d-tXP">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="51"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tplink_plug_cell" rowHeight="44" id="beT-5d-tXP" customClass="TPLinkSmartplugTableViewCell" customModule="OctoPod" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="beT-5d-tXP" id="w5u-rR-oAz">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qZ-S9-9Zh">
-                                            <rect key="frame" x="311" y="2" width="48" height="48"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qZ-S9-9Zh">
+                                            <rect key="frame" x="327" y="6" width="32" height="32"/>
                                             <state key="normal" image="TPPowerOn"/>
+                                            <connections>
+                                                <action selector="powerPressed:" destination="beT-5d-tXP" eventType="touchUpInside" id="vuN-yK-Dr4"/>
+                                            </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlM-dP-k5T">
-                                            <rect key="frame" x="16" y="15" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlM-dP-k5T">
+                                            <rect key="frame" x="16" y="11.5" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -2621,6 +2624,10 @@
                                         <constraint firstItem="RlM-dP-k5T" firstAttribute="leading" secondItem="w5u-rR-oAz" secondAttribute="leadingMargin" id="cxF-kA-XMx"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="powerButton" destination="1qZ-S9-9Zh" id="Tk5-Vm-bfo"/>
+                                    <outlet property="titleLabel" destination="RlM-dP-k5T" id="fYx-Sx-TUO"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -2646,7 +2653,7 @@
         <image name="Print Job" width="22" height="22"/>
         <image name="Printers" width="32" height="32"/>
         <image name="Settings" width="24" height="24"/>
-        <image name="TPPowerOn" width="48" height="48"/>
+        <image name="TPPowerOn" width="32" height="32"/>
         <image name="Terminal" width="24" height="24"/>
         <image name="back" width="16" height="16"/>
         <image name="down" width="16" height="16"/>

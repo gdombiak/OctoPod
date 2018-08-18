@@ -17,7 +17,7 @@ protocol OctoPrintSettingsDelegate: class {
     func psuControlAvailabilityChanged(installed: Bool)
 
     // Notification that TPLlinksmartplug plugin has changed. Could be availability or settings
-    func tplinkSmartpluglChanged(plugs: Array<Printer.TPLinkSmartplug>)
+    func tplinkSmartplugsChanged(plugs: Array<Printer.TPLinkSmartplug>)
 
     // Notification that sd support has changed
     func sdSupportChanged(sdSupport: Bool)
@@ -36,7 +36,7 @@ extension OctoPrintSettingsDelegate {
     func psuControlAvailabilityChanged(installed: Bool) {
     }
 
-    func tplinkSmartpluglChanged(plugs: Array<Printer.TPLinkSmartplug>) {
+    func tplinkSmartplugsChanged(plugs: Array<Printer.TPLinkSmartplug>) {
     }
     
     func sdSupportChanged(sdSupport: Bool) {

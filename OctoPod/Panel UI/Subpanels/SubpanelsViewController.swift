@@ -158,7 +158,7 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         addRemoveVC(add: installed, vcType: PSUControlViewController.self, createVC: createPSUControlVC)
     }
     
-    func tplinkSmartpluglChanged(plugs: Array<Printer.TPLinkSmartplug>) {
+    func tplinkSmartplugsChanged(plugs: Array<Printer.TPLinkSmartplug>) {
         addRemoveVC(add: !plugs.isEmpty, vcType: TPLinkSmartplugViewController.self, createVC: createTPLinkSmartplugVC)
     }
     

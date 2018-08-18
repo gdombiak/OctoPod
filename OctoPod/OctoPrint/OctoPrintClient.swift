@@ -568,6 +568,26 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
 
+    // MARK: - PSU Control Plugin operations
+    
+    // Instruct TPLink Smartplug plugin to turn on/off the device with the specified IP address
+    // If request was successful we get back a 204 and the status is reported via websockets
+    func turnTPLinkSmartplug(on: Bool, ip: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        let json : NSMutableDictionary = NSMutableDictionary()
+        json["command"] = on ? "turnOn" : "turnOff"
+        json["ip"] = ip
+        tpLinkSmartPlugCommand(json: json, callback: callback)
+    }
+
+    // Instruct TPLink Smartplug plugin to report the status of the device with the specified IP address
+    // If request was successful we get back a 204 and the status is reported via websockets
+    func checkTPLinkSmartplugStatus(ip: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        let json : NSMutableDictionary = NSMutableDictionary()
+        json["command"] = "checkStatus"
+        json["ip"] = ip
+        tpLinkSmartPlugCommand(json: json, callback: callback)
+    }
+    
     // MARK: - Delegates operations
     
     func remove(octoPrintSettingsDelegate toRemove: OctoPrintSettingsDelegate) {
@@ -765,7 +785,7 @@ class OctoPrintClient: WebSocketClientDelegate {
             
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
-                delegate.tplinkSmartpluglChanged(plugs: plugs)
+                delegate.tplinkSmartplugsChanged(plugs: plugs)
             }
         }
     }
@@ -881,6 +901,14 @@ class OctoPrintClient: WebSocketClientDelegate {
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    fileprivate func tpLinkSmartPlugCommand(json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.post("/api/plugin/tplinksmartplug", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
             }
         }
     }

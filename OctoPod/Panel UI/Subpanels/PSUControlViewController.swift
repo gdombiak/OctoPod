@@ -12,7 +12,7 @@ class PSUControlViewController: ThemedStaticUITableViewController, SubpanelViewC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // Clean up message since we do not know PSU state
         controlPowerLabel.text = nil
     }
 
@@ -73,7 +73,7 @@ class PSUControlViewController: ThemedStaticUITableViewController, SubpanelViewC
         let changePower = {
             self.octoprintClient.turnPSU(on: !self.isPSUOn) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
-                    self.showAlert("Warning", message: "Failed to request to change power settings")
+                    self.showAlert("Warning", message: "Failed to request to turn power \(!self.isPSUOn ? "on" : "off")")
                 }
             }}
         

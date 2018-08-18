@@ -21,6 +21,7 @@
 		3D45280A20E15A370094CCB7 /* OctoPod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */; };
 		3D45280C20E15A380094CCB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280B20E15A380094CCB7 /* Assets.xcassets */; };
 		3D45280F20E15A380094CCB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280D20E15A380094CCB7 /* LaunchScreen.storyboard */; };
+		3D47BA3E21278956002420A0 /* TPLinkSmartplugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D47BA3D21278956002420A0 /* TPLinkSmartplugTableViewCell.swift */; };
 		3D5849E4210CC8720068D87A /* OctoPrintSettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5849E3210CC8720068D87A /* OctoPrintSettingsDelegate.swift */; };
 		3D5D613621209F52000B66E7 /* CamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D613521209F52000B66E7 /* CamerasViewController.swift */; };
 		3D6350EA21080AD3001C10F7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350E921080AD3001C10F7 /* Theme.swift */; };
@@ -80,6 +81,7 @@
 		3D45280B20E15A380094CCB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D45280E20E15A380094CCB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D45281020E15A380094CCB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D47BA3D21278956002420A0 /* TPLinkSmartplugTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPLinkSmartplugTableViewCell.swift; sourceTree = "<group>"; };
 		3D5849E3210CC8720068D87A /* OctoPrintSettingsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintSettingsDelegate.swift; sourceTree = "<group>"; };
 		3D5849E5210CCB560068D87A /* OctoPod v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v2.xcdatamodel"; sourceTree = "<group>"; };
 		3D5D613421209B52000B66E7 /* OctoPod v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v3.xcdatamodel"; sourceTree = "<group>"; };
@@ -228,6 +230,14 @@
 			path = OctoPod;
 			sourceTree = "<group>";
 		};
+		3D47BA3C21278923002420A0 /* UI Components */ = {
+			isa = PBXGroup;
+			children = (
+				3D47BA3D21278956002420A0 /* TPLinkSmartplugTableViewCell.swift */,
+			);
+			path = "UI Components";
+			sourceTree = "<group>";
+		};
 		3D6350EB210822C0001C10F7 /* Themes */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +301,7 @@
 		3DF0157721227C42002B4C14 /* Subpanels */ = {
 			isa = PBXGroup;
 			children = (
+				3D47BA3C21278923002420A0 /* UI Components */,
 				3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */,
 				3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */,
 				3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */,
@@ -471,6 +482,7 @@
 				3D82873720E3EBC80035AE0B /* Printer.swift in Sources */,
 				3D6350F121082E07001C10F7 /* AppearanceViewController.swift in Sources */,
 				3D8873F820F534C400DCE987 /* PrintFile.swift in Sources */,
+				3D47BA3E21278956002420A0 /* TPLinkSmartplugTableViewCell.swift in Sources */,
 				3DD9E9572108479000726DFD /* ThemedStaticUITableViewController.swift in Sources */,
 				3D8B293020E5549B00296D9D /* HTTPClient.swift in Sources */,
 				3D8B292D20E5514A00296D9D /* PrinterSubpanelViewController.swift in Sources */,
