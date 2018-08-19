@@ -1,5 +1,25 @@
 # Change Log
 
+## [1.5](https://github.com/gdombiak/OctoPod/tree/1.5) (2018-08-19)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.4...1.5)
+
+**Implemented enhancements:**
+
+- Add visual indication which printer is active in list of printers [\#50](https://github.com/gdombiak/OctoPod/issues/50)
+- Support TPLink Smartplug to power printer on/off [\#49](https://github.com/gdombiak/OctoPod/issues/49)
+- Add graph that shows temp history [\#48](https://github.com/gdombiak/OctoPod/issues/48)
+- Add support for multiple cameras [\#47](https://github.com/gdombiak/OctoPod/issues/47)
+- Make it explicit that webcam image supports full screen and zoom in/out [\#46](https://github.com/gdombiak/OctoPod/issues/46)
+- Feature request: PSU Control plugin support. [\#36](https://github.com/gdombiak/OctoPod/issues/36)
+
+**Fixed bugs:**
+
+- Webcam full screen has white borders on iPhone X [\#52](https://github.com/gdombiak/OctoPod/issues/52)
+
+**Closed issues:**
+
+- Not very clear that wrench icons indicate that temps can be set [\#18](https://github.com/gdombiak/OctoPod/issues/18)
+
 ## [1.4](https://github.com/gdombiak/OctoPod/tree/1.4) (2018-08-05)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.3...1.4)
 
