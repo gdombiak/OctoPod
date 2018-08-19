@@ -59,6 +59,12 @@ class TPLinkSmartplugViewController: ThemedDynamicUITableViewController, Subpane
         // Do nothing
     }
     
+    // Returns the position where this VC should appear in SubpanelsViewController's UIPageViewController
+    // SubpanelsViewController's will sort subpanels by this number when being displayed
+    func position() -> Int {
+        return 3
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {

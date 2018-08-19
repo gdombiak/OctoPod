@@ -20,6 +20,20 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         lineChartView.xAxis.labelTextColor = labelColor
         lineChartView.leftAxis.labelTextColor = labelColor
         lineChartView.rightAxis.labelTextColor = labelColor
+        lineChartView.chartDescription?.textColor = labelColor
+        lineChartView.legend.textColor = labelColor
+        lineChartView.noDataTextColor = labelColor
+
+        lineChartView.chartDescription?.text = "Temperature"
+        lineChartView.noDataText = "No temperature history available"
+        
+        lineChartView.xAxis.axisMaximum = 0
+        
+        lineChartView.xAxis.granularityEnabled = true
+        lineChartView.leftAxis.granularityEnabled = true
+        lineChartView.rightAxis.granularityEnabled = true
+        lineChartView.leftAxis.granularity = 0.5
+        lineChartView.rightAxis.granularity = 0.5
 
         paintChart()
     }
@@ -54,12 +68,15 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         }
     }
 
+    // Returns the position where this VC should appear in SubpanelsViewController's UIPageViewController
+    // SubpanelsViewController's will sort subpanels by this number when being displayed
+    func position() -> Int {
+        return 1
+    }
+    
     // MARK: - Private functions
     
     fileprivate func paintChart() {
-        let theme = Theme.currentTheme()
-        let labelColor = theme.labelColor()
-        
         let lineChartData = LineChartData()
         var bedActualEntries = Array<ChartDataEntry>()
         var bedTargetEntries = Array<ChartDataEntry>()
@@ -125,12 +142,6 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
             let line = createLine(values: tool1TargetEntries, label: "Target Extruder 2", lineColor: lineColor)
             lineChartData.addDataSet(line)
         }
-        
-        lineChartView.chartDescription?.text = "Temperature"
-        lineChartView.chartDescription?.textColor = labelColor        
-        lineChartView.legend.textColor = labelColor
-        lineChartView.noDataTextColor = labelColor
-        lineChartView.noDataText = "No temperature history available"
         
         if !lineChartData.dataSets.isEmpty {
             // Add data to chart view. This will cause an update in the UI

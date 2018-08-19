@@ -184,6 +184,10 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                 DispatchQueue.main.async {
                     let mainboard = UIStoryboard(name: "Main", bundle: nil)
                     self.orderedViewControllers.append(createVC(mainboard))
+                    // Sort VCs since added VC might not need to go last
+                    self.orderedViewControllers.sort(by: { (vc1: UIViewController, vc2: UIViewController) -> Bool in
+                        (vc1 as! SubpanelViewController).position() < (vc2 as! SubpanelViewController).position()
+                    })
                     // Force refresh of cached VCs
                     self.renderFirstVC()
                     // Update number of pages in page control

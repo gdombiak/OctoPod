@@ -166,6 +166,12 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         }
     }
     
+    // Returns the position where this VC should appear in SubpanelsViewController's UIPageViewController
+    // SubpanelsViewController's will sort subpanels by this number when being displayed
+    func position() -> Int {
+        return 0
+    }
+
     // MARK: - UIPopoverPresentationControllerDelegate
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
