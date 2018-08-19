@@ -32,6 +32,7 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         lineChartView.xAxis.granularityEnabled = true
         lineChartView.leftAxis.granularityEnabled = true
         lineChartView.rightAxis.granularityEnabled = true
+        lineChartView.xAxis.granularity = 0.5
         lineChartView.leftAxis.granularity = 0.5
         lineChartView.rightAxis.granularity = 0.5
 
