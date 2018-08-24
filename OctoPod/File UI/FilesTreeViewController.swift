@@ -29,7 +29,16 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         self.refreshControl?.addTarget(self, action: #selector(refreshFiles), for: UIControlEvents.valueChanged)
         
         // Update sort control based on user preferences for sorting
-        sortByControl.selectedSegmentIndex = PrintFile.defaultSortCriteria() == PrintFile.SortBy.alphabetical ? 0 : 1
+        var selectIndex = 0
+        switch PrintFile.defaultSortCriteria() {
+        case PrintFile.SortBy.alphabetical:
+            selectIndex = 0
+        case PrintFile.SortBy.uploadDate:
+            selectIndex = 1
+        case PrintFile.SortBy.lastPrintDate:
+            selectIndex = 2
+        }
+        sortByControl.selectedSegmentIndex = selectIndex
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -214,8 +223,10 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         // Sort by new criteria
         if sortByControl.selectedSegmentIndex == 0 {
             files = PrintFile.resort(rootFiles: files, sortBy: PrintFile.SortBy.alphabetical)
-        } else {
+        } else if sortByControl.selectedSegmentIndex == 1 {
             files = PrintFile.resort(rootFiles: files, sortBy: PrintFile.SortBy.uploadDate)
+        } else {
+            files = PrintFile.resort(rootFiles: files, sortBy: PrintFile.SortBy.lastPrintDate)
         }
         // Refresh UI
         tableView.reloadData()

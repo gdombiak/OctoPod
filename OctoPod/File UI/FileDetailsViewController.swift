@@ -9,12 +9,14 @@ class FileDetailsViewController: ThemedStaticUITableViewController {
     @IBOutlet weak var originTextLabel: UILabel!
     @IBOutlet weak var printTimeTextLabel: UILabel!
     @IBOutlet weak var uploadedTextLabel: UILabel!
+    @IBOutlet weak var printedTextLabel: UILabel!
     
     @IBOutlet weak var fileNameLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var originLabel: UILabel!
     @IBOutlet weak var estimatedPrintTimeLabel: UILabel!
     @IBOutlet weak var uploadedDateLabel: UILabel!
+    @IBOutlet weak var printedDateLabel: UILabel!
     
     @IBOutlet weak var printButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
@@ -33,6 +35,7 @@ class FileDetailsViewController: ThemedStaticUITableViewController {
         originLabel.text = printFile?.displayOrigin()
         estimatedPrintTimeLabel.text = secondsToEstimatedPrintTime(seconds: printFile?.estimatedPrintTime)
         uploadedDateLabel.text = dateToString(date: printFile?.date)
+        printedDateLabel.text = dateToString(date: printFile?.lastPrintDate)
         
         printButton.isEnabled = printFile != nil && printFile!.canBePrinted()
         deleteButton.isEnabled = printFile != nil && printFile!.canBeDeleted()
@@ -87,11 +90,13 @@ class FileDetailsViewController: ThemedStaticUITableViewController {
         originTextLabel.textColor = textLabelColor
         printTimeTextLabel.textColor = textLabelColor
         uploadedTextLabel.textColor = textLabelColor
+        printedTextLabel.textColor = textLabelColor
 
         fileNameLabel.textColor = textColor
         sizeLabel.textColor = textColor
         originLabel.textColor = textColor
         estimatedPrintTimeLabel.textColor = textColor
         uploadedDateLabel.textColor = textColor
+        printedDateLabel.textColor = textColor
     }
 }

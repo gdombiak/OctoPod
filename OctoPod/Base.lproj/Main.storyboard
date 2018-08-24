@@ -1477,8 +1477,39 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nLI-or-BI5">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="OdY-76-AXB">
                                         <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OdY-76-AXB" id="rGB-Lg-Mhn">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Printed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bep-Im-uzf">
+                                                    <rect key="frame" x="16" y="11" width="55" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfb-pD-llJ">
+                                                    <rect key="frame" x="99" y="11" width="260" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="bep-Im-uzf" secondAttribute="bottom" constant="1" id="7K2-0B-0fx"/>
+                                                <constraint firstItem="bep-Im-uzf" firstAttribute="leading" secondItem="rGB-Lg-Mhn" secondAttribute="leadingMargin" id="9zF-op-48P"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Hfb-pD-llJ" secondAttribute="bottom" constant="1" id="Mfq-h3-zZX"/>
+                                                <constraint firstItem="Hfb-pD-llJ" firstAttribute="top" secondItem="rGB-Lg-Mhn" secondAttribute="topMargin" id="WqK-GO-Tt5"/>
+                                                <constraint firstItem="bep-Im-uzf" firstAttribute="top" secondItem="rGB-Lg-Mhn" secondAttribute="topMargin" id="YLR-Zv-9Wu"/>
+                                                <constraint firstItem="Hfb-pD-llJ" firstAttribute="leading" secondItem="bep-Im-uzf" secondAttribute="trailing" constant="28" id="dTm-3L-jQH"/>
+                                                <constraint firstItem="Hfb-pD-llJ" firstAttribute="trailing" secondItem="rGB-Lg-Mhn" secondAttribute="trailingMargin" id="i5I-v5-bwU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="nLI-or-BI5">
+                                        <rect key="frame" x="0.0" y="220" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nLI-or-BI5" id="HAC-mu-bJM">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1526,6 +1557,8 @@
                         <outlet property="originTextLabel" destination="lfT-wn-CXk" id="hfS-D8-KdC"/>
                         <outlet property="printButton" destination="Crn-wa-FLw" id="Rll-t6-cDz"/>
                         <outlet property="printTimeTextLabel" destination="MI6-uy-Cea" id="zcX-qt-fpF"/>
+                        <outlet property="printedDateLabel" destination="Hfb-pD-llJ" id="H73-h5-iVQ"/>
+                        <outlet property="printedTextLabel" destination="bep-Im-uzf" id="6BB-eN-pWK"/>
                         <outlet property="sizeLabel" destination="XQX-Dv-mUw" id="jjY-mx-8KQ"/>
                         <outlet property="sizeTextLabel" destination="6ox-ce-GOS" id="ygj-ab-Xel"/>
                         <outlet property="uploadedDateLabel" destination="VBe-7o-qYb" id="5jd-x1-wcX"/>
@@ -1701,24 +1734,25 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5P-gn-chq">
-                                <rect key="frame" x="16" y="578" width="77" height="30"/>
+                                <rect key="frame" x="10" y="578" width="77" height="30"/>
                                 <state key="normal" title="Refresh SD"/>
                                 <connections>
                                     <action selector="refreshSDCard:" destination="oJP-oE-ZeG" eventType="touchUpInside" id="ILO-tg-VUC"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4bm-la-U47">
-                                <rect key="frame" x="272" y="580" width="87" height="29"/>
+                                <rect key="frame" x="189" y="580" width="176" height="29"/>
                                 <segments>
                                     <segment title="ABC"/>
                                     <segment title="Date"/>
+                                    <segment title="Printed"/>
                                 </segments>
                                 <connections>
                                     <action selector="sortByChanged:" destination="oJP-oE-ZeG" eventType="valueChanged" id="Xhq-UL-iG1"/>
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdc-H8-bPm">
-                                <rect key="frame" x="211" y="584" width="56" height="21"/>
+                                <rect key="frame" x="128" y="584" width="56" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1726,8 +1760,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="N5P-gn-chq" firstAttribute="leading" secondItem="IGy-e6-8uc" secondAttribute="leading" constant="16" id="12X-ps-u7o"/>
-                            <constraint firstItem="IGy-e6-8uc" firstAttribute="trailing" secondItem="4bm-la-U47" secondAttribute="trailing" constant="16" id="5pM-nL-Ddm"/>
+                            <constraint firstItem="N5P-gn-chq" firstAttribute="leading" secondItem="IGy-e6-8uc" secondAttribute="leading" constant="10" id="12X-ps-u7o"/>
+                            <constraint firstItem="IGy-e6-8uc" firstAttribute="trailing" secondItem="4bm-la-U47" secondAttribute="trailing" constant="10" id="5pM-nL-Ddm"/>
                             <constraint firstItem="N5P-gn-chq" firstAttribute="top" secondItem="E8X-eX-B2Z" secondAttribute="bottom" constant="5" id="6k5-O0-uL2"/>
                             <constraint firstItem="4bm-la-U47" firstAttribute="leading" secondItem="Cdc-H8-bPm" secondAttribute="trailing" constant="5" id="H9a-fY-VEg"/>
                             <constraint firstItem="IGy-e6-8uc" firstAttribute="bottom" secondItem="4bm-la-U47" secondAttribute="bottom" constant="10" id="j6X-aq-p1D"/>
@@ -2664,8 +2698,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="M9h-xm-xYq"/>
-        <segue reference="dlk-YT-PiH"/>
-        <segue reference="iMc-Wi-01S"/>
+        <segue reference="DPY-Lb-zDG"/>
+        <segue reference="06R-xh-V19"/>
         <segue reference="Rs9-4F-Pao"/>
         <segue reference="JlG-hL-vqd"/>
     </inferredMetricsTieBreakers>
