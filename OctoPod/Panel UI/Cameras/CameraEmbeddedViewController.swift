@@ -1,4 +1,5 @@
-    import UIKit
+import UIKit
+import SafariServices  // Used for opening browser in-app
 
 class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate, UIScrollViewDelegate {
 
@@ -9,6 +10,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
 
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet weak var errorURLButton: UIButton!
+    
     @IBOutlet weak var tapMessageLabel: UILabel!
     @IBOutlet weak var pinchMessageLabel: UILabel!
     
@@ -18,6 +22,8 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     var cameraOrientation: UIImageOrientation!
     
     var embedded: Bool = true
+    var embeddedCameraTappedCallback: (() -> Void)?
+
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
 
     override func viewDidLoad() {
@@ -33,11 +39,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         if !embedded {
             // Hide the navigation bar on the this view controller
             self.navigationController?.setNavigationBarHidden(true, animated: animated)
-
-            // Add a gesture recognizer to camera view so we can handle taps
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCameraTap))
-            imageView.isUserInteractionEnabled = true
-            imageView.addGestureRecognizer(tapGesture)
+            
         } else {
             let defaults = UserDefaults.standard
             if defaults.bool(forKey: CameraEmbeddedViewController.CAMERA_INFO_GESTURES) {
@@ -49,9 +51,12 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                 tapMessageLabel.isHidden = !infoGesturesAvailable
                 pinchMessageLabel.isHidden = !infoGesturesAvailable
             }
-
         }
-        
+        // Add a gesture recognizer to camera view so we can handle taps
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCameraTap))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGesture)
+
         renderPrinter()
         
         // Listen to changes to OctoPrint Settings in case the camera orientation has changed
@@ -91,6 +96,13 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         renderPrinter()
     }
     
+    // MARK: - Button actions
+
+    @IBAction func errorURLClicked(_ sender: Any) {
+        let svc = SFSafariViewController(url: URL(string: cameraURL)!)
+        UIApplication.shared.keyWindow?.rootViewController?.present(svc, animated: true, completion: nil)
+    }
+    
     // MARK: - Navigation
     
     @objc func handleCameraTap() {
@@ -99,6 +111,8 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         
         if !embedded {
             navigationController?.popViewController(animated: true)
+        } else if let callback = embeddedCameraTappedCallback {
+            callback()
         }
     }
 
@@ -141,6 +155,10 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     // MARK: - Private functions
 
     fileprivate func renderPrinter() {
+        // Hide error messages
+        errorMessageLabel.isHidden = true
+        errorURLButton.isHidden = true
+        
         if let printer = printerManager.getDefaultPrinter() {
             
             setCameraOrientation(newOrientation: cameraOrientation)
@@ -159,32 +177,32 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             streamingController?.authenticationFailedHandler = {
                 DispatchQueue.main.async {
                     self.imageView.image = nil
+                    // Display error messages
+                    self.errorMessageLabel.text = "Authentication failed"
+                    self.errorMessageLabel.isHidden = false
                 }
             }
             
             streamingController?.didFinishWithErrors = { error in
-//                let errorMessage: String = error.localizedDescription
-//                if errorMessage.range(of: "Transport Security policy") != nil {
-//                    self.showMessage("Printer connection must use HTTPS")
-//                } else if errorMessage.range(of: "connection to the server cannot be made") != nil {
-//                    // "An SSL error has occurred and a secure connection to the server cannot be made."
-//                    self.showMessage("Connection failed. Bad port?")
-//                } else if errorMessage.range(of: "hostname could not be found") != nil {
-//                    // A server with the specified hostname could not be found.
-//                    self.showMessage("Connection failed. Bad hostname?")
-//                } else {
-//                    print(errorMessage)
-//                }
                 DispatchQueue.main.async {
                     self.imageView.image = nil
+                    // Display error messages
+                    self.errorMessageLabel.text = error.localizedDescription
+                    self.errorURLButton.setTitle(self.cameraURL, for: .normal)
+                    self.errorMessageLabel.isHidden = false
+                    self.errorURLButton.isHidden = false
                 }
             }
             
             streamingController?.didFinishWithHTTPErrors = { httpResponse in
                 // We got a 404 or some 5XX error
-//                self.showMessage("Connection successful. Got HTTP error: \(httpResponse.statusCode)")
                 DispatchQueue.main.async {
                     self.imageView.image = nil
+                    // Display error messages
+                    self.errorMessageLabel.text = "Request error. HTTP response: \(httpResponse.statusCode)"
+                    self.errorURLButton.setTitle(self.cameraURL, for: .normal)
+                    self.errorMessageLabel.isHidden = false
+                    self.errorURLButton.isHidden = false
                 }
             }
 

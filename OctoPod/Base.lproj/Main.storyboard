@@ -75,7 +75,6 @@
                         <outlet property="notRefreshingAlertLabel" destination="GKZ-HN-xVC" id="K1T-Ik-jIj"/>
                         <outlet property="printerSelectButton" destination="PyK-FO-APL" id="wK4-vf-paq"/>
                         <outlet property="printerSubpanelHeightConstraint" destination="ucF-8j-zec" id="9Sr-7L-Nms"/>
-                        <outlet property="smallCameraView" destination="uff-mu-aBi" id="vPI-Br-Lky"/>
                         <segue destination="SqB-ww-g1i" kind="show" identifier="full_camera" id="87W-4S-kKd"/>
                     </connections>
                 </viewController>
@@ -137,10 +136,27 @@
                                         <color key="textColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXr-d8-f7x">
+                                        <rect key="frame" x="129.5" y="85" width="116" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8L-G5-sTU">
+                                        <rect key="frame" x="147.5" y="114" width="79" height="30"/>
+                                        <state key="normal" title="URL Button">
+                                            <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="errorURLClicked:" destination="htf-Hq-pLO" eventType="touchUpInside" id="Xno-yv-ovy"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="xgR-KO-IvE" firstAttribute="height" secondItem="9ix-ve-DAs" secondAttribute="height" id="5HL-jX-IZN"/>
+                                    <constraint firstItem="x8L-G5-sTU" firstAttribute="top" secondItem="BXr-d8-f7x" secondAttribute="bottom" constant="8" id="65Z-SG-Lrw"/>
+                                    <constraint firstItem="BXr-d8-f7x" firstAttribute="centerX" secondItem="9ix-ve-DAs" secondAttribute="centerX" id="6HY-cv-Q29"/>
                                     <constraint firstAttribute="trailing" secondItem="xgR-KO-IvE" secondAttribute="trailing" id="91p-9b-PNd"/>
                                     <constraint firstAttribute="bottom" secondItem="q4H-Sg-7Zd" secondAttribute="bottom" constant="10" id="9Xa-S7-Niv"/>
                                     <constraint firstItem="xgR-KO-IvE" firstAttribute="top" secondItem="9ix-ve-DAs" secondAttribute="top" id="Af9-uo-CDN"/>
@@ -148,7 +164,9 @@
                                     <constraint firstAttribute="trailing" secondItem="q4H-Sg-7Zd" secondAttribute="trailing" constant="10" id="aHa-Oh-GCz"/>
                                     <constraint firstItem="xgR-KO-IvE" firstAttribute="width" secondItem="9ix-ve-DAs" secondAttribute="width" id="aQF-LN-dZR"/>
                                     <constraint firstAttribute="bottom" secondItem="xgR-KO-IvE" secondAttribute="bottom" id="gMe-8X-Zh4"/>
+                                    <constraint firstItem="BXr-d8-f7x" firstAttribute="top" secondItem="9ix-ve-DAs" secondAttribute="top" constant="85" id="h12-Ic-yZl"/>
                                     <constraint firstAttribute="trailing" secondItem="MT2-fR-HJD" secondAttribute="trailing" constant="10" id="sYB-je-Vdq"/>
+                                    <constraint firstItem="x8L-G5-sTU" firstAttribute="centerX" secondItem="9ix-ve-DAs" secondAttribute="centerX" id="si9-aC-W8D"/>
                                     <constraint firstItem="xgR-KO-IvE" firstAttribute="leading" secondItem="9ix-ve-DAs" secondAttribute="leading" id="xUI-YZ-DXd"/>
                                 </constraints>
                                 <connections>
@@ -167,6 +185,8 @@
                     </view>
                     <size key="freeformSize" width="375" height="244"/>
                     <connections>
+                        <outlet property="errorMessageLabel" destination="BXr-d8-f7x" id="21Q-uu-fgL"/>
+                        <outlet property="errorURLButton" destination="x8L-G5-sTU" id="U8v-72-TMY"/>
                         <outlet property="imageView" destination="xgR-KO-IvE" id="LnF-OF-iU2"/>
                         <outlet property="pinchMessageLabel" destination="q4H-Sg-7Zd" id="ZmK-ZT-6nU"/>
                         <outlet property="tapMessageLabel" destination="MT2-fR-HJD" id="5w6-TE-ELN"/>
@@ -936,6 +956,21 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1B-B9-t5u">
+                                        <rect key="frame" x="129.5" y="100" width="116" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxj-s5-1zm">
+                                        <rect key="frame" x="147.5" y="129" width="79" height="30"/>
+                                        <state key="normal" title="URL Button">
+                                            <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="errorURLClicked:" destination="SqB-ww-g1i" eventType="touchUpInside" id="4Zz-ou-FNi"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
@@ -943,8 +978,12 @@
                                     <constraint firstAttribute="trailing" secondItem="wz7-AS-8Cp" secondAttribute="trailing" id="51f-vD-nSo"/>
                                     <constraint firstItem="wz7-AS-8Cp" firstAttribute="leading" secondItem="3te-69-hET" secondAttribute="leading" id="BRZ-ZH-d5I"/>
                                     <constraint firstAttribute="bottom" secondItem="wz7-AS-8Cp" secondAttribute="bottom" id="TYp-6k-lCd"/>
+                                    <constraint firstItem="Pxj-s5-1zm" firstAttribute="centerX" secondItem="3te-69-hET" secondAttribute="centerX" id="Z8E-Ef-Exs"/>
+                                    <constraint firstItem="t1B-B9-t5u" firstAttribute="top" secondItem="3te-69-hET" secondAttribute="top" constant="100" id="bJC-9s-qzZ"/>
+                                    <constraint firstItem="Pxj-s5-1zm" firstAttribute="top" secondItem="t1B-B9-t5u" secondAttribute="bottom" constant="8" id="cA6-fi-tam"/>
                                     <constraint firstItem="wz7-AS-8Cp" firstAttribute="top" secondItem="3te-69-hET" secondAttribute="top" id="fw1-wd-PVF"/>
                                     <constraint firstItem="wz7-AS-8Cp" firstAttribute="width" secondItem="3te-69-hET" secondAttribute="width" id="r7z-nt-j7H"/>
+                                    <constraint firstItem="t1B-B9-t5u" firstAttribute="centerX" secondItem="3te-69-hET" secondAttribute="centerX" id="t10-sr-JRz"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="SqB-ww-g1i" id="uwh-Rw-rQ0"/>
@@ -960,7 +999,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qlx-C3-hCQ"/>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="errorMessageLabel" destination="t1B-B9-t5u" id="cS3-Oc-KuF"/>
+                        <outlet property="errorURLButton" destination="Pxj-s5-1zm" id="ZdR-Rv-WbZ"/>
                         <outlet property="imageView" destination="wz7-AS-8Cp" id="Gri-26-bnV"/>
                     </connections>
                 </viewController>
@@ -2701,6 +2744,6 @@
         <segue reference="DPY-Lb-zDG"/>
         <segue reference="06R-xh-V19"/>
         <segue reference="Rs9-4F-Pao"/>
-        <segue reference="JlG-hL-vqd"/>
+        <segue reference="KKl-Fj-b9B"/>
     </inferredMetricsTieBreakers>
 </document>

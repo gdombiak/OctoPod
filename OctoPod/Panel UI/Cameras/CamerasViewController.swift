@@ -7,7 +7,8 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
 
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
-    
+    var embeddedCameraTappedCallback: (() -> Void)?
+
     // The UIPageViewController
     private var pageContainer: UIPageViewController!
 
@@ -176,7 +177,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         }
         
         pageControl.isHidden = orderedViewControllers.count < 2
-        pageContainer.view.isUserInteractionEnabled = !pageControl.isHidden
+        pageContainer.dataSource = pageControl.isHidden ? nil : self
         
         pageControl.numberOfPages = orderedViewControllers.count
         // Try preserving existing selected camera, if none then indicate which is first view controller.
@@ -208,6 +209,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         controller.cameraURL = url
         controller.cameraOrientation = cameraOrientation
         controller.infoGesturesAvailable = infoGesturesAvailable
+        controller.embeddedCameraTappedCallback = embeddedCameraTappedCallback
         return controller
     }
     

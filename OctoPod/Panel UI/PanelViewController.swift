@@ -10,7 +10,6 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     var printerConnected: Bool?
 
     @IBOutlet weak var printerSelectButton: UIBarButtonItem!
-    @IBOutlet weak var smallCameraView: UIView!
     @IBOutlet weak var connectButton: UIBarButtonItem!
     @IBOutlet weak var notRefreshingAlertLabel: UILabel!
     
@@ -26,8 +25,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         trackChildrenControllers()
         
         // Add a gesture recognizer to camera view so we can handle taps
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCameraTap))
-        smallCameraView.addGestureRecognizer(tapGesture)
+        camerasViewController?.embeddedCameraTappedCallback = {() in
+            self.handleEmbeddedCameraTap()
+        }
         
         // Indicate that we want to instruct users that gestures can be used to manipulate image
         // Messages will not be visible after user used these features
@@ -296,7 +296,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
-    @objc func handleCameraTap() {
+    @objc func handleEmbeddedCameraTap() {
         performSegue(withIdentifier: "full_camera", sender: nil)
     }
     
