@@ -154,7 +154,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
                     
                     if url == printer.getStreamPath() {
                         // This is camera hosted by OctoPrint so respect orientation
-                        cameraURL = printer.hostname + url
+                        cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
                         cameraOrientation = UIImageOrientation(rawValue: Int(printer.cameraOrientation))!
                     } else {
                         cameraURL = url
@@ -167,7 +167,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             }
             if newViewControllers.isEmpty {
                 // MultiCam plugin is not installed so just show default camera
-                let cameraURL = printer.hostname + printer.getStreamPath()
+                let cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: printer.getStreamPath())
                 let cameraOrientation = UIImageOrientation(rawValue: Int(printer.cameraOrientation))!
                 newViewControllers.append(newEmbeddedCameraViewController(index: 0, url: cameraURL, cameraOrientation: cameraOrientation))
             }
@@ -194,6 +194,19 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         } else if cameraChanged {
             orderedViewControllers[currentIndex!].cameraSelectedChanged()
         }
+    }
+    
+    fileprivate func octoPrintCameraAbsoluteUrl(hostname: String, streamUrl: String) -> String {
+        if streamUrl.isEmpty {
+            // Should never happen but let's be cautious
+            return hostname
+        }
+        if streamUrl.starts(with: "/") {
+            // Build absolute URL from relative URL
+            return hostname + streamUrl
+        }
+        // streamURL is an absolute URL so return it
+        return streamUrl
     }
 
     fileprivate func newEmbeddedCameraViewController(index: Int, url: String, cameraOrientation: UIImageOrientation) -> CameraEmbeddedViewController {
