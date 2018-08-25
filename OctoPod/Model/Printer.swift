@@ -6,6 +6,7 @@ class Printer: NSManagedObject {
     
     @NSManaged var name: String
     @NSManaged var hostname: String
+    @NSManaged var streamUrl: String? // path to the webcam. Info discovered via api/settings
     @NSManaged var apiKey: String
     @NSManaged var defaultPrinter: Bool
 
@@ -31,6 +32,13 @@ class Printer: NSManagedObject {
         static func ==(lhs: TPLinkSmartplug, rhs: TPLinkSmartplug) -> Bool {
             return (lhs.ip == rhs.ip) && (lhs.label == rhs.label)
         }
+    }
+    
+    func getStreamPath() -> String {
+        if let path = streamUrl {
+            return path
+        }
+        return "/webcam/?action=stream"
     }
     
     func setTPLinkSmartplugs(plugs: [TPLinkSmartplug]?) {

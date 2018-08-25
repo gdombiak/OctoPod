@@ -687,6 +687,19 @@ class OctoPrintClient: WebSocketClientDelegate {
                     }
                 }
             }
+            if let streamUrl = webcam["streamUrl"] as? String {
+                if printer.streamUrl != streamUrl {
+                    // Update path to camera hosted by OctoPrint
+                    printer.streamUrl = streamUrl
+                    // Persist updated printer
+                    printerManager.updatePrinter(printer)
+                    
+                    // Notify listeners of change
+                    for delegate in octoPrintSettingsDelegates {
+                        delegate.cameraPathChanged(streamUrl: streamUrl)
+                    }
+                }
+            }
         }
         
         if let plugins = json["plugins"] as? NSDictionary {

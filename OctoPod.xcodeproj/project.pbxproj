@@ -73,6 +73,7 @@
 		3D0FA48221047AFA0084FF52 /* FilesTreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTreeViewController.swift; sourceTree = "<group>"; };
 		3D36DD79210300C500884BD6 /* TerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalViewController.swift; sourceTree = "<group>"; };
 		3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpanelViewController.swift; sourceTree = "<group>"; };
+		3D40C1822131115800384F4A /* OctoPod v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v4.xcdatamodel"; sourceTree = "<group>"; };
 		3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClientDelegate.swift; sourceTree = "<group>"; };
 		3D4527FE20E15A370094CCB7 /* OctoPod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OctoPod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D45280120E15A370094CCB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -725,11 +726,12 @@
 		3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				3D40C1822131115800384F4A /* OctoPod v4.xcdatamodel */,
 				3D5D613421209B52000B66E7 /* OctoPod v3.xcdatamodel */,
 				3D5849E5210CCB560068D87A /* OctoPod v2.xcdatamodel */,
 				3D45280920E15A370094CCB7 /* OctoPod.xcdatamodel */,
 			);
-			currentVersion = 3D5D613421209B52000B66E7 /* OctoPod v3.xcdatamodel */;
+			currentVersion = 3D40C1822131115800384F4A /* OctoPod v4.xcdatamodel */;
 			path = OctoPod.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

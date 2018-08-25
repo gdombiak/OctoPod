@@ -8,6 +8,9 @@ protocol OctoPrintSettingsDelegate: class {
     // Notification that orientation of the camera hosted by OctoPrint has changed
     func cameraOrientationChanged(newOrientation: UIImageOrientation)
 
+    // Notification that path to camera hosted by OctoPrint has changed
+    func cameraPathChanged(streamUrl: String)
+    
     // Notification that a new camera has been added or removed. We rely on MultiCam
     // plugin to be installed on OctoPrint so there is no need to re-enter this information
     // URL to cameras is returned in /api/settings under plugins->multicam
@@ -28,6 +31,9 @@ protocol OctoPrintSettingsDelegate: class {
 extension OctoPrintSettingsDelegate {
     
     func cameraOrientationChanged(newOrientation: UIImageOrientation) {
+    }
+    
+    func cameraPathChanged(streamUrl: String) {        
     }
     
     func camerasChanged(camerasURLs: Array<String>) {

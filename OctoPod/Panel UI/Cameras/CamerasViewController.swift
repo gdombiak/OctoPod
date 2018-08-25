@@ -64,6 +64,13 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         }
     }
 
+    // Notification that path to camera hosted by OctoPrint has changed
+    func cameraPathChanged(streamUrl: String) {
+        DispatchQueue.main.async {
+            self.updateViewControllersForPrinter(cameraChanged: true)
+        }
+    }
+
     // Notification that a new camera has been added or removed. We rely on MultiCam
     // plugin to be installed on OctoPrint so there is no need to re-enter this information
     // URL to cameras is returned in /api/settings under plugins->multicam
@@ -144,7 +151,8 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
                     var cameraOrientation: UIImageOrientation
                     var cameraURL: String
                     
-                    if url == "/webcam/?action=stream" {
+                    if url == printer.getStreamPath() {
+                        // This is camera hosted by OctoPrint so respect orientation
                         cameraURL = printer.hostname + url
                         cameraOrientation = UIImageOrientation(rawValue: Int(printer.cameraOrientation))!
                     } else {
@@ -158,7 +166,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             }
             if newViewControllers.isEmpty {
                 // MultiCam plugin is not installed so just show default camera
-                let cameraURL = printer.hostname + "/webcam/?action=stream"
+                let cameraURL = printer.hostname + printer.getStreamPath()
                 let cameraOrientation = UIImageOrientation(rawValue: Int(printer.cameraOrientation))!
                 newViewControllers.append(newEmbeddedCameraViewController(index: 0, url: cameraURL, cameraOrientation: cameraOrientation))
             }
