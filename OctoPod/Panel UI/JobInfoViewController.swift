@@ -7,12 +7,16 @@ class JobInfoViewController: UITableViewController {
         case pause
         case resume
         case restart
+        case reprint
     }
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     
     var printerPrinting: Bool?
     var requestedJobOperation: jobOperation?
+    
+    var event: CurrentStateEvent?
+    var printFile: PrintFile?
 
     @IBOutlet weak var fileLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
@@ -27,18 +31,21 @@ class JobInfoViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        event = nil
+        printFile = nil
+        
         self.octoprintClient.printerState { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
             // TODO Handle connection errors
             if let json = result as? NSDictionary {
-                let event = CurrentStateEvent()
+                self.event = CurrentStateEvent()
                 if let state = json["state"] as? NSDictionary {
-                    event.parseState(state: state)
+                    self.event!.parseState(state: state)
 
                     var buttonTitle: String?
-                    if event.printing == true {
+                    if self.event!.printing == true {
                         buttonTitle = "Pause Job"
                         self.printerPrinting = true
-                    } else if event.paused == true {
+                    } else if self.event!.paused == true {
                         buttonTitle = "Resume Job"
                         self.printerPrinting = false
                     }
@@ -50,8 +57,7 @@ class JobInfoViewController: UITableViewController {
                         } else {
                             self.pauseOrResumeButton.isEnabled = false
                         }
-                        // Only enable option to restart when print job is paused
-                        self.restartButton.isEnabled = event.paused == true
+                        self.configureRestartReprintButton()
                     }
                 }
             } else {
@@ -69,13 +75,18 @@ class JobInfoViewController: UITableViewController {
             if let json = result as? NSDictionary {
                 if let job = json["job"] as? NSDictionary {
                     if let file = job["file"] as? NSDictionary {
-                        let printFile = PrintFile()
-                        printFile.parse(json: file)
+                        self.printFile = PrintFile()
+                        self.printFile!.parse(json: file)
+                        if self.printFile!.path == nil {
+                            // Forget about an empty file
+                            self.printFile = nil
+                        }
 
                         DispatchQueue.main.async {
-                            self.fileLabel.text = printFile.name
-                            self.originLabel.text = printFile.displayOrigin()
-                            self.sizeLabel.text = printFile.displaySize()
+                            self.fileLabel.text = self.printFile?.name
+                            self.originLabel.text = self.printFile?.displayOrigin()
+                            self.sizeLabel.text = self.printFile?.displaySize()
+                            self.configureRestartReprintButton()
                         }
                     }
                 }
@@ -144,19 +155,55 @@ class JobInfoViewController: UITableViewController {
         }
     }
     
-    @IBAction func restartJob(_ sender: Any) {
-        self.octoprintClient.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if requested {
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                NSLog("Error requesting to restart current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
-                self.requestedJobOperation = .restart
-                self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+    @IBAction func restartOrReprintJob(_ sender: Any) {
+        if let lastEvent = event, let lastFile = printFile {
+            if lastEvent.operational == true && lastEvent.printing != true && lastEvent.paused != true {
+                // Print file if there is a file and printer is operationsl
+                self.octoprintClient.printFile(origin: lastFile.origin!, path: lastFile.path!) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    if requested {
+                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        NSLog("Error requesting to reprint file: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                        self.requestedJobOperation = .reprint
+                        self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+                    }
+                }
+            }
+            else {
+                // Restart when print job is paused
+                self.octoprintClient.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    if requested {
+                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        NSLog("Error requesting to restart current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                        self.requestedJobOperation = .restart
+                        self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+                    }
+                }
             }
         }
     }
     
     // MARK: - Private functions
+    
+    fileprivate func configureRestartReprintButton() {
+        if let lastEvent = event, let _ = printFile {
+            if lastEvent.operational == true && lastEvent.printing != true && lastEvent.paused != true {
+                // Allow to print file if there is a file and printer is operationsl
+                self.restartButton.setTitle("Print File", for: .normal)
+                self.restartButton.isEnabled = true
+                self.cancelButton.isEnabled = false
+                return
+            } else {
+                // Only enable option to restart when print job is paused
+                self.restartButton.setTitle("Restart Job", for: .normal)
+                self.restartButton.isEnabled = lastEvent.paused == true
+                self.cancelButton.isEnabled = true
+            }
+        } else {
+            self.restartButton.isEnabled = false
+        }
+    }
     
     fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
         let alert = UIAlertController(title: "Confirm", message: message, preferredStyle: .alert)

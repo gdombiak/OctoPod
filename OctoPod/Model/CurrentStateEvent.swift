@@ -21,6 +21,7 @@ class CurrentStateEvent {
     
     // Operational, Connecting, Printing from SD, etc.
     var state: String?
+    var operational: Bool?
     var closedOrError: Bool?
     var printing: Bool?  // This could represent that printer is printing or printer is uploading file to SD Card. IOW, this means if printer is busy
     var paused: Bool?
@@ -61,6 +62,7 @@ class CurrentStateEvent {
     func parseState(state: NSDictionary) {
         self.state = state["text"] as? String
         if let flags = state["flags"] as? NSDictionary {
+            operational  = flags["operational"] as? Bool
             paused = flags["paused"] as? Bool
             printing = flags["printing"] as? Bool
             closedOrError = flags["closedOrError"] as? Bool

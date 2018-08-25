@@ -160,6 +160,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 showAlert("Job", message: "Failed to request to resume job")
             case .restart:
                 showAlert("Job", message: "Failed to request to restart job")
+            case .reprint:
+                showAlert("Job", message: "Failed to request to print job again")
             }
         }
     }

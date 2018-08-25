@@ -875,7 +875,7 @@
                                                     <rect key="frame" x="16" y="6" width="80" height="30"/>
                                                     <state key="normal" title="Restart Job"/>
                                                     <connections>
-                                                        <action selector="restartJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="Jkt-67-9aP"/>
+                                                        <action selector="restartOrReprintJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="Jkt-67-9aP"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cxb-Rv-BSm">
