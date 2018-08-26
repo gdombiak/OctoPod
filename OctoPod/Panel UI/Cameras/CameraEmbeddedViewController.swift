@@ -35,6 +35,8 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     override func viewWillAppear(_ animated: Bool) {
         // Start listening to events when app comes back from background
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
+        // Listen when app went to background so we can stop any ongoing HTTP request
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: Notification.Name.UIApplicationDidEnterBackground, object: nil)
 
         if !embedded {
             // Hide the navigation bar on the this view controller
@@ -244,5 +246,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     @objc func appWillEnterForeground() {
         // Resume rendering printer
         renderPrinter()
+    }
+    
+    @objc func appDidEnterBackground() {
+        streamingController?.stop()
     }
 }
