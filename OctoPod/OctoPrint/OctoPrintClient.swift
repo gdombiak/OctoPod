@@ -536,6 +536,20 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
     
+    // MARK: - Custom Controls operations
+
+    func customControls(callback: @escaping (Array<Container>?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/api/printer/command/custom") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting custom controls. Error: \(error!.localizedDescription)")
+                }
+                callback(self.parseContainers(json: result), error, response)
+            }
+        }
+    }
+
     // MARK: - PSU Control Plugin operations
     
     func turnPSU(on: Bool, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
@@ -924,5 +938,154 @@ class OctoPrintClient: WebSocketClientDelegate {
                 callback(response.statusCode == 204, error, response)
             }
         }
+    }
+    
+    // MARK: - Private - Custom Controls functions
+    
+    fileprivate func parseContainers(json: NSObject?) -> Array<Container>? {
+        if let jsonDict = json as? NSDictionary {
+            if let jsonArray = jsonDict["controls"] as? NSArray {
+                var containers: Array<Container> = Array()
+                for case let item as NSDictionary in jsonArray {
+                    if let container = parseContainer(parentPath: "/", json: item) {
+                        containers.append(container)
+                    }
+                }
+                return containers
+            }
+        }
+        return nil
+    }
+    
+    fileprivate func parseContainer(parentPath: String, json: NSDictionary) -> Container? {
+        if let children = json["children"] as? NSArray {
+            var newName: String = "No name"
+            if let name = json["name"] as? String {
+                newName = name
+            }
+            
+            let myPath = parentPath + newName
+
+            var newChildren: Array<CustomControl> = Array()
+            for case let child as NSDictionary in children {
+                if let _ = child["children"] {
+                    // Child is a Container
+                    if let container = parseContainer(parentPath: myPath + "/", json: child) {
+                        newChildren.append(container)
+                    }
+                }
+                if let _ = child["script"] {
+                    // Child is a Script
+                    if let script = parseScript(json: child) {
+                        newChildren.append(script)
+                    }
+                }
+                if child["command"] != nil || child["commands"] != nil {
+                    // Child is a Command
+                    if let command = parseCommand(json: child) {
+                        newChildren.append(command)
+                    }
+                }
+            }
+            return Container(path: myPath, name: newName, children: newChildren)
+        }
+        // Should not happen unless JSON has an unexpected format
+        NSLog("Ignoring bogus container: \(json)")
+        return nil
+    }
+    
+    fileprivate func parseScript(json: NSDictionary) -> Script? {
+        if let name = json["name"] as? String, let script = json["script"] as? String {
+            var newConfirm: String?
+            var newInput: Array<ControlInput>?
+            if let confirm = json["confirm"] as? String {
+                newConfirm = confirm
+            }
+            if let input = json["input"] as? NSArray {
+                newInput = Array()
+                for case let item as NSDictionary in input {
+                    if let newControlInput = parseControlInput(json: item) {
+                        newInput?.append(newControlInput)
+                    }
+                }
+            }
+            return Script(name: name, script: script, input: newInput, confirm: newConfirm)
+        }
+        // Should not happen unless JSON has an unexpected format
+        NSLog("Ignoring bogus script: \(json)")
+        return nil
+    }
+
+    fileprivate func parseCommand(json: NSDictionary) -> Command? {
+        if let name = json["name"] as? String {
+            var newConfirm: String?
+            var newInput: Array<ControlInput>?
+
+            if let confirm = json["confirm"] as? String {
+                newConfirm = confirm
+            }
+            if let input = json["input"] as? NSArray {
+                newInput = Array()
+                for case let item as NSDictionary in input {
+                    if let newControlInput = parseControlInput(json: item) {
+                        newInput?.append(newControlInput)
+                    }
+                }
+            }
+            
+            let command = Command(name: name, input: newInput, confirm: newConfirm)
+
+            if let gcodeCommand = json["command"] as? String {
+                command.command = gcodeCommand
+            } else if let gcodeCommands = json["commands"] as? NSArray {
+                var newCommands: Array<String> = Array()
+                for case let gcodeCommand as String in gcodeCommands {
+                    newCommands.append(gcodeCommand)
+                }
+                command.commands = newCommands
+            } else {
+                // Found bogus JSON so ignore command
+                NSLog("Ignoring bogus command: \(json)")
+                return nil
+            }
+            
+            return command
+        }
+        // Should not happen unless JSON has an unexpected format
+        NSLog("Ignoring bogus command: \(json)")
+        return nil
+    }
+
+    fileprivate func parseControlInput(json: NSDictionary) -> ControlInput? {
+        if let name = json["name"] as? String, let parameter = json["parameter"] as? String {
+            var defaultValue: AnyObject? = nil
+            if let value = json["default"] as? NSObject {
+                defaultValue = value
+            }
+            let controlInput = ControlInput(name: name, parameter: parameter, defaultValue: defaultValue)
+            
+            if let slider = json["slider"] as? NSDictionary {
+                controlInput.hasSlider = true
+                if let sliderMax = slider["max"] as? String {
+                    controlInput.slider_max = sliderMax
+                } else {
+                    controlInput.slider_max = "255"
+                }
+                if let sliderMin = slider["min"] as? String {
+                    controlInput.slider_min = sliderMin
+                } else {
+                    controlInput.slider_min = "0"
+                }
+                if let sliderStep = slider["step"] as? String {
+                    controlInput.slider_step = sliderStep
+                } else {
+                    controlInput.slider_step = "1"
+                }
+            }
+            return controlInput
+        }
+        // Should not happen unless JSON has an unexpected format
+        NSLog("Ignoring bogus ControlInput: \(json)")
+        return nil
     }
 }

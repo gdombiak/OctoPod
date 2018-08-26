@@ -22,7 +22,7 @@ class TPLinkSmartplugViewController: ThemedDynamicUITableViewController, Subpane
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Get list of plugs for selected printer
-        renderPrinter()
+        refreshPlugs()
         // Refresh table
         self.tableView.reloadData()
         // Listen to changes to OctoPrint Plugin messages
@@ -48,7 +48,7 @@ class TPLinkSmartplugViewController: ThemedDynamicUITableViewController, Subpane
         // Reset state if plugs
         plugsState = Dictionary()
         // Get list of plugs for selected printer
-        renderPrinter()
+        refreshPlugs()
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -62,7 +62,7 @@ class TPLinkSmartplugViewController: ThemedDynamicUITableViewController, Subpane
     // Returns the position where this VC should appear in SubpanelsViewController's UIPageViewController
     // SubpanelsViewController's will sort subpanels by this number when being displayed
     func position() -> Int {
-        return 3
+        return 4
     }
     
     // MARK: - Table view data source
@@ -161,7 +161,7 @@ class TPLinkSmartplugViewController: ThemedDynamicUITableViewController, Subpane
 
     // MARK: - Private functions
     
-    fileprivate func renderPrinter() {
+    fileprivate func refreshPlugs() {
         if let printer = printerManager.getDefaultPrinter() {
             if let existingPlugs = printer.getTPLinkSmartplugs() {
                 plugs = existingPlugs

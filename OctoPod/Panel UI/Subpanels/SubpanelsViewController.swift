@@ -37,7 +37,8 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         let mainboard = UIStoryboard(name: "Main", bundle: nil)
         orderedViewControllers.append(mainboard.instantiateViewController(withIdentifier: "PrinterSubpanelViewController"))
         orderedViewControllers.append(mainboard.instantiateViewController(withIdentifier: "TempHistoryViewController"))
-        
+        orderedViewControllers.append(mainboard.instantiateViewController(withIdentifier: "CustomControlsViewController"))
+
         if let printer = printerManager.getDefaultPrinter() {
             if printer.psuControlInstalled {
                 orderedViewControllers.append(createPSUControlVC(mainboard))

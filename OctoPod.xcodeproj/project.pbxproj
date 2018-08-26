@@ -13,6 +13,15 @@
 		3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */; };
 		3D0E3B1121097E7A0087F7E4 /* ThemeUIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E3B1021097E7A0087F7E4 /* ThemeUIUtils.swift */; };
 		3D0FA48321047AFA0084FF52 /* FilesTreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0FA48221047AFA0084FF52 /* FilesTreeViewController.swift */; };
+		3D1A935721326AEF0050ED9A /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935621326AEF0050ED9A /* CustomControl.swift */; };
+		3D1A935921326B3C0050ED9A /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935821326B3C0050ED9A /* Command.swift */; };
+		3D1A935B21326C630050ED9A /* ControlInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935A21326C630050ED9A /* ControlInput.swift */; };
+		3D1A935D2132709E0050ED9A /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935C2132709E0050ED9A /* Container.swift */; };
+		3D1A935F213271680050ED9A /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935E213271680050ED9A /* Script.swift */; };
+		3D1A9361213282190050ED9A /* CustomControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A9360213282190050ED9A /* CustomControlsViewController.swift */; };
+		3D1A93682132F5E70050ED9A /* ChildrenCustomControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A93672132F5E70050ED9A /* ChildrenCustomControlViewController.swift */; };
+		3D1A936A213314300050ED9A /* ExecuteControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A9369213314300050ED9A /* ExecuteControlViewController.swift */; };
+		3D1A936C213316850050ED9A /* ExecuteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A936B213316850050ED9A /* ExecuteControl.swift */; };
 		3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D36DD79210300C500884BD6 /* TerminalViewController.swift */; };
 		3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */; };
 		3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */; };
@@ -71,6 +80,15 @@
 		3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTargetTempViewController.swift; sourceTree = "<group>"; };
 		3D0E3B1021097E7A0087F7E4 /* ThemeUIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeUIUtils.swift; sourceTree = "<group>"; };
 		3D0FA48221047AFA0084FF52 /* FilesTreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTreeViewController.swift; sourceTree = "<group>"; };
+		3D1A935621326AEF0050ED9A /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
+		3D1A935821326B3C0050ED9A /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		3D1A935A21326C630050ED9A /* ControlInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlInput.swift; sourceTree = "<group>"; };
+		3D1A935C2132709E0050ED9A /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		3D1A935E213271680050ED9A /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
+		3D1A9360213282190050ED9A /* CustomControlsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControlsViewController.swift; sourceTree = "<group>"; };
+		3D1A93672132F5E70050ED9A /* ChildrenCustomControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenCustomControlViewController.swift; sourceTree = "<group>"; };
+		3D1A9369213314300050ED9A /* ExecuteControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteControlViewController.swift; sourceTree = "<group>"; };
+		3D1A936B213316850050ED9A /* ExecuteControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteControl.swift; sourceTree = "<group>"; };
 		3D36DD79210300C500884BD6 /* TerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalViewController.swift; sourceTree = "<group>"; };
 		3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpanelViewController.swift; sourceTree = "<group>"; };
 		3D40C1822131115800384F4A /* OctoPod v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v4.xcdatamodel"; sourceTree = "<group>"; };
@@ -178,6 +196,29 @@
 			path = "Panel UI";
 			sourceTree = "<group>";
 		};
+		3D1A935521326ACC0050ED9A /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				3D1A935621326AEF0050ED9A /* CustomControl.swift */,
+				3D1A936B213316850050ED9A /* ExecuteControl.swift */,
+				3D1A935C2132709E0050ED9A /* Container.swift */,
+				3D1A935821326B3C0050ED9A /* Command.swift */,
+				3D1A935E213271680050ED9A /* Script.swift */,
+				3D1A935A21326C630050ED9A /* ControlInput.swift */,
+			);
+			path = Commands;
+			sourceTree = "<group>";
+		};
+		3D1A93662132F5A50050ED9A /* Custom Controls */ = {
+			isa = PBXGroup;
+			children = (
+				3D1A9360213282190050ED9A /* CustomControlsViewController.swift */,
+				3D1A93672132F5E70050ED9A /* ChildrenCustomControlViewController.swift */,
+				3D1A9369213314300050ED9A /* ExecuteControlViewController.swift */,
+			);
+			path = "Custom Controls";
+			sourceTree = "<group>";
+		};
 		3D36DD782103008F00884BD6 /* Terminal UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +295,7 @@
 		3D82873520E3EB730035AE0B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3D1A935521326ACC0050ED9A /* Commands */,
 				3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */,
 				3D82873620E3EBC80035AE0B /* Printer.swift */,
 				3D82873820E3EC3B0035AE0B /* PrinterManager.swift */,
@@ -307,6 +349,7 @@
 				3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */,
 				3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */,
 				3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */,
+				3D1A93662132F5A50050ED9A /* Custom Controls */,
 				3D74FA2621251BCF00DA2CB3 /* PSUControlViewController.swift */,
 				3D74FA2821251BE600DA2CB3 /* TPLinkSmartplugViewController.swift */,
 			);
@@ -478,8 +521,10 @@
 				3D74FA2721251BCF00DA2CB3 /* PSUControlViewController.swift in Sources */,
 				3DBAE49F20E6821900D2137D /* SelectDefaultPrinterViewController.swift in Sources */,
 				3D82874120E421610035AE0B /* MjpegStreamingController.swift in Sources */,
+				3D1A93682132F5E70050ED9A /* ChildrenCustomControlViewController.swift in Sources */,
 				3D831E53210850E60004B7A5 /* SettingsViewController.swift in Sources */,
 				3D98C1DA20E5D096007BB13F /* WebSocketClient.swift in Sources */,
+				3D1A936C213316850050ED9A /* ExecuteControl.swift in Sources */,
 				3D82873720E3EBC80035AE0B /* Printer.swift in Sources */,
 				3D6350F121082E07001C10F7 /* AppearanceViewController.swift in Sources */,
 				3D8873F820F534C400DCE987 /* PrintFile.swift in Sources */,
@@ -507,12 +552,19 @@
 				3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */,
 				3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */,
 				3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */,
+				3D1A935B21326C630050ED9A /* ControlInput.swift in Sources */,
 				3DF0157621227ACB002B4C14 /* TempHistoryViewController.swift in Sources */,
 				3D6350EA21080AD3001C10F7 /* Theme.swift in Sources */,
+				3D1A935721326AEF0050ED9A /* CustomControl.swift in Sources */,
+				3D1A935D2132709E0050ED9A /* Container.swift in Sources */,
 				3D0FA48321047AFA0084FF52 /* FilesTreeViewController.swift in Sources */,
+				3D1A935921326B3C0050ED9A /* Command.swift in Sources */,
 				3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */,
+				3D1A9361213282190050ED9A /* CustomControlsViewController.swift in Sources */,
 				3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */,
+				3D1A935F213271680050ED9A /* Script.swift in Sources */,
 				3D8B292A20E54F7300296D9D /* PanelViewController.swift in Sources */,
+				3D1A936A213314300050ED9A /* ExecuteControlViewController.swift in Sources */,
 				3D78BAA12103C7CA0090D79A /* MoveViewController.swift in Sources */,
 				3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */,
 				3D8873FA20F5BD2700DCE987 /* FileDetailsViewController.swift in Sources */,
