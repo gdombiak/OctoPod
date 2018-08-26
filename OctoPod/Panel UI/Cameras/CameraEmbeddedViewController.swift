@@ -205,6 +205,12 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                     self.errorURLButton.isHidden = false
                 }
             }
+            
+            streamingController?.didFinishLoading = {
+                // Hide error messages since an image will be rendered (so that means that it worked!)
+                self.errorMessageLabel.isHidden = true
+                self.errorURLButton.isHidden = true
+            }
 
             // Start rendering the camera
             streamingController?.play(url: url!)
