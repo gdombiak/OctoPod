@@ -735,6 +735,7 @@
                     </tableView>
                     <size key="freeformSize" width="375" height="370"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="vgL-gu-KJZ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle">
                             <fragment content="Pull down to refresh">
@@ -813,6 +814,7 @@
                         </connections>
                     </tableView>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="N4g-HQ-CXx">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle">
                             <fragment content="Pull down to refresh">
@@ -844,36 +846,97 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="input_cell" id="vCt-Do-JlF">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="input_cell" id="vCt-Do-JlF" customClass="CustomControlInputViewCell" customModule="OctoPod" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vCt-Do-JlF" id="bXp-i7-vyu">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qWC-Kz-qjC">
-                                            <rect key="frame" x="240" y="6" width="119" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCe-kf-ukt">
+                                            <rect key="frame" x="16" y="12" width="279" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qWC-Kz-qjC">
+                                            <rect key="frame" x="303" y="6" width="56" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="56" id="a0U-tT-Dj7"/>
+                                            </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="valueChanged:" destination="vCt-Do-JlF" eventType="editingDidEnd" id="a3p-dM-UaI"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="qWC-Kz-qjC" secondAttribute="trailing" constant="16" id="71o-JF-zAV"/>
+                                        <constraint firstItem="ZCe-kf-ukt" firstAttribute="top" secondItem="bXp-i7-vyu" secondAttribute="topMargin" constant="1" id="Bm8-Px-dJQ"/>
+                                        <constraint firstItem="ZCe-kf-ukt" firstAttribute="leading" secondItem="bXp-i7-vyu" secondAttribute="leadingMargin" id="EKq-8r-ema"/>
+                                        <constraint firstItem="qWC-Kz-qjC" firstAttribute="top" secondItem="bXp-i7-vyu" secondAttribute="top" constant="6" id="IBR-nv-gwa"/>
+                                        <constraint firstItem="qWC-Kz-qjC" firstAttribute="leading" secondItem="ZCe-kf-ukt" secondAttribute="trailing" constant="8" id="QgG-oQ-MWC"/>
+                                        <constraint firstItem="ZCe-kf-ukt" firstAttribute="top" secondItem="bXp-i7-vyu" secondAttribute="topMargin" constant="1" id="gSo-Vh-Efc"/>
+                                        <constraint firstItem="ZCe-kf-ukt" firstAttribute="leading" secondItem="bXp-i7-vyu" secondAttribute="leadingMargin" id="tMx-5p-Jef"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="inputLabel" destination="ZCe-kf-ukt" id="yJa-Y9-gA3"/>
+                                    <outlet property="inputValueField" destination="qWC-Kz-qjC" id="Cgm-pX-AX8"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="input_slider_cell" id="oit-r3-Yvc">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="input_slider_cell" id="oit-r3-Yvc" customClass="CustomControlInputSlideViewCell" customModule="OctoPod" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oit-r3-Yvc" id="hpa-j6-3wh">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="e1d-k0-68j">
-                                            <rect key="frame" x="241" y="6" width="118" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OW-hI-hem">
+                                            <rect key="frame" x="16" y="12" width="157" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sfr-ip-ajp">
+                                            <rect key="frame" x="303" y="6" width="56" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="56" id="6DU-6s-OsU"/>
+                                            </constraints>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad"/>
+                                            <connections>
+                                                <action selector="valueChanged:" destination="oit-r3-Yvc" eventType="editingDidEnd" id="nUj-cP-5jE"/>
+                                            </connections>
+                                        </textField>
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="e1d-k0-68j">
+                                            <rect key="frame" x="179" y="6" width="118" height="31"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="114" id="Rge-ez-Hc8"/>
+                                            </constraints>
+                                            <connections>
+                                                <action selector="sliderChanged:" destination="oit-r3-Yvc" eventType="valueChanged" id="fQh-vI-vtQ"/>
+                                            </connections>
                                         </slider>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="e1d-k0-68j" firstAttribute="leading" secondItem="6OW-hI-hem" secondAttribute="trailing" constant="8" id="0fl-VA-8O8"/>
+                                        <constraint firstItem="6OW-hI-hem" firstAttribute="leading" secondItem="hpa-j6-3wh" secondAttribute="leadingMargin" id="Hyx-DX-Hq1"/>
+                                        <constraint firstAttribute="trailing" secondItem="sfr-ip-ajp" secondAttribute="trailing" constant="16" id="gQ7-QN-koZ"/>
+                                        <constraint firstItem="e1d-k0-68j" firstAttribute="top" secondItem="hpa-j6-3wh" secondAttribute="top" constant="6" id="nVt-fl-VR6"/>
+                                        <constraint firstItem="6OW-hI-hem" firstAttribute="top" secondItem="hpa-j6-3wh" secondAttribute="topMargin" constant="1" id="oQ3-Q7-aTe"/>
+                                        <constraint firstItem="sfr-ip-ajp" firstAttribute="top" secondItem="hpa-j6-3wh" secondAttribute="top" constant="6" id="x4E-3x-g3W"/>
+                                        <constraint firstItem="sfr-ip-ajp" firstAttribute="leading" secondItem="e1d-k0-68j" secondAttribute="trailing" constant="8" id="yl6-Di-hGq"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="inputLabel" destination="6OW-hI-hem" id="Mi6-oF-zIO"/>
+                                    <outlet property="inputValueField" destination="sfr-ip-ajp" id="hhH-UV-3QQ"/>
+                                    <outlet property="inputValueSlider" destination="e1d-k0-68j" id="nQJ-a6-THf"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

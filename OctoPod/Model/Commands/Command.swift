@@ -31,11 +31,7 @@ class Command: ExecuteControl {
         return _confirm
     }
 
-    func isCommand() -> Bool {
-        return true
-    }
-    
-    func isScript() -> Bool {
-        return false
+    func executePayload() -> NSDictionary {
+        return [:]
     }
 }

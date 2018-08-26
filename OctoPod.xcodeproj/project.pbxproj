@@ -53,6 +53,8 @@
 		3D8B292D20E5514A00296D9D /* PrinterSubpanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */; };
 		3D8B293020E5549B00296D9D /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292F20E5549B00296D9D /* HTTPClient.swift */; };
 		3D8B293220E556D400296D9D /* OctoPrintClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B293120E556D400296D9D /* OctoPrintClient.swift */; };
+		3D8D51A721333D170006BBB1 /* CustomControlInputViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8D51A621333D170006BBB1 /* CustomControlInputViewCell.swift */; };
+		3D8D51A921333D310006BBB1 /* CustomControlInputSlideViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8D51A821333D310006BBB1 /* CustomControlInputSlideViewCell.swift */; };
 		3D92E6C821213B2400F58BA5 /* TempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92E6C721213B2400F58BA5 /* TempHistory.swift */; };
 		3D968DDB20E336F5006774A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D968DDA20E336F5006774A5 /* Default-568h@2x.png */; };
 		3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D968DDC20E337C7006774A5 /* ScannerViewController.swift */; };
@@ -126,6 +128,8 @@
 		3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterSubpanelViewController.swift; sourceTree = "<group>"; };
 		3D8B292F20E5549B00296D9D /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		3D8B293120E556D400296D9D /* OctoPrintClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClient.swift; sourceTree = "<group>"; };
+		3D8D51A621333D170006BBB1 /* CustomControlInputViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControlInputViewCell.swift; sourceTree = "<group>"; };
+		3D8D51A821333D310006BBB1 /* CustomControlInputSlideViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControlInputSlideViewCell.swift; sourceTree = "<group>"; };
 		3D92E6C721213B2400F58BA5 /* TempHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHistory.swift; sourceTree = "<group>"; };
 		3D968DDA20E336F5006774A5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3D968DDC20E337C7006774A5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +280,8 @@
 			isa = PBXGroup;
 			children = (
 				3D47BA3D21278956002420A0 /* TPLinkSmartplugTableViewCell.swift */,
+				3D8D51A621333D170006BBB1 /* CustomControlInputViewCell.swift */,
+				3D8D51A821333D310006BBB1 /* CustomControlInputSlideViewCell.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -548,9 +554,11 @@
 				3D74FA2921251BE600DA2CB3 /* TPLinkSmartplugViewController.swift in Sources */,
 				3D6350F721084334001C10F7 /* ThemedDynamicUITableViewController.swift in Sources */,
 				3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */,
+				3D8D51A921333D310006BBB1 /* CustomControlInputSlideViewCell.swift in Sources */,
 				3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */,
 				3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */,
 				3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */,
+				3D8D51A721333D170006BBB1 /* CustomControlInputViewCell.swift in Sources */,
 				3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */,
 				3D1A935B21326C630050ED9A /* ControlInput.swift in Sources */,
 				3DF0157621227ACB002B4C14 /* TempHistoryViewController.swift in Sources */,

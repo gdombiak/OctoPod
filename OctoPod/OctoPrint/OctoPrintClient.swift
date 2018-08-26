@@ -549,6 +549,10 @@ class OctoPrintClient: WebSocketClientDelegate {
             }
         }
     }
+    
+    func executeCustomControl() {
+        
+    }
 
     // MARK: - PSU Control Plugin operations
     
@@ -1059,10 +1063,14 @@ class OctoPrintClient: WebSocketClientDelegate {
     fileprivate func parseControlInput(json: NSDictionary) -> ControlInput? {
         if let name = json["name"] as? String, let parameter = json["parameter"] as? String {
             var defaultValue: AnyObject? = nil
-            if let value = json["default"] as? NSObject {
-                defaultValue = value
+            if let value = json["default"] as? String {
+                defaultValue = value as AnyObject
+            } else if let value = json["default"] as? Int {
+                defaultValue = value as AnyObject
+            } else if let value = json["default"] as? Double {
+                defaultValue = value as AnyObject
             }
-            let controlInput = ControlInput(name: name, parameter: parameter, defaultValue: defaultValue)
+            let controlInput = ControlInput(name: name, parameter: parameter)
             
             if let slider = json["slider"] as? NSDictionary {
                 controlInput.hasSlider = true
@@ -1081,7 +1089,13 @@ class OctoPrintClient: WebSocketClientDelegate {
                 } else {
                     controlInput.slider_step = "1"
                 }
+                // Safety check to make sure there is a default value (should be one already but just in case)
+                if defaultValue == nil {
+                    defaultValue = controlInput.slider_min!.contains(".") ? Float(controlInput.slider_min!) as AnyObject : Int(controlInput.slider_min!) as AnyObject
+                }
             }
+            controlInput.defaultValue = defaultValue
+            controlInput.value = defaultValue
             return controlInput
         }
         // Should not happen unless JSON has an unexpected format

@@ -6,7 +6,5 @@ protocol ExecuteControl: CustomControl {
     
     func confirm() -> String?
     
-    func isCommand() -> Bool
-    
-    func isScript() -> Bool
+    func executePayload() -> NSDictionary
 }
