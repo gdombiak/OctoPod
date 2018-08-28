@@ -866,7 +866,7 @@
                                             </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                             <connections>
                                                 <action selector="valueChanged:" destination="vCt-Do-JlF" eventType="editingChanged" id="feT-Dq-Rmf"/>
                                             </connections>
@@ -1559,7 +1559,7 @@
                                 <rect key="frame" x="180" y="115" width="134.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <action selector="gcodeChanged:" destination="j5o-fo-R5v" eventType="editingChanged" id="MPY-yp-vn6"/>
                                 </connections>
@@ -2239,7 +2239,7 @@
                                                     <rect key="frame" x="16" y="6" width="343" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="URL" textContentType="url"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" textContentType="url"/>
                                                     <connections>
                                                         <action selector="urlChanged:" destination="RQs-UQ-7OZ" eventType="editingChanged" id="epM-jx-XEB"/>
                                                     </connections>
@@ -2271,7 +2271,7 @@
                                                     <rect key="frame" x="16" y="6" width="343" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" spellCheckingType="no"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                     <connections>
                                                         <action selector="fieldChanged:" destination="RQs-UQ-7OZ" eventType="editingChanged" id="L8r-Hy-lAG"/>
                                                     </connections>
@@ -2323,7 +2323,7 @@
                                                     <rect key="frame" x="16" y="6" width="343" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" spellCheckingType="no" textContentType="username"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="username"/>
                                                     <connections>
                                                         <action selector="fieldChanged:" destination="RQs-UQ-7OZ" eventType="editingChanged" id="vuK-3x-fHP"/>
                                                     </connections>
@@ -2348,7 +2348,7 @@
                                                     <rect key="frame" x="16" y="6" width="343" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES" textContentType="password"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" textContentType="password"/>
                                                     <connections>
                                                         <action selector="fieldChanged:" destination="RQs-UQ-7OZ" eventType="editingChanged" id="fv0-gP-OGK"/>
                                                     </connections>
