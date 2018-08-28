@@ -1,5 +1,24 @@
 # Change Log
 
+## [1.5](https://github.com/gdombiak/OctoPod/tree/1.6) (2018-08-27)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.5...1.6)
+
+**Implemented enhancements:**
+
+- Accept IPv6 addresses and stop spell checker when adding printers [\#63](https://github.com/gdombiak/OctoPod/issues/63)
+- Display error information when camera fails to render [\#62](https://github.com/gdombiak/OctoPod/issues/62)
+- Allow to sort files by last successful print timestamp [\#54](https://github.com/gdombiak/OctoPod/issues/54)
+- Allow to reprint completed job [\#53](https://github.com/gdombiak/OctoPod/issues/53)
+- Allow to execute Custom Controls [\#15](https://github.com/gdombiak/OctoPod/issues/15)
+
+**Fixed bugs:**
+
+- Camera path may be incorrect when not using OctoPi [\#61](https://github.com/gdombiak/OctoPod/issues/61)
+
+**Closed issues:**
+
+- Add Cancel/Reset/Resume buttons. [\#56](https://github.com/gdombiak/OctoPod/issues/56)
+
 ## [1.5](https://github.com/gdombiak/OctoPod/tree/1.5) (2018-08-19)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.4...1.5)
 
