@@ -32,6 +32,22 @@ class Command: ExecuteControl {
     }
 
     func executePayload() -> NSDictionary {
-        return [:]
+        let result = NSMutableDictionary()
+        if let commandsArray = commands {
+            result["commands"] = commandsArray
+        } else if let singleCommand = command {
+            result["commands"] = [singleCommand]
+        }
+
+        var paramsDict: NSMutableDictionary?
+        if let input = _input {
+            paramsDict = NSMutableDictionary()
+            for controlInput in input {
+                let entry: (key: String, value: Any) = controlInput.executePayload()
+                paramsDict?[entry.key] = entry.value
+            }
+            result["parameters"] = paramsDict!
+        }
+        return result
     }
 }

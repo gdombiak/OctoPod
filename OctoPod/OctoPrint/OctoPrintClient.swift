@@ -550,8 +550,12 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
     
-    func executeCustomControl() {
-        
+    func executeCustomControl(control: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.post("/api/printer/command", json: control, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
     }
 
     // MARK: - PSU Control Plugin operations
@@ -1044,7 +1048,10 @@ class OctoPrintClient: WebSocketClientDelegate {
             } else if let gcodeCommands = json["commands"] as? NSArray {
                 var newCommands: Array<String> = Array()
                 for case let gcodeCommand as String in gcodeCommands {
-                    newCommands.append(gcodeCommand)
+                    if !gcodeCommand.isEmpty {
+                        // Ignore empty commands
+                        newCommands.append(gcodeCommand)
+                    }
                 }
                 command.commands = newCommands
             } else {
@@ -1076,16 +1083,22 @@ class OctoPrintClient: WebSocketClientDelegate {
                 controlInput.hasSlider = true
                 if let sliderMax = slider["max"] as? String {
                     controlInput.slider_max = sliderMax
+                } else if let sliderMax = slider["max"] as? NSNumber {
+                    controlInput.slider_max = sliderMax.stringValue
                 } else {
                     controlInput.slider_max = "255"
                 }
                 if let sliderMin = slider["min"] as? String {
                     controlInput.slider_min = sliderMin
+                } else if let sliderMin = slider["min"] as? NSNumber {
+                    controlInput.slider_min = sliderMin.stringValue
                 } else {
                     controlInput.slider_min = "0"
                 }
                 if let sliderStep = slider["step"] as? String {
                     controlInput.slider_step = sliderStep
+                } else if let sliderStep = slider["step"] as? NSNumber {
+                    controlInput.slider_step = sliderStep.stringValue
                 } else {
                     controlInput.slider_step = "1"
                 }

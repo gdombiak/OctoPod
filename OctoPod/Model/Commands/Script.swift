@@ -32,6 +32,18 @@ class Script: ExecuteControl {
     }
     
     func executePayload() -> NSDictionary {
-        return [:]
+        let result = NSMutableDictionary()
+        result["script"] = script
+        
+        var paramsDict: NSMutableDictionary?
+        if let input = _input {
+            paramsDict = NSMutableDictionary()
+            for controlInput in input {
+                let entry: (key: String, value: Any) = controlInput.executePayload()
+                paramsDict?[entry.key] = entry.value
+            }
+            result["parameters"] = paramsDict!
+        }
+        return result
     }
 }

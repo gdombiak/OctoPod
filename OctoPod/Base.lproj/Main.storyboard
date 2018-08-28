@@ -854,21 +854,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCe-kf-ukt">
-                                            <rect key="frame" x="16" y="12" width="279" height="21"/>
+                                            <rect key="frame" x="16" y="12" width="157" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qWC-Kz-qjC">
-                                            <rect key="frame" x="303" y="6" width="56" height="30"/>
+                                            <rect key="frame" x="181" y="6" width="178" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="56" id="a0U-tT-Dj7"/>
+                                                <constraint firstAttribute="width" constant="178" id="a0U-tT-Dj7"/>
                                             </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
-                                                <action selector="valueChanged:" destination="vCt-Do-JlF" eventType="editingDidEnd" id="a3p-dM-UaI"/>
+                                                <action selector="valueChanged:" destination="vCt-Do-JlF" eventType="editingChanged" id="feT-Dq-Rmf"/>
                                             </connections>
                                         </textField>
                                     </subviews>
@@ -909,7 +909,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad"/>
                                             <connections>
-                                                <action selector="valueChanged:" destination="oit-r3-Yvc" eventType="editingDidEnd" id="nUj-cP-5jE"/>
+                                                <action selector="valueChanged:" destination="oit-r3-Yvc" eventType="editingDidEnd" id="aCT-lh-WTB"/>
                                             </connections>
                                         </textField>
                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="e1d-k0-68j">

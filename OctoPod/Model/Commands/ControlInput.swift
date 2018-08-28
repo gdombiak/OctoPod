@@ -19,4 +19,14 @@ class ControlInput {
         self.parameter = parameter
         self.hasSlider = false // Assume false until proven otherwise
     }
+    
+    func executePayload() -> (key: String, value: Any) {
+        if hasSlider {
+            if let intValue = value as? Int {
+                return (parameter, intValue)
+            }
+            return (parameter, value as! Float)
+        }
+        return (parameter, value as! String)
+    }
 }

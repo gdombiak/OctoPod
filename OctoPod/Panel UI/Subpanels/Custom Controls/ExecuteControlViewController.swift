@@ -78,10 +78,18 @@ class ExecuteControlViewController: ThemedDynamicUITableViewController {
             cell.inputLabel?.text = controlInput.name
             cell.inputLabel?.textColor = Theme.currentTheme().labelColor()
 
+            if let text = controlInput.defaultValue as? String {
+                cell.inputValueField.text = text
+            }
+
             return cell
         }
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+
     // MARK: - Notifications
     
     func valueUpdated(row: Int, value: AnyObject) {
@@ -94,7 +102,20 @@ class ExecuteControlViewController: ThemedDynamicUITableViewController {
     
     @objc func execute() {
         let executeBlock = {
-            self.octoprintClient.executeCustomControl()
+            let json = self.control.executePayload()
+            self.octoprintClient.executeCustomControl(control: json, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                if !requested {
+                    // Handle error
+                    NSLog("Error requesting to execute command \(json). HTTP status code \(response.statusCode)")
+                    if response.statusCode == 409 {
+                        self.showAlert("Alert", message: "Command not executed. Printer not operational")
+                    } else if response.statusCode == 404 {
+                        self.showAlert("Alert", message: "Command not executed. Script not found")
+                    } else {
+                        self.showAlert("Alert", message: "Failed to request to execute command")
+                    }
+                }
+            })
         }
         
         if let confirmation = control.confirm() {
@@ -119,6 +140,19 @@ class ExecuteControlViewController: ThemedDynamicUITableViewController {
         navigationItem.rightBarButtonItem?.isEnabled = !input.contains(where: { (input: ControlInput) -> Bool in
             return input.value == nil
         })
+    }
+    
+    fileprivate func showAlert(_ title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (UIAlertAction) -> Void in
+            // Nothing to do here
+        }))
+        // We are not always on the main thread so present dialog on main thread to prevent crashes
+        DispatchQueue.main.async {
+            self.present(alert, animated: true) { () -> Void in
+                // Nothing to do here
+            }
+        }
     }
     
     fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
