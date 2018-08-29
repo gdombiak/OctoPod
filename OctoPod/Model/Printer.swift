@@ -41,6 +41,11 @@ class Printer: NSManagedObject {
         return "/webcam/?action=stream"
     }
     
+    // Returns true if returned getStreamPath() is coming from what OctoPrint reported via /api/settings. False means that it is assumed one
+    func isStreamPathFromSettings() -> Bool {
+        return streamUrl != nil
+    }
+
     func setTPLinkSmartplugs(plugs: [TPLinkSmartplug]?) {
         if let newPlugs = plugs {
             var newValues: [[String]] = []

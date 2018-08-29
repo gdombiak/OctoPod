@@ -201,10 +201,18 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                 DispatchQueue.main.async {
                     self.imageView.image = nil
                     // Display error messages
-                    self.errorMessageLabel.text = "Request error. HTTP response: \(httpResponse.statusCode)"
-                    self.errorURLButton.setTitle(self.cameraURL, for: .normal)
-                    self.errorMessageLabel.isHidden = false
-                    self.errorURLButton.isHidden = false
+                    if httpResponse.statusCode == 503 && !printer.isStreamPathFromSettings() {
+                        // If URL to camera was not returned via /api/settings and
+                        // we got a 503 to the best guessed URL then show "no camera" error message
+                        self.errorMessageLabel.text = "No camera"
+                        self.errorMessageLabel.isHidden = false
+                        self.errorURLButton.isHidden = true
+                    } else {
+                        self.errorMessageLabel.text = "Request error. HTTP response: \(httpResponse.statusCode)"
+                        self.errorURLButton.setTitle(self.cameraURL, for: .normal)
+                        self.errorMessageLabel.isHidden = false
+                        self.errorURLButton.isHidden = false
+                    }
                 }
             }
             
