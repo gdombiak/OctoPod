@@ -404,6 +404,17 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
     
+    // Set the feed rate factor using an integer argument
+    func feedRate(factor: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "feedrate"
+            json["factor"] = factor
+            
+            printHeadPost(httpClient: client, json: json, callback: callback)
+        }
+    }
+    
     // MARK: - File operations
     
     // Returns list of existing files

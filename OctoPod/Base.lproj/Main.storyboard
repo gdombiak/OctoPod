@@ -2444,7 +2444,7 @@
             <objects>
                 <tableViewController id="avQ-HZ-xCk" customClass="MoveSubViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="20" sectionFooterHeight="1" id="IAz-64-eCI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="565"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -2657,15 +2657,15 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Fan &amp; Motors" id="SwZ-jq-tKf">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="85" id="m00-ai-nim">
-                                        <rect key="frame" x="0.0" y="432.5" width="375" height="85"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="126" id="m00-ai-nim">
+                                        <rect key="frame" x="0.0" y="432.5" width="375" height="126"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m00-ai-nim" id="WQn-Ly-v6f">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffd-HI-A62">
-                                                    <rect key="frame" x="133" y="11" width="43" height="21"/>
+                                                    <rect key="frame" x="133" y="15.5" width="43" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -2680,7 +2680,7 @@
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qps-RG-QAh">
-                                                    <rect key="frame" x="25" y="11" width="28" height="21"/>
+                                                    <rect key="frame" x="25" y="15.5" width="28" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2719,23 +2719,51 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tl-IB-smM">
+                                                    <rect key="frame" x="133" y="91.5" width="43" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="50" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="3QR-of-Bbe">
+                                                    <rect key="frame" x="199" y="87" width="162" height="31"/>
+                                                    <connections>
+                                                        <action selector="feedRateChanged:" destination="avQ-HZ-xCk" eventType="touchCancel" id="6vS-oC-qCj"/>
+                                                        <action selector="feedRateChanged:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="RFu-hN-9tq"/>
+                                                        <action selector="feedRateChanged:" destination="avQ-HZ-xCk" eventType="touchUpOutside" id="spZ-VU-o1z"/>
+                                                        <action selector="feedRateChanging:" destination="avQ-HZ-xCk" eventType="valueChanged" id="eMJ-xn-zSf"/>
+                                                    </connections>
+                                                </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xs4-QQ-rLn">
+                                                    <rect key="frame" x="25" y="91.5" width="73" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="heO-9b-ZeO" firstAttribute="leading" secondItem="B7j-Fj-W6p" secondAttribute="trailing" constant="15" id="11F-AW-J14"/>
+                                                <constraint firstItem="6tl-IB-smM" firstAttribute="centerX" secondItem="WQn-Ly-v6f" secondAttribute="centerX" constant="-33" id="292-Br-zgq"/>
+                                                <constraint firstItem="ffd-HI-A62" firstAttribute="centerY" secondItem="Qps-RG-QAh" secondAttribute="centerY" id="7dv-Cs-PLd"/>
                                                 <constraint firstItem="7Mb-MK-CG7" firstAttribute="top" secondItem="6hE-dz-aRw" secondAttribute="bottom" constant="8" id="AeJ-Ev-PGu"/>
+                                                <constraint firstItem="3QR-of-Bbe" firstAttribute="leading" secondItem="6tl-IB-smM" secondAttribute="trailing" constant="25" id="B9D-fs-Grt"/>
+                                                <constraint firstItem="Xs4-QQ-rLn" firstAttribute="leading" secondItem="6TZ-hb-gdQ" secondAttribute="leading" id="EfW-TX-yWN"/>
+                                                <constraint firstItem="6tl-IB-smM" firstAttribute="centerY" secondItem="Xs4-QQ-rLn" secondAttribute="centerY" id="J3n-be-nYv"/>
                                                 <constraint firstItem="6hE-dz-aRw" firstAttribute="leading" secondItem="ffd-HI-A62" secondAttribute="trailing" constant="25" id="Jpr-Lf-Bc6"/>
-                                                <constraint firstItem="Qps-RG-QAh" firstAttribute="top" secondItem="WQn-Ly-v6f" secondAttribute="topMargin" id="PA2-zH-bpt"/>
                                                 <constraint firstItem="heO-9b-ZeO" firstAttribute="top" secondItem="6hE-dz-aRw" secondAttribute="bottom" constant="8" id="PQ7-Eq-Abl"/>
-                                                <constraint firstItem="ffd-HI-A62" firstAttribute="top" secondItem="WQn-Ly-v6f" secondAttribute="topMargin" id="Pjw-Xn-lzz"/>
+                                                <constraint firstItem="3QR-of-Bbe" firstAttribute="top" secondItem="B7j-Fj-W6p" secondAttribute="bottom" constant="8" id="RNg-gc-Ua2"/>
                                                 <constraint firstItem="6hE-dz-aRw" firstAttribute="trailing" secondItem="WQn-Ly-v6f" secondAttribute="trailingMargin" id="SLr-gr-TJQ"/>
                                                 <constraint firstItem="48m-gj-F14" firstAttribute="leading" secondItem="7Mb-MK-CG7" secondAttribute="trailing" constant="15" id="Ylx-aP-84F"/>
                                                 <constraint firstItem="6TZ-hb-gdQ" firstAttribute="leading" secondItem="Qps-RG-QAh" secondAttribute="leading" id="YuC-fm-41F"/>
                                                 <constraint firstItem="6hE-dz-aRw" firstAttribute="top" secondItem="WQn-Ly-v6f" secondAttribute="topMargin" id="a5S-rT-Ip7"/>
+                                                <constraint firstAttribute="trailing" secondItem="3QR-of-Bbe" secondAttribute="trailing" constant="16" id="d6Y-UE-NGr"/>
                                                 <constraint firstItem="B7j-Fj-W6p" firstAttribute="centerY" secondItem="6TZ-hb-gdQ" secondAttribute="centerY" id="e9N-VL-cAs"/>
+                                                <constraint firstItem="3QR-of-Bbe" firstAttribute="centerY" secondItem="6tl-IB-smM" secondAttribute="centerY" id="jNP-3l-o7c"/>
                                                 <constraint firstAttribute="trailing" secondItem="48m-gj-F14" secondAttribute="trailing" constant="9" id="khL-Vw-lYd"/>
                                                 <constraint firstItem="ffd-HI-A62" firstAttribute="centerX" secondItem="WQn-Ly-v6f" secondAttribute="centerX" constant="-33" id="mIO-e2-vPF"/>
                                                 <constraint firstItem="B7j-Fj-W6p" firstAttribute="top" secondItem="6hE-dz-aRw" secondAttribute="bottom" constant="8" id="qAW-R1-gp6"/>
                                                 <constraint firstItem="48m-gj-F14" firstAttribute="top" secondItem="6hE-dz-aRw" secondAttribute="bottom" constant="8" id="uKZ-Tf-MRl"/>
+                                                <constraint firstItem="6hE-dz-aRw" firstAttribute="centerY" secondItem="ffd-HI-A62" secondAttribute="centerY" id="vXM-IN-Cqh"/>
                                                 <constraint firstItem="7Mb-MK-CG7" firstAttribute="leading" secondItem="heO-9b-ZeO" secondAttribute="trailing" constant="15" id="vkc-P4-eqn"/>
                                                 <constraint firstItem="Qps-RG-QAh" firstAttribute="leading" secondItem="WQn-Ly-v6f" secondAttribute="leadingMargin" constant="9" id="vxX-J5-P0Z"/>
                                             </constraints>
@@ -2750,7 +2778,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Move" id="K4f-Fs-KaY"/>
-                    <size key="freeformSize" width="375" height="565"/>
+                    <size key="freeformSize" width="375" height="665"/>
                     <connections>
                         <outlet property="backButton" destination="tWi-iC-0vm" id="xnS-eC-Q4T"/>
                         <outlet property="disableMotorLabel" destination="6TZ-hb-gdQ" id="sJn-Mv-Jhc"/>
@@ -2759,6 +2787,8 @@
                         <outlet property="extrudeButton" destination="wnO-2K-s2I" id="Jwj-8V-hYp"/>
                         <outlet property="fanSpeedLabel" destination="ffd-HI-A62" id="vfM-Yq-c3E"/>
                         <outlet property="fanTextLabel" destination="Qps-RG-QAh" id="pFn-sg-7JX"/>
+                        <outlet property="feedRateLabel" destination="6tl-IB-smM" id="A9U-cv-clC"/>
+                        <outlet property="feedRateTextLabel" destination="Xs4-QQ-rLn" id="oZ8-Xx-xRx"/>
                         <outlet property="flowRateLabel" destination="VkX-1W-xBG" id="1Ij-2L-kTs"/>
                         <outlet property="flowRateTextLabel" destination="3IG-Y9-Ofi" id="DOU-dM-3vq"/>
                         <outlet property="frontButton" destination="C3J-E8-zmG" id="R3i-mX-Vir"/>

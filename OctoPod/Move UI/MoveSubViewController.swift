@@ -1,6 +1,6 @@
 import UIKit
 
-// OctoPrint does not report current fan speed or extruder flow rate so we
+// OctoPrint does not report current fan speed, extruder flow rate or feed rate so we
 // initially assume 100% and then just leave last value set by user. Display
 // value will go back to 100% if app is terminated
 class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesDelegate {
@@ -11,6 +11,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBOutlet weak var flowRateTextLabel: UILabel!
     @IBOutlet weak var fanTextLabel: UILabel!
     @IBOutlet weak var disableMotorLabel: UILabel!
+    @IBOutlet weak var feedRateTextLabel: UILabel!
     
     @IBOutlet weak var xyStepSegmentedControl: UISegmentedControl!
     @IBOutlet weak var zStepSegmentedControl: UISegmentedControl!
@@ -29,6 +30,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBOutlet weak var flowRateLabel: UILabel!
     
     @IBOutlet weak var fanSpeedLabel: UILabel!
+    @IBOutlet weak var feedRateLabel: UILabel!
     
     // Track if axis are inverted
     var invertedX = false
@@ -232,6 +234,23 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         disableMotor(axis: .E)
     }
     
+    @IBAction func feedRateChanging(_ sender: UISlider) {
+        // Update label with value of slider
+        feedRateLabel.text = "\(String(format: "%.0f", sender.value))%"
+    }
+    
+    @IBAction func feedRateChanged(_ sender: UISlider) {
+        // Ask OctoPrint to set new fan speed
+        let newRate = Int(String(format: "%.0f", sender.value))!
+        octoprintClient.feedRate(factor: newRate, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if !requested {
+                // Handle error
+                NSLog("Error setting new feed rate. HTTP status code \(response.statusCode)")
+                self.showAlert("Alert", message: "Failed to set new feed rate")
+            }
+        })
+    }
+    
     // MARK: - Table view operations
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -291,9 +310,11 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         flowRateTextLabel.textColor = textLabelColor
         fanTextLabel.textColor = textLabelColor
         disableMotorLabel.textColor = textLabelColor
+        feedRateTextLabel.textColor = textLabelColor
         
         flowRateLabel.textColor = textColor
         fanSpeedLabel.textColor = textColor
+        feedRateLabel.textColor = textColor
     }
 
     fileprivate func showAlert(_ title: String, message: String) {
