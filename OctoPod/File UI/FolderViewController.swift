@@ -200,17 +200,7 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
     }
     
     fileprivate func showAlert(_ title: String, message: String, done: (() -> Void)?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (UIAlertAction) -> Void in
-            // Execute done block on dismiss
-            done?()
-        }))
-        // Present dialog on main thread to prevent crashes
-        DispatchQueue.main.async {
-            self.present(alert, animated: true) { () -> Void in
-                // Nothing to do here
-            }
-        }
+        UIUtils.showAlert(presenter: self, title: title, message: message, done: done)
     }
 
 }

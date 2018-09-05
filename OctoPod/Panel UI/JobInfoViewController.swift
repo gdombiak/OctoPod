@@ -206,12 +206,6 @@ class JobInfoViewController: UITableViewController {
     }
     
     fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
-        let alert = UIAlertController(title: "Confirm", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: yes))
-        // Use default style and not cancel style for NO so it appears on the right
-        alert.addAction(UIAlertAction(title: "No", style: .default, handler: no))
-        self.present(alert, animated: true) { () -> Void in
-            // Nothing to do here
-        }
+        UIUtils.showConfirm(presenter: self, message: message, yes: yes, no: no)
     }
 }
