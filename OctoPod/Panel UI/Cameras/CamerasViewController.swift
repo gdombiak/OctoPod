@@ -157,7 +157,13 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
                         cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
                         cameraOrientation = UIImageOrientation(rawValue: Int(printer.cameraOrientation))!
                     } else {
-                        cameraURL = url
+                        if url.starts(with: "/") {
+                            // Another camera hosted by OctoPrint so build absolute URL
+                            cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+                        } else {
+                            // Use absolute URL to render camera
+                            cameraURL = url
+                        }
                         cameraOrientation = UIImageOrientation.up // MultiCam has no information about orientation of extra cameras so assume "normal" position - no flips
                     }
                     
