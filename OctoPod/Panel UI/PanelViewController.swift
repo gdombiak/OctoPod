@@ -236,7 +236,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
     
     func cameraOrientationChanged(newOrientation: UIImageOrientation) {
-        updateForCameraOrientation(orientation: newOrientation)
+        DispatchQueue.main.async {
+            self.updateForCameraOrientation(orientation: newOrientation)
+        }
     }
     
     // Notification that path to camera hosted by OctoPrint has changed
@@ -251,6 +253,14 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         camerasViewController?.camerasChanged(camerasURLs: camerasURLs)
     }
 
+    // React when device orientation changes
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if let printer = printerManager.getDefaultPrinter() {
+            // Update layout depending on camera orientation
+            updateForCameraOrientation(orientation: UIImageOrientation(rawValue: Int(printer.cameraOrientation))!, screenHeight: size.height)
+        }
+    }
+    
     // MARK: - Private functions
     
     fileprivate func showDefaultPrinter() {
@@ -259,7 +269,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             DispatchQueue.main.async { self.navigationItem.title = printer.name }
             
             // Update layout depending on camera orientation
-            updateForCameraOrientation(orientation: UIImageOrientation(rawValue: Int(printer.cameraOrientation))!)
+            DispatchQueue.main.async { self.updateForCameraOrientation(orientation: UIImageOrientation(rawValue: Int(printer.cameraOrientation))!) }
 
             // Ask octoprintClient to connect to OctoPrint server
             octoprintClient.connectToServer(printer: printer)
@@ -284,14 +294,44 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
-    fileprivate func updateForCameraOrientation(orientation: UIImageOrientation) {
+    fileprivate func updateForCameraOrientation(orientation: UIImageOrientation, screenHeight: CGFloat = UIScreen.main.bounds.height) {
         if orientation == UIImageOrientation.left || orientation == UIImageOrientation.leftMirrored || orientation == UIImageOrientation.rightMirrored || orientation == UIImageOrientation.right {
-            DispatchQueue.main.async {
-                self.printerSubpanelHeightConstraint.constant = 280
-            }
+            self.printerSubpanelHeightConstraint.constant = 280
         } else {
-            DispatchQueue.main.async {
-                self.printerSubpanelHeightConstraint.constant = 310
+            let devicePortrait = UIDevice.current.orientation.isPortrait
+            if devicePortrait {
+                if screenHeight <= 667 {
+                    // iPhone * (smaller models)
+                    self.printerSubpanelHeightConstraint.constant = 273
+                } else if screenHeight == 736 {
+                    // iPhone 7/8 Plus
+                    self.printerSubpanelHeightConstraint.constant = 313
+                } else if screenHeight == 812 {
+                    // iPhone X
+                    self.printerSubpanelHeightConstraint.constant = 360
+                } else if screenHeight == 1024 {
+                    // iPad (9.7-inch)
+                    self.printerSubpanelHeightConstraint.constant = 333
+                } else if screenHeight == 1112 {
+                    // iPad (10.5-inch)
+                    self.printerSubpanelHeightConstraint.constant = 373
+                } else if screenHeight >= 1366 {
+                    // iPad (12.9-inch)
+                    self.printerSubpanelHeightConstraint.constant = 483
+                } else {
+                    // Unknown device so use default value
+                    self.printerSubpanelHeightConstraint.constant = 310
+                }
+            } else {
+                if screenHeight <= 414 {
+                    // iPhone * (smaller models)
+                    // iPhone 7/8 Plus
+                    // iPhone X
+                    self.printerSubpanelHeightConstraint.constant = 330
+                } else {
+                    // iPads
+                    self.printerSubpanelHeightConstraint.constant = 320
+                }
             }
         }
     }

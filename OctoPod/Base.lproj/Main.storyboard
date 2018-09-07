@@ -28,7 +28,7 @@
                                     <segue destination="Ssy-4U-x9b" kind="embed" id="QJF-Hj-FjS"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uff-mu-aBi">
+                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="uff-mu-aBi">
                                 <rect key="frame" x="0.0" y="64" width="375" height="244"/>
                                 <connections>
                                     <segue destination="1GM-lb-iPS" kind="embed" id="KKl-Fj-b9B"/>
@@ -86,7 +86,7 @@
         <scene sceneID="buj-rn-YqY">
             <objects>
                 <viewController id="1GM-lb-iPS" customClass="CamerasViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6jn-US-pKP">
+                    <view key="view" contentMode="scaleAspectFit" id="6jn-US-pKP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -120,7 +120,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="9ix-ve-DAs">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xgR-KO-IvE">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xgR-KO-IvE">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                     </imageView>

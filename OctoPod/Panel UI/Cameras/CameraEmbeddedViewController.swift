@@ -245,7 +245,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                 }
             } else {
                 DispatchQueue.main.async {
-                    self.imageView.contentMode = .scaleToFill
+                    self.imageView.contentMode = .scaleAspectFit
                 }
             }
         }
