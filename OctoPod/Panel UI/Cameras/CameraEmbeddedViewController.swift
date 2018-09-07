@@ -165,65 +165,74 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             
             setCameraOrientation(newOrientation: cameraOrientation)
 
-            let url = URL(string: cameraURL)
-            
-            // User authentication credentials if configured for the printer
-            if let username = printer.username, let password = printer.password {
-                // Handle user authentication if webcam is configured this way (I hope people are being careful and doing this)
-                streamingController?.authenticationHandler = { challenge in
-                    let credential = URLCredential(user: username, password: password, persistence: .forSession)
-                    return (.useCredential, credential)
+            if let url = URL(string: cameraURL) {
+                // Make sure that url button is clickable (visible when not hidden)
+                self.errorURLButton.isUserInteractionEnabled = true
+                // User authentication credentials if configured for the printer
+                if let username = printer.username, let password = printer.password {
+                    // Handle user authentication if webcam is configured this way (I hope people are being careful and doing this)
+                    streamingController?.authenticationHandler = { challenge in
+                        let credential = URLCredential(user: username, password: password, persistence: .forSession)
+                        return (.useCredential, credential)
+                    }
                 }
-            }
-
-            streamingController?.authenticationFailedHandler = {
-                DispatchQueue.main.async {
-                    self.imageView.image = nil
-                    // Display error messages
-                    self.errorMessageLabel.text = "Authentication failed"
-                    self.errorMessageLabel.isHidden = false
-                }
-            }
-            
-            streamingController?.didFinishWithErrors = { error in
-                DispatchQueue.main.async {
-                    self.imageView.image = nil
-                    // Display error messages
-                    self.errorMessageLabel.text = error.localizedDescription
-                    self.errorURLButton.setTitle(self.cameraURL, for: .normal)
-                    self.errorMessageLabel.isHidden = false
-                    self.errorURLButton.isHidden = false
-                }
-            }
-            
-            streamingController?.didFinishWithHTTPErrors = { httpResponse in
-                // We got a 404 or some 5XX error
-                DispatchQueue.main.async {
-                    self.imageView.image = nil
-                    // Display error messages
-                    if httpResponse.statusCode == 503 && !printer.isStreamPathFromSettings() {
-                        // If URL to camera was not returned via /api/settings and
-                        // we got a 503 to the best guessed URL then show "no camera" error message
-                        self.errorMessageLabel.text = "No camera"
+                
+                streamingController?.authenticationFailedHandler = {
+                    DispatchQueue.main.async {
+                        self.imageView.image = nil
+                        // Display error messages
+                        self.errorMessageLabel.text = "Authentication failed"
                         self.errorMessageLabel.isHidden = false
-                        self.errorURLButton.isHidden = true
-                    } else {
-                        self.errorMessageLabel.text = "Request error. HTTP response: \(httpResponse.statusCode)"
+                    }
+                }
+                
+                streamingController?.didFinishWithErrors = { error in
+                    DispatchQueue.main.async {
+                        self.imageView.image = nil
+                        // Display error messages
+                        self.errorMessageLabel.text = error.localizedDescription
                         self.errorURLButton.setTitle(self.cameraURL, for: .normal)
                         self.errorMessageLabel.isHidden = false
                         self.errorURLButton.isHidden = false
                     }
                 }
+                
+                streamingController?.didFinishWithHTTPErrors = { httpResponse in
+                    // We got a 404 or some 5XX error
+                    DispatchQueue.main.async {
+                        self.imageView.image = nil
+                        // Display error messages
+                        if httpResponse.statusCode == 503 && !printer.isStreamPathFromSettings() {
+                            // If URL to camera was not returned via /api/settings and
+                            // we got a 503 to the best guessed URL then show "no camera" error message
+                            self.errorMessageLabel.text = "No camera"
+                            self.errorMessageLabel.isHidden = false
+                            self.errorURLButton.isHidden = true
+                        } else {
+                            self.errorMessageLabel.text = "Request error. HTTP response: \(httpResponse.statusCode)"
+                            self.errorURLButton.setTitle(self.cameraURL, for: .normal)
+                            self.errorMessageLabel.isHidden = false
+                            self.errorURLButton.isHidden = false
+                        }
+                    }
+                }
+                
+                streamingController?.didFinishLoading = {
+                    // Hide error messages since an image will be rendered (so that means that it worked!)
+                    self.errorMessageLabel.isHidden = true
+                    self.errorURLButton.isHidden = true
+                }
+                
+                // Start rendering the camera
+                streamingController?.play(url: url)
+            } else {
+                // Camera URL was not valid (e.g. url string contains characters that are illegal in a URL, or is an empty string)
+                self.errorMessageLabel.text = "Invalid camera URL"
+                self.errorURLButton.setTitle(self.cameraURL, for: .normal)
+                self.errorMessageLabel.isHidden = false
+                self.errorURLButton.isHidden = false
+                self.errorURLButton.isUserInteractionEnabled = false
             }
-            
-            streamingController?.didFinishLoading = {
-                // Hide error messages since an image will be rendered (so that means that it worked!)
-                self.errorMessageLabel.isHidden = true
-                self.errorURLButton.isHidden = true
-            }
-
-            // Start rendering the camera
-            streamingController?.play(url: url!)
         }
     }
     
