@@ -21,6 +21,8 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     var cameraURL: String!
     var cameraOrientation: UIImageOrientation!
     
+    var uiPreviousOrientation: UIInterfaceOrientation?
+    
     var embedded: Bool = true
     var embeddedCameraTappedCallback: (() -> Void)?
 
@@ -79,7 +81,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             self.navigationController?.setNavigationBarHidden(false, animated: animated)
 
             // When running full screen we are forcing landscape so we go back to portrait when leaving
-            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+            if let orientation = uiPreviousOrientation {
+                UIDevice.current.setValue(Int(orientation.rawValue), forKey: "orientation")
+            }
         }
     }
 

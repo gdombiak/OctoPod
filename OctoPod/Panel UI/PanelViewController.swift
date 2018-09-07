@@ -123,7 +123,13 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             controller.cameraURL = camerasViewController?.cameraURL()
             controller.cameraOrientation = camerasViewController?.cameraOrientation()
             
-            UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeRight.rawValue), forKey: "orientation")
+            let uiOrientation = UIApplication.shared.statusBarOrientation
+            if uiOrientation != UIInterfaceOrientation.landscapeLeft && uiOrientation != UIInterfaceOrientation.landscapeRight {
+                // We are not in landscape mode so change it to landscape
+                controller.uiPreviousOrientation = uiOrientation  // Set previous value so we can go back to what it was
+                // Rotate UI now
+                UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeRight.rawValue), forKey: "orientation")
+            }
         }
     }
     
