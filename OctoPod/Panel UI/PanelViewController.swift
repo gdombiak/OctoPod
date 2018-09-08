@@ -339,7 +339,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
     
     fileprivate func calculatePrinterSubpanelHeightConstraints() {
-        let devicePortrait = UIDevice.current.orientation.isPortrait
+        let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
         screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
         if screenHeight <= 667 {
             // iPhone * (smaller models)
