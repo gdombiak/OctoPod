@@ -2310,7 +2310,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Authentication (printer and camera)" id="WKG-83-bZQ">
+                            <tableViewSection headerTitle="HTTP Authentication" id="WKG-83-bZQ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="zbS-HA-yK0">
                                         <rect key="frame" x="0.0" y="313.5" width="375" height="44"/>
