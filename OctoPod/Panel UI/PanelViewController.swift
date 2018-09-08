@@ -15,6 +15,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     var camerasViewController: CamerasViewController?
     var subpanelsViewController: SubpanelsViewController?
+    
+    var screenHeight: CGFloat!
+    var printerSubpanelHeightConstraintPortrait: CGFloat!
+    var printerSubpanelHeightConstraintLandscape: CGFloat!
 
     @IBOutlet weak var printerSubpanelHeightConstraint: NSLayoutConstraint!
     
@@ -38,6 +42,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         
         // Listen to events coming from OctoPrintClient
         octoprintClient.delegates.append(self)
+        
+        // Calculate constraint for subpanel
+        calculatePrinterSubpanelHeightConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -261,9 +268,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
 
     // React when device orientation changes
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         if let printer = printerManager.getDefaultPrinter() {
             // Update layout depending on camera orientation
-            updateForCameraOrientation(orientation: UIImageOrientation(rawValue: Int(printer.cameraOrientation))!, screenHeight: size.height)
+            updateForCameraOrientation(orientation: UIImageOrientation(rawValue: Int(printer.cameraOrientation))!, devicePortrait: size.height == screenHeight)
         }
     }
     
@@ -300,45 +308,11 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
-    fileprivate func updateForCameraOrientation(orientation: UIImageOrientation, screenHeight: CGFloat = UIScreen.main.bounds.height) {
+    fileprivate func updateForCameraOrientation(orientation: UIImageOrientation, devicePortrait: Bool = UIApplication.shared.statusBarOrientation.isPortrait) {
         if orientation == UIImageOrientation.left || orientation == UIImageOrientation.leftMirrored || orientation == UIImageOrientation.rightMirrored || orientation == UIImageOrientation.right {
-            self.printerSubpanelHeightConstraint.constant = 280
+            printerSubpanelHeightConstraint.constant = 280
         } else {
-            let devicePortrait = UIDevice.current.orientation.isPortrait
-            if devicePortrait {
-                if screenHeight <= 667 {
-                    // iPhone * (smaller models)
-                    self.printerSubpanelHeightConstraint.constant = 273
-                } else if screenHeight == 736 {
-                    // iPhone 7/8 Plus
-                    self.printerSubpanelHeightConstraint.constant = 313
-                } else if screenHeight == 812 {
-                    // iPhone X
-                    self.printerSubpanelHeightConstraint.constant = 360
-                } else if screenHeight == 1024 {
-                    // iPad (9.7-inch)
-                    self.printerSubpanelHeightConstraint.constant = 333
-                } else if screenHeight == 1112 {
-                    // iPad (10.5-inch)
-                    self.printerSubpanelHeightConstraint.constant = 373
-                } else if screenHeight >= 1366 {
-                    // iPad (12.9-inch)
-                    self.printerSubpanelHeightConstraint.constant = 483
-                } else {
-                    // Unknown device so use default value
-                    self.printerSubpanelHeightConstraint.constant = 310
-                }
-            } else {
-                if screenHeight <= 414 {
-                    // iPhone * (smaller models)
-                    // iPhone 7/8 Plus
-                    // iPhone X
-                    self.printerSubpanelHeightConstraint.constant = 330
-                } else {
-                    // iPads
-                    self.printerSubpanelHeightConstraint.constant = 320
-                }
-            }
+            printerSubpanelHeightConstraint.constant = devicePortrait ? printerSubpanelHeightConstraintPortrait! : printerSubpanelHeightConstraintLandscape!
         }
     }
     
@@ -362,6 +336,40 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
         subpanelsViewController = subpanelsChild
         camerasViewController = camerasChild
+    }
+    
+    fileprivate func calculatePrinterSubpanelHeightConstraints() {
+        let devicePortrait = UIDevice.current.orientation.isPortrait
+        screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
+        if screenHeight <= 667 {
+            // iPhone * (smaller models)
+            printerSubpanelHeightConstraintPortrait = 273
+            printerSubpanelHeightConstraintLandscape = 330
+        } else if screenHeight == 736 {
+            // iPhone 7/8 Plus
+            printerSubpanelHeightConstraintPortrait = 313
+            printerSubpanelHeightConstraintLandscape = 330
+        } else if screenHeight == 812 {
+            // iPhone X
+            printerSubpanelHeightConstraintPortrait = 360
+            printerSubpanelHeightConstraintLandscape = 330
+        } else if screenHeight == 1024 {
+            // iPad (9.7-inch)
+            printerSubpanelHeightConstraintPortrait = 333
+            printerSubpanelHeightConstraintLandscape = 300
+        } else if screenHeight == 1112 {
+            // iPad (10.5-inch)
+            printerSubpanelHeightConstraintPortrait = 373
+            printerSubpanelHeightConstraintLandscape = 300
+        } else if screenHeight >= 1366 {
+            // iPad (12.9-inch)
+            printerSubpanelHeightConstraintPortrait = 483
+            printerSubpanelHeightConstraintLandscape = 300
+        } else {
+            // Unknown device so use default value
+            printerSubpanelHeightConstraintPortrait = 310
+            printerSubpanelHeightConstraintLandscape = 330
+        }
     }
     
     fileprivate func showAlert(_ title: String, message: String) {
