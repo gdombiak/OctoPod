@@ -1438,38 +1438,62 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Lock" id="eXf-GR-uL9">
+                            <tableViewSection headerTitle="Lock Mode" id="eXf-GR-uL9">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="61R-m0-wNc">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="lRa-7t-PuW">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lRa-7t-PuW" id="WFg-4G-6Y1">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q41-jp-2V5">
+                                                    <rect key="frame" x="310" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="appLockChanged:" destination="hg7-6b-q0o" eventType="valueChanged" id="oyZ-uh-ya1"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lock read-only mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqw-ve-Eec">
+                                                    <rect key="frame" x="16" y="12" width="162.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="q41-jp-2V5" firstAttribute="top" secondItem="WFg-4G-6Y1" secondAttribute="top" constant="6" id="7HV-8Y-yMf"/>
+                                                <constraint firstItem="mqw-ve-Eec" firstAttribute="top" secondItem="WFg-4G-6Y1" secondAttribute="topMargin" constant="1" id="SNc-Oa-kwG"/>
+                                                <constraint firstAttribute="trailing" secondItem="q41-jp-2V5" secondAttribute="trailing" constant="16" id="Xu6-K5-cl8"/>
+                                                <constraint firstItem="mqw-ve-Eec" firstAttribute="leading" secondItem="WFg-4G-6Y1" secondAttribute="leadingMargin" id="gnM-Xb-e4f"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="61R-m0-wNc">
+                                        <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="61R-m0-wNc" id="JJ9-Al-gt2">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Read only" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqw-ve-Eec">
-                                                    <rect key="frame" x="16" y="12" width="76" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Require passcode to unlock" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqf-BP-Wtn">
+                                                    <rect key="frame" x="16" y="12" width="211.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q41-jp-2V5">
-                                                    <rect key="frame" x="310" y="7" width="49" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yBj-kJ-muF">
+                                                    <rect key="frame" x="310" y="6" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="appLockChanged:" destination="hg7-6b-q0o" eventType="valueChanged" id="oyZ-uh-ya1"/>
+                                                        <action selector="appLockBiometricsChanged:" destination="hg7-6b-q0o" eventType="valueChanged" id="UiE-jt-JwL"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="lRa-7t-PuW">
-                                        <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lRa-7t-PuW" id="WFg-4G-6Y1">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <constraints>
+                                                <constraint firstItem="uqf-BP-Wtn" firstAttribute="top" secondItem="JJ9-Al-gt2" secondAttribute="topMargin" constant="1" id="FNW-Fj-l3Y"/>
+                                                <constraint firstItem="yBj-kJ-muF" firstAttribute="top" secondItem="JJ9-Al-gt2" secondAttribute="top" constant="6" id="NZu-PO-myl"/>
+                                                <constraint firstItem="uqf-BP-Wtn" firstAttribute="leading" secondItem="JJ9-Al-gt2" secondAttribute="leadingMargin" id="Nse-Yz-30J"/>
+                                                <constraint firstAttribute="trailing" secondItem="yBj-kJ-muF" secondAttribute="trailing" constant="16" id="QU8-0T-rrD"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1481,6 +1505,8 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="appLockBiometricsLabel" destination="uqf-BP-Wtn" id="6Ev-FJ-8t9"/>
+                        <outlet property="appLockBiometricsSwitch" destination="yBj-kJ-muF" id="ReR-uV-XW8"/>
                         <outlet property="appLockLabel" destination="mqw-ve-Eec" id="1C2-lj-KsG"/>
                         <outlet property="appLockSwitch" destination="q41-jp-2V5" id="NLb-Sf-QTs"/>
                     </connections>
