@@ -8,7 +8,7 @@ OctoPod wouldn't be where it is without the help of the following people. Thank 
 * Daniele Nicolucci (features)
 * Jan Pichrt (features)
 * Matthew Humphrey (features and wiki)
-* nerkaid (features)
+* Luis F. Fernández (features)
 * Robert Malcolm McKenzie (features)
 * Stephan Kohls (features)
 * Sreejesh Pallisseri (features)
