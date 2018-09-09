@@ -3,6 +3,7 @@ import UIKit
 class PSUControlViewController: ThemedStaticUITableViewController, SubpanelViewController, OctoPrintPluginsDelegate {
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var powerButton: UIButton!
@@ -32,6 +33,9 @@ class PSUControlViewController: ThemedStaticUITableViewController, SubpanelViewC
         // Listen to changes to OctoPrint Plugin messages
         octoprintClient.octoPrintPluginsDelegates.append(self)
         
+        // Enable power button only if app is not locked
+        powerButton.isEnabled = !appConfiguration.appLocked()
+
         // Fetch status now and refresh UI. Websockets will eventually send updates
         fetchPSUStatus()
     }

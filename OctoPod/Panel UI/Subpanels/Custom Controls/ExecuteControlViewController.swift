@@ -3,6 +3,7 @@ import UIKit
 class ExecuteControlViewController: ThemedDynamicUITableViewController {
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     var control: ExecuteControl!
     var input: Array<ControlInput>!
@@ -136,6 +137,11 @@ class ExecuteControlViewController: ThemedDynamicUITableViewController {
     // MARK: - Private functions
     
     fileprivate func checkRunStatus() {
+        if appConfiguration.appLocked() {
+            // Executing commands is not allowed when app is locked
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            return
+        }
         // Run button will be enabled only if all parameters have a value
         navigationItem.rightBarButtonItem?.isEnabled = !input.contains(where: { (input: ControlInput) -> Bool in
             return input.value == nil

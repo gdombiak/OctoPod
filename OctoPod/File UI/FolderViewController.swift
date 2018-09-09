@@ -5,6 +5,7 @@ import UIKit
 class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresentationControllerDelegate {
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     var filesTreeVC: FilesTreeViewController!
     var folder: PrintFile!
@@ -62,7 +63,7 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
 
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return !files[indexPath.row].isFolder()
+        return !files[indexPath.row].isFolder() && !appConfiguration.appLocked()
     }
 
     // Override to support editing the table view.

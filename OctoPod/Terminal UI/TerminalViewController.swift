@@ -5,6 +5,7 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     @IBOutlet weak var refreshEnabledTextLabel: UILabel!
     @IBOutlet weak var gcodeTextLabel: UILabel!
@@ -33,6 +34,9 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate {
         } else {
             navigationItem.title = "Terminal"
         }
+        
+        // Enable sending gcode commands only if app is not locked
+        gcodeField.isEnabled = !appConfiguration.appLocked()
 
         updateTerminalLogs()
     }

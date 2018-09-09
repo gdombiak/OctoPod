@@ -2,6 +2,8 @@ import UIKit
 
 class TPLinkSmartplugTableViewCell: UITableViewCell {
 
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var powerButton: UIButton!
 
@@ -19,10 +21,10 @@ class TPLinkSmartplugTableViewCell: UITableViewCell {
     func setPowerState(isPowerOn: Bool?) {
         if let on = isPowerOn {
             // Enable power button
-            powerButton.isEnabled = true
+            powerButton.isEnabled = !appConfiguration.appLocked() // Enable button only if app is not locked
             powerButton.setImage(UIImage(named: on ? "TPPowerOff" : "TPPowerOn"), for: .normal)
         } else {
-            // Disable power button
+            // Disable power button since state is undefined
             powerButton.isEnabled = false
             // Assume power is off so render this image
             powerButton.setImage(UIImage(named: "TPPowerOn"), for: .normal)

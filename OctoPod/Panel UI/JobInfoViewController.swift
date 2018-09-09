@@ -11,7 +11,8 @@ class JobInfoViewController: UITableViewController {
     }
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
-    
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+
     var printerPrinting: Bool?
     var requestedJobOperation: jobOperation?
     
@@ -53,7 +54,7 @@ class JobInfoViewController: UITableViewController {
                     DispatchQueue.main.async {
                         if let newTitle = buttonTitle {
                             self.pauseOrResumeButton.setTitle(newTitle, for: UIControlState.normal)
-                            self.pauseOrResumeButton.isEnabled = true
+                            self.pauseOrResumeButton.isEnabled = !self.appConfiguration.appLocked() // Only enable if app is not locked
                         } else {
                             self.pauseOrResumeButton.isEnabled = false
                         }
@@ -191,14 +192,14 @@ class JobInfoViewController: UITableViewController {
             if lastEvent.operational == true && lastEvent.printing != true && lastEvent.paused != true {
                 // Allow to print file if there is a file and printer is operationsl
                 self.restartButton.setTitle("Print File", for: .normal)
-                self.restartButton.isEnabled = true
+                self.restartButton.isEnabled = !self.appConfiguration.appLocked() // Only enable if app is not locked
                 self.cancelButton.isEnabled = false
                 return
             } else {
                 // Only enable option to restart when print job is paused
                 self.restartButton.setTitle("Restart Job", for: .normal)
-                self.restartButton.isEnabled = lastEvent.paused == true
-                self.cancelButton.isEnabled = true
+                self.restartButton.isEnabled = lastEvent.paused == true && !self.appConfiguration.appLocked() // Only enable if app is not locked
+                self.cancelButton.isEnabled = !self.appConfiguration.appLocked() // Only enable if app is not locked
             }
         } else {
             self.restartButton.isEnabled = false

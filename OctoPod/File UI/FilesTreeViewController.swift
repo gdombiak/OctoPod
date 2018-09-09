@@ -6,7 +6,8 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
-    
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sortByTextLabel: UILabel!
     @IBOutlet weak var sortByControl: UISegmentedControl!
@@ -99,7 +100,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return !files[indexPath.row].isFolder()
+        return !files[indexPath.row].isFolder() && !appConfiguration.appLocked()
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

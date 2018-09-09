@@ -653,6 +653,7 @@
                     <connections>
                         <outlet property="button1" destination="REX-gh-p87" id="7Et-vK-SrT"/>
                         <outlet property="button2" destination="Hcl-jl-BEb" id="0HM-WE-JiB"/>
+                        <outlet property="offButton" destination="QwZ-7J-MwJ" id="GXr-xQ-jiJ"/>
                         <outlet property="setButton" destination="o8a-yF-u6j" id="TSI-hg-57b"/>
                         <outlet property="targetTempField" destination="ljs-Wj-0Zo" id="Dwl-5X-MjF"/>
                         <segue destination="LCC-ht-12A" kind="unwind" identifier="backFromSetTemperature" unwindAction="backFromSetTemperature:" id="jf4-SX-H2Z"/>
@@ -1368,7 +1369,7 @@
         <scene sceneID="DP0-Oe-GTK">
             <objects>
                 <tableViewController title="Appearance" id="4sv-CS-fGo" customClass="AppearanceViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="nhK-KG-FsF">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="nhK-KG-FsF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -1427,6 +1428,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0SB-Gd-UeX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1505" y="3807"/>
+        </scene>
+        <!--Security View Controller-->
+        <scene sceneID="i8m-Je-prJ">
+            <objects>
+                <tableViewController id="hg7-6b-q0o" customClass="SecurityViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="4mj-de-YOA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Lock" id="eXf-GR-uL9">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="61R-m0-wNc">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="61R-m0-wNc" id="JJ9-Al-gt2">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Read only" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqw-ve-Eec">
+                                                    <rect key="frame" x="16" y="12" width="76" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q41-jp-2V5">
+                                                    <rect key="frame" x="310" y="7" width="49" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="appLockChanged:" destination="hg7-6b-q0o" eventType="valueChanged" id="oyZ-uh-ya1"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="lRa-7t-PuW">
+                                        <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lRa-7t-PuW" id="WFg-4G-6Y1">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="hg7-6b-q0o" id="vsR-lI-AYP"/>
+                            <outlet property="delegate" destination="hg7-6b-q0o" id="tOi-CV-5lP"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="appLockLabel" destination="mqw-ve-Eec" id="1C2-lj-KsG"/>
+                        <outlet property="appLockSwitch" destination="q41-jp-2V5" id="NLb-Sf-QTs"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tw1-U9-XpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1505" y="4520"/>
         </scene>
         <!--Settings-->
         <scene sceneID="voK-su-ivw">
@@ -1487,6 +1548,30 @@
                                             <segue destination="4sv-CS-fGo" kind="show" id="9t3-41-fe0"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="2F6-Yh-TOZ">
+                                        <rect key="frame" x="0.0" y="123" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2F6-Yh-TOZ" id="NMO-Ut-Get">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Security" translatesAutoresizingMaskIntoConstraints="NO" id="osP-PF-ahQ">
+                                                    <rect key="frame" x="16" y="6" width="32" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Security" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJI-A7-98M">
+                                                    <rect key="frame" x="56" y="11" width="63" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="hg7-6b-q0o" kind="show" id="KQA-jb-lgD"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1499,6 +1584,7 @@
                     <connections>
                         <outlet property="appearanceLabel" destination="35a-ap-aeB" id="iKN-3j-fey"/>
                         <outlet property="printersLabel" destination="tzE-Y5-rVZ" id="Bae-dO-RZs"/>
+                        <outlet property="securityLabel" destination="RJI-A7-98M" id="mKq-vq-vP8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9p0-P6-9al" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2783,20 +2869,27 @@
                         <outlet property="backButton" destination="tWi-iC-0vm" id="xnS-eC-Q4T"/>
                         <outlet property="disableMotorLabel" destination="6TZ-hb-gdQ" id="sJn-Mv-Jhc"/>
                         <outlet property="downButton" destination="si4-O4-P2M" id="Jb3-ba-lJd"/>
+                        <outlet property="eMotorButton" destination="48m-gj-F14" id="EDL-QE-rOm"/>
                         <outlet property="eStepSegmentedControl" destination="GRh-JJ-DpF" id="Dnl-nu-WpQ"/>
                         <outlet property="extrudeButton" destination="wnO-2K-s2I" id="Jwj-8V-hYp"/>
                         <outlet property="fanSpeedLabel" destination="ffd-HI-A62" id="vfM-Yq-c3E"/>
+                        <outlet property="fanSpeedSlider" destination="6hE-dz-aRw" id="Vnt-za-rkM"/>
                         <outlet property="fanTextLabel" destination="Qps-RG-QAh" id="pFn-sg-7JX"/>
                         <outlet property="feedRateLabel" destination="6tl-IB-smM" id="A9U-cv-clC"/>
+                        <outlet property="feedRateSlider" destination="3QR-of-Bbe" id="Cww-tv-IsL"/>
                         <outlet property="feedRateTextLabel" destination="Xs4-QQ-rLn" id="oZ8-Xx-xRx"/>
                         <outlet property="flowRateLabel" destination="VkX-1W-xBG" id="1Ij-2L-kTs"/>
+                        <outlet property="flowRateSlider" destination="zDH-jI-B7O" id="hZe-6r-gGq"/>
                         <outlet property="flowRateTextLabel" destination="3IG-Y9-Ofi" id="DOU-dM-3vq"/>
                         <outlet property="frontButton" destination="C3J-E8-zmG" id="R3i-mX-Vir"/>
                         <outlet property="leftButton" destination="b8F-E5-ASf" id="Lhm-fG-bvx"/>
                         <outlet property="retractButton" destination="Q2b-xf-a3O" id="4O7-Z4-B4M"/>
                         <outlet property="rightButton" destination="Lj9-dc-lnA" id="Wh5-s7-AWT"/>
                         <outlet property="upButton" destination="oLT-fK-F6P" id="Qfu-nM-Wnt"/>
+                        <outlet property="xMotorButton" destination="B7j-Fj-W6p" id="aWY-mV-qQm"/>
                         <outlet property="xyStepSegmentedControl" destination="NKo-dw-3Mg" id="7OK-2M-i2B"/>
+                        <outlet property="yMotorButton" destination="heO-9b-ZeO" id="SlM-Ao-28Q"/>
+                        <outlet property="zMotorButton" destination="7Mb-MK-CG7" id="g84-M5-nND"/>
                         <outlet property="zStepSegmentedControl" destination="hzK-Nf-sCi" id="Khc-Ig-jV0"/>
                     </connections>
                 </tableViewController>
@@ -3014,6 +3107,7 @@
         <image name="Panel" width="24" height="24"/>
         <image name="Print Job" width="22" height="22"/>
         <image name="Printers" width="32" height="32"/>
+        <image name="Security" width="32" height="32"/>
         <image name="Settings" width="24" height="24"/>
         <image name="TPPowerOn" width="32" height="32"/>
         <image name="Terminal" width="24" height="24"/>

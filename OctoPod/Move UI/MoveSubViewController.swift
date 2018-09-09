@@ -7,7 +7,8 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
-    
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+
     @IBOutlet weak var flowRateTextLabel: UILabel!
     @IBOutlet weak var fanTextLabel: UILabel!
     @IBOutlet weak var disableMotorLabel: UILabel!
@@ -28,9 +29,16 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBOutlet weak var retractButton: UIButton!
     @IBOutlet weak var extrudeButton: UIButton!
     @IBOutlet weak var flowRateLabel: UILabel!
+    @IBOutlet weak var flowRateSlider: UISlider!
     
     @IBOutlet weak var fanSpeedLabel: UILabel!
     @IBOutlet weak var feedRateLabel: UILabel!
+    @IBOutlet weak var fanSpeedSlider: UISlider!
+    @IBOutlet weak var xMotorButton: UIButton!
+    @IBOutlet weak var yMotorButton: UIButton!
+    @IBOutlet weak var zMotorButton: UIButton!
+    @IBOutlet weak var eMotorButton: UIButton!
+    @IBOutlet weak var feedRateSlider: UISlider!
     
     // Track if axis are inverted
     var invertedX = false
@@ -48,7 +56,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         octoprintClient.printerProfilesDelegates.append(self)
 
         if let printer = printerManager.getDefaultPrinter() {
-            enableButtons(enable: true)
+            enableButtons(enable: !appConfiguration.appLocked()) // Enable/disable buttons based on app locked status
             // Remember if axis are inverted
             invertedX = printer.invertX
             invertedY = printer.invertY
@@ -290,6 +298,14 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         
         retractButton.isEnabled = enable
         extrudeButton.isEnabled = enable
+        flowRateSlider.isEnabled = enable
+        
+        fanSpeedSlider.isEnabled = enable
+        xMotorButton.isEnabled = enable
+        yMotorButton.isEnabled = enable
+        zMotorButton.isEnabled = enable
+        eMotorButton.isEnabled = enable
+        feedRateSlider.isEnabled = enable
     }
     
     fileprivate func disableMotor(axis: OctoPrintClient.axis) {

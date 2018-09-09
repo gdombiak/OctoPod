@@ -2,6 +2,8 @@ import UIKit
 
 class SetTargetTempViewController: UITableViewController {
     
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+
     enum TargetScope {
         case bed
         case tool0
@@ -9,6 +11,7 @@ class SetTargetTempViewController: UITableViewController {
     }
 
     @IBOutlet weak var targetTempField: UITextField!
+    @IBOutlet weak var offButton: UIButton!
     @IBOutlet weak var setButton: UIButton!
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
@@ -28,6 +31,12 @@ class SetTargetTempViewController: UITableViewController {
             button1.setTitle("210", for: .normal)
             button2.setTitle("235", for: .normal)
         }
+
+        // Only enable buttons if app is not locked
+        offButton.isEnabled = !appConfiguration.appLocked()
+        setButton.isEnabled = !appConfiguration.appLocked()
+        button1.isEnabled = !appConfiguration.appLocked()
+        button2.isEnabled = !appConfiguration.appLocked()
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,6 +45,10 @@ class SetTargetTempViewController: UITableViewController {
     }
 
     @IBAction func tempChanged(_ sender: Any) {
+        if appConfiguration.appLocked() {
+            // Do nothing since app is locked
+            return
+        }
         if let text = targetTempField.text, let newTemp: Int = Int(text) {
             if targetTempScope! == .bed {
                 setButton.isEnabled = newTemp >= 0 && newTemp < 150

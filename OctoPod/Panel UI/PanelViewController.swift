@@ -6,6 +6,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     var printerConnected: Bool?
 
@@ -52,6 +53,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         octoprintClient.octoPrintSettingsDelegates.append(self)
         // Show default printer
         showDefaultPrinter()
+        // Enable connect/disconnect button only if app is not locked
+        connectButton.isEnabled = !appConfiguration.appLocked()
         // Enable or disable printer select button depending on number of printers configured
         printerSelectButton.isEnabled = printerManager.getPrinters().count > 1
     }

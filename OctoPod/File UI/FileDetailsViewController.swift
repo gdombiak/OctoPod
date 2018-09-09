@@ -2,6 +2,8 @@ import UIKit
 
 class FileDetailsViewController: ThemedStaticUITableViewController {
     
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+
     var printFile: PrintFile?
 
     @IBOutlet weak var fileTextLabel: UILabel!
@@ -37,8 +39,8 @@ class FileDetailsViewController: ThemedStaticUITableViewController {
         uploadedDateLabel.text = dateToString(date: printFile?.date)
         printedDateLabel.text = dateToString(date: printFile?.lastPrintDate)
         
-        printButton.isEnabled = printFile != nil && printFile!.canBePrinted()
-        deleteButton.isEnabled = printFile != nil && printFile!.canBeDeleted()
+        printButton.isEnabled = printFile != nil && printFile!.canBePrinted() && !appConfiguration.appLocked()
+        deleteButton.isEnabled = printFile != nil && printFile!.canBeDeleted() && !appConfiguration.appLocked()
         
         themeLabels()
     }
