@@ -1,6 +1,29 @@
 # Change Log
 
-## [1.5](https://github.com/gdombiak/OctoPod/tree/1.6) (2018-08-27)
+## [1.7](https://github.com/gdombiak/OctoPod/tree/1.7) (2018-09-09)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.6...1.7)
+
+**Implemented enhancements:**
+
+- Add page with links for support [\#72](https://github.com/gdombiak/OctoPod/issues/72)
+- Improve text to indicate that user creds are only for HTTP Authentication [\#71](https://github.com/gdombiak/OctoPod/issues/71)
+- Preserve device orientation when coming back from camera full screen [\#70](https://github.com/gdombiak/OctoPod/issues/70)
+- Allow to set up the feed rate [\#65](https://github.com/gdombiak/OctoPod/issues/65)
+- Support "app lock" mode [\#60](https://github.com/gdombiak/OctoPod/issues/60)
+
+**Fixed bugs:**
+
+- Fix crash when camera URL has invalid characters or is empty [\#69](https://github.com/gdombiak/OctoPod/issues/69)
+- Fix error when displaying connection errors [\#68](https://github.com/gdombiak/OctoPod/issues/68)
+- Multiple cameras hosted by OctoPrint not working [\#67](https://github.com/gdombiak/OctoPod/issues/67)
+- Incorect webcam aspect ratio [\#66](https://github.com/gdombiak/OctoPod/issues/66)
+
+**Closed issues:**
+
+- Add basic auth support [\#64](https://github.com/gdombiak/OctoPod/issues/64)
+- Multicam [\#55](https://github.com/gdombiak/OctoPod/issues/55)
+
+## [1.6](https://github.com/gdombiak/OctoPod/tree/1.6) (2018-08-28)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.5...1.6)
 
 **Implemented enhancements:**
