@@ -58,6 +58,7 @@
 		3D8D51A921333D310006BBB1 /* CustomControlInputSlideViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8D51A821333D310006BBB1 /* CustomControlInputSlideViewCell.swift */; };
 		3D8DA01A2144716B00F5FD07 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DA0192144716B00F5FD07 /* AppConfiguration.swift */; };
 		3D8DA01C2144BBF100F5FD07 /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DA01B2144BBF100F5FD07 /* SecurityViewController.swift */; };
+		3D8DA01E2144EDCE00F5FD07 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DA01D2144EDCE00F5FD07 /* SupportViewController.swift */; };
 		3D92E6C821213B2400F58BA5 /* TempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92E6C721213B2400F58BA5 /* TempHistory.swift */; };
 		3D968DDB20E336F5006774A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D968DDA20E336F5006774A5 /* Default-568h@2x.png */; };
 		3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D968DDC20E337C7006774A5 /* ScannerViewController.swift */; };
@@ -136,6 +137,7 @@
 		3D8D51A821333D310006BBB1 /* CustomControlInputSlideViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControlInputSlideViewCell.swift; sourceTree = "<group>"; };
 		3D8DA0192144716B00F5FD07 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		3D8DA01B2144BBF100F5FD07 /* SecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
+		3D8DA01D2144EDCE00F5FD07 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		3D92E6C721213B2400F58BA5 /* TempHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHistory.swift; sourceTree = "<group>"; };
 		3D968DDA20E336F5006774A5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3D968DDC20E337C7006774A5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				3D968DDC20E337C7006774A5 /* ScannerViewController.swift */,
 				3D6350F021082E07001C10F7 /* AppearanceViewController.swift */,
 				3D8DA01B2144BBF100F5FD07 /* SecurityViewController.swift */,
+				3D8DA01D2144EDCE00F5FD07 /* SupportViewController.swift */,
 			);
 			path = "Settings UI";
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */,
 				3D33B7A1213F6A0D002A4BE3 /* UIUtils.swift in Sources */,
 				3D78BA9F21039D770090D79A /* Terminal.swift in Sources */,
+				3D8DA01E2144EDCE00F5FD07 /* SupportViewController.swift in Sources */,
 				3D45280A20E15A370094CCB7 /* OctoPod.xcdatamodeld in Sources */,
 				3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */,
 				3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */,
