@@ -1,7 +1,7 @@
 import Foundation
 
 // Listener that reacts to changes in OctoPrint server events and also to printer events
-protocol OctoPrintClientDelegate {
+protocol OctoPrintClientDelegate: class {
     
     // Notification that we are about to connect to OctoPrint server
     func notificationAboutToConnectToServer()

@@ -18,9 +18,6 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Listen to events coming from OctoPrintClient
-        octoprintClient.delegates.append(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +36,14 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate {
         gcodeField.isEnabled = !appConfiguration.appLocked()
 
         updateTerminalLogs()
+
+        // Listen to events coming from OctoPrintClient
+        octoprintClient.delegates.append(self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // Stop listening to events coming from OctoPrintClient
+        octoprintClient.remove(octoPrintClientDelegate: self)
     }
 
     override func didReceiveMemoryWarning() {

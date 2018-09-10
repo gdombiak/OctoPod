@@ -623,6 +623,12 @@ class OctoPrintClient: WebSocketClientDelegate {
     
     // MARK: - Delegates operations
     
+    func remove(octoPrintClientDelegate toRemove: OctoPrintClientDelegate) {
+        delegates = delegates.filter({ (delegate) -> Bool in
+            return delegate !== toRemove
+        })
+    }
+    
     func remove(octoPrintSettingsDelegate toRemove: OctoPrintSettingsDelegate) {
         octoPrintSettingsDelegates = octoPrintSettingsDelegates.filter({ (delegate) -> Bool in
             return delegate !== toRemove
