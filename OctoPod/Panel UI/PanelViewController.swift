@@ -146,8 +146,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     // MARK: - Unwind operations
 
     @IBAction func backFromSetTemperature(_ sender: UIStoryboardSegue) {
-        if let controller = sender.source as? SetTargetTempViewController, let text = controller.targetTempField.text {
-            let newTarget: Int = Int(text)!
+        if let controller = sender.source as? SetTargetTempViewController, let text = controller.targetTempField.text, let newTarget: Int = Int(text) {
             switch controller.targetTempScope! {
             case SetTargetTempViewController.TargetScope.bed:
                 octoprintClient.bedTargetTemperature(newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in

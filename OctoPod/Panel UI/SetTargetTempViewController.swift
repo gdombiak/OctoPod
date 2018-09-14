@@ -34,7 +34,6 @@ class SetTargetTempViewController: UITableViewController {
 
         // Only enable buttons if app is not locked
         offButton.isEnabled = !appConfiguration.appLocked()
-        setButton.isEnabled = !appConfiguration.appLocked()
         button1.isEnabled = !appConfiguration.appLocked()
         button2.isEnabled = !appConfiguration.appLocked()
     }
