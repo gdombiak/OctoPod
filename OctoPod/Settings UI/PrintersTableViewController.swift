@@ -1,15 +1,30 @@
 import UIKit
 
-class PrintersTableViewController: ThemedDynamicUITableViewController {
+class PrintersTableViewController: ThemedDynamicUITableViewController, CloudKitPrinterDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
-    
+    let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
+
     var printers: [Printer]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         printers = printerManager.getPrinters()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Listen to events when printers get updated from iCloud information
+        cloudKitPrinterManager.delegates.append(self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        // Stop listening to events when printers get updated from iCloud information
+        cloudKitPrinterManager.remove(cloudKitPrinterDelegate: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,11 +54,14 @@ class PrintersTableViewController: ThemedDynamicUITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let printerToDelete = printers[indexPath.row]
+            // Update other devices via CloudKit
+            self.cloudKitPrinterManager.pushDeletedPrinter(printer: printerToDelete)  // Properties are gone once deleted from Core Data so run this now
             // Delete the row from the data source
-            printerManager.deletePrinter(printers[indexPath.row])
+            printerManager.deletePrinter(printerToDelete)
             printers = printerManager.getPrinters()
             tableView.reloadData()
-        }    
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -68,5 +86,26 @@ class PrintersTableViewController: ThemedDynamicUITableViewController {
     @IBAction func unwindPrintersUpdated(_ sender: UIStoryboardSegue) {
         printers = printerManager.getPrinters()
         tableView.reloadData()
+    }
+    
+    // MARK: - CloudKitPrinterDelegate
+    
+    func printersUpdated() {
+        DispatchQueue.main.async {
+            // Refresh table of printers
+            self.tableView.reloadData()
+        }
+    }
+    
+    func printerAdded(printer: Printer) {
+        // Do nothing. We will process things on #printersUpdated
+    }
+    
+    func printerUpdated(printer: Printer) {
+        // Do nothing. We will process things on #printersUpdated
+    }
+    
+    func printerDeleted(printer: Printer) {
+        // Do nothing. We will process things on #printersUpdated
     }
 }

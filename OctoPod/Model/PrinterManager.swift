@@ -24,6 +24,21 @@ class PrinterManager {
         return nil
     }
 
+    // Get a printer by its record name. A record name is the PK
+    // used by CloudKit for each record
+    func getPrinterByRecordName(recordName: String) -> Printer? {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "recordName = %@", recordName)
+        
+        if let fetchResults = (try? managedObjectContext!.fetch(fetchRequest)) as? [Printer] {
+            if fetchResults.count == 0 {
+                return nil
+            }
+            return fetchResults[0]
+        }
+        return nil
+    }
+
     func getPrinterByName(name: String) -> Printer? {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name = %@", name)
@@ -36,7 +51,7 @@ class PrinterManager {
         }
         return nil
     }
-
+    
     func getPrinters() -> [Printer] {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
@@ -49,15 +64,19 @@ class PrinterManager {
     
     // MARK: Writing operations
     
-    func addPrinter(name: String, hostname: String, apiKey: String, username: String?, password: String?) {
+    func addPrinter(name: String, hostname: String, apiKey: String, username: String?, password: String?, iCloudUpdate: Bool, modified: Date = Date()) -> Printer? {
         let printer = NSEntityDescription.insertNewObject(forEntityName: "Printer", into: self.managedObjectContext!) as! Printer
         
         printer.name = name
         printer.hostname = hostname
         printer.apiKey = apiKey
+        printer.userModified = modified // Track when settings were modified
         
         printer.username = username
         printer.password = password
+        
+        // Mark if printer needs to be updated in iCloud
+        printer.iCloudUpdate = iCloudUpdate
         
         printer.sdSupport = true // Assume that printer supports SD card. Will get updated later with actual value
         printer.cameraOrientation = Int16(UIImageOrientation.up.rawValue) // Assume no flips or rotations for camera. Will get updated later with actual value
@@ -77,9 +96,11 @@ class PrinterManager {
         
         do {
             try managedObjectContext!.save()
+            return printer
         } catch let error as NSError {
             NSLog("Error adding printer \(error)")
         }
+        return nil
     }
     
     func changeToDefaultPrinter(_ printer: Printer) {
@@ -121,5 +142,19 @@ class PrinterManager {
             }
         }
     }
-
+    
+    // MARK: CloudKit related operations
+    
+    func resetPrintersForiCloud() {
+        do {
+            for printer in getPrinters() {
+                printer.recordName = nil
+                printer.recordData = nil
+                printer.iCloudUpdate = true
+            }
+            try managedObjectContext!.save()
+        } catch let error as NSError {
+            NSLog("Error updating printer \(error)")
+        }
+    }
 }

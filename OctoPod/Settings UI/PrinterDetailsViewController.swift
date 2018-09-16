@@ -3,7 +3,8 @@ import UIKit
 class PrinterDetailsViewController: ThemedStaticUITableViewController {
     
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
-    
+    let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
+
     var updatePrinter: Printer? = nil
     var scannedKey: String?
 
@@ -61,15 +62,22 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController {
             printer.name = printerNameField.text!
             printer.hostname = hostnameField.text!
             printer.apiKey = apiKeyField.text!
+            printer.userModified = Date() // Track when settings were modified
             
             printer.username = usernameField.text
             printer.password = passwordField.text
             
+            // Mark that iCloud needs to be updated
+            printer.iCloudUpdate = true
+            
             printerManager.updatePrinter(printer)
         } else {
             // Add new printer (that will become default if it's the first one)
-            printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text)
+            let _ = printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, iCloudUpdate: true)
         }
+        
+        // Push changes to iCloud so other devices of the user get updated (only if iCloud enabled and user is logged in)
+        cloudKitPrinterManager.pushChanges()
         
         // Go back to previous page and execute the unwinsScanQRCode IBAction
         performSegue(withIdentifier: "unwindPrintersUpdated", sender: self)

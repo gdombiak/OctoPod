@@ -38,6 +38,8 @@
 		3D6350F121082E07001C10F7 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F021082E07001C10F7 /* AppearanceViewController.swift */; };
 		3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F221083BE0001C10F7 /* TabBarController.swift */; };
 		3D6350F721084334001C10F7 /* ThemedDynamicUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F621084334001C10F7 /* ThemedDynamicUITableViewController.swift */; };
+		3D693C5D214CD23400823903 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D693C5C214CD23400823903 /* CloudKit.framework */; };
+		3D693C5F214CEC0600823903 /* CloudKitPrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D693C5E214CEC0600823903 /* CloudKitPrinterManager.swift */; };
 		3D74FA2721251BCF00DA2CB3 /* PSUControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D74FA2621251BCF00DA2CB3 /* PSUControlViewController.swift */; };
 		3D74FA2921251BE600DA2CB3 /* TPLinkSmartplugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D74FA2821251BE600DA2CB3 /* TPLinkSmartplugViewController.swift */; };
 		3D78BA9F21039D770090D79A /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78BA9E21039D770090D79A /* Terminal.swift */; };
@@ -64,6 +66,7 @@
 		3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D968DDC20E337C7006774A5 /* ScannerViewController.swift */; };
 		3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */; };
 		3D98C1DA20E5D096007BB13F /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D98C1D920E5D096007BB13F /* WebSocketClient.swift */; };
+		3D9D9765214DCC440032443A /* CloudKitPrinterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D9764214DCC440032443A /* CloudKitPrinterDelegate.swift */; };
 		3DA252442105028300B60E31 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA252432105028300B60E31 /* FolderViewController.swift */; };
 		3DBAE49F20E6821900D2137D /* SelectDefaultPrinterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */; };
 		3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */; };
@@ -116,6 +119,9 @@
 		3D6350F021082E07001C10F7 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
 		3D6350F221083BE0001C10F7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		3D6350F621084334001C10F7 /* ThemedDynamicUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedDynamicUITableViewController.swift; sourceTree = "<group>"; };
+		3D693C5B214CCEC600823903 /* OctoPod v5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v5.xcdatamodel"; sourceTree = "<group>"; };
+		3D693C5C214CD23400823903 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		3D693C5E214CEC0600823903 /* CloudKitPrinterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitPrinterManager.swift; sourceTree = "<group>"; };
 		3D74FA2621251BCF00DA2CB3 /* PSUControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSUControlViewController.swift; sourceTree = "<group>"; };
 		3D74FA2821251BE600DA2CB3 /* TPLinkSmartplugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPLinkSmartplugViewController.swift; sourceTree = "<group>"; };
 		3D78BA9E21039D770090D79A /* Terminal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terminal.swift; sourceTree = "<group>"; };
@@ -143,6 +149,7 @@
 		3D968DDC20E337C7006774A5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetailsViewController.swift; sourceTree = "<group>"; };
 		3D98C1D920E5D096007BB13F /* WebSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
+		3D9D9764214DCC440032443A /* CloudKitPrinterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitPrinterDelegate.swift; sourceTree = "<group>"; };
 		3DA252432105028300B60E31 /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
 		3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDefaultPrinterViewController.swift; sourceTree = "<group>"; };
 		3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateEvent.swift; sourceTree = "<group>"; };
@@ -168,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8267C0CF229350E955F7AF71 /* Pods_OctoPod.framework in Frameworks */,
+				3D693C5D214CD23400823903 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +185,7 @@
 		2AF93107507B57283430D6F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D693C5C214CD23400823903 /* CloudKit.framework */,
 				BDF04586ED8A4BC29EF06604 /* Pods_OctoPod.framework */,
 				A9F913620E58D596BED0BDF3 /* Pods_OctoPod.framework */,
 			);
@@ -317,6 +326,7 @@
 				3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */,
 				3D82873620E3EBC80035AE0B /* Printer.swift */,
 				3D82873820E3EC3B0035AE0B /* PrinterManager.swift */,
+				3D9D9763214D735D0032443A /* CloudKitSync */,
 				3D8873F720F534C400DCE987 /* PrintFile.swift */,
 				3D78BA9E21039D770090D79A /* Terminal.swift */,
 				3D92E6C721213B2400F58BA5 /* TempHistory.swift */,
@@ -346,6 +356,15 @@
 				3D071A13212682C1005301B4 /* OctoPrintPluginsDelegate.swift */,
 			);
 			path = OctoPrint;
+			sourceTree = "<group>";
+		};
+		3D9D9763214D735D0032443A /* CloudKitSync */ = {
+			isa = PBXGroup;
+			children = (
+				3D693C5E214CEC0600823903 /* CloudKitPrinterManager.swift */,
+				3D9D9764214DCC440032443A /* CloudKitPrinterDelegate.swift */,
+			);
+			path = CloudKitSync;
 			sourceTree = "<group>";
 		};
 		3DC57D5B20F4190B0061A87E /* File UI */ = {
@@ -444,6 +463,12 @@
 					3D4527FD20E15A370094CCB7 = {
 						CreatedOnToolsVersion = 9.4.1;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
@@ -530,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */,
+				3D9D9765214DCC440032443A /* CloudKitPrinterDelegate.swift in Sources */,
 				3D0E3B1121097E7A0087F7E4 /* ThemeUIUtils.swift in Sources */,
 				3D071A14212682C1005301B4 /* OctoPrintPluginsDelegate.swift in Sources */,
 				3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */,
@@ -562,6 +588,7 @@
 				3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */,
 				3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */,
 				3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */,
+				3D693C5F214CEC0600823903 /* CloudKitPrinterManager.swift in Sources */,
 				3D92E6C821213B2400F58BA5 /* TempHistory.swift in Sources */,
 				3DFA8074210E30C100B5BFAA /* CloudFilesManager.swift in Sources */,
 				3D5849E4210CC8720068D87A /* OctoPrintSettingsDelegate.swift in Sources */,
@@ -802,12 +829,13 @@
 		3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				3D693C5B214CCEC600823903 /* OctoPod v5.xcdatamodel */,
 				3D40C1822131115800384F4A /* OctoPod v4.xcdatamodel */,
 				3D5D613421209B52000B66E7 /* OctoPod v3.xcdatamodel */,
 				3D5849E5210CCB560068D87A /* OctoPod v2.xcdatamodel */,
 				3D45280920E15A370094CCB7 /* OctoPod.xcdatamodel */,
 			);
-			currentVersion = 3D40C1822131115800384F4A /* OctoPod v4.xcdatamodel */;
+			currentVersion = 3D693C5B214CCEC600823903 /* OctoPod v5.xcdatamodel */;
 			path = OctoPod.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

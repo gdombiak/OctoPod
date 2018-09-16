@@ -1,5 +1,6 @@
 import UIKit
 import CoreData
+import CloudKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarController.selectedIndex = printerManager!.getPrinters().count == 0 ? 4 : 0
         }
 
-        // Override point for customization after application launch.
+        // Register to receive push notifications via APNs (CloudKit sends silent push notifications when records change)
+        UIApplication.shared.registerForRemoteNotifications()
+
+        // Start synchronizing with iCloud (if available)
+        self.cloudKitPrinterManager.start()
+
         return true
     }
 
@@ -30,6 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+
+        // Start synchronizing with iCloud (if available)
+        self.cloudKitPrinterManager.start()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -87,6 +96,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    // MARK: - Remote notifications
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let dict = userInfo as! [String: NSObject]
+        let notification = CKNotification(fromRemoteNotificationDictionary: dict)
+        if notification.subscriptionID == cloudKitPrinterManager.SUBSCRIPTION_ID {
+            cloudKitPrinterManager.pullChanges(completionHandler: {
+                completionHandler(.newData)
+            }, errorHandler: {
+                completionHandler(.failed)
+            })
+        } else {
+            // No data was downloaded by this app
+            completionHandler(.noData)
+        }
+    }
+
     // MARK: - My extensions
 
     lazy var printerManager: PrinterManager? = {
@@ -94,6 +120,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var printerManager = PrinterManager()
         printerManager.managedObjectContext = context
         return printerManager
+    }()
+    
+    lazy var cloudKitPrinterManager: CloudKitPrinterManager = {
+       return CloudKitPrinterManager(printerManager: self.printerManager!)
     }()
 
     lazy var octoprintClient: OctoPrintClient = {

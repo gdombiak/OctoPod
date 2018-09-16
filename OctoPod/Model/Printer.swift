@@ -4,11 +4,16 @@ import CoreData
 // A Printer (term used in the UI) actually represents an OctoPrint server
 class Printer: NSManagedObject {
     
+    @NSManaged var recordName: String? // Unique identifier of this record in CloudKit
+    @NSManaged var recordData: Data? // Encoded data of the iCloud record
+    @NSManaged var iCloudUpdate: Bool // Flag that indicates if this record needs to be created/updated in CloudKit
+    
     @NSManaged var name: String
     @NSManaged var hostname: String
     @NSManaged var streamUrl: String? // path to the webcam. Info discovered via api/settings
     @NSManaged var apiKey: String
     @NSManaged var defaultPrinter: Bool
+    @NSManaged var userModified: Date? // Date when user last modified this settings
 
     @NSManaged var username: String?
     @NSManaged var password: String?
