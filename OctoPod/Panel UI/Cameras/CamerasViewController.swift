@@ -189,16 +189,31 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         // Try preserving existing selected camera, if none then indicate which is first view controller.
         // If selection is bigger than existing cameras (since they were removed from server) then go to first one
         if currentIndex == nil || currentIndex! >= orderedViewControllers.count {
-            if let firstViewController = orderedViewControllers.first {
-                pageContainer.setViewControllers([firstViewController],
-                                                 direction: .forward,
-                                                 animated: true,
-                                                 completion: nil)
-                pageControl.currentPage = 0
-                currentIndex = 0
-            }
+            renderFirstVC()
         } else if cameraChanged {
-            orderedViewControllers[currentIndex!].cameraSelectedChanged()
+            let cameraVC = orderedViewControllers[currentIndex!]
+            if let existingVCs = pageContainer.viewControllers {
+                if existingVCs.contains(cameraVC) {
+                    // Refresh valid VC
+                    cameraVC.cameraSelectedChanged()
+                } else {
+                    // Reset VCs and start from first VS
+                    renderFirstVC()
+                }
+            } else {
+                renderFirstVC()
+            }
+        }
+    }
+    
+    fileprivate func renderFirstVC() {
+        if let firstViewController = orderedViewControllers.first {
+            pageContainer.setViewControllers([firstViewController],
+                                             direction: .forward,
+                                             animated: true,
+                                             completion: nil)
+            pageControl.currentPage = 0
+            currentIndex = 0
         }
     }
     

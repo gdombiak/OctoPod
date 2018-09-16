@@ -92,6 +92,8 @@ class PrintersTableViewController: ThemedDynamicUITableViewController, CloudKitP
     
     func printersUpdated() {
         DispatchQueue.main.async {
+            // Get new printers
+            self.printers = self.printerManager.getPrinters()
             // Refresh table of printers
             self.tableView.reloadData()
         }
