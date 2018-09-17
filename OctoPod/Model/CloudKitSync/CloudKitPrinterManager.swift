@@ -254,6 +254,26 @@ class CloudKitPrinterManager {
                                 self.pullChanges(completionHandler: completionHandler, errorHandler: errorHandler)
                             }
                         }
+                    } else if ckerror.isUserDeletedZone() {
+                        // User deleted zone which deleted data from iCloud and all connected devices
+                        // We need to recreate zone and mark that we need to upload all data again
+                        self.createZone(completion: { (error) in
+                            if let error = error {
+                                // Failed to create zone
+                                NSLog("Error fetching zone changes. Failed to create zone due to: \(error)")
+                                return
+                            } else {
+                                // Zone created
+                                // Mark all printers as need to be updated in iCloid
+                                self.printerManager.resetPrintersForiCloud()
+                                // Reset change token since it is no longer valid
+                                UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
+                                // Cancel this operation
+                                operation.cancel()
+                                // Zone created. Retry operation
+                                self.pullChanges(completionHandler: completionHandler, errorHandler: errorHandler)
+                            }
+                        })
                     } else {
                         // Failed with some unknown CKError
                         NSLog("Error fetching zone changes: \(error) in recordZoneFetchCompletionBlock")
