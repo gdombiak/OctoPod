@@ -98,7 +98,7 @@ class PrinterManager {
             try managedObjectContext!.save()
             return printer
         } catch let error as NSError {
-            NSLog("Error adding printer \(error)")
+            NSLog("Error adding printer \(printer.hostname). Error:\(error)")
         }
         return nil
     }
@@ -119,7 +119,7 @@ class PrinterManager {
         do {
             try managedObjectContext!.save()
         } catch let error as NSError {
-            NSLog("Error updating printer \(error)")
+            NSLog("Error updating printer \(printer.hostname). Error: \(error)")
         }
     }
     
@@ -131,7 +131,7 @@ class PrinterManager {
         do {
             try managedObjectContext!.save()
         } catch let error as NSError {
-            NSLog("Error deleting printer \(error)")
+            NSLog("Error deleting printer \(printer.hostname). Error:\(error)")
         }
         
         if printer.defaultPrinter {

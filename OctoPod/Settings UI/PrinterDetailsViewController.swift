@@ -77,7 +77,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         }
         
         // Push changes to iCloud so other devices of the user get updated (only if iCloud enabled and user is logged in)
-        cloudKitPrinterManager.pushChanges()
+        cloudKitPrinterManager.pushChanges(completion: nil)
         
         goBack()
     }
