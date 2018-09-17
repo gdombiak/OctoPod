@@ -1,6 +1,6 @@
 import UIKit
 
-class PrinterDetailsViewController: ThemedStaticUITableViewController {
+class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitPrinterDelegate {
     
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
@@ -25,13 +25,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let selectedPrinter = updatePrinter {
-            printerNameField.text = selectedPrinter.name
-            hostnameField.text = selectedPrinter.hostname
-            // Hide or show URL error message
-            urlErrorMessageLabel.isHidden = isValidURL()
-            apiKeyField.text = scannedKey == nil ? selectedPrinter.apiKey : scannedKey
-            usernameField.text = selectedPrinter.username
-            passwordField.text = selectedPrinter.password
+            updateFieldsForPrinter(printer: selectedPrinter)
         } else {
             // Hide URL error message
             urlErrorMessageLabel.isHidden = true
@@ -40,11 +34,17 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController {
         // Register for keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+
+        // Listen to events when printers get updated from iCloud information
+        cloudKitPrinterManager.delegates.append(self)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         // Unregister for keyboard notifications
         NotificationCenter.default.removeObserver(self)
+
+        // Stop listening to events when printers get updated from iCloud information
+        cloudKitPrinterManager.remove(cloudKitPrinterDelegate: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,7 +53,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController {
     }
 
     @IBAction func cancelChanges(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        goBack()
     }
     
     @IBAction func saveChanges(_ sender: Any) {
@@ -79,8 +79,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController {
         // Push changes to iCloud so other devices of the user get updated (only if iCloud enabled and user is logged in)
         cloudKitPrinterManager.pushChanges()
         
-        // Go back to previous page and execute the unwinsScanQRCode IBAction
-        performSegue(withIdentifier: "unwindPrintersUpdated", sender: self)
+        goBack()
     }
     
     @IBAction func urlChanged(_ sender: Any) {
@@ -124,12 +123,57 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController {
         }
     }
 
+    // MARK: - CloudKitPrinterDelegate
+    
+    func printersUpdated() {
+        // Do nothing. We care about individual printers
+    }
+
+    func printerAdded(printer: Printer) {
+        // Do nothing. We care about the printer we are editing only
+    }
+    
+    func printerUpdated(printer: Printer) {
+        if printer == updatePrinter {
+            // Same printer we are editing so update page with latest info
+            DispatchQueue.main.async {
+                self.updateFieldsForPrinter(printer: printer)
+            }
+        }
+    }
+    
+    func printerDeleted(printer: Printer) {
+        if printer == updatePrinter {
+            // Same printer we are editing so close window
+            DispatchQueue.main.async {
+                self.goBack()
+            }
+        }
+    }
+
+    // MARK: - Private functions
+
+    fileprivate func updateFieldsForPrinter(printer: Printer) {
+        printerNameField.text = printer.name
+        hostnameField.text = printer.hostname
+        // Hide or show URL error message
+        urlErrorMessageLabel.isHidden = isValidURL()
+        apiKeyField.text = scannedKey == nil ? printer.apiKey : scannedKey
+        usernameField.text = printer.username
+        passwordField.text = printer.password
+    }
+    
     fileprivate func updateSaveButton() {
         if !(printerNameField.text?.isEmpty)! && !(hostnameField.text?.isEmpty)! && !(apiKeyField.text?.isEmpty)! {
             saveButton.isEnabled = isValidURL()
         } else {
             saveButton.isEnabled = false
         }
+    }
+    
+    fileprivate func goBack() {
+        // Go back to previous page and execute the unwinsScanQRCode IBAction
+        performSegue(withIdentifier: "unwindPrintersUpdated", sender: self)
     }
     
     fileprivate func isValidURL() -> Bool {
