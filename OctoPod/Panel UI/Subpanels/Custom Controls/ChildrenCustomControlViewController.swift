@@ -6,7 +6,7 @@ class ChildrenCustomControlViewController: ThemedDynamicUITableViewController {
     
     var rootControlsVC: CustomControlsViewController!
     var container: Container!
-    var children: Array<CustomControl>!
+    var childrenCC: Array<CustomControl>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class ChildrenCustomControlViewController: ThemedDynamicUITableViewController {
         // Update window title to folder we are browsing
         navigationItem.title = container.name()
         
-        children = container.children
+        childrenCC = container.children
     }
 
     // MARK: - Table view data source
@@ -32,12 +32,12 @@ class ChildrenCustomControlViewController: ThemedDynamicUITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return children!.count
+        return childrenCC!.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let container = children[indexPath.row] as? Container {
+        if let container = childrenCC[indexPath.row] as? Container {
             let cell = tableView.dequeueReusableCell(withIdentifier: "container_cell", for: indexPath)
             // Configure the cell
             cell.textLabel?.text = container.name()
@@ -46,16 +46,16 @@ class ChildrenCustomControlViewController: ThemedDynamicUITableViewController {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "control_cell", for: indexPath)
             // Configure the cell
-            if let command = children[indexPath.row] as? Command {
+            if let command = childrenCC[indexPath.row] as? Command {
                 cell.imageView?.image = UIImage(named: "GCode")
                 cell.textLabel?.text = command.name()
                 cell.textLabel?.textColor = Theme.currentTheme().labelColor()
-            } else if let script = children[indexPath.row] as? Script {
+            } else if let script = childrenCC[indexPath.row] as? Script {
                 cell.imageView?.image = UIImage(named: "Script")
                 cell.textLabel?.text = script.name()
                 cell.textLabel?.textColor = Theme.currentTheme().labelColor()
             } else {
-                NSLog("Found unexpected custom control: \(children[indexPath.row])")
+                NSLog("Found unexpected custom control: \(childrenCC[indexPath.row])")
                 cell.imageView?.image = nil
                 cell.textLabel?.text = "Unknown Control"
             }
@@ -69,13 +69,13 @@ class ChildrenCustomControlViewController: ThemedDynamicUITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoControl" {
             if let controller = segue.destination as? ExecuteControlViewController, let selected = tableView.indexPathForSelectedRow {
-                if let executeControl = children[selected.row] as? ExecuteControl {
+                if let executeControl = childrenCC[selected.row] as? ExecuteControl {
                     controller.control = executeControl
                 }
             }
         } else if segue.identifier == "gotoContainer" {
             if let controller = segue.destination as? ChildrenCustomControlViewController, let selected = tableView.indexPathForSelectedRow {
-                if let childContainer = children[selected.row] as? Container {
+                if let childContainer = childrenCC[selected.row] as? Container {
                     controller.rootControlsVC = rootControlsVC
                     controller.container = childContainer
                 }
@@ -87,7 +87,7 @@ class ChildrenCustomControlViewController: ThemedDynamicUITableViewController {
         rootControlsVC.refreshContainer(container: container) { (updatedContainer: Container?) in
             if let updated = updatedContainer {
                 self.container = updated
-                self.children = updated.children
+                self.childrenCC = updated.children
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     sender.endRefreshing()
