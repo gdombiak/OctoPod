@@ -110,8 +110,12 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate {
             printerSubpanelHeightConstraintPortrait = 313
             printerSubpanelHeightConstraintLandscape = 330
         } else if screenHeight == 812 {
-            // iPhone X
+            // iPhone X, Xs
             printerSubpanelHeightConstraintPortrait = 360
+            printerSubpanelHeightConstraintLandscape = 330
+        } else if screenHeight == 896 {
+            // iPhone Xr, Xs Max
+            printerSubpanelHeightConstraintPortrait = 413
             printerSubpanelHeightConstraintLandscape = 330
         } else if screenHeight == 1024 {
             // iPad (9.7-inch)
