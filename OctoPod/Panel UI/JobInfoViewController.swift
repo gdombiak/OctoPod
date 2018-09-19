@@ -53,7 +53,7 @@ class JobInfoViewController: UITableViewController {
 
                     DispatchQueue.main.async {
                         if let newTitle = buttonTitle {
-                            self.pauseOrResumeButton.setTitle(newTitle, for: UIControlState.normal)
+                            self.pauseOrResumeButton.setTitle(newTitle, for: UIControl.State.normal)
                             self.pauseOrResumeButton.isEnabled = !self.appConfiguration.appLocked() // Only enable if app is not locked
                         } else {
                             self.pauseOrResumeButton.isEnabled = false

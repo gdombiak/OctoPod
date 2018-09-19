@@ -39,7 +39,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         camerasViewController?.infoGesturesAvailable = true
 
         // Listen to events when app comes back from background
-        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         // Listen to events coming from OctoPrintClient
         octoprintClient.delegates.append(self)
@@ -250,7 +250,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         // Do nothing
     }
     
-    func cameraOrientationChanged(newOrientation: UIImageOrientation) {
+    func cameraOrientationChanged(newOrientation: UIImage.Orientation) {
         DispatchQueue.main.async {
             self.updateForCameraOrientation(orientation: newOrientation)
         }
@@ -273,7 +273,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         super.viewWillTransition(to: size, with: coordinator)
         if let printer = printerManager.getDefaultPrinter() {
             // Update layout depending on camera orientation
-            updateForCameraOrientation(orientation: UIImageOrientation(rawValue: Int(printer.cameraOrientation))!, devicePortrait: size.height == screenHeight)
+            updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!, devicePortrait: size.height == screenHeight)
         }
     }
     
@@ -285,7 +285,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             DispatchQueue.main.async { self.navigationItem.title = printer.name }
             
             // Update layout depending on camera orientation
-            DispatchQueue.main.async { self.updateForCameraOrientation(orientation: UIImageOrientation(rawValue: Int(printer.cameraOrientation))!) }
+            DispatchQueue.main.async { self.updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!) }
 
             // Ask octoprintClient to connect to OctoPrint server
             octoprintClient.connectToServer(printer: printer)
@@ -310,8 +310,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
-    fileprivate func updateForCameraOrientation(orientation: UIImageOrientation, devicePortrait: Bool = UIApplication.shared.statusBarOrientation.isPortrait) {
-        if orientation == UIImageOrientation.left || orientation == UIImageOrientation.leftMirrored || orientation == UIImageOrientation.rightMirrored || orientation == UIImageOrientation.right {
+    fileprivate func updateForCameraOrientation(orientation: UIImage.Orientation, devicePortrait: Bool = UIApplication.shared.statusBarOrientation.isPortrait) {
+        if orientation == UIImage.Orientation.left || orientation == UIImage.Orientation.leftMirrored || orientation == UIImage.Orientation.rightMirrored || orientation == UIImage.Orientation.right {
             printerSubpanelHeightConstraint.constant = 280
         } else {
             printerSubpanelHeightConstraint.constant = devicePortrait ? printerSubpanelHeightConstraintPortrait! : printerSubpanelHeightConstraintLandscape!
@@ -329,11 +329,11 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     // We are using Container Views so this is how we keep a reference to the contained view controllers
     fileprivate func trackChildrenControllers() {
-        guard let subpanelsChild = childViewControllers.first as? SubpanelsViewController else  {
+        guard let subpanelsChild = children.first as? SubpanelsViewController else  {
             fatalError("Check storyboard for missing SubpanelsViewController")
         }
         
-        guard let camerasChild = childViewControllers.last as? CamerasViewController else {
+        guard let camerasChild = children.last as? CamerasViewController else {
             fatalError("Check storyboard for missing CamerasViewController")
         }
         subpanelsViewController = subpanelsChild

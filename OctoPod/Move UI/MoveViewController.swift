@@ -34,7 +34,7 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate {
             navigationItem.title = printer.name
 
             // Update layout depending on camera orientation
-            updateForCameraOrientation(orientation: UIImageOrientation(rawValue: Int(printer.cameraOrientation))!)
+            updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!)
 
             // Listen to changes to OctoPrint Settings in case the camera orientation has changed
             octoprintClient.octoPrintSettingsDelegates.append(self)
@@ -54,7 +54,7 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate {
         // Do nothing
     }
     
-    func cameraOrientationChanged(newOrientation: UIImageOrientation) {
+    func cameraOrientationChanged(newOrientation: UIImage.Orientation) {
         DispatchQueue.main.async {
             self.updateForCameraOrientation(orientation: newOrientation)
         }
@@ -72,7 +72,7 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate {
         super.viewWillTransition(to: size, with: coordinator)
         if let printer = printerManager.getDefaultPrinter() {
             // Update layout depending on camera orientation
-            updateForCameraOrientation(orientation: UIImageOrientation(rawValue: Int(printer.cameraOrientation))!, devicePortrait: size.height == screenHeight)
+            updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!, devicePortrait: size.height == screenHeight)
         }
     }
     
@@ -80,18 +80,18 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate {
     
     // We are using Container Views so this is how we keep a reference to the contained view controllers
     fileprivate func trackChildrenControllers() {
-        guard let camerasChild = childViewControllers.first as? CamerasViewController else {
+        guard let camerasChild = children.first as? CamerasViewController else {
             fatalError("Check storyboard for missing CamerasViewController")
         }
         camerasViewController = camerasChild
     }
     
-    fileprivate func updateForCameraOrientation(orientation: UIImageOrientation, devicePortrait: Bool = UIApplication.shared.statusBarOrientation.isPortrait) {
+    fileprivate func updateForCameraOrientation(orientation: UIImage.Orientation, devicePortrait: Bool = UIApplication.shared.statusBarOrientation.isPortrait) {
         if printerSubpanelHeightConstraint == nil {
             // Do nothing since view never rendered
             return
         }
-        if orientation == UIImageOrientation.left || orientation == UIImageOrientation.leftMirrored || orientation == UIImageOrientation.rightMirrored || orientation == UIImageOrientation.right {
+        if orientation == UIImage.Orientation.left || orientation == UIImage.Orientation.leftMirrored || orientation == UIImage.Orientation.rightMirrored || orientation == UIImage.Orientation.right {
             printerSubpanelHeightConstraint.constant = 280
         } else {
             printerSubpanelHeightConstraint.constant = devicePortrait ? printerSubpanelHeightConstraintPortrait! : printerSubpanelHeightConstraintLandscape!

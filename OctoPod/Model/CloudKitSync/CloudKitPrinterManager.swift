@@ -11,7 +11,7 @@ class CloudKitPrinterManager {
     private let CHANGE_TOKEN = "CK_CHANGE_TOKEN" // Key to use for storing token that tracks last processed changes from CloudKit server
 
     private let RECORD_TYPE = "OctoPrint"
-    private let zoneID = CKRecordZoneID(zoneName: "MyOctoPod", ownerName: CKCurrentUserDefaultName)
+    private let zoneID = CKRecordZone.ID(zoneName: "MyOctoPod", ownerName: CKCurrentUserDefaultName)
 
     private let printerManager: PrinterManager!
     private var starting = false
@@ -110,7 +110,7 @@ class CloudKitPrinterManager {
                                                    predicate: predicate,
                                                    subscriptionID: SUBSCRIPTION_ID,
                                                    options: [.firesOnRecordCreation, .firesOnRecordDeletion, .firesOnRecordUpdate])
-            let notificationInfo = CKNotificationInfo()
+            let notificationInfo = CKSubscription.NotificationInfo()
             notificationInfo.shouldSendContentAvailable = true // Use silent content notifications - user will not be prompt for permissions
             subscription.notificationInfo = notificationInfo
             
@@ -223,7 +223,7 @@ class CloudKitPrinterManager {
         }
         // Include change token in the query to get incremental changes
         // If nil then we will get everything
-        let options = CKFetchRecordZoneChangesOptions()
+        let options = CKFetchRecordZoneChangesOperation.ZoneOptions()
         options.previousServerChangeToken = changeToken
         // Prepare query to custom zone and ask to get new changes (i.e. iterate through pagination transparently)
         let optionsMap = [zoneID: options]
@@ -366,7 +366,7 @@ class CloudKitPrinterManager {
     
     
     // CloudKit informed us that a record has been deleted
-    fileprivate func recordDeleted(recordID: CKRecordID) {
+    fileprivate func recordDeleted(recordID: CKRecord.ID) {
         let recordName = recordID.recordName
         if let printer = printerManager.getPrinterByRecordName(recordName: recordName) {
             NSLog("Deleted printer: \(printer.hostname)")
@@ -489,7 +489,7 @@ class CloudKitPrinterManager {
 
                         // No record up on iCloud, so we’ll start with a
                         // brand new record.
-                        let recordID = CKRecordID(recordName: UUID().uuidString , zoneID: self.zoneID)
+                        let recordID = CKRecord.ID(recordName: UUID().uuidString , zoneID: self.zoneID)
                         let record = CKRecord(recordType: self.RECORD_TYPE, recordID: recordID)
                         self.updateRecordFields(record: record, from: printer)
                         // Save new record
@@ -587,7 +587,7 @@ class CloudKitPrinterManager {
     
     // Fetch a record from the iCloud database
     fileprivate func loadRecord(name: String, completion: @escaping (CKRecord?, Error?) -> Void) {
-        let recordID = CKRecordID(recordName: name, zoneID: self.zoneID)
+        let recordID = CKRecord.ID(recordName: name, zoneID: self.zoneID)
         let operation = CKFetchRecordsOperation(recordIDs: [recordID])
         operation.fetchRecordsCompletionBlock = { records, error in
             guard error == nil else {
@@ -637,7 +637,7 @@ class CloudKitPrinterManager {
     // Create zone if needed. Any other error is not handled and passed to completion block
     fileprivate func saveRecord(record: CKRecord, completion: @escaping (CKRecord?, Error?) -> Void) {
         let operation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: [])
-        operation.modifyRecordsCompletionBlock = { (savedRecords: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: Error?) in
+        operation.modifyRecordsCompletionBlock = { (savedRecords: [CKRecord]?, deletedRecordIDs: [CKRecord.ID]?, error: Error?) in
             if let error = error {
                 if let ckerror = error as? CKError {
                     if ckerror.isZoneNotFound() {
@@ -679,9 +679,9 @@ class CloudKitPrinterManager {
         db.add(operation)
     }
     
-    fileprivate func deleteRecord(recordID: CKRecordID, completion: @escaping (Error?) -> Void) {
+    fileprivate func deleteRecord(recordID: CKRecord.ID, completion: @escaping (Error?) -> Void) {
         let operation = CKModifyRecordsOperation(recordsToSave: [], recordIDsToDelete: [recordID])
-        operation.modifyRecordsCompletionBlock = { (savedRecords: [CKRecord]?, deletedRecordIDs: [CKRecordID]?, error: Error?) in
+        operation.modifyRecordsCompletionBlock = { (savedRecords: [CKRecord]?, deletedRecordIDs: [CKRecord.ID]?, error: Error?) in
             if let error = error {
                 if let ckerror = error as? CKError {
                     if !ckerror.isZoneNotFound() {

@@ -27,7 +27,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         refreshControl!.attributedTitle = NSAttributedString(string: "Pull down to refresh")
         tableView.addSubview(refreshControl!)
         tableView.alwaysBounceVertical = true
-        self.refreshControl?.addTarget(self, action: #selector(refreshFiles), for: UIControlEvents.valueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(refreshFiles), for: UIControl.Event.valueChanged)
         
         // Update sort control based on user preferences for sorting
         var selectIndex = 0
@@ -103,7 +103,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         return !files[indexPath.row].isFolder() && !appConfiguration.appLocked()
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete selected file
             self.deleteRow(forRowAt: indexPath)

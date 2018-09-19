@@ -24,13 +24,13 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
 
         // Add UIPageViewController as child of this VC to preserve hierarchy. This will
         // fix any error of having detached view controllers
-        addChildViewController(pageContainer)
+        addChild(pageContainer)
 
         // Add it to the view
         view.addSubview(pageContainer.view)
         
         // Configure our custom pageControl
-        view.bringSubview(toFront: pageControl)
+        view.bringSubviewToFront(pageControl)
 
         // Reset subpanels
         orderedViewControllers = []

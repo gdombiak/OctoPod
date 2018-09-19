@@ -842,31 +842,31 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
     
-    fileprivate func calculateImageOrientation(flipH: Bool, flipV: Bool, rotate90: Bool) -> UIImageOrientation {
+    fileprivate func calculateImageOrientation(flipH: Bool, flipV: Bool, rotate90: Bool) -> UIImage.Orientation {
         if !flipH && !flipV && !rotate90 {
              // No flips selected
-            return UIImageOrientation.up
+            return UIImage.Orientation.up
         } else if flipH && !flipV && !rotate90 {
             // Flip webcam horizontally
-            return UIImageOrientation.upMirrored
+            return UIImage.Orientation.upMirrored
         } else if !flipH && flipV && !rotate90 {
             // Flip webcam vertically
-            return UIImageOrientation.downMirrored
+            return UIImage.Orientation.downMirrored
         } else if !flipH && !flipV && rotate90 {
             // Rotate webcam 90 degrees counter clockwise
-            return UIImageOrientation.left
+            return UIImage.Orientation.left
         } else if flipH && flipV && !rotate90 {
             // Flip webcam horizontally AND Flip webcam vertically
-            return UIImageOrientation.down
+            return UIImage.Orientation.down
         } else if flipH && !flipV && rotate90 {
             // Flip webcam horizontally AND Rotate webcam 90 degrees counter clockwise
-            return UIImageOrientation.leftMirrored
+            return UIImage.Orientation.leftMirrored
         } else if !flipH && flipV && rotate90 {
             // Flip webcam vertically AND Rotate webcam 90 degrees counter clockwise
-            return UIImageOrientation.rightMirrored
+            return UIImage.Orientation.rightMirrored
         } else {
             // Flip webcam horizontally AND Flip webcam vertically AND Rotate webcam 90 degrees counter clockwise
-            return UIImageOrientation.right
+            return UIImage.Orientation.right
         }
     }
     

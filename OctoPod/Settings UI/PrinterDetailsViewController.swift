@@ -32,8 +32,8 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         }
 
         // Register for keyboard notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         // Listen to events when printers get updated from iCloud information
         cloudKitPrinterManager.delegates.append(self)
@@ -193,7 +193,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
 
     fileprivate func adjustingHeight(show: Bool, notification: Notification) {
         var userInfo = notification.userInfo!
-        let keyboardFrame: CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         //        let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
         let changeInHeight = (keyboardFrame.height + 40) * (show ? 1 : -1)
         // Set the table content inset to the keyboard height

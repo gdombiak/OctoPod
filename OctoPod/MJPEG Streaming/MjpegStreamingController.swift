@@ -32,7 +32,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     open var didFinishWithHTTPErrors: ((HTTPURLResponse)->Void)?
     open var contentURL: URL?
     open var imageView: UIImageView
-    open var imageOrientation: UIImageOrientation?
+    open var imageOrientation: UIImage.Orientation?
     
     public init(imageView: UIImageView) {
         self.imageView = imageView

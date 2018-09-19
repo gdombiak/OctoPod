@@ -6,7 +6,7 @@ import UIKit
 protocol OctoPrintSettingsDelegate: class {
     
     // Notification that orientation of the camera hosted by OctoPrint has changed
-    func cameraOrientationChanged(newOrientation: UIImageOrientation)
+    func cameraOrientationChanged(newOrientation: UIImage.Orientation)
 
     // Notification that path to camera hosted by OctoPrint has changed
     func cameraPathChanged(streamUrl: String)
@@ -30,7 +30,7 @@ protocol OctoPrintSettingsDelegate: class {
 // Make everything optional so implementors of this protocol are not forced to implement everything
 extension OctoPrintSettingsDelegate {
     
-    func cameraOrientationChanged(newOrientation: UIImageOrientation) {
+    func cameraOrientationChanged(newOrientation: UIImage.Orientation) {
     }
     
     func cameraPathChanged(streamUrl: String) {        

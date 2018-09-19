@@ -79,7 +79,7 @@ class PrinterManager {
         printer.iCloudUpdate = iCloudUpdate
         
         printer.sdSupport = true // Assume that printer supports SD card. Will get updated later with actual value
-        printer.cameraOrientation = Int16(UIImageOrientation.up.rawValue) // Assume no flips or rotations for camera. Will get updated later with actual value
+        printer.cameraOrientation = Int16(UIImage.Orientation.up.rawValue) // Assume no flips or rotations for camera. Will get updated later with actual value
 
         printer.invertX = false // Assume control of X axis is not inverted. Will get updated later with actual value
         printer.invertY = false // Assume control of Y axis is not inverted. Will get updated later with actual value
