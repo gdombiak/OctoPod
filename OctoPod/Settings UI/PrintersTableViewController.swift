@@ -9,12 +9,13 @@ class PrintersTableViewController: ThemedDynamicUITableViewController, CloudKitP
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Get list of printers
-        printers = printerManager.getPrinters()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        // Get list of printers
+        printers = printerManager.getPrinters()
 
         // Listen to events when printers get updated from iCloud information
         cloudKitPrinterManager.delegates.append(self)
