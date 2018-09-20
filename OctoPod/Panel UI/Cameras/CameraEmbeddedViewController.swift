@@ -186,6 +186,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                         self.imageView.image = nil
                         // Display error messages
                         self.errorMessageLabel.text = "Authentication failed"
+                        self.errorMessageLabel.numberOfLines = 1
                         self.errorMessageLabel.isHidden = false
                     }
                 }
@@ -195,6 +196,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                         self.imageView.image = nil
                         // Display error messages
                         self.errorMessageLabel.text = error.localizedDescription
+                        self.errorMessageLabel.numberOfLines = 2
                         self.errorURLButton.setTitle(self.cameraURL, for: .normal)
                         self.errorMessageLabel.isHidden = false
                         self.errorURLButton.isHidden = false
@@ -210,10 +212,12 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                             // If URL to camera was not returned via /api/settings and
                             // we got a 503 to the best guessed URL then show "no camera" error message
                             self.errorMessageLabel.text = "No camera"
+                            self.errorMessageLabel.numberOfLines = 1
                             self.errorMessageLabel.isHidden = false
                             self.errorURLButton.isHidden = true
                         } else {
                             self.errorMessageLabel.text = "Request error. HTTP response: \(httpResponse.statusCode)"
+                            self.errorMessageLabel.numberOfLines = 1
                             self.errorURLButton.setTitle(self.cameraURL, for: .normal)
                             self.errorMessageLabel.isHidden = false
                             self.errorURLButton.isHidden = false
@@ -232,6 +236,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             } else {
                 // Camera URL was not valid (e.g. url string contains characters that are illegal in a URL, or is an empty string)
                 self.errorMessageLabel.text = "Invalid camera URL"
+                self.errorMessageLabel.numberOfLines = 1
                 self.errorURLButton.setTitle(self.cameraURL, for: .normal)
                 self.errorMessageLabel.isHidden = false
                 self.errorURLButton.isHidden = false
