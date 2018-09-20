@@ -5,9 +5,18 @@ import CoreData
 // Manager of persistent printer information (OctoPrint servers) that are stored in the iPhone
 // Printer information (OctoPrint server info) is used for connecting to the server
 class PrinterManager {
-    var managedObjectContext: NSManagedObjectContext?
+    var managedObjectContext: NSManagedObjectContext? // Main Queue. Should only be used by Main thread
     
     init() { }
+
+    // MARK: Private context operations
+    
+    // Context to use when not running in main thread and using Core Data
+    func newPrivateContext() -> NSManagedObjectContext {
+        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        context.parent = managedObjectContext!
+        return context
+    }
 
     // MARK: Reading operations
 
@@ -51,15 +60,19 @@ class PrinterManager {
         }
         return nil
     }
-    
-    func getPrinters() -> [Printer] {
+
+    func getPrinters(context: NSManagedObjectContext) -> [Printer] {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         
-        if let fetchResults = (try? managedObjectContext!.fetch(fetchRequest)) as? [Printer] {
+        if let fetchResults = (try? context.fetch(fetchRequest)) as? [Printer] {
             return fetchResults
         }
         return []
+    }
+    
+    func getPrinters() -> [Printer] {
+        return getPrinters(context: managedObjectContext!)
     }
     
     // MARK: Writing operations
@@ -145,16 +158,43 @@ class PrinterManager {
     
     // MARK: CloudKit related operations
     
-    func resetPrintersForiCloud() {
-        do {
-            for printer in getPrinters() {
-                printer.recordName = nil
-                printer.recordData = nil
-                printer.iCloudUpdate = true
+    func resetPrintersForiCloud(context: NSManagedObjectContext) {
+        switch context.concurrencyType {
+        case .mainQueueConcurrencyType:
+            // If context runs in main thread then just run this code
+            do {
+                for printer in getPrinters() {
+                    printer.recordName = nil
+                    printer.recordData = nil
+                    printer.iCloudUpdate = true
+                }
+                try managedObjectContext!.save()
+            } catch let error as NSError {
+                NSLog("Error updating printer \(error)")
             }
-            try managedObjectContext!.save()
-        } catch let error as NSError {
-            NSLog("Error updating printer \(error)")
+        case .privateQueueConcurrencyType, .confinementConcurrencyType:
+            // If context runs in a non-main thread then just run this code
+            // .confinementConcurrencyType is not used. Delete once removed from Swift
+            context.performAndWait {
+                for printer in getPrinters(context: context) {
+                    printer.recordName = nil
+                    printer.recordData = nil
+                    printer.iCloudUpdate = true
+                }
+                
+                do {
+                    try context.save()
+                    managedObjectContext!.performAndWait {
+                        do {
+                            try managedObjectContext!.save()
+                        } catch {
+                            NSLog("Error updating printer \(error)")
+                        }
+                    }
+                } catch {
+                    NSLog("Error updating printer \(error)")
+                }
+            }
         }
     }
 }

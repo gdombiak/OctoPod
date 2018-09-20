@@ -17,6 +17,11 @@ class CloudKitPrinterManager {
     private var starting = false
     
     var delegates: Array<CloudKitPrinterDelegate> = Array()
+    var logDelegates: Array<CloudKitPrinterLogDelegate> = Array()
+    
+    // Keep a log of events that happend. Log will only keep a certain number of entries to preserve memory
+    private(set) var log: Array<CloudKitPrinterLogEntry> = Array()
+    private let LOG_MAX_SIZE = 30
 
     init(printerManager: PrinterManager) {
         self.printerManager = printerManager
@@ -47,7 +52,7 @@ class CloudKitPrinterManager {
                     
                     self.checkZone(completion: { (error) in
                         if let error = error {
-                            NSLog("Error making sure app has its own CKRecordZone. \(error)")
+                            self.appendLog("Error making sure app has its own CKRecordZone. \(error.localizedDescription)")
                             self.starting = false
                         } else {
                             // Pull printer updates from iCloud and then push local printer changes to iCloud
@@ -75,9 +80,11 @@ class CloudKitPrinterManager {
     // MARK: - Delegates operations
     
     func remove(cloudKitPrinterDelegate toRemove: CloudKitPrinterDelegate) {
-        delegates = delegates.filter({ (delegate) -> Bool in
-            return delegate !== toRemove
-        })
+        delegates.removeAll(where: { $0 === toRemove })
+    }
+    
+    func remove(cloudKitPrinterLogDelegate toRemove: CloudKitPrinterLogDelegate) {
+        logDelegates.removeAll(where: { $0 === toRemove })
     }
     
     // MARK: Enable sync operations
@@ -97,7 +104,7 @@ class CloudKitPrinterManager {
         return defaults.bool(forKey: SYNC_STOPPED)
     }
     
-    // MARK: Setup operations
+    // MARK: Subscription operations
     
     // Create a one time subscription to get silent push notifications when other devices make changes to CloudKit records
     // AppDelegate is configured to request to "listen to remote notifications" and call into #handleNotifications()
@@ -117,7 +124,7 @@ class CloudKitPrinterManager {
             let operation = CKModifySubscriptionsOperation(subscriptionsToSave: [subscription], subscriptionIDsToDelete: [])
             operation.modifySubscriptionsCompletionBlock = { (saved: [CKSubscription]?, deletedIDs: [String]?, error: Error?) -> Void in
                 if let error = error {
-                    NSLog("Error saving subcription: \(error)")
+                    self.appendLog("Error saving subcription: \(error.localizedDescription)")
                     return
                 }
                 // Record that (one time) subscription has been created
@@ -131,33 +138,23 @@ class CloudKitPrinterManager {
         }
     }
     
+    // MARK: - Zone operations
+    
     fileprivate func checkZone(completion: @escaping (Error?) -> Void) {
         // Check that we have our custom zone
         let operation = CKFetchRecordZonesOperation(recordZoneIDs: [zoneID])
         operation.fetchRecordZonesCompletionBlock = { recordZonesByZoneID, error in
             if let error = error {
                 if let ckerror = error as? CKError {
-                    if ckerror.isZoneNotFound() {
-                        self.createZone(completion: { (error) in
-                            if let error = error {
-                                // Failed to create zone
-                                completion(error)
-                            } else {
-                                // Zone created so execute completion block
-                                completion(nil)
-                            }
-                        })
-                    } else if ckerror.isUserDeletedZone() {
-                        // User deleted zone which deleted data from iCloud and all connected devices
-                        // We need to recreate zone and mark that we need to upload all data again
+                    if ckerror.isZoneNotFound() || ckerror.isUserDeletedZone() {
                         self.createZone(completion: { (error) in
                             if let error = error {
                                 // Failed to create zone
                                 completion(error)
                             } else {
                                 // Zone created
-                                // Mark all printers as need to be updated in iCloid
-                                self.printerManager.resetPrintersForiCloud()
+                                // Mark all printers as need to be updated in iCloud
+                                self.printerManager.resetPrintersForiCloud(context: self.printerManager.newPrivateContext())
                                 // Reset change token since it is no longer valid
                                 UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
                                 // We can now execute completion block
@@ -194,7 +191,23 @@ class CloudKitPrinterManager {
                 completion(error)
                 return
             }
-            NSLog("Zone created")
+            self.appendLog("Zone created")
+            completion(nil)
+        }
+        operation.qualityOfService = .utility
+        let container = CKContainer.default()
+        let db = container.privateCloudDatabase
+        db.add(operation)
+    }
+    
+    fileprivate func deleteZone(completion: @escaping (Error?) -> Void) {
+        let operation = CKModifyRecordZonesOperation(recordZonesToSave: [], recordZoneIDsToDelete: [zoneID])
+        operation.modifyRecordZonesCompletionBlock = { savedRecordZones, deletedRecordZoneIDs, error in
+            guard error == nil else {
+                completion(error)
+                return
+            }
+            self.appendLog("Zone deleted")
             completion(nil)
         }
         operation.qualityOfService = .utility
@@ -251,34 +264,19 @@ class CloudKitPrinterManager {
         operation.recordZoneFetchCompletionBlock = { recordZoneID, serverChangeToken, clientChangeTokenData, moreComing, error in
             if let error = error {
                 if let ckerror = error as? CKError {
-                    if ckerror.isZoneNotFound() {
+                    if ckerror.isZoneNotFound() || ckerror.isUserDeletedZone() {
                         // ZoneNotFound is the one error we can reasonably expect & handle here, since
                         // the zone isn't created automatically for us until we've saved one record.
                         // create the zone and, if successful, try again
                         self.createZone() { error in
                             if let error = error {
                                 // Failed to create zone for some reason
-                                NSLog("Error fetching zone changes. Failed to create zone due to: \(error)")
-                                return
-                            } else {
-                                // Cancel this operation
-                                operation.cancel()
-                                // Zone created. Retry operation
-                                self.pullChanges(completionHandler: completionHandler, errorHandler: errorHandler)
-                            }
-                        }
-                    } else if ckerror.isUserDeletedZone() {
-                        // User deleted zone which deleted data from iCloud and all connected devices
-                        // We need to recreate zone and mark that we need to upload all data again
-                        self.createZone(completion: { (error) in
-                            if let error = error {
-                                // Failed to create zone
-                                NSLog("Error fetching zone changes. Failed to create zone due to: \(error)")
+                                self.appendLog("Error fetching zone changes. Failed to create zone due to: \(error.localizedDescription)")
                                 return
                             } else {
                                 // Zone created
-                                // Mark all printers as need to be updated in iCloid
-                                self.printerManager.resetPrintersForiCloud()
+                                // Mark all printers as need to be updated in iCloud
+                                self.printerManager.resetPrintersForiCloud(context: self.printerManager.newPrivateContext())
                                 // Reset change token since it is no longer valid
                                 UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
                                 // Cancel this operation
@@ -286,15 +284,25 @@ class CloudKitPrinterManager {
                                 // Zone created. Retry operation
                                 self.pullChanges(completionHandler: completionHandler, errorHandler: errorHandler)
                             }
-                        })
+                        }
+                    } else if ckerror.isChangeTokenExpired() {
+                        // Token for incremental reads is no longer good. We need start from scratch
+                        // Mark all printers as need to be updated in iCloud
+                        self.printerManager.resetPrintersForiCloud(context: self.printerManager.newPrivateContext())
+                        // Reset change token since it is no longer valid
+                        UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
+                        // Cancel this operation
+                        operation.cancel()
+                        // Retry operation
+                        self.pullChanges(completionHandler: completionHandler, errorHandler: errorHandler)
                     } else {
                         // Failed with some unknown CKError
-                        NSLog("Error fetching zone changes: \(error) in recordZoneFetchCompletionBlock")
+                        self.appendLog("Error fetching zone changes: \(error.localizedDescription)")
                         return
                     }
                 } else {
                     // Failed with some unknown Error
-                    NSLog("Error fetching zone changes: \(error) in recordZoneFetchCompletionBlock")
+                    self.appendLog("Error fetching zone changes: \(error.localizedDescription)")
                     return
                 }
             }
@@ -307,10 +315,7 @@ class CloudKitPrinterManager {
         }
         // Done reading all zone changes
         operation.fetchRecordZoneChangesCompletionBlock = { (error) in
-            if let error = error {
-                NSLog("Error fetching zone changes: \(error)")
-                errorHandler?()
-            } else {
+            if error == nil {
                 // Success. New data was downloaded
                 completionHandler?()
                 // Alert delegates that printers have been updated
@@ -332,7 +337,7 @@ class CloudKitPrinterManager {
             updateAndSave(printer: printer, serverRecord: record)
             // Alert delegates that printer has been updated from iCloud info
             notifyPrinterUpdated(printer: printer)
-            NSLog("Updated printer: \(printer.hostname)")
+            appendLog("Updated printer: \(printer.hostname)")
         } else {
             // No printer was found for this PK
             // Check if a printer with same data exists and no record name.
@@ -343,22 +348,22 @@ class CloudKitPrinterManager {
                 updateAndSave(printer: printer, serverRecord: record)
                 // Alert delegates that printer has been updated from iCloud info
                 notifyPrinterUpdated(printer: printer)
-                NSLog("Linked existing printer: \(printer.hostname)")
+                appendLog("Linked existing printer: \(printer.hostname)")
             } else {
                 // Nothing was found in Core Data so create new printer and add to Core Data
                 let parsed = parseRecord(record: record)
-                if let name = parsed.name, let hostname = parsed.hostname, let apiKey = parsed.apiKey, let modified = parsed.modified {
-                    if let printer = printerManager.addPrinter(name: name, hostname: hostname, apiKey: apiKey, username: parsed.username, password: parsed.password, iCloudUpdate: false, modified: modified) {
+                if let name = parsed.name, let hostname = parsed.hostname, let apiKey = parsed.apiKey {
+                    if let printer = printerManager.addPrinter(name: name, hostname: hostname, apiKey: apiKey, username: parsed.username, password: parsed.password, iCloudUpdate: false, modified: (parsed.modified == nil ? Date() : parsed.modified!)) {
                         // Update again to assign recordName and store encoded record
                         updateAndSave(printer: printer, serverRecord: record)
                         // Alert delegates that printer has been added from iCloud info
                         notifyPrinterAdded(printer: printer)
-                        NSLog("Added new printer: \(printer.hostname)")
+                        appendLog("Added new printer: \(printer.hostname)")
                     } else {
-                        NSLog("Failed to add printer for record name: \(record.recordID.recordName)")
+                        appendLog("Failed to add printer for record name: \(record.recordID.recordName)")
                     }
                 } else {
-                    NSLog("Ignored record name: \(record.recordID.recordName)")
+                    appendLog("Ignored record name: \(record.recordID.recordName)")
                 }
             }
         }
@@ -369,7 +374,7 @@ class CloudKitPrinterManager {
     fileprivate func recordDeleted(recordID: CKRecord.ID) {
         let recordName = recordID.recordName
         if let printer = printerManager.getPrinterByRecordName(recordName: recordName) {
-            NSLog("Deleted printer: \(printer.hostname)")
+            appendLog("Deleted printer: \(printer.hostname)")
             // A printer exists for this PK so delete it
             printerManager.deletePrinter(printer)
             // Alert delegates that printer has been deleted from iCloud info
@@ -413,9 +418,9 @@ class CloudKitPrinterManager {
                 let hostname = printer.hostname
                 deleteRecord(recordID: record.recordID) { (error) in
                     if let error = error {
-                        NSLog("Failed to delete printer: \(hostname). Error: \(error)")
+                        self.appendLog("Failed to delete printer: \(hostname). Error: \(error.localizedDescription)")
                     } else {
-                        NSLog("Pushed delete for printer: \(hostname)")
+                        self.appendLog("Pushed delete for printer: \(hostname)")
                     }
                 }
             }
@@ -428,9 +433,9 @@ class CloudKitPrinterManager {
             let printer = toRemove[index]
             self.save(printer: printer, completion: { error in
                 if let error = error {
-                    NSLog("Failed to push changes for printer: \(printer.hostname). Error: \(error)")
+                    self.appendLog("Failed to push changes for printer: \(printer.hostname). Error: \(error.localizedDescription)")
                 } else {
-                    NSLog("Pushed changes for printer: \(printer.hostname)")
+                    self.appendLog("Pushed changes for printer: \(printer.hostname)")
                 }
                 self.pushChange(index: (index + 1), toRemove: toRemove, completion: completion)
             })
@@ -713,15 +718,36 @@ class CloudKitPrinterManager {
     // MARK: - Reset operations
     
     // Delete CloudKit records and recreate from local stored data
-    func resetCloutKit() {
-        
+    func resetCloutKit(completionHandler: (() -> Void)?, errorHandler: (() -> Void)?) {
+        // Delete zone which will delete all stored records
+        deleteZone { (error: Error?) in
+            if let error = error {
+                NSLog("Deleting zone failed. Error: \(error.localizedDescription)")
+                // Delete failed. An error happened when deleting the zone
+                errorHandler?()
+            } else {
+                // Zone deleted so now create one
+                // Pull just to force a new token for incremental reads. Nothing should be read
+                self.pullChanges(completionHandler: {
+                    self.pushChanges(completion: completionHandler)
+                }, errorHandler: {
+                    NSLog("Error pulling from iCloud during reset")
+                    errorHandler?()
+                })
+            }
+        }
     }
     
     // Delete local stored data and recreate from CloudKit records
-    func resetLocalPrinters() {
+    func resetLocalPrinters(completionHandler: (() -> Void)?, errorHandler: (() -> Void)?) {
         // Delete local printers
+        for printer in printerManager.getPrinters() {
+            printerManager.deletePrinter(printer)
+        }
         // Delete CHANGE_TOKEN so all changes are fetched and processed
+        UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
         // Pull changes
+        pullChanges(completionHandler: completionHandler, errorHandler: errorHandler)
     }
 
     // MARK: - Delegate notifications operations
@@ -761,7 +787,7 @@ class CloudKitPrinterManager {
                     self.discoverAccountStatus(attemptLeft: attemptLeft - 1, completion: completion)
                 } else {
                     // Disable iCloud due to unkonwn error
-                    NSLog("Disabling iCloud sync due to error: \(error)")
+                    self.appendLog("Disabling iCloud sync due to error: \(error.localizedDescription)")
                     self.iCloudAvailable = false
                     completion?()
                 }
@@ -781,7 +807,7 @@ class CloudKitPrinterManager {
                         self.discoverAccountStatus(attemptLeft: attemptLeft - 1, completion: completion)
                     } else {
                         // Disable iCloud due to unkonwn error
-                        NSLog("Disabling iCloud sync. Account status is: 'couldNotDetermine'")
+                        self.appendLog("Disabling iCloud sync. Account status is: 'couldNotDetermine'")
                         self.iCloudAvailable = false
                         completion?()
                     }
@@ -794,11 +820,33 @@ class CloudKitPrinterManager {
         }
     }
     
+    // MARK: - Log operations
+    
+    fileprivate func appendLog(_ description: String) {
+        // Create new entry
+        let entry = CloudKitPrinterLogEntry(date: Date(), description: description)
+        
+        // Make sure we do not exceed max log size
+        if log.count > LOG_MAX_SIZE {
+            // Remove first (oldest) entry
+            log.remove(at: 0)
+        }
+        log.append(entry)
+        
+        // Alert delegates that log has been updated with a new entry
+        for delegate in logDelegates {
+            delegate.logUpdated(newEntry: entry)
+        }
+        
+        // Also print to console
+        NSLog(description)
+    }
+    
     // MARK: - Private operations
     
     // Returns true if CKRecord and Printer represent same OctoPrint server
     fileprivate func sameOctoPrint(record: CKRecord, printer: Printer) -> Bool {
-        if let ck_hostname = record["hostname"] as? String{
+        if let ck_hostname = record["hostname"] as? String {
             if let recordName = printer.recordName {
                 // Check that we have same PK and same hostname
                 return printer.hostname == ck_hostname && recordName == record.recordID.recordName
@@ -814,6 +862,9 @@ class CloudKitPrinterManager {
         let parsed = parseRecord(record: record)
         if let name = parsed.name {
             printer.name = name
+        }
+        if let hostname = parsed.hostname {
+            printer.hostname = hostname
         }
         if let apiKey = parsed.apiKey {
             printer.apiKey = apiKey
@@ -898,6 +949,11 @@ extension CKError {
     
     public func isUserDeletedZone() -> Bool {
         return isSpecificErrorCode(code: .userDeletedZone)
+    }
+    
+    // Stored token for incremental reads is no longer good. We need to drop it and start from scratch
+    public func isChangeTokenExpired() -> Bool {
+        return isSpecificErrorCode(code: .changeTokenExpired)
     }
     
     public func isUnknownItem() -> Bool {

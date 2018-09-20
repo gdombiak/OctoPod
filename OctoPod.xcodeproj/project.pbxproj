@@ -44,6 +44,10 @@
 		3D74FA2921251BE600DA2CB3 /* TPLinkSmartplugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D74FA2821251BE600DA2CB3 /* TPLinkSmartplugViewController.swift */; };
 		3D78BA9F21039D770090D79A /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78BA9E21039D770090D79A /* Terminal.swift */; };
 		3D78BAA12103C7CA0090D79A /* MoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78BAA02103C7CA0090D79A /* MoveViewController.swift */; };
+		3D7C884421524426009FECEF /* DevicesSyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7C884321524426009FECEF /* DevicesSyncViewController.swift */; };
+		3D7C88462152B012009FECEF /* CloudKitPrinterLogDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7C88452152B012009FECEF /* CloudKitPrinterLogDelegate.swift */; };
+		3D7C88482152B25D009FECEF /* CloudKitPrinterLogEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7C88472152B25D009FECEF /* CloudKitPrinterLogEntry.swift */; };
+		3D7C884A2152BB18009FECEF /* DevicesSyncLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7C88492152BB18009FECEF /* DevicesSyncLogViewController.swift */; };
 		3D82873720E3EBC80035AE0B /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873620E3EBC80035AE0B /* Printer.swift */; };
 		3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873820E3EC3B0035AE0B /* PrinterManager.swift */; };
 		3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873A20E407370035AE0B /* PrintersTableViewController.swift */; };
@@ -126,6 +130,10 @@
 		3D74FA2821251BE600DA2CB3 /* TPLinkSmartplugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPLinkSmartplugViewController.swift; sourceTree = "<group>"; };
 		3D78BA9E21039D770090D79A /* Terminal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terminal.swift; sourceTree = "<group>"; };
 		3D78BAA02103C7CA0090D79A /* MoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveViewController.swift; sourceTree = "<group>"; };
+		3D7C884321524426009FECEF /* DevicesSyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesSyncViewController.swift; sourceTree = "<group>"; };
+		3D7C88452152B012009FECEF /* CloudKitPrinterLogDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitPrinterLogDelegate.swift; sourceTree = "<group>"; };
+		3D7C88472152B25D009FECEF /* CloudKitPrinterLogEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitPrinterLogEntry.swift; sourceTree = "<group>"; };
+		3D7C88492152BB18009FECEF /* DevicesSyncLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesSyncLogViewController.swift; sourceTree = "<group>"; };
 		3D82873620E3EBC80035AE0B /* Printer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Printer.swift; sourceTree = "<group>"; };
 		3D82873820E3EC3B0035AE0B /* PrinterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManager.swift; sourceTree = "<group>"; };
 		3D82873A20E407370035AE0B /* PrintersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintersTableViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +209,7 @@
 				3D968DDC20E337C7006774A5 /* ScannerViewController.swift */,
 				3D6350F021082E07001C10F7 /* AppearanceViewController.swift */,
 				3D8DA01B2144BBF100F5FD07 /* SecurityViewController.swift */,
+				3D7C884B2152BB32009FECEF /* CloudKitSync */,
 				3D8DA01D2144EDCE00F5FD07 /* SupportViewController.swift */,
 			);
 			path = "Settings UI";
@@ -319,6 +328,15 @@
 			path = Themes;
 			sourceTree = "<group>";
 		};
+		3D7C884B2152BB32009FECEF /* CloudKitSync */ = {
+			isa = PBXGroup;
+			children = (
+				3D7C884321524426009FECEF /* DevicesSyncViewController.swift */,
+				3D7C88492152BB18009FECEF /* DevicesSyncLogViewController.swift */,
+			);
+			path = CloudKitSync;
+			sourceTree = "<group>";
+		};
 		3D82873520E3EB730035AE0B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +381,8 @@
 			children = (
 				3D693C5E214CEC0600823903 /* CloudKitPrinterManager.swift */,
 				3D9D9764214DCC440032443A /* CloudKitPrinterDelegate.swift */,
+				3D7C88452152B012009FECEF /* CloudKitPrinterLogDelegate.swift */,
+				3D7C88472152B25D009FECEF /* CloudKitPrinterLogEntry.swift */,
 			);
 			path = CloudKitSync;
 			sourceTree = "<group>";
@@ -566,6 +586,7 @@
 				3D74FA2721251BCF00DA2CB3 /* PSUControlViewController.swift in Sources */,
 				3DBAE49F20E6821900D2137D /* SelectDefaultPrinterViewController.swift in Sources */,
 				3D82874120E421610035AE0B /* MjpegStreamingController.swift in Sources */,
+				3D7C88482152B25D009FECEF /* CloudKitPrinterLogEntry.swift in Sources */,
 				3D1A93682132F5E70050ED9A /* ChildrenCustomControlViewController.swift in Sources */,
 				3D831E53210850E60004B7A5 /* SettingsViewController.swift in Sources */,
 				3D98C1DA20E5D096007BB13F /* WebSocketClient.swift in Sources */,
@@ -578,6 +599,7 @@
 				3DD9E9572108479000726DFD /* ThemedStaticUITableViewController.swift in Sources */,
 				3D8B293020E5549B00296D9D /* HTTPClient.swift in Sources */,
 				3D8B292D20E5514A00296D9D /* PrinterSubpanelViewController.swift in Sources */,
+				3D7C88462152B012009FECEF /* CloudKitPrinterLogDelegate.swift in Sources */,
 				3D831E552108540E0004B7A5 /* NavigationController.swift in Sources */,
 				3DD9E95921084BFD00726DFD /* ThemedUITableViewController.swift in Sources */,
 				3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */,
@@ -592,10 +614,12 @@
 				3D693C5F214CEC0600823903 /* CloudKitPrinterManager.swift in Sources */,
 				3D92E6C821213B2400F58BA5 /* TempHistory.swift in Sources */,
 				3DFA8074210E30C100B5BFAA /* CloudFilesManager.swift in Sources */,
+				3D7C884421524426009FECEF /* DevicesSyncViewController.swift in Sources */,
 				3D5849E4210CC8720068D87A /* OctoPrintSettingsDelegate.swift in Sources */,
 				3DA252442105028300B60E31 /* FolderViewController.swift in Sources */,
 				3D74FA2921251BE600DA2CB3 /* TPLinkSmartplugViewController.swift in Sources */,
 				3D6350F721084334001C10F7 /* ThemedDynamicUITableViewController.swift in Sources */,
+				3D7C884A2152BB18009FECEF /* DevicesSyncLogViewController.swift in Sources */,
 				3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */,
 				3D8D51A921333D310006BBB1 /* CustomControlInputSlideViewCell.swift in Sources */,
 				3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */,
