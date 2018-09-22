@@ -58,6 +58,11 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                     orderedViewControllers.append(createIPPlugVCBlock(plugin: Plugins.DOMOTICZ)(mainboard))
                 }
             }
+            if let plugs = printer.getTasmotaPlugs() {
+                if !plugs.isEmpty {
+                    orderedViewControllers.append(createIPPlugVCBlock(plugin: Plugins.TASMOTA)(mainboard))
+                }
+            }
         }
         
         // Set number of pages in the page control
@@ -107,6 +112,11 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                 addVC = !plugs.isEmpty
             }
             addRemoveIPPlugPluginVC(plugin: Plugins.DOMOTICZ, add: addVC)
+            // Add VC for Tasmota
+            if let plugs = printer.getTasmotaPlugs() {
+                addVC = !plugs.isEmpty
+            }
+            addRemoveIPPlugPluginVC(plugin: Plugins.TASMOTA, add: addVC)
         }
         // Notify subpanels of change of printer (OctoPrint)
         for case let subpanel as SubpanelViewController in orderedViewControllers {

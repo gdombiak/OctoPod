@@ -103,6 +103,8 @@ class IPPlugViewController: ThemedDynamicUITableViewController, SubpanelViewCont
             return "Wemo Switches"
         case Plugins.DOMOTICZ:
             return "Domoticz Plugs"
+        case Plugins.TASMOTA:
+            return "Tasmota Plugs"
         default:
             fatalError("Unkonwn plugin")
         }
@@ -195,6 +197,12 @@ class IPPlugViewController: ThemedDynamicUITableViewController, SubpanelViewCont
                 }
             case Plugins.DOMOTICZ:
                 if let existingPlugs = printer.getDomoticzPlugs() {
+                    plugs = existingPlugs
+                } else {
+                    plugs = []
+                }
+            case Plugins.TASMOTA:
+                if let existingPlugs = printer.getTasmotaPlugs() {
                     plugs = existingPlugs
                 } else {
                     plugs = []

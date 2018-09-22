@@ -771,6 +771,7 @@ class OctoPrintClient: WebSocketClientDelegate {
         updatePrinterFromTPLinkSmartplugPlugin(printer: printer, plugins: plugins)
         updatePrinterFromWemoPlugin(printer: printer, plugins: plugins)
         updatePrinterFromDomoticzPlugin(printer: printer, plugins: plugins)
+        updatePrinterFromTasmotaPlugin(printer: printer, plugins: plugins)
     }
     
     fileprivate func updatePrinterFromMultiCamPlugin(printer: Printer, plugins: NSDictionary) {
@@ -855,7 +856,16 @@ class OctoPrintClient: WebSocketClientDelegate {
         }) { (printer: Printer, plugs: Array<Printer.IPPlug>) in
             printer.setDomoticzPlugs(plugs: plugs)
         }
-
+    }
+    
+    fileprivate func updatePrinterFromTasmotaPlugin(printer: Printer, plugins: NSDictionary) {
+        // Check if Tasmota plugin is installed. If so then copy plugs information so there is
+        // no need to reenter this information
+        updatePrinterFromIPPlugPlugin(printer: printer, plugins: plugins, plugin: Plugins.TASMOTA, getterPlugs: { (printer: Printer) -> Array<Printer.IPPlug>? in
+            return printer.getTasmotaPlugs()
+        }) { (printer: Printer, plugs: Array<Printer.IPPlug>) in
+            printer.setTasmotaPlugs(plugs: plugs)
+        }
     }
     
     fileprivate func updatePrinterFromIPPlugPlugin(printer: Printer, plugins: NSDictionary, plugin: String, getterPlugs: ((Printer) ->  Array<Printer.IPPlug>?), setterPlugs: ((Printer, Array<Printer.IPPlug>) -> Void)) {

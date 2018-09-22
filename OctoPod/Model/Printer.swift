@@ -31,6 +31,7 @@ class Printer: NSManagedObject {
     @NSManaged var tpLinkSmartplugs: [[String]]?  // Array of an Array with 2 strings (IP Address, Label)
     @NSManaged var wemoplugs: [[String]]?  // Array of an Array with 2 strings (IP Address, Label)
     @NSManaged var domoticzplugs: [[String]]?  // Array of an Array with 2 strings (IP Address, Label)
+    @NSManaged var tasmotaplugs: [[String]]?  // Array of an Array with 2 strings (IP Address, Label)
 
     struct IPPlug: Equatable {
         var ip: String
@@ -117,6 +118,29 @@ class Printer: NSManagedObject {
     
     func getDomoticzPlugs() -> [IPPlug]? {
         if let plugs = domoticzplugs {
+            var result:[IPPlug] = []
+            for plug in plugs {
+                result.append(decodePlug(encoded: plug))
+            }
+            return result
+        }
+        return nil
+    }
+    
+    func setTasmotaPlugs(plugs: [IPPlug]?) {
+        if let newPlugs = plugs {
+            var newValues: [[String]] = []
+            for newPlug in newPlugs {
+                newValues.append(encodeIPPlug(newPlug))
+            }
+            tasmotaplugs = newValues
+        } else {
+            tasmotaplugs = nil
+        }
+    }
+    
+    func getTasmotaPlugs() -> [IPPlug]? {
+        if let plugs = tasmotaplugs {
             var result:[IPPlug] = []
             for plug in plugs {
                 result.append(decodePlug(encoded: plug))

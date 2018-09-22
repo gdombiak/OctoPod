@@ -9,4 +9,5 @@ struct Plugins {
     static let TP_LINK_SMARTPLUG = "tplinksmartplug"    // Considered an IP Plug plugin
     static let WEMO_SWITCH = "wemoswitch"               // Considered an IP Plug plugin
     static let DOMOTICZ = "domoticz"                    // Considered an IP Plug plugin
+    static let TASMOTA = "tasmota"                      // Considered an IP Plug plugin
 }

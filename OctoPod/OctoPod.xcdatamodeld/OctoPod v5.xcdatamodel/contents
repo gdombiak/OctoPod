@@ -18,12 +18,13 @@
         <attribute name="recordName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sdSupport" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="streamUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tasmotaplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]" syncable="YES"/>
         <attribute name="tpLinkSmartplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]" syncable="YES"/>
         <attribute name="userModified" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="wemoplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Printer" positionX="-63" positionY="-18" width="128" height="360"/>
+        <element name="Printer" positionX="-63" positionY="-18" width="128" height="375"/>
     </elements>
 </model>
