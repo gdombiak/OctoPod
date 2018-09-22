@@ -65,6 +65,7 @@
 		3D8DA01A2144716B00F5FD07 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DA0192144716B00F5FD07 /* AppConfiguration.swift */; };
 		3D8DA01C2144BBF100F5FD07 /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DA01B2144BBF100F5FD07 /* SecurityViewController.swift */; };
 		3D8DA01E2144EDCE00F5FD07 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DA01D2144EDCE00F5FD07 /* SupportViewController.swift */; };
+		3D8FB25B2156A9F0008FF3E5 /* DialogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FB25A2156A9F0008FF3E5 /* DialogsViewController.swift */; };
 		3D92E6C821213B2400F58BA5 /* TempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92E6C721213B2400F58BA5 /* TempHistory.swift */; };
 		3D968DDB20E336F5006774A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D968DDA20E336F5006774A5 /* Default-568h@2x.png */; };
 		3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D968DDC20E337C7006774A5 /* ScannerViewController.swift */; };
@@ -153,6 +154,7 @@
 		3D8DA0192144716B00F5FD07 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		3D8DA01B2144BBF100F5FD07 /* SecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
 		3D8DA01D2144EDCE00F5FD07 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
+		3D8FB25A2156A9F0008FF3E5 /* DialogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsViewController.swift; sourceTree = "<group>"; };
 		3D92E6C721213B2400F58BA5 /* TempHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHistory.swift; sourceTree = "<group>"; };
 		3D968DDA20E336F5006774A5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3D968DDC20E337C7006774A5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				3D968DDC20E337C7006774A5 /* ScannerViewController.swift */,
 				3D6350F021082E07001C10F7 /* AppearanceViewController.swift */,
 				3D8DA01B2144BBF100F5FD07 /* SecurityViewController.swift */,
+				3D8FB25A2156A9F0008FF3E5 /* DialogsViewController.swift */,
 				3D7C884B2152BB32009FECEF /* CloudKitSync */,
 				3D8DA01D2144EDCE00F5FD07 /* SupportViewController.swift */,
 			);
@@ -601,6 +604,7 @@
 				3D47BA3E21278956002420A0 /* IPPlugTableViewCell.swift in Sources */,
 				3DD9E9572108479000726DFD /* ThemedStaticUITableViewController.swift in Sources */,
 				3D8B293020E5549B00296D9D /* HTTPClient.swift in Sources */,
+				3D8FB25B2156A9F0008FF3E5 /* DialogsViewController.swift in Sources */,
 				3D8B292D20E5514A00296D9D /* PrinterSubpanelViewController.swift in Sources */,
 				3D7C88462152B012009FECEF /* CloudKitPrinterLogDelegate.swift in Sources */,
 				3D831E552108540E0004B7A5 /* NavigationController.swift in Sources */,
