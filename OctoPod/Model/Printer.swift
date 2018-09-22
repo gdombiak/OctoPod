@@ -41,7 +41,7 @@ class Printer: NSManagedObject {
         var password: String? // Used by some plugins like Domoticz or Tasmota
 
         static func ==(lhs: IPPlug, rhs: IPPlug) -> Bool {
-            return (lhs.ip == rhs.ip) && (lhs.label == rhs.label) && (lhs.idx == rhs.idx)
+            return (lhs.ip == rhs.ip) && (lhs.label == rhs.label) && (lhs.idx == rhs.idx) && (lhs.username == rhs.username) && (lhs.password == rhs.password)
         }
     }
     
