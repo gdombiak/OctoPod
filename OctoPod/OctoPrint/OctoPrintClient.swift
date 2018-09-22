@@ -601,24 +601,43 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
 
-    // MARK: - PSU Control Plugin operations
+    // MARK: - IP Plug Plugin (TPLink Smartplug, Wemo, Domoticz, etc.)
     
-    // Instruct TPLink Smartplug plugin to turn on/off the device with the specified IP address
-    // If request was successful we get back a 204 and the status is reported via websockets
-    func turnTPLinkSmartplug(on: Bool, ip: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+    // Instruct an IP plugin (e.g. TPLinkSmartplug, WemoSwitch, domoticz) to turn on/off the
+    // device with the specified IP address. If request was successful we get back a 204
+    // and the status is reported via websockets
+    func turnIPPlug(plugin: String, on: Bool, plug: Printer.IPPlug, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         let json : NSMutableDictionary = NSMutableDictionary()
         json["command"] = on ? "turnOn" : "turnOff"
-        json["ip"] = ip
-        tpLinkSmartPlugCommand(json: json, callback: callback)
+        json["ip"] = plug.ip
+        if let idx = plug.idx {
+            json["idx"] = idx
+        }
+        if let username = plug.username {
+            json["username"] = username
+        }
+        if let password = plug.password {
+            json["password"] = password
+        }
+        pluginCommand(plugin: plugin, json: json, callback: callback)
     }
-
-    // Instruct TPLink Smartplug plugin to report the status of the device with the specified IP address
+    
+    // Instruct an IP plugin to report the status of the device with the specified IP address
     // If request was successful we get back a 204 and the status is reported via websockets
-    func checkTPLinkSmartplugStatus(ip: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+    func checkIPPlugStatus(plugin: String, plug: Printer.IPPlug, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         let json : NSMutableDictionary = NSMutableDictionary()
         json["command"] = "checkStatus"
-        json["ip"] = ip
-        tpLinkSmartPlugCommand(json: json, callback: callback)
+        json["ip"] = plug.ip
+        if let idx = plug.idx {
+            json["idx"] = idx
+        }
+        if let username = plug.username {
+            json["username"] = username
+        }
+        if let password = plug.password {
+            json["password"] = password
+        }
+        pluginCommand(plugin: plugin, json: json, callback: callback)
     }
     
     // MARK: - Delegates operations
@@ -750,13 +769,15 @@ class OctoPrintClient: WebSocketClientDelegate {
         updatePrinterFromMultiCamPlugin(printer: printer, plugins: plugins)
         updatePrinterFromPSUControlPlugin(printer: printer, plugins: plugins)
         updatePrinterFromTPLinkSmartplugPlugin(printer: printer, plugins: plugins)
+        updatePrinterFromWemoPlugin(printer: printer, plugins: plugins)
+        updatePrinterFromDomoticzPlugin(printer: printer, plugins: plugins)
     }
     
     fileprivate func updatePrinterFromMultiCamPlugin(printer: Printer, plugins: NSDictionary) {
         // Check if MultiCam plugin is installed. If so then copy URL to cameras so there is
         // no need to reenter this information
         var camerasURLs: Array<String> = Array()
-        if let multicam = plugins["multicam"] as? NSDictionary {
+        if let multicam = plugins[Plugins.MULTICAM] as? NSDictionary {
             if let profiles = multicam["multicam_profiles"] as? NSArray {
                 for case let profile as NSDictionary in profiles {
                     if let url = profile["URL"] as? String {
@@ -788,7 +809,7 @@ class OctoPrintClient: WebSocketClientDelegate {
     
     fileprivate func updatePrinterFromPSUControlPlugin(printer: Printer, plugins: NSDictionary) {
         var installed = false
-        if let _ = plugins["psucontrol"] as? NSDictionary {
+        if let _ = plugins[Plugins.PSU_CONTROL] as? NSDictionary {
             // PSUControl plugin is installed
             installed = true
         }
@@ -806,15 +827,51 @@ class OctoPrintClient: WebSocketClientDelegate {
     }
     
     fileprivate func updatePrinterFromTPLinkSmartplugPlugin(printer: Printer, plugins: NSDictionary) {
-        // Check if MultiCam plugin is installed. If so then copy URL to cameras so there is
+        // Check if TPLinkSmartplug plugin is installed. If so then copy plugs information so there is
         // no need to reenter this information
-        var plugs: Array<Printer.TPLinkSmartplug> = []
-        if let tplinksmartplug = plugins["tplinksmartplug"] as? NSDictionary {
+        updatePrinterFromIPPlugPlugin(printer: printer, plugins: plugins, plugin: Plugins.TP_LINK_SMARTPLUG, getterPlugs: { (printer: Printer) -> Array<Printer.IPPlug>? in
+            return printer.getTPLinkSmartplugs()
+        }) { (printer: Printer, plugs: Array<Printer.IPPlug>) in
+            printer.setTPLinkSmartplugs(plugs: plugs)
+        }
+    }
+    
+    fileprivate func updatePrinterFromWemoPlugin(printer: Printer, plugins: NSDictionary) {
+        // Check if Wemo plugin is installed. If so then copy plugs information so there is
+        // no need to reenter this information
+        updatePrinterFromIPPlugPlugin(printer: printer, plugins: plugins, plugin: Plugins.WEMO_SWITCH, getterPlugs: { (printer: Printer) -> Array<Printer.IPPlug>? in
+            return printer.getWemoPlugs()
+        }) { (printer: Printer, plugs: Array<Printer.IPPlug>) in
+            printer.setWemoPlugs(plugs: plugs)
+        }
+
+    }
+    
+    fileprivate func updatePrinterFromDomoticzPlugin(printer: Printer, plugins: NSDictionary) {
+        // Check if Domoticz plugin is installed. If so then copy plugs information so there is
+        // no need to reenter this information
+        updatePrinterFromIPPlugPlugin(printer: printer, plugins: plugins, plugin: Plugins.DOMOTICZ, getterPlugs: { (printer: Printer) -> Array<Printer.IPPlug>? in
+            return printer.getDomoticzPlugs()
+        }) { (printer: Printer, plugs: Array<Printer.IPPlug>) in
+            printer.setDomoticzPlugs(plugs: plugs)
+        }
+
+    }
+    
+    fileprivate func updatePrinterFromIPPlugPlugin(printer: Printer, plugins: NSDictionary, plugin: String, getterPlugs: ((Printer) ->  Array<Printer.IPPlug>?), setterPlugs: ((Printer, Array<Printer.IPPlug>) -> Void)) {
+        // Check if TPLinkSmartplug plugin is installed. If so then copy plugs information so there is
+        // no need to reenter this information
+        var plugs: Array<Printer.IPPlug> = []
+        if let tplinksmartplug = plugins[plugin] as? NSDictionary {
             if let arrSmartplugs = tplinksmartplug["arrSmartplugs"] as? NSArray {
                 for case let plug as NSDictionary in arrSmartplugs {
                     if let ip = plug["ip"] as? String, let label = plug["label"] as? String {
                         if !ip.isEmpty && !label.isEmpty {
-                            plugs.append(Printer.TPLinkSmartplug(ip: ip, label: label))
+                            let idx = plug["idx"] as? String
+                            let username = plug["username"] as? String
+                            let password = plug["password"] as? String
+                            let ipPlug = Printer.IPPlug(ip: ip, label: label, idx: idx, username: username, password: password)
+                            plugs.append(ipPlug)
                         }
                     }
                 }
@@ -823,7 +880,7 @@ class OctoPrintClient: WebSocketClientDelegate {
         
         // Check if plugs have changed
         var update = false
-        if let existing = printer.getTPLinkSmartplugs() {
+        if let existing = getterPlugs(printer) {
             update = !existing.elementsEqual(plugs)
         } else {
             update = true
@@ -831,17 +888,17 @@ class OctoPrintClient: WebSocketClientDelegate {
         
         if update {
             // Update array
-            printer.setTPLinkSmartplugs(plugs: plugs)
+            setterPlugs(printer, plugs)
             // Persist updated printer
             printerManager.updatePrinter(printer)
             
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
-                delegate.tplinkSmartplugsChanged(plugs: plugs)
+                delegate.ipPlugsChanged(plugin: plugin, plugs: plugs)
             }
         }
     }
-    
+
     fileprivate func calculateImageOrientation(flipH: Bool, flipV: Bool, rotate90: Bool) -> UIImage.Orientation {
         if !flipH && !flipV && !rotate90 {
              // No flips selected
@@ -957,9 +1014,9 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
     }
     
-    fileprivate func tpLinkSmartPlugCommand(json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+    fileprivate func pluginCommand(plugin: String, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
-            client.post("/api/plugin/tplinksmartplug", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            client.post("/api/plugin/\(plugin)", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                 callback(response.statusCode == 204, error, response)
             }
         }

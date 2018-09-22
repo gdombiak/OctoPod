@@ -1,11 +1,15 @@
 import UIKit
 
-class TPLinkSmartplugViewController: ThemedDynamicUITableViewController, SubpanelViewController, OctoPrintSettingsDelegate, OctoPrintPluginsDelegate {
-
+// It happens that 3 plugins were done by the same developer and share the same API. We can reuse this
+// class to control any of the these 3 plugins (and maybe more from the same developer)
+// Plugins that use an IPPlug (IP Address and Label) can use this VC
+class IPPlugViewController: ThemedDynamicUITableViewController, SubpanelViewController, OctoPrintSettingsDelegate, OctoPrintPluginsDelegate {
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
-    var plugs: [Printer.TPLinkSmartplug] = []
+    var ipPlugPlugin: String!
+    
+    var plugs: [Printer.IPPlug] = []
     var plugsState: Dictionary<String, Bool> = Dictionary()
 
     override func viewDidLoad() {
@@ -76,14 +80,12 @@ class TPLinkSmartplugViewController: ThemedDynamicUITableViewController, Subpane
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tplink_plug_cell", for: indexPath) as! TPLinkSmartplugTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ip_plug_cell", for: indexPath) as! IPPlugTableViewCell
         let plug = plugs[indexPath.row]
         
         let label = cell.titleLabel
         label?.text = plug.label
         label?.textColor = Theme.currentTheme().labelColor()
-        
-        cell.ip = plug.ip
         
         let state: Bool? = plugsState[plug.ip]
         cell.setPowerState(isPowerOn: state)
@@ -94,7 +96,16 @@ class TPLinkSmartplugViewController: ThemedDynamicUITableViewController, Subpane
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "TPLink Smartplugs"
+        switch ipPlugPlugin! {
+        case Plugins.TP_LINK_SMARTPLUG:
+            return "TPLink Smartplugs"
+        case Plugins.WEMO_SWITCH:
+            return "Wemo Switches"
+        case Plugins.DOMOTICZ:
+            return "Domoticz Plugs"
+        default:
+            fatalError("Unkonwn plugin")
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -104,7 +115,7 @@ class TPLinkSmartplugViewController: ThemedDynamicUITableViewController, Subpane
     // MARK: - OctoPrintPluginsDelegate
     
     func pluginMessage(plugin: String, data: NSDictionary) {
-        if plugin == "tplinksmartplug" {
+        if plugin == self.ipPlugPlugin {
             if let ip = data["ip"] as? String, let currentState = data["currentState"] as? String {
                 var on: Bool?
                 if currentState == "on" {
@@ -129,21 +140,27 @@ class TPLinkSmartplugViewController: ThemedDynamicUITableViewController, Subpane
 
     // MARK: - OctoPrintSettingsDelegate
     
-    func tplinkSmartplugsChanged(plugs: Array<Printer.TPLinkSmartplug>) {
-        self.plugs = plugs
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+    // Notification that an IP plug plugin has changed. Could be availability or settings
+    func ipPlugsChanged(plugin: String, plugs: Array<Printer.IPPlug>) {
+        if ipPlugPlugin == plugin {
+            self.plugs = plugs
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
-    
+
     // MARK: - Notifications from TPLinkSmartplugTableViewCell
     
-    func powerPressed(cell: TPLinkSmartplugTableViewCell) {
+    func powerPressed(cell: IPPlugTableViewCell) {
         if let on = cell.isPowerOn {
             let changePower = {
-                self.octoprintClient.turnTPLinkSmartplug(on: !on, ip: cell.ip) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                    if !requested {
-                        self.showAlert("Warning", message: "Failed to request to turn power \(!on ? "on" : "off")")
+                if let indexPath = self.tableView.indexPath(for: cell) {
+                    let plug = self.plugs[indexPath.row]
+                    self.octoprintClient.turnIPPlug(plugin: self.ipPlugPlugin, on: !on, plug: plug) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                        if !requested {
+                            self.showAlert("Warning", message: "Failed to request to turn power \(!on ? "on" : "off")")
+                        }
                     }
                 }
             }
@@ -163,10 +180,27 @@ class TPLinkSmartplugViewController: ThemedDynamicUITableViewController, Subpane
     
     fileprivate func refreshPlugs() {
         if let printer = printerManager.getDefaultPrinter() {
-            if let existingPlugs = printer.getTPLinkSmartplugs() {
-                plugs = existingPlugs
-            } else {
-                plugs = []
+            switch ipPlugPlugin! {
+            case Plugins.TP_LINK_SMARTPLUG:
+                if let existingPlugs = printer.getTPLinkSmartplugs() {
+                    plugs = existingPlugs
+                } else {
+                    plugs = []
+                }
+            case Plugins.WEMO_SWITCH:
+                if let existingPlugs = printer.getWemoPlugs() {
+                    plugs = existingPlugs
+                } else {
+                    plugs = []
+                }
+            case Plugins.DOMOTICZ:
+                if let existingPlugs = printer.getDomoticzPlugs() {
+                    plugs = existingPlugs
+                } else {
+                    plugs = []
+                }
+            default:
+                fatalError("Unkonwn plugin")
             }
         } else {
             plugs = []
@@ -175,11 +209,11 @@ class TPLinkSmartplugViewController: ThemedDynamicUITableViewController, Subpane
     
     fileprivate func checkPlugsState() {
         for plug in plugs {
-            octoprintClient.checkTPLinkSmartplugStatus(ip: plug.ip) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            octoprintClient.checkIPPlugStatus(plugin: ipPlugPlugin, plug: plug) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 // If successfully requested then response will come via websockets. OctoPrintPluginsDelegate will
                 // pick up the answer
                 if !requested {
-                    NSLog("Failed to request state for TPLink Smartplug with ip: \(plug.ip)")
+                    NSLog("Failed to request state for IP Plug with ip: \(plug.ip)")
                 }
             }
         }

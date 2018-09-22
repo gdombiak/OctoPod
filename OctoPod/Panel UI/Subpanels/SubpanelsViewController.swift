@@ -45,7 +45,17 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             }
             if let plugs = printer.getTPLinkSmartplugs() {
                 if !plugs.isEmpty {
-                    orderedViewControllers.append(createTPLinkSmartplugVC(mainboard))
+                    orderedViewControllers.append(createIPPlugVCBlock(plugin: Plugins.TP_LINK_SMARTPLUG)(mainboard))
+                }
+            }
+            if let plugs = printer.getWemoPlugs(){
+                if !plugs.isEmpty {
+                    orderedViewControllers.append(createIPPlugVCBlock(plugin: Plugins.WEMO_SWITCH)(mainboard))
+                }
+            }
+            if let plugs = printer.getDomoticzPlugs() {
+                if !plugs.isEmpty {
+                    orderedViewControllers.append(createIPPlugVCBlock(plugin: Plugins.DOMOTICZ)(mainboard))
                 }
             }
         }
@@ -77,12 +87,26 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
     func printerSelectedChanged() {
         // Add or remove subpanels depending on configuration
         if let printer = printerManager.getDefaultPrinter() {
-            addRemoveVC(add: printer.psuControlInstalled, vcType: PSUControlViewController.self, createVC: createPSUControlVC)
+            addRemoveVC(add: printer.psuControlInstalled, vcIdentifier: { $0.isMember(of: PSUControlViewController.self) }, createVC: createPSUControlVC)
             var addVC = false
+
+            // Add VC for TPLinkSmartplug
             if let plugs = printer.getTPLinkSmartplugs() {
                 addVC = !plugs.isEmpty
             }
-            addRemoveVC(add: addVC, vcType: TPLinkSmartplugViewController.self, createVC: createTPLinkSmartplugVC)
+            addRemoveIPPlugPluginVC(plugin: Plugins.TP_LINK_SMARTPLUG, add: addVC)
+
+            // Add VC for WemoSwitch
+            if let plugs = printer.getWemoPlugs() {
+                addVC = !plugs.isEmpty
+            }
+            addRemoveIPPlugPluginVC(plugin: Plugins.WEMO_SWITCH, add: addVC)
+
+            // Add VC for Domoticz
+            if let plugs = printer.getDomoticzPlugs() {
+                addVC = !plugs.isEmpty
+            }
+            addRemoveIPPlugPluginVC(plugin: Plugins.DOMOTICZ, add: addVC)
         }
         // Notify subpanels of change of printer (OctoPrint)
         for case let subpanel as SubpanelViewController in orderedViewControllers {
@@ -156,13 +180,14 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
     // MARK: - OctoPrintSettingsDelegate
     
     func psuControlAvailabilityChanged(installed: Bool) {
-        addRemoveVC(add: installed, vcType: PSUControlViewController.self, createVC: createPSUControlVC)
+        addRemoveVC(add: installed, vcIdentifier: { $0.isMember(of: PSUControlViewController.self) }, createVC: createPSUControlVC)
     }
     
-    func tplinkSmartplugsChanged(plugs: Array<Printer.TPLinkSmartplug>) {
-        addRemoveVC(add: !plugs.isEmpty, vcType: TPLinkSmartplugViewController.self, createVC: createTPLinkSmartplugVC)
+    // Notification that an IP plug plugin has changed. Could be availability or settings
+    func ipPlugsChanged(plugin: String, plugs: Array<Printer.IPPlug>) {
+        addRemoveIPPlugPluginVC(plugin: plugin, add: !plugs.isEmpty)
     }
-    
+
     // MARK: - Private functions
     
     fileprivate func renderFirstVC() {
@@ -176,10 +201,10 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         }
     }
     
-    fileprivate func addRemoveVC<T: UIViewController>(add: Bool, vcType: T.Type, createVC: @escaping (UIStoryboard) -> UIViewController) {
+    fileprivate func addRemoveVC(add: Bool, vcIdentifier: ((UIViewController) -> Bool), createVC: @escaping (UIStoryboard) -> UIViewController) {
         if add {
             // Make sure that we render requested VC
-            if let _ = orderedViewControllers.first(where: { $0.isMember(of: vcType) }) {
+            if let _ = orderedViewControllers.first(where: vcIdentifier) {
                 // Do nothing since we already have it installed
             } else {
                 DispatchQueue.main.async {
@@ -197,7 +222,7 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             }
         } else {
             // Make sure that we are not rendering PSUControlViewController
-            if let found = orderedViewControllers.first(where: { $0.isMember(of: vcType) }) {
+            if let found = orderedViewControllers.first(where: vcIdentifier) {
                 if let index = orderedViewControllers.index(of: found) {
                     orderedViewControllers.remove(at: index)
                     DispatchQueue.main.async {
@@ -219,7 +244,23 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         return mainboard.instantiateViewController(withIdentifier: "PSUControlViewController")
     }
 
-    fileprivate func createTPLinkSmartplugVC(_ mainboard: UIStoryboard) -> UIViewController {
-        return mainboard.instantiateViewController(withIdentifier: "TPLinkSmartplugViewController")
+    fileprivate func createIPPlugVCBlock(plugin: String) -> ((UIStoryboard) -> UIViewController) {
+        return { (mainboard: UIStoryboard) -> UIViewController in
+            if let vc = mainboard.instantiateViewController(withIdentifier: "IPPlugViewController") as? IPPlugViewController {
+                vc.ipPlugPlugin = plugin
+                return vc
+            }
+            fatalError("Failed to instantiate an IPPlugViewController")
+        }
+    }
+    
+    fileprivate func addRemoveIPPlugPluginVC(plugin: String, add: Bool) {
+        let vcIdentifier = { (vc: UIViewController) -> Bool in
+            if let ipPlugVC = vc as? IPPlugViewController {
+                return ipPlugVC.ipPlugPlugin == plugin
+            }
+            return false
+        }
+        addRemoveVC(add: add, vcIdentifier: vcIdentifier, createVC: createIPPlugVCBlock(plugin: plugin))
     }
 }

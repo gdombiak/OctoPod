@@ -29,13 +29,19 @@ class Printer: NSManagedObject {
     // Track if the following plugins are installed and configured
     @NSManaged var psuControlInstalled: Bool
     @NSManaged var tpLinkSmartplugs: [[String]]?  // Array of an Array with 2 strings (IP Address, Label)
-    
-    struct TPLinkSmartplug: Equatable {
+    @NSManaged var wemoplugs: [[String]]?  // Array of an Array with 2 strings (IP Address, Label)
+    @NSManaged var domoticzplugs: [[String]]?  // Array of an Array with 2 strings (IP Address, Label)
+
+    struct IPPlug: Equatable {
         var ip: String
         var label: String
+        
+        var idx: String? // Used by some plugins like Domoticz or Tasmota
+        var username: String? // Used by some plugins like Domoticz or Tasmota
+        var password: String? // Used by some plugins like Domoticz or Tasmota
 
-        static func ==(lhs: TPLinkSmartplug, rhs: TPLinkSmartplug) -> Bool {
-            return (lhs.ip == rhs.ip) && (lhs.label == rhs.label)
+        static func ==(lhs: IPPlug, rhs: IPPlug) -> Bool {
+            return (lhs.ip == rhs.ip) && (lhs.label == rhs.label) && (lhs.idx == rhs.idx)
         }
     }
     
@@ -51,11 +57,11 @@ class Printer: NSManagedObject {
         return streamUrl != nil
     }
 
-    func setTPLinkSmartplugs(plugs: [TPLinkSmartplug]?) {
+    func setTPLinkSmartplugs(plugs: [IPPlug]?) {
         if let newPlugs = plugs {
             var newValues: [[String]] = []
             for newPlug in newPlugs {
-                newValues.append([newPlug.ip, newPlug.label])
+                newValues.append(encodeIPPlug(newPlug))
             }
             tpLinkSmartplugs = newValues
         } else {
@@ -63,14 +69,93 @@ class Printer: NSManagedObject {
         }
     }
     
-    func getTPLinkSmartplugs() -> [TPLinkSmartplug]? {
+    func getTPLinkSmartplugs() -> [IPPlug]? {
         if let plugs = tpLinkSmartplugs {
-            var result:[TPLinkSmartplug] = []
+            var result:[IPPlug] = []
             for plug in plugs {
-                result.append(TPLinkSmartplug(ip: plug[0], label: plug[1]))
+                result.append(decodePlug(encoded: plug))
             }
             return result
         }
         return nil
     }
+
+    func setWemoPlugs(plugs: [IPPlug]?) {
+        if let newPlugs = plugs {
+            var newValues: [[String]] = []
+            for newPlug in newPlugs {
+                newValues.append(encodeIPPlug(newPlug))
+            }
+            wemoplugs = newValues
+        } else {
+            wemoplugs = nil
+        }
+    }
+    
+    func getWemoPlugs() -> [IPPlug]? {
+        if let plugs = wemoplugs {
+            var result:[IPPlug] = []
+            for plug in plugs {
+                result.append(decodePlug(encoded: plug))
+            }
+            return result
+        }
+        return nil
+    }
+
+    func setDomoticzPlugs(plugs: [IPPlug]?) {
+        if let newPlugs = plugs {
+            var newValues: [[String]] = []
+            for newPlug in newPlugs {
+                newValues.append(encodeIPPlug(newPlug))
+            }
+            domoticzplugs = newValues
+        } else {
+            domoticzplugs = nil
+        }
+    }
+    
+    func getDomoticzPlugs() -> [IPPlug]? {
+        if let plugs = domoticzplugs {
+            var result:[IPPlug] = []
+            for plug in plugs {
+                result.append(decodePlug(encoded: plug))
+            }
+            return result
+        }
+        return nil
+    }
+    
+    fileprivate func encodeIPPlug(_ newPlug: Printer.IPPlug) -> [String] {
+        var result = [newPlug.ip, newPlug.label]
+        if let idx = newPlug.idx {
+            result.append(idx)
+        }
+        if let username = newPlug.username {
+            result.append(username)
+        }
+        if let password = newPlug.password {
+            result.append(password)
+        }
+        return result
+    }
+    
+    fileprivate func decodePlug(encoded: Array<String>) -> IPPlug {
+        let ip = encoded[0]
+        let label = encoded[1]
+        var idx: String?
+        var username: String?
+        var password: String?
+        if encoded.count > 2 {
+            idx = encoded[2]
+        }
+        if encoded.count > 3 {
+            username = encoded[3]
+        }
+        if encoded.count > 4 {
+            password = encoded[4]
+        }
+        return IPPlug(ip: ip, label: label, idx: idx, username: username, password: password)
+    }
+
 }

@@ -1,17 +1,15 @@
 import UIKit
 
-class TPLinkSmartplugTableViewCell: UITableViewCell {
+class IPPlugTableViewCell: UITableViewCell {
 
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var powerButton: UIButton!
 
-    var ip: String! // IP Address configured for the TPLink Smartplug
-    
     var isPowerOn: Bool? // nil if unknown
     
-    var parentVC: TPLinkSmartplugViewController!
+    var parentVC: IPPlugViewController!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -2419,7 +2419,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="509"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="file_cell" textLabel="naE-gB-aKG" detailTextLabel="43o-rw-PJg" style="IBUITableViewCellStyleSubtitle" id="kXZ-Zk-VaP">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="file_cell" textLabel="naE-gB-aKG" detailTextLabel="43o-rw-PJg" style="IBUITableViewCellStyleSubtitle" id="kXZ-Zk-VaP">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kXZ-Zk-VaP" id="5kM-z2-yTF">
@@ -2447,7 +2447,7 @@
                                             <segue destination="GJo-uu-Qmb" kind="show" identifier="gotoFileDetails" id="06R-xh-V19"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="folder_cell" textLabel="twU-Rc-Faw" imageView="uFu-gF-1LR" style="IBUITableViewCellStyleDefault" id="KDo-ir-oWQ" userLabel="folder_cell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="folder_cell" textLabel="twU-Rc-Faw" imageView="uFu-gF-1LR" style="IBUITableViewCellStyleDefault" id="KDo-ir-oWQ" userLabel="folder_cell">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KDo-ir-oWQ" id="eXx-rf-HYn">
@@ -3403,16 +3403,16 @@
             </objects>
             <point key="canvasLocation" x="641" y="1550"/>
         </scene>
-        <!--Link Smartplug View Controller-->
+        <!--Plug View Controller-->
         <scene sceneID="2g8-hn-bxr">
             <objects>
-                <tableViewController storyboardIdentifier="TPLinkSmartplugViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OaB-w8-VpS" customClass="TPLinkSmartplugViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="IPPlugViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OaB-w8-VpS" customClass="IPPlugViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="lXQ-Nd-TOB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tplink_plug_cell" rowHeight="44" id="beT-5d-tXP" customClass="TPLinkSmartplugTableViewCell" customModule="OctoPod" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ip_plug_cell" rowHeight="44" id="beT-5d-tXP" customClass="IPPlugTableViewCell" customModule="OctoPod" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="beT-5d-tXP" id="w5u-rR-oAz">
