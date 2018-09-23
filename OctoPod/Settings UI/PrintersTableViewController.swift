@@ -4,6 +4,7 @@ class PrintersTableViewController: ThemedDynamicUITableViewController, CloudKitP
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     var printers: [Printer]!
 
@@ -52,6 +53,11 @@ class PrintersTableViewController: ThemedDynamicUITableViewController, CloudKitP
         return cell
     }
 
+    // Delete is only available if app is not in read-only mode
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return !appConfiguration.appLocked()
+    }
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

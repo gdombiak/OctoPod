@@ -4,6 +4,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     var updatePrinter: Printer? = nil
     var scannedKey: String?
@@ -164,6 +165,11 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     }
     
     fileprivate func updateSaveButton() {
+        if appConfiguration.appLocked() {
+            // Cannot save printer info if app is locked(read-only mode)
+            saveButton.isEnabled = false
+            return
+        }
         if !(printerNameField.text?.isEmpty)! && !(hostnameField.text?.isEmpty)! && !(apiKeyField.text?.isEmpty)! {
             saveButton.isEnabled = isValidURL()
         } else {
