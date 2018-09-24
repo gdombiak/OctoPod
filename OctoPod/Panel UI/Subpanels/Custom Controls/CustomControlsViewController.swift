@@ -1,9 +1,12 @@
 import UIKit
+import SafariServices  // Used for opening browser in-app
 
 class CustomControlsViewController: ThemedDynamicUITableViewController, SubpanelViewController {
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
+    @IBOutlet weak var footerView: UIView!
+    
     var containers: Array<Container>?
     
     override func viewDidLoad() {
@@ -12,6 +15,14 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Theme footer
+        let theme = Theme.currentTheme()
+        footerView.backgroundColor = theme.cellBackgroundColor()
+        
+        // Hide footer. Will appear only if no custom controls were found
+        footerView.isHidden = true
+        
         // Fetch and render custom controls
         refreshCustomControls(done: nil)
     }
@@ -88,6 +99,18 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
         self.tableView.reloadData()
     }
     
+    // MARK: - Button operations
+    
+    @IBAction func clickedOnLearnMore(_ sender: Any) {
+        let svc = SFSafariViewController(url: URL(string: "http://docs.octoprint.org/en/master/features/custom_controls.html")!)
+        self.present(svc, animated: true, completion: nil)
+    }
+    
+    @IBAction func clickedOnUsePlugin(_ sender: Any) {
+        let svc = SFSafariViewController(url: URL(string: "https://plugins.octoprint.org/plugins/customControl")!)
+        self.present(svc, animated: true, completion: nil)
+    }
+    
     // MARK: - Refresh
 
     @IBAction func refreshControls(_ sender: UIRefreshControl) {
@@ -120,7 +143,9 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
     fileprivate func refreshCustomControls(done: (() -> Void)?) {
         octoprintClient.customControls { (containers: Array<Container>?, error: Error?, response: HTTPURLResponse) in
             self.containers = containers
+            let show = self.containers == nil || self.containers!.isEmpty  // Show footer only if there are no custom controls defined
             DispatchQueue.main.async {
+                self.footerView.isHidden = !show
                 self.tableView.reloadData()
             }
             if let _ = error {

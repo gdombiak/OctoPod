@@ -4,6 +4,7 @@ import Foundation
 // The constants are used for identifying plugins
 struct Plugins {
 
+    static let CUSTOM_CONTROL = "custom_control "
     static let MULTICAM = "multicam"
     static let PSU_CONTROL = "psucontrol"
     static let TP_LINK_SMARTPLUG = "tplinksmartplug"    // Considered an IP Plug plugin

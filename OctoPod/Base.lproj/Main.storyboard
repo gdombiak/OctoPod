@@ -702,10 +702,37 @@
         <scene sceneID="uWi-YU-BTC">
             <objects>
                 <tableViewController storyboardIdentifier="CustomControlsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HeM-go-amU" customClass="CustomControlsViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="WAU-Fq-82J">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="50" id="WAU-Fq-82J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="fEh-51-Gvx">
+                            <rect key="frame" x="0.0" y="149.5" width="375" height="65"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5o-xJ-EiZ">
+                                    <rect key="frame" x="67.5" y="0.0" width="240" height="30"/>
+                                    <state key="normal" title="Learn more about Custom Controls"/>
+                                    <connections>
+                                        <action selector="clickedOnLearnMore:" destination="HeM-go-amU" eventType="touchUpInside" id="3W7-rK-O2W"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="or6-Pr-Z6f">
+                                    <rect key="frame" x="24.5" y="32" width="326" height="30"/>
+                                    <state key="normal" title="Configure controls using Custom Control Plugin"/>
+                                    <connections>
+                                        <action selector="clickedOnUsePlugin:" destination="HeM-go-amU" eventType="touchUpInside" id="Ofb-oN-xWI"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="or6-Pr-Z6f" firstAttribute="centerX" secondItem="fEh-51-Gvx" secondAttribute="centerX" id="1dP-Na-Xhb"/>
+                                <constraint firstItem="K5o-xJ-EiZ" firstAttribute="top" secondItem="fEh-51-Gvx" secondAttribute="top" id="Jby-Bl-zgk"/>
+                                <constraint firstItem="K5o-xJ-EiZ" firstAttribute="centerX" secondItem="fEh-51-Gvx" secondAttribute="centerX" id="fDh-Lh-roj"/>
+                                <constraint firstItem="or6-Pr-Z6f" firstAttribute="top" secondItem="K5o-xJ-EiZ" secondAttribute="bottom" constant="2" id="hfV-CU-OU5"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="container_cell" textLabel="YdD-gF-Ajm" imageView="Euz-6d-SVF" style="IBUITableViewCellStyleDefault" id="5Ai-TH-KaN">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
@@ -753,6 +780,9 @@
                             <action selector="refreshControls:" destination="HeM-go-amU" eventType="valueChanged" id="Yb2-7U-oNA"/>
                         </connections>
                     </refreshControl>
+                    <connections>
+                        <outlet property="footerView" destination="fEh-51-Gvx" id="VIp-Fa-gSe"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bow-8y-52S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
