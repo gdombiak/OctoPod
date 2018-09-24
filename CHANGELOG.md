@@ -1,6 +1,29 @@
 # Change Log
 
-## [1.7](https://github.com/gdombiak/OctoPod/tree/1.7) (2018-09-09)
+## [1.8](https://github.com/gdombiak/OctoPod/tree/1.8) (2018-09-23)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.7...1.8)
+
+**Implemented enhancements:**
+
+- Add links to explain what Custom Controls are [\#82](https://github.com/gdombiak/OctoPod/issues/82)
+- Add support for Tasmota plugin [\#81](https://github.com/gdombiak/OctoPod/issues/81)
+- Add support for Domoticz switches [\#77](https://github.com/gdombiak/OctoPod/issues/77)
+- Add support for Wemo switches [\#76](https://github.com/gdombiak/OctoPod/issues/76)
+- Optimize screen size for new iPhones [\#75](https://github.com/gdombiak/OctoPod/issues/75)
+- Allow to enable/disable confirmation dialogs on connect/disconnect [\#57](https://github.com/gdombiak/OctoPod/issues/57)
+- Use iCloud sync to keep list of printers in synch between devices [\#51](https://github.com/gdombiak/OctoPod/issues/51)
+
+**Fixed bugs:**
+
+- Camera error message truncates text [\#80](https://github.com/gdombiak/OctoPod/issues/80)
+- Fix crash when entered desired temp is not a number [\#74](https://github.com/gdombiak/OctoPod/issues/74)
+
+**Closed issues:**
+
+- Update to Swift 4.2 [\#79](https://github.com/gdombiak/OctoPod/issues/79)
+- Update pod Charts to 3.2.0 [\#78](https://github.com/gdombiak/OctoPod/issues/78)
+
+## [1.7](https://github.com/gdombiak/OctoPod/tree/1.7) (2018-09-10)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.6...1.7)
 
 **Implemented enhancements:**
