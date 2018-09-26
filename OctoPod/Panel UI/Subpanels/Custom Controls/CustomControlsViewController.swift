@@ -145,7 +145,10 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
             self.containers = containers
             let show = self.containers == nil || self.containers!.isEmpty  // Show footer only if there are no custom controls defined
             DispatchQueue.main.async {
-                self.footerView.isHidden = !show
+                if self.footerView != nil {
+                    // We might not be initialized yet so need to protect from this
+                    self.footerView.isHidden = !show
+                }
                 self.tableView.reloadData()
             }
             if let _ = error {
