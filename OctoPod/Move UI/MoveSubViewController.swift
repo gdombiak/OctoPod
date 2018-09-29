@@ -89,7 +89,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 if !requested {
                     // Handle error
                     NSLog("Error moving Y axis. HTTP status code \(response.statusCode)")
-                    self.showAlert("Alert", message: "Failed to request moving back")
+                    self.showAlert(message: NSLocalizedString("Failed to request moving back", comment: ""))
                 }
             }
         }
@@ -102,7 +102,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 if !requested {
                     // Handle error
                     NSLog("Error moving Y axis. HTTP status code \(response.statusCode)")
-                    self.showAlert("Alert", message: "Failed to request moving front")
+                    self.showAlert(message: NSLocalizedString("Failed to request moving front", comment: ""))
                 }
             }
         }
@@ -115,7 +115,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 if !requested {
                     // Handle error
                     NSLog("Error moving X axis. HTTP status code \(response.statusCode)")
-                    self.showAlert("Alert", message: "Failed to request moving left")
+                    self.showAlert(message: NSLocalizedString("Failed to request moving left", comment: ""))
                 }
             }
         }
@@ -128,7 +128,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 if !requested {
                     // Handle error
                     NSLog("Error moving X axis. HTTP status code \(response.statusCode)")
-                    self.showAlert("Alert", message: "Failed to request moving right")
+                    self.showAlert(message: NSLocalizedString("Failed to request moving right", comment: ""))
                 }
             }
         }
@@ -143,7 +143,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 if !requested {
                     // Handle error
                     NSLog("Error moving Z axis. HTTP status code \(response.statusCode)")
-                    self.showAlert("Alert", message: "Failed to request moving up")
+                    self.showAlert(message: NSLocalizedString("Failed to request moving up", comment: ""))
                 }
             }
         }
@@ -156,7 +156,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 if !requested {
                     // Handle error
                     NSLog("Error moving Z axis. HTTP status code \(response.statusCode)")
-                    self.showAlert("Alert", message: "Failed to request moving down")
+                    self.showAlert(message: NSLocalizedString("Failed to request moving down", comment: ""))
                 }
             }
         }
@@ -171,7 +171,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 if !requested {
                     // Handle error
                     NSLog("Error moving E axis. HTTP status code \(response.statusCode)")
-                    self.showAlert("Alert", message: "Failed to request to retract")
+                    self.showAlert(message: NSLocalizedString("Failed to request to retract", comment: ""))
                 }
             })
         }
@@ -184,7 +184,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 if !requested {
                     // Handle error
                     NSLog("Error moving E axis. HTTP status code \(response.statusCode)")
-                    self.showAlert("Alert", message: "Failed to request to extrude")
+                    self.showAlert(message: NSLocalizedString("Failed to request to extrude", comment: ""))
                 }
             })
         }
@@ -202,7 +202,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             if !requested {
                 // Handle error
                 NSLog("Error setting new flow rate. HTTP status code \(response.statusCode)")
-                self.showAlert("Alert", message: "Failed to set new flow rate")
+                self.showAlert(message: NSLocalizedString("Failed to set new flow rate", comment: ""))
             }
         })
     }
@@ -221,7 +221,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             if !requested {
                 // Handle error
                 NSLog("Error setting new fan speed. HTTP status code \(response.statusCode)")
-                self.showAlert("Alert", message: "Failed to set new fan speed")
+                self.showAlert(message: NSLocalizedString("Failed to set new fan speed", comment: ""))
             }
         })
     }
@@ -254,7 +254,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             if !requested {
                 // Handle error
                 NSLog("Error setting new feed rate. HTTP status code \(response.statusCode)")
-                self.showAlert("Alert", message: "Failed to set new feed rate")
+                self.showAlert(message: NSLocalizedString("Failed to set new feed rate", comment: ""))
             }
         })
     }
@@ -313,7 +313,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             if !requested {
                 // Handle error
                 NSLog("Error disabling \(axis) motor. HTTP status code \(response.statusCode)")
-                self.showAlert("Alert", message: "Failed to disable \(axis) motor")
+                self.showAlert(message: String(format: NSLocalizedString("Failed to disable motor", comment: ""), "\(axis)"))
             }
         })
     }
@@ -333,7 +333,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         feedRateLabel.textColor = textColor
     }
 
-    fileprivate func showAlert(_ title: String, message: String) {
-        UIUtils.showAlert(presenter: self, title: title, message: message, done: nil)
+    fileprivate func showAlert(message: String) {
+        UIUtils.showAlert(presenter: self, title: NSLocalizedString("Warning", comment: ""), message: message, done: nil)
     }
 }

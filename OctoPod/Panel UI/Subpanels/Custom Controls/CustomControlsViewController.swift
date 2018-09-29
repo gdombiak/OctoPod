@@ -43,7 +43,7 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Custom Controls"
+        return NSLocalizedString("Custom Controls", comment: "http://docs.octoprint.org/en/master/features/custom_controls.html")
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -152,9 +152,9 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
                 self.tableView.reloadData()
             }
             if let _ = error {
-                self.showAlert("Warning", message: error!.localizedDescription)
+                self.showAlert(NSLocalizedString("Warning", comment: ""), message: error!.localizedDescription)
             } else if response.statusCode != 200 {
-                self.showAlert("Warning", message: "Failed to get controls. HTTP response: \(response.statusCode)")
+                self.showAlert(NSLocalizedString("Warning", comment: ""), message: String(format: NSLocalizedString("Failed to get controls", comment: "Failed to get controls with HTTP Request error info"), response.statusCode))
             }
             // Execute done block when done
             done?()

@@ -185,7 +185,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                     DispatchQueue.main.async {
                         self.imageView.image = nil
                         // Display error messages
-                        self.errorMessageLabel.text = "Authentication failed"
+                        self.errorMessageLabel.text = NSLocalizedString("Authentication failed", comment: "HTTP authentication failed")
                         self.errorMessageLabel.numberOfLines = 1
                         self.errorMessageLabel.isHidden = false
                     }
@@ -211,12 +211,12 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                         if httpResponse.statusCode == 503 && !printer.isStreamPathFromSettings() {
                             // If URL to camera was not returned via /api/settings and
                             // we got a 503 to the best guessed URL then show "no camera" error message
-                            self.errorMessageLabel.text = "No camera"
+                            self.errorMessageLabel.text = NSLocalizedString("No camera", comment: "No camera was found")
                             self.errorMessageLabel.numberOfLines = 1
                             self.errorMessageLabel.isHidden = false
                             self.errorURLButton.isHidden = true
                         } else {
-                            self.errorMessageLabel.text = "Request error. HTTP response: \(httpResponse.statusCode)"
+                            self.errorMessageLabel.text = String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode)
                             self.errorMessageLabel.numberOfLines = 1
                             self.errorURLButton.setTitle(self.cameraURL, for: .normal)
                             self.errorMessageLabel.isHidden = false
@@ -235,7 +235,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                 streamingController?.play(url: url)
             } else {
                 // Camera URL was not valid (e.g. url string contains characters that are illegal in a URL, or is an empty string)
-                self.errorMessageLabel.text = "Invalid camera URL"
+                self.errorMessageLabel.text = NSLocalizedString("Invalid camera URL", comment: "URL of camera is invalid")
                 self.errorMessageLabel.numberOfLines = 1
                 self.errorURLButton.setTitle(self.cameraURL, for: .normal)
                 self.errorMessageLabel.isHidden = false

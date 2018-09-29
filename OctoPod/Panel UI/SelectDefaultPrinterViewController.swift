@@ -44,6 +44,5 @@ class SelectDefaultPrinterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         printerManager.changeToDefaultPrinter(printers[indexPath.row])
         dismiss(animated: true, completion: onCompletion)
-
     }
 }

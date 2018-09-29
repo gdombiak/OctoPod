@@ -87,13 +87,13 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
             // Request to print file
             octoprintClient.printFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
                 if !success {
-                    var message = "Failed to request to print file"
+                    var message = NSLocalizedString("Failed to request to print file", comment: "")
                     if response.statusCode == 409 {
-                        message = "Printer not operational"
+                        message = NSLocalizedString("Printer not operational", comment: "")
                     } else if response.statusCode == 415 {
-                        message = "Cannot print this file type"
+                        message = NSLocalizedString("Cannot print this file type", comment: "")
                     }
-                    self.showAlert("Alert", message: message, done: nil)
+                    self.showAlert(NSLocalizedString("Warning", comment: ""), message: message, done: nil)
                 } else {
                     // Request to print file was successful so go to print window
                     DispatchQueue.main.async {
@@ -113,7 +113,7 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
             if controller.uploaded {
                 if controller.selectedLocation == CloudFilesManager.Location.SDCard {
                     // File is in OctoPrint and is being copied to SD Card so send user to main page
-                    self.showAlert("SD Card", message: "File is being copied to SD Card", done: {
+                    self.showAlert(NSLocalizedString("SD Card", comment: ""), message: NSLocalizedString("File is being copied to SD Card", comment: ""), done: {
                         self.tabBarController?.selectedIndex = 0
                     })
                 } else {
@@ -169,8 +169,8 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
         // Delete from server (if failed then show error message and reload)
         octoprintClient.deleteFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
             if !success {
-                let message = response.statusCode == 409 ? "File currently being printed" : "Failed to delete file"
-                self.showAlert("Alert", message: message, done: {
+                let message = response.statusCode == 409 ? NSLocalizedString("File currently being printed", comment: "") : NSLocalizedString("Failed to delete file", comment: "")
+                self.showAlert(NSLocalizedString("Warning", comment: ""), message: message, done: {
                     // Add back file to UI
                     self.files.append(printFile)
                     // Add back to model in memory
@@ -203,5 +203,4 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
     fileprivate func showAlert(_ title: String, message: String, done: (() -> Void)?) {
         UIUtils.showAlert(presenter: self, title: title, message: message, done: done)
     }
-
 }

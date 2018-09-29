@@ -83,12 +83,13 @@ class PSUControlViewController: ThemedStaticUITableViewController, SubpanelViewC
         let changePower = {
             self.octoprintClient.turnPSU(on: !self.isPSUOn) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
-                    self.showAlert("Warning", message: "Failed to request to turn power \(!self.isPSUOn ? "on" : "off")")
+                    let message = !self.isPSUOn ? NSLocalizedString("Failed turn power on", comment: "") : NSLocalizedString("Failed turn power off", comment: "")
+                    self.showAlert(NSLocalizedString("Warning", comment: ""), message: message)
                 }
             }}
         
         if isPSUOn {
-            showConfirm(message: "You are about to turn off the PSU. Proceed?", yes: { (UIAlertAction) -> Void in
+            showConfirm(message: NSLocalizedString("Confirm turn off PSU", comment: ""), yes: { (UIAlertAction) -> Void in
                 changePower()
             }, no: { (UIAlertAction) -> Void in
                 // Do nothing
@@ -107,7 +108,7 @@ class PSUControlViewController: ThemedStaticUITableViewController, SubpanelViewC
         }
         DispatchQueue.main.async {
             self.powerButton.setImage(UIImage(named: self.isPSUOn ? "PSUPowerOff" : "PSUPowerOn"), for: .normal)
-            self.controlPowerLabel.text = "Turn \(self.isPSUOn ? "Off" : "On")"
+            self.controlPowerLabel.text =  self.isPSUOn ? NSLocalizedString("Turn Off", comment: "") : NSLocalizedString("Turn On", comment: "")
         }
     }
 

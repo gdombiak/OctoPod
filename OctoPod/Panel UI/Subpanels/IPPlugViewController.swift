@@ -98,13 +98,13 @@ class IPPlugViewController: ThemedDynamicUITableViewController, SubpanelViewCont
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch ipPlugPlugin! {
         case Plugins.TP_LINK_SMARTPLUG:
-            return "TPLink Smartplugs"
+            return NSLocalizedString("TPLink Smartplugs", comment: "")
         case Plugins.WEMO_SWITCH:
-            return "Wemo Switches"
+            return NSLocalizedString("Wemo Switches", comment: "")
         case Plugins.DOMOTICZ:
-            return "Domoticz Plugs"
+            return NSLocalizedString("Domoticz Plugs", comment: "")
         case Plugins.TASMOTA:
-            return "Tasmota Plugs"
+            return NSLocalizedString("Tasmota Plugs", comment: "")
         default:
             fatalError("Unkonwn plugin")
         }
@@ -161,13 +161,14 @@ class IPPlugViewController: ThemedDynamicUITableViewController, SubpanelViewCont
                     let plug = self.plugs[indexPath.row]
                     self.octoprintClient.turnIPPlug(plugin: self.ipPlugPlugin, on: !on, plug: plug) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                         if !requested {
-                            self.showAlert("Warning", message: "Failed to request to turn power \(!on ? "on" : "off")")
+                            let message = !on ? NSLocalizedString("Failed to request to turn power on", comment: "") : NSLocalizedString("Failed to request to turn power off", comment: "")
+                            self.showAlert(NSLocalizedString("Warning", comment: ""), message: message)
                         }
                     }
                 }
             }
             if on {
-                showConfirm(message: "You are about to turn off the plug. Proceed?", yes: { (UIAlertAction) -> Void in
+                showConfirm(message: NSLocalizedString("Confirm turn off plug", comment: ""), yes: { (UIAlertAction) -> Void in
                     changePower()
                 }, no: { (UIAlertAction) -> Void in
                     // Do nothing

@@ -29,7 +29,7 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate {
             // Update window title to Camera name
             navigationItem.title = printer.name
         } else {
-            navigationItem.title = "Terminal"
+            navigationItem.title = NSLocalizedString("Terminal", comment: "")
         }
         
         // Enable sending gcode commands only if app is not locked
@@ -69,11 +69,11 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate {
             octoprintClient.sendCommand(gcode: text.uppercased()) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
                     // Handle error
-                    var message = "Failed to send GCode command"
+                    var message = NSLocalizedString("Failed to send GCode command", comment: "")
                     if response.statusCode == 409 {
-                        message = "Printer not operational"
+                        message = NSLocalizedString("Printer not operational", comment: "")
                     }
-                    self.showAlert("Alert", message: message)
+                    self.showAlert(NSLocalizedString("Warning", comment: ""), message: message)
                 } else {
                     // Command successfully requested
                     DispatchQueue.main.async {

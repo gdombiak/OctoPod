@@ -14,7 +14,7 @@ class Theme {
         func navigationTopColor() -> UIColor {
             switch self {
             case .Light:
-                return UIColor(red: 247/255, green: 247/255, blue: 248/255, alpha: 1.0)  // CONFIRMED
+                return UIColor(red: 247/255, green: 247/255, blue: 248/255, alpha: 1.0)
             case .Dark:
                 return UIColor(red: 53/255, green: 57/255, blue: 62/255, alpha: 1.0)
             }
@@ -23,7 +23,7 @@ class Theme {
         func tabBarColor() -> UIColor {
             switch self {
             case .Light:
-                return UIColor(red: 246/255, green: 246/255, blue: 248/255, alpha: 1.0) // CONFIRMED
+                return UIColor(red: 246/255, green: 246/255, blue: 248/255, alpha: 1.0)
             case .Dark:
                 return UIColor(red: 53/255, green: 57/255, blue: 62/255, alpha: 1.0)
             }
@@ -32,7 +32,7 @@ class Theme {
         func backgroundColor() -> UIColor {
             switch self {
             case .Light:
-                return UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1.0) // CONFIRMED
+                return UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1.0)
             case .Dark:
                 return UIColor(red: 53/255, green: 57/255, blue: 62/255, alpha: 1.0)
             }
@@ -41,7 +41,7 @@ class Theme {
         func cellBackgroundColor() -> UIColor {
             switch self {
             case .Light:
-                return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0) // CONFIRMED
+                return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
             case .Dark:
                 return UIColor(red: 47/255, green: 49/255, blue: 53/255, alpha: 1.0)
             }
@@ -50,7 +50,7 @@ class Theme {
         func separatorColor() -> UIColor {
             switch self {
             case .Light:
-                return UIColor(red: 235/255, green: 234/255, blue: 236/255, alpha: 1.0) // CONFIRMED
+                return UIColor(red: 235/255, green: 234/255, blue: 236/255, alpha: 1.0)
             case .Dark:
                 return UIColor(red: 40/255, green: 42/255, blue: 46/255, alpha: 1.0)
             }
@@ -77,7 +77,7 @@ class Theme {
         func tintColor() -> UIColor {
             switch self {
             case .Light:
-                return UIColor(red: 0/255, green: 122.4/255, blue: 255/255, alpha: 1.0)  // CONFIRMED
+                return UIColor(red: 0/255, green: 122.4/255, blue: 255/255, alpha: 1.0)
             case .Dark:
                 return UIColor(red: 0/255, green: 122.4/255, blue: 255/255, alpha: 1.0)
             }

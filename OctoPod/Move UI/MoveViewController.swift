@@ -39,7 +39,7 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate {
             // Listen to changes to OctoPrint Settings in case the camera orientation has changed
             octoprintClient.octoPrintSettingsDelegates.append(self)
         } else {
-            navigationItem.title = "Move"
+            navigationItem.title = NSLocalizedString("Move", comment: "")
         }
     }
     

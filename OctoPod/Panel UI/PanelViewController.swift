@@ -85,7 +85,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             }
             if appConfiguration.confirmationOnDisconnect() {
                 // Prompt for confirmation that we want to disconnect from printer
-                showConfirm(message: "Do you want to disconnect from the printer?", yes: { (UIAlertAction) -> Void in
+                showConfirm(message: NSLocalizedString("Confirm disconnect", comment: ""), yes: { (UIAlertAction) -> Void in
                     disconnect()
                 }, no: { (UIAlertAction) -> Void in
                     // Do nothing
@@ -111,7 +111,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 connect()
             } else {
                 // Prompt for confirmation so users know that if printing then print will be lost
-                showConfirm(message: "Some printers might reboot when connecting. Proceed?", yes: { (UIAlertAction) -> Void in
+                showConfirm(message: NSLocalizedString("Confirm connect", comment: ""), yes: { (UIAlertAction) -> Void in
                     // Mark that user accepted. Prompt will not appear again if user does not want a prompt each time (this is default case)
                     defaults.set(true, forKey: PanelViewController.CONNECT_CONFIRMATION)
                     // Connect now
@@ -177,15 +177,15 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         if let controller = sender.source as? JobInfoViewController, let jobOperation = controller.requestedJobOperation {
             switch jobOperation {
             case .cancel:
-                showAlert("Job", message: "Failed to request to cancel job")
+                showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed cancel job", comment: ""))
             case .pause:
-                showAlert("Job", message: "Failed to request to pause job")
+                showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed pause job", comment: ""))
             case .resume:
-                showAlert("Job", message: "Failed to request to resume job")
+                showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed resume job", comment: ""))
             case .restart:
-                showAlert("Job", message: "Failed to request to restart job")
+                showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed restart job", comment: ""))
             case .reprint:
-                showAlert("Job", message: "Failed to request to print job again")
+                showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed print job again", comment: ""))
             }
         }
     }
@@ -239,17 +239,17 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     func handleConnectionError(error: Error?, response: HTTPURLResponse) {
         if let nsError = error as NSError?, let url = response.url {
             if nsError.code == Int(CFNetworkErrors.cfurlErrorTimedOut.rawValue) && url.host == "octopi.local" {
-                self.showAlert("Connection Failed", message: "Cannot reach 'octopi.local' over mobile network or service is down")
+                self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Cannot reach 'octopi.local' over mobile network or service is down", comment: ""))
             } else if nsError.code == Int(CFNetworkErrors.cfurlErrorTimedOut.rawValue) {
-                self.showAlert("Connection Failed", message: "Service is down or incorrect port")
+                self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Service is down or incorrect port", comment: ""))
             } else if nsError.code == Int(CFNetworkErrors.cfurlErrorCancelled.rawValue) {
                 // We ask authentication to be cancelled when when creds are bad
-                self.showAlert("Authentication Failed", message: "Incorrect authentication credentials")
+                self.showAlert(NSLocalizedString("Authentication failed", comment: ""), message: NSLocalizedString("Incorrect authentication credentials", comment: ""))
             } else {
-                self.showAlert("Connection Failed", message: "\(nsError.localizedDescription)")
+                self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: "\(nsError.localizedDescription)")
             }
         } else if response.statusCode == 403 {
-            self.showAlert("Authentication Failed", message: "Incorrect API Key")
+            self.showAlert(NSLocalizedString("Authentication failed", comment: ""), message: NSLocalizedString("Incorrect API Key", comment: ""))
         }
     }
     
@@ -311,10 +311,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         DispatchQueue.main.async {
             if !printerConnected {
                 self.printerConnected = false
-                self.connectButton.title = "Connect"
+                self.connectButton.title = NSLocalizedString("Connect", comment: "")
             } else {
                 self.printerConnected = true
-                self.connectButton.title = "Disconnect"
+                self.connectButton.title = NSLocalizedString("Disconnect", comment: "")
             }
         }
     }

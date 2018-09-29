@@ -84,7 +84,7 @@ class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate 
     fileprivate func processFile(url: URL) {
         let isSecured = url.startAccessingSecurityScopedResource() == true
         guard let fileData = try? Data(contentsOf: url) else {
-            showAlert("Warning", message: "Failed to read file from iCloud", done: nil)
+            showAlert(NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Failed to read file from iCloud", comment: ""), done: nil)
             return
         }
         
@@ -103,23 +103,23 @@ class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate 
                     self.performSegue(withIdentifier: "backFromUploadFile", sender: self)
                 }
             } else if response.statusCode == 400 {
-                self.showAlert("Upload failed", message: "Invalid file type", done: {
+                self.showAlert(NSLocalizedString("Upload failed", comment: ""), message: NSLocalizedString("Invalid file type", comment: ""), done: {
                     self.dismiss(animated: false, completion: nil)
                 })
             } else if response.statusCode == 404 {
-                self.showAlert("Upload failed", message: "Location no longer valid. Refresh files", done: {
+                self.showAlert(NSLocalizedString("Upload failed", comment: ""), message: NSLocalizedString("Location no longer valid. Refresh files", comment: ""), done: {
                     self.dismiss(animated: false, completion: nil)
                 })
             } else if response.statusCode == 409 {
-                self.showAlert("Upload failed", message: "Cannot replace file that is being printed or printer is busy", done: {
+                self.showAlert(NSLocalizedString("Upload failed", comment: ""), message: NSLocalizedString("Cannot replace file that is being printed or printer is busy", comment: ""), done: {
                     self.dismiss(animated: false, completion: nil)
                 })
             } else if let e = error {
-                self.showAlert("Upload failed", message: e.localizedDescription, done: {
+                self.showAlert(NSLocalizedString("Upload failed", comment: ""), message: e.localizedDescription, done: {
                     self.dismiss(animated: false, completion: nil)
                 })
             } else {
-                self.showAlert("Upload failed", message: "Failed to upload file", done: {
+                self.showAlert(NSLocalizedString("Upload failed", comment: ""), message: NSLocalizedString("Failed to upload file", comment: ""), done: {
                     self.dismiss(animated: false, completion: nil)
                 })
             }
@@ -145,7 +145,7 @@ class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate 
             picker.modalPresentationStyle = .fullScreen
             self.present(picker, animated: false, completion: nil)
         } else {
-            showAlert("Alert", message: "Enable iCloud under iOS Settings to use this feature", done: nil)
+            showAlert(NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Enable iCloud under iOS Settings to use this feature", comment: ""), done: nil)
         }
     }
     

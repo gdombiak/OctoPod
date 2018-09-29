@@ -37,11 +37,11 @@ class PrintFile {
     func displayOrigin() -> String {
         if let currentOrigin = origin {
             if currentOrigin == "local" {
-                return "Octoprint"
+                return NSLocalizedString("OctoPrint", comment: "OctoPrint server")
             } else if currentOrigin == "sdcard" {
-                return "SD Card"
+                return NSLocalizedString("SD Card", comment: "Origin is SD Card")
             } else {
-                return "Unknown"
+                return NSLocalizedString("Unknown", comment: "Origin is Unknown")
             }
         }
         return ""
@@ -50,14 +50,14 @@ class PrintFile {
     func displayType() -> String {
         if let currentOrigin = type {
             if currentOrigin == "model" {
-                return "Model"
+                return NSLocalizedString("Model", comment: "File Type is a Model")
             } else if currentOrigin == "machinecode" {
-                return "Code"
+                return NSLocalizedString("Code", comment: "File Type is GCode")
             } else if currentOrigin == "folder" {
-                return "Folder"
+                return NSLocalizedString("Folder", comment: "File Type is a Folder")
             }
         }
-        return "Unknown"
+        return NSLocalizedString("Unknown", comment: "File Type is Unknown")
     }
     
     func displaySize() -> String {

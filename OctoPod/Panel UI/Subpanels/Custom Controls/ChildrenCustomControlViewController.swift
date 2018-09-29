@@ -57,7 +57,7 @@ class ChildrenCustomControlViewController: ThemedDynamicUITableViewController {
             } else {
                 NSLog("Found unexpected custom control: \(childrenCC[indexPath.row])")
                 cell.imageView?.image = nil
-                cell.textLabel?.text = "Unknown Control"
+                cell.textLabel?.text = NSLocalizedString("Unknown Control", comment: "Unknown Custom Control")
             }
             return cell
         }

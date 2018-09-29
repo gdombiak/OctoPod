@@ -128,7 +128,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             if let seconds = event.progressPrintTimeLeft {
                 self.printTimeLeftLabel.text = self.secondsToTimeLeft(seconds: seconds)
             } else if event.progressPrintTime != nil {
-                self.printTimeLeftLabel.text = "Still stabilizing..."
+                self.printTimeLeftLabel.text = NSLocalizedString("Still stabilizing", comment: "Print time is being calculated")
             }
 
             if let tool0Actual = event.tool0TempActual {
@@ -235,7 +235,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         } else if seconds < 0 {
             // Should never happen but an OctoPrint plugin is returning negative values
             // so return 'Unknown' when this happens
-            return "Unknown"
+            return NSLocalizedString("Unknown", comment: "ETA is Unknown")
         }
         let duration = TimeInterval(seconds)
         let formatter = DateComponentsFormatter()
@@ -247,7 +247,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     fileprivate func clearValues() {
         DispatchQueue.main.async {
-            self.printerStatusLabel.text = "Offline"
+            self.printerStatusLabel.text = NSLocalizedString("Offline", comment: "Printer is Offline")
 
             self.progressView.setProgress(0, animated: false)
             self.progressLabel.text = "0%"

@@ -44,10 +44,10 @@ class JobInfoViewController: UITableViewController {
 
                     var buttonTitle: String?
                     if self.event!.printing == true {
-                        buttonTitle = "Pause Job"
+                        buttonTitle = NSLocalizedString("Pause Job", comment: "")
                         self.printerPrinting = true
                     } else if self.event!.paused == true {
-                        buttonTitle = "Resume Job"
+                        buttonTitle = NSLocalizedString("Resume Job", comment: "")
                         self.printerPrinting = false
                     }
 
@@ -114,7 +114,7 @@ class JobInfoViewController: UITableViewController {
     
     @IBAction func cancelJob(_ sender: Any) {
         // Prompt for confirmation that we want to cancel the print job
-        showConfirm(message: "Do you want to cancel job?", yes: { (UIAlertAction) in
+        showConfirm(message: NSLocalizedString("Do you want to cancel job?", comment: ""), yes: { (UIAlertAction) in
             self.octoprintClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
                     self.dismiss(animated: true, completion: nil)
@@ -191,13 +191,13 @@ class JobInfoViewController: UITableViewController {
         if let lastEvent = event, let _ = printFile {
             if lastEvent.operational == true && lastEvent.printing != true && lastEvent.paused != true {
                 // Allow to print file if there is a file and printer is operationsl
-                self.restartButton.setTitle("Print File", for: .normal)
+                self.restartButton.setTitle(NSLocalizedString("Print File", comment: ""), for: .normal)
                 self.restartButton.isEnabled = !self.appConfiguration.appLocked() // Only enable if app is not locked
                 self.cancelButton.isEnabled = false
                 return
             } else {
                 // Only enable option to restart when print job is paused
-                self.restartButton.setTitle("Restart Job", for: .normal)
+                self.restartButton.setTitle(NSLocalizedString("Restart Job", comment: ""), for: .normal)
                 self.restartButton.isEnabled = lastEvent.paused == true && !self.appConfiguration.appLocked() // Only enable if app is not locked
                 self.cancelButton.isEnabled = !self.appConfiguration.appLocked() // Only enable if app is not locked
             }

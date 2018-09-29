@@ -24,7 +24,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
 
         // Create, configure and add UIRefreshControl to table view
         refreshControl = UIRefreshControl()
-        refreshControl!.attributedTitle = NSAttributedString(string: "Pull down to refresh")
+        refreshControl!.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull down to refresh", comment: ""))
         tableView.addSubview(refreshControl!)
         tableView.alwaysBounceVertical = true
         self.refreshControl?.addTarget(self, action: #selector(refreshFiles), for: UIControl.Event.valueChanged)
@@ -123,13 +123,13 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             // Request to print file
             octoprintClient.printFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
                 if !success {
-                    var message = "Failed to request to print file"
+                    var message = NSLocalizedString("Failed to request to print file", comment: "")
                     if response.statusCode == 409 {
-                        message = "Printer not operational"
+                        message = NSLocalizedString("Printer not operational", comment: "")
                     } else if response.statusCode == 415 {
-                        message = "Cannot print this file type"
+                        message = NSLocalizedString("Cannot print this file type", comment: "")
                     }
-                    self.showAlert("Alert", message: message, done: nil)
+                    self.showAlert(NSLocalizedString("Warning", comment: ""), message: message, done: nil)
                 } else {
                     // Request to print file was successful so go to print window
                     DispatchQueue.main.async {
@@ -154,7 +154,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             if controller.uploaded {
                 if controller.selectedLocation == CloudFilesManager.Location.SDCard {
                     // File is in OctoPrint and is being copied to SD Card so send user to main page
-                    self.showAlert("SD Card", message: "File is being copied to SD Card", done: {
+                    self.showAlert(NSLocalizedString("SD Card", comment: ""), message: NSLocalizedString("File is being copied to SD Card", comment: ""), done: {
                         self.tabBarController?.selectedIndex = 0
                     })
                 } else {
@@ -211,11 +211,11 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
                     if success {
                         self.loadFiles(delay: 1)
                     } else {
-                        self.showAlert("Alert", message: "Failed to initialize SD card", done: nil)
+                        self.showAlert(NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Failed to initialize SD card", comment: ""), done: nil)
                     }
                 })
             } else {
-                self.showAlert("Alert", message: "Failed to refresh SD card", done: nil)
+                self.showAlert(NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Failed to refresh SD card", comment: ""), done: nil)
             }
         }
     }
@@ -327,8 +327,8 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         // Delete from server (if failed then show error message and reload)
         octoprintClient.deleteFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
             if !success {
-                let message = response.statusCode == 409 ? "File currently being printed" : "Failed to delete file"
-                self.showAlert("Alert", message: message, done: {
+                let message = response.statusCode == 409 ? NSLocalizedString("File currently being printed", comment: "") : NSLocalizedString("Failed to delete file", comment: "")
+                self.showAlert(NSLocalizedString("Warning", comment: ""), message: message, done: {
                     self.loadFiles(done: nil)
                 })
             }

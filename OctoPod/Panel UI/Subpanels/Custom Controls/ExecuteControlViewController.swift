@@ -11,8 +11,8 @@ class ExecuteControlViewController: ThemedDynamicUITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(cancel))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Run", style: .done, target: self, action: #selector(execute))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .done, target: self, action: #selector(cancel))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Run", comment: "Execute Command"), style: .done, target: self, action: #selector(execute))
     }
 
     override func didReceiveMemoryWarning() {
@@ -109,11 +109,11 @@ class ExecuteControlViewController: ThemedDynamicUITableViewController {
                     // Handle error
                     NSLog("Error requesting to execute command \(json). HTTP status code \(response.statusCode)")
                     if response.statusCode == 409 {
-                        self.showAlert("Alert", message: "Command not executed. Printer not operational")
+                        self.showAlert(NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Command not executed. Printer not operational", comment: ""))
                     } else if response.statusCode == 404 {
-                        self.showAlert("Alert", message: "Command not executed. Script not found")
+                        self.showAlert(NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Command not executed. Script not found", comment: ""))
                     } else {
-                        self.showAlert("Alert", message: "Failed to request to execute command")
+                        self.showAlert(NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Failed to request to execute command", comment: ""))
                     }
                 }
             })
