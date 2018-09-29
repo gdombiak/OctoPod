@@ -222,7 +222,7 @@
 "Q2b-xf-a3O.normalTitle" = "Retraer";
 
 /* Class = "UIViewController"; title = "QR Code"; ObjectID = "QCe-zo-Ncw"; */
-"QCe-zo-Ncw.title" = "Códig QR";
+"QCe-zo-Ncw.title" = "Código QR";
 
 /* Class = "UILabel"; text = "Issues"; ObjectID = "QJp-Yj-1AF"; */
 "QJp-Yj-1AF.text" = "Problemas";
@@ -234,7 +234,7 @@
 "Qps-RG-QAh.text" = "Ventilador";
 
 /* Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ"; */
-"QwZ-7J-MwJ.normalTitle" = "Apagado";
+"QwZ-7J-MwJ.normalTitle" = "Apagar";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87"; */
 "REX-gh-p87.normalTitle" = "Botón";
@@ -408,7 +408,7 @@
 "ncZ-xn-WCb.text" = "Título";
 
 /* Class = "UIButton"; normalTitle = "Set"; ObjectID = "o8a-yF-u6j"; */
-"o8a-yF-u6j.normalTitle" = "Poner";
+"o8a-yF-u6j.normalTitle" = "Fijar";
 
 /* Class = "UITableViewController"; title = "Prompts"; ObjectID = "oZw-P5-oVG"; */
 "oZw-P5-oVG.title" = "Confirmaciones";
@@ -483,7 +483,7 @@
 "x8L-G5-sTU.normalTitle" = "Botón URL";
 
 /* Class = "UIButton"; normalTitle = "Delete"; ObjectID = "xE0-gE-Kuq"; */
-"xE0-gE-Kuq.normalTitle" = "Borrar";
+"xE0-gE-Kuq.normalTitle" = "Eliminar";
 
 /* Class = "UINavigationItem"; title = "Printer Details"; ObjectID = "xvl-wE-Mht"; */
 "xvl-wE-Mht.title" = "Detalle Impresora";
