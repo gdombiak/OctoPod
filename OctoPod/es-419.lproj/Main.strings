@@ -99,7 +99,7 @@
 "Crn-wa-FLw.normalTitle" = "Imprimir";
 
 /* Class = "UIButton"; normalTitle = "Cancel Job"; ObjectID = "Cxb-Rv-BSm"; */
-"Cxb-Rv-BSm.normalTitle" = "Cancelar Trabajo";
+"Cxb-Rv-BSm.normalTitle" = "Cancelar";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "Fbe-op-Ixc"; */
 "Fbe-op-Ixc.text" = "Detalle";
@@ -282,7 +282,7 @@
 "XOG-eU-T7f.text" = "Confirmar para conectar";
 
 /* Class = "UIButton"; normalTitle = "Restart Job"; ObjectID = "XV8-g9-QIc"; */
-"XV8-g9-QIc.normalTitle" = "Reiniciar Trabajo";
+"XV8-g9-QIc.normalTitle" = "Reiniciar";
 
 /* Class = "UITableViewSection"; headerTitle = "Synchronization"; ObjectID = "Xhq-hp-2kd"; */
 "Xhq-hp-2kd.headerTitle" = "Sincronización";
@@ -330,10 +330,10 @@
 "cQd-kb-e8D.placeholder" = "Clave API";
 
 /* Class = "UIButton"; normalTitle = "Pause Job"; ObjectID = "d2Y-RO-6Yg"; */
-"d2Y-RO-6Yg.normalTitle" = "Detener Trabajo";
+"d2Y-RO-6Yg.normalTitle" = "Detener";
 
 /* Class = "UILabel"; text = "Frequently Asked Questions"; ObjectID = "dlU-c7-kpY"; */
-"dlU-c7-kpY.text" = "Preguntas Frequentes";
+"dlU-c7-kpY.text" = "Preguntas frecuentes";
 
 /* Class = "UIButton"; normalTitle = "Reset iCloud data from printers"; ObjectID = "e5p-Y4-n8X"; */
 "e5p-Y4-n8X.normalTitle" = "Resetear datos iCloud desde impresoras";
@@ -408,7 +408,7 @@
 "ncZ-xn-WCb.text" = "Título";
 
 /* Class = "UIButton"; normalTitle = "Set"; ObjectID = "o8a-yF-u6j"; */
-"o8a-yF-u6j.normalTitle" = "Set";
+"o8a-yF-u6j.normalTitle" = "Poner";
 
 /* Class = "UITableViewController"; title = "Prompts"; ObjectID = "oZw-P5-oVG"; */
 "oZw-P5-oVG.title" = "Confirmaciones";

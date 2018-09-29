@@ -74,11 +74,11 @@
 "No" = "No";
 "Dismiss" = "Cerrar";
 
-"Pause Job" = "Detener Trabajo";
-"Resume Job" = "Reanudar Trabajo";
+"Pause Job" = "Detener";
+"Resume Job" = "Reanudar";
 "Do you want to cancel job?" = "¿Desea cancelar el trabajo?";
-"Print File" = "Imprimir Archivo";
-"Restart Job" = "Reiniciar Trabajo";
+"Print File" = "Imprimir";
+"Restart Job" = "Reiniciar";
 
 "Failed to request moving back" = "Falla al pedir ir atras";
 "Failed to request moving front" = "Falla al pedir ir al frente";
