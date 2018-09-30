@@ -1177,13 +1177,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d2Y-RO-6Yg">
-                                                    <rect key="frame" x="152" y="7" width="71" height="30"/>
+                                                    <rect key="frame" x="101" y="7" width="173" height="30"/>
                                                     <state key="normal" title="Pause Job"/>
                                                     <connections>
                                                         <action selector="pauseOrResumeJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="O9B-vc-VDa"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XV8-g9-QIc">
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XV8-g9-QIc">
                                                     <rect key="frame" x="16" y="7" width="80" height="30"/>
                                                     <state key="normal" title="Restart Job"/>
                                                     <connections>
@@ -1191,7 +1191,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cxb-Rv-BSm">
-                                                    <rect key="frame" x="282" y="7" width="77" height="30"/>
+                                                    <rect key="frame" x="279" y="7" width="80" height="30"/>
                                                     <state key="normal" title="Cancel Job"/>
                                                     <connections>
                                                         <action selector="cancelJob:" destination="PnN-DP-ud9" eventType="touchUpInside" id="caK-gc-esk"/>
@@ -1199,11 +1199,13 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="d2Y-RO-6Yg" firstAttribute="leading" secondItem="XV8-g9-QIc" secondAttribute="trailing" constant="5" id="4MD-Nk-NgE"/>
                                                 <constraint firstItem="d2Y-RO-6Yg" firstAttribute="centerY" secondItem="rnb-Kp-osr" secondAttribute="centerY" id="EwB-Dy-XMO"/>
                                                 <constraint firstItem="XV8-g9-QIc" firstAttribute="centerY" secondItem="rnb-Kp-osr" secondAttribute="centerY" id="LC3-ab-eJc"/>
                                                 <constraint firstItem="XV8-g9-QIc" firstAttribute="leading" secondItem="rnb-Kp-osr" secondAttribute="leading" constant="16" id="W7b-qw-USg"/>
                                                 <constraint firstItem="Cxb-Rv-BSm" firstAttribute="centerY" secondItem="rnb-Kp-osr" secondAttribute="centerY" id="YeG-Fr-tLR"/>
                                                 <constraint firstAttribute="trailing" secondItem="Cxb-Rv-BSm" secondAttribute="trailing" constant="16" id="Z1B-rb-Ana"/>
+                                                <constraint firstItem="Cxb-Rv-BSm" firstAttribute="leading" secondItem="d2Y-RO-6Yg" secondAttribute="trailing" constant="5" id="dDE-Eu-Aa1"/>
                                                 <constraint firstItem="d2Y-RO-6Yg" firstAttribute="centerX" secondItem="rnb-Kp-osr" secondAttribute="centerX" id="myt-3v-83O"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -3103,7 +3105,7 @@
                                                     </connections>
                                                 </button>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="NKo-dw-3Mg">
-                                                    <rect key="frame" x="25" y="28.5" width="151" height="29"/>
+                                                    <rect key="frame" x="19" y="28.5" width="151" height="29"/>
                                                     <segments>
                                                         <segment title="0.1"/>
                                                         <segment title="1"/>
@@ -3147,7 +3149,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="NKo-dw-3Mg" firstAttribute="centerY" secondItem="gzt-KR-TR2" secondAttribute="centerY" id="2Aw-0J-zBM"/>
-                                                <constraint firstItem="NKo-dw-3Mg" firstAttribute="leading" secondItem="gzt-KR-TR2" secondAttribute="leadingMargin" constant="9" id="JWf-WE-8od"/>
+                                                <constraint firstItem="NKo-dw-3Mg" firstAttribute="leading" secondItem="gzt-KR-TR2" secondAttribute="leadingMargin" constant="3" id="JWf-WE-8od"/>
                                                 <constraint firstItem="b8F-E5-ASf" firstAttribute="centerY" secondItem="gzt-KR-TR2" secondAttribute="centerY" id="P49-bp-vfh"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Lj9-dc-lnA" secondAttribute="trailing" constant="7" id="XMR-9G-hWL"/>
                                                 <constraint firstItem="tWi-iC-0vm" firstAttribute="top" secondItem="gzt-KR-TR2" secondAttribute="topMargin" constant="2" id="Yjx-h6-Dp7"/>
@@ -3182,7 +3184,7 @@
                                                     </connections>
                                                 </button>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="hzK-Nf-sCi">
-                                                    <rect key="frame" x="25" y="28.5" width="151" height="29"/>
+                                                    <rect key="frame" x="19" y="28.5" width="151" height="29"/>
                                                     <segments>
                                                         <segment title="0.1"/>
                                                         <segment title="1"/>
@@ -3206,7 +3208,7 @@
                                                 <constraint firstItem="hzK-Nf-sCi" firstAttribute="centerY" secondItem="nkS-7J-gGM" secondAttribute="centerY" id="4M6-vn-LuN"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="oLT-fK-F6P" secondAttribute="trailing" constant="34" id="7TX-jM-TMp"/>
                                                 <constraint firstItem="oLT-fK-F6P" firstAttribute="top" secondItem="nkS-7J-gGM" secondAttribute="topMargin" constant="2" id="7cW-ks-4c3"/>
-                                                <constraint firstItem="hzK-Nf-sCi" firstAttribute="leading" secondItem="nkS-7J-gGM" secondAttribute="leadingMargin" constant="9" id="8V2-9j-pJK"/>
+                                                <constraint firstItem="hzK-Nf-sCi" firstAttribute="leading" secondItem="nkS-7J-gGM" secondAttribute="leadingMargin" constant="3" id="8V2-9j-pJK"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="si4-O4-P2M" secondAttribute="trailing" constant="34" id="XqB-Fg-RAM"/>
                                                 <constraint firstItem="si4-O4-P2M" firstAttribute="bottom" secondItem="nkS-7J-gGM" secondAttribute="bottomMargin" id="nEI-vv-MUW"/>
                                             </constraints>
@@ -3223,15 +3225,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2b-xf-a3O">
-                                                    <rect key="frame" x="226" y="15" width="50" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2b-xf-a3O">
+                                                    <rect key="frame" x="175" y="15" width="101" height="30"/>
                                                     <state key="normal" title="Retract"/>
                                                     <connections>
                                                         <action selector="retract:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="mfQ-68-lRK"/>
                                                     </connections>
                                                 </button>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GRh-JJ-DpF">
-                                                    <rect key="frame" x="25" y="16" width="151" height="29"/>
+                                                    <rect key="frame" x="19" y="16" width="151" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="151" id="0UA-pJ-wD6"/>
+                                                    </constraints>
                                                     <segments>
                                                         <segment title="1"/>
                                                         <segment title="5"/>
@@ -3239,7 +3244,7 @@
                                                         <segment title="100"/>
                                                     </segments>
                                                 </segmentedControl>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnO-2K-s2I">
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnO-2K-s2I">
                                                     <rect key="frame" x="306" y="15" width="53" height="30"/>
                                                     <state key="normal" title="Extrude"/>
                                                     <connections>
@@ -3262,7 +3267,7 @@
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flow rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3IG-Y9-Ofi">
-                                                    <rect key="frame" x="25" y="59" width="120" height="21"/>
+                                                    <rect key="frame" x="19" y="59" width="126" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3270,9 +3275,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="zDH-jI-B7O" firstAttribute="leading" secondItem="VkX-1W-xBG" secondAttribute="trailing" constant="10" id="2ew-X7-FKG"/>
-                                                <constraint firstItem="GRh-JJ-DpF" firstAttribute="leading" secondItem="IEx-ZS-T4P" secondAttribute="leadingMargin" constant="9" id="6rz-dI-yfx"/>
+                                                <constraint firstItem="GRh-JJ-DpF" firstAttribute="leading" secondItem="IEx-ZS-T4P" secondAttribute="leadingMargin" constant="3" id="6rz-dI-yfx"/>
                                                 <constraint firstItem="VkX-1W-xBG" firstAttribute="top" secondItem="GRh-JJ-DpF" secondAttribute="bottom" constant="15" id="7El-Kq-72n"/>
-                                                <constraint firstItem="GRh-JJ-DpF" firstAttribute="leading" secondItem="IEx-ZS-T4P" secondAttribute="leadingMargin" constant="9" id="E9e-bF-evV"/>
+                                                <constraint firstItem="Q2b-xf-a3O" firstAttribute="leading" secondItem="GRh-JJ-DpF" secondAttribute="trailing" constant="5" id="9RJ-gW-Ssc"/>
                                                 <constraint firstItem="zDH-jI-B7O" firstAttribute="top" secondItem="Q2b-xf-a3O" secondAttribute="bottom" constant="10" id="JNv-uT-9Gy"/>
                                                 <constraint firstItem="VkX-1W-xBG" firstAttribute="leading" secondItem="3IG-Y9-Ofi" secondAttribute="trailing" constant="3" id="K2X-xD-zfw"/>
                                                 <constraint firstItem="3IG-Y9-Ofi" firstAttribute="leading" secondItem="GRh-JJ-DpF" secondAttribute="leading" id="QFc-hu-LIn"/>
@@ -3281,7 +3286,6 @@
                                                 <constraint firstItem="Q2b-xf-a3O" firstAttribute="top" secondItem="IEx-ZS-T4P" secondAttribute="topMargin" constant="4" id="We9-yZ-ky3"/>
                                                 <constraint firstItem="GRh-JJ-DpF" firstAttribute="top" secondItem="IEx-ZS-T4P" secondAttribute="topMargin" constant="5" id="b4k-h6-sWr"/>
                                                 <constraint firstItem="wnO-2K-s2I" firstAttribute="leading" secondItem="Q2b-xf-a3O" secondAttribute="trailing" constant="30" id="ct5-Rd-2sS"/>
-                                                <constraint firstItem="GRh-JJ-DpF" firstAttribute="top" secondItem="IEx-ZS-T4P" secondAttribute="topMargin" constant="5" id="lhp-04-QIB"/>
                                                 <constraint firstItem="wnO-2K-s2I" firstAttribute="top" secondItem="IEx-ZS-T4P" secondAttribute="topMargin" constant="4" id="ntI-OC-ScT"/>
                                                 <constraint firstItem="3IG-Y9-Ofi" firstAttribute="top" secondItem="GRh-JJ-DpF" secondAttribute="bottom" constant="15" id="tBh-qY-O4C"/>
                                                 <constraint firstItem="zDH-jI-B7O" firstAttribute="trailing" secondItem="IEx-ZS-T4P" secondAttribute="trailingMargin" id="xMd-Wm-9Qh"/>
@@ -3315,7 +3319,7 @@
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qps-RG-QAh">
-                                                    <rect key="frame" x="25" y="15.5" width="120" height="21"/>
+                                                    <rect key="frame" x="19" y="15.5" width="126" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3349,7 +3353,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disable Motor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6TZ-hb-gdQ">
-                                                    <rect key="frame" x="25" y="53.5" width="107" height="21"/>
+                                                    <rect key="frame" x="19" y="53.5" width="107" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3370,7 +3374,7 @@
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xs4-QQ-rLn">
-                                                    <rect key="frame" x="25" y="91.5" width="120" height="21"/>
+                                                    <rect key="frame" x="19" y="91.5" width="126" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3402,7 +3406,7 @@
                                                 <constraint firstItem="48m-gj-F14" firstAttribute="top" secondItem="6hE-dz-aRw" secondAttribute="bottom" constant="8" id="uKZ-Tf-MRl"/>
                                                 <constraint firstItem="6hE-dz-aRw" firstAttribute="centerY" secondItem="ffd-HI-A62" secondAttribute="centerY" id="vXM-IN-Cqh"/>
                                                 <constraint firstItem="7Mb-MK-CG7" firstAttribute="leading" secondItem="heO-9b-ZeO" secondAttribute="trailing" constant="15" id="vkc-P4-eqn"/>
-                                                <constraint firstItem="Qps-RG-QAh" firstAttribute="leading" secondItem="WQn-Ly-v6f" secondAttribute="leadingMargin" constant="9" id="vxX-J5-P0Z"/>
+                                                <constraint firstItem="Qps-RG-QAh" firstAttribute="leading" secondItem="WQn-Ly-v6f" secondAttribute="leadingMargin" constant="3" id="vxX-J5-P0Z"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
