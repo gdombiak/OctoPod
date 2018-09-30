@@ -2,10 +2,11 @@ OctoPod wouldn't be where it is without the help of the following people. Thank 
 
 ## Names (alphabetical order)
 
+* Antonín Gazda (translations)
 * Brett Delia (features and wiki)
 * Chris Warkocki (features and testing)
 * Christoph Stahl (features and testing)
-* Daniele Nicolucci (features)
+* Daniele Nicolucci (features and translations)
 * Heiko Schultz (translations)
 * Jan Pichrt (features)
 * Luis F. Fernández (features)
