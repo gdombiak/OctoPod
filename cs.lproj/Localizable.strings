@@ -1,113 +1,290 @@
-"OctoPrint" = "OctoPrint";
-"SD Card" = "SD Card";
-"Unknown" = "Unknown";
+/* (No Comment) */
+"Actual Bed" = "Aktuální podložka";
+
+/* (No Comment) */
+"Actual Extruder" = "Aktuální tryska";
+
+/* (No Comment) */
+"Actual Extruder 2" = "Aktuální tryska 2";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Chyba ověření";
+
+/* (No Comment) */
+"Cancel" = "Zrušit";
+
+/* (No Comment) */
+"Cannot print this file type" = "Nelze tisknout soubor tohoto typu";
+
+/* (No Comment) */
+"Cannot reach 'octopi.local' over mobile network or service is down" = "'octopi.local' není dostupné přes telefonní síť nebo služba nefunguje";
+
+/* (No Comment) */
+"Cannot replace file that is being printed or printer is busy" = "Nelze nahradit soubor, který se tiskne nebo je tiskárna zaneprázdněna";
+
+/* File Type is GCode */
+"Code" = "Kód";
+
+/* (No Comment) */
+"Command not executed. Printer not operational" = "Příkaz nebyl vykonán. Tiskárna není funkční";
+
+/* (No Comment) */
+"Command not executed. Script not found" = "Příkaz nebyl vykonán. Skript nenalezen.";
+
+/* (No Comment) */
+"Confirm" = "Potvrdit";
+
+/* (No Comment) */
+"Confirm connect" = "Některé tiskárny se mohou restartovat během připojení. Pokračovat?";
+
+/* (No Comment) */
+"Confirm disconnect" = "Chcete odpojit tiskárnu?";
+
+/* (No Comment) */
+"Confirm turn off plug" = "Vypnete zásuvku. Pokračovat?";
+
+/* (No Comment) */
+"Confirm turn off PSU" = "Vypnete zdroj napětí. Pokračovat?";
+
+/* (No Comment) */
+"Connect" = "Připojit";
+
+/* (No Comment) */
+"Connection failed" = "Připojení se nezdařilo";
+
+/* http://docs.octoprint.org/en/master/features/custom_controls.html */
+"Custom Controls" = "Vlastní ovládání";
+
+/* (No Comment) */
+"Disconnect" = "Odpojit";
+
+/* (No Comment) */
+"Dismiss" = "Zrušit";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Chcete zrušit tisk?";
+
+/* (No Comment) */
+"Domoticz Plugs" = "Zásuvky Domoticz";
+
+/* (No Comment) */
+"Enable iCloud under iOS Settings to use this feature" = "Povolte iCloud v nastavení iOS pro použití této funkce";
+
+/* (No Comment) */
+"Failed to delete file" = "Nezdařilo se smazání souboru";
+
+/* (No Comment) */
+"Failed to disable motor" = "Nezdařilo se vypnout %@ motor";
+
+/* Failed to get controls with HTTP Request error info */
+"Failed to get controls" = "Nezdařilo se získat ovládání. HTTP odpověď: %d";
+
+/* (No Comment) */
+"Failed to initialize SD card" = "Nezdařilo se inicializovat SD kartu";
+
+/* (No Comment) */
+"Failed to read file from iCloud" = "Nezdařilo se čtení z iCloudu";
+
+/* (No Comment) */
+"Failed to refresh SD card" = "Nezdařilo se obnovení SD karty";
+
+/* (No Comment) */
+"Failed to request moving back" = "Nezdařila se žádost o posun zpět";
+
+/* (No Comment) */
+"Failed to request moving down" = "Nezdařila se žádost o posun dolů";
+
+/* (No Comment) */
+"Failed to request moving front" = "Nezdařila se žádost o posun vpřed";
+
+/* (No Comment) */
+"Failed to request moving left" = "Nezdařila se žádost o posun zpět vlevo";
+
+/* (No Comment) */
+"Failed to request moving right" = "Nezdařila se žádost o posun vpravo";
+
+/* (No Comment) */
+"Failed to request moving up" = "Nezdařila se žádost o posun nahoru";
+
+/* (No Comment) */
+"Failed to request to execute command" = "Nezdařila se žádost o provedení příkazu";
+
+/* (No Comment) */
+"Failed to request to extrude" = "Nezdařila se žádost o vytlačení filamentu";
+
+/* (No Comment) */
+"Failed to request to print file" = "Nezdařila se žádost o tisk souboru";
+
+/* (No Comment) */
+"Failed to request to retract" = "Nezdařila se žádost o odvolání";
+
+/* (No Comment) */
+"Failed to request to turn power off" = "Nezdařila se žádost o vypnutí";
+
+/* (No Comment) */
+"Failed to request to turn power on" = "Nezdařila se žádost o zapnutí";
+
+/* (No Comment) */
+"Failed to send GCode command" = "Nezdařilo se poslat příkaz GCode";
+
+/* (No Comment) */
+"Failed to set new fan speed" = "Nezdařilo se nastavit novou rychlost ventilátoru";
+
+/* (No Comment) */
+"Failed to set new feed rate" = "Nezdařilo se nastavit novou rychlost přítoku";
+
+/* (No Comment) */
+"Failed to set new flow rate" = "Nezdařilo se nastavit novou rychlost průtoku";
+
+/* (No Comment) */
+"Failed to upload file" = "Nezdařilo se nahrát soubor";
+
+/* (No Comment) */
+"Failed turn power off" = "Nezdařila se žádost o vypnutí";
+
+/* (No Comment) */
+"Failed turn power on" = "Nezdařila se žádost o zapnutí";
+
+/* (No Comment) */
+"File currently being printed" = "Soubor se právě tiskne";
+
+/* (No Comment) */
+"File is being copied to SD Card" = "Soubor se kopíruje na SD kartu";
+
+/* File Type is a Folder */
+"Folder" = "Složka";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Chyba požadavku. HTTP odpověď: %d";
+
+/* (No Comment) */
+"Incorrect API Key" = "Špatný API klíč";
+
+/* (No Comment) */
+"Incorrect authentication credentials" = "Špatné přihlašovací údaje";
+
+/* URL of camera is invalid */
+"Invalid camera URL" = "Špatné URL kamery";
+
+/* (No Comment) */
+"Invalid file type" = "Špatný typ souboru";
+
+/* (No Comment) */
+"Job" = "Tisk";
+
+/* (No Comment) */
+"Location no longer valid. Refresh files" = "Umístění již není platné. Obnovte soubory";
+
+/* File Type is a Model */
 "Model" = "Model";
-"Code" = "Code";
-"Folder" = "Folder";
 
-"Authentication failed" = "Authentication Failed";
-"Connection failed" = "Connection Failed";
-"No camera" = "No camera";
-"HTTP Request error" = "Request error. HTTP response: %d";
-"Invalid camera URL" = "Invalid camera URL";
+/* (No Comment) */
+"Move" = "Posunout";
 
-"Still stabilizing" = "Still stabilizing...";
+/* (No Comment) */
+"No" = "Ne";
+
+/* No camera was found */
+"No camera" = "Žádná kamera";
+
+/* No temperature history */
+"No temperature history" = "Není dostupný záznam teploty";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Nezdařil se požadavek ke zrušení tisku";
+
+/* (No Comment) */
+"Notify failed pause job" = "Nezdařil se požadavek k pozastavení tisku";
+
+/* (No Comment) */
+"Notify failed print job again" = "Nezdařil se požadavek k vytisknutí souboru znovu";
+
+/* (No Comment) */
+"Notify failed restart job" = "Nezdařil se požadavek k restartování tisku";
+
+/* (No Comment) */
+"Notify failed resume job" = "Nezdařil se požadavek k pokračování v tisku";
+
+/* OctoPrint server */
+"OctoPrint" = "OctoPrint";
+
+/* Printer is Offline */
 "Offline" = "Offline";
 
-"Temperature" = "Temperature";
-"No temperature history" = "No temperature history available";
+/* (No Comment) */
+"Pause Job" = "Pozastavit";
 
-"Actual Bed" = "Actual Bed";
-"Target Bed" = "Target Bed";
-"Actual Extruder" = "Actual Extruder";
-"Target Extruder" = "Target Extruder";
-"Actual Extruder 2" = "Actual Extruder 2";
-"Target Extruder 2" = "Target Extruder 2";
+/* (No Comment) */
+"Print File" = "Tisknout soubor";
 
-"Custom Controls" = "Custom Controls";
-"Failed to get controls" = "Failed to get controls. HTTP response: %d";
-"Unknown Control" = "Unknown Control";
-"Command not executed. Printer not operational" = "Command not executed. Printer not operational";
-"Command not executed. Script not found" = "Command not executed. Script not found";
-"Failed to request to execute command" = "Failed to request to execute command";
+/* (No Comment) */
+"Printer not operational" = "Tiskárna není funkční";
 
-"Warning" = "Warning";
-"Cancel" = "Cancel";
-"Run" = "Run";
+/* (No Comment) */
+"Pull down to refresh" = "Táhněte dolů pro obnovení";
 
-"Failed turn power on" = "Failed to request to turn power on";
-"Failed turn power off" = "Failed to request to turn power off";
-"Confirm turn off PSU" = "You are about to turn off the PSU. Proceed?";
-"Turn On" = "Turn On";
-"Turn Off" = "Turn Off";
+/* (No Comment) */
+"Restart Job" = "Restartovat";
 
-"TPLink Smartplugs" = "TPLink Smartplugs";
-"Wemo Switches" = "Wemo Switches";
-"Domoticz Plugs" = "Domoticz Plugs";
-"Tasmota Plugs" = "Tasmota Plugs";
-"Confirm turn off plug" = "You are about to turn off the plug. Proceed?";
-"Failed to request to turn power on" = "Failed to request to turn power on";
-"Failed to request to turn power off" = "Failed to request to turn power off";
+/* (No Comment) */
+"Resume Job" = "Pokračovat";
 
-"Job" = "Job";
-"Confirm disconnect" = "Do you want to disconnect from the printer?";
-"Confirm connect" = "Some printers might reboot when connecting. Proceed?";
-"Notify failed cancel job" = "Failed to request to cancel job";
-"Notify failed pause job" = "Failed to request to pause job";
-"Notify failed resume job" = "Failed to request to resume job";
-"Notify failed restart job" = "Failed to request to restart job";
-"Notify failed print job again" = "Failed to request to print job again";
-"Cannot reach 'octopi.local' over mobile network or service is down" = "Cannot reach 'octopi.local' over mobile network or service is down";
-"Service is down or incorrect port" = "Service is down or incorrect port";
-"Incorrect authentication credentials" = "Incorrect authentication credentials";
-"Incorrect API Key" = "Incorrect API Key";
+/* Execute Command */
+"Run" = "Spustit";
 
-"Connect" = "Connect";
-"Disconnect" = "Disconnect";
+/* Origin is SD Card */
+"SD Card" = "SD karta";
 
-"Confirm" = "Confirm";
-"Yes" = "Yes";
-"No" = "No";
-"Dismiss" = "Dismiss";
+/* (No Comment) */
+"Service is down or incorrect port" = "Služba není funkční nebo je špatný port";
 
-"Pause Job" = "Pause Job";
-"Resume Job" = "Resume Job";
-"Do you want to cancel job?" = "Do you want to cancel job?";
-"Print File" = "Print File";
-"Restart Job" = "Restart Job";
+/* Print time is being calculated */
+"Still stabilizing" = "Stále se stabilizuje...";
 
-"Failed to request moving back" = "Failed to request moving back";
-"Failed to request moving front" = "Failed to request moving front";
-"Failed to request moving left" = "Failed to request moving left";
-"Failed to request moving right" = "Failed to request moving right";
-"Failed to request moving up" = "Failed to request moving up";
-"Failed to request moving down" = "Failed to request moving down";
-"Failed to request to retract" = "Failed to request to retract";
-"Failed to request to extrude" = "Failed to request to extrude";
-"Failed to set new flow rate" = "Failed to set new flow rate";
-"Failed to set new fan speed" = "Failed to set new fan speed";
-"Failed to set new feed rate" = "Failed to set new feed rate";
-"Failed to disable motor" = "Failed to disable %@ motor";
+/* (No Comment) */
+"Target Bed" = "Zvolená podložka";
 
-"Move" = "Move";
-"Pull down to refresh" = "Pull down to refresh";
+/* (No Comment) */
+"Target Extruder" = "Zvolená tryska";
 
-"Failed to request to print file" = "Failed to request to print file";
-"Printer not operational" = "Printer not operational";
-"Cannot print this file type" = "Cannot print this file type";
-"File is being copied to SD Card" = "File is being copied to SD Card";
-"Failed to initialize SD card" = "Failed to initialize SD card";
-"Failed to refresh SD card" = "Failed to refresh SD card";
-"File currently being printed" = "File currently being printed";
-"Failed to delete file" = "Failed to delete file";
+/* (No Comment) */
+"Target Extruder 2" = "Zvolená tryska 2";
 
-"Failed to read file from iCloud" = "Failed to read file from iCloud";
-"Upload failed" = "Upload failed";
-"Invalid file type" = "Invalid file type";
-"Location no longer valid. Refresh files" = "Location no longer valid. Refresh files";
-"Cannot replace file that is being printed or printer is busy" = "Cannot replace file that is being printed or printer is busy";
-"Failed to upload file" = "Failed to upload file";
-"Enable iCloud under iOS Settings to use this feature" = "Enable iCloud under iOS Settings to use this feature";
+/* (No Comment) */
+"Tasmota Plugs" = "Zásuvky Tasmota";
 
-"Terminal" = "Terminal";
-"Failed to send GCode command" = "Failed to send GCode command";
+/* Temperature */
+"Temperature" = "Teplota";
+
+/* (No Comment) */
+"Terminal" = "Terminál";
+
+/* (No Comment) */
+"TPLink Smartplugs" = "Chytré zásuvky TPLink";
+
+/* (No Comment) */
+"Turn Off" = "Vypnout";
+
+/* (No Comment) */
+"Turn On" = "Zapnout";
+
+/* ETA is Unknown
+   File Type is Unknown
+   Origin is Unknown */
+"Unknown" = "neznámý";
+
+/* Unknown Custom Control */
+"Unknown Control" = "Neznámý ovladač";
+
+/* (No Comment) */
+"Upload failed" = "Nahrávání selhalo";
+
+/* (No Comment) */
+"Warning" = "Varování";
+
+/* (No Comment) */
+"Wemo Switches" = "Přepínače Wemo";
+
+/* (No Comment) */
+"Yes" = "Ano";
+
