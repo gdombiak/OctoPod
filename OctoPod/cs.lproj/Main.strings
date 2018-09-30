@@ -3,19 +3,19 @@
 "1pO-wB-zKj.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
 /* Class = "UILabel"; text = "Uploaded"; ObjectID = "26j-Xb-FzE"; */
-"26j-Xb-FzE.text" = "Subido";
+"26j-Xb-FzE.text" = "Uploaded";
 
 /* Class = "UILabel"; text = "Appearance"; ObjectID = "35a-ap-aeB"; */
-"35a-ap-aeB.text" = "Apariencia";
+"35a-ap-aeB.text" = "Appearance";
 
 /* Class = "UILabel"; text = "Flow rate"; ObjectID = "3IG-Y9-Ofi"; */
-"3IG-Y9-Ofi.text" = "Ritmo flujo";
+"3IG-Y9-Ofi.text" = "Flow rate";
 
 /* Class = "UILabel"; text = "Printed"; ObjectID = "3mU-gE-iQQ"; */
-"3mU-gE-iQQ.text" = "Impreso";
+"3mU-gE-iQQ.text" = "Printed";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "43o-rw-PJg"; */
-"43o-rw-PJg.text" = "Detalle";
+"43o-rw-PJg.text" = "Detail";
 
 /* Class = "UIButton"; normalTitle = "E"; ObjectID = "48m-gj-F14"; */
 "48m-gj-F14.normalTitle" = "E";
@@ -24,34 +24,34 @@
 "4bm-la-U47.segmentTitles[0]" = "ABC";
 
 /* Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[1] = "Date"; ObjectID = "4bm-la-U47"; */
-"4bm-la-U47.segmentTitles[1]" = "Fecha";
+"4bm-la-U47.segmentTitles[1]" = "Date";
 
 /* Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[2] = "Printed"; ObjectID = "4bm-la-U47"; */
-"4bm-la-U47.segmentTitles[2]" = "Impreso";
+"4bm-la-U47.segmentTitles[2]" = "Printed";
 
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
-"4sv-CS-fGo.title" = "Apariencia";
+"4sv-CS-fGo.title" = "Appearance";
 
 /* Class = "UILabel"; text = "Devices"; ObjectID = "512-pk-AIB"; */
-"512-pk-AIB.text" = "Dispositivos";
+"512-pk-AIB.text" = "Devices";
 
 /* Class = "UILabel"; text = "Refresh enabled"; ObjectID = "53i-ST-HFr"; */
-"53i-ST-HFr.text" = "Refresco habilitado";
+"53i-ST-HFr.text" = "Refresh enabled";
 
 /* Class = "UILabel"; text = "Print Time Left"; ObjectID = "5hR-SK-V2r"; */
-"5hR-SK-V2r.text" = "Tiempo Restante";
+"5hR-SK-V2r.text" = "Print Time Left";
 
 /* Class = "UILabel"; text = "250 C"; ObjectID = "5ry-aI-ZKw"; */
 "5ry-aI-ZKw.text" = "250 C";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "6OW-hI-hem"; */
-"6OW-hI-hem.text" = "Etiqueta";
+"6OW-hI-hem.text" = "Label";
 
 /* Class = "UILabel"; text = "Disable Motor"; ObjectID = "6TZ-hb-gdQ"; */
-"6TZ-hb-gdQ.text" = "Deshabilitar Motor";
+"6TZ-hb-gdQ.text" = "Disable Motor";
 
 /* Class = "UILabel"; text = "Size"; ObjectID = "6ox-ce-GOS"; */
-"6ox-ce-GOS.text" = "Tamaño";
+"6ox-ce-GOS.text" = "Size";
 
 /* Class = "UILabel"; text = "100%"; ObjectID = "6tl-IB-smM"; */
 "6tl-IB-smM.text" = "100%";
@@ -63,16 +63,16 @@
 "7Mb-MK-CG7.normalTitle" = "Z";
 
 /* Class = "UILabel"; text = "About 10m"; ObjectID = "88V-gh-sQd"; */
-"88V-gh-sQd.text" = "Aprox 10m";
+"88V-gh-sQd.text" = "About 10m";
 
 /* Class = "UILabel"; text = "Bed"; ObjectID = "8U9-mV-fYc"; */
-"8U9-mV-fYc.text" = "Cama";
+"8U9-mV-fYc.text" = "Bed";
 
 /* Class = "UITableViewSection"; headerTitle = "Z"; ObjectID = "8d7-Fp-V0A"; */
 "8d7-Fp-V0A.headerTitle" = "Z";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "9dR-Sn-lbP"; */
-"9dR-Sn-lbP.placeholder" = "Clave";
+"9dR-Sn-lbP.placeholder" = "Password";
 
 /* Class = "UILabel"; text = "250 C"; ObjectID = "A7g-Yw-Ucf"; */
 "A7g-Yw-Ucf.text" = "250 C";
@@ -81,43 +81,43 @@
 "B7j-Fj-W6p.normalTitle" = "X";
 
 /* Class = "UILabel"; text = "Origin"; ObjectID = "BDJ-1U-H9C"; */
-"BDJ-1U-H9C.text" = "Origen";
+"BDJ-1U-H9C.text" = "Origin";
 
 /* Class = "UILabel"; text = "Error message"; ObjectID = "BXr-d8-f7x"; */
-"BXr-d8-f7x.text" = "Mensaje error";
+"BXr-d8-f7x.text" = "Error message";
 
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "CNq-uw-hM5"; */
-"CNq-uw-hM5.text" = "Subtitulo";
+"CNq-uw-hM5.text" = "Subtitle";
 
 /* Class = "UILabel"; text = "Sort by"; ObjectID = "Cdc-H8-bPm"; */
-"Cdc-H8-bPm.text" = "Orden";
+"Cdc-H8-bPm.text" = "Sort by";
 
 /* Class = "UITabBarItem"; title = "Terminal"; ObjectID = "Cjs-F4-ynC"; */
 "Cjs-F4-ynC.title" = "Terminal";
 
 /* Class = "UIButton"; normalTitle = "Print"; ObjectID = "Crn-wa-FLw"; */
-"Crn-wa-FLw.normalTitle" = "Imprimir";
+"Crn-wa-FLw.normalTitle" = "Print";
 
 /* Class = "UIButton"; normalTitle = "Cancel Job"; ObjectID = "Cxb-Rv-BSm"; */
-"Cxb-Rv-BSm.normalTitle" = "Cancelar";
+"Cxb-Rv-BSm.normalTitle" = "Cancel Job";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "Fbe-op-Ixc"; */
-"Fbe-op-Ixc.text" = "Detalle";
+"Fbe-op-Ixc.text" = "Detail";
 
 /* Class = "UITableViewSection"; headerTitle = "Print job"; ObjectID = "FdM-r0-spe"; */
-"FdM-r0-spe.headerTitle" = "Trabajo Impresión";
+"FdM-r0-spe.headerTitle" = "Print job";
 
 /* Class = "UILabel"; text = "Extruder 2"; ObjectID = "Fj0-uz-fxi"; */
-"Fj0-uz-fxi.text" = "Extrusora 2";
+"Fj0-uz-fxi.text" = "Extruder 2";
 
 /* Class = "UITableViewController"; title = "File Details"; ObjectID = "GJo-uu-Qmb"; */
-"GJo-uu-Qmb.title" = "Detalles Archivo";
+"GJo-uu-Qmb.title" = "File Details";
 
 /* Class = "UILabel"; text = "Not refreshing"; ObjectID = "GKZ-HN-xVC"; */
-"GKZ-HN-xVC.text" = "No refrescando";
+"GKZ-HN-xVC.text" = "Not refreshing";
 
 /* Class = "UILabel"; text = "Uploading..."; ObjectID = "GPG-9L-nRj"; */
-"GPG-9L-nRj.text" = "Subiendo...";
+"GPG-9L-nRj.text" = "Uploading...";
 
 /* Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[0] = "1"; ObjectID = "GRh-JJ-DpF"; */
 "GRh-JJ-DpF.segmentTitles[0]" = "1";
@@ -132,52 +132,52 @@
 "GRh-JJ-DpF.segmentTitles[3]" = "100";
 
 /* Class = "UITableViewController"; title = "Devices"; ObjectID = "GmR-1U-jvf"; */
-"GmR-1U-jvf.title" = "Dispositivos";
+"GmR-1U-jvf.title" = "Devices";
 
 /* Class = "UILabel"; text = "Extruder"; ObjectID = "H0f-on-KjQ"; */
-"H0f-on-KjQ.text" = "Extrusora";
+"H0f-on-KjQ.text" = "Extruder";
 
 /* Class = "UILabel"; text = "Support"; ObjectID = "HbJ-Bb-EXQ"; */
-"HbJ-Bb-EXQ.text" = "Soporte";
+"HbJ-Bb-EXQ.text" = "Support";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Hcl-jl-BEb"; */
-"Hcl-jl-BEb.normalTitle" = "Botón";
+"Hcl-jl-BEb.normalTitle" = "Button";
 
 /* Class = "UIBarButtonItem"; title = "OctoPrint Web"; ObjectID = "Hdi-Ra-Fgd"; */
 "Hdi-Ra-Fgd.title" = "OctoPrint Web";
 
 /* Class = "UILabel"; text = "Confirm to disconnect"; ObjectID = "JYC-5g-kqS"; */
-"JYC-5g-kqS.text" = "Confirmar para desconectar";
+"JYC-5g-kqS.text" = "Confirm to disconnect";
 
 /* Class = "UILabel"; text = "250.0 C"; ObjectID = "JwP-eK-xNk"; */
 "JwP-eK-xNk.text" = "250.0 C";
 
 /* Class = "UINavigationItem"; title = "Move"; ObjectID = "K4f-Fs-KaY"; */
-"K4f-Fs-KaY.title" = "Mover";
+"K4f-Fs-KaY.title" = "Move";
 
 /* Class = "UIButton"; normalTitle = "Learn more about Custom Controls"; ObjectID = "K5o-xJ-EiZ"; */
-"K5o-xJ-EiZ.normalTitle" = "Para aprender sobre Controles Personalizados";
+"K5o-xJ-EiZ.normalTitle" = "Learn more about Custom Controls";
 
 /* Class = "UILabel"; text = "Enter a valid URL"; ObjectID = "K6d-lk-BaS"; */
-"K6d-lk-BaS.text" = "Ingrese un URL válido";
+"K6d-lk-BaS.text" = "Enter a valid URL";
 
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
-"L1Q-WE-63g.text" = "Archivo";
+"L1Q-WE-63g.text" = "File";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "LJV-z6-SX8"; */
-"LJV-z6-SX8.text" = "Título";
+"LJV-z6-SX8.text" = "Title";
 
 /* Class = "UILabel"; text = "Size"; ObjectID = "LiL-J0-QDH"; */
-"LiL-J0-QDH.text" = "Tamaño";
+"LiL-J0-QDH.text" = "Size";
 
 /* Class = "UILabel"; text = "Light"; ObjectID = "MA6-Ay-j7Q"; */
-"MA6-Ay-j7Q.text" = "Claro";
+"MA6-Ay-j7Q.text" = "Light";
 
 /* Class = "UILabel"; text = "Print time"; ObjectID = "MI6-uy-Cea"; */
-"MI6-uy-Cea.text" = "Tiempo Impresión";
+"MI6-uy-Cea.text" = "Print time";
 
 /* Class = "UILabel"; text = "Tap = Full Screen"; ObjectID = "MT2-fR-HJD"; */
-"MT2-fR-HJD.text" = "Tap = Pantalla Entera";
+"MT2-fR-HJD.text" = "Tap = Full Screen";
 
 /* Class = "UIButton"; normalTitle = "Refresh SD"; ObjectID = "N5P-gn-chq"; */
 "N5P-gn-chq.normalTitle" = "SD";
@@ -195,70 +195,70 @@
 "NKo-dw-3Mg.segmentTitles[3]" = "100";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "OKK-kR-6Xb"; */
-"OKK-kR-6Xb.text" = "Título";
+"OKK-kR-6Xb.text" = "Title";
 
 /* Class = "UILabel"; text = "File"; ObjectID = "OYG-ih-yQg"; */
-"OYG-ih-yQg.text" = "Archivo";
+"OYG-ih-yQg.text" = "File";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "PJm-Aw-TCV"; */
-"PJm-Aw-TCV.text" = "Detalle";
+"PJm-Aw-TCV.text" = "Detail";
 
 /* Class = "UITabBarItem"; title = "Move"; ObjectID = "Peq-4x-xQj"; */
-"Peq-4x-xQj.title" = "Mover";
+"Peq-4x-xQj.title" = "Move";
 
 /* Class = "UITableViewSection"; headerTitle = "Job Information"; ObjectID = "PiT-vE-psw"; */
-"PiT-vE-psw.headerTitle" = "Información Trabajo";
+"PiT-vE-psw.headerTitle" = "Job Information";
 
 /* Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU"; */
-"Po0-HZ-vzU.text" = "Ingrese al iCloud para sincronizar dispositivos";
+"Po0-HZ-vzU.text" = "Log in to iCloud to synchronize between devices";
 
 /* Class = "UIButton"; normalTitle = "URL Button"; ObjectID = "Pxj-s5-1zm"; */
-"Pxj-s5-1zm.normalTitle" = "Botón URL";
+"Pxj-s5-1zm.normalTitle" = "URL Button";
 
 /* Class = "UIBarButtonItem"; title = "Printer"; ObjectID = "PyK-FO-APL"; */
-"PyK-FO-APL.title" = "Impresora";
+"PyK-FO-APL.title" = "Printer";
 
 /* Class = "UIButton"; normalTitle = "Retract"; ObjectID = "Q2b-xf-a3O"; */
-"Q2b-xf-a3O.normalTitle" = "Retraer";
+"Q2b-xf-a3O.normalTitle" = "Retract";
 
 /* Class = "UIViewController"; title = "QR Code"; ObjectID = "QCe-zo-Ncw"; */
-"QCe-zo-Ncw.title" = "Código QR";
+"QCe-zo-Ncw.title" = "QR Code";
 
 /* Class = "UILabel"; text = "Issues"; ObjectID = "QJp-Yj-1AF"; */
-"QJp-Yj-1AF.text" = "Problemas";
+"QJp-Yj-1AF.text" = "Issues";
 
 /* Class = "UILabel"; text = "Print Time"; ObjectID = "Qfz-1j-Keo"; */
-"Qfz-1j-Keo.text" = "Tiempo Impresión";
+"Qfz-1j-Keo.text" = "Print Time";
 
 /* Class = "UILabel"; text = "Fan"; ObjectID = "Qps-RG-QAh"; */
-"Qps-RG-QAh.text" = "Ventilador";
+"Qps-RG-QAh.text" = "Fan";
 
 /* Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ"; */
-"QwZ-7J-MwJ.normalTitle" = "Apagar";
+"QwZ-7J-MwJ.normalTitle" = "Off";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87"; */
-"REX-gh-p87.normalTitle" = "Botón";
+"REX-gh-p87.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Security"; ObjectID = "RJI-A7-98M"; */
-"RJI-A7-98M.text" = "Seguridad";
+"RJI-A7-98M.text" = "Security";
 
 /* Class = "UITableViewController"; title = "Printer Details"; ObjectID = "RQs-UQ-7OZ"; */
-"RQs-UQ-7OZ.title" = "Detalles Impresora";
+"RQs-UQ-7OZ.title" = "Printer Details";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "RlM-dP-k5T"; */
-"RlM-dP-k5T.text" = "Etiqueta";
+"RlM-dP-k5T.text" = "Label";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
 "S2I-HR-qgE.text" = "/";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "SQ9-ls-Hf3"; */
-"SQ9-ls-Hf3.title" = "Seteos";
+"SQ9-ls-Hf3.title" = "Settings";
 
 /* Class = "UIViewController"; title = "Camera"; ObjectID = "SqB-ww-g1i"; */
-"SqB-ww-g1i.title" = "Cámara";
+"SqB-ww-g1i.title" = "Camera";
 
 /* Class = "UITableViewSection"; headerTitle = "Fan & Motors"; ObjectID = "SwZ-jq-tKf"; */
-"SwZ-jq-tKf.headerTitle" = "Ventilador & Motores";
+"SwZ-jq-tKf.headerTitle" = "Fan & Motors";
 
 /* Class = "UILabel"; text = "60.0 C"; ObjectID = "UiU-6m-I6P"; */
 "UiU-6m-I6P.text" = "60.0 C";
@@ -267,112 +267,112 @@
 "VkX-1W-xBG.text" = "100%";
 
 /* Class = "UILabel"; text = "Printer status"; ObjectID = "VnD-Rc-TYw"; */
-"VnD-Rc-TYw.text" = "Estado Impresora";
+"VnD-Rc-TYw.text" = "Printer status";
 
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection"; ObjectID = "Vr9-x7-66H"; */
-"Vr9-x7-66H.headerTitle" = "Conexión Impresora";
+"Vr9-x7-66H.headerTitle" = "Printer Connection";
 
 /* Class = "UITableViewSection"; headerTitle = "HTTP Authentication"; ObjectID = "WKG-83-bZQ"; */
-"WKG-83-bZQ.headerTitle" = "Autenticación HTTP";
+"WKG-83-bZQ.headerTitle" = "HTTP Authentication";
 
 /* Class = "UITableViewSection"; headerTitle = "Printer status"; ObjectID = "XCh-oS-weO"; */
-"XCh-oS-weO.headerTitle" = "Estado Impresora";
+"XCh-oS-weO.headerTitle" = "Printer status";
 
 /* Class = "UILabel"; text = "Confirm to connect"; ObjectID = "XOG-eU-T7f"; */
-"XOG-eU-T7f.text" = "Confirmar para conectar";
+"XOG-eU-T7f.text" = "Confirm to connect";
 
 /* Class = "UIButton"; normalTitle = "Restart Job"; ObjectID = "XV8-g9-QIc"; */
-"XV8-g9-QIc.normalTitle" = "Reiniciar";
+"XV8-g9-QIc.normalTitle" = "Restart Job";
 
 /* Class = "UITableViewSection"; headerTitle = "Synchronization"; ObjectID = "Xhq-hp-2kd"; */
-"Xhq-hp-2kd.headerTitle" = "Sincronización";
+"Xhq-hp-2kd.headerTitle" = "Synchronization";
 
 /* Class = "UILabel"; text = "Feed rate"; ObjectID = "Xs4-QQ-rLn"; */
-"Xs4-QQ-rLn.text" = "Veloc. Avance";
+"Xs4-QQ-rLn.text" = "Feed rate";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "YdD-gF-Ajm"; */
-"YdD-gF-Ajm.text" = "Título";
+"YdD-gF-Ajm.text" = "Title";
 
 /* Class = "UILabel"; text = "Control ATX/AUX power supply via PSU Control"; ObjectID = "Ysy-LO-1dL"; */
-"Ysy-LO-1dL.text" = "Fuente de alimentación ATX/AUX controlada a través de PSU Control";
+"Ysy-LO-1dL.text" = "Control ATX/AUX power supply via PSU Control";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "ZCe-kf-ukt"; */
-"ZCe-kf-ukt.text" = "Etiqueta";
+"ZCe-kf-ukt.text" = "Label";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "ZF8-G0-f5Y"; */
-"ZF8-G0-f5Y.text" = "Detalle";
+"ZF8-G0-f5Y.text" = "Detail";
 
 /* Class = "UITableViewController"; title = "Log"; ObjectID = "ZSM-KR-Ovn"; */
 "ZSM-KR-Ovn.title" = "Log";
 
 /* Class = "UITableViewSection"; headerTitle = "Extruder"; ObjectID = "ZeS-hE-vC8"; */
-"ZeS-hE-vC8.headerTitle" = "Extrusora";
+"ZeS-hE-vC8.headerTitle" = "Extruder";
 
 /* Class = "UILabel"; text = "Upload to OctoPrint"; ObjectID = "Ziq-bR-QIe"; */
-"Ziq-bR-QIe.text" = "Subir a OctoPrint";
+"Ziq-bR-QIe.text" = "Upload to OctoPrint";
 
 /* Class = "UIButton"; normalTitle = "Scan API Key"; ObjectID = "a0P-GP-CQD"; */
-"a0P-GP-CQD.normalTitle" = "Escanear Clave API";
+"a0P-GP-CQD.normalTitle" = "Scan API Key";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "a12-vD-JUc"; */
 "a12-vD-JUc.text" = "/";
 
 /* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "aFa-Qd-yIr"; */
-"aFa-Qd-yIr.placeholder" = "Nombre Impresora (e.g. MK3)";
+"aFa-Qd-yIr.placeholder" = "Printer Name (e.g. MK3)";
 
 /* Class = "UIButton"; normalTitle = "View activity log"; ObjectID = "aJp-RM-Tuf"; */
-"aJp-RM-Tuf.normalTitle" = "Ver log de actividades";
+"aJp-RM-Tuf.normalTitle" = "View activity log";
 
 /* Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf"; */
-"bep-Im-uzf.text" = "Impreso";
+"bep-Im-uzf.text" = "Printed";
 
 /* Class = "UITextField"; placeholder = "API Key"; ObjectID = "cQd-kb-e8D"; */
-"cQd-kb-e8D.placeholder" = "Clave API";
+"cQd-kb-e8D.placeholder" = "API Key";
 
 /* Class = "UIButton"; normalTitle = "Pause Job"; ObjectID = "d2Y-RO-6Yg"; */
-"d2Y-RO-6Yg.normalTitle" = "Detener";
+"d2Y-RO-6Yg.normalTitle" = "Pause Job";
 
 /* Class = "UILabel"; text = "Frequently Asked Questions"; ObjectID = "dlU-c7-kpY"; */
-"dlU-c7-kpY.text" = "Preguntas frecuentes";
+"dlU-c7-kpY.text" = "Frequently Asked Questions";
 
 /* Class = "UIButton"; normalTitle = "Reset iCloud data from printers"; ObjectID = "e5p-Y4-n8X"; */
-"e5p-Y4-n8X.normalTitle" = "Resetear datos iCloud desde impresoras";
+"e5p-Y4-n8X.normalTitle" = "Reset iCloud data from printers";
 
 /* Class = "UITabBarItem"; title = "Files"; ObjectID = "e75-bh-dxQ"; */
-"e75-bh-dxQ.title" = "Archivos";
+"e75-bh-dxQ.title" = "Files";
 
 /* Class = "UITableViewSection"; headerTitle = "Lock Mode"; ObjectID = "eXf-GR-uL9"; */
-"eXf-GR-uL9.headerTitle" = "Modo Bloqueo";
+"eXf-GR-uL9.headerTitle" = "Lock Mode";
 
 /* Class = "UITableViewController"; title = "Support"; ObjectID = "ec8-jM-jJs"; */
-"ec8-jM-jJs.title" = "Soporte";
+"ec8-jM-jJs.title" = "Support";
 
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "fJ6-6T-dHU"; */
-"fJ6-6T-dHU.title" = "Seteos";
+"fJ6-6T-dHU.title" = "Settings";
 
 /* Class = "UILabel"; text = "100%"; ObjectID = "ffd-HI-A62"; */
 "ffd-HI-A62.text" = "100%";
 
 /* Class = "UILabel"; text = "Printing from SD"; ObjectID = "gJx-aQ-4FM"; */
-"gJx-aQ-4FM.text" = "Imprimiendo del SD";
+"gJx-aQ-4FM.text" = "Printing from SD";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "gvk-np-5oX"; */
-"gvk-np-5oX.text" = "Título";
+"gvk-np-5oX.text" = "Title";
 
 /* Class = "UITableViewSection"; headerTitle = "X Y"; ObjectID = "hWI-gF-onz"; */
 "hWI-gF-onz.headerTitle" = "X Y";
 
 /* Class = "UITableViewSection"; headerTitle = "Theme"; ObjectID = "hcE-dV-0vo"; */
-"hcE-dV-0vo.headerTitle" = "Tema";
+"hcE-dV-0vo.headerTitle" = "Theme";
 
 /* Class = "UIButton"; normalTitle = "Y"; ObjectID = "heO-9b-ZeO"; */
 "heO-9b-ZeO.normalTitle" = "Y";
 
 /* Class = "UITableViewController"; title = "Security"; ObjectID = "hg7-6b-q0o"; */
-"hg7-6b-q0o.title" = "Seguridad";
+"hg7-6b-q0o.title" = "Security";
 
 /* Class = "UILabel"; text = "Upload to SD Card (root)"; ObjectID = "hrr-SZ-62l"; */
-"hrr-SZ-62l.text" = "Subir a Tarjeta SD (raíz)";
+"hrr-SZ-62l.text" = "Upload to SD Card (root)";
 
 /* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[0] = "0.1"; ObjectID = "hzK-Nf-sCi"; */
 "hzK-Nf-sCi.segmentTitles[0]" = "0.1";
@@ -387,118 +387,118 @@
 "hzK-Nf-sCi.segmentTitles[3]" = "100";
 
 /* Class = "UILabel"; text = "Control Power"; ObjectID = "j09-72-h0o"; */
-"j09-72-h0o.text" = "Controlar Poder";
+"j09-72-h0o.text" = "Control Power";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "jXN-qA-TlY"; */
-"jXN-qA-TlY.text" = "Título";
+"jXN-qA-TlY.text" = "Title";
 
 /* Class = "UILabel"; text = "Uploading..."; ObjectID = "kem-tt-8Sx"; */
-"kem-tt-8Sx.text" = "Subiendo...";
+"kem-tt-8Sx.text" = "Uploading...";
 
 /* Class = "UILabel"; text = "Origin"; ObjectID = "lfT-wn-CXk"; */
-"lfT-wn-CXk.text" = "Origen";
+"lfT-wn-CXk.text" = "Origin";
 
 /* Class = "UILabel"; text = "Lock read-only mode"; ObjectID = "mqw-ve-Eec"; */
-"mqw-ve-Eec.text" = "Bloquear modo solo-lectura";
+"mqw-ve-Eec.text" = "Lock read-only mode";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "naE-gB-aKG"; */
-"naE-gB-aKG.text" = "Título";
+"naE-gB-aKG.text" = "Title";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb"; */
-"ncZ-xn-WCb.text" = "Título";
+"ncZ-xn-WCb.text" = "Title";
 
 /* Class = "UIButton"; normalTitle = "Set"; ObjectID = "o8a-yF-u6j"; */
-"o8a-yF-u6j.normalTitle" = "Fijar";
+"o8a-yF-u6j.normalTitle" = "Set";
 
 /* Class = "UITableViewController"; title = "Prompts"; ObjectID = "oZw-P5-oVG"; */
-"oZw-P5-oVG.title" = "Confirmaciones";
+"oZw-P5-oVG.title" = "Prompts";
 
 /* Class = "UIButton"; normalTitle = "Configure controls using Custom Control Plugin"; ObjectID = "or6-Pr-Z6f"; */
-"or6-Pr-Z6f.normalTitle" = "Configurar controles usando Custom Control Plugin";
+"or6-Pr-Z6f.normalTitle" = "Configure controls using Custom Control Plugin";
 
 /* Class = "UILabel"; text = "Pinch = Zoom in"; ObjectID = "q4H-Sg-7Zd"; */
 "q4H-Sg-7Zd.text" = "Pinch = Zoom in";
 
 /* Class = "UINavigationItem"; title = "Title"; ObjectID = "qI9-wv-wTe"; */
-"qI9-wv-wTe.title" = "Título";
+"qI9-wv-wTe.title" = "Title";
 
 /* Class = "UILabel"; text = "Prompts"; ObjectID = "qio-ne-TXN"; */
-"qio-ne-TXN.text" = "Confirmaciones";
+"qio-ne-TXN.text" = "Prompts";
 
 /* Class = "UILabel"; text = "1hr 25m 13sec"; ObjectID = "rwm-QC-qD1"; */
 "rwm-QC-qD1.text" = "1hr 25m 13sec";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H"; */
-"sLc-Jv-G0H.placeholder" = "Usuario";
+"sLc-Jv-G0H.placeholder" = "Username";
 
 /* Class = "UILabel"; text = "Error message"; ObjectID = "t1B-B9-t5u"; */
-"t1B-B9-t5u.text" = "Mensaje de error";
+"t1B-B9-t5u.text" = "Error message";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
-"tFf-Rs-mOx.text" = "Título";
+"tFf-Rs-mOx.text" = "Title";
 
 /* Class = "UITextField"; placeholder = "Hostname (e.g. http://octopi.local)"; ObjectID = "tMP-2W-Iam"; */
-"tMP-2W-Iam.placeholder" = "Nombre de host (e.g. http://octopi.local)";
+"tMP-2W-Iam.placeholder" = "Hostname (e.g. http://octopi.local)";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "tTe-Q5-kkc"; */
 "tTe-Q5-kkc.text" = "/";
 
 /* Class = "UINavigationItem"; title = "Printers"; ObjectID = "tit-bg-T68"; */
-"tit-bg-T68.title" = "Impresoras";
+"tit-bg-T68.title" = "Printers";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "twU-Rc-Faw"; */
-"twU-Rc-Faw.text" = "Título";
+"twU-Rc-Faw.text" = "Title";
 
 /* Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ"; */
-"tzE-Y5-rVZ.text" = "Impresoras";
+"tzE-Y5-rVZ.text" = "Printers";
 
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection (REQUIRED)"; ObjectID = "uRd-RD-eAS"; */
-"uRd-RD-eAS.headerTitle" = "Conexión Impresora (REQUERIDO)";
+"uRd-RD-eAS.headerTitle" = "Printer Connection (REQUIRED)";
 
 /* Class = "UIBarButtonItem"; title = "Connect"; ObjectID = "uRz-Gy-YAf"; */
-"uRz-Gy-YAf.title" = "Conectar";
+"uRz-Gy-YAf.title" = "Connect";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "uVf-tq-wZi"; */
-"uVf-tq-wZi.text" = "Título";
+"uVf-tq-wZi.text" = "Title";
 
 /* Class = "UILabel"; text = "GCode command"; ObjectID = "uge-6J-pcC"; */
-"uge-6J-pcC.text" = "Comando GCode";
+"uge-6J-pcC.text" = "GCode command";
 
 /* Class = "UILabel"; text = "Require passcode to unlock"; ObjectID = "uqf-BP-Wtn"; */
-"uqf-BP-Wtn.text" = "Requiere clave para desbloquear";
+"uqf-BP-Wtn.text" = "Require passcode to unlock";
 
 /* Class = "UILabel"; text = "100.0%"; ObjectID = "vnu-ZQ-mJO"; */
 "vnu-ZQ-mJO.text" = "100.0%";
 
 /* Class = "UIButton"; normalTitle = "Reset printers from iCloud data"; ObjectID = "vyb-aH-wc9"; */
-"vyb-aH-wc9.normalTitle" = "Resetear impresoras con datos iCloud";
+"vyb-aH-wc9.normalTitle" = "Reset printers from iCloud data";
 
 /* Class = "UILabel"; text = "Dark"; ObjectID = "wHn-Dc-bWb"; */
-"wHn-Dc-bWb.text" = "Oscuro";
+"wHn-Dc-bWb.text" = "Dark";
 
 /* Class = "UIButton"; normalTitle = "Extrude"; ObjectID = "wnO-2K-s2I"; */
-"wnO-2K-s2I.normalTitle" = "Extrudir";
+"wnO-2K-s2I.normalTitle" = "Extrude";
 
 /* Class = "UIButton"; normalTitle = "URL Button"; ObjectID = "x8L-G5-sTU"; */
-"x8L-G5-sTU.normalTitle" = "Botón URL";
+"x8L-G5-sTU.normalTitle" = "URL Button";
 
 /* Class = "UIButton"; normalTitle = "Delete"; ObjectID = "xE0-gE-Kuq"; */
-"xE0-gE-Kuq.normalTitle" = "Eliminar";
+"xE0-gE-Kuq.normalTitle" = "Delete";
 
 /* Class = "UINavigationItem"; title = "Printer Details"; ObjectID = "xvl-wE-Mht"; */
-"xvl-wE-Mht.title" = "Detalle Impresora";
+"xvl-wE-Mht.title" = "Printer Details";
 
 /* Class = "UILabel"; text = "Contributing"; ObjectID = "yci-j8-y4w"; */
-"yci-j8-y4w.text" = "Contribuir";
+"yci-j8-y4w.text" = "Contributing";
 
 /* Class = "UIButton"; normalTitle = "Send"; ObjectID = "z4Q-Gf-Y5G"; */
-"z4Q-Gf-Y5G.normalTitle" = "Enviar";
+"z4Q-Gf-Y5G.normalTitle" = "Send";
 
 /* Class = "UILabel"; text = "New temperature"; ObjectID = "zDs-gi-KIJ"; */
-"zDs-gi-KIJ.text" = "Nueva temperatura";
+"zDs-gi-KIJ.text" = "New temperature";
 
 /* Class = "UILabel"; text = "Sync printers between iOS devices"; ObjectID = "zVf-Zx-3g4"; */
-"zVf-Zx-3g4.text" = "Sincronizar entre dispositivos iOS";
+"zVf-Zx-3g4.text" = "Sync printers between iOS devices";
 
 /* Class = "UILabel"; text = "100 C"; ObjectID = "zf7-Un-ytQ"; */
 "zf7-Un-ytQ.text" = "100 C";

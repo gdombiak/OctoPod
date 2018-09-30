@@ -269,7 +269,7 @@
 "MT2-fR-HJD.text" = "Tippen = Vollbild";
 
 /* Class = "UIButton"; normalTitle = "Refresh SD"; ObjectID = "N5P-gn-chq"; */
-"N5P-gn-chq.normalTitle" = "SD neu einlesen";
+"N5P-gn-chq.normalTitle" = "SD";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "naE-gB-aKG"; */
 "naE-gB-aKG.text" = "Title";

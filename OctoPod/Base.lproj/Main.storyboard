@@ -2601,7 +2601,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E8X-eX-B2Z">
-                                <rect key="frame" x="0.0" y="64" width="375" height="509"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="517"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="file_cell" textLabel="naE-gB-aKG" detailTextLabel="43o-rw-PJg" style="IBUITableViewCellStyleSubtitle" id="kXZ-Zk-VaP">
@@ -2663,15 +2663,17 @@
                                     <outlet property="delegate" destination="oJP-oE-ZeG" id="OIn-EN-bR7"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5P-gn-chq">
-                                <rect key="frame" x="10" y="578" width="77" height="30"/>
-                                <state key="normal" title="Refresh SD"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5P-gn-chq">
+                                <rect key="frame" x="5" y="588" width="46" height="22"/>
+                                <state key="normal" title="SD" image="Refresh SD">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="refreshSDCard:" destination="oJP-oE-ZeG" eventType="touchUpInside" id="ILO-tg-VUC"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4bm-la-U47">
-                                <rect key="frame" x="189" y="580" width="176" height="29"/>
+                                <rect key="frame" x="194" y="585" width="176" height="29"/>
                                 <segments>
                                     <segment title="ABC"/>
                                     <segment title="Date"/>
@@ -2682,7 +2684,7 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdc-H8-bPm">
-                                <rect key="frame" x="128" y="584" width="56" height="21"/>
+                                <rect key="frame" x="133" y="588.5" width="56" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2690,13 +2692,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="N5P-gn-chq" firstAttribute="leading" secondItem="IGy-e6-8uc" secondAttribute="leading" constant="10" id="12X-ps-u7o"/>
-                            <constraint firstItem="IGy-e6-8uc" firstAttribute="trailing" secondItem="4bm-la-U47" secondAttribute="trailing" constant="10" id="5pM-nL-Ddm"/>
-                            <constraint firstItem="N5P-gn-chq" firstAttribute="top" secondItem="E8X-eX-B2Z" secondAttribute="bottom" constant="5" id="6k5-O0-uL2"/>
+                            <constraint firstItem="N5P-gn-chq" firstAttribute="leading" secondItem="IGy-e6-8uc" secondAttribute="leading" constant="5" id="12X-ps-u7o"/>
+                            <constraint firstItem="4bm-la-U47" firstAttribute="top" secondItem="E8X-eX-B2Z" secondAttribute="bottom" constant="4" id="1ar-IG-iI4"/>
+                            <constraint firstItem="IGy-e6-8uc" firstAttribute="trailing" secondItem="4bm-la-U47" secondAttribute="trailing" constant="5" id="5pM-nL-Ddm"/>
+                            <constraint firstItem="4bm-la-U47" firstAttribute="centerY" secondItem="Cdc-H8-bPm" secondAttribute="centerY" id="BP1-N5-hmx"/>
                             <constraint firstItem="4bm-la-U47" firstAttribute="leading" secondItem="Cdc-H8-bPm" secondAttribute="trailing" constant="5" id="H9a-fY-VEg"/>
-                            <constraint firstItem="IGy-e6-8uc" firstAttribute="bottom" secondItem="4bm-la-U47" secondAttribute="bottom" constant="10" id="j6X-aq-p1D"/>
-                            <constraint firstItem="N5P-gn-chq" firstAttribute="bottom" secondItem="IGy-e6-8uc" secondAttribute="bottom" constant="-10" id="txy-0a-BME"/>
-                            <constraint firstItem="IGy-e6-8uc" firstAttribute="bottom" secondItem="Cdc-H8-bPm" secondAttribute="bottom" constant="13" id="uds-7S-HaN"/>
+                            <constraint firstItem="4bm-la-U47" firstAttribute="centerY" secondItem="N5P-gn-chq" secondAttribute="centerY" id="Qp7-7O-KED"/>
+                            <constraint firstItem="IGy-e6-8uc" firstAttribute="bottom" secondItem="4bm-la-U47" secondAttribute="bottom" constant="5" id="j6X-aq-p1D"/>
                             <constraint firstItem="E8X-eX-B2Z" firstAttribute="top" secondItem="IGy-e6-8uc" secondAttribute="top" id="vAh-pG-h67"/>
                             <constraint firstItem="E8X-eX-B2Z" firstAttribute="leading" secondItem="IGy-e6-8uc" secondAttribute="leading" id="xWJ-o7-XPM"/>
                             <constraint firstItem="E8X-eX-B2Z" firstAttribute="trailing" secondItem="IGy-e6-8uc" secondAttribute="trailing" id="xyL-33-sua"/>
@@ -3658,6 +3660,7 @@
         <image name="Panel" width="24" height="24"/>
         <image name="Print Job" width="22" height="22"/>
         <image name="Printers" width="32" height="32"/>
+        <image name="Refresh SD" width="22" height="22"/>
         <image name="Security" width="32" height="32"/>
         <image name="Settings" width="24" height="24"/>
         <image name="Support" width="32" height="32"/>
@@ -3672,8 +3675,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="M9h-xm-xYq"/>
-        <segue reference="dlk-YT-PiH"/>
-        <segue reference="iMc-Wi-01S"/>
+        <segue reference="DPY-Lb-zDG"/>
+        <segue reference="06R-xh-V19"/>
         <segue reference="Rs9-4F-Pao"/>
         <segue reference="KKl-Fj-b9B"/>
     </inferredMetricsTieBreakers>
