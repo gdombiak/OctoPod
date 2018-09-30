@@ -1668,7 +1668,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sync printers between iOS devices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVf-Zx-3g4">
-                                                    <rect key="frame" x="16" y="12" width="266" height="21"/>
+                                                    <rect key="frame" x="16" y="12" width="290" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1684,7 +1684,8 @@
                                                 <constraint firstItem="58b-az-o6h" firstAttribute="top" secondItem="yJc-mS-2Y3" secondAttribute="top" constant="7" id="GOt-45-6mf"/>
                                                 <constraint firstAttribute="trailing" secondItem="58b-az-o6h" secondAttribute="trailing" constant="18" id="Jlo-TG-pqb"/>
                                                 <constraint firstItem="zVf-Zx-3g4" firstAttribute="leading" secondItem="yJc-mS-2Y3" secondAttribute="leadingMargin" id="d6a-KI-m75"/>
-                                                <constraint firstItem="zVf-Zx-3g4" firstAttribute="top" secondItem="yJc-mS-2Y3" secondAttribute="topMargin" constant="1" id="onO-Kv-IhL"/>
+                                                <constraint firstItem="58b-az-o6h" firstAttribute="leading" secondItem="zVf-Zx-3g4" secondAttribute="trailing" constant="2" id="tR7-l4-9xj"/>
+                                                <constraint firstItem="58b-az-o6h" firstAttribute="centerY" secondItem="zVf-Zx-3g4" secondAttribute="centerY" id="yjl-5I-z5N"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1763,7 +1764,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in to iCloud to synchronize between devices" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Po0-HZ-vzU">
-                                                    <rect key="frame" x="22.5" y="13" width="330.5" height="18"/>
+                                                    <rect key="frame" x="17" y="13" width="341" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.4705916007" green="0.62008575769999996" blue="0.85567158460000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1771,7 +1772,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Po0-HZ-vzU" firstAttribute="centerY" secondItem="M91-h8-RB2" secondAttribute="centerY" id="N07-Fo-Ucs"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Po0-HZ-vzU" secondAttribute="trailing" constant="1" id="SMi-0Q-Hhe"/>
                                                 <constraint firstItem="Po0-HZ-vzU" firstAttribute="centerX" secondItem="M91-h8-RB2" secondAttribute="centerX" id="cOn-TH-e9c"/>
+                                                <constraint firstItem="Po0-HZ-vzU" firstAttribute="leading" secondItem="M91-h8-RB2" secondAttribute="leadingMargin" constant="1" id="jRR-eC-4Rd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

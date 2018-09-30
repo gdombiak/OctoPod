@@ -1,0 +1,290 @@
+/* (No Comment) */
+"Actual Bed" = "Ist-Wert Heizbett";
+
+/* (No Comment) */
+"Actual Extruder" = "Ist-Wert Düse";
+
+/* (No Comment) */
+"Actual Extruder 2" = "Ist-Wert Extruder 2";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Authorisierung fehlgeschlagen";
+
+/* (No Comment) */
+"Cancel" = "Abbruch";
+
+/* (No Comment) */
+"Cannot print this file type" = "Dieser Dateityp kann nicht gedruckt werden";
+
+/* (No Comment) */
+"Cannot reach 'octopi.local' over mobile network or service is down" = "Kann die Datei 'octopi.local' nicht via Wi-Fi aufrufen oder der Dienst nicht nicht verfügbar";
+
+/* (No Comment) */
+"Cannot replace file that is being printed or printer is busy" = "Kann die Datei nicht ersetzen während sie gedruckt wird oder der Drucker ist noch beschäftigt";
+
+/* File Type is GCode */
+"Code" = "Code";
+
+/* (No Comment) */
+"Command not executed. Printer not operational" = "Befehl nicht ausgeführt. Drucker nicht in Betrieb";
+
+/* (No Comment) */
+"Command not executed. Script not found" = "Befehl nicht ausgeführt. Script nicht gefunden";
+
+/* (No Comment) */
+"Confirm" = "Bestätigen";
+
+/* (No Comment) */
+"Confirm connect" = "Einige Drucker führen bei Herstellung der Verbindung einen Neustart aus. Fortsetzen?";
+
+/* (No Comment) */
+"Confirm disconnect" = "Möchten Sie die Verbindung zum Drucker trennen?";
+
+/* (No Comment) */
+"Confirm turn off plug" = "Sie möchten die Steckdose ausschalten. Fortsetzen?";
+
+/* (No Comment) */
+"Confirm turn off PSU" = "Sie möchten das Netzteil ausschalten. Fortsetzen?";
+
+/* (No Comment) */
+"Connect" = "Verbinden";
+
+/* (No Comment) */
+"Connection failed" = "Verbindung fehlgeschlagen";
+
+/* http://docs.octoprint.org/en/master/features/custom_controls.html */
+"Custom Controls" = "Benutzerdefinierte Steuerung";
+
+/* (No Comment) */
+"Disconnect" = "Trennen";
+
+/* (No Comment) */
+"Dismiss" = "Verwerfen";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Möchten Sie den Auftrag abbrechen?";
+
+/* (No Comment) */
+"Domoticz Plugs" = "Domoticz Steckdosen";
+
+/* (No Comment) */
+"Enable iCloud under iOS Settings to use this feature" = "Aktiviere iCloud in den iOS Einstellungen um diese Funktion zu nutzen";
+
+/* (No Comment) */
+"Failed to delete file" = "Datei löschen fehlgeschlagen";
+
+/* (No Comment) */
+"Failed to disable motor" = "%@ Motor ausschalten fehlgeschlagen";
+
+/* Failed to get controls with HTTP Request error info */
+"Failed to get controls" = "Keine Steuerungselemente übertragen. HTTP Antwort: %d";
+
+/* (No Comment) */
+"Failed to initialize SD card" = "Initalisierung der SD-Karte fehlgeschlagen";
+
+/* (No Comment) */
+"Failed to read file from iCloud" = "Datei konnte nicht aus iCloud gelesen werden";
+
+/* (No Comment) */
+"Failed to refresh SD card" = "Inhalt der SD-Karte konnte nicht aktualisiert werden";
+
+/* (No Comment) */
+"Failed to request moving back" = "Anfrage Bewegung zurück gescheitert";
+
+/* (No Comment) */
+"Failed to request moving down" = "Anfrage Bewegung abwärts gescheitert";
+
+/* (No Comment) */
+"Failed to request moving front" = "Anfrage Bewegung vorwärts gescheitert";
+
+/* (No Comment) */
+"Failed to request moving left" = "Anfrage Bewegung nach links gescheitert";
+
+/* (No Comment) */
+"Failed to request moving right" = "Anfrage Bewegung nach rechts gescheitert";
+
+/* (No Comment) */
+"Failed to request moving up" = "Anfrage Bewegung aufwärts gescheitert";
+
+/* (No Comment) */
+"Failed to request to execute command" = "Anfrage Befehl ausführen gescheitert";
+
+/* (No Comment) */
+"Failed to request to extrude" = "Anfrage extrudieren gescheitert";
+
+/* (No Comment) */
+"Failed to request to print file" = "Anfrage Datei drucken gescheitert";
+
+/* (No Comment) */
+"Failed to request to retract" = "Anfrage einziehen gescheitert ";
+
+/* (No Comment) */
+"Failed to request to turn power off" = "Anfrage Spannung ausschalten gescheitert";
+
+/* (No Comment) */
+"Failed to request to turn power on" = "Anfrage Spannung einschalten gescheitert";
+
+/* (No Comment) */
+"Failed to send GCode command" = "GCode Befehl nicht gesendet";
+
+/* (No Comment) */
+"Failed to set new fan speed" = "Neue Lüftergeschwindigkeit nicht eingestellt";
+
+/* (No Comment) */
+"Failed to set new feed rate" = "Neue Vorschubgeschwindigkeit nicht eingestellt";
+
+/* (No Comment) */
+"Failed to set new flow rate" = "Neue Fließgeschwindigkeit nicht eingestellt ";
+
+/* (No Comment) */
+"Failed to upload file" = "Datei konnte nicht hochgeladen werden";
+
+/* (No Comment) */
+"Failed turn power off" = "Spannung ausschalten fehlgeschlagen";
+
+/* (No Comment) */
+"Failed turn power on" = "Spannung einschalten fehlgeschlagen";
+
+/* (No Comment) */
+"File currently being printed" = "Datei wird bereits gedruckt";
+
+/* (No Comment) */
+"File is being copied to SD Card" = "Datei wird gerade auf SD-Karte kopiert";
+
+/* File Type is a Folder */
+"Folder" = "Verzeichnis";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Anfrage fehlerhaft. HTTP Antwort: %d";
+
+/* (No Comment) */
+"Incorrect API Key" = "Fehlerhafter API Schlüssel";
+
+/* (No Comment) */
+"Incorrect authentication credentials" = "Fehlerhafte Authentifizierungsinformationen";
+
+/* URL of camera is invalid */
+"Invalid camera URL" = "Ungültige Kamera URL";
+
+/* (No Comment) */
+"Invalid file type" = "Ungültiger Dateityp";
+
+/* (No Comment) */
+"Job" = "Auftrag";
+
+/* (No Comment) */
+"Location no longer valid. Refresh files" = "Speicherort nicht länger gültig. Aktualisiere Dateien";
+
+/* File Type is a Model */
+"Model" = "Modell";
+
+/* (No Comment) */
+"Move" = "Bewegen";
+
+/* (No Comment) */
+"No" = "Nein";
+
+/* No camera was found */
+"No camera" = "Keine Kamera";
+
+/* No temperature history */
+"No temperature history" = "Kein Temperaturverlauf verfügbar";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Anfrage Auftrag abbrechen gescheitert";
+
+/* (No Comment) */
+"Notify failed pause job" = "Anfrage Auftrag pausieren gescheitert";
+
+/* (No Comment) */
+"Notify failed print job again" = "Anfrage Auftrag erneut drucken gescheitert";
+
+/* (No Comment) */
+"Notify failed restart job" = "Anfrage Auftrag erneut starten gescheitert";
+
+/* (No Comment) */
+"Notify failed resume job" = "Anfrage Auftrag fortsetzen gescheitert";
+
+/* OctoPrint server */
+"OctoPrint" = "OctoPrint";
+
+/* Printer is Offline */
+"Offline" = "Getrennt";
+
+/* (No Comment) */
+"Pause Job" = "Pausieren";
+
+/* (No Comment) */
+"Print File" = "Datei drucken";
+
+/* (No Comment) */
+"Printer not operational" = "Drucker nicht in Betrieb";
+
+/* (No Comment) */
+"Pull down to refresh" = "Zum Aktualisieren nach unten ziehen";
+
+/* (No Comment) */
+"Restart Job" = "Neustart";
+
+/* (No Comment) */
+"Resume Job" = "Auftrag fortsetzen";
+
+/* Execute Command */
+"Run" = "Ausführen";
+
+/* Origin is SD Card */
+"SD Card" = "SD-Karte";
+
+/* (No Comment) */
+"Service is down or incorrect port" = "Dienst läuft nicht oder der Port ist fehlerhaft";
+
+/* Print time is being calculated */
+"Still stabilizing" = "Stabilisiert noch...";
+
+/* (No Comment) */
+"Target Bed" = "Soll-Wert Heizbett";
+
+/* (No Comment) */
+"Target Extruder" = "Soll-Wert Düse";
+
+/* (No Comment) */
+"Target Extruder 2" = "Soll-Wert Düse 2";
+
+/* (No Comment) */
+"Tasmota Plugs" = "Tasmota Steckdosen";
+
+/* Temperature */
+"Temperature" = "Temperatur";
+
+/* (No Comment) */
+"Terminal" = "Konsole";
+
+/* (No Comment) */
+"TPLink Smartplugs" = "TPLink Steckdosen";
+
+/* (No Comment) */
+"Turn Off" = "Ausschalten";
+
+/* (No Comment) */
+"Turn On" = "Einschalten";
+
+/* ETA is Unknown
+   File Type is Unknown
+   Origin is Unknown */
+"Unknown" = "Unbekannt";
+
+/* Unknown Custom Control */
+"Unknown Control" = "Unbekanntes Steuerelement";
+
+/* (No Comment) */
+"Upload failed" = "Hochladen fehlgeschlagen";
+
+/* (No Comment) */
+"Warning" = "Warnung";
+
+/* (No Comment) */
+"Wemo Switches" = "Wemo Schalter";
+
+/* (No Comment) */
+"Yes" = "Ja";
+
