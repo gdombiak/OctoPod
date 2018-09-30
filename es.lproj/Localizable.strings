@@ -1,0 +1,117 @@
+/*
+ Spanish (Spain) translation for words in Swift files
+ */
+
+"OctoPrint" = "OctoPrint";
+"SD Card" = "Tarjeta SD";
+"Unknown" = "Desconocido";
+"Model" = "Modelo";
+"Code" = "Código";
+"Folder" = "Carpeta";
+
+"Authentication failed" = "Error de autenticación";
+"Connection failed" = "Error de conexión";
+"No camera" = "Sin cámara";
+"HTTP Request error" = "Error en la petición. Respuesta HTTP: %d";
+"Invalid camera URL" = "URL de cámara incorrecta";
+
+"Still stabilizing" = "Estabilizando...";
+"Offline" = "Fuera de Línea";
+
+"Temperature" = "Temperatura";
+"No temperature history" = "No hay historial de temperatura";
+
+"Actual Bed" = "Cama actual";
+"Target Bed" = "Cama objetivo";
+"Actual Extruder" = "Extrusor actual";
+"Target Extruder" = "Extrusor objetivo";
+"Actual Extruder 2" = "Extrusor 2 actual";
+"Target Extruder 2" = "Extrusor 2 objetivo";
+
+"Custom Controls" = "Controles personalizados";
+"Failed to get controls" = "Error al obtener controles. Respuesta HTTP: %d";
+"Unknown Control" = "Control desconocido";
+"Command not executed. Printer not operational" = "Comando no ejecutado. Impresora no operativa";
+"Command not executed. Script not found" = "Comando no ejecutado. Script no encontrado";
+"Failed to request to execute command" = "Error al ejecutar comando";
+
+"Warning" = "Atención";
+"Cancel" = "Cancelar";
+"Run" = "Ejecutar";
+
+"Failed turn power on" = "Error al encender";
+"Failed turn power off" = "Error al apagar";
+"Confirm turn off PSU" = "Apagar. ¿Continuar?";
+"Turn On" = "Encender";
+"Turn Off" = "Apagar";
+
+"TPLink Smartplugs" = "TPLink Smartplugs";
+"Wemo Switches" = "Enchufes Wemo";
+"Domoticz Plugs" = "Enchufes Domoticz";
+"Tasmota Plugs" = "Enchufes Tasmota";
+"Confirm turn off plug" = "Apagar. ¿Continuar?";
+"Failed to request to turn power on" = "Error al encender";
+"Failed to request to turn power off" = "Error al apagar";
+
+"Job" = "Trabajo";
+"Confirm disconnect" = "¿Desea desconectarse de la impresora?";
+"Confirm connect" = "Algunas impresoras pueden reiniciarse al conectar. ¿Continuar?";
+"Notify failed cancel job" = "Error al cancelar el trabajo";
+"Notify failed pause job" = "Error al detener el trabajo";
+"Notify failed resume job" = "Error al reanudar el trabajo";
+"Notify failed restart job" = "Error al reiniciar el trabajo";
+"Notify failed print job again" = "Error al imprimir el trabajo de nuevo";
+"Cannot reach 'octopi.local' over mobile network or service is down" = "No se puede llegar a 'octopi.local' a través de la red móvil o el servicio se ha caído";
+"Service is down or incorrect port" = "El servicio está inactivo o el puerto es incorrecto";
+"Incorrect authentication credentials" = "Credenciales de autenticación incorrectas";
+"Incorrect API Key" = "Clave de API incorrecta";
+
+"Connect" = "Conectar";
+"Disconnect" = "Desconectar";
+
+"Confirm" = "Confirmar";
+"Yes" = "Si";
+"No" = "No";
+"Dismiss" = "Cerrar";
+
+"Pause Job" = "Pausar";
+"Resume Job" = "Reanudar";
+"Do you want to cancel job?" = "¿Desea cancelar el trabajo?";
+"Print File" = "Imprimir";
+"Restart Job" = "Reiniciar";
+
+"Failed to request moving back" = "Error al ir atrás";
+"Failed to request moving front" = "Error al ir al frente";
+"Failed to request moving left" = "Error al ir a la izquierda";
+"Failed to request moving right" = "Error al ir a la derecha";
+"Failed to request moving up" = "Error al ir arriba";
+"Failed to request moving down" = "Error al ir abajo";
+"Failed to request to retract" = "Error al retraer";
+"Failed to request to extrude" = "Error al extruir";
+"Failed to set new flow rate" = "Error al establecer nuevo ritmo de flujo";
+"Failed to set new fan speed" = "Error al establecer nueva velocidad del ventilador";
+"Failed to set new feed rate" = "Error al establecer nueva velocidad de avance";
+"Failed to disable motor" = "Error al deshabilitar motor %@";
+
+"Move" = "Mover";
+"Pull down to refresh" = "Tire hacia abajo para refrescar";
+
+"Failed to request to print file" = "Error al imprimir archivo";
+"Printer not operational" = "Impresora no operativa";
+"Cannot print this file type" = "No se puede imprimir este tipo de archivo";
+"File is being copied to SD Card" = "Archivo copiándose a la tarjeta SD";
+"Failed to initialize SD card" = "Error al inicializar la tarjeta SD";
+"Failed to refresh SD card" = "Error al actualizar la tarjeta SD";
+"File currently being printed" = "Archivo actualmente en impresión";
+"Failed to delete file" = "Error al eliminar archivo";
+
+"Failed to read file from iCloud" = "Error al leer archivo de iCloud";
+"Upload failed" = "Error de subida";
+"Invalid file type" = "Tipo de archivo inválido";
+"Location no longer valid. Refresh files" = "La ubicación ya no es válida. Actualizar archivos";
+"Cannot replace file that is being printed or printer is busy" = "No se puede reemplazar el archivo que se está imprimiendo o impresora ocupada";
+"Failed to upload file" = "Error al subir archivo";
+"Enable iCloud under iOS Settings to use this feature" = "Habilita iCloud en la configuración de iOS para usar esta función";
+
+"Terminal" = "Terminal";
+"Failed to send GCode command" = "Error al enviar comando GCode";

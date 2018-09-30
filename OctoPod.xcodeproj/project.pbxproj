@@ -199,6 +199,10 @@
 		A9F913620E58D596BED0BDF3 /* Pods_OctoPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctoPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF04586ED8A4BC29EF06604 /* Pods_OctoPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctoPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA67A6E786F508F8752C975C /* Pods-OctoPod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctoPod.release.xcconfig"; path = "Pods/Target Support Files/Pods-OctoPod/Pods-OctoPod.release.xcconfig"; sourceTree = "<group>"; };
+		CB66535B2160B6C100269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		CB66535C2160B6C200269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CB66535D2160B6C200269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CB66535E2160B6C200269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CC04C91AD1D77F22FA7EAFFB /* Pods-OctoPod.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctoPod.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OctoPod/Pods-OctoPod.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -537,6 +541,7 @@
 				de,
 				it,
 				cs,
+				es,
 				nb,
 			);
 			mainGroup = 3D4527F520E15A370094CCB7;
@@ -698,6 +703,7 @@
 				3D9E08732160155500F11CD4 /* de */,
 				3D9E08762160155D00F11CD4 /* it */,
 				3D9E08792160205100F11CD4 /* cs */,
+				CB66535B2160B6C100269730 /* es */,
 				3D89E66E216121FA006794D0 /* nb */,
 			);
 			name = Main.storyboard;
@@ -711,6 +717,7 @@
 				3D9E08742160155600F11CD4 /* de */,
 				3D9E08772160155D00F11CD4 /* it */,
 				3D9E087A2160205100F11CD4 /* cs */,
+				CB66535C2160B6C200269730 /* es */,
 				3D89E66F216121FB006794D0 /* nb */,
 			);
 			name = LaunchScreen.storyboard;
@@ -724,6 +731,7 @@
 				3D9E08752160155600F11CD4 /* de */,
 				3D9E08782160155F00F11CD4 /* it */,
 				3D9E087B2160205100F11CD4 /* cs */,
+				CB66535D2160B6C200269730 /* es */,
 				3D89E670216121FB006794D0 /* nb */,
 			);
 			name = Localizable.strings;
@@ -733,6 +741,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3D9E087D2160455400F11CD4 /* de */,
+				CB66535E2160B6C200269730 /* es */,
 				3D89E671216121FC006794D0 /* nb */,
 				3D89E6722161235A006794D0 /* cs */,
 			);
@@ -865,7 +874,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OctoPod/OctoPod.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ALV53VY374;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OctoPod/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -886,7 +895,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OctoPod/OctoPod.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ALV53VY374;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OctoPod/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
