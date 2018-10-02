@@ -2306,7 +2306,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Origin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfT-wn-CXk">
-                                                    <rect key="frame" x="164.5" y="11.5" width="46" height="21"/>
+                                                    <rect key="frame" x="184.5" y="11.5" width="46" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="j1N-g0-u4d"/>
                                                     </constraints>
@@ -2315,7 +2315,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0r-Vm-AEC">
-                                                    <rect key="frame" x="218.5" y="11.5" width="140.5" height="21"/>
+                                                    <rect key="frame" x="238.5" y="11.5" width="120.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="q7y-5W-9S9"/>
                                                     </constraints>
@@ -2324,7 +2324,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQX-Dv-mUw">
-                                                    <rect key="frame" x="56.5" y="11.5" width="100" height="21"/>
+                                                    <rect key="frame" x="56.5" y="11.5" width="120" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="tR2-ud-vkr"/>
                                                     </constraints>
@@ -2338,7 +2338,7 @@
                                                 <constraint firstItem="W0r-Vm-AEC" firstAttribute="leading" secondItem="lfT-wn-CXk" secondAttribute="trailing" constant="8" id="6c6-cK-5zC"/>
                                                 <constraint firstItem="XQX-Dv-mUw" firstAttribute="leading" secondItem="6ox-ce-GOS" secondAttribute="trailing" constant="8" id="6gl-0F-ecU"/>
                                                 <constraint firstItem="XQX-Dv-mUw" firstAttribute="centerY" secondItem="b2D-MF-2Yg" secondAttribute="centerY" id="DG7-cl-YaI"/>
-                                                <constraint firstItem="lfT-wn-CXk" firstAttribute="centerX" secondItem="b2D-MF-2Yg" secondAttribute="centerX" id="RPY-RE-oKr"/>
+                                                <constraint firstItem="lfT-wn-CXk" firstAttribute="centerX" secondItem="b2D-MF-2Yg" secondAttribute="centerX" constant="20" id="RPY-RE-oKr"/>
                                                 <constraint firstItem="lfT-wn-CXk" firstAttribute="centerY" secondItem="b2D-MF-2Yg" secondAttribute="centerY" id="bA0-jo-TSg"/>
                                                 <constraint firstItem="W0r-Vm-AEC" firstAttribute="trailing" secondItem="b2D-MF-2Yg" secondAttribute="trailingMargin" id="g5m-tX-k4c"/>
                                                 <constraint firstItem="lfT-wn-CXk" firstAttribute="leading" secondItem="XQX-Dv-mUw" secondAttribute="trailing" constant="8" id="hFy-P7-vhn"/>
