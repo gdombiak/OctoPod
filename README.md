@@ -1,5 +1,5 @@
 # OctoPod
-OctoPod is a free open source iPhone app for OctoPrint.
+OctoPod is a free open source iPhone/iPad app for OctoPrint.
 
 <img src="screenshots/OctoPod_Panel.png" alt="" width="400px"/>
 
