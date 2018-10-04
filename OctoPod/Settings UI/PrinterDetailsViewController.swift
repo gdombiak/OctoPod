@@ -184,7 +184,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     
     fileprivate func isValidURL() -> Bool {
         if let inputURL = hostnameField.text {
-            let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+(:[0-9]+)?"
+            let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_]|[\\.|/])*)+(:[0-9]+)?"
             let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx)
             var result = urlTest.evaluate(with: inputURL)
             if !result {
