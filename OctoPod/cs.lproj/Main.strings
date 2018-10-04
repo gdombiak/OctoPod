@@ -101,7 +101,7 @@
 "BXr-d8-f7x.text" = "Zpráva chyby";
 
 /* Class = "UILabel"; text = "Sort by"; ObjectID = "Cdc-H8-bPm"; */
-"Cdc-H8-bPm.text" = "Řadit podle";
+"Cdc-H8-bPm.text" = "Třídění";
 
 /* Class = "UITabBarItem"; title = "Terminal"; ObjectID = "Cjs-F4-ynC"; */
 "Cjs-F4-ynC.title" = "Terminál";
@@ -263,7 +263,7 @@
 "MI6-uy-Cea.text" = "Čas tisku";
 
 /* Class = "UILabel"; text = "Lock read-only mode"; ObjectID = "mqw-ve-Eec"; */
-"mqw-ve-Eec.text" = "Nastavit  režim Pouze pro čtení";
+"mqw-ve-Eec.text" = "Režim Pouze pro čtení";
 
 /* Class = "UILabel"; text = "Tap = Full Screen"; ObjectID = "MT2-fR-HJD"; */
 "MT2-fR-HJD.text" = "Klepnout = Celá obrazovka";
