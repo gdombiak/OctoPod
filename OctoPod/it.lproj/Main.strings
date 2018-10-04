@@ -2,7 +2,7 @@
 "1pO-wB-zKj.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
 /* Class = "UILabel"; text = "Flow rate"; ObjectID = "3IG-Y9-Ofi"; */
-"3IG-Y9-Ofi.text" = "Velocità di flusso";
+"3IG-Y9-Ofi.text" = "Vel. di flusso";
 
 /* Class = "UILabel"; text = "Printed"; ObjectID = "3mU-gE-iQQ"; */
 "3mU-gE-iQQ.text" = "Stampato";
@@ -20,7 +20,7 @@
 "4sv-CS-fGo.title" = "Aspetto";
 
 /* Class = "UILabel"; text = "Print Time Left"; ObjectID = "5hR-SK-V2r"; */
-"5hR-SK-V2r.text" = "Tempo di stampa rimasto";
+"5hR-SK-V2r.text" = "Tempo rimasto";
 
 /* Class = "UILabel"; text = "250 C"; ObjectID = "5ry-aI-ZKw"; */
 "5ry-aI-ZKw.text" = "250 C";
@@ -458,7 +458,7 @@
 "XOG-eU-T7f.text" = "Conferma per connettere";
 
 /* Class = "UILabel"; text = "Feed rate"; ObjectID = "Xs4-QQ-rLn"; */
-"Xs4-QQ-rLn.text" = "Velocità di avanzamento";
+"Xs4-QQ-rLn.text" = "Vel. di avanzam.";
 
 /* Class = "UIButton"; normalTitle = "Restart Job"; ObjectID = "XV8-g9-QIc"; */
 "XV8-g9-QIc.normalTitle" = "Ricomincia";
@@ -503,5 +503,5 @@
 "ZSM-KR-Ovn.title" = "Log";
 
 /* Class = "UILabel"; text = "Sync printers between iOS devices"; ObjectID = "zVf-Zx-3g4"; */
-"zVf-Zx-3g4.text" = "Sincronizza stampanti tra i dispositivi iOS";
+"zVf-Zx-3g4.text" = "Sincr. stampanti tra i dispositivi iOS";
 
