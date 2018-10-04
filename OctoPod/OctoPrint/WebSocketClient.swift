@@ -157,6 +157,14 @@ class WebSocketClient : NSObject, WebSocketDelegate {
                                         }
                                     }
                                 }
+                            } else if type == "PrintDone" {
+                                // Event denoting that print is done
+                                let event = CurrentStateEvent()
+                                event.printing = false
+                                event.progressCompletion = 100
+                                event.progressPrintTimeLeft = 0
+                                // Notify listener
+                                listener.currentStateUpdated(event: event)
                             }
                         }
                     } else if let history = json["history"] as? NSDictionary {
