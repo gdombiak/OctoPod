@@ -3282,7 +3282,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2b-xf-a3O">
-                                                    <rect key="frame" x="175" y="15" width="101" height="30"/>
+                                                    <rect key="frame" x="175" y="15" width="121" height="30"/>
                                                     <state key="normal" title="Retract"/>
                                                     <connections>
                                                         <action selector="retract:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="mfQ-68-lRK"/>
@@ -3341,7 +3341,7 @@
                                                 <constraint firstItem="VkX-1W-xBG" firstAttribute="centerX" secondItem="IEx-ZS-T4P" secondAttribute="centerX" constant="-18" id="QhH-H3-VjA"/>
                                                 <constraint firstItem="Q2b-xf-a3O" firstAttribute="top" secondItem="IEx-ZS-T4P" secondAttribute="topMargin" constant="4" id="We9-yZ-ky3"/>
                                                 <constraint firstItem="GRh-JJ-DpF" firstAttribute="top" secondItem="IEx-ZS-T4P" secondAttribute="topMargin" constant="5" id="b4k-h6-sWr"/>
-                                                <constraint firstItem="wnO-2K-s2I" firstAttribute="leading" secondItem="Q2b-xf-a3O" secondAttribute="trailing" constant="30" id="ct5-Rd-2sS"/>
+                                                <constraint firstItem="wnO-2K-s2I" firstAttribute="leading" secondItem="Q2b-xf-a3O" secondAttribute="trailing" constant="10" id="ct5-Rd-2sS"/>
                                                 <constraint firstItem="wnO-2K-s2I" firstAttribute="top" secondItem="IEx-ZS-T4P" secondAttribute="topMargin" constant="4" id="ntI-OC-ScT"/>
                                                 <constraint firstItem="3IG-Y9-Ofi" firstAttribute="top" secondItem="GRh-JJ-DpF" secondAttribute="bottom" constant="15" id="tBh-qY-O4C"/>
                                                 <constraint firstItem="zDH-jI-B7O" firstAttribute="trailing" secondItem="IEx-ZS-T4P" secondAttribute="trailingMargin" id="xMd-Wm-9Qh"/>
