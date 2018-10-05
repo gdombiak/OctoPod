@@ -1,8 +1,17 @@
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "1pO-wB-zKj"; */
 "1pO-wB-zKj.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
+/* Class = "UISegmentedControl"; 3a1-rm-bQy.segmentTitles[0] = "iOS Language"; ObjectID = "3a1-rm-bQy"; */
+"3a1-rm-bQy.segmentTitles[0]" = "Jazyk iOS";
+
+/* Class = "UISegmentedControl"; 3a1-rm-bQy.segmentTitles[1] = "English"; ObjectID = "3a1-rm-bQy"; */
+"3a1-rm-bQy.segmentTitles[1]" = "Anglicky";
+
 /* Class = "UILabel"; text = "Flow rate"; ObjectID = "3IG-Y9-Ofi"; */
 "3IG-Y9-Ofi.text" = "Průtok";
+
+/* Class = "UITableViewSection"; headerTitle = "Language"; ObjectID = "3JO-XH-cf3"; */
+"3JO-XH-cf3.headerTitle" = "Jazyk";
 
 /* Class = "UILabel"; text = "Printed"; ObjectID = "3mU-gE-iQQ"; */
 "3mU-gE-iQQ.text" = "Vytištěno";
@@ -14,7 +23,7 @@
 "4bm-la-U47.segmentTitles[1]" = "Datum";
 
 /* Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[2] = "Printed"; ObjectID = "4bm-la-U47"; */
-"4bm-la-U47.segmentTitles[2]" = "Vytištěno";
+"4bm-la-U47.segmentTitles[2]" = "Tisk";
 
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Vzhled";
@@ -225,6 +234,9 @@
 
 /* Class = "UILabel"; text = "250.0 C"; ObjectID = "JwP-eK-xNk"; */
 "JwP-eK-xNk.text" = "250.0 C";
+
+/* Class = "UILabel"; text = "Kill and restart app to take effect"; ObjectID = "jxG-8a-4b3"; */
+"jxG-8a-4b3.text" = "Zavřete a restartujte aplikaci pro aktualizaci";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "jXN-qA-TlY"; */
 "jXN-qA-TlY.text" = "Nadpis";
@@ -490,7 +502,7 @@
 /* Class = "UILabel"; text = "Detail"; ObjectID = "ZF8-G0-f5Y"; */
 "ZF8-G0-f5Y.text" = "Detail";
 
-/* Class = "UILabel"; text = "Upload to OctoPrint"; ObjectID = "Ziq-bR-QIe"; */
+/* Class = "UILabel"; text = "Upload to OctoPrint "; ObjectID = "Ziq-bR-QIe"; */
 "Ziq-bR-QIe.text" = "Nahrát na OctoPrint";
 
 /* Class = "UITabBarItem"; title = "Panel"; ObjectID = "zqn-zS-suB"; */
