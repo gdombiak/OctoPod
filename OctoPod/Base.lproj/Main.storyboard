@@ -1457,6 +1457,56 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Language" id="3JO-XH-cf3">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="EQn-qz-rew">
+                                        <rect key="frame" x="0.0" y="199.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EQn-qz-rew" id="MIR-wr-JTv">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3a1-rm-bQy">
+                                                    <rect key="frame" x="16" y="8" width="343" height="29"/>
+                                                    <segments>
+                                                        <segment title="iOS Language"/>
+                                                        <segment title="English"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="languageChanged:" destination="4sv-CS-fGo" eventType="valueChanged" id="c4l-nN-sAX"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3a1-rm-bQy" firstAttribute="leading" secondItem="MIR-wr-JTv" secondAttribute="leading" constant="16" id="8xf-TE-8KR"/>
+                                                <constraint firstItem="3a1-rm-bQy" firstAttribute="top" secondItem="MIR-wr-JTv" secondAttribute="top" constant="8" id="GsX-0s-r12"/>
+                                                <constraint firstAttribute="trailing" secondItem="3a1-rm-bQy" secondAttribute="trailing" constant="16" id="fgJ-9e-mED"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="50" id="0gw-lv-FC6">
+                                        <rect key="frame" x="0.0" y="243.5" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0gw-lv-FC6" id="cB6-eh-mdd">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kill and restart app to take effect" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxG-8a-4b3">
+                                                    <rect key="frame" x="16" y="17" width="343" height="16"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" red="0.4705916007" green="0.62008575769999996" blue="0.85567158460000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jxG-8a-4b3" firstAttribute="centerY" secondItem="cB6-eh-mdd" secondAttribute="centerY" id="0Mx-c0-06J"/>
+                                                <constraint firstItem="jxG-8a-4b3" firstAttribute="leading" secondItem="cB6-eh-mdd" secondAttribute="leadingMargin" id="6gy-9o-0aU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="jxG-8a-4b3" secondAttribute="trailing" id="ZHF-Tz-fYa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="4sv-CS-fGo" id="wJp-ge-Cew"/>
@@ -1466,13 +1516,14 @@
                     <connections>
                         <outlet property="darkCell" destination="YIs-3W-xWQ" id="bfn-gK-Ewv"/>
                         <outlet property="darkLabel" destination="wHn-Dc-bWb" id="RUt-Tc-57o"/>
+                        <outlet property="languageControl" destination="3a1-rm-bQy" id="NME-Ge-dNa"/>
                         <outlet property="lightCell" destination="5JA-bz-vAF" id="KFR-kX-ZT4"/>
                         <outlet property="lightLabel" destination="MA6-Ay-j7Q" id="YxR-jF-qxK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0SB-Gd-UeX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1505" y="3807"/>
+            <point key="canvasLocation" x="1504.8" y="3806.4467766116945"/>
         </scene>
         <!--Security-->
         <scene sceneID="i8m-Je-prJ">
