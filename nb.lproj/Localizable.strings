@@ -1,117 +1,290 @@
-/*
-  English translation for words in Swift files
-*/
+/* (No Comment) */
+"Actual Bed" = "Faktisk Skriveflate";
 
-"OctoPrint" = "OctoPrint";
-"SD Card" = "SD Card";
-"Unknown" = "Unknown";
-"Model" = "Model";
-"Code" = "Code";
-"Folder" = "Folder";
+/* (No Comment) */
+"Actual Extruder" = "Faktisk Ekstruder";
 
-"Authentication failed" = "Authentication Failed";
-"Connection failed" = "Connection Failed";
-"No camera" = "No camera";
-"HTTP Request error" = "Request error. HTTP response: %d";
-"Invalid camera URL" = "Invalid camera URL";
+/* (No Comment) */
+"Actual Extruder 2" = "Faktisk Ekstruder 2";
 
-"Still stabilizing" = "Still stabilizing...";
-"Offline" = "Offline";
+/* HTTP authentication failed */
+"Authentication failed" = "Godkjenning mislyktes";
 
-"Temperature" = "Temperature";
-"No temperature history" = "No temperature history available";
+/* (No Comment) */
+"Cancel" = "Avbryt";
 
-"Actual Bed" = "Actual Bed";
-"Target Bed" = "Target Bed";
-"Actual Extruder" = "Actual Extruder";
-"Target Extruder" = "Target Extruder";
-"Actual Extruder 2" = "Actual Extruder 2";
-"Target Extruder 2" = "Target Extruder 2";
+/* (No Comment) */
+"Cannot print this file type" = "Kan ikke skrive ut denne type fil";
 
-"Custom Controls" = "Custom Controls";
-"Failed to get controls" = "Failed to get controls. HTTP response: %d";
-"Unknown Control" = "Unknown Control";
-"Command not executed. Printer not operational" = "Command not executed. Printer not operational";
-"Command not executed. Script not found" = "Command not executed. Script not found";
-"Failed to request to execute command" = "Failed to request to execute command";
+/* (No Comment) */
+"Cannot reach 'octopi.local' over mobile network or service is down" = "Når ikke 'octopi.local' over mobildata eller tjenesten er nede";
 
-"Warning" = "Warning";
-"Cancel" = "Cancel";
-"Run" = "Run";
+/* (No Comment) */
+"Cannot replace file that is being printed or printer is busy" = "Kan ikke erstatte filen som blir skrevet ut eller skriveren er opptatt";
 
-"Failed turn power on" = "Failed to request to turn power on";
-"Failed turn power off" = "Failed to request to turn power off";
-"Confirm turn off PSU" = "You are about to turn off the PSU. Proceed?";
-"Turn On" = "Turn On";
-"Turn Off" = "Turn Off";
+/* File Type is GCode */
+"Code" = "Kode";
 
-"TPLink Smartplugs" = "TPLink Smartplugs";
-"Wemo Switches" = "Wemo Switches";
+/* (No Comment) */
+"Command not executed. Printer not operational" = "Kommandoen ble ikke utført. Skriveren er ikke operativ";
+
+/* (No Comment) */
+"Command not executed. Script not found" = "Kommandoen ble ikke utført. Skriptet ikke funnet";
+
+/* (No Comment) */
+"Confirm" = "Bekreft";
+
+/* (No Comment) */
+"Confirm connect" = "Noen skrivere kan restarte ved tilkobling. Fortsette?";
+
+/* (No Comment) */
+"Confirm disconnect" = "Ønsker du å koble fra skriveren?";
+
+/* (No Comment) */
+"Confirm turn off plug" = "Du er i ferd med å slå av støpselet. Fortsette?";
+
+/* (No Comment) */
+"Confirm turn off PSU" = "Du holder på å slå av PSU. Fortsette?";
+
+/* (No Comment) */
+"Connect" = "Koble til";
+
+/* (No Comment) */
+"Connection failed" = "Tilkobling feilet";
+
+/* http://docs.octoprint.org/en/master/features/custom_controls.html */
+"Custom Controls" = "Tilpassede tillegg";
+
+/* (No Comment) */
+"Disconnect" = "koble fra";
+
+/* (No Comment) */
+"Dismiss" = "Avvis";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Ønsker du å avbryte jobben?";
+
+/* (No Comment) */
 "Domoticz Plugs" = "Domoticz Plugs";
-"Tasmota Plugs" = "Tasmota Plugs";
-"Confirm turn off plug" = "You are about to turn off the plug. Proceed?";
-"Failed to request to turn power on" = "Failed to request to turn power on";
-"Failed to request to turn power off" = "Failed to request to turn power off";
 
-"Job" = "Job";
-"Confirm disconnect" = "Do you want to disconnect from the printer?";
-"Confirm connect" = "Some printers might reboot when connecting. Proceed?";
-"Notify failed cancel job" = "Failed to request to cancel job";
-"Notify failed pause job" = "Failed to request to pause job";
-"Notify failed resume job" = "Failed to request to resume job";
-"Notify failed restart job" = "Failed to request to restart job";
-"Notify failed print job again" = "Failed to request to print job again";
-"Cannot reach 'octopi.local' over mobile network or service is down" = "Cannot reach 'octopi.local' over mobile network or service is down";
-"Service is down or incorrect port" = "Service is down or incorrect port";
-"Incorrect authentication credentials" = "Incorrect authentication credentials";
-"Incorrect API Key" = "Incorrect API Key";
+/* (No Comment) */
+"Enable iCloud under iOS Settings to use this feature" = "Aktiver iCloud under iOS-innstillinger for å bruke denne funksjonen";
 
-"Connect" = "Connect";
-"Disconnect" = "Disconnect";
+/* (No Comment) */
+"Failed to delete file" = "Kunne ikke slette filen";
 
-"Confirm" = "Confirm";
-"Yes" = "Yes";
-"No" = "No";
-"Dismiss" = "Dismiss";
+/* (No Comment) */
+"Failed to disable motor" = "Kunne ikke deaktivere %@ motor";
 
-"Pause Job" = "Pause Job";
-"Resume Job" = "Resume Job";
-"Do you want to cancel job?" = "Do you want to cancel job?";
-"Print File" = "Print File";
-"Restart Job" = "Restart Job";
+/* Failed to get controls with HTTP Request error info */
+"Failed to get controls" = "Kunne ikke få kontroller. HTTP respons: %d";
 
-"Failed to request moving back" = "Failed to request moving back";
-"Failed to request moving front" = "Failed to request moving front";
-"Failed to request moving left" = "Failed to request moving left";
-"Failed to request moving right" = "Failed to request moving right";
-"Failed to request moving up" = "Failed to request moving up";
-"Failed to request moving down" = "Failed to request moving down";
-"Failed to request to retract" = "Failed to request to retract";
-"Failed to request to extrude" = "Failed to request to extrude";
-"Failed to set new flow rate" = "Failed to set new flow rate";
-"Failed to set new fan speed" = "Failed to set new fan speed";
-"Failed to set new feed rate" = "Failed to set new feed rate";
-"Failed to disable motor" = "Failed to disable %@ motor";
+/* (No Comment) */
+"Failed to initialize SD card" = "Kunne ikke initialisere SD-kort";
 
-"Move" = "Move";
-"Pull down to refresh" = "Pull down to refresh";
+/* (No Comment) */
+"Failed to read file from iCloud" = "Kunne ikke lese filen fra iCloud";
 
-"Failed to request to print file" = "Failed to request to print file";
-"Printer not operational" = "Printer not operational";
-"Cannot print this file type" = "Cannot print this file type";
-"File is being copied to SD Card" = "File is being copied to SD Card";
-"Failed to initialize SD card" = "Failed to initialize SD card";
-"Failed to refresh SD card" = "Failed to refresh SD card";
-"File currently being printed" = "File currently being printed";
-"Failed to delete file" = "Failed to delete file";
+/* (No Comment) */
+"Failed to refresh SD card" = "Kunne ikke oppdatere SD-kort";
 
-"Failed to read file from iCloud" = "Failed to read file from iCloud";
-"Upload failed" = "Upload failed";
-"Invalid file type" = "Invalid file type";
-"Location no longer valid. Refresh files" = "Location no longer valid. Refresh files";
-"Cannot replace file that is being printed or printer is busy" = "Cannot replace file that is being printed or printer is busy";
-"Failed to upload file" = "Failed to upload file";
-"Enable iCloud under iOS Settings to use this feature" = "Enable iCloud under iOS Settings to use this feature";
+/* (No Comment) */
+"Failed to request moving back" = "Kunne ikke be om å flytte bakover";
 
+/* (No Comment) */
+"Failed to request moving down" = "Kunne ikke be om å flytte ned";
+
+/* (No Comment) */
+"Failed to request moving front" = "Kunne ikke be om å flytte framover";
+
+/* (No Comment) */
+"Failed to request moving left" = "Kunne ikke be om å flytte til venstre";
+
+/* (No Comment) */
+"Failed to request moving right" = "Kunne ikke be om å flytte til høyre";
+
+/* (No Comment) */
+"Failed to request moving up" = "Kunne ikke be om å flytte opp";
+
+/* (No Comment) */
+"Failed to request to execute command" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
+"Failed to request to extrude" = "Kunne ikke be om å ekstrudere";
+
+/* (No Comment) */
+"Failed to request to print file" = "Kunne ikke be om å skrive ut fil";
+
+/* (No Comment) */
+"Failed to request to retract" = "Kunne ikke be om å trekke tilbake";
+
+/* (No Comment) */
+"Failed to request to turn power off" = "Kunne ikke be om å slå av";
+
+/* (No Comment) */
+"Failed to request to turn power on" = "Kunne ikke be om å slå på";
+
+/* (No Comment) */
+"Failed to send GCode command" = "Kunne ikke sende GCode-kommandoen";
+
+/* (No Comment) */
+"Failed to set new fan speed" = "Kunne ikke angi ny viftehastighet";
+
+/* (No Comment) */
+"Failed to set new feed rate" = "Kunne ikke angi ny skrivefart";
+
+/* (No Comment) */
+"Failed to set new flow rate" = "Kunne ikke angi ny materialflyt";
+
+/* (No Comment) */
+"Failed to upload file" = "Kunne ikke laste opp fil";
+
+/* (No Comment) */
+"Failed turn power off" = "Kunne ikke be om å av strømmen";
+
+/* (No Comment) */
+"Failed turn power on" = "Kunne ikke be om å slå på strømmen";
+
+/* (No Comment) */
+"File currently being printed" = "Fil som nå skrives ut";
+
+/* (No Comment) */
+"File is being copied to SD Card" = "Filen kopieres to SD-kort";
+
+/* File Type is a Folder */
+"Folder" = "Mappe";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Forespørselfeil. HTTP-respons: %d";
+
+/* (No Comment) */
+"Incorrect API Key" = "Feil API-nøkkel";
+
+/* (No Comment) */
+"Incorrect authentication credentials" = "Feil godkjenning av legitimasjon";
+
+/* URL of camera is invalid */
+"Invalid camera URL" = "Ugyldig nettadresse for kamera";
+
+/* (No Comment) */
+"Invalid file type" = "Ugyldig filtype";
+
+/* (No Comment) */
+"Job" = "Jobb";
+
+/* (No Comment) */
+"Location no longer valid. Refresh files" = "Plassering er ikke lenger gyldig. Oppdater filene";
+
+/* File Type is a Model */
+"Model" = "Modell";
+
+/* (No Comment) */
+"Move" = "Flytt";
+
+/* (No Comment) */
+"No" = "Nei";
+
+/* No camera was found */
+"No camera" = "Ingen kamera";
+
+/* No temperature history */
+"No temperature history" = "Ingen temperaturhistorikk tilgjengelig";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Kunne ikke be om å kansellere jobb";
+
+/* (No Comment) */
+"Notify failed pause job" = "Kunne ikke be om å pause jobb ";
+
+/* (No Comment) */
+"Notify failed print job again" = "Kunne ikke be om å skrive ut jobben igjen";
+
+/* (No Comment) */
+"Notify failed restart job" = "Kunne ikke be om å starte jobben";
+
+/* (No Comment) */
+"Notify failed resume job" = "Kunne ikke be om å fortsette jobben";
+
+/* OctoPrint server */
+"OctoPrint" = "OctoPrint";
+
+/* Printer is Offline */
+"Offline" = "Frakoblet";
+
+/* (No Comment) */
+"Pause Job" = "Pause";
+
+/* (No Comment) */
+"Print File" = "Skriv ut Fil";
+
+/* (No Comment) */
+"Printer not operational" = "Skriveren er ikke operativ";
+
+/* (No Comment) */
+"Pull down to refresh" = "Trekk ned for å oppdatere";
+
+/* (No Comment) */
+"Restart Job" = "Restart";
+
+/* (No Comment) */
+"Resume Job" = "Fortsett jobb";
+
+/* Execute Command */
+"Run" = "Kjør";
+
+/* Origin is SD Card */
+"SD Card" = "SD-kort";
+
+/* (No Comment) */
+"Service is down or incorrect port" = "Tjenesten er nede eller feil port";
+
+/* Print time is being calculated */
+"Still stabilizing" = "Fortsatt stabilisering...";
+
+/* (No Comment) */
+"Target Bed" = "Mål Skriveflate";
+
+/* (No Comment) */
+"Target Extruder" = "Mål Ekstruder";
+
+/* (No Comment) */
+"Target Extruder 2" = "Mål Ekstruder 2";
+
+/* (No Comment) */
+"Tasmota Plugs" = "Tasmota Plugger";
+
+/* Temperature */
+"Temperature" = "Temperatur";
+
+/* (No Comment) */
 "Terminal" = "Terminal";
-"Failed to send GCode command" = "Failed to send GCode command";
+
+/* (No Comment) */
+"TPLink Smartplugs" = "TPLink Smartplugs";
+
+/* (No Comment) */
+"Turn Off" = "Slå av";
+
+/* (No Comment) */
+"Turn On" = "Slå på";
+
+/* ETA is Unknown
+   File Type is Unknown
+   Origin is Unknown */
+"Unknown" = "Ukjent";
+
+/* Unknown Custom Control */
+"Unknown Control" = "Ukjent kontroll";
+
+/* (No Comment) */
+"Upload failed" = "Opplasting feilet";
+
+/* (No Comment) */
+"Warning" = "Advarsel";
+
+/* (No Comment) */
+"Wemo Switches" = "Wemo Switches";
+
+/* (No Comment) */
+"Yes" = "Ja";
+
