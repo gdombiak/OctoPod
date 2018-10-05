@@ -15,3 +15,4 @@ OctoPod wouldn't be where it is without the help of the following people. Thank 
 * Robert Malcolm McKenzie (features)
 * Sreejesh Pallisseri (features)
 * Stephan Kohls (features)
+* Trond Åge Langtind (translations)
