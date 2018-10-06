@@ -707,12 +707,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="fEh-51-Gvx">
+                        <view key="tableFooterView" contentMode="scaleToFill" id="fEh-51-Gvx">
                             <rect key="frame" x="0.0" y="149.5" width="375" height="65"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5o-xJ-EiZ">
                                     <rect key="frame" x="2" y="0.0" width="371" height="29"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" button="YES" link="YES"/>
+                                    </accessibility>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <state key="normal" title="Learn more about Custom Controls"/>
                                     <connections>
@@ -721,6 +724,9 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="or6-Pr-Z6f">
                                     <rect key="frame" x="2" y="31" width="371" height="29"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" button="YES" link="YES"/>
+                                    </accessibility>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <state key="normal" title="Configure controls using Custom Control Plugin"/>
                                     <connections>
@@ -1922,6 +1928,9 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frequently Asked Questions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlU-c7-kpY">
                                                     <rect key="frame" x="16" y="11" width="335" height="21"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" link="YES" staticText="YES"/>
+                                                    </accessibility>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1943,6 +1952,9 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Issues" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJp-Yj-1AF">
                                                     <rect key="frame" x="16" y="11" width="335" height="21"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" link="YES" staticText="YES"/>
+                                                    </accessibility>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1964,6 +1976,9 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contributing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yci-j8-y4w">
                                                     <rect key="frame" x="16" y="11" width="335" height="21"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" link="YES" staticText="YES"/>
+                                                    </accessibility>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -3395,41 +3410,41 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7j-Fj-W6p">
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7j-Fj-W6p">
                                                     <rect key="frame" x="201" y="49" width="30" height="30"/>
                                                     <state key="normal" title="X"/>
                                                     <connections>
                                                         <action selector="disableMotorX:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="3Zf-kF-6aU"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heO-9b-ZeO">
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heO-9b-ZeO">
                                                     <rect key="frame" x="246" y="49" width="30" height="30"/>
                                                     <state key="normal" title="Y"/>
                                                     <connections>
                                                         <action selector="disableMotorY:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="dcP-U3-Mee"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Mb-MK-CG7">
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Mb-MK-CG7">
                                                     <rect key="frame" x="291" y="49" width="30" height="30"/>
                                                     <state key="normal" title="Z"/>
                                                     <connections>
                                                         <action selector="disableMotorZ:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="W7e-iW-mUo"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48m-gj-F14">
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48m-gj-F14">
                                                     <rect key="frame" x="336" y="49" width="30" height="30"/>
                                                     <state key="normal" title="E"/>
                                                     <connections>
                                                         <action selector="disableMotorE:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="BEQ-m3-1OB"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disable Motor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6TZ-hb-gdQ">
-                                                    <rect key="frame" x="17" y="53.5" width="107" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Disable Motor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6TZ-hb-gdQ">
+                                                    <rect key="frame" x="17" y="53.5" width="181" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tl-IB-smM">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tl-IB-smM">
                                                     <rect key="frame" x="148" y="91.5" width="43" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3468,6 +3483,7 @@
                                                 <constraint firstItem="6hE-dz-aRw" firstAttribute="top" secondItem="WQn-Ly-v6f" secondAttribute="topMargin" id="a5S-rT-Ip7"/>
                                                 <constraint firstItem="ffd-HI-A62" firstAttribute="leading" secondItem="Qps-RG-QAh" secondAttribute="trailing" constant="3" id="cRO-08-rkr"/>
                                                 <constraint firstAttribute="trailing" secondItem="3QR-of-Bbe" secondAttribute="trailing" constant="16" id="d6Y-UE-NGr"/>
+                                                <constraint firstItem="B7j-Fj-W6p" firstAttribute="leading" secondItem="6TZ-hb-gdQ" secondAttribute="trailing" constant="3" id="dxf-FR-qqN"/>
                                                 <constraint firstItem="B7j-Fj-W6p" firstAttribute="centerY" secondItem="6TZ-hb-gdQ" secondAttribute="centerY" id="e9N-VL-cAs"/>
                                                 <constraint firstItem="3QR-of-Bbe" firstAttribute="centerY" secondItem="6tl-IB-smM" secondAttribute="centerY" id="jNP-3l-o7c"/>
                                                 <constraint firstAttribute="trailing" secondItem="48m-gj-F14" secondAttribute="trailing" constant="9" id="khL-Vw-lYd"/>
