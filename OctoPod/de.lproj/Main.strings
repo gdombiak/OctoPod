@@ -164,7 +164,7 @@
 "gJx-aQ-4FM.text" = "Drucke von SD-Karte";
 
 /* Class = "UILabel"; text = "Not refreshing"; ObjectID = "GKZ-HN-xVC"; */
-"GKZ-HN-xVC.text" = "Nicht aktualisieren";
+"GKZ-HN-xVC.text" = "Kann nicht aktualisieren";
 
 /* Class = "UITableViewController"; title = "Devices"; ObjectID = "GmR-1U-jvf"; */
 "GmR-1U-jvf.title" = "Geräte";

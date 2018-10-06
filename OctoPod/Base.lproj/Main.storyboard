@@ -692,6 +692,7 @@
                     </view>
                     <size key="freeformSize" width="375" height="370"/>
                     <connections>
+                        <outlet property="bottomConstraint" destination="3b4-OU-Qre" id="RJ0-J0-d71"/>
                         <outlet property="lineChartView" destination="yvQ-Wh-oYL" id="jcp-yf-6wp"/>
                     </connections>
                 </viewController>

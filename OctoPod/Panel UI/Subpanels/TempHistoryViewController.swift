@@ -6,16 +6,28 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
     @IBOutlet weak var lineChartView: LineChartView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // If running in small screen then reduce height so page control (dots)
+        // do not overlap the chart letters
+        let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
+        let screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
+        if screenHeight <= 568 {
+            // iPhone 5, 5s, 5c, SE
+            bottomConstraint.constant = -15
+        } else {
+            // Bigger screens
+            bottomConstraint.constant = -12
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         let theme = Theme.currentTheme()
         let labelColor = theme.labelColor()
+        view.backgroundColor = theme.backgroundColor()
         lineChartView.backgroundColor = theme.backgroundColor()
         lineChartView.xAxis.labelTextColor = labelColor
         lineChartView.leftAxis.labelTextColor = labelColor
