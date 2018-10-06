@@ -138,10 +138,16 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     }
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        if let errorMesage = error?.localizedDescription, let onError = didFinishWithErrors {
-            if errorMesage != "cancelled" {
-                onError(error!)
+        if let onError = didFinishWithErrors {
+            if let nsError = error as NSError? {
+                if nsError.code == NSURLErrorCancelled {
+                    // Do nothing
+                    // Happens when view is disappearing and we cancelled
+                    // ongoing HTTP request
+                    return
+                }
             }
+            onError(error!)
         }
     }
 }
