@@ -21,10 +21,14 @@ class PrinterManager {
     // MARK: Reading operations
 
     func getDefaultPrinter() -> Printer? {
+        return getDefaultPrinter(context: managedObjectContext!)
+    }
+
+    func getDefaultPrinter(context: NSManagedObjectContext) -> Printer? {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "defaultPrinter = YES")
         
-        if let fetchResults = (try? managedObjectContext!.fetch(fetchRequest)) as? [Printer] {
+        if let fetchResults = (try? context.fetch(fetchRequest)) as? [Printer] {
             if fetchResults.count == 0 {
                 return nil
             }
@@ -129,10 +133,33 @@ class PrinterManager {
     }
     
     func updatePrinter(_ printer: Printer) {
-        do {
-            try managedObjectContext!.save()
-        } catch let error as NSError {
-            NSLog("Error updating printer \(printer.hostname). Error: \(error)")
+        updatePrinter(printer, context: managedObjectContext!)
+    }
+    
+    func updatePrinter(_ printer: Printer, context: NSManagedObjectContext) {
+        switch context.concurrencyType {
+        case .mainQueueConcurrencyType:
+            // If context runs in main thread then just run this code
+            do {
+                try managedObjectContext!.save()
+            } catch let error as NSError {
+                NSLog("Error updating printer \(printer.hostname). Error: \(error)")
+            }
+        case .privateQueueConcurrencyType, .confinementConcurrencyType:
+            // If context runs in a non-main thread then just run this code
+            // .confinementConcurrencyType is not used. Delete once removed from Swift
+            do {
+                try context.save()
+                managedObjectContext!.performAndWait {
+                    do {
+                        try managedObjectContext!.save()
+                    } catch {
+                        NSLog("Error updating printer \(error)")
+                    }
+                }
+            } catch {
+                NSLog("Error updating printer \(error)")
+            }
         }
     }
     

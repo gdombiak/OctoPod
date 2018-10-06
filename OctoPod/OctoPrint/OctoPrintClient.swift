@@ -714,13 +714,16 @@ class OctoPrintClient: WebSocketClientDelegate {
     }
     
     fileprivate func updatePrinterFromSettings(printer: Printer, json: NSDictionary) {
+        let newObjectContext = printerManager.newPrivateContext()
+        let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+
         if let feature = json["feature"] as? NSDictionary {
             if let sdSupport = feature["sdSupport"] as? Bool {
                 if printer.sdSupport != sdSupport {
                     // Update sd support
-                    printer.sdSupport = sdSupport
+                    printerToUpdate.sdSupport = sdSupport
                     // Persist updated printer
-                    printerManager.updatePrinter(printer)
+                    printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
 
                     // Notify listeners of change
                     for delegate in octoPrintSettingsDelegates {
@@ -735,9 +738,9 @@ class OctoPrintClient: WebSocketClientDelegate {
                 let newOrientation = calculateImageOrientation(flipH: flipH, flipV: flipV, rotate90: rotate90)
                 if printer.cameraOrientation != newOrientation.rawValue {
                     // Update camera orientation
-                    printer.cameraOrientation = Int16(newOrientation.rawValue)
+                    printerToUpdate.cameraOrientation = Int16(newOrientation.rawValue)
                     // Persist updated printer
-                    printerManager.updatePrinter(printer)
+                    printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
 
                     // Notify listeners of change
                     for delegate in octoPrintSettingsDelegates {
@@ -748,10 +751,10 @@ class OctoPrintClient: WebSocketClientDelegate {
             if let streamUrl = webcam["streamUrl"] as? String {
                 if printer.streamUrl != streamUrl {
                     // Update path to camera hosted by OctoPrint
-                    printer.streamUrl = streamUrl
+                    printerToUpdate.streamUrl = streamUrl
                     // Persist updated printer
-                    printerManager.updatePrinter(printer)
-                    
+                    printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+
                     // Notify listeners of change
                     for delegate in octoPrintSettingsDelegates {
                         delegate.cameraPathChanged(streamUrl: streamUrl)
@@ -796,10 +799,12 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
         
         if update {
+            let newObjectContext = printerManager.newPrivateContext()
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
             // Update array
-            printer.cameras = camerasURLs
+            printerToUpdate.cameras = camerasURLs
             // Persist updated printer
-            printerManager.updatePrinter(printer)
+            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
             
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
@@ -815,11 +820,13 @@ class OctoPrintClient: WebSocketClientDelegate {
             installed = true
         }
         if printer.psuControlInstalled != installed {
+            let newObjectContext = printerManager.newPrivateContext()
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
             // Update flag that tracks if PSU Control plugin is installed
-            printer.psuControlInstalled = installed
+            printerToUpdate.psuControlInstalled = installed
             // Persist updated printer
-            printerManager.updatePrinter(printer)
-            
+            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
                 delegate.psuControlAvailabilityChanged(installed: installed)
@@ -897,10 +904,12 @@ class OctoPrintClient: WebSocketClientDelegate {
         }
         
         if update {
+            let newObjectContext = printerManager.newPrivateContext()
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
             // Update array
-            setterPlugs(printer, plugs)
+            setterPlugs(printerToUpdate, plugs)
             // Persist updated printer
-            printerManager.updatePrinter(printer)
+            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
             
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
@@ -983,25 +992,28 @@ class OctoPrintClient: WebSocketClientDelegate {
                         }
                     }
                     
+                    let newObjectContext = printerManager.newPrivateContext()
+                    let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+
                     var changedX = false
                     var changedY = false
                     var changedZ = false
                     // Update camera orientation
                     if printer.invertX != invertedX {
-                        printer.invertX = invertedX
+                        printerToUpdate.invertX = invertedX
                         changedX = true
                     }
                     if printer.invertY != invertedY {
-                        printer.invertY = invertedY
+                        printerToUpdate.invertY = invertedY
                         changedY = true
                     }
                     if printer.invertZ != invertedZ {
-                        printer.invertZ = invertedZ
+                        printerToUpdate.invertZ = invertedZ
                         changedZ = true
                     }
                     // Persist updated printer
                     if changedX || changedY || changedZ {
-                        printerManager.updatePrinter(printer)
+                        printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
                     }
                     // Notify listeners of change
                     if changedX {
