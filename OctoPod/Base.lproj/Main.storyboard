@@ -704,19 +704,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="fEh-51-Gvx">
+                        <view key="tableFooterView" contentMode="scaleToFill" id="fEh-51-Gvx">
                             <rect key="frame" x="0.0" y="149.5" width="375" height="65"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K5o-xJ-EiZ">
-                                    <rect key="frame" x="67.5" y="0.0" width="240" height="30"/>
+                                    <rect key="frame" x="2" y="0.0" width="371" height="29"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <state key="normal" title="Learn more about Custom Controls"/>
                                     <connections>
                                         <action selector="clickedOnLearnMore:" destination="HeM-go-amU" eventType="touchUpInside" id="3W7-rK-O2W"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="or6-Pr-Z6f">
-                                    <rect key="frame" x="24.5" y="32" width="326" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="or6-Pr-Z6f">
+                                    <rect key="frame" x="2" y="31" width="371" height="29"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <state key="normal" title="Configure controls using Custom Control Plugin"/>
                                     <connections>
                                         <action selector="clickedOnUsePlugin:" destination="HeM-go-amU" eventType="touchUpInside" id="Ofb-oN-xWI"/>
@@ -725,9 +727,11 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="or6-Pr-Z6f" firstAttribute="centerX" secondItem="fEh-51-Gvx" secondAttribute="centerX" id="1dP-Na-Xhb"/>
                                 <constraint firstItem="K5o-xJ-EiZ" firstAttribute="top" secondItem="fEh-51-Gvx" secondAttribute="top" id="Jby-Bl-zgk"/>
-                                <constraint firstItem="K5o-xJ-EiZ" firstAttribute="centerX" secondItem="fEh-51-Gvx" secondAttribute="centerX" id="fDh-Lh-roj"/>
+                                <constraint firstItem="K5o-xJ-EiZ" firstAttribute="leading" secondItem="fEh-51-Gvx" secondAttribute="leading" constant="2" id="Keh-oe-75b"/>
+                                <constraint firstItem="or6-Pr-Z6f" firstAttribute="leading" secondItem="fEh-51-Gvx" secondAttribute="leading" constant="2" id="O0I-zt-T7q"/>
+                                <constraint firstAttribute="trailing" secondItem="K5o-xJ-EiZ" secondAttribute="trailing" constant="2" id="QjG-Cx-D4w"/>
+                                <constraint firstAttribute="trailing" secondItem="or6-Pr-Z6f" secondAttribute="trailing" constant="2" id="Rav-Hx-fqB"/>
                                 <constraint firstItem="or6-Pr-Z6f" firstAttribute="top" secondItem="K5o-xJ-EiZ" secondAttribute="bottom" constant="2" id="hfV-CU-OU5"/>
                             </constraints>
                         </view>
@@ -2720,7 +2724,7 @@
                                     <outlet property="delegate" destination="oJP-oE-ZeG" id="OIn-EN-bR7"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5P-gn-chq">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5P-gn-chq">
                                 <rect key="frame" x="5" y="588" width="46" height="22"/>
                                 <state key="normal" title="SD" image="Refresh SD">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
