@@ -376,6 +376,9 @@
 /* Class = "UILabel"; text = "1hr 25m 13sec"; ObjectID = "rwm-QC-qD1"; */
 "rwm-QC-qD1.text" = "1t 25m 13sek";
 
+/* Class = "UITextField"; placeholder = "Command"; ObjectID = "RZc-hr-pTu"; */
+"RZc-hr-pTu.placeholder" = "Kommando";
+
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
 "S2I-HR-qgE.text" = "/";
 
