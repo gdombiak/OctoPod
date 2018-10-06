@@ -84,8 +84,16 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
 
     func post(_ service: String, json: NSObject, expected: Int, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
-        let url: URL = URL(string: serverURL! + service)!
-        requestWithBody(url, verb: "POST", expected: expected, json: json, callback: callback)
+        if let url: URL = URL(string: serverURL! + service) {
+            requestWithBody(url, verb: "POST", expected: expected, json: json, callback: callback)
+        } else {
+            NSLog("POST not possible. Invalid URL found. Server: \(serverURL!). Service: \(service)")
+            if let serverURL = URL(string: serverURL!) {
+                if let response = HTTPURLResponse(url: serverURL, statusCode: 404, httpVersion: nil, headerFields: nil) {
+                    callback(nil, nil, response)
+                }
+            }
+        }
     }
     
     func upload(_ service: String, parameters: [String: String]?, filename: String, fileContent: Data, expected: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
