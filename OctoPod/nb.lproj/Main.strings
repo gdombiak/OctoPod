@@ -83,7 +83,7 @@
 "512-pk-AIB.text" = "Enheter";
 
 /* Class = "UIButton"; normalTitle = "Scan API Key"; ObjectID = "a0P-GP-CQD"; */
-"a0P-GP-CQD.normalTitle" = "Skann API Key";
+"a0P-GP-CQD.normalTitle" = "Skann API-nøkkel";
 
 /* Class = "UILabel"; text = "250 C"; ObjectID = "A7g-Yw-Ucf"; */
 "A7g-Yw-Ucf.text" = "250 C";
@@ -422,7 +422,7 @@
 "uqf-BP-Wtn.text" = "Krev passord for å låse opp ";
 
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection (REQUIRED)"; ObjectID = "uRd-RD-eAS"; */
-"uRd-RD-eAS.headerTitle" = "Skriverforbindelse (KRAV)";
+"uRd-RD-eAS.headerTitle" = "Skriverforbindelse (PÅKREVD)";
 
 /* Class = "UIBarButtonItem"; title = "Connect"; ObjectID = "uRz-Gy-YAf"; */
 "uRz-Gy-YAf.title" = "Koble til";
@@ -452,7 +452,7 @@
 "WKG-83-bZQ.headerTitle" = "HTTP-godkjenning";
 
 /* Class = "UIButton"; normalTitle = "Extrude"; ObjectID = "wnO-2K-s2I"; */
-"wnO-2K-s2I.normalTitle" = "Ekstrude";
+"wnO-2K-s2I.normalTitle" = "Ekstruder";
 
 /* Class = "UIButton"; normalTitle = "URL Button"; ObjectID = "x8L-G5-sTU"; */
 "x8L-G5-sTU.normalTitle" = "URL-knapp";
@@ -467,7 +467,7 @@
 "Xhq-hp-2kd.headerTitle" = "Synkronisering";
 
 /* Class = "UILabel"; text = "Confirm to connect"; ObjectID = "XOG-eU-T7f"; */
-"XOG-eU-T7f.text" = "Bekreft for å koble";
+"XOG-eU-T7f.text" = "Bekreft for å koble til";
 
 /* Class = "UILabel"; text = "Feed rate"; ObjectID = "Xs4-QQ-rLn"; */
 "Xs4-QQ-rLn.text" = "Skrivefart";
@@ -479,7 +479,7 @@
 "xvl-wE-Mht.title" = "Skriverdetaljer";
 
 /* Class = "UILabel"; text = "Contributing"; ObjectID = "yci-j8-y4w"; */
-"yci-j8-y4w.text" = "Medvirkende";
+"yci-j8-y4w.text" = "Hjelpe til";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "YdD-gF-Ajm"; */
 "YdD-gF-Ajm.text" = "Tittel";
