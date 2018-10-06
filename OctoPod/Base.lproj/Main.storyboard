@@ -2586,24 +2586,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload to OctoPrint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ziq-bR-QIe">
-                                                    <rect key="frame" x="16" y="12" width="246" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="16" y="12" width="308" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Uploading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kem-tt-8Sx">
-                                                    <rect key="frame" x="267" y="12" width="92" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.076529794109999993" green="0.65499441960000004" blue="0.033051777880000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Uploading" translatesAutoresizingMaskIntoConstraints="NO" id="0wG-QH-XSI">
+                                                    <rect key="frame" x="327" y="6" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="mbN-C8-hN6"/>
+                                                        <constraint firstAttribute="width" constant="32" id="vah-tF-J7c"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="kem-tt-8Sx" firstAttribute="top" secondItem="mIZ-ck-1ak" secondAttribute="topMargin" constant="1" id="5cF-0h-lPZ"/>
-                                                <constraint firstItem="kem-tt-8Sx" firstAttribute="trailing" secondItem="mIZ-ck-1ak" secondAttribute="trailingMargin" id="GFw-eL-K2R"/>
+                                                <constraint firstItem="0wG-QH-XSI" firstAttribute="top" secondItem="mIZ-ck-1ak" secondAttribute="top" constant="6" id="74J-UB-Xxp"/>
+                                                <constraint firstAttribute="trailing" secondItem="0wG-QH-XSI" secondAttribute="trailing" constant="16" id="aUu-xK-nTs"/>
                                                 <constraint firstItem="Ziq-bR-QIe" firstAttribute="leading" secondItem="mIZ-ck-1ak" secondAttribute="leadingMargin" id="akJ-U5-NNk"/>
                                                 <constraint firstItem="Ziq-bR-QIe" firstAttribute="top" secondItem="mIZ-ck-1ak" secondAttribute="topMargin" constant="1" id="tbK-nc-Jcf"/>
-                                                <constraint firstItem="kem-tt-8Sx" firstAttribute="leading" secondItem="Ziq-bR-QIe" secondAttribute="trailing" constant="5" id="ueX-tL-cx8"/>
+                                                <constraint firstItem="0wG-QH-XSI" firstAttribute="leading" secondItem="Ziq-bR-QIe" secondAttribute="trailing" constant="3" id="vyC-3x-Uky"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2615,24 +2616,27 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload to SD Card (root)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrr-SZ-62l">
-                                                    <rect key="frame" x="16" y="12" width="246" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="16" y="12" width="308" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Uploading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPG-9L-nRj">
-                                                    <rect key="frame" x="267" y="12" width="92" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.076529794109999993" green="0.65499441960000004" blue="0.033051777880000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Uploading" translatesAutoresizingMaskIntoConstraints="NO" id="qvF-6S-gC3">
+                                                    <rect key="frame" x="327" y="5" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="4yY-ql-WwF"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="DFH-9M-WRf"/>
+                                                        <constraint firstAttribute="width" constant="32" id="vqx-iJ-T2j"/>
+                                                        <constraint firstAttribute="height" constant="32" id="z78-fg-BWS"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="GPG-9L-nRj" firstAttribute="leading" secondItem="hrr-SZ-62l" secondAttribute="trailing" constant="5" id="89L-Cb-Rfr"/>
                                                 <constraint firstItem="hrr-SZ-62l" firstAttribute="leading" secondItem="IFq-mD-0YP" secondAttribute="leadingMargin" id="HDS-5y-mvr"/>
+                                                <constraint firstItem="qvF-6S-gC3" firstAttribute="top" secondItem="IFq-mD-0YP" secondAttribute="top" constant="5" id="IYo-Ii-bzm"/>
                                                 <constraint firstItem="hrr-SZ-62l" firstAttribute="top" secondItem="IFq-mD-0YP" secondAttribute="topMargin" constant="1" id="je7-Bl-ZE4"/>
-                                                <constraint firstItem="GPG-9L-nRj" firstAttribute="trailing" secondItem="IFq-mD-0YP" secondAttribute="trailingMargin" id="mHY-hh-nnG"/>
-                                                <constraint firstItem="GPG-9L-nRj" firstAttribute="top" secondItem="IFq-mD-0YP" secondAttribute="topMargin" constant="1" id="n9M-ga-64m"/>
+                                                <constraint firstItem="qvF-6S-gC3" firstAttribute="leading" secondItem="hrr-SZ-62l" secondAttribute="trailing" constant="3" id="kfa-XW-GQh"/>
+                                                <constraint firstAttribute="trailing" secondItem="qvF-6S-gC3" secondAttribute="trailing" constant="16" id="of7-oJ-01J"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2649,15 +2653,15 @@
                     <connections>
                         <outlet property="sdCardCell" destination="Hhf-cQ-hcy" id="1s7-mM-Il4"/>
                         <outlet property="sdCardLabel" destination="hrr-SZ-62l" id="6rs-zI-X5R"/>
-                        <outlet property="uploadingOctoPrintLabel" destination="kem-tt-8Sx" id="tfs-BH-DkY"/>
-                        <outlet property="uploadingSDCardLabel" destination="GPG-9L-nRj" id="A5q-9T-ovK"/>
+                        <outlet property="uploadingOctoPrintImage" destination="0wG-QH-XSI" id="n6d-TA-RCI"/>
+                        <outlet property="uploadingSDCardImage" destination="qvF-6S-gC3" id="ecF-HR-39k"/>
                         <segue destination="Jbg-jf-fzO" kind="unwind" identifier="backFromUploadFile" unwindAction="backFromUploadFile:" id="VIz-Tz-aPl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JJR-ZZ-waZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Jbg-jf-fzO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4337" y="2174"/>
+            <point key="canvasLocation" x="4336.8000000000002" y="2173.7631184407796"/>
         </scene>
         <!--Files Tree View Controller-->
         <scene sceneID="hJT-hk-jql">
@@ -3741,6 +3745,7 @@
         <image name="Support" width="32" height="32"/>
         <image name="TPPowerOn" width="32" height="32"/>
         <image name="Terminal" width="24" height="24"/>
+        <image name="Uploading" width="32" height="32"/>
         <image name="back" width="16" height="16"/>
         <image name="down" width="16" height="16"/>
         <image name="front" width="16" height="16"/>

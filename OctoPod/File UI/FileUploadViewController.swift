@@ -10,10 +10,9 @@ class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate 
     @IBOutlet weak var sdCardCell: UITableViewCell!
     @IBOutlet weak var sdCardLabel: UILabel!
     
-    @IBOutlet weak var uploadingOctoPrintLabel: UILabel!
-    @IBOutlet weak var uploadingSDCardLabel: UILabel!
+    @IBOutlet weak var uploadingOctoPrintImage: UIImageView!
+    @IBOutlet weak var uploadingSDCardImage: UIImageView!
     
-
     var currentFolder: PrintFile? // Folder that user is browsing. If nil then this is root folder. This folder is used only when uploading to OctoPrint (not SD Card)
     var selectedLocation: CloudFilesManager.Location? // Track where user selected to upload file (OctoPrint or SD Card)
     var uploaded: Bool = false  // Track if file was successfully uploaded (to OctoPrint or SD Card)
@@ -29,8 +28,8 @@ class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         // Hide uploading labels
-        uploadingOctoPrintLabel.isHidden = true
-        uploadingSDCardLabel.isHidden = true
+        uploadingOctoPrintImage.isHidden = true
+        uploadingSDCardImage.isHidden = true
 
         // Clean up any previous selection
         uploaded = false
@@ -98,8 +97,8 @@ class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate 
             if uploaded {
                 // Go back to previous screen
                 DispatchQueue.main.async {
-                    self.uploadingOctoPrintLabel.layer.removeAllAnimations()
-                    self.uploadingSDCardLabel.layer.removeAllAnimations()
+                    self.uploadingOctoPrintImage.layer.removeAllAnimations()
+                    self.uploadingSDCardImage.layer.removeAllAnimations()
                     self.performSegue(withIdentifier: "backFromUploadFile", sender: self)
                 }
             } else if response.statusCode == 400 {
@@ -127,12 +126,12 @@ class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate 
         
         if selectedLocation == CloudFilesManager.Location.OctoPrint {
             DispatchQueue.main.async {
-                self.animateUploading(label: self.uploadingOctoPrintLabel)
+                self.animateUploading(image: self.uploadingOctoPrintImage)
             }
             octoprintClient.uploadFileToOctoPrint(folder: currentFolder, filename: url.lastPathComponent, fileContent: fileData, callback: callback)
         } else {
             DispatchQueue.main.async {
-                self.animateUploading(label: self.uploadingSDCardLabel)
+                self.animateUploading(image: self.uploadingSDCardImage)
             }
             octoprintClient.uploadFileToSDCard(filename: url.lastPathComponent, fileContent: fileData, callback: callback)
         }
@@ -149,12 +148,12 @@ class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate 
         }
     }
     
-    fileprivate func animateUploading(label: UILabel) {
+    fileprivate func animateUploading(image: UIImageView) {
         // Make label visible
-        label.isHidden = false
+        image.isHidden = false
         // Start animating the label
         UIView.animate(withDuration: 0.7, delay: 0.5, options: [.repeat, .autoreverse], animations: {
-            label.alpha = 0
+            image.alpha = 0
         }, completion: nil)
     }
     
