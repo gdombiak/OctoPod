@@ -170,6 +170,9 @@
 "Invalid file type" = "Tipo di file non valido";
 
 /* (No Comment) */
+"iOS Language" = "Lingua iOS";
+
+/* (No Comment) */
 "Job" = "Stampa";
 
 /* (No Comment) */
@@ -288,4 +291,3 @@
 /* (No Comment) */
 "Yes" = "Sì";
 
-"iOS Language" = "Lingua iOS";

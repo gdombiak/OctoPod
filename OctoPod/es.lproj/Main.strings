@@ -1,11 +1,8 @@
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "1pO-wB-zKj"; */
 "1pO-wB-zKj.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
-/* Class = "UISegmentedControl"; 3a1-rm-bQy.segmentTitles[0] = "iOS Language"; ObjectID = "3a1-rm-bQy"; */
-"3a1-rm-bQy.segmentTitles[0]" = "Lenguaje iOS";
-
-/* Class = "UISegmentedControl"; 3a1-rm-bQy.segmentTitles[1] = "English"; ObjectID = "3a1-rm-bQy"; */
-"3a1-rm-bQy.segmentTitles[1]" = "Inglés";
+/* Class = "UIButton"; normalTitle = "Change language"; ObjectID = "2wA-7u-KgW"; */
+"2wA-7u-KgW.normalTitle" = "Cambiar Idioma";
 
 /* Class = "UILabel"; text = "Flow rate"; ObjectID = "3IG-Y9-Ofi"; */
 "3IG-Y9-Ofi.text" = "Ritmo flujo";
@@ -172,9 +169,6 @@
 /* Class = "UITableViewController"; title = "Devices"; ObjectID = "GmR-1U-jvf"; */
 "GmR-1U-jvf.title" = "Dispositivos";
 
-/* Class = "UILabel"; text = "Uploading..."; ObjectID = "GPG-9L-nRj"; */
-"GPG-9L-nRj.text" = "Subiendo...";
-
 /* Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[0] = "1"; ObjectID = "GRh-JJ-DpF"; */
 "GRh-JJ-DpF.segmentTitles[0]" = "1";
 
@@ -252,9 +246,6 @@
 
 /* Class = "UILabel"; text = "Enter a valid URL"; ObjectID = "K6d-lk-BaS"; */
 "K6d-lk-BaS.text" = "Ingrese una URL válida";
-
-/* Class = "UILabel"; text = "Uploading..."; ObjectID = "kem-tt-8Sx"; */
-"kem-tt-8Sx.text" = "Subiendo...";
 
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "Archivo";

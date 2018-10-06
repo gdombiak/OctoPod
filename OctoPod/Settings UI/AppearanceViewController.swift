@@ -1,15 +1,14 @@
 import UIKit
 
-class AppearanceViewController: ThemedStaticUITableViewController {
+class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPresentationControllerDelegate {
     
-    private static let APP_SYSTEM_LANGUAGE_OVERRIDE = "APP_SYSTEM_LANGUAGE_OVERRIDE"
-
     @IBOutlet weak var lightCell: UITableViewCell!
     @IBOutlet weak var darkCell: UITableViewCell!
-    @IBOutlet weak var languageControl: UISegmentedControl!
     
     @IBOutlet weak var lightLabel: UILabel!
     @IBOutlet weak var darkLabel: UILabel!
+    
+    @IBOutlet weak var changeLanguageButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +25,6 @@ class AppearanceViewController: ThemedStaticUITableViewController {
         lightLabel.textColor = theme.textColor()
         darkLabel.textColor = theme.textColor()
         refreshSelectedTheme(theme: theme)
-        
-        // Set language being used
-        let languageOverride = UserDefaults.standard.object(forKey: AppearanceViewController.APP_SYSTEM_LANGUAGE_OVERRIDE) != nil
-        languageControl.selectedSegmentIndex = languageOverride ? 1 : 0
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -48,9 +43,6 @@ class AppearanceViewController: ThemedStaticUITableViewController {
         tabBarController?.tabBar.barTintColor = theme.tabBarColor()
         // Refresh table
         viewWillAppear(true)
-//        applyTheme(table: tableView)
-//        tableView.reloadData()
-//        refreshSelectedTheme()
     }
 
     fileprivate func refreshSelectedTheme(theme: Theme.ThemeChoice) {
@@ -60,15 +52,24 @@ class AppearanceViewController: ThemedStaticUITableViewController {
         darkCell.accessoryType = lightSelected ? .none : .checkmark
     }
     
-    @IBAction func languageChanged(_ sender: Any) {
-        let languageKey = "AppleLanguages"
-        let defaults = UserDefaults.standard
-        if languageControl.selectedSegmentIndex == 0 {
-            defaults.removeObject(forKey: languageKey)
-            defaults.removeObject(forKey: AppearanceViewController.APP_SYSTEM_LANGUAGE_OVERRIDE)
-        } else {
-            defaults.set(["en"], forKey: languageKey)
-            defaults.set(true, forKey: AppearanceViewController.APP_SYSTEM_LANGUAGE_OVERRIDE)
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goto_change_language" {
+            segue.destination.popoverPresentationController!.delegate = self
+            // Make the popover appear at the middle of the button
+            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: changeLanguageButton.frame.size.width/2, y: 0 , width: 0, height: 0)
         }
     }
+
+    // MARK: - UIPopoverPresentationControllerDelegate
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    // We need to add this so it works on iPhone plus in landscape mode
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }    
 }

@@ -707,7 +707,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="fEh-51-Gvx">
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="fEh-51-Gvx">
                             <rect key="frame" x="0.0" y="149.5" width="375" height="65"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -1422,7 +1422,7 @@
         <scene sceneID="DP0-Oe-GTK">
             <objects>
                 <tableViewController title="Appearance" id="4sv-CS-fGo" customClass="AppearanceViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="nhK-KG-FsF">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="nhK-KG-FsF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -1475,28 +1475,27 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Language" id="3JO-XH-cf3">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="EQn-qz-rew">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="3k1-n1-G5J">
                                         <rect key="frame" x="0.0" y="199.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EQn-qz-rew" id="MIR-wr-JTv">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3k1-n1-G5J" id="VKI-CQ-99A">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3a1-rm-bQy">
-                                                    <rect key="frame" x="16" y="8" width="343" height="29"/>
-                                                    <segments>
-                                                        <segment title="iOS Language"/>
-                                                        <segment title="English"/>
-                                                    </segments>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wA-7u-KgW">
+                                                    <rect key="frame" x="16" y="10" width="343" height="30"/>
+                                                    <state key="normal" title="Change language"/>
                                                     <connections>
-                                                        <action selector="languageChanged:" destination="4sv-CS-fGo" eventType="valueChanged" id="c4l-nN-sAX"/>
+                                                        <segue destination="ajM-7h-cqY" kind="popoverPresentation" identifier="goto_change_language" popoverAnchorView="2wA-7u-KgW" id="q88-Wa-WFn">
+                                                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
+                                                        </segue>
                                                     </connections>
-                                                </segmentedControl>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="3a1-rm-bQy" firstAttribute="leading" secondItem="MIR-wr-JTv" secondAttribute="leading" constant="16" id="8xf-TE-8KR"/>
-                                                <constraint firstItem="3a1-rm-bQy" firstAttribute="top" secondItem="MIR-wr-JTv" secondAttribute="top" constant="8" id="GsX-0s-r12"/>
-                                                <constraint firstAttribute="trailing" secondItem="3a1-rm-bQy" secondAttribute="trailing" constant="16" id="fgJ-9e-mED"/>
+                                                <constraint firstItem="2wA-7u-KgW" firstAttribute="top" secondItem="VKI-CQ-99A" secondAttribute="top" constant="10" id="0DQ-N2-WJm"/>
+                                                <constraint firstItem="2wA-7u-KgW" firstAttribute="leading" secondItem="VKI-CQ-99A" secondAttribute="leading" constant="16" id="iYB-wb-a7p"/>
+                                                <constraint firstAttribute="trailing" secondItem="2wA-7u-KgW" secondAttribute="trailing" constant="16" id="sBV-El-FBh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1530,9 +1529,9 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="changeLanguageButton" destination="2wA-7u-KgW" id="Dsc-2j-dm6"/>
                         <outlet property="darkCell" destination="YIs-3W-xWQ" id="bfn-gK-Ewv"/>
                         <outlet property="darkLabel" destination="wHn-Dc-bWb" id="RUt-Tc-57o"/>
-                        <outlet property="languageControl" destination="3a1-rm-bQy" id="NME-Ge-dNa"/>
                         <outlet property="lightCell" destination="5JA-bz-vAF" id="KFR-kX-ZT4"/>
                         <outlet property="lightLabel" destination="MA6-Ay-j7Q" id="YxR-jF-qxK"/>
                     </connections>
@@ -1540,6 +1539,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0SB-Gd-UeX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1504.8" y="3806.4467766116945"/>
+        </scene>
+        <!--Change Language View Controller-->
+        <scene sceneID="nrn-Zf-a2v">
+            <objects>
+                <tableViewController id="ajM-7h-cqY" customClass="ChangeLanguageViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4zo-yQ-V1u">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="370"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="language_cell" id="q3L-1n-2H8">
+                                <rect key="frame" x="0.0" y="28" width="250" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="q3L-1n-2H8" id="SEw-oK-dxQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ajM-7h-cqY" id="gnI-xE-8B5"/>
+                            <outlet property="delegate" destination="ajM-7h-cqY" id="pAs-FI-0x8"/>
+                        </connections>
+                    </tableView>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="370"/>
+                    <size key="freeformSize" width="250" height="370"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PGR-rU-gbe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2470" y="3806"/>
         </scene>
         <!--Security-->
         <scene sceneID="i8m-Je-prJ">
@@ -1627,7 +1656,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tw1-U9-XpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1505" y="4520"/>
+            <point key="canvasLocation" x="1505" y="5186"/>
         </scene>
         <!--Prompts-->
         <scene sceneID="fH2-sO-jvx">
@@ -1715,13 +1744,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7fa-1t-Gtn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2470" y="4520"/>
+            <point key="canvasLocation" x="2470" y="5186"/>
         </scene>
         <!--Devices-->
         <scene sceneID="87Y-66-VEH">
             <objects>
                 <tableViewController title="Devices" id="GmR-1U-jvf" customClass="DevicesSyncViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="dWL-RN-Won">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="dWL-RN-Won">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -1862,7 +1891,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Myd-Dc-fvt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2470" y="3806"/>
+            <point key="canvasLocation" x="1505" y="4486"/>
         </scene>
         <!--Log-->
         <scene sceneID="omp-LQ-cxi">
@@ -1906,7 +1935,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T7L-5f-1Rf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3353" y="3806"/>
+            <point key="canvasLocation" x="2470" y="4486"/>
         </scene>
         <!--Support-->
         <scene sceneID="cNp-gr-IKD">
@@ -2007,13 +2036,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I5p-ap-L1l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1505" y="5212"/>
+            <point key="canvasLocation" x="1505" y="5879"/>
         </scene>
         <!--Settings-->
         <scene sceneID="voK-su-ivw">
             <objects>
                 <tableViewController id="bk2-HD-1z3" customClass="SettingsViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="K6k-qu-OWH">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="K6k-qu-OWH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>

@@ -170,6 +170,9 @@
 "Invalid file type" = "Špatný typ souboru";
 
 /* (No Comment) */
+"iOS Language" = "Jazyk iOS";
+
+/* (No Comment) */
 "Job" = "Tisk";
 
 /* (No Comment) */
@@ -288,4 +291,3 @@
 /* (No Comment) */
 "Yes" = "Ano";
 
-"iOS Language" = "Jazyk iOS";
