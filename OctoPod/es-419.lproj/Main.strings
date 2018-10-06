@@ -505,7 +505,7 @@
 /* Class = "UILabel"; text = "Detail"; ObjectID = "ZF8-G0-f5Y"; */
 "ZF8-G0-f5Y.text" = "Detalle";
 
-/* Class = "UILabel"; text = "Upload to OctoPrint "; ObjectID = "Ziq-bR-QIe"; */
+/* Class = "UILabel"; text = "Upload to OctoPrint"; ObjectID = "Ziq-bR-QIe"; */
 "Ziq-bR-QIe.text" = "Subir a OctoPrint";
 
 /* Class = "UITabBarItem"; title = "Panel"; ObjectID = "zqn-zS-suB"; */
