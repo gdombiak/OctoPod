@@ -136,13 +136,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXr-d8-f7x">
-                                        <rect key="frame" x="2" y="85" width="371" height="21"/>
+                                        <rect key="frame" x="2" y="55" width="371" height="21"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8L-G5-sTU">
-                                        <rect key="frame" x="2" y="114" width="371" height="30"/>
+                                        <rect key="frame" x="2" y="84" width="371" height="30"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" button="YES" link="YES"/>
                                         </accessibility>
@@ -168,7 +168,7 @@
                                     <constraint firstItem="xgR-KO-IvE" firstAttribute="width" secondItem="9ix-ve-DAs" secondAttribute="width" id="aQF-LN-dZR"/>
                                     <constraint firstItem="BXr-d8-f7x" firstAttribute="leading" secondItem="9ix-ve-DAs" secondAttribute="leading" constant="2" id="gDj-VN-oHr"/>
                                     <constraint firstAttribute="bottom" secondItem="xgR-KO-IvE" secondAttribute="bottom" id="gMe-8X-Zh4"/>
-                                    <constraint firstItem="BXr-d8-f7x" firstAttribute="top" secondItem="9ix-ve-DAs" secondAttribute="top" constant="85" id="h12-Ic-yZl"/>
+                                    <constraint firstItem="BXr-d8-f7x" firstAttribute="top" secondItem="9ix-ve-DAs" secondAttribute="top" constant="55" id="h12-Ic-yZl"/>
                                     <constraint firstAttribute="trailing" secondItem="MT2-fR-HJD" secondAttribute="trailing" constant="10" id="sYB-je-Vdq"/>
                                     <constraint firstAttribute="trailing" secondItem="x8L-G5-sTU" secondAttribute="trailing" constant="2" id="x84-VL-b8n"/>
                                     <constraint firstItem="xgR-KO-IvE" firstAttribute="leading" secondItem="9ix-ve-DAs" secondAttribute="leading" id="xUI-YZ-DXd"/>
