@@ -197,7 +197,7 @@
 "Notify failed cancel job" = "Falla al pedir cancelar el trabajo";
 
 /* (No Comment) */
-"Notify failed pause job" = "Falla al pedir detener el trabajo";
+"Notify failed pause job" = "Falla al pedir suspender el trabajo";
 
 /* (No Comment) */
 "Notify failed print job again" = "Falla al pedir imprimir trabajo de nuevo";
@@ -215,7 +215,7 @@
 "Offline" = "Fuera de Línea";
 
 /* (No Comment) */
-"Pause Job" = "Detener";
+"Pause Job" = "Suspender";
 
 /* (No Comment) */
 "Print File" = "Imprimir";

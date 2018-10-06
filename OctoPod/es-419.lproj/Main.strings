@@ -125,7 +125,7 @@
 "Cxb-Rv-BSm.normalTitle" = "Cancelar";
 
 /* Class = "UIButton"; normalTitle = "Pause Job"; ObjectID = "d2Y-RO-6Yg"; */
-"d2Y-RO-6Yg.normalTitle" = "Detener";
+"d2Y-RO-6Yg.normalTitle" = "Suspender";
 
 /* Class = "UILabel"; text = "Frequently Asked Questions"; ObjectID = "dlU-c7-kpY"; */
 "dlU-c7-kpY.text" = "Preguntas frecuentes";
