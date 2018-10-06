@@ -143,6 +143,9 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8L-G5-sTU">
                                         <rect key="frame" x="2" y="114" width="371" height="30"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES" link="YES"/>
+                                        </accessibility>
                                         <state key="normal" title="URL Button">
                                             <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -1259,6 +1262,9 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxj-s5-1zm">
                                         <rect key="frame" x="2" y="129" width="371" height="30"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES" link="YES"/>
+                                        </accessibility>
                                         <state key="normal" title="URL Button">
                                             <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -2580,7 +2586,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload to OctoPrint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ziq-bR-QIe">
-                                                    <rect key="frame" x="16" y="12" width="246" height="21"/>
+                                                    <rect key="frame" x="16" y="12" width="246" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2609,7 +2615,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload to SD Card (root)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrr-SZ-62l">
-                                                    <rect key="frame" x="16" y="12" width="246" height="21"/>
+                                                    <rect key="frame" x="16" y="12" width="246" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2724,7 +2730,7 @@
                                     <outlet property="delegate" destination="oJP-oE-ZeG" id="OIn-EN-bR7"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5P-gn-chq">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5P-gn-chq">
                                 <rect key="frame" x="5" y="588" width="46" height="22"/>
                                 <state key="normal" title="SD" image="Refresh SD">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2733,7 +2739,7 @@
                                     <action selector="refreshSDCard:" destination="oJP-oE-ZeG" eventType="touchUpInside" id="ILO-tg-VUC"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4bm-la-U47">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4bm-la-U47">
                                 <rect key="frame" x="194" y="585" width="176" height="29"/>
                                 <segments>
                                     <segment title="ABC"/>
@@ -2744,8 +2750,8 @@
                                     <action selector="sortByChanged:" destination="oJP-oE-ZeG" eventType="valueChanged" id="Xhq-UL-iG1"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdc-H8-bPm">
-                                <rect key="frame" x="133" y="588.5" width="56" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdc-H8-bPm">
+                                <rect key="frame" x="54" y="588.5" width="135" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2759,6 +2765,7 @@
                             <constraint firstItem="4bm-la-U47" firstAttribute="centerY" secondItem="Cdc-H8-bPm" secondAttribute="centerY" id="BP1-N5-hmx"/>
                             <constraint firstItem="4bm-la-U47" firstAttribute="leading" secondItem="Cdc-H8-bPm" secondAttribute="trailing" constant="5" id="H9a-fY-VEg"/>
                             <constraint firstItem="4bm-la-U47" firstAttribute="centerY" secondItem="N5P-gn-chq" secondAttribute="centerY" id="Qp7-7O-KED"/>
+                            <constraint firstItem="Cdc-H8-bPm" firstAttribute="leading" secondItem="N5P-gn-chq" secondAttribute="trailing" constant="3" id="RFk-C8-MCz"/>
                             <constraint firstItem="IGy-e6-8uc" firstAttribute="bottom" secondItem="4bm-la-U47" secondAttribute="bottom" constant="5" id="j6X-aq-p1D"/>
                             <constraint firstItem="E8X-eX-B2Z" firstAttribute="top" secondItem="IGy-e6-8uc" secondAttribute="top" id="vAh-pG-h67"/>
                             <constraint firstItem="E8X-eX-B2Z" firstAttribute="leading" secondItem="IGy-e6-8uc" secondAttribute="leading" id="xWJ-o7-XPM"/>
