@@ -2,7 +2,7 @@
 "1pO-wB-zKj.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
 /* Class = "UISegmentedControl"; 3a1-rm-bQy.segmentTitles[0] = "iOS Language"; ObjectID = "3a1-rm-bQy"; */
-"3a1-rm-bQy.segmentTitles[0]" = "Linguaggio iOS";
+"3a1-rm-bQy.segmentTitles[0]" = "Lingua iOS";
 
 /* Class = "UISegmentedControl"; 3a1-rm-bQy.segmentTitles[1] = "English"; ObjectID = "3a1-rm-bQy"; */
 "3a1-rm-bQy.segmentTitles[1]" = "Inglese";
@@ -11,7 +11,7 @@
 "3IG-Y9-Ofi.text" = "Vel. di flusso";
 
 /* Class = "UITableViewSection"; headerTitle = "Language"; ObjectID = "3JO-XH-cf3"; */
-"3JO-XH-cf3.headerTitle" = "Linguaggio";
+"3JO-XH-cf3.headerTitle" = "Lingua";
 
 /* Class = "UILabel"; text = "Printed"; ObjectID = "3mU-gE-iQQ"; */
 "3mU-gE-iQQ.text" = "Stampato";
@@ -74,7 +74,7 @@
 "48m-gj-F14.normalTitle" = "E";
 
 /* Class = "UILabel"; text = "Refresh enabled"; ObjectID = "53i-ST-HFr"; */
-"53i-ST-HFr.text" = "Aggiornamento abilitato";
+"53i-ST-HFr.text" = "Abilita aggiornamento";
 
 /* Class = "UILabel"; text = "About 10m"; ObjectID = "88V-gh-sQd"; */
 "88V-gh-sQd.text" = "Circa 10m";
@@ -236,7 +236,7 @@
 "JwP-eK-xNk.text" = "250.0 C";
 
 /* Class = "UILabel"; text = "Kill and restart app to take effect"; ObjectID = "jxG-8a-4b3"; */
-"jxG-8a-4b3.text" = "Uccidi e riavvia l'app per avere effetto";
+"jxG-8a-4b3.text" = "Effettua una chiusura forzata dell'app e riavviala per applicare le modifiche";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "jXN-qA-TlY"; */
 "jXN-qA-TlY.text" = "Titolo";
@@ -269,7 +269,7 @@
 "LJV-z6-SX8.text" = "Titolo";
 
 /* Class = "UILabel"; text = "Light"; ObjectID = "MA6-Ay-j7Q"; */
-"MA6-Ay-j7Q.text" = "Luce";
+"MA6-Ay-j7Q.text" = "Chiaro";
 
 /* Class = "UILabel"; text = "Print time"; ObjectID = "MI6-uy-Cea"; */
 "MI6-uy-Cea.text" = "Tempo di stampa";
