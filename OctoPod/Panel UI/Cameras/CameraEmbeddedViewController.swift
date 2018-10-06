@@ -193,6 +193,14 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                 
                 streamingController?.didFinishWithErrors = { error in
                     DispatchQueue.main.async {
+                        if let nsError = error as NSError? {
+                            if nsError.code == -999 {
+                                // Do nothing since this is NSURLErrorCancelled
+                                // Happens when view is disappearing and we cancelled
+                                // ongoing HTTP request
+                                return
+                            }
+                        }
                         self.imageView.image = nil
                         // Display error messages
                         self.errorMessageLabel.text = error.localizedDescription
