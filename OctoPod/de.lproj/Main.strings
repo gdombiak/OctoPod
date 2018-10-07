@@ -509,5 +509,5 @@
 "ZSM-KR-Ovn.title" = "Log";
 
 /* Class = "UILabel"; text = "Sync printers between iOS devices"; ObjectID = "zVf-Zx-3g4"; */
-"zVf-Zx-3g4.text" = "iOS-Synchronisation der Drucker";
+"zVf-Zx-3g4.text" = "Drucker zwischen iOS-Geräten syncen";
 
