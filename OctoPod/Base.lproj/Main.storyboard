@@ -557,7 +557,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDs-gi-KIJ">
-                                                    <rect key="frame" x="8" y="12" width="133" height="21"/>
+                                                    <rect key="frame" x="8" y="11.5" width="182" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -579,7 +579,8 @@
                                                 <constraint firstItem="ljs-Wj-0Zo" firstAttribute="top" secondItem="IGA-OA-Sv3" secondAttribute="top" constant="7" id="J6g-GX-2HV"/>
                                                 <constraint firstAttribute="trailing" secondItem="ljs-Wj-0Zo" secondAttribute="trailing" constant="8" id="VAf-QT-N6u"/>
                                                 <constraint firstItem="zDs-gi-KIJ" firstAttribute="leading" secondItem="IGA-OA-Sv3" secondAttribute="leading" constant="8" id="VXk-Kq-SnY"/>
-                                                <constraint firstItem="zDs-gi-KIJ" firstAttribute="top" secondItem="IGA-OA-Sv3" secondAttribute="topMargin" constant="1" id="u5t-BV-ngE"/>
+                                                <constraint firstItem="ljs-Wj-0Zo" firstAttribute="centerY" secondItem="zDs-gi-KIJ" secondAttribute="centerY" id="pUQ-aw-XEK"/>
+                                                <constraint firstItem="ljs-Wj-0Zo" firstAttribute="leading" secondItem="zDs-gi-KIJ" secondAttribute="trailing" constant="5" id="xEu-LZ-Kwm"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
