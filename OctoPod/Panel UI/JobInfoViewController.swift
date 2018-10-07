@@ -35,6 +35,14 @@ class JobInfoViewController: UITableViewController {
         event = nil
         printFile = nil
         
+        if self.appConfiguration.appLocked() {
+            // App is locked in read-only mode so disable buttons now
+            // This will prevent showing them enabled for a brief moment. Better UX
+            self.pauseOrResumeButton.isEnabled = false
+            self.restartButton.isEnabled = false
+            self.cancelButton.isEnabled = false
+        }
+        
         self.octoprintClient.printerState { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
             // TODO Handle connection errors
             if let json = result as? NSDictionary {
