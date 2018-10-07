@@ -40,6 +40,14 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             selectIndex = 2
         }
         sortByControl.selectedSegmentIndex = selectIndex
+        
+        // Check if we should hide sortByTextLabel due to small screen
+        let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
+        let screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
+        if screenHeight <= 568 {
+            // iPhone 5, 5s, 5c, SE
+            sortByTextLabel.isHidden = true
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
