@@ -1,6 +1,41 @@
 # Change Log
 
-## [1.8](https://github.com/gdombiak/OctoPod/tree/1.8) (2018-09-23)
+## [1.10](https://github.com/gdombiak/OctoPod/tree/1.10) (2018-10-07)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.9...1.10)
+
+**Implemented enhancements:**
+
+- Test app in iPhone SE due to its smaller screen [\#95](https://github.com/gdombiak/OctoPod/issues/95)
+- Add Norwegian translation [\#91](https://github.com/gdombiak/OctoPod/issues/91)
+- Add Italian translation [\#89](https://github.com/gdombiak/OctoPod/issues/89)
+- Add Czech translation [\#88](https://github.com/gdombiak/OctoPod/issues/88)
+- Add German translation [\#87](https://github.com/gdombiak/OctoPod/issues/87)
+- Add Spanish translation [\#86](https://github.com/gdombiak/OctoPod/issues/86)
+- Add support for multi-languages [\#17](https://github.com/gdombiak/OctoPod/issues/17)
+
+**Fixed bugs:**
+
+- Fix app crash when updating printer from non-main thread [\#98](https://github.com/gdombiak/OctoPod/issues/98)
+- Fix crash when printing a file with invalid path [\#97](https://github.com/gdombiak/OctoPod/issues/97)
+- Print done is not always marked as 100% done [\#94](https://github.com/gdombiak/OctoPod/issues/94)
+- Domain Name with '-' Not accepted [\#92](https://github.com/gdombiak/OctoPod/issues/92)
+
+**Closed issues:**
+
+- Add Setting to choose language of the app [\#96](https://github.com/gdombiak/OctoPod/issues/96)
+
+**Merged pull requests:**
+
+- Add spanish translation from Spain [\#90](https://github.com/gdombiak/OctoPod/pull/90) ([ArtCC](https://github.com/ArtCC))
+
+## [1.9](https://github.com/gdombiak/OctoPod/tree/1.9) (2018-09-26)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.8...1.9)
+
+**Fixed bugs:**
+
+- Crash when switching printer [\#85](https://github.com/gdombiak/OctoPod/issues/85)
+
+## [1.8](https://github.com/gdombiak/OctoPod/tree/1.8) (2018-09-24)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.7...1.8)
 
 **Implemented enhancements:**
