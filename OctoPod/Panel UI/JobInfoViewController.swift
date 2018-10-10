@@ -125,11 +125,15 @@ class JobInfoViewController: UITableViewController {
         showConfirm(message: NSLocalizedString("Do you want to cancel job?", comment: ""), yes: { (UIAlertAction) in
             self.octoprintClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
-                    self.dismiss(animated: true, completion: nil)
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                    }
                 } else {
                     NSLog("Error requesting to cancel current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                     self.requestedJobOperation = .cancel
-                    self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+                    }
                 }
             }
         }, no: { (UIAlertAction) -> Void in
@@ -143,21 +147,29 @@ class JobInfoViewController: UITableViewController {
             if printing {
                 self.octoprintClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        self.dismiss(animated: true, completion: nil)
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                        }
                     } else {
                         NSLog("Error requesting to pause current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                         self.requestedJobOperation = .pause
-                        self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+                        }
                     }
                 }
             } else {
                 self.octoprintClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        self.dismiss(animated: true, completion: nil)
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                        }
                     } else {
                         NSLog("Error requesting to resume current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                         self.requestedJobOperation = .resume
-                        self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+                        }
                     }
                 }
             }
@@ -170,11 +182,15 @@ class JobInfoViewController: UITableViewController {
                 // Print file if there is a file and printer is operationsl
                 self.octoprintClient.printFile(origin: lastFile.origin!, path: lastFile.path!) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        self.dismiss(animated: true, completion: nil)
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                        }
                     } else {
                         NSLog("Error requesting to reprint file: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                         self.requestedJobOperation = .reprint
-                        self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+                        }
                     }
                 }
             }
@@ -182,11 +198,15 @@ class JobInfoViewController: UITableViewController {
                 // Restart when print job is paused
                 self.octoprintClient.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        self.dismiss(animated: true, completion: nil)
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: nil)
+                        }
                     } else {
                         NSLog("Error requesting to restart current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                         self.requestedJobOperation = .restart
-                        self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
+                        }
                     }
                 }
             }
