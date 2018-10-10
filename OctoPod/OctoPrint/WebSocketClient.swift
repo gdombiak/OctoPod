@@ -165,6 +165,15 @@ class WebSocketClient : NSObject, WebSocketDelegate {
                                 event.progressPrintTimeLeft = 0
                                 // Notify listener
                                 listener.currentStateUpdated(event: event)
+                            } else if type == "PrintCancelled" {
+                                // Event denoting that print has been cancelled
+                                let event = CurrentStateEvent()
+                                event.printing = false
+                                event.progressCompletion = 0
+                                event.progressPrintTime = 0
+                                event.progressPrintTimeLeft = 0
+                                // Notify listener
+                                listener.currentStateUpdated(event: event)
                             }
                         }
                     } else if let history = json["history"] as? NSDictionary {
