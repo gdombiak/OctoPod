@@ -138,7 +138,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     }
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        if let onError = didFinishWithErrors {
+        if let onError = didFinishWithErrors, let error = error {
             if let nsError = error as NSError? {
                 if nsError.code == NSURLErrorCancelled {
                     // Do nothing
@@ -147,7 +147,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
                     return
                 }
             }
-            onError(error!)
+            onError(error)
         }
     }
 }
