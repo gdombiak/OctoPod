@@ -4,7 +4,7 @@ import Starscream
 // Classic websocket client that connects to "<octoprint>/sockjs/websocket"
 // To receive socket events and received messages, create a WebSocketClientDelegate
 // and add it as a delegate of this WebSocketClient
-class WebSocketClient : NSObject, WebSocketDelegate {
+class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     var serverURL: String!
     var apiKey: String!
     var username: String?
@@ -17,7 +17,8 @@ class WebSocketClient : NSObject, WebSocketDelegate {
     var active: Bool = false
     var connecting: Bool = false
     var openRetries: Int = -1;
-    var parseFailures: Int = 0;
+    var parseFailures: Int = 0  // Number of consecutive parse errors
+    var connectionAborted: Bool = false // Connection is aborted when we had too many consecutive parse errors even after recreating the websocket
     var closedByUser: Bool = false
 
     var heartbeatTimer : Timer?
@@ -44,14 +45,14 @@ class WebSocketClient : NSObject, WebSocketDelegate {
         self.socket = WebSocket(request: self.socketRequest!)
         
         // Add as delegate of Websocket
-        socket!.delegate = self
+        socket!.advancedDelegate = self
         // Establish websocket connection
         self.establishConnection()
     }
 
-    // MARK: - WebSocketDelegate
-
-    func websocketDidConnect(socket: Starscream.WebSocketClient) {
+    // MARK: - WebSocketAdvancedDelegate
+    
+    func websocketDidConnect(socket: WebSocket) {
         active = true
         connecting = false
         openRetries = 0
@@ -66,11 +67,16 @@ class WebSocketClient : NSObject, WebSocketDelegate {
         }
     }
     
-    func websocketDidDisconnect(socket: Starscream.WebSocketClient, error: Error?) {
+    func websocketDidDisconnect(socket: WebSocket, error: Error?) {
         active = false
         connecting = false
         // Stop heatbeat timer
         heartbeatTimer?.invalidate()
+        
+        if connectionAborted {
+            // Nothing to do since we decided to abort connecting
+            return
+        }
         
         if let _ = error {
             // Retry up to 5 times to open a websocket connection
@@ -90,11 +96,19 @@ class WebSocketClient : NSObject, WebSocketDelegate {
         }
     }
     
-    func websocketDidReceiveMessage(socket: Starscream.WebSocketClient, text: String) {
+    func websocketDidReceiveMessage(socket: WebSocket, text: String, response: WebSocket.WSResponse) {
+        if self.socket != socket {
+            // Ignore messages coming from a different websocket.
+            // This could happen when user switched between printers and the thread
+            // that reads from old websocket is still processing incoming data
+            // Or it could happpen if a new websocket was created to the existing OctoPrint
+            NSLog("Ignoring message from old websocket: \(text)")
+            return
+        }
         if let listener = delegate {
             do {
                 if let json = try JSONSerialization.jsonObject(with: text.data(using: String.Encoding.utf8)!, options: [.mutableLeaves, .mutableContainers]) as? NSDictionary {
-                    // Reset counter of parse failures
+                    // Reset counter of consecutive parse failures
                     parseFailures = 0
                     if let current = json["current"] as? NSDictionary {
 //                        NSLog("Websocket current state received: \(json)")
@@ -197,29 +211,44 @@ class WebSocketClient : NSObject, WebSocketDelegate {
                     }
                 }
             } catch {
-                // Increment counter of parse failures
-                parseFailures = parseFailures + 1
-                NSLog("Error parsing websocket message: \(text)")
-                NSLog("Parsing error: \(error)" )
-                if parseFailures > 6 {
-                    // If we had 6 consecutive parse failures then retry recreating the socket
-                    // Websocket may be corrupted and needs to be recreated
+                if !socket.isConnected {
+                    // Websocket is no longer connected and we JSON was invalid so was not possible to parse it
+                    // Just log this. #websocketDidDisconnect will be called after this
+                    NSLog("JSON parsed error and websocket is already disconnected") // We are consuming from in-memory queue
+                } else {
+                    NSLog("Error parsing websocket message: \(text)")
+                    // Increment number of times we are trying to recover websocket from consecutive parse errors
+                    parseFailures = parseFailures + 1
+                    if parseFailures > 6 {
+                        NSLog("Giving up recreating websocket. Last parsing error: \(error)" )
+                        // Websocket was recreated 6 times and each time we had a parse error when parsing the
+                        // first message. OctoPrint is having big issues so we cannot recover at this point
+                        // Close the connection and alert we are no longer connected / refreshing
+                        abortConnection(error: error)
+                        return
+                    }
+                    NSLog("Recreating websocket due to parsing error: \(error)" )
+                    // Attempt to recreate socket
                     recreateSocket()
                     establishConnection()
-                } else if parseFailures > 12 {
-                    // We keep failing so just close the connection
-                    // and alert we are no longer connected
-                    abortConnection(error: error)
                 }
             }
         }
     }
     
-    func websocketDidReceiveData(socket: Starscream.WebSocketClient, data: Data) {
-        // Do nothing
+    func websocketDidReceiveData(socket: WebSocket, data: Data, response: WebSocket.WSResponse) {
+        // Do nothing. This is for Binary frames
         NSLog("Websocket received data - \(self.hash)")
     }
     
+    func websocketHttpUpgrade(socket: WebSocket, request: String) {
+        // Do nothing
+    }
+
+    func websocketHttpUpgrade(socket: WebSocket, response: String) {
+        // Do nothing
+    }
+
     // MARK: - Private functions
 
     func establishConnection() {
@@ -227,9 +256,13 @@ class WebSocketClient : NSObject, WebSocketDelegate {
             // Nothing to do
             return
         }
+        connectionAborted = false
         connecting = true
         // Increment number of times we are trying to establish a websockets connection
         openRetries = openRetries + 1
+//        socket?.onText = { text in
+//            print("\(self.socket!) - \(text)")
+//        }
         if openRetries > 0 {
             NSLog("Retrying websocket connection after \(openRetries * 300) milliseconds")
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(openRetries * 300), execute: {
@@ -246,12 +279,16 @@ class WebSocketClient : NSObject, WebSocketDelegate {
         openRetries = -1
         closedByUser = true
         socket?.disconnect()
+        socket = nil
     }
     
     func abortConnection(error: Error) {
         openRetries = -1
         closedByUser = false
+        connectionAborted = true // Indicate that we decided to abort connecting
         socket?.disconnect()
+        
+        recreateSocket() // Recreate websocket object (not the actual network connection). In-memory queue of read messages will be ignored
 
         NSLog("Websocket corrupted?. Error: \(String(describing: error.localizedDescription)) - \(self.hash)")
         if let listener = delegate {
@@ -275,15 +312,15 @@ class WebSocketClient : NSObject, WebSocketDelegate {
     
     fileprivate func recreateSocket() {
         // Remove self as a delegate from old socket
-        socket!.delegate = nil
+        socket!.advancedDelegate = nil
         
         self.socket = WebSocket(request: self.socketRequest!)
         
         // Add as delegate of Websocket
-        socket!.delegate = self
+        socket!.advancedDelegate = self
     }
     
     @objc func sendHeartbeat() {
-        socketWrite(text: " ")
+        socketWrite(text: "{}")
     }
 }
