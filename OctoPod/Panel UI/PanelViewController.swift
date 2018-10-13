@@ -18,8 +18,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     var subpanelsViewController: SubpanelsViewController?
     
     var screenHeight: CGFloat!
-    var printerSubpanelHeightConstraintPortrait: CGFloat!
-    var printerSubpanelHeightConstraintLandscape: CGFloat!
+    var printerSubpanelHeightConstraintPortrait: CGFloat! = 313
+    var printerSubpanelHeightConstraintLandscape: CGFloat! = 330
 
     @IBOutlet weak var printerSubpanelHeightConstraint: NSLayoutConstraint!
     
