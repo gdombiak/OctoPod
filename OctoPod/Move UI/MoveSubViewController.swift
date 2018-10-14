@@ -3,7 +3,7 @@ import UIKit
 // OctoPrint does not report current fan speed, extruder flow rate or feed rate so we
 // initially assume 100% and then just leave last value set by user. Display
 // value will go back to 100% if app is terminated
-class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesDelegate {
+class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesDelegate, AppConfigurationDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -54,6 +54,8 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         
         // Listen to PrintProfile events
         octoprintClient.printerProfilesDelegates.append(self)
+        // Listen to changes when app is locked or unlocked
+        appConfiguration.delegates.append(self)
 
         if let printer = printerManager.getDefaultPrinter() {
             enableButtons(enable: !appConfiguration.appLocked()) // Enable/disable buttons based on app locked status
@@ -73,6 +75,8 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         
         // Stop listening to PrintProfile events
         octoprintClient.remove(printerProfilesDelegate: self)
+        // Stop listening to changes when app is locked or unlocked
+        appConfiguration.remove(appConfigurationDelegate: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -285,6 +289,14 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         }
     }
     
+    // MARK: - AppConfigurationDelegate
+    
+    func appLockChanged(locked: Bool) {
+        DispatchQueue.main.async {
+            self.enableButtons(enable: !locked) // Enable/disable buttons based on app locked status
+        }
+    }
+
     // MARK: - Private fuctions
     
     fileprivate func enableButtons(enable: Bool) {

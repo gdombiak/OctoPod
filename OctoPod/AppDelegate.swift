@@ -134,5 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return CloudFilesManager(octoprintClient: self.octoprintClient)
     }()
     
-    let appConfiguration = AppConfiguration()
+    lazy var appConfiguration: AppConfiguration = {
+        return AppConfiguration(octoprintClient: self.octoprintClient)
+    }()
 }

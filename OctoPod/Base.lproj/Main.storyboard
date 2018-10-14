@@ -1659,6 +1659,35 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ztC-mD-tDl">
+                                        <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ztC-mD-tDl" id="wKE-j9-bwM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Auto-lock while printing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3eo-D0-hAF">
+                                                    <rect key="frame" x="16" y="12" width="286" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2tr-tB-tBJ">
+                                                    <rect key="frame" x="310" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="appAutoLockChanged:" destination="hg7-6b-q0o" eventType="valueChanged" id="ztO-wg-t3V"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2tr-tB-tBJ" firstAttribute="top" secondItem="wKE-j9-bwM" secondAttribute="top" constant="6" id="2uZ-S5-lZ6"/>
+                                                <constraint firstAttribute="trailing" secondItem="2tr-tB-tBJ" secondAttribute="trailing" constant="16" id="aGk-2z-5ce"/>
+                                                <constraint firstItem="2tr-tB-tBJ" firstAttribute="leading" secondItem="3eo-D0-hAF" secondAttribute="trailing" constant="8" id="nMc-kN-ppw"/>
+                                                <constraint firstItem="3eo-D0-hAF" firstAttribute="top" secondItem="wKE-j9-bwM" secondAttribute="topMargin" constant="1" id="qxy-i4-svt"/>
+                                                <constraint firstItem="3eo-D0-hAF" firstAttribute="leading" secondItem="wKE-j9-bwM" secondAttribute="leadingMargin" id="wpy-qZ-sXK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1668,6 +1697,8 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="appAutoLockLabel" destination="3eo-D0-hAF" id="H28-AA-pnI"/>
+                        <outlet property="appAutoLockSwitch" destination="2tr-tB-tBJ" id="SpR-J7-DSF"/>
                         <outlet property="appLockBiometricsLabel" destination="uqf-BP-Wtn" id="6Ev-FJ-8t9"/>
                         <outlet property="appLockBiometricsSwitch" destination="yBj-kJ-muF" id="ReR-uV-XW8"/>
                         <outlet property="appLockLabel" destination="mqw-ve-Eec" id="1C2-lj-KsG"/>
@@ -2811,7 +2842,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5P-gn-chq">
-                                <rect key="frame" x="5" y="588" width="46" height="22"/>
+                                <rect key="frame" x="5" y="587" width="48" height="24"/>
                                 <state key="normal" title="SD" image="Refresh SD">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -2831,7 +2862,7 @@
                                 </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdc-H8-bPm">
-                                <rect key="frame" x="54" y="588.5" width="135" height="21"/>
+                                <rect key="frame" x="56" y="588.5" width="133" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -3808,15 +3839,15 @@
         <image name="Appearance" width="32" height="32"/>
         <image name="Devices" width="32" height="32"/>
         <image name="Dialogs" width="32" height="32"/>
-        <image name="Edit" width="22" height="22"/>
+        <image name="Edit" width="24" height="24"/>
         <image name="Files" width="24" height="24"/>
         <image name="Folder" width="24" height="24"/>
         <image name="Move" width="24" height="24"/>
         <image name="PSUPowerOn" width="128" height="128"/>
         <image name="Panel" width="24" height="24"/>
-        <image name="Print Job" width="22" height="22"/>
+        <image name="Print Job" width="24" height="24"/>
         <image name="Printers" width="32" height="32"/>
-        <image name="Refresh SD" width="22" height="22"/>
+        <image name="Refresh SD" width="24" height="24"/>
         <image name="Security" width="32" height="32"/>
         <image name="Settings" width="24" height="24"/>
         <image name="Support" width="32" height="32"/>

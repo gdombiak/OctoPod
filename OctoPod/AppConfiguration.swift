@@ -1,11 +1,25 @@
 import Foundation
 
-class AppConfiguration {
+class AppConfiguration: OctoPrintClientDelegate {
     
     private static let APP_LOCKED = "APP_CONFIGURATION_LOCKED"
     private static let APP_LOCKED_AUTHENTICATION = "APP_CONFIGURATION_LOCKED_AUTHENTICATION"
+    private static let APP_AUTO_LOCK = "APP_CONFIGURATION_AUTO_LOCKED"
     private static let CONFIRMATION_ON_CONNECT = "APP_CONFIGURATION_CONF_ON_CONNECT"
     private static let CONFIRMATION_ON_DISCONNECT = "APP_CONFIGURATION_CONF_ON_DISCONNECT"
+
+    var delegates: Array<AppConfigurationDelegate> = Array()
+
+    init(octoprintClient: OctoPrintClient) {
+        // Listen to events coming from OctoPrintClient
+        octoprintClient.delegates.append(self)
+    }
+
+    // MARK: - Delegates operations
+    
+    func remove(appConfigurationDelegate toRemove: AppConfigurationDelegate) {
+        delegates.removeAll(where: { $0 === toRemove })
+    }
 
     // MARK: - App locking
     
@@ -42,10 +56,32 @@ class AppConfiguration {
     // print settings, printer settings, change running jobs, .etc
     // are not available
     func appLocked(locked: Bool) {
+        if appLocked() == locked {
+            // Do nothing
+            return
+        }
         let defaults = UserDefaults.standard
-        return defaults.set(locked, forKey: AppConfiguration.APP_LOCKED)
+        defaults.set(locked, forKey: AppConfiguration.APP_LOCKED)
+        // Notify listeners that status has changed
+        for delegate in delegates {
+            delegate.appLockChanged(locked: locked)
+        }
     }
 
+    // Returns true if the app will automatically lock when active
+    // printer is running a print job
+    func appAutoLock() -> Bool {
+        let defaults = UserDefaults.standard
+        return defaults.bool(forKey: AppConfiguration.APP_AUTO_LOCK)
+    }
+    
+    // Sets whether the app will automatically lock when active printer
+    // is running a print job
+    func appAutoLock(autoLock: Bool) {
+        let defaults = UserDefaults.standard
+        return defaults.set(autoLock, forKey: AppConfiguration.APP_AUTO_LOCK)
+    }
+    
     // Prompt for confirmation when asking OctoPrint to connect to printer
     // Off by default.
     // Some users might want to turn this on to prevent resetting the printer when connecting
@@ -78,4 +114,41 @@ class AppConfiguration {
         let defaults = UserDefaults.standard
         return defaults.set(enable, forKey: AppConfiguration.CONFIRMATION_ON_DISCONNECT)
     }
+    
+    // MARK: - OctoPrintClientDelegate
+    
+    // Notification that we are about to connect to OctoPrint server
+    func notificationAboutToConnectToServer() {
+        if appAutoLock() {
+            // Assume that new printer is not printing so unlock the app
+            // Once connected to OctoPrint we will know if printer is printing
+            // and app will be locked
+            appLocked(locked: false)
+        }
+    }
+    
+    // Notification that the current state of the printer has changed
+    func printerStateUpdated(event: CurrentStateEvent) {
+        // Check app configuration for auto-lock based on printing status
+        if let completion = event.progressCompletion, appAutoLock() {
+            let isPrinting = completion > 0 && completion < 100
+            appLocked(locked: isPrinting)
+        }
+    }
+    
+    // Notification that HTTP request failed (connection error, authentication error or unexpect http status code)
+    func handleConnectionError(error: Error?, response: HTTPURLResponse) {
+        // Do nothing
+    }
+    
+    // Notification sent when websockets got connected
+    func websocketConnected() {
+        // Do nothing
+    }
+    
+    // Notification sent when websockets got disconnected due to an error (or failed to connect)
+    func websocketConnectionFailed(error: Error) {
+        // Do nothing
+    }
+
 }

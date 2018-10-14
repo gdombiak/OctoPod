@@ -25,6 +25,7 @@
 		3D33B7A1213F6A0D002A4BE3 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */; };
 		3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D36DD79210300C500884BD6 /* TerminalViewController.swift */; };
 		3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */; };
+		3D42AC1121731494004D9FD0 /* AppConfigurationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42AC1021731494004D9FD0 /* AppConfigurationDelegate.swift */; };
 		3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */; };
 		3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D45280120E15A370094CCB7 /* AppDelegate.swift */; };
 		3D45280720E15A370094CCB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280520E15A370094CCB7 /* Main.storyboard */; };
@@ -111,6 +112,7 @@
 		3D36DD79210300C500884BD6 /* TerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalViewController.swift; sourceTree = "<group>"; };
 		3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpanelViewController.swift; sourceTree = "<group>"; };
 		3D40C1822131115800384F4A /* OctoPod v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v4.xcdatamodel"; sourceTree = "<group>"; };
+		3D42AC1021731494004D9FD0 /* AppConfigurationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationDelegate.swift; sourceTree = "<group>"; };
 		3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClientDelegate.swift; sourceTree = "<group>"; };
 		3D4527FE20E15A370094CCB7 /* OctoPod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OctoPod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D45280120E15A370094CCB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				3D6350F221083BE0001C10F7 /* TabBarController.swift */,
 				3D45280120E15A370094CCB7 /* AppDelegate.swift */,
 				3D8DA0192144716B00F5FD07 /* AppConfiguration.swift */,
+				3D42AC1021731494004D9FD0 /* AppConfigurationDelegate.swift */,
 				3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */,
 				3D45280520E15A370094CCB7 /* Main.storyboard */,
 				3D45280B20E15A380094CCB7 /* Assets.xcassets */,
@@ -684,6 +687,7 @@
 				3D1A935921326B3C0050ED9A /* Command.swift in Sources */,
 				3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */,
 				3D1A9361213282190050ED9A /* CustomControlsViewController.swift in Sources */,
+				3D42AC1121731494004D9FD0 /* AppConfigurationDelegate.swift in Sources */,
 				3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */,
 				3D8DA01A2144716B00F5FD07 /* AppConfiguration.swift in Sources */,
 				3D1A935F213271680050ED9A /* Script.swift in Sources */,

@@ -4,6 +4,9 @@
 /* Class = "UIButton"; normalTitle = "Change language"; ObjectID = "2wA-7u-KgW"; */
 "2wA-7u-KgW.normalTitle" = "Cambiar Idioma";
 
+/* Class = "UILabel"; text = "Auto-lock when printing"; ObjectID = "3eo-D0-hAF"; */
+"3eo-D0-hAF.text" = "Auto-bloquear al imprimir";
+
 /* Class = "UILabel"; text = "Flow rate"; ObjectID = "3IG-Y9-Ofi"; */
 "3IG-Y9-Ofi.text" = "Ritmo flujo";
 

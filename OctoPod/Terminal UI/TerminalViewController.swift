@@ -1,7 +1,7 @@
 import UIKit
 import SafariServices  // Used for opening browser in-app
 
-class TerminalViewController: UIViewController, OctoPrintClientDelegate {
+class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConfigurationDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -32,18 +32,22 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate {
             navigationItem.title = NSLocalizedString("Terminal", comment: "")
         }
         
-        // Enable sending gcode commands only if app is not locked
-        gcodeField.isEnabled = !appConfiguration.appLocked()
+        // Configure UI based on app locked state
+        configureBasedOnAppLockedState()
 
         updateTerminalLogs()
 
         // Listen to events coming from OctoPrintClient
         octoprintClient.delegates.append(self)
+        // Listen to changes when app is locked or unlocked
+        appConfiguration.delegates.append(self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         // Stop listening to events coming from OctoPrintClient
         octoprintClient.remove(octoPrintClientDelegate: self)
+        // Stop listening to changes when app is locked or unlocked
+        appConfiguration.remove(appConfigurationDelegate: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -132,8 +136,21 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate {
     func handleConnectionError(error: Error?, response: HTTPURLResponse) {
     }
 
+    // MARK: - AppConfigurationDelegate
+    
+    func appLockChanged(locked: Bool) {
+        DispatchQueue.main.async {
+            self.configureBasedOnAppLockedState()
+        }
+    }
+    
     // MARK: - Private functions
 
+    fileprivate func configureBasedOnAppLockedState() {
+        // Enable sending gcode commands only if app is not locked
+        gcodeField.isEnabled = !appConfiguration.appLocked()
+    }
+    
     // Make sure to call this function from main thread
     fileprivate func updateTerminalLogs() {
         if refreshSwitch.isOn {

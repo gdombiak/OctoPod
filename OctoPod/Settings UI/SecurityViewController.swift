@@ -1,7 +1,7 @@
 import UIKit
 import LocalAuthentication
 
-class SecurityViewController: ThemedStaticUITableViewController {
+class SecurityViewController: ThemedStaticUITableViewController, AppConfigurationDelegate {
 
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
@@ -9,6 +9,8 @@ class SecurityViewController: ThemedStaticUITableViewController {
     @IBOutlet weak var appLockLabel: UILabel!
     @IBOutlet weak var appLockBiometricsSwitch: UISwitch!
     @IBOutlet weak var appLockSwitch: UISwitch!
+    @IBOutlet weak var appAutoLockLabel: UILabel!
+    @IBOutlet weak var appAutoLockSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,15 +19,26 @@ class SecurityViewController: ThemedStaticUITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Listen to changes when app is automatically locked or unlocked
+        appConfiguration.delegates.append(self)
+
         // Theme labels
         let theme = Theme.currentTheme()
         appLockBiometricsLabel.textColor = theme.textColor()
         appLockLabel.textColor = theme.textColor()
+        appAutoLockLabel.textColor = theme.textColor()
 
         // Configure state of switches
         appLockBiometricsSwitch.isOn = appConfiguration.appLockedRequiresAuthentication()
         appLockSwitch.isOn = appConfiguration.appLocked()
+        appAutoLockSwitch.isOn = appConfiguration.appAutoLock()
         reviewBiometricsSwitch()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Stop listening to changes when app is automatically locked or unlocked
+        appConfiguration.remove(appConfigurationDelegate: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,8 +58,24 @@ class SecurityViewController: ThemedStaticUITableViewController {
             // User needs to authenticate to be able to disable read-only mode
             authenticateToUnlock()
         } else {
+            // User is manually controlling lock setting so disable auto-lock
+            appConfiguration.appAutoLock(autoLock: false)
+            appAutoLockSwitch.isOn = false
+            // Update app lock setting based on user requests
             appConfiguration.appLocked(locked: appLockSwitch.isOn)
             reviewBiometricsSwitch()
+        }
+    }
+    
+    @IBAction func appAutoLockChanged(_ sender: Any) {
+        appConfiguration.appAutoLock(autoLock: appAutoLockSwitch.isOn)
+    }
+    
+    // MARK: - AppConfigurationDelegate
+    
+    func appLockChanged(locked: Bool) {
+        DispatchQueue.main.async {
+            self.appLockSwitch.isOn = locked
         }
     }
     
@@ -66,6 +95,10 @@ class SecurityViewController: ThemedStaticUITableViewController {
                 if success {
                     // User authenticated successfully, take appropriate action
                     DispatchQueue.main.async {
+                        // User is manually controlling lock setting so disable auto-lock
+                        self.appConfiguration.appAutoLock(autoLock: false)
+                        self.appAutoLockSwitch.isOn = false
+
                         self.appConfiguration.appLocked(locked: false)
                         self.reviewBiometricsSwitch()
                     }
@@ -80,7 +113,8 @@ class SecurityViewController: ThemedStaticUITableViewController {
     }
 
     fileprivate func reviewBiometricsSwitch() {
-        // Do not let user change this setting when app is in locked mode
+        // Do not let user change these settings when app is in locked mode
         appLockBiometricsSwitch.isEnabled = !appLockSwitch.isOn
+        appAutoLockSwitch.isEnabled = !appLockSwitch.isOn
     }
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate {
+class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate {
     
     private static let CONNECT_CONFIRMATION = "PANEL_CONNECT_CONFIRMATION"
 
@@ -51,10 +51,12 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     override func viewWillAppear(_ animated: Bool) {
         // Listen to changes to OctoPrint Settings in case the camera orientation has changed
         octoprintClient.octoPrintSettingsDelegates.append(self)
+        // Listen to changes when app is locked or unlocked
+        appConfiguration.delegates.append(self)
         // Show default printer
         showDefaultPrinter()
-        // Enable connect/disconnect button only if app is not locked
-        connectButton.isEnabled = !appConfiguration.appLocked()
+        // Configure UI based on app locked state
+        configureBasedOnAppLockedState()
         // Enable or disable printer select button depending on number of printers configured
         printerSelectButton.isEnabled = printerManager.getPrinters().count > 1
     }
@@ -62,6 +64,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     override func viewWillDisappear(_ animated: Bool) {
         // Stop listening to changes to OctoPrint Settings
         octoprintClient.remove(octoPrintSettingsDelegate: self)
+        // Stop listening to changes when app is locked or unlocked
+        appConfiguration.remove(appConfigurationDelegate: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -286,6 +290,14 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
+    // MARK: - AppConfigurationDelegate
+    
+    func appLockChanged(locked: Bool) {
+        DispatchQueue.main.async {
+            self.configureBasedOnAppLockedState()
+        }
+    }
+    
     // MARK: - Private functions
     
     fileprivate func showDefaultPrinter() {
@@ -349,6 +361,11 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         camerasViewController = camerasChild
     }
     
+    fileprivate func configureBasedOnAppLockedState() {
+        // Enable connect/disconnect button only if app is not locked
+        connectButton.isEnabled = !appConfiguration.appLocked()
+    }
+
     fileprivate func calculatePrinterSubpanelHeightConstraints() {
         let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
         screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
