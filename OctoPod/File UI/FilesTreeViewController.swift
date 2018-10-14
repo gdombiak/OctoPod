@@ -244,11 +244,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: - Refresh functions
 
     @objc func refreshFiles() {
-        loadFiles(done: {
-            DispatchQueue.main.async {
-                self.refreshControl?.endRefreshing()
-            }
-        })
+        loadFiles(done: nil)
     }
     
     // Refresh files from OctoPrint and call me back with the refreshed file/folder that was specified
@@ -290,6 +286,13 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     fileprivate func loadFiles(done: (() -> Void)?) {
+        // Refreshing files could take some time so show spinner of refreshing
+        DispatchQueue.main.async {
+            if let refreshControl = self.refreshControl {
+                refreshControl.beginRefreshing()
+                self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - refreshControl.frame.size.height), animated: true)
+            }
+        }
         // Load all files and folders (recursive)
         octoprintClient.files { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
             self.files = Array()
@@ -321,6 +324,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             }
             // Refresh table (even if there was an error so it is empty)
             DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
                 self.tableView.reloadData()
             }
             // Execute done block when done
