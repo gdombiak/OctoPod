@@ -1,6 +1,26 @@
 # Change Log
 
-## [1.10](https://github.com/gdombiak/OctoPod/tree/1.10) (2018-10-07)
+## [1.11](https://github.com/gdombiak/OctoPod/tree/1.11) (2018-10-14)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.10...1.11)
+
+**Implemented enhancements:**
+
+- Settings-\>Device - Hide login message when user is already logged into iCloud [\#111](https://github.com/gdombiak/OctoPod/issues/111)
+- Show spinner when loading files since it could take some time [\#110](https://github.com/gdombiak/OctoPod/issues/110)
+- Add support to auto-lock app while printing [\#109](https://github.com/gdombiak/OctoPod/issues/109)
+- Improve websocket recovery logic [\#106](https://github.com/gdombiak/OctoPod/issues/106)
+- Improve images resolution for retina display [\#104](https://github.com/gdombiak/OctoPod/issues/104)
+
+**Fixed bugs:**
+
+- Fix crash when subpanel height constraints where not calculated [\#107](https://github.com/gdombiak/OctoPod/issues/107)
+- Websocket heartbeat causes OctoPrint warning [\#105](https://github.com/gdombiak/OctoPod/issues/105)
+- Fix crash when camera finished loading image and there were no errors [\#103](https://github.com/gdombiak/OctoPod/issues/103)
+- Cancelling the print should clean up progress information [\#102](https://github.com/gdombiak/OctoPod/issues/102)
+- Fix crash when canceling, pausing, resuming job [\#101](https://github.com/gdombiak/OctoPod/issues/101)
+- 'Not refreshing' alert stays on after connection was re-established [\#100](https://github.com/gdombiak/OctoPod/issues/100)
+
+## [1.10](https://github.com/gdombiak/OctoPod/tree/1.10) (2018-10-08)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.9...1.10)
 
 **Implemented enhancements:**
