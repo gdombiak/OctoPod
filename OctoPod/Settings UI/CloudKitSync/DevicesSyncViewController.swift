@@ -1,4 +1,5 @@
 import UIKit
+import CloudKit
 
 class DevicesSyncViewController: ThemedStaticUITableViewController {
 
@@ -11,8 +12,12 @@ class DevicesSyncViewController: ThemedStaticUITableViewController {
     @IBOutlet weak var resetFromiCloudButton: UIButton!
     @IBOutlet weak var resetFromLocalButton: UIButton!
     
+    @IBOutlet weak var loginMessageCell: UITableViewCell!
+    
     // Flag to know if we are running a process to reset things
     var resetting: Bool = false
+    
+    var accountStatus: CKAccountStatus?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +36,16 @@ class DevicesSyncViewController: ThemedStaticUITableViewController {
         // Configure state of switch
         syncEnabledSwitch.isOn = !cloudKitPrinterManager.cloudKitSyncStopped()
 
-        // Enable/disable reset buttons depending on switch status
-        enableOrDisableButtons()
+        CKContainer.default().accountStatus { (status: CKAccountStatus, error: Error?) in
+            if let error = error {
+                NSLog("Error getting iCloud login status: \(error)")
+            }
+            self.accountStatus = status
+            DispatchQueue.main.async {
+                // Enable/disable reset buttons depending on switch status
+                self.enableOrDisableButtons()
+            }
+        }
     }
 
     @IBAction func cloudSyncEnabledSwitch(_ sender: Any) {
@@ -95,6 +108,24 @@ class DevicesSyncViewController: ThemedStaticUITableViewController {
     }
     
     fileprivate func enableOrDisableButtons() {
+        if let accountStatus = accountStatus {
+            if accountStatus == .available {
+                // User is logged into iCloud
+                loginMessageCell.isHidden = true
+                resetFromiCloudButton.isEnabled = !appConfiguration.appLocked() && syncEnabledSwitch.isOn && !resetting
+                resetFromLocalButton.isEnabled = !appConfiguration.appLocked() && syncEnabledSwitch.isOn && !resetting
+                return
+            } else if accountStatus == .noAccount {
+                // User is not logged into iCloud
+                loginMessageCell.isHidden = false
+                syncEnabledSwitch.isEnabled = false
+                resetFromiCloudButton.isEnabled = false
+                resetFromLocalButton.isEnabled = false
+                return
+            }
+        }
+        // No iCloud account status info so use default behaviour
+        loginMessageCell.isHidden = false
         resetFromiCloudButton.isEnabled = !appConfiguration.appLocked() && syncEnabledSwitch.isOn && !resetting
         resetFromLocalButton.isEnabled = !appConfiguration.appLocked() && syncEnabledSwitch.isOn && !resetting
     }

@@ -374,7 +374,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dD0-Ut-b2r">
-                                                    <rect key="frame" x="85.5" y="10.5" width="22" height="22"/>
+                                                    <rect key="frame" x="85.5" y="9.5" width="24" height="24"/>
                                                     <state key="normal" image="Edit"/>
                                                     <connections>
                                                         <segue destination="ChO-VC-a6I" kind="popoverPresentation" identifier="set_target_temp_tool0" popoverAnchorView="dD0-Ut-b2r" id="pkN-0l-kuN">
@@ -401,13 +401,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8U9-mV-fYc">
-                                                    <rect key="frame" x="302.5" y="11" width="30.5" height="20.5"/>
+                                                    <rect key="frame" x="300.5" y="11" width="30.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQV-TF-lM6">
-                                                    <rect key="frame" x="337" y="10.5" width="22" height="22"/>
+                                                    <rect key="frame" x="335" y="9.5" width="24" height="24"/>
                                                     <state key="normal" image="Edit"/>
                                                     <connections>
                                                         <segue destination="ChO-VC-a6I" kind="popoverPresentation" identifier="set_target_temp_bed" popoverAnchorView="TQV-TF-lM6" id="Rs9-4F-Pao">
@@ -467,7 +467,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsm-WM-DnA">
-                                                    <rect key="frame" x="99.5" y="10.5" width="22" height="22"/>
+                                                    <rect key="frame" x="99.5" y="9.5" width="24" height="24"/>
                                                     <state key="normal" image="Edit"/>
                                                     <connections>
                                                         <segue destination="ChO-VC-a6I" kind="popoverPresentation" identifier="set_target_temp_tool1" popoverAnchorView="Xsm-WM-DnA" id="ss6-ut-lSS">
@@ -1934,6 +1934,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="loginMessageCell" destination="oKR-tN-0qZ" id="9Y8-zU-OBg"/>
                         <outlet property="resetFromLocalButton" destination="e5p-Y4-n8X" id="asm-Ev-Ogn"/>
                         <outlet property="resetFromiCloudButton" destination="vyb-aH-wc9" id="b9w-eo-Jt0"/>
                         <outlet property="syncEnabledLabel" destination="zVf-Zx-3g4" id="hCZ-Lm-yTV"/>
