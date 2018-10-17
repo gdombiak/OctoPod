@@ -25,6 +25,9 @@
 /* Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[2] = "Printed"; ObjectID = "4bm-la-U47"; */
 "4bm-la-U47.segmentTitles[2]" = "Gedruckt";
 
+/* Class = "UILabel"; text = "Certificate validation"; ObjectID = "4Kd-tY-8l3"; */
+"4Kd-tY-8l3.text" = "Zertifikat Gültigkeit";
+
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Erscheinungsbild";
 
@@ -163,14 +166,14 @@
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "fJ6-6T-dHU"; */
 "fJ6-6T-dHU.title" = "Einstellungen";
 
+/* Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt"; */
+"gCt-Vk-Fgt.headerTitle" = "Verbindung";
+
 /* Class = "UITableViewController"; title = "File Details"; ObjectID = "GJo-uu-Qmb"; */
 "GJo-uu-Qmb.title" = "Datei Details";
 
 /* Class = "UILabel"; text = "Printing from SD"; ObjectID = "gJx-aQ-4FM"; */
 "gJx-aQ-4FM.text" = "Drucke von SD-Karte";
-
-/* Class = "UILabel"; text = "Not refreshing"; ObjectID = "GKZ-HN-xVC"; */
-"GKZ-HN-xVC.text" = "Kann nicht aktualisieren";
 
 /* Class = "UITableViewController"; title = "Devices"; ObjectID = "GmR-1U-jvf"; */
 "GmR-1U-jvf.title" = "Geräte";
@@ -420,6 +423,9 @@
 
 /* Class = "UILabel"; text = "Require passcode to unlock"; ObjectID = "uqf-BP-Wtn"; */
 "uqf-BP-Wtn.text" = "Passwort zum Entsperren anfordern";
+
+/* Class = "UITableViewSection"; headerTitle = "Connection error details"; ObjectID = "uR6-pA-Rdj"; */
+"uR6-pA-Rdj.headerTitle" = "Verbindungsfehler Details";
 
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection (REQUIRED)"; ObjectID = "uRd-RD-eAS"; */
 "uRd-RD-eAS.headerTitle" = "Drucker Verbindung (NOTWENDIG)";

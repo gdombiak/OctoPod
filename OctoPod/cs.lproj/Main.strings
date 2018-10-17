@@ -25,6 +25,9 @@
 /* Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[2] = "Printed"; ObjectID = "4bm-la-U47"; */
 "4bm-la-U47.segmentTitles[2]" = "Tisk";
 
+/* Class = "UILabel"; text = "Certificate validation"; ObjectID = "4Kd-tY-8l3"; */
+"4Kd-tY-8l3.text" = "Ověření certifikátu";
+
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Vzhled";
 
@@ -163,14 +166,14 @@
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "fJ6-6T-dHU"; */
 "fJ6-6T-dHU.title" = "Nastavení";
 
+/* Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt"; */
+"gCt-Vk-Fgt.headerTitle" = "Připojení";
+
 /* Class = "UITableViewController"; title = "File Details"; ObjectID = "GJo-uu-Qmb"; */
 "GJo-uu-Qmb.title" = "Detaily souboru";
 
 /* Class = "UILabel"; text = "Printing from SD"; ObjectID = "gJx-aQ-4FM"; */
 "gJx-aQ-4FM.text" = "Tiskne z SD karty";
-
-/* Class = "UILabel"; text = "Not refreshing"; ObjectID = "GKZ-HN-xVC"; */
-"GKZ-HN-xVC.text" = "Neobnovuje se";
 
 /* Class = "UITableViewController"; title = "Devices"; ObjectID = "GmR-1U-jvf"; */
 "GmR-1U-jvf.title" = "Zařízení";
