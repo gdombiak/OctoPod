@@ -421,6 +421,9 @@
 /* Class = "UILabel"; text = "Require passcode to unlock"; ObjectID = "uqf-BP-Wtn"; */
 "uqf-BP-Wtn.text" = "Požadovat heslo k odemčení";
 
+/* Class = "UITableViewSection"; headerTitle = "Connection error details"; ObjectID = "uR6-pA-Rdj"; */
+"uR6-pA-Rdj.headerTitle" = "Podrobnosti chyby připojení";
+
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection (REQUIRED)"; ObjectID = "uRd-RD-eAS"; */
 "uRd-RD-eAS.headerTitle" = "Připojení tiskárny (POŽADOVÁNO)";
 
