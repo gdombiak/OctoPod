@@ -4,7 +4,7 @@
 /* Class = "UIButton"; normalTitle = "Change language"; ObjectID = "2wA-7u-KgW"; */
 "2wA-7u-KgW.normalTitle" = "Cambiar Idioma";
 
-/* Class = "UILabel"; text = "Auto-lock when printing"; ObjectID = "3eo-D0-hAF"; */
+/* Class = "UILabel"; text = "Auto-lock while printing"; ObjectID = "3eo-D0-hAF"; */
 "3eo-D0-hAF.text" = "Auto-bloquear al imprimir";
 
 /* Class = "UILabel"; text = "Flow rate"; ObjectID = "3IG-Y9-Ofi"; */
@@ -24,6 +24,9 @@
 
 /* Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[2] = "Printed"; ObjectID = "4bm-la-U47"; */
 "4bm-la-U47.segmentTitles[2]" = "Impreso";
+
+/* Class = "UILabel"; text = "Certificate validation"; ObjectID = "4Kd-tY-8l3"; */
+"4Kd-tY-8l3.text" = "Validar certificado";
 
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Apariencia";
@@ -97,6 +100,9 @@
 /* Class = "UIButton"; normalTitle = "View activity log"; ObjectID = "aJp-RM-Tuf"; */
 "aJp-RM-Tuf.normalTitle" = "Ver log de actividades";
 
+/* Class = "UIButton"; normalTitle = "Not refreshing"; ObjectID = "b0b-3X-MUJ"; */
+"b0b-3X-MUJ.normalTitle" = "No refrescando";
+
 /* Class = "UIButton"; normalTitle = "X"; ObjectID = "B7j-Fj-W6p"; */
 "B7j-Fj-W6p.normalTitle" = "X";
 
@@ -160,14 +166,14 @@
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "fJ6-6T-dHU"; */
 "fJ6-6T-dHU.title" = "Seteos";
 
+/* Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt"; */
+"gCt-Vk-Fgt.headerTitle" = "Conexión";
+
 /* Class = "UITableViewController"; title = "File Details"; ObjectID = "GJo-uu-Qmb"; */
 "GJo-uu-Qmb.title" = "Detalles Archivo";
 
 /* Class = "UILabel"; text = "Printing from SD"; ObjectID = "gJx-aQ-4FM"; */
 "gJx-aQ-4FM.text" = "Imprimiendo del SD";
-
-/* Class = "UILabel"; text = "Not refreshing"; ObjectID = "GKZ-HN-xVC"; */
-"GKZ-HN-xVC.text" = "No refrescando";
 
 /* Class = "UITableViewController"; title = "Devices"; ObjectID = "GmR-1U-jvf"; */
 "GmR-1U-jvf.title" = "Dispositivos";

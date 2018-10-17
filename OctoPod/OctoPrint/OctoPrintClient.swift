@@ -7,7 +7,7 @@ import UIKit
 //
 // OctoPrintClient uses websockets for getting realtime updates from OctoPrint (read operations only)
 // and an HTTP Client is used for requesting services on the OctoPrint server.
-class OctoPrintClient: WebSocketClientDelegate {
+class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     enum axis {
         case X
@@ -27,6 +27,16 @@ class OctoPrintClient: WebSocketClientDelegate {
     var octoPrintSettingsDelegates: Array<OctoPrintSettingsDelegate> = Array()
     var printerProfilesDelegates: Array<PrinterProfilesDelegate> = Array()
     var octoPrintPluginsDelegates: Array<OctoPrintPluginsDelegate> = Array()
+    
+    var appConfiguration: AppConfiguration {
+        get {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            return appDelegate.appConfiguration
+        }
+        set(configuration) {
+            configuration.delegates.append(self)
+        }
+    }
 
     // Remember last CurrentStateEvent that was reported from OctoPrint (via websockets)
     var lastKnownState: CurrentStateEvent?
@@ -180,6 +190,18 @@ class OctoPrintClient: WebSocketClientDelegate {
     func websocketConnectionFailed(error: Error) {
         for delegate in delegates {
             delegate.websocketConnectionFailed(error: error)
+        }
+    }
+    
+    // MARK: - AppConfigurationDelegate
+    
+    // Notification that SSL certificate validation has changed (user enabled or disabled it)
+    func certValidationChanged(disabled: Bool) {
+        // Recreate websocket connection since SSL cert validation has changed
+        // HTTP connection relies on NSAllowsArbitraryLoads so will ignore this change/setting
+        disconnectFromServer()
+        if let printer = printerManager.getDefaultPrinter() {
+            connectToServer(printer: printer)
         }
     }
 

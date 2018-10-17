@@ -42,7 +42,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
             let base64String = plainData!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
             self.socketRequest!.setValue("Basic " + base64String, forHTTPHeaderField: "Authorization")
         }
-        self.socket = WebSocket(request: self.socketRequest!)
+        createWebSocket()
         
         // Add as delegate of Websocket
         socket!.advancedDelegate = self
@@ -304,6 +304,13 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
         return false
     }
     
+    fileprivate func createWebSocket() {
+        self.socket = WebSocket(request: self.socketRequest!)
+        // Configure if SSL certificate validation is disabled or not
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.socket?.disableSSLCertValidation = appDelegate.appConfiguration.certValidationDisabled()
+    }
+    
     fileprivate func socketWrite(text: String) {
         if active {
             socket?.write(string: text)
@@ -314,7 +321,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
         // Remove self as a delegate from old socket
         socket!.advancedDelegate = nil
         
-        self.socket = WebSocket(request: self.socketRequest!)
+        createWebSocket()
         
         // Add as delegate of Websocket
         socket!.advancedDelegate = self

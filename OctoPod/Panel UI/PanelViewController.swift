@@ -12,7 +12,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
 
     @IBOutlet weak var printerSelectButton: UIBarButtonItem!
     @IBOutlet weak var connectButton: UIBarButtonItem!
-    @IBOutlet weak var notRefreshingAlertLabel: UILabel!
+    
+    @IBOutlet weak var notRefreshingButton: UIButton!
+    var notRefreshingReason: String?
     
     var camerasViewController: CamerasViewController?
     var subpanelsViewController: SubpanelsViewController?
@@ -154,6 +156,17 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeRight.rawValue), forKey: "orientation")
             }
         }
+        
+        if segue.identifier == "connection_error_details", let controller = segue.destination as? NotRefreshingReasonViewController {
+            controller.popoverPresentationController!.delegate = self
+            // Make the popover appear at the middle of the button
+            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: notRefreshingButton.frame.size.width/2, y: 0 , width: 0, height: 0)
+            if let reason = notRefreshingReason {
+                controller.reason = reason
+            } else {
+                controller.reason = NSLocalizedString("Unknown", comment: "")
+            }
+        }
     }
     
     // MARK: - Unwind operations
@@ -218,14 +231,16 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     // Notification sent when websockets got connected
     func websocketConnected() {
         DispatchQueue.main.async {
-            self.notRefreshingAlertLabel.isHidden = true
+            self.notRefreshingReason = nil
+            self.notRefreshingButton.isHidden = true
         }
     }
 
     // Notification sent when websockets got disconnected due to an error (or failed to connect)
     func websocketConnectionFailed(error: Error) {
         DispatchQueue.main.async {
-            self.notRefreshingAlertLabel.isHidden = false
+            self.notRefreshingReason = self.obtainConnectionErrorReason(error: error)
+            self.notRefreshingButton.isHidden = false
         }
     }
     
@@ -235,7 +250,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         updateConnectButton(printerConnected: false)
         DispatchQueue.main.async {
             // Clear any error message
-            self.notRefreshingAlertLabel.isHidden = true
+            self.notRefreshingReason = nil
+            self.notRefreshingButton.isHidden = true
         }
     }
 
@@ -311,7 +327,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             // Ask octoprintClient to connect to OctoPrint server
             octoprintClient.connectToServer(printer: printer)
         } else {
-            DispatchQueue.main.async { self.notRefreshingAlertLabel.isHidden = true }
+            DispatchQueue.main.async {
+                self.notRefreshingReason = nil
+                self.notRefreshingButton.isHidden = true
+            }
             // Assume printer is not connected
             updateConnectButton(printerConnected: false)
             // Ask octoprintClient to disconnect from OctoPrint server
@@ -402,6 +421,20 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             printerSubpanelHeightConstraintPortrait = 310
             printerSubpanelHeightConstraintLandscape = 330
         }
+    }
+    
+    fileprivate func obtainConnectionErrorReason(error: Error) -> String {
+        if let nsError = error as NSError? {
+            if nsError.code >= -9851 && nsError.code <= -9800 {
+                // Some problem with SSL or the certificate
+                return NSLocalizedString("Bad Certificate or SSL Problem", comment: "HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc.")
+            } else if nsError.domain == "kCFErrorDomainCFNetwork" && nsError.code == 2 {
+                return NSLocalizedString("Server cannot be found", comment: "DNS resolution failed. Cannot resolve hostname")
+            } else if nsError.domain == "NSPOSIXErrorDomain" && nsError.code == 61 {
+                return NSLocalizedString("Could not connect to the server", comment: "Connection to server failed")
+            }
+        }
+        return error.localizedDescription
     }
     
     fileprivate func showAlert(_ title: String, message: String) {

@@ -12,6 +12,9 @@ class SecurityViewController: ThemedStaticUITableViewController, AppConfiguratio
     @IBOutlet weak var appAutoLockLabel: UILabel!
     @IBOutlet weak var appAutoLockSwitch: UISwitch!
     
+    @IBOutlet weak var certificateValidationLabel: UILabel!
+    @IBOutlet weak var certificateValidationSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -27,11 +30,13 @@ class SecurityViewController: ThemedStaticUITableViewController, AppConfiguratio
         appLockBiometricsLabel.textColor = theme.textColor()
         appLockLabel.textColor = theme.textColor()
         appAutoLockLabel.textColor = theme.textColor()
+        certificateValidationLabel.textColor = theme.textColor()
 
         // Configure state of switches
         appLockBiometricsSwitch.isOn = appConfiguration.appLockedRequiresAuthentication()
         appLockSwitch.isOn = appConfiguration.appLocked()
         appAutoLockSwitch.isOn = appConfiguration.appAutoLock()
+        certificateValidationSwitch.isOn = !appConfiguration.certValidationDisabled()
         reviewBiometricsSwitch()
     }
     
@@ -69,6 +74,10 @@ class SecurityViewController: ThemedStaticUITableViewController, AppConfiguratio
     
     @IBAction func appAutoLockChanged(_ sender: Any) {
         appConfiguration.appAutoLock(autoLock: appAutoLockSwitch.isOn)
+    }
+    
+    @IBAction func certificateValidationChanged(_ sender: Any) {
+        appConfiguration.certValidationDisabled(disable: !certificateValidationSwitch.isOn)
     }
     
     // MARK: - AppConfigurationDelegate

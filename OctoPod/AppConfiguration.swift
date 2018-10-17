@@ -7,10 +7,12 @@ class AppConfiguration: OctoPrintClientDelegate {
     private static let APP_AUTO_LOCK = "APP_CONFIGURATION_AUTO_LOCKED"
     private static let CONFIRMATION_ON_CONNECT = "APP_CONFIGURATION_CONF_ON_CONNECT"
     private static let CONFIRMATION_ON_DISCONNECT = "APP_CONFIGURATION_CONF_ON_DISCONNECT"
+    private static let DISABLE_CERT_VALIDATION = "APP_CONFIGURATION_DISABLE_CERT_VALIDATION"
 
     var delegates: Array<AppConfigurationDelegate> = Array()
 
     init(octoprintClient: OctoPrintClient) {
+        octoprintClient.appConfiguration = self
         // Listen to events coming from OctoPrintClient
         octoprintClient.delegates.append(self)
     }
@@ -82,6 +84,8 @@ class AppConfiguration: OctoPrintClientDelegate {
         return defaults.set(autoLock, forKey: AppConfiguration.APP_AUTO_LOCK)
     }
     
+    // MARK: - Printer Connection Confirmation
+
     // Prompt for confirmation when asking OctoPrint to connect to printer
     // Off by default.
     // Some users might want to turn this on to prevent resetting the printer when connecting
@@ -113,6 +117,30 @@ class AppConfiguration: OctoPrintClientDelegate {
     func confirmationOnDisconnect(enable: Bool) {
         let defaults = UserDefaults.standard
         return defaults.set(enable, forKey: AppConfiguration.CONFIRMATION_ON_DISCONNECT)
+    }
+    
+    // MARK: - SSL Certificate Validation
+    
+    // Returns true if SSL Certification validation is disabled. Not recommended
+    // to disable certificates validation but might be necessary for most people
+    // that run OctoPrint with self-signed certificates and still want to use HTTPS
+    // Enabled by default
+    func certValidationDisabled() -> Bool {
+        let defaults = UserDefaults.standard
+        return defaults.bool(forKey: AppConfiguration.DISABLE_CERT_VALIDATION)
+    }
+    
+    // Sets whether SSL Certification validation is disabled or not. Not recommended
+    // to disable certificates validation but might be necessary for most people
+    // that run OctoPrint with self-signed certificates and still want to use HTTPS
+    // Enabled by default
+    func certValidationDisabled(disable: Bool) {
+        let defaults = UserDefaults.standard
+        defaults.set(disable, forKey: AppConfiguration.DISABLE_CERT_VALIDATION)
+        // Notify listeners that cert validation setting has changed
+        for delegate in delegates {
+            delegate.certValidationChanged(disabled: disable)
+        }
     }
     
     // MARK: - OctoPrintClientDelegate

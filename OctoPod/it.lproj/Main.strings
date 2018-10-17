@@ -4,7 +4,7 @@
 /* Class = "UIButton"; normalTitle = "Change language"; ObjectID = "2wA-7u-KgW"; */
 "2wA-7u-KgW.normalTitle" = "Cambia lingua";
 
-/* Class = "UILabel"; text = "Auto-lock when printing"; ObjectID = "3eo-D0-hAF"; */
+/* Class = "UILabel"; text = "Auto-lock while printing"; ObjectID = "3eo-D0-hAF"; */
 "3eo-D0-hAF.text" = "Auto-blocco durante la stampa";
 
 /* Class = "UILabel"; text = "Flow rate"; ObjectID = "3IG-Y9-Ofi"; */
@@ -96,6 +96,9 @@
 
 /* Class = "UIButton"; normalTitle = "View activity log"; ObjectID = "aJp-RM-Tuf"; */
 "aJp-RM-Tuf.normalTitle" = "Visualizza log attività";
+
+/* Class = "UIButton"; normalTitle = "Not refreshing"; ObjectID = "b0b-3X-MUJ"; */
+"b0b-3X-MUJ.normalTitle" = "Non aggiornato";
 
 /* Class = "UIButton"; normalTitle = "X"; ObjectID = "B7j-Fj-W6p"; */
 "B7j-Fj-W6p.normalTitle" = "X";

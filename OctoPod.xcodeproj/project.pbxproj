@@ -34,6 +34,7 @@
 		3D45280F20E15A380094CCB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280D20E15A380094CCB7 /* LaunchScreen.storyboard */; };
 		3D47BA3E21278956002420A0 /* IPPlugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D47BA3D21278956002420A0 /* IPPlugTableViewCell.swift */; };
 		3D5849E4210CC8720068D87A /* OctoPrintSettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5849E3210CC8720068D87A /* OctoPrintSettingsDelegate.swift */; };
+		3D5879FA2176D2D20058A4DC /* NotRefreshingReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */; };
 		3D5D613621209F52000B66E7 /* CamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D613521209F52000B66E7 /* CamerasViewController.swift */; };
 		3D6350EA21080AD3001C10F7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350E921080AD3001C10F7 /* Theme.swift */; };
 		3D6350F121082E07001C10F7 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F021082E07001C10F7 /* AppearanceViewController.swift */; };
@@ -124,6 +125,7 @@
 		3D47BA3D21278956002420A0 /* IPPlugTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPPlugTableViewCell.swift; sourceTree = "<group>"; };
 		3D5849E3210CC8720068D87A /* OctoPrintSettingsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintSettingsDelegate.swift; sourceTree = "<group>"; };
 		3D5849E5210CCB560068D87A /* OctoPod v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v2.xcdatamodel"; sourceTree = "<group>"; };
+		3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotRefreshingReasonViewController.swift; sourceTree = "<group>"; };
 		3D5D613421209B52000B66E7 /* OctoPod v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v3.xcdatamodel"; sourceTree = "<group>"; };
 		3D5D613521209F52000B66E7 /* CamerasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasViewController.swift; sourceTree = "<group>"; };
 		3D6350E921080AD3001C10F7 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */,
 				3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */,
 				3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */,
+				3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */,
 			);
 			path = "Panel UI";
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				3D74FA2921251BE600DA2CB3 /* IPPlugViewController.swift in Sources */,
 				3D6350F721084334001C10F7 /* ThemedDynamicUITableViewController.swift in Sources */,
 				3D7C884A2152BB18009FECEF /* DevicesSyncLogViewController.swift in Sources */,
+				3D5879FA2176D2D20058A4DC /* NotRefreshingReasonViewController.swift in Sources */,
 				3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */,
 				3D8D51A921333D310006BBB1 /* CustomControlInputSlideViewCell.swift in Sources */,
 				3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */,

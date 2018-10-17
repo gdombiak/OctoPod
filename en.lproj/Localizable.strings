@@ -117,3 +117,7 @@
 "Failed to send GCode command" = "Failed to send GCode command";
 
 "iOS Language" = "iOS Language";
+
+"Bad Certificate or SSL Problem" = "Bad Certificate or SSL Problem";
+"Server cannot be found" = "Server cannot be found";
+"Could not connect to the server" = "Could not connect to the server";
