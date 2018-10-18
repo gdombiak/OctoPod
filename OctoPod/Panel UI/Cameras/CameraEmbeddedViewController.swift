@@ -25,6 +25,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     var embedded: Bool = true
     var embeddedCameraTappedCallback: (() -> Void)?
+    var embeddedCameraDelegate: EmbeddedCameraDelegate?
 
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
 
@@ -41,7 +42,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
 
         if !embedded {
-            // Hide the navigation bar on the this view controller
+            // Hide the navigation bar on this view controller
             self.navigationController?.setNavigationBarHidden(true, animated: animated)
             
         } else {
@@ -224,7 +225,12 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                         }
                     }
                 }
-                
+
+                streamingController?.didRenderImage = { (image: UIImage) in
+                    // Notify that we got our first image and we know its ratio
+                    self.embeddedCameraDelegate?.imageAspectRatio(ratio: image.size.height / image.size.width)
+                }
+
                 streamingController?.didFinishLoading = {
                     // Hide error messages since an image will be rendered (so that means that it worked!)
                     self.errorMessageLabel.isHidden = true

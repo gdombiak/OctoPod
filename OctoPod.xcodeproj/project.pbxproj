@@ -22,6 +22,7 @@
 		3D1A93682132F5E70050ED9A /* ChildrenCustomControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A93672132F5E70050ED9A /* ChildrenCustomControlViewController.swift */; };
 		3D1A936A213314300050ED9A /* ExecuteControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A9369213314300050ED9A /* ExecuteControlViewController.swift */; };
 		3D1A936C213316850050ED9A /* ExecuteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A936B213316850050ED9A /* ExecuteControl.swift */; };
+		3D2821E72178167D00976611 /* EmbeddedCameraDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2821E62178167D00976611 /* EmbeddedCameraDelegate.swift */; };
 		3D33B7A1213F6A0D002A4BE3 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */; };
 		3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D36DD79210300C500884BD6 /* TerminalViewController.swift */; };
 		3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */; };
@@ -109,6 +110,7 @@
 		3D1A93672132F5E70050ED9A /* ChildrenCustomControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenCustomControlViewController.swift; sourceTree = "<group>"; };
 		3D1A9369213314300050ED9A /* ExecuteControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteControlViewController.swift; sourceTree = "<group>"; };
 		3D1A936B213316850050ED9A /* ExecuteControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteControl.swift; sourceTree = "<group>"; };
+		3D2821E62178167D00976611 /* EmbeddedCameraDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedCameraDelegate.swift; sourceTree = "<group>"; };
 		3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		3D36DD79210300C500884BD6 /* TerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalViewController.swift; sourceTree = "<group>"; };
 		3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpanelViewController.swift; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 			children = (
 				3D5D613521209F52000B66E7 /* CamerasViewController.swift */,
 				3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */,
+				3D2821E62178167D00976611 /* EmbeddedCameraDelegate.swift */,
 			);
 			path = Cameras;
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 				3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */,
 				3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */,
 				3D8D51A721333D170006BBB1 /* CustomControlInputViewCell.swift in Sources */,
+				3D2821E72178167D00976611 /* EmbeddedCameraDelegate.swift in Sources */,
 				3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */,
 				3D1A935B21326C630050ED9A /* ControlInput.swift in Sources */,
 				3DF0157621227ACB002B4C14 /* TempHistoryViewController.swift in Sources */,

@@ -20,15 +20,15 @@
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n53-As-HXW">
                                 <rect key="frame" x="0.0" y="308" width="375" height="310"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" priority="999" constant="310" id="ucF-8j-zec"/>
-                                </constraints>
                                 <connections>
                                     <segue destination="Ssy-4U-x9b" kind="embed" id="QJF-Hj-FjS"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="uff-mu-aBi">
                                 <rect key="frame" x="0.0" y="64" width="375" height="244"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="244" id="aUz-z4-Qhc"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="1GM-lb-iPS" kind="embed" id="KKl-Fj-b9B"/>
                                 </connections>
@@ -77,10 +77,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cameraHeightConstraint" destination="aUz-z4-Qhc" id="gH0-RG-tja"/>
                         <outlet property="connectButton" destination="uRz-Gy-YAf" id="9Bq-Q2-xMe"/>
                         <outlet property="notRefreshingButton" destination="b0b-3X-MUJ" id="Knb-qg-lHe"/>
                         <outlet property="printerSelectButton" destination="PyK-FO-APL" id="wK4-vf-paq"/>
-                        <outlet property="printerSubpanelHeightConstraint" destination="ucF-8j-zec" id="9Sr-7L-Nms"/>
                         <segue destination="SqB-ww-g1i" kind="show" identifier="full_camera" id="87W-4S-kKd"/>
                     </connections>
                 </viewController>
@@ -3824,15 +3824,15 @@
                         <subviews>
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMi-Ri-ZkX" userLabel="Small Camera View">
                                 <rect key="frame" x="0.0" y="64" width="375" height="244"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="244" id="NKq-ko-u6e"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="1GM-lb-iPS" kind="embed" id="JlG-hL-vqd"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zlp-qX-RJJ">
                                 <rect key="frame" x="0.0" y="308" width="375" height="310"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="310" id="QNK-qc-QT2"/>
-                                </constraints>
                                 <connections>
                                     <segue destination="avQ-HZ-xCk" kind="embed" id="Dfy-au-UKw"/>
                                 </connections>
@@ -3851,7 +3851,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Td9-YL-xMy"/>
                     <connections>
-                        <outlet property="printerSubpanelHeightConstraint" destination="QNK-qc-QT2" id="yeG-eB-GmU"/>
+                        <outlet property="cameraHeightConstraint" destination="NKq-ko-u6e" id="p5T-ae-b1j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bGd-1f-cJY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3987,6 +3987,6 @@
         <segue reference="DPY-Lb-zDG"/>
         <segue reference="06R-xh-V19"/>
         <segue reference="Rs9-4F-Pao"/>
-        <segue reference="KKl-Fj-b9B"/>
+        <segue reference="JlG-hL-vqd"/>
     </inferredMetricsTieBreakers>
 </document>

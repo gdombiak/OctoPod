@@ -1,6 +1,6 @@
 import UIKit
 
-class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate {
+class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, EmbeddedCameraDelegate {
     
     private static let CONNECT_CONFIRMATION = "PANEL_CONNECT_CONFIRMATION"
 
@@ -20,10 +20,14 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     var subpanelsViewController: SubpanelsViewController?
     
     var screenHeight: CGFloat!
-    var printerSubpanelHeightConstraintPortrait: CGFloat! = 313
-    var printerSubpanelHeightConstraintLandscape: CGFloat! = 330
+    var imageAspectRatio16_9: Bool = false
+    var transitioningNewPage: Bool = false
+    var camera4_3HeightConstraintPortrait: CGFloat! = 313
+    var camera4_3HeightConstraintLandscape: CGFloat! = 330
+    var camera16_9HeightConstraintPortrait: CGFloat! = 313
+    var cameral16_9HeightConstraintLandscape: CGFloat! = 330
 
-    @IBOutlet weak var printerSubpanelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cameraHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +40,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             self.handleEmbeddedCameraTap()
         }
         
+        // Listen to event when first image gets loaded so we can adjust UI based on aspect ratio of image
+        camerasViewController?.embeddedCameraDelegate = self
+        
         // Indicate that we want to instruct users that gestures can be used to manipulate image
         // Messages will not be visible after user used these features
         camerasViewController?.infoGesturesAvailable = true
@@ -47,7 +54,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         octoprintClient.delegates.append(self)
         
         // Calculate constraint for subpanel
-        calculatePrinterSubpanelHeightConstraints()
+        calculateCameraHeightConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -314,6 +321,39 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
+    // MARK: - EmbeddedCameraDelegate
+    
+    func imageAspectRatio(ratio: CGFloat) {
+        let newRatio = ratio < 0.60
+        if imageAspectRatio16_9 != newRatio {
+            imageAspectRatio16_9 = newRatio
+            if !transitioningNewPage {
+                if let printer = printerManager.getDefaultPrinter() {
+                    let orientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
+                    // Add a tiny delay so the UI does not go crazy
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        self.updateForCameraOrientation(orientation: orientation)
+                    }
+                }
+            }
+        }
+    }
+    
+    func startTransitionNewPage() {
+        transitioningNewPage = true
+    }
+    
+    func finishedTransitionNewPage() {
+        transitioningNewPage = false
+        if let printer = printerManager.getDefaultPrinter() {
+            let orientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
+            // Add a tiny delay so the UI does not go crazy
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.updateForCameraOrientation(orientation: orientation)
+            }
+        }
+    }
+    
     // MARK: - Private functions
     
     fileprivate func showDefaultPrinter() {
@@ -352,9 +392,13 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     fileprivate func updateForCameraOrientation(orientation: UIImage.Orientation, devicePortrait: Bool = UIApplication.shared.statusBarOrientation.isPortrait) {
         if orientation == UIImage.Orientation.left || orientation == UIImage.Orientation.leftMirrored || orientation == UIImage.Orientation.rightMirrored || orientation == UIImage.Orientation.right {
-            printerSubpanelHeightConstraint.constant = 280
+            cameraHeightConstraint.constant = 281 + 50
         } else {
-            printerSubpanelHeightConstraint.constant = devicePortrait ? printerSubpanelHeightConstraintPortrait! : printerSubpanelHeightConstraintLandscape!
+            if imageAspectRatio16_9 {
+                cameraHeightConstraint.constant = devicePortrait ? camera16_9HeightConstraintPortrait! : cameral16_9HeightConstraintLandscape!
+            } else {
+                cameraHeightConstraint.constant = devicePortrait ? camera4_3HeightConstraintPortrait! : camera4_3HeightConstraintLandscape!
+            }
         }
     }
     
@@ -385,42 +429,15 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         connectButton.isEnabled = !appConfiguration.appLocked()
     }
 
-    fileprivate func calculatePrinterSubpanelHeightConstraints() {
+    fileprivate func calculateCameraHeightConstraints() {
         let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
         screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
-        if screenHeight <= 667 {
-            // iPhone * (smaller models)
-            printerSubpanelHeightConstraintPortrait = 273
-            printerSubpanelHeightConstraintLandscape = 330
-        } else if screenHeight == 736 {
-            // iPhone 7/8 Plus
-            printerSubpanelHeightConstraintPortrait = 313
-            printerSubpanelHeightConstraintLandscape = 330
-        } else if screenHeight == 812 {
-            // iPhone X, Xs
-            printerSubpanelHeightConstraintPortrait = 360
-            printerSubpanelHeightConstraintLandscape = 330
-        } else if screenHeight == 896 {
-            // iPhone Xr, Xs Max
-            printerSubpanelHeightConstraintPortrait = 413
-            printerSubpanelHeightConstraintLandscape = 330
-        } else if screenHeight == 1024 {
-            // iPad (9.7-inch)
-            printerSubpanelHeightConstraintPortrait = 333
-            printerSubpanelHeightConstraintLandscape = 300
-        } else if screenHeight == 1112 {
-            // iPad (10.5-inch)
-            printerSubpanelHeightConstraintPortrait = 373
-            printerSubpanelHeightConstraintLandscape = 300
-        } else if screenHeight >= 1366 {
-            // iPad (12.9-inch)
-            printerSubpanelHeightConstraintPortrait = 483
-            printerSubpanelHeightConstraintLandscape = 300
-        } else {
-            // Unknown device so use default value
-            printerSubpanelHeightConstraintPortrait = 310
-            printerSubpanelHeightConstraintLandscape = 330
-        }
+        let constraints = UIUtils.calculateCameraHeightConstraints(screenHeight: screenHeight)
+        
+        camera4_3HeightConstraintPortrait = constraints.cameraHeight4_3ConstraintPortrait
+        camera4_3HeightConstraintLandscape = constraints.cameraHeight4_3ConstraintLandscape
+        camera16_9HeightConstraintPortrait = constraints.camera16_9HeightConstraintPortrait
+        cameral16_9HeightConstraintLandscape = constraints.cameral16_9HeightConstraintLandscape
     }
     
     fileprivate func obtainConnectionErrorReason(error: Error) -> String {

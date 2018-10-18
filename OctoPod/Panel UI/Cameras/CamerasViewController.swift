@@ -8,6 +8,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
 
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
     var embeddedCameraTappedCallback: (() -> Void)?
+    var embeddedCameraDelegate: EmbeddedCameraDelegate?
 
     // The UIPageViewController
     private var pageContainer: UIPageViewController!
@@ -128,6 +129,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         pendingIndex = controllerIndex(targetViewController: pendingViewControllers.first! as! CameraEmbeddedViewController)
+        embeddedCameraDelegate?.startTransitionNewPage()
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
@@ -136,6 +138,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             if let index = currentIndex {
                 pageControl.currentPage = index
             }
+            embeddedCameraDelegate?.finishedTransitionNewPage()
         }
     }
 
@@ -244,6 +247,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         controller.cameraOrientation = cameraOrientation
         controller.infoGesturesAvailable = infoGesturesAvailable
         controller.embeddedCameraTappedCallback = embeddedCameraTappedCallback
+        controller.embeddedCameraDelegate = embeddedCameraDelegate
         return controller
     }
     

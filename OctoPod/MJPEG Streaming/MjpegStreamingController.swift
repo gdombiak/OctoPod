@@ -30,6 +30,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     open var didFinishLoading: (()->Void)?
     open var didFinishWithErrors: ((Error)->Void)?
     open var didFinishWithHTTPErrors: ((HTTPURLResponse)->Void)?
+    open var didRenderImage: ((UIImage)->Void)?
     open var contentURL: URL?
     open var imageView: UIImageView
     open var imageOrientation: UIImage.Orientation?
@@ -93,12 +94,18 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
             }
             // I'm creating the UIImage before performing didFinishLoading to minimize the interval
             // between the actions done by didFinishLoading and the appearance of the first image
+            var firstTimeImage = false
             if status == .loading {
+                firstTimeImage = true
                 status = .playing
                 DispatchQueue.main.async { self.didFinishLoading?() }
             }
             
             DispatchQueue.main.async { self.imageView.image = receivedImage }
+            
+            if firstTimeImage {
+                DispatchQueue.main.async { self.didRenderImage?(receivedImage) }
+            }
         }
         
         receivedData = NSMutableData()
