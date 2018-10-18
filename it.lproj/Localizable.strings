@@ -119,6 +119,9 @@
 "Failed to request to extrude" = "Errore nella richiesta di estrudere";
 
 /* (No Comment) */
+"Failed to request to go home" = "Errore nella richiesta di azzerare la posizione";
+
+/* (No Comment) */
 "Failed to request to print file" = "Errore nella richiesta di stampare il file";
 
 /* (No Comment) */

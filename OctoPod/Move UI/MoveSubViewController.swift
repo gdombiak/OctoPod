@@ -26,6 +26,8 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBOutlet weak var upButton: UIButton!
     @IBOutlet weak var downButton: UIButton!
     
+    @IBOutlet weak var goHomeButton: UIButton!
+    
     @IBOutlet weak var retractButton: UIButton!
     @IBOutlet weak var extrudeButton: UIButton!
     @IBOutlet weak var flowRateLabel: UILabel!
@@ -162,6 +164,16 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                     NSLog("Error moving Z axis. HTTP status code \(response.statusCode)")
                     self.showAlert(message: NSLocalizedString("Failed to request moving down", comment: ""))
                 }
+            }
+        }
+    }
+    
+    @IBAction func goHome(_ sender: Any) {
+        octoprintClient.home { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if !requested {
+                // Handle error
+                NSLog("Error going home. HTTP status code \(response.statusCode)")
+                self.showAlert(message: NSLocalizedString("Failed to request to go home", comment: ""))
             }
         }
     }
@@ -307,6 +319,8 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         
         upButton.isEnabled = enable
         downButton.isEnabled = enable
+        
+        goHomeButton.isEnabled = enable
         
         retractButton.isEnabled = enable
         extrudeButton.isEnabled = enable

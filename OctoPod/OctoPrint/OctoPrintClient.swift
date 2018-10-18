@@ -396,6 +396,16 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     // MARK: - Print head operations (move operations)
     
+    func home(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "home"
+            json["axes"] = ["x", "y", "z"]
+            
+            printHeadPost(httpClient: client, json: json, callback: callback)
+        }
+    }
+    
     func move(x delta: Float, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()

@@ -119,6 +119,9 @@
 "Failed to request to extrude" = "Kunne ikke be om å ekstrudere";
 
 /* (No Comment) */
+"Failed to request to go home" = "Kunne ikke be om å gå hjem";
+
+/* (No Comment) */
 "Failed to request to print file" = "Kunne ikke be om å skrive ut fil";
 
 /* (No Comment) */

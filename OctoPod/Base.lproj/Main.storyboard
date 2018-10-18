@@ -3488,10 +3488,35 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="X Y Z" id="gHQ-Lu-mQ0">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="40" id="Jit-ua-MW9">
+                                        <rect key="frame" x="0.0" y="303.5" width="375" height="40"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jit-ua-MW9" id="dQF-6F-tsN">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbn-Ah-Pat">
+                                                    <rect key="frame" x="175.5" y="8" width="24" height="24"/>
+                                                    <state key="normal" image="Move X Y Z"/>
+                                                    <connections>
+                                                        <action selector="goHome:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="6tm-R3-7wd"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zbn-Ah-Pat" firstAttribute="centerX" secondItem="dQF-6F-tsN" secondAttribute="centerX" id="aa9-ox-Awt"/>
+                                                <constraint firstItem="zbn-Ah-Pat" firstAttribute="top" secondItem="dQF-6F-tsN" secondAttribute="top" constant="8" id="dnO-a7-Q4E"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Extruder" id="ZeS-hE-vC8">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="90" id="AjF-Li-FQ4">
-                                        <rect key="frame" x="0.0" y="303.5" width="375" height="90"/>
+                                        <rect key="frame" x="0.0" y="382.5" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AjF-Li-FQ4" id="IEx-ZS-T4P">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
@@ -3569,7 +3594,7 @@
                             <tableViewSection headerTitle="Fan &amp; Motors" id="SwZ-jq-tKf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="126" id="m00-ai-nim">
-                                        <rect key="frame" x="0.0" y="432.5" width="375" height="126"/>
+                                        <rect key="frame" x="0.0" y="511.5" width="375" height="126"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m00-ai-nim" id="WQn-Ly-v6f">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="125.5"/>
@@ -3710,6 +3735,7 @@
                         <outlet property="flowRateSlider" destination="zDH-jI-B7O" id="hZe-6r-gGq"/>
                         <outlet property="flowRateTextLabel" destination="3IG-Y9-Ofi" id="DOU-dM-3vq"/>
                         <outlet property="frontButton" destination="C3J-E8-zmG" id="R3i-mX-Vir"/>
+                        <outlet property="goHomeButton" destination="zbn-Ah-Pat" id="Ruo-d6-yjH"/>
                         <outlet property="leftButton" destination="b8F-E5-ASf" id="Lhm-fG-bvx"/>
                         <outlet property="retractButton" destination="Q2b-xf-a3O" id="4O7-Z4-B4M"/>
                         <outlet property="rightButton" destination="Lj9-dc-lnA" id="Wh5-s7-AWT"/>
@@ -3937,6 +3963,7 @@
         <image name="Files" width="24" height="24"/>
         <image name="Folder" width="24" height="24"/>
         <image name="Move" width="24" height="24"/>
+        <image name="Move X Y Z" width="24" height="24"/>
         <image name="PSUPowerOn" width="128" height="128"/>
         <image name="Panel" width="24" height="24"/>
         <image name="Print Job" width="24" height="24"/>

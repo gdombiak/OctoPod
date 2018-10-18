@@ -119,6 +119,9 @@
 "Failed to request to extrude" = "Nezdařila se žádost o vytlačení filamentu";
 
 /* (No Comment) */
+"Failed to request to go home" = "Nezdařil se požadavek o posun domů";
+
+/* (No Comment) */
 "Failed to request to print file" = "Nezdařila se žádost o tisk souboru";
 
 /* (No Comment) */

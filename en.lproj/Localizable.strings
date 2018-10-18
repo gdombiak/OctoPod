@@ -86,6 +86,7 @@
 "Failed to request moving right" = "Failed to request moving right";
 "Failed to request moving up" = "Failed to request moving up";
 "Failed to request moving down" = "Failed to request moving down";
+"Failed to request to go home" = "Failed to request to go home";
 "Failed to request to retract" = "Failed to request to retract";
 "Failed to request to extrude" = "Failed to request to extrude";
 "Failed to set new flow rate" = "Failed to set new flow rate";
