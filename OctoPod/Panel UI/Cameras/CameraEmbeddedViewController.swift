@@ -23,9 +23,8 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     var uiPreviousOrientation: UIInterfaceOrientation?
     
-    var embedded: Bool = true
-    var embeddedCameraTappedCallback: (() -> Void)?
-    var embeddedCameraDelegate: EmbeddedCameraDelegate?
+    var cameraTappedCallback: (() -> Void)?
+    var cameraViewDelegate: CameraViewDelegate?
 
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
 
@@ -41,22 +40,17 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         // Listen when app went to background so we can stop any ongoing HTTP request
         NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
 
-        if !embedded {
-            // Hide the navigation bar on this view controller
-            self.navigationController?.setNavigationBarHidden(true, animated: animated)
-            
+        let defaults = UserDefaults.standard
+        if defaults.bool(forKey: CameraEmbeddedViewController.CAMERA_INFO_GESTURES) {
+            // User already used gestures so hide information labels
+            tapMessageLabel.isHidden = true
+            pinchMessageLabel.isHidden = true
         } else {
-            let defaults = UserDefaults.standard
-            if defaults.bool(forKey: CameraEmbeddedViewController.CAMERA_INFO_GESTURES) {
-                // User already used gestures so hide information labels
-                tapMessageLabel.isHidden = true
-                pinchMessageLabel.isHidden = true
-            } else {
-                // User did not use gestures so parent window decides if messages should be displayed
-                tapMessageLabel.isHidden = !infoGesturesAvailable
-                pinchMessageLabel.isHidden = !infoGesturesAvailable
-            }
+            // User did not use gestures so parent window decides if messages should be displayed
+            tapMessageLabel.isHidden = !infoGesturesAvailable
+            pinchMessageLabel.isHidden = !infoGesturesAvailable
         }
+
         // Add a gesture recognizer to camera view so we can handle taps
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCameraTap))
         imageView.isUserInteractionEnabled = true
@@ -76,16 +70,6 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         octoprintClient.remove(octoPrintSettingsDelegate: self)
 
         stopRenderingPrinter()
-        
-        if !embedded {
-            // Show the navigation bar on other view controllers
-            self.navigationController?.setNavigationBarHidden(false, animated: animated)
-
-            // When running full screen we are forcing landscape so we go back to portrait when leaving
-            if let orientation = uiPreviousOrientation {
-                UIDevice.current.setValue(Int(orientation.rawValue), forKey: "orientation")
-            }
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -116,9 +100,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         // Record that user used this feature
         userUsedGestures()
         
-        if !embedded {
-            navigationController?.popViewController(animated: true)
-        } else if let callback = embeddedCameraTappedCallback {
+        if let callback = cameraTappedCallback {
             callback()
         }
     }
@@ -228,7 +210,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
 
                 streamingController?.didRenderImage = { (image: UIImage) in
                     // Notify that we got our first image and we know its ratio
-                    self.embeddedCameraDelegate?.imageAspectRatio(ratio: image.size.height / image.size.width)
+                    self.cameraViewDelegate?.imageAspectRatio(ratio: image.size.height / image.size.width)
                 }
 
                 streamingController?.didFinishLoading = {
@@ -253,15 +235,13 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     fileprivate func setCameraOrientation(newOrientation: UIImage.Orientation) {
         streamingController?.imageOrientation = newOrientation
-        if embedded {
-            if newOrientation == UIImage.Orientation.left || newOrientation == UIImage.Orientation.leftMirrored || newOrientation == UIImage.Orientation.rightMirrored || newOrientation == UIImage.Orientation.right {
-                DispatchQueue.main.async {
-                    self.imageView.contentMode = .scaleAspectFit
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.imageView.contentMode = .scaleAspectFit
-                }
+        if newOrientation == UIImage.Orientation.left || newOrientation == UIImage.Orientation.leftMirrored || newOrientation == UIImage.Orientation.rightMirrored || newOrientation == UIImage.Orientation.right {
+            DispatchQueue.main.async {
+                self.imageView.contentMode = .scaleAspectFit
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.imageView.contentMode = .scaleAspectFit
             }
         }
     }

@@ -1,6 +1,6 @@
 import UIKit
 
-class MoveViewController: UIViewController, OctoPrintSettingsDelegate, EmbeddedCameraDelegate {
+class MoveViewController: UIViewController, OctoPrintSettingsDelegate, CameraViewDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()

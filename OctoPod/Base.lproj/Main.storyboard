@@ -27,7 +27,7 @@
                             <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="uff-mu-aBi">
                                 <rect key="frame" x="0.0" y="64" width="375" height="244"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="244" id="aUz-z4-Qhc"/>
+                                    <constraint firstAttribute="height" priority="999" constant="244" id="aUz-z4-Qhc"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="1GM-lb-iPS" kind="embed" id="KKl-Fj-b9B"/>
@@ -48,6 +48,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="uff-mu-aBi" firstAttribute="top" secondItem="xB8-sn-f1e" secondAttribute="top" id="0IO-j5-j5m"/>
                             <constraint firstItem="xB8-sn-f1e" firstAttribute="trailing" secondItem="b0b-3X-MUJ" secondAttribute="trailing" constant="20" id="40I-bP-tdz"/>
@@ -57,7 +58,8 @@
                             <constraint firstItem="n53-As-HXW" firstAttribute="trailing" secondItem="xB8-sn-f1e" secondAttribute="trailing" id="N87-pP-oZc"/>
                             <constraint firstItem="uff-mu-aBi" firstAttribute="leading" secondItem="xB8-sn-f1e" secondAttribute="leading" id="OUR-aT-aHE"/>
                             <constraint firstItem="uff-mu-aBi" firstAttribute="trailing" secondItem="xB8-sn-f1e" secondAttribute="trailing" id="Ynb-gY-yIl"/>
-                            <constraint firstItem="n53-As-HXW" firstAttribute="top" secondItem="uff-mu-aBi" secondAttribute="bottom" id="xmR-ga-bXM"/>
+                            <constraint firstItem="n53-As-HXW" firstAttribute="top" secondItem="uff-mu-aBi" secondAttribute="bottom" id="laI-d5-TdD"/>
+                            <constraint firstItem="n53-As-HXW" firstAttribute="top" secondItem="xB8-sn-f1e" secondAttribute="bottom" priority="998" id="xmR-ga-bXM"/>
                             <constraint firstItem="b0b-3X-MUJ" firstAttribute="leading" secondItem="xB8-sn-f1e" secondAttribute="leading" constant="20" id="yqY-tW-mWr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xB8-sn-f1e"/>
@@ -77,11 +79,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cameraBottomConstraint" destination="xmR-ga-bXM" id="0Df-gU-9YL"/>
                         <outlet property="cameraHeightConstraint" destination="aUz-z4-Qhc" id="gH0-RG-tja"/>
                         <outlet property="connectButton" destination="uRz-Gy-YAf" id="9Bq-Q2-xMe"/>
                         <outlet property="notRefreshingButton" destination="b0b-3X-MUJ" id="Knb-qg-lHe"/>
                         <outlet property="printerSelectButton" destination="PyK-FO-APL" id="wK4-vf-paq"/>
-                        <segue destination="SqB-ww-g1i" kind="show" identifier="full_camera" id="87W-4S-kKd"/>
+                        <outlet property="subpanelsView" destination="n53-As-HXW" id="EgU-Vy-f2c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RPn-sw-RO1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1271,81 +1274,6 @@
                 <exit id="We3-ys-YSc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3482" y="218"/>
-        </scene>
-        <!--Camera-->
-        <scene sceneID="V4m-VI-8ac">
-            <objects>
-                <viewController title="Camera" hidesBottomBarWhenPushed="YES" id="SqB-ww-g1i" customClass="CameraEmbeddedViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lKL-Sc-aP6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="3te-69-hET">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wz7-AS-8Cp">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t1B-B9-t5u">
-                                        <rect key="frame" x="2" y="100" width="371" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                        <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pxj-s5-1zm">
-                                        <rect key="frame" x="2" y="129" width="371" height="30"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" button="YES" link="YES"/>
-                                        </accessibility>
-                                        <state key="normal" title="URL Button">
-                                            <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="errorURLClicked:" destination="SqB-ww-g1i" eventType="touchUpInside" id="4Zz-ou-FNi"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="wz7-AS-8Cp" firstAttribute="height" secondItem="3te-69-hET" secondAttribute="height" id="0qV-Pj-nDg"/>
-                                    <constraint firstAttribute="trailing" secondItem="wz7-AS-8Cp" secondAttribute="trailing" id="51f-vD-nSo"/>
-                                    <constraint firstItem="wz7-AS-8Cp" firstAttribute="leading" secondItem="3te-69-hET" secondAttribute="leading" id="BRZ-ZH-d5I"/>
-                                    <constraint firstAttribute="bottom" secondItem="wz7-AS-8Cp" secondAttribute="bottom" id="TYp-6k-lCd"/>
-                                    <constraint firstAttribute="trailing" secondItem="t1B-B9-t5u" secondAttribute="trailing" constant="2" id="VKf-0i-xf0"/>
-                                    <constraint firstItem="t1B-B9-t5u" firstAttribute="leading" secondItem="3te-69-hET" secondAttribute="leading" constant="2" id="Zt4-Xq-2M7"/>
-                                    <constraint firstItem="t1B-B9-t5u" firstAttribute="top" secondItem="3te-69-hET" secondAttribute="top" constant="100" id="bJC-9s-qzZ"/>
-                                    <constraint firstItem="Pxj-s5-1zm" firstAttribute="top" secondItem="t1B-B9-t5u" secondAttribute="bottom" constant="8" id="cA6-fi-tam"/>
-                                    <constraint firstItem="wz7-AS-8Cp" firstAttribute="top" secondItem="3te-69-hET" secondAttribute="top" id="fw1-wd-PVF"/>
-                                    <constraint firstItem="wz7-AS-8Cp" firstAttribute="width" secondItem="3te-69-hET" secondAttribute="width" id="r7z-nt-j7H"/>
-                                    <constraint firstItem="Pxj-s5-1zm" firstAttribute="leading" secondItem="3te-69-hET" secondAttribute="leading" constant="2" id="rVJ-Zi-6A8"/>
-                                    <constraint firstAttribute="trailing" secondItem="Pxj-s5-1zm" secondAttribute="trailing" constant="2" id="zYl-2p-SSM"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="SqB-ww-g1i" id="uwh-Rw-rQ0"/>
-                                </connections>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="3te-69-hET" firstAttribute="leading" secondItem="lKL-Sc-aP6" secondAttribute="leading" id="2Gc-8S-p16"/>
-                            <constraint firstItem="3te-69-hET" firstAttribute="bottom" secondItem="lKL-Sc-aP6" secondAttribute="bottom" id="6WD-5W-yFU"/>
-                            <constraint firstItem="3te-69-hET" firstAttribute="top" secondItem="lKL-Sc-aP6" secondAttribute="top" id="CTG-Vb-Wkl"/>
-                            <constraint firstItem="3te-69-hET" firstAttribute="trailing" secondItem="lKL-Sc-aP6" secondAttribute="trailing" id="GIY-tT-1uU"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="qlx-C3-hCQ"/>
-                    </view>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="errorMessageLabel" destination="t1B-B9-t5u" id="cS3-Oc-KuF"/>
-                        <outlet property="errorURLButton" destination="Pxj-s5-1zm" id="ZdR-Rv-WbZ"/>
-                        <outlet property="imageView" destination="wz7-AS-8Cp" id="Gri-26-bnV"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Eta-dv-NDf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3800.8000000000002" y="-896.40179910044981"/>
         </scene>
         <!--Subpanels View Controller-->
         <scene sceneID="aOv-h6-hBV">

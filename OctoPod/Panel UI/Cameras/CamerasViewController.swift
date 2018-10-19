@@ -8,7 +8,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
 
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
     var embeddedCameraTappedCallback: (() -> Void)?
-    var embeddedCameraDelegate: EmbeddedCameraDelegate?
+    var embeddedCameraDelegate: CameraViewDelegate?
 
     // The UIPageViewController
     private var pageContainer: UIPageViewController!
@@ -246,8 +246,8 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         controller.cameraURL = url
         controller.cameraOrientation = cameraOrientation
         controller.infoGesturesAvailable = infoGesturesAvailable
-        controller.embeddedCameraTappedCallback = embeddedCameraTappedCallback
-        controller.embeddedCameraDelegate = embeddedCameraDelegate
+        controller.cameraTappedCallback = embeddedCameraTappedCallback
+        controller.cameraViewDelegate = embeddedCameraDelegate
         return controller
     }
     

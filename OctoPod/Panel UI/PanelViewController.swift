@@ -1,6 +1,6 @@
 import UIKit
 
-class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, EmbeddedCameraDelegate {
+class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate {
     
     private static let CONNECT_CONFIRMATION = "PANEL_CONNECT_CONFIRMATION"
 
@@ -18,6 +18,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     var camerasViewController: CamerasViewController?
     var subpanelsViewController: SubpanelsViewController?
+    @IBOutlet weak var subpanelsView: UIView!
     
     var screenHeight: CGFloat!
     var imageAspectRatio16_9: Bool = false
@@ -27,7 +28,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     var camera16_9HeightConstraintPortrait: CGFloat! = 313
     var cameral16_9HeightConstraintLandscape: CGFloat! = 330
 
+    var uiOrientationBeforeFullScreen: UIInterfaceOrientation?
     @IBOutlet weak var cameraHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cameraBottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,20 +150,6 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 self.subpanelsViewController?.printerSelectedChanged()
                 self.camerasViewController?.printerSelectedChanged()
                 self.showDefaultPrinter()
-            }
-        }
-        
-        if segue.identifier == "full_camera", let controller = segue.destination as? CameraEmbeddedViewController {
-            controller.embedded = false
-            controller.cameraURL = camerasViewController?.cameraURL()
-            controller.cameraOrientation = camerasViewController?.cameraOrientation()
-            
-            let uiOrientation = UIApplication.shared.statusBarOrientation
-            if uiOrientation != UIInterfaceOrientation.landscapeLeft && uiOrientation != UIInterfaceOrientation.landscapeRight {
-                // We are not in landscape mode so change it to landscape
-                controller.uiPreviousOrientation = uiOrientation  // Set previous value so we can go back to what it was
-                // Rotate UI now
-                UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeRight.rawValue), forKey: "orientation")
             }
         }
         
@@ -307,6 +296,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     // React when device orientation changes
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        if subpanelsView.isHidden {
+            // Do nothing if camera is in full screen
+            return
+        }
         if let printer = printerManager.getDefaultPrinter() {
             // Update layout depending on camera orientation
             updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!, devicePortrait: size.height == screenHeight)
@@ -403,7 +396,43 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
     
     @objc func handleEmbeddedCameraTap() {
-        performSegue(withIdentifier: "full_camera", sender: nil)
+        if !subpanelsView.isHidden {
+            // Hide the navigation bar on this view controller
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            // Hide tab bar (located at the bottom)
+            self.tabBarController?.tabBar.isHidden = true
+            
+            subpanelsView.isHidden = true
+            
+            cameraHeightConstraint.priority = UILayoutPriority(rawValue: 998)
+            cameraBottomConstraint.priority = UILayoutPriority(rawValue: 999)
+            
+            let uiOrientation = UIApplication.shared.statusBarOrientation
+            if uiOrientation != UIInterfaceOrientation.landscapeLeft && uiOrientation != UIInterfaceOrientation.landscapeRight {
+                // We are not in landscape mode so change it to landscape
+                uiOrientationBeforeFullScreen = uiOrientation  // Set previous value so we can go back to what it was
+                // Rotate UI now
+                UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeRight.rawValue), forKey: "orientation")
+            } else {
+                uiOrientationBeforeFullScreen = nil
+            }
+        } else {
+            // Show the navigation bar on this view controller
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            // Show tab bar (located at the bottom)
+            self.tabBarController?.tabBar.isHidden = false
+            
+            subpanelsView.isHidden = false
+
+            cameraHeightConstraint.priority = UILayoutPriority(rawValue: 999)
+            cameraBottomConstraint.priority = UILayoutPriority(rawValue: 998)
+            
+            if let orientation = uiOrientationBeforeFullScreen {
+                // When running full screen we are forcing landscape so we go back to portrait when leaving
+                UIDevice.current.setValue(Int(orientation.rawValue), forKey: "orientation")
+                uiOrientationBeforeFullScreen = nil
+            }
+        }
     }
     
     @objc func appWillEnterForeground() {
