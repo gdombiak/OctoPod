@@ -11,6 +11,9 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Some bug in XCode Storyboards is not translating text of refresh control so let's do it manually
+        self.refreshControl?.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull down to refresh", comment: ""))
     }
     
     override func viewWillAppear(_ animated: Bool) {
