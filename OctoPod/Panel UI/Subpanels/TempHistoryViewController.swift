@@ -4,6 +4,7 @@ import Charts
 class TempHistoryViewController: UIViewController, SubpanelViewController {
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -47,6 +48,9 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         lineChartView.xAxis.granularity = 0.5
         lineChartView.leftAxis.granularity = 0.5
         lineChartView.rightAxis.granularity = 0.5
+        
+        // Control whether users can do zoom in/out
+        lineChartView.isUserInteractionEnabled = !appConfiguration.tempChartZoomDisabled()
 
         paintChart()
     }

@@ -166,6 +166,9 @@
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "fJ6-6T-dHU"; */
 "fJ6-6T-dHU.title" = "Nastavení";
 
+/* Class = "UITableViewSection"; headerTitle = "Temp Chart"; ObjectID = "GAt-su-C1i"; */
+"GAt-su-C1i.headerTitle" = "TABULKA TEPLOT";
+
 /* Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt"; */
 "gCt-Vk-Fgt.headerTitle" = "Připojení";
 
@@ -441,6 +444,9 @@
 
 /* Class = "UILabel"; text = "100.0%"; ObjectID = "vnu-ZQ-mJO"; */
 "vnu-ZQ-mJO.text" = "100.0%";
+
+/* Class = "UILabel"; text = "Zoom in/out"; ObjectID = "Vny-ch-OgO"; */
+"Vny-ch-OgO.text" = "Přiblížit/Oddálit";
 
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection"; ObjectID = "Vr9-x7-66H"; */
 "Vr9-x7-66H.headerTitle" = "Připojení tiskárny";

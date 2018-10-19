@@ -2,6 +2,8 @@ import UIKit
 
 class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPresentationControllerDelegate {
     
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+
     @IBOutlet weak var lightCell: UITableViewCell!
     @IBOutlet weak var darkCell: UITableViewCell!
     
@@ -9,6 +11,9 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
     @IBOutlet weak var darkLabel: UILabel!
     
     @IBOutlet weak var changeLanguageButton: UIButton!
+    
+    @IBOutlet weak var zoomInEnabledLabel: UILabel!
+    @IBOutlet weak var zoomInEnabledSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +29,10 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         let theme = Theme.currentTheme()
         lightLabel.textColor = theme.textColor()
         darkLabel.textColor = theme.textColor()
+        zoomInEnabledLabel.textColor = theme.textColor()
+        
+        zoomInEnabledSwitch.isOn = !appConfiguration.tempChartZoomDisabled()
+        
         refreshSelectedTheme(theme: theme)
     }
 
@@ -45,6 +54,10 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         viewWillAppear(true)
     }
 
+    @IBAction func tempZoomChanged(_ sender: Any) {
+        appConfiguration.tempChartZoomDisabled(disable: !zoomInEnabledSwitch.isOn)
+    }
+    
     fileprivate func refreshSelectedTheme(theme: Theme.ThemeChoice) {
         let lightSelected = theme == Theme.ThemeChoice.Light
         

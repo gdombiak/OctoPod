@@ -1600,6 +1600,39 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Temp Chart" id="GAt-su-C1i">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="zbU-e8-7e7">
+                                        <rect key="frame" x="0.0" y="349.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zbU-e8-7e7" id="fwj-44-dh4">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zoom in/out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vny-ch-OgO">
+                                                    <rect key="frame" x="16" y="12" width="287" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JDJ-k8-LP7">
+                                                    <rect key="frame" x="308" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="tempZoomChanged:" destination="4sv-CS-fGo" eventType="valueChanged" id="GYl-BR-udj"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="JDJ-k8-LP7" firstAttribute="top" secondItem="fwj-44-dh4" secondAttribute="top" constant="6" id="51M-uZ-2Ev"/>
+                                                <constraint firstItem="Vny-ch-OgO" firstAttribute="leading" secondItem="fwj-44-dh4" secondAttribute="leadingMargin" id="G9q-zX-919"/>
+                                                <constraint firstItem="Vny-ch-OgO" firstAttribute="top" secondItem="fwj-44-dh4" secondAttribute="topMargin" constant="1" id="Ncd-if-i6R"/>
+                                                <constraint firstAttribute="trailing" secondItem="JDJ-k8-LP7" secondAttribute="trailing" constant="18" id="Nfa-Fy-a49"/>
+                                                <constraint firstItem="JDJ-k8-LP7" firstAttribute="leading" secondItem="Vny-ch-OgO" secondAttribute="trailing" constant="5" id="Pnb-d7-QCS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="4sv-CS-fGo" id="wJp-ge-Cew"/>
@@ -1612,6 +1645,8 @@
                         <outlet property="darkLabel" destination="wHn-Dc-bWb" id="RUt-Tc-57o"/>
                         <outlet property="lightCell" destination="5JA-bz-vAF" id="KFR-kX-ZT4"/>
                         <outlet property="lightLabel" destination="MA6-Ay-j7Q" id="YxR-jF-qxK"/>
+                        <outlet property="zoomInEnabledLabel" destination="Vny-ch-OgO" id="h4e-jy-1hK"/>
+                        <outlet property="zoomInEnabledSwitch" destination="JDJ-k8-LP7" id="gpb-oy-KHP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0SB-Gd-UeX" userLabel="First Responder" sceneMemberID="firstResponder"/>

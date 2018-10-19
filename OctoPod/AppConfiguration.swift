@@ -8,6 +8,7 @@ class AppConfiguration: OctoPrintClientDelegate {
     private static let CONFIRMATION_ON_CONNECT = "APP_CONFIGURATION_CONF_ON_CONNECT"
     private static let CONFIRMATION_ON_DISCONNECT = "APP_CONFIGURATION_CONF_ON_DISCONNECT"
     private static let DISABLE_CERT_VALIDATION = "APP_CONFIGURATION_DISABLE_CERT_VALIDATION"
+    private static let DISABLE_TEMP_CHART_ZOOM = "APP_CONFIGURATION_DISABLE_TEMP_CHART_ZOOM"
 
     var delegates: Array<AppConfigurationDelegate> = Array()
 
@@ -141,6 +142,22 @@ class AppConfiguration: OctoPrintClientDelegate {
         for delegate in delegates {
             delegate.certValidationChanged(disabled: disable)
         }
+    }
+    
+    // MARK: - Temp Chart
+    
+    // Returns true if temp chart does not let users do zoom in/out
+    // Enabled by default
+    func tempChartZoomDisabled() -> Bool {
+        let defaults = UserDefaults.standard
+        return defaults.bool(forKey: AppConfiguration.DISABLE_TEMP_CHART_ZOOM)
+    }
+    
+    // Sets whether temp chart will let users do zoom in/out
+    // Enabled by default
+    func tempChartZoomDisabled(disable: Bool) {
+        let defaults = UserDefaults.standard
+        defaults.set(disable, forKey: AppConfiguration.DISABLE_TEMP_CHART_ZOOM)
     }
     
     // MARK: - OctoPrintClientDelegate
