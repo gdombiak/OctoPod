@@ -398,15 +398,15 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     @objc func handleEmbeddedCameraTap() {
         if !subpanelsView.isHidden {
             // Hide the navigation bar on this view controller
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
             // Hide tab bar (located at the bottom)
             self.tabBarController?.tabBar.isHidden = true
-            
+            // Hide bottom panel
             subpanelsView.isHidden = true
-            
+            // Switch constraints priority. Height does not matter now. Bottom constraint matters with 0 to safe view
             cameraHeightConstraint.priority = UILayoutPriority(rawValue: 998)
             cameraBottomConstraint.priority = UILayoutPriority(rawValue: 999)
-            
+            // Flip orientation if needed
             let uiOrientation = UIApplication.shared.statusBarOrientation
             if uiOrientation != UIInterfaceOrientation.landscapeLeft && uiOrientation != UIInterfaceOrientation.landscapeRight {
                 // We are not in landscape mode so change it to landscape
@@ -418,15 +418,15 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             }
         } else {
             // Show the navigation bar on this view controller
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
             // Show tab bar (located at the bottom)
             self.tabBarController?.tabBar.isHidden = false
-            
+            // Show bottom panel
             subpanelsView.isHidden = false
-
+            // Switch constraints priority. Height matters again. Bottom constraint no longer matters
             cameraHeightConstraint.priority = UILayoutPriority(rawValue: 999)
             cameraBottomConstraint.priority = UILayoutPriority(rawValue: 998)
-            
+            // Flip orientation if needed
             if let orientation = uiOrientationBeforeFullScreen {
                 // When running full screen we are forcing landscape so we go back to portrait when leaving
                 UIDevice.current.setValue(Int(orientation.rawValue), forKey: "orientation")
