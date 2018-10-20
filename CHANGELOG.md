@@ -1,6 +1,26 @@
 # Change Log
 
-## [1.11](https://github.com/gdombiak/OctoPod/tree/1.11) (2018-10-14)
+## [1.12](https://github.com/gdombiak/OctoPod/tree/1.12) (2018-10-21)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.11...1.12)
+
+**Implemented enhancements:**
+
+- Let users disable zoom in/out of temp chart [\#120](https://github.com/gdombiak/OctoPod/issues/120)
+- Adapt camera screen size according to aspect ratio [\#118](https://github.com/gdombiak/OctoPod/issues/118)
+- Expose to user the reason why websocket is not refreshing [\#115](https://github.com/gdombiak/OctoPod/issues/115)
+- Add Home button in Move window [\#112](https://github.com/gdombiak/OctoPod/issues/112)
+- Allow to switch cameras while in full screen [\#99](https://github.com/gdombiak/OctoPod/issues/99)
+
+**Fixed bugs:**
+
+- Pull down text to refresh table is not translated [\#119](https://github.com/gdombiak/OctoPod/issues/119)
+- Websocket fails to work with self-signed certs [\#114](https://github.com/gdombiak/OctoPod/issues/114)
+
+**Closed issues:**
+
+- Print job doesn’t show status [\#113](https://github.com/gdombiak/OctoPod/issues/113)
+
+## [1.11](https://github.com/gdombiak/OctoPod/tree/1.11) (2018-10-15)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.10...1.11)
 
 **Implemented enhancements:**
