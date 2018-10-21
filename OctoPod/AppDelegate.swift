@@ -7,9 +7,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
         // If no printers were defined then send to Setup window, if not go to first tab
         if let tabBarController = self.window!.rootViewController as? UITabBarController {
             tabBarController.selectedIndex = printerManager!.getPrinters().count == 0 ? 4 : 0
@@ -43,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        watchSessionManager.start()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -136,5 +135,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var appConfiguration: AppConfiguration = {
         return AppConfiguration(octoprintClient: self.octoprintClient)
+    }()
+    
+    lazy var watchSessionManager: WatchSessionManager = {
+        return WatchSessionManager(printerManager: self.printerManager!, cloudKitPrinterManager: self.cloudKitPrinterManager)
     }()
 }

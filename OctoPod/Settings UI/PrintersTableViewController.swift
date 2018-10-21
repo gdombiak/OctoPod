@@ -5,6 +5,7 @@ class PrintersTableViewController: ThemedDynamicUITableViewController, CloudKitP
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
 
     var printers: [Printer]!
 
@@ -64,9 +65,15 @@ class PrintersTableViewController: ThemedDynamicUITableViewController, CloudKitP
             let printerToDelete = printers[indexPath.row]
             // Update other devices via CloudKit
             self.cloudKitPrinterManager.pushDeletedPrinter(printer: printerToDelete)  // Properties are gone once deleted from Core Data so run this now
+
             // Delete the row from the data source
             printerManager.deletePrinter(printerToDelete)
             printers = printerManager.getPrinters()
+
+            // Push changes to Apple Watch
+            self.watchSessionManager.pushPrinters()
+
+            // Refresh UI table
             tableView.reloadData()
         }
     }

@@ -1,9 +1,10 @@
 import UIKit
 
-class MoveViewController: UIViewController, OctoPrintSettingsDelegate, CameraViewDelegate {
+class MoveViewController: UIViewController, OctoPrintSettingsDelegate, CameraViewDelegate, WatchSessionManagerDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
 
     var camerasViewController: CamerasViewController?
 
@@ -36,23 +37,19 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate, CameraVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let printer = printerManager.getDefaultPrinter() {
-            // Update window title to Camera name
-            navigationItem.title = printer.name
+        // Listen to changes to OctoPrint Settings in case the camera orientation has changed
+        octoprintClient.octoPrintSettingsDelegates.append(self)
+        // Listen to changes coming from Apple Watch
+        watchSessionManager.delegates.append(self)
 
-            // Update layout depending on camera orientation
-            updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!)
-
-            // Listen to changes to OctoPrint Settings in case the camera orientation has changed
-            octoprintClient.octoPrintSettingsDelegates.append(self)
-        } else {
-            navigationItem.title = NSLocalizedString("Move", comment: "")
-        }
+        refreshNewSelectedPrinter()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         // Stop listening to changes to OctoPrint Settings
         octoprintClient.remove(octoPrintSettingsDelegate: self)
+        // Stop listening to changes coming from Apple Watch
+        watchSessionManager.remove(watchSessionManagerDelegate: self)
     }
 
     // MARK: - OctoPrintSettingsDelegate
@@ -116,6 +113,16 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate, CameraVie
         }
     }
 
+    // MARK: - WatchSessionManagerDelegate
+    
+    // Notification that a new default printer has been selected from the Apple Watch app
+    func defaultPrinterChanged() {
+        DispatchQueue.main.async {
+            self.refreshNewSelectedPrinter()
+            self.camerasViewController?.printerSelectedChanged()
+        }
+    }
+    
     // MARK: - Private functions
     
     // We are using Container Views so this is how we keep a reference to the contained view controllers
@@ -151,5 +158,18 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate, CameraVie
         camera4_3HeightConstraintLandscape = constraints.cameraHeight4_3ConstraintLandscape
         camera16_9HeightConstraintPortrait = constraints.camera16_9HeightConstraintPortrait
         cameral16_9HeightConstraintLandscape = constraints.cameral16_9HeightConstraintLandscape
-    }    
+    }
+    
+    fileprivate func refreshNewSelectedPrinter() {
+        if let printer = printerManager.getDefaultPrinter() {
+            // Update window title to Camera name
+            navigationItem.title = printer.name
+            
+            // Update layout depending on camera orientation
+            updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!)
+            
+        } else {
+            navigationItem.title = NSLocalizedString("Move", comment: "")
+        }
+    }
 }

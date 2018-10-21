@@ -1,12 +1,13 @@
 import UIKit
 
-class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate {
+class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate, WatchSessionManagerDelegate {
     
     private static let CONNECT_CONFIRMATION = "PANEL_CONNECT_CONFIRMATION"
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
 
     var printerConnected: Bool?
 
@@ -65,6 +66,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         octoprintClient.octoPrintSettingsDelegates.append(self)
         // Listen to changes when app is locked or unlocked
         appConfiguration.delegates.append(self)
+        // Listen to changes coming from Apple Watch
+        watchSessionManager.delegates.append(self)
         // Show default printer
         showDefaultPrinter()
         // Configure UI based on app locked state
@@ -78,6 +81,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         octoprintClient.remove(octoPrintSettingsDelegate: self)
         // Stop listening to changes when app is locked or unlocked
         appConfiguration.remove(appConfigurationDelegate: self)
+        // Stop listening to changes coming from Apple Watch
+        watchSessionManager.remove(watchSessionManagerDelegate: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -147,9 +152,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             controller.popoverPresentationController!.delegate = self
             // Refresh based on new default printer
             controller.onCompletion = {
-                self.subpanelsViewController?.printerSelectedChanged()
-                self.camerasViewController?.printerSelectedChanged()
-                self.showDefaultPrinter()
+                self.refreshNewSelectedPrinter()
             }
         }
         
@@ -347,6 +350,13 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
+    // MARK: - WatchSessionManagerDelegate
+    
+    // Notification that a new default printer has been selected from the Apple Watch app
+    func defaultPrinterChanged() {
+        self.refreshNewSelectedPrinter()
+    }
+    
     // MARK: - Private functions
     
     fileprivate func showDefaultPrinter() {
@@ -371,6 +381,12 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
+    fileprivate func refreshNewSelectedPrinter() {
+        self.subpanelsViewController?.printerSelectedChanged()
+        self.camerasViewController?.printerSelectedChanged()
+        self.showDefaultPrinter()
+    }
+
     fileprivate func updateConnectButton(printerConnected: Bool) {
         DispatchQueue.main.async {
             if !printerConnected {

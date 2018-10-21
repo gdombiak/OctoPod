@@ -5,6 +5,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
 
     var updatePrinter: Printer? = nil
     var scannedKey: String?
@@ -79,6 +80,8 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         
         // Push changes to iCloud so other devices of the user get updated (only if iCloud enabled and user is logged in)
         cloudKitPrinterManager.pushChanges(completion: nil)
+        // Push changes to Apple Watch
+        watchSessionManager.pushPrinters()
         
         goBack()
     }

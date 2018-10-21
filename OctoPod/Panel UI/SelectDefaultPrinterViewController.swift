@@ -3,7 +3,8 @@ import UIKit
 class SelectDefaultPrinterViewController: UITableViewController {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
-    
+    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
+
     var printers: [Printer]!
     var onCompletion: (()->Void)?
 
@@ -43,6 +44,8 @@ class SelectDefaultPrinterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         printerManager.changeToDefaultPrinter(printers[indexPath.row])
+        // Update Apple Watch with new selected printer
+        watchSessionManager.pushPrinters()
         dismiss(animated: true, completion: onCompletion)
     }
 }
