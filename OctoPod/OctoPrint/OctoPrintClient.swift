@@ -72,6 +72,8 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         // Close any previous connection
         webSocketClient?.closeConnection()
         
+        // Notify the terminal that we are about to connect to OctoPrint
+        terminal.websocketNewConnection()
         // Create websocket connection and connect
         webSocketClient = WebSocketClient(printer: printer)
         // Subscribe to events so we can update the UI as events get pushed

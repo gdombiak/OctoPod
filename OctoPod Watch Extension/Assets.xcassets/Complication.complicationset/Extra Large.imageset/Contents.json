@@ -2,23 +2,27 @@
   "images" : [
     {
       "idiom" : "watch",
-      "scale" : "2x",
-      "screen-width" : "<=145"
+      "filename" : "animals-frog-poison_dart_182x182.png",
+      "screen-width" : "<=145",
+      "scale" : "2x"
     },
     {
       "idiom" : "watch",
-      "scale" : "2x",
-      "screen-width" : ">161"
+      "filename" : "animals-frog-poison_dart_203x203.png",
+      "screen-width" : ">161",
+      "scale" : "2x"
     },
     {
       "idiom" : "watch",
-      "scale" : "2x",
-      "screen-width" : ">145"
+      "filename" : "animals-frog-poison_dart_203x203-1.png",
+      "screen-width" : ">145",
+      "scale" : "2x"
     },
     {
       "idiom" : "watch",
-      "scale" : "2x",
-      "screen-width" : ">183"
+      "filename" : "animals-frog-poison_dart_224x224.png",
+      "screen-width" : ">183",
+      "scale" : "2x"
     }
   ],
   "info" : {

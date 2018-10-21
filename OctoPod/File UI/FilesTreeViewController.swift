@@ -1,12 +1,13 @@
 import UIKit
 
-class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate {
+class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate, WatchSessionManagerDelegate {
     
     private var currentTheme: Theme.ThemeChoice!
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sortByTextLabel: UILabel!
@@ -53,24 +54,25 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        // Listen to changes coming from Apple Watch
+        watchSessionManager.delegates.append(self)
+
         if currentTheme != Theme.currentTheme() {
             // Theme changed so repaint table now (to prevent quick flash in the UI with the old theme)
             tableView.reloadData()
             currentTheme = Theme.currentTheme()
         }
 
-        if let printer = printerManager.getDefaultPrinter() {
-            // Update window title to Camera name
-            navigationItem.title = printer.name
-            
-            // Only enable refresh SD buttom if printer has an SD card
-            refreshSDButton.isEnabled = printer.sdSupport
-            
-            loadFiles(done: nil)
-        }
+        refreshNewSelectedPrinter()
         
         ThemeUIUtils.applyTheme(table: tableView, staticCells: false)
         applyTheme()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Stop listening to changes coming from Apple Watch
+        watchSessionManager.remove(watchSessionManagerDelegate: self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -203,6 +205,15 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     // We need to add this so it works on iPhone plus in landscape mode
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
+    }
+    
+    // MARK: - WatchSessionManagerDelegate
+    
+    // Notification that a new default printer has been selected from the Apple Watch app
+    func defaultPrinterChanged() {
+        DispatchQueue.main.async {
+            self.refreshNewSelectedPrinter()
+        }
     }
     
     // MARK: - Button actions
@@ -344,6 +355,18 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
                     self.loadFiles(done: nil)
                 })
             }
+        }
+    }
+    
+    fileprivate func refreshNewSelectedPrinter() {
+        if let printer = printerManager.getDefaultPrinter() {
+            // Update window title to Camera name
+            navigationItem.title = printer.name
+            
+            // Only enable refresh SD buttom if printer has an SD card
+            refreshSDButton.isEnabled = printer.sdSupport
+            
+            loadFiles(done: nil)
         }
     }
     

@@ -2,10 +2,11 @@ import UIKit
 
 // VC that renders content of a folder
 // Files were already fetched by FilesTreeViewController
-class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresentationControllerDelegate {
+class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresentationControllerDelegate, WatchSessionManagerDelegate {
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
 
     var filesTreeVC: FilesTreeViewController!
     var folder: PrintFile!
@@ -33,6 +34,15 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
         if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectionIndexPath, animated: animated)
         }
+
+        // Listen to changes coming from Apple Watch
+        watchSessionManager.delegates.append(self)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Stop listening to changes coming from Apple Watch
+        watchSessionManager.remove(watchSessionManagerDelegate: self)
     }
 
     // MARK: - Table view data source
@@ -156,6 +166,16 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
     // We need to add this so it works on iPhone plus in landscape mode
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
+    }
+    
+    // MARK: - WatchSessionManagerDelegate
+    
+    // Notification that a new default printer has been selected from the Apple Watch app
+    func defaultPrinterChanged() {
+        // Go back to root folder since we have a new printer
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "gobackToRootFolder", sender: self)
+        }
     }
     
     // MARK: - Private functions

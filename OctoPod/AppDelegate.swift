@@ -138,6 +138,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     lazy var watchSessionManager: WatchSessionManager = {
-        return WatchSessionManager(printerManager: self.printerManager!, cloudKitPrinterManager: self.cloudKitPrinterManager)
+        return WatchSessionManager(printerManager: self.printerManager!, cloudKitPrinterManager: self.cloudKitPrinterManager, octoprintClient: self.octoprintClient)
     }()
 }

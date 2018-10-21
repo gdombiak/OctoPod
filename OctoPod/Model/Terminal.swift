@@ -7,6 +7,12 @@ class Terminal {
     
     var logs = Array<String>()
     
+    // Notification that we are about to connect to OctoPrint
+    func websocketNewConnection() {
+        // Clean up the logs since we are starting from scratch
+        logs.removeAll()
+    }
+
     // Notification that we connected to OctoPrint via websockets
     func websocketConnected() {
         // Clean up the logs since we are starting from scratch

@@ -4,12 +4,14 @@ import WatchConnectivity
 class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate {
 
     var printerManager: PrinterManager
+    var octoprintClient: OctoPrintClient
     var session: WCSession?
     
     var delegates: Array<WatchSessionManagerDelegate> = []
 
-    init(printerManager: PrinterManager, cloudKitPrinterManager: CloudKitPrinterManager) {
+    init(printerManager: PrinterManager, cloudKitPrinterManager: CloudKitPrinterManager, octoprintClient: OctoPrintClient) {
         self.printerManager = printerManager
+        self.octoprintClient = octoprintClient
         super.init()
         
         // Listen to iCloud changes. Printers may be modified from iPad and
@@ -87,7 +89,10 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
         if applicationContext["selected_printer"] != nil {
             // Apple Watch marked a printer as the new selected on
             if let printer = printerManager.getPrinterByName(name: applicationContext["selected_printer"] as! String) {
+                // Update stored printers
                 printerManager.changeToDefaultPrinter(printer)
+                // Ask octoprintClient to connect to new OctoPrint server
+                octoprintClient.connectToServer(printer: printer)
                 // Notify listeners of this change
                 for delegate in delegates {
                     delegate.defaultPrinterChanged()

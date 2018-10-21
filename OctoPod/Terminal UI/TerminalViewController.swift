@@ -1,11 +1,12 @@
 import UIKit
 import SafariServices  // Used for opening browser in-app
 
-class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConfigurationDelegate {
+class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConfigurationDelegate, WatchSessionManagerDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
 
     @IBOutlet weak var refreshEnabledTextLabel: UILabel!
     @IBOutlet weak var gcodeTextLabel: UILabel!
@@ -25,22 +26,17 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         terminalTextView.layer.borderColor = UIColor.black.cgColor
         themeLabels()
 
-        if let printer = printerManager.getDefaultPrinter() {
-            // Update window title to Camera name
-            navigationItem.title = printer.name
-        } else {
-            navigationItem.title = NSLocalizedString("Terminal", comment: "")
-        }
+        refreshNewSelectedPrinter()
         
         // Configure UI based on app locked state
         configureBasedOnAppLockedState()
-
-        updateTerminalLogs()
 
         // Listen to events coming from OctoPrintClient
         octoprintClient.delegates.append(self)
         // Listen to changes when app is locked or unlocked
         appConfiguration.delegates.append(self)
+        // Listen to changes coming from Apple Watch
+        watchSessionManager.delegates.append(self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,6 +44,8 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         octoprintClient.remove(octoPrintClientDelegate: self)
         // Stop listening to changes when app is locked or unlocked
         appConfiguration.remove(appConfigurationDelegate: self)
+        // Stop listening to changes coming from Apple Watch
+        watchSessionManager.remove(watchSessionManagerDelegate: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -144,6 +142,15 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         }
     }
     
+    // MARK: - WatchSessionManagerDelegate
+    
+    // Notification that a new default printer has been selected from the Apple Watch app
+    func defaultPrinterChanged() {
+        DispatchQueue.main.async {
+            self.refreshNewSelectedPrinter()
+        }
+    }
+    
     // MARK: - Private functions
 
     fileprivate func configureBasedOnAppLockedState() {
@@ -160,6 +167,16 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             let bottom = NSMakeRange(terminalTextView.text.count - 1, 1)
             terminalTextView.scrollRangeToVisible(bottom)
         }
+    }
+
+    fileprivate func refreshNewSelectedPrinter() {
+        if let printer = printerManager.getDefaultPrinter() {
+            // Update window title to Camera name
+            navigationItem.title = printer.name
+        } else {
+            navigationItem.title = NSLocalizedString("Terminal", comment: "")
+        }
+        updateTerminalLogs()
     }
 
     fileprivate func themeLabels() {
