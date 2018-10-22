@@ -88,6 +88,8 @@
 		3D9E087E2160455400F11CD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D9E087C2160455400F11CD4 /* InfoPlist.strings */; };
 		3DA252442105028300B60E31 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA252432105028300B60E31 /* FolderViewController.swift */; };
 		3DA77D7B21693C74003D65C9 /* ChangeLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA77D7A21693C74003D65C9 /* ChangeLanguageViewController.swift */; };
+		3DADB59C217D35940028B06B /* MjpegStreaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DADB59B217D35940028B06B /* MjpegStreaming.swift */; };
+		3DADB59E217D38E90028B06B /* CamerasInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DADB59D217D38E90028B06B /* CamerasInterfaceController.swift */; };
 		3DB51070217C1115006CF8C3 /* PrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB5106F217C1115006CF8C3 /* PrinterManager.swift */; };
 		3DB51072217C11B8006CF8C3 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB51071217C11B8006CF8C3 /* WatchSessionManager.swift */; };
 		3DB51077217C1317006CF8C3 /* PrintersInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB51076217C1317006CF8C3 /* PrintersInterfaceController.swift */; };
@@ -262,6 +264,8 @@
 		3D9E087D2160455400F11CD4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3DA252432105028300B60E31 /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
 		3DA77D7A21693C74003D65C9 /* ChangeLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageViewController.swift; sourceTree = "<group>"; };
+		3DADB59B217D35940028B06B /* MjpegStreaming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MjpegStreaming.swift; sourceTree = "<group>"; };
+		3DADB59D217D38E90028B06B /* CamerasInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasInterfaceController.swift; sourceTree = "<group>"; };
 		3DB5106F217C1115006CF8C3 /* PrinterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManager.swift; sourceTree = "<group>"; };
 		3DB51071217C11B8006CF8C3 /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		3DB51076217C1317006CF8C3 /* PrintersInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintersInterfaceController.swift; sourceTree = "<group>"; };
@@ -570,6 +574,8 @@
 		3DB51075217C12EC006CF8C3 /* Cameras */ = {
 			isa = PBXGroup;
 			children = (
+				3DADB59D217D38E90028B06B /* CamerasInterfaceController.swift */,
+				3DADB59B217D35940028B06B /* MjpegStreaming.swift */,
 			);
 			path = Cameras;
 			sourceTree = "<group>";
@@ -927,10 +933,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DADB59E217D38E90028B06B /* CamerasInterfaceController.swift in Sources */,
 				3DB5107E217C4473006CF8C3 /* PrinterManagerDelegate.swift in Sources */,
 				3DB51072217C11B8006CF8C3 /* WatchSessionManager.swift in Sources */,
 				3DB51070217C1115006CF8C3 /* PrinterManager.swift in Sources */,
 				3DB51079217C132E006CF8C3 /* PrinterTableRowController.swift in Sources */,
+				3DADB59C217D35940028B06B /* MjpegStreaming.swift in Sources */,
 				3D6EB0BE217B0D270093EC79 /* NotificationController.swift in Sources */,
 				3D6EB0C0217B0D270093EC79 /* ComplicationController.swift in Sources */,
 				3D6EB0BC217B0D270093EC79 /* ExtensionDelegate.swift in Sources */,

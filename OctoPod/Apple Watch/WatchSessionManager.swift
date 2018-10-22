@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import WatchConnectivity
 
 class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate {
@@ -141,12 +142,55 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
     fileprivate func encodePrinters() -> [String: [[String : Any]]] {
         var printers: [[String : Any]] = []
         for printer in printerManager.getPrinters() {
-            let printerDic = ["name": printer.name, "hostname": printer.hostname, "apiKey": printer.apiKey, "isDefault": printer.defaultPrinter] as [String : Any]
+            var printerDic = ["name": printer.name, "hostname": printer.hostname, "apiKey": printer.apiKey, "isDefault": printer.defaultPrinter] as [String : Any]
+            if let username = printer.username {
+                printerDic["username"] = username
+            }
+            if let password = printer.password {
+                printerDic["password"] = password
+            }
+            if let cameras = printer.cameras {
+                var camerasArray: Array<Dictionary<String, Any>> = []
+                for url in cameras {
+                    var cameraURL: String
+                    var cameraOrientation: Int
+                    if url == printer.getStreamPath() {
+                        // This is camera hosted by OctoPrint so respect orientation
+                        cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+                        cameraOrientation = Int(printer.cameraOrientation)
+                    } else {
+                        if url.starts(with: "/") {
+                            // Another camera hosted by OctoPrint so build absolute URL
+                            cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+                        } else {
+                            // Use absolute URL to render camera
+                            cameraURL = url
+                        }
+                        cameraOrientation = UIImage.Orientation.up.rawValue // MultiCam has no information about orientation of extra cameras so assume "normal" position - no flips
+                    }
+                    let cameraDic = ["url" : cameraURL, "orientation": cameraOrientation] as [String : Any]                    
+                    camerasArray.append(cameraDic)
+                }
+                printerDic["cameras"] = camerasArray
+            }
             printers.append(printerDic)
         }
         
         NSLog("Encoded printers: \(["printers" : printers])")
         
         return ["printers" : printers]
+    }
+    
+    fileprivate func octoPrintCameraAbsoluteUrl(hostname: String, streamUrl: String) -> String {
+        if streamUrl.isEmpty {
+            // Should never happen but let's be cautious
+            return hostname
+        }
+        if streamUrl.starts(with: "/") {
+            // Build absolute URL from relative URL
+            return hostname + streamUrl
+        }
+        // streamURL is an absolute URL so return it
+        return streamUrl
     }
 }

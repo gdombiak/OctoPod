@@ -52,8 +52,34 @@
         <!--Cameras-->
         <scene sceneID="aR5-wA-UnP">
             <objects>
-                <controller title="Cameras" id="SvA-Pt-I7G">
+                <controller title="Cameras" id="SvA-Pt-I7G" customClass="CamerasInterfaceController" customModule="OctoPod_Watch_Extension">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" id="3Pq-52-T8h">
+                            <items>
+                                <imageView alignment="center" verticalAlignment="center" id="cWx-84-41g"/>
+                                <label alignment="center" verticalAlignment="bottom" hidden="YES" id="JZq-2A-VFl"/>
+                                <group width="1" alignment="center" verticalAlignment="bottom" id="n4p-Nr-XWF">
+                                    <items>
+                                        <button width="22" height="22" alignment="left" hidden="YES" backgroundImage="Prev" id="Jf9-Tw-QoZ">
+                                            <connections>
+                                                <action selector="previousClicked" destination="SvA-Pt-I7G" id="SNl-Gg-iJn"/>
+                                            </connections>
+                                        </button>
+                                        <button width="22" height="22" alignment="right" hidden="YES" backgroundImage="Next" id="8aw-nV-PYG">
+                                            <connections>
+                                                <action selector="nextClicked" destination="SvA-Pt-I7G" id="Mds-9b-qXg"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
                     <connections>
+                        <outlet property="cameraImage" destination="cWx-84-41g" id="WJ0-4v-rPy"/>
+                        <outlet property="errorMessageLabel" destination="JZq-2A-VFl" id="DY8-7x-n23"/>
+                        <outlet property="nextButton" destination="8aw-nV-PYG" id="vDx-2y-UNt"/>
+                        <outlet property="prevButton" destination="Jf9-Tw-QoZ" id="u0r-OE-jL0"/>
                         <segue destination="AdR-Oo-xwq" kind="relationship" relationship="nextPage" id="BFa-ah-War"/>
                     </connections>
                 </controller>

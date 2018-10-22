@@ -307,8 +307,10 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     fileprivate func createWebSocket() {
         self.socket = WebSocket(request: self.socketRequest!)
         // Configure if SSL certificate validation is disabled or not
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        self.socket?.disableSSLCertValidation = appDelegate.appConfiguration.certValidationDisabled()
+        DispatchQueue.main.async {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            self.socket?.disableSSLCertValidation = appDelegate.appConfiguration.certValidationDisabled()
+        }
     }
     
     fileprivate func socketWrite(text: String) {

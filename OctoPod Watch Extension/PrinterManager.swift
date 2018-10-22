@@ -78,6 +78,25 @@ class PrinterManager {
         return printer["isDefault"] as! Bool
     }
     
+    func username(printer: [String: Any]) -> String? {
+        return printer["username"] as? String
+    }
+
+    func password(printer: [String: Any]) -> String? {
+        return printer["password"] as? String
+    }
+
+    func cameras(printer: [String: Any]) -> [(url: String, orientation: Int)]? {
+        if let cameras = printer["cameras"] as? Array<Dictionary<String, Any>> {
+            var result: [(url: String, orientation: Int)] = Array()
+            for camera in cameras {
+                result.append((url: camera["url"] as! String, orientation: camera["orientation"] as! Int))
+            }
+            return result
+        }
+        return nil
+    }
+    
     // MARK: - Private functions
     
     // Compare of two printers are equal
