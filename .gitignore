@@ -1,3 +1,4 @@
 Pods
 *.DS_Store
-OctoPod.xcworkspace/xcuserdata
+OctoPod.xcworkspace/xcuserdata/*
+OctoPod.xcodeproj/xcuserdata/
