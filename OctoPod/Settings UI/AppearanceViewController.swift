@@ -33,6 +33,7 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         
         zoomInEnabledSwitch.isOn = !appConfiguration.tempChartZoomDisabled()
         
+        checkAppLockStatus()
         refreshSelectedTheme(theme: theme)
     }
 
@@ -85,4 +86,12 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }    
+
+    // MARK: - Private functions
+    
+    fileprivate func checkAppLockStatus() {
+        // Do not let user change these settings when app is in locked mode
+        changeLanguageButton.isEnabled = !appConfiguration.appLocked()
+        zoomInEnabledSwitch.isEnabled = !appConfiguration.appLocked()
+    }
 }

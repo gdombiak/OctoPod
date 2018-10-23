@@ -37,7 +37,7 @@ class SecurityViewController: ThemedStaticUITableViewController, AppConfiguratio
         appLockSwitch.isOn = appConfiguration.appLocked()
         appAutoLockSwitch.isOn = appConfiguration.appAutoLock()
         certificateValidationSwitch.isOn = !appConfiguration.certValidationDisabled()
-        reviewBiometricsSwitch()
+        checkAppLockStatus()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,7 +68,7 @@ class SecurityViewController: ThemedStaticUITableViewController, AppConfiguratio
             appAutoLockSwitch.isOn = false
             // Update app lock setting based on user requests
             appConfiguration.appLocked(locked: appLockSwitch.isOn)
-            reviewBiometricsSwitch()
+            checkAppLockStatus()
         }
     }
     
@@ -109,7 +109,7 @@ class SecurityViewController: ThemedStaticUITableViewController, AppConfiguratio
                         self.appAutoLockSwitch.isOn = false
 
                         self.appConfiguration.appLocked(locked: false)
-                        self.reviewBiometricsSwitch()
+                        self.checkAppLockStatus()
                     }
                 } else {
                     // User failed to authenticate so revert change
@@ -121,9 +121,10 @@ class SecurityViewController: ThemedStaticUITableViewController, AppConfiguratio
         }
     }
 
-    fileprivate func reviewBiometricsSwitch() {
+    fileprivate func checkAppLockStatus() {
         // Do not let user change these settings when app is in locked mode
         appLockBiometricsSwitch.isEnabled = !appLockSwitch.isOn
         appAutoLockSwitch.isEnabled = !appLockSwitch.isOn
+        certificateValidationSwitch.isEnabled = !appLockSwitch.isOn
     }
 }
