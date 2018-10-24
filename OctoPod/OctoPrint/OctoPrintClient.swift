@@ -180,11 +180,24 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
 
     // Notification sent when websockets got connected
     func websocketConnected() {
-        // Notify the terminal that we connected to OctoPrint
-        terminal.websocketConnected()
-        // Notify other listeners that we connected to OctoPrint
-        for delegate in delegates {
-            delegate.websocketConnected()
+        // Websocket has been established. OctoPrint 1.3.10, by default, secures websocket so we need
+        // to authenticate the websocket in order to be able to use it. In order to authenticate the websocket,
+        // we need to execute a passive login that will return the user_id and session. This information is then
+        // passed back via websockets to OctoPrint.
+        passiveLogin { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            if let result = result as? NSDictionary {
+                if let name = result["name"] as? String, let session = result["session"] as? String {
+                    // OctoPrint requires authentication of websocket.
+                    self.webSocketClient?.authenticate(user: name, session: session)
+                }
+            }
+                        
+            // Notify the terminal that we connected to OctoPrint
+            self.terminal.websocketConnected()
+            // Notify other listeners that we connected to OctoPrint
+            for delegate in self.delegates {
+                delegate.websocketConnected()
+            }
         }
     }
     
@@ -204,6 +217,26 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         disconnectFromServer()
         if let printer = printerManager.getDefaultPrinter() {
             connectToServer(printer: printer)
+        }
+    }
+
+    // MARK: - Login operations
+
+    // Passive login has been added to OctoPrint 1.3.10 to increase security. Endpoint existed before
+    // but without passive mode. New version returns a "session" field that is used by websockets to
+    // allow websockets to work when Forcelogin Plugin is active (the default)
+    func passiveLogin(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["passive"] = true
+            
+            client.post("/api/login", json: json, expected: 200) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error doing passive login. Error: \(error!.localizedDescription)")
+                }
+                callback(result, error, response)
+            }
         }
     }
 
