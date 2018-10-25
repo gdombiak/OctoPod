@@ -77,6 +77,27 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
     public func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         if message["printers"] != nil {
             replyHandler(encodePrinters())
+        } else if message["panel_info"] != nil {
+            octoprintClient.currentJobInfo { (result: NSObject?, error: Error?, response :HTTPURLResponse) in
+                if let error = error {
+                    replyHandler(["error": error.localizedDescription])
+                }
+                if let result = result as? Dictionary<String, Any> {
+                    var reply: [String : Any] = [:]
+                    if let state = result["state"] as? String {
+                        reply["state"] = state
+                    }
+                    if let progress = result["progress"] as? Dictionary<String, Any> {
+                        if let completion = progress["completion"] as? Double {
+                            reply["completion"] = completion
+                        }
+                        if let printTimeLeft = progress["printTimeLeft"] as? Int {
+                            reply["printTimeLeft"] = printTimeLeft
+                        }
+                    }
+                    replyHandler(reply)
+                }
+            }
         } else {
             // Unkown request was received
             let reply = ["unknown" : ""]

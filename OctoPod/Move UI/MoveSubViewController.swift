@@ -284,7 +284,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     
     // MARK: - PrinterProfilesDelegate
     
-    func axisDirectionChanged(axis: OctoPrintClient.axis, inverted: Bool) {
+    func axisDirectionChanged(axis: axis, inverted: Bool) {
         switch axis {
         case .X:
             invertedX = inverted
@@ -340,7 +340,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         feedRateSlider.isEnabled = enable
     }
     
-    fileprivate func disableMotor(axis: OctoPrintClient.axis) {
+    fileprivate func disableMotor(axis: axis) {
         octoprintClient.disableMotor(axis: axis, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if !requested {
                 // Handle error

@@ -20,7 +20,7 @@ protocol OctoPrintSettingsDelegate: class {
     func psuControlAvailabilityChanged(installed: Bool)
 
     // Notification that an IP plug plugin has changed. Could be availability or settings
-    func ipPlugsChanged(plugin: String, plugs: Array<Printer.IPPlug>)
+    func ipPlugsChanged(plugin: String, plugs: Array<IPPlug>)
 
     // Notification that sd support has changed
     func sdSupportChanged(sdSupport: Bool)
@@ -42,7 +42,7 @@ extension OctoPrintSettingsDelegate {
     func psuControlAvailabilityChanged(installed: Bool) {
     }
 
-    func ipPlugsChanged(plugin: String, plugs: Array<Printer.IPPlug>) {
+    func ipPlugsChanged(plugin: String, plugs: Array<IPPlug>) {
     }
 
     func sdSupportChanged(sdSupport: Bool) {

@@ -88,6 +88,16 @@
 		3D9E087E2160455400F11CD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D9E087C2160455400F11CD4 /* InfoPlist.strings */; };
 		3DA252442105028300B60E31 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA252432105028300B60E31 /* FolderViewController.swift */; };
 		3DA77D7B21693C74003D65C9 /* ChangeLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA77D7A21693C74003D65C9 /* ChangeLanguageViewController.swift */; };
+		3DAD2DDC21816D62004A4223 /* OctoPrintRESTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DDB21816D62004A4223 /* OctoPrintRESTClient.swift */; };
+		3DAD2DDD21817742004A4223 /* OctoPrintRESTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DDB21816D62004A4223 /* OctoPrintRESTClient.swift */; };
+		3DAD2DDE21817973004A4223 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935621326AEF0050ED9A /* CustomControl.swift */; };
+		3DAD2DDF21817973004A4223 /* ExecuteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A936B213316850050ED9A /* ExecuteControl.swift */; };
+		3DAD2DE021817973004A4223 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935C2132709E0050ED9A /* Container.swift */; };
+		3DAD2DE121817973004A4223 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935821326B3C0050ED9A /* Command.swift */; };
+		3DAD2DE221817973004A4223 /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935E213271680050ED9A /* Script.swift */; };
+		3DAD2DE321817973004A4223 /* ControlInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935A21326C630050ED9A /* ControlInput.swift */; };
+		3DAD2DE521817B23004A4223 /* IPPlug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DE421817B23004A4223 /* IPPlug.swift */; };
+		3DAD2DE621817B65004A4223 /* IPPlug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DE421817B23004A4223 /* IPPlug.swift */; };
 		3DADB59C217D35940028B06B /* MjpegStreaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DADB59B217D35940028B06B /* MjpegStreaming.swift */; };
 		3DADB59E217D38E90028B06B /* CamerasInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DADB59D217D38E90028B06B /* CamerasInterfaceController.swift */; };
 		3DB51070217C1115006CF8C3 /* PrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB5106F217C1115006CF8C3 /* PrinterManager.swift */; };
@@ -100,6 +110,9 @@
 		3DBAE49F20E6821900D2137D /* SelectDefaultPrinterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */; };
 		3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */; };
 		3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */; };
+		3DC69BED21804EC000DBE0D5 /* OctoPrintClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC69BEC21804EC000DBE0D5 /* OctoPrintClient.swift */; };
+		3DC69BEE21804F2A00DBE0D5 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292F20E5549B00296D9D /* HTTPClient.swift */; };
+		3DC69BF02180531000DBE0D5 /* PanelInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC69BEF2180531000DBE0D5 /* PanelInterfaceController.swift */; };
 		3DD69AA121150F43005555ED /* FileUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD69AA021150F43005555ED /* FileUploadViewController.swift */; };
 		3DD9E9572108479000726DFD /* ThemedStaticUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */; };
 		3DD9E95921084BFD00726DFD /* ThemedUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */; };
@@ -264,6 +277,8 @@
 		3D9E087D2160455400F11CD4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3DA252432105028300B60E31 /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
 		3DA77D7A21693C74003D65C9 /* ChangeLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageViewController.swift; sourceTree = "<group>"; };
+		3DAD2DDB21816D62004A4223 /* OctoPrintRESTClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintRESTClient.swift; sourceTree = "<group>"; };
+		3DAD2DE421817B23004A4223 /* IPPlug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPPlug.swift; sourceTree = "<group>"; };
 		3DADB59B217D35940028B06B /* MjpegStreaming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MjpegStreaming.swift; sourceTree = "<group>"; };
 		3DADB59D217D38E90028B06B /* CamerasInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasInterfaceController.swift; sourceTree = "<group>"; };
 		3DB5106F217C1115006CF8C3 /* PrinterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManager.swift; sourceTree = "<group>"; };
@@ -276,6 +291,8 @@
 		3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDefaultPrinterViewController.swift; sourceTree = "<group>"; };
 		3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateEvent.swift; sourceTree = "<group>"; };
 		3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClientDelegate.swift; sourceTree = "<group>"; };
+		3DC69BEC21804EC000DBE0D5 /* OctoPrintClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClient.swift; sourceTree = "<group>"; };
+		3DC69BEF2180531000DBE0D5 /* PanelInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelInterfaceController.swift; path = "OctoPod Watch Extension/OctoPrint/PanelInterfaceController.swift"; sourceTree = SOURCE_ROOT; };
 		3DD69AA021150F43005555ED /* FileUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadViewController.swift; sourceTree = "<group>"; };
 		3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedStaticUITableViewController.swift; sourceTree = "<group>"; };
 		3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUITableViewController.swift; sourceTree = "<group>"; };
@@ -478,6 +495,7 @@
 		3D6EB0B8217B0D270093EC79 /* OctoPod Watch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				3DC69BEB21804EAA00DBE0D5 /* OctoPrint */,
 				3DB51073217C12CB006CF8C3 /* Printers */,
 				3DB51074217C12D9006CF8C3 /* Panel */,
 				3DB51075217C12EC006CF8C3 /* Cameras */,
@@ -511,6 +529,7 @@
 				3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */,
 				3D82873620E3EBC80035AE0B /* Printer.swift */,
 				3D82873820E3EC3B0035AE0B /* PrinterManager.swift */,
+				3DAD2DE421817B23004A4223 /* IPPlug.swift */,
 				3D9D9763214D735D0032443A /* CloudKitSync */,
 				3D8873F720F534C400DCE987 /* PrintFile.swift */,
 				3D78BA9E21039D770090D79A /* Terminal.swift */,
@@ -533,6 +552,7 @@
 			children = (
 				3D8B292F20E5549B00296D9D /* HTTPClient.swift */,
 				3D8B293120E556D400296D9D /* OctoPrintClient.swift */,
+				3DAD2DDB21816D62004A4223 /* OctoPrintRESTClient.swift */,
 				3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */,
 				3D98C1D920E5D096007BB13F /* WebSocketClient.swift */,
 				3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */,
@@ -567,6 +587,7 @@
 		3DB51074217C12D9006CF8C3 /* Panel */ = {
 			isa = PBXGroup;
 			children = (
+				3DC69BEF2180531000DBE0D5 /* PanelInterfaceController.swift */,
 			);
 			path = Panel;
 			sourceTree = "<group>";
@@ -598,6 +619,14 @@
 				3DD69AA021150F43005555ED /* FileUploadViewController.swift */,
 			);
 			path = "File UI";
+			sourceTree = "<group>";
+		};
+		3DC69BEB21804EAA00DBE0D5 /* OctoPrint */ = {
+			isa = PBXGroup;
+			children = (
+				3DC69BEC21804EC000DBE0D5 /* OctoPrintClient.swift */,
+			);
+			path = OctoPrint;
 			sourceTree = "<group>";
 		};
 		3DF0157721227C42002B4C14 /* Subpanels */ = {
@@ -850,6 +879,7 @@
 				3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */,
 				3D9D9765214DCC440032443A /* CloudKitPrinterDelegate.swift in Sources */,
 				3D0E3B1121097E7A0087F7E4 /* ThemeUIUtils.swift in Sources */,
+				3DAD2DDC21816D62004A4223 /* OctoPrintRESTClient.swift in Sources */,
 				3D071A14212682C1005301B4 /* OctoPrintPluginsDelegate.swift in Sources */,
 				3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */,
 				3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */,
@@ -907,6 +937,7 @@
 				3D1A935B21326C630050ED9A /* ControlInput.swift in Sources */,
 				3DF0157621227ACB002B4C14 /* TempHistoryViewController.swift in Sources */,
 				3D6350EA21080AD3001C10F7 /* Theme.swift in Sources */,
+				3DAD2DE521817B23004A4223 /* IPPlug.swift in Sources */,
 				3D1A935721326AEF0050ED9A /* CustomControl.swift in Sources */,
 				3DB5107C217C16EE006CF8C3 /* WatchSessionManager.swift in Sources */,
 				3D1A935D2132709E0050ED9A /* Container.swift in Sources */,
@@ -935,15 +966,26 @@
 			files = (
 				3DADB59E217D38E90028B06B /* CamerasInterfaceController.swift in Sources */,
 				3DB5107E217C4473006CF8C3 /* PrinterManagerDelegate.swift in Sources */,
+				3DC69BEE21804F2A00DBE0D5 /* HTTPClient.swift in Sources */,
 				3DB51072217C11B8006CF8C3 /* WatchSessionManager.swift in Sources */,
 				3DB51070217C1115006CF8C3 /* PrinterManager.swift in Sources */,
 				3DB51079217C132E006CF8C3 /* PrinterTableRowController.swift in Sources */,
+				3DAD2DE321817973004A4223 /* ControlInput.swift in Sources */,
 				3DADB59C217D35940028B06B /* MjpegStreaming.swift in Sources */,
+				3DAD2DE021817973004A4223 /* Container.swift in Sources */,
+				3DAD2DE221817973004A4223 /* Script.swift in Sources */,
+				3DAD2DE621817B65004A4223 /* IPPlug.swift in Sources */,
 				3D6EB0BE217B0D270093EC79 /* NotificationController.swift in Sources */,
 				3D6EB0C0217B0D270093EC79 /* ComplicationController.swift in Sources */,
 				3D6EB0BC217B0D270093EC79 /* ExtensionDelegate.swift in Sources */,
+				3DAD2DDE21817973004A4223 /* CustomControl.swift in Sources */,
+				3DC69BED21804EC000DBE0D5 /* OctoPrintClient.swift in Sources */,
 				3DB51077217C1317006CF8C3 /* PrintersInterfaceController.swift in Sources */,
+				3DC69BF02180531000DBE0D5 /* PanelInterfaceController.swift in Sources */,
+				3DAD2DE121817973004A4223 /* Command.swift in Sources */,
+				3DAD2DDD21817742004A4223 /* OctoPrintRESTClient.swift in Sources */,
 				3D6EB0BA217B0D270093EC79 /* InterfaceController.swift in Sources */,
+				3DAD2DDF21817973004A4223 /* ExecuteControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

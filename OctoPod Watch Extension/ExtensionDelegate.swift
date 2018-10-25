@@ -5,7 +5,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidFinishLaunching() {
         // Initiate Watch Connectivity Session so we can talk to the iOS app
         WatchSessionManager.instance.startSession()
-        
+                
         // Perform any final initialization of your application.
     }
 

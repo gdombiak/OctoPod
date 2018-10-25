@@ -194,7 +194,7 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
     }
     
     // Notification that an IP plug plugin has changed. Could be availability or settings
-    func ipPlugsChanged(plugin: String, plugs: Array<Printer.IPPlug>) {
+    func ipPlugsChanged(plugin: String, plugs: Array<IPPlug>) {
         addRemoveIPPlugPluginVC(plugin: plugin, add: !plugs.isEmpty)
     }
 

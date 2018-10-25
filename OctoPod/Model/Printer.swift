@@ -33,19 +33,6 @@ class Printer: NSManagedObject {
     @NSManaged var domoticzplugs: [[String]]?  // Array of an Array with 2 strings (IP Address, Label)
     @NSManaged var tasmotaplugs: [[String]]?  // Array of an Array with 2 strings (IP Address, Label)
 
-    struct IPPlug: Equatable {
-        var ip: String
-        var label: String
-        
-        var idx: String? // Used by some plugins like Domoticz or Tasmota
-        var username: String? // Used by some plugins like Domoticz or Tasmota
-        var password: String? // Used by some plugins like Domoticz or Tasmota
-
-        static func ==(lhs: IPPlug, rhs: IPPlug) -> Bool {
-            return (lhs.ip == rhs.ip) && (lhs.label == rhs.label) && (lhs.idx == rhs.idx) && (lhs.username == rhs.username) && (lhs.password == rhs.password)
-        }
-    }
-    
     func getStreamPath() -> String {
         if let path = streamUrl {
             return path
@@ -150,7 +137,7 @@ class Printer: NSManagedObject {
         return nil
     }
     
-    fileprivate func encodeIPPlug(_ newPlug: Printer.IPPlug) -> [String] {
+    fileprivate func encodeIPPlug(_ newPlug: IPPlug) -> [String] {
         var result = [newPlug.ip, newPlug.label]
         if let idx = newPlug.idx {
             result.append(idx)

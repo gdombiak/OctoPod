@@ -39,6 +39,8 @@ class PrintersInterfaceController: WKInterfaceController, PrinterManagerDelegate
         PrinterManager.instance.changeDefaultPrinter(printerName: printerName)
         // Refresh table
         updateTable()
+        // Update OctoPrintClient to point to newly selected printer
+        OctoPrintClient.instance.configure()
     }
 
     // MARK: - PrinterManagerDelegate

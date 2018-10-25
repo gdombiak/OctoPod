@@ -5,6 +5,6 @@ import Foundation
 protocol PrinterProfilesDelegate: class {
 
     // Notification that axis direction has changed
-    func axisDirectionChanged(axis: OctoPrintClient.axis, inverted: Bool)
+    func axisDirectionChanged(axis: axis, inverted: Bool)
 
 }

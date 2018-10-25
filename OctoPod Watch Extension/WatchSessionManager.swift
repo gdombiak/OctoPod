@@ -30,10 +30,6 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         }
     }
     
-    func adsasd() {
-        
-    }
-    
     // MARK: - WCSessionDelegate
     
     /** Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */

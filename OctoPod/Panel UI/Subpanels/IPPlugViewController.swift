@@ -9,7 +9,7 @@ class IPPlugViewController: ThemedDynamicUITableViewController, SubpanelViewCont
 
     var ipPlugPlugin: String!
     
-    var plugs: [Printer.IPPlug] = []
+    var plugs: [IPPlug] = []
     var plugsState: Dictionary<String, Bool> = Dictionary()
 
     override func viewDidLoad() {
@@ -143,7 +143,7 @@ class IPPlugViewController: ThemedDynamicUITableViewController, SubpanelViewCont
     // MARK: - OctoPrintSettingsDelegate
     
     // Notification that an IP plug plugin has changed. Could be availability or settings
-    func ipPlugsChanged(plugin: String, plugs: Array<Printer.IPPlug>) {
+    func ipPlugsChanged(plugin: String, plugs: Array<IPPlug>) {
         if ipPlugPlugin == plugin {
             self.plugs = plugs
             DispatchQueue.main.async {

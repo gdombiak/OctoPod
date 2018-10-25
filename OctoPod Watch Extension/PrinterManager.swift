@@ -22,6 +22,9 @@ class PrinterManager {
         let currentDefaultPrinter = defaultPrinter()
 
         if !samePrinter(printerL: previousDefaultPrinter, printerR: currentDefaultPrinter) {
+            // Update OctoPrintClient to point to new default printer
+            OctoPrintClient.instance.configure()
+
             // Notify that default printer has changed
             for delegate in delegates {
                 delegate.defaultPrinterChanged(newDefault: currentDefaultPrinter)

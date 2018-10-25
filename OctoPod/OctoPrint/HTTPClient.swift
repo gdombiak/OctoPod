@@ -11,13 +11,16 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     var apiKey: String!
     var username: String?
     var password: String?
+    
+    var preRequest: (() -> Void)?
+    var postRequest: (() -> Void)?
 
-    init(printer: Printer) {
+    init(serverURL: String, apiKey: String, username: String?, password: String?) {
         super.init()
-        serverURL = printer.hostname
-        apiKey = printer.apiKey
-        username = printer.username
-        password = printer.password
+        self.serverURL = serverURL
+        self.apiKey = apiKey
+        self.username = username
+        self.password = password
     }
     
     // MARK: HTTP operations (GET/POST/PUT/DELETE)
@@ -33,7 +36,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         // Add API Key header
         request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
         let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-            DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = false })
+            self.postRequest?()
             if let httpRes = response as? HTTPURLResponse {
                 if error != nil {
                     callback(nil, error, httpRes)
@@ -56,7 +59,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
                 callback(nil, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
             }
         }) 
-        DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = true })
+        self.preRequest?()
         task.resume()
     }
     
@@ -72,14 +75,14 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         // Add API Key header
         request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
         let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-            DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = false })
+            self.postRequest?()
             if let httpRes = response as? HTTPURLResponse {
                 callback(httpRes.statusCode == 204, error, httpRes)
             } else {
                 callback(false, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
             }
         })
-        DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = true })
+        self.preRequest?()
         task.resume()
     }
 
@@ -114,14 +117,14 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         request.httpBody = createMultiPartBody(parameters: parameters, boundary: boundary, data: fileContent, mimeType: "application/octet-stream", filename: filename)
         // Send request
         let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-            DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = false })
+            self.postRequest?()
             if let httpRes = response as? HTTPURLResponse {
                 callback(httpRes.statusCode == 201, error, httpRes)
             } else {
                 callback(false, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
             }
         })
-        DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = true })
+        self.preRequest?()
         task.resume()
     }
     
@@ -147,7 +150,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
             
             // Create background task that will perform the HTTP request
             let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-                DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = false })
+                self.postRequest?()
                 if let httpRes = response as? HTTPURLResponse {
                     if error != nil {
                         callback(nil, error, httpRes)
@@ -175,7 +178,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
                     callback(nil, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
                 }
             }) 
-            DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = true })
+            self.preRequest?()
             task.resume()
         } catch let error as NSError {
             err = error
