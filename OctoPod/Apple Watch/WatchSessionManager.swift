@@ -78,26 +78,13 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
         if message["printers"] != nil {
             replyHandler(encodePrinters())
         } else if message["panel_info"] != nil {
-            octoprintClient.currentJobInfo { (result: NSObject?, error: Error?, response :HTTPURLResponse) in
-                if let error = error {
-                    replyHandler(["error": error.localizedDescription])
-                }
-                if let result = result as? Dictionary<String, Any> {
-                    var reply: [String : Any] = [:]
-                    if let state = result["state"] as? String {
-                        reply["state"] = state
-                    }
-                    if let progress = result["progress"] as? Dictionary<String, Any> {
-                        if let completion = progress["completion"] as? Double {
-                            reply["completion"] = completion
-                        }
-                        if let printTimeLeft = progress["printTimeLeft"] as? Int {
-                            reply["printTimeLeft"] = printTimeLeft
-                        }
-                    }
-                    replyHandler(reply)
-                }
-            }
+            panel_info(replyHandler)
+        } else if message["pause_job"] != nil {
+            pause_job(replyHandler)
+        } else if message["resume_job"] != nil {
+            resume_job(replyHandler)
+        } else if message["cancel_job"] != nil {
+            cancel_job(replyHandler)
         } else {
             // Unkown request was received
             let reply = ["unknown" : ""]
@@ -142,6 +129,79 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
     
     func remove(watchSessionManagerDelegate toRemove: WatchSessionManagerDelegate) {
         delegates.removeAll(where: { $0 === toRemove })
+    }
+
+    // MARK: - Commands private functions
+
+    fileprivate func panel_info(_ replyHandler: @escaping ([String : Any]) -> Void) {
+        octoprintClient.currentJobInfo { (result: NSObject?, error: Error?, response :HTTPURLResponse) in
+            if let error = error {
+                replyHandler(["error": error.localizedDescription])
+            } else if let result = result as? Dictionary<String, Any> {
+                var reply: [String : Any] = [:]
+                if let state = result["state"] as? String {
+                    reply["state"] = state
+                }
+                if let progress = result["progress"] as? Dictionary<String, Any> {
+                    if let completion = progress["completion"] as? Double {
+                        reply["completion"] = completion
+                    }
+                    if let printTimeLeft = progress["printTimeLeft"] as? Int {
+                        reply["printTimeLeft"] = printTimeLeft
+                    }
+                }
+                
+                // Gather now info about printer (paused/printing/temps)
+                self.octoprintClient.printerState { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                    if let json = result as? NSDictionary {
+                        if let state = json["state"] as? NSDictionary {
+                            let event = CurrentStateEvent()
+                            event.parseState(state: state)
+                            
+                            if event.printing  == true {
+                                reply["printer"] = "printing"
+                            } else if event.paused == true {
+                                reply["printer"] = "paused"
+                            } else if event.operational == true {
+                                reply["printer"] = "operational"
+                            }                            
+                        }
+                    }
+                    // Send reply back to Apple Watch with results
+                    replyHandler(reply)
+                }
+            }
+        }
+    }
+    
+    fileprivate func pause_job(_ replyHandler: @escaping ([String : Any]) -> Void) {
+        self.octoprintClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if requested {
+                replyHandler(["" : ""])
+            } else {
+                replyHandler(["error" : error == nil ? "Failed with no error!!" : error!.localizedDescription])
+            }
+        }
+    }
+
+    fileprivate func resume_job(_ replyHandler: @escaping ([String : Any]) -> Void) {
+        self.octoprintClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if requested {
+                replyHandler(["" : ""])
+            } else {
+                replyHandler(["error" : error == nil ? "Failed with no error!!" : error!.localizedDescription])
+            }
+        }
+    }
+
+    fileprivate func cancel_job(_ replyHandler: @escaping ([String : Any]) -> Void) {
+        self.octoprintClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if requested {
+                replyHandler(["" : ""])
+            } else {
+                replyHandler(["error" : error == nil ? "Failed with no error!!" : error!.localizedDescription])
+            }
+        }
     }
 
     // MARK: - Private functions

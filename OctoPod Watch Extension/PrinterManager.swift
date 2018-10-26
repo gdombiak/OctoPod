@@ -12,9 +12,7 @@ class PrinterManager {
     // Information came from iOS App and we need to update
     // what we have in memory.
     // Listeners will be notified of changes
-    func updatePrinters(printers: [[String: Any]]) {
-        NSLog("Received new printers: \(printers)")
-        
+    func updatePrinters(printers: [[String: Any]]) {        
         let previousDefaultPrinter = defaultPrinter()
         
         self.printers = printers

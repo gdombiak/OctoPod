@@ -35,18 +35,16 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     /** Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
     public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if activationState == .activated {
-            if session.isReachable { // I assume that it is always reachable but just be sure
-                // If we never got printers information then request it
-                // When printer info changes, iOS app will send printers information using
-                // applicationContext so there is no need to fetch it every time a session is activated
-                if PrinterManager.instance.printers.isEmpty {
-                    // Request list of printers
-                    session.sendMessage(["printers": ""], replyHandler: { (reply: [String : Any]) in
-                        // Process response from our request. Update list of printers we received
-                        PrinterManager.instance.updatePrinters(printers: reply["printers"] as! [[String : Any]])
-                    }) { (error: Error) in
-                        NSLog("Failed to request printers. Error: \(error)")
-                    }
+            // If we never got printers information then request it
+            // When printer info changes, iOS app will send printers information using
+            // applicationContext so there is no need to fetch it every time a session is activated
+            if PrinterManager.instance.printers.isEmpty {
+                // Request list of printers
+                session.sendMessage(["printers": ""], replyHandler: { (reply: [String : Any]) in
+                    // Process response from our request. Update list of printers we received
+                    PrinterManager.instance.updatePrinters(printers: reply["printers"] as! [[String : Any]])
+                }) { (error: Error) in
+                    NSLog("Failed to request printers. Error: \(error)")
                 }
             }
         }

@@ -61,4 +61,85 @@ class OctoPrintClient {
             octoPrintRESTClient?.currentJobInfo(callback: restCallback)
         }
     }
+
+    func pauseCurrentJob(callback: @escaping (Bool, String?) -> Void) {
+        let restCallback = { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if let error = error {
+                callback(false, error.localizedDescription)
+            } else {
+                callback(true, nil)
+            }
+        }
+        if let session = WatchSessionManager.instance.session {
+            session.sendMessage(["pause_job" : ""], replyHandler: { (reply: [String : Any]) in
+                if let error = reply["error"] as? String {
+                    callback(false, error)
+                } else {
+                    callback(true, nil)
+                }
+            }) { (error: Error) in
+                NSLog("Error asking 'pause_job' with Watch Connectivity Framework. Error: \(error)")
+                // Try making HTTP request instead of using Watch Connectivity Framework that uses the iOS app
+                self.octoPrintRESTClient?.pauseCurrentJob(callback: restCallback)
+            }
+        } else {
+            NSLog("Using fallback for 'pause_job' since Watch Connectivity Framework is not available.")
+            // Try making HTTP request instead of using Watch Connectivity Framework that uses the iOS app
+            octoPrintRESTClient?.pauseCurrentJob(callback: restCallback)
+        }
+    }
+    
+    func resumeCurrentJob(callback: @escaping (Bool, String?) -> Void) {
+        let restCallback = { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if let error = error {
+                callback(false, error.localizedDescription)
+            } else {
+                callback(true, nil)
+            }
+        }
+        if let session = WatchSessionManager.instance.session {
+            session.sendMessage(["resume_job" : ""], replyHandler: { (reply: [String : Any]) in
+                if let error = reply["error"] as? String {
+                    callback(false, error)
+                } else {
+                    callback(true, nil)
+                }
+            }) { (error: Error) in
+                NSLog("Error asking 'resume_job' with Watch Connectivity Framework. Error: \(error)")
+                // Try making HTTP request instead of using Watch Connectivity Framework that uses the iOS app
+                self.octoPrintRESTClient?.resumeCurrentJob(callback: restCallback)
+            }
+        } else {
+            NSLog("Using fallback for 'resume_job' since Watch Connectivity Framework is not available.")
+            // Try making HTTP request instead of using Watch Connectivity Framework that uses the iOS app
+            octoPrintRESTClient?.resumeCurrentJob(callback: restCallback)
+        }
+    }
+    
+    func cancelCurrentJob(callback: @escaping (Bool, String?) -> Void) {
+        let restCallback = { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if let error = error {
+                callback(false, error.localizedDescription)
+            } else {
+                callback(true, nil)
+            }
+        }
+        if let session = WatchSessionManager.instance.session {
+            session.sendMessage(["cancel_job" : ""], replyHandler: { (reply: [String : Any]) in
+                if let error = reply["error"] as? String {
+                    callback(false, error)
+                } else {
+                    callback(true, nil)
+                }
+            }) { (error: Error) in
+                NSLog("Error asking 'cancel_job' with Watch Connectivity Framework. Error: \(error)")
+                // Try making HTTP request instead of using Watch Connectivity Framework that uses the iOS app
+                self.octoPrintRESTClient?.cancelCurrentJob(callback: restCallback)
+            }
+        } else {
+            NSLog("Using fallback for 'cancel_job' since Watch Connectivity Framework is not available.")
+            // Try making HTTP request instead of using Watch Connectivity Framework that uses the iOS app
+            octoPrintRESTClient?.cancelCurrentJob(callback: restCallback)
+        }
+    }
 }

@@ -26,6 +26,7 @@
 		3D33B7A1213F6A0D002A4BE3 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */; };
 		3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D36DD79210300C500884BD6 /* TerminalViewController.swift */; };
 		3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */; };
+		3D3CBABC2182D31C00D4FD54 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CBABB2182D31C00D4FD54 /* UIUtils.swift */; };
 		3D42AC1121731494004D9FD0 /* AppConfigurationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42AC1021731494004D9FD0 /* AppConfigurationDelegate.swift */; };
 		3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */; };
 		3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D45280120E15A370094CCB7 /* AppDelegate.swift */; };
@@ -187,6 +188,7 @@
 		3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		3D36DD79210300C500884BD6 /* TerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalViewController.swift; sourceTree = "<group>"; };
 		3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpanelViewController.swift; sourceTree = "<group>"; };
+		3D3CBABB2182D31C00D4FD54 /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		3D40C1822131115800384F4A /* OctoPod v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v4.xcdatamodel"; sourceTree = "<group>"; };
 		3D42AC1021731494004D9FD0 /* AppConfigurationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationDelegate.swift; sourceTree = "<group>"; };
 		3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClientDelegate.swift; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 				3D6EB0C1217B0D280093EC79 /* Assets.xcassets */,
 				3D6EB0C3217B0D280093EC79 /* Info.plist */,
 				3D6EB0C4217B0D280093EC79 /* PushNotificationPayload.apns */,
+				3D3CBABB2182D31C00D4FD54 /* UIUtils.swift */,
 			);
 			path = "OctoPod Watch Extension";
 			sourceTree = "<group>";
@@ -984,6 +987,7 @@
 				3DC69BF02180531000DBE0D5 /* PanelInterfaceController.swift in Sources */,
 				3DAD2DE121817973004A4223 /* Command.swift in Sources */,
 				3DAD2DDD21817742004A4223 /* OctoPrintRESTClient.swift in Sources */,
+				3D3CBABC2182D31C00D4FD54 /* UIUtils.swift in Sources */,
 				3D6EB0BA217B0D270093EC79 /* InterfaceController.swift in Sources */,
 				3DAD2DDF21817973004A4223 /* ExecuteControl.swift in Sources */,
 			);

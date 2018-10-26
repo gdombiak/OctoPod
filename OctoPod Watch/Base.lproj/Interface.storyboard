@@ -43,9 +43,17 @@
             <objects>
                 <controller title="Panel" id="DQ6-B5-o6I" customClass="PanelInterfaceController" customModule="OctoPod_Watch_Extension">
                     <items>
+                        <group width="1" alignment="left" id="vwq-vb-hDk">
+                            <items>
+                                <label alignment="left" hidden="YES" textAlignment="center" numberOfLines="3" id="mGI-gO-3XJ">
+                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                </label>
+                            </items>
+                        </group>
                         <group width="1" alignment="left" id="VhI-83-iOx">
                             <items>
-                                <label alignment="center" verticalAlignment="center" text="Label" id="1t9-IL-Tkp">
+                                <label alignment="center" verticalAlignment="center" id="1t9-IL-Tkp">
                                     <color key="textColor" red="0.076529794109999993" green="0.65499441960000004" blue="0.033051777880000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </label>
                             </items>
@@ -56,7 +64,7 @@
                                 <imageView width="24" height="24" alignment="left" image="Progress" id="uFx-Qy-Xog"/>
                                 <group alignment="right" verticalAlignment="center" id="eeb-KC-pux">
                                     <items>
-                                        <label alignment="right" verticalAlignment="center" text="Label" id="UTh-Pt-L7e"/>
+                                        <label alignment="right" verticalAlignment="center" id="UTh-Pt-L7e"/>
                                     </items>
                                     <edgeInsets key="margins" left="3" right="0.0" top="0.0" bottom="0.0"/>
                                 </group>
@@ -68,36 +76,73 @@
                                 <imageView width="24" height="24" alignment="left" image="ETA" id="0EJ-Uu-vZF"/>
                                 <group alignment="right" verticalAlignment="center" id="HmE-1L-MOY">
                                     <items>
-                                        <label alignment="right" verticalAlignment="center" text="Label" id="y5e-8p-PeC"/>
+                                        <label alignment="right" verticalAlignment="center" id="y5e-8p-PeC"/>
                                     </items>
                                     <edgeInsets key="margins" left="3" right="0.0" top="0.0" bottom="0.0"/>
                                 </group>
                             </items>
-                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="5"/>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="2"/>
                         </group>
-                        <separator alignment="left" id="Lu0-Zb-dIg"/>
-                        <group width="1" alignment="left" id="ZTd-je-kWJ">
+                        <group width="1" alignment="left" layout="vertical" id="ZTd-je-kWJ">
                             <items>
-                                <group alignment="left" verticalAlignment="center" id="EKr-W3-5Mq">
+                                <separator alignment="left" id="Lu0-Zb-dIg">
+                                    <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </separator>
+                                <group width="1" alignment="left" id="q5r-ej-abV">
                                     <items>
-                                        <button width="40" height="40" alignment="center" verticalAlignment="center" backgroundImage="Pause" id="Liw-G2-yhy"/>
+                                        <group alignment="left" verticalAlignment="center" id="EKr-W3-5Mq">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" verticalAlignment="center" hidden="YES" backgroundImage="Pause" id="Liw-G2-yhy">
+                                                    <connections>
+                                                        <action selector="pauseJob" destination="DQ6-B5-o6I" id="GG3-Of-wRO"/>
+                                                    </connections>
+                                                </button>
+                                                <button width="40" height="40" alignment="left" hidden="YES" backgroundImage="Resume" id="8rY-KO-Tnx">
+                                                    <connections>
+                                                        <action selector="resumeJob" destination="DQ6-B5-o6I" id="hgO-EC-BIc"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                            <edgeInsets key="margins" left="5" right="0.0" top="0.0" bottom="0.0"/>
+                                        </group>
+                                        <group alignment="right" verticalAlignment="center" id="b6M-ak-vMU">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" verticalAlignment="center" hidden="YES" backgroundImage="Cancel" id="kvQ-om-cUf">
+                                                    <connections>
+                                                        <action selector="cancelJob" destination="DQ6-B5-o6I" id="0qn-OZ-gHg"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                            <edgeInsets key="margins" left="0.0" right="5" top="0.0" bottom="0.0"/>
+                                        </group>
                                     </items>
-                                    <edgeInsets key="margins" left="5" right="0.0" top="0.0" bottom="0.0"/>
-                                </group>
-                                <group alignment="right" verticalAlignment="center" id="b6M-ak-vMU">
-                                    <items>
-                                        <button width="40" height="40" alignment="center" verticalAlignment="center" backgroundImage="Cancel" id="kvQ-om-cUf"/>
-                                    </items>
-                                    <edgeInsets key="margins" left="0.0" right="5" top="0.0" bottom="0.0"/>
                                 </group>
                             </items>
-                            <edgeInsets key="margins" left="0.0" right="0.0" top="5" bottom="0.0"/>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="2"/>
+                        </group>
+                        <group width="1" alignment="left" layout="vertical" id="WRH-aL-lBa">
+                            <items>
+                                <separator alignment="left" id="GZ2-du-rp8">
+                                    <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </separator>
+                                <button width="24" height="24" alignment="center" verticalAlignment="center" backgroundImage="Refresh" id="Blm-Ik-qB5">
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <connections>
+                                        <action selector="refresh" destination="DQ6-B5-o6I" id="2Hu-Ej-Nah"/>
+                                    </connections>
+                                </button>
+                            </items>
                         </group>
                     </items>
                     <connections>
+                        <outlet property="buttonsGroup" destination="ZTd-je-kWJ" id="gs4-fv-Eip"/>
+                        <outlet property="cancelButton" destination="kvQ-om-cUf" id="caR-wG-tSH"/>
                         <outlet property="completionLabel" destination="UTh-Pt-L7e" id="GrV-2t-OS1"/>
+                        <outlet property="errorLabel" destination="mGI-gO-3XJ" id="Pb5-rG-adj"/>
+                        <outlet property="pauseButton" destination="Liw-G2-yhy" id="z5k-Uc-HH8"/>
                         <outlet property="printTimeLeftLabel" destination="y5e-8p-PeC" id="02d-61-k2P"/>
                         <outlet property="printerStateLabel" destination="1t9-IL-Tkp" id="pMg-2L-EIa"/>
+                        <outlet property="resumeButton" destination="8rY-KO-Tnx" id="zxM-OE-dux"/>
                         <segue destination="SvA-Pt-I7G" kind="relationship" relationship="nextPage" id="4nh-Jo-bAk"/>
                     </connections>
                 </controller>
@@ -135,18 +180,10 @@
                         <outlet property="errorMessageLabel" destination="JZq-2A-VFl" id="DY8-7x-n23"/>
                         <outlet property="nextButton" destination="8aw-nV-PYG" id="vDx-2y-UNt"/>
                         <outlet property="prevButton" destination="Jf9-Tw-QoZ" id="u0r-OE-jL0"/>
-                        <segue destination="AdR-Oo-xwq" kind="relationship" relationship="nextPage" id="BFa-ah-War"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="130" y="204"/>
-        </scene>
-        <!--Move-->
-        <scene sceneID="L4v-lD-7Xw">
-            <objects>
-                <controller title="Move" id="AdR-Oo-xwq"/>
-            </objects>
-            <point key="canvasLocation" x="428" y="204"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
