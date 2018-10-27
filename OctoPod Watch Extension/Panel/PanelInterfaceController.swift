@@ -9,15 +9,26 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
     @IBOutlet weak var completionLabel: WKInterfaceLabel!
     @IBOutlet weak var printTimeLeftLabel: WKInterfaceLabel!
     
+    @IBOutlet weak var bedTempLabel: WKInterfaceLabel!
+    @IBOutlet weak var tool0TempLabel: WKInterfaceLabel!
+    @IBOutlet weak var tool1Group: WKInterfaceGroup!
+    @IBOutlet weak var tool1TempLabel: WKInterfaceLabel!
+    
+    @IBOutlet weak var buttonsSeparator: WKInterfaceSeparator!
     @IBOutlet weak var buttonsGroup: WKInterfaceGroup!
     @IBOutlet weak var resumeButton: WKInterfaceButton!
     @IBOutlet weak var pauseButton: WKInterfaceButton!
     @IBOutlet weak var cancelButton: WKInterfaceButton!
     
+    // Keep track of the printer being displayed
+    var printerURL: String?
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
         // Configure interface objects here.
+        self.hideJobButtons()
+        self.tool1Group.setHidden(true)
     }
 
     override func willActivate() {
@@ -27,13 +38,26 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
         // Listen to changes to list of printers
         PrinterManager.instance.delegates.append(self)
 
-        // Update title of window with printer name
         if let printer = PrinterManager.instance.defaultPrinter() {
+            // Update title of window with printer name
             self.setTitle(PrinterManager.instance.name(printer: printer))
-        }
-        
-        // Refresh display for selected printer
-        renderPrinter()
+            
+            // Check if we need to clear fields information
+            let url = PrinterManager.instance.hostname(printer: printer)
+            if printerURL != url {
+                clearFields()
+            }
+            // Remember printer being displayed
+            printerURL = url
+
+            // Refresh display for selected printer
+            renderPrinter()
+        } else {
+            // Clear any fields information
+            clearFields()
+            // Remember printer being displayed
+            printerURL = nil
+        }        
     }
 
     override func didDeactivate() {
@@ -122,10 +146,13 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
             // Update title of window with printer name
             if let printer = newDefault {
                 self.setTitle(PrinterManager.instance.name(printer: printer))
+                // Remember printer being displayed
+                self.printerURL = PrinterManager.instance.hostname(printer: printer)
+            } else {
+                // Remember printer being displayed
+                self.printerURL = nil
             }
-            self.printerStateLabel.setText(nil)
-            self.completionLabel.setText(nil)
-            self.printTimeLeftLabel.setText(nil)
+            self.clearFields()
         }
         // Refresh display for selected printer
         renderPrinter()
@@ -153,7 +180,24 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
                 if let printTimeLeft = reply["printTimeLeft"] as? Int {
                     self.printTimeLeftLabel.setText(self.secondsToTimeLeft(seconds: printTimeLeft))
                 }
+                if let bedTemp = reply["bedTemp"] as? Double {
+                    let temp = String(format: "%.1f", bedTemp)
+                    self.bedTempLabel.setText("\(temp) C")
+                }
+                if let tool0Temp = reply["tool0Temp"] as? Double {
+                    let temp = String(format: "%.1f", tool0Temp)
+                    self.tool0TempLabel.setText("\(temp) C")
+                    // Check if there is a second extruder and show group and temp
+                    if let tool1Temp = reply["tool1Temp"] as? Double {
+                        let temp = String(format: "%.1f", tool1Temp)
+                        self.tool1TempLabel.setText("\(temp) C")
+                        self.tool1Group.setHidden(false)
+                    } else {
+                        self.tool1Group.setHidden(true)
+                    }
+                }
                 if let printer = reply["printer"] as? String {
+                    self.buttonsSeparator.setHidden(false)
                     self.buttonsGroup.setHidden(false)
                     if printer == "printing" {
                         self.resumeButton.setHidden(true)
@@ -174,21 +218,32 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
                             self.printTimeLeftLabel.setText(nil)
                         }
                         if printer == "operational" {
-                            // Hide all buttons if printer is operational
-                            self.buttonsGroup.setHidden(true)
-                            self.resumeButton.setHidden(true)
-                            self.pauseButton.setHidden(true)
-                            self.cancelButton.setHidden(true)
+                            self.hideJobButtons()
                         }
                     }
                 } else {
-                    self.buttonsGroup.setHidden(true)
-                    self.resumeButton.setHidden(true)
-                    self.pauseButton.setHidden(true)
-                    self.cancelButton.setHidden(true)
+                    self.hideJobButtons()
                 }
             }
         }
+    }
+    
+    fileprivate func hideJobButtons() {
+        // Hide all buttons if printer is operational
+        self.buttonsSeparator.setHidden(true)
+        self.buttonsGroup.setHidden(true)
+        self.resumeButton.setHidden(true)
+        self.pauseButton.setHidden(true)
+        self.cancelButton.setHidden(true)
+    }
+    
+    fileprivate func clearFields() {
+        self.printerStateLabel.setText(nil)
+        self.completionLabel.setText(nil)
+        self.printTimeLeftLabel.setText(nil)
+        self.bedTempLabel.setText(nil)
+        self.tool0TempLabel.setText("     ")  // Put some space so extruder icon looks ok
+        self.tool1TempLabel.setText("     ")  // Put some space so extruder icon looks ok
     }
     
     fileprivate func secondsToTimeLeft(seconds: Int) -> String {

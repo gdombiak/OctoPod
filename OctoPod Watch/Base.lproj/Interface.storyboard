@@ -45,11 +45,12 @@
                     <items>
                         <group width="1" alignment="left" id="vwq-vb-hDk">
                             <items>
-                                <label alignment="left" hidden="YES" textAlignment="center" numberOfLines="3" id="mGI-gO-3XJ">
+                                <label alignment="center" hidden="YES" textAlignment="center" numberOfLines="3" id="mGI-gO-3XJ">
                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                 </label>
                             </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="2"/>
                         </group>
                         <group width="1" alignment="left" id="VhI-83-iOx">
                             <items>
@@ -57,14 +58,16 @@
                                     <color key="textColor" red="0.076529794109999993" green="0.65499441960000004" blue="0.033051777880000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </label>
                             </items>
-                            <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="2"/>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="2"/>
                         </group>
                         <group width="1" alignment="left" id="oG0-RS-pU4">
                             <items>
                                 <imageView width="24" height="24" alignment="left" image="Progress" id="uFx-Qy-Xog"/>
                                 <group alignment="right" verticalAlignment="center" id="eeb-KC-pux">
                                     <items>
-                                        <label alignment="right" verticalAlignment="center" id="UTh-Pt-L7e"/>
+                                        <label alignment="right" verticalAlignment="center" id="UTh-Pt-L7e">
+                                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                        </label>
                                     </items>
                                     <edgeInsets key="margins" left="3" right="0.0" top="0.0" bottom="0.0"/>
                                 </group>
@@ -76,28 +79,63 @@
                                 <imageView width="24" height="24" alignment="left" image="ETA" id="0EJ-Uu-vZF"/>
                                 <group alignment="right" verticalAlignment="center" id="HmE-1L-MOY">
                                     <items>
-                                        <label alignment="right" verticalAlignment="center" id="y5e-8p-PeC"/>
+                                        <label alignment="right" verticalAlignment="center" id="y5e-8p-PeC">
+                                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                        </label>
                                     </items>
                                     <edgeInsets key="margins" left="3" right="0.0" top="0.0" bottom="0.0"/>
                                 </group>
                             </items>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="2"/>
                         </group>
+                        <separator alignment="left" id="9ku-mf-Hbd">
+                            <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </separator>
+                        <group width="1" alignment="left" layout="vertical" id="MEg-sJ-Xdb">
+                            <items>
+                                <group width="1" alignment="left" id="3Bw-Yu-mjO">
+                                    <items>
+                                        <imageView width="24" height="24" alignment="left" image="Bed" id="avO-Ug-VQb"/>
+                                        <label alignment="left" verticalAlignment="center" text="    " id="Dtq-ww-SzR">
+                                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                        </label>
+                                        <imageView width="14" height="24" alignment="right" image="Extruder" contentMode="scaleAspectFill" id="Uec-Ut-aGW"/>
+                                        <label alignment="right" verticalAlignment="center" text="200 C" id="MUA-6M-Ncu">
+                                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                        </label>
+                                    </items>
+                                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                </group>
+                                <group width="1" alignment="left" id="gz1-k7-HwU">
+                                    <items>
+                                        <imageView width="14" height="24" alignment="right" image="Extruder" contentMode="scaleAspectFill" id="6jQ-vq-jeJ"/>
+                                        <label alignment="right" verticalAlignment="center" text="     " id="vgs-ar-wlO">
+                                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                            <variation key="device=watch38mm">
+                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            </variation>
+                                        </label>
+                                    </items>
+                                    <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="0.0"/>
+                                </group>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="2"/>
+                        </group>
+                        <separator alignment="left" id="Lu0-Zb-dIg">
+                            <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </separator>
                         <group width="1" alignment="left" layout="vertical" id="ZTd-je-kWJ">
                             <items>
-                                <separator alignment="left" id="Lu0-Zb-dIg">
-                                    <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </separator>
                                 <group width="1" alignment="left" id="q5r-ej-abV">
                                     <items>
                                         <group alignment="left" verticalAlignment="center" id="EKr-W3-5Mq">
                                             <items>
-                                                <button width="40" height="40" alignment="center" verticalAlignment="center" hidden="YES" backgroundImage="Pause" id="Liw-G2-yhy">
+                                                <button width="40" height="40" alignment="left" verticalAlignment="center" backgroundImage="Pause" id="Liw-G2-yhy">
                                                     <connections>
                                                         <action selector="pauseJob" destination="DQ6-B5-o6I" id="GG3-Of-wRO"/>
                                                     </connections>
                                                 </button>
-                                                <button width="40" height="40" alignment="left" hidden="YES" backgroundImage="Resume" id="8rY-KO-Tnx">
+                                                <button width="40" height="40" alignment="left" verticalAlignment="center" backgroundImage="Resume" id="8rY-KO-Tnx">
                                                     <connections>
                                                         <action selector="resumeJob" destination="DQ6-B5-o6I" id="hgO-EC-BIc"/>
                                                     </connections>
@@ -107,7 +145,7 @@
                                         </group>
                                         <group alignment="right" verticalAlignment="center" id="b6M-ak-vMU">
                                             <items>
-                                                <button width="40" height="40" alignment="center" verticalAlignment="center" hidden="YES" backgroundImage="Cancel" id="kvQ-om-cUf">
+                                                <button width="40" height="40" alignment="right" verticalAlignment="center" backgroundImage="Cancel" id="kvQ-om-cUf">
                                                     <connections>
                                                         <action selector="cancelJob" destination="DQ6-B5-o6I" id="0qn-OZ-gHg"/>
                                                     </connections>
@@ -120,11 +158,11 @@
                             </items>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="2"/>
                         </group>
+                        <separator alignment="left" id="GZ2-du-rp8">
+                            <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </separator>
                         <group width="1" alignment="left" layout="vertical" id="WRH-aL-lBa">
                             <items>
-                                <separator alignment="left" id="GZ2-du-rp8">
-                                    <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </separator>
                                 <button width="24" height="24" alignment="center" verticalAlignment="center" backgroundImage="Refresh" id="Blm-Ik-qB5">
                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <connections>
@@ -132,10 +170,13 @@
                                     </connections>
                                 </button>
                             </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="2" bottom="0.0"/>
                         </group>
                     </items>
                     <connections>
+                        <outlet property="bedTempLabel" destination="Dtq-ww-SzR" id="Iyg-Ok-eEg"/>
                         <outlet property="buttonsGroup" destination="ZTd-je-kWJ" id="gs4-fv-Eip"/>
+                        <outlet property="buttonsSeparator" destination="Lu0-Zb-dIg" id="uQB-9Y-zmh"/>
                         <outlet property="cancelButton" destination="kvQ-om-cUf" id="caR-wG-tSH"/>
                         <outlet property="completionLabel" destination="UTh-Pt-L7e" id="GrV-2t-OS1"/>
                         <outlet property="errorLabel" destination="mGI-gO-3XJ" id="Pb5-rG-adj"/>
@@ -143,6 +184,9 @@
                         <outlet property="printTimeLeftLabel" destination="y5e-8p-PeC" id="02d-61-k2P"/>
                         <outlet property="printerStateLabel" destination="1t9-IL-Tkp" id="pMg-2L-EIa"/>
                         <outlet property="resumeButton" destination="8rY-KO-Tnx" id="zxM-OE-dux"/>
+                        <outlet property="tool0TempLabel" destination="MUA-6M-Ncu" id="Jwh-VO-6Ri"/>
+                        <outlet property="tool1Group" destination="gz1-k7-HwU" id="oVD-C8-v3U"/>
+                        <outlet property="tool1TempLabel" destination="vgs-ar-wlO" id="qbO-7u-14Z"/>
                         <segue destination="SvA-Pt-I7G" kind="relationship" relationship="nextPage" id="4nh-Jo-bAk"/>
                     </connections>
                 </controller>

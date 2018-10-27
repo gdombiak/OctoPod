@@ -37,12 +37,24 @@ class PrinterManager {
     // Apple Watch selected new default printer. Update locally and request
     // iOS App to reflect new change
     func changeDefaultPrinter(printerName: String) {
+        var currentDefaultPrinter: [String: Any]?
         // Update local printers to have new default printer
         for (index, printer) in printers.enumerated() {
-            printers[index]["isDefault"] = name(printer: printer) == printerName
+            let isNewDefault = name(printer: printer) == printerName
+            if isNewDefault {
+                currentDefaultPrinter = printers[index]
+            }
+            printers[index]["isDefault"] = isNewDefault
         }
         // Request iOS App to update selected printer
         WatchSessionManager.instance.updateApplicationContext(context: ["selected_printer" : printerName])
+
+        if let currentDefaultPrinter = currentDefaultPrinter {
+            // Notify that default printer has changed
+            for delegate in delegates {
+                delegate.defaultPrinterChanged(newDefault: currentDefaultPrinter)
+            }
+        }
     }
     
     // Returns default printer. This is the selected printer by the user

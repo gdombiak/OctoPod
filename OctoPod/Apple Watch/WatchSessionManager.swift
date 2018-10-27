@@ -154,10 +154,10 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
                 // Gather now info about printer (paused/printing/temps)
                 self.octoprintClient.printerState { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                     if let json = result as? NSDictionary {
+                        let event = CurrentStateEvent()
                         if let state = json["state"] as? NSDictionary {
-                            let event = CurrentStateEvent()
                             event.parseState(state: state)
-                            
+
                             if event.printing  == true {
                                 reply["printer"] = "printing"
                             } else if event.paused == true {
@@ -166,9 +166,30 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
                                 reply["printer"] = "operational"
                             }                            
                         }
+                        if let temps = json["temperature"] as? NSDictionary {
+                            event.parseTemps(temp: temps)
+
+                            if let bedTemp = event.bedTempActual {
+                                reply["bedTemp"] = bedTemp
+                            }
+                            if let tool0Temp = event.tool0TempActual {
+                                reply["tool0Temp"] = tool0Temp
+                            }
+                            if let tool1Temp = event.tool1TempActual {
+                                reply["tool1Temp"] = tool1Temp
+                            }
+                        }
                     }
                     // Send reply back to Apple Watch with results
                     replyHandler(reply)
+                }
+            } else {
+                if response.statusCode == 403 {
+                    // Bad API Keys
+                    replyHandler(["error": NSLocalizedString("Incorrect API Key", comment: "")])
+                } else {
+                    let message = String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), response.statusCode)
+                    replyHandler(["error": message])
                 }
             }
         }
