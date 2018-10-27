@@ -1,0 +1,24 @@
+
+/* Class = "WKInterfaceController"; title = "Printers"; ObjectID = "AgC-eL-Hgc"; */
+"AgC-eL-Hgc.title" = "Printers";
+
+/* Class = "WKInterfaceController"; title = "Panel"; ObjectID = "DQ6-B5-o6I"; */
+"DQ6-B5-o6I.title" = "Panel";
+
+/* Class = "WKInterfaceLabel"; text = "    "; ObjectID = "Dtq-ww-SzR"; */
+"Dtq-ww-SzR.text" = "    ";
+
+/* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "HUy-Lk-z5k"; */
+"HUy-Lk-z5k.text" = "Label";
+
+/* Class = "WKInterfaceLabel"; text = "Alert Label"; ObjectID = "IdU-wH-bcW"; */
+"IdU-wH-bcW.text" = "Alert Label";
+
+/* Class = "WKInterfaceLabel"; text = "200 C"; ObjectID = "MUA-6M-Ncu"; */
+"MUA-6M-Ncu.text" = "200 C";
+
+/* Class = "WKInterfaceController"; title = "Cameras"; ObjectID = "SvA-Pt-I7G"; */
+"SvA-Pt-I7G.title" = "Cameras";
+
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "vgs-ar-wlO"; */
+"vgs-ar-wlO.text" = "     ";

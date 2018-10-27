@@ -4,6 +4,7 @@ import Foundation
 
 class PrintersInterfaceController: WKInterfaceController, PrinterManagerDelegate {
     
+    @IBOutlet weak var syncPrintersLabel: WKInterfaceLabel!
     @IBOutlet weak var printersTable: WKInterfaceTable!
     
     var printers: [[String: Any]]!
@@ -12,6 +13,7 @@ class PrintersInterfaceController: WKInterfaceController, PrinterManagerDelegate
         super.awake(withContext: context)
         
         // Configure interface objects here.
+        syncPrintersLabel.setHidden(true)
     }
 
     override func willActivate() {
@@ -71,6 +73,9 @@ class PrintersInterfaceController: WKInterfaceController, PrinterManagerDelegate
     
     fileprivate func updateTable() {
         printers = PrinterManager.instance.printers
+        
+        syncPrintersLabel.setHidden(!printers.isEmpty)
+        
         // Set number of rows based on printers count
         printersTable.setNumberOfRows(printers.count, withRowType: "PrinterTableRowController")
         

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14313.18" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38" orientation="portrait">
+    <device id="watch44" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -13,6 +13,10 @@
             <objects>
                 <controller title="Printers" id="AgC-eL-Hgc" customClass="PrintersInterfaceController" customModule="OctoPod_Watch_Extension">
                     <items>
+                        <label alignment="center" verticalAlignment="center" text="Open the iPhone app, it will share printer data with the watch" textAlignment="center" numberOfLines="3" id="S0T-q4-2KQ">
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                        </label>
                         <table alignment="left" id="jZp-1K-0bQ">
                             <items>
                                 <tableRow identifier="PrinterTableRowController" id="ndv-Yq-QEl" customClass="PrinterTableRowController" customModule="OctoPod_Watch_Extension">
@@ -32,6 +36,7 @@
                     </items>
                     <connections>
                         <outlet property="printersTable" destination="jZp-1K-0bQ" id="8b8-DU-aYk"/>
+                        <outlet property="syncPrintersLabel" destination="S0T-q4-2KQ" id="fWY-cZ-bKl"/>
                         <segue destination="DQ6-B5-o6I" kind="relationship" relationship="nextPage" id="kWQ-iv-7tc"/>
                     </connections>
                 </controller>
@@ -100,7 +105,7 @@
                                             <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                         </label>
                                         <imageView width="14" height="24" alignment="right" image="Extruder" contentMode="scaleAspectFill" id="Uec-Ut-aGW"/>
-                                        <label alignment="right" verticalAlignment="center" text="200 C" id="MUA-6M-Ncu">
+                                        <label alignment="right" verticalAlignment="center" text="     " id="MUA-6M-Ncu">
                                             <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                         </label>
                                     </items>

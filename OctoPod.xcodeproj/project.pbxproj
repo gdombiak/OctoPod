@@ -209,6 +209,12 @@
 		3D6350F021082E07001C10F7 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
 		3D6350F221083BE0001C10F7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		3D6350F621084334001C10F7 /* ThemedDynamicUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedDynamicUITableViewController.swift; sourceTree = "<group>"; };
+		3D6570D7218510D100BD3A7B /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Interface.strings"; sourceTree = "<group>"; };
+		3D6570D9218510D200BD3A7B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Interface.strings; sourceTree = "<group>"; };
+		3D6570DB218510D600BD3A7B /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Interface.strings; sourceTree = "<group>"; };
+		3D6570DD218510DB00BD3A7B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Interface.strings; sourceTree = "<group>"; };
+		3D6570DF218510DD00BD3A7B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Interface.strings; sourceTree = "<group>"; };
+		3D6570E1218510DE00BD3A7B /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Interface.strings; sourceTree = "<group>"; };
 		3D693C5B214CCEC600823903 /* OctoPod v5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v5.xcdatamodel"; sourceTree = "<group>"; };
 		3D693C5C214CD23400823903 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		3D693C5E214CEC0600823903 /* CloudKitPrinterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitPrinterManager.swift; sourceTree = "<group>"; };
@@ -1041,6 +1047,12 @@
 			isa = PBXVariantGroup;
 			children = (
 				3D6EB0AB217B0D260093EC79 /* Base */,
+				3D6570D7218510D100BD3A7B /* es-419 */,
+				3D6570D9218510D200BD3A7B /* de */,
+				3D6570DB218510D600BD3A7B /* it */,
+				3D6570DD218510DB00BD3A7B /* cs */,
+				3D6570DF218510DD00BD3A7B /* es */,
+				3D6570E1218510DE00BD3A7B /* nb */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";
