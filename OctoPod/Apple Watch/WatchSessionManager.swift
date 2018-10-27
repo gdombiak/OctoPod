@@ -63,16 +63,16 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
     public func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         if message["printers"] != nil {
             replyHandler(encodePrinters())
-        } else if message["panel_info"] != nil {
-            panel_info(replyHandler)
+        } else if let printerName = message["panel_info"] as? String {
+            panel_info(printerName: printerName, replyHandler: replyHandler)
         } else if let camera = message["camera_take"] as? Dictionary<String, Any> {
             camera_take(replyHandler, camera: camera)
-        } else if message["pause_job"] != nil {
-            pause_job(replyHandler)
-        } else if message["resume_job"] != nil {
-            resume_job(replyHandler)
-        } else if message["cancel_job"] != nil {
-            cancel_job(replyHandler)
+        } else if let printerName = message["pause_job"] as? String {
+            pause_job(printerName: printerName, replyHandler: replyHandler)
+        } else if let printerName = message["resume_job"] as? String {
+            resume_job(printerName: printerName, replyHandler: replyHandler)
+        } else if let printerName = message["cancel_job"] as? String {
+            cancel_job(printerName: printerName, replyHandler: replyHandler)
         } else {
             // Unkown request was received
             let reply = ["unknown" : ""]
@@ -85,16 +85,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
     public func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
         if applicationContext["selected_printer"] != nil {
             // Apple Watch marked a printer as the new selected on
-            if let printer = printerManager.getPrinterByName(name: applicationContext["selected_printer"] as! String) {
-                // Update stored printers
-                printerManager.changeToDefaultPrinter(printer)
-                // Ask octoprintClient to connect to new OctoPrint server
-                octoprintClient.connectToServer(printer: printer)
-                // Notify listeners of this change
-                for delegate in delegates {
-                    delegate.defaultPrinterChanged()
-                }
-            }
+            changeDefaultPrinter(printerName: applicationContext["selected_printer"] as! String)
         }
     }
 
@@ -120,8 +111,24 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
     }
 
     // MARK: - Commands private functions
+    
+    fileprivate func changeDefaultPrinter(printerName: String) {
+        if let printer = printerManager.getPrinterByName(name: printerName) {
+            // Update stored printers
+            printerManager.changeToDefaultPrinter(printer)
+            // Ask octoprintClient to connect to new OctoPrint server
+            octoprintClient.connectToServer(printer: printer)
+            // Notify listeners of this change
+            for delegate in delegates {
+                delegate.defaultPrinterChanged()
+            }
+        }
+    }
 
-    fileprivate func panel_info(_ replyHandler: @escaping ([String : Any]) -> Void) {
+    fileprivate func panel_info(printerName: String, replyHandler: @escaping ([String : Any]) -> Void) {
+        // Make sure that iOS app and Apple Watch are operating on the same printer
+        ensureDefaultPrinter(printerName: printerName)
+        // Execute request
         octoprintClient.currentJobInfo { (result: NSObject?, error: Error?, response :HTTPURLResponse) in
             if let error = error {
                 replyHandler(["error": error.localizedDescription])
@@ -254,7 +261,10 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
         }
     }
     
-    fileprivate func pause_job(_ replyHandler: @escaping ([String : Any]) -> Void) {
+    fileprivate func pause_job(printerName: String, replyHandler: @escaping ([String : Any]) -> Void) {
+        // Make sure that iOS app and Apple Watch are operating on the same printer
+        ensureDefaultPrinter(printerName: printerName)
+        // Execute request
         self.octoprintClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
                 replyHandler(["" : ""])
@@ -264,7 +274,10 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
         }
     }
 
-    fileprivate func resume_job(_ replyHandler: @escaping ([String : Any]) -> Void) {
+    fileprivate func resume_job(printerName: String, replyHandler: @escaping ([String : Any]) -> Void) {
+        // Make sure that iOS app and Apple Watch are operating on the same printer
+        ensureDefaultPrinter(printerName: printerName)
+        // Execute request
         self.octoprintClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
                 replyHandler(["" : ""])
@@ -274,7 +287,10 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
         }
     }
 
-    fileprivate func cancel_job(_ replyHandler: @escaping ([String : Any]) -> Void) {
+    fileprivate func cancel_job(printerName: String, replyHandler: @escaping ([String : Any]) -> Void) {
+        // Make sure that iOS app and Apple Watch are operating on the same printer
+        ensureDefaultPrinter(printerName: printerName)
+        // Execute request
         self.octoprintClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
                 replyHandler(["" : ""])
@@ -298,6 +314,15 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
             }
         }
         return nil
+    }
+    
+    fileprivate func ensureDefaultPrinter(printerName: String) {
+        if let printer = printerManager.getDefaultPrinter() {
+            if printer.name != printerName {
+                // Default printer in the iOS app and Apple Watch is out of sync, let's fix it
+                changeDefaultPrinter(printerName: printerName)
+            }
+        }
     }
     
     fileprivate func encodePrinters() -> [String: [[String : Any]]] {
