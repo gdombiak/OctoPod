@@ -57,4 +57,9 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
             PrinterManager.instance.updatePrinters(printers: applicationContext["printers"] as! [[String : Any]])
         }
     }
+    
+    /** Called on the delegate of the receiver. Will be called on startup if the file finished transferring when the receiver was not running. The incoming file will be located in the Documents/Inbox/ folder when being delivered. The receiver must take ownership of the file by moving it to another location. The system will remove any content that has not been moved when this delegate method returns. */
+    public func session(_ session: WCSession, didReceive file: WCSessionFile) {
+        PrinterManager.instance.fileReceived(file: file.fileURL, metadata: file.metadata)
+    }
 }

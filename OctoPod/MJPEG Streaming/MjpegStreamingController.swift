@@ -32,13 +32,17 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     open var didFinishWithHTTPErrors: ((HTTPURLResponse)->Void)?
     open var didRenderImage: ((UIImage)->Void)?
     open var contentURL: URL?
-    open var imageView: UIImageView
+    open var imageView: UIImageView?
     open var imageOrientation: UIImage.Orientation?
-    
-    public init(imageView: UIImageView) {
-        self.imageView = imageView
+
+    public override init() {
         super.init()
         self.session = Foundation.URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+    }
+
+    public convenience init(imageView: UIImageView) {
+        self.init()
+        self.imageView = imageView
     }
     
     public convenience init(imageView: UIImageView, contentURL: URL) {
@@ -64,7 +68,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
         }
         
         status = .loading
-        DispatchQueue.main.async { self.didStartLoading?() }
+        executeBlock { self.didStartLoading?() }
         
         receivedData = NSMutableData()
         let request = URLRequest(url: url)
@@ -98,13 +102,13 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
             if status == .loading {
                 firstTimeImage = true
                 status = .playing
-                DispatchQueue.main.async { self.didFinishLoading?() }
+                executeBlock { self.didFinishLoading?() }
             }
             
-            DispatchQueue.main.async { self.imageView.image = receivedImage }
+            executeBlock { self.imageView?.image = receivedImage }
             
             if firstTimeImage {
-                DispatchQueue.main.async { self.didRenderImage?(receivedImage) }
+                executeBlock { self.didRenderImage?(receivedImage) }
             }
         }
         
@@ -155,6 +159,16 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
                 }
             }
             onError(error)
+        }
+    }
+    
+    // MARK: - Private function
+    
+    fileprivate func executeBlock(block: @escaping () -> Void ) {
+        if imageView == nil {
+            block()
+        } else {
+            DispatchQueue.main.async { block() }
         }
     }
 }

@@ -15,6 +15,9 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
         
         // Configure interface objects here.
         streamingController = MjpegStreaming(imageView: cameraImage)
+        
+        prevButton.setHidden(true)
+        nextButton.setHidden(true)
     }
 
     override func willActivate() {
@@ -51,6 +54,10 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
         renderPrinterCameras()
     }
     
+    @IBAction func refreshClicked() {
+        renderPrinterCameras()
+    }
+    
     // MARK: - PrinterManagerDelegate
     
     // Notification that list of printers has changed. Could be that new
@@ -72,6 +79,23 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
         }
     }
     
+    // Notification that an image has been received from a received file
+    // If image is nil then that means that there was an error reading
+    // the file to get the image
+    func imageReceived(image: UIImage?, cameraId: String) {
+        // Check that display is still showing camera for which we received an image
+        if cameraId == currentCameraId() {
+            DispatchQueue.main.async {
+                if let image = image {
+                    self.cameraImage.setImage(image)
+                } else {
+                    self.errorMessageLabel.setText(NSLocalizedString("Connection failed", comment: ""))
+                    self.errorMessageLabel.setHidden(false)
+                }
+            }
+        }
+    }
+
     // MARK: - Private functions
     
     fileprivate func renderPrinterCameras() {
@@ -82,59 +106,35 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
             errorMessageLabel.setHidden(true)
 
             if !cameras.isEmpty {
-                // User authentication credentials if configured for the printer
-                if let username = PrinterManager.instance.username(printer: printer), let password = PrinterManager.instance.password(printer: printer) {
-                    // Handle user authentication if webcam is configured this way (I hope people are being careful and doing this)
-                    streamingController?.authenticationHandler = { challenge in
-                        let credential = URLCredential(user: username, password: password, persistence: .forSession)
-                        return (.useCredential, credential)
+                let username: String? = PrinterManager.instance.username(printer: printer)
+                let password: String? = PrinterManager.instance.password(printer: printer)
+                let orientation: Int = cameras[currentCamera].orientation
+                let url: String = cameras[currentCamera].url
+                let cameraId: String =  currentCameraId()
+                
+                // Ask iOS App to fetch the image and resize it on the phone so it gets faster to the Apple Watch
+                OctoPrintClient.instance.camera_take(url: url, username: username, password: password, orientation: orientation, cameraId: cameraId) { (requested: Bool, retry: Bool?, error: String?) in
+                    if !requested {
+                        if retry == true {
+                            // For some reason request to iOS App failed to do all the work on
+                            // the Apple Watch. It can take many seconds to get the image
+                            self.directCameraFetch(url: url, orientation: orientation, username: username, password: password, cameraId: cameraId)
+                        } else {
+                            if let error = error {
+                                // iOS App found an error and we need to display it in Apple Watch
+                                DispatchQueue.main.async {
+                                    if cameraId == self.currentCameraId() {
+                                        self.cameraImage.setImage(nil)
+                                        // Display error messages
+                                        self.errorMessageLabel.setText(error)
+                                        self.errorMessageLabel.setHidden(false)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-                
-                streamingController?.authenticationFailedHandler = {
-                    DispatchQueue.main.async {
-                        self.cameraImage.setImage(nil)
-                        // Display error messages
-                        self.errorMessageLabel.setText(NSLocalizedString("Authentication failed", comment: "HTTP authentication failed"))
-                        self.errorMessageLabel.setHidden(false)
-                    }
-                }
-                
-                streamingController?.didFinishWithErrors = { error in
-                    DispatchQueue.main.async {
-                        self.cameraImage.setImage(nil)
-                        // Display error messages
-                        self.errorMessageLabel.setText(error.localizedDescription)
-                        self.errorMessageLabel.setHidden(false)
-                    }
-                }
-                
-                streamingController?.didFinishWithHTTPErrors = { httpResponse in
-                    // We got a 404 or some 5XX error
-                    DispatchQueue.main.async {
-                        self.cameraImage.setImage(nil)
-                        // Display error messages
-                        self.errorMessageLabel.setText(String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode))
-                        self.errorMessageLabel.setHidden(false)
-                    }
-                }
-                
-                streamingController?.didFinishLoading = {
-                    // Hide error messages since an image will be rendered (so that means that it worked!)
-                    self.errorMessageLabel.setHidden(true)
-                }
-                
-//                streamingController?.didRendered = {
-//                    // Show timestamp to know when image was refreshed. Helps troubleshoot delays during development
-//                    let timestamp = DateFormatter.localizedString(from: Date(), dateStyle: DateFormatter.Style.none, timeStyle: DateFormatter.Style.medium)
-//                    self.errorMessageLabel.setText(timestamp)
-//                    self.errorMessageLabel.setHidden(false)
-//                }
-
-                streamingController?.imageOrientation = UIImage.Orientation(rawValue: cameras[currentCamera].orientation)!
-                streamingController?.play(url: URL(string: cameras[currentCamera].url)!)
             }
-
         } else {
             // Clean up camera info since there is no default printer
             prevButton.setHidden(true)
@@ -142,5 +142,69 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
             cameraImage.setHidden(true)
             errorMessageLabel.setHidden(true)
         }
+    }
+    
+    fileprivate func directCameraFetch(url: String, orientation: Int, username: String?, password: String?, cameraId: String) {
+        // User authentication credentials if configured for the printer
+        if let username = username, let password = password {
+            // Handle user authentication if webcam is configured this way (I hope people are being careful and doing this)
+            streamingController?.authenticationHandler = { challenge in
+                let credential = URLCredential(user: username, password: password, persistence: .forSession)
+                return (.useCredential, credential)
+            }
+        }
+        
+        streamingController?.authenticationFailedHandler = {
+            DispatchQueue.main.async {
+                if cameraId == self.currentCameraId() {
+                    self.cameraImage.setImage(nil)
+                    // Display error messages
+                    self.errorMessageLabel.setText(NSLocalizedString("Authentication failed", comment: "HTTP authentication failed"))
+                    self.errorMessageLabel.setHidden(false)
+                }
+            }
+        }
+        
+        streamingController?.didFinishWithErrors = { error in
+            DispatchQueue.main.async {
+                if cameraId == self.currentCameraId() {
+                    self.cameraImage.setImage(nil)
+                    // Display error messages
+                    self.errorMessageLabel.setText(error.localizedDescription)
+                    self.errorMessageLabel.setHidden(false)
+                }
+            }
+        }
+        
+        streamingController?.didFinishWithHTTPErrors = { httpResponse in
+            // We got a 404 or some 5XX error
+            DispatchQueue.main.async {
+                if cameraId == self.currentCameraId() {
+                    self.cameraImage.setImage(nil)
+                    // Display error messages
+                    self.errorMessageLabel.setText(String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode))
+                    self.errorMessageLabel.setHidden(false)
+                }
+            }
+        }
+        
+        streamingController?.didFinishLoading = {
+            if cameraId == self.currentCameraId() {
+                // Hide error messages since an image will be rendered (so that means that it worked!)
+                self.errorMessageLabel.setHidden(true)
+            }
+            
+            // Stop refreshing. A single JPEG takes a second or more to download so camera will
+            // fall way behind (many frames per second). Better to download a single image and
+            // then ask the next one that will be current
+            self.streamingController?.stop()
+        }
+        
+        streamingController?.imageOrientation = UIImage.Orientation(rawValue: orientation)!
+        streamingController?.play(url: URL(string: url)!)
+    }
+    
+    fileprivate func currentCameraId() -> String {
+        return "\(currentCamera)"
     }
 }

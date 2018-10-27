@@ -59,26 +59,14 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
         
     }
     
-    /** Called on the delegate of the receiver. Will be called on startup if the incoming message caused the receiver to launch. */
-    public func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        if message["start_print"] != nil {
-            // Apple Watch requested to start new print job
-            if let file = message["start_print"] as! String? {
-                NSLog("Requesting to start printing file: \(file)")
-            }
-        } else {
-            // Unkown request was received
-            NSLog("Unknown request was received: \(message)")
-        }
-        
-    }
-    
     /** Called on the delegate of the receiver when the sender sends a message that expects a reply. Will be called on startup if the incoming message caused the receiver to launch. */
     public func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
         if message["printers"] != nil {
             replyHandler(encodePrinters())
         } else if message["panel_info"] != nil {
             panel_info(replyHandler)
+        } else if let camera = message["camera_take"] as? Dictionary<String, Any> {
+            camera_take(replyHandler, camera: camera)
         } else if message["pause_job"] != nil {
             pause_job(replyHandler)
         } else if message["resume_job"] != nil {
@@ -195,6 +183,77 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
         }
     }
     
+    fileprivate func camera_take(_ replyHandler: @escaping ([String : Any]) -> Void, camera: Dictionary<String, Any>) {
+        if let url = camera["url"] as? String, let cameraId = camera["cameraId"] as? String {
+            let streamingController = MjpegStreamingController()
+            
+            if let username = camera["username"] as? String, let password = camera["password"] as? String {
+                // User authentication credentials if configured for the printer
+                streamingController.authenticationHandler = { challenge in
+                    let credential = URLCredential(user: username, password: password, persistence: .forSession)
+                    return (.useCredential, credential)
+                }
+            }
+            
+            streamingController.authenticationFailedHandler = {
+                let message = NSLocalizedString("Authentication failed", comment: "HTTP authentication failed")
+                replyHandler(["error": message])
+            }
+
+            streamingController.didFinishWithErrors = { error in
+                replyHandler(["error": error.localizedDescription])
+            }
+            
+            streamingController.didFinishWithHTTPErrors = { httpResponse in
+                // We got a 404 or some 5XX error
+                let message = String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode)
+                replyHandler(["error": message])
+            }
+
+            streamingController.didRenderImage = { (image: UIImage) in
+                // Stop loading next jpeg image (MJPEG is a stream of jpegs)
+                streamingController.stop()
+                // Save image to file. Quality 80% reduces size a lot (from 500KB to around 56K) and still looks good
+                if let data = image.jpegData(compressionQuality: 0.80) {
+                    if let fileURL = self.session?.watchDirectoryURL?.appendingPathComponent(UUID().uuidString) {
+                        do {
+                            try data.write(to: fileURL)
+                            // Send file to Apple Watch
+                            self.session?.transferFile(fileURL, metadata: ["cameraId": cameraId])
+                            // Send back confirmation that image file was created (DO WE NEED THIS)
+                            replyHandler(["done": ""])
+                        }
+                        catch {
+                            NSLog("Failed to save JPEG file. Error: \(error)")
+                            let message = NSLocalizedString("Failed to save JPEG file", comment: "")
+                            replyHandler(["error": message, "retry": true])
+                        }
+                        
+                    } else {
+                        NSLog("WARNING - watchDirectoryURL seems to be NIL")
+                        let message = NSLocalizedString("Failed to save JPEG file", comment: "")
+                        replyHandler(["error": message, "retry": true])
+                    }
+                } else {
+                    let message = NSLocalizedString("Failed to save JPEG file", comment: "")
+                    replyHandler(["error": message, "retry": true])
+                }
+            }
+
+            if let cameraURL = URL(string: url) {
+                if let orientation = camera["orientation"] as? Int {
+                    streamingController.imageOrientation = UIImage.Orientation(rawValue: orientation)!
+                }
+                // Get first image and then stop streaming next images
+                streamingController.play(url: cameraURL)
+            } else {
+                NSLog("Invalid camera URL: \(url)")
+                let message = NSLocalizedString("Invalid camera URL", comment: "")
+                replyHandler(["error": message])
+            }
+        }
+    }
+    
     fileprivate func pause_job(_ replyHandler: @escaping ([String : Any]) -> Void) {
         self.octoprintClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
@@ -277,8 +336,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
             }
             printers.append(printerDic)
         }
-        
-        NSLog("Encoded printers: \(["printers" : printers])")
+//        NSLog("Encoded printers: \(["printers" : printers])")
         
         return ["printers" : printers]
     }

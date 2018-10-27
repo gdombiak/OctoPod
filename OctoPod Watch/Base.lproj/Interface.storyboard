@@ -200,20 +200,35 @@
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="3Pq-52-T8h">
                             <items>
-                                <imageView alignment="center" verticalAlignment="center" id="cWx-84-41g"/>
-                                <label alignment="center" verticalAlignment="bottom" hidden="YES" id="JZq-2A-VFl"/>
+                                <imageView alignment="center" id="cWx-84-41g"/>
+                                <label alignment="center" verticalAlignment="bottom" id="JZq-2A-VFl"/>
                                 <group width="1" alignment="center" verticalAlignment="bottom" id="n4p-Nr-XWF">
                                     <items>
-                                        <button width="22" height="22" alignment="left" hidden="YES" backgroundImage="Prev" id="Jf9-Tw-QoZ">
+                                        <group alignment="left" id="UGZ-Yo-ugC">
+                                            <items>
+                                                <button width="24" height="24" alignment="left" backgroundImage="Prev" id="Jf9-Tw-QoZ">
+                                                    <connections>
+                                                        <action selector="previousClicked" destination="SvA-Pt-I7G" id="SNl-Gg-iJn"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                            <edgeInsets key="margins" left="4" right="0.0" top="0.0" bottom="0.0"/>
+                                        </group>
+                                        <button width="24" height="24" alignment="center" backgroundImage="Refresh" id="xJS-Tp-AOd">
                                             <connections>
-                                                <action selector="previousClicked" destination="SvA-Pt-I7G" id="SNl-Gg-iJn"/>
+                                                <action selector="refreshClicked" destination="SvA-Pt-I7G" id="Y0F-g5-ytt"/>
                                             </connections>
                                         </button>
-                                        <button width="22" height="22" alignment="right" hidden="YES" backgroundImage="Next" id="8aw-nV-PYG">
-                                            <connections>
-                                                <action selector="nextClicked" destination="SvA-Pt-I7G" id="Mds-9b-qXg"/>
-                                            </connections>
-                                        </button>
+                                        <group alignment="right" id="Cr1-eY-1Ta">
+                                            <items>
+                                                <button width="24" height="24" alignment="right" backgroundImage="Next" id="8aw-nV-PYG">
+                                                    <connections>
+                                                        <action selector="nextClicked" destination="SvA-Pt-I7G" id="Mds-9b-qXg"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                            <edgeInsets key="margins" left="0.0" right="4" top="0.0" bottom="0.0"/>
+                                        </group>
                                     </items>
                                 </group>
                             </items>

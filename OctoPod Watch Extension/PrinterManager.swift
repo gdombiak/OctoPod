@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 class PrinterManager {
     
@@ -66,6 +67,29 @@ class PrinterManager {
         }
         return nil
     }
+    
+    // We only receive files when receiving a camera image. Get the file content
+    // before returning since the file will be gone after this. Notify listeners
+    // that a new UIImage has been received
+    func fileReceived(file: URL, metadata: [String: Any]?) {
+        do {
+            if let metadata = metadata, let cameraId = metadata["cameraId"] as? String {
+                let image = try UIImage(data: Data(contentsOf: file))
+                // Notify listeners that reading image from receive file was successful
+                for delegate in delegates {
+                    delegate.imageReceived(image: image, cameraId: cameraId)
+                }
+            }
+        }
+        catch {
+            NSLog("Error reading image from file. Error: \(error)")
+            // Notify listeners that reading image from receive file failed
+            for delegate in delegates {
+                delegate.imageReceived(image: nil, cameraId: "-1")
+            }
+        }
+    }
+    
     
     // MARK: - Delegates operations
     

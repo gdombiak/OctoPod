@@ -158,6 +158,13 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
         renderPrinter()
     }
 
+    // Notification that an image has been received from a received file
+    // If image is nil then that means that there was an error reading
+    // the file to get the image
+    func imageReceived(image: UIImage?, cameraId: String) {
+        // Do nothing
+    }
+    
     // MARK: - Private functions
     
     fileprivate func renderPrinter() {

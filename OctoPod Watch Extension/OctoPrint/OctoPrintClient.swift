@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 class OctoPrintClient {
     
@@ -44,6 +45,11 @@ class OctoPrintClient {
                         dict["printTimeLeft"] = printTimeLeft
                     }
                 }
+                // Temperature and paused/printing/operation state info is not being fetched
+                // It takes a second or more to make each request and the UI would be too slow
+                // If app is not available and iOS app is using Wifi or LTE then buttons to pause,
+                // resume or cancel and temp information is not avaiable. Might reconsider
+                // this stratgy
                 callback(dict)
             }
         }
@@ -140,6 +146,33 @@ class OctoPrintClient {
             NSLog("Using fallback for 'cancel_job' since Watch Connectivity Framework is not available.")
             // Try making HTTP request instead of using Watch Connectivity Framework that uses the iOS app
             octoPrintRESTClient?.cancelCurrentJob(callback: restCallback)
+        }
+    }
+    
+    // MARK: - Camera operations
+    
+    func camera_take(url: String, username: String?, password: String?, orientation: Int, cameraId: String, callback: @escaping (Bool, Bool?, String?) -> Void) {
+        if let session = WatchSessionManager.instance.session {
+            var requestDetail = ["url": url, "orientation" : orientation, "cameraId": cameraId] as [String : Any]
+            if let username = username {
+                requestDetail["username"] = username
+            }
+            if let password = password {
+                requestDetail["password"] = password
+            }
+            session.sendMessage(["camera_take" : requestDetail], replyHandler: { (reply: [String : Any]) in
+                if let error = reply["error"] as? String {
+                    callback(false, reply["retry"] != nil, error)
+                } else {
+                    callback(true, nil, nil)
+                }
+            }) { (error: Error) in
+                NSLog("Error asking 'camera_take' with Watch Connectivity Framework. Error: \(error)")
+                callback(false, true, error.localizedDescription)
+            }
+        } else {
+            NSLog("Using fallback for 'camera_take' since Watch Connectivity Framework is not available.")
+            callback(false, true, nil)
         }
     }
 }
