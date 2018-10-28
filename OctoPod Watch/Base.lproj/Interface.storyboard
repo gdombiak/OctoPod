@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14313.18" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch44" orientation="portrait">
+    <device id="watch38" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -13,7 +13,7 @@
             <objects>
                 <controller title="Printers" id="AgC-eL-Hgc" customClass="PrintersInterfaceController" customModule="OctoPod_Watch_Extension">
                     <items>
-                        <label alignment="center" verticalAlignment="center" text="Open the iPhone app, it will share printer data with the watch" textAlignment="center" numberOfLines="3" id="S0T-q4-2KQ">
+                        <label alignment="center" verticalAlignment="center" text="Open the iPhone app, it will share printer data with the watch" textAlignment="center" numberOfLines="6" id="S0T-q4-2KQ">
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                         </label>
