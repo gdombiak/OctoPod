@@ -167,6 +167,8 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                     }
                     if let printTimeLeft = progress["printTimeLeft"] as? Int {
                         reply["printTimeLeft"] = printTimeLeft
+                    } else if let _ = progress["printTime"] as? Int {
+                        reply["printTimeLeft"] = NSLocalizedString("Still stabilizing", comment: "Print time is being calculated")
                     }
                 }
                 

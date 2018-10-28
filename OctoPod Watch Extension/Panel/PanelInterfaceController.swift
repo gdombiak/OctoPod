@@ -186,6 +186,8 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
                 }
                 if let printTimeLeft = reply["printTimeLeft"] as? Int {
                     self.printTimeLeftLabel.setText(self.secondsToTimeLeft(seconds: printTimeLeft))
+                } else if let printTimeLeft = reply["printTimeLeft"] as? String {
+                    self.printTimeLeftLabel.setText(printTimeLeft)
                 }
                 if let bedTemp = reply["bedTemp"] as? Double {
                     let temp = String(format: "%.1f", bedTemp)
