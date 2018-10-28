@@ -1,5 +1,5 @@
 import Foundation
-import UIKit
+import WatchConnectivity
 
 class OctoPrintClient {
     
@@ -54,7 +54,7 @@ class OctoPrintClient {
             }
         }
         if let printer = PrinterManager.instance.defaultPrinter() {
-            if let session = WatchSessionManager.instance.session {
+            if let session = sessionToiOS() {
                 session.sendMessage(["panel_info" : PrinterManager.instance.name(printer: printer)], replyHandler: { (reply: [String : Any]) in
                     callback(reply)
                 }) { (error: Error) in
@@ -79,7 +79,7 @@ class OctoPrintClient {
             }
         }
         if let printer = PrinterManager.instance.defaultPrinter() {
-            if let session = WatchSessionManager.instance.session {
+            if let session = sessionToiOS() {
                 session.sendMessage(["pause_job" : PrinterManager.instance.name(printer: printer)], replyHandler: { (reply: [String : Any]) in
                     if let error = reply["error"] as? String {
                         callback(false, error)
@@ -108,7 +108,7 @@ class OctoPrintClient {
             }
         }
         if let printer = PrinterManager.instance.defaultPrinter() {
-            if let session = WatchSessionManager.instance.session {
+            if let session = sessionToiOS() {
                 session.sendMessage(["resume_job" : PrinterManager.instance.name(printer: printer)], replyHandler: { (reply: [String : Any]) in
                     if let error = reply["error"] as? String {
                         callback(false, error)
@@ -137,7 +137,7 @@ class OctoPrintClient {
             }
         }
         if let printer = PrinterManager.instance.defaultPrinter() {
-            if let session = WatchSessionManager.instance.session {
+            if let session = sessionToiOS() {
                 session.sendMessage(["cancel_job" : PrinterManager.instance.name(printer: printer)], replyHandler: { (reply: [String : Any]) in
                     if let error = reply["error"] as? String {
                         callback(false, error)
@@ -160,7 +160,7 @@ class OctoPrintClient {
     // MARK: - Camera operations
     
     func camera_take(url: String, username: String?, password: String?, orientation: Int, cameraId: String, callback: @escaping (Bool, Bool?, String?) -> Void) {
-        if let session = WatchSessionManager.instance.session {
+        if let session = sessionToiOS() {
             var requestDetail = ["url": url, "orientation" : orientation, "cameraId": cameraId] as [String : Any]
             if let username = username {
                 requestDetail["username"] = username
@@ -182,5 +182,18 @@ class OctoPrintClient {
             NSLog("Using fallback for 'camera_take' since Watch Connectivity Framework is not available.")
             callback(false, true, nil)
         }
+    }
+    
+    // MARK: - Private functions
+    
+    // Check if we have an active session to the iOS device and the iOS device is reachable
+    // This does not mean that the iOS app is reachable
+    fileprivate func sessionToiOS() -> WCSession? {
+        if let session = WatchSessionManager.instance.session {
+            if session.activationState == .activated && session.isReachable {
+                return session
+            }
+        }
+        return nil
     }
 }

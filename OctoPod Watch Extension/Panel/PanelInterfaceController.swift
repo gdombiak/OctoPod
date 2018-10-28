@@ -169,7 +169,6 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
     
     fileprivate func renderPrinter() {
         OctoPrintClient.instance.currentJobInfo { (reply: [String : Any]) in
-            // TODO Display error
             DispatchQueue.main.async {
                 if let error = reply["error"] as? String {
                     self.errorLabel.setText(error)
