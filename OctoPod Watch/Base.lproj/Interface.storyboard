@@ -206,7 +206,9 @@
                         <group width="1" alignment="left" layout="vertical" id="3Pq-52-T8h">
                             <items>
                                 <imageView alignment="center" id="cWx-84-41g"/>
-                                <label alignment="center" verticalAlignment="bottom" id="JZq-2A-VFl"/>
+                                <label alignment="center" verticalAlignment="bottom" numberOfLines="3" id="JZq-2A-VFl">
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                </label>
                                 <group width="1" alignment="center" verticalAlignment="bottom" id="n4p-Nr-XWF">
                                     <items>
                                         <group alignment="left" id="UGZ-Yo-ugC">

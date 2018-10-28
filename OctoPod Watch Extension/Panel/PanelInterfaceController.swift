@@ -265,9 +265,14 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
         }
         let duration = TimeInterval(seconds)
         let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .brief
+        formatter.unitsStyle = .abbreviated
         formatter.includesApproximationPhrase = true
-        formatter.allowedUnits = [ .day, .hour, .minute ]
+        // If more than a day and Apple Watch is 38mm then do not display minutes
+        if seconds > 86400 && WKInterfaceDevice.current().screenBounds.size.width == 136 {
+            formatter.allowedUnits = [ .day, .hour]
+        } else {
+            formatter.allowedUnits = [ .day, .hour, .minute ]
+        }
         return formatter.string(from: duration)!
     }
 }
