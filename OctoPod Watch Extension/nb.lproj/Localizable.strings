@@ -1,7 +1,42 @@
-/* 
-  Localizable.strings
-  OctoPod
+/* HTTP authentication failed */
+"Authentication failed" = "Godkjenning mislyktes";
 
-  Created by Gaston Dombiak on 10/28/18.
-  Copyright © 2018 Gaston Dombiak. All rights reserved.
-*/
+/* (No Comment) */
+"Confirm" = "Bekreft";
+
+/* (No Comment) */
+"Connection failed" = "Tilkobling feilet";
+
+/* (No Comment) */
+"Dismiss" = "Avvis";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Ønsker du å avbryte jobben?";
+
+/* No comment provided by engineer. */
+"Do you want to pause the job?" = "Ønsker du å pause jobben?";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Forespørselfeil. HTTP-respons: %d";
+
+/* (No Comment) */
+"Job" = "Jobb";
+
+/* (No Comment) */
+"No" = "Nei";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Kunne ikke be om å kansellere jobb";
+
+/* (No Comment) */
+"Notify failed pause job" = "Kunne ikke be om å pause jobb ";
+
+/* (No Comment) */
+"Notify failed resume job" = "Kunne ikke be om å fortsette jobben";
+
+/* ETA is Unknown */
+"Unknown" = "Ukjent";
+
+/* (No Comment) */
+"Yes" = "Ja";
+

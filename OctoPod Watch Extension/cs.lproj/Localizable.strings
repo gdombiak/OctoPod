@@ -1,7 +1,42 @@
-/* 
-  Localizable.strings
-  OctoPod
+/* HTTP authentication failed */
+"Authentication failed" = "Chyba ověření";
 
-  Created by Gaston Dombiak on 10/28/18.
-  Copyright © 2018 Gaston Dombiak. All rights reserved.
-*/
+/* (No Comment) */
+"Confirm" = "Potvrdit";
+
+/* (No Comment) */
+"Connection failed" = "Připojení se nezdařilo";
+
+/* (No Comment) */
+"Dismiss" = "Zrušit";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Chcete zrušit tisk?";
+
+/* No comment provided by engineer. */
+"Do you want to pause the job?" = "Chcete pozastavit tisk?";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Chyba požadavku. HTTP odpověď: %d";
+
+/* (No Comment) */
+"Job" = "Tisk";
+
+/* (No Comment) */
+"No" = "Ne";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Nezdařil se požadavek ke zrušení tisku";
+
+/* (No Comment) */
+"Notify failed pause job" = "Nezdařil se požadavek k pozastavení tisku";
+
+/* (No Comment) */
+"Notify failed resume job" = "Nezdařil se požadavek k pokračování v tisku";
+
+/* ETA is Unknown */
+"Unknown" = "neznámý";
+
+/* (No Comment) */
+"Yes" = "Ano";
+

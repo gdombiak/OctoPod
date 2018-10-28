@@ -1,7 +1,42 @@
-/* 
-  Localizable.strings
-  OctoPod
+/* HTTP authentication failed */
+"Authentication failed" = "Autenticazione fallita";
 
-  Created by Gaston Dombiak on 10/28/18.
-  Copyright © 2018 Gaston Dombiak. All rights reserved.
-*/
+/* (No Comment) */
+"Confirm" = "Conferma";
+
+/* (No Comment) */
+"Connection failed" = "Connessione fallita";
+
+/* (No Comment) */
+"Dismiss" = "Chiudi";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Vuoi annullare la stampa?";
+
+/* No comment provided by engineer. */
+"Do you want to pause the job?" = "Vuoi sospendere la stampa?";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Errore nella richiesta. Risposta HTTP: %d";
+
+/* (No Comment) */
+"Job" = "Stampa";
+
+/* (No Comment) */
+"No" = "No";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Errore nella richiesta di annullare la stampa";
+
+/* (No Comment) */
+"Notify failed pause job" = "Errore nella richiesta di sospendere la stampa";
+
+/* (No Comment) */
+"Notify failed resume job" = "Errore nella richiesta di riprendere la stampa";
+
+/* ETA is Unknown */
+"Unknown" = "Sconosciuto";
+
+/* (No Comment) */
+"Yes" = "Sì";
+

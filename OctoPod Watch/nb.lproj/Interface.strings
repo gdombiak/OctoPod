@@ -1,6 +1,5 @@
-
 /* Class = "WKInterfaceController"; title = "Printers"; ObjectID = "AgC-eL-Hgc"; */
-"AgC-eL-Hgc.title" = "Printers";
+"AgC-eL-Hgc.title" = "Skrivere";
 
 /* Class = "WKInterfaceController"; title = "Panel"; ObjectID = "DQ6-B5-o6I"; */
 "DQ6-B5-o6I.title" = "Panel";
@@ -14,11 +13,15 @@
 /* Class = "WKInterfaceLabel"; text = "Alert Label"; ObjectID = "IdU-wH-bcW"; */
 "IdU-wH-bcW.text" = "Alert Label";
 
-/* Class = "WKInterfaceLabel"; text = "200 C"; ObjectID = "MUA-6M-Ncu"; */
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "MUA-6M-Ncu"; */
 "MUA-6M-Ncu.text" = "200 C";
 
+/* Class = "WKInterfaceLabel"; text = "Open the iPhone app, it will share printer data with the watch"; ObjectID = "S0T-q4-2KQ"; */
+"S0T-q4-2KQ.text" = "Åpne iPhone-appen, den vil dele skriverdata med klokken";
+
 /* Class = "WKInterfaceController"; title = "Cameras"; ObjectID = "SvA-Pt-I7G"; */
-"SvA-Pt-I7G.title" = "Cameras";
+"SvA-Pt-I7G.title" = "Kameraer";
 
 /* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "vgs-ar-wlO"; */
 "vgs-ar-wlO.text" = "     ";
+

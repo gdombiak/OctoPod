@@ -133,6 +133,9 @@
 /* (No Comment) */
 "Failed to request to turn power on" = "Errore nella richiesta di accensione";
 
+/* No comment provided by engineer. */
+"Failed to save JPEG file" = "Impossibile salvare il file JPEG";
+
 /* (No Comment) */
 "Failed to send GCode command" = "Errore nell'invio del comando GCode";
 

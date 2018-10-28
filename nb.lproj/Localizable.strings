@@ -133,6 +133,9 @@
 /* (No Comment) */
 "Failed to request to turn power on" = "Kunne ikke be om å slå på";
 
+/* No comment provided by engineer. */
+"Failed to save JPEG file" = "Kunne ikke lagre JPEG-fil";
+
 /* (No Comment) */
 "Failed to send GCode command" = "Kunne ikke sende GCode-kommandoen";
 

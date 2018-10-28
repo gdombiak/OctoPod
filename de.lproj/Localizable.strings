@@ -133,6 +133,9 @@
 /* (No Comment) */
 "Failed to request to turn power on" = "Anfrage Spannung einschalten gescheitert";
 
+/* No comment provided by engineer. */
+"Failed to save JPEG file" = "JPEG Datei konnte nicht gespeichert werden";
+
 /* (No Comment) */
 "Failed to send GCode command" = "GCode Befehl nicht gesendet";
 

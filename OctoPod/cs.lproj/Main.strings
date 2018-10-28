@@ -172,6 +172,9 @@
 /* Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt"; */
 "gCt-Vk-Fgt.headerTitle" = "Připojení";
 
+/* Class = "UITableViewSection"; headerTitle = "X Y Z"; ObjectID = "gHQ-Lu-mQ0"; */
+"gHQ-Lu-mQ0.headerTitle" = "X Y Z";
+
 /* Class = "UITableViewController"; title = "File Details"; ObjectID = "GJo-uu-Qmb"; */
 "GJo-uu-Qmb.title" = "Detaily souboru";
 
@@ -283,6 +286,9 @@
 /* Class = "UILabel"; text = "Tap = Full Screen"; ObjectID = "MT2-fR-HJD"; */
 "MT2-fR-HJD.text" = "Klepnout = Celá obrazovka";
 
+/* Class = "UIButton"; normalTitle = "SD"; ObjectID = "N5P-gn-chq"; */
+"N5P-gn-chq.normalTitle" = "SD";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "naE-gB-aKG"; */
 "naE-gB-aKG.text" = "Nadpis";
 
@@ -327,9 +333,6 @@
 
 /* Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU"; */
 "Po0-HZ-vzU.text" = "Přihlaste se do iCloudu pro synchronizaci mezi zařízeními";
-
-/* Class = "UIButton"; normalTitle = "URL Button"; ObjectID = "Pxj-s5-1zm"; */
-"Pxj-s5-1zm.normalTitle" = "Tlačítko URL";
 
 /* Class = "UIBarButtonItem"; title = "Printer"; ObjectID = "PyK-FO-APL"; */
 "PyK-FO-APL.title" = "Tiskárna";
@@ -388,14 +391,8 @@
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "SQ9-ls-Hf3"; */
 "SQ9-ls-Hf3.title" = "Nastavení";
 
-/* Class = "UIViewController"; title = "Camera"; ObjectID = "SqB-ww-g1i"; */
-"SqB-ww-g1i.title" = "Kamera";
-
 /* Class = "UITableViewSection"; headerTitle = "Fan & Motors"; ObjectID = "SwZ-jq-tKf"; */
 "SwZ-jq-tKf.headerTitle" = "Ventilátor & Motory";
-
-/* Class = "UILabel"; text = "Error message"; ObjectID = "t1B-B9-t5u"; */
-"t1B-B9-t5u.text" = "Zpráva chyby";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
 "tFf-Rs-mOx.text" = "Nadpis";

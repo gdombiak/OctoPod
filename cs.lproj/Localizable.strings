@@ -133,6 +133,9 @@
 /* (No Comment) */
 "Failed to request to turn power on" = "Nezdařila se žádost o zapnutí";
 
+/* No comment provided by engineer. */
+"Failed to save JPEG file" = "Nezdařilo se uložit soubor JPEG";
+
 /* (No Comment) */
 "Failed to send GCode command" = "Nezdařilo se poslat příkaz GCode";
 
