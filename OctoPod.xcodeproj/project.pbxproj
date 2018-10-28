@@ -122,6 +122,7 @@
 		3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF232DF20F150CC00550652 /* MoveSubViewController.swift */; };
 		3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */; };
 		3DFA8074210E30C100B5BFAA /* CloudFilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA8073210E30C100B5BFAA /* CloudFilesManager.swift */; };
+		3DFE67CE218598F300F33019 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DFE67D0218598F300F33019 /* Localizable.strings */; };
 		8267C0CF229350E955F7AF71 /* Pods_OctoPod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF04586ED8A4BC29EF06604 /* Pods_OctoPod.framework */; };
 /* End PBXBuildFile section */
 
@@ -309,6 +310,13 @@
 		3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterProfilesDelegate.swift; sourceTree = "<group>"; };
 		3DFA8071210E2EF100B5BFAA /* OctoPod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OctoPod.entitlements; sourceTree = "<group>"; };
 		3DFA8073210E30C100B5BFAA /* CloudFilesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFilesManager.swift; sourceTree = "<group>"; };
+		3DFE67CF218598F300F33019 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DFE67D1218598F700F33019 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		3DFE67D2218598FA00F33019 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DFE67D3218598FB00F33019 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DFE67D4218598FC00F33019 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DFE67D5218598FD00F33019 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DFE67D6218598FD00F33019 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A9F913620E58D596BED0BDF3 /* Pods_OctoPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctoPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF04586ED8A4BC29EF06604 /* Pods_OctoPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctoPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA67A6E786F508F8752C975C /* Pods-OctoPod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctoPod.release.xcconfig"; path = "Pods/Target Support Files/Pods-OctoPod/Pods-OctoPod.release.xcconfig"; sourceTree = "<group>"; };
@@ -515,6 +523,7 @@
 				3D6EB0C1217B0D280093EC79 /* Assets.xcassets */,
 				3D6EB0C3217B0D280093EC79 /* Info.plist */,
 				3D6EB0C4217B0D280093EC79 /* PushNotificationPayload.apns */,
+				3DFE67D0218598F300F33019 /* Localizable.strings */,
 			);
 			path = "OctoPod Watch Extension";
 			sourceTree = "<group>";
@@ -831,6 +840,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D6EB0C2217B0D280093EC79 /* Assets.xcassets in Resources */,
+				3DFE67CE218598F300F33019 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1077,6 +1087,20 @@
 				3D697ED42163376D00BFB849 /* it */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3DFE67D0218598F300F33019 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DFE67CF218598F300F33019 /* en */,
+				3DFE67D1218598F700F33019 /* es-419 */,
+				3DFE67D2218598FA00F33019 /* de */,
+				3DFE67D3218598FB00F33019 /* it */,
+				3DFE67D4218598FC00F33019 /* cs */,
+				3DFE67D5218598FD00F33019 /* es */,
+				3DFE67D6218598FD00F33019 /* nb */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

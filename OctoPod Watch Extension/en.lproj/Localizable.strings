@@ -1,0 +1,17 @@
+"Unknown" = "Unknown";
+
+"Authentication failed" = "Authentication Failed";
+"Connection failed" = "Connection Failed";
+"HTTP Request error" = "Request error. HTTP response: %d";
+
+"Confirm" = "Confirm";
+"Yes" = "Yes";
+"No" = "No";
+"Dismiss" = "Dismiss";
+
+"Job" = "Job";
+"Notify failed cancel job" = "Failed to request to cancel job";
+"Notify failed pause job" = "Failed to request to pause job";
+"Notify failed resume job" = "Failed to request to resume job";
+
+"Do you want to cancel job?" = "Do you want to cancel the job?";

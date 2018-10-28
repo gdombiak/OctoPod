@@ -1,0 +1,42 @@
+/* HTTP authentication failed */
+"Authentication failed" = "Error de autenticación";
+
+/* (No Comment) */
+"Confirm" = "Confirmar";
+
+/* (No Comment) */
+"Connection failed" = "Error de conexión";
+
+/* (No Comment) */
+"Dismiss" = "Cerrar";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "¿Desea cancelar el trabajo?";
+
+/* No comment provided by engineer. */
+"Do you want to pause the job?" = "¿Desea suspender el trabajo?";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Error en la petición. Respuesta HTTP: %d";
+
+/* (No Comment) */
+"Job" = "Trabajo";
+
+/* (No Comment) */
+"No" = "No";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Error al cancelar el trabajo";
+
+/* (No Comment) */
+"Notify failed pause job" = "Error al detener el trabajo";
+
+/* (No Comment) */
+"Notify failed resume job" = "Error al reanudar el trabajo";
+
+/* ETA is Unknown */
+"Unknown" = "Desconocido";
+
+/* (No Comment) */
+"Yes" = "Si";
+

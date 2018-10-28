@@ -172,6 +172,9 @@
 /* Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt"; */
 "gCt-Vk-Fgt.headerTitle" = "Conexión";
 
+/* Class = "UITableViewSection"; headerTitle = "X Y Z"; ObjectID = "gHQ-Lu-mQ0"; */
+"gHQ-Lu-mQ0.headerTitle" = "X Y Z";
+
 /* Class = "UITableViewController"; title = "File Details"; ObjectID = "GJo-uu-Qmb"; */
 "GJo-uu-Qmb.title" = "Detalles Archivo";
 
@@ -331,9 +334,6 @@
 /* Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU"; */
 "Po0-HZ-vzU.text" = "Ingrese al iCloud para sincronizar dispositivos";
 
-/* Class = "UIButton"; normalTitle = "URL Button"; ObjectID = "Pxj-s5-1zm"; */
-"Pxj-s5-1zm.normalTitle" = "Botón URL";
-
 /* Class = "UIBarButtonItem"; title = "Printer"; ObjectID = "PyK-FO-APL"; */
 "PyK-FO-APL.title" = "Impresora";
 
@@ -391,14 +391,8 @@
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "SQ9-ls-Hf3"; */
 "SQ9-ls-Hf3.title" = "Seteos";
 
-/* Class = "UIViewController"; title = "Camera"; ObjectID = "SqB-ww-g1i"; */
-"SqB-ww-g1i.title" = "Cámara";
-
 /* Class = "UITableViewSection"; headerTitle = "Fan & Motors"; ObjectID = "SwZ-jq-tKf"; */
 "SwZ-jq-tKf.headerTitle" = "Ventilador & Motores";
-
-/* Class = "UILabel"; text = "Error message"; ObjectID = "t1B-B9-t5u"; */
-"t1B-B9-t5u.text" = "Mensaje de error";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
 "tFf-Rs-mOx.text" = "Título";
