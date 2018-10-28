@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import WatchConnectivity
 
-class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate {
+class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate, OctoPrintSettingsDelegate {
 
     var printerManager: PrinterManager
     var octoprintClient: OctoPrintClient
@@ -15,6 +15,9 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
         self.octoprintClient = octoprintClient
         super.init()
         
+        // Listen to changes to OctoPrint Settings
+        octoprintClient.octoPrintSettingsDelegates.append(self)
+
         // Listen to iCloud changes. Printers may be modified from iPad and
         // when iPhone gets notified then we will reach and push to Apple Watch
         cloudKitPrinterManager.delegates.append(self)
@@ -31,6 +34,8 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
         }
     }
     
+    // MARK: - Push printers to Apple Watch
+
     func pushPrinters() {
         do {
             try getSession()?.updateApplicationContext(encodePrinters())
@@ -104,6 +109,25 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate 
     func printerDeleted(printer: Printer) {
     }
     
+    // MARK: - OctoPrintSettingsDelegate
+    
+    // Notification that orientation of the camera hosted by OctoPrint has changed
+    func cameraOrientationChanged(newOrientation: UIImage.Orientation) {
+        pushPrinters()
+    }
+    
+    // Notification that path to camera hosted by OctoPrint has changed
+    func cameraPathChanged(streamUrl: String) {
+        pushPrinters()
+    }
+    
+    // Notification that a new camera has been added or removed. We rely on MultiCam
+    // plugin to be installed on OctoPrint so there is no need to re-enter this information
+    // URL to cameras is returned in /api/settings under plugins->multicam
+    func camerasChanged(camerasURLs: Array<String>) {
+        pushPrinters()
+    }
+
     // MARK: - Delegates operations
     
     func remove(watchSessionManagerDelegate toRemove: WatchSessionManagerDelegate) {
