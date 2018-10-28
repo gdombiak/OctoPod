@@ -246,8 +246,8 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
             streamingController.didRenderImage = { (image: UIImage) in
                 // Stop loading next jpeg image (MJPEG is a stream of jpegs)
                 streamingController.stop()
-                // Save image to file. Quality 80% reduces size a lot (from 500KB to around 56K) and still looks good
-                if let data = image.jpegData(compressionQuality: 0.80) {
+                // Save image to file. Quality 70% reduces size a lot (from 300KB to around 48K) and still looks good
+                if let data = image.jpegData(compressionQuality: 0.70) {
                     if let fileURL = self.session?.watchDirectoryURL?.appendingPathComponent(UUID().uuidString) {
                         do {
                             try data.write(to: fileURL)
