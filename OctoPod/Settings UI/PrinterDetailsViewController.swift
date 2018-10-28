@@ -6,6 +6,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
     let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
+    let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
     var updatePrinter: Printer? = nil
     var scannedKey: String?
@@ -73,6 +74,11 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
             printer.iCloudUpdate = true
             
             printerManager.updatePrinter(printer)
+            
+            // If default printer was edited then we need to update connections to use new settings
+            if printer.defaultPrinter {
+                octoprintClient.connectToServer(printer: printer)
+            }
         } else {
             // Add new printer (that will become default if it's the first one)
             let _ = printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, iCloudUpdate: true)
