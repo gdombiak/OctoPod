@@ -1,5 +1,6 @@
 import Foundation
 import WatchConnectivity
+import WatchKit
 
 class OctoPrintClient {
     
@@ -168,6 +169,7 @@ class OctoPrintClient {
             if let password = password {
                 requestDetail["password"] = password
             }
+            requestDetail["width"] = WKInterfaceDevice.current().screenBounds.size.width
             session.sendMessage(["camera_take" : requestDetail], replyHandler: { (reply: [String : Any]) in
                 if let error = reply["error"] as? String {
                     callback(false, reply["retry"] != nil, error)

@@ -219,7 +219,8 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     fileprivate func camera_take(_ replyHandler: @escaping ([String : Any]) -> Void, camera: Dictionary<String, Any>) {
         if let url = camera["url"] as? String, let cameraId = camera["cameraId"] as? String {
             let streamingController = MjpegStreamingController()
-            
+            let screenWidth = camera["width"] as! Int
+
             if let username = camera["username"] as? String, let password = camera["password"] as? String {
                 // User authentication credentials if configured for the printer
                 streamingController.authenticationHandler = { challenge in
@@ -246,30 +247,39 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
             streamingController.didRenderImage = { (image: UIImage) in
                 // Stop loading next jpeg image (MJPEG is a stream of jpegs)
                 streamingController.stop()
-                // Save image to file. Quality 70% reduces size a lot (from 300KB to around 48K) and still looks good
-                if let data = image.jpegData(compressionQuality: 0.70) {
-                    if let fileURL = self.session?.watchDirectoryURL?.appendingPathComponent(UUID().uuidString) {
-                        do {
-                            try data.write(to: fileURL)
-                            // Send file to Apple Watch
-                            self.session?.transferFile(fileURL, metadata: ["cameraId": cameraId])
-                            // Send back confirmation that image file was created (DO WE NEED THIS)
-                            replyHandler(["done": ""])
-                        }
-                        catch {
-                            NSLog("Failed to save JPEG file. Error: \(error)")
+                var newImage: UIImage = image
+                DispatchQueue.main.async {
+                    // Resize image to save space
+                    if let resizedImage = image.resizeWithWidth(width: CGFloat(screenWidth - 10)) {
+                        newImage = resizedImage
+                    } else {
+                        NSLog("Failed to reduce image size")
+                    }
+                    // Save image to file with quality 80% to further reduce size. (Eg: 300KB -> 48K)
+                    if let data = newImage.jpegData(compressionQuality: 0.80) {
+                        if let fileURL = self.session?.watchDirectoryURL?.appendingPathComponent(UUID().uuidString) {
+                            do {
+                                try data.write(to: fileURL)
+                                // Send file to Apple Watch
+                                self.session?.transferFile(fileURL, metadata: ["cameraId": cameraId])
+                                // Send back confirmation that image file was created (DO WE NEED THIS)
+                                replyHandler(["done": ""])
+                            }
+                            catch {
+                                NSLog("Failed to save JPEG file. Error: \(error)")
+                                let message = NSLocalizedString("Failed to save JPEG file", comment: "")
+                                replyHandler(["error": message, "retry": true])
+                            }
+                            
+                        } else {
+                            NSLog("WARNING - watchDirectoryURL seems to be NIL")
                             let message = NSLocalizedString("Failed to save JPEG file", comment: "")
                             replyHandler(["error": message, "retry": true])
                         }
-                        
                     } else {
-                        NSLog("WARNING - watchDirectoryURL seems to be NIL")
                         let message = NSLocalizedString("Failed to save JPEG file", comment: "")
                         replyHandler(["error": message, "retry": true])
                     }
-                } else {
-                    let message = NSLocalizedString("Failed to save JPEG file", comment: "")
-                    replyHandler(["error": message, "retry": true])
                 }
             }
 

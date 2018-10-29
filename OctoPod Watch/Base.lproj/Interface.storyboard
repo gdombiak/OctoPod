@@ -188,6 +188,7 @@
                         <outlet property="pauseButton" destination="Liw-G2-yhy" id="z5k-Uc-HH8"/>
                         <outlet property="printTimeLeftLabel" destination="y5e-8p-PeC" id="02d-61-k2P"/>
                         <outlet property="printerStateLabel" destination="1t9-IL-Tkp" id="pMg-2L-EIa"/>
+                        <outlet property="refreshButton" destination="Blm-Ik-qB5" id="BnG-kz-bB4"/>
                         <outlet property="resumeButton" destination="8rY-KO-Tnx" id="zxM-OE-dux"/>
                         <outlet property="tool0TempLabel" destination="MUA-6M-Ncu" id="Jwh-VO-6Ri"/>
                         <outlet property="tool1Group" destination="gz1-k7-HwU" id="oVD-C8-v3U"/>
@@ -246,6 +247,7 @@
                         <outlet property="errorMessageLabel" destination="JZq-2A-VFl" id="DY8-7x-n23"/>
                         <outlet property="nextButton" destination="8aw-nV-PYG" id="vDx-2y-UNt"/>
                         <outlet property="prevButton" destination="Jf9-Tw-QoZ" id="u0r-OE-jL0"/>
+                        <outlet property="refreshButton" destination="xJS-Tp-AOd" id="EPc-gY-PWp"/>
                     </connections>
                 </controller>
             </objects>

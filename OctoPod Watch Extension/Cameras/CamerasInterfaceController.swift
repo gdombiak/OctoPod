@@ -4,6 +4,7 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
     
     @IBOutlet weak var prevButton: WKInterfaceButton!
     @IBOutlet weak var nextButton: WKInterfaceButton!
+    @IBOutlet weak var refreshButton: WKInterfaceButton!
     @IBOutlet weak var cameraImage: WKInterfaceImage!
     @IBOutlet weak var errorMessageLabel: WKInterfaceLabel!
     
@@ -45,12 +46,20 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
     // MARK: - Button actions
 
     @IBAction func nextClicked() {
+        // Update "pointer" to camera being rendered
         currentCamera = currentCamera + 1
+        // Remove image of current camera
+        self.cameraImage.setImage(nil)
+        // Render new camera
         renderPrinterCameras()
     }
     
     @IBAction func previousClicked() {
+        // Update "pointer" to camera being rendered
         currentCamera = currentCamera - 1
+        // Remove image of current camera
+        self.cameraImage.setImage(nil)
+        // Render new camera
         renderPrinterCameras()
     }
     
@@ -92,6 +101,8 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
                     self.errorMessageLabel.setText(NSLocalizedString("Connection failed", comment: ""))
                     self.errorMessageLabel.setHidden(false)
                 }
+                // Done refreshing so enable button again
+                self.refreshButton.setEnabled(true)
             }
         }
     }
@@ -112,6 +123,8 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
                 let url: String = cameras[currentCamera].url
                 let cameraId: String =  currentCameraId()
                 
+                // Disable refresh button to indicate we are "refreshing"
+                refreshButton.setEnabled(false)
                 // Ask iOS App to fetch the image and resize it on the phone so it gets faster to the Apple Watch
                 OctoPrintClient.instance.camera_take(url: url, username: username, password: password, orientation: orientation, cameraId: cameraId) { (requested: Bool, retry: Bool?, error: String?) in
                     if !requested {
@@ -128,6 +141,8 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
                                         // Display error messages
                                         self.errorMessageLabel.setText(error)
                                         self.errorMessageLabel.setHidden(false)
+                                        // Done refreshing so enable button again
+                                        self.refreshButton.setEnabled(true)
                                     }
                                 }
                             }
@@ -161,6 +176,8 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
                     // Display error messages
                     self.errorMessageLabel.setText(NSLocalizedString("Authentication failed", comment: "HTTP authentication failed"))
                     self.errorMessageLabel.setHidden(false)
+                    // Done refreshing so enable button again
+                    self.refreshButton.setEnabled(true)
                 }
             }
         }
@@ -172,6 +189,8 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
                     // Display error messages
                     self.errorMessageLabel.setText(error.localizedDescription)
                     self.errorMessageLabel.setHidden(false)
+                    // Done refreshing so enable button again
+                    self.refreshButton.setEnabled(true)
                 }
             }
         }
@@ -184,6 +203,8 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
                     // Display error messages
                     self.errorMessageLabel.setText(String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode))
                     self.errorMessageLabel.setHidden(false)
+                    // Done refreshing so enable button again
+                    self.refreshButton.setEnabled(true)
                 }
             }
         }
@@ -192,6 +213,8 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
             if cameraId == self.currentCameraId() {
                 // Hide error messages since an image will be rendered (so that means that it worked!)
                 self.errorMessageLabel.setHidden(true)
+                // Done refreshing so enable button again
+                self.refreshButton.setEnabled(true)
             }
             
             // Stop refreshing. A single JPEG takes a second or more to download so camera will

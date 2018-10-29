@@ -19,6 +19,7 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
     @IBOutlet weak var resumeButton: WKInterfaceButton!
     @IBOutlet weak var pauseButton: WKInterfaceButton!
     @IBOutlet weak var cancelButton: WKInterfaceButton!
+    @IBOutlet weak var refreshButton: WKInterfaceButton!
     
     // Keep track of the printer being displayed
     var printerURL: String?
@@ -168,8 +169,13 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
     // MARK: - Private functions
     
     fileprivate func renderPrinter() {
+        // Disable refresh button to indicate we are "refreshing"
+        self.refreshButton.setEnabled(false)
         OctoPrintClient.instance.currentJobInfo { (reply: [String : Any]) in
             DispatchQueue.main.async {
+                // Done refreshing so enable button again
+                self.refreshButton.setEnabled(true)
+                
                 if let error = reply["error"] as? String {
                     self.errorLabel.setText(error)
                     self.errorLabel.setHidden(false)
