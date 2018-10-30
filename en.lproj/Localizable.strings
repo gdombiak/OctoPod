@@ -38,6 +38,7 @@
 "Warning" = "Warning";
 "Cancel" = "Cancel";
 "Run" = "Run";
+"Apply" = "Apply";
 
 "Failed turn power on" = "Failed to request to turn power on";
 "Failed turn power off" = "Failed to request to turn power off";

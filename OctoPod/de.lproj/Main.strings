@@ -43,8 +43,8 @@
 /* Class = "UILabel"; text = "Size"; ObjectID = "6ox-ce-GOS"; */
 "6ox-ce-GOS.text" = "Größe";
 
-/* Class = "UILabel"; text = "100%"; ObjectID = "6tl-IB-smM"; */
-"6tl-IB-smM.text" = "100%";
+/* Class = "UILabel"; text = "%"; ObjectID = "6tl-IB-smM"; */
+"6tl-IB-smM.text" = "%";
 
 /* Class = "UILabel"; text = "Disable Motor"; ObjectID = "6TZ-hb-gdQ"; */
 "6TZ-hb-gdQ.text" = "Motor abschalten";
@@ -157,8 +157,8 @@
 /* Class = "UITableViewSection"; headerTitle = "Print job"; ObjectID = "FdM-r0-spe"; */
 "FdM-r0-spe.headerTitle" = "Auftrag drucken";
 
-/* Class = "UILabel"; text = "100%"; ObjectID = "ffd-HI-A62"; */
-"ffd-HI-A62.text" = "100%";
+/* Class = "UILabel"; text = "%"; ObjectID = "ffd-HI-A62"; */
+"ffd-HI-A62.text" = "%";
 
 /* Class = "UILabel"; text = "Extruder 2"; ObjectID = "Fj0-uz-fxi"; */
 "Fj0-uz-fxi.text" = "Düse 2";
@@ -433,8 +433,8 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "uVf-tq-wZi"; */
 "uVf-tq-wZi.text" = "Title";
 
-/* Class = "UILabel"; text = "100%"; ObjectID = "VkX-1W-xBG"; */
-"VkX-1W-xBG.text" = "100%";
+/* Class = "UILabel"; text = "%"; ObjectID = "VkX-1W-xBG"; */
+"VkX-1W-xBG.text" = "%";
 
 /* Class = "UILabel"; text = "Printer status"; ObjectID = "VnD-Rc-TYw"; */
 "VnD-Rc-TYw.text" = "Drucker Status";

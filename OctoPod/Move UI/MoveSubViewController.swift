@@ -32,15 +32,18 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBOutlet weak var retractButton: UIButton!
     @IBOutlet weak var extrudeButton: UIButton!
     @IBOutlet weak var flowRateLabel: UILabel!
+    @IBOutlet weak var flowRateField: UITextField!
     @IBOutlet weak var flowRateSlider: UISlider!
     
     @IBOutlet weak var fanSpeedLabel: UILabel!
-    @IBOutlet weak var feedRateLabel: UILabel!
+    @IBOutlet weak var fanSpeedField: UITextField!
     @IBOutlet weak var fanSpeedSlider: UISlider!
     @IBOutlet weak var xMotorButton: UIButton!
     @IBOutlet weak var yMotorButton: UIButton!
     @IBOutlet weak var zMotorButton: UIButton!
     @IBOutlet weak var eMotorButton: UIButton!
+    @IBOutlet weak var feedRateField: UITextField!
+    @IBOutlet weak var feedRateLabel: UILabel!
     @IBOutlet weak var feedRateSlider: UISlider!
     
     // Track if axis are inverted
@@ -50,6 +53,14 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add a 'Cancel' and 'Apply' button on the keyboard
+        // When pressed executed the specified selector
+        addKeyboardButtons(field: flowRateField, slider: flowRateSlider, cancelSelector: #selector(MoveSubViewController.closeFlowKeyboard), applySelector: #selector(MoveSubViewController.applyFlowKeyboard))
+
+        addKeyboardButtons(field: fanSpeedField, slider: fanSpeedSlider, cancelSelector: #selector(MoveSubViewController.closeFanKeyboard), applySelector: #selector(MoveSubViewController.applyFanKeyboard))
+
+        addKeyboardButtons(field: feedRateField, slider: feedRateSlider, cancelSelector: #selector(MoveSubViewController.closeFeedKeyboard), applySelector: #selector(MoveSubViewController.applyFeedKeyboard))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -205,9 +216,47 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     
     @IBAction func flowRateChanging(_ sender: UISlider) {
         // Update label with value of slider
-        flowRateLabel.text = "\(String(format: "%.0f", sender.value))%"
+        flowRateField.text = "\(String(format: "%.0f", sender.value))"
     }
     
+    @IBAction func flowRateKeyboardChanged(_ sender: Any) {
+        if let text = flowRateField.text {
+            if let value = Int(text) {
+                // Make sure that value does not go over limit
+                if value > Int(flowRateSlider.maximumValue) {
+                    flowRateField.text = "\(String(format: "%.0f", flowRateSlider.maximumValue))"
+                }
+                // We do not validate min value as user is still typing ...
+            }
+        }
+    }
+    
+    @objc func closeFlowKeyboard() {
+        flowRateField.resignFirstResponder()
+        // User cancelled so apply value from slider
+        flowRateField.text = "\(String(format: "%.0f", flowRateSlider.value))"
+    }
+
+    @objc func applyFlowKeyboard() {
+        flowRateField.resignFirstResponder()
+        if let text = flowRateField.text {
+            if let value = Int(text) {
+                // Validate value is within range. We validated max so we now validate min
+                if value < Int(flowRateSlider.minimumValue) {
+                    // Update field with min value of slider
+                    flowRateField.text = "\(String(format: "%.0f", flowRateSlider.minimumValue))"
+                    // Update slider with "entered" value
+                    flowRateSlider.value = flowRateSlider.minimumValue
+                } else {
+                    // Update slider with entered value
+                    flowRateSlider.value = Float(value)
+                }
+                // Simulate that user moved the slider so we execute the action
+                flowRateChanged(flowRateSlider)
+            }
+        }
+    }
+
     @IBAction func flowRateChanged(_ sender: UISlider) {
         // Ask OctoPrint to set new flow rate for extruder
         let newFlowRate = Int(String(format: "%.0f", sender.value))!
@@ -224,7 +273,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     
     @IBAction func fanSpeedChanging(_ sender: UISlider) {
         // Update label with value of slider
-        fanSpeedLabel.text = "\(String(format: "%.0f", sender.value))%"
+        fanSpeedField.text = "\(String(format: "%.0f", sender.value))"
     }
     
     @IBAction func fanSpeedChanged(_ sender: UISlider) {
@@ -237,6 +286,44 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 self.showAlert(message: NSLocalizedString("Failed to set new fan speed", comment: ""))
             }
         })
+    }
+    
+    @IBAction func fanSpeedKeyboardChanged(_ sender: Any) {
+        if let text = fanSpeedField.text {
+            if let value = Int(text) {
+                // Make sure that value does not go over limit
+                if value > Int(fanSpeedSlider.maximumValue) {
+                    fanSpeedField.text = "\(String(format: "%.0f", fanSpeedSlider.maximumValue))"
+                }
+                // We do not validate min value as user is still typing ...
+            }
+        }
+    }
+    
+    @objc func closeFanKeyboard() {
+        fanSpeedField.resignFirstResponder()
+        // User cancelled so apply value from slider
+        fanSpeedField.text = "\(String(format: "%.0f", fanSpeedSlider.value))"
+    }
+    
+    @objc func applyFanKeyboard() {
+        fanSpeedField.resignFirstResponder()
+        if let text = fanSpeedField.text {
+            if let value = Int(text) {
+                // Validate value is within range. We validated max so we now validate min
+                if value < Int(fanSpeedSlider.minimumValue) {
+                    // Update field with min value of slider
+                    fanSpeedField.text = "\(String(format: "%.0f", fanSpeedSlider.minimumValue))"
+                    // Update slider with "entered" value
+                    fanSpeedSlider.value = fanSpeedSlider.minimumValue
+                } else {
+                    // Update slider with entered value
+                    fanSpeedSlider.value = Float(value)
+                }
+                // Simulate that user moved the slider so we execute the action
+                fanSpeedChanged(fanSpeedSlider)
+            }
+        }
     }
     
     @IBAction func disableMotorX(_ sender: Any) {
@@ -257,7 +344,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     
     @IBAction func feedRateChanging(_ sender: UISlider) {
         // Update label with value of slider
-        feedRateLabel.text = "\(String(format: "%.0f", sender.value))%"
+        feedRateField.text = "\(String(format: "%.0f", sender.value))"
     }
     
     @IBAction func feedRateChanged(_ sender: UISlider) {
@@ -270,6 +357,44 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 self.showAlert(message: NSLocalizedString("Failed to set new feed rate", comment: ""))
             }
         })
+    }
+    
+    @IBAction func feedRateKeyboardChanged(_ sender: Any) {
+        if let text = feedRateField.text {
+            if let value = Int(text) {
+                // Make sure that value does not go over limit
+                if value > Int(feedRateSlider.maximumValue) {
+                    feedRateField.text = "\(String(format: "%.0f", feedRateSlider.maximumValue))"
+                }
+                // We do not validate min value as user is still typing ...
+            }
+        }
+    }
+
+    @objc func closeFeedKeyboard() {
+        feedRateField.resignFirstResponder()
+        // User cancelled so apply value from slider
+        feedRateField.text = "\(String(format: "%.0f", feedRateSlider.value))"
+    }
+    
+    @objc func applyFeedKeyboard() {
+        feedRateField.resignFirstResponder()
+        if let text = feedRateField.text {
+            if let value = Int(text) {
+                // Validate value is within range. We validated max so we now validate min
+                if value < Int(feedRateSlider.minimumValue) {
+                    // Update field with min value of slider
+                    feedRateField.text = "\(String(format: "%.0f", feedRateSlider.minimumValue))"
+                    // Update slider with "entered" value
+                    feedRateSlider.value = feedRateSlider.minimumValue
+                } else {
+                    // Update slider with entered value
+                    feedRateSlider.value = Float(value)
+                }
+                // Simulate that user moved the slider so we execute the action
+                feedRateChanged(feedRateSlider)
+            }
+        }
     }
     
     // MARK: - Table view operations
@@ -373,9 +498,32 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         disableMotorLabel.textColor = textLabelColor
         feedRateTextLabel.textColor = textLabelColor
         
+        flowRateField.backgroundColor = theme.backgroundColor()
+        flowRateField.textColor = textColor
         flowRateLabel.textColor = textColor
+        
+        fanSpeedField.backgroundColor = theme.backgroundColor()
+        fanSpeedField.textColor = textColor
         fanSpeedLabel.textColor = textColor
+
+        feedRateField.backgroundColor = theme.backgroundColor()
+        feedRateField.textColor = textColor
         feedRateLabel.textColor = textColor
+    }
+    
+    fileprivate func addKeyboardButtons(field: UITextField, slider: UISlider, cancelSelector: Selector, applySelector: Selector) {
+        let numberToolbar: UIToolbar = UIToolbar()
+        numberToolbar.barStyle = UIBarStyle.blackTranslucent
+        numberToolbar.items=[
+            UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: UIBarButtonItem.Style.plain, target: self, action: cancelSelector),
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil),
+            UIBarButtonItem(title: NSLocalizedString("Apply", comment: ""), style: UIBarButtonItem.Style.plain, target: self, action: applySelector)
+        ]
+        numberToolbar.sizeToFit()
+        field.inputAccessoryView = numberToolbar
+        
+        // Make sure that field has same value as slider
+        field.text = "\(String(format: "%.0f", slider.value))"
     }
 
     fileprivate func showAlert(message: String) {
