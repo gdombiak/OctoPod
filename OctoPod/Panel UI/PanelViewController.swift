@@ -299,7 +299,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     // React when device orientation changes
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        if subpanelsView.isHidden {
+        if subpanelsView != nil && subpanelsView.isHidden {
             // Do nothing if camera is in full screen
             return
         }
