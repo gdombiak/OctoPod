@@ -111,6 +111,11 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
     
     fileprivate func renderPrinterCameras() {
         if let printer = PrinterManager.instance.defaultPrinter(), let cameras = PrinterManager.instance.cameras(printer: printer) {
+            // Check that selected camera is still within range of cameras
+            if cameras.count < (currentCamera + 1) {
+                currentCamera = 0
+            }
+
             prevButton.setHidden(currentCamera == 0)
             nextButton.setHidden(cameras.count - currentCamera <= 1)
             cameraImage.setHidden(cameras.count == 0)

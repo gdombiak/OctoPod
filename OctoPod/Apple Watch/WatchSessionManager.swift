@@ -371,7 +371,8 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
             if let password = printer.password {
                 printerDic["password"] = password
             }
-            if let cameras = printer.cameras {
+            if let cameras = printer.cameras, !cameras.isEmpty {
+                // MultiCam plugin is installed so show all cameras
                 var camerasArray: Array<Dictionary<String, Any>> = []
                 for url in cameras {
                     var cameraURL: String
@@ -394,6 +395,12 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                     camerasArray.append(cameraDic)
                 }
                 printerDic["cameras"] = camerasArray
+            } else {
+                // MultiCam plugin is not installed so just show default camera
+                let cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: printer.getStreamPath())
+                let cameraOrientation = Int(printer.cameraOrientation)
+                let cameraDic = ["url" : cameraURL, "orientation": cameraOrientation] as [String : Any]
+                printerDic["cameras"] = [cameraDic]
             }
             printers.append(printerDic)
         }
