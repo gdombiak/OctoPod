@@ -51,6 +51,9 @@ class UIUtils {
         } else if screenHeight == 1112 {
             // iPad (10.5-inch)
             return (619, 414, 469, 414)
+        } else if screenHeight == 1194 {
+            // iPad Pro (11 inch)
+            return (626, 414, 469, 414)
         } else if screenHeight >= 1366 {
             // iPad (12.9-inch)
             return (763, 604, 576, 604)
