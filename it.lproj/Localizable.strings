@@ -7,6 +7,9 @@
 /* (No Comment) */
 "Actual Extruder 2" = "T effettiva estrusore 2";
 
+/* (No Comment) */
+"Apply" = "Applica";
+
 /* HTTP authentication failed */
 "Authentication failed" = "Autenticazione fallita";
 

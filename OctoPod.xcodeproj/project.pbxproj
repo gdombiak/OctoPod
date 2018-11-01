@@ -22,6 +22,7 @@
 		3D1A93682132F5E70050ED9A /* ChildrenCustomControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A93672132F5E70050ED9A /* ChildrenCustomControlViewController.swift */; };
 		3D1A936A213314300050ED9A /* ExecuteControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A9369213314300050ED9A /* ExecuteControlViewController.swift */; };
 		3D1A936C213316850050ED9A /* ExecuteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A936B213316850050ED9A /* ExecuteControl.swift */; };
+		3D27DA97218A5FD8004F763A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D27DA95218A5FD8004F763A /* InfoPlist.strings */; };
 		3D2821E72178167D00976611 /* CameraViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2821E62178167D00976611 /* CameraViewDelegate.swift */; };
 		3D33B7A1213F6A0D002A4BE3 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */; };
 		3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D36DD79210300C500884BD6 /* TerminalViewController.swift */; };
@@ -184,6 +185,13 @@
 		3D1A93672132F5E70050ED9A /* ChildrenCustomControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenCustomControlViewController.swift; sourceTree = "<group>"; };
 		3D1A9369213314300050ED9A /* ExecuteControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteControlViewController.swift; sourceTree = "<group>"; };
 		3D1A936B213316850050ED9A /* ExecuteControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteControl.swift; sourceTree = "<group>"; };
+		3D27DA94218A5FD8004F763A /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3D27DA96218A5FD8004F763A /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3D27DA98218A601F004F763A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D27DA99218A6072004F763A /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D27DA9A218A6128004F763A /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D27DA9B218A636C004F763A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D27DA9C218A675B004F763A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D2821E62178167D00976611 /* CameraViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewDelegate.swift; sourceTree = "<group>"; };
 		3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		3D36DD79210300C500884BD6 /* TerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalViewController.swift; sourceTree = "<group>"; };
@@ -522,6 +530,7 @@
 				3D3CBABB2182D31C00D4FD54 /* UIUtils.swift */,
 				3D6EB0C1217B0D280093EC79 /* Assets.xcassets */,
 				3D6EB0C3217B0D280093EC79 /* Info.plist */,
+				3D27DA95218A5FD8004F763A /* InfoPlist.strings */,
 				3D6EB0C4217B0D280093EC79 /* PushNotificationPayload.apns */,
 				3DFE67D0218598F300F33019 /* Localizable.strings */,
 			);
@@ -840,6 +849,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D6EB0C2217B0D280093EC79 /* Assets.xcassets in Resources */,
+				3D27DA97218A5FD8004F763A /* InfoPlist.strings in Resources */,
 				3DFE67CE218598F300F33019 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1021,6 +1031,19 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3D27DA95218A5FD8004F763A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D27DA96218A5FD8004F763A /* es-419 */,
+				3D27DA98218A601F004F763A /* es */,
+				3D27DA99218A6072004F763A /* cs */,
+				3D27DA9A218A6128004F763A /* nb */,
+				3D27DA9B218A636C004F763A /* it */,
+				3D27DA9C218A675B004F763A /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		3D45280520E15A370094CCB7 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1085,6 +1108,7 @@
 				3D89E671216121FC006794D0 /* nb */,
 				3D89E6722161235A006794D0 /* cs */,
 				3D697ED42163376D00BFB849 /* it */,
+				3D27DA94218A5FD8004F763A /* es-419 */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
