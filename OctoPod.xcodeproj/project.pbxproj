@@ -23,6 +23,7 @@
 		3D1A936A213314300050ED9A /* ExecuteControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A9369213314300050ED9A /* ExecuteControlViewController.swift */; };
 		3D1A936C213316850050ED9A /* ExecuteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A936B213316850050ED9A /* ExecuteControl.swift */; };
 		3D27DA97218A5FD8004F763A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D27DA95218A5FD8004F763A /* InfoPlist.strings */; };
+		3D27DA9E218A8500004F763A /* ExtrudeSpeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D27DA9D218A8500004F763A /* ExtrudeSpeedViewController.swift */; };
 		3D2821E72178167D00976611 /* CameraViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2821E62178167D00976611 /* CameraViewDelegate.swift */; };
 		3D33B7A1213F6A0D002A4BE3 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */; };
 		3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D36DD79210300C500884BD6 /* TerminalViewController.swift */; };
@@ -192,6 +193,7 @@
 		3D27DA9A218A6128004F763A /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D27DA9B218A636C004F763A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D27DA9C218A675B004F763A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D27DA9D218A8500004F763A /* ExtrudeSpeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtrudeSpeedViewController.swift; sourceTree = "<group>"; };
 		3D2821E62178167D00976611 /* CameraViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewDelegate.swift; sourceTree = "<group>"; };
 		3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		3D36DD79210300C500884BD6 /* TerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalViewController.swift; sourceTree = "<group>"; };
@@ -683,6 +685,7 @@
 			children = (
 				3DF232DF20F150CC00550652 /* MoveSubViewController.swift */,
 				3D78BAA02103C7CA0090D79A /* MoveViewController.swift */,
+				3D27DA9D218A8500004F763A /* ExtrudeSpeedViewController.swift */,
 			);
 			path = "Move UI";
 			sourceTree = "<group>";
@@ -958,6 +961,7 @@
 				3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */,
 				3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */,
 				3D8D51A721333D170006BBB1 /* CustomControlInputViewCell.swift in Sources */,
+				3D27DA9E218A8500004F763A /* ExtrudeSpeedViewController.swift in Sources */,
 				3D2821E72178167D00976611 /* CameraViewDelegate.swift in Sources */,
 				3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */,
 				3D1A935B21326C630050ED9A /* ControlInput.swift in Sources */,

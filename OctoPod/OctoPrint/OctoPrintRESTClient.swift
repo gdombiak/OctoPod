@@ -58,6 +58,21 @@ class OctoPrintRESTClient {
         }
     }
 
+    // MARK: - Version information
+    
+    // Return OctoPrint's version information. This includes API version and server version
+    func versionInformation(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/api/version") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting version information. Error: \(error!.localizedDescription)")
+                }
+                callback(result, error, response)
+            }
+        }
+    }
+    
     // MARK: - Connection operations
     
     // Return connection status from OctoPrint to the 3D printer
@@ -213,7 +228,7 @@ class OctoPrintRESTClient {
         }
     }
     
-    func extrude(toolNumber: Int, delta: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+    func extrude(toolNumber: Int, delta: Int, speed: Int?, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             // We first need to select the tool and then extrude/retract (using the selected tool)
             // This means that we need to make 2 HTTP requests
@@ -227,6 +242,9 @@ class OctoPrintRESTClient {
                     let json : NSMutableDictionary = NSMutableDictionary()
                     json["command"] = "extrude"
                     json["amount"] = delta
+                    if let speed = speed {
+                        json["speed"] = speed
+                    }
                     // Select worked fine so now request extrude/retract
                     self.printerToolPost(httpClient: client, json: json, toolNumber: toolNumber, callback: callback)
                 } else {

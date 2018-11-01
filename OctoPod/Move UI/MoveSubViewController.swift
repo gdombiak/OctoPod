@@ -3,7 +3,7 @@ import UIKit
 // OctoPrint does not report current fan speed, extruder flow rate or feed rate so we
 // initially assume 100% and then just leave last value set by user. Display
 // value will go back to 100% if app is terminated
-class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesDelegate, AppConfigurationDelegate, WatchSessionManagerDelegate {
+class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesDelegate, AppConfigurationDelegate, WatchSessionManagerDelegate, UIPopoverPresentationControllerDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -189,28 +189,26 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     // MARK: - E Operations
 
     @IBAction func retract(_ sender: Any) {
-        if let selected = eStepSegmentedControl.titleForSegment(at: eStepSegmentedControl.selectedSegmentIndex) {
-            let delta = Int(selected)! * -1
-            octoprintClient.extrude(toolNumber: 0, delta: delta, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if !requested {
-                    // Handle error
-                    NSLog("Error moving E axis. HTTP status code \(response.statusCode)")
-                    self.showAlert(message: NSLocalizedString("Failed to request to retract", comment: ""))
-                }
-            })
+        if let selected = eStepSegmentedControl.titleForSegment(at: eStepSegmentedControl.selectedSegmentIndex), let delta = Int(selected) {
+            if octoprintClient.isEqualOrNewerThan(major: 1, minor: 3, patch: 10) == true {
+                // OctoPrint supports custom speed so prompt user for speed
+                self.performSegue(withIdentifier: "retract_speed", sender: sender)
+            } else {
+                // OctoPrint version is not known or is old so use default speed
+                extrudeSpeed(delta: (delta * -1), speed: nil)
+            }
         }
     }
     
     @IBAction func extrude(_ sender: Any) {
-        if let selected = eStepSegmentedControl.titleForSegment(at: eStepSegmentedControl.selectedSegmentIndex) {
-            let delta = Int(selected)!
-            octoprintClient.extrude(toolNumber: 0, delta: delta, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if !requested {
-                    // Handle error
-                    NSLog("Error moving E axis. HTTP status code \(response.statusCode)")
-                    self.showAlert(message: NSLocalizedString("Failed to request to extrude", comment: ""))
-                }
-            })
+        if let selected = eStepSegmentedControl.titleForSegment(at: eStepSegmentedControl.selectedSegmentIndex), let delta = Int(selected) {
+            if octoprintClient.isEqualOrNewerThan(major: 1, minor: 3, patch: 10) == true {
+                // OctoPrint supports custom speed so prompt user for speed
+                self.performSegue(withIdentifier: "extrude_speed", sender: sender)                
+            } else {
+                // OctoPrint version is not known or is old so use default speed
+                extrudeSpeed(delta: delta, speed: nil)
+            }
         }
     }
     
@@ -407,6 +405,34 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         return 1
     }
     
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "retract_speed", let controller = segue.destination as? ExtrudeSpeedViewController {
+            controller.popoverPresentationController!.delegate = self
+            // Make the popover appear at the middle of the button
+            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: retractButton.frame.size.width/2, y: 0 , width: 0, height: 0)
+            // Refresh based on new default printer
+            controller.onCompletion = { (speed: Int?) in
+                if let selected = self.eStepSegmentedControl.titleForSegment(at: self.eStepSegmentedControl.selectedSegmentIndex), let delta = Int(selected) {
+                    self.extrudeSpeed(delta: (delta * -1), speed: speed)
+                }
+            }
+        }
+        
+        if segue.identifier == "extrude_speed", let controller = segue.destination as? ExtrudeSpeedViewController {
+            controller.popoverPresentationController!.delegate = self
+            // Make the popover appear at the middle of the button
+            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: extrudeButton.frame.size.width/2, y: 0 , width: 0, height: 0)
+            controller.onCompletion = { (speed: Int?) in
+                if let selected = self.eStepSegmentedControl.titleForSegment(at: self.eStepSegmentedControl.selectedSegmentIndex), let delta = Int(selected) {
+                    self.extrudeSpeed(delta: delta, speed: speed)
+                }
+            }
+        }
+    }
+    
     // MARK: - PrinterProfilesDelegate
     
     func axisDirectionChanged(axis: axis, inverted: Bool) {
@@ -440,6 +466,17 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         }
     }
     
+    // MARK: - UIPopoverPresentationControllerDelegate
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    // We need to add this so it works on iPhone plus in landscape mode
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
     // MARK: - Private fuctions
     
     fileprivate func enableButtons(enable: Bool) {
@@ -471,6 +508,17 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 // Handle error
                 NSLog("Error disabling \(axis) motor. HTTP status code \(response.statusCode)")
                 self.showAlert(message: String(format: NSLocalizedString("Failed to disable motor", comment: ""), "\(axis)"))
+            }
+        })
+    }
+    
+    fileprivate func extrudeSpeed(delta: Int, speed: Int?) {
+        octoprintClient.extrude(toolNumber: 0, delta: delta, speed: speed, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if !requested {
+                // Handle error
+                NSLog("Error moving E axis. HTTP status code \(response.statusCode)")
+                let message = delta > 0 ? NSLocalizedString("Failed to request to extrude", comment: "") : NSLocalizedString("Failed to request to retract", comment: "")
+                self.showAlert(message: NSLocalizedString(message, comment: ""))
             }
         })
     }

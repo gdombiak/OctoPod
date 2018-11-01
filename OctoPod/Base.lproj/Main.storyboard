@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uvw-q7-rRy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uvw-q7-rRy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -3759,11 +3759,119 @@
                         <outlet property="yMotorButton" destination="heO-9b-ZeO" id="SlM-Ao-28Q"/>
                         <outlet property="zMotorButton" destination="7Mb-MK-CG7" id="g84-M5-nND"/>
                         <outlet property="zStepSegmentedControl" destination="hzK-Nf-sCi" id="Khc-Ig-jV0"/>
+                        <segue destination="Iri-Zw-4Px" kind="popoverPresentation" identifier="retract_speed" popoverAnchorView="Q2b-xf-a3O" id="bzV-oa-1cN">
+                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
+                        </segue>
+                        <segue destination="Iri-Zw-4Px" kind="popoverPresentation" identifier="extrude_speed" popoverAnchorView="wnO-2K-s2I" id="56A-kx-eGb">
+                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
+                        </segue>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y04-35-jQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2420" y="826.23688155922048"/>
+        </scene>
+        <!--Extrude Speed View Controller-->
+        <scene sceneID="Op7-UU-QUq">
+            <objects>
+                <tableViewController id="Iri-Zw-4Px" customClass="ExtrudeSpeedViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="1oR-PG-2Aa">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="188"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Speed" id="3tm-V0-9Gl">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="xMF-Y1-0si">
+                                        <rect key="frame" x="0.0" y="55.5" width="250" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xMF-Y1-0si" id="gRy-Bc-B4k">
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="W0X-ef-NWv">
+                                                    <rect key="frame" x="16" y="8" width="218" height="29"/>
+                                                    <segments>
+                                                        <segment title="Default"/>
+                                                        <segment title="Custom"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="speedChoiceChanged:" destination="Iri-Zw-4Px" eventType="valueChanged" id="tHb-Eq-wvP"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="W0X-ef-NWv" firstAttribute="top" secondItem="gRy-Bc-B4k" secondAttribute="top" constant="8" id="J68-T8-uld"/>
+                                                <constraint firstAttribute="trailing" secondItem="W0X-ef-NWv" secondAttribute="trailing" constant="16" id="MMg-q1-ara"/>
+                                                <constraint firstItem="W0X-ef-NWv" firstAttribute="leading" secondItem="gRy-Bc-B4k" secondAttribute="leading" constant="16" id="xSO-TO-BdB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="YZM-ir-1Cl">
+                                        <rect key="frame" x="0.0" y="99.5" width="250" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YZM-ir-1Cl" id="Hl3-Sx-wDH">
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Speed value" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Lh-Q8-wxW">
+                                                    <rect key="frame" x="16" y="7" width="218" height="30"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                    <connections>
+                                                        <action selector="customSpeedChanging:" destination="Iri-Zw-4Px" eventType="editingChanged" id="foM-bP-FWa"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="4Lh-Q8-wxW" secondAttribute="trailing" constant="16" id="4ck-YU-0ug"/>
+                                                <constraint firstItem="4Lh-Q8-wxW" firstAttribute="leading" secondItem="Hl3-Sx-wDH" secondAttribute="leading" constant="16" id="PlI-fQ-4U6"/>
+                                                <constraint firstItem="4Lh-Q8-wxW" firstAttribute="top" secondItem="Hl3-Sx-wDH" secondAttribute="top" constant="7" id="QSt-0D-72g"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="DNC-LK-4a3">
+                                        <rect key="frame" x="0.0" y="143.5" width="250" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DNC-LK-4a3" id="eDC-gd-fKR">
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="erX-tJ-GVo">
+                                                    <rect key="frame" x="16" y="7" width="218" height="30"/>
+                                                    <state key="normal" title="Proceed"/>
+                                                    <connections>
+                                                        <action selector="proceedClicked:" destination="Iri-Zw-4Px" eventType="touchUpInside" id="fnU-Be-D46"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="erX-tJ-GVo" secondAttribute="trailing" constant="16" id="V4n-3m-WhQ"/>
+                                                <constraint firstItem="erX-tJ-GVo" firstAttribute="leading" secondItem="eDC-gd-fKR" secondAttribute="leading" constant="16" id="Z0v-Nw-lmO"/>
+                                                <constraint firstItem="erX-tJ-GVo" firstAttribute="top" secondItem="eDC-gd-fKR" secondAttribute="top" constant="7" id="cdq-ek-UXZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Iri-Zw-4Px" id="Ybr-xE-CEM"/>
+                            <outlet property="delegate" destination="Iri-Zw-4Px" id="BHc-e9-Kfy"/>
+                        </connections>
+                    </tableView>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="188"/>
+                    <size key="freeformSize" width="250" height="188"/>
+                    <connections>
+                        <outlet property="customSpeedField" destination="4Lh-Q8-wxW" id="Rkd-I9-Wd0"/>
+                        <outlet property="proceedButton" destination="erX-tJ-GVo" id="UAc-Tw-47O"/>
+                        <outlet property="speedChoiceControl" destination="W0X-ef-NWv" id="Rod-Nb-4zN"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L8L-bi-NvD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3217" y="826"/>
         </scene>
         <!--Move-->
         <scene sceneID="JHQ-Xj-miG">
@@ -3997,6 +4105,7 @@
         <image name="up" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="bzV-oa-1cN"/>
         <segue reference="M9h-xm-xYq"/>
         <segue reference="DPY-Lb-zDG"/>
         <segue reference="06R-xh-V19"/>

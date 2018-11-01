@@ -34,6 +34,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
 
     // Remember last CurrentStateEvent that was reported from OctoPrint (via websockets)
     var lastKnownState: CurrentStateEvent?
+    var octoPrintVersion: String?
     
     init(printerManager: PrinterManager) {
         self.printerManager = printerManager
@@ -70,6 +71,9 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         
         // Clean up any temp history
         tempHistory.clear()
+        
+        // We need to rediscover the version of OctoPrint so clean up old values
+        octoPrintVersion = nil
         
         // Close any previous connection
         webSocketClient?.closeConnection()
@@ -114,6 +118,15 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         
         // Verify that last known settings are still current
         reviewOctoPrintSettings(printer: printer)
+        
+        // Discover OctoPrint version
+        octoPrintRESTClient.versionInformation { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            if let json = result as? NSDictionary {
+                if let server = json["server"] as? String {
+                    self.octoPrintVersion = server
+                }
+            }
+        }
     }
     
     // Disconnect from OctoPrint server
@@ -222,6 +235,32 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
 
+    // MARK: - OctoPrint version
+    
+    func isEqualOrNewerThan(major: Int, minor: Int, patch: Int) -> Bool? {
+        if let version = octoPrintVersion {
+            // Future optimization if needed is to parse regex once and store parsed values
+            // when OctoPrint version is discovered
+            let pattern = "([\\d]+).([\\d]+).([\\d]+)"
+            do {
+                let regex = try NSRegularExpression(pattern: pattern, options: [])
+
+                if let match = regex.firstMatch(in: version, options: [], range: NSMakeRange(0, version.utf16.count)) {
+                    let opMajor = Int((version as NSString).substring(with: match.range(at: 1)))!
+                    let opMinor = Int((version as NSString).substring(with: match.range(at: 2)))!
+                    let opPatch = Int((version as NSString).substring(with: match.range(at: 3)))!
+
+                    return opMajor >= major && opMinor >= minor && opPatch >= patch
+                }
+            }
+            catch {
+                NSLog("Error testing regex while comparing OctoPrint version. Error: \(error)")
+            }
+        }
+        NSLog("Unknown OctoPrint version while comparing OctoPrint version")
+        return nil
+    }
+    
     // MARK: - Login operations
 
     // Passive login has been added to OctoPrint 1.3.10 to increase security. Endpoint existed before
@@ -295,8 +334,8 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.toolFlowRate(toolNumber: toolNumber, newFlowRate: newFlowRate, callback: callback)
     }
     
-    func extrude(toolNumber: Int, delta: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
-        octoPrintRESTClient.extrude(toolNumber: toolNumber, delta: delta, callback: callback)
+    func extrude(toolNumber: Int, delta: Int, speed: Int?, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.extrude(toolNumber: toolNumber, delta: delta, speed: speed, callback: callback)
     }
     
     func sendCommand(gcode: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
