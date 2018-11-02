@@ -18,5 +18,6 @@ class NavigationController: UINavigationController {
         let theme = Theme.currentTheme()
         
         navigationBar.barTintColor = theme.navigationTopColor()
+        navigationBar.tintColor = theme.navigationTintColor()
     }
 }

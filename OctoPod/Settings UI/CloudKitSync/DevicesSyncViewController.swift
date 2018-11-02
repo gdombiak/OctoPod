@@ -11,6 +11,7 @@ class DevicesSyncViewController: ThemedStaticUITableViewController {
 
     @IBOutlet weak var resetFromiCloudButton: UIButton!
     @IBOutlet weak var resetFromLocalButton: UIButton!
+    @IBOutlet weak var viewActivityLogButton: UIButton!
     
     @IBOutlet weak var loginMessageCell: UITableViewCell!
     
@@ -28,7 +29,11 @@ class DevicesSyncViewController: ThemedStaticUITableViewController {
         
         // Theme labels
         let theme = Theme.currentTheme()
+        let tintColor = theme.tintColor()
         syncEnabledLabel.textColor = theme.textColor()
+        resetFromiCloudButton.tintColor = tintColor
+        resetFromLocalButton.tintColor = tintColor
+        viewActivityLogButton.tintColor = tintColor
         
         // Enable/Disable controls depending on app locked status
         syncEnabledSwitch.isEnabled = !appConfiguration.appLocked()

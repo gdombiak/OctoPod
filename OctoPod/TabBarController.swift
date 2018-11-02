@@ -18,5 +18,6 @@ class TabBarController: UITabBarController {
         super.viewWillAppear(animated)
         let theme = Theme.currentTheme()
         tabBar.barTintColor = theme.tabBarColor()
+        tabBar.tintColor = theme.tintColor()
     }
 }

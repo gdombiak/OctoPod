@@ -19,6 +19,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var scanAPIKeyButton: UIButton!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -27,6 +28,12 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        // Theme labels
+        let theme = Theme.currentTheme()
+        let tintColor = theme.tintColor()
+        scanAPIKeyButton.tintColor = tintColor
+
         if let selectedPrinter = updatePrinter {
             updateFieldsForPrinter(printer: selectedPrinter)
         } else {

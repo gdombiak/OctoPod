@@ -540,6 +540,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         let theme = Theme.currentTheme()
         let textLabelColor = theme.labelColor()
         let textColor = theme.textColor()
+        let tintColor = theme.tintColor()
         
         flowRateTextLabel.textColor = textLabelColor
         fanTextLabel.textColor = textLabelColor
@@ -557,6 +558,22 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         feedRateField.backgroundColor = theme.backgroundColor()
         feedRateField.textColor = textColor
         feedRateLabel.textColor = textColor
+        
+        xyStepSegmentedControl.tintColor = tintColor
+        zStepSegmentedControl.tintColor = tintColor
+        eStepSegmentedControl.tintColor = tintColor
+        
+        retractButton.tintColor = tintColor
+        extrudeButton.tintColor = tintColor
+        
+        flowRateSlider.tintColor = tintColor
+        fanSpeedSlider.tintColor = tintColor
+        feedRateSlider.tintColor = tintColor
+        
+        xMotorButton.tintColor = tintColor
+        yMotorButton.tintColor = tintColor
+        zMotorButton.tintColor = tintColor
+        eMotorButton.tintColor = tintColor
     }
     
     fileprivate func addKeyboardButtons(field: UITextField, slider: UISlider, cancelSelector: Selector, applySelector: Selector) {

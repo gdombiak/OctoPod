@@ -281,7 +281,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         // Set background color to the view
         view.backgroundColor = theme.backgroundColor()
         // Set background color to the refresh SD button
-        refreshSDButton.tintColor = tintColor
+        refreshSDButton.setTitleColor(tintColor, for: .normal)
         // Set background color to the sort control
         sortByTextLabel.textColor = theme.labelColor()
         sortByControl.tintColor = tintColor

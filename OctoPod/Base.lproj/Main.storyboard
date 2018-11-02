@@ -1477,12 +1477,33 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ucf-q8-8iF">
+                                        <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ucf-q8-8iF" id="KJI-n3-jP7">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orange" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXd-ZY-vbz">
+                                                    <rect key="frame" x="16" y="12" width="335" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="PXd-ZY-vbz" secondAttribute="trailing" constant="8" id="Ahf-xW-gwk"/>
+                                                <constraint firstItem="PXd-ZY-vbz" firstAttribute="leading" secondItem="KJI-n3-jP7" secondAttribute="leadingMargin" id="L8z-kk-s6E"/>
+                                                <constraint firstItem="PXd-ZY-vbz" firstAttribute="top" secondItem="KJI-n3-jP7" secondAttribute="topMargin" constant="1" id="YGg-5a-tOo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Language" id="3JO-XH-cf3">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="3k1-n1-G5J">
-                                        <rect key="frame" x="0.0" y="199.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="243.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3k1-n1-G5J" id="VKI-CQ-99A">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1506,7 +1527,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="50" id="0gw-lv-FC6">
-                                        <rect key="frame" x="0.0" y="243.5" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="287.5" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0gw-lv-FC6" id="cB6-eh-mdd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
@@ -1531,7 +1552,7 @@
                             <tableViewSection headerTitle="Temp Chart" id="GAt-su-C1i">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="zbU-e8-7e7">
-                                        <rect key="frame" x="0.0" y="349.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="393.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zbU-e8-7e7" id="fwj-44-dh4">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1573,6 +1594,8 @@
                         <outlet property="darkLabel" destination="wHn-Dc-bWb" id="RUt-Tc-57o"/>
                         <outlet property="lightCell" destination="5JA-bz-vAF" id="KFR-kX-ZT4"/>
                         <outlet property="lightLabel" destination="MA6-Ay-j7Q" id="YxR-jF-qxK"/>
+                        <outlet property="orangeCell" destination="ucf-q8-8iF" id="Frb-bc-fHM"/>
+                        <outlet property="orangeLabel" destination="PXd-ZY-vbz" id="YoL-CG-Cvd"/>
                         <outlet property="zoomInEnabledLabel" destination="Vny-ch-OgO" id="h4e-jy-1hK"/>
                         <outlet property="zoomInEnabledSwitch" destination="JDJ-k8-LP7" id="gpb-oy-KHP"/>
                     </connections>
@@ -1995,6 +2018,7 @@
                         <outlet property="resetFromiCloudButton" destination="vyb-aH-wc9" id="b9w-eo-Jt0"/>
                         <outlet property="syncEnabledLabel" destination="zVf-Zx-3g4" id="hCZ-Lm-yTV"/>
                         <outlet property="syncEnabledSwitch" destination="58b-az-o6h" id="qYj-f7-W3Q"/>
+                        <outlet property="viewActivityLogButton" destination="aJp-RM-Tuf" id="7TI-CF-ayz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Myd-Dc-fvt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3259,6 +3283,7 @@
                         <outlet property="passwordField" destination="9dR-Sn-lbP" id="2xT-jt-Aga"/>
                         <outlet property="printerNameField" destination="aFa-Qd-yIr" id="dYn-Mk-F12"/>
                         <outlet property="saveButton" destination="Ptk-bD-UEk" id="RmJ-nb-Y9C"/>
+                        <outlet property="scanAPIKeyButton" destination="a0P-GP-CQD" id="PLy-PZ-K5y"/>
                         <outlet property="urlErrorMessageLabel" destination="K6d-lk-BaS" id="kFf-mh-yR5"/>
                         <outlet property="usernameField" destination="sLc-Jv-G0H" id="n1O-OE-Z9w"/>
                         <segue destination="7mC-U2-bLa" kind="unwind" identifier="unwindPrintersUpdated" unwindAction="unwindPrintersUpdated:" id="R1q-a8-wh9"/>

@@ -6,10 +6,12 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
 
     @IBOutlet weak var lightCell: UITableViewCell!
     @IBOutlet weak var darkCell: UITableViewCell!
-    
+    @IBOutlet weak var orangeCell: UITableViewCell!
+
     @IBOutlet weak var lightLabel: UILabel!
     @IBOutlet weak var darkLabel: UILabel!
-    
+    @IBOutlet weak var orangeLabel: UILabel!
+
     @IBOutlet weak var changeLanguageButton: UIButton!
     
     @IBOutlet weak var zoomInEnabledLabel: UILabel!
@@ -29,7 +31,9 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         let theme = Theme.currentTheme()
         lightLabel.textColor = theme.textColor()
         darkLabel.textColor = theme.textColor()
+        orangeLabel.textColor = theme.textColor()
         zoomInEnabledLabel.textColor = theme.textColor()
+        changeLanguageButton.tintColor = theme.tintColor()
         
         zoomInEnabledSwitch.isOn = !appConfiguration.tempChartZoomDisabled()
         
@@ -44,13 +48,17 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         }
         if indexPath.row == 0 {
             Theme.switchTheme(choice: Theme.ThemeChoice.Light)
-        } else {
+        } else if indexPath.row == 1 {
             Theme.switchTheme(choice: Theme.ThemeChoice.Dark)
+        } else {
+            Theme.switchTheme(choice: Theme.ThemeChoice.Orange)
         }
         // Update navigation bar
         let theme = Theme.currentTheme()
         navigationController?.navigationBar.barTintColor = theme.navigationTopColor()
+        navigationController?.navigationBar.tintColor = theme.navigationTintColor()
         tabBarController?.tabBar.barTintColor = theme.tabBarColor()
+        tabBarController?.tabBar.tintColor = theme.tintColor()
         // Refresh table
         viewWillAppear(true)
     }
@@ -60,10 +68,20 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
     }
     
     fileprivate func refreshSelectedTheme(theme: Theme.ThemeChoice) {
-        let lightSelected = theme == Theme.ThemeChoice.Light
-        
-        lightCell.accessoryType = lightSelected ? .checkmark : .none
-        darkCell.accessoryType = lightSelected ? .none : .checkmark
+        switch theme {
+        case .Light:
+            lightCell.accessoryType = .checkmark
+            darkCell.accessoryType = .none
+            orangeCell.accessoryType = .none
+        case .Dark:
+            lightCell.accessoryType = .none
+            darkCell.accessoryType = .checkmark
+            orangeCell.accessoryType = .none
+        case .Orange:
+            lightCell.accessoryType = .none
+            darkCell.accessoryType = .none
+            orangeCell.accessoryType = .checkmark
+        }
     }
     
     // MARK: - Navigation
