@@ -1,6 +1,8 @@
 import UIKit
 import CoreData
 import CloudKit
+import UserNotifications
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Register to receive push notifications via APNs (CloudKit sends silent push notifications when records change)
         UIApplication.shared.registerForRemoteNotifications()
+
+        // Requests authorization to interact with the user when local (and remote) notifications are delivered to the user's device
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .carPlay] , completionHandler: { (granted: Bool, error: Error?) -> Void in
+            if !granted {
+                NSLog("User did not grant to get notifications")
+            }
+            if let error = error {
+                NSLog("Error asking to allow local notifications. Error: \(error)")
+            }
+        })
 
         // Start synchronizing with iCloud (if available)
         self.cloudKitPrinterManager.start()

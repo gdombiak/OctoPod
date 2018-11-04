@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import UserNotifications
 
 class BackgroundRefresher: OctoPrintClientDelegate {
     
@@ -9,6 +10,7 @@ class BackgroundRefresher: OctoPrintClientDelegate {
     
     private var lastPrinterName: String?
     private var lastPrinterState: String?
+    private var lastCompletion: Double?
     
     init(octoPrintClient: OctoPrintClient, printerManager: PrinterManager, watchSessionManager: WatchSessionManager) {
         self.octoprintClient = octoPrintClient
@@ -44,8 +46,12 @@ class BackgroundRefresher: OctoPrintClientDelegate {
                     NSLog("Error getting job info from background refresh. Error: \(error)")
                     completionHandler(.failed)
                 } else if let result = result as? Dictionary<String, Any> {
+                    var progressCompletion: Double?
                     if let state = result["state"] as? String {
-                        self.pushComplicationUpdate(printerName: printer.name, state: state)
+                        if let progress = result["progress"] as? NSDictionary {
+                            progressCompletion = progress["completion"] as? Double
+                        }
+                        self.pushComplicationUpdate(printerName: printer.name, state: state, completion: progressCompletion)
                         completionHandler(.newData)
                     } else {
                         completionHandler(.noData)
@@ -77,7 +83,7 @@ class BackgroundRefresher: OctoPrintClientDelegate {
     // Notification that the current state of the printer has changed
     func printerStateUpdated(event: CurrentStateEvent) {
         if let printer = printerManager.getDefaultPrinter(), let state = event.state {
-            pushComplicationUpdate(printerName: printer.name, state: state)
+            pushComplicationUpdate(printerName: printer.name, state: state, completion: event.progressCompletion)
         }
     }
     
@@ -98,12 +104,16 @@ class BackgroundRefresher: OctoPrintClientDelegate {
     
     // MARK: - Private functions
     
-    fileprivate func pushComplicationUpdate(printerName: String, state: String) {
+    fileprivate func pushComplicationUpdate(printerName: String, state: String, completion: Double?) {
         // Check if state has changed since last refresh
         if self.lastPrinterName != printerName || self.lastPrinterState != state {
+            if let completion = completion {
+                checkCompletedJobLocalNotification(printerName: printerName, state: state, completion: completion)
+            }
             // Update last known state
             self.lastPrinterName = printerName
             self.lastPrinterState = state
+            self.lastCompletion = completion
             // There is a budget of 50 pushes to the Apple Watch so let's only send relevant events
             var pushState = state
             if state == "Printing from SD" {
@@ -114,6 +124,27 @@ class BackgroundRefresher: OctoPrintClientDelegate {
             if state == "Offline" || state == "Operational" || state == "Printing" || state == "Paused" {
                 // Update complication with received data
                 self.watchSessionManager.updateComplications(printerName: printerName, printerState: pushState)
+            }
+        }
+    }
+    
+    fileprivate func checkCompletedJobLocalNotification(printerName: String, state: String, completion: Double) {
+        if self.lastPrinterName == printerName && self.lastPrinterState != "Operational" && (state == "Finishing" || state == "Operational") && lastCompletion != 100 && completion == 100 {
+            // Create Local Notification's Content
+            let content = UNMutableNotificationContent()
+            content.title = printerName
+            content.body = NSString.localizedUserNotificationString(forKey: "Print has finished", arguments: nil)
+            
+            // Create the request
+            let uuidString = UUID().uuidString
+            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: nil)
+            
+            // Schedule the request with the system.
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.add(request) { (error) in
+                if let error = error {
+                    NSLog("Error asking iOS to present local notification. Error: \(error)")
+                }
             }
         }
     }
