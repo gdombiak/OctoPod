@@ -44,6 +44,27 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
             NSLog("Failed to push printers as ApplicationContext. Error: \(error)")
         }
     }
+    
+    func updateComplications(printerName: String, printerState: String) {
+        if let session = getSession(), session.activationState == .activated {
+            let info = ["printer": printerName, "state": printerState]
+            let complicationRequest = ["complications" : info]
+            if session.isComplicationEnabled {
+                if session.remainingComplicationUserInfoTransfers > 0 {
+                    // We can update complications using high priority #transferCurrentComplicationUserInfo
+                    session.transferCurrentComplicationUserInfo(complicationRequest)
+                } else {
+                    // We are out of budget so attempt updating complications this other way
+                    do {
+                        try session.updateApplicationContext(complicationRequest)
+                    }
+                    catch {
+                        NSLog("Failed to request WatchOS app to update context \(complicationRequest). Error: \(error)")
+                    }
+                }
+            }
+        }
+    }
 
     // MARK: - WCSessionDelegate
     

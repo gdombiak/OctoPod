@@ -18,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Start synchronizing with iCloud (if available)
         self.cloudKitPrinterManager.start()
+        
+        self.backgroundRefresher.start()
+        
+        // Enable background refresh and set minimum interval between fetches
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
 
         return true
     }
@@ -114,6 +119,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - My extensions
 
+    /// Applications with the "fetch" background mode may be given opportunities to fetch updated content in the background or when it is convenient for the system. This method will be called in these situations. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
+    public func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // Run background refresh
+        backgroundRefresher.refresh(completionHandler: completionHandler)
+    }
+
+    // MARK: - My extensions
+
     lazy var printerManager: PrinterManager? = {
         let context = persistentContainer.viewContext
         var printerManager = PrinterManager()
@@ -139,5 +152,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var watchSessionManager: WatchSessionManager = {
         return WatchSessionManager(printerManager: self.printerManager!, cloudKitPrinterManager: self.cloudKitPrinterManager, octoprintClient: self.octoprintClient)
+    }()
+    
+    lazy var backgroundRefresher: BackgroundRefresher = {
+        return BackgroundRefresher(octoPrintClient: self.octoprintClient, printerManager: self.printerManager!, watchSessionManager: self.watchSessionManager)
     }()
 }

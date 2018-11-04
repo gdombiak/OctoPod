@@ -2,7 +2,7 @@ import WatchKit
 import Foundation
 
 
-class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
+class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, PanelManagerDelegate {
 
     @IBOutlet weak var errorLabel: WKInterfaceLabel!
     @IBOutlet weak var printerStateLabel: WKInterfaceLabel!
@@ -38,10 +38,13 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
         
         // Listen to changes to list of printers
         PrinterManager.instance.delegates.append(self)
+        // Listen to changes to panel information
+        PanelManager.instance.delegates.append(self)
 
         if let printer = PrinterManager.instance.defaultPrinter() {
             // Update title of window with printer name
-            self.setTitle(PrinterManager.instance.name(printer: printer))
+            let currentPrinterName = PrinterManager.instance.name(printer: printer)
+            self.setTitle(currentPrinterName)
             
             // Check if we need to clear fields information
             let url = PrinterManager.instance.hostname(printer: printer)
@@ -50,9 +53,21 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
             }
             // Remember printer being displayed
             printerURL = url
+            
+            // Display last known panel information
+            if let printerName = PanelManager.instance.printerName, let panelInfo = PanelManager.instance.panelInfo, let lastRefresh = PanelManager.instance.lastRefresh, currentPrinterName == printerName {
+                panelInfoUpdate(printerName: printerName, panelInfo: panelInfo)
 
-            // Refresh display for selected printer
-            renderPrinter()
+                // Check if information is stale
+                let diff = Int(Date().timeIntervalSince1970 - lastRefresh.timeIntervalSince1970)
+                if diff > 10 {
+                    // Panel information is older than 10 seconds so refresh it
+                    renderPrinter()
+                }
+            } else {
+                // Refresh panel information
+                renderPrinter()
+            }
         } else {
             // Clear any fields information
             clearFields()
@@ -67,6 +82,8 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
 
         // Stop listening to changes to list of printers
         PrinterManager.instance.remove(printerManagerDelegate: self)
+        // Stop listening to changes to panel information
+        PanelManager.instance.remove(panelManagerDelegate: self)
     }
 
     @IBAction func resumeJob() {
@@ -155,8 +172,6 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
             }
             self.clearFields()
         }
-        // Refresh display for selected printer
-        renderPrinter()
     }
 
     // Notification that an image has been received from a received file
@@ -166,78 +181,90 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate {
         // Do nothing
     }
     
+    // MARK: - PanelManagerDelegate
+    
+    // Notification that new panel information has been received
+    func panelInfoUpdate(printerName: String, panelInfo: [String : Any]) {
+        DispatchQueue.main.async {
+            if let error = panelInfo["error"] as? String {
+                self.errorLabel.setText(error)
+                self.errorLabel.setHidden(false)
+            } else {
+                self.errorLabel.setHidden(true)
+            }
+            if let state = panelInfo["state"] as? String {
+                self.printerStateLabel.setText(state)
+            }
+            if let completion = panelInfo["completion"] as? Double {
+                let progressText = String(format: "%.1f", completion)
+                self.completionLabel.setText("\(progressText)%")
+            }
+            if let printTimeLeft = panelInfo["printTimeLeft"] as? Int {
+                self.printTimeLeftLabel.setText(self.secondsToTimeLeft(seconds: printTimeLeft))
+            } else if let printTimeLeft = panelInfo["printTimeLeft"] as? String {
+                self.printTimeLeftLabel.setText(printTimeLeft)
+            }
+            if let bedTemp = panelInfo["bedTemp"] as? Double {
+                let temp = String(format: "%.1f", bedTemp)
+                self.bedTempLabel.setText("\(temp) C")
+            }
+            if let tool0Temp = panelInfo["tool0Temp"] as? Double {
+                let temp = String(format: "%.1f", tool0Temp)
+                self.tool0TempLabel.setText("\(temp) C")
+                // Check if there is a second extruder and show group and temp
+                if let tool1Temp = panelInfo["tool1Temp"] as? Double {
+                    let temp = String(format: "%.1f", tool1Temp)
+                    self.tool1TempLabel.setText("\(temp) C")
+                    self.tool1Group.setHidden(false)
+                } else {
+                    self.tool1Group.setHidden(true)
+                }
+            }
+            if let printer = panelInfo["printer"] as? String {
+                self.buttonsSeparator.setHidden(false)
+                self.buttonsGroup.setHidden(false)
+                if printer == "printing" {
+                    self.resumeButton.setHidden(true)
+                    self.pauseButton.setHidden(false)
+                    self.cancelButton.setHidden(false)
+                } else if printer == "paused" {
+                    // Printer is paused
+                    self.resumeButton.setHidden(false)
+                    self.pauseButton.setHidden(true)
+                    self.cancelButton.setHidden(false)
+                } else {
+                    // Not printing and not paused and no progress info then clean up text
+                    if panelInfo["completion"] == nil {
+                        self.completionLabel.setText(nil)
+                    }
+                    // Not printing and not paused and no printTimeLeft info then clean up text
+                    if panelInfo["printTimeLeft"] == nil {
+                        self.printTimeLeftLabel.setText(nil)
+                    }
+                    if printer == "operational" {
+                        self.hideJobButtons()
+                    }
+                }
+            } else {
+                self.hideJobButtons()
+            }
+        }
+    }
+
+    // Notification that we need to update complications. Originated from iOS App
+    func updateComplications(printerName: String, printerState: String) {
+        // Do nothing
+    }
+    
     // MARK: - Private functions
     
     fileprivate func renderPrinter() {
         // Disable refresh button to indicate we are "refreshing"
         self.refreshButton.setEnabled(false)
-        OctoPrintClient.instance.currentJobInfo { (reply: [String : Any]) in
+        PanelManager.instance.refresh {
             DispatchQueue.main.async {
                 // Done refreshing so enable button again
                 self.refreshButton.setEnabled(true)
-                
-                if let error = reply["error"] as? String {
-                    self.errorLabel.setText(error)
-                    self.errorLabel.setHidden(false)
-                } else {
-                    self.errorLabel.setHidden(true)
-                }
-                if let state = reply["state"] as? String {
-                    self.printerStateLabel.setText(state)
-                }
-                if let completion = reply["completion"] as? Double {
-                    let progressText = String(format: "%.1f", completion)
-                    self.completionLabel.setText("\(progressText)%")
-                }
-                if let printTimeLeft = reply["printTimeLeft"] as? Int {
-                    self.printTimeLeftLabel.setText(self.secondsToTimeLeft(seconds: printTimeLeft))
-                } else if let printTimeLeft = reply["printTimeLeft"] as? String {
-                    self.printTimeLeftLabel.setText(printTimeLeft)
-                }
-                if let bedTemp = reply["bedTemp"] as? Double {
-                    let temp = String(format: "%.1f", bedTemp)
-                    self.bedTempLabel.setText("\(temp) C")
-                }
-                if let tool0Temp = reply["tool0Temp"] as? Double {
-                    let temp = String(format: "%.1f", tool0Temp)
-                    self.tool0TempLabel.setText("\(temp) C")
-                    // Check if there is a second extruder and show group and temp
-                    if let tool1Temp = reply["tool1Temp"] as? Double {
-                        let temp = String(format: "%.1f", tool1Temp)
-                        self.tool1TempLabel.setText("\(temp) C")
-                        self.tool1Group.setHidden(false)
-                    } else {
-                        self.tool1Group.setHidden(true)
-                    }
-                }
-                if let printer = reply["printer"] as? String {
-                    self.buttonsSeparator.setHidden(false)
-                    self.buttonsGroup.setHidden(false)
-                    if printer == "printing" {
-                        self.resumeButton.setHidden(true)
-                        self.pauseButton.setHidden(false)
-                        self.cancelButton.setHidden(false)
-                    } else if printer == "paused" {
-                        // Printer is paused
-                        self.resumeButton.setHidden(false)
-                        self.pauseButton.setHidden(true)
-                        self.cancelButton.setHidden(false)
-                    } else {
-                        // Not printing and not paused and no progress info then clean up text
-                        if reply["completion"] == nil {
-                            self.completionLabel.setText(nil)
-                        }
-                        // Not printing and not paused and no printTimeLeft info then clean up text
-                        if reply["printTimeLeft"] == nil {
-                            self.printTimeLeftLabel.setText(nil)
-                        }
-                        if printer == "operational" {
-                            self.hideJobButtons()
-                        }
-                    }
-                } else {
-                    self.hideJobButtons()
-                }
             }
         }
     }

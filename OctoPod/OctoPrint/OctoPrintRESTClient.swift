@@ -38,6 +38,10 @@ class OctoPrintRESTClient {
         httpClient = nil
     }
     
+    func isConfigured() -> Bool {
+        return httpClient != nil
+    }
+    
     // MARK: - Login operations
     
     // Passive login has been added to OctoPrint 1.3.10 to increase security. Endpoint existed before

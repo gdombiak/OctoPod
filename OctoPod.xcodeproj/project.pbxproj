@@ -44,6 +44,8 @@
 		3D6350F121082E07001C10F7 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F021082E07001C10F7 /* AppearanceViewController.swift */; };
 		3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F221083BE0001C10F7 /* TabBarController.swift */; };
 		3D6350F721084334001C10F7 /* ThemedDynamicUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F621084334001C10F7 /* ThemedDynamicUITableViewController.swift */; };
+		3D680FA8218E12BC006C9A79 /* PanelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D680FA7218E12BC006C9A79 /* PanelManager.swift */; };
+		3D680FAB218E12E9006C9A79 /* PanelManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D680FAA218E12E9006C9A79 /* PanelManagerDelegate.swift */; };
 		3D693C5D214CD23400823903 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D693C5C214CD23400823903 /* CloudKit.framework */; };
 		3D693C5F214CEC0600823903 /* CloudKitPrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D693C5E214CEC0600823903 /* CloudKitPrinterManager.swift */; };
 		3D6EB0AC217B0D260093EC79 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EB0AA217B0D260093EC79 /* Interface.storyboard */; };
@@ -69,6 +71,7 @@
 		3D82874120E421610035AE0B /* MjpegStreamingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873F20E421610035AE0B /* MjpegStreamingController.swift */; };
 		3D831E53210850E60004B7A5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D831E52210850E60004B7A5 /* SettingsViewController.swift */; };
 		3D831E552108540E0004B7A5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D831E542108540E0004B7A5 /* NavigationController.swift */; };
+		3D866BF4218D55FF007AA493 /* BackgroundRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D866BF3218D55FF007AA493 /* BackgroundRefresher.swift */; };
 		3D8873F820F534C400DCE987 /* PrintFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8873F720F534C400DCE987 /* PrintFile.swift */; };
 		3D8873FA20F5BD2700DCE987 /* FileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8873F920F5BD2700DCE987 /* FileDetailsViewController.swift */; };
 		3D8B292A20E54F7300296D9D /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292920E54F7300296D9D /* PanelViewController.swift */; };
@@ -225,6 +228,8 @@
 		3D6570DD218510DB00BD3A7B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Interface.strings; sourceTree = "<group>"; };
 		3D6570DF218510DD00BD3A7B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Interface.strings; sourceTree = "<group>"; };
 		3D6570E1218510DE00BD3A7B /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Interface.strings; sourceTree = "<group>"; };
+		3D680FA7218E12BC006C9A79 /* PanelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelManager.swift; sourceTree = "<group>"; };
+		3D680FAA218E12E9006C9A79 /* PanelManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelManagerDelegate.swift; sourceTree = "<group>"; };
 		3D693C5B214CCEC600823903 /* OctoPod v5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v5.xcdatamodel"; sourceTree = "<group>"; };
 		3D693C5C214CD23400823903 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		3D693C5E214CEC0600823903 /* CloudKitPrinterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitPrinterManager.swift; sourceTree = "<group>"; };
@@ -259,6 +264,7 @@
 		3D82874020E421610035AE0B /* MjpegStreamingKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MjpegStreamingKit.h; sourceTree = "<group>"; };
 		3D831E52210850E60004B7A5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3D831E542108540E0004B7A5 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		3D866BF3218D55FF007AA493 /* BackgroundRefresher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRefresher.swift; sourceTree = "<group>"; };
 		3D8873F720F534C400DCE987 /* PrintFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintFile.swift; sourceTree = "<group>"; };
 		3D8873F920F5BD2700DCE987 /* FileDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDetailsViewController.swift; sourceTree = "<group>"; };
 		3D89E66E216121FA006794D0 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main.strings; sourceTree = "<group>"; };
@@ -506,6 +512,17 @@
 			path = Themes;
 			sourceTree = "<group>";
 		};
+		3D680FA9218E12CB006C9A79 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3DB5106F217C1115006CF8C3 /* PrinterManager.swift */,
+				3DB5107D217C4473006CF8C3 /* PrinterManagerDelegate.swift */,
+				3D680FA7218E12BC006C9A79 /* PanelManager.swift */,
+				3D680FAA218E12E9006C9A79 /* PanelManagerDelegate.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3D6EB0A9217B0D260093EC79 /* OctoPod Watch */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,12 +536,11 @@
 		3D6EB0B8217B0D270093EC79 /* OctoPod Watch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				3D680FA9218E12CB006C9A79 /* Model */,
 				3DC69BEB21804EAA00DBE0D5 /* OctoPrint */,
 				3DB51073217C12CB006CF8C3 /* Printers */,
 				3DB51074217C12D9006CF8C3 /* Panel */,
 				3DB51075217C12EC006CF8C3 /* Cameras */,
-				3DB5106F217C1115006CF8C3 /* PrinterManager.swift */,
-				3DB5107D217C4473006CF8C3 /* PrinterManagerDelegate.swift */,
 				3DB51071217C11B8006CF8C3 /* WatchSessionManager.swift */,
 				3D6EB0BB217B0D270093EC79 /* ExtensionDelegate.swift */,
 				3D6EB0BD217B0D270093EC79 /* NotificationController.swift */,
@@ -560,6 +576,7 @@
 				3D8873F720F534C400DCE987 /* PrintFile.swift */,
 				3D78BA9E21039D770090D79A /* Terminal.swift */,
 				3D92E6C721213B2400F58BA5 /* TempHistory.swift */,
+				3D866BF3218D55FF007AA493 /* BackgroundRefresher.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -956,6 +973,7 @@
 				3D7C884A2152BB18009FECEF /* DevicesSyncLogViewController.swift in Sources */,
 				3D5879FA2176D2D20058A4DC /* NotRefreshingReasonViewController.swift in Sources */,
 				3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */,
+				3D866BF4218D55FF007AA493 /* BackgroundRefresher.swift in Sources */,
 				3D8D51A921333D310006BBB1 /* CustomControlInputSlideViewCell.swift in Sources */,
 				3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */,
 				3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */,
@@ -1005,9 +1023,11 @@
 				3DAD2DE021817973004A4223 /* Container.swift in Sources */,
 				3DAD2DE221817973004A4223 /* Script.swift in Sources */,
 				3DAD2DE621817B65004A4223 /* IPPlug.swift in Sources */,
+				3D680FAB218E12E9006C9A79 /* PanelManagerDelegate.swift in Sources */,
 				3D6EB0BE217B0D270093EC79 /* NotificationController.swift in Sources */,
 				3D6EB0C0217B0D270093EC79 /* ComplicationController.swift in Sources */,
 				3D6EB0BC217B0D270093EC79 /* ExtensionDelegate.swift in Sources */,
+				3D680FA8218E12BC006C9A79 /* PanelManager.swift in Sources */,
 				3DAD2DDE21817973004A4223 /* CustomControl.swift in Sources */,
 				3DC69BED21804EC000DBE0D5 /* OctoPrintClient.swift in Sources */,
 				3DB51077217C1317006CF8C3 /* PrintersInterfaceController.swift in Sources */,
