@@ -121,7 +121,7 @@ class BackgroundRefresher: OctoPrintClientDelegate {
             } else if state.starts(with: "Offline (Error:") {
                 pushState = "Offline"
             }
-            if state == "Offline" || state == "Operational" || state == "Printing" || state == "Paused" {
+            if pushState == "Offline" || pushState == "Operational" || pushState == "Printing" || pushState == "Paused" {
                 // Update complication with received data
                 self.watchSessionManager.updateComplications(printerName: printerName, printerState: pushState)
             }

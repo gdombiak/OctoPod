@@ -124,7 +124,15 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
         if let error = panelInfo["error"] as? String {
             NSLog("Not updating complication since there was an error. Error: \(error)")
         } else if let state = panelInfo["state"] as? String {
-            pushUpdateToComplications(printerName: printerName, state: state)
+            var pushState = state
+            if state == "Printing from SD" {
+                pushState = "Printing"
+            } else if state.starts(with: "Offline (Error:") {
+                pushState = "Offline"
+            }
+            if pushState == "Offline" || pushState == "Operational" || pushState == "Printing" || pushState == "Paused" {
+                pushUpdateToComplications(printerName: printerName, state: pushState)
+            }
         }
     }
     
