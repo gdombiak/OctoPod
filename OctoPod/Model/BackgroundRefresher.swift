@@ -133,7 +133,7 @@ class BackgroundRefresher: OctoPrintClientDelegate {
             // Create Local Notification's Content
             let content = UNMutableNotificationContent()
             content.title = printerName
-            content.body = NSString.localizedUserNotificationString(forKey: "Print has finished", arguments: nil)
+            content.body = NSString.localizedUserNotificationString(forKey: "Print complete", arguments: nil)
             
             // Create the request
             let uuidString = UUID().uuidString

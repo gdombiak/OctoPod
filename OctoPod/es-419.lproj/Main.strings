@@ -16,6 +16,9 @@
 /* Class = "UILabel"; text = "Printed"; ObjectID = "3mU-gE-iQQ"; */
 "3mU-gE-iQQ.text" = "Impreso";
 
+/* Class = "UITableViewSection"; headerTitle = "Speed"; ObjectID = "3tm-V0-9Gl"; */
+"3tm-V0-9Gl.headerTitle" = "Velocidad";
+
 /* Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[0] = "ABC"; ObjectID = "4bm-la-U47"; */
 "4bm-la-U47.segmentTitles[0]" = "ABC";
 
@@ -27,6 +30,9 @@
 
 /* Class = "UILabel"; text = "Certificate validation"; ObjectID = "4Kd-tY-8l3"; */
 "4Kd-tY-8l3.text" = "Validar certificado";
+
+/* Class = "UITextField"; placeholder = "Speed value"; ObjectID = "4Lh-Q8-wxW"; */
+"4Lh-Q8-wxW.placeholder" = "Valor velocidad";
 
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Apariencia";
@@ -147,6 +153,9 @@
 
 /* Class = "UITableViewController"; title = "Support"; ObjectID = "ec8-jM-jJs"; */
 "ec8-jM-jJs.title" = "Soporte";
+
+/* Class = "UIButton"; normalTitle = "Proceed"; ObjectID = "erX-tJ-GVo"; */
+"erX-tJ-GVo.normalTitle" = "Proceder";
 
 /* Class = "UITableViewSection"; headerTitle = "Lock Mode"; ObjectID = "eXf-GR-uL9"; */
 "eXf-GR-uL9.headerTitle" = "Modo Bloqueo";
@@ -334,6 +343,9 @@
 /* Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU"; */
 "Po0-HZ-vzU.text" = "Ingrese al iCloud para sincronizar dispositivos";
 
+/* Class = "UILabel"; text = "Orange"; ObjectID = "PXd-ZY-vbz"; */
+"PXd-ZY-vbz.text" = "Naranja";
+
 /* Class = "UIBarButtonItem"; title = "Printer"; ObjectID = "PyK-FO-APL"; */
 "PyK-FO-APL.title" = "Impresora";
 
@@ -450,6 +462,12 @@
 
 /* Class = "UIButton"; normalTitle = "Reset printers from iCloud data"; ObjectID = "vyb-aH-wc9"; */
 "vyb-aH-wc9.normalTitle" = "Resetear impresoras con datos iCloud";
+
+/* Class = "UISegmentedControl"; W0X-ef-NWv.segmentTitles[0] = "Default"; ObjectID = "W0X-ef-NWv"; */
+"W0X-ef-NWv.segmentTitles[0]" = "Predeterminado";
+
+/* Class = "UISegmentedControl"; W0X-ef-NWv.segmentTitles[1] = "Custom"; ObjectID = "W0X-ef-NWv"; */
+"W0X-ef-NWv.segmentTitles[1]" = "Personalizado";
 
 /* Class = "UILabel"; text = "Dark"; ObjectID = "wHn-Dc-bWb"; */
 "wHn-Dc-bWb.text" = "Oscuro";

@@ -193,6 +193,9 @@
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Ubicación ya no es válida. Actualizar archivos";
 
+/* (No Comment) */
+"MK3" = "MK3";
+
 /* File Type is a Model */
 "Model" = "Modelo";
 
@@ -204,6 +207,9 @@
 
 /* No camera was found */
 "No camera" = "Sin cámara";
+
+/* (No Comment) */
+"No printer" = "Sin impresora";
 
 /* No temperature history */
 "No temperature history" = "No hay temperatura histórica";
@@ -233,10 +239,19 @@
 "Pause Job" = "Suspender";
 
 /* (No Comment) */
+"Paused" = "Suspendido";
+
+/* (No Comment) */
+"Print complete" = "Impresión completa";
+
+/* (No Comment) */
 "Print File" = "Imprimir";
 
 /* (No Comment) */
 "Printer not operational" = "Impresora no operacional";
+
+/* (No Comment) */
+"Printing" = "Imprimiendo";
 
 /* (No Comment) */
 "Pull down to refresh" = "Tire hacia abajo para refrescar";

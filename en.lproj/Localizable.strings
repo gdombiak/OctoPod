@@ -123,3 +123,9 @@
 "Bad Certificate or SSL Problem" = "Bad Certificate or SSL Problem";
 "Server cannot be found" = "Server cannot be found";
 "Could not connect to the server" = "Could not connect to the server";
+
+"Print complete" = "Print complete";
+"MK3" = "MK3";
+"No printer" = "No printer";
+"Paused" = "Paused";
+"Printing" = "Printing";
