@@ -22,8 +22,14 @@
 /* (No Comment) */
 "Job" = "Auftrag";
 
+/* No comment provided by engineer. */
+"MK3" = "MK3";
+
 /* (No Comment) */
 "No" = "Nein";
+
+/* No printer has been selected */
+"No printer" = "Kein Drucker";
 
 /* (No Comment) */
 "Notify failed cancel job" = "Anfrage Auftrag abbrechen gescheitert";
@@ -33,6 +39,12 @@
 
 /* (No Comment) */
 "Notify failed resume job" = "Anfrage Auftrag fortsetzen gescheitert";
+
+/* No comment provided by engineer. */
+"Paused" = "Pausiert";
+
+/* No comment provided by engineer. */
+"Printing" = "Druckt";
 
 /* ETA is Unknown */
 "Unknown" = "Unbekannt";

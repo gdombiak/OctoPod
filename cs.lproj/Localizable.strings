@@ -193,6 +193,9 @@
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Umístění již není platné. Obnovte soubory";
 
+/* (No Comment) */
+"MK3" = "MK3";
+
 /* File Type is a Model */
 "Model" = "Model";
 
@@ -204,6 +207,9 @@
 
 /* No camera was found */
 "No camera" = "Žádná kamera";
+
+/* (No Comment) */
+"No printer" = "Žádná tiskárna";
 
 /* No temperature history */
 "No temperature history" = "Není dostupný záznam teploty";
@@ -233,10 +239,19 @@
 "Pause Job" = "Pozastavit";
 
 /* (No Comment) */
+"Paused" = "Zastaveno";
+
+/* (No Comment) */
+"Print complete" = "Tisk dokončen";
+
+/* (No Comment) */
 "Print File" = "Tisknout soubor";
 
 /* (No Comment) */
 "Printer not operational" = "Tiskárna není funkční";
+
+/* (No Comment) */
+"Printing" = "Tiskne se";
 
 /* (No Comment) */
 "Pull down to refresh" = "Táhněte dolů pro obnovení";

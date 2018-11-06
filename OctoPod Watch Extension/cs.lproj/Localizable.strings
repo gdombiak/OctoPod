@@ -22,8 +22,14 @@
 /* (No Comment) */
 "Job" = "Tisk";
 
+/* No comment provided by engineer. */
+"MK3" = "MK3";
+
 /* (No Comment) */
 "No" = "Ne";
+
+/* No printer has been selected */
+"No printer" = "Žádná tiskárna";
 
 /* (No Comment) */
 "Notify failed cancel job" = "Nezdařil se požadavek ke zrušení tisku";
@@ -33,6 +39,12 @@
 
 /* (No Comment) */
 "Notify failed resume job" = "Nezdařil se požadavek k pokračování v tisku";
+
+/* No comment provided by engineer. */
+"Paused" = "Zastaveno";
+
+/* No comment provided by engineer. */
+"Printing" = "Tiskne se";
 
 /* ETA is Unknown */
 "Unknown" = "neznámý";

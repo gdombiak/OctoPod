@@ -22,8 +22,14 @@
 /* (No Comment) */
 "Job" = "Jobb";
 
+/* No comment provided by engineer. */
+"MK3" = "MK3";
+
 /* (No Comment) */
 "No" = "Nei";
+
+/* No printer has been selected */
+"No printer" = "Ingen skriver";
 
 /* (No Comment) */
 "Notify failed cancel job" = "Kunne ikke be om å kansellere jobb";
@@ -33,6 +39,12 @@
 
 /* (No Comment) */
 "Notify failed resume job" = "Kunne ikke be om å fortsette jobben";
+
+/* No comment provided by engineer. */
+"Paused" = "Pause";
+
+/* No comment provided by engineer. */
+"Printing" = "Skriver ut";
 
 /* ETA is Unknown */
 "Unknown" = "Ukjent";

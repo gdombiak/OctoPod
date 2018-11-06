@@ -193,6 +193,9 @@
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Plassering er ikke lenger gyldig. Oppdater filene";
 
+/* (No Comment) */
+"MK3" = "MK3";
+
 /* File Type is a Model */
 "Model" = "Modell";
 
@@ -204,6 +207,9 @@
 
 /* No camera was found */
 "No camera" = "Ingen kamera";
+
+/* (No Comment) */
+"No printer" = "Ingen skriver";
 
 /* No temperature history */
 "No temperature history" = "Ingen temperaturhistorikk tilgjengelig";
@@ -233,10 +239,19 @@
 "Pause Job" = "Pause";
 
 /* (No Comment) */
+"Paused" = "Pause";
+
+/* (No Comment) */
+"Print complete" = "Utskrift ferdig";
+
+/* (No Comment) */
 "Print File" = "Skriv ut Fil";
 
 /* (No Comment) */
 "Printer not operational" = "Skriveren er ikke operativ";
+
+/* (No Comment) */
+"Printing" = "Skriver ut";
 
 /* (No Comment) */
 "Pull down to refresh" = "Trekk ned for å oppdatere";
