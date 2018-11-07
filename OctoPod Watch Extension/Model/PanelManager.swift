@@ -21,17 +21,22 @@ class PanelManager: PrinterManagerDelegate {
     func refresh(done: (() -> Void)?) {
         if let printer = PrinterManager.instance.defaultPrinter() {
             printerName = PrinterManager.instance.name(printer: printer)
+            let currentPrinterName = printerName
             // There is a default printer so fetch panel information
             OctoPrintClient.instance.currentJobInfo { (reply: [String : Any]) in
-                self.panelInfo = reply
-                self.lastRefresh = Date()
-                
-                // Notify listeners that we have new panel information
-                for delegate in self.delegates {
-                    delegate.panelInfoUpdate(printerName: self.printerName!, panelInfo: reply)
+                // Check that current printer is still the same one we had before we made the request
+                if let currentPrinter = PrinterManager.instance.defaultPrinter() {
+                    if currentPrinterName == PrinterManager.instance.name(printer: currentPrinter) {
+                        self.panelInfo = reply
+                        self.lastRefresh = Date()
+                        
+                        // Notify listeners that we have new panel information
+                        for delegate in self.delegates {
+                            delegate.panelInfoUpdate(printerName: self.printerName!, panelInfo: reply)
+                        }
+                    }
+                    done?()
                 }
-                
-                done?()
             }
         } else {
             printerName = nil
