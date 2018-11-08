@@ -24,6 +24,9 @@ protocol OctoPrintSettingsDelegate: class {
 
     // Notification that sd support has changed
     func sdSupportChanged(sdSupport: Bool)
+    
+    // Notification that availability of Cancel Object plugin has changed
+    func cancelObjectAvailabilityChanged(installed: Bool)
 }
 
 
@@ -46,5 +49,8 @@ extension OctoPrintSettingsDelegate {
     }
 
     func sdSupportChanged(sdSupport: Bool) {
+    }
+    
+    func cancelObjectAvailabilityChanged(installed: Bool) {        
     }
 }

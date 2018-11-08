@@ -4101,6 +4101,97 @@
             </objects>
             <point key="canvasLocation" x="5924" y="-230"/>
         </scene>
+        <!--Cancel Object View Controller-->
+        <scene sceneID="rZa-vX-zR4">
+            <objects>
+                <tableViewController storyboardIdentifier="CancelObjectViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="MIe-Yp-tax" customClass="CancelObjectViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="37B-D1-Beh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="v5H-G8-7sn" userLabel="Footer View">
+                            <rect key="frame" x="0.0" y="117.5" width="375" height="65"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel Object plugin requires update" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aka-Ud-zQ7">
+                                    <rect key="frame" x="67.5" y="24" width="240" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Aka-Ud-zQ7" firstAttribute="centerX" secondItem="v5H-G8-7sn" secondAttribute="centerX" id="Jfj-VU-Ge4"/>
+                                <constraint firstItem="Aka-Ud-zQ7" firstAttribute="centerY" secondItem="v5H-G8-7sn" secondAttribute="centerY" id="P9J-dR-Kv4"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cancel_object_cell" id="3AS-CQ-6Sx" customClass="CancelObjectViewCell" customModule="OctoPod" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3AS-CQ-6Sx" id="xad-u0-1i6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SMa-NG-XzV">
+                                            <rect key="frame" x="311" y="7" width="48" height="30"/>
+                                            <state key="normal" title="Cancel"/>
+                                            <connections>
+                                                <action selector="cancelClicked:" destination="3AS-CQ-6Sx" eventType="touchUpInside" id="8Xg-OA-tEL"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNE-Hh-S8R">
+                                            <rect key="frame" x="16" y="11" width="293" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="SMa-NG-XzV" secondAttribute="trailing" constant="16" id="9OQ-fl-J6o"/>
+                                        <constraint firstItem="SMa-NG-XzV" firstAttribute="leading" secondItem="fNE-Hh-S8R" secondAttribute="trailing" constant="2" id="HGP-Wg-LfL"/>
+                                        <constraint firstItem="SMa-NG-XzV" firstAttribute="top" secondItem="xad-u0-1i6" secondAttribute="top" constant="7" id="Spx-ZP-O0Z"/>
+                                        <constraint firstItem="fNE-Hh-S8R" firstAttribute="leading" secondItem="xad-u0-1i6" secondAttribute="leadingMargin" id="Uh4-SV-Szm"/>
+                                        <constraint firstItem="fNE-Hh-S8R" firstAttribute="top" secondItem="xad-u0-1i6" secondAttribute="topMargin" id="mBg-YC-Tpc"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cancelButton" destination="SMa-NG-XzV" id="Teb-an-Bcn"/>
+                                    <outlet property="objectLabel" destination="fNE-Hh-S8R" id="DBC-3H-yjx"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MIe-Yp-tax" id="4GE-ox-4kG"/>
+                            <outlet property="delegate" destination="MIe-Yp-tax" id="D3y-ad-DYp"/>
+                        </connections>
+                    </tableView>
+                    <size key="freeformSize" width="375" height="370"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="mG6-OH-Wcs">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Pull down to refresh">
+                                <attributes>
+                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <connections>
+                            <action selector="refreshControls:" destination="MIe-Yp-tax" eventType="valueChanged" id="nm9-Ef-CV8"/>
+                        </connections>
+                    </refreshControl>
+                    <connections>
+                        <outlet property="footerLabel" destination="Aka-Ud-zQ7" id="R3L-yU-OiZ"/>
+                        <outlet property="footerView" destination="v5H-G8-7sn" id="kFZ-gs-bGr"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nst-gg-ItH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6679" y="-230"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Appearance" width="32" height="32"/>

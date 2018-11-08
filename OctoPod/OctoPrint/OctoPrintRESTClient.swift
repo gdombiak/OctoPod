@@ -545,6 +545,47 @@ class OctoPrintRESTClient {
         pluginCommand(plugin: plugin, json: json, callback: callback)
     }
 
+    // MARK: - Cancel Object Plugin operations
+    
+    // Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
+    func getCancelObjects(callback: @escaping (Array<CancelObject>?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "objlist"
+            client.post("/api/plugin/cancelobject", json: json, expected: 200) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting list of objects that can be cancelled. Error: \(error!.localizedDescription)")
+                }
+                if let json = result as? NSDictionary {
+                    if let jsonArray = json["list"] as? NSArray {
+                        var cancelObjects: Array<CancelObject> = Array()
+                        for case let item as NSDictionary in jsonArray {
+                            if let cancelObject = CancelObject.parse(json: item) {
+                                cancelObjects.append(cancelObject)
+                            }
+                        }
+                        callback(cancelObjects, error, response)
+                        return
+                    }
+                }
+                callback(nil, error, response)
+            }
+        }
+    }
+
+    // Cancel the requested object id.
+    func cancelObject(id: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "cancel"
+            json["cancelled"] = id
+            client.post("/api/plugin/cancelobject", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+
     // MARK: - Low level operations
     
     fileprivate func connectionPost(httpClient: HTTPClient, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {

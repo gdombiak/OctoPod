@@ -473,6 +473,18 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.checkIPPlugStatus(plugin: plugin, plug: plug, callback: callback)
     }
     
+    // MARK: - Cancel Object Plugin operations
+    
+    // Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
+    func getCancelObjects(callback: @escaping (Array<CancelObject>?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.getCancelObjects(callback: callback)
+    }
+    
+    // Cancel the requested object id.
+    func cancelObject(id: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.cancelObject(id: id, callback: callback)
+    }
+    
     // MARK: - Delegates operations
     
     func remove(octoPrintClientDelegate toRemove: OctoPrintClientDelegate) {
@@ -577,6 +589,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         updatePrinterFromWemoPlugin(printer: printer, plugins: plugins)
         updatePrinterFromDomoticzPlugin(printer: printer, plugins: plugins)
         updatePrinterFromTasmotaPlugin(printer: printer, plugins: plugins)
+        updatePrinterFromCancelObjectPlugin(printer: printer, plugins: plugins)
     }
     
     fileprivate func updatePrinterFromMultiCamPlugin(printer: Printer, plugins: NSDictionary) {
@@ -720,6 +733,27 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
 
+    fileprivate func updatePrinterFromCancelObjectPlugin(printer: Printer, plugins: NSDictionary) {
+        var installed = false
+        if let _ = plugins[Plugins.CANCEL_OBJECT] as? NSDictionary {
+            // Cancel Object plugin is installed
+            installed = true
+        }
+        if printer.cancelObjectInstalled != installed {
+            let newObjectContext = printerManager.newPrivateContext()
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+            // Update flag that tracks if Cancel Object plugin is installed
+            printerToUpdate.cancelObjectInstalled = installed
+            // Persist updated printer
+            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+            
+            // Notify listeners of change
+            for delegate in octoPrintSettingsDelegates {
+                delegate.cancelObjectAvailabilityChanged(installed: installed)
+            }
+        }
+    }
+    
     fileprivate func calculateImageOrientation(flipH: Bool, flipV: Bool, rotate90: Bool) -> UIImage.Orientation {
         if !flipH && !flipV && !rotate90 {
              // No flips selected

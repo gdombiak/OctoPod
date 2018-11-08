@@ -63,6 +63,9 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                     orderedViewControllers.append(createIPPlugVCBlock(plugin: Plugins.TASMOTA)(mainboard))
                 }
             }
+            if printer.cancelObjectInstalled {
+                orderedViewControllers.append(createCancelObjectVC(mainboard))
+            }
         }
         
         // Set number of pages in the page control
@@ -117,6 +120,8 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                 addVC = !plugs.isEmpty
             }
             addRemoveIPPlugPluginVC(plugin: Plugins.TASMOTA, add: addVC)
+            
+            addRemoveVC(add: printer.cancelObjectInstalled, vcIdentifier: { $0.isMember(of: CancelObjectViewController.self) }, createVC: createCancelObjectVC)
         }
         // Notify subpanels of change of printer (OctoPrint)
         for case let subpanel as SubpanelViewController in orderedViewControllers {
@@ -197,6 +202,10 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
     func ipPlugsChanged(plugin: String, plugs: Array<IPPlug>) {
         addRemoveIPPlugPluginVC(plugin: plugin, add: !plugs.isEmpty)
     }
+    
+    func cancelObjectAvailabilityChanged(installed: Bool) {
+        addRemoveVC(add: installed, vcIdentifier: { $0.isMember(of: CancelObjectViewController.self) }, createVC: createCancelObjectVC)
+    }
 
     // MARK: - Private functions
     
@@ -272,5 +281,9 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             return false
         }
         addRemoveVC(add: add, vcIdentifier: vcIdentifier, createVC: createIPPlugVCBlock(plugin: plugin))
+    }
+
+    fileprivate func createCancelObjectVC(_ mainboard: UIStoryboard) -> UIViewController {
+        return mainboard.instantiateViewController(withIdentifier: "CancelObjectViewController")
     }
 }

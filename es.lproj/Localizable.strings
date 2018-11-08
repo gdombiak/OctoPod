@@ -19,6 +19,9 @@
 /* (No Comment) */
 "Cancel" = "Cancelar";
 
+/* https://github.com/paukstelis/Octoprint-Cancelobject */
+"Cancel Objects" = "Cancelar Objetos";
+
 /* (No Comment) */
 "Cannot print this file type" = "No se puede imprimir este tipo de archivo";
 
@@ -89,6 +92,9 @@
 "Failed to get controls" = "Error al obtener controles. Respuesta HTTP: %d";
 
 /* (No Comment) */
+"Failed to get list of cancel objects" = "Error al obtener objetos a cancelar. Respuesta HTTP: %d";
+
+/* (No Comment) */
 "Failed to initialize SD card" = "Error al inicializar la tarjeta SD";
 
 /* (No Comment) */
@@ -114,6 +120,9 @@
 
 /* (No Comment) */
 "Failed to request moving up" = "Error al ir arriba";
+
+/* (No Comment) */
+"Failed to request to cancel object" = "Error al cancelar objeto. Respuesta HTTP: %d";
 
 /* (No Comment) */
 "Failed to request to execute command" = "Error al ejecutar comando";

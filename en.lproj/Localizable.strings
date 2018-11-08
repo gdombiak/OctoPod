@@ -129,3 +129,6 @@
 "No printer" = "No printer";
 "Paused" = "Paused";
 "Printing" = "Printing";
+
+"Failed to get list of cancel objects" = "Failed to get list of cancel objects. HTTP response: %d";
+"Failed to request to cancel object" = "Failed to request to cancel object. HTTP response: %d";
