@@ -4,7 +4,7 @@ import UIKit
 protocol CameraViewDelegate : class {
     
     // Notification when an aspect ratio of image has been detected
-    func imageAspectRatio(ratio: CGFloat)
+    func imageAspectRatio(cameraIndex: Int, ratio: CGFloat)
 
     // Notification that user swiped to another camera and transition started
     func startTransitionNewPage()

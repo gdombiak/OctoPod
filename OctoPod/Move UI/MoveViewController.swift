@@ -82,7 +82,7 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate, CameraVie
     
     // MARK: - EmbeddedCameraDelegate
     
-    func imageAspectRatio(ratio: CGFloat) {
+    func imageAspectRatio(cameraIndex: Int, ratio: CGFloat) {
         let newRatio = ratio < 0.60
         if imageAspectRatio16_9 != newRatio {
             imageAspectRatio16_9 = newRatio
@@ -164,6 +164,10 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate, CameraVie
         if let printer = printerManager.getDefaultPrinter() {
             // Update window title to Camera name
             navigationItem.title = printer.name
+            
+            // Use last known aspect ratio of first camera of this printer
+            // End user will have a better experience with this
+            self.imageAspectRatio16_9 = printer.firstCameraAspectRatio16_9
             
             // Update layout depending on camera orientation
             updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!)

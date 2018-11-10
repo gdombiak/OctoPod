@@ -25,6 +25,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     var cameraTappedCallback: (() -> Void)?
     var cameraViewDelegate: CameraViewDelegate?
+    var cameraIndex: Int!
 
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
 
@@ -210,7 +211,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
 
                 streamingController?.didRenderImage = { (image: UIImage) in
                     // Notify that we got our first image and we know its ratio
-                    self.cameraViewDelegate?.imageAspectRatio(ratio: image.size.height / image.size.width)
+                    self.cameraViewDelegate?.imageAspectRatio(cameraIndex: self.cameraIndex, ratio: image.size.height / image.size.width)
                 }
 
                 streamingController?.didFinishLoading = {

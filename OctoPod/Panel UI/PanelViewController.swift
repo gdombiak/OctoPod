@@ -319,12 +319,21 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     // MARK: - EmbeddedCameraDelegate
     
-    func imageAspectRatio(ratio: CGFloat) {
+    func imageAspectRatio(cameraIndex: Int, ratio: CGFloat) {
         let newRatio = ratio < 0.60
         if imageAspectRatio16_9 != newRatio {
             imageAspectRatio16_9 = newRatio
             if !transitioningNewPage {
                 if let printer = printerManager.getDefaultPrinter() {
+                    // Check if we need to update printer to remember aspect ratio of first camera
+                    if cameraIndex == 0 && imageAspectRatio16_9 != printer.firstCameraAspectRatio16_9 {
+                        let newObjectContext = printerManager.newPrivateContext()
+                        let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                        // Update aspect ratio of first camera
+                        printerToUpdate.firstCameraAspectRatio16_9 = imageAspectRatio16_9
+                        // Persist updated printer
+                        printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                    }
                     let orientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
                     // Add a tiny delay so the UI does not go crazy
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -367,6 +376,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         if let printer = printerManager.getDefaultPrinter() {
             // Update window title to Camera name
             DispatchQueue.main.async { self.navigationItem.title = printer.name }
+            
+            // Use last known aspect ratio of first camera of this printer
+            // End user will have a better experience with this
+            self.imageAspectRatio16_9 = printer.firstCameraAspectRatio16_9
             
             // Update layout depending on camera orientation
             DispatchQueue.main.async { self.updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!) }

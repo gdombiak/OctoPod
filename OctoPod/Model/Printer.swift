@@ -18,6 +18,7 @@ class Printer: NSManagedObject {
     @NSManaged var username: String?
     @NSManaged var password: String?
 
+    @NSManaged var firstCameraAspectRatio16_9: Bool // Remember aspect ratio of first camera so UI can adapt to proper aspect ratio
     @NSManaged var sdSupport: Bool
     @NSManaged var cameraOrientation: Int16  // Raw value of UIImageOrientation enum
     @NSManaged var cameras: [String]? // Array that holds URLs to cameras. OctoPrint needs to use MultiCam plugin

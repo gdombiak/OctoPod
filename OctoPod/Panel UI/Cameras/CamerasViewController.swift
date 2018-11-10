@@ -248,6 +248,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         controller.infoGesturesAvailable = infoGesturesAvailable
         controller.cameraTappedCallback = embeddedCameraTappedCallback
         controller.cameraViewDelegate = embeddedCameraDelegate
+        controller.cameraIndex = index
         return controller
     }
     

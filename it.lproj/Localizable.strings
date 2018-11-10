@@ -44,7 +44,7 @@
 "Confirm" = "Conferma";
 
 /* (No Comment) */
-"Confirm cancel object" = "Stai per annullare la stampa dell'oggetto. Procedere?";
+"Confirm cancel object" = "Stai per rimuovere l'oggetto dalla stampa. Procedere?";
 
 /* (No Comment) */
 "Confirm connect" = "Alcune stampanti possono riavviarsi durante la connessione. Procedere?";
