@@ -6,6 +6,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
     private var currentPrinterName: String!
     private var currentPrinterState: String!
     
+    private let printColor = UIColor(red: 48/255, green: 140/255, blue: 140/255, alpha: 1.0)
+    private let notPrintColor = UIColor(red: 0/255, green: 111/255, blue: 234/255, alpha: 1.0)
+    
     override init() {
         super.init()
         currentPrinterName = NSLocalizedString("No printer", comment: "No printer has been selected")
@@ -33,7 +36,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
             let image: UIImage = UIImage(named: "Complication/Modular")!
             let template = CLKComplicationTemplateModularSmallSimpleImage()
             template.imageProvider = CLKImageProvider(onePieceImage: image)
-            template.imageProvider.tintColor = isPrinting ? UIColor(red: 48/255, green: 140/255, blue: 140/255, alpha: 1.0) : UIColor(red: 0/255, green: 111/255, blue: 234/255, alpha: 1.0)
+            template.imageProvider.tintColor = isPrinting ? printColor : notPrintColor
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
         case .modularLarge:
@@ -54,6 +57,22 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
 
+        case .utilitarianSmall:
+            let template = CLKComplicationTemplateUtilitarianSmallSquare()
+            let image: UIImage = UIImage(named: isPrinting ? "Movement Frog" : "No movement Frog")!
+            template.imageProvider = CLKImageProvider(onePieceImage: image)
+            template.imageProvider.tintColor = isPrinting ? printColor : notPrintColor
+            let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
+            handler(entry)
+
+        case .graphicCorner:
+            let template = CLKComplicationTemplateGraphicCornerStackText()
+            template.outerTextProvider = CLKSimpleTextProvider(text: currentPrinterName)
+            let innerTextProvider = CLKSimpleTextProvider(text: currentPrinterState)
+            innerTextProvider.tintColor = isPrinting ? printColor : notPrintColor
+            template.innerTextProvider = innerTextProvider
+            let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
+            handler(entry)
         case .graphicCircular:
             let image: UIImage = UIImage(named: isPrinting ? "Movement Frog" : "No movement Frog")!
             let template = CLKComplicationTemplateGraphicCircularImage()
@@ -101,6 +120,18 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
             template.line2TextProvider = CLKSimpleTextProvider(text: NSLocalizedString("Paused", comment: ""))
             handler(template)
 
+        case .utilitarianSmall:
+            let template = CLKComplicationTemplateUtilitarianSmallSquare()
+            template.imageProvider = CLKImageProvider(onePieceImage: UIImage(named: "No movement Frog")!)
+            handler(template)
+
+        case .graphicCorner:
+            let template = CLKComplicationTemplateGraphicCornerStackText()
+            template.outerTextProvider = CLKSimpleTextProvider(text: NSLocalizedString("MK3", comment: ""))
+            let innerTextProvider = CLKSimpleTextProvider(text: NSLocalizedString("Printing", comment: ""))
+            innerTextProvider.tintColor = printColor
+            template.innerTextProvider = innerTextProvider
+            handler(template)
         case .graphicCircular:
             let image: UIImage = UIImage(named: "Complication/Graphic Circular")!
             let template = CLKComplicationTemplateGraphicCircularImage()
