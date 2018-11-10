@@ -345,6 +345,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             let orientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
             // Add a tiny delay so the UI does not go crazy
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                if self.subpanelsView != nil && self.subpanelsView.isHidden {
+                    // Do nothing if camera is in full screen
+                    return
+                }
                 self.updateForCameraOrientation(orientation: orientation)
             }
         }
