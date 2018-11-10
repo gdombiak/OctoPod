@@ -26,7 +26,7 @@
 "Cannot print this file type" = "Dieser Dateityp kann nicht gedruckt werden";
 
 /* (No Comment) */
-"Cannot reach 'octopi.local' over mobile network or service is down" = "Kann die Datei 'octopi.local' nicht via Wi-Fi aufrufen oder der Dienst nicht nicht verfügbar";
+"Cannot reach 'octopi.local' over mobile network or service is down" = "Kann 'octopi.local' nicht via Mobilfunk aufrufen oder der Dienst nicht nicht verfügbar";
 
 /* (No Comment) */
 "Cannot replace file that is being printed or printer is busy" = "Kann die Datei nicht ersetzen während sie gedruckt wird oder der Drucker ist noch beschäftigt";
@@ -42,6 +42,9 @@
 
 /* (No Comment) */
 "Confirm" = "Bestätigen";
+
+/* (No Comment) */
+"Confirm cancel object" = "Sie sind dabei, den Druck des Objekts abzubrechen. Fortfahren?";
 
 /* (No Comment) */
 "Confirm connect" = "Einige Drucker führen bei Herstellung der Verbindung einen Neustart aus. Fortsetzen?";

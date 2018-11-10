@@ -1,3 +1,6 @@
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Je potřeba přístup k fotoaparátu pro naskenování QR kódu";
 
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Je potřeba použít FaceID k odemknutí aplikace.";
+

@@ -44,6 +44,9 @@
 "Confirm" = "Potvrdit";
 
 /* (No Comment) */
+"Confirm cancel object" = "Tímto zrušíte tisk objektu. Pokračovat?";
+
+/* (No Comment) */
 "Confirm connect" = "Některé tiskárny se mohou restartovat během připojení. Pokračovat?";
 
 /* (No Comment) */

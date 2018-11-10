@@ -1,3 +1,6 @@
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Abbiamo bisogno di accedere alla fotocamera per la scansione del codice QR";
 
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Dobbiamo usare FaceID per sbloccare l'app";
+
