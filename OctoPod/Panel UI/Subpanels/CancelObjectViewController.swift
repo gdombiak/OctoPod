@@ -88,17 +88,20 @@ class CancelObjectViewController: ThemedDynamicUITableViewController, SubpanelVi
 
     func cancelObject(objectId: Int) {
         let objectId = cancelObjects[objectId].id
-        octoprintClient.cancelObject(id: objectId) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if requested {
-                // Fetch and refresh UI
-                self.refreshCancelObjects(done: nil)
-            } else if let _ = error {
-                self.showAlert(NSLocalizedString("Warning", comment: ""), message: error!.localizedDescription)
-            } else if response.statusCode != 204 {
-                self.showAlert(NSLocalizedString("Warning", comment: ""), message: String(format: NSLocalizedString("Failed to request to cancel object", comment: ""), response.statusCode))
+        showConfirm(message: NSLocalizedString("Confirm cancel object", comment: ""), yes: { (UIAlertAction) -> Void in
+            self.octoprintClient.cancelObject(id: objectId) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                if requested {
+                    // Fetch and refresh UI
+                    self.refreshCancelObjects(done: nil)
+                } else if let _ = error {
+                    self.showAlert(NSLocalizedString("Warning", comment: ""), message: error!.localizedDescription)
+                } else if response.statusCode != 204 {
+                    self.showAlert(NSLocalizedString("Warning", comment: ""), message: String(format: NSLocalizedString("Failed to request to cancel object", comment: ""), response.statusCode))
+                }
             }
-
-        }
+        }, no: { (UIAlertAction) -> Void in
+            // Do nothing
+        })
     }
     
     // MARK: - Refresh
@@ -148,5 +151,9 @@ class CancelObjectViewController: ThemedDynamicUITableViewController, SubpanelVi
     
     fileprivate func showAlert(_ title: String, message: String) {
         UIUtils.showAlert(presenter: self, title: title, message: message, done: nil)
+    }
+
+    fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
+        UIUtils.showConfirm(presenter: self, message: message, yes: yes, no: no)
     }
 }

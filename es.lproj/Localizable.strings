@@ -44,6 +44,9 @@
 "Confirm" = "Confirmar";
 
 /* (No Comment) */
+"Confirm cancel object" = "Está por cancelar la impresión del objeto. ¿Continuar?";
+
+/* (No Comment) */
 "Confirm connect" = "Algunas impresoras pueden reiniciarse al conectar. ¿Continuar?";
 
 /* (No Comment) */
