@@ -33,9 +33,16 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <button width="24" height="24" alignment="center" verticalAlignment="center" backgroundImage="Refresh" id="K7F-lC-ZQC">
+                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="refresh" destination="AgC-eL-Hgc" id="lde-Yk-0Lb"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
                         <outlet property="printersTable" destination="jZp-1K-0bQ" id="8b8-DU-aYk"/>
+                        <outlet property="refreshButton" destination="K7F-lC-ZQC" id="fhX-sj-TVV"/>
                         <outlet property="syncPrintersLabel" destination="S0T-q4-2KQ" id="fWY-cZ-bKl"/>
                         <segue destination="DQ6-B5-o6I" kind="relationship" relationship="nextPage" id="kWQ-iv-7tc"/>
                     </connections>

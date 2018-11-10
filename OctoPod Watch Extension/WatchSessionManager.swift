@@ -30,6 +30,14 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         }
     }
     
+    func refreshPrinters(done: (() -> Void)?) {
+        if let session = session {
+            requestPrinters(session, done: done)
+        } else {
+            done?()
+        }
+    }
+    
     // MARK: - WCSessionDelegate
     
     /** Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
@@ -39,13 +47,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
             // When printer info changes, iOS app will send printers information using
             // applicationContext so there is no need to fetch it every time a session is activated
             if PrinterManager.instance.printers.isEmpty {
-                // Request list of printers
-                session.sendMessage(["printers": ""], replyHandler: { (reply: [String : Any]) in
-                    // Process response from our request. Update list of printers we received
-                    PrinterManager.instance.updatePrinters(printers: reply["printers"] as! [[String : Any]])
-                }) { (error: Error) in
-                    NSLog("Failed to request printers. Error: \(error)")
-                }
+                requestPrinters(session, done: nil)
             }
         }
     }
@@ -72,5 +74,19 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
     public func session(_ session: WCSession, didReceive file: WCSessionFile) {
         // This means that an image of the camera has been received
         PrinterManager.instance.fileReceived(file: file.fileURL, metadata: file.metadata)
+    }
+    
+    // MARK: - Private functions
+    
+    fileprivate func requestPrinters(_ session: WCSession, done: (() -> Void)?) {
+        // Request list of printers
+        session.sendMessage(["printers": ""], replyHandler: { (reply: [String : Any]) in
+            // Process response from our request. Update list of printers we received
+            PrinterManager.instance.updatePrinters(printers: reply["printers"] as! [[String : Any]])
+            done?()
+        }) { (error: Error) in
+            NSLog("Failed to request printers. Error: \(error)")
+            done?()
+        }
     }
 }

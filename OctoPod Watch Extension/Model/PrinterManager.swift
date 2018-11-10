@@ -8,12 +8,31 @@ class PrinterManager {
     var delegates: Array<PrinterManagerDelegate> = []
     
     private(set) var printers: [[String: Any]] = []
+    private var printersFilepath: String?
+    
+    init() {
+        if let dir : NSString = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true).first as NSString? {
+            printersFilepath = dir.appendingPathComponent("octopod_printers_v1");
+        }
+        
+        if let loaded = loadPrintersFromFile() {
+            printers = loaded
+        }
+    }
     
     // Update list of printers stored in memory
     // Information came from iOS App and we need to update
     // what we have in memory.
     // Listeners will be notified of changes
-    func updatePrinters(printers: [[String: Any]]) {        
+    func updatePrinters(printers: [[String: Any]]) {
+        if samePrinters(printers) {
+            // Do nothing since printers did not change
+            return
+        }
+
+        // Store printers in a file so Watch app can be more resilient if iOS app is not around
+        savePrintersToFile(printers)
+        
         let previousDefaultPrinter = defaultPrinter()
         
         self.printers = printers
@@ -47,6 +66,10 @@ class PrinterManager {
             }
             printers[index]["isDefault"] = isNewDefault
         }
+
+        // Store printers in a file so Watch app can be more resilient if iOS app is not around
+        savePrintersToFile(printers)
+
         // Request iOS App to update selected printer
         WatchSessionManager.instance.updateApplicationContext(context: ["selected_printer" : printerName])
 
@@ -151,5 +174,44 @@ class PrinterManager {
         }
         
         return name(printer: printerL!) == name(printer: printerR!) && hostname(printer: printerL!) == hostname(printer: printerR!) && apiKey(printer: printerL!) == apiKey(printer: printerR!) && isDefault(printer: printerL!) == isDefault(printer: printerR!)
+    }
+    
+    fileprivate func loadPrintersFromFile() -> [[String : Any]]?{
+        do {
+            if let filePath = printersFilepath {
+                let data = try Data(contentsOf: URL(fileURLWithPath: filePath))
+                return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [[String : Any]]?
+            }
+        }
+        catch {
+            NSLog("Failed to save printers data to file. Error: \(error)")
+        }
+        return nil
+    }
+
+    fileprivate func savePrintersToFile(_ printers: [[String : Any]]) {
+        do {
+            if let filePath = printersFilepath {
+                let data = try NSKeyedArchiver.archivedData(withRootObject: printers, requiringSecureCoding: false)
+                try data.write(to: URL(fileURLWithPath: filePath))
+            }
+        }
+        catch {
+            NSLog("Failed to save printers data to file. Error: \(error)")
+        }
+    }
+    
+    fileprivate func samePrinters(_ printers: [[String : Any]]) -> Bool {
+        if self.printers.count == printers.count {
+            for (index, printer) in self.printers.enumerated() {
+                let otherPrinter = printers[index]
+                if name(printer: printer) != name(printer: otherPrinter) || hostname(printer: printer) != hostname(printer: otherPrinter) || apiKey(printer: printer) != apiKey(printer: otherPrinter) || isDefault(printer: printer) != isDefault(printer: otherPrinter) || username(printer: printer) != username(printer: otherPrinter) || password(printer: printer) != password(printer: otherPrinter) {
+                    return false
+                }
+            }
+            return true
+        } else {
+            return false
+        }
     }
 }

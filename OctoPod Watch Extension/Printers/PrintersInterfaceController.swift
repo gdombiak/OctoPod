@@ -6,6 +6,7 @@ class PrintersInterfaceController: WKInterfaceController, PrinterManagerDelegate
     
     @IBOutlet weak var syncPrintersLabel: WKInterfaceLabel!
     @IBOutlet weak var printersTable: WKInterfaceTable!
+    @IBOutlet weak var refreshButton: WKInterfaceButton!
     
     var printers: [[String: Any]]!
 
@@ -45,6 +46,17 @@ class PrintersInterfaceController: WKInterfaceController, PrinterManagerDelegate
         OctoPrintClient.instance.configure()
     }
 
+    @IBAction func refresh() {
+        // Disable refresh button to indicate we are "refreshing"
+        self.refreshButton.setEnabled(false)
+        WatchSessionManager.instance.refreshPrinters {
+            DispatchQueue.main.async {
+                // Done refreshing so enable button again
+                self.refreshButton.setEnabled(true)
+            }
+        }
+    }
+    
     // MARK: - PrinterManagerDelegate
     
     // Notification that list of printers has changed. Could be that new
@@ -75,6 +87,7 @@ class PrintersInterfaceController: WKInterfaceController, PrinterManagerDelegate
         printers = PrinterManager.instance.printers
         
         syncPrintersLabel.setHidden(!printers.isEmpty)
+        refreshButton.setHidden(printers.isEmpty)
         
         // Set number of rows based on printers count
         printersTable.setNumberOfRows(printers.count, withRowType: "PrinterTableRowController")

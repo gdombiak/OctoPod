@@ -30,6 +30,12 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
         // Configure interface objects here.
         self.hideJobButtons()
         self.tool1Group.setHidden(true)
+        
+        // If Watch App just started and we have printers (because they were stored in the file)
+        // then make this page the default one
+        if !PrinterManager.instance.printers.isEmpty {
+            self.becomeCurrentPage()
+        }
     }
 
     override func willActivate() {
