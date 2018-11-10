@@ -106,6 +106,9 @@
 /* Class = "UIButton"; normalTitle = "View activity log"; ObjectID = "aJp-RM-Tuf"; */
 "aJp-RM-Tuf.normalTitle" = "Visualizza log attività";
 
+/* Class = "UILabel"; text = "Cancel Object plugin requires update"; ObjectID = "Aka-Ud-zQ7"; */
+"Aka-Ud-zQ7.text" = "Il plugin Cancel Object richiede un aggiornamento";
+
 /* Class = "UIButton"; normalTitle = "Not refreshing"; ObjectID = "b0b-3X-MUJ"; */
 "b0b-3X-MUJ.normalTitle" = "Non aggiornato";
 
@@ -174,6 +177,9 @@
 
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "fJ6-6T-dHU"; */
 "fJ6-6T-dHU.title" = "Impostazioni";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
+"fNE-Hh-S8R.text" = "Label";
 
 /* Class = "UITableViewSection"; headerTitle = "Temp Chart"; ObjectID = "GAt-su-C1i"; */
 "GAt-su-C1i.headerTitle" = "GRAFICO TEMPERATURA";
@@ -399,6 +405,9 @@
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H"; */
 "sLc-Jv-G0H.placeholder" = "Nome utente";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "SMa-NG-XzV"; */
+"SMa-NG-XzV.normalTitle" = "Annulla";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "SQ9-ls-Hf3"; */
 "SQ9-ls-Hf3.title" = "Impostazioni";
