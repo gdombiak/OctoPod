@@ -3756,8 +3756,10 @@
                     <size key="freeformSize" width="375" height="665"/>
                     <connections>
                         <outlet property="backButton" destination="tWi-iC-0vm" id="xnS-eC-Q4T"/>
+                        <outlet property="backLeadingConstraint" destination="Q4P-TS-s2f" id="6iL-wb-lcz"/>
                         <outlet property="disableMotorLabel" destination="6TZ-hb-gdQ" id="sJn-Mv-Jhc"/>
                         <outlet property="downButton" destination="si4-O4-P2M" id="Jb3-ba-lJd"/>
+                        <outlet property="downLeadingConstraint" destination="bQO-qX-SzX" id="z0N-Dv-cdy"/>
                         <outlet property="eMotorButton" destination="48m-gj-F14" id="EDL-QE-rOm"/>
                         <outlet property="eStepSegmentedControl" destination="GRh-JJ-DpF" id="Dnl-nu-WpQ"/>
                         <outlet property="extrudeButton" destination="wnO-2K-s2I" id="Jwj-8V-hYp"/>
@@ -3774,10 +3776,12 @@
                         <outlet property="flowRateSlider" destination="zDH-jI-B7O" id="hZe-6r-gGq"/>
                         <outlet property="flowRateTextLabel" destination="3IG-Y9-Ofi" id="DOU-dM-3vq"/>
                         <outlet property="frontButton" destination="C3J-E8-zmG" id="R3i-mX-Vir"/>
+                        <outlet property="frontLeadingConstraint" destination="9De-4e-zSd" id="QAk-WU-P7l"/>
                         <outlet property="goHomeButton" destination="zbn-Ah-Pat" id="Ruo-d6-yjH"/>
                         <outlet property="leftButton" destination="b8F-E5-ASf" id="Lhm-fG-bvx"/>
                         <outlet property="retractButton" destination="Q2b-xf-a3O" id="4O7-Z4-B4M"/>
                         <outlet property="rightButton" destination="Lj9-dc-lnA" id="Wh5-s7-AWT"/>
+                        <outlet property="rightLeadingConstraint" destination="2gu-h6-hOQ" id="HYK-wJ-NIC"/>
                         <outlet property="upButton" destination="oLT-fK-F6P" id="Qfu-nM-Wnt"/>
                         <outlet property="xMotorButton" destination="B7j-Fj-W6p" id="aWY-mV-qQm"/>
                         <outlet property="xyStepSegmentedControl" destination="NKo-dw-3Mg" id="7OK-2M-i2B"/>
@@ -4109,12 +4113,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="v5H-G8-7sn" userLabel="Footer View">
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="v5H-G8-7sn" userLabel="Footer View">
                             <rect key="frame" x="0.0" y="117.5" width="375" height="65"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel Object plugin requires update" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aka-Ud-zQ7">
-                                    <rect key="frame" x="0.0" y="24" width="375" height="17"/>
+                                    <rect key="frame" x="0.0" y="-8.5" width="375" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>

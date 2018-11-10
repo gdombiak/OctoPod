@@ -23,9 +23,13 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBOutlet weak var frontButton: UIButton!
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
+    @IBOutlet weak var frontLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var backLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var rightLeadingConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var upButton: UIButton!
     @IBOutlet weak var downButton: UIButton!
+    @IBOutlet weak var downLeadingConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var goHomeButton: UIButton!
     
@@ -61,6 +65,24 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         addKeyboardButtons(field: fanSpeedField, slider: fanSpeedSlider, cancelSelector: #selector(MoveSubViewController.closeFanKeyboard), applySelector: #selector(MoveSubViewController.applyFanKeyboard))
 
         addKeyboardButtons(field: feedRateField, slider: feedRateSlider, cancelSelector: #selector(MoveSubViewController.closeFeedKeyboard), applySelector: #selector(MoveSubViewController.applyFeedKeyboard))
+
+        // Adjust space between move buttons depending on screen size
+        let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
+        let screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
+        if screenHeight <= 568 {
+            // iPhone 5, 5s, 5c, SE (and older models)
+            frontLeadingConstraint.constant = 5
+            backLeadingConstraint.constant = 5
+            rightLeadingConstraint.constant = 5
+            downLeadingConstraint.constant = 5
+        } else {
+            // Bigger screens so we can have more space between buttons
+            frontLeadingConstraint.constant = 10
+            backLeadingConstraint.constant = 15
+            rightLeadingConstraint.constant = 10
+            downLeadingConstraint.constant = 10
+        }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
