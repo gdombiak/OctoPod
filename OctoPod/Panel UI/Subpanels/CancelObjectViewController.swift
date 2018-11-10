@@ -4,6 +4,7 @@ class CancelObjectViewController: ThemedDynamicUITableViewController, SubpanelVi
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
@@ -60,7 +61,7 @@ class CancelObjectViewController: ThemedDynamicUITableViewController, SubpanelVi
         cell.objectLabel?.text = cancelObjects[indexPath.row].object
         cell.objectLabel?.textColor = Theme.currentTheme().textColor()
 
-        cell.cancelButton.isEnabled = !cancelObjects[indexPath.row].cancelled
+        cell.cancelButton.isEnabled = !cancelObjects[indexPath.row].cancelled && !appConfiguration.appLocked()
         
         return cell
     }
