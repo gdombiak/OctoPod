@@ -44,6 +44,9 @@
 "Confirm" = "Bekreft";
 
 /* (No Comment) */
+"Confirm cancel object" = "Du er i ferd med å avbryte utskriftsobjekt. Fortsette?";
+
+/* (No Comment) */
 "Confirm connect" = "Noen skrivere kan restarte ved tilkobling. Fortsette?";
 
 /* (No Comment) */
