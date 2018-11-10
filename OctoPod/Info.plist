@@ -27,6 +27,8 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>We need to access your camera for scanning QR code</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>We need to use FaceID to unlock app</string>
 	<key>NSUbiquitousContainers</key>
 	<dict>
 		<key>&gt;iCloud.$(CFBundleIdentifier)</key>
