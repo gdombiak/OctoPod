@@ -56,8 +56,8 @@
                             <constraint firstItem="n53-As-HXW" firstAttribute="leading" secondItem="xB8-sn-f1e" secondAttribute="leading" id="EJM-Kp-uFt"/>
                             <constraint firstItem="xB8-sn-f1e" firstAttribute="bottom" secondItem="b0b-3X-MUJ" secondAttribute="bottom" constant="5" id="HQs-XF-yLa"/>
                             <constraint firstItem="n53-As-HXW" firstAttribute="trailing" secondItem="xB8-sn-f1e" secondAttribute="trailing" id="N87-pP-oZc"/>
-                            <constraint firstItem="uff-mu-aBi" firstAttribute="leading" secondItem="xB8-sn-f1e" secondAttribute="leading" id="OUR-aT-aHE"/>
-                            <constraint firstItem="uff-mu-aBi" firstAttribute="trailing" secondItem="xB8-sn-f1e" secondAttribute="trailing" id="Ynb-gY-yIl"/>
+                            <constraint firstItem="uff-mu-aBi" firstAttribute="leading" secondItem="qbu-bG-uS0" secondAttribute="leading" id="OUR-aT-aHE"/>
+                            <constraint firstItem="uff-mu-aBi" firstAttribute="trailing" secondItem="qbu-bG-uS0" secondAttribute="trailing" id="Ynb-gY-yIl"/>
                             <constraint firstItem="n53-As-HXW" firstAttribute="top" secondItem="uff-mu-aBi" secondAttribute="bottom" id="laI-d5-TdD"/>
                             <constraint firstItem="n53-As-HXW" firstAttribute="top" secondItem="xB8-sn-f1e" secondAttribute="bottom" priority="998" id="xmR-ga-bXM"/>
                             <constraint firstItem="b0b-3X-MUJ" firstAttribute="leading" secondItem="xB8-sn-f1e" secondAttribute="leading" constant="20" id="yqY-tW-mWr"/>
@@ -106,9 +106,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Tnd-hd-ss6" firstAttribute="centerX" secondItem="6jn-US-pKP" secondAttribute="centerX" id="M9e-C1-Gvl"/>
-                            <constraint firstItem="Tnd-hd-ss6" firstAttribute="bottom" secondItem="PCg-yT-Z7v" secondAttribute="bottom" id="xvL-ov-qIG"/>
+                            <constraint firstItem="Tnd-hd-ss6" firstAttribute="bottom" secondItem="6jn-US-pKP" secondAttribute="bottom" id="xvL-ov-qIG"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="PCg-yT-Z7v"/>
                     </view>
                     <connections>
                         <outlet property="pageControl" destination="Tnd-hd-ss6" id="Vz6-pk-2cT"/>
@@ -190,12 +189,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="9ix-ve-DAs" firstAttribute="leading" secondItem="E0W-I9-H9X" secondAttribute="leading" id="LO5-AI-EWU"/>
-                            <constraint firstItem="9ix-ve-DAs" firstAttribute="bottom" secondItem="E0W-I9-H9X" secondAttribute="bottom" id="X1h-1r-M9p"/>
-                            <constraint firstItem="9ix-ve-DAs" firstAttribute="top" secondItem="E0W-I9-H9X" secondAttribute="top" id="a1w-Yq-68A"/>
-                            <constraint firstItem="9ix-ve-DAs" firstAttribute="trailing" secondItem="E0W-I9-H9X" secondAttribute="trailing" id="vMU-LQ-FPA"/>
+                            <constraint firstItem="9ix-ve-DAs" firstAttribute="leading" secondItem="fPR-Va-Els" secondAttribute="leading" id="LO5-AI-EWU"/>
+                            <constraint firstItem="9ix-ve-DAs" firstAttribute="bottom" secondItem="fPR-Va-Els" secondAttribute="bottom" id="X1h-1r-M9p"/>
+                            <constraint firstItem="9ix-ve-DAs" firstAttribute="top" secondItem="fPR-Va-Els" secondAttribute="top" id="a1w-Yq-68A"/>
+                            <constraint firstItem="9ix-ve-DAs" firstAttribute="trailing" secondItem="fPR-Va-Els" secondAttribute="trailing" id="vMU-LQ-FPA"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="E0W-I9-H9X"/>
                     </view>
                     <size key="freeformSize" width="375" height="244"/>
                     <connections>
@@ -3973,7 +3971,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMi-Ri-ZkX" userLabel="Small Camera View">
+                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMi-Ri-ZkX" userLabel="Small Camera View">
                                 <rect key="frame" x="0.0" y="64" width="375" height="244"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="244" id="NKq-ko-u6e"/>
@@ -3990,11 +3988,11 @@
                             </containerView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="vMi-Ri-ZkX" firstAttribute="trailing" secondItem="Wna-aq-7Ke" secondAttribute="trailing" id="6hN-hE-M08"/>
+                            <constraint firstItem="vMi-Ri-ZkX" firstAttribute="trailing" secondItem="r9l-57-ki7" secondAttribute="trailing" id="6hN-hE-M08"/>
                             <constraint firstItem="zlp-qX-RJJ" firstAttribute="top" secondItem="vMi-Ri-ZkX" secondAttribute="bottom" id="8iR-5w-K1k"/>
                             <constraint firstItem="zlp-qX-RJJ" firstAttribute="trailing" secondItem="Wna-aq-7Ke" secondAttribute="trailing" id="Oza-YX-KiG"/>
                             <constraint firstItem="vMi-Ri-ZkX" firstAttribute="top" secondItem="Wna-aq-7Ke" secondAttribute="top" id="fx9-6E-bne"/>
-                            <constraint firstItem="vMi-Ri-ZkX" firstAttribute="leading" secondItem="Wna-aq-7Ke" secondAttribute="leading" id="pz5-lA-dZz"/>
+                            <constraint firstItem="vMi-Ri-ZkX" firstAttribute="leading" secondItem="r9l-57-ki7" secondAttribute="leading" id="pz5-lA-dZz"/>
                             <constraint firstItem="zlp-qX-RJJ" firstAttribute="bottom" secondItem="Wna-aq-7Ke" secondAttribute="bottom" id="rbL-gS-ETz"/>
                             <constraint firstItem="zlp-qX-RJJ" firstAttribute="leading" secondItem="Wna-aq-7Ke" secondAttribute="leading" id="yPF-zF-fgo"/>
                         </constraints>
