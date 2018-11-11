@@ -42,6 +42,10 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate, CameraVie
         // Listen to changes coming from Apple Watch
         watchSessionManager.delegates.append(self)
 
+        // Set background color to the view
+        let theme = Theme.currentTheme()
+        view.backgroundColor = theme.backgroundColor()
+
         refreshNewSelectedPrinter()
     }
     
