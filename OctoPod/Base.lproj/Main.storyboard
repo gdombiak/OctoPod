@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n53-As-HXW">
-                                <rect key="frame" x="0.0" y="308" width="375" height="310"/>
+                                <rect key="frame" x="0.0" y="308" width="375" height="359"/>
                                 <connections>
                                     <segue destination="Ssy-4U-x9b" kind="embed" id="QJF-Hj-FjS"/>
                                 </connections>
@@ -52,14 +52,14 @@
                         <constraints>
                             <constraint firstItem="uff-mu-aBi" firstAttribute="top" secondItem="xB8-sn-f1e" secondAttribute="top" id="0IO-j5-j5m"/>
                             <constraint firstItem="xB8-sn-f1e" firstAttribute="trailing" secondItem="b0b-3X-MUJ" secondAttribute="trailing" constant="20" id="40I-bP-tdz"/>
-                            <constraint firstItem="n53-As-HXW" firstAttribute="bottom" secondItem="xB8-sn-f1e" secondAttribute="bottom" id="56O-O7-HGU"/>
+                            <constraint firstItem="n53-As-HXW" firstAttribute="bottom" secondItem="qbu-bG-uS0" secondAttribute="bottom" id="56O-O7-HGU"/>
                             <constraint firstItem="n53-As-HXW" firstAttribute="leading" secondItem="qbu-bG-uS0" secondAttribute="leading" id="EJM-Kp-uFt"/>
                             <constraint firstItem="xB8-sn-f1e" firstAttribute="bottom" secondItem="b0b-3X-MUJ" secondAttribute="bottom" constant="5" id="HQs-XF-yLa"/>
                             <constraint firstItem="n53-As-HXW" firstAttribute="trailing" secondItem="qbu-bG-uS0" secondAttribute="trailing" id="N87-pP-oZc"/>
                             <constraint firstItem="uff-mu-aBi" firstAttribute="leading" secondItem="qbu-bG-uS0" secondAttribute="leading" id="OUR-aT-aHE"/>
                             <constraint firstItem="uff-mu-aBi" firstAttribute="trailing" secondItem="qbu-bG-uS0" secondAttribute="trailing" id="Ynb-gY-yIl"/>
                             <constraint firstItem="n53-As-HXW" firstAttribute="top" secondItem="uff-mu-aBi" secondAttribute="bottom" id="laI-d5-TdD"/>
-                            <constraint firstItem="n53-As-HXW" firstAttribute="top" secondItem="xB8-sn-f1e" secondAttribute="bottom" priority="998" id="xmR-ga-bXM"/>
+                            <constraint firstItem="n53-As-HXW" firstAttribute="top" secondItem="qbu-bG-uS0" secondAttribute="bottom" priority="998" id="xmR-ga-bXM"/>
                             <constraint firstItem="b0b-3X-MUJ" firstAttribute="leading" secondItem="xB8-sn-f1e" secondAttribute="leading" constant="20" id="yqY-tW-mWr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xB8-sn-f1e"/>
@@ -103,7 +103,7 @@
                                 <rect key="frame" x="168" y="207" width="39" height="37"/>
                             </pageControl>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Tnd-hd-ss6" firstAttribute="centerX" secondItem="6jn-US-pKP" secondAttribute="centerX" id="M9e-C1-Gvl"/>
                             <constraint firstItem="Tnd-hd-ss6" firstAttribute="bottom" secondItem="6jn-US-pKP" secondAttribute="bottom" id="xvL-ov-qIG"/>
@@ -131,7 +131,6 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xgR-KO-IvE">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap = Full Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MT2-fR-HJD">
                                         <rect key="frame" x="261.5" y="200" width="103.5" height="14.5"/>
@@ -164,7 +163,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="BXr-d8-f7x" secondAttribute="trailing" constant="2" id="0uh-nc-ewd"/>
                                     <constraint firstItem="xgR-KO-IvE" firstAttribute="height" secondItem="9ix-ve-DAs" secondAttribute="height" id="5HL-jX-IZN"/>
@@ -188,7 +186,6 @@
                                 </connections>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9ix-ve-DAs" firstAttribute="leading" secondItem="fPR-Va-Els" secondAttribute="leading" id="LO5-AI-EWU"/>
                             <constraint firstItem="9ix-ve-DAs" firstAttribute="bottom" secondItem="fPR-Va-Els" secondAttribute="bottom" id="X1h-1r-M9p"/>
@@ -1280,11 +1277,11 @@
             <objects>
                 <viewController id="Ssy-4U-x9b" customClass="SubpanelsViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V2n-bo-PZB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="359"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Heg-2U-jxe">
-                                <rect key="frame" x="168" y="278" width="39" height="37"/>
+                                <rect key="frame" x="168" y="327" width="39" height="37"/>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4231,6 +4228,6 @@
         <segue reference="DPY-Lb-zDG"/>
         <segue reference="06R-xh-V19"/>
         <segue reference="Rs9-4F-Pao"/>
-        <segue reference="JlG-hL-vqd"/>
+        <segue reference="KKl-Fj-b9B"/>
     </inferredMetricsTieBreakers>
 </document>
