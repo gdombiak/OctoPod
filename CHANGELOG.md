@@ -1,6 +1,29 @@
 # Change Log
 
-## [1.12](https://github.com/gdombiak/OctoPod/tree/1.12) (2018-10-21)
+## [2.0](https://github.com/gdombiak/OctoPod/tree/2.0) (2018-11-11)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.12...2.0)
+
+**Implemented enhancements:**
+
+- Remember aspect ratio of first camera to improve user experience [\#138](https://github.com/gdombiak/OctoPod/issues/138)
+- Allow to use FaceID for unlocking app [\#134](https://github.com/gdombiak/OctoPod/issues/134)
+- Add local notification when print job is done [\#131](https://github.com/gdombiak/OctoPod/issues/131)
+- Add new "Orange" theme [\#130](https://github.com/gdombiak/OctoPod/issues/130)
+- Optimize camera screen size for new iPad Pro 11 inch [\#129](https://github.com/gdombiak/OctoPod/issues/129)
+- Allow to set speed for extruding/retracting \(requires OctoPrint 1.3.10\) [\#127](https://github.com/gdombiak/OctoPod/issues/127)
+- Allow to manually enter values besides using sliders in Move panel [\#126](https://github.com/gdombiak/OctoPod/issues/126)
+- Improve move buttons layout to make it easier to use them [\#125](https://github.com/gdombiak/OctoPod/issues/125)
+- OctoPrint 1.3.10 now requires websocket to be authenticated [\#121](https://github.com/gdombiak/OctoPod/issues/121)
+- Allow to cancel objects via cancelobject plugin [\#93](https://github.com/gdombiak/OctoPod/issues/93)
+- Add Apple Watch support [\#84](https://github.com/gdombiak/OctoPod/issues/84)
+
+**Fixed bugs:**
+
+- Camera image is sometimes not visible when coming back from full screen [\#137](https://github.com/gdombiak/OctoPod/issues/137)
+- Fix crash when switching landscape/portrait mode  [\#124](https://github.com/gdombiak/OctoPod/issues/124)
+- Changes to API key or URL of selected printer do not take immediate effect [\#123](https://github.com/gdombiak/OctoPod/issues/123)
+
+## [1.12](https://github.com/gdombiak/OctoPod/tree/1.12) (2018-10-20)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.11...1.12)
 
 **Implemented enhancements:**
