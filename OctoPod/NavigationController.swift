@@ -1,9 +1,10 @@
 import UIKit
 
-class NavigationController: UINavigationController, OctoPrintSettingsDelegate {
+class NavigationController: UINavigationController, OctoPrintSettingsDelegate, WatchSessionManagerDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,8 @@ class NavigationController: UINavigationController, OctoPrintSettingsDelegate {
         
         // Listen to changes to OctoPrint Settings in case the camera orientation has changed
         octoprintClient.octoPrintSettingsDelegates.append(self)
+        // Listen to changes coming from Apple Watch
+        watchSessionManager.delegates.append(self)
 
         let printer = printerManager.getDefaultPrinter()
         refreshForPrinterColors(color: printer?.color)
@@ -30,6 +33,8 @@ class NavigationController: UINavigationController, OctoPrintSettingsDelegate {
         super.viewWillDisappear(animated)
         // Stop listening to changes to OctoPrint Settings
         octoprintClient.remove(octoPrintSettingsDelegate: self)
+        // Stop listening to changes coming from Apple Watch
+        watchSessionManager.remove(watchSessionManagerDelegate: self)
     }
     
     func refreshForPrinterColors(color: String?) {
@@ -47,4 +52,13 @@ class NavigationController: UINavigationController, OctoPrintSettingsDelegate {
         }
     }
     
+    // MARK: - WatchSessionManagerDelegate
+    
+    // Notification that a new default printer has been selected from the Apple Watch app
+    func defaultPrinterChanged() {
+        DispatchQueue.main.async {
+            let printer = self.printerManager.getDefaultPrinter()
+            self.refreshForPrinterColors(color: printer?.color)
+        }
+    }
 }
