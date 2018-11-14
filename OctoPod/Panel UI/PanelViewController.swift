@@ -379,7 +379,12 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     fileprivate func showDefaultPrinter() {
         if let printer = printerManager.getDefaultPrinter() {
             // Update window title to Camera name
-            DispatchQueue.main.async { self.navigationItem.title = printer.name }
+            DispatchQueue.main.async {
+                self.navigationItem.title = printer.name
+                if let navigationController = self.navigationController as? NavigationController {
+                    navigationController.refreshForPrinterColors(color: printer.color)
+                }
+            }
             
             // Use last known aspect ratio of first camera of this printer
             // End user will have a better experience with this

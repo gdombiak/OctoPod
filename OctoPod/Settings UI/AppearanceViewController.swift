@@ -2,15 +2,18 @@ import UIKit
 
 class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPresentationControllerDelegate {
     
+    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     @IBOutlet weak var lightCell: UITableViewCell!
     @IBOutlet weak var darkCell: UITableViewCell!
     @IBOutlet weak var orangeCell: UITableViewCell!
+    @IBOutlet weak var octoPrintCell: UITableViewCell!
 
     @IBOutlet weak var lightLabel: UILabel!
     @IBOutlet weak var darkLabel: UILabel!
     @IBOutlet weak var orangeLabel: UILabel!
+    @IBOutlet weak var octoPrintLabel: UILabel!
 
     @IBOutlet weak var changeLanguageButton: UIButton!
     
@@ -32,6 +35,7 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         lightLabel.textColor = theme.textColor()
         darkLabel.textColor = theme.textColor()
         orangeLabel.textColor = theme.textColor()
+        octoPrintLabel.textColor = theme.textColor()
         zoomInEnabledLabel.textColor = theme.textColor()
         changeLanguageButton.tintColor = theme.tintColor()
         
@@ -50,13 +54,16 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
             Theme.switchTheme(choice: Theme.ThemeChoice.Light)
         } else if indexPath.row == 1 {
             Theme.switchTheme(choice: Theme.ThemeChoice.Dark)
-        } else {
+        } else if indexPath.row == 2 {
             Theme.switchTheme(choice: Theme.ThemeChoice.Orange)
+        } else {
+            Theme.switchTheme(choice: Theme.ThemeChoice.OctoPrint)
         }
         // Update navigation bar
         let theme = Theme.currentTheme()
-        navigationController?.navigationBar.barTintColor = theme.navigationTopColor()
-        navigationController?.navigationBar.tintColor = theme.navigationTintColor()
+        let printer = printerManager.getDefaultPrinter()
+        navigationController?.navigationBar.barTintColor = theme.navigationTopColor(octoPrintColor: printer?.color)
+        navigationController?.navigationBar.tintColor = theme.navigationTintColor(octoPrintColor: printer?.color)
         tabBarController?.tabBar.barTintColor = theme.tabBarColor()
         tabBarController?.tabBar.tintColor = theme.tintColor()
         // Refresh table
@@ -73,14 +80,22 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
             lightCell.accessoryType = .checkmark
             darkCell.accessoryType = .none
             orangeCell.accessoryType = .none
+            octoPrintCell.accessoryType = .none
         case .Dark:
             lightCell.accessoryType = .none
             darkCell.accessoryType = .checkmark
             orangeCell.accessoryType = .none
+            octoPrintCell.accessoryType = .none
         case .Orange:
             lightCell.accessoryType = .none
             darkCell.accessoryType = .none
             orangeCell.accessoryType = .checkmark
+            octoPrintCell.accessoryType = .none
+        case .OctoPrint:
+            lightCell.accessoryType = .none
+            darkCell.accessoryType = .none
+            orangeCell.accessoryType = .none
+            octoPrintCell.accessoryType = .checkmark
         }
     }
     

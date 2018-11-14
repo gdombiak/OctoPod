@@ -27,6 +27,9 @@ protocol OctoPrintSettingsDelegate: class {
     
     // Notification that availability of Cancel Object plugin has changed
     func cancelObjectAvailabilityChanged(installed: Bool)
+    
+    // Notification that OctoPrint's appearance has changed. A new color or its transparency has changed
+    func octoPrintColorChanged(color: String)
 }
 
 
@@ -52,5 +55,8 @@ extension OctoPrintSettingsDelegate {
     }
     
     func cancelObjectAvailabilityChanged(installed: Bool) {        
+    }
+
+    func octoPrintColorChanged(color: String) {
     }
 }

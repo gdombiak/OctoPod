@@ -1495,12 +1495,33 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="kAu-3o-7vY">
+                                        <rect key="frame" x="0.0" y="187.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kAu-3o-7vY" id="u2K-VR-ImS">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OctoPrint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AU8-zV-v3w">
+                                                    <rect key="frame" x="16" y="12" width="335" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="AU8-zV-v3w" firstAttribute="leading" secondItem="u2K-VR-ImS" secondAttribute="leadingMargin" id="8fb-VM-6Dg"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="AU8-zV-v3w" secondAttribute="trailing" constant="8" id="NWt-kj-lIe"/>
+                                                <constraint firstItem="AU8-zV-v3w" firstAttribute="top" secondItem="u2K-VR-ImS" secondAttribute="topMargin" constant="1" id="hgY-cC-OqG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Language" id="3JO-XH-cf3">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="3k1-n1-G5J">
-                                        <rect key="frame" x="0.0" y="243.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="287.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3k1-n1-G5J" id="VKI-CQ-99A">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1524,7 +1545,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="50" id="0gw-lv-FC6">
-                                        <rect key="frame" x="0.0" y="287.5" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="331.5" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0gw-lv-FC6" id="cB6-eh-mdd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
@@ -1549,7 +1570,7 @@
                             <tableViewSection headerTitle="Temp Chart" id="GAt-su-C1i">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="zbU-e8-7e7">
-                                        <rect key="frame" x="0.0" y="393.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="437.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zbU-e8-7e7" id="fwj-44-dh4">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1591,6 +1612,8 @@
                         <outlet property="darkLabel" destination="wHn-Dc-bWb" id="RUt-Tc-57o"/>
                         <outlet property="lightCell" destination="5JA-bz-vAF" id="KFR-kX-ZT4"/>
                         <outlet property="lightLabel" destination="MA6-Ay-j7Q" id="YxR-jF-qxK"/>
+                        <outlet property="octoPrintCell" destination="kAu-3o-7vY" id="0Nf-Ww-J6g"/>
+                        <outlet property="octoPrintLabel" destination="AU8-zV-v3w" id="J1D-hQ-z96"/>
                         <outlet property="orangeCell" destination="ucf-q8-8iF" id="Frb-bc-fHM"/>
                         <outlet property="orangeLabel" destination="PXd-ZY-vbz" id="YoL-CG-Cvd"/>
                         <outlet property="zoomInEnabledLabel" destination="Vny-ch-OgO" id="h4e-jy-1hK"/>

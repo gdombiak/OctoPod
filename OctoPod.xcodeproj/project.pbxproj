@@ -322,6 +322,7 @@
 		3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDefaultPrinterViewController.swift; sourceTree = "<group>"; };
 		3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateEvent.swift; sourceTree = "<group>"; };
 		3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClientDelegate.swift; sourceTree = "<group>"; };
+		3DC65608219BE49F00F4CA0D /* OctoPod v7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v7.xcdatamodel"; sourceTree = "<group>"; };
 		3DC69BEC21804EC000DBE0D5 /* OctoPrintClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClient.swift; sourceTree = "<group>"; };
 		3DC69BEF2180531000DBE0D5 /* PanelInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelInterfaceController.swift; path = "OctoPod Watch Extension/Panel/PanelInterfaceController.swift"; sourceTree = SOURCE_ROOT; };
 		3DD69AA021150F43005555ED /* FileUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadViewController.swift; sourceTree = "<group>"; };
@@ -1468,6 +1469,7 @@
 		3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				3DC65608219BE49F00F4CA0D /* OctoPod v7.xcdatamodel */,
 				3D88C3E52193EFD800BC84DD /* OctoPod v6.xcdatamodel */,
 				3D693C5B214CCEC600823903 /* OctoPod v5.xcdatamodel */,
 				3D40C1822131115800384F4A /* OctoPod v4.xcdatamodel */,
@@ -1475,7 +1477,7 @@
 				3D5849E5210CCB560068D87A /* OctoPod v2.xcdatamodel */,
 				3D45280920E15A370094CCB7 /* OctoPod.xcdatamodel */,
 			);
-			currentVersion = 3D88C3E52193EFD800BC84DD /* OctoPod v6.xcdatamodel */;
+			currentVersion = 3DC65608219BE49F00F4CA0D /* OctoPod v7.xcdatamodel */;
 			path = OctoPod.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

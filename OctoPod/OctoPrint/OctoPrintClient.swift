@@ -577,6 +577,22 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             }
         }
         
+        if let appearance = json["appearance"] as? NSDictionary {
+            if let color = appearance["color"] as? String {
+                if printer.color != color {
+                    // Update printer with OctoPrint's appearance configuration
+                    printerToUpdate.color = color
+                    // Persist updated printer
+                    printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                    
+                    // Notify listeners of change
+                    for delegate in octoPrintSettingsDelegates {
+                        delegate.octoPrintColorChanged(color: color)
+                    }
+                }
+            }
+        }
+        
         if let plugins = json["plugins"] as? NSDictionary {
             updatePrinterFromPlugins(printer: printer, plugins: plugins)
         }
