@@ -438,6 +438,16 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.printerProfiles(callback: callback)
     }
     
+    // MARK: - System Commands operations
+    
+    func systemCommands(callback: @escaping (Array<SystemCommand>?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.systemCommands(callback: callback)
+    }
+    
+    func executeSystemCommand(command: SystemCommand, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.executeSystemCommand(command: command, callback: callback)
+    }
+
     // MARK: - Custom Controls operations
 
     func customControls(callback: @escaping (Array<Container>?, Error?, HTTPURLResponse) -> Void) {

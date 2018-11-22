@@ -66,8 +66,9 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             if printer.cancelObjectInstalled {
                 orderedViewControllers.append(createCancelObjectVC(mainboard))
             }
-        }
-        
+        }        
+        orderedViewControllers.append(mainboard.instantiateViewController(withIdentifier: "SystemCommandsViewController"))
+
         // Set number of pages in the page control
         pageControl.numberOfPages = orderedViewControllers.count
         

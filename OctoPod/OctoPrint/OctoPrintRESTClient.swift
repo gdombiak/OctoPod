@@ -452,6 +452,28 @@ class OctoPrintRESTClient {
         }
     }
     
+    // MARK: - System Commands operations
+    
+    func systemCommands(callback: @escaping (Array<SystemCommand>?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/api/system/commands") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting system commands. Error: \(error!.localizedDescription)")
+                }
+                callback(self.parseSystemCommands(json: result), error, response)
+            }
+        }
+    }
+    
+    func executeSystemCommand(command: SystemCommand, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.post("/api/system/commands/\(command.source)/\(command.action)") { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                callback(requested, error, response)
+            }
+        }
+    }
+
     // MARK: - Custom Controls operations
     
     func customControls(callback: @escaping (Array<Container>?, Error?, HTTPURLResponse) -> Void) {
@@ -625,7 +647,38 @@ class OctoPrintRESTClient {
             }
         }
     }
+    
+    // MARK: - Private - System Commands functions
 
+    fileprivate func parseSystemCommands(json: NSObject?)  -> Array<SystemCommand>? {
+        if let jsonDict = json as? NSDictionary {
+            var commands: Array<SystemCommand> = Array()
+            if let jsonArray = jsonDict["core"] as? NSArray {
+                for case let item as NSDictionary in jsonArray {
+                    if let command = parseSystemCommand(json: item) {
+                        commands.append(command)
+                    }
+                }
+            }
+            if let jsonArray = jsonDict["custom"] as? NSArray {
+                for case let item as NSDictionary in jsonArray {
+                    if let command = parseSystemCommand(json: item) {
+                        commands.append(command)
+                    }
+                }
+            }
+            return commands
+        }
+        return nil
+    }
+
+    fileprivate func parseSystemCommand(json: NSDictionary) -> SystemCommand? {
+        if let action = json["action"] as? String, let name = json["name"] as? String, let source = json["source"] as? String {
+            return SystemCommand(name: name, action: action, source: source)
+        }
+        return nil
+    }
+    
     // MARK: - Private - Custom Controls functions
     
     fileprivate func parseContainers(json: NSObject?) -> Array<Container>? {

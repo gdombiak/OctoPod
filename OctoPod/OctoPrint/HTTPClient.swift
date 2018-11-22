@@ -86,6 +86,36 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         task.resume()
     }
 
+    func post(_ service: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let url: URL = URL(string: serverURL! + service) {            
+            // Get session with the provided configuration
+            let session = Foundation.URLSession(configuration: getConfiguration(false), delegate: self, delegateQueue: nil)
+            
+            // Create background task that will perform the HTTP request
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            // Add API Key header
+            request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
+            let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+                self.postRequest?()
+                if let httpRes = response as? HTTPURLResponse {
+                    callback(httpRes.statusCode == 204, error, httpRes)
+                } else {
+                    callback(false, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
+                }
+            })
+            self.preRequest?()
+            task.resume()
+        } else {
+            NSLog("POST not possible. Invalid URL found. Server: \(serverURL!). Service: \(service)")
+            if let serverURL = URL(string: serverURL!) {
+                if let response = HTTPURLResponse(url: serverURL, statusCode: 404, httpVersion: nil, headerFields: nil) {
+                    callback(false, nil, response)
+                }
+            }
+        }
+    }
+    
     func post(_ service: String, json: NSObject, expected: Int, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         if let url: URL = URL(string: serverURL! + service) {
             requestWithBody(url, verb: "POST", expected: expected, json: json, callback: callback)
