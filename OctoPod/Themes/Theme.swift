@@ -90,34 +90,40 @@ class Theme {
         
         func backgroundColor() -> UIColor {
             switch self {
-            case .Light, .OctoPrint:
+            case .Light:
                 return UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1.0)
             case .Dark:
                 return UIColor(red: 53/255, green: 57/255, blue: 62/255, alpha: 1.0)
             case .Orange:
                 return UIColor(red: 53/255, green: 57/255, blue: 62/255, alpha: 1.0)
+            case .OctoPrint:
+                return UIColor(red: 212/255, green: 212/255, blue: 208/255, alpha: 1.0)
             }
         }
         
         func cellBackgroundColor() -> UIColor {
             switch self {
-            case .Light, .OctoPrint:
+            case .Light:
                 return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
             case .Dark:
                 return UIColor(red: 47/255, green: 49/255, blue: 53/255, alpha: 1.0)
             case .Orange:
                 return UIColor(red: 47/255, green: 49/255, blue: 53/255, alpha: 1.0)
+            case .OctoPrint:
+                return UIColor(red: 225/255, green: 225/255, blue: 220/255, alpha: 1.0)
             }
         }
         
         func separatorColor() -> UIColor {
             switch self {
-            case .Light, .OctoPrint:
+            case .Light:
                 return UIColor(red: 235/255, green: 234/255, blue: 236/255, alpha: 1.0)
             case .Dark:
                 return UIColor(red: 40/255, green: 42/255, blue: 46/255, alpha: 1.0)
             case .Orange:
                 return UIColor(red: 40/255, green: 42/255, blue: 46/255, alpha: 1.0)
+            case .OctoPrint:
+                return UIColor(red: 235/255, green: 235/255, blue: 226/255, alpha: 1.0)
             }
         }
         
@@ -158,9 +164,7 @@ class Theme {
             switch self {
             case .Light, .OctoPrint:
                 return UIColor(red: 93/255, green: 97/255, blue: 101/255, alpha: 1.0)
-            case .Dark:
-                return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-            case .Orange:
+            case .Dark, .Orange:
                 return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
             }
         }
@@ -169,9 +173,7 @@ class Theme {
             switch self {
             case .Light, .OctoPrint:
                 return UIColor(red: 182/255, green: 182/255, blue: 182/255, alpha: 1.0)
-            case .Dark:
-                return UIColor(red: 93/255, green: 97/255, blue: 101/255, alpha: 1.0)
-            case .Orange:
+            case .Dark, .Orange:
                 return UIColor(red: 93/255, green: 97/255, blue: 101/255, alpha: 1.0)
             }
         }
@@ -197,4 +199,3 @@ class Theme {
         UserDefaults.standard.set(choice.rawValue, forKey: DEFAULT_THEME)
     }
 }
-
