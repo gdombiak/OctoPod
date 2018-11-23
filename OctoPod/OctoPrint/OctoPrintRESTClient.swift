@@ -674,6 +674,10 @@ class OctoPrintRESTClient {
 
     fileprivate func parseSystemCommand(json: NSDictionary) -> SystemCommand? {
         if let action = json["action"] as? String, let name = json["name"] as? String, let source = json["source"] as? String {
+            if action == "divider" {
+                // These commands should have no name so should not reach here but just in case we skip them here too
+                return nil
+            }
             return SystemCommand(name: name, action: action, source: source)
         }
         return nil

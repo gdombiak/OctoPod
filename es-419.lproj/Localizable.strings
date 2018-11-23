@@ -47,6 +47,9 @@
 "Confirm cancel object" = "Está por cancelar la impresión del objeto. ¿Continuar?";
 
 /* (No Comment) */
+"Confirm command" = "¿Ejecutar comando: '%@'?";
+
+/* (No Comment) */
 "Confirm connect" = "Algunas impresoras pueden reiniciarse al conectar. ¿Continuar?";
 
 /* (No Comment) */
@@ -96,6 +99,9 @@
 
 /* (No Comment) */
 "Failed to get list of cancel objects" = "Falla al obtener objetos a cancelar. Respuesta HTTP: %d";
+
+/* Failed to get system commands with HTTP Request error info */
+"Failed to get system commands" = "Falla al obtener los comandos del sistema";
 
 /* (No Comment) */
 "Failed to initialize SD card" = "Falla al inicializar la tarjeta SD";
@@ -288,6 +294,9 @@
 
 /* Print time is being calculated */
 "Still stabilizing" = "Estabilizando...";
+
+/* http://docs.octoprint.org/en/master/api/system.html */
+"System Commands" = "Comandos del Sistema";
 
 /* (No Comment) */
 "Target Bed" = "Cama Objetivo";

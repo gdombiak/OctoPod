@@ -109,6 +109,9 @@
 /* Class = "UILabel"; text = "Cancel Object plugin requires update"; ObjectID = "Aka-Ud-zQ7"; */
 "Aka-Ud-zQ7.text" = "Cancel Object plugin requiere actualización";
 
+/* Class = "UILabel"; text = "OctoPrint"; ObjectID = "AU8-zV-v3w"; */
+"AU8-zV-v3w.text" = "OctoPrint";
+
 /* Class = "UIButton"; normalTitle = "Not refreshing"; ObjectID = "b0b-3X-MUJ"; */
 "b0b-3X-MUJ.normalTitle" = "No refrescando";
 

@@ -134,3 +134,7 @@
 "Failed to request to cancel object" = "Failed to request to cancel object. HTTP response: %d";
 
 "Confirm cancel object" = "You are about to cancel printing object. Proceed?";
+
+"System Commands" = "System Commands";
+"Confirm command" = "Execute command '%@'?";
+"Failed to get system commands" = "Failed to get system commands";

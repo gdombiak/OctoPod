@@ -3,11 +3,15 @@ import UIKit
 class SystemCommandsViewController: ThemedDynamicUITableViewController, SubpanelViewController  {
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     var commands: Array<SystemCommand>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Some bug in XCode Storyboards is not translating text of refresh control so let's do it manually
+        self.refreshControl?.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull down to refresh", comment: ""))
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -42,6 +46,34 @@ class SystemCommandsViewController: ThemedDynamicUITableViewController, Subpanel
         }
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Deselect table row to show nice effect and not leave row selected in the UI
+        tableView.deselectRow(at: indexPath, animated: true)
+        if appConfiguration.appLocked() {
+            // Do nothing if app is locked
+            return
+        }
+        if let command = commands?[indexPath.row] {
+            // Prompt for confirmation that we want to disconnect from printer
+            showConfirm(message: String(format: NSLocalizedString("Confirm command", comment: ""), command.name), yes: { (UIAlertAction) -> Void in
+                self.octoprintClient.executeSystemCommand(command: command, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    if !requested {
+                        // Handle error
+                        NSLog("Error executing system command. HTTP status code \(response.statusCode)")
+                        self.showAlert(NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Failed to request to execute command", comment: ""))
+
+                    }
+                })
+            }, no: { (UIAlertAction) -> Void in
+                // Do nothing
+            })
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return appConfiguration.appLocked() ? nil : indexPath
     }
 
     // MARK: - Refresh
@@ -94,5 +126,9 @@ class SystemCommandsViewController: ThemedDynamicUITableViewController, Subpanel
 
     fileprivate func showAlert(_ title: String, message: String) {
         UIUtils.showAlert(presenter: self, title: title, message: message, done: nil)
+    }
+
+    fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
+        UIUtils.showConfirm(presenter: self, message: message, yes: yes, no: no)
     }
 }
