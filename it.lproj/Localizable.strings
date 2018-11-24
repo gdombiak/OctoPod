@@ -47,6 +47,9 @@
 "Confirm cancel object" = "Stai per rimuovere l'oggetto dalla stampa. Procedere?";
 
 /* (No Comment) */
+"Confirm command" = "Eseguire il comando '%@'";
+
+/* (No Comment) */
 "Confirm connect" = "Alcune stampanti possono riavviarsi durante la connessione. Procedere?";
 
 /* (No Comment) */
@@ -96,6 +99,9 @@
 
 /* (No Comment) */
 "Failed to get list of cancel objects" = "Impossibile ottenere la lista di oggetti da rimuovere. Risposta HTTP: %d";
+
+/* Failed to get system commands with HTTP Request error info */
+"Failed to get system commands" = "Errore nel caricamento dei comandi di sistema";
 
 /* (No Comment) */
 "Failed to initialize SD card" = "Errore nell'inizializzazione della scheda SD";
@@ -288,6 +294,9 @@
 
 /* Print time is being calculated */
 "Still stabilizing" = "Stabilizzazione...";
+
+/* http://docs.octoprint.org/en/master/api/system.html */
+"System Commands" = "Comandi di sistema";
 
 /* (No Comment) */
 "Target Bed" = "T obiettivo piatto";

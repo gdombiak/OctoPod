@@ -47,6 +47,9 @@
 "Confirm cancel object" = "Sie sind dabei, den Druck des Objekts abzubrechen. Fortfahren?";
 
 /* (No Comment) */
+"Confirm command" = "Befehl '%@' ausführen?";
+
+/* (No Comment) */
 "Confirm connect" = "Einige Drucker führen bei Herstellung der Verbindung einen Neustart aus. Fortsetzen?";
 
 /* (No Comment) */
@@ -96,6 +99,9 @@
 
 /* (No Comment) */
 "Failed to get list of cancel objects" = "Keine Liste der verfügbaren Objekte erhalten. HTTP antwort: %d";
+
+/* Failed to get system commands with HTTP Request error info */
+"Failed to get system commands" = "Keine Systembefehle erhalten";
 
 /* (No Comment) */
 "Failed to initialize SD card" = "Initalisierung der SD-Karte fehlgeschlagen";
@@ -288,6 +294,9 @@
 
 /* Print time is being calculated */
 "Still stabilizing" = "Stabilisiert noch...";
+
+/* http://docs.octoprint.org/en/master/api/system.html */
+"System Commands" = "Systembefehle";
 
 /* (No Comment) */
 "Target Bed" = "Soll-Wert Heizbett";

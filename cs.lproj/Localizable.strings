@@ -47,6 +47,9 @@
 "Confirm cancel object" = "Tímto zrušíte tisk objektu. Pokračovat?";
 
 /* (No Comment) */
+"Confirm command" = "Chcete spustit příkaz ‘%@‘?";
+
+/* (No Comment) */
 "Confirm connect" = "Některé tiskárny se mohou restartovat během připojení. Pokračovat?";
 
 /* (No Comment) */
@@ -96,6 +99,9 @@
 
 /* (No Comment) */
 "Failed to get list of cancel objects" = "Nezdařilo se získat seznam zrušených objektů. Odpověď HTTP: %d";
+
+/* Failed to get system commands with HTTP Request error info */
+"Failed to get system commands" = "Nezdařilo se získat systémové příkazy";
 
 /* (No Comment) */
 "Failed to initialize SD card" = "Nezdařilo se inicializovat SD kartu";
@@ -288,6 +294,9 @@
 
 /* Print time is being calculated */
 "Still stabilizing" = "Stále se stabilizuje...";
+
+/* http://docs.octoprint.org/en/master/api/system.html */
+"System Commands" = "Systémové příkazy";
 
 /* (No Comment) */
 "Target Bed" = "Zvolená podložka";

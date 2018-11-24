@@ -47,6 +47,9 @@
 "Confirm cancel object" = "Du er i ferd med å avbryte utskriftsobjekt. Fortsette?";
 
 /* (No Comment) */
+"Confirm command" = "Kjør kommandoen '%@'?";
+
+/* (No Comment) */
 "Confirm connect" = "Noen skrivere kan restarte ved tilkobling. Fortsette?";
 
 /* (No Comment) */
@@ -96,6 +99,9 @@
 
 /* (No Comment) */
 "Failed to get list of cancel objects" = "Kunne ikke få liste over kanselleringsobjekter. HTTP-respons: %d";
+
+/* Failed to get system commands with HTTP Request error info */
+"Failed to get system commands" = "Mislyktes å få systemkommandoer";
 
 /* (No Comment) */
 "Failed to initialize SD card" = "Kunne ikke initialisere SD-kort";
@@ -288,6 +294,9 @@
 
 /* Print time is being calculated */
 "Still stabilizing" = "Fortsatt stabilisering...";
+
+/* http://docs.octoprint.org/en/master/api/system.html */
+"System Commands" = "Systemkommandoer";
 
 /* (No Comment) */
 "Target Bed" = "Mål Skriveflate";
