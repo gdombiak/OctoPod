@@ -47,7 +47,7 @@
 "Confirm cancel object" = "Stai per rimuovere l'oggetto dalla stampa. Procedere?";
 
 /* (No Comment) */
-"Confirm command" = "Eseguire il comando '%@'";
+"Confirm command" = "Eseguire il comando '%@'?";
 
 /* (No Comment) */
 "Confirm connect" = "Alcune stampanti possono riavviarsi durante la connessione. Procedere?";
