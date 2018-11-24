@@ -205,7 +205,21 @@ class PrinterManager {
         if self.printers.count == printers.count {
             for (index, printer) in self.printers.enumerated() {
                 let otherPrinter = printers[index]
-                if name(printer: printer) != name(printer: otherPrinter) || hostname(printer: printer) != hostname(printer: otherPrinter) || apiKey(printer: printer) != apiKey(printer: otherPrinter) || isDefault(printer: printer) != isDefault(printer: otherPrinter) || username(printer: printer) != username(printer: otherPrinter) || password(printer: printer) != password(printer: otherPrinter) {
+                if name(printer: printer) != name(printer: otherPrinter) || hostname(printer: printer) != hostname(printer: otherPrinter) || apiKey(printer: printer) != apiKey(printer: otherPrinter) || isDefault(printer: printer) != isDefault(printer: otherPrinter) || username(printer: printer) != username(printer: otherPrinter) || password(printer: printer) != password(printer: otherPrinter) || !sameCameras(cameras: cameras(printer: printer), otherCameras: cameras(printer: otherPrinter)) {
+                    return false
+                }
+            }
+            return true
+        } else {
+            return false
+        }
+    }
+
+    fileprivate func sameCameras(cameras: [(url: String, orientation: Int)]?, otherCameras: [(url: String, orientation: Int)]?) -> Bool {
+        if cameras?.count == otherCameras?.count {
+            for (index, camera) in cameras!.enumerated() {
+                let otherCamera = otherCameras![index]
+                if camera != otherCamera {
                     return false
                 }
             }
