@@ -16,6 +16,8 @@ class IntentHandler: INExtension {
             return CancelJobIntentHandler()
         } else if intent is RestartJobIntent {
             return RestartJobIntentHandler()
+        } else if intent is RemainingTimeIntent {
+            return RemainingTimeIntentHandler()
         } else {
             fatalError("Unhandled intent type: \(intent)")
         }

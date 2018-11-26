@@ -148,3 +148,4 @@
 "Resume current print job" = "Resume current print job on %@";
 "Cancel current print job" = "Cancel current print job on %@";
 "Restart current print job" = "Restart current print job on %@";
+"Remaining time current print job" = "Time left on %@";

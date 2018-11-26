@@ -86,9 +86,15 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
             if printer.defaultPrinter {
                 octoprintClient.connectToServer(printer: printer)
             }
+            // Recreate Siri suggestions (user will need to manually delete recorded Shortcuts)
+            IntentsDonations.deletePrinterIntents(printer: printer)
+            IntentsDonations.donatePrinterIntents(printer: printer)
         } else {
             // Add new printer (that will become default if it's the first one)
-            let _ = printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, iCloudUpdate: true)
+            if let newPrinter = printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, iCloudUpdate: true) {
+                // Create Siri suggestions (user will need to manually delete recorded Shortcuts)
+                IntentsDonations.donatePrinterIntents(printer: newPrinter)
+            }
         }
         
         // Push changes to iCloud so other devices of the user get updated (only if iCloud enabled and user is logged in)

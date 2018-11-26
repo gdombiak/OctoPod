@@ -65,6 +65,9 @@ class PrintersTableViewController: ThemedDynamicUITableViewController, CloudKitP
             let printerToDelete = printers[indexPath.row]
             // Update other devices via CloudKit
             self.cloudKitPrinterManager.pushDeletedPrinter(printer: printerToDelete)  // Properties are gone once deleted from Core Data so run this now
+            
+            // Delete Siri suggestions (user will need to manually delete recorded Shortcuts)
+            IntentsDonations.deletePrinterIntents(printer: printerToDelete)
 
             // Delete the row from the data source
             printerManager.deletePrinter(printerToDelete)

@@ -4,9 +4,9 @@ import SafariServices  // Used for opening browser in-app
 class SupportViewController: ThemedStaticUITableViewController {
 
     @IBOutlet weak var faqLabel: UILabel!
+    @IBOutlet weak var siriIntegrationLabel: UILabel!
     @IBOutlet weak var issuesLabel: UILabel!
     @IBOutlet weak var contributingLabel: UILabel!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +18,7 @@ class SupportViewController: ThemedStaticUITableViewController {
         // Theme labels
         let theme = Theme.currentTheme()
         faqLabel.textColor = theme.textColor()
+        siriIntegrationLabel.textColor = theme.textColor()
         issuesLabel.textColor = theme.textColor()
         contributingLabel.textColor = theme.textColor()
     }
@@ -31,8 +32,10 @@ class SupportViewController: ThemedStaticUITableViewController {
         if indexPath.row == 0 {
             openBrowser(url: "https://github.com/gdombiak/OctoPod/wiki/FAQ-using-the-app")
         } else if indexPath.row == 1 {
-            openBrowser(url: "https://github.com/gdombiak/OctoPod/issues")
+            openBrowser(url: "https://github.com/gdombiak/OctoPod/wiki/Siri-integration-with-OctoPod")
         } else if indexPath.row == 2 {
+            openBrowser(url: "https://github.com/gdombiak/OctoPod/issues")
+        } else if indexPath.row == 3 {
             openBrowser(url: "https://github.com/gdombiak/OctoPod/blob/master/README.md")
         } else {
             NSLog("SupportViewController - Click on unknown row")

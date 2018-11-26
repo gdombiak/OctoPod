@@ -604,7 +604,7 @@
 				<array/>
 			</dict>
 			<key>INIntentRestrictions</key>
-			<integer>0</integer>
+			<integer>1</integer>
 			<key>INIntentTitle</key>
 			<string>Pause running print job</string>
 			<key>INIntentTitleID</key>
@@ -754,7 +754,7 @@
 				<array/>
 			</dict>
 			<key>INIntentRestrictions</key>
-			<integer>0</integer>
+			<integer>1</integer>
 			<key>INIntentTitle</key>
 			<string>Resume running print job</string>
 			<key>INIntentTitleID</key>
@@ -904,7 +904,7 @@
 				<array/>
 			</dict>
 			<key>INIntentRestrictions</key>
-			<integer>0</integer>
+			<integer>1</integer>
 			<key>INIntentTitle</key>
 			<string>Cancel running print job</string>
 			<key>INIntentTitleID</key>
@@ -1054,7 +1054,7 @@
 				<array/>
 			</dict>
 			<key>INIntentRestrictions</key>
-			<integer>0</integer>
+			<integer>1</integer>
 			<key>INIntentTitle</key>
 			<string>Restart running print job</string>
 			<key>INIntentTitleID</key>
@@ -1065,6 +1065,169 @@
 			<false/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
+		</dict>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>information</string>
+			<key>INIntentDescription</key>
+			<string>Remaining print time</string>
+			<key>INIntentDescriptionID</key>
+			<string>tKDODp</string>
+			<key>INIntentLastParameterTag</key>
+			<integer>5</integer>
+			<key>INIntentName</key>
+			<string>RemainingTime</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key>password,apiKey,hostname,username,printer</key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSubtitle</key>
+					<string></string>
+					<key>INIntentParameterCombinationSubtitleID</key>
+					<string>ZxPx7F</string>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Time left on ${printer}</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>VtulLq</string>
+				</dict>
+				<key>printer,apiKey,hostname</key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<false/>
+					<key>INIntentParameterCombinationSubtitle</key>
+					<string></string>
+					<key>INIntentParameterCombinationSubtitleID</key>
+					<string>FkSYZt</string>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Time left on ${printer}</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>NG7rBh</string>
+				</dict>
+			</dict>
+			<key>INIntentParameters</key>
+			<array>
+				<dict>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>1</integer>
+					<key>INIntentParameterName</key>
+					<string>printer</string>
+					<key>INIntentParameterSupportsMultipleValues</key>
+					<false/>
+					<key>INIntentParameterTag</key>
+					<integer>1</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>2</integer>
+					<key>INIntentParameterName</key>
+					<string>hostname</string>
+					<key>INIntentParameterSupportsMultipleValues</key>
+					<false/>
+					<key>INIntentParameterTag</key>
+					<integer>2</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>3</integer>
+					<key>INIntentParameterName</key>
+					<string>apiKey</string>
+					<key>INIntentParameterSupportsMultipleValues</key>
+					<false/>
+					<key>INIntentParameterTag</key>
+					<integer>3</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>4</integer>
+					<key>INIntentParameterName</key>
+					<string>username</string>
+					<key>INIntentParameterSupportsMultipleValues</key>
+					<false/>
+					<key>INIntentParameterTag</key>
+					<integer>4</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>5</integer>
+					<key>INIntentParameterName</key>
+					<string>password</string>
+					<key>INIntentParameterSupportsMultipleValues</key>
+					<false/>
+					<key>INIntentParameterTag</key>
+					<integer>5</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+			</array>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to get remaing time information</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>3eH6cZ</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Time left is ${time}</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>P89qJr</string>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+				</array>
+				<key>INIntentResponseLastParameterTag</key>
+				<integer>1</integer>
+				<key>INIntentResponseParameters</key>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>time</string>
+						<key>INIntentResponseParameterSupportsMultipleValues</key>
+						<false/>
+						<key>INIntentResponseParameterTag</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>String</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentRestrictions</key>
+			<integer>0</integer>
+			<key>INIntentTitle</key>
+			<string>Return Print Time Left</string>
+			<key>INIntentTitleID</key>
+			<string>WI2oQf</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentUserConfirmationRequired</key>
+			<false/>
+			<key>INIntentVerb</key>
+			<string>View</string>
 		</dict>
 	</array>
 </dict>

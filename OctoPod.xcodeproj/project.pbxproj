@@ -22,6 +22,7 @@
 		3D1A93682132F5E70050ED9A /* ChildrenCustomControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A93672132F5E70050ED9A /* ChildrenCustomControlViewController.swift */; };
 		3D1A936A213314300050ED9A /* ExecuteControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A9369213314300050ED9A /* ExecuteControlViewController.swift */; };
 		3D1A936C213316850050ED9A /* ExecuteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A936B213316850050ED9A /* ExecuteControl.swift */; };
+		3D1ECB0821ABB85700691DCB /* RemainingTimeIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1ECB0721ABB85700691DCB /* RemainingTimeIntentHandler.swift */; };
 		3D27DA97218A5FD8004F763A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D27DA95218A5FD8004F763A /* InfoPlist.strings */; };
 		3D27DA9E218A8500004F763A /* ExtrudeSpeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D27DA9D218A8500004F763A /* ExtrudeSpeedViewController.swift */; };
 		3D2821E72178167D00976611 /* CameraViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2821E62178167D00976611 /* CameraViewDelegate.swift */; };
@@ -239,6 +240,7 @@
 		3D1A93672132F5E70050ED9A /* ChildrenCustomControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenCustomControlViewController.swift; sourceTree = "<group>"; };
 		3D1A9369213314300050ED9A /* ExecuteControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteControlViewController.swift; sourceTree = "<group>"; };
 		3D1A936B213316850050ED9A /* ExecuteControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteControl.swift; sourceTree = "<group>"; };
+		3D1ECB0721ABB85700691DCB /* RemainingTimeIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingTimeIntentHandler.swift; sourceTree = "<group>"; };
 		3D27DA94218A5FD8004F763A /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3D27DA96218A5FD8004F763A /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3D27DA98218A601F004F763A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -540,6 +542,7 @@
 				3D4064AC21AB75BF000B05F9 /* ResumeJobIntentHandler.swift */,
 				3D4064AE21AB75FF000B05F9 /* CancelJobIntentHandler.swift */,
 				3D4064B021AB78F3000B05F9 /* RestartJobIntentHandler.swift */,
+				3D1ECB0721ABB85700691DCB /* RemainingTimeIntentHandler.swift */,
 			);
 			path = "OctoPod Intent";
 			sourceTree = "<group>";
@@ -603,9 +606,9 @@
 				3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */,
 				3D45280520E15A370094CCB7 /* Main.storyboard */,
 				3D45280B20E15A380094CCB7 /* Assets.xcassets */,
-				3D45280D20E15A380094CCB7 /* LaunchScreen.storyboard */,
 				3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */,
 				3D450E6121AB1C040049FBC0 /* Intents.intentdefinition */,
+				3D45280D20E15A380094CCB7 /* LaunchScreen.storyboard */,
 				3D45281020E15A380094CCB7 /* Info.plist */,
 				3D9E087C2160455400F11CD4 /* InfoPlist.strings */,
 			);
@@ -1089,6 +1092,7 @@
 				3D4064A921AB6205000B05F9 /* ExecuteControl.swift in Sources */,
 				3D4064A121AB61B2000B05F9 /* SystemCommand.swift in Sources */,
 				3D4064AB21AB7563000B05F9 /* PauseJobIntentHandler.swift in Sources */,
+				3D1ECB0821ABB85700691DCB /* RemainingTimeIntentHandler.swift in Sources */,
 				3D450EC321AB45740049FBC0 /* SetToolTempIntentHandler.swift in Sources */,
 				3D4064B121AB78F3000B05F9 /* RestartJobIntentHandler.swift in Sources */,
 				3D4064A021AB619C000B05F9 /* HTTPClient.swift in Sources */,

@@ -89,11 +89,47 @@ class IntentsController {
         }
     }
     
+    @available(iOS 12.0, *)
+    func remainingTime(intent: RemainingTimeIntent, callback: @escaping (Bool, String?) -> Void) {
+        if let hostname = intent.hostname, let apiKey = intent.apiKey {
+            let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
+            restClient.currentJobInfo { (result: NSObject?, error: Error?, response :HTTPURLResponse) in
+                if let result = result as? Dictionary<String, Any>, let progress = result["progress"] as? Dictionary<String, Any> {
+                    if let printTimeLeft = progress["printTimeLeft"] as? Int {
+                        callback(true, self.secondsToTimeLeft(seconds: printTimeLeft))
+                    } else {
+                        callback(true, "0")
+                    }
+                } else {
+                    callback(false, nil)
+                }
+            }
+        } else {
+            callback(false, nil)
+        }
+    }
+    
     // MARK: - Private functions
     
     fileprivate func getRESTClient(hostname: String, apiKey: String, username: String?, password: String?) -> OctoPrintRESTClient {
         let restClient = OctoPrintRESTClient()
         restClient.connectToServer(serverURL: hostname, apiKey: apiKey, username: username, password: password)
         return restClient
+    }
+
+    fileprivate func secondsToTimeLeft(seconds: Int) -> String {
+        if seconds == 0 {
+            return ""
+        } else if seconds < 0 {
+            // Should never happen but an OctoPrint plugin is returning negative values
+            // so return 'Unknown' when this happens
+            return NSLocalizedString("Unknown", comment: "ETA is Unknown")
+        }
+        let duration = TimeInterval(seconds)
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .brief
+        formatter.includesApproximationPhrase = true
+        formatter.allowedUnits = [ .day, .hour, .minute ]
+        return formatter.string(from: duration)!
     }
 }

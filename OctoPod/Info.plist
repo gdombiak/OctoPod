@@ -47,6 +47,7 @@
 	<array>
 		<string>CancelJobIntent</string>
 		<string>PauseJobIntent</string>
+		<string>RemainingTimeIntent</string>
 		<string>RestartJobIntent</string>
 		<string>ResumeJobIntent</string>
 		<string>SetBedTempIntent</string>
