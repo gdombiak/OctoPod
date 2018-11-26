@@ -181,13 +181,25 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 octoprintClient.bedTargetTemperature(newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     // TODO Handle error
                 }
+                // Donate intent so user can create convenient Siri shortcuts
+                if let printer = printerManager.getPrinterByName(name: self.navigationItem.title ?? "_") {
+                    IntentsDonations.donateBedTemp(printer: printer, temperature: newTarget)
+                }
             case SetTargetTempViewController.TargetScope.tool0:
                 octoprintClient.toolTargetTemperature(toolNumber: 0, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     // TODO Handle error
                 }
+                // Donate intent so user can create convenient Siri shortcuts
+                if let printer = printerManager.getPrinterByName(name: self.navigationItem.title ?? "_") {
+                    IntentsDonations.donateToolTemp(printer: printer, tool: 0, temperature: newTarget)
+                }
             case SetTargetTempViewController.TargetScope.tool1:
                 octoprintClient.toolTargetTemperature(toolNumber: 1, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     // TODO Handle error
+                }
+                // Donate intent so user can create convenient Siri shortcuts
+                if let printer = printerManager.getPrinterByName(name: self.navigationItem.title ?? "_") {
+                    IntentsDonations.donateToolTemp(printer: printer, tool: 1, temperature: newTarget)
                 }
             }
         }

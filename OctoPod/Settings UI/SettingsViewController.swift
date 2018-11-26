@@ -7,6 +7,7 @@ class SettingsViewController: ThemedStaticUITableViewController {
     @IBOutlet weak var securityLabel: UILabel!
     @IBOutlet weak var dialogsLabel: UILabel!
     @IBOutlet weak var devicesLabel: UILabel!
+    @IBOutlet weak var siriLabel: UILabel!
     @IBOutlet weak var supportLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -17,6 +18,7 @@ class SettingsViewController: ThemedStaticUITableViewController {
         securityLabel.textColor = theme.textColor()
         dialogsLabel.textColor = theme.textColor()
         devicesLabel.textColor = theme.textColor()
+        siriLabel.textColor = theme.textColor()
         supportLabel.textColor = theme.textColor()
     }
 }

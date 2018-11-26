@@ -1654,6 +1654,97 @@
             </objects>
             <point key="canvasLocation" x="2470" y="3806"/>
         </scene>
+        <!--Siri-->
+        <scene sceneID="OlZ-rX-boI">
+            <objects>
+                <tableViewController title="Siri" id="Orp-dU-Wpa" customClass="SiriViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ssm-lM-Vbb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="VhJ-mM-HyP">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="V8X-Xn-lPM">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V8X-Xn-lPM" id="WHm-dr-AaE">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZE-yh-Myr">
+                                                    <rect key="frame" x="2" y="7" width="371" height="30"/>
+                                                    <state key="normal" title="Delete Siri shortcuts"/>
+                                                    <connections>
+                                                        <action selector="deleteIntentionsChanged:" destination="Orp-dU-Wpa" eventType="touchUpInside" id="ioZ-Vh-SWK"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="oZE-yh-Myr" firstAttribute="centerY" secondItem="WHm-dr-AaE" secondAttribute="centerY" id="7kB-0t-I4M"/>
+                                                <constraint firstItem="oZE-yh-Myr" firstAttribute="leading" secondItem="WHm-dr-AaE" secondAttribute="leading" constant="2" id="GZj-iE-Tc4"/>
+                                                <constraint firstAttribute="trailing" secondItem="oZE-yh-Myr" secondAttribute="trailing" constant="2" id="axK-It-FdN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="lAO-se-ccN">
+                                        <rect key="frame" x="0.0" y="79" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lAO-se-ccN" id="lVy-0s-WUL">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manually delete recorded Siri shortcuts after delete" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iev-hm-Dap">
+                                                    <rect key="frame" x="17" y="17" width="341" height="16"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" red="0.4705916007" green="0.62008575769999996" blue="0.85567158460000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="iev-hm-Dap" secondAttribute="trailing" constant="1" id="2vV-gX-udu"/>
+                                                <constraint firstItem="iev-hm-Dap" firstAttribute="centerY" secondItem="lVy-0s-WUL" secondAttribute="centerY" id="DW2-6J-3yE"/>
+                                                <constraint firstItem="iev-hm-Dap" firstAttribute="leading" secondItem="lVy-0s-WUL" secondAttribute="leadingMargin" constant="1" id="yWU-uq-3SQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="nuJ-fQ-LiK">
+                                        <rect key="frame" x="0.0" y="129" width="375" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nuJ-fQ-LiK" id="jbP-Hi-wno">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Printer changes require to delete shortcuts and manually delete recorded shortcuts" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZv-sG-29g">
+                                                    <rect key="frame" x="17" y="18" width="341" height="34"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <color key="textColor" red="0.4705916007" green="0.62008575769999996" blue="0.85567158460000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="VZv-sG-29g" firstAttribute="centerY" secondItem="jbP-Hi-wno" secondAttribute="centerY" id="2tA-8j-rcC"/>
+                                                <constraint firstItem="VZv-sG-29g" firstAttribute="leading" secondItem="jbP-Hi-wno" secondAttribute="leadingMargin" constant="1" id="B9f-PI-dYC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="VZv-sG-29g" secondAttribute="trailing" constant="1" id="Vo9-mN-ag2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Orp-dU-Wpa" id="fib-7I-ZL1"/>
+                            <outlet property="delegate" destination="Orp-dU-Wpa" id="7Ir-Q5-RAy"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="deleteIntentionsButton" destination="oZE-yh-Myr" id="Sc5-Sa-Y2J"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uES-oT-dAg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="718" y="5553"/>
+        </scene>
         <!--Security-->
         <scene sceneID="i8m-Je-prJ">
             <objects>
@@ -2346,8 +2437,37 @@
                                             <segue destination="GmR-1U-jvf" kind="show" id="XYp-1h-AJJ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="yeO-vj-RXc">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="KB1-d9-tFW">
                                         <rect key="frame" x="0.0" y="255" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KB1-d9-tFW" id="ycz-x0-sE1">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Siri" translatesAutoresizingMaskIntoConstraints="NO" id="fdn-Pb-rOI">
+                                                    <rect key="frame" x="16" y="6" width="48" height="48"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Siri" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2d-Mv-REP">
+                                                    <rect key="frame" x="72" y="11" width="253" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="R2d-Mv-REP" secondAttribute="trailing" constant="8" id="5tk-fu-2V4"/>
+                                                <constraint firstItem="fdn-Pb-rOI" firstAttribute="leading" secondItem="ycz-x0-sE1" secondAttribute="leading" constant="16" id="icc-v5-o2v"/>
+                                                <constraint firstItem="R2d-Mv-REP" firstAttribute="leading" secondItem="fdn-Pb-rOI" secondAttribute="trailing" constant="8" id="q2L-rJ-rbF"/>
+                                                <constraint firstItem="R2d-Mv-REP" firstAttribute="top" secondItem="ycz-x0-sE1" secondAttribute="topMargin" id="vVP-C1-emH"/>
+                                                <constraint firstItem="fdn-Pb-rOI" firstAttribute="top" secondItem="ycz-x0-sE1" secondAttribute="top" constant="6" id="y7K-FJ-NZB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Orp-dU-Wpa" kind="show" id="haT-Pf-aXb"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="yeO-vj-RXc">
+                                        <rect key="frame" x="0.0" y="299" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yeO-vj-RXc" id="jKz-L8-TzK">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -2390,6 +2510,7 @@
                         <outlet property="dialogsLabel" destination="qio-ne-TXN" id="xUg-Or-MFu"/>
                         <outlet property="printersLabel" destination="tzE-Y5-rVZ" id="Bae-dO-RZs"/>
                         <outlet property="securityLabel" destination="RJI-A7-98M" id="mKq-vq-vP8"/>
+                        <outlet property="siriLabel" destination="R2d-Mv-REP" id="QqX-Le-Huq"/>
                         <outlet property="supportLabel" destination="HbJ-Bb-EXQ" id="pAF-HF-yRa"/>
                     </connections>
                 </tableViewController>
@@ -4242,51 +4363,13 @@
                     </tableView>
                     <size key="freeformSize" width="375" height="370"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="s24-lM-8dz">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle">
                             <fragment content="Pull down to refresh">
                                 <attributes>
                                     <font key="NSFont" size="11" name="HelveticaNeue"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                        <tabStops>
-                                            <textTab alignment="left" location="28">
-                                                <options/>
-                                            </textTab>
-                                            <textTab alignment="left" location="56">
-                                                <options/>
-                                            </textTab>
-                                            <textTab alignment="left" location="84">
-                                                <options/>
-                                            </textTab>
-                                            <textTab alignment="left" location="112">
-                                                <options/>
-                                            </textTab>
-                                            <textTab alignment="left" location="140">
-                                                <options/>
-                                            </textTab>
-                                            <textTab alignment="left" location="168">
-                                                <options/>
-                                            </textTab>
-                                            <textTab alignment="left" location="196">
-                                                <options/>
-                                            </textTab>
-                                            <textTab alignment="left" location="224">
-                                                <options/>
-                                            </textTab>
-                                            <textTab alignment="left" location="252">
-                                                <options/>
-                                            </textTab>
-                                            <textTab alignment="left" location="280">
-                                                <options/>
-                                            </textTab>
-                                            <textTab alignment="left" location="308">
-                                                <options/>
-                                            </textTab>
-                                            <textTab alignment="left" location="336">
-                                                <options/>
-                                            </textTab>
-                                        </tabStops>
-                                    </paragraphStyle>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                 </attributes>
                             </fragment>
                         </attributedString>
@@ -4316,6 +4399,7 @@
         <image name="Refresh SD" width="48" height="48"/>
         <image name="Security" width="9.6000003814697266" height="9.6000003814697266"/>
         <image name="Settings" width="48" height="48"/>
+        <image name="Siri" width="48" height="48"/>
         <image name="Support" width="64" height="64"/>
         <image name="TPPowerOn" width="32" height="32"/>
         <image name="Terminal" width="7.1999998092651367" height="7.1999998092651367"/>

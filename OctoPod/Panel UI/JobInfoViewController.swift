@@ -12,6 +12,7 @@ class JobInfoViewController: UITableViewController {
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
 
     var printerPrinting: Bool?
     var requestedJobOperation: jobOperation?
@@ -139,7 +140,9 @@ class JobInfoViewController: UITableViewController {
         }, no: { (UIAlertAction) -> Void in
             // Do nothing
         })
-        
+        if let printer = printerManager.getDefaultPrinter() {
+            IntentsDonations.donateCancelJob(printer: printer)
+        }
     }
     
     @IBAction func pauseOrResumeJob(_ sender: Any) {
@@ -158,6 +161,9 @@ class JobInfoViewController: UITableViewController {
                         }
                     }
                 }
+                if let printer = printerManager.getDefaultPrinter() {
+                    IntentsDonations.donatePauseJob(printer: printer)
+                }
             } else {
                 self.octoprintClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
@@ -171,6 +177,9 @@ class JobInfoViewController: UITableViewController {
                             self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
                         }
                     }
+                }
+                if let printer = printerManager.getDefaultPrinter() {
+                    IntentsDonations.donateResumeJob(printer: printer)
                 }
             }
         }
@@ -208,6 +217,9 @@ class JobInfoViewController: UITableViewController {
                             self.performSegue(withIdentifier: "backFromFailedJobRequest", sender: self)
                         }
                     }
+                }
+                if let printer = printerManager.getDefaultPrinter() {
+                    IntentsDonations.donateRestartJob(printer: printer)
                 }
             }
         }

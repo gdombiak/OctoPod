@@ -138,3 +138,13 @@
 "System Commands" = "System Commands";
 "Confirm command" = "Execute command '%@'?";
 "Failed to get system commands" = "Failed to get system commands";
+
+"Confirm intentions deletion" = "You are about to delete all Siri shortcuts of the app. Proceed?";
+"Warm up printer bed" = "Warm up printer bed %@";
+"Cool down printer bed" = "Cool down printer bed %@";
+"Warm up printer extruder" = "Warm up printer extruder %@";
+"Cool down printer extruder" = "Cool down printer extruder %@";
+"Pause current print job" = "Pause current print job on %@";
+"Resume current print job" = "Resume current print job on %@";
+"Cancel current print job" = "Cancel current print job on %@";
+"Restart current print job" = "Restart current print job on %@";

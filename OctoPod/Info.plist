@@ -29,6 +29,8 @@
 	<string>We need to access your camera for scanning QR code</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>We need to use FaceID to unlock app</string>
+	<key>NSSiriUsageDescription</key>
+	<string>Control printer using Siri</string>
 	<key>NSUbiquitousContainers</key>
 	<dict>
 		<key>&gt;iCloud.$(CFBundleIdentifier)</key>
@@ -41,6 +43,15 @@
 			<string>Any</string>
 		</dict>
 	</dict>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>CancelJobIntent</string>
+		<string>PauseJobIntent</string>
+		<string>RestartJobIntent</string>
+		<string>ResumeJobIntent</string>
+		<string>SetBedTempIntent</string>
+		<string>SetToolTempIntent</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
