@@ -18,7 +18,7 @@
 			<key>INIntentCategory</key>
 			<string>generic</string>
 			<key>INIntentDescription</key>
-			<string>Configured bed's temperature</string>
+			<string>Configure bed's temperature</string>
 			<key>INIntentDescriptionID</key>
 			<string>PppyPP</string>
 			<key>INIntentLastParameterTag</key>
@@ -223,7 +223,7 @@
 			<key>INIntentCategory</key>
 			<string>generic</string>
 			<key>INIntentDescription</key>
-			<string>Configured extruder's temperature</string>
+			<string>Configure extruder's temperature</string>
 			<key>INIntentDescriptionID</key>
 			<string>doj4NA</string>
 			<key>INIntentLastParameterTag</key>
@@ -470,7 +470,7 @@
 			<key>INIntentCategory</key>
 			<string>generic</string>
 			<key>INIntentDescription</key>
-			<string>Suspect running print job</string>
+			<string>Suspend running print job</string>
 			<key>INIntentDescriptionID</key>
 			<string>fL3sow</string>
 			<key>INIntentLastParameterTag</key>

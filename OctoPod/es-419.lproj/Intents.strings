@@ -1,8 +1,174 @@
-"FZ3z7Z" = "Set Bed's Temperature";
+/* (No Comment) */
+"0Z8n1L" = "Enfriar cama";
 
-"PppyPP" = "Configured bed's temperature";
+/* (No Comment) */
+"1hYwNn" = "de la impresora ${printer}";
 
-"UC9Zrq" = "Bed's temperature was set to ${temperature}";
+/* (No Comment) */
+"2TreiD" = "Establecer temperatura del extrusor a ${temperature} ";
 
-"uoT27A" = "Failed to set bed's temperature";
+/* (No Comment) */
+"3eH6cZ" = "Falla al obtener información de tiempo restante";
+
+/* (No Comment) */
+"5MXcd7" = "Enfriar cama";
+
+/* (No Comment) */
+"6k5AFm" = "Continuar impresión en ${printer} ";
+
+/* (No Comment) */
+"6vtMLs" = "Trabajo reiniciado";
+
+/* (No Comment) */
+"8tTCjD" = "Falla al cancelar el trabajo";
+
+/* (No Comment) */
+"9fJEVs" = "Enfriar extrusora";
+
+/* (No Comment) */
+"9GvkpA" = "de la impresora ${printer}";
+
+/* (No Comment) */
+"662LyZ" = "Reiniciar impresión en ${printer} ";
+
+/* (No Comment) */
+"AajpSg" = "Establecer temperatura del extrusor ${tool}  a ${temperature} ";
+
+/* (No Comment) */
+"AboVUn" = "de la impresora ${printer}";
+
+/* (No Comment) */
+"BWOk7w" = "Establecer temperatura de la cama a ${temperature} ";
+
+/* (No Comment) */
+"bxTFR5" = "de la impresora ${printer}";
+
+/* (No Comment) */
+"D0kBGr" = "Reiniciar impresión";
+
+/* (No Comment) */
+"doj4NA" = "Configurar temperatura del extrusor";
+
+/* (No Comment) */
+"e1wTgz" = "de la impresora ${printer}";
+
+/* (No Comment) */
+"EnGz5S" = "Establecer temperatura de la cama a ${temperature} ";
+
+/* (No Comment) */
+"faEYF1" = "de la impresora ${printer}";
+
+/* (No Comment) */
+"fL3sow" = "Suspender impresión";
+
+/* (No Comment) */
+"fXPS6E" = "Suspender impresión en ${printer}";
+
+/* (No Comment) */
+"FZ3z7Z" = "Ajustar temperatura de la cama";
+
+/* (No Comment) */
+"GVOw8B" = "Reiniciar impresión en ${printer} ";
+
+/* (No Comment) */
+"gx0D0e" = "Trabajo cancelado";
+
+/* (No Comment) */
+"hS5yzH" = "Cancelar impresión en ${printer}";
+
+/* (No Comment) */
+"JmhfgL" = "Reiniciar impresión";
+
+/* (No Comment) */
+"Kf7e4Y" = "Continuar impresión";
+
+/* (No Comment) */
+"L46ZKt" = "de la impresora ${printer}";
+
+/* (No Comment) */
+"liRVV5" = "Suspender impresión en ${printer}";
+
+/* (No Comment) */
+"lrRige" = "Cancelar impresión";
+
+/* (No Comment) */
+"LVlPuT" = "Cancelar impresión";
+
+/* (No Comment) */
+"m9Jgmg" = "Trabajo reanudado";
+
+/* (No Comment) */
+"NG7rBh" = "Tiempo restante en ${printer} ";
+
+/* (No Comment) */
+"oT6BJN" = "Establecer temperatura del extrusor a ${temperature} ";
+
+/* (No Comment) */
+"ovQf6Z" = "Trabajo detenido";
+
+/* (No Comment) */
+"P89qJr" = "Tiempo restante es ${time} ";
+
+/* (No Comment) */
+"PppyPP" = "Configurar temperatura de la cama";
+
+/* (No Comment) */
+"QSxXHq" = "Suspender impresión";
+
+/* (No Comment) */
+"rFHPr4" = "de la impresora ${printer}";
+
+/* (No Comment) */
+"rmKSv6" = "Falla al establecer temperatura del extrusor";
+
+/* (No Comment) */
+"RrOrgy" = "Cancelar impresión en ${printer}";
+
+/* (No Comment) */
+"SP4rN6" = "Establecer temperatura del extrusor";
+
+/* (No Comment) */
+"SRDf6Q" = "Temperatura del extrusor se ajustó a ${temperature}";
+
+/* (No Comment) */
+"sRkyIL" = "Falla al reiniciar trabajo";
+
+/* (No Comment) */
+"tKDODp" = "Tiempo restante de impresión";
+
+/* (No Comment) */
+"UC9Zrq" = "Temperatura de la cama se fijó en ${temperature}";
+
+/* (No Comment) */
+"UiDrAq" = "Enfriar extrusora";
+
+/* (No Comment) */
+"uoT27A" = "Fallal establecer la temperatura de la cama";
+
+/* (No Comment) */
+"VtulLq" = "Tiempo restante en ${printer} ";
+
+/* (No Comment) */
+"WI2oQf" = "Tiempo de impresión restante";
+
+/* (No Comment) */
+"WLkRl0" = "Falla al reanudar el trabajo";
+
+/* (No Comment) */
+"XfWmGt" = "Continuar impresión";
+
+/* (No Comment) */
+"xSARU0" = "Error al suspender el trabajo";
+
+/* (No Comment) */
+"XSZUyJ" = "de la impresora ${printer}";
+
+/* (No Comment) */
+"yQslq9" = "Continuar impresión en ${printer} ";
+
+/* (No Comment) */
+"ysPUHg" = "de la impresora ${printer}";
+
+/* (No Comment) */
+"zFUcrX" = "Establecer temperatura del extrusor ${tool}  a ${temperature} ";
 

@@ -193,6 +193,9 @@
 /* Class = "UITableViewSection"; headerTitle = "X Y Z"; ObjectID = "gHQ-Lu-mQ0"; */
 "gHQ-Lu-mQ0.headerTitle" = "X Y Z";
 
+/* Class = "UILabel"; text = "Record Siri phrase to use shortcuts"; ObjectID = "Ghq-m2-F0u"; */
+"Ghq-m2-F0u.text" = "Grabar frase de Siri para usar accesos directos";
+
 /* Class = "UITableViewController"; title = "File Details"; ObjectID = "GJo-uu-Qmb"; */
 "GJo-uu-Qmb.title" = "Detalles archivo";
 
@@ -256,6 +259,9 @@
 /* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[3] = "100"; ObjectID = "hzK-Nf-sCi"; */
 "hzK-Nf-sCi.segmentTitles[3]" = "100";
 
+/* Class = "UILabel"; text = "Manually delete recorded Siri shortcuts after delete"; ObjectID = "iev-hm-Dap"; */
+"iev-hm-Dap.text" = "Eliminar manualmente los accesos directos de Siri después de borrar";
+
 /* Class = "UILabel"; text = "Control Power"; ObjectID = "j09-72-h0o"; */
 "j09-72-h0o.text" = "Controlar alimentación";
 
@@ -282,6 +288,9 @@
 
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "Archivo";
+
+/* Class = "UILabel"; text = "Siri Integration"; ObjectID = "LBx-lc-96t"; */
+"LBx-lc-96t.text" = "Integración con Siri";
 
 /* Class = "UILabel"; text = "Origin"; ObjectID = "lfT-wn-CXk"; */
 "lfT-wn-CXk.text" = "Origen";
@@ -334,8 +343,14 @@
 /* Class = "UIButton"; normalTitle = "Configure controls using Custom Control Plugin"; ObjectID = "or6-Pr-Z6f"; */
 "or6-Pr-Z6f.normalTitle" = "Configurar controles usando Custom Control Plugin";
 
+/* Class = "UITableViewController"; title = "Siri"; ObjectID = "Orp-dU-Wpa"; */
+"Orp-dU-Wpa.title" = "Siri";
+
 /* Class = "UILabel"; text = "File"; ObjectID = "OYG-ih-yQg"; */
 "OYG-ih-yQg.text" = "Archivo";
+
+/* Class = "UIButton"; normalTitle = "Delete Siri shortcuts"; ObjectID = "oZE-yh-Myr"; */
+"oZE-yh-Myr.normalTitle" = "Borrar accesos directos de Siri";
 
 /* Class = "UITableViewController"; title = "Prompts"; ObjectID = "oZw-P5-oVG"; */
 "oZw-P5-oVG.title" = "Confirmaciones";
@@ -384,6 +399,9 @@
 
 /* Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ"; */
 "QwZ-7J-MwJ.normalTitle" = "Apagar";
+
+/* Class = "UILabel"; text = "Siri"; ObjectID = "R2d-Mv-REP"; */
+"R2d-Mv-REP.text" = "Siri";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87"; */
 "REX-gh-p87.normalTitle" = "Botón";
@@ -435,6 +453,9 @@
 
 /* Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ"; */
 "tzE-Y5-rVZ.text" = "Impresoras";
+
+/* Class = "UILabel"; text = "Printer changes require manual deletion of recorded shortcuts"; ObjectID = "uaY-8k-0Sa"; */
+"uaY-8k-0Sa.text" = "Cambios en impresoras requiere eliminación manual de los accesos directos en Siri";
 
 /* Class = "UILabel"; text = "GCode command"; ObjectID = "uge-6J-pcC"; */
 "uge-6J-pcC.text" = "Comando GCode";

@@ -158,6 +158,8 @@
 		3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */; };
 		3DF0157621227ACB002B4C14 /* TempHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */; };
 		3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF232DF20F150CC00550652 /* MoveSubViewController.swift */; };
+		3DF7410D21ACEECC0069A9D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DF7410B21ACEECC0069A9D4 /* Localizable.strings */; };
+		3DF7411021ACEECC0069A9D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DF7410E21ACEECC0069A9D4 /* InfoPlist.strings */; };
 		3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */; };
 		3DFA8074210E30C100B5BFAA /* CloudFilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA8073210E30C100B5BFAA /* CloudFilesManager.swift */; };
 		3DFE67CE218598F300F33019 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DFE67D0218598F300F33019 /* Localizable.strings */; };
@@ -402,6 +404,10 @@
 		3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpanelsViewController.swift; sourceTree = "<group>"; };
 		3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHistoryViewController.swift; sourceTree = "<group>"; };
 		3DF232DF20F150CC00550652 /* MoveSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveSubViewController.swift; sourceTree = "<group>"; };
+		3DF7410C21ACEECC0069A9D4 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		3DF7410F21ACEECC0069A9D4 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3DF7411121ACF1900069A9D4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DF7411221ACF1900069A9D4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterProfilesDelegate.swift; sourceTree = "<group>"; };
 		3DFA8071210E2EF100B5BFAA /* OctoPod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OctoPod.entitlements; sourceTree = "<group>"; };
 		3DFA8073210E30C100B5BFAA /* CloudFilesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFilesManager.swift; sourceTree = "<group>"; };
@@ -536,6 +542,8 @@
 			children = (
 				3D450E5121AB1B210049FBC0 /* IntentHandler.swift */,
 				3D450E5321AB1B210049FBC0 /* Info.plist */,
+				3DF7410E21ACEECC0069A9D4 /* InfoPlist.strings */,
+				3DF7410B21ACEECC0069A9D4 /* Localizable.strings */,
 				3D450EBB21AB236C0049FBC0 /* SetBedTempIntentHandler.swift */,
 				3D450EC221AB45740049FBC0 /* SetToolTempIntentHandler.swift */,
 				3D4064AA21AB7563000B05F9 /* PauseJobIntentHandler.swift */,
@@ -1002,6 +1010,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DF7410D21ACEECC0069A9D4 /* Localizable.strings in Resources */,
+				3DF7411021ACEECC0069A9D4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1354,6 +1364,24 @@
 				3D89E6722161235A006794D0 /* cs */,
 				3D697ED42163376D00BFB849 /* it */,
 				3D27DA94218A5FD8004F763A /* es-419 */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3DF7410B21ACEECC0069A9D4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DF7410C21ACEECC0069A9D4 /* es-419 */,
+				3DF7411221ACF1900069A9D4 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3DF7410E21ACEECC0069A9D4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DF7410F21ACEECC0069A9D4 /* es-419 */,
+				3DF7411121ACF1900069A9D4 /* es */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

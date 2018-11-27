@@ -19,6 +19,9 @@
 /* (No Comment) */
 "Cancel" = "Cancelar";
 
+/* Siri suggested phrase */
+"Cancel current print job" = "Cancelar trabajo en impresora %@";
+
 /* https://github.com/paukstelis/Octoprint-Cancelobject */
 "Cancel Objects" = "Cancelar Objetos";
 
@@ -56,6 +59,9 @@
 "Confirm disconnect" = "¿Desea desconectarse de la impresora?";
 
 /* (No Comment) */
+"Confirm intentions deletion" = "Estás a punto de eliminar todos los accesos directos de Siri de la aplicación. ¿Continuar?";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Está por apagar el enchufe. ¿Continuar?";
 
 /* (No Comment) */
@@ -66,6 +72,12 @@
 
 /* (No Comment) */
 "Connection failed" = "Error de conexión";
+
+/* Siri suggested phrase */
+"Cool down printer bed" = "Enfriar cama de la impresora %@";
+
+/* Siri suggested phrase */
+"Cool down printer extruder" = "Enfriar extrusor de la impresora %@";
 
 /* Connection to server failed */
 "Could not connect to the server" = "No se puede conectar con el servidor";
@@ -253,6 +265,9 @@
 /* Printer is Offline */
 "Offline" = "Fuera de Línea";
 
+/* Siri suggested phrase */
+"Pause current print job" = "Suspender trabajo en impresora %@";
+
 /* (No Comment) */
 "Pause Job" = "Suspender";
 
@@ -274,8 +289,17 @@
 /* (No Comment) */
 "Pull down to refresh" = "Tire hacia abajo para refrescar";
 
+/* Siri suggested phrase */
+"Remaining time current print job" = "Tiempo restante en %@";
+
+/* Siri suggested phrase */
+"Restart current print job" = "Reiniciar trabajo en impresora %@";
+
 /* (No Comment) */
 "Restart Job" = "Reiniciar";
+
+/* Siri suggested phrase */
+"Resume current print job" = "Continuar trabajo en impresora %@";
 
 /* (No Comment) */
 "Resume Job" = "Reanudar";
@@ -335,6 +359,12 @@
 
 /* (No Comment) */
 "Upload failed" = "Error de Subida";
+
+/* Siri suggested phrase */
+"Warm up printer bed" = "Calentar cama de la impresora %@";
+
+/* Siri suggested phrase */
+"Warm up printer extruder" = "Calentar extrusor de la impresora %@";
 
 /* (No Comment) */
 "Warning" = "Atención";
