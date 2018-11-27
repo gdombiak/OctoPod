@@ -35,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Enable background refresh and set minimum interval between fetches
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        
+        // Initialize Siri shortcuts for existing printers (this is a one time operation)
+        IntentsDonations.initIntentsForAllPrinters(printerManager: printerManager!)
 
         return true
     }

@@ -4,6 +4,7 @@ import Intents
 class IntentsDonations {
     
     private static let GROUP_IDENTIFIER = "org.OctoPod.Intentions"  // Unique & Global idenfier for all Intents created by this app
+    private static let DONATIONS_INITIALIZED = "IntentsDonations.init"
     
     // MARK: - Create functions
 
@@ -138,6 +139,23 @@ class IntentsDonations {
         donateRestartJob(printer: printer)
         // Remaining print time
         donateRemainingTime(printer: printer)
+    }
+
+    // Do a one time initialization for existing printers. This means that intents will
+    // be donated for existing printers but this will be done only once. This is needed
+    // for existing OctoPod installations that are running 2.0 or older and updated to 2.1
+    // or newer. After this initial initialization, as new printers get added then a donation
+    // will be done
+    static func initIntentsForAllPrinters(printerManager: PrinterManager) {
+        let defaults = UserDefaults.standard
+        if defaults.bool(forKey: DONATIONS_INITIALIZED) {
+            return
+        }
+        // Run initialization only once
+        for printer in printerManager.getPrinters() {
+            donatePrinterIntents(printer: printer)
+        }
+        defaults.set(true, forKey: DONATIONS_INITIALIZED)
     }
     
     // MARK: - Delete functions
