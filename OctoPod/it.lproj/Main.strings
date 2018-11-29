@@ -38,7 +38,7 @@
 "4sv-CS-fGo.title" = "Aspetto";
 
 /* Class = "UILabel"; text = "Print Time Left"; ObjectID = "5hR-SK-V2r"; */
-"5hR-SK-V2r.text" = "Tempo rimasto";
+"5hR-SK-V2r.text" = "Tempo di stampa rimasto";
 
 /* Class = "UILabel"; text = "250 C"; ObjectID = "5ry-aI-ZKw"; */
 "5ry-aI-ZKw.text" = "250 C";
@@ -83,7 +83,7 @@
 "48m-gj-F14.normalTitle" = "E";
 
 /* Class = "UILabel"; text = "Refresh enabled"; ObjectID = "53i-ST-HFr"; */
-"53i-ST-HFr.text" = "Abilita aggiornamento";
+"53i-ST-HFr.text" = "Aggiornamento abilitato";
 
 /* Class = "UILabel"; text = "About 10m"; ObjectID = "88V-gh-sQd"; */
 "88V-gh-sQd.text" = "Circa 10m";
@@ -143,7 +143,7 @@
 "Crn-wa-FLw.normalTitle" = "Stampa";
 
 /* Class = "UIButton"; normalTitle = "Cancel Job"; ObjectID = "Cxb-Rv-BSm"; */
-"Cxb-Rv-BSm.normalTitle" = "Annulla";
+"Cxb-Rv-BSm.normalTitle" = "Annulla stampa";
 
 /* Class = "UIButton"; normalTitle = "Pause Job"; ObjectID = "d2Y-RO-6Yg"; */
 "d2Y-RO-6Yg.normalTitle" = "Sospendi";
@@ -182,16 +182,19 @@
 "fJ6-6T-dHU.title" = "Impostazioni";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
-"fNE-Hh-S8R.text" = "Label";
+"fNE-Hh-S8R.text" = "Etichetta";
 
 /* Class = "UITableViewSection"; headerTitle = "Temp Chart"; ObjectID = "GAt-su-C1i"; */
-"GAt-su-C1i.headerTitle" = "GRAFICO TEMPERATURA";
+"GAt-su-C1i.headerTitle" = "Grafico temperatura";
 
 /* Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt"; */
 "gCt-Vk-Fgt.headerTitle" = "Connessione";
 
 /* Class = "UITableViewSection"; headerTitle = "X Y Z"; ObjectID = "gHQ-Lu-mQ0"; */
 "gHQ-Lu-mQ0.headerTitle" = "X Y Z";
+
+/* Class = "UILabel"; text = "Record Siri phrase to use shortcuts"; ObjectID = "Ghq-m2-F0u"; */
+"Ghq-m2-F0u.text" = "Registra la frase per Siri per usare le scorciatoie";
 
 /* Class = "UITableViewController"; title = "File Details"; ObjectID = "GJo-uu-Qmb"; */
 "GJo-uu-Qmb.title" = "Dettagli file";
@@ -256,6 +259,9 @@
 /* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[3] = "100"; ObjectID = "hzK-Nf-sCi"; */
 "hzK-Nf-sCi.segmentTitles[3]" = "100";
 
+/* Class = "UILabel"; text = "Manually delete recorded Siri shortcuts after delete"; ObjectID = "iev-hm-Dap"; */
+"iev-hm-Dap.text" = "Elimina manualmente le scorciatoie Siri registrate dopo l'eliminazione";
+
 /* Class = "UILabel"; text = "Control Power"; ObjectID = "j09-72-h0o"; */
 "j09-72-h0o.text" = "Controlla alimentazione";
 
@@ -282,6 +288,9 @@
 
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "File";
+
+/* Class = "UILabel"; text = "Siri Integration"; ObjectID = "LBx-lc-96t"; */
+"LBx-lc-96t.text" = "Integrazione con Siri";
 
 /* Class = "UILabel"; text = "Origin"; ObjectID = "lfT-wn-CXk"; */
 "lfT-wn-CXk.text" = "Origine";
@@ -334,8 +343,14 @@
 /* Class = "UIButton"; normalTitle = "Configure controls using Custom Control Plugin"; ObjectID = "or6-Pr-Z6f"; */
 "or6-Pr-Z6f.normalTitle" = "Configura i controlli usando il plugin Custom Control";
 
+/* Class = "UITableViewController"; title = "Siri"; ObjectID = "Orp-dU-Wpa"; */
+"Orp-dU-Wpa.title" = "Siri";
+
 /* Class = "UILabel"; text = "File"; ObjectID = "OYG-ih-yQg"; */
 "OYG-ih-yQg.text" = "File";
+
+/* Class = "UIButton"; normalTitle = "Delete Siri shortcuts"; ObjectID = "oZE-yh-Myr"; */
+"oZE-yh-Myr.normalTitle" = "Elimina scorciatoie Siri";
 
 /* Class = "UITableViewController"; title = "Prompts"; ObjectID = "oZw-P5-oVG"; */
 "oZw-P5-oVG.title" = "Richieste";
@@ -384,6 +399,9 @@
 
 /* Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ"; */
 "QwZ-7J-MwJ.normalTitle" = "Spento";
+
+/* Class = "UILabel"; text = "Siri"; ObjectID = "R2d-Mv-REP"; */
+"R2d-Mv-REP.text" = "Siri";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87"; */
 "REX-gh-p87.normalTitle" = "Bottone";
@@ -435,6 +453,9 @@
 
 /* Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ"; */
 "tzE-Y5-rVZ.text" = "Stampanti";
+
+/* Class = "UILabel"; text = "Printer changes require manual deletion of recorded shortcuts"; ObjectID = "uaY-8k-0Sa"; */
+"uaY-8k-0Sa.text" = "Le modifiche alla stampante richiedono l'eliminazione manuale delle scorciatoie registrate";
 
 /* Class = "UILabel"; text = "GCode command"; ObjectID = "uge-6J-pcC"; */
 "uge-6J-pcC.text" = "Comando GCode";

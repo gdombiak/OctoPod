@@ -254,6 +254,8 @@
 		3D2821E62178167D00976611 /* CameraViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewDelegate.swift; sourceTree = "<group>"; };
 		3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		3D36DD79210300C500884BD6 /* TerminalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalViewController.swift; sourceTree = "<group>"; };
+		3D390ACD21AF95CB00F3F2A7 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3D390ACE21AF95CB00F3F2A7 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpanelViewController.swift; sourceTree = "<group>"; };
 		3D3CBABB2182D31C00D4FD54 /* UIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		3D4064AA21AB7563000B05F9 /* PauseJobIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseJobIntentHandler.swift; sourceTree = "<group>"; };
@@ -287,6 +289,8 @@
 		3D45280E20E15A380094CCB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D45281020E15A380094CCB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D47BA3D21278956002420A0 /* IPPlugTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPPlugTableViewCell.swift; sourceTree = "<group>"; };
+		3D51CFD221AF95F700B269AE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3D51CFD321AF95F700B269AE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D5849E3210CC8720068D87A /* OctoPrintSettingsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintSettingsDelegate.swift; sourceTree = "<group>"; };
 		3D5849E5210CCB560068D87A /* OctoPod v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v2.xcdatamodel"; sourceTree = "<group>"; };
 		3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotRefreshingReasonViewController.swift; sourceTree = "<group>"; };
@@ -1373,6 +1377,8 @@
 			children = (
 				3DF7410C21ACEECC0069A9D4 /* es-419 */,
 				3DF7411221ACF1900069A9D4 /* es */,
+				3D390ACD21AF95CB00F3F2A7 /* cs */,
+				3D51CFD221AF95F700B269AE /* it */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1382,6 +1388,8 @@
 			children = (
 				3DF7410F21ACEECC0069A9D4 /* es-419 */,
 				3DF7411121ACF1900069A9D4 /* es */,
+				3D390ACE21AF95CB00F3F2A7 /* cs */,
+				3D51CFD321AF95F700B269AE /* it */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

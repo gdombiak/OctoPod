@@ -193,6 +193,9 @@
 /* Class = "UITableViewSection"; headerTitle = "X Y Z"; ObjectID = "gHQ-Lu-mQ0"; */
 "gHQ-Lu-mQ0.headerTitle" = "X Y Z";
 
+/* Class = "UILabel"; text = "Record Siri phrase to use shortcuts"; ObjectID = "Ghq-m2-F0u"; */
+"Ghq-m2-F0u.text" = "Nahrajte frázi Siri, abyste mohli používat zkratky";
+
 /* Class = "UITableViewController"; title = "File Details"; ObjectID = "GJo-uu-Qmb"; */
 "GJo-uu-Qmb.title" = "Detaily souboru";
 
@@ -256,6 +259,9 @@
 /* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[3] = "100"; ObjectID = "hzK-Nf-sCi"; */
 "hzK-Nf-sCi.segmentTitles[3]" = "100";
 
+/* Class = "UILabel"; text = "Manually delete recorded Siri shortcuts after delete"; ObjectID = "iev-hm-Dap"; */
+"iev-hm-Dap.text" = "Ručně smažte nahrané zkratky Siri po kliknutí na Smazat zkratky Siri";
+
 /* Class = "UILabel"; text = "Control Power"; ObjectID = "j09-72-h0o"; */
 "j09-72-h0o.text" = "Ovládání nápětí";
 
@@ -282,6 +288,9 @@
 
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "Soubor";
+
+/* Class = "UILabel"; text = "Siri Integration"; ObjectID = "LBx-lc-96t"; */
+"LBx-lc-96t.text" = "Propojení se Siri";
 
 /* Class = "UILabel"; text = "Origin"; ObjectID = "lfT-wn-CXk"; */
 "lfT-wn-CXk.text" = "Původ";
@@ -334,8 +343,14 @@
 /* Class = "UIButton"; normalTitle = "Configure controls using Custom Control Plugin"; ObjectID = "or6-Pr-Z6f"; */
 "or6-Pr-Z6f.normalTitle" = "Konfigurovat ovládání pomoci plug-inu Custom Control";
 
+/* Class = "UITableViewController"; title = "Siri"; ObjectID = "Orp-dU-Wpa"; */
+"Orp-dU-Wpa.title" = "Siri";
+
 /* Class = "UILabel"; text = "File"; ObjectID = "OYG-ih-yQg"; */
 "OYG-ih-yQg.text" = "Soubor";
+
+/* Class = "UIButton"; normalTitle = "Delete Siri shortcuts"; ObjectID = "oZE-yh-Myr"; */
+"oZE-yh-Myr.normalTitle" = "Smazat zkratky Siri";
 
 /* Class = "UITableViewController"; title = "Prompts"; ObjectID = "oZw-P5-oVG"; */
 "oZw-P5-oVG.title" = "Výzvy";
@@ -384,6 +399,9 @@
 
 /* Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ"; */
 "QwZ-7J-MwJ.normalTitle" = "Vypnuto";
+
+/* Class = "UILabel"; text = "Siri"; ObjectID = "R2d-Mv-REP"; */
+"R2d-Mv-REP.text" = "Siri";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87"; */
 "REX-gh-p87.normalTitle" = "Tlačítko";
@@ -435,6 +453,9 @@
 
 /* Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ"; */
 "tzE-Y5-rVZ.text" = "Tiskárny";
+
+/* Class = "UILabel"; text = "Printer changes require manual deletion of recorded shortcuts"; ObjectID = "uaY-8k-0Sa"; */
+"uaY-8k-0Sa.text" = "Změny tiskárny vyžadují ruční smazání nahraných zkratek.";
 
 /* Class = "UILabel"; text = "GCode command"; ObjectID = "uge-6J-pcC"; */
 "uge-6J-pcC.text" = "Příkaz GCode";

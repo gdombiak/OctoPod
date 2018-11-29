@@ -1,8 +1,174 @@
-"FZ3z7Z" = "Set Bed's Temperature";
+/* (No Comment) */
+"0Z8n1L" = "Raffredda il piatto";
 
-"PppyPP" = "Configured bed's temperature";
+/* (No Comment) */
+"1hYwNn" = "per la stampante ${printer}";
 
-"UC9Zrq" = "Bed's temperature was set to ${temperature}";
+/* (No Comment) */
+"2TreiD" = "Imposta la temperatura dell'estrusore su ${temperature}";
 
-"uoT27A" = "Failed to set bed's temperature";
+/* (No Comment) */
+"3eH6cZ" = "Errore nell'ottenere le informazioni sul tempo rimanente";
+
+/* (No Comment) */
+"5MXcd7" = "Raffredda il piatto";
+
+/* (No Comment) */
+"6k5AFm" = "Riprendi stampa su ${printer}";
+
+/* (No Comment) */
+"6vtMLs" = "Stampa riavviata";
+
+/* (No Comment) */
+"8tTCjD" = "Errore nell'annullamento della stampa";
+
+/* (No Comment) */
+"9fJEVs" = "Raffredda l'estrusore";
+
+/* (No Comment) */
+"9GvkpA" = "per la stampante ${printer}";
+
+/* (No Comment) */
+"662LyZ" = "Riavvia la stampa su ${printer}";
+
+/* (No Comment) */
+"AajpSg" = "Imposta la temperatura dell'estrusore ${tool} su ${temperature}";
+
+/* (No Comment) */
+"AboVUn" = "per la stampante ${printer}";
+
+/* (No Comment) */
+"BWOk7w" = "Imposta la temperatura del piatto su ${temperature}";
+
+/* (No Comment) */
+"bxTFR5" = "per la stampante ${printer}";
+
+/* (No Comment) */
+"D0kBGr" = "Riavvia la stampa in corso";
+
+/* (No Comment) */
+"doj4NA" = "Configura la temperatura dell'estrusore";
+
+/* (No Comment) */
+"e1wTgz" = "per la stampante ${printer}";
+
+/* (No Comment) */
+"EnGz5S" = "Imposta la temperatura del piatto su ${temperature}";
+
+/* (No Comment) */
+"faEYF1" = "per la stampante ${printer}";
+
+/* (No Comment) */
+"fL3sow" = "Sospendi la stampa in corso";
+
+/* (No Comment) */
+"fXPS6E" = "Sospendi la stampa su {printer}";
+
+/* (No Comment) */
+"FZ3z7Z" = "Imposta la temperatura del piatto";
+
+/* (No Comment) */
+"GVOw8B" = "Riavvia la stampa su ${printer}";
+
+/* (No Comment) */
+"gx0D0e" = "Stampa annullata";
+
+/* (No Comment) */
+"hS5yzH" = "Annulla la stampa su ${printer}";
+
+/* (No Comment) */
+"JmhfgL" = "Riavvia la stampa in corso";
+
+/* (No Comment) */
+"Kf7e4Y" = "Riprendi la stampa in corso";
+
+/* (No Comment) */
+"L46ZKt" = "per la stampante ${printer}";
+
+/* (No Comment) */
+"liRVV5" = "Sospendi la stampa su {printer}";
+
+/* (No Comment) */
+"lrRige" = "Annulla la stampa in corso";
+
+/* (No Comment) */
+"LVlPuT" = "Annulla la stampa in corso";
+
+/* (No Comment) */
+"m9Jgmg" = "Stampa ripresa";
+
+/* (No Comment) */
+"NG7rBh" = "Tempo rimanente su ${printer}";
+
+/* (No Comment) */
+"oT6BJN" = "Imposta la temperatura dell'estrusore su ${temperature}";
+
+/* (No Comment) */
+"ovQf6Z" = "Stampa sospesa";
+
+/* (No Comment) */
+"P89qJr" = "Il tempo rimanente è ${time}";
+
+/* (No Comment) */
+"PppyPP" = "Configura la temperatura del piatto";
+
+/* (No Comment) */
+"QSxXHq" = "Sospendi la stampa in corso";
+
+/* (No Comment) */
+"rFHPr4" = "per la stampante ${printer}";
+
+/* (No Comment) */
+"rmKSv6" = "Errore nell'impostazione della temperatura dell'estrusore";
+
+/* (No Comment) */
+"RrOrgy" = "Annulla la stampa su ${printer}";
+
+/* (No Comment) */
+"SP4rN6" = "Imposta la temperatura dell'estrusore";
+
+/* (No Comment) */
+"SRDf6Q" = "La temperatura dell'estrusore è stata impostata su ${temperature}";
+
+/* (No Comment) */
+"sRkyIL" = "Errore nel riavviare la stampa";
+
+/* (No Comment) */
+"tKDODp" = "Tempo di stampa rimanente";
+
+/* (No Comment) */
+"UC9Zrq" = "La temperatura del piatto è stata impostata su ${temperature}";
+
+/* (No Comment) */
+"UiDrAq" = "Raffredda l'estrusore";
+
+/* (No Comment) */
+"uoT27A" = "Errore nell'impostazione della temperatura del piatto";
+
+/* (No Comment) */
+"VtulLq" = "Tempo rimanente su ${printer}";
+
+/* (No Comment) */
+"WI2oQf" = "Restituisci il tempo di stampa rimasto";
+
+/* (No Comment) */
+"WLkRl0" = "Errore nel riprendere la stampa";
+
+/* (No Comment) */
+"XfWmGt" = "Riprendi la stampa in corso";
+
+/* (No Comment) */
+"xSARU0" = "Errore nel sospendere la stampa";
+
+/* (No Comment) */
+"XSZUyJ" = "per la stampante ${printer}";
+
+/* (No Comment) */
+"yQslq9" = "Riprendi stampa su ${printer}";
+
+/* (No Comment) */
+"ysPUHg" = "per la stampante ${printer}";
+
+/* (No Comment) */
+"zFUcrX" = "Imposta la temperatura dell'estrusore ${tool} su ${temperature}";
 

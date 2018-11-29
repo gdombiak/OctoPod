@@ -1,3 +1,6 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "OctoPod";
+"CFBundleDisplayName" = "Estensione Watch OctoPod";
+
+/* Bundle name */
+"CFBundleName" = "$(PRODUCT_NAME)";
 

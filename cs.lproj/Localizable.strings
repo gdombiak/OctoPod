@@ -19,6 +19,9 @@
 /* (No Comment) */
 "Cancel" = "Zrušit";
 
+/* Siri suggested phrase */
+"Cancel current print job" = "Zrušit aktuální tisk na %@";
+
 /* https://github.com/paukstelis/Octoprint-Cancelobject */
 "Cancel Objects" = "Zrušit Objekty";
 
@@ -56,6 +59,9 @@
 "Confirm disconnect" = "Chcete odpojit tiskárnu?";
 
 /* (No Comment) */
+"Confirm intentions deletion" = "Smažete všechny zkratky Siri aplikace. Pokračovat?";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Vypnete zásuvku. Pokračovat?";
 
 /* (No Comment) */
@@ -66,6 +72,12 @@
 
 /* (No Comment) */
 "Connection failed" = "Připojení se nezdařilo";
+
+/* Siri suggested phrase */
+"Cool down printer bed" = "Zchladit podložku tiskárny %@";
+
+/* Siri suggested phrase */
+"Cool down printer extruder" = "Zchladit trysku tiskárny %@";
 
 /* Connection to server failed */
 "Could not connect to the server" = "Nelze se připojit k serveru";
@@ -251,7 +263,10 @@
 "OctoPrint" = "OctoPrint";
 
 /* Printer is Offline */
-"Offline" = "Offline";
+"Offline" = "Vypnutá";
+
+/* Siri suggested phrase */
+"Pause current print job" = "Pozastavit aktuální tisk na %@";
 
 /* (No Comment) */
 "Pause Job" = "Pozastavit";
@@ -274,8 +289,17 @@
 /* (No Comment) */
 "Pull down to refresh" = "Táhněte dolů pro obnovení";
 
+/* Siri suggested phrase */
+"Remaining time current print job" = "Zbývající čas na %@";
+
+/* Siri suggested phrase */
+"Restart current print job" = "Restartovat";
+
 /* (No Comment) */
 "Restart Job" = "Restartovat";
+
+/* Siri suggested phrase */
+"Resume current print job" = "Restartovat aktuální tisk na %@";
 
 /* (No Comment) */
 "Resume Job" = "Pokračovat";
@@ -335,6 +359,12 @@
 
 /* (No Comment) */
 "Upload failed" = "Nahrávání selhalo";
+
+/* Siri suggested phrase */
+"Warm up printer bed" = "Nahřát podložku tiskárny %@";
+
+/* Siri suggested phrase */
+"Warm up printer extruder" = "Nahřát trysku tiskárny %@";
 
 /* (No Comment) */
 "Warning" = "Varování";

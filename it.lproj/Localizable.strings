@@ -19,6 +19,9 @@
 /* (No Comment) */
 "Cancel" = "Annulla";
 
+/* Siri suggested phrase */
+"Cancel current print job" = "Annulla la stampa corrente su %@";
+
 /* https://github.com/paukstelis/Octoprint-Cancelobject */
 "Cancel Objects" = "Rimuovi oggetti ";
 
@@ -56,6 +59,9 @@
 "Confirm disconnect" = "Vuoi disconnetterti dalla stampante?";
 
 /* (No Comment) */
+"Confirm intentions deletion" = "Stai per eliminare tutte le scorciatoie per Siri dell'app. Procedere?";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Stai per spegnere la presa. Procedere?";
 
 /* (No Comment) */
@@ -66,6 +72,12 @@
 
 /* (No Comment) */
 "Connection failed" = "Connessione fallita";
+
+/* Siri suggested phrase */
+"Cool down printer bed" = "Raffredda il piatto della stampante %@";
+
+/* Siri suggested phrase */
+"Cool down printer extruder" = "Raffredda l'estrusore della stampante %@";
 
 /* Connection to server failed */
 "Could not connect to the server" = "Impossibile connettersi al server";
@@ -86,7 +98,7 @@
 "Domoticz Plugs" = "Prese Domoticz";
 
 /* (No Comment) */
-"Enable iCloud under iOS Settings to use this feature" = "Abilitare iCloud nelle Impostazioni di iOS per usare questa funzione";
+"Enable iCloud under iOS Settings to use this feature" = "Abilita iCloud nelle Impostazioni di iOS per usare questa funzione";
 
 /* (No Comment) */
 "Failed to delete file" = "Errore nell'eliminazione del file";
@@ -131,7 +143,7 @@
 "Failed to request moving up" = "Errore nella richiesta di spostarsi in alto";
 
 /* (No Comment) */
-"Failed to request to cancel object" = "Impossibile richiedere la rimozione dell'oggeto. Risposta HTTP: %d";
+"Failed to request to cancel object" = "Impossibile richiedere la rimozione dell'oggetto. Risposta HTTP: %d";
 
 /* (No Comment) */
 "Failed to request to execute command" = "Errore nella richiesta di esecuzione del comando";
@@ -253,6 +265,9 @@
 /* Printer is Offline */
 "Offline" = "Offline";
 
+/* Siri suggested phrase */
+"Pause current print job" = "Sospendi la stampa corrente su %@";
+
 /* (No Comment) */
 "Pause Job" = "Sospendi";
 
@@ -274,8 +289,17 @@
 /* (No Comment) */
 "Pull down to refresh" = "Trascina in basso per aggiornare";
 
+/* Siri suggested phrase */
+"Remaining time current print job" = "Tempo rimanente su %@";
+
+/* Siri suggested phrase */
+"Restart current print job" = "Ricomincia la stampa corrente su %@";
+
 /* (No Comment) */
 "Restart Job" = "Ricomincia";
+
+/* Siri suggested phrase */
+"Resume current print job" = "Riprendi la stampa corrente su %@";
 
 /* (No Comment) */
 "Resume Job" = "Riprendi";
@@ -335,6 +359,12 @@
 
 /* (No Comment) */
 "Upload failed" = "Errore nel caricamento";
+
+/* Siri suggested phrase */
+"Warm up printer bed" = "Riscalda il piatto della stampante %@";
+
+/* Siri suggested phrase */
+"Warm up printer extruder" = "Riscalda l'estrusore della stampante %@";
 
 /* (No Comment) */
 "Warning" = "Attenzione";
