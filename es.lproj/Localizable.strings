@@ -62,6 +62,9 @@
 "Confirm intentions deletion" = "Está a punto de eliminar todos los accesos directos de Siri de la aplicación. ¿Continuar?";
 
 /* (No Comment) */
+"Confirm intentions regeneration" = "Estás a punto de eliminar y regenerar todos los accesos directos de Siri de la aplicación. ¿Continuar?";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Apagar. ¿Continuar?";
 
 /* (No Comment) */

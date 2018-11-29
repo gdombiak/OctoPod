@@ -161,7 +161,7 @@ class IntentsDonations {
     // MARK: - Delete functions
 
     static func deletePrinterIntents(printer: Printer) {
-        INInteraction.delete(with: "\(GROUP_IDENTIFIER).\(printer.objectID)") { (error: Error?) in
+        INInteraction.delete(with: groupIdentifier(printer: printer)) { (error: Error?) in
             if let error = error {
                 NSLog("Failed to delete donated interactions for printer \(printer.name). Error: \(error.localizedDescription)")
             } else {
@@ -185,7 +185,7 @@ class IntentsDonations {
     fileprivate class func donateIntent(intent: INIntent, printer: Printer, identifierSuffix: String) {
         let interaction = INInteraction(intent: intent, response: nil)
         interaction.identifier = "\(GROUP_IDENTIFIER).\(identifierSuffix)"
-        interaction.groupIdentifier = "\(GROUP_IDENTIFIER).\(printer.objectID)"
+        interaction.groupIdentifier = groupIdentifier(printer: printer)
 
         interaction.donate { (error) in
             if let error = error {
@@ -194,6 +194,9 @@ class IntentsDonations {
                 NSLog("Successfully donated interaction")
             }
         }
-
+    }
+    
+    fileprivate class func groupIdentifier(printer: Printer) -> String {
+        return "\(GROUP_IDENTIFIER).\(printer.objectID.uriRepresentation())"
     }
 }

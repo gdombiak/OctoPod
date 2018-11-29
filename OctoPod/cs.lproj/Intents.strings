@@ -8,7 +8,7 @@
 "2TreiD" = "Nastavit teplotu trysky na ${temperature}";
 
 /* (No Comment) */
-"3eH6cZ" = "Nezdařilo se získat informaci o zbývajícím čase";
+"3eH6cZ" = "Nezdařilo se získat informaci o zbývajícím čase (${statusCode})";
 
 /* (No Comment) */
 "5MXcd7" = "Zchladit podložku";
@@ -23,7 +23,7 @@
 "6vtMLs" = "Tisk restartován";
 
 /* (No Comment) */
-"8tTCjD" = "Nezdařilo se zrušit tisk";
+"8tTCjD" = "Nezdařilo se zrušit tisk (${statusCode})";
 
 /* (No Comment) */
 "9fJEVs" = "Zchladit trysku";
@@ -140,7 +140,7 @@
 "Rjw5oo" = "${printer}";
 
 /* (No Comment) */
-"rmKSv6" = "Nezdařilo se nastavit teplotu trysky";
+"rmKSv6" = "Nezdařilo se nastavit teplotu trysky (${statusCode})";
 
 /* (No Comment) */
 "RrOrgy" = "Zrušit tisk";
@@ -152,7 +152,7 @@
 "SRDf6Q" = "Teplota trysky byla nastavena na ${temperature}";
 
 /* (No Comment) */
-"sRkyIL" = "Nezdařilo se restartovat tisk";
+"sRkyIL" = "Nezdařilo se restartovat tisk (${statusCode})";
 
 /* (No Comment) */
 "tKDODp" = "Zbývající čas tisku";
@@ -164,7 +164,7 @@
 "UiDrAq" = "Zchladit trysku";
 
 /* (No Comment) */
-"uoT27A" = "Nezdařilo se nastavit teplotu podložky";
+"uoT27A" = "Nezdařilo se nastavit teplotu podložky (${statusCode})";
 
 /* (No Comment) */
 "VDz0Q1" = "${printer}";
@@ -179,13 +179,13 @@
 "WI2oQf" = "Zaslat Zbývající čas";
 
 /* (No Comment) */
-"WLkRl0" = "Nezdařilo se pokračovat v tisku";
+"WLkRl0" = "Nezdařilo se pokračovat v tisku (${statusCode})";
 
 /* (No Comment) */
 "XfWmGt" = "Pokračovat v tisku";
 
 /* (No Comment) */
-"xSARU0" = "Nezdařilo se pozastavit tisk";
+"xSARU0" = "Nezdařilo se pozastavit tisk (${statusCode})";
 
 /* (No Comment) */
 "XSZUyJ" = "${printer}";

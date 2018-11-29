@@ -4,7 +4,7 @@ import UIKit
 class IntentsController {
     
     @available(iOS 12.0, *)
-    func bedTemperature(intent: SetBedTempIntent, callback: @escaping (Bool, Int?) -> Void) {
+    func bedTemperature(intent: SetBedTempIntent, callback: @escaping (Bool, Int?, Int) -> Void) {
         if let hostname = intent.hostname, let apiKey = intent.apiKey {
             let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
             var newTarget: Int = 0
@@ -13,15 +13,15 @@ class IntentsController {
                 newTarget = tempInt <= 0 ? 0 : tempInt
             }
             restClient.bedTargetTemperature(newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                callback(requested, newTarget)
+                callback(requested, newTarget, response.statusCode)
             }
         } else {
-            callback(false, nil)
+            callback(false, nil, -1)
         }
     }
     
     @available(iOS 12.0, *)
-    func toolTemperature(intent: SetToolTempIntent, callback: @escaping (Bool, Int?) -> Void) {
+    func toolTemperature(intent: SetToolTempIntent, callback: @escaping (Bool, Int?, Int) -> Void) {
         if let hostname = intent.hostname, let apiKey = intent.apiKey {
             let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
             var toolNumber = 0
@@ -34,78 +34,78 @@ class IntentsController {
                 newTarget = tempInt <= 0 ? 0 : tempInt
             }
             restClient.toolTargetTemperature(toolNumber: toolNumber, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                callback(requested, newTarget)
+                callback(requested, newTarget, response.statusCode)
             }
         } else {
-            callback(false, nil)
+            callback(false, nil, -1)
         }
     }
     
     @available(iOS 12.0, *)
-    func pauseJob(intent: PauseJobIntent, callback: @escaping (Bool) -> Void) {
+    func pauseJob(intent: PauseJobIntent, callback: @escaping (Bool, Int) -> Void) {
         if let hostname = intent.hostname, let apiKey = intent.apiKey {
             let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
             restClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                callback(requested)
+                callback(requested, response.statusCode)
             }
         } else {
-            callback(false)
+            callback(false, -1)
         }
     }
     
     @available(iOS 12.0, *)
-    func resumeJob(intent: ResumeJobIntent, callback: @escaping (Bool) -> Void) {
+    func resumeJob(intent: ResumeJobIntent, callback: @escaping (Bool, Int) -> Void) {
         if let hostname = intent.hostname, let apiKey = intent.apiKey {
             let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
             restClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                callback(requested)
+                callback(requested, response.statusCode)
             }
         } else {
-            callback(false)
+            callback(false, -1)
         }
     }
     
     @available(iOS 12.0, *)
-    func cancelJob(intent: CancelJobIntent, callback: @escaping (Bool) -> Void) {
+    func cancelJob(intent: CancelJobIntent, callback: @escaping (Bool, Int) -> Void) {
         if let hostname = intent.hostname, let apiKey = intent.apiKey {
             let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
             restClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                callback(requested)
+                callback(requested, response.statusCode)
             }
         } else {
-            callback(false)
+            callback(false, -1)
         }
     }
     
     @available(iOS 12.0, *)
-    func restartJob(intent: RestartJobIntent, callback: @escaping (Bool) -> Void) {
+    func restartJob(intent: RestartJobIntent, callback: @escaping (Bool, Int) -> Void) {
         if let hostname = intent.hostname, let apiKey = intent.apiKey {
             let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
             restClient.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                callback(requested)
+                callback(requested, response.statusCode)
             }
         } else {
-            callback(false)
+            callback(false, -1)
         }
     }
     
     @available(iOS 12.0, *)
-    func remainingTime(intent: RemainingTimeIntent, callback: @escaping (Bool, String?) -> Void) {
+    func remainingTime(intent: RemainingTimeIntent, callback: @escaping (Bool, String?, Int) -> Void) {
         if let hostname = intent.hostname, let apiKey = intent.apiKey {
             let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
-            restClient.currentJobInfo { (result: NSObject?, error: Error?, response :HTTPURLResponse) in
+            restClient.currentJobInfo { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                 if let result = result as? Dictionary<String, Any>, let progress = result["progress"] as? Dictionary<String, Any> {
                     if let printTimeLeft = progress["printTimeLeft"] as? Int {
-                        callback(true, self.secondsToTimeLeft(seconds: printTimeLeft))
+                        callback(true, self.secondsToTimeLeft(seconds: printTimeLeft), response.statusCode)
                     } else {
-                        callback(true, "0")
+                        callback(true, "0", response.statusCode)
                     }
                 } else {
-                    callback(false, nil)
+                    callback(false, nil, response.statusCode)
                 }
             }
         } else {
-            callback(false, nil)
+            callback(false, nil, -1)
         }
     }
     

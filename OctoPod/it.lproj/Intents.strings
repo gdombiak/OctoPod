@@ -8,7 +8,7 @@
 "2TreiD" = "Imposta la temperatura dell'estrusore su ${temperature}";
 
 /* (No Comment) */
-"3eH6cZ" = "Errore nell'ottenere le informazioni sul tempo rimanente";
+"3eH6cZ" = "Errore nell'ottenere le informazioni sul tempo rimanente (${statusCode})";
 
 /* (No Comment) */
 "5MXcd7" = "Raffredda il piatto";
@@ -23,7 +23,7 @@
 "6vtMLs" = "Stampa riavviata";
 
 /* (No Comment) */
-"8tTCjD" = "Errore nell'annullamento della stampa";
+"8tTCjD" = "Errore nell'annullamento della stampa (${statusCode})";
 
 /* (No Comment) */
 "9fJEVs" = "Raffredda l'estrusore";
@@ -140,7 +140,7 @@
 "Rjw5oo" = "${printer}";
 
 /* (No Comment) */
-"rmKSv6" = "Errore nell'impostazione della temperatura dell'estrusore";
+"rmKSv6" = "Errore nell'impostazione della temperatura dell'estrusore (${statusCode})";
 
 /* (No Comment) */
 "RrOrgy" = "Annulla la stampa";
@@ -152,7 +152,7 @@
 "SRDf6Q" = "La temperatura dell'estrusore è stata impostata su ${temperature}";
 
 /* (No Comment) */
-"sRkyIL" = "Errore nel riavviare la stampa";
+"sRkyIL" = "Errore nel riavviare la stampa (${statusCode})";
 
 /* (No Comment) */
 "tKDODp" = "Tempo di stampa rimanente";
@@ -164,7 +164,7 @@
 "UiDrAq" = "Raffredda l'estrusore";
 
 /* (No Comment) */
-"uoT27A" = "Errore nell'impostazione della temperatura del piatto";
+"uoT27A" = "Errore nell'impostazione della temperatura del piatto (${statusCode})";
 
 /* (No Comment) */
 "VDz0Q1" = "${printer}";
@@ -179,13 +179,13 @@
 "WI2oQf" = "Restituisci il tempo di stampa rimasto";
 
 /* (No Comment) */
-"WLkRl0" = "Errore nel riprendere la stampa";
+"WLkRl0" = "Errore nel riprendere la stampa (${statusCode})";
 
 /* (No Comment) */
 "XfWmGt" = "Riprendi la stampa in corso";
 
 /* (No Comment) */
-"xSARU0" = "Errore nel sospendere la stampa";
+"xSARU0" = "Errore nel sospendere la stampa (${statusCode})";
 
 /* (No Comment) */
 "XSZUyJ" = "${printer}";

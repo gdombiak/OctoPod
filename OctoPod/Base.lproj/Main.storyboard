@@ -1674,7 +1674,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZE-yh-Myr">
                                                     <rect key="frame" x="2" y="7" width="371" height="30"/>
-                                                    <state key="normal" title="Delete Siri shortcuts"/>
+                                                    <state key="normal" title="Delete shortcuts"/>
                                                     <connections>
                                                         <action selector="deleteIntentsChanged:" destination="Orp-dU-Wpa" eventType="touchUpInside" id="ioZ-Vh-SWK"/>
                                                     </connections>
@@ -1694,7 +1694,30 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manually delete recorded Siri shortcuts after delete" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iev-hm-Dap">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaG-XM-gnj">
+                                                    <rect key="frame" x="2" y="10" width="371" height="30"/>
+                                                    <state key="normal" title="Regenerate default shortcuts"/>
+                                                    <connections>
+                                                        <action selector="deleteIntentsChanged:" destination="Orp-dU-Wpa" eventType="touchUpInside" id="WVv-Fk-uDf"/>
+                                                        <action selector="regenerateIntentChanged:" destination="Orp-dU-Wpa" eventType="touchUpInside" id="SC1-bB-VQP"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="aaG-XM-gnj" secondAttribute="trailing" constant="2" id="cEP-F2-8vd"/>
+                                                <constraint firstItem="aaG-XM-gnj" firstAttribute="centerY" secondItem="lVy-0s-WUL" secondAttribute="centerY" id="oaL-y8-Huj"/>
+                                                <constraint firstItem="aaG-XM-gnj" firstAttribute="leading" secondItem="lVy-0s-WUL" secondAttribute="leading" constant="2" id="ySb-L8-yb5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="5gf-Ti-Zs1">
+                                        <rect key="frame" x="0.0" y="129" width="375" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5gf-Ti-Zs1" id="HHX-rh-CjC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manually delete recorded Siri shortcuts after delete" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVr-c6-T8p">
                                                     <rect key="frame" x="17" y="17" width="341" height="16"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <color key="textColor" red="0.4705916007" green="0.62008575769999996" blue="0.85567158460000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1702,9 +1725,9 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="iev-hm-Dap" secondAttribute="trailing" constant="1" id="2vV-gX-udu"/>
-                                                <constraint firstItem="iev-hm-Dap" firstAttribute="centerY" secondItem="lVy-0s-WUL" secondAttribute="centerY" id="DW2-6J-3yE"/>
-                                                <constraint firstItem="iev-hm-Dap" firstAttribute="leading" secondItem="lVy-0s-WUL" secondAttribute="leadingMargin" constant="1" id="yWU-uq-3SQ"/>
+                                                <constraint firstItem="EVr-c6-T8p" firstAttribute="centerY" secondItem="HHX-rh-CjC" secondAttribute="centerY" id="eTH-Sh-mof"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="EVr-c6-T8p" secondAttribute="trailing" constant="1" id="mCI-15-Eqi"/>
+                                                <constraint firstItem="EVr-c6-T8p" firstAttribute="leading" secondItem="HHX-rh-CjC" secondAttribute="leadingMargin" constant="1" id="plp-2p-tFJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1713,7 +1736,7 @@
                             <tableViewSection id="ggZ-8l-g0l">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="Iim-Hq-a1P">
-                                        <rect key="frame" x="0.0" y="165" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="215" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Iim-Hq-a1P" id="gDg-VE-fWg">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
@@ -1734,7 +1757,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="kBP-Gb-N2l">
-                                        <rect key="frame" x="0.0" y="215" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="265" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kBP-Gb-N2l" id="453-as-96V">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
@@ -1764,6 +1787,7 @@
                     </tableView>
                     <connections>
                         <outlet property="deleteIntentsButton" destination="oZE-yh-Myr" id="Sc5-Sa-Y2J"/>
+                        <outlet property="regenerateIntentsButton" destination="aaG-XM-gnj" id="RIg-QE-Dnt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uES-oT-dAg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3054,7 +3078,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="517"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="file_cell" textLabel="naE-gB-aKG" detailTextLabel="43o-rw-PJg" style="IBUITableViewCellStyleSubtitle" id="kXZ-Zk-VaP">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="file_cell" textLabel="naE-gB-aKG" detailTextLabel="43o-rw-PJg" style="IBUITableViewCellStyleSubtitle" id="kXZ-Zk-VaP">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kXZ-Zk-VaP" id="5kM-z2-yTF">
@@ -3082,7 +3106,7 @@
                                             <segue destination="GJo-uu-Qmb" kind="show" identifier="gotoFileDetails" id="06R-xh-V19"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="folder_cell" textLabel="twU-Rc-Faw" imageView="uFu-gF-1LR" style="IBUITableViewCellStyleDefault" id="KDo-ir-oWQ" userLabel="folder_cell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="folder_cell" textLabel="twU-Rc-Faw" imageView="uFu-gF-1LR" style="IBUITableViewCellStyleDefault" id="KDo-ir-oWQ" userLabel="folder_cell">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KDo-ir-oWQ" id="eXx-rf-HYn">

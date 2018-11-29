@@ -169,7 +169,7 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to set bed's temperature</string>
+						<string>Failed to set bed's temperature (${statusCode})</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>uoT27A</string>
 						<key>INIntentResponseCodeName</key>
@@ -189,7 +189,7 @@
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
-				<integer>2</integer>
+				<integer>4</integer>
 				<key>INIntentResponseParameters</key>
 				<array>
 					<dict>
@@ -201,6 +201,18 @@
 						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>2</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Integer</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>statusCode</string>
+						<key>INIntentResponseParameterSupportsMultipleValues</key>
+						<false/>
+						<key>INIntentResponseParameterTag</key>
+						<integer>4</integer>
 						<key>INIntentResponseParameterType</key>
 						<string>Integer</string>
 					</dict>
@@ -416,7 +428,7 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to set extruder's temperature</string>
+						<string>Failed to set extruder's temperature (${statusCode})</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>rmKSv6</string>
 						<key>INIntentResponseCodeName</key>
@@ -436,7 +448,7 @@
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
-				<integer>2</integer>
+				<integer>4</integer>
 				<key>INIntentResponseParameters</key>
 				<array>
 					<dict>
@@ -448,6 +460,18 @@
 						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>2</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Integer</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>statusCode</string>
+						<key>INIntentResponseParameterSupportsMultipleValues</key>
+						<false/>
+						<key>INIntentResponseParameterTag</key>
+						<integer>4</integer>
 						<key>INIntentResponseParameterType</key>
 						<string>Integer</string>
 					</dict>
@@ -579,7 +603,7 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to pause job</string>
+						<string>Failed to pause job (${statusCode})</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>xSARU0</string>
 						<key>INIntentResponseCodeName</key>
@@ -599,9 +623,22 @@
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>INIntentResponseParameters</key>
-				<array/>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>statusCode</string>
+						<key>INIntentResponseParameterSupportsMultipleValues</key>
+						<false/>
+						<key>INIntentResponseParameterTag</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Integer</string>
+					</dict>
+				</array>
 			</dict>
 			<key>INIntentRestrictions</key>
 			<integer>1</integer>
@@ -729,7 +766,7 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to resume job</string>
+						<string>Failed to resume job (${statusCode})</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>WLkRl0</string>
 						<key>INIntentResponseCodeName</key>
@@ -749,9 +786,22 @@
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>INIntentResponseParameters</key>
-				<array/>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>statusCode</string>
+						<key>INIntentResponseParameterSupportsMultipleValues</key>
+						<false/>
+						<key>INIntentResponseParameterTag</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Integer</string>
+					</dict>
+				</array>
 			</dict>
 			<key>INIntentRestrictions</key>
 			<integer>1</integer>
@@ -879,7 +929,7 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to cancel job</string>
+						<string>Failed to cancel job (${statusCode})</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>8tTCjD</string>
 						<key>INIntentResponseCodeName</key>
@@ -899,9 +949,22 @@
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>INIntentResponseParameters</key>
-				<array/>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>statusCode</string>
+						<key>INIntentResponseParameterSupportsMultipleValues</key>
+						<false/>
+						<key>INIntentResponseParameterTag</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Integer</string>
+					</dict>
+				</array>
 			</dict>
 			<key>INIntentRestrictions</key>
 			<integer>1</integer>
@@ -1029,7 +1092,7 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to restart job</string>
+						<string>Failed to restart job (${statusCode})</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>sRkyIL</string>
 						<key>INIntentResponseCodeName</key>
@@ -1049,9 +1112,22 @@
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>INIntentResponseParameters</key>
-				<array/>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>statusCode</string>
+						<key>INIntentResponseParameterSupportsMultipleValues</key>
+						<false/>
+						<key>INIntentResponseParameterTag</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Integer</string>
+					</dict>
+				</array>
 			</dict>
 			<key>INIntentRestrictions</key>
 			<integer>1</integer>
@@ -1179,7 +1255,7 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to get remaing time information</string>
+						<string>Failed to get remaing time information (${statusCode})</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>3eH6cZ</string>
 						<key>INIntentResponseCodeName</key>
@@ -1199,7 +1275,7 @@
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
-				<integer>1</integer>
+				<integer>4</integer>
 				<key>INIntentResponseParameters</key>
 				<array>
 					<dict>
@@ -1213,6 +1289,18 @@
 						<integer>1</integer>
 						<key>INIntentResponseParameterType</key>
 						<string>String</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>statusCode</string>
+						<key>INIntentResponseParameterSupportsMultipleValues</key>
+						<false/>
+						<key>INIntentResponseParameterTag</key>
+						<integer>4</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Integer</string>
 					</dict>
 				</array>
 			</dict>

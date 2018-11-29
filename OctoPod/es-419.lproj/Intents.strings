@@ -8,7 +8,7 @@
 "2TreiD" = "Establecer temperatura del extrusor a ${temperature}";
 
 /* (No Comment) */
-"3eH6cZ" = "Falla al obtener información de tiempo restante";
+"3eH6cZ" = "Falla al obtener información de tiempo restante (${statusCode})";
 
 /* (No Comment) */
 "5MXcd7" = "Enfriar cama";
@@ -23,7 +23,7 @@
 "6vtMLs" = "Trabajo reiniciado";
 
 /* (No Comment) */
-"8tTCjD" = "Falla al cancelar el trabajo";
+"8tTCjD" = "Falla al cancelar el trabajo (${statusCode})";
 
 /* (No Comment) */
 "9fJEVs" = "Enfriar extrusora";
@@ -140,7 +140,7 @@
 "Rjw5oo" = "${printer}";
 
 /* (No Comment) */
-"rmKSv6" = "Falla al establecer temperatura del extrusor";
+"rmKSv6" = "Falla al establecer temperatura del extrusor (${statusCode})";
 
 /* (No Comment) */
 "RrOrgy" = "Cancelar impresión";
@@ -152,7 +152,7 @@
 "SRDf6Q" = "Temperatura del extrusor se ajustó a ${temperature}";
 
 /* (No Comment) */
-"sRkyIL" = "Falla al reiniciar trabajo";
+"sRkyIL" = "Falla al reiniciar trabajo (${statusCode})";
 
 /* (No Comment) */
 "tKDODp" = "Tiempo restante de impresión";
@@ -164,7 +164,7 @@
 "UiDrAq" = "Enfriar extrusora";
 
 /* (No Comment) */
-"uoT27A" = "Fallal establecer la temperatura de la cama";
+"uoT27A" = "Fallal establecer la temperatura de la cama (${statusCode})";
 
 /* (No Comment) */
 "VDz0Q1" = "${printer}";
@@ -179,13 +179,13 @@
 "WI2oQf" = "Tiempo de impresión restante";
 
 /* (No Comment) */
-"WLkRl0" = "Falla al reanudar el trabajo";
+"WLkRl0" = "Falla al reanudar el trabajo (${statusCode})";
 
 /* (No Comment) */
 "XfWmGt" = "Continuar impresión";
 
 /* (No Comment) */
-"xSARU0" = "Error al suspender el trabajo";
+"xSARU0" = "Error al suspender el trabajo (${statusCode})";
 
 /* (No Comment) */
 "XSZUyJ" = "${printer}";

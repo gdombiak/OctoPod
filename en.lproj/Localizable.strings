@@ -140,6 +140,7 @@
 "Failed to get system commands" = "Failed to get system commands";
 
 "Confirm intentions deletion" = "You are about to delete all Siri shortcuts of the app. Proceed?";
+"Confirm intentions regeneration" = "You are about to delete and regenerate all Siri shortcuts of the app. Proceed?";
 "Warm up printer bed" = "Warm up printer bed %@";
 "Cool down printer bed" = "Cool down printer bed %@";
 "Warm up printer extruder" = "Warm up printer extruder %@";

@@ -163,6 +163,9 @@
 /* Class = "UIButton"; normalTitle = "Proceed"; ObjectID = "erX-tJ-GVo"; */
 "erX-tJ-GVo.normalTitle" = "Pokračovat";
 
+/* Class = "UILabel"; text = "Manually delete recorded Siri shortcuts after delete"; ObjectID = "EVr-c6-T8p"; */
+"EVr-c6-T8p.text" = "Ručně smažte nahrané zkratky Siri po kliknutí na Smazat zkratky Siri";
+
 /* Class = "UITableViewSection"; headerTitle = "Lock Mode"; ObjectID = "eXf-GR-uL9"; */
 "eXf-GR-uL9.headerTitle" = "Uzamčený režim";
 
@@ -259,9 +262,6 @@
 /* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[3] = "100"; ObjectID = "hzK-Nf-sCi"; */
 "hzK-Nf-sCi.segmentTitles[3]" = "100";
 
-/* Class = "UILabel"; text = "Manually delete recorded Siri shortcuts after delete"; ObjectID = "iev-hm-Dap"; */
-"iev-hm-Dap.text" = "Ručně smažte nahrané zkratky Siri po kliknutí na Smazat zkratky Siri";
-
 /* Class = "UILabel"; text = "Control Power"; ObjectID = "j09-72-h0o"; */
 "j09-72-h0o.text" = "Ovládání nápětí";
 
@@ -349,7 +349,7 @@
 /* Class = "UILabel"; text = "File"; ObjectID = "OYG-ih-yQg"; */
 "OYG-ih-yQg.text" = "Soubor";
 
-/* Class = "UIButton"; normalTitle = "Delete Siri shortcuts"; ObjectID = "oZE-yh-Myr"; */
+/* Class = "UIButton"; normalTitle = "Delete shortcuts"; ObjectID = "oZE-yh-Myr"; */
 "oZE-yh-Myr.normalTitle" = "Smazat zkratky Siri";
 
 /* Class = "UITableViewController"; title = "Prompts"; ObjectID = "oZw-P5-oVG"; */
