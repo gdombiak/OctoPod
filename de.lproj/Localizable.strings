@@ -146,7 +146,7 @@
 "Failed to request to print file" = "Anfrage Datei drucken gescheitert";
 
 /* (No Comment) */
-"Failed to request to retract" = "Anfrage einziehen gescheitert ";
+"Failed to request to retract" = "Anfrage einziehen gescheitert";
 
 /* (No Comment) */
 "Failed to request to turn power off" = "Anfrage Spannung ausschalten gescheitert";
@@ -167,7 +167,7 @@
 "Failed to set new feed rate" = "Neue Vorschubgeschwindigkeit nicht eingestellt";
 
 /* (No Comment) */
-"Failed to set new flow rate" = "Neue Fließgeschwindigkeit nicht eingestellt ";
+"Failed to set new flow rate" = "Neue Fließgeschwindigkeit nicht eingestellt";
 
 /* (No Comment) */
 "Failed to upload file" = "Datei konnte nicht hochgeladen werden";

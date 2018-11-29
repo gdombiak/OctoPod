@@ -236,7 +236,7 @@
 "Notify failed cancel job" = "Kunne ikke be om å kansellere jobb";
 
 /* (No Comment) */
-"Notify failed pause job" = "Kunne ikke be om å pause jobb ";
+"Notify failed pause job" = "Kunne ikke be om å pause jobb";
 
 /* (No Comment) */
 "Notify failed print job again" = "Kunne ikke be om å skrive ut jobben igjen";

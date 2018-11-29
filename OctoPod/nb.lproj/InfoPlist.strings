@@ -1,3 +1,6 @@
+/* Bundle name */
+"CFBundleName" = "$(PRODUCT_NAME)";
+
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Vi trenger tilgang til kameraet for å skanne QR-kode";
 

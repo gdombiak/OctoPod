@@ -32,7 +32,7 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string>for printer ${printer}</string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>faEYF1</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
@@ -47,7 +47,7 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string>for printer ${printer}</string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>1hYwNn</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
@@ -62,7 +62,7 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string>for printer ${printer}</string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>XSZUyJ</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
@@ -77,7 +77,7 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string>for printer ${printer}</string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>ysPUHg</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
@@ -237,7 +237,7 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string>for printer ${printer}</string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>rFHPr4</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
@@ -252,7 +252,7 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string>for printer ${printer}</string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>e1wTgz</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
@@ -267,7 +267,7 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string>for printer ${printer}</string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>9GvkpA</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
@@ -282,7 +282,7 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string>for printer ${printer}</string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>bxTFR5</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
@@ -297,7 +297,7 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string>for printer ${printer}</string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>AboVUn</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
@@ -312,7 +312,7 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string>for printer ${printer}</string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>L46ZKt</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
@@ -484,13 +484,13 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>h5gyqq</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>Pause job on ${printer}</string>
+					<string>Pause job</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>fXPS6E</string>
 				</dict>
@@ -499,13 +499,13 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>e7uUxa</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>Pause job on ${printer}</string>
+					<string>Pause job</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>liRVV5</string>
 				</dict>
@@ -634,13 +634,13 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>Rjw5oo</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>Resume job on ${printer}</string>
+					<string>Resume job</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>6k5AFm</string>
 				</dict>
@@ -649,13 +649,13 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>35TwEy</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>Resume job on ${printer}</string>
+					<string>Resume job</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>yQslq9</string>
 				</dict>
@@ -784,13 +784,13 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>PmZlvM</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>Cancel job on ${printer}</string>
+					<string>Cancel job</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>hS5yzH</string>
 				</dict>
@@ -799,13 +799,13 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>vL7cy4</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>Cancel job on ${printer}</string>
+					<string>Cancel job</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>RrOrgy</string>
 				</dict>
@@ -934,13 +934,13 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>VDz0Q1</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>Restart job on ${printer}</string>
+					<string>Restart job</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>662LyZ</string>
 				</dict>
@@ -949,13 +949,13 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>5zZ27Q</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>Restart job on ${printer}</string>
+					<string>Restart job</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>GVOw8B</string>
 				</dict>
@@ -1084,13 +1084,13 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>ZxPx7F</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>Time left on ${printer}</string>
+					<string>Time left</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>VtulLq</string>
 				</dict>
@@ -1099,13 +1099,13 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
+					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>FkSYZt</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>Time left on ${printer}</string>
+					<string>Time left</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>NG7rBh</string>
 				</dict>

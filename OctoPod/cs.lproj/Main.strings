@@ -284,7 +284,7 @@
 "K5o-xJ-EiZ.normalTitle" = "Dovědět se více o Vlastním ovládání";
 
 /* Class = "UILabel"; text = "Enter a valid URL"; ObjectID = "K6d-lk-BaS"; */
-"K6d-lk-BaS.text" = " Zadejte platnou URL adresu";
+"K6d-lk-BaS.text" = "Zadejte platnou URL adresu";
 
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "Soubor";

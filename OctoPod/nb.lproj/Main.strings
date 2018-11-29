@@ -443,7 +443,7 @@
 "UiU-6m-I6P.text" = "60.0 C";
 
 /* Class = "UILabel"; text = "Require passcode to unlock"; ObjectID = "uqf-BP-Wtn"; */
-"uqf-BP-Wtn.text" = "Krev passord for å låse opp ";
+"uqf-BP-Wtn.text" = "Krev passord for å låse opp";
 
 /* Class = "UITableViewSection"; headerTitle = "Connection error details"; ObjectID = "uR6-pA-Rdj"; */
 "uR6-pA-Rdj.headerTitle" = "Tilkoblingsfeil - detaljer";

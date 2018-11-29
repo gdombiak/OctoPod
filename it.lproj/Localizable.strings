@@ -23,7 +23,7 @@
 "Cancel current print job" = "Annulla la stampa corrente su %@";
 
 /* https://github.com/paukstelis/Octoprint-Cancelobject */
-"Cancel Objects" = "Rimuovi oggetti ";
+"Cancel Objects" = "Rimuovi oggetti";
 
 /* (No Comment) */
 "Cannot print this file type" = "Impossibile stampare questo tipo di file";

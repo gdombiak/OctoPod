@@ -2,7 +2,7 @@
 "0Z8n1L" = "Zchladit podložku";
 
 /* (No Comment) */
-"1hYwNn" = "pro tiskárnu ${printer}";
+"1hYwNn" = "${printer}";
 
 /* (No Comment) */
 "2TreiD" = "Nastavit teplotu trysky na ${temperature}";
@@ -14,7 +14,10 @@
 "5MXcd7" = "Zchladit podložku";
 
 /* (No Comment) */
-"6k5AFm" = "Pokračovat v tisku na ${printer}";
+"5zZ27Q" = "${printer}";
+
+/* (No Comment) */
+"6k5AFm" = "Pokračovat v tisku";
 
 /* (No Comment) */
 "6vtMLs" = "Tisk restartován";
@@ -26,22 +29,25 @@
 "9fJEVs" = "Zchladit trysku";
 
 /* (No Comment) */
-"9GvkpA" = "pro tiskárnu ${printer}";
+"9GvkpA" = "${printer}";
 
 /* (No Comment) */
-"662LyZ" = "Restartovat tisk na ${printer}";
+"35TwEy" = "${printer}";
+
+/* (No Comment) */
+"662LyZ" = "Restartovat tisk";
 
 /* (No Comment) */
 "AajpSg" = "Nastavit teplotu trysky ${tool} na ${temperature}";
 
 /* (No Comment) */
-"AboVUn" = "pro tiskárnu ${printer}";
+"AboVUn" = "${printer}";
 
 /* (No Comment) */
 "BWOk7w" = "Nastavit teplotu podložky na ${temperature}";
 
 /* (No Comment) */
-"bxTFR5" = "pro tiskárnu ${printer}";
+"bxTFR5" = "${printer}";
 
 /* (No Comment) */
 "D0kBGr" = "Restartovat probíhající tisk";
@@ -50,31 +56,40 @@
 "doj4NA" = "Nastavit teplotu trysky";
 
 /* (No Comment) */
-"e1wTgz" = "pro tiskárnu ${printer}";
+"e1wTgz" = "${printer}";
+
+/* (No Comment) */
+"e7uUxa" = "${printer}";
 
 /* (No Comment) */
 "EnGz5S" = "Nastavit teplotu podložky na ${temperature}";
 
 /* (No Comment) */
-"faEYF1" = "pro tiskárnu ${printer}";
+"faEYF1" = "${printer}";
+
+/* (No Comment) */
+"FkSYZt" = "${printer}";
 
 /* (No Comment) */
 "fL3sow" = "Přerušit tisk";
 
 /* (No Comment) */
-"fXPS6E" = "Pozastavit tisk na ${printer}";
+"fXPS6E" = "Pozastavit tisk";
 
 /* (No Comment) */
 "FZ3z7Z" = "Nastavit teplotu podložky";
 
 /* (No Comment) */
-"GVOw8B" = "Restartovat tisk na ${printer}";
+"GVOw8B" = "Restartovat tisk";
 
 /* (No Comment) */
 "gx0D0e" = "Tisk zrušen";
 
 /* (No Comment) */
-"hS5yzH" = "Zrušit tisk na ${printer}";
+"h5gyqq" = "${printer}";
+
+/* (No Comment) */
+"hS5yzH" = "Zrušit tisk";
 
 /* (No Comment) */
 "JmhfgL" = "Restartovat probíhající tisk";
@@ -83,10 +98,10 @@
 "Kf7e4Y" = "Pokračovat v tisku";
 
 /* (No Comment) */
-"L46ZKt" = "pro tiskárnu ${printer}";
+"L46ZKt" = "${printer}";
 
 /* (No Comment) */
-"liRVV5" = "Pozastavit tisk na ${printer}";
+"liRVV5" = "Pozastavit tisk";
 
 /* (No Comment) */
 "lrRige" = "Zrušit probíhající tisk";
@@ -98,7 +113,7 @@
 "m9Jgmg" = "Tisk pokračuje";
 
 /* (No Comment) */
-"NG7rBh" = "Zbývající čas na ${printer}";
+"NG7rBh" = "Zbývající čas";
 
 /* (No Comment) */
 "oT6BJN" = "Nastavit teplotu trysky na ${temperature}";
@@ -110,19 +125,25 @@
 "P89qJr" = "Zbývající čas je ${time}";
 
 /* (No Comment) */
-"PppyPP" = "Configured bed's temperature";
+"PmZlvM" = "${printer}";
+
+/* (No Comment) */
+"PppyPP" = "Nastavit teplotu podložky";
 
 /* (No Comment) */
 "QSxXHq" = "Pozastavit probíhající tisk";
 
 /* (No Comment) */
-"rFHPr4" = "pro tiskárnu ${printer}";
+"rFHPr4" = "${printer}";
+
+/* (No Comment) */
+"Rjw5oo" = "${printer}";
 
 /* (No Comment) */
 "rmKSv6" = "Nezdařilo se nastavit teplotu trysky";
 
 /* (No Comment) */
-"RrOrgy" = "Zrušit tisk na ${printer}";
+"RrOrgy" = "Zrušit tisk";
 
 /* (No Comment) */
 "SP4rN6" = "Nastavit teplotu trysky";
@@ -146,7 +167,13 @@
 "uoT27A" = "Nezdařilo se nastavit teplotu podložky";
 
 /* (No Comment) */
-"VtulLq" = "Zbývající čas na ${printer}";
+"VDz0Q1" = "${printer}";
+
+/* (No Comment) */
+"vL7cy4" = "${printer}";
+
+/* (No Comment) */
+"VtulLq" = "Zbývající čas";
 
 /* (No Comment) */
 "WI2oQf" = "Zaslat Zbývající čas";
@@ -161,14 +188,17 @@
 "xSARU0" = "Nezdařilo se pozastavit tisk";
 
 /* (No Comment) */
-"XSZUyJ" = "pro tiskárnu ${printer}";
+"XSZUyJ" = "${printer}";
 
 /* (No Comment) */
-"yQslq9" = "Pokračovat v tisku na ${printer}";
+"yQslq9" = "Pokračovat v tisku";
 
 /* (No Comment) */
-"ysPUHg" = "pro tiskárnu ${printer}";
+"ysPUHg" = "${printer}";
 
 /* (No Comment) */
 "zFUcrX" = "Nastavit teplotu trysky ${tool} na ${temperature}";
+
+/* (No Comment) */
+"ZxPx7F" = "${printer}";
 
