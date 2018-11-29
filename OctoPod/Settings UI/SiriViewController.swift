@@ -24,7 +24,7 @@ class SiriViewController: ThemedStaticUITableViewController {
 
     @IBAction func deleteIntentsChanged(_ sender: Any) {
         showConfirm(message: NSLocalizedString("Confirm intentions deletion", comment: ""), yes: { (UIAlertAction) -> Void in
-            IntentsDonations.deleteAllDonatedIntents()
+            IntentsDonations.deleteAllDonatedIntents(done: nil)
         }, no: { (UIAlertAction) -> Void in
             // Do nothing
         })
@@ -32,8 +32,11 @@ class SiriViewController: ThemedStaticUITableViewController {
     
     @IBAction func regenerateIntentChanged(_ sender: Any) {
         showConfirm(message: NSLocalizedString("Confirm intentions regeneration", comment: ""), yes: { (UIAlertAction) -> Void in
-            IntentsDonations.deleteAllDonatedIntents()
-            IntentsDonations.initIntentsForAllPrinters(printerManager: self.printerManager)
+            IntentsDonations.deleteAllDonatedIntents(done: { (error: Error?) in
+                if error == nil {
+                    IntentsDonations.initIntentsForAllPrinters(printerManager: self.printerManager, force: true)
+                }
+            })
         }, no: { (UIAlertAction) -> Void in
             // Do nothing
         })

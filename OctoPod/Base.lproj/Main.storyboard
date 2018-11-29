@@ -716,7 +716,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="fEh-51-Gvx">
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="fEh-51-Gvx">
                             <rect key="frame" x="0.0" y="149.5" width="375" height="65"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -1698,7 +1698,6 @@
                                                     <rect key="frame" x="2" y="10" width="371" height="30"/>
                                                     <state key="normal" title="Regenerate default shortcuts"/>
                                                     <connections>
-                                                        <action selector="deleteIntentsChanged:" destination="Orp-dU-Wpa" eventType="touchUpInside" id="WVv-Fk-uDf"/>
                                                         <action selector="regenerateIntentChanged:" destination="Orp-dU-Wpa" eventType="touchUpInside" id="SC1-bB-VQP"/>
                                                     </connections>
                                                 </button>
@@ -4328,12 +4327,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="v5H-G8-7sn" userLabel="Footer View">
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="v5H-G8-7sn" userLabel="Footer View">
                             <rect key="frame" x="0.0" y="117.5" width="375" height="65"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel Object plugin requires update" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aka-Ud-zQ7">
-                                    <rect key="frame" x="0.0" y="24" width="375" height="17"/>
+                                    <rect key="frame" x="0.0" y="-8.5" width="375" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>

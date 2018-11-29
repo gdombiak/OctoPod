@@ -146,9 +146,9 @@ class IntentsDonations {
     // for existing OctoPod installations that are running 2.0 or older and updated to 2.1
     // or newer. After this initial initialization, as new printers get added then a donation
     // will be done
-    static func initIntentsForAllPrinters(printerManager: PrinterManager) {
+    static func initIntentsForAllPrinters(printerManager: PrinterManager, force: Bool = false) {
         let defaults = UserDefaults.standard
-        if defaults.bool(forKey: DONATIONS_INITIALIZED) {
+        if defaults.bool(forKey: DONATIONS_INITIALIZED) && !force {
             return
         }
         // Run initialization only once
@@ -170,13 +170,14 @@ class IntentsDonations {
         }
     }
     
-    static func deleteAllDonatedIntents() {
+    static func deleteAllDonatedIntents(done: ((Error?) -> Void)?) {
         INInteraction.deleteAll { (error: Error?) in
             if let error = error {
                 NSLog("Failed to delete all donated interactions. Error: \(error.localizedDescription)")
             } else {
                 NSLog("All donated Interactions deleted")
             }
+            done?(error)
         }
     }
     
