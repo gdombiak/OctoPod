@@ -12,6 +12,5 @@ class RemainingTimeIntentHandler: NSObject, RemainingTimeIntentHandling {
             response.statusCode = httpStatusCode as NSNumber
             completion(response)
         }
-
     }
 }

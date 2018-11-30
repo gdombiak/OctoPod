@@ -42,6 +42,26 @@ class IntentsController {
     }
     
     @available(iOS 12.0, *)
+    func coolDownPrinter(intent: CoolDownPrinterIntent, callback: @escaping (Bool, Int) -> Void) {
+        if let hostname = intent.hostname, let apiKey = intent.apiKey {
+            let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
+            // Cool down extruder 0
+            restClient.toolTargetTemperature(toolNumber: 0, newTarget: 0) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                if requested {
+                    // Request worked so now request to cool down bed
+                    restClient.bedTargetTemperature(newTarget: 0, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                        callback(requested, response.statusCode)
+                    })
+                } else {
+                    callback(requested, response.statusCode)
+                }
+            }
+        } else {
+            callback(false, -1)
+        }
+    }
+    
+    @available(iOS 12.0, *)
     func pauseJob(intent: PauseJobIntent, callback: @escaping (Bool, Int) -> Void) {
         if let hostname = intent.hostname, let apiKey = intent.apiKey {
             let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)

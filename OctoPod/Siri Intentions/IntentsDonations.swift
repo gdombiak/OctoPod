@@ -9,7 +9,7 @@ class IntentsDonations {
     // MARK: - Create functions
 
     static func donateBedTemp(printer: Printer, temperature: Int) {
-        // Intent only available on iOS 12 or neweer
+        // Intent only available on iOS 12 or newer
         if #available(iOS 12.0, *) {
             let intent = SetBedTempIntent()
             intent.printer = printer.name
@@ -29,7 +29,7 @@ class IntentsDonations {
     }
     
     static func donateToolTemp(printer: Printer, tool: Int, temperature: Int) {
-        // Intent only available on iOS 12 or neweer
+        // Intent only available on iOS 12 or newer
         if #available(iOS 12.0, *) {
             let intent = SetToolTempIntent()
             intent.printer = printer.name
@@ -48,9 +48,24 @@ class IntentsDonations {
             donateIntent(intent: intent, printer: printer, identifierSuffix: "Tool")
         }
     }
+    
+    static func donateCoolDownPrinter(printer: Printer) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = CoolDownPrinterIntent()
+            intent.printer = printer.name
+            intent.hostname = printer.hostname
+            intent.apiKey = printer.apiKey
+            intent.username = printer.username
+            intent.password = printer.password
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cool down printer", comment: "Siri suggested phrase"), printer.name)
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "CoolDownPrinter")
+        }
+    }
 
     static func donatePauseJob(printer: Printer) {
-        // Intent only available on iOS 12 or neweer
+        // Intent only available on iOS 12 or newer
         if #available(iOS 12.0, *) {
             let intent = PauseJobIntent()
             intent.printer = printer.name
@@ -65,7 +80,7 @@ class IntentsDonations {
     }
 
     static func donateResumeJob(printer: Printer) {
-        // Intent only available on iOS 12 or neweer
+        // Intent only available on iOS 12 or newer
         if #available(iOS 12.0, *) {
             let intent = ResumeJobIntent()
             intent.printer = printer.name
@@ -80,7 +95,7 @@ class IntentsDonations {
     }
 
     static func donateCancelJob(printer: Printer) {
-        // Intent only available on iOS 12 or neweer
+        // Intent only available on iOS 12 or newer
         if #available(iOS 12.0, *) {
             let intent = CancelJobIntent()
             intent.printer = printer.name
@@ -95,7 +110,7 @@ class IntentsDonations {
     }
     
     static func donateRestartJob(printer: Printer) {
-        // Intent only available on iOS 12 or neweer
+        // Intent only available on iOS 12 or newer
         if #available(iOS 12.0, *) {
             let intent = RestartJobIntent()
             intent.printer = printer.name
@@ -110,7 +125,7 @@ class IntentsDonations {
     }
     
     static func donateRemainingTime(printer: Printer) {
-        // Intent only available on iOS 12 or neweer
+        // Intent only available on iOS 12 or newer
         if #available(iOS 12.0, *) {
             let intent = RemainingTimeIntent()
             intent.printer = printer.name
@@ -132,6 +147,8 @@ class IntentsDonations {
         // Donate cool down extruder (warm up is not suggested since we do not know desired temperatures of user)
         // Do not donate second extruder since we do not know if there is one
         donateToolTemp(printer: printer, tool: 0, temperature: 0)
+        // Donate convenient shortcut for cooling down bed and tool 0 with a single command
+        donateCoolDownPrinter(printer: printer)
         // Donate all job actions
         donatePauseJob(printer: printer)
         donateResumeJob(printer: printer)

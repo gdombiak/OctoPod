@@ -77,6 +77,9 @@
 "Connection failed" = "Error de conexión";
 
 /* Siri suggested phrase */
+"Cool down printer" = "Enfriar impresora";
+
+/* Siri suggested phrase */
 "Cool down printer bed" = "Enfriar cama de la impresora %@";
 
 /* Siri suggested phrase */

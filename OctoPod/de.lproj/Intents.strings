@@ -35,6 +35,9 @@
 "35TwEy" = "${printer}";
 
 /* (No Comment) */
+"80okqO" = "${printer}";
+
+/* (No Comment) */
 "662LyZ" = "Neustart";
 
 /* (No Comment) */
@@ -45,6 +48,9 @@
 
 /* (No Comment) */
 "BWOk7w" = "Stelle Druckbetttemperatur auf $(temperature)";
+
+/* (No Comment) */
+"bXGQKe" = "Drucker abkühlen";
 
 /* (No Comment) */
 "bxTFR5" = "${printer}";
@@ -63,6 +69,9 @@
 
 /* (No Comment) */
 "EnGz5S" = "Stelle Druckbetttemperatur auf $(temperature)";
+
+/* (No Comment) */
+"f8xirF" = "Drucker abkühlen";
 
 /* (No Comment) */
 "faEYF1" = "${printer}";
@@ -110,16 +119,25 @@
 "LVlPuT" = "Laufenden Druckauftrag abbrechen";
 
 /* (No Comment) */
+"m6XJpy" = "Drucker abkühlen fehlgeschlagen (${statusCode})";
+
+/* (No Comment) */
 "m9Jgmg" = "Auftrag fortgesetzt";
 
 /* (No Comment) */
 "NG7rBh" = "Restzeit";
 
 /* (No Comment) */
+"NL98zi" = "Kühlt Druckbett und Düse ab";
+
+/* (No Comment) */
 "oT6BJN" = "Stelle Düsentemperatur auf $(temnperature)";
 
 /* (No Comment) */
 "ovQf6Z" = "Auftrag pausiert";
+
+/* (No Comment) */
+"OWSCSj" = "Drucker abkühlen";
 
 /* (No Comment) */
 "P89qJr" = "Verbleibende Zeit ist $(time)";
@@ -173,6 +191,9 @@
 "vL7cy4" = "${printer}";
 
 /* (No Comment) */
+"VlxGJX" = "${printer}";
+
+/* (No Comment) */
 "VtulLq" = "Restzeit";
 
 /* (No Comment) */
@@ -180,6 +201,9 @@
 
 /* (No Comment) */
 "WLkRl0" = "Auftrag kann nicht fortgesetzt werden (${statusCode})";
+
+/* (No Comment) */
+"wYzz4m" = "Drucker kühlt ab";
 
 /* (No Comment) */
 "XfWmGt" = "Laufenden Druckauftrag fortsetzen";

@@ -32,6 +32,7 @@
 			<key>IntentsRestrictedWhileLocked</key>
 			<array>
 				<string>CancelJobIntent</string>
+				<string>CoolDownPrinterIntent</string>
 				<string>PauseJobIntent</string>
 				<string>RestartJobIntent</string>
 				<string>ResumeJobIntent</string>
@@ -43,6 +44,7 @@
 			<key>IntentsSupported</key>
 			<array>
 				<string>CancelJobIntent</string>
+				<string>CoolDownPrinterIntent</string>
 				<string>PauseJobIntent</string>
 				<string>RemainingTimeIntent</string>
 				<string>RestartJobIntent</string>

@@ -35,6 +35,9 @@
 "35TwEy" = "${printer}";
 
 /* (No Comment) */
+"80okqO" = "${printer}";
+
+/* (No Comment) */
 "662LyZ" = "Reiniciar impresión";
 
 /* (No Comment) */
@@ -45,6 +48,9 @@
 
 /* (No Comment) */
 "BWOk7w" = "Ajuste temperatura de la cama a ${temperature}";
+
+/* (No Comment) */
+"bXGQKe" = "Enfriar impresora";
 
 /* (No Comment) */
 "bxTFR5" = "${printer}";
@@ -63,6 +69,9 @@
 
 /* (No Comment) */
 "EnGz5S" = "Ajuste temperatura de la cama a ${temperature}";
+
+/* (No Comment) */
+"f8xirF" = "Enfriar impresora";
 
 /* (No Comment) */
 "faEYF1" = "${printer}";
@@ -110,16 +119,25 @@
 "LVlPuT" = "Cancelar impresión";
 
 /* (No Comment) */
+"m6XJpy" = "Error al enfriar la impresora (${statusCode})";
+
+/* (No Comment) */
 "m9Jgmg" = "Trabajo reanudado";
 
 /* (No Comment) */
 "NG7rBh" = "Tiempo restante";
 
 /* (No Comment) */
+"NL98zi" = "Enfría cama y extrusora";
+
+/* (No Comment) */
 "oT6BJN" = "Establezca temperatura del extrusor a ${temperature}";
 
 /* (No Comment) */
 "ovQf6Z" = "Trabajo detenido";
+
+/* (No Comment) */
+"OWSCSj" = "Enfriar impresora";
 
 /* (No Comment) */
 "P89qJr" = "Tiempo restante es ${time}";
@@ -173,6 +191,9 @@
 "vL7cy4" = "${printer}";
 
 /* (No Comment) */
+"VlxGJX" = "${printer}";
+
+/* (No Comment) */
 "VtulLq" = "Tiempo restante";
 
 /* (No Comment) */
@@ -180,6 +201,9 @@
 
 /* (No Comment) */
 "WLkRl0" = "Error al reanudar el trabajo (${statusCode})";
+
+/* (No Comment) */
+"wYzz4m" = "Impresora se está enfriando";
 
 /* (No Comment) */
 "XfWmGt" = "Reanudar impresión";

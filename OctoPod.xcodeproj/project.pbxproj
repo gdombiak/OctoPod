@@ -154,6 +154,7 @@
 		3DD69AA121150F43005555ED /* FileUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD69AA021150F43005555ED /* FileUploadViewController.swift */; };
 		3DD9E9572108479000726DFD /* ThemedStaticUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */; };
 		3DD9E95921084BFD00726DFD /* ThemedUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */; };
+		3DDDB20121B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */; };
 		3DE3FE6D2154B9CE000D7D2A /* Plugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3FE6C2154B9CE000D7D2A /* Plugins.swift */; };
 		3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */; };
 		3DF0157621227ACB002B4C14 /* TempHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */; };
@@ -404,6 +405,7 @@
 		3DD69AA021150F43005555ED /* FileUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadViewController.swift; sourceTree = "<group>"; };
 		3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedStaticUITableViewController.swift; sourceTree = "<group>"; };
 		3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUITableViewController.swift; sourceTree = "<group>"; };
+		3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolDownPrinterIntentHandler.swift; sourceTree = "<group>"; };
 		3DE3FE6C2154B9CE000D7D2A /* Plugins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plugins.swift; sourceTree = "<group>"; };
 		3DED77F121AFC5E3009A4CE5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DED77F221AFC5E3009A4CE5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 				3D4064AE21AB75FF000B05F9 /* CancelJobIntentHandler.swift */,
 				3D4064B021AB78F3000B05F9 /* RestartJobIntentHandler.swift */,
 				3D1ECB0721ABB85700691DCB /* RemainingTimeIntentHandler.swift */,
+				3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */,
 			);
 			path = "OctoPod Intent";
 			sourceTree = "<group>";
@@ -1119,6 +1122,7 @@
 				3D450EBC21AB236C0049FBC0 /* SetBedTempIntentHandler.swift in Sources */,
 				3D4064AD21AB75BF000B05F9 /* ResumeJobIntentHandler.swift in Sources */,
 				3D4064A321AB61C9000B05F9 /* Container.swift in Sources */,
+				3DDDB20121B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift in Sources */,
 				3D4064A221AB61C4000B05F9 /* IPPlug.swift in Sources */,
 				3D4064A721AB61F7000B05F9 /* Command.swift in Sources */,
 				3D450EC921AB56F40049FBC0 /* IntentsController.swift in Sources */,

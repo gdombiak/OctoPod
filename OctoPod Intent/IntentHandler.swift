@@ -3,7 +3,6 @@ import Intents
 class IntentHandler: INExtension {
     
     override func handler(for intent: INIntent) -> Any {
-        
         if intent is SetBedTempIntent {
             return SetBedTempIntentHandler()
         } else if intent is SetToolTempIntent {
@@ -18,9 +17,10 @@ class IntentHandler: INExtension {
             return RestartJobIntentHandler()
         } else if intent is RemainingTimeIntent {
             return RemainingTimeIntentHandler()
+        } else if intent is CoolDownPrinterIntent {
+            return CoolDownPrinterIntentHandler()
         } else {
             fatalError("Unhandled intent type: \(intent)")
         }
     }
-    
 }
