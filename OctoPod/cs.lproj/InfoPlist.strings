@@ -1,5 +1,5 @@
 /* Bundle name */
-"CFBundleName" = "$(PRODUCT_NAME}";
+"CFBundleName" = "$(PRODUCT_NAME)";
 
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Je potřeba přístup k fotoaparátu pro naskenování QR kódu";

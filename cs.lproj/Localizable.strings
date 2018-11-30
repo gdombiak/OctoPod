@@ -20,7 +20,7 @@
 "Cancel" = "Zrušit";
 
 /* Siri suggested phrase */
-"Cancel current print job" = "Zrušit aktuální tisk na %@";
+"Cancel current print job" = "Cancel current print job on %@";
 
 /* https://github.com/paukstelis/Octoprint-Cancelobject */
 "Cancel Objects" = "Zrušit Objekty";
@@ -77,10 +77,10 @@
 "Connection failed" = "Připojení se nezdařilo";
 
 /* Siri suggested phrase */
-"Cool down printer bed" = "Zchladit podložku tiskárny %@";
+"Cool down printer bed" = "Cool down printer bed %@";
 
 /* Siri suggested phrase */
-"Cool down printer extruder" = "Zchladit trysku tiskárny %@";
+"Cool down printer extruder" = "Cool down printer extruder %@";
 
 /* Connection to server failed */
 "Could not connect to the server" = "Nelze se připojit k serveru";
@@ -269,7 +269,7 @@
 "Offline" = "Vypnutá";
 
 /* Siri suggested phrase */
-"Pause current print job" = "Pozastavit aktuální tisk na %@";
+"Pause current print job" = "Pause current print job on %@";
 
 /* (No Comment) */
 "Pause Job" = "Pozastavit";
@@ -293,16 +293,16 @@
 "Pull down to refresh" = "Táhněte dolů pro obnovení";
 
 /* Siri suggested phrase */
-"Remaining time current print job" = "Zbývající čas na %@";
+"Remaining time current print job" = "Time left on %@";
 
 /* Siri suggested phrase */
-"Restart current print job" = "Restartovat";
+"Restart current print job" = "Restart current print job on %@";
 
 /* (No Comment) */
 "Restart Job" = "Restartovat";
 
 /* Siri suggested phrase */
-"Resume current print job" = "Restartovat aktuální tisk na %@";
+"Resume current print job" = "Resume current print job on %@";
 
 /* (No Comment) */
 "Resume Job" = "Pokračovat";
@@ -364,10 +364,10 @@
 "Upload failed" = "Nahrávání selhalo";
 
 /* Siri suggested phrase */
-"Warm up printer bed" = "Nahřát podložku tiskárny %@";
+"Warm up printer bed" = "Warm up printer bed %@";
 
 /* Siri suggested phrase */
-"Warm up printer extruder" = "Nahřát trysku tiskárny %@";
+"Warm up printer extruder" = "Warm up printer extruder %@";
 
 /* (No Comment) */
 "Warning" = "Varování";
