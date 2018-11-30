@@ -266,7 +266,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
             NSLog("Alert Please check the credential")
             completionHandler(Foundation.URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)
         } else {
-            let credential = URLCredential(user: self.username!, password: self.password!, persistence: .forSession)
+            let credential = URLCredential(user: self.username ?? "", password: self.password ?? "", persistence: .forSession)
             completionHandler(Foundation.URLSession.AuthChallengeDisposition.useCredential, credential)
         }
     }
