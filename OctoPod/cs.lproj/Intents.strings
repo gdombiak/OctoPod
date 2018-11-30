@@ -35,6 +35,9 @@
 "35TwEy" = "${printer}";
 
 /* (No Comment) */
+"80okqO" = "${printer}";
+
+/* (No Comment) */
 "662LyZ" = "Restartovat tisk";
 
 /* (No Comment) */
@@ -45,6 +48,9 @@
 
 /* (No Comment) */
 "BWOk7w" = "Nastavit teplotu podložky na ${temperature}";
+
+/* (No Comment) */
+"bXGQKe" = "Zchladit tiskárnu";
 
 /* (No Comment) */
 "bxTFR5" = "${printer}";
@@ -63,6 +69,9 @@
 
 /* (No Comment) */
 "EnGz5S" = "Nastavit teplotu podložky na ${temperature}";
+
+/* (No Comment) */
+"f8xirF" = "Zchladit tiskárnu";
 
 /* (No Comment) */
 "faEYF1" = "${printer}";
@@ -110,16 +119,25 @@
 "LVlPuT" = "Zrušit probíhající tisk";
 
 /* (No Comment) */
+"m6XJpy" = "Nezdařilo se zchladit tiskárnu (${statusCode})";
+
+/* (No Comment) */
 "m9Jgmg" = "Tisk pokračuje";
 
 /* (No Comment) */
 "NG7rBh" = "Zbývající čas";
 
 /* (No Comment) */
+"NL98zi" = "Zchladí podložku a trysku";
+
+/* (No Comment) */
 "oT6BJN" = "Nastavit teplotu trysky na ${temperature}";
 
 /* (No Comment) */
 "ovQf6Z" = "Tisk pozastaven";
+
+/* (No Comment) */
+"OWSCSj" = "Zchladit tiskárnu";
 
 /* (No Comment) */
 "P89qJr" = "Zbývající čas je ${time}";
@@ -173,6 +191,9 @@
 "vL7cy4" = "${printer}";
 
 /* (No Comment) */
+"VlxGJX" = "${printer}";
+
+/* (No Comment) */
 "VtulLq" = "Zbývající čas";
 
 /* (No Comment) */
@@ -180,6 +201,9 @@
 
 /* (No Comment) */
 "WLkRl0" = "Nezdařilo se pokračovat v tisku (${statusCode})";
+
+/* (No Comment) */
+"wYzz4m" = "Tiskárna se chladí";
 
 /* (No Comment) */
 "XfWmGt" = "Pokračovat v tisku";

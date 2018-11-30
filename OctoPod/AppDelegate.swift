@@ -37,7 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
 
         // Request permission from the user to use Siri
-        INPreferences.requestSiriAuthorization{ (authStatus: INSiriAuthorizationStatus) in }
+        INPreferences.requestSiriAuthorization{ (authStatus: INSiriAuthorizationStatus) in
+            NSLog("Siri Authorization Status authorized: \(authStatus == INSiriAuthorizationStatus.authorized)")
+        }
 
         // Initialize Siri shortcuts for existing printers (this is a one time operation)
         IntentsDonations.initIntentsForAllPrinters(printerManager: printerManager!)
