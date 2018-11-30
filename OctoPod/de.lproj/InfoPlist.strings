@@ -7,3 +7,6 @@
 /* Privacy - Face ID Usage Description */
 "NSFaceIDUsageDescription" = "Wir benötigen FaceID um die App zu entsperren.";
 
+/* Privacy - Siri Usage Description */
+"NSSiriUsageDescription" = "Steuere den Drucker durch die Benutzung von Siri";
+

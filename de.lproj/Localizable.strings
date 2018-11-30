@@ -19,6 +19,9 @@
 /* (No Comment) */
 "Cancel" = "Abbruch";
 
+/* Siri suggested phrase */
+"Cancel current print job" = "Aktuellen Druck auf %@ abbrechen";
+
 /* https://github.com/paukstelis/Octoprint-Cancelobject */
 "Cancel Objects" = "Objekte abbrechen";
 
@@ -56,6 +59,12 @@
 "Confirm disconnect" = "Möchten Sie die Verbindung zum Drucker trennen?";
 
 /* (No Comment) */
+"Confirm intentions deletion" = "Sie sind dabei alle Siri Verknüpfungen der App zu löschen. Fortsetzen?";
+
+/* (No Comment) */
+"Confirm intentions regeneration" = "Sie sind dabei alle Siri Verknüpfungen aus der app zu entfernen und zu erneuern. Fortsetzen?";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Sie möchten die Steckdose ausschalten. Fortsetzen?";
 
 /* (No Comment) */
@@ -66,6 +75,12 @@
 
 /* (No Comment) */
 "Connection failed" = "Verbindung fehlgeschlagen";
+
+/* Siri suggested phrase */
+"Cool down printer bed" = "Druckbett %@ abkühlen";
+
+/* Siri suggested phrase */
+"Cool down printer extruder" = "Düse abkühlen %@";
 
 /* Connection to server failed */
 "Could not connect to the server" = "Konnte nicht mit dem Server verbinden";
@@ -253,6 +268,9 @@
 /* Printer is Offline */
 "Offline" = "Getrennt";
 
+/* Siri suggested phrase */
+"Pause current print job" = "Aktuellen Druckauftrag an %@ pausieren";
+
 /* (No Comment) */
 "Pause Job" = "Pausieren";
 
@@ -274,8 +292,17 @@
 /* (No Comment) */
 "Pull down to refresh" = "Zum Aktualisieren nach unten ziehen";
 
+/* Siri suggested phrase */
+"Remaining time current print job" = "Verbleibende Zeit an %@";
+
+/* Siri suggested phrase */
+"Restart current print job" = "Aktuellen Druckauftrag neu starten an %@";
+
 /* (No Comment) */
 "Restart Job" = "Neustart";
+
+/* Siri suggested phrase */
+"Resume current print job" = "Aktuellen Druckauftrag fortsetzen an %@";
 
 /* (No Comment) */
 "Resume Job" = "Auftrag fortsetzen";
@@ -335,6 +362,12 @@
 
 /* (No Comment) */
 "Upload failed" = "Hochladen fehlgeschlagen";
+
+/* Siri suggested phrase */
+"Warm up printer bed" = "Druckbett aufheizen %@";
+
+/* Siri suggested phrase */
+"Warm up printer extruder" = "Düse aufheizen %@";
 
 /* (No Comment) */
 "Warning" = "Warnung";

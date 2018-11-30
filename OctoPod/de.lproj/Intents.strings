@@ -1,11 +1,32 @@
 /* (No Comment) */
+"0Z8n1L" = "Druckbett abkühlen";
+
+/* (No Comment) */
 "1hYwNn" = "${printer}";
+
+/* (No Comment) */
+"2TreiD" = "Stelle Düsentemperatur auf $(temnperature)";
+
+/* (No Comment) */
+"3eH6cZ" = "Keine Information über verbleibende Zeit erhalten (${statusCode})";
+
+/* (No Comment) */
+"5MXcd7" = "Druckbett abkühlen";
 
 /* (No Comment) */
 "5zZ27Q" = "${printer}";
 
 /* (No Comment) */
 "6k5AFm" = "Auftrag fortsetzen";
+
+/* (No Comment) */
+"6vtMLs" = "Auftrag neu gestartet";
+
+/* (No Comment) */
+"8tTCjD" = "Auftrag konnte nicht abgebrochen werden (${statusCode})";
+
+/* (No Comment) */
+"9fJEVs" = "Düse abkühlen";
 
 /* (No Comment) */
 "9GvkpA" = "${printer}";
@@ -17,10 +38,22 @@
 "662LyZ" = "Neustart";
 
 /* (No Comment) */
+"AajpSg" = "Stelle die Temperatur von Düse $(tool) auf $(temperature)";
+
+/* (No Comment) */
 "AboVUn" = "${printer}";
 
 /* (No Comment) */
+"BWOk7w" = "Stelle Druckbetttemperatur auf $(temperature)";
+
+/* (No Comment) */
 "bxTFR5" = "${printer}";
+
+/* (No Comment) */
+"D0kBGr" = "Laufenden Druckauftrag neu starten";
+
+/* (No Comment) */
+"doj4NA" = "Temperatur der Düse konfigurieren";
 
 /* (No Comment) */
 "e1wTgz" = "${printer}";
@@ -29,19 +62,40 @@
 "e7uUxa" = "${printer}";
 
 /* (No Comment) */
+"EnGz5S" = "Stelle Druckbetttemperatur auf $(temperature)";
+
+/* (No Comment) */
 "faEYF1" = "${printer}";
 
 /* (No Comment) */
 "FkSYZt" = "${printer}";
 
 /* (No Comment) */
+"fL3sow" = "Laufenden Druckauftrag aussetzen";
+
+/* (No Comment) */
 "fXPS6E" = "Pausieren";
+
+/* (No Comment) */
+"FZ3z7Z" = "Stelle die Temperatur des Druckbetts ein";
 
 /* (No Comment) */
 "GVOw8B" = "Neustart";
 
 /* (No Comment) */
+"gx0D0e" = "Auftrag abgebrochen";
+
+/* (No Comment) */
 "h5gyqq" = "${printer}";
+
+/* (No Comment) */
+"hS5yzH" = "Auftrag abbrechen";
+
+/* (No Comment) */
+"JmhfgL" = "Laufenden Druckauftrag neu starten";
+
+/* (No Comment) */
+"Kf7e4Y" = "Laufenden Druckauftrag fortsetzen";
 
 /* (No Comment) */
 "L46ZKt" = "${printer}";
@@ -50,16 +104,67 @@
 "liRVV5" = "Pausieren";
 
 /* (No Comment) */
+"lrRige" = "Laufenden Druckauftrag abbrechen";
+
+/* (No Comment) */
+"LVlPuT" = "Laufenden Druckauftrag abbrechen";
+
+/* (No Comment) */
+"m9Jgmg" = "Auftrag fortgesetzt";
+
+/* (No Comment) */
 "NG7rBh" = "Restzeit";
 
 /* (No Comment) */
+"oT6BJN" = "Stelle Düsentemperatur auf $(temnperature)";
+
+/* (No Comment) */
+"ovQf6Z" = "Auftrag pausiert";
+
+/* (No Comment) */
+"P89qJr" = "Verbleibende Zeit ist $(time)";
+
+/* (No Comment) */
 "PmZlvM" = "${printer}";
+
+/* (No Comment) */
+"PppyPP" = "Temperatur des Druckbetts konfiguriert";
+
+/* (No Comment) */
+"QSxXHq" = "Druckauftrag pausieren";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
 "Rjw5oo" = "${printer}";
+
+/* (No Comment) */
+"rmKSv6" = "Düsentemperatur konnte nicht eingestellt werden (${statusCode})";
+
+/* (No Comment) */
+"RrOrgy" = "Auftrag abbrechen";
+
+/* (No Comment) */
+"SP4rN6" = "Düsentemperatur konnte nicht eingestellt werden";
+
+/* (No Comment) */
+"SRDf6Q" = "Temperatur der Düse wurde auf $(temperature) gestellt";
+
+/* (No Comment) */
+"sRkyIL" = "Auftrag konnte nicht neu gestartet werden (${statusCode})";
+
+/* (No Comment) */
+"tKDODp" = "Verbleibende Druckzeit";
+
+/* (No Comment) */
+"UC9Zrq" = "Temperatur des Druckbetts wurde auf ${temperature} gestellt";
+
+/* (No Comment) */
+"UiDrAq" = "Düse abkühlen";
+
+/* (No Comment) */
+"uoT27A" = "Temperatur des Druckbetts konnte nicht eingestellt werden (${statusCode})";
 
 /* (No Comment) */
 "VDz0Q1" = "${printer}";
@@ -71,6 +176,18 @@
 "VtulLq" = "Restzeit";
 
 /* (No Comment) */
+"WI2oQf" = "Verbleibende Druckzeit";
+
+/* (No Comment) */
+"WLkRl0" = "Auftrag kann nicht fortgesetzt werden (${statusCode})";
+
+/* (No Comment) */
+"XfWmGt" = "Laufenden Druckauftrag fortsetzen";
+
+/* (No Comment) */
+"xSARU0" = "Auftrag konnte nicht pausiert werden (${statusCode})";
+
+/* (No Comment) */
 "XSZUyJ" = "${printer}";
 
 /* (No Comment) */
@@ -78,6 +195,9 @@
 
 /* (No Comment) */
 "ysPUHg" = "${printer}";
+
+/* (No Comment) */
+"zFUcrX" = "Stelle die Temperatur von Düse $(tool) auf $(temperature)";
 
 /* (No Comment) */
 "ZxPx7F" = "${printer}";
