@@ -1,6 +1,4 @@
 /* Bundle display name */
 "CFBundleDisplayName" = "OctoPod";
 
-/* Bundle name */
-"CFBundleName" = "$(PRODUCT_NAME)";
 

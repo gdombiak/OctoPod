@@ -62,6 +62,9 @@
 "Confirm intentions deletion" = "Stai per eliminare tutte le scorciatoie per Siri dell'app. Procedere?";
 
 /* (No Comment) */
+"Confirm intentions regeneration" = "Stai per eliminare e rigenerare tutte le scorciatoie per siri dell'app. Procedere?";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Stai per spegnere la presa. Procedere?";
 
 /* (No Comment) */
@@ -72,6 +75,9 @@
 
 /* (No Comment) */
 "Connection failed" = "Connessione fallita";
+
+/* Siri suggested phrase */
+"Cool down printer" = "Raffredda stampante";
 
 /* Siri suggested phrase */
 "Cool down printer bed" = "Raffredda il piatto della stampante %@";

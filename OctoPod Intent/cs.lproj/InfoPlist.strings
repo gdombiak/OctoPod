@@ -1,6 +1,2 @@
 /* Bundle display name */
 "CFBundleDisplayName" = "Záměr OctoPodu";
-
-/* Bundle name */
-"CFBundleName" = "$(PRODUCT_NAME)";
-

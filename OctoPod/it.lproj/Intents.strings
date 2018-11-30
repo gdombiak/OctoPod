@@ -35,6 +35,9 @@
 "35TwEy" = "${printer}";
 
 /* (No Comment) */
+"80okqO" = "${printer}";
+
+/* (No Comment) */
 "662LyZ" = "Riavvia la stampa";
 
 /* (No Comment) */
@@ -45,6 +48,9 @@
 
 /* (No Comment) */
 "BWOk7w" = "Imposta la temperatura del piatto su ${temperature}";
+
+/* (No Comment) */
+"bXGQKe" = "Raffredda stampante";
 
 /* (No Comment) */
 "bxTFR5" = "${printer}";
@@ -63,6 +69,9 @@
 
 /* (No Comment) */
 "EnGz5S" = "Imposta la temperatura del piatto su ${temperature}";
+
+/* (No Comment) */
+"f8xirF" = "Raffredda stampante";
 
 /* (No Comment) */
 "faEYF1" = "${printer}";
@@ -110,16 +119,25 @@
 "LVlPuT" = "Annulla la stampa in corso";
 
 /* (No Comment) */
+"m6XJpy" = "Errore nel raffreddamento della stampante (${statusCode})";
+
+/* (No Comment) */
 "m9Jgmg" = "Stampa ripresa";
 
 /* (No Comment) */
 "NG7rBh" = "Tempo rimanente";
 
 /* (No Comment) */
+"NL98zi" = "Raffredda piatto ed estrusore";
+
+/* (No Comment) */
 "oT6BJN" = "Imposta la temperatura dell'estrusore su ${temperature}";
 
 /* (No Comment) */
 "ovQf6Z" = "Stampa sospesa";
+
+/* (No Comment) */
+"OWSCSj" = "Raffredda stampante";
 
 /* (No Comment) */
 "P89qJr" = "Il tempo rimanente è ${time}";
@@ -173,6 +191,9 @@
 "vL7cy4" = "${printer}";
 
 /* (No Comment) */
+"VlxGJX" = "${printer}";
+
+/* (No Comment) */
 "VtulLq" = "Tempo rimanente";
 
 /* (No Comment) */
@@ -180,6 +201,9 @@
 
 /* (No Comment) */
 "WLkRl0" = "Errore nel riprendere la stampa (${statusCode})";
+
+/* (No Comment) */
+"wYzz4m" = "La stampante si sta raffreddando";
 
 /* (No Comment) */
 "XfWmGt" = "Riprendi la stampa in corso";
