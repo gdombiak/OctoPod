@@ -47,3 +47,7 @@ GitHub: https://github.com/gdombiak/OctoPod
 Create an [issue](https://github.com/gdombiak/OctoPod/issues) to discuss ideas or report bugs. We
 love Pull Requests and encourage the community to contribute improvements and bug fixes directly by
 creating [pull requests](https://github.com/gdombiak/OctoPod/pulls)
+
+### Acknowledgement
+
+Thanks to [Xliff Editor](https://xliffedit.com/) for the free license for translating OctoPod.
