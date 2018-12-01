@@ -189,12 +189,15 @@ extension TodayViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Open OctoPod app and display selected printer
-        let url = URL(string: "octopod://\(items[indexPath.row].printerName)")!
-        self.extensionContext?.open(url, completionHandler: { (success) in
-            if (!success) {
-                NSLog("Error: Failed to open app from Today Extension")
-            }
-        })    }
+        if let printerName = items[indexPath.row].printerName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+            let url = URL(string: "octopod://\(printerName)")!
+            self.extensionContext?.open(url, completionHandler: { (success) in
+                if (!success) {
+                    NSLog("Error: Failed to open app from Today Extension")
+                }
+            })
+        }
+    }
 }
 
 struct JobInfo {
