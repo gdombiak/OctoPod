@@ -457,9 +457,6 @@
 /* Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ"; */
 "tzE-Y5-rVZ.text" = "Tiskárny";
 
-/* Class = "UILabel"; text = "Printer changes require manual deletion of recorded shortcuts"; ObjectID = "uaY-8k-0Sa"; */
-"uaY-8k-0Sa.text" = "Změny tiskárny vyžadují ruční smazání nahraných zkratek.";
-
 /* Class = "UILabel"; text = "GCode command"; ObjectID = "uge-6J-pcC"; */
 "uge-6J-pcC.text" = "Příkaz GCode";
 

@@ -1,20 +1,11 @@
 /* (No Comment) */
-"0Z8n1L" = "Druckbett abkühlen";
-
-/* (No Comment) */
-"1hYwNn" = "${printer}";
+"0xUDAM" = "${printer}";
 
 /* (No Comment) */
 "2TreiD" = "Stelle Düsentemperatur auf $(temnperature)";
 
 /* (No Comment) */
 "3eH6cZ" = "Keine Information über verbleibende Zeit erhalten (${statusCode})";
-
-/* (No Comment) */
-"5MXcd7" = "Druckbett abkühlen";
-
-/* (No Comment) */
-"5zZ27Q" = "${printer}";
 
 /* (No Comment) */
 "6k5AFm" = "Auftrag fortsetzen";
@@ -26,34 +17,16 @@
 "8tTCjD" = "Auftrag konnte nicht abgebrochen werden (${statusCode})";
 
 /* (No Comment) */
-"9fJEVs" = "Düse abkühlen";
+"9iz6yx" = "${printer}";
 
 /* (No Comment) */
-"9GvkpA" = "${printer}";
-
-/* (No Comment) */
-"35TwEy" = "${printer}";
-
-/* (No Comment) */
-"80okqO" = "${printer}";
+"9PozHf" = "${printer}";
 
 /* (No Comment) */
 "662LyZ" = "Neustart";
 
 /* (No Comment) */
-"AajpSg" = "Stelle die Temperatur von Düse $(tool) auf $(temperature)";
-
-/* (No Comment) */
-"AboVUn" = "${printer}";
-
-/* (No Comment) */
-"BWOk7w" = "Stelle Druckbetttemperatur auf $(temperature)";
-
-/* (No Comment) */
 "bXGQKe" = "Drucker abkühlen";
-
-/* (No Comment) */
-"bxTFR5" = "${printer}";
 
 /* (No Comment) */
 "D0kBGr" = "Laufenden Druckauftrag neu starten";
@@ -62,19 +35,7 @@
 "doj4NA" = "Temperatur der Düse konfigurieren";
 
 /* (No Comment) */
-"e1wTgz" = "${printer}";
-
-/* (No Comment) */
-"e7uUxa" = "${printer}";
-
-/* (No Comment) */
-"EnGz5S" = "Stelle Druckbetttemperatur auf $(temperature)";
-
-/* (No Comment) */
 "f8xirF" = "Drucker abkühlen";
-
-/* (No Comment) */
-"faEYF1" = "${printer}";
 
 /* (No Comment) */
 "FkSYZt" = "${printer}";
@@ -83,34 +44,22 @@
 "fL3sow" = "Laufenden Druckauftrag aussetzen";
 
 /* (No Comment) */
-"fXPS6E" = "Pausieren";
-
-/* (No Comment) */
 "FZ3z7Z" = "Stelle die Temperatur des Druckbetts ein";
-
-/* (No Comment) */
-"GVOw8B" = "Neustart";
 
 /* (No Comment) */
 "gx0D0e" = "Auftrag abgebrochen";
 
 /* (No Comment) */
-"h5gyqq" = "${printer}";
+"hPlRC4" = "Stelle Druckbetttemperatur auf $(temperature)";
 
 /* (No Comment) */
-"hS5yzH" = "Auftrag abbrechen";
+"ihLqc7" = "Laufenden Druckauftrag aussetzen";
 
 /* (No Comment) */
 "JmhfgL" = "Laufenden Druckauftrag neu starten";
 
 /* (No Comment) */
 "Kf7e4Y" = "Laufenden Druckauftrag fortsetzen";
-
-/* (No Comment) */
-"L46ZKt" = "${printer}";
-
-/* (No Comment) */
-"liRVV5" = "Pausieren";
 
 /* (No Comment) */
 "lrRige" = "Laufenden Druckauftrag abbrechen";
@@ -131,22 +80,19 @@
 "NL98zi" = "Kühlt Druckbett und Düse ab";
 
 /* (No Comment) */
-"oT6BJN" = "Stelle Düsentemperatur auf $(temnperature)";
-
-/* (No Comment) */
 "ovQf6Z" = "Auftrag pausiert";
-
-/* (No Comment) */
-"OWSCSj" = "Drucker abkühlen";
 
 /* (No Comment) */
 "P89qJr" = "Verbleibende Zeit ist $(time)";
 
 /* (No Comment) */
-"PmZlvM" = "${printer}";
+"Pj7mEV" = "Düse abkühlen";
 
 /* (No Comment) */
 "PppyPP" = "Temperatur des Druckbetts konfiguriert";
+
+/* (No Comment) */
+"qLzk1S" = "Druckbett abkühlen";
 
 /* (No Comment) */
 "QSxXHq" = "Druckauftrag pausieren";
@@ -179,10 +125,10 @@
 "UC9Zrq" = "Temperatur des Druckbetts wurde auf ${temperature} gestellt";
 
 /* (No Comment) */
-"UiDrAq" = "Düse abkühlen";
+"uoT27A" = "Temperatur des Druckbetts konnte nicht eingestellt werden (${statusCode})";
 
 /* (No Comment) */
-"uoT27A" = "Temperatur des Druckbetts konnte nicht eingestellt werden (${statusCode})";
+"Vc7DVt" = "Stelle die Temperatur von Düse $(tool) auf $(temperature)";
 
 /* (No Comment) */
 "VDz0Q1" = "${printer}";
@@ -192,9 +138,6 @@
 
 /* (No Comment) */
 "VlxGJX" = "${printer}";
-
-/* (No Comment) */
-"VtulLq" = "Restzeit";
 
 /* (No Comment) */
 "WI2oQf" = "Verbleibende Druckzeit";
@@ -212,17 +155,8 @@
 "xSARU0" = "Auftrag konnte nicht pausiert werden (${statusCode})";
 
 /* (No Comment) */
-"XSZUyJ" = "${printer}";
+"YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yQslq9" = "Auftrag fortsetzen";
-
-/* (No Comment) */
-"ysPUHg" = "${printer}";
-
-/* (No Comment) */
-"zFUcrX" = "Stelle die Temperatur von Düse $(tool) auf $(temperature)";
-
-/* (No Comment) */
-"ZxPx7F" = "${printer}";
+"yZeSdz" = "${printer}";
 
