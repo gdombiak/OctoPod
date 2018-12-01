@@ -175,6 +175,8 @@
 		3DC69BED21804EC000DBE0D5 /* OctoPrintClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC69BEC21804EC000DBE0D5 /* OctoPrintClient.swift */; };
 		3DC69BEE21804F2A00DBE0D5 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292F20E5549B00296D9D /* HTTPClient.swift */; };
 		3DC69BF02180531000DBE0D5 /* PanelInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC69BEF2180531000DBE0D5 /* PanelInterfaceController.swift */; };
+		3DD3C76421B3222200350225 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DD3C76221B3222200350225 /* Localizable.strings */; };
+		3DD3C76721B3222200350225 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DD3C76521B3222200350225 /* InfoPlist.strings */; };
 		3DD69AA121150F43005555ED /* FileUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD69AA021150F43005555ED /* FileUploadViewController.swift */; };
 		3DD9E9572108479000726DFD /* ThemedStaticUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */; };
 		3DD9E95921084BFD00726DFD /* ThemedUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */; };
@@ -442,6 +444,24 @@
 		3DC65608219BE49F00F4CA0D /* OctoPod v7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v7.xcdatamodel"; sourceTree = "<group>"; };
 		3DC69BEC21804EC000DBE0D5 /* OctoPrintClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClient.swift; sourceTree = "<group>"; };
 		3DC69BEF2180531000DBE0D5 /* PanelInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelInterfaceController.swift; path = "OctoPod Watch Extension/Panel/PanelInterfaceController.swift"; sourceTree = SOURCE_ROOT; };
+		3DD3C76321B3222200350225 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		3DD3C76621B3222200350225 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3DD3C76821B3222200350225 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/MainInterface.strings"; sourceTree = "<group>"; };
+		3DD3C76921B3223400350225 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DD3C76A21B3223400350225 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DD3C76B21B3223400350225 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		3DD3C76C21B3229400350225 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DD3C76D21B3229400350225 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DD3C76E21B3229400350225 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		3DD3C76F21B322FB00350225 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DD3C77021B322FB00350225 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DD3C77121B322FB00350225 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		3DD3C77221B3234600350225 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DD3C77321B3234600350225 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DD3C77421B3234600350225 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		3DD3C77521B3239D00350225 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DD3C77621B3239D00350225 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DD3C77721B3239D00350225 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		3DD69AA021150F43005555ED /* FileUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadViewController.swift; sourceTree = "<group>"; };
 		3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedStaticUITableViewController.swift; sourceTree = "<group>"; };
 		3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUITableViewController.swift; sourceTree = "<group>"; };
@@ -603,6 +623,8 @@
 				3D4497DE21B2623400736F0F /* TodayViewController.swift */,
 				3D4497E021B2623400736F0F /* MainInterface.storyboard */,
 				3D4497E321B2623400736F0F /* Info.plist */,
+				3DD3C76521B3222200350225 /* InfoPlist.strings */,
+				3DD3C76221B3222200350225 /* Localizable.strings */,
 			);
 			path = "OctoPod Widget";
 			sourceTree = "<group>";
@@ -1121,6 +1143,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D4497E221B2623400736F0F /* MainInterface.storyboard in Resources */,
+				3DD3C76721B3222200350225 /* InfoPlist.strings in Resources */,
+				3DD3C76421B3222200350225 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1441,6 +1465,12 @@
 			isa = PBXVariantGroup;
 			children = (
 				3D4497E121B2623400736F0F /* Base */,
+				3DD3C76821B3222200350225 /* es-419 */,
+				3DD3C76B21B3223400350225 /* es */,
+				3DD3C76E21B3229400350225 /* cs */,
+				3DD3C77121B322FB00350225 /* de */,
+				3DD3C77421B3234600350225 /* it */,
+				3DD3C77721B3239D00350225 /* nb */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -1524,6 +1554,32 @@
 				3D89E6722161235A006794D0 /* cs */,
 				3D697ED42163376D00BFB849 /* it */,
 				3D27DA94218A5FD8004F763A /* es-419 */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3DD3C76221B3222200350225 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DD3C76321B3222200350225 /* es-419 */,
+				3DD3C76921B3223400350225 /* es */,
+				3DD3C76D21B3229400350225 /* cs */,
+				3DD3C76F21B322FB00350225 /* de */,
+				3DD3C77221B3234600350225 /* it */,
+				3DD3C77621B3239D00350225 /* nb */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3DD3C76521B3222200350225 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DD3C76621B3222200350225 /* es-419 */,
+				3DD3C76A21B3223400350225 /* es */,
+				3DD3C76C21B3229400350225 /* cs */,
+				3DD3C77021B322FB00350225 /* de */,
+				3DD3C77321B3234600350225 /* it */,
+				3DD3C77521B3239D00350225 /* nb */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
