@@ -82,6 +82,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Just open the app. No special logic for restored activity        
         return true
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let printerName = url.host?.removingPercentEncoding {
+            // Switch to printer user clicked on when using Today's widget
+            if let printer = printerManager?.getPrinterByName(name: printerName) {
+                // Update stored printers
+                printerManager?.changeToDefaultPrinter(printer)
+                // Update Apple Watch with new selected printer
+                watchSessionManager.pushPrinters()
+                // Ask octoprintClient to connect to new OctoPrint server
+                octoprintClient.connectToServer(printer: printer)
+                // Notify listeners of this change (ugly hack: use watch session listeners. Should be refactored)
+                for delegate in watchSessionManager.delegates {
+                    delegate.defaultPrinterChanged()
+                }
+
+                // Go to main Panel window
+                if let tabBarController = self.window!.rootViewController as? UITabBarController {
+                    tabBarController.selectedIndex = 0
+                }
+                return true
+            }
+        }
+        return false
+    }
 
     // MARK: - Core Data stack
 

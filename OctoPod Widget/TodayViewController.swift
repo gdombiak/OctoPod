@@ -188,8 +188,13 @@ extension TodayViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /* So far empty, but we could implement this function so that we open the App and jump to the detail, when clicked */
-    }
+        // Open OctoPod app and display selected printer
+        let url = URL(string: "octopod://\(items[indexPath.row].printerName)")!
+        self.extensionContext?.open(url, completionHandler: { (success) in
+            if (!success) {
+                NSLog("Error: Failed to open app from Today Extension")
+            }
+        })    }
 }
 
 struct JobInfo {
