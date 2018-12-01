@@ -25,8 +25,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        // Perform any setup necessary in order to update the view.
-        
         items = []
         let printers = printerManager.getPrinters()
 
@@ -34,7 +32,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         var counter = printers.count
 
         for printer in printers {
-
             let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
             restClient.currentJobInfo { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                 if let result = result as? Dictionary<String, Any> {
@@ -67,18 +64,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
+                    completionHandler(NCUpdateResult.newData)
                 }
             }
-
-            
         }
         
-        
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
-        
-        completionHandler(NCUpdateResult.newData)
+        if printers.count == 0 {
+            completionHandler(NCUpdateResult.noData)
+        }
     }
     
 
