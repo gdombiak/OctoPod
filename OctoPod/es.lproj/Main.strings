@@ -457,9 +457,6 @@
 /* Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ"; */
 "tzE-Y5-rVZ.text" = "Impresoras";
 
-/* Class = "UILabel"; text = "Printer changes require manual deletion of recorded shortcuts"; ObjectID = "uaY-8k-0Sa"; */
-"uaY-8k-0Sa.text" = "Cambios en impresoras requiere eliminación manual de los accesos directos en Siri";
-
 /* Class = "UILabel"; text = "GCode command"; ObjectID = "uge-6J-pcC"; */
 "uge-6J-pcC.text" = "Comando GCode";
 
