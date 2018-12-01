@@ -13,10 +13,7 @@ class IntentsDonations {
         if #available(iOS 12.0, *) {
             let intent = SetBedTempIntent()
             intent.printer = printer.name
-            intent.hostname = printer.hostname
-            intent.apiKey = printer.apiKey
-            intent.username = printer.username
-            intent.password = printer.password
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
             intent.temperature = temperature as NSNumber
             if temperature > 0 {
                 intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Warm up printer bed", comment: "Siri suggested phrase"), printer.name)
@@ -33,10 +30,7 @@ class IntentsDonations {
         if #available(iOS 12.0, *) {
             let intent = SetToolTempIntent()
             intent.printer = printer.name
-            intent.hostname = printer.hostname
-            intent.apiKey = printer.apiKey
-            intent.username = printer.username
-            intent.password = printer.password
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
             intent.tool = tool as NSNumber
             intent.temperature = temperature as NSNumber
             if temperature > 0 {
@@ -54,10 +48,7 @@ class IntentsDonations {
         if #available(iOS 12.0, *) {
             let intent = CoolDownPrinterIntent()
             intent.printer = printer.name
-            intent.hostname = printer.hostname
-            intent.apiKey = printer.apiKey
-            intent.username = printer.username
-            intent.password = printer.password
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
             intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cool down printer", comment: "Siri suggested phrase"), printer.name)
             
             donateIntent(intent: intent, printer: printer, identifierSuffix: "CoolDownPrinter")
@@ -69,10 +60,7 @@ class IntentsDonations {
         if #available(iOS 12.0, *) {
             let intent = PauseJobIntent()
             intent.printer = printer.name
-            intent.hostname = printer.hostname
-            intent.apiKey = printer.apiKey
-            intent.username = printer.username
-            intent.password = printer.password
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
             intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Pause current print job", comment: "Siri suggested phrase"), printer.name)
             
             donateIntent(intent: intent, printer: printer, identifierSuffix: "Pause")
@@ -84,10 +72,7 @@ class IntentsDonations {
         if #available(iOS 12.0, *) {
             let intent = ResumeJobIntent()
             intent.printer = printer.name
-            intent.hostname = printer.hostname
-            intent.apiKey = printer.apiKey
-            intent.username = printer.username
-            intent.password = printer.password
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
             intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Resume current print job", comment: "Siri suggested phrase"), printer.name)
             
             donateIntent(intent: intent, printer: printer, identifierSuffix: "Resume")
@@ -99,10 +84,7 @@ class IntentsDonations {
         if #available(iOS 12.0, *) {
             let intent = CancelJobIntent()
             intent.printer = printer.name
-            intent.hostname = printer.hostname
-            intent.apiKey = printer.apiKey
-            intent.username = printer.username
-            intent.password = printer.password
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
             intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cancel current print job", comment: "Siri suggested phrase"), printer.name)
             
             donateIntent(intent: intent, printer: printer, identifierSuffix: "Cancel")
@@ -114,10 +96,7 @@ class IntentsDonations {
         if #available(iOS 12.0, *) {
             let intent = RestartJobIntent()
             intent.printer = printer.name
-            intent.hostname = printer.hostname
-            intent.apiKey = printer.apiKey
-            intent.username = printer.username
-            intent.password = printer.password
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
             intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Restart current print job", comment: "Siri suggested phrase"), printer.name)
             
             donateIntent(intent: intent, printer: printer, identifierSuffix: "Restart")
@@ -129,10 +108,7 @@ class IntentsDonations {
         if #available(iOS 12.0, *) {
             let intent = RemainingTimeIntent()
             intent.printer = printer.name
-            intent.hostname = printer.hostname
-            intent.apiKey = printer.apiKey
-            intent.username = printer.username
-            intent.password = printer.password
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
             intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Remaining time current print job", comment: "Siri suggested phrase"), printer.name)
             
             donateIntent(intent: intent, printer: printer, identifierSuffix: "Remaining")

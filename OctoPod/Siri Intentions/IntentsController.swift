@@ -3,129 +3,89 @@ import UIKit
 
 class IntentsController {
     
-    @available(iOS 12.0, *)
-    func bedTemperature(intent: SetBedTempIntent, callback: @escaping (Bool, Int?, Int) -> Void) {
-        if let hostname = intent.hostname, let apiKey = intent.apiKey {
-            let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
-            var newTarget: Int = 0
-            if let temperature = intent.temperature {
-                let tempInt = Int(truncating: temperature)
-                newTarget = tempInt <= 0 ? 0 : tempInt
-            }
-            restClient.bedTargetTemperature(newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                callback(requested, newTarget, response.statusCode)
-            }
-        } else {
-            callback(false, nil, -1)
+    func bedTemperature(printer: Printer, temperature: NSNumber?, callback: @escaping (Bool, Int?, Int) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        var newTarget: Int = 0
+        if let temperature = temperature {
+            let tempInt = Int(truncating: temperature)
+            newTarget = tempInt <= 0 ? 0 : tempInt
+        }
+        restClient.bedTargetTemperature(newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested, newTarget, response.statusCode)
         }
     }
     
-    @available(iOS 12.0, *)
-    func toolTemperature(intent: SetToolTempIntent, callback: @escaping (Bool, Int?, Int) -> Void) {
-        if let hostname = intent.hostname, let apiKey = intent.apiKey {
-            let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
-            var toolNumber = 0
-            if let tool = intent.tool {
-                toolNumber = Int(truncating: tool)
-            }
-            var newTarget: Int = 0
-            if let temperature = intent.temperature {
-                let tempInt = Int(truncating: temperature)
-                newTarget = tempInt <= 0 ? 0 : tempInt
-            }
-            restClient.toolTargetTemperature(toolNumber: toolNumber, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                callback(requested, newTarget, response.statusCode)
-            }
-        } else {
-            callback(false, nil, -1)
+    func toolTemperature(printer: Printer, tool: NSNumber?, temperature: NSNumber?, callback: @escaping (Bool, Int?, Int) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        var toolNumber = 0
+        if let tool = tool {
+            toolNumber = Int(truncating: tool)
+        }
+        var newTarget: Int = 0
+        if let temperature = temperature {
+            let tempInt = Int(truncating: temperature)
+            newTarget = tempInt <= 0 ? 0 : tempInt
+        }
+        restClient.toolTargetTemperature(toolNumber: toolNumber, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested, newTarget, response.statusCode)
         }
     }
     
-    @available(iOS 12.0, *)
-    func coolDownPrinter(intent: CoolDownPrinterIntent, callback: @escaping (Bool, Int) -> Void) {
-        if let hostname = intent.hostname, let apiKey = intent.apiKey {
-            let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
-            // Cool down extruder 0
-            restClient.toolTargetTemperature(toolNumber: 0, newTarget: 0) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if requested {
-                    // Request worked so now request to cool down bed
-                    restClient.bedTargetTemperature(newTarget: 0, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                        callback(requested, response.statusCode)
-                    })
-                } else {
+    func coolDownPrinter(printer: Printer, callback: @escaping (Bool, Int) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        // Cool down extruder 0
+        restClient.toolTargetTemperature(toolNumber: 0, newTarget: 0) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if requested {
+                // Request worked so now request to cool down bed
+                restClient.bedTargetTemperature(newTarget: 0, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     callback(requested, response.statusCode)
-                }
-            }
-        } else {
-            callback(false, -1)
-        }
-    }
-    
-    @available(iOS 12.0, *)
-    func pauseJob(intent: PauseJobIntent, callback: @escaping (Bool, Int) -> Void) {
-        if let hostname = intent.hostname, let apiKey = intent.apiKey {
-            let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
-            restClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                })
+            } else {
                 callback(requested, response.statusCode)
             }
-        } else {
-            callback(false, -1)
         }
     }
     
-    @available(iOS 12.0, *)
-    func resumeJob(intent: ResumeJobIntent, callback: @escaping (Bool, Int) -> Void) {
-        if let hostname = intent.hostname, let apiKey = intent.apiKey {
-            let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
-            restClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                callback(requested, response.statusCode)
-            }
-        } else {
-            callback(false, -1)
+    func pauseJob(printer: Printer, callback: @escaping (Bool, Int) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        restClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested, response.statusCode)
         }
     }
     
-    @available(iOS 12.0, *)
-    func cancelJob(intent: CancelJobIntent, callback: @escaping (Bool, Int) -> Void) {
-        if let hostname = intent.hostname, let apiKey = intent.apiKey {
-            let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
-            restClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                callback(requested, response.statusCode)
-            }
-        } else {
-            callback(false, -1)
+    func resumeJob(printer: Printer, callback: @escaping (Bool, Int) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        restClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested, response.statusCode)
         }
     }
     
-    @available(iOS 12.0, *)
-    func restartJob(intent: RestartJobIntent, callback: @escaping (Bool, Int) -> Void) {
-        if let hostname = intent.hostname, let apiKey = intent.apiKey {
-            let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
-            restClient.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                callback(requested, response.statusCode)
-            }
-        } else {
-            callback(false, -1)
+    func cancelJob(printer: Printer, callback: @escaping (Bool, Int) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        restClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested, response.statusCode)
         }
     }
     
-    @available(iOS 12.0, *)
-    func remainingTime(intent: RemainingTimeIntent, callback: @escaping (Bool, String?, Int) -> Void) {
-        if let hostname = intent.hostname, let apiKey = intent.apiKey {
-            let restClient = getRESTClient(hostname: hostname, apiKey: apiKey, username: intent.username, password: intent.password)
-            restClient.currentJobInfo { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
-                if let result = result as? Dictionary<String, Any>, let progress = result["progress"] as? Dictionary<String, Any> {
-                    if let printTimeLeft = progress["printTimeLeft"] as? Int {
-                        callback(true, self.secondsToTimeLeft(seconds: printTimeLeft), response.statusCode)
-                    } else {
-                        callback(true, "0", response.statusCode)
-                    }
+    func restartJob(printer: Printer, callback: @escaping (Bool, Int) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        restClient.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested, response.statusCode)
+        }
+    }
+    
+    func remainingTime(printer: Printer, callback: @escaping (Bool, String?, Int) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        restClient.currentJobInfo { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            if let result = result as? Dictionary<String, Any>, let progress = result["progress"] as? Dictionary<String, Any> {
+                if let printTimeLeft = progress["printTimeLeft"] as? Int {
+                    callback(true, self.secondsToTimeLeft(seconds: printTimeLeft), response.statusCode)
                 } else {
-                    callback(false, nil, response.statusCode)
+                    callback(true, "0", response.statusCode)
                 }
+            } else {
+                callback(false, nil, response.statusCode)
             }
-        } else {
-            callback(false, nil, -1)
         }
     }
     

@@ -45,6 +45,11 @@
 		3D4064AF21AB75FF000B05F9 /* CancelJobIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4064AE21AB75FF000B05F9 /* CancelJobIntentHandler.swift */; };
 		3D4064B121AB78F3000B05F9 /* RestartJobIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4064B021AB78F3000B05F9 /* RestartJobIntentHandler.swift */; };
 		3D42AC1121731494004D9FD0 /* AppConfigurationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42AC1021731494004D9FD0 /* AppConfigurationDelegate.swift */; };
+		3D4497D021B2240700736F0F /* OctoPod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */; };
+		3D4497D121B2241D00736F0F /* PrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873820E3EC3B0035AE0B /* PrinterManager.swift */; };
+		3D4497D221B2243700736F0F /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873620E3EBC80035AE0B /* Printer.swift */; };
+		3D4497D421B230BE00736F0F /* SharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4497D321B230BE00736F0F /* SharedPersistentContainer.swift */; };
+		3D4497D521B230BE00736F0F /* SharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4497D321B230BE00736F0F /* SharedPersistentContainer.swift */; };
 		3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */; };
 		3D450E5221AB1B210049FBC0 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D450E5121AB1B210049FBC0 /* IntentHandler.swift */; };
 		3D450E5621AB1B210049FBC0 /* OctoPod Intent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3D450E4F21AB1B210049FBC0 /* OctoPod Intent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -265,6 +270,8 @@
 		3D4064B021AB78F3000B05F9 /* RestartJobIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartJobIntentHandler.swift; sourceTree = "<group>"; };
 		3D40C1822131115800384F4A /* OctoPod v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v4.xcdatamodel"; sourceTree = "<group>"; };
 		3D42AC1021731494004D9FD0 /* AppConfigurationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationDelegate.swift; sourceTree = "<group>"; };
+		3D4497CF21B2235300736F0F /* OctoPod Intent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "OctoPod Intent.entitlements"; sourceTree = "<group>"; };
+		3D4497D321B230BE00736F0F /* SharedPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedPersistentContainer.swift; sourceTree = "<group>"; };
 		3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClientDelegate.swift; sourceTree = "<group>"; };
 		3D450E4F21AB1B210049FBC0 /* OctoPod Intent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "OctoPod Intent.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D450E5121AB1B210049FBC0 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -550,6 +557,7 @@
 		3D450E5021AB1B210049FBC0 /* OctoPod Intent */ = {
 			isa = PBXGroup;
 			children = (
+				3D4497CF21B2235300736F0F /* OctoPod Intent.entitlements */,
 				3D450E5121AB1B210049FBC0 /* IntentHandler.swift */,
 				3D450E5321AB1B210049FBC0 /* Info.plist */,
 				3DF7410E21ACEECC0069A9D4 /* InfoPlist.strings */,
@@ -723,6 +731,7 @@
 				3D92E6C721213B2400F58BA5 /* TempHistory.swift */,
 				3D88C3E82193F49500BC84DD /* CancelObject.swift */,
 				3D866BF3218D55FF007AA493 /* BackgroundRefresher.swift */,
+				3D4497D321B230BE00736F0F /* SharedPersistentContainer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -962,11 +971,19 @@
 				TargetAttributes = {
 					3D450E4E21AB1B210049FBC0 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					3D4527FD20E15A370094CCB7 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1000;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -1107,12 +1124,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D450E5F21AB1C040049FBC0 /* Intents.intentdefinition in Sources */,
+				3D4497D221B2243700736F0F /* Printer.swift in Sources */,
 				3D450ECB21AB5BCE0049FBC0 /* OctoPrintRESTClient.swift in Sources */,
 				3D4064A521AB61E6000B05F9 /* CancelObject.swift in Sources */,
 				3D4064AF21AB75FF000B05F9 /* CancelJobIntentHandler.swift in Sources */,
 				3D4064A921AB6205000B05F9 /* ExecuteControl.swift in Sources */,
 				3D4064A121AB61B2000B05F9 /* SystemCommand.swift in Sources */,
+				3D4497D121B2241D00736F0F /* PrinterManager.swift in Sources */,
 				3D4064AB21AB7563000B05F9 /* PauseJobIntentHandler.swift in Sources */,
+				3D4497D021B2240700736F0F /* OctoPod.xcdatamodeld in Sources */,
 				3D1ECB0821ABB85700691DCB /* RemainingTimeIntentHandler.swift in Sources */,
 				3D450EC321AB45740049FBC0 /* SetToolTempIntentHandler.swift in Sources */,
 				3D4064B121AB78F3000B05F9 /* RestartJobIntentHandler.swift in Sources */,
@@ -1126,6 +1146,7 @@
 				3D4064A221AB61C4000B05F9 /* IPPlug.swift in Sources */,
 				3D4064A721AB61F7000B05F9 /* Command.swift in Sources */,
 				3D450EC921AB56F40049FBC0 /* IntentsController.swift in Sources */,
+				3D4497D521B230BE00736F0F /* SharedPersistentContainer.swift in Sources */,
 				3D4064A821AB61F9000B05F9 /* Script.swift in Sources */,
 				3D4064A421AB61D2000B05F9 /* CustomControl.swift in Sources */,
 			);
@@ -1191,6 +1212,7 @@
 				3D450EC521AB50AF0049FBC0 /* SiriViewController.swift in Sources */,
 				3D7C884A2152BB18009FECEF /* DevicesSyncLogViewController.swift in Sources */,
 				3D5879FA2176D2D20058A4DC /* NotRefreshingReasonViewController.swift in Sources */,
+				3D4497D421B230BE00736F0F /* SharedPersistentContainer.swift in Sources */,
 				3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */,
 				3D450EC121AB37D60049FBC0 /* IntentsDonations.swift in Sources */,
 				3D866BF4218D55FF007AA493 /* BackgroundRefresher.swift in Sources */,
@@ -1426,6 +1448,7 @@
 		3D450E5821AB1B210049FBC0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent/OctoPod Intent.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Intent/Info.plist";
@@ -1448,6 +1471,7 @@
 		3D450E5921AB1B210049FBC0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent/OctoPod Intent.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Intent/Info.plist";

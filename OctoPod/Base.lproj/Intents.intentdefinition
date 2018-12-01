@@ -22,70 +22,40 @@
 			<key>INIntentDescriptionID</key>
 			<string>PppyPP</string>
 			<key>INIntentLastParameterTag</key>
-			<integer>7</integer>
+			<integer>8</integer>
 			<key>INIntentName</key>
 			<string>SetBedTemp</string>
 			<key>INIntentParameterCombinations</key>
 			<dict>
-				<key>apiKey,hostname,password,username,printer</key>
+				<key>printerURL,printer</key>
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
+					<true/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>faEYF1</string>
+					<string>9PozHf</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
 					<string>Cool down bed</string>
 					<key>INIntentParameterCombinationTitleID</key>
-					<string>0Z8n1L</string>
+					<string>qLzk1S</string>
 				</dict>
-				<key>printer,apiKey,hostname</key>
+				<key>temperature,printerURL,printer</key>
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>1hYwNn</string>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Cool down bed</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>5MXcd7</string>
-				</dict>
-				<key>printer,hostname,apiKey,password,username,temperature</key>
-				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string>${printer}</string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>XSZUyJ</string>
+					<string>9iz6yx</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
 					<string>Set bed temperature to ${temperature}</string>
 					<key>INIntentParameterCombinationTitleID</key>
-					<string>EnGz5S</string>
-				</dict>
-				<key>printer,hostname,apiKey,temperature</key>
-				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string>${printer}</string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>ysPUHg</string>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Set bed temperature to ${temperature}</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>BWOk7w</string>
+					<string>hPlRC4</string>
 				</dict>
 			</dict>
 			<key>INIntentParameters</key>
@@ -118,47 +88,11 @@
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>3</integer>
 					<key>INIntentParameterName</key>
-					<string>hostname</string>
+					<string>printerURL</string>
 					<key>INIntentParameterSupportsMultipleValues</key>
 					<false/>
 					<key>INIntentParameterTag</key>
-					<integer>4</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>4</integer>
-					<key>INIntentParameterName</key>
-					<string>apiKey</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>5</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>5</integer>
-					<key>INIntentParameterName</key>
-					<string>username</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>6</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>6</integer>
-					<key>INIntentParameterName</key>
-					<string>password</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>7</integer>
+					<integer>8</integer>
 					<key>INIntentParameterType</key>
 					<string>String</string>
 				</dict>
@@ -239,12 +173,27 @@
 			<key>INIntentDescriptionID</key>
 			<string>doj4NA</string>
 			<key>INIntentLastParameterTag</key>
-			<integer>9</integer>
+			<integer>10</integer>
 			<key>INIntentName</key>
 			<string>SetToolTemp</string>
 			<key>INIntentParameterCombinations</key>
 			<dict>
-				<key>apiKey,hostname,printer,temperature</key>
+				<key>printerURL,printer</key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSubtitle</key>
+					<string>${printer}</string>
+					<key>INIntentParameterCombinationSubtitleID</key>
+					<string>yZeSdz</string>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Cool down extruder</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>Pj7mEV</string>
+				</dict>
+				<key>printerURL,temperature,printer</key>
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
@@ -259,80 +208,20 @@
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>2TreiD</string>
 				</dict>
-				<key>apiKey,hostname,printer,tool,temperature</key>
+				<key>printerURL,temperature,printer,tool</key>
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>e1wTgz</string>
+					<string>YGxUII</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
 					<string>Set extruder ${tool} temperature to ${temperature}</string>
 					<key>INIntentParameterCombinationTitleID</key>
-					<string>AajpSg</string>
-				</dict>
-				<key>apiKey,password,username,hostname,printer,tool,temperature</key>
-				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string>${printer}</string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>9GvkpA</string>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Set extruder ${tool} temperature to ${temperature}</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>zFUcrX</string>
-				</dict>
-				<key>apiKey,username,password,hostname,printer</key>
-				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string>${printer}</string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>bxTFR5</string>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Cool down extruder</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>UiDrAq</string>
-				</dict>
-				<key>apiKey,username,password,hostname,printer,temperature</key>
-				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string>${printer}</string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>AboVUn</string>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Set extruder temperature to ${temperature}</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>oT6BJN</string>
-				</dict>
-				<key>printer,hostname,apiKey</key>
-				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string>${printer}</string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>L46ZKt</string>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Cool down extruder</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>9fJEVs</string>
+					<string>Vc7DVt</string>
 				</dict>
 			</dict>
 			<key>INIntentParameters</key>
@@ -377,47 +266,11 @@
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>4</integer>
 					<key>INIntentParameterName</key>
-					<string>hostname</string>
+					<string>printerURL</string>
 					<key>INIntentParameterSupportsMultipleValues</key>
 					<false/>
 					<key>INIntentParameterTag</key>
-					<integer>6</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>5</integer>
-					<key>INIntentParameterName</key>
-					<string>apiKey</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>7</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>6</integer>
-					<key>INIntentParameterName</key>
-					<string>username</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>8</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>7</integer>
-					<key>INIntentParameterName</key>
-					<string>password</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>9</integer>
+					<integer>10</integer>
 					<key>INIntentParameterType</key>
 					<string>String</string>
 				</dict>
@@ -498,40 +351,25 @@
 			<key>INIntentDescriptionID</key>
 			<string>fL3sow</string>
 			<key>INIntentLastParameterTag</key>
-			<integer>5</integer>
+			<integer>6</integer>
 			<key>INIntentName</key>
 			<string>PauseJob</string>
 			<key>INIntentParameterCombinations</key>
 			<dict>
-				<key>hostname,apiKey,printer</key>
+				<key>printer,printerURL</key>
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>h5gyqq</string>
+					<string>0xUDAM</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
 					<string>Pause job</string>
 					<key>INIntentParameterCombinationTitleID</key>
-					<string>fXPS6E</string>
-				</dict>
-				<key>password,printer,apiKey,username,hostname</key>
-				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<true/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string>${printer}</string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>e7uUxa</string>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Pause job</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>liRVV5</string>
+					<string>ihLqc7</string>
 				</dict>
 			</dict>
 			<key>INIntentParameters</key>
@@ -552,47 +390,11 @@
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
 					<key>INIntentParameterName</key>
-					<string>hostname</string>
+					<string>printerURL</string>
 					<key>INIntentParameterSupportsMultipleValues</key>
 					<false/>
 					<key>INIntentParameterTag</key>
-					<integer>2</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>3</integer>
-					<key>INIntentParameterName</key>
-					<string>apiKey</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>3</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>4</integer>
-					<key>INIntentParameterName</key>
-					<string>username</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>4</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>5</integer>
-					<key>INIntentParameterName</key>
-					<string>password</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>5</integer>
+					<integer>6</integer>
 					<key>INIntentParameterType</key>
 					<string>String</string>
 				</dict>
@@ -661,12 +463,12 @@
 			<key>INIntentDescriptionID</key>
 			<string>Kf7e4Y</string>
 			<key>INIntentLastParameterTag</key>
-			<integer>5</integer>
+			<integer>6</integer>
 			<key>INIntentName</key>
 			<string>ResumeJob</string>
 			<key>INIntentParameterCombinations</key>
 			<dict>
-				<key>printer,hostname,apiKey</key>
+				<key>printer,printerURL</key>
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
@@ -680,21 +482,6 @@
 					<string>Resume job</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>6k5AFm</string>
-				</dict>
-				<key>printer,password,apiKey,username,hostname</key>
-				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<true/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string>${printer}</string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>35TwEy</string>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Resume job</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>yQslq9</string>
 				</dict>
 			</dict>
 			<key>INIntentParameters</key>
@@ -715,47 +502,11 @@
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
 					<key>INIntentParameterName</key>
-					<string>hostname</string>
+					<string>printerURL</string>
 					<key>INIntentParameterSupportsMultipleValues</key>
 					<false/>
 					<key>INIntentParameterTag</key>
-					<integer>2</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>3</integer>
-					<key>INIntentParameterName</key>
-					<string>apiKey</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>3</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>4</integer>
-					<key>INIntentParameterName</key>
-					<string>username</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>4</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>5</integer>
-					<key>INIntentParameterName</key>
-					<string>password</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>5</integer>
+					<integer>6</integer>
 					<key>INIntentParameterType</key>
 					<string>String</string>
 				</dict>
@@ -824,27 +575,12 @@
 			<key>INIntentDescriptionID</key>
 			<string>LVlPuT</string>
 			<key>INIntentLastParameterTag</key>
-			<integer>5</integer>
+			<integer>6</integer>
 			<key>INIntentName</key>
 			<string>CancelJob</string>
 			<key>INIntentParameterCombinations</key>
 			<dict>
-				<key>password,printer,hostname,apiKey,username</key>
-				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<true/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string>${printer}</string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>PmZlvM</string>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Cancel job</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>hS5yzH</string>
-				</dict>
-				<key>printer,hostname,apiKey</key>
+				<key>printer,printerURL</key>
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
@@ -878,47 +614,11 @@
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
 					<key>INIntentParameterName</key>
-					<string>hostname</string>
+					<string>printerURL</string>
 					<key>INIntentParameterSupportsMultipleValues</key>
 					<false/>
 					<key>INIntentParameterTag</key>
-					<integer>2</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>3</integer>
-					<key>INIntentParameterName</key>
-					<string>apiKey</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>3</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>4</integer>
-					<key>INIntentParameterName</key>
-					<string>username</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>4</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>5</integer>
-					<key>INIntentParameterName</key>
-					<string>password</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>5</integer>
+					<integer>6</integer>
 					<key>INIntentParameterType</key>
 					<string>String</string>
 				</dict>
@@ -987,12 +687,12 @@
 			<key>INIntentDescriptionID</key>
 			<string>D0kBGr</string>
 			<key>INIntentLastParameterTag</key>
-			<integer>5</integer>
+			<integer>6</integer>
 			<key>INIntentName</key>
 			<string>RestartJob</string>
 			<key>INIntentParameterCombinations</key>
 			<dict>
-				<key>apiKey,hostname,password,username,printer</key>
+				<key>printerURL,printer</key>
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
@@ -1006,21 +706,6 @@
 					<string>Restart job</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>662LyZ</string>
-				</dict>
-				<key>printer,apiKey,hostname</key>
-				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string>${printer}</string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>5zZ27Q</string>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Restart job</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>GVOw8B</string>
 				</dict>
 			</dict>
 			<key>INIntentParameters</key>
@@ -1041,47 +726,11 @@
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
 					<key>INIntentParameterName</key>
-					<string>hostname</string>
+					<string>printerURL</string>
 					<key>INIntentParameterSupportsMultipleValues</key>
 					<false/>
 					<key>INIntentParameterTag</key>
-					<integer>2</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>3</integer>
-					<key>INIntentParameterName</key>
-					<string>apiKey</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>3</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>4</integer>
-					<key>INIntentParameterName</key>
-					<string>username</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>4</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>5</integer>
-					<key>INIntentParameterName</key>
-					<string>password</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>5</integer>
+					<integer>6</integer>
 					<key>INIntentParameterType</key>
 					<string>String</string>
 				</dict>
@@ -1150,27 +799,12 @@
 			<key>INIntentDescriptionID</key>
 			<string>tKDODp</string>
 			<key>INIntentLastParameterTag</key>
-			<integer>5</integer>
+			<integer>6</integer>
 			<key>INIntentName</key>
 			<string>RemainingTime</string>
 			<key>INIntentParameterCombinations</key>
 			<dict>
-				<key>password,apiKey,hostname,username,printer</key>
-				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<true/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string>${printer}</string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>ZxPx7F</string>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Time left</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>VtulLq</string>
-				</dict>
-				<key>printer,apiKey,hostname</key>
+				<key>printerURL,printer</key>
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
@@ -1204,47 +838,11 @@
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
 					<key>INIntentParameterName</key>
-					<string>hostname</string>
+					<string>printerURL</string>
 					<key>INIntentParameterSupportsMultipleValues</key>
 					<false/>
 					<key>INIntentParameterTag</key>
-					<integer>2</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>3</integer>
-					<key>INIntentParameterName</key>
-					<string>apiKey</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>3</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>4</integer>
-					<key>INIntentParameterName</key>
-					<string>username</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>4</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>5</integer>
-					<key>INIntentParameterName</key>
-					<string>password</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>5</integer>
+					<integer>6</integer>
 					<key>INIntentParameterType</key>
 					<string>String</string>
 				</dict>
@@ -1325,12 +923,12 @@
 			<key>INIntentDescriptionID</key>
 			<string>NL98zi</string>
 			<key>INIntentLastParameterTag</key>
-			<integer>5</integer>
+			<integer>6</integer>
 			<key>INIntentName</key>
 			<string>CoolDownPrinter</string>
 			<key>INIntentParameterCombinations</key>
 			<dict>
-				<key>printer,hostname,apiKey</key>
+				<key>printer,printerURL</key>
 				<dict>
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<false/>
@@ -1344,21 +942,6 @@
 					<string>Cool down printer</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>f8xirF</string>
-				</dict>
-				<key>username,password,hostname,printer,apiKey</key>
-				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<true/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string>${printer}</string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>80okqO</string>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Cool down printer</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>OWSCSj</string>
 				</dict>
 			</dict>
 			<key>INIntentParameters</key>
@@ -1379,47 +962,11 @@
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
 					<key>INIntentParameterName</key>
-					<string>hostname</string>
+					<string>printerURL</string>
 					<key>INIntentParameterSupportsMultipleValues</key>
 					<false/>
 					<key>INIntentParameterTag</key>
-					<integer>2</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>3</integer>
-					<key>INIntentParameterName</key>
-					<string>apiKey</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>3</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>4</integer>
-					<key>INIntentParameterName</key>
-					<string>username</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>4</integer>
-					<key>INIntentParameterType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INIntentParameterDisplayPriority</key>
-					<integer>5</integer>
-					<key>INIntentParameterName</key>
-					<string>password</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
-					<key>INIntentParameterTag</key>
-					<integer>5</integer>
+					<integer>6</integer>
 					<key>INIntentParameterType</key>
 					<string>String</string>
 				</dict>

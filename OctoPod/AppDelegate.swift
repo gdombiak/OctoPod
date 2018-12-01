@@ -10,6 +10,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Migrate Core Data database to shared group container (if needed)
+        moveCoreDataToSharedSpace()
+        
         // If no printers were defined then send to Setup window, if not go to first tab
         if let tabBarController = self.window!.rootViewController as? UITabBarController {
             tabBarController.selectedIndex = printerManager!.getPrinters().count == 0 ? 4 : 0
@@ -82,14 +85,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
-    lazy var persistentContainer: NSPersistentContainer = {
+    lazy var persistentContainer: SharedPersistentContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "OctoPod")
+        let container = SharedPersistentContainer(name: "OctoPod")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -108,6 +111,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
+    
+    // Core Data database was moved from local storage to shared app group in release 2.1
+    fileprivate func moveCoreDataToSharedSpace() {
+        // var persistentContainer: NSPersistentContainer
+        let psc = persistentContainer.persistentStoreCoordinator
+        let newStoreURL: URL = SharedPersistentContainer.defaultDirectoryURL().appendingPathComponent("OctoPod.sqlite")
+        let oldStoreURL = NSPersistentContainer.defaultDirectoryURL().appendingPathComponent("OctoPod.sqlite")
+        
+        var needMigrate = false
+        var needDeleteOld = false
+        
+        if FileManager.default.fileExists(atPath: oldStoreURL.path) {
+            needMigrate = true
+        }
+        if FileManager.default.fileExists(atPath: newStoreURL.path) {
+            needMigrate = false
+            if FileManager.default.fileExists(atPath: oldStoreURL.path) {
+                needDeleteOld = true
+            }
+        }
+        
+        if needMigrate {
+            do {
+                try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: oldStoreURL, options: nil)
+                if let localStore = psc.persistentStore(for: oldStoreURL) {
+                    try psc.migratePersistentStore(localStore, to: newStoreURL, options: nil, withType: NSSQLiteStoreType)
+                    
+                    // Delete old files now
+                    SharedPersistentContainer.deleteOldLocalStore(oldStoreUrl: oldStoreURL)
+                }
+            } catch {
+                // Handle error
+                print("Error moving local Core Data store. Error: \(error)")
+            }
+        } else if needDeleteOld {
+            // Delete old files
+            SharedPersistentContainer.deleteOldLocalStore(oldStoreUrl: oldStoreURL)
+        }
+    }
 
     // MARK: - Core Data Saving support
 

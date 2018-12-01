@@ -1755,27 +1755,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="kBP-Gb-N2l">
-                                        <rect key="frame" x="0.0" y="265" width="375" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kBP-Gb-N2l" id="453-as-96V">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Printer changes require manual deletion of recorded shortcuts" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uaY-8k-0Sa">
-                                                    <rect key="frame" x="17" y="18" width="341" height="34"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                    <color key="textColor" red="0.4705916007" green="0.62008575769999996" blue="0.85567158460000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="uaY-8k-0Sa" firstAttribute="centerY" secondItem="453-as-96V" secondAttribute="centerY" id="8tX-Yw-j2V"/>
-                                                <constraint firstItem="uaY-8k-0Sa" firstAttribute="leading" secondItem="453-as-96V" secondAttribute="leadingMargin" constant="1" id="9hy-4Q-C21"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="uaY-8k-0Sa" secondAttribute="trailing" constant="1" id="jM2-ey-Oqp"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>

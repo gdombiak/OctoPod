@@ -65,6 +65,15 @@ class PrinterManager {
         return nil
     }
 
+    func getPrinterByObjectURL(url: URL) -> Printer? {
+        if let objectID = managedObjectContext?.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: url) {
+            if let printer = managedObjectContext?.object(with: objectID) as? Printer {
+                return printer
+            }
+        }
+        return nil
+    }
+    
     func getPrinters(context: NSManagedObjectContext) -> [Printer] {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
