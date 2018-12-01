@@ -19,6 +19,9 @@
 /* (No Comment) */
 "Cancel" = "Avbryt";
 
+/* Siri suggested phrase */
+"Cancel current print job" = "Avbryt nåværende utskriftsjobb på %@";
+
 /* https://github.com/paukstelis/Octoprint-Cancelobject */
 "Cancel Objects" = "Avbryt objekter";
 
@@ -56,6 +59,12 @@
 "Confirm disconnect" = "Ønsker du å koble fra skriveren?";
 
 /* (No Comment) */
+"Confirm intentions deletion" = "Du er i ferd med å slette alle Siri snarveier av appen. Fortsette?";
+
+/* (No Comment) */
+"Confirm intentions regeneration" = "Du er i ferd med å slette og regenerere alle Siri snarveier av appen. Fortsette?";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Du er i ferd med å slå av støpselet. Fortsette?";
 
 /* (No Comment) */
@@ -66,6 +75,15 @@
 
 /* (No Comment) */
 "Connection failed" = "Tilkobling feilet";
+
+/* Siri suggested phrase */
+"Cool down printer" = "Kjøle ned skriveren";
+
+/* Siri suggested phrase */
+"Cool down printer bed" = "Kjøle ned skriveflate %@";
+
+/* Siri suggested phrase */
+"Cool down printer extruder" = "Kjøl ned skriver ekstruder %@";
 
 /* Connection to server failed */
 "Could not connect to the server" = "Kunne ikke koble til server";
@@ -253,6 +271,9 @@
 /* Printer is Offline */
 "Offline" = "Frakoblet";
 
+/* Siri suggested phrase */
+"Pause current print job" = "Pause nåværende utskrift på %@";
+
 /* (No Comment) */
 "Pause Job" = "Pause";
 
@@ -274,8 +295,17 @@
 /* (No Comment) */
 "Pull down to refresh" = "Trekk ned for å oppdatere";
 
+/* Siri suggested phrase */
+"Remaining time current print job" = "Tid igjen på %@";
+
+/* Siri suggested phrase */
+"Restart current print job" = "Start om gjeldende utskrift på %@";
+
 /* (No Comment) */
 "Restart Job" = "Restart";
+
+/* Siri suggested phrase */
+"Resume current print job" = "Fortsett gjeldende utskrift på %@";
 
 /* (No Comment) */
 "Resume Job" = "Fortsett jobb";
@@ -335,6 +365,12 @@
 
 /* (No Comment) */
 "Upload failed" = "Opplasting feilet";
+
+/* Siri suggested phrase */
+"Warm up printer bed" = "Varm opp skriveflate %@";
+
+/* Siri suggested phrase */
+"Warm up printer extruder" = "Varm opp ekstruder %@";
 
 /* (No Comment) */
 "Warning" = "Advarsel";

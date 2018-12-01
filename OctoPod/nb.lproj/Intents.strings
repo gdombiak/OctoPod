@@ -1,65 +1,101 @@
 /* (No Comment) */
-"1hYwNn" = "${printer}";
+"0xUDAM" = "${printer}";
 
 /* (No Comment) */
-"5zZ27Q" = "${printer}";
+"2TreiD" = "Sett ekstruderens temperatur til ${temperature}";
+
+/* (No Comment) */
+"3eH6cZ" = "Kunne ikke få gjenværende tidsinformasjon (${statusCode})";
 
 /* (No Comment) */
 "6k5AFm" = "Fortsett jobb";
 
 /* (No Comment) */
-"9GvkpA" = "${printer}";
+"6vtMLs" = "Restartet";
 
 /* (No Comment) */
-"35TwEy" = "${printer}";
+"8tTCjD" = "Kunne ikke avbryte jobben (${statusCode})";
+
+/* (No Comment) */
+"9iz6yx" = "${printer}";
+
+/* (No Comment) */
+"9PozHf" = "${printer}";
 
 /* (No Comment) */
 "662LyZ" = "Restart jobb";
 
 /* (No Comment) */
-"AboVUn" = "${printer}";
+"bXGQKe" = "Kjøl ned skriver";
 
 /* (No Comment) */
-"bxTFR5" = "${printer}";
+"D0kBGr" = "Restart startet utskrift";
 
 /* (No Comment) */
-"e1wTgz" = "${printer}";
+"doj4NA" = "Konfigurer ekstruderens temperatur";
 
 /* (No Comment) */
-"e7uUxa" = "${printer}";
-
-/* (No Comment) */
-"faEYF1" = "${printer}";
+"f8xirF" = "Kjøl ned skriver";
 
 /* (No Comment) */
 "FkSYZt" = "${printer}";
 
 /* (No Comment) */
-"fXPS6E" = "Pause jobb";
+"fL3sow" = "Stopp utskriftsjobb";
 
 /* (No Comment) */
-"FZ3z7Z" = "";
+"FZ3z7Z" = "Sett skriveflatetemperaturen";
 
 /* (No Comment) */
-"GVOw8B" = "Restart jobb";
+"gx0D0e" = "Jobb avbrutt";
 
 /* (No Comment) */
-"h5gyqq" = "${printer}";
+"hPlRC4" = "Sett skriveflatetemperaturen til ${temperature}";
 
 /* (No Comment) */
-"L46ZKt" = "${printer}";
+"ihLqc7" = "Pause jobb";
 
 /* (No Comment) */
-"liRVV5" = "Pause jobb";
+"JmhfgL" = "Restart startet utskrift";
+
+/* (No Comment) */
+"Kf7e4Y" = "Restart startet utskrift";
+
+/* (No Comment) */
+"lrRige" = "Avbryt utskriftsjobb";
+
+/* (No Comment) */
+"LVlPuT" = "Avbryt utskriftsjobb";
+
+/* (No Comment) */
+"m6XJpy" = "Kunne ikke kjøle ned skriveren (${statusCode})";
+
+/* (No Comment) */
+"m9Jgmg" = "Utskrift fortsatt";
 
 /* (No Comment) */
 "NG7rBh" = "Utskriftstid igjen";
 
 /* (No Comment) */
-"PmZlvM" = "${printer}";
+"NL98zi" = "Kjøler ned skriveflate og ekstruder";
 
 /* (No Comment) */
-"PppyPP" = "";
+"ovQf6Z" = "Utskrift pause";
+
+/* (No Comment) */
+"P89qJr" = "Tid igjen ${time}";
+
+/* (No Comment) */
+"Pj7mEV" = "Kjøl ned ekstruder";
+
+/* (No Comment) */
+"PppyPP" = "Konfigurer skriveflatens temperatur";
+
+/* (No Comment) */
+"qLzk1S" = "Kjøl ned skriveflate";
+
+/* (No Comment) */
+"QSxXHq" = "Pause utskrift";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -68,10 +104,31 @@
 "Rjw5oo" = "${printer}";
 
 /* (No Comment) */
-"UC9Zrq" = "";
+"rmKSv6" = "Kunne ikke angi ekstruderens temperatur (${statusCode})";
 
 /* (No Comment) */
-"uoT27A" = "";
+"RrOrgy" = "Avbryt jobb";
+
+/* (No Comment) */
+"SP4rN6" = "Sett ekstruders temperatur";
+
+/* (No Comment) */
+"SRDf6Q" = "Ekstruders temperatur var satt til ${temperature}";
+
+/* (No Comment) */
+"sRkyIL" = "Kunne ikke starte jobben igjen (${statusCode})";
+
+/* (No Comment) */
+"tKDODp" = "Resterende utskriftstid";
+
+/* (No Comment) */
+"UC9Zrq" = "Skriveflatens temperatur var satt til ${temperature}";
+
+/* (No Comment) */
+"uoT27A" = "Kunne ikke sette skriveflatens temperatur (${statusCode})";
+
+/* (No Comment) */
+"Vc7DVt" = "Sett ekstruder ${tool} temperatur til ${temperature}";
 
 /* (No Comment) */
 "VDz0Q1" = "${printer}";
@@ -80,17 +137,26 @@
 "vL7cy4" = "${printer}";
 
 /* (No Comment) */
-"VtulLq" = "Utskriftstid igjen";
+"VlxGJX" = "${printer}";
 
 /* (No Comment) */
-"XSZUyJ" = "${printer}";
+"WI2oQf" = "Returnerer utskriftstid igjen";
 
 /* (No Comment) */
-"yQslq9" = "Fortsett jobb";
+"WLkRl0" = "Kunne ikke fortsette utskrift (${statusCode})";
 
 /* (No Comment) */
-"ysPUHg" = "${printer}";
+"wYzz4m" = "Skriver kjøler ned";
 
 /* (No Comment) */
-"ZxPx7F" = "${printer}";
+"XfWmGt" = "Restart startet utskrift";
+
+/* (No Comment) */
+"xSARU0" = "Kunne ikke pause jobben (${statusCode})";
+
+/* (No Comment) */
+"YGxUII" = "${printer}";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 

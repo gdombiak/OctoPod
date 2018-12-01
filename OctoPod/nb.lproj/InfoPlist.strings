@@ -4,3 +4,6 @@
 /* Privacy - Face ID Usage Description */
 "NSFaceIDUsageDescription" = "Vi må bruke FaceID for å låse opp appen";
 
+/* Privacy - Siri Usage Description */
+"NSSiriUsageDescription" = "Kontroller skriver med Siri";
+
