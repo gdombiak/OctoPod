@@ -25,6 +25,8 @@ class IntentHandler: INExtension {
         }
     }
     
+    // MARK: - Lazy variables
+
     lazy var persistentContainer: SharedPersistentContainer = {
         /*
          The persistent container for the application. This implementation

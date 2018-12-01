@@ -12,6 +12,9 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     var username: String?
     var password: String?
     
+    var timeoutIntervalForRequest = 10.0
+    var timeoutIntervalForResource = 16.0
+
     var preRequest: (() -> Void)?
     var postRequest: (() -> Void)?
 
@@ -254,9 +257,9 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
             config.httpAdditionalHeaders = ["Authorization" : authString]
         }
         // Timeout to start transmitting
-        config.timeoutIntervalForRequest = 10.0;
+        config.timeoutIntervalForRequest = timeoutIntervalForRequest
         // Timeout to receive data
-        config.timeoutIntervalForResource = 16.0;
+        config.timeoutIntervalForResource = timeoutIntervalForResource
         return config
     }
     

@@ -27,6 +27,22 @@ class OctoPrintRESTClient {
             httpClient?.postRequest = block
         }
     }
+    var timeoutIntervalForRequest: TimeInterval {
+        get {
+            return httpClient?.timeoutIntervalForRequest ?? 0
+        }
+        set(value) {
+            httpClient?.timeoutIntervalForRequest = value
+        }
+    }
+    var timeoutIntervalForResource: TimeInterval {
+        get {
+            return httpClient?.timeoutIntervalForResource ?? 0
+        }
+        set(value) {
+            httpClient?.timeoutIntervalForResource = value
+        }
+    }
 
     // MARK: - OctoPrint connection
 
@@ -120,7 +136,7 @@ class OctoPrintRESTClient {
             client.get("/api/job") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                 // Check if there was an error
                 if let _ = error {
-                    NSLog("Error getting printer state. Error: \(error!.localizedDescription)")
+                    NSLog("Error getting printer state for \(String(describing: client.serverURL)). Error: \(error!.localizedDescription)")
                 }
                 callback(result, error, response)
             }
