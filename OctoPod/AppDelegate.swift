@@ -114,7 +114,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // Core Data database was moved from local storage to shared app group in release 2.1
     fileprivate func moveCoreDataToSharedSpace() {
-        // var persistentContainer: NSPersistentContainer
+        var storeOptions = [AnyHashable : Any]()
+        storeOptions[NSMigratePersistentStoresAutomaticallyOption] = true
+        storeOptions[NSInferMappingModelAutomaticallyOption] = true
+
         let psc = persistentContainer.persistentStoreCoordinator
         let newStoreURL: URL = SharedPersistentContainer.defaultDirectoryURL().appendingPathComponent("OctoPod.sqlite")
         let oldStoreURL = NSPersistentContainer.defaultDirectoryURL().appendingPathComponent("OctoPod.sqlite")
@@ -125,7 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if FileManager.default.fileExists(atPath: oldStoreURL.path) {
             needMigrate = true
         }
-        if FileManager.default.fileExists(atPath: newStoreURL.path) {
+        if FileManager.default.fileExists(atPath: newStoreURL.path) && printerManager?.getPrinters().count ?? 0 > 0 {
             needMigrate = false
             if FileManager.default.fileExists(atPath: oldStoreURL.path) {
                 needDeleteOld = true
@@ -134,12 +137,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if needMigrate {
             do {
-                try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: oldStoreURL, options: nil)
+                // Remove existing store that we will add back after the import
+                // This avoids the error of trying to have 2 duplicated stores
+                if let existingStore = psc.persistentStores.last {
+                    try psc.remove(existingStore)
+                }
+                
+                try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: oldStoreURL, options: storeOptions)
                 if let localStore = psc.persistentStore(for: oldStoreURL) {
-                    try psc.migratePersistentStore(localStore, to: newStoreURL, options: nil, withType: NSSQLiteStoreType)
+                    try psc.migratePersistentStore(localStore, to: newStoreURL, options: storeOptions, withType: NSSQLiteStoreType)
                     
-                    // Delete old files now
-                    SharedPersistentContainer.deleteOldLocalStore(oldStoreUrl: oldStoreURL)
+                    // Delete old db files of local storage
+                    SharedPersistentContainer.deleteStoreCoreDataFiles(directory: NSPersistentContainer.defaultDirectoryURL())
                 }
             } catch {
                 // Handle error
@@ -147,7 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         } else if needDeleteOld {
             // Delete old files
-            SharedPersistentContainer.deleteOldLocalStore(oldStoreUrl: oldStoreURL)
+            SharedPersistentContainer.deleteStoreCoreDataFiles(directory: NSPersistentContainer.defaultDirectoryURL())
         }
     }
 

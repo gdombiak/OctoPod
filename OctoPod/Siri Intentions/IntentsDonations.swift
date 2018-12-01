@@ -118,12 +118,9 @@ class IntentsDonations {
     // Suggest Siri shortcuts for the printer. These are intents created when a Printer is added or modified
     // The other donations are done based on user interaction with the app
     static func donatePrinterIntents(printer: Printer) {
-        // Donate cool down bed (warm up is not suggested since we do not know desired temperatures of user)
-        donateBedTemp(printer: printer, temperature: 0)
-        // Donate cool down extruder (warm up is not suggested since we do not know desired temperatures of user)
-        // Do not donate second extruder since we do not know if there is one
-        donateToolTemp(printer: printer, tool: 0, temperature: 0)
         // Donate convenient shortcut for cooling down bed and tool 0 with a single command
+        // Individual cool down will be donated if/when user uses that feature. Not donated by default to reduce clutter
+        // Setting up temps is not donated by default since this is user/printer/filament specific
         donateCoolDownPrinter(printer: printer)
         // Donate all job actions
         donatePauseJob(printer: printer)
