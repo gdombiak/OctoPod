@@ -110,7 +110,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     // MARK: - Lazy variables
     
-    lazy var persistentContainer: SharedPersistentContainer = {
+    static var persistentContainer: SharedPersistentContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
@@ -138,7 +138,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }()
     
     lazy var printerManager: PrinterManager = {
-        let context = persistentContainer.viewContext
+        let context = TodayViewController.persistentContainer.viewContext
         var printerManager = PrinterManager()
         printerManager.managedObjectContext = context
         return printerManager
