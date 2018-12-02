@@ -13,7 +13,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         // Indicate that widget will use expanded mode so we can show any number of printers
         // and not be limited to 110 height limit. Show more/less will be available
-        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+        updateWidgetDisplayMode()
     }
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
@@ -25,12 +25,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        items = []
         let printers = printerManager.getPrinters()
 
         let queue = DispatchQueue(label: "org.octopod.widget.table.queue.id")
         var counter = printers.count
+        
+        updateWidgetDisplayMode()
 
+        var newItems: [JobInfo] = []
         for printer in printers {
             let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
             restClient.currentJobInfo { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
@@ -46,12 +48,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                     }
                     if let progress = result["progress"] as? Dictionary<String, Any> {
                         printTimeLeft = progress["printTimeLeft"] as? Int
-                        progressPrintTime = progress["progressPrintTime"] as? Int
+                        progressPrintTime = progress["printTime"] as? Int
                         progressCompletion = progress["completion"] as? Double
                     }
                     let jobInfo = JobInfo(printerName: printer.name, state: printerState, progressCompletion: progressCompletion, printTimeLeft: printTimeLeft, progressPrintTime: progressPrintTime)
                     queue.sync {
-                        self.items.append(jobInfo)
+                        newItems.append(jobInfo)
                         counter = counter - 1
                     }
                 } else {
@@ -62,6 +64,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 }
                 if counter == 0 {
                     DispatchQueue.main.async {
+                        self.items = newItems
                         self.tableView.reloadData()
                     }
                     completionHandler(NCUpdateResult.newData)
@@ -99,6 +102,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         formatter.includesApproximationPhrase = true
         formatter.allowedUnits = [ .day, .hour, .minute ]
         return formatter.string(from: duration)!
+    }
+    
+    fileprivate func updateWidgetDisplayMode() {
+        self.extensionContext?.widgetLargestAvailableDisplayMode = printerManager.getPrinters().count > 1 ? .expanded : .compact
     }
 
     // MARK: - Lazy variables
