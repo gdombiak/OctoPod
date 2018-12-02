@@ -1,4 +1,16 @@
 /* (No Comment) */
+"1 day ago" = "Hace 1 día";
+
+/* (No Comment) */
+"1 hour ago" = "Hace 1 hora";
+
+/* (No Comment) */
+"1 minute ago" = "Hace 1 minuto";
+
+/* (No Comment) */
+"1 week ago" = "Hace 1 semana";
+
+/* (No Comment) */
 "Actual Bed" = "Cama actual";
 
 /* (No Comment) */
@@ -90,6 +102,9 @@
 
 /* http://docs.octoprint.org/en/master/features/custom_controls.html */
 "Custom Controls" = "Controles personalizados";
+
+/* (No Comment) */
+"days ago" = "Hace %d dias";
 
 /* (No Comment) */
 "Disconnect" = "Desconectar";
@@ -205,6 +220,9 @@
 /* File Type is a Folder */
 "Folder" = "Carpeta";
 
+/* (No Comment) */
+"hours ago" = "Hace %d horas";
+
 /* HTTP Request error info */
 "HTTP Request error" = "Error en la petición. Respuesta HTTP: %d";
 
@@ -228,6 +246,9 @@
 
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "La ubicación ya no es válida. Actualizar archivos";
+
+/* (No Comment) */
+"minutes ago" = "Hace %d minutos";
 
 /* (No Comment) */
 "MK3" = "MK3";
@@ -316,6 +337,9 @@
 /* Origin is SD Card */
 "SD Card" = "Tarjeta SD";
 
+/* (No Comment) */
+"seconds ago" = "Hace %d segundos";
+
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "No se puede encontrar el servidor";
 
@@ -374,6 +398,9 @@
 
 /* (No Comment) */
 "Warning" = "Atención";
+
+/* (No Comment) */
+"weeks ago" = "Hace %d semanas";
 
 /* (No Comment) */
 "Wemo Switches" = "Enchufes Wemo";

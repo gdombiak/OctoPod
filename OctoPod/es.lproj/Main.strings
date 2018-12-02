@@ -76,9 +76,6 @@
 /* Class = "UILabel"; text = "Appearance"; ObjectID = "35a-ap-aeB"; */
 "35a-ap-aeB.text" = "Apariencia";
 
-/* Class = "UILabel"; text = "Detail"; ObjectID = "43o-rw-PJg"; */
-"43o-rw-PJg.text" = "Detalle";
-
 /* Class = "UIButton"; normalTitle = "E"; ObjectID = "48m-gj-F14"; */
 "48m-gj-F14.normalTitle" = "E";
 
@@ -127,6 +124,9 @@
 /* Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf"; */
 "bep-Im-uzf.text" = "Impreso";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
+"bNj-cj-oty.text" = "Label";
+
 /* Class = "UILabel"; text = "Error message"; ObjectID = "BXr-d8-f7x"; */
 "BXr-d8-f7x.text" = "Mensaje error";
 
@@ -135,6 +135,9 @@
 
 /* Class = "UITabBarItem"; title = "Terminal"; ObjectID = "Cjs-F4-ynC"; */
 "Cjs-F4-ynC.title" = "Terminal";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ckk-gg-bxA"; */
+"Ckk-gg-bxA.text" = "Label";
 
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "CNq-uw-hM5"; */
 "CNq-uw-hM5.text" = "Subtitulo";
@@ -319,9 +322,6 @@
 /* Class = "UIButton"; normalTitle = "SD"; ObjectID = "N5P-gn-chq"; */
 "N5P-gn-chq.normalTitle" = "SD";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "naE-gB-aKG"; */
-"naE-gB-aKG.text" = "Título";
-
 /* Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb"; */
 "ncZ-xn-WCb.text" = "Título";
 
@@ -339,6 +339,9 @@
 
 /* Class = "UIButton"; normalTitle = "Set"; ObjectID = "o8a-yF-u6j"; */
 "o8a-yF-u6j.normalTitle" = "Fijar";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "oiL-nC-j2P"; */
+"oiL-nC-j2P.text" = "Label";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "OKK-kR-6Xb"; */
 "OKK-kR-6Xb.text" = "Título";
@@ -561,6 +564,9 @@
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "ZF8-G0-f5Y"; */
 "ZF8-G0-f5Y.text" = "Detalle";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Zhk-cN-7C9"; */
+"Zhk-cN-7C9.text" = "Label";
 
 /* Class = "UILabel"; text = "Upload to OctoPrint"; ObjectID = "Ziq-bR-QIe"; */
 "Ziq-bR-QIe.text" = "Subir a OctoPrint";

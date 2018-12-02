@@ -35,9 +35,9 @@ class FileDetailsViewController: ThemedStaticUITableViewController {
         fileNameLabel.text = printFile?.display
         sizeLabel.text = printFile?.displaySize()
         originLabel.text = printFile?.displayOrigin()
-        estimatedPrintTimeLabel.text = secondsToEstimatedPrintTime(seconds: printFile?.estimatedPrintTime)
-        uploadedDateLabel.text = dateToString(date: printFile?.date)
-        printedDateLabel.text = dateToString(date: printFile?.lastPrintDate)
+        estimatedPrintTimeLabel.text = UIUtils.secondsToEstimatedPrintTime(seconds: printFile?.estimatedPrintTime)
+        uploadedDateLabel.text = UIUtils.dateToString(date: printFile?.date)
+        printedDateLabel.text = UIUtils.dateToString(date: printFile?.lastPrintDate)
         
         printButton.isEnabled = printFile != nil && printFile!.canBePrinted() && !appConfiguration.appLocked()
         deleteButton.isEnabled = printFile != nil && printFile!.canBeDeleted() && !appConfiguration.appLocked()
@@ -62,26 +62,6 @@ class FileDetailsViewController: ThemedStaticUITableViewController {
     
     // MARK: - Private functions
     
-    // Converts number of seconds into a string that represents aproximate time (e.g. About 23h 10m)
-    fileprivate func secondsToEstimatedPrintTime(seconds: Double?) -> String {
-        if seconds == nil || seconds == 0 {
-            return ""
-        }
-        let duration = TimeInterval(Int(seconds!))
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .brief
-        formatter.includesApproximationPhrase = true
-        formatter.allowedUnits = [ .day, .hour, .minute ]
-        return formatter.string(from: duration)!
-    }
-    
-    fileprivate func dateToString(date: Date?) -> String {
-        if let dateToConvert = date {
-            return DateFormatter.localizedString(from: dateToConvert, dateStyle: DateFormatter.Style.medium, timeStyle: DateFormatter.Style.medium)
-        }
-        return ""
-    }    
-
     fileprivate func themeLabels() {
         let theme = Theme.currentTheme()
         let textLabelColor = theme.labelColor()

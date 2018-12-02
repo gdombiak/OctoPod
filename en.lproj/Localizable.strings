@@ -150,3 +150,13 @@
 "Cancel current print job" = "Cancel current print job on %@";
 "Restart current print job" = "Restart current print job on %@";
 "Remaining time current print job" = "Time left on %@";
+
+"seconds ago" = "%d seconds ago";
+"1 minute ago" = "1 minute ago";
+"minutes ago" = "%d minutes ago";
+"1 hour ago" = "1 hour ago";
+"hours ago" = "%d hours ago";
+"1 day ago" = "1 day ago";
+"days ago" = "%d days ago";
+"1 week ago" = "1 week ago";
+"weeks ago" = "%d weeks ago";

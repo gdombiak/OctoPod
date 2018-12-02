@@ -62,7 +62,26 @@ class UIUtils {
             return (281, 0, 211, 0)
         }
     }
-
+    
+    static func dateToString(date: Date?, dateStyle: DateFormatter.Style = .medium, timeStyle: DateFormatter.Style = .medium) -> String {
+        if let dateToConvert = date {
+            return DateFormatter.localizedString(from: dateToConvert, dateStyle: dateStyle, timeStyle: timeStyle)
+        }
+        return ""
+    }
+    
+    // Converts number of seconds into a string that represents aproximate time (e.g. About 23h 10m)
+    static func secondsToEstimatedPrintTime(seconds: Double?) -> String {
+        if seconds == nil || seconds == 0 {
+            return ""
+        }
+        let duration = TimeInterval(Int(seconds!))
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .brief
+        formatter.includesApproximationPhrase = true
+        formatter.allowedUnits = [ .day, .hour, .minute ]
+        return formatter.string(from: duration)!
+    }
 }
 
 extension UIImage {
@@ -76,5 +95,33 @@ extension UIImage {
         guard let result = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
         UIGraphicsEndImageContext()
         return result
+    }
+}
+
+extension Date {
+    func timeAgoDisplay() -> String {
+        let secondsAgo = Int(Date().timeIntervalSince(self))
+        let minute = 60
+        let hour = 60 * minute
+        let day = 24 * hour
+        let week = 7 * day
+        if secondsAgo < minute {
+            return String(format: NSLocalizedString("seconds ago", comment: ""), secondsAgo)
+        }
+            
+        else if secondsAgo < hour {
+            let minutes = secondsAgo / minute
+            return minutes == 1 ? NSLocalizedString("1 minute ago", comment: "") : String(format: NSLocalizedString("minutes ago", comment: ""), minutes)
+        }
+        else if secondsAgo < day {
+            let hours = secondsAgo / hour
+            return hours == 1 ? NSLocalizedString("1 hour ago", comment: "") : String(format: NSLocalizedString("hours ago", comment: ""), hours)
+        }
+        else if secondsAgo < week {
+            let days = secondsAgo / day
+            return days == 1 ? NSLocalizedString("1 day ago", comment: "") : String(format: NSLocalizedString("days ago", comment: ""), days)
+        }
+        let weeks = secondsAgo / week
+        return weeks == 1 ? NSLocalizedString("1 week ago", comment: "") :  String(format: NSLocalizedString("weeks ago", comment: ""), weeks)
     }
 }

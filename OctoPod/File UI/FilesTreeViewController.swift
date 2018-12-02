@@ -92,6 +92,9 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let theme = Theme.currentTheme()
+        let textColor = theme.textColor()
+        
         let file = files[indexPath.row]
         
         if file.isFolder() {
@@ -102,15 +105,34 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "file_cell", for: indexPath)
-        cell.textLabel?.text = file.display
-        cell.detailTextLabel?.text = file.displayOrigin()
-        cell.imageView?.image = UIImage(named: file.isModel() ? "Model" : "GCode")
+        if let fileLabel = cell.viewWithTag(100) as? UILabel {
+            fileLabel.text = file.display
+            fileLabel.textColor = textColor
+        }
+        if let originLabel = cell.viewWithTag(200) as? UILabel {
+            originLabel.text = file.displayOrigin()
+            originLabel.textColor = textColor
+        }
+        if let sizeLabel = cell.viewWithTag(201) as? UILabel {
+            sizeLabel.text = file.displaySize()
+            sizeLabel.textColor = textColor
+        }
+        if let dateLabel = cell.viewWithTag(202) as? UILabel {
+            dateLabel.text = file.date?.timeAgoDisplay()
+            dateLabel.textColor = textColor
+        }
+        if let imageView = cell.viewWithTag(50) as? UIImageView {
+            imageView.image = UIImage(named: file.isModel() ? "Model" : "GCode")
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return !files[indexPath.row].isFolder() && !appConfiguration.appLocked()
+        if indexPath.row < files.count {
+            return !files[indexPath.row].isFolder() && !appConfiguration.appLocked()
+        }
+        return false
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -123,6 +145,14 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         ThemeUIUtils.themeCell(cell: cell)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row < files.count {
+            let file = files[indexPath.row]
+            return file.isFolder() ? 44 : 56
+        }
+        return 44
     }
     
     // MARK: - Unwind operations
