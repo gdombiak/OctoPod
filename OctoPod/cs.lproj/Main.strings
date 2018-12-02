@@ -76,9 +76,6 @@
 /* Class = "UILabel"; text = "Appearance"; ObjectID = "35a-ap-aeB"; */
 "35a-ap-aeB.text" = "Vzhled";
 
-/* Class = "UILabel"; text = "Detail"; ObjectID = "43o-rw-PJg"; */
-"43o-rw-PJg.text" = "Detail";
-
 /* Class = "UIButton"; normalTitle = "E"; ObjectID = "48m-gj-F14"; */
 "48m-gj-F14.normalTitle" = "E";
 
@@ -127,6 +124,9 @@
 /* Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf"; */
 "bep-Im-uzf.text" = "Vytisknuto";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
+"bNj-cj-oty.text" = "Label";
+
 /* Class = "UILabel"; text = "Error message"; ObjectID = "BXr-d8-f7x"; */
 "BXr-d8-f7x.text" = "Zpráva chyby";
 
@@ -135,6 +135,9 @@
 
 /* Class = "UITabBarItem"; title = "Terminal"; ObjectID = "Cjs-F4-ynC"; */
 "Cjs-F4-ynC.title" = "Terminál";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ckk-gg-bxA"; */
+"Ckk-gg-bxA.text" = "Label";
 
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "CNq-uw-hM5"; */
 "CNq-uw-hM5.text" = "Podnadpis";
@@ -319,9 +322,6 @@
 /* Class = "UIButton"; normalTitle = "SD"; ObjectID = "N5P-gn-chq"; */
 "N5P-gn-chq.normalTitle" = "SD";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "naE-gB-aKG"; */
-"naE-gB-aKG.text" = "Nadpis";
-
 /* Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb"; */
 "ncZ-xn-WCb.text" = "Nadpis";
 
@@ -340,8 +340,8 @@
 /* Class = "UIButton"; normalTitle = "Set"; ObjectID = "o8a-yF-u6j"; */
 "o8a-yF-u6j.normalTitle" = "Nastavit";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "OKK-kR-6Xb"; */
-"OKK-kR-6Xb.text" = "Nadpis";
+/* Class = "UILabel"; text = "Label"; ObjectID = "oiL-nC-j2P"; */
+"oiL-nC-j2P.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Configure controls using Custom Control Plugin"; ObjectID = "or6-Pr-Z6f"; */
 "or6-Pr-Z6f.normalTitle" = "Konfigurovat ovládání pomoci plug-inu Custom Control";
@@ -363,9 +363,6 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Job Information"; ObjectID = "PiT-vE-psw"; */
 "PiT-vE-psw.headerTitle" = "Informace o tisku";
-
-/* Class = "UILabel"; text = "Detail"; ObjectID = "PJm-Aw-TCV"; */
-"PJm-Aw-TCV.text" = "Detail";
 
 /* Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU"; */
 "Po0-HZ-vzU.text" = "Přihlaste se do iCloudu pro synchronizaci mezi zařízeními";
@@ -561,6 +558,9 @@
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "ZF8-G0-f5Y"; */
 "ZF8-G0-f5Y.text" = "Detail";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Zhk-cN-7C9"; */
+"Zhk-cN-7C9.text" = "Label";
 
 /* Class = "UILabel"; text = "Upload to OctoPrint"; ObjectID = "Ziq-bR-QIe"; */
 "Ziq-bR-QIe.text" = "Nahrát na OctoPrint";

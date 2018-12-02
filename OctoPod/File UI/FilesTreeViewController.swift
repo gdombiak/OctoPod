@@ -113,13 +113,18 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             originLabel.text = file.displayOrigin()
             originLabel.textColor = textColor
         }
-        if let sizeLabel = cell.viewWithTag(201) as? UILabel {
-            sizeLabel.text = file.displaySize()
-            sizeLabel.textColor = textColor
-        }
-        if let dateLabel = cell.viewWithTag(202) as? UILabel {
+        if let dateLabel = cell.viewWithTag(201) as? UILabel {
             dateLabel.text = file.date?.timeAgoDisplay()
             dateLabel.textColor = textColor
+        }
+        if let sizeLabel = cell.viewWithTag(202) as? UILabel {
+            var displaySize = file.displaySize()
+            let textLength = displaySize.count
+            if textLength < 10 {
+                displaySize = String(repeating: " ", count: 10 - textLength) + displaySize
+            }
+            sizeLabel.text = displaySize
+            sizeLabel.textColor = textColor
         }
         if let imageView = cell.viewWithTag(50) as? UIImageView {
             imageView.image = UIImage(named: file.isModel() ? "Model" : "GCode")
