@@ -1,4 +1,16 @@
 /* (No Comment) */
+"1 day ago" = "1 dag siden";
+
+/* (No Comment) */
+"1 hour ago" = "1 time siden";
+
+/* (No Comment) */
+"1 minute ago" = "1 minutt siden";
+
+/* (No Comment) */
+"1 week ago" = "1 uke siden";
+
+/* (No Comment) */
 "Actual Bed" = "Faktisk Skriveflate";
 
 /* (No Comment) */
@@ -90,6 +102,9 @@
 
 /* http://docs.octoprint.org/en/master/features/custom_controls.html */
 "Custom Controls" = "Tilpassede tillegg";
+
+/* (No Comment) */
+"days ago" = "%d dager siden";
 
 /* (No Comment) */
 "Disconnect" = "koble fra";
@@ -205,6 +220,9 @@
 /* File Type is a Folder */
 "Folder" = "Mappe";
 
+/* (No Comment) */
+"hours ago" = "%d timer siden";
+
 /* HTTP Request error info */
 "HTTP Request error" = "Forespørselfeil. HTTP-respons: %d";
 
@@ -228,6 +246,9 @@
 
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Plassering er ikke lenger gyldig. Oppdater filene";
+
+/* (No Comment) */
+"minutes ago" = "%d minutter siden";
 
 /* (No Comment) */
 "MK3" = "MK3";
@@ -316,6 +337,9 @@
 /* Origin is SD Card */
 "SD Card" = "SD-kort";
 
+/* (No Comment) */
+"seconds ago" = "%d sekunder siden";
+
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Server kunne ikke bli funnet";
 
@@ -374,6 +398,9 @@
 
 /* (No Comment) */
 "Warning" = "Advarsel";
+
+/* (No Comment) */
+"weeks ago" = "%d uker siden";
 
 /* (No Comment) */
 "Wemo Switches" = "Wemo Switches";
