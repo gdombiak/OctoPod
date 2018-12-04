@@ -99,7 +99,7 @@ class IntentsController {
 
     fileprivate func secondsToTimeLeft(seconds: Int) -> String {
         if seconds == 0 {
-            return ""
+            return "0"
         } else if seconds < 0 {
             // Should never happen but an OctoPrint plugin is returning negative values
             // so return 'Unknown' when this happens
