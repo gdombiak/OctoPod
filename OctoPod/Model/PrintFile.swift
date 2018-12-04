@@ -157,6 +157,14 @@ class PrintFile {
                 // File 2 is a folder but not file 1
                 return false
             } else {
+                // There is some weird bug where Files coming from OctoPrint have no display so app
+                // is crashing. Add these checks just in case
+                if file1.display == nil {
+                    return true
+                }
+                if file2.display == nil {
+                    return false
+                }
                 // They are both files (not folders)
                 return file1.display < file2.display
             }
