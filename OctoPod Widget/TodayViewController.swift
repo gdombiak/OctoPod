@@ -2,14 +2,16 @@ import UIKit
 import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-        
+    
+    private static let CACHE_LAST_ITEMS_KEY = "TodayViewController.CACHE_LAST_ITEMS_KEY"
     var items: [JobInfo] = []
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view from its nib.
+        // Recover last state from user defaults (if exists)
+        recoverItemsFromCache()
         
         // Indicate that widget will use expanded mode so we can show any number of printers
         // and not be limited to 110 height limit. Show more/less will be available
@@ -26,10 +28,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         let printers = printerManager.getPrinters()
-
-        let queue = DispatchQueue(label: "org.octopod.widget.table.queue.id")
         var counter = printers.count
-        
+
         updateWidgetDisplayMode()
 
         var newItems: [JobInfo] = []
@@ -52,13 +52,19 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                         progressCompletion = progress["completion"] as? Double
                     }
                     let jobInfo = JobInfo(printerName: printer.name, state: printerState, progressCompletion: progressCompletion, printTimeLeft: printTimeLeft, progressPrintTime: progressPrintTime)
-                    queue.sync {
+                    DispatchQueue.main.sync {
                         newItems.append(jobInfo)
                         counter = counter - 1
                     }
                 } else {
-                    NSLog("No JSON was returned for printer: \(printer.name). Error: \(String(describing: error?.localizedDescription))")
-                    queue.sync {
+                    var jobInfo: JobInfo?
+                    if let error = error {
+                        jobInfo = JobInfo(printerName: printer.name, state: error.localizedDescription, progressCompletion: nil, printTimeLeft: nil, progressPrintTime: nil)
+                    }
+                    DispatchQueue.main.sync {
+                        if let jobInfo = jobInfo {
+                            newItems.append(jobInfo)
+                        }
                         counter = counter - 1
                     }
                 }
@@ -67,6 +73,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                         self.items = newItems
                         self.tableView.reloadData()
                     }
+
+                    // Store information in cache so it can be used when opening Widget again
+                    self.storeItemsToCache(newItems: newItems)
+
                     completionHandler(NCUpdateResult.newData)
                 }
             }
@@ -108,6 +118,29 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         self.extensionContext?.widgetLargestAvailableDisplayMode = printerManager.getPrinters().count > 1 ? .expanded : .compact
     }
 
+    // MARK: - Private Cache Operations
+    
+    fileprivate func recoverItemsFromCache() {
+        if let jsonData = UserDefaults.standard.object(forKey: TodayViewController.CACHE_LAST_ITEMS_KEY) as? Data {
+            do {
+                let decoder = JSONDecoder()
+                items = try decoder.decode([JobInfo].self, from: jsonData)
+            } catch {
+                NSLog("Error retrieving cached info. Error: \(error)")
+            }
+        }
+    }
+    
+    fileprivate func storeItemsToCache(newItems: [JobInfo]) {
+        do {
+            let encoder = JSONEncoder()
+            let jsonData = try encoder.encode(newItems)
+            UserDefaults.standard.set(jsonData, forKey: TodayViewController.CACHE_LAST_ITEMS_KEY)
+        } catch {
+            NSLog("Error storing cached info. Error: \(error)")
+        }
+    }
+    
     // MARK: - Lazy variables
     
     static var persistentContainer: SharedPersistentContainer = {
@@ -200,7 +233,7 @@ extension TodayViewController : UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-struct JobInfo {
+struct JobInfo: Codable {
     var printerName: String
     var state: String
     var progressCompletion: Double?
