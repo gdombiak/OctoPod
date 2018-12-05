@@ -115,7 +115,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     fileprivate func updateWidgetDisplayMode() {
-        self.extensionContext?.widgetLargestAvailableDisplayMode = printerManager.getPrinters().count > 1 ? .expanded : .compact
+        self.extensionContext?.widgetLargestAvailableDisplayMode = printerManager.getPrinters().count > 2 ? .expanded : .compact
     }
 
     // MARK: - Private Cache Operations
