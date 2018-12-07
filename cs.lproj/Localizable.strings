@@ -89,7 +89,7 @@
 "Connection failed" = "Připojení se nezdařilo";
 
 /* Siri suggested phrase */
-"Cool down printer" = "Zchladit tiskárnu";
+"Cool down printer" = "Cool down printer";
 
 /* Siri suggested phrase */
 "Cool down printer bed" = "Cool down printer bed %@";
