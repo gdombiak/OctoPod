@@ -99,7 +99,10 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         
         if file.isFolder() {
             let cell = tableView.dequeueReusableCell(withIdentifier: "folder_cell", for: indexPath)
-            cell.textLabel?.text = file.display
+            if let fileLabel = cell.viewWithTag(100) as? UILabel {
+                fileLabel.text = file.display
+                fileLabel.textColor = textColor
+            }
             
             return cell
         }
@@ -399,7 +402,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             navigationItem.title = printer.name
             
             // Only enable refresh SD buttom if printer has an SD card
-            refreshSDButton.isEnabled = printer.sdSupport
+            refreshSDButton.isEnabled = printer.sdSupport && !appConfiguration.appLocked()
             
             loadFiles(done: nil)
         }

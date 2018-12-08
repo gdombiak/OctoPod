@@ -63,8 +63,11 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
         
         if file.isFolder() {
             let cell = tableView.dequeueReusableCell(withIdentifier: "folder_cell", for: indexPath)
-            cell.textLabel?.text = file.display
-            
+            if let fileLabel = cell.viewWithTag(100) as? UILabel {
+                fileLabel.text = file.display
+                fileLabel.textColor = textColor
+            }
+
             return cell
         }
         
