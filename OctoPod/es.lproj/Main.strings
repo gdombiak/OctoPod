@@ -4,6 +4,9 @@
 /* Class = "UIButton"; normalTitle = "Change language"; ObjectID = "2wA-7u-KgW"; */
 "2wA-7u-KgW.normalTitle" = "Cambiar Idioma";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "3c8-06-MDo"; */
+"3c8-06-MDo.text" = "Label";
+
 /* Class = "UILabel"; text = "Auto-lock while printing"; ObjectID = "3eo-D0-hAF"; */
 "3eo-D0-hAF.text" = "Auto-bloquear al imprimir";
 
@@ -64,6 +67,9 @@
 /* Class = "UITableViewSection"; headerTitle = "Z"; ObjectID = "8d7-Fp-V0A"; */
 "8d7-Fp-V0A.headerTitle" = "Z";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "8qc-7f-G5G"; */
+"8qc-7f-G5G.text" = "Label";
+
 /* Class = "UILabel"; text = "Bed"; ObjectID = "8U9-mV-fYc"; */
 "8U9-mV-fYc.text" = "Cama";
 
@@ -81,6 +87,9 @@
 
 /* Class = "UILabel"; text = "Refresh enabled"; ObjectID = "53i-ST-HFr"; */
 "53i-ST-HFr.text" = "Refresco habilitado";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "61C-mr-JBS"; */
+"61C-mr-JBS.text" = "Label";
 
 /* Class = "UILabel"; text = "About 10m"; ObjectID = "88V-gh-sQd"; */
 "88V-gh-sQd.text" = "Aprox 10m";
@@ -132,6 +141,9 @@
 
 /* Class = "UILabel"; text = "Sort by"; ObjectID = "Cdc-H8-bPm"; */
 "Cdc-H8-bPm.text" = "Orden";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "CiW-up-Ju4"; */
+"CiW-up-Ju4.text" = "Label";
 
 /* Class = "UITabBarItem"; title = "Terminal"; ObjectID = "Cjs-F4-ynC"; */
 "Cjs-F4-ynC.title" = "Terminal";
@@ -271,14 +283,14 @@
 /* Class = "UILabel"; text = "Control Power"; ObjectID = "j09-72-h0o"; */
 "j09-72-h0o.text" = "Controlar alimentación";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "J17-Xa-0dv"; */
+"J17-Xa-0dv.text" = "Label";
+
 /* Class = "UILabel"; text = "250.0 C"; ObjectID = "JwP-eK-xNk"; */
 "JwP-eK-xNk.text" = "250.0 C";
 
 /* Class = "UILabel"; text = "Kill and restart app to take effect"; ObjectID = "jxG-8a-4b3"; */
 "jxG-8a-4b3.text" = "Mata y reinicia la aplicación para que tenga efecto";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "jXN-qA-TlY"; */
-"jXN-qA-TlY.text" = "Título";
 
 /* Class = "UILabel"; text = "Confirm to disconnect"; ObjectID = "JYC-5g-kqS"; */
 "JYC-5g-kqS.text" = "Confirmar para desconectar";
@@ -343,9 +355,6 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "oiL-nC-j2P"; */
 "oiL-nC-j2P.text" = "Label";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "OKK-kR-6Xb"; */
-"OKK-kR-6Xb.text" = "Título";
-
 /* Class = "UIButton"; normalTitle = "Configure controls using Custom Control Plugin"; ObjectID = "or6-Pr-Z6f"; */
 "or6-Pr-Z6f.normalTitle" = "Configurar controles usando Custom Control Plugin";
 
@@ -364,11 +373,11 @@
 /* Class = "UITabBarItem"; title = "Move"; ObjectID = "Peq-4x-xQj"; */
 "Peq-4x-xQj.title" = "Mover";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "pgl-mI-9eB"; */
+"pgl-mI-9eB.text" = "Label";
+
 /* Class = "UITableViewSection"; headerTitle = "Job Information"; ObjectID = "PiT-vE-psw"; */
 "PiT-vE-psw.headerTitle" = "Información trabajo";
-
-/* Class = "UILabel"; text = "Detail"; ObjectID = "PJm-Aw-TCV"; */
-"PJm-Aw-TCV.text" = "Detalle";
 
 /* Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU"; */
 "Po0-HZ-vzU.text" = "Ingrese a iCloud para sincronizar dispositivos";
@@ -453,9 +462,6 @@
 
 /* Class = "UILabel"; text = "/"; ObjectID = "tTe-Q5-kkc"; */
 "tTe-Q5-kkc.text" = "/";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "twU-Rc-Faw"; */
-"twU-Rc-Faw.text" = "Título";
 
 /* Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ"; */
 "tzE-Y5-rVZ.text" = "Impresoras";
@@ -573,6 +579,9 @@
 
 /* Class = "UITabBarItem"; title = "Panel"; ObjectID = "zqn-zS-suB"; */
 "zqn-zS-suB.title" = "Panel";
+
+/* Class = "UIButton"; normalTitle = "Siri Integration"; ObjectID = "zRw-xu-lEf"; */
+"zRw-xu-lEf.normalTitle" = "Integración con Siri";
 
 /* Class = "UITableViewController"; title = "Log"; ObjectID = "ZSM-KR-Ovn"; */
 "ZSM-KR-Ovn.title" = "Log";

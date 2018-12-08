@@ -8,6 +8,7 @@ class SiriViewController: ThemedStaticUITableViewController {
 
     @IBOutlet weak var deleteIntentsButton: UIButton!
     @IBOutlet weak var regenerateIntentsButton: UIButton!
+    @IBOutlet weak var siriIntegrationButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,7 @@ class SiriViewController: ThemedStaticUITableViewController {
         let theme = Theme.currentTheme()
         deleteIntentsButton.tintColor = theme.tintColor()
         regenerateIntentsButton.tintColor = theme.tintColor()
+        siriIntegrationButton.tintColor = theme.tintColor()
         
         checkAppLockStatus()
     }
@@ -40,6 +42,11 @@ class SiriViewController: ThemedStaticUITableViewController {
         }, no: { (UIAlertAction) -> Void in
             // Do nothing
         })
+    }
+    
+    @IBAction func siriIntegrationChanged(_ sender: Any) {
+        let svc = SFSafariViewController(url: URL(string: "https://github.com/gdombiak/OctoPod/wiki/Siri-integration-with-OctoPod")!)
+        self.present(svc, animated: true, completion: nil)
     }
     
     // MARK: - Private functions

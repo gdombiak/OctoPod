@@ -4,6 +4,9 @@
 /* Class = "UIButton"; normalTitle = "Change language"; ObjectID = "2wA-7u-KgW"; */
 "2wA-7u-KgW.normalTitle" = "Endre språk";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "3c8-06-MDo"; */
+"3c8-06-MDo.text" = "Label";
+
 /* Class = "UILabel"; text = "Auto-lock while printing"; ObjectID = "3eo-D0-hAF"; */
 "3eo-D0-hAF.text" = "Automatisk lås ved utskrift";
 
@@ -84,6 +87,9 @@
 
 /* Class = "UILabel"; text = "Refresh enabled"; ObjectID = "53i-ST-HFr"; */
 "53i-ST-HFr.text" = "Oppdatering aktivert";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "61C-mr-JBS"; */
+"61C-mr-JBS.text" = "Label";
 
 /* Class = "UILabel"; text = "About 10m"; ObjectID = "88V-gh-sQd"; */
 "88V-gh-sQd.text" = "Om 10m";
@@ -286,9 +292,6 @@
 /* Class = "UILabel"; text = "Kill and restart app to take effect"; ObjectID = "jxG-8a-4b3"; */
 "jxG-8a-4b3.text" = "Avslutt og restart app for å ta i bruk";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "jXN-qA-TlY"; */
-"jXN-qA-TlY.text" = "Tittel";
-
 /* Class = "UILabel"; text = "Confirm to disconnect"; ObjectID = "JYC-5g-kqS"; */
 "JYC-5g-kqS.text" = "Bekreft for å koble fra";
 
@@ -460,9 +463,6 @@
 /* Class = "UILabel"; text = "/"; ObjectID = "tTe-Q5-kkc"; */
 "tTe-Q5-kkc.text" = "/";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "twU-Rc-Faw"; */
-"twU-Rc-Faw.text" = "Tittel";
-
 /* Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ"; */
 "tzE-Y5-rVZ.text" = "Skrivere";
 
@@ -579,6 +579,9 @@
 
 /* Class = "UITabBarItem"; title = "Panel"; ObjectID = "zqn-zS-suB"; */
 "zqn-zS-suB.title" = "Panel";
+
+/* Class = "UIButton"; normalTitle = "Siri Integration"; ObjectID = "zRw-xu-lEf"; */
+"zRw-xu-lEf.normalTitle" = "Siri integrasjon";
 
 /* Class = "UITableViewController"; title = "Log"; ObjectID = "ZSM-KR-Ovn"; */
 "ZSM-KR-Ovn.title" = "Logg";
