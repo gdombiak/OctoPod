@@ -80,6 +80,8 @@ class IntentsController {
             if let result = result as? Dictionary<String, Any>, let progress = result["progress"] as? Dictionary<String, Any> {
                 if let printTimeLeft = progress["printTimeLeft"] as? Int {
                     callback(true, self.secondsToTimeLeft(seconds: printTimeLeft), response.statusCode)
+                } else if let _ = progress["printTime"] as? Int {
+                    callback(true, NSLocalizedString("Unknown", comment: "ETA is Unknown"), response.statusCode)
                 } else {
                     callback(true, "0", response.statusCode)
                 }
