@@ -2,7 +2,7 @@
 "0xUDAM" = "${printer}";
 
 /* (No Comment) */
-"2TreiD" = "Stelle Düsentemperatur auf $(temnperature)";
+"2TreiD" = "Stelle Düsentemperatur auf ${temperature}";
 
 /* (No Comment) */
 "3eH6cZ" = "Keine Information über verbleibende Zeit erhalten (${statusCode})";
@@ -50,7 +50,7 @@
 "gx0D0e" = "Auftrag abgebrochen";
 
 /* (No Comment) */
-"hPlRC4" = "Stelle Druckbetttemperatur auf $(temperature)";
+"hPlRC4" = "Stelle Druckbetttemperatur auf ${temperature}";
 
 /* (No Comment) */
 "ihLqc7" = "Laufenden Druckauftrag aussetzen";
@@ -83,7 +83,7 @@
 "ovQf6Z" = "Auftrag pausiert";
 
 /* (No Comment) */
-"P89qJr" = "Verbleibende Zeit ist $(time)";
+"P89qJr" = "Verbleibende Zeit ist ${time}";
 
 /* (No Comment) */
 "Pj7mEV" = "Düse abkühlen";
@@ -113,7 +113,7 @@
 "SP4rN6" = "Düsentemperatur konnte nicht eingestellt werden";
 
 /* (No Comment) */
-"SRDf6Q" = "Temperatur der Düse wurde auf $(temperature) gestellt";
+"SRDf6Q" = "Temperatur der Düse wurde auf ${temperature} gestellt";
 
 /* (No Comment) */
 "sRkyIL" = "Auftrag konnte nicht neu gestartet werden (${statusCode})";
@@ -128,7 +128,7 @@
 "uoT27A" = "Temperatur des Druckbetts konnte nicht eingestellt werden (${statusCode})";
 
 /* (No Comment) */
-"Vc7DVt" = "Stelle die Temperatur von Düse $(tool) auf $(temperature)";
+"Vc7DVt" = "Stelle die Temperatur von Düse ${tool} auf ${temperature}";
 
 /* (No Comment) */
 "VDz0Q1" = "${printer}";
