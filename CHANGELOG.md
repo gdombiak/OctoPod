@@ -1,5 +1,31 @@
 # Change Log
 
+## [2.1](https://github.com/gdombiak/OctoPod/tree/2.1) (2018-12-09)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.0...2.1)
+
+**Implemented enhancements:**
+
+- Implement Siri shortcuts [\#147](https://github.com/gdombiak/OctoPod/issues/147)
+- iOS widget [\#144](https://github.com/gdombiak/OctoPod/issues/144)
+- Add upload date \(and maybe size\) to gcode files list [\#142](https://github.com/gdombiak/OctoPod/issues/142)
+- System Menu [\#141](https://github.com/gdombiak/OctoPod/issues/141)
+- Add new theme that follows OctoPrint's appearance color [\#140](https://github.com/gdombiak/OctoPod/issues/140)
+
+**Fixed bugs:**
+
+- Disable 'Refresh SD' button when app is locked [\#152](https://github.com/gdombiak/OctoPod/issues/152)
+- Fix unusual bug where File has no display [\#150](https://github.com/gdombiak/OctoPod/issues/150)
+- Camera rotation on Apple Watch.  [\#145](https://github.com/gdombiak/OctoPod/issues/145)
+
+**Closed issues:**
+
+- Disconnect cancels print [\#73](https://github.com/gdombiak/OctoPod/issues/73)
+
+**Merged pull requests:**
+
+- When using Siri, nil username/password is crashing [\#149](https://github.com/gdombiak/OctoPod/pull/149) ([chrisy](https://github.com/chrisy))
+- Ask the user to authorize Siri [\#148](https://github.com/gdombiak/OctoPod/pull/148) ([chrisy](https://github.com/chrisy))
+
 ## [2.0](https://github.com/gdombiak/OctoPod/tree/2.0) (2018-11-11)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.12...2.0)
 
