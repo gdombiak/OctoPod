@@ -148,6 +148,14 @@ class PrintFile {
     fileprivate class func sortByAlphabeticalOrder(files: Array<PrintFile>) -> Array<PrintFile> {
         return files.sorted { (file1: PrintFile, file2: PrintFile) -> Bool in
             if file1.isFolder() && file2.isFolder() {
+                // There is some weird bug where Files coming from OctoPrint have no display so app
+                // is crashing. Add these checks just in case
+                if file1.display == nil {
+                    return true
+                }
+                if file2.display == nil {
+                    return false
+                }
                 // Both are folders so sort by display
                 return file1.display < file2.display
             } else if file1.isFolder() {
