@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.1.1](https://github.com/gdombiak/OctoPod/tree/2.1) (2018-12-16)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.0...2.1)
+
+**Fixed bugs:**
+
+- Fix crash when file has no display text [\#156](https://github.com/gdombiak/OctoPod/issues/156)
+- \[German\] Siri Command Responses do not replace variables [\#155](https://github.com/gdombiak/OctoPod/issues/155)
+
 ## [2.1](https://github.com/gdombiak/OctoPod/tree/2.1) (2018-12-09)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.0...2.1)
 
