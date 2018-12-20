@@ -70,8 +70,11 @@ class CancelObjectViewController: ThemedDynamicUITableViewController, SubpanelVi
     
     // Notification that another OctoPrint server has been selected
     func printerSelectedChanged() {
-        // Fetch and render list of objects that can be cancelled
-        refreshCancelObjects(done: nil)
+        // Only refresh UI if view controller is being shown
+        if let _ = parent {
+            // Fetch and render list of objects that can be cancelled
+            refreshCancelObjects(done: nil)
+        }
     }
     
     // Notification that OctoPrint state has changed. This may include printer status information

@@ -51,8 +51,11 @@ class PSUControlViewController: ThemedStaticUITableViewController, SubpanelViewC
     func printerSelectedChanged() {
         // Assume power is off to be safe
         isPSUOn = false
-        // Fetch status now and refresh UI. Websockets will eventually send updates
-        fetchPSUStatus()
+        // Only refresh UI if view controller is being shown
+        if let _ = parent {
+            // Fetch status now and refresh UI. Websockets will eventually send updates
+            fetchPSUStatus()
+        }
     }
     
     // Notification that OctoPrint state has changed. This may include printer status information

@@ -91,8 +91,11 @@ class SystemCommandsViewController: ThemedDynamicUITableViewController, Subpanel
 
     // Notification that another OctoPrint server has been selected
     func printerSelectedChanged() {
-        // Fetch and render system commands
-        refreshSystemCommands(done: nil)
+        // Only refresh UI if view controller is being shown
+        if let _ = parent {
+            // Fetch and render system commands
+            refreshSystemCommands(done: nil)
+        }
     }
     
     // Notification that OctoPrint state has changed. This may include printer status information

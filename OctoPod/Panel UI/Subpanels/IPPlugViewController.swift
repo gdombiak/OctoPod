@@ -51,10 +51,13 @@ class IPPlugViewController: ThemedDynamicUITableViewController, SubpanelViewCont
     func printerSelectedChanged() {
         // Reset state if plugs
         plugsState = Dictionary()
-        // Get list of plugs for selected printer
-        refreshPlugs()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+        // Only refresh UI if view controller is being shown
+        if let _ = parent {
+            // Get list of plugs for selected printer
+            refreshPlugs()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     

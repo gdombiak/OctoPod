@@ -80,8 +80,11 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
     // MARK: - SubpanelViewController
 
     func printerSelectedChanged() {
-        // Fetch and render custom controls
-        refreshCustomControls(done: nil)
+        // Only refresh UI if view controller is being shown
+        if let _ = parent {
+            // Fetch and render custom controls
+            refreshCustomControls(done: nil)
+        }
     }
     
     // Notification that OctoPrint state has changed. This may include printer status information
