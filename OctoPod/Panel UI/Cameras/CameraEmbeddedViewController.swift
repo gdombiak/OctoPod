@@ -78,6 +78,10 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         // Dispose of any resources that can be recreated.
     }
 
+    func stopRenderingPrinter() {
+        streamingController?.stop()
+    }
+    
     // MARK: - Notifications
 
     func printerSelectedChanged() {
@@ -245,10 +249,6 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                 self.imageView.contentMode = .scaleAspectFit
             }
         }
-    }
-    
-    fileprivate func stopRenderingPrinter() {
-        streamingController?.stop()
     }
     
     fileprivate func userUsedGestures() {

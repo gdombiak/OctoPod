@@ -146,6 +146,14 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     // MARK: - Private functions
     
     fileprivate func updateViewControllersForPrinter(cameraChanged: Bool) {
+        if cameraChanged, let index = currentIndex, index >= orderedViewControllers.count {
+            // Stop rendering current printer's camera
+            // This VC may or may not be reused for the newly selected printer so
+            // we need to stop refreshing the camera
+            let cameraVC = orderedViewControllers[index]
+            cameraVC.stopRenderingPrinter()
+        }
+        // Create corresponding VCs according to the printer's cameras
         var newViewControllers: Array<CameraEmbeddedViewController> = Array()
         if let printer = printerManager.getDefaultPrinter() {
             if let camerasURLs = printer.cameras {

@@ -935,8 +935,8 @@
 		3DF232DE20F150A900550652 /* Move UI */ = {
 			isa = PBXGroup;
 			children = (
-				3DF232DF20F150CC00550652 /* MoveSubViewController.swift */,
 				3D78BAA02103C7CA0090D79A /* MoveViewController.swift */,
+				3DF232DF20F150CC00550652 /* MoveSubViewController.swift */,
 				3D27DA9D218A8500004F763A /* ExtrudeSpeedViewController.swift */,
 			);
 			path = "Move UI";
@@ -1841,7 +1841,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CC04C91AD1D77F22FA7EAFFB /* Pods-OctoPod.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OctoPod/OctoPod.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1863,7 +1862,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA67A6E786F508F8752C975C /* Pods-OctoPod.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OctoPod/OctoPod.entitlements;
 				CODE_SIGN_STYLE = Automatic;
