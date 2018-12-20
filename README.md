@@ -22,7 +22,7 @@ third party libraries just run the following in the command line:
 ### Open Xcode
 
 You can open the project by double clicking on _OctoPod.xcworkspace_ file, or launching Xcode and
-choose File > Open and browse to_OctoPod.xcworkspace_.
+choose File > Open and browse to _OctoPod.xcworkspace_.
 
 ## License
 
