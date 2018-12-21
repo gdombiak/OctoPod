@@ -4,7 +4,10 @@ import StoreKit  // Import for rating app
 class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopoverPresentationControllerDelegate, SubpanelViewController {
     
     private static let RATE_APP = "PANEL_RATE_APP"
-    
+    private static let TOOLTIP_PRINT_INFO = "PANEL_TOOLTIP_PRINT_INFO"
+    private static let TOOLTIP_TEMP_TOOL = "PANEL_TOOLTIP_TEMP_TOOL"
+    private static let TOOLTIP_TEMP_BED = "PANEL_TOOLTIP_TEMP_BED"
+
     enum buttonsScope {
         case all
         case all_except_connect
@@ -82,19 +85,43 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             if let controller = segue.destination as? SetTargetTempViewController {
                 controller.targetTempScope = SetTargetTempViewController.TargetScope.bed
                 controller.popoverPresentationController!.delegate = self
+                // Make the popover appear at the middle of the button
+                segue.destination.popoverPresentationController!.sourceRect = CGRect(x: bedSetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
             }
+        } else if segue.identifier == "bed_tooltip" {
+            segue.destination.popoverPresentationController!.delegate = self
+            // Make the popover appear at the middle of the button
+            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: bedSetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
         } else if segue.identifier == "set_target_temp_tool0" {
             if let controller = segue.destination as? SetTargetTempViewController {
                 controller.targetTempScope = SetTargetTempViewController.TargetScope.tool0
                 controller.popoverPresentationController!.delegate = self
+                // Make the popover appear at the middle of the button
+                segue.destination.popoverPresentationController!.sourceRect = CGRect(x: tool0SetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
             }
+        } else if segue.identifier == "tool0_tooltip" {
+            segue.destination.popoverPresentationController!.delegate = self
+            // Make the popover appear at the middle of the button
+            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: tool0SetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
         } else if segue.identifier == "set_target_temp_tool1" {
             if let controller = segue.destination as? SetTargetTempViewController {
                 controller.targetTempScope = SetTargetTempViewController.TargetScope.tool1
                 controller.popoverPresentationController!.delegate = self
+                // Make the popover appear at the middle of the button
+                segue.destination.popoverPresentationController!.sourceRect = CGRect(x: tool1SetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
             }
         } else if segue.identifier == "print_job_info" {
             segue.destination.popoverPresentationController!.delegate = self
+            // Make the popover appear at the middle of the button
+            let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
+            let y = devicePortrait ? 0 : printJobButton.frame.size.height
+            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: printJobButton.frame.size.width/2, y: y , width: 0, height: 0)
+        } else if segue.identifier == "print_job_tooltip" {
+            segue.destination.popoverPresentationController!.delegate = self
+            // Make the popover appear at the middle of the button
+            let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
+            let y = devicePortrait ? 0 : printJobButton.frame.size.height
+            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: printJobButton.frame.size.width/2, y: y , width: 0, height: 0)
         }
     }
     
@@ -119,6 +146,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 self.progressLabel.text = "\(progressText)%"
                 self.progressView.setProgress(Float(progressText)! / 100, animated: true) // Convert Float from String to prevent weird behaviors
                 self.printJobButton.isEnabled = progress > 0
+                
+                self.presentToolTip(tooltipKey: PrinterSubpanelViewController.TOOLTIP_PRINT_INFO, segueIdentifier: "print_job_tooltip", button: self.printJobButton)
             }
             
             if let seconds = event.progressPrintTime {
@@ -162,6 +191,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 self.bedSetTempButton.isEnabled = !disconnected
                 self.tool0SetTempButton.isEnabled = !disconnected
                 self.tool1SetTempButton.isEnabled = !disconnected
+
+                self.presentToolTip(tooltipKey: PrinterSubpanelViewController.TOOLTIP_TEMP_BED, segueIdentifier: "bed_tooltip", button: self.bedSetTempButton)
+                self.presentToolTip(tooltipKey: PrinterSubpanelViewController.TOOLTIP_TEMP_TOOL, segueIdentifier: "tool0_tooltip", button: self.tool0SetTempButton)
             }
         }
     }
@@ -243,6 +275,14 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         formatter.includesApproximationPhrase = true
         formatter.allowedUnits = [ .day, .hour, .minute ]
         return formatter.string(from: duration)!
+    }
+    
+    fileprivate func presentToolTip(tooltipKey: String, segueIdentifier: String, button: UIButton) {
+        let tooltipShown = UserDefaults.standard.bool(forKey: tooltipKey)
+        if button.isEnabled && !tooltipShown && self.presentedViewController == nil {
+            UserDefaults.standard.set(true, forKey: tooltipKey)
+            self.performSegue(withIdentifier: segueIdentifier, sender: self)
+        }
     }
     
     fileprivate func clearValues() {
