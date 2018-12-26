@@ -87,6 +87,7 @@
 		3D45280C20E15A380094CCB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280B20E15A380094CCB7 /* Assets.xcassets */; };
 		3D45280F20E15A380094CCB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280D20E15A380094CCB7 /* LaunchScreen.storyboard */; };
 		3D47BA3E21278956002420A0 /* IPPlugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D47BA3D21278956002420A0 /* IPPlugTableViewCell.swift */; };
+		3D49A09D21D41FE2005002E7 /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D49A09C21D41FE2005002E7 /* NotificationsManager.swift */; };
 		3D5849E4210CC8720068D87A /* OctoPrintSettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5849E3210CC8720068D87A /* OctoPrintSettingsDelegate.swift */; };
 		3D5879FA2176D2D20058A4DC /* NotRefreshingReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */; };
 		3D5D613621209F52000B66E7 /* CamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D613521209F52000B66E7 /* CamerasViewController.swift */; };
@@ -332,6 +333,8 @@
 		3D45280E20E15A380094CCB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D45281020E15A380094CCB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D47BA3D21278956002420A0 /* IPPlugTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPPlugTableViewCell.swift; sourceTree = "<group>"; };
+		3D49A09C21D41FE2005002E7 /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		3D49A09E21D4224E005002E7 /* OctoPod v8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v8.xcdatamodel"; sourceTree = "<group>"; };
 		3D51CFD221AF95F700B269AE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3D51CFD321AF95F700B269AE /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D5849E3210CC8720068D87A /* OctoPrintSettingsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintSettingsDelegate.swift; sourceTree = "<group>"; };
@@ -810,6 +813,7 @@
 				3D88C3E82193F49500BC84DD /* CancelObject.swift */,
 				3D866BF3218D55FF007AA493 /* BackgroundRefresher.swift */,
 				3D4497D321B230BE00736F0F /* SharedPersistentContainer.swift */,
+				3D49A09C21D41FE2005002E7 /* NotificationsManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1334,6 +1338,7 @@
 				3D78BA9F21039D770090D79A /* Terminal.swift in Sources */,
 				3D8DA01E2144EDCE00F5FD07 /* SupportViewController.swift in Sources */,
 				3D45280A20E15A370094CCB7 /* OctoPod.xcdatamodeld in Sources */,
+				3D49A09D21D41FE2005002E7 /* NotificationsManager.swift in Sources */,
 				3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */,
 				3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */,
 				3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */,
@@ -2030,6 +2035,7 @@
 		3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				3D49A09E21D4224E005002E7 /* OctoPod v8.xcdatamodel */,
 				3DC65608219BE49F00F4CA0D /* OctoPod v7.xcdatamodel */,
 				3D88C3E52193EFD800BC84DD /* OctoPod v6.xcdatamodel */,
 				3D693C5B214CCEC600823903 /* OctoPod v5.xcdatamodel */,
@@ -2038,7 +2044,7 @@
 				3D5849E5210CCB560068D87A /* OctoPod v2.xcdatamodel */,
 				3D45280920E15A370094CCB7 /* OctoPod.xcdatamodel */,
 			);
-			currentVersion = 3DC65608219BE49F00F4CA0D /* OctoPod v7.xcdatamodel */;
+			currentVersion = 3D49A09E21D4224E005002E7 /* OctoPod v8.xcdatamodel */;
 			path = OctoPod.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

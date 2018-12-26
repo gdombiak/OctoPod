@@ -12,4 +12,5 @@ struct Plugins {
     static let DOMOTICZ = "domoticz"                    // Considered an IP Plug plugin
     static let TASMOTA = "tasmota"                      // Considered an IP Plug plugin
     static let CANCEL_OBJECT = "cancelobject"
+    static let OCTOPOD = "octopod"
 }

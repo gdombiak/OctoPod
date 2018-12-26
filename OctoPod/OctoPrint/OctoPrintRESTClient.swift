@@ -624,6 +624,22 @@ class OctoPrintRESTClient {
         }
     }
 
+    // MARK: - OctoPod Plugin operations
+    
+    // Register new APNS token so app can receive push notifications from OctoPod plugin
+    func registerAPNSToken(oldToken: String?, newToken: String, deviceName: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "updateToken"
+            json["oldToken"] = oldToken == nil ? "" : oldToken!
+            json["newToken"] = newToken
+            json["deviceName"] = deviceName
+            client.post("/api/plugin/octopod", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+
     // MARK: - Low level operations
     
     fileprivate func connectionPost(httpClient: HTTPClient, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {

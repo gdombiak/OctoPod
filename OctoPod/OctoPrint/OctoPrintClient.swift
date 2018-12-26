@@ -495,6 +495,13 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.cancelObject(id: id, callback: callback)
     }
     
+    // MARK: - OctoPod Plugin operations
+    
+    // Register new APNS token so app can receive push notifications from OctoPod plugin
+    func registerAPNSToken(oldToken: String?, newToken: String, deviceName: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.registerAPNSToken(oldToken: oldToken, newToken: newToken, deviceName: deviceName, callback: callback)
+    }
+
     // MARK: - Delegates operations
     
     func remove(octoPrintClientDelegate toRemove: OctoPrintClientDelegate) {
@@ -616,6 +623,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         updatePrinterFromDomoticzPlugin(printer: printer, plugins: plugins)
         updatePrinterFromTasmotaPlugin(printer: printer, plugins: plugins)
         updatePrinterFromCancelObjectPlugin(printer: printer, plugins: plugins)
+        updatePrinterFromOctoPodPlugin(printer: printer, plugins: plugins)
     }
     
     fileprivate func updatePrinterFromMultiCamPlugin(printer: Printer, plugins: NSDictionary) {
@@ -776,6 +784,27 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
                 delegate.cancelObjectAvailabilityChanged(installed: installed)
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromOctoPodPlugin(printer: Printer, plugins: NSDictionary) {
+        var installed = false
+        if let _ = plugins[Plugins.OCTOPOD] as? NSDictionary {
+            // OctoPod plugin is installed
+            installed = true
+        }
+        if printer.octopodPluginInstalled != installed {
+            let newObjectContext = printerManager.newPrivateContext()
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+            // Update flag that tracks if OctoPod plugin is installed
+            printerToUpdate.octopodPluginInstalled = installed
+            // Persist updated printer
+            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+            
+            // Notify listeners of change
+            for delegate in octoPrintSettingsDelegates {
+                delegate.octoPodPluginChanged(installed: installed)
             }
         }
     }

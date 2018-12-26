@@ -30,6 +30,9 @@ protocol OctoPrintSettingsDelegate: class {
     
     // Notification that OctoPrint's appearance has changed. A new color or its transparency has changed
     func octoPrintColorChanged(color: String)
+
+    // Notification that availability of OctoPod plugin has changed
+    func octoPodPluginChanged(installed: Bool)
 }
 
 
@@ -58,5 +61,8 @@ extension OctoPrintSettingsDelegate {
     }
 
     func octoPrintColorChanged(color: String) {
+    }
+
+    func octoPodPluginChanged(installed: Bool){
     }
 }

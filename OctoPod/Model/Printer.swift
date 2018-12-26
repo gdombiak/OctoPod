@@ -36,7 +36,10 @@ class Printer: NSManagedObject {
     @NSManaged var domoticzplugs: [[String]]?  // Array of an Array with 2 strings (IP Address, Label)
     @NSManaged var tasmotaplugs: [[String]]?  // Array of an Array with 2 strings (IP Address, Label)
     @NSManaged var cancelObjectInstalled: Bool
+    @NSManaged var octopodPluginInstalled: Bool
+    @NSManaged var notificationToken: String?  // APNS token that was last registered with this OctoPrint instance
 
+    
     func getStreamPath() -> String {
         if let path = streamUrl {
             return path

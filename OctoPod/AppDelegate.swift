@@ -201,6 +201,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    // MARK: - Notifications of registeration for remote notifications
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        notificationsManager.registerToken(token: token)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        NSLog("APNs registration failed: \(error)")
+    }
+
     // MARK: - Remote notifications
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -257,5 +268,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var backgroundRefresher: BackgroundRefresher = {
         return BackgroundRefresher(octoPrintClient: self.octoprintClient, printerManager: self.printerManager!, watchSessionManager: self.watchSessionManager)
+    }()
+    
+    lazy var notificationsManager: NotificationsManager = {
+        return NotificationsManager(printerManager: self.printerManager!, octoprintClient: self.octoprintClient)
     }()
 }
