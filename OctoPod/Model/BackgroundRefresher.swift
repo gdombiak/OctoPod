@@ -26,9 +26,44 @@ class BackgroundRefresher: OctoPrintClientDelegate {
         // Listen to events coming from OctoPrintClient
         octoprintClient.delegates.append(self)
     }
-    
+
+    func refresh(printerID: String, printerState: String, progressCompletion: Double?, mediaURL: String?, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if let idURL = URL(string: printerID), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
+            if let url = mediaURL, let fetchURL = URL(string: url) {
+                let session = URLSession.shared
+                let task = session.dataTask(with: fetchURL, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
+                    if let imageData = data {
+                        self.pushComplicationUpdate(printerName: printer.name, state: printerState, imageData: imageData, completion: progressCompletion)
+                        completionHandler(.newData)
+                    } else if let error = error {
+                        NSLog("Error fetching image from provided URL: \(error)")
+
+                        self.pushComplicationUpdate(printerName: printer.name, state: printerState, imageData: nil, completion: progressCompletion)
+                        completionHandler(.newData)
+                    }
+                })
+                task.resume()
+            } else {
+                self.pushComplicationUpdate(printerName: printer.name, state: printerState, imageData: nil, completion: progressCompletion)
+                completionHandler(.newData)
+            }
+        } else {
+            // Unkown ID of printer
+            completionHandler(.noData)
+        }
+    }
+
     func refresh(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let printer = printerManager.getDefaultPrinter() {
+            // Check if OctoPrint instance has OctoPod plugin installed
+            // If installed then no need to do a background refresh to know
+            // if print job is done since plugin will send an immediate
+            // notification when job is done/failed
+            if printer.octopodPluginInstalled {
+                completionHandler(.noData)
+                return
+            }
+            
             let restClient: OctoPrintRESTClient
             // Make sure that we have a REST Client to the default printer
             // If the app was not even in background then we need to create
@@ -51,7 +86,7 @@ class BackgroundRefresher: OctoPrintClientDelegate {
                         if let progress = result["progress"] as? NSDictionary {
                             progressCompletion = progress["completion"] as? Double
                         }
-                        self.pushComplicationUpdate(printerName: printer.name, state: state, completion: progressCompletion)
+                        self.pushComplicationUpdate(printerName: printer.name, state: state, imageData: nil, completion: progressCompletion)
                         completionHandler(.newData)
                     } else {
                         completionHandler(.noData)
@@ -83,7 +118,7 @@ class BackgroundRefresher: OctoPrintClientDelegate {
     // Notification that the current state of the printer has changed
     func printerStateUpdated(event: CurrentStateEvent) {
         if let printer = printerManager.getDefaultPrinter(), let state = event.state {
-            pushComplicationUpdate(printerName: printer.name, state: state, completion: event.progressCompletion)
+            pushComplicationUpdate(printerName: printer.name, state: state, imageData: nil, completion: event.progressCompletion)
         }
     }
     
@@ -104,11 +139,11 @@ class BackgroundRefresher: OctoPrintClientDelegate {
     
     // MARK: - Private functions
     
-    fileprivate func pushComplicationUpdate(printerName: String, state: String, completion: Double?) {
+    fileprivate func pushComplicationUpdate(printerName: String, state: String, imageData: Data?, completion: Double?) {
         // Check if state has changed since last refresh
         if self.lastPrinterName != printerName || self.lastPrinterState != state {
             if let completion = completion {
-                checkCompletedJobLocalNotification(printerName: printerName, state: state, completion: completion)
+                checkCompletedJobLocalNotification(printerName: printerName, state: state, imageData: imageData, completion: completion)
             }
             // Update last known state
             self.lastPrinterName = printerName
@@ -128,13 +163,18 @@ class BackgroundRefresher: OctoPrintClientDelegate {
         }
     }
     
-    fileprivate func checkCompletedJobLocalNotification(printerName: String, state: String, completion: Double) {
+    fileprivate func checkCompletedJobLocalNotification(printerName: String, state: String, imageData: Data?, completion: Double) {
         if self.lastPrinterName == printerName && self.lastPrinterState != "Operational" && (state == "Finishing" || state == "Operational") && lastCompletion != 100 && completion == 100 {
             // Create Local Notification's Content
             let content = UNMutableNotificationContent()
             content.title = printerName
             content.body = NSString.localizedUserNotificationString(forKey: "Print complete", arguments: nil)
+            content.userInfo = ["printerName": printerName]
             
+            if let imageData = imageData, let attachment = self.saveImageToDisk(data: imageData, options: nil) {
+                content.attachments = [attachment]
+            }
+
             // Create the request
             let uuidString = UUID().uuidString
             let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: nil)
@@ -147,5 +187,20 @@ class BackgroundRefresher: OctoPrintClientDelegate {
                 }
             }
         }
+    }
+    
+    fileprivate func saveImageToDisk(data: Data, options: [NSObject : AnyObject]?) -> UNNotificationAttachment? {
+        let directory = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(ProcessInfo.processInfo.globallyUniqueString, isDirectory: true)
+        let fileIdentifier = "image.jpg"
+        do {
+            try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
+            let fileURL = directory.appendingPathComponent(fileIdentifier)
+            try data.write(to: fileURL, options: [])
+            return  try UNNotificationAttachment(identifier: fileIdentifier, url: fileURL, options: options)
+        } catch let error {
+            NSLog("Error creating attachment from image: \(error)")
+        }
+        
+        return nil
     }
 }

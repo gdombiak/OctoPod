@@ -498,8 +498,8 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     // MARK: - OctoPod Plugin operations
     
     // Register new APNS token so app can receive push notifications from OctoPod plugin
-    func registerAPNSToken(oldToken: String?, newToken: String, deviceName: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
-        octoPrintRESTClient.registerAPNSToken(oldToken: oldToken, newToken: newToken, deviceName: deviceName, callback: callback)
+    func registerAPNSToken(oldToken: String?, newToken: String, deviceName: String, printerID: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.registerAPNSToken(oldToken: oldToken, newToken: newToken, deviceName: deviceName, printerID: printerID, callback: callback)
     }
 
     // MARK: - Delegates operations

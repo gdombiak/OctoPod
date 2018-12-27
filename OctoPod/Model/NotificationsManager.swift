@@ -1,19 +1,26 @@
 import Foundation
 import UIKit
+import UserNotifications
 
-class NotificationsManager: OctoPrintSettingsDelegate {
+class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificationCenterDelegate {
     
     private let printerManager: PrinterManager!
     private let octoprintClient: OctoPrintClient!
+    private let watchSessionManager: WatchSessionManager!
     
     private var currentToken: String?
 
-    init(printerManager: PrinterManager, octoprintClient: OctoPrintClient) {
+    init(printerManager: PrinterManager, octoprintClient: OctoPrintClient, watchSessionManager: WatchSessionManager) {
         self.printerManager = printerManager
         self.octoprintClient = octoprintClient
+        self.watchSessionManager = watchSessionManager
+        
+        super.init()
 
         // Listen to changes to OctoPrint Settings in case the camera orientation has changed
         octoprintClient.octoPrintSettingsDelegates.append(self)
+        
+        UNUserNotificationCenter.current().delegate = self
     }
 
     // Register the specified token with all OctoPrints that have the OctoPod Plugin installed
@@ -41,13 +48,36 @@ class NotificationsManager: OctoPrintSettingsDelegate {
             }
         }
     }
+    
+    // MARK: - UNUserNotificationCenterDelegate
+    
+    // User clicked on notification that job is done. Let's switch to the selected printer
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        if let printerName = response.notification.request.content.userInfo["printerName"] as? String {
+            if let printer = printerManager.getPrinterByName(name: printerName) {
+                printerManager.changeToDefaultPrinter(printer)
+
+                // Ask octoprintClient to connect to new OctoPrint server
+                octoprintClient.connectToServer(printer: printer)
+                // Notify listeners of this change
+                for delegate in watchSessionManager.delegates {
+                    delegate.defaultPrinterChanged()
+                }
+
+                // Update Apple Watch with new selected printer
+                watchSessionManager.pushPrinters()
+            }
+        }
+        completionHandler()
+    }
 
     // MARK: - Private functions
     
     fileprivate func updateNotificationToken(printer: Printer) {
         if let newToken = currentToken {
             let deviceName = UIDevice.current.name
-            octoprintClient.registerAPNSToken(oldToken: printer.notificationToken, newToken: newToken, deviceName: deviceName) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            let id = printer.objectID.uriRepresentation().absoluteString
+            octoprintClient.registerAPNSToken(oldToken: printer.notificationToken, newToken: newToken, deviceName: deviceName, printerID: id) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
                     let newObjectContext = self.printerManager.newPrivateContext()
                     let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer

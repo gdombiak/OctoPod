@@ -216,6 +216,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         let dict = userInfo as! [String: NSObject]
+        // Check if notification is coming from CloudKit
         let notification = CKNotification(fromRemoteNotificationDictionary: dict)
         if notification.subscriptionID == cloudKitPrinterManager.SUBSCRIPTION_ID {
             cloudKitPrinterManager.pullChanges(completionHandler: {
@@ -224,11 +225,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 completionHandler(.failed)
             })
         } else {
-            // No data was downloaded by this app
-            completionHandler(.noData)
+            // Check if notification is coming from OctoPrint's plugin
+            if let printerID = dict["printer-id"] as? String, let printerState = dict["printer-state"] as? String {
+                let progressCompletion =  dict["printer-completion"] as? Double
+                let mediaURL =  dict["media-url"] as? String
+                backgroundRefresher.refresh(printerID: printerID, printerState: printerState, progressCompletion: progressCompletion, mediaURL: mediaURL, completionHandler: completionHandler)
+            } else {
+                // No data was downloaded by this app
+                completionHandler(.noData)
+            }
         }
     }
-
+    
     // MARK: - My extensions
 
     /// Applications with the "fetch" background mode may be given opportunities to fetch updated content in the background or when it is convenient for the system. This method will be called in these situations. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
@@ -271,6 +279,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     lazy var notificationsManager: NotificationsManager = {
-        return NotificationsManager(printerManager: self.printerManager!, octoprintClient: self.octoprintClient)
+        return NotificationsManager(printerManager: self.printerManager!, octoprintClient: self.octoprintClient, watchSessionManager: self.watchSessionManager)
     }()
 }
