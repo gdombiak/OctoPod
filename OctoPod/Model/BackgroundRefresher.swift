@@ -30,17 +30,31 @@ class BackgroundRefresher: OctoPrintClientDelegate {
     func refresh(printerID: String, printerState: String, progressCompletion: Double?, mediaURL: String?, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let idURL = URL(string: printerID), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
             if let url = mediaURL, let fetchURL = URL(string: url) {
-                let session = URLSession.shared
-                let task = session.dataTask(with: fetchURL, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
+                var backgroundTaskID = UIBackgroundTaskIdentifier.invalid
+                backgroundTaskID = UIApplication.shared.beginBackgroundTask {
+                    // End the task if time expires.
+                    UIApplication.shared.endBackgroundTask(backgroundTaskID)
+                    backgroundTaskID = UIBackgroundTaskIdentifier.invalid
+                    NSLog("Fetch image background task expired handler called");
+                }
+                let task = URLSession.shared.dataTask(with: fetchURL, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
                     if let imageData = data {
                         self.pushComplicationUpdate(printerName: printer.name, state: printerState, imageData: imageData, completion: progressCompletion)
                         completionHandler(.newData)
-                    } else if let error = error {
-                        NSLog("Error fetching image from provided URL: \(error)")
-
+                    } else {
+                        if let error = error {
+                            NSLog("Error fetching image from provided URL: \(error)")
+                        } else {
+                            NSLog("Failed to fetch image from provided URL with no error!")
+                        }
                         self.pushComplicationUpdate(printerName: printer.name, state: printerState, imageData: nil, completion: progressCompletion)
                         completionHandler(.newData)
                     }
+                    
+                    // End the task assertion.
+                    UIApplication.shared.endBackgroundTask(backgroundTaskID)
+                    backgroundTaskID = UIBackgroundTaskIdentifier.invalid
+                    NSLog("Fetch image background task finished");
                 })
                 task.resume()
             } else {
