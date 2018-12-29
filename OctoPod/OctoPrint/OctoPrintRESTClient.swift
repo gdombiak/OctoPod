@@ -565,6 +565,25 @@ class OctoPrintRESTClient {
         pluginCommand(plugin: plugin, json: json, callback: callback)
     }
     
+    // Instruct an IP plugin (e.g. TPLinkSmartplug, WemoSwitch, domoticz) to turn on/off the
+    // device with the specified IP address. If request was successful we get back a 204
+    // and the status is reported via websockets
+    func turnIPPlug(plugin: String, on: Bool, plug: IPPlug, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        let json : NSMutableDictionary = NSMutableDictionary()
+        json["command"] = on ? "turnOn" : "turnOff"
+        json["ip"] = plug.ip
+        if let idx = plug.idx {
+            json["idx"] = idx
+        }
+        if let username = plug.username {
+            json["username"] = username
+        }
+        if let password = plug.password {
+            json["password"] = password
+        }
+        pluginCommand(plugin: plugin, json: json, callback: callback)
+    }
+    
     // Instruct an IP plugin to report the status of the device with the specified IP address
     // If request was successful we get back a 204 and the status is reported via websockets
     func checkIPPlugStatus(plugin: String, plug: IPPlug, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
@@ -583,6 +602,24 @@ class OctoPrintRESTClient {
         pluginCommand(plugin: plugin, json: json, callback: callback)
     }
 
+    // Instruct an IP plugin to report the status of the device with the specified IP address
+    // If request was successful we get back a 204 and the status is reported via websockets
+    func checkIPPlugStatus(plugin: String, plug: IPPlug, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        let json : NSMutableDictionary = NSMutableDictionary()
+        json["command"] = "checkStatus"
+        json["ip"] = plug.ip
+        if let idx = plug.idx {
+            json["idx"] = idx
+        }
+        if let username = plug.username {
+            json["username"] = username
+        }
+        if let password = plug.password {
+            json["password"] = password
+        }
+        pluginCommand(plugin: plugin, json: json, callback: callback)
+    }
+    
     // MARK: - Cancel Object Plugin operations
     
     // Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
@@ -677,6 +714,14 @@ class OctoPrintRESTClient {
         if let client = httpClient {
             client.post("/api/plugin/\(plugin)", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                 callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+    
+    fileprivate func pluginCommand(plugin: String, json: NSDictionary, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.post("/api/plugin/\(plugin)", json: json, expected: 200) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(result, error, response)
             }
         }
     }

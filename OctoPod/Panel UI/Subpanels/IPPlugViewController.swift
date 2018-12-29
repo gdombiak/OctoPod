@@ -162,10 +162,28 @@ class IPPlugViewController: ThemedDynamicUITableViewController, SubpanelViewCont
             let changePower = {
                 if let indexPath = self.tableView.indexPath(for: cell) {
                     let plug = self.plugs[indexPath.row]
-                    self.octoprintClient.turnIPPlug(plugin: self.ipPlugPlugin, on: !on, plug: plug) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                        if !requested {
-                            let message = !on ? NSLocalizedString("Failed to request to turn power on", comment: "") : NSLocalizedString("Failed to request to turn power off", comment: "")
-                            self.showAlert(NSLocalizedString("Warning", comment: ""), message: message)
+                    if Plugins.TP_LINK_SMARTPLUG == self.ipPlugPlugin {
+                        self.octoprintClient.turnIPPlug(plugin: self.ipPlugPlugin, on: !on, plug: plug) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                            // If successfully requested then response is included in the response for this plugin (this changed recently)
+                            if let dict = result as? NSDictionary {
+                                self.pluginMessage(plugin: self.ipPlugPlugin, data: dict)
+                            }
+                            if response.statusCode >= 400 {
+                                if let error = error {
+                                    NSLog("Failed to request turn IP Plug with ip on/off: \(plug.ip). Error: \(error)")
+                                } else {
+                                    NSLog("Failed to request turn IP Plug with ip on/off: \(plug.ip). Response: \(response)")
+                                }
+                                let message = !on ? NSLocalizedString("Failed to request to turn power on", comment: "") : NSLocalizedString("Failed to request to turn power off", comment: "")
+                                self.showAlert(NSLocalizedString("Warning", comment: ""), message: message)
+                            }
+                        }
+                    } else {
+                        self.octoprintClient.turnIPPlug(plugin: self.ipPlugPlugin, on: !on, plug: plug) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                            if !requested {
+                                let message = !on ? NSLocalizedString("Failed to request to turn power on", comment: "") : NSLocalizedString("Failed to request to turn power off", comment: "")
+                                self.showAlert(NSLocalizedString("Warning", comment: ""), message: message)
+                            }
                         }
                     }
                 }
@@ -221,11 +239,23 @@ class IPPlugViewController: ThemedDynamicUITableViewController, SubpanelViewCont
     
     fileprivate func checkPlugsState() {
         for plug in plugs {
-            octoprintClient.checkIPPlugStatus(plugin: ipPlugPlugin, plug: plug) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                // If successfully requested then response will come via websockets. OctoPrintPluginsDelegate will
-                // pick up the answer
-                if !requested {
-                    NSLog("Failed to request state for IP Plug with ip: \(plug.ip)")
+            if Plugins.TP_LINK_SMARTPLUG == ipPlugPlugin {
+                octoprintClient.checkIPPlugStatus(plugin: ipPlugPlugin, plug: plug) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                    // If successfully requested then response is included in the response for this plugin (this changed recently)
+                    if let dict = result as? NSDictionary {
+                        self.pluginMessage(plugin: self.ipPlugPlugin, data: dict)
+                    }
+                    if let error = error {
+                        NSLog("Failed to request state for IP Plug with ip: \(plug.ip). Error: \(error)")
+                    }
+                }
+            } else {
+                octoprintClient.checkIPPlugStatus(plugin: ipPlugPlugin, plug: plug) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    // If successfully requested then response will come via websockets. OctoPrintPluginsDelegate will
+                    // pick up the answer
+                    if !requested {
+                        NSLog("Failed to request state for IP Plug with ip: \(plug.ip)")
+                    }
                 }
             }
         }

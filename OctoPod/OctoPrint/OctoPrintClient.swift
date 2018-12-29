@@ -477,9 +477,22 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.turnIPPlug(plugin: plugin, on: on, plug: plug, callback: callback)
     }
     
+    // Instruct an IP plugin (e.g. TPLinkSmartplug, WemoSwitch, domoticz) to turn on/off the
+    // device with the specified IP address. If request was successful we get back a 204
+    // and the status is reported via websockets
+    func turnIPPlug(plugin: String, on: Bool, plug: IPPlug, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.turnIPPlug(plugin: plugin, on: on, plug: plug, callback: callback)
+    }
+    
     // Instruct an IP plugin to report the status of the device with the specified IP address
     // If request was successful we get back a 204 and the status is reported via websockets
     func checkIPPlugStatus(plugin: String, plug: IPPlug, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.checkIPPlugStatus(plugin: plugin, plug: plug, callback: callback)
+    }
+    
+    // Instruct an IP plugin to report the status of the device with the specified IP address
+    // If request was successful we get back a 204 and the status is reported via websockets
+    func checkIPPlugStatus(plugin: String, plug: IPPlug, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.checkIPPlugStatus(plugin: plugin, plug: plug, callback: callback)
     }
     
