@@ -3,6 +3,7 @@ import UIKit
 class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate, WatchSessionManagerDelegate {
     
     private static let CONNECT_CONFIRMATION = "PANEL_CONNECT_CONFIRMATION"
+    private static let REMINDERS_SHOWN = "PANEL_REMINDERS_SHOWN_2_2"  // Key that stores if we should show reminders about important new things to users. Key might change per version
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -89,6 +90,12 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         watchSessionManager.remove(watchSessionManagerDelegate: self)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if !UserDefaults.standard.bool(forKey: PanelViewController.REMINDERS_SHOWN) {
+            self.performSegue(withIdentifier: "show_reminders", sender: self)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -170,6 +177,12 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 controller.reason = NSLocalizedString("Unknown", comment: "")
             }
         }
+
+        if segue.identifier == "show_reminders" {
+            segue.destination.popoverPresentationController!.delegate = self
+            // Center the popover
+            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY,width: 0,height: 0)
+        }
     }
     
     // MARK: - Unwind operations
@@ -220,6 +233,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed print job again", comment: ""))
             }
         }
+    }
+    
+    @IBAction func backFromShowReminders(_ sender: UIStoryboardSegue) {
+        UserDefaults.standard.set(true, forKey: PanelViewController.REMINDERS_SHOWN)
     }
 
     // MARK: - UIPopoverPresentationControllerDelegate
