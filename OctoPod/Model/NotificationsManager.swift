@@ -77,7 +77,9 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
         if let newToken = currentToken {
             let deviceName = UIDevice.current.name
             let id = printer.objectID.uriRepresentation().absoluteString
-            octoprintClient.registerAPNSToken(oldToken: printer.notificationToken, newToken: newToken, deviceName: deviceName, printerID: id) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            let restClient = OctoPrintRESTClient()
+            restClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+            restClient.registerAPNSToken(oldToken: printer.notificationToken, newToken: newToken, deviceName: deviceName, printerID: id) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
                     let newObjectContext = self.printerManager.newPrivateContext()
                     let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
