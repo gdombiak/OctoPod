@@ -92,7 +92,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
         }
         if let imageData = receivedData , imageData.length > 0,
             var receivedImage = UIImage(data: imageData as Data) {
-            if let orientation = imageOrientation, let cgImage = receivedImage.cgImage {
+            if let orientation = imageOrientation, let cgImage = receivedImage.cgImage, orientation != UIImage.Orientation.up {
                 // Rotate image based on requested orientation
                 receivedImage = UIImage(cgImage: cgImage, scale: CGFloat(1.0), orientation: orientation)
             }

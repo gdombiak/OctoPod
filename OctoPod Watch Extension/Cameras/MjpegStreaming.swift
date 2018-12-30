@@ -78,7 +78,7 @@ class MjpegStreaming: NSObject, URLSessionDataDelegate {
         if let imageData = receivedData, imageData.length > 0, var receivedImage = UIImage(data: imageData as Data) {
             // Resize image to reduce UI workload
 //            receivedImage = receivedImage.resizeImageWith(newSize: CGSize(width: 380, height: 470))
-            if let orientation = imageOrientation, let cgImage = receivedImage.cgImage {
+            if let orientation = imageOrientation, let cgImage = receivedImage.cgImage, orientation != UIImage.Orientation.up {
                 // Rotate image based on requested orientation
                 receivedImage = UIImage(cgImage: cgImage, scale: CGFloat(1.0), orientation: orientation)
             }
