@@ -802,16 +802,30 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     }
     
     fileprivate func updatePrinterFromOctoPodPlugin(printer: Printer, plugins: NSDictionary) {
+        let currentPrinterID = printer.objectID.uriRepresentation().absoluteString
         var installed = false
-        if let _ = plugins[Plugins.OCTOPOD] as? NSDictionary {
+        var notificationToken: String?
+        if let octopodPlugin = plugins[Plugins.OCTOPOD] as? NSDictionary {
             // OctoPod plugin is installed
             installed = true
+            // Retrieve last APNS token registered with the plugin for this printer
+            if let registeredTokens = octopodPlugin["tokens"] as? NSArray {
+                for case let registeredToken as NSDictionary in registeredTokens {
+                    if let printerID = registeredToken["printerID"] as? String, let apnsToken = registeredToken["apnsToken"] as? String {
+                        if printerID == currentPrinterID {
+                            notificationToken = apnsToken
+                            break
+                        }
+                    }
+                }
+            }
         }
-        if printer.octopodPluginInstalled != installed {
+        if printer.octopodPluginInstalled != installed || printer.notificationToken != notificationToken {
             let newObjectContext = printerManager.newPrivateContext()
             let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
             // Update flag that tracks if OctoPod plugin is installed
             printerToUpdate.octopodPluginInstalled = installed
+            printerToUpdate.notificationToken = notificationToken
             // Persist updated printer
             printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
             
