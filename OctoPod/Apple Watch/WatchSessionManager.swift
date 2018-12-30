@@ -172,10 +172,33 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     }
 
     fileprivate func panel_info(printerName: String, replyHandler: @escaping ([String : Any]) -> Void) {
-        // Make sure that iOS app and Apple Watch are operating on the same printer
-        ensureDefaultPrinter(printerName: printerName)
+        // iOS app and Apple Watch may be working on different printers.
+        // No need to force synch for this operation. If we do then a user that quickly
+        // switches between printers from the iOS app may end up with the wrong printer since
+        // the Apple Watch might be slow at getting the notification and it will ask for panel information
+        // of a no longer selected printer and we do not want to revert it back to the old one. To prevent
+        // all this problem we allow out-of-sync-selected printer for this operation only
+
+        // If requested printer is selected printer then use existing REST client
+        // if not then create a new REST client for this operation
+        var restClient: OctoPrintRESTClient?
+        if let printer = printerManager.getDefaultPrinter() {
+            if printer.name == printerName {
+                restClient = octoprintClient.octoPrintRESTClient
+            }
+        }
+        if restClient == nil {
+            if let printer = printerManager.getPrinterByName(name: printerName) {
+                restClient = OctoPrintRESTClient()
+                restClient?.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+            } else {
+                replyHandler(["error": NSLocalizedString("No printer", comment: "")])
+                return
+            }
+        }
+        
         // Execute request
-        octoprintClient.currentJobInfo { (result: NSObject?, error: Error?, response :HTTPURLResponse) in
+        restClient!.currentJobInfo { (result: NSObject?, error: Error?, response :HTTPURLResponse) in
             if let error = error {
                 replyHandler(["error": error.localizedDescription])
             } else if let result = result as? Dictionary<String, Any> {
@@ -195,7 +218,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                 }
                 
                 // Gather now info about printer (paused/printing/temps)
-                self.octoprintClient.printerState { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                restClient!.printerState { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                     if let json = result as? NSDictionary {
                         let event = CurrentStateEvent()
                         if let state = json["state"] as? NSDictionary {
