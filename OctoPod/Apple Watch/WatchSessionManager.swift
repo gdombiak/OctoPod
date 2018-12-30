@@ -54,6 +54,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                     // We can update complications using high priority #transferCurrentComplicationUserInfo
                     session.transferCurrentComplicationUserInfo(complicationRequest)
                 } else {
+                    NSLog("Out of budget so updating complications via #updateApplicationContext")
                     // We are out of budget so attempt updating complications this other way
                     do {
                         try session.updateApplicationContext(complicationRequest)

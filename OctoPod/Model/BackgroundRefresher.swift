@@ -8,9 +8,7 @@ class BackgroundRefresher: OctoPrintClientDelegate {
     let printerManager: PrinterManager!
     let watchSessionManager: WatchSessionManager!
     
-    private var lastPrinterName: String?
-    private var lastPrinterState: String?
-    private var lastCompletion: Double?
+    private var lastKnownState: Dictionary<String, (state: String, completion: Double?)> = [:]
     
     init(octoPrintClient: OctoPrintClient, printerManager: PrinterManager, watchSessionManager: WatchSessionManager) {
         self.octoprintClient = octoPrintClient
@@ -30,33 +28,40 @@ class BackgroundRefresher: OctoPrintClientDelegate {
     func refresh(printerID: String, printerState: String, progressCompletion: Double?, mediaURL: String?, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let idURL = URL(string: printerID), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
             if let url = mediaURL, let fetchURL = URL(string: url) {
-                var backgroundTaskID = UIBackgroundTaskIdentifier.invalid
-                backgroundTaskID = UIApplication.shared.beginBackgroundTask {
-                    // End the task if time expires.
-                    UIApplication.shared.endBackgroundTask(backgroundTaskID)
-                    backgroundTaskID = UIBackgroundTaskIdentifier.invalid
-                    NSLog("Fetch image background task expired handler called");
-                }
-                let task = URLSession.shared.dataTask(with: fetchURL, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
-                    if let imageData = data {
-                        self.pushComplicationUpdate(printerName: printer.name, state: printerState, imageData: imageData, completion: progressCompletion)
-                        completionHandler(.newData)
-                    } else {
-                        if let error = error {
-                            NSLog("Error fetching image from provided URL: \(error)")
-                        } else {
-                            NSLog("Failed to fetch image from provided URL with no error!")
-                        }
-                        self.pushComplicationUpdate(printerName: printer.name, state: printerState, imageData: nil, completion: progressCompletion)
-                        completionHandler(.newData)
-                    }
-                    
-                    // End the task assertion.
-                    UIApplication.shared.endBackgroundTask(backgroundTaskID)
-                    backgroundTaskID = UIBackgroundTaskIdentifier.invalid
-                    NSLog("Fetch image background task finished");
-                })
-                task.resume()
+                do {
+                    let imageData = try Data(contentsOf: fetchURL)
+                    self.pushComplicationUpdate(printerName: printer.name, state: printerState, imageData: imageData, completion: progressCompletion)
+                    completionHandler(.newData)
+                } catch let error {
+                    NSLog("Error fetching image from provided URL: \(error)")
+                }                
+//                var backgroundTaskID = UIBackgroundTaskIdentifier.invalid
+//                backgroundTaskID = UIApplication.shared.beginBackgroundTask {
+//                    // End the task if time expires.
+//                    UIApplication.shared.endBackgroundTask(backgroundTaskID)
+//                    backgroundTaskID = UIBackgroundTaskIdentifier.invalid
+//                    NSLog("Fetch image background task expired handler called");
+//                }
+//                let task = URLSession.shared.dataTask(with: fetchURL, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
+//                    if let imageData = data {
+//                        self.pushComplicationUpdate(printerName: printer.name, state: printerState, imageData: imageData, completion: progressCompletion)
+//                        completionHandler(.newData)
+//                    } else {
+//                        if let error = error {
+//                            NSLog("Error fetching image from provided URL: \(error)")
+//                        } else {
+//                            NSLog("Failed to fetch image from provided URL with no error!")
+//                        }
+//                        self.pushComplicationUpdate(printerName: printer.name, state: printerState, imageData: nil, completion: progressCompletion)
+//                        completionHandler(.newData)
+//                    }
+//
+//                    // End the task assertion.
+//                    UIApplication.shared.endBackgroundTask(backgroundTaskID)
+//                    backgroundTaskID = UIBackgroundTaskIdentifier.invalid
+//                    NSLog("Fetch image background task finished");
+//                })
+//                task.resume()
             } else {
                 self.pushComplicationUpdate(printerName: printer.name, state: printerState, imageData: nil, completion: progressCompletion)
                 completionHandler(.newData)
@@ -155,14 +160,13 @@ class BackgroundRefresher: OctoPrintClientDelegate {
     
     fileprivate func pushComplicationUpdate(printerName: String, state: String, imageData: Data?, completion: Double?) {
         // Check if state has changed since last refresh
-        if self.lastPrinterName != printerName || self.lastPrinterState != state {
+        let lastState = self.lastKnownState[printerName]
+        if lastState == nil || lastState?.state != state {
             if let completion = completion {
                 checkCompletedJobLocalNotification(printerName: printerName, state: state, imageData: imageData, completion: completion)
             }
             // Update last known state
-            self.lastPrinterName = printerName
-            self.lastPrinterState = state
-            self.lastCompletion = completion
+            self.lastKnownState[printerName] = (state, completion)
             // There is a budget of 50 pushes to the Apple Watch so let's only send relevant events
             var pushState = state
             if state == "Printing from SD" {
@@ -178,26 +182,28 @@ class BackgroundRefresher: OctoPrintClientDelegate {
     }
     
     fileprivate func checkCompletedJobLocalNotification(printerName: String, state: String, imageData: Data?, completion: Double) {
-        if self.lastPrinterName == printerName && self.lastPrinterState != "Operational" && (state == "Finishing" || state == "Operational") && lastCompletion != 100 && completion == 100 {
-            // Create Local Notification's Content
-            let content = UNMutableNotificationContent()
-            content.title = printerName
-            content.body = NSString.localizedUserNotificationString(forKey: "Print complete", arguments: nil)
-            content.userInfo = ["printerName": printerName]
-            
-            if let imageData = imageData, let attachment = self.saveImageToDisk(data: imageData, options: nil) {
-                content.attachments = [attachment]
-            }
-
-            // Create the request
-            let uuidString = UUID().uuidString
-            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: nil)
-            
-            // Schedule the request with the system.
-            let notificationCenter = UNUserNotificationCenter.current()
-            notificationCenter.add(request) { (error) in
-                if let error = error {
-                    NSLog("Error asking iOS to present local notification. Error: \(error)")
+        if let lastState = self.lastKnownState[printerName] {
+            if lastState.state != "Operational" && (state == "Finishing" || state == "Operational") && lastState.completion != 100 && completion == 100 {
+                // Create Local Notification's Content
+                let content = UNMutableNotificationContent()
+                content.title = printerName
+                content.body = NSString.localizedUserNotificationString(forKey: "Print complete", arguments: nil)
+                content.userInfo = ["printerName": printerName]
+                
+                if let imageData = imageData, let attachment = self.saveImageToDisk(data: imageData, options: nil) {
+                    content.attachments = [attachment]
+                }
+                
+                // Create the request
+                let uuidString = UUID().uuidString
+                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: nil)
+                
+                // Schedule the request with the system.
+                let notificationCenter = UNUserNotificationCenter.current()
+                notificationCenter.add(request) { (error) in
+                    if let error = error {
+                        NSLog("Error asking iOS to present local notification. Error: \(error)")
+                    }
                 }
             }
         }
