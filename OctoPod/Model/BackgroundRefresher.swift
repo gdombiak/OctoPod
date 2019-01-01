@@ -25,9 +25,13 @@ class BackgroundRefresher: OctoPrintClientDelegate {
         octoprintClient.delegates.append(self)
     }
 
-    func refresh(printerID: String, printerState: String, progressCompletion: Double?, mediaURL: String?, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    func refresh(printerID: String, printerState: String, progressCompletion: Double?, mediaURL: String?, test: Bool?, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let idURL = URL(string: printerID), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
-            self.pushComplicationUpdate(printerName: printer.name, state: printerState, mediaURL: mediaURL, completion: progressCompletion)
+            if test == true {
+                self.checkCompletedJobLocalNotification(printerName: printer.name, state: printerState, mediaURL: mediaURL, completion: 100, test: true)
+            } else {
+                self.pushComplicationUpdate(printerName: printer.name, state: printerState, mediaURL: mediaURL, completion: progressCompletion)
+            }
             completionHandler(.newData)
         } else {
             // Unkown ID of printer
@@ -126,7 +130,7 @@ class BackgroundRefresher: OctoPrintClientDelegate {
         let lastState = self.lastKnownState[printerName]
         if lastState == nil || lastState?.state != state {
             if let completion = completion {
-                checkCompletedJobLocalNotification(printerName: printerName, state: state, mediaURL: mediaURL, completion: completion)
+                checkCompletedJobLocalNotification(printerName: printerName, state: state, mediaURL: mediaURL, completion: completion, test: false)
             }
             // Update last known state
             self.lastKnownState[printerName] = (state, completion)
@@ -144,36 +148,38 @@ class BackgroundRefresher: OctoPrintClientDelegate {
         }
     }
     
-    fileprivate func checkCompletedJobLocalNotification(printerName: String, state: String, mediaURL: String?, completion: Double) {
+    fileprivate func checkCompletedJobLocalNotification(printerName: String, state: String, mediaURL: String?, completion: Double, test: Bool) {
+        var sendLocalNotification = false
         if let lastState = self.lastKnownState[printerName] {
-            if lastState.state != "Operational" && (state == "Finishing" || state == "Operational") && lastState.completion != 100 && completion == 100 {
-                // Create Local Notification's Content
-                let content = UNMutableNotificationContent()
-                content.title = printerName
-                content.body = NSString.localizedUserNotificationString(forKey: "Print complete", arguments: nil)
-                content.userInfo = ["printerName": printerName]
-                
-                if let url = mediaURL, let fetchURL = URL(string: url) {
-                    do {
-                        let imageData = try Data(contentsOf: fetchURL)
-                        if let attachment = self.saveImageToDisk(data: imageData, options: nil) {
-                            content.attachments = [attachment]
-                        }
-                    } catch let error {
-                        NSLog("Error fetching image from provided URL: \(error)")
+            sendLocalNotification = lastState.state != "Operational" && (state == "Finishing" || state == "Operational") && lastState.completion != 100 && completion == 100
+        }
+        if sendLocalNotification || test {
+            // Create Local Notification's Content
+            let content = UNMutableNotificationContent()
+            content.title = printerName
+            content.body = NSString.localizedUserNotificationString(forKey: "Print complete", arguments: nil)
+            content.userInfo = ["printerName": printerName]
+            
+            if let url = mediaURL, let fetchURL = URL(string: url) {
+                do {
+                    let imageData = try Data(contentsOf: fetchURL)
+                    if let attachment = self.saveImageToDisk(data: imageData, options: nil) {
+                        content.attachments = [attachment]
                     }
+                } catch let error {
+                    NSLog("Error fetching image from provided URL: \(error)")
                 }
-                
-                // Create the request
-                let uuidString = UUID().uuidString
-                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: nil)
-                
-                // Schedule the request with the system.
-                let notificationCenter = UNUserNotificationCenter.current()
-                notificationCenter.add(request) { (error) in
-                    if let error = error {
-                        NSLog("Error asking iOS to present local notification. Error: \(error)")
-                    }
+            }
+            
+            // Create the request
+            let uuidString = UUID().uuidString
+            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: nil)
+            
+            // Schedule the request with the system.
+            let notificationCenter = UNUserNotificationCenter.current()
+            notificationCenter.add(request) { (error) in
+                if let error = error {
+                    NSLog("Error asking iOS to present local notification. Error: \(error)")
                 }
             }
         }

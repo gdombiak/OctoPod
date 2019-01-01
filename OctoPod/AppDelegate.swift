@@ -227,9 +227,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             // Check if notification is coming from OctoPrint's plugin
             if let printerID = dict["printer-id"] as? String, let printerState = dict["printer-state"] as? String {
-                let progressCompletion =  dict["printer-completion"] as? Double
-                let mediaURL =  dict["media-url"] as? String
-                backgroundRefresher.refresh(printerID: printerID, printerState: printerState, progressCompletion: progressCompletion, mediaURL: mediaURL, completionHandler: completionHandler)
+                let progressCompletion = dict["printer-completion"] as? Double
+                let mediaURL = dict["media-url"] as? String
+                let test = dict["test"] as? Bool
+                backgroundRefresher.refresh(printerID: printerID, printerState: printerState, progressCompletion: progressCompletion, mediaURL: mediaURL, test: test, completionHandler: completionHandler)
             } else {
                 // No data was downloaded by this app
                 completionHandler(.noData)
