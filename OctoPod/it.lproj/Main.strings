@@ -166,6 +166,9 @@
 /* Class = "UIButton"; normalTitle = "Pause Job"; ObjectID = "d2Y-RO-6Yg"; */
 "d2Y-RO-6Yg.normalTitle" = "Sospendi";
 
+/* Class = "UITableViewSection"; headerTitle = "Reminders"; ObjectID = "dIa-e3-jnv"; */
+"dIa-e3-jnv.headerTitle" = "Promemoria";
+
 /* Class = "UILabel"; text = "Frequently Asked Questions"; ObjectID = "dlU-c7-kpY"; */
 "dlU-c7-kpY.text" = "Domande frequenti (FAQ)";
 
@@ -264,6 +267,9 @@
 
 /* Class = "UILabel"; text = "Upload to SD Card (root)"; ObjectID = "hrr-SZ-62l"; */
 "hrr-SZ-62l.text" = "Carica su scheda SD (cartella principale)";
+
+/* Class = "UILabel"; text = "Tip: Click to set temperature"; ObjectID = "HUF-Dw-M7F"; */
+"HUF-Dw-M7F.text" = "Suggerimento: Clicca per impostare la temperatura";
 
 /* Class = "UITableViewSection"; headerTitle = "X Y"; ObjectID = "hWI-gF-onz"; */
 "hWI-gF-onz.headerTitle" = "X Y";
@@ -388,6 +394,9 @@
 /* Class = "UIBarButtonItem"; title = "Printer"; ObjectID = "PyK-FO-APL"; */
 "PyK-FO-APL.title" = "Stampante";
 
+/* Class = "UILabel"; text = "Tip: Click to control print job"; ObjectID = "pyW-4g-EDz"; */
+"pyW-4g-EDz.text" = "Suggerimento: Clicca per controllare la stampa";
+
 /* Class = "UIButton"; normalTitle = "Retract"; ObjectID = "Q2b-xf-a3O"; */
 "Q2b-xf-a3O.normalTitle" = "Ritrai";
 
@@ -465,6 +474,9 @@
 
 /* Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ"; */
 "tzE-Y5-rVZ.text" = "Stampanti";
+
+/* Class = "UILabel"; text = "Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots"; ObjectID = "u6S-b1-CTI"; */
+"u6S-b1-CTI.text" = "Installa il plugin di OctoPod per ricevere notifiche push immediate con anteprime della fotocamera";
 
 /* Class = "UILabel"; text = "GCode command"; ObjectID = "uge-6J-pcC"; */
 "uge-6J-pcC.text" = "Comando GCode";
@@ -552,6 +564,9 @@
 
 /* Class = "UILabel"; text = "Control ATX/AUX power supply via PSU Control"; ObjectID = "Ysy-LO-1dL"; */
 "Ysy-LO-1dL.text" = "Controlla un alimentatore ATX/AUX attraverso PSU Control";
+
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "yxh-PV-og3"; */
+"yxh-PV-og3.normalTitle" = "Chiudi";
 
 /* Class = "UIButton"; normalTitle = "Send"; ObjectID = "z4Q-Gf-Y5G"; */
 "z4Q-Gf-Y5G.normalTitle" = "Invia";
