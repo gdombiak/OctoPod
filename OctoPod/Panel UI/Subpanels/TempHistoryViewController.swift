@@ -51,6 +51,10 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         
         // Control whether users can do zoom in/out
         lineChartView.isUserInteractionEnabled = !appConfiguration.tempChartZoomDisabled()
+        
+        // Disable highlighting (the vertical and horizontal yellow lines)
+        lineChartView.highlightPerTapEnabled = false
+        lineChartView.highlightPerDragEnabled = false
 
         paintChart()
     }
@@ -103,17 +107,33 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         var tool1TargetEntries = Array<ChartDataEntry>()
         
         let now = Date().timeIntervalSince1970.rounded()
+        var minBedActual: Double = 0, maxBedActual: Double = 0
+        var minTool0Actual: Double = 0, maxTool0Actual: Double = 0
         for temp in octoprintClient.tempHistory.temps {
             if let time = temp.tempTime {
                 let age = ((Double(time) - now) / 60).rounded()
                 if let bedActual = temp.bedTempActual {
                     bedActualEntries.append(ChartDataEntry(x: age, y: bedActual))
+                    // Calculate min and max temperatures
+                    if minBedActual == 0 || bedActual < minBedActual {
+                        minBedActual = bedActual
+                    }
+                    if maxBedActual == 0 || bedActual > maxBedActual {
+                        maxBedActual = bedActual
+                    }
                 }
                 if let bedTarget = temp.bedTempTarget {
                     bedTargetEntries.append(ChartDataEntry(x: age, y: bedTarget))
                 }
                 if let tool0Actual = temp.tool0TempActual {
                     tool0ActualEntries.append(ChartDataEntry(x: age, y: tool0Actual))
+                    // Calculate min and max temperatures
+                    if minTool0Actual == 0 || tool0Actual < minTool0Actual {
+                        minTool0Actual = tool0Actual
+                    }
+                    if maxTool0Actual == 0 || tool0Actual > maxTool0Actual {
+                        maxTool0Actual = tool0Actual
+                    }
                 }
                 if let tool0Target = temp.tool0TempTarget {
                     tool0TargetEntries.append(ChartDataEntry(x: age, y: tool0Target))
@@ -163,8 +183,12 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         if !lineChartData.dataSets.isEmpty {
             // Add data to chart view. This will cause an update in the UI
             lineChartView.data = lineChartData
+           
+            // Display temp variance
+            lineChartView.chartDescription?.text = NSLocalizedString("Extruder Variance", comment: "") + ": \(String(format: "%0.*f", 1, (maxTool0Actual - minTool0Actual))) - " + NSLocalizedString("Bed Variance", comment: "") + ": \(String(format: "%0.*f", 1, (maxBedActual - minBedActual)))"
         } else {
             lineChartView.data = nil
+            lineChartView.chartDescription?.text = NSLocalizedString("Temperature", comment: "Temperature")
         }
     }
     
