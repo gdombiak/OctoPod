@@ -28,6 +28,9 @@
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Problemas con el certificado o con SSL";
 
+/* No comment provided by engineer. */
+"Bed Variance" = "Variación cama";
+
 /* (No Comment) */
 "Cancel" = "Cancelar";
 
@@ -120,6 +123,9 @@
 
 /* (No Comment) */
 "Enable iCloud under iOS Settings to use this feature" = "Habilita iCloud en la configuración de iOS para usar esta función";
+
+/* No comment provided by engineer. */
+"Extruder Variance" = "Variación extrusor";
 
 /* (No Comment) */
 "Failed to delete file" = "Falla al eliminar archivo";
