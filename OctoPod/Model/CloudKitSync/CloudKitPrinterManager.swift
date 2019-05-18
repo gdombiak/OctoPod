@@ -116,7 +116,7 @@ class CloudKitPrinterManager {
             let subscription = CKQuerySubscription(recordType: RECORD_TYPE,
                                                    predicate: predicate,
                                                    subscriptionID: SUBSCRIPTION_ID,
-                                                   options: [.firesOnRecordCreation, .firesOnRecordDeletion, .firesOnRecordUpdate])
+                                                   options: [CKQuerySubscription.Options.firesOnRecordCreation, CKQuerySubscription.Options.firesOnRecordDeletion, CKQuerySubscription.Options.firesOnRecordUpdate])
             let notificationInfo = CKSubscription.NotificationInfo()
             notificationInfo.shouldSendContentAvailable = true // Use silent content notifications - user will not be prompt for permissions
             subscription.notificationInfo = notificationInfo

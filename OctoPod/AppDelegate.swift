@@ -217,7 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         let dict = userInfo as! [String: NSObject]
         // Check if notification is coming from CloudKit
-        let notification = CKNotification(fromRemoteNotificationDictionary: dict)
+        let notification = CKNotification(fromRemoteNotificationDictionary: dict)!
         if notification.subscriptionID == cloudKitPrinterManager.SUBSCRIPTION_ID {
             cloudKitPrinterManager.pullChanges(completionHandler: {
                 completionHandler(.newData)

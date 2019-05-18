@@ -6,7 +6,7 @@ target 'OctoPod' do
   use_frameworks!
 
   # Pods for OctoPod
-  pod 'Starscream', '~> 3.0.2'
-  pod 'Charts', '~> 3.1'
+  pod 'Starscream', '~> 3.1'
+  pod 'Charts', '~> 3.3'
 
 end

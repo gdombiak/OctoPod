@@ -169,7 +169,7 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
     }
     
     fileprivate func createLine(values: [ChartDataEntry], label: String, lineColor: UIColor) -> LineChartDataSet {
-        let line = LineChartDataSet(values: values, label: label)
+        let line = LineChartDataSet(entries: values, label: label)
         line.colors = [lineColor]
         line.drawCirclesEnabled = false
         line.drawValuesEnabled = false
