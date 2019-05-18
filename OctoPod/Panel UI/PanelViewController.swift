@@ -91,9 +91,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if !UserDefaults.standard.bool(forKey: PanelViewController.REMINDERS_SHOWN) {
-            self.performSegue(withIdentifier: "show_reminders", sender: self)
-        }
+        // Disable showing this reminder since OctoPrint plugin is not yet available for public usage
+//        if !UserDefaults.standard.bool(forKey: PanelViewController.REMINDERS_SHOWN) {
+//            self.performSegue(withIdentifier: "show_reminders", sender: self)
+//        }
     }
     
     override func didReceiveMemoryWarning() {
