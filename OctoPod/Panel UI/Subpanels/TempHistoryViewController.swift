@@ -37,6 +37,7 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         lineChartView.legend.textColor = labelColor
         lineChartView.noDataTextColor = labelColor
 
+        lineChartView.chartDescription?.font = .systemFont(ofSize: 10.0)
         lineChartView.chartDescription?.text = NSLocalizedString("Temperature", comment: "Temperature")
         lineChartView.noDataText = NSLocalizedString("No temperature history", comment: "No temperature history")
         
