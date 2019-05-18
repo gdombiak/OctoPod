@@ -4292,13 +4292,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="250" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Speed value" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Lh-Q8-wxW">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Speed value" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Lh-Q8-wxW">
                                                     <rect key="frame" x="16" y="7" width="218" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                     <connections>
                                                         <action selector="customSpeedChanging:" destination="Iri-Zw-4Px" eventType="editingChanged" id="foM-bP-FWa"/>
+                                                        <action selector="customSpeedTouched:" destination="Iri-Zw-4Px" eventType="touchDown" id="J6U-Bk-QCt"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
