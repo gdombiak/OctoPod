@@ -96,6 +96,11 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
             // Retry up to 5 times to open a websocket connection
             if !closedByUser {
                 if openRetries < 6 {
+                    if let wsError = error as? WSError, wsError.type == ErrorType.upgradeError {
+                        // Remove Host header in case we are running into a CORS issue. This is a hack so that users do not need to
+                        // enable CORS on the server when running behind a reverse proxy. This is how it used to run before version 2.2
+                        self.socketRequest!.setValue(nil, forHTTPHeaderField: "Host")
+                    }
                     recreateSocket()
                     establishConnection()
                 } else {
