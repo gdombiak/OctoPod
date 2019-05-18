@@ -34,13 +34,18 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
         
         let urlString: String = "\(serverURL!)/sockjs/websocket"
         
-        self.socketRequest = URLRequest(url: URL(string: urlString)!)
+        let socketURL = URL(string: urlString)!
+        self.socketRequest = URLRequest(url: socketURL)
         self.socketRequest!.timeoutInterval = 5
         if username != nil && password != nil {
             // Add authorization header
             let plainData = (username! + ":" + password!).data(using: String.Encoding.utf8)
             let base64String = plainData!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
             self.socketRequest!.setValue("Basic " + base64String, forHTTPHeaderField: "Authorization")
+        }
+        // Set Host header to prevent CORS issues
+        if let host = socketURL.host {
+            self.socketRequest!.setValue(host, forHTTPHeaderField: "Host")
         }
         createWebSocket()
         
