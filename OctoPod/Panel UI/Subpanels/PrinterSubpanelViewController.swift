@@ -279,7 +279,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     fileprivate func presentToolTip(tooltipKey: String, segueIdentifier: String, button: UIButton) {
         let tooltipShown = UserDefaults.standard.bool(forKey: tooltipKey)
-        if button.isEnabled && !tooltipShown && self.presentedViewController == nil {
+        let viewShown = view.window != nil
+        if viewShown && button.isEnabled && !tooltipShown && self.presentedViewController == nil {
             UserDefaults.standard.set(true, forKey: tooltipKey)
             self.performSegue(withIdentifier: segueIdentifier, sender: self)
         }
