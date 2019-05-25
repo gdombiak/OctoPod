@@ -13,6 +13,7 @@
 		3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */; };
 		3D0E3B1121097E7A0087F7E4 /* ThemeUIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E3B1021097E7A0087F7E4 /* ThemeUIUtils.swift */; };
 		3D0FA48321047AFA0084FF52 /* FilesTreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0FA48221047AFA0084FF52 /* FilesTreeViewController.swift */; };
+		3D1A8ADF2298CB0E006FF38D /* BedNotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A8ADE2298CB0E006FF38D /* BedNotificationsHandler.swift */; };
 		3D1A935721326AEF0050ED9A /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935621326AEF0050ED9A /* CustomControl.swift */; };
 		3D1A935921326B3C0050ED9A /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935821326B3C0050ED9A /* Command.swift */; };
 		3D1A935B21326C630050ED9A /* ControlInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935A21326C630050ED9A /* ControlInput.swift */; };
@@ -269,6 +270,7 @@
 		3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTargetTempViewController.swift; sourceTree = "<group>"; };
 		3D0E3B1021097E7A0087F7E4 /* ThemeUIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeUIUtils.swift; sourceTree = "<group>"; };
 		3D0FA48221047AFA0084FF52 /* FilesTreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTreeViewController.swift; sourceTree = "<group>"; };
+		3D1A8ADE2298CB0E006FF38D /* BedNotificationsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedNotificationsHandler.swift; sourceTree = "<group>"; };
 		3D1A935621326AEF0050ED9A /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
 		3D1A935821326B3C0050ED9A /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		3D1A935A21326C630050ED9A /* ControlInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlInput.swift; sourceTree = "<group>"; };
@@ -818,6 +820,7 @@
 				3D866BF3218D55FF007AA493 /* BackgroundRefresher.swift */,
 				3D4497D321B230BE00736F0F /* SharedPersistentContainer.swift */,
 				3D49A09C21D41FE2005002E7 /* NotificationsManager.swift */,
+				3D1A8ADE2298CB0E006FF38D /* BedNotificationsHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1357,6 +1360,7 @@
 				3DA77D7B21693C74003D65C9 /* ChangeLanguageViewController.swift in Sources */,
 				3DA252442105028300B60E31 /* FolderViewController.swift in Sources */,
 				3D74FA2921251BE600DA2CB3 /* IPPlugViewController.swift in Sources */,
+				3D1A8ADF2298CB0E006FF38D /* BedNotificationsHandler.swift in Sources */,
 				3D88C3EC2194004800BC84DD /* CancelObjectViewCell.swift in Sources */,
 				3D6350F721084334001C10F7 /* ThemedDynamicUITableViewController.swift in Sources */,
 				3D450EC521AB50AF0049FBC0 /* SiriViewController.swift in Sources */,

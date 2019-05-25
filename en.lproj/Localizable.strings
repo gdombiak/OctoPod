@@ -160,3 +160,6 @@
 "days ago" = "%d days ago";
 "1 week ago" = "1 week ago";
 "weeks ago" = "%d weeks ago";
+
+"Bed cooled" = "Printer bed below specified temperature threshold";
+"Bed warmed" = "Printer bed warmed to specified temperature and duration";

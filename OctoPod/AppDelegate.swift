@@ -225,11 +225,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         } else {
             // Check if notification is coming from OctoPrint's plugin
-            if let printerID = dict["printer-id"] as? String, let printerState = dict["printer-state"] as? String {
-                let progressCompletion = dict["printer-completion"] as? Double
-                let mediaURL = dict["media-url"] as? String
-                let test = dict["test"] as? Bool
-                backgroundRefresher.refresh(printerID: printerID, printerState: printerState, progressCompletion: progressCompletion, mediaURL: mediaURL, test: test, completionHandler: completionHandler)
+            if let printerID = dict["printer-id"] as? String {
+                // Check if this is a pring job notification
+                if let printerState = dict["printer-state"] as? String {
+                    let progressCompletion = dict["printer-completion"] as? Double
+                    let mediaURL = dict["media-url"] as? String
+                    let test = dict["test"] as? Bool
+                    backgroundRefresher.refresh(printerID: printerID, printerState: printerState, progressCompletion: progressCompletion, mediaURL: mediaURL, test: test, completionHandler: completionHandler)
+                } else if let bedEvent = dict["bed-event"] as? String {
+                    // This is a bed event notification
+                    let bedTemperature = dict["bed-temperature"] as! Double
+                    let bedMinutes = dict["bed-minutes"] as? Int
+                    bedNotificationsHandler.receivedBedNotification(printerID: printerID, event: bedEvent, temperature: bedTemperature, bedMinutes: bedMinutes, completionHandler: completionHandler)
+                }
             } else {
                 // No data was downloaded by this app
                 completionHandler(.noData)
@@ -280,5 +288,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var notificationsManager: NotificationsManager = {
         return NotificationsManager(printerManager: self.printerManager!, octoprintClient: self.octoprintClient, watchSessionManager: self.watchSessionManager)
+    }()
+    
+    lazy var bedNotificationsHandler: BedNotificationsHandler = {
+        return BedNotificationsHandler(printerManager: self.printerManager!)
     }()
 }
