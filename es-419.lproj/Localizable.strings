@@ -28,8 +28,14 @@
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Problemas con el certificado o con SSL";
 
+/* (No Comment) */
+"Bed cooled" = "Cama de la impresora por debajo del umbral de temperatura especificado";
+
 /* No comment provided by engineer. */
 "Bed Variance" = "Variación cama";
+
+/* (No Comment) */
+"Bed warmed" = "Cama de la impresora calentada a la temperatura y duración especificadas";
 
 /* (No Comment) */
 "Cancel" = "Cancelar";
