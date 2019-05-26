@@ -99,11 +99,11 @@
             <objects>
                 <viewController id="14W-Wh-GnO" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SI7-NR-DuQ">
-                        <rect key="frame" x="0.0" y="0.0" width="335" height="187"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxh-PV-og3">
-                                <rect key="frame" x="0.0" y="154" width="335" height="33"/>
+                                <rect key="frame" x="0.0" y="167" width="335" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="okl-67-457"/>
                                 </constraints>
@@ -113,7 +113,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ga-iE-0I4">
-                                <rect key="frame" x="0.0" y="0.0" width="335" height="154"/>
+                                <rect key="frame" x="0.0" y="0.0" width="335" height="167"/>
                                 <connections>
                                     <segue destination="kSH-Fl-ABK" kind="embed" id="SYl-Nt-azn"/>
                                 </connections>
@@ -131,20 +131,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gPu-kC-qK3"/>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="335" height="187"/>
-                    <size key="freeformSize" width="335" height="187"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="335" height="200"/>
+                    <size key="freeformSize" width="335" height="200"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bSv-aC-cRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="IBc-Nj-8Zc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1582" y="-968"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Reminders View Controller-->
         <scene sceneID="3DG-X6-NhE">
             <objects>
-                <tableViewController id="kSH-Fl-ABK" sceneMemberID="viewController">
+                <tableViewController id="kSH-Fl-ABK" customClass="RemindersViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="ZCl-qC-PoN">
-                        <rect key="frame" x="0.0" y="0.0" width="335" height="154"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="167"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>

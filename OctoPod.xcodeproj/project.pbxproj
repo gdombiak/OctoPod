@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */; };
+		3D02D19A229A6AC8004788B6 /* RemindersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D02D199229A6AC8004788B6 /* RemindersViewController.swift */; };
 		3D071A14212682C1005301B4 /* OctoPrintPluginsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D071A13212682C1005301B4 /* OctoPrintPluginsDelegate.swift */; };
 		3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */; };
 		3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */; };
@@ -265,6 +266,7 @@
 
 /* Begin PBXFileReference section */
 		3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewController.swift; sourceTree = "<group>"; };
+		3D02D199229A6AC8004788B6 /* RemindersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewController.swift; sourceTree = "<group>"; };
 		3D071A13212682C1005301B4 /* OctoPrintPluginsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintPluginsDelegate.swift; sourceTree = "<group>"; };
 		3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraEmbeddedViewController.swift; sourceTree = "<group>"; };
 		3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTargetTempViewController.swift; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 				3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */,
 				3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */,
 				3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */,
+				3D02D199229A6AC8004788B6 /* RemindersViewController.swift */,
 			);
 			path = "Panel UI";
 			sourceTree = "<group>";
@@ -1340,6 +1343,7 @@
 				3D8FB25B2156A9F0008FF3E5 /* DialogsViewController.swift in Sources */,
 				3D8B292D20E5514A00296D9D /* PrinterSubpanelViewController.swift in Sources */,
 				3D7C88462152B012009FECEF /* CloudKitPrinterLogDelegate.swift in Sources */,
+				3D02D19A229A6AC8004788B6 /* RemindersViewController.swift in Sources */,
 				3D831E552108540E0004B7A5 /* NavigationController.swift in Sources */,
 				3DD9E95921084BFD00726DFD /* ThemedUITableViewController.swift in Sources */,
 				3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */,
