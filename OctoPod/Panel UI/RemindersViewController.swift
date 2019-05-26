@@ -25,6 +25,11 @@ class RemindersViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let url = URL(string: "https://plugins.octoprint.org/plugins/octopod/") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
 
 }
