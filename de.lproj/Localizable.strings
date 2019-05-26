@@ -28,8 +28,14 @@
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Zertifikat fehlerhaft oder SSL Problem";
 
+/* (No Comment) */
+"Bed cooled" = "Druckbett unterhalb der vorgegebenen Temperaturschwelle";
+
 /* No comment provided by engineer. */
 "Bed Variance" = "Bett Variante";
+
+/* (No Comment) */
+"Bed warmed" = "Druckbett auf vorgegebene Temperatur für gewählte Zeit aufgeheizt";
 
 /* (No Comment) */
 "Cancel" = "Abbruch";
