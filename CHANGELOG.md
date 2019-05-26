@@ -1,14 +1,58 @@
 # Change Log
 
-## [2.1.1](https://github.com/gdombiak/OctoPod/tree/2.1) (2018-12-16)
-[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.0...2.1)
+## [2.3](https://github.com/gdombiak/OctoPod/tree/2.3) (2019-05-26)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.2...2.3)
+
+**Implemented enhancements:**
+
+- Receive notification when printer bed warmed up to target temperature and duration [\#186](https://github.com/gdombiak/OctoPod/issues/186)
+- Add reminder to promote new OctoPrint plugin for OctoPod [\#185](https://github.com/gdombiak/OctoPod/issues/185)
+- Receive notification when printer bed cools down to desired temperature [\#184](https://github.com/gdombiak/OctoPod/issues/184)
+
+**Closed issues:**
+
+- Tplink plug-in error [\#173](https://github.com/gdombiak/OctoPod/issues/173)
+
+## [2.2](https://github.com/gdombiak/OctoPod/tree/2.2) (2019-05-19)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.1.1...2.2)
+
+**Implemented enhancements:**
+
+- Improved UX for custom extrude/retract [\#183](https://github.com/gdombiak/OctoPod/issues/183)
+- Display temperature variance of extruder and bed  [\#180](https://github.com/gdombiak/OctoPod/issues/180)
+- Update to Swift 5 [\#179](https://github.com/gdombiak/OctoPod/issues/179)
+- Update pod Starscream to 3.1.0 [\#178](https://github.com/gdombiak/OctoPod/issues/178)
+- Update pod Charts to 3.3.0 [\#177](https://github.com/gdombiak/OctoPod/issues/177)
+- Small optimization rendering cameras [\#163](https://github.com/gdombiak/OctoPod/issues/163)
+- Add support for real time push notifications with images [\#161](https://github.com/gdombiak/OctoPod/issues/161)
+- Add tooltips that introduce existing Panel features [\#160](https://github.com/gdombiak/OctoPod/issues/160)
+
+**Fixed bugs:**
+
+- Fix crash when receiving a remote notification [\#181](https://github.com/gdombiak/OctoPod/issues/181)
+- Not Refreshing when using OctoPrint 1.3.11 [\#176](https://github.com/gdombiak/OctoPod/issues/176)
+- Switching between printers might render previous camera for a bit [\#159](https://github.com/gdombiak/OctoPod/issues/159)
+- TP Link Smartplug doesn’t seem to be working  [\#158](https://github.com/gdombiak/OctoPod/issues/158)
+- Switching between printers is sometimes getting you back to the previous one [\#154](https://github.com/gdombiak/OctoPod/issues/154)
+
+**Closed issues:**
+
+- Since Octoprint update to 1.3.11, I’m getting a “not refreshing” error [\#182](https://github.com/gdombiak/OctoPod/issues/182)
+- StarScream.wserror-Fehler 1 after updating to Octoprint 1.3.11 [\#175](https://github.com/gdombiak/OctoPod/issues/175)
+- Data not refreshing  [\#172](https://github.com/gdombiak/OctoPod/issues/172)
+- Allow custom port number in printer url [\#169](https://github.com/gdombiak/OctoPod/issues/169)
+- How to enable Apple Watch support [\#166](https://github.com/gdombiak/OctoPod/issues/166)
+- Video /camera not showing up [\#165](https://github.com/gdombiak/OctoPod/issues/165)
+
+## [2.1.1](https://github.com/gdombiak/OctoPod/tree/2.1.1) (2018-12-16)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.1...2.1.1)
 
 **Fixed bugs:**
 
 - Fix crash when file has no display text [\#156](https://github.com/gdombiak/OctoPod/issues/156)
 - \[German\] Siri Command Responses do not replace variables [\#155](https://github.com/gdombiak/OctoPod/issues/155)
 
-## [2.1](https://github.com/gdombiak/OctoPod/tree/2.1) (2018-12-09)
+## [2.1](https://github.com/gdombiak/OctoPod/tree/2.1) (2018-12-16)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.0...2.1)
 
 **Implemented enhancements:**
