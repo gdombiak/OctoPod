@@ -28,6 +28,9 @@
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Ugyldig sertifikat eller SSL-problem";
 
+/* No comment provided by engineer. */
+"Bed Variance" = "Skriveflatevariasjon";
+
 /* (No Comment) */
 "Cancel" = "Avbryt";
 
@@ -120,6 +123,9 @@
 
 /* (No Comment) */
 "Enable iCloud under iOS Settings to use this feature" = "Aktiver iCloud under iOS-innstillinger for å bruke denne funksjonen";
+
+/* No comment provided by engineer. */
+"Extruder Variance" = "Ekstrudervariasjon";
 
 /* (No Comment) */
 "Failed to delete file" = "Kunne ikke slette filen";

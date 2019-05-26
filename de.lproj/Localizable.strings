@@ -29,7 +29,7 @@
 "Bad Certificate or SSL Problem" = "Zertifikat fehlerhaft oder SSL Problem";
 
 /* No comment provided by engineer. */
-"Bed Variance" = "Bettabweichung";
+"Bed Variance" = "Bett Variante";
 
 /* (No Comment) */
 "Cancel" = "Abbruch";
@@ -125,7 +125,7 @@
 "Enable iCloud under iOS Settings to use this feature" = "Aktiviere iCloud in den iOS Einstellungen um diese Funktion zu nutzen";
 
 /* No comment provided by engineer. */
-"Extruder Variance" = "Extrudervarianz";
+"Extruder Variance" = "Extruder Variante";
 
 /* (No Comment) */
 "Failed to delete file" = "Datei löschen fehlgeschlagen";
