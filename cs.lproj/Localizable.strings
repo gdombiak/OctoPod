@@ -28,8 +28,14 @@
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Neplatný certifikát nebo problém s SSL";
 
+/* (No Comment) */
+"Bed cooled" = "Teplota podložky pod nastavenou mezí";
+
 /* No comment provided by engineer. */
 "Bed Variance" = "Odchylka podložky";
+
+/* (No Comment) */
+"Bed warmed" = "Podložka nahřáta na nastavenou teplotu a dobu";
 
 /* (No Comment) */
 "Cancel" = "Zrušit";
