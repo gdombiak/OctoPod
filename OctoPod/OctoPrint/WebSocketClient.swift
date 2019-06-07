@@ -45,7 +45,11 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
         }
         // Set Host header to prevent CORS issues
         if let host = socketURL.host {
-            self.socketRequest!.setValue(host, forHTTPHeaderField: "Host")
+            if let port = socketURL.port {
+                self.socketRequest!.setValue("\(host):\(port)", forHTTPHeaderField: "Host")
+            } else {
+                self.socketRequest!.setValue(host, forHTTPHeaderField: "Host")
+            }
         }
         createWebSocket()
         
