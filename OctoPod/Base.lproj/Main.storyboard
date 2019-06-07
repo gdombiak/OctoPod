@@ -3584,7 +3584,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" textContentType="url"/>
                                                     <connections>
-                                                        <action selector="urlChanged:" destination="RQs-UQ-7OZ" eventType="editingChanged" id="epM-jx-XEB"/>
+                                                        <action selector="urlChanged:" destination="RQs-UQ-7OZ" eventType="editingDidEnd" id="9ZV-zo-9FH"/>
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a valid URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6d-lk-BaS">

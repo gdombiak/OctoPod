@@ -106,6 +106,12 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     }
     
     @IBAction func urlChanged(_ sender: Any) {
+        if let inputURL = hostnameField.text {
+            // Add http protocol to URL if no protocol was specified
+            if !inputURL.lowercased().starts(with: "http") {
+                hostnameField.text = "http://" + inputURL
+            }
+        }
         // Hide or show URL error message
         urlErrorMessageLabel.isHidden = isValidURL()
         // Refresh row height that will handle error message
