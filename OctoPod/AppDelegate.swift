@@ -236,7 +236,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // This is a bed event notification
                     let bedTemperature = dict["bed-temperature"] as! Double
                     let bedMinutes = dict["bed-minutes"] as? Int
-                    bedNotificationsHandler.receivedBedNotification(printerID: printerID, event: bedEvent, temperature: bedTemperature, bedMinutes: bedMinutes, completionHandler: completionHandler)
+                    bedNotificationsHandler.receivedNotification(printerID: printerID, event: bedEvent, temperature: bedTemperature, bedMinutes: bedMinutes, completionHandler: completionHandler)
+                } else if let mmuEvent = dict["mmu-event"] as? String {
+                    // This is an MMU event notification
+                    mmuNotificationsHandler.receivedNotification(printerID: printerID, event: mmuEvent, completionHandler: completionHandler)
                 }
             } else {
                 // No data was downloaded by this app
@@ -287,10 +290,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     lazy var notificationsManager: NotificationsManager = {
-        return NotificationsManager(printerManager: self.printerManager!, octoprintClient: self.octoprintClient, watchSessionManager: self.watchSessionManager)
+        return NotificationsManager(printerManager: self.printerManager!, octoprintClient: self.octoprintClient, watchSessionManager: self.watchSessionManager, mmuNotificationsHandler: self.mmuNotificationsHandler)
     }()
     
     lazy var bedNotificationsHandler: BedNotificationsHandler = {
         return BedNotificationsHandler(printerManager: self.printerManager!)
+    }()
+    
+    lazy var mmuNotificationsHandler: MMUNotificationsHandler = {
+        return MMUNotificationsHandler(printerManager: self.printerManager!)
     }()
 }

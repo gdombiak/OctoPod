@@ -163,3 +163,7 @@
 
 "Bed cooled" = "Printer bed below specified temperature threshold";
 "Bed warmed" = "Printer bed warmed to specified temperature and duration";
+
+"MMU Requires User" = "MMU Requires User Assistance";
+"Snooze 1 hour" = "Snooze 1 hour";
+"Snooze 8 hours" = "Snooze 8 hours";

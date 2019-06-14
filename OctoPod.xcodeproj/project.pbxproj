@@ -149,6 +149,8 @@
 		3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D968DDC20E337C7006774A5 /* ScannerViewController.swift */; };
 		3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */; };
 		3D98C1DA20E5D096007BB13F /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D98C1D920E5D096007BB13F /* WebSocketClient.swift */; };
+		3D9AAD5122B325A00051BB1B /* MMUNotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AAD5022B325A00051BB1B /* MMUNotificationsHandler.swift */; };
+		3D9AAD5322B326250051BB1B /* AbstractNotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AAD5222B326250051BB1B /* AbstractNotificationsHandler.swift */; };
 		3D9D9765214DCC440032443A /* CloudKitPrinterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D9764214DCC440032443A /* CloudKitPrinterDelegate.swift */; };
 		3D9E087E2160455400F11CD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D9E087C2160455400F11CD4 /* InfoPlist.strings */; };
 		3DA252442105028300B60E31 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA252432105028300B60E31 /* FolderViewController.swift */; };
@@ -423,6 +425,8 @@
 		3D968DDC20E337C7006774A5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetailsViewController.swift; sourceTree = "<group>"; };
 		3D98C1D920E5D096007BB13F /* WebSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
+		3D9AAD5022B325A00051BB1B /* MMUNotificationsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMUNotificationsHandler.swift; sourceTree = "<group>"; };
+		3D9AAD5222B326250051BB1B /* AbstractNotificationsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractNotificationsHandler.swift; sourceTree = "<group>"; };
 		3D9D9764214DCC440032443A /* CloudKitPrinterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitPrinterDelegate.swift; sourceTree = "<group>"; };
 		3D9E08732160155500F11CD4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		3D9E08742160155600F11CD4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -810,6 +814,7 @@
 		3D82873520E3EB730035AE0B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3D9AAD4F22B324AB0051BB1B /* Notifications */,
 				3D1A935521326ACC0050ED9A /* Commands */,
 				3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */,
 				3D82873620E3EBC80035AE0B /* Printer.swift */,
@@ -820,10 +825,7 @@
 				3D78BA9E21039D770090D79A /* Terminal.swift */,
 				3D92E6C721213B2400F58BA5 /* TempHistory.swift */,
 				3D88C3E82193F49500BC84DD /* CancelObject.swift */,
-				3D866BF3218D55FF007AA493 /* BackgroundRefresher.swift */,
 				3D4497D321B230BE00736F0F /* SharedPersistentContainer.swift */,
-				3D49A09C21D41FE2005002E7 /* NotificationsManager.swift */,
-				3D1A8ADE2298CB0E006FF38D /* BedNotificationsHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -852,6 +854,18 @@
 				3DE3FE6C2154B9CE000D7D2A /* Plugins.swift */,
 			);
 			path = OctoPrint;
+			sourceTree = "<group>";
+		};
+		3D9AAD4F22B324AB0051BB1B /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				3D49A09C21D41FE2005002E7 /* NotificationsManager.swift */,
+				3D9AAD5222B326250051BB1B /* AbstractNotificationsHandler.swift */,
+				3D866BF3218D55FF007AA493 /* BackgroundRefresher.swift */,
+				3D1A8ADE2298CB0E006FF38D /* BedNotificationsHandler.swift */,
+				3D9AAD5022B325A00051BB1B /* MMUNotificationsHandler.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		3D9D9763214D735D0032443A /* CloudKitSync */ = {
@@ -1352,6 +1366,7 @@
 				3D78BA9F21039D770090D79A /* Terminal.swift in Sources */,
 				3D8DA01E2144EDCE00F5FD07 /* SupportViewController.swift in Sources */,
 				3D45280A20E15A370094CCB7 /* OctoPod.xcdatamodeld in Sources */,
+				3D9AAD5322B326250051BB1B /* AbstractNotificationsHandler.swift in Sources */,
 				3D49A09D21D41FE2005002E7 /* NotificationsManager.swift in Sources */,
 				3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */,
 				3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */,
@@ -1376,6 +1391,7 @@
 				3D866BF4218D55FF007AA493 /* BackgroundRefresher.swift in Sources */,
 				3D8D51A921333D310006BBB1 /* CustomControlInputSlideViewCell.swift in Sources */,
 				3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */,
+				3D9AAD5122B325A00051BB1B /* MMUNotificationsHandler.swift in Sources */,
 				3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */,
 				3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */,
 				3D8D51A721333D170006BBB1 /* CustomControlInputViewCell.swift in Sources */,

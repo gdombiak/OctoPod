@@ -4,16 +4,22 @@ import UserNotifications
 
 class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificationCenterDelegate {
     
+    static let mmuSnoozeCategory = "mmuSnoozeActions"
+    private let mmuSnooze1Identifier = "mmuSnooze1"
+    private let mmuSnooze8Identifier = "mmuSnooze8"
+
     private let printerManager: PrinterManager!
     private let octoprintClient: OctoPrintClient!
     private let watchSessionManager: WatchSessionManager!
+    private let mmuNotificationsHandler: MMUNotificationsHandler!
     
     private var currentToken: String?
 
-    init(printerManager: PrinterManager, octoprintClient: OctoPrintClient, watchSessionManager: WatchSessionManager) {
+    init(printerManager: PrinterManager, octoprintClient: OctoPrintClient, watchSessionManager: WatchSessionManager, mmuNotificationsHandler: MMUNotificationsHandler) {
         self.printerManager = printerManager
         self.octoprintClient = octoprintClient
         self.watchSessionManager = watchSessionManager
+        self.mmuNotificationsHandler = mmuNotificationsHandler
         
         super.init()
 
@@ -21,6 +27,14 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
         octoprintClient.octoPrintSettingsDelegates.append(self)
         
         UNUserNotificationCenter.current().delegate = self
+        
+        // Create action for snooze button
+        let snooze1Action = UNNotificationAction(identifier: mmuSnooze1Identifier, title: NSLocalizedString("Snooze 1 hour", comment: "Snooze notifications for 1 hour"),options:[])
+        let snooze8Action = UNNotificationAction(identifier: mmuSnooze8Identifier, title: NSLocalizedString("Snooze 8 hours", comment: "Snooze notifications for 8 hours"),options:[])
+        
+        // Create category that will include snooze action
+        let category = UNNotificationCategory(identifier: NotificationsManager.mmuSnoozeCategory, actions: [snooze1Action, snooze8Action], intentIdentifiers: [], options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
     }
 
     // Register the specified token with all OctoPrints that have the OctoPod Plugin installed
@@ -51,10 +65,14 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
     
     // MARK: - UNUserNotificationCenterDelegate
     
-    // User clicked on notification that job is done. Let's switch to the selected printer
+    // User clicked on notification or selected an action from notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         if let printerName = response.notification.request.content.userInfo["printerName"] as? String {
-            if let printer = printerManager.getPrinterByName(name: printerName) {
+            if response.actionIdentifier == mmuSnooze1Identifier || response.actionIdentifier == mmuSnooze8Identifier {
+                // User selected to snooze MMU notifications for this printer
+                mmuNotificationsHandler.snoozeNotifications(printerName: printerName, hours: response.actionIdentifier == mmuSnooze1Identifier ? 1 : 8)
+            } else if let printer = printerManager.getPrinterByName(name: printerName) {
+                // User clicked on notification. Let's switch to the selected printer
                 printerManager.changeToDefaultPrinter(printer)
 
                 // Ask octoprintClient to connect to new OctoPrint server
@@ -69,6 +87,11 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
             }
         }
         completionHandler()
+    }
+    
+    // Display notification even if app is in the foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
     }
 
     // MARK: - Private functions

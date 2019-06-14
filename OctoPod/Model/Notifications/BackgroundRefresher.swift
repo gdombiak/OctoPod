@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import UserNotifications
 
-class BackgroundRefresher: OctoPrintClientDelegate {
+class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler {
     
     let octoprintClient: OctoPrintClient!
     let printerManager: PrinterManager!
@@ -155,10 +155,8 @@ class BackgroundRefresher: OctoPrintClientDelegate {
         }
         if sendLocalNotification || test {
             // Create Local Notification's Content
-            let content = UNMutableNotificationContent()
-            content.title = printerName
+            let content = createNotification(printerName: printerName)
             content.body = NSString.localizedUserNotificationString(forKey: "Print complete", arguments: nil)
-            content.userInfo = ["printerName": printerName]
             
             if let url = mediaURL, let fetchURL = URL(string: url) {
                 do {
@@ -171,17 +169,8 @@ class BackgroundRefresher: OctoPrintClientDelegate {
                 }
             }
             
-            // Create the request
-            let uuidString = UUID().uuidString
-            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: nil)
-            
-            // Schedule the request with the system.
-            let notificationCenter = UNUserNotificationCenter.current()
-            notificationCenter.add(request) { (error) in
-                if let error = error {
-                    NSLog("Error asking iOS to present local notification. Error: \(error)")
-                }
-            }
+            // Send local notification
+            sendNotification(content: content)
         }
     }
     
