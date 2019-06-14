@@ -2,19 +2,19 @@
 "0xUDAM" = "${printer}";
 
 /* (No Comment) */
-"2TreiD" = "Set extruder temperature to ${temperature}";
+"2TreiD" = "Nustatyti ekstruderio temperatūra į ${temperature}";
 
 /* (No Comment) */
-"3eH6cZ" = "Failed to get remaing time information (${statusCode})";
+"3eH6cZ" = "Nepavyko gauti likusio laiko (${statusCode})";
 
 /* (No Comment) */
-"6k5AFm" = "Resume job";
+"6k5AFm" = "Tęsti";
 
 /* (No Comment) */
-"6vtMLs" = "Job Restarted";
+"6vtMLs" = "Pradėta iš naujo";
 
 /* (No Comment) */
-"8tTCjD" = "Failed to cancel job (${statusCode})";
+"8tTCjD" = "Nepavyko atšaukti (${statusCode})";
 
 /* (No Comment) */
 "9iz6yx" = "${printer}";
@@ -23,79 +23,79 @@
 "9PozHf" = "${printer}";
 
 /* (No Comment) */
-"662LyZ" = "Restart job";
+"662LyZ" = "Paleisti iš naujo";
 
 /* (No Comment) */
-"bXGQKe" = "Cool down printer";
+"bXGQKe" = "Atšaldyti spausdintuvą";
 
 /* (No Comment) */
-"D0kBGr" = "Restart running print job";
+"D0kBGr" = "Paleisti iš naujo dabartinę užduotį";
 
 /* (No Comment) */
-"doj4NA" = "Configure extruder's temperature";
+"doj4NA" = "Nustatyti ekstruderio temperatūrą";
 
 /* (No Comment) */
-"f8xirF" = "Cool down printer";
+"f8xirF" = "Atšaldyti spausdintuvą";
 
 /* (No Comment) */
 "FkSYZt" = "${printer}";
 
 /* (No Comment) */
-"fL3sow" = "Suspend running print job";
+"fL3sow" = "Sustingdyti dabartinę užduotį";
 
 /* (No Comment) */
-"FZ3z7Z" = "Set Bed's Temperature";
+"FZ3z7Z" = "Nustatyti paviršiaus temperatūrą";
 
 /* (No Comment) */
-"gx0D0e" = "Job canceled";
+"gx0D0e" = "Užduotis atšaukta";
 
 /* (No Comment) */
-"hPlRC4" = "Set bed temperature to ${temperature}";
+"hPlRC4" = "Nustatyti paviršiaus temperatūrą į ${temperature}";
 
 /* (No Comment) */
-"ihLqc7" = "Pause job";
+"ihLqc7" = "Užpauzinti dabartinę užduotį";
 
 /* (No Comment) */
-"JmhfgL" = "Restart running print job";
+"JmhfgL" = "Paleisti iš naujo dabartinę užduotį";
 
 /* (No Comment) */
-"Kf7e4Y" = "Resume running print job";
+"Kf7e4Y" = "Paleisti iš naujo dabartinę užduotį";
 
 /* (No Comment) */
-"lrRige" = "Cancel running print job";
+"lrRige" = "Atšaukti dabartinę užduotį";
 
 /* (No Comment) */
-"LVlPuT" = "Cancel running print job";
+"LVlPuT" = "Aštaukti dabartinę užduotį";
 
 /* (No Comment) */
-"m6XJpy" = "Failed to cool down printer (${statusCode})";
+"m6XJpy" = "Nepavyko atvėsinti spausdintuvo (${statusCode})";
 
 /* (No Comment) */
-"m9Jgmg" = "Job resumed";
+"m9Jgmg" = "Darbas tęsiamas";
 
 /* (No Comment) */
-"NG7rBh" = "Time left";
+"NG7rBh" = "Likęs laikas";
 
 /* (No Comment) */
-"NL98zi" = "Cools down bed and extruder";
+"NL98zi" = "Atšaldo paviršių ir ekstruderį";
 
 /* (No Comment) */
-"ovQf6Z" = "Job paused";
+"ovQf6Z" = "Darbas užpauzintas";
 
 /* (No Comment) */
-"P89qJr" = "Time left is ${time}";
+"P89qJr" = "Likęs laikas yra ${time}";
 
 /* (No Comment) */
-"Pj7mEV" = "Cool down extruder";
+"Pj7mEV" = "Atvėsinti ekstruderį";
 
 /* (No Comment) */
-"PppyPP" = "Configure bed's temperature";
+"PppyPP" = "Nustatyti paviršiaus temperatūrą";
 
 /* (No Comment) */
-"qLzk1S" = "Cool down bed";
+"qLzk1S" = "Atšaldyti paviršių";
 
 /* (No Comment) */
-"QSxXHq" = "Pause running print job";
+"QSxXHq" = "Užpauzinti dabartinę užduotį";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -104,31 +104,31 @@
 "Rjw5oo" = "${printer}";
 
 /* (No Comment) */
-"rmKSv6" = "Failed to set extruder's temperature (${statusCode})";
+"rmKSv6" = "Nepavyko nustatyti ekstruderio temperatūros (${statusCode})";
 
 /* (No Comment) */
-"RrOrgy" = "Cancel job";
+"RrOrgy" = "Atšaukti užduotį";
 
 /* (No Comment) */
-"SP4rN6" = "Set Extruder's Temperature";
+"SP4rN6" = "Nustatyti ekstruderio temperatūrą";
 
 /* (No Comment) */
-"SRDf6Q" = "Extruder's temperature was set to ${temperature}";
+"SRDf6Q" = "Ekstruderio temperatūra buvo nustatyta į ${temperature}";
 
 /* (No Comment) */
-"sRkyIL" = "Failed to restart job (${statusCode})";
+"sRkyIL" = "Nepavyko paleisti iš naujo (${statusCode})";
 
 /* (No Comment) */
-"tKDODp" = "Remaining print time";
+"tKDODp" = "Likęs spausdinimo laikas";
 
 /* (No Comment) */
-"UC9Zrq" = "Bed's temperature was set to ${temperature}";
+"UC9Zrq" = "Paviršiaus temperatūra buvo nustatyta į ${temperature}";
 
 /* (No Comment) */
-"uoT27A" = "Failed to set bed's temperature (${statusCode})";
+"uoT27A" = "Nepavyko nustatyti paviršiaus temperatūros (${statusCode})";
 
 /* (No Comment) */
-"Vc7DVt" = "Set extruder ${tool} temperature to ${temperature}";
+"Vc7DVt" = "Nustatyti ekstruderio ${tool} temperatūrą į ${temperature}";
 
 /* (No Comment) */
 "VDz0Q1" = "${printer}";
@@ -143,16 +143,16 @@
 "WI2oQf" = "Return Print Time Left";
 
 /* (No Comment) */
-"WLkRl0" = "Failed to resume job (${statusCode})";
+"WLkRl0" = "Nepavyko tęsti darbo (${statusCode})";
 
 /* (No Comment) */
-"wYzz4m" = "Printer is cooling down";
+"wYzz4m" = "Spausdintuvas vėsta";
 
 /* (No Comment) */
-"XfWmGt" = "Resume running print job";
+"XfWmGt" = "Tęsti dabartinę užduotį";
 
 /* (No Comment) */
-"xSARU0" = "Failed to pause job (${statusCode})";
+"xSARU0" = "Nepavyko užpauzinti (${statusCode})";
 
 /* (No Comment) */
 "YGxUII" = "${printer}";

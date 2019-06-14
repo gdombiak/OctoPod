@@ -32,7 +32,7 @@
 "Bed cooled" = "Paviršius atvėso";
 
 /* No comment provided by engineer. */
-"Bed Variance" = "Paviršiaus nuokrypis";
+"Bed Variance" = "Paviršiaus variacija";
 
 /* (No Comment) */
 "Bed warmed" = "Paviršius pasiekė nustatytą temperatūrą";
@@ -41,7 +41,7 @@
 "Cancel" = "Atšaukti";
 
 /* Siri suggested phrase */
-"Cancel current print job" = "Cancel current print job on %@";
+"Cancel current print job" = "Atštaukti dabartinį spausdinimą ant %@";
 
 /* https://github.com/paukstelis/Octoprint-Cancelobject */
 "Cancel Objects" = "Atšaukti objektus";
@@ -101,16 +101,16 @@
 "Cool down printer" = "Atšaldyti spausdintuvą";
 
 /* Siri suggested phrase */
-"Cool down printer bed" = "Cool down printer bed %@";
+"Cool down printer bed" = "Aštaldyti spausdintuvo paviršių %@";
 
 /* Siri suggested phrase */
-"Cool down printer extruder" = "Cool down printer extruder %@";
+"Cool down printer extruder" = "Atšaldyti spausdintuvo ekstruderį %@";
 
 /* Connection to server failed */
 "Could not connect to the server" = "Nepavyko prisijungti prie serverio";
 
 /* http://docs.octoprint.org/en/master/features/custom_controls.html */
-"Custom Controls" = "'Custom controls''";
+"Custom Controls" = "'Custom controls'";
 
 /* (No Comment) */
 "days ago" = "prieš %d dienas";
@@ -308,7 +308,7 @@
 "Offline" = "Išjungta";
 
 /* Siri suggested phrase */
-"Pause current print job" = "Pause current print job on %@";
+"Pause current print job" = "Užpauzinti dabartinį darbą ant %@";
 
 /* (No Comment) */
 "Pause Job" = "Pauzė";
@@ -335,13 +335,13 @@
 "Remaining time current print job" = "Liko %@";
 
 /* Siri suggested phrase */
-"Restart current print job" = "Restart current print job on %@";
+"Restart current print job" = "Paleisti iš naujo ant %@";
 
 /* (No Comment) */
 "Restart Job" = "Pradėti iš naujo";
 
 /* Siri suggested phrase */
-"Resume current print job" = "Resume current print job on %@";
+"Resume current print job" = "Tęsti ant %@";
 
 /* (No Comment) */
 "Resume Job" = "Tęsti";
@@ -412,10 +412,10 @@
 "Upload failed" = "Nepavyko įkelti";
 
 /* Siri suggested phrase */
-"Warm up printer bed" = "Warm up printer bed %@";
+"Warm up printer bed" = "Pašildyti paviršių %@";
 
 /* Siri suggested phrase */
-"Warm up printer extruder" = "Warm up printer extruder %@";
+"Warm up printer extruder" = "Pašildyti ekstruderį %@";
 
 /* (No Comment) */
 "Warning" = "Įspėjimas";

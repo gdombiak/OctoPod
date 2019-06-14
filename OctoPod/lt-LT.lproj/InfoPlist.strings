@@ -8,5 +8,5 @@
 "NSFaceIDUsageDescription" = "Leiskite naudoti FaceID kad atrakinti programėlę";
 
 /* Privacy - Siri Usage Description */
-"NSSiriUsageDescription" = "Valdykite spausdintuva su Siri";
+"NSSiriUsageDescription" = "Valdykite spausdintuvą su Siri";
 

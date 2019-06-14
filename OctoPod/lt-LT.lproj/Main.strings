@@ -35,7 +35,7 @@
 "4Kd-tY-8l3.text" = "Sertifikato patvirtinimas";
 
 /* Class = "UITextField"; placeholder = "Speed value"; ObjectID = "4Lh-Q8-wxW"; */
-"4Lh-Q8-wxW.placeholder" = "Greitis (test)";
+"4Lh-Q8-wxW.placeholder" = "Greitis";
 
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Išvaizda";
@@ -191,10 +191,10 @@
 "eXf-GR-uL9.headerTitle" = "Užrakinti režimą";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "Fbe-op-Ixc"; */
-"Fbe-op-Ixc.text" = "Detail";
+"Fbe-op-Ixc.text" = "Detališkumas";
 
 /* Class = "UITableViewSection"; headerTitle = "Print job"; ObjectID = "FdM-r0-spe"; */
-"FdM-r0-spe.headerTitle" = "Spausdinimo užduotis";
+"FdM-r0-spe.headerTitle" = "Spausdinimo darbas";
 
 /* Class = "UILabel"; text = "%"; ObjectID = "ffd-HI-A62"; */
 "ffd-HI-A62.text" = "%";
@@ -287,7 +287,7 @@
 "hzK-Nf-sCi.segmentTitles[3]" = "100";
 
 /* Class = "UILabel"; text = "Control Power"; ObjectID = "j09-72-h0o"; */
-"j09-72-h0o.text" = "Control Power";
+"j09-72-h0o.text" = "Kontroliuoti maitinimą";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "J17-Xa-0dv"; */
 "J17-Xa-0dv.text" = "Label";
@@ -362,7 +362,7 @@
 "oiL-nC-j2P.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Configure controls using Custom Control Plugin"; ObjectID = "or6-Pr-Z6f"; */
-"or6-Pr-Z6f.normalTitle" = "Konfigūruoti 'Custom Controls Plugin'";
+"or6-Pr-Z6f.normalTitle" = "Konfigūruoti 'Custom Controls' įskiepį";
 
 /* Class = "UITableViewController"; title = "Siri"; ObjectID = "Orp-dU-Wpa"; */
 "Orp-dU-Wpa.title" = "Siri";
@@ -485,7 +485,7 @@
 "UiU-6m-I6P.text" = "60.0 C";
 
 /* Class = "UILabel"; text = "Require passcode to unlock"; ObjectID = "uqf-BP-Wtn"; */
-"uqf-BP-Wtn.text" = "Reikalauti slaptažodio kad atrakinti";
+"uqf-BP-Wtn.text" = "Reikalauti slaptažodžio kad atrakinti";
 
 /* Class = "UITableViewSection"; headerTitle = "Connection error details"; ObjectID = "uR6-pA-Rdj"; */
 "uR6-pA-Rdj.headerTitle" = "Prisijungimo klaidos informacija";
@@ -512,7 +512,7 @@
 "Vny-ch-OgO.text" = "Priartinti / Atitolinti";
 
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection"; ObjectID = "Vr9-x7-66H"; */
-"Vr9-x7-66H.headerTitle" = "Spausdintuvo prisijungimas";
+"Vr9-x7-66H.headerTitle" = "Spausdintuvo ryšys";
 
 /* Class = "UIButton"; normalTitle = "Reset printers from iCloud data"; ObjectID = "vyb-aH-wc9"; */
 "vyb-aH-wc9.normalTitle" = "Ištrinti spausdintuvus iš iCloud";
@@ -554,7 +554,7 @@
 "XV8-g9-QIc.normalTitle" = "Pradėti iš naujo";
 
 /* Class = "UINavigationItem"; title = "Printer Details"; ObjectID = "xvl-wE-Mht"; */
-"xvl-wE-Mht.title" = "Spausdnituvo informacija";
+"xvl-wE-Mht.title" = "Spausdintuvo informacija";
 
 /* Class = "UILabel"; text = "Contributing"; ObjectID = "yci-j8-y4w"; */
 "yci-j8-y4w.text" = "Bendradarbiauk!";

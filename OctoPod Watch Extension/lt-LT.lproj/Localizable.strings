@@ -1,44 +1,44 @@
 /* HTTP authentication failed */
-"Authentication failed" = "Authentication Failed";
+"Authentication failed" = "Autentifikacija nepavyko";
 
 /* (No Comment) */
-"Confirm" = "Confirm";
+"Confirm" = "Patvirtinti";
 
 /* (No Comment) */
-"Connection failed" = "Connection Failed";
+"Connection failed" = "Nepavyko prisijungti";
 
 /* (No Comment) */
-"Dismiss" = "Dismiss";
+"Dismiss" = "Atšaukti";
 
 /* (No Comment) */
-"Do you want to cancel job?" = "Do you want to cancel the job?";
+"Do you want to cancel job?" = "Ar tikrai norite atšaukti?";
 
 /* No comment provided by engineer. */
 "Do you want to pause the job?" = "Ar norite padaryti pauzę?";
 
 /* HTTP Request error info */
-"HTTP Request error" = "Request error. HTTP response: %d";
+"HTTP Request error" = "Klaida. HTTP atsakymas: %d";
 
 /* (No Comment) */
-"Job" = "Job";
+"Job" = "Užduotis";
 
 /* No comment provided by engineer. */
 "MK3" = "MK3";
 
 /* (No Comment) */
-"No" = "No";
+"No" = "Ne";
 
 /* No printer has been selected */
 "No printer" = "Nepasirinktas spausdintuvas";
 
 /* (No Comment) */
-"Notify failed cancel job" = "Failed to request to cancel job";
+"Notify failed cancel job" = "Nepavyko atšaukti";
 
 /* (No Comment) */
-"Notify failed pause job" = "Failed to request to pause job";
+"Notify failed pause job" = "Nepavyko pauzė";
 
 /* (No Comment) */
-"Notify failed resume job" = "Failed to request to resume job";
+"Notify failed resume job" = "Nepavyko tęsti";
 
 /* No comment provided by engineer. */
 "Paused" = "Pauzė";
@@ -47,8 +47,8 @@
 "Printing" = "Spausdina";
 
 /* ETA is Unknown */
-"Unknown" = "Unknown";
+"Unknown" = "nežinoma";
 
 /* (No Comment) */
-"Yes" = "Yes";
+"Yes" = "Taip";
 

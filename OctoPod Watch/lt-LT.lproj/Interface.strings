@@ -1,8 +1,8 @@
 /* Class = "WKInterfaceController"; title = "Printers"; ObjectID = "AgC-eL-Hgc"; */
-"AgC-eL-Hgc.title" = "Printers";
+"AgC-eL-Hgc.title" = "Spausdintuvai";
 
 /* Class = "WKInterfaceController"; title = "Panel"; ObjectID = "DQ6-B5-o6I"; */
-"DQ6-B5-o6I.title" = "Panel";
+"DQ6-B5-o6I.title" = "Panelė";
 
 /* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "HUy-Lk-z5k"; */
 "HUy-Lk-z5k.text" = "Label";
@@ -11,8 +11,8 @@
 "IdU-wH-bcW.text" = "Alert Label";
 
 /* Class = "WKInterfaceLabel"; text = "Open the iPhone app, it will share printer data with the watch"; ObjectID = "S0T-q4-2KQ"; */
-"S0T-q4-2KQ.text" = "Open the iPhone app, it will share printer data with the watch";
+"S0T-q4-2KQ.text" = "Atidatyk iPhone aplikaciją, ji susijungs su laikrodžiu";
 
 /* Class = "WKInterfaceController"; title = "Cameras"; ObjectID = "SvA-Pt-I7G"; */
-"SvA-Pt-I7G.title" = "Cameras";
+"SvA-Pt-I7G.title" = "Kameros";
 
