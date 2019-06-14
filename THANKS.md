@@ -12,6 +12,7 @@ OctoPod wouldn't be where it is without the help of the following people. Thank 
 * Jan Pichrt (features)
 * Luis F. Fernández (features)
 * Matthew Humphrey (features and wiki)
+* Pranas Ramanauskas (translations)
 * Robert Malcolm McKenzie (features)
 * Sreejesh Pallisseri (features)
 * Stephan Kohls (features)
