@@ -38,7 +38,7 @@ class MMUNotificationsHandler: AbstractNotificationsHandler {
     
     // Stop sending MMU alerts for the specified printer for the specified amount of hours
     func snoozeNotifications(printerName: String, hours: Int) {
-        let seconds = hours * 60 // * 60
+        let seconds = hours * 60 * 60
         snoozePrinters[printerName] = Date().timeIntervalSinceReferenceDate + Double(seconds)
     }
 }
