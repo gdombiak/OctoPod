@@ -1,0 +1,54 @@
+/* HTTP authentication failed */
+"Authentication failed" = "Authentication Failed";
+
+/* (No Comment) */
+"Confirm" = "Confirm";
+
+/* (No Comment) */
+"Connection failed" = "Connection Failed";
+
+/* (No Comment) */
+"Dismiss" = "Dismiss";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Do you want to cancel the job?";
+
+/* No comment provided by engineer. */
+"Do you want to pause the job?" = "Ar norite padaryti pauzę?";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Request error. HTTP response: %d";
+
+/* (No Comment) */
+"Job" = "Job";
+
+/* No comment provided by engineer. */
+"MK3" = "MK3";
+
+/* (No Comment) */
+"No" = "No";
+
+/* No printer has been selected */
+"No printer" = "Nepasirinktas spausdintuvas";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Failed to request to cancel job";
+
+/* (No Comment) */
+"Notify failed pause job" = "Failed to request to pause job";
+
+/* (No Comment) */
+"Notify failed resume job" = "Failed to request to resume job";
+
+/* No comment provided by engineer. */
+"Paused" = "Pauzė";
+
+/* No comment provided by engineer. */
+"Printing" = "Spausdina";
+
+/* ETA is Unknown */
+"Unknown" = "Unknown";
+
+/* (No Comment) */
+"Yes" = "Yes";
+

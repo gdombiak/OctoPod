@@ -1,0 +1,12 @@
+/* Bundle name */
+"CFBundleName" = "OctoPod";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Leiskite kameros prieigą kad nuskaityti QR kodą";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Leiskite naudoti FaceID kad atrakinti programėlę";
+
+/* Privacy - Siri Usage Description */
+"NSSiriUsageDescription" = "Valdykite spausdintuva su Siri";
+

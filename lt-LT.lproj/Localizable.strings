@@ -1,0 +1,431 @@
+/* (No Comment) */
+"1 day ago" = "prieš dieną";
+
+/* (No Comment) */
+"1 hour ago" = "prieš valandą";
+
+/* (No Comment) */
+"1 minute ago" = "prieš minutę";
+
+/* (No Comment) */
+"1 week ago" = "prieš savaitę";
+
+/* (No Comment) */
+"Actual Bed" = "Tikra pagrindo temperatūra";
+
+/* (No Comment) */
+"Actual Extruder" = "Tikra ekstruderio temperatūra";
+
+/* (No Comment) */
+"Actual Extruder 2" = "Tikra antro ekstruderio temperatūra";
+
+/* (No Comment) */
+"Apply" = "Patvirtinti";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Autentifikacija nepavyko";
+
+/* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
+"Bad Certificate or SSL Problem" = "Blogas sertifikatas arba SSL problema";
+
+/* (No Comment) */
+"Bed cooled" = "Paviršius atvėso";
+
+/* No comment provided by engineer. */
+"Bed Variance" = "Paviršiaus nuokrypis";
+
+/* (No Comment) */
+"Bed warmed" = "Paviršius pasiekė nustatytą temperatūrą";
+
+/* (No Comment) */
+"Cancel" = "Atšaukti";
+
+/* Siri suggested phrase */
+"Cancel current print job" = "Cancel current print job on %@";
+
+/* https://github.com/paukstelis/Octoprint-Cancelobject */
+"Cancel Objects" = "Atšaukti objektus";
+
+/* (No Comment) */
+"Cannot print this file type" = "Negalima spausdinti šio failo tipo";
+
+/* (No Comment) */
+"Cannot reach 'octopi.local' over mobile network or service is down" = "'octopi.local' nepasiekiamas arba nėra ryšio";
+
+/* (No Comment) */
+"Cannot replace file that is being printed or printer is busy" = "Negalima pakeisti failo kuris spausdinamas arba spausdintuvas užimtas";
+
+/* File Type is GCode */
+"Code" = "Kodas";
+
+/* (No Comment) */
+"Command not executed. Printer not operational" = "Komanda nepavyko. Spausdintuvas nepasiekiamas";
+
+/* (No Comment) */
+"Command not executed. Script not found" = "Komanda nepavyko. Scenarijus nerastas";
+
+/* (No Comment) */
+"Confirm" = "Patvirtinti";
+
+/* (No Comment) */
+"Confirm cancel object" = "Atšaukti objektą. Patvirtinti?";
+
+/* (No Comment) */
+"Confirm command" = "Patvirtinti komandą ‘%@‘?";
+
+/* (No Comment) */
+"Confirm connect" = "Kai kurie spausdintuvai gali persikrauti prisijungiant. Tęsti?";
+
+/* (No Comment) */
+"Confirm disconnect" = "Ar tikrai norite atsijungti?";
+
+/* (No Comment) */
+"Confirm intentions deletion" = "Norite ištrinti visus Siri trumpinius?";
+
+/* (No Comment) */
+"Confirm intentions regeneration" = "Norite ištrinti visus Siri trumpinius ir atstatyti numatytus?";
+
+/* (No Comment) */
+"Confirm turn off plug" = "Išjungti išmanujį kištuką?";
+
+/* (No Comment) */
+"Confirm turn off PSU" = "Išjungti maitinimo bloką?";
+
+/* (No Comment) */
+"Connect" = "Prisijungti";
+
+/* (No Comment) */
+"Connection failed" = "Nepavyko prisijungti";
+
+/* Siri suggested phrase */
+"Cool down printer" = "Atšaldyti spausdintuvą";
+
+/* Siri suggested phrase */
+"Cool down printer bed" = "Cool down printer bed %@";
+
+/* Siri suggested phrase */
+"Cool down printer extruder" = "Cool down printer extruder %@";
+
+/* Connection to server failed */
+"Could not connect to the server" = "Nepavyko prisijungti prie serverio";
+
+/* http://docs.octoprint.org/en/master/features/custom_controls.html */
+"Custom Controls" = "'Custom controls''";
+
+/* (No Comment) */
+"days ago" = "prieš %d dienas";
+
+/* (No Comment) */
+"Disconnect" = "Atsijungti";
+
+/* (No Comment) */
+"Dismiss" = "Atšaukti";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Ar norite atšaukti?";
+
+/* (No Comment) */
+"Domoticz Plugs" = "Domoticz kištukai";
+
+/* (No Comment) */
+"Enable iCloud under iOS Settings to use this feature" = "Įjunkite iCloud iOS nustatymuose kad galėtumete naudotis šia funkcija";
+
+/* No comment provided by engineer. */
+"Extruder Variance" = "Ekstruderio variacija";
+
+/* (No Comment) */
+"Failed to delete file" = "Nepavyko ištrinti failo";
+
+/* (No Comment) */
+"Failed to disable motor" = "Nepavyko išjungti %@ motoro";
+
+/* Failed to get controls with HTTP Request error info */
+"Failed to get controls" = "Nepavyko gauti kontrolsų. HTTP atsakymas: %d";
+
+/* (No Comment) */
+"Failed to get list of cancel objects" = "Nepavyko gauti 'Cancel objects' objektų. HTTP atsakymas: %d";
+
+/* Failed to get system commands with HTTP Request error info */
+"Failed to get system commands" = "Nepavyko gauti sistemos komandų";
+
+/* (No Comment) */
+"Failed to initialize SD card" = "Nepavyko paleisti SD kortelės";
+
+/* (No Comment) */
+"Failed to read file from iCloud" = "Nepavyko nuskaityti failo iš iCloud";
+
+/* (No Comment) */
+"Failed to refresh SD card" = "Nepavyko atnaujinti SD kortelės";
+
+/* (No Comment) */
+"Failed to request moving back" = "Nepavyko pajudėti atgal";
+
+/* (No Comment) */
+"Failed to request moving down" = "Nepavyko pajudėti žemyn";
+
+/* (No Comment) */
+"Failed to request moving front" = "Nepavyko pajudėti į priekį";
+
+/* (No Comment) */
+"Failed to request moving left" = "Nepavyko pajudėti į kairę";
+
+/* (No Comment) */
+"Failed to request moving right" = "Nepavyko pajudėti į dešinę";
+
+/* (No Comment) */
+"Failed to request moving up" = "Nepavyko pajudėti aukštyn";
+
+/* (No Comment) */
+"Failed to request to cancel object" = "Nepavyko paprašyti atšaukti objektą. HTTP atsakymas: %d";
+
+/* (No Comment) */
+"Failed to request to execute command" = "Nepavyko įvykdyti komandos";
+
+/* (No Comment) */
+"Failed to request to extrude" = "Nepavyko išspausti";
+
+/* (No Comment) */
+"Failed to request to go home" = "Nepavyko judėti namo";
+
+/* (No Comment) */
+"Failed to request to print file" = "Nepavyko spausdinimas";
+
+/* (No Comment) */
+"Failed to request to retract" = "Nepavyko ištraukti";
+
+/* (No Comment) */
+"Failed to request to turn power off" = "Nepavyko išjungti";
+
+/* (No Comment) */
+"Failed to request to turn power on" = "Nepavyko įjungti";
+
+/* No comment provided by engineer. */
+"Failed to save JPEG file" = "Nepavyko išsaugoti JPEG failo";
+
+/* (No Comment) */
+"Failed to send GCode command" = "Nepavyko išsiųsti GCODE komandos";
+
+/* (No Comment) */
+"Failed to set new fan speed" = "Nepavyko nustatyti naujo ventiliatoriaus greičio";
+
+/* (No Comment) */
+"Failed to set new feed rate" = "Nepavyko nustatyti naujo padavimo greičio";
+
+/* (No Comment) */
+"Failed to set new flow rate" = "Nepavyko nustatyti naujo tekėjimo greičio";
+
+/* (No Comment) */
+"Failed to upload file" = "Nepavyko įkelti failo";
+
+/* (No Comment) */
+"Failed turn power off" = "Nepavyko išjungti";
+
+/* (No Comment) */
+"Failed turn power on" = "Nepavyko įjungti";
+
+/* (No Comment) */
+"File currently being printed" = "Šis failas šiuo metu spausdinimas";
+
+/* (No Comment) */
+"File is being copied to SD Card" = "Šis failas šiuo metu kopijuojamas į SD kortelę";
+
+/* File Type is a Folder */
+"Folder" = "Aplankas";
+
+/* (No Comment) */
+"hours ago" = "prieš %d valandas";
+
+/* HTTP Request error info */
+"HTTP Request error" = "HTTP atsakymas: %d";
+
+/* (No Comment) */
+"Incorrect API Key" = "Neteisingas API raktas";
+
+/* (No Comment) */
+"Incorrect authentication credentials" = "Neteisingi prisijungimo duomenys";
+
+/* URL of camera is invalid */
+"Invalid camera URL" = "Neteisingas kameros URL";
+
+/* (No Comment) */
+"Invalid file type" = "Neteisingas failo tipas";
+
+/* (No Comment) */
+"iOS Language" = "iOS Kalba";
+
+/* (No Comment) */
+"Job" = "Darbas";
+
+/* (No Comment) */
+"Location no longer valid. Refresh files" = "Neteisinga lokacija. Atnaujinkite failus";
+
+/* (No Comment) */
+"minutes ago" = "prieš %d minučių";
+
+/* (No Comment) */
+"MK3" = "MK3";
+
+/* (No Comment) */
+"MMU Requires User" = "MMU reikalauja pagalbos";
+
+/* File Type is a Model */
+"Model" = "Modelis";
+
+/* (No Comment) */
+"Move" = "Judėti";
+
+/* (No Comment) */
+"No" = "Ne";
+
+/* No camera was found */
+"No camera" = "Nėra kameros";
+
+/* (No Comment) */
+"No printer" = "Nėra spausdintuvo";
+
+/* No temperature history */
+"No temperature history" = "Nėra temperatūros istorijos";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Nepavyko atšaukti objekto";
+
+/* (No Comment) */
+"Notify failed pause job" = "Nepavyko sustabdyti objekto";
+
+/* (No Comment) */
+"Notify failed print job again" = "Vėl nepavyko atšaukti objekto";
+
+/* (No Comment) */
+"Notify failed restart job" = "Nepavyko paleisti darbo iš naujo";
+
+/* (No Comment) */
+"Notify failed resume job" = "Nepavyko pratęsti darbo";
+
+/* OctoPrint server */
+"OctoPrint" = "OctoPrint";
+
+/* Printer is Offline */
+"Offline" = "Išjungta";
+
+/* Siri suggested phrase */
+"Pause current print job" = "Pause current print job on %@";
+
+/* (No Comment) */
+"Pause Job" = "Pauzė";
+
+/* (No Comment) */
+"Paused" = "Pauzė";
+
+/* (No Comment) */
+"Print complete" = "Baigta";
+
+/* (No Comment) */
+"Print File" = "Spausdinti failą";
+
+/* (No Comment) */
+"Printer not operational" = "Spausdintuvas išjungtas";
+
+/* (No Comment) */
+"Printing" = "Spausdina";
+
+/* (No Comment) */
+"Pull down to refresh" = "Tempkite žemyn kad atnaujinti";
+
+/* Siri suggested phrase */
+"Remaining time current print job" = "Liko %@";
+
+/* Siri suggested phrase */
+"Restart current print job" = "Restart current print job on %@";
+
+/* (No Comment) */
+"Restart Job" = "Pradėti iš naujo";
+
+/* Siri suggested phrase */
+"Resume current print job" = "Resume current print job on %@";
+
+/* (No Comment) */
+"Resume Job" = "Tęsti";
+
+/* Execute Command */
+"Run" = "Pradėti";
+
+/* Origin is SD Card */
+"SD Card" = "SD kortelė";
+
+/* (No Comment) */
+"seconds ago" = "prieš %d sekundžių";
+
+/* DNS resolution failed. Cannot resolve hostname */
+"Server cannot be found" = "Serveris nerastas";
+
+/* (No Comment) */
+"Service is down or incorrect port" = "Servisas neveikia arba neteisingas portas";
+
+/* Snooze notifications for 1 hour */
+"Snooze 1 hour" = "Užtildyti valandai";
+
+/* Snooze notifications for 8 hours */
+"Snooze 8 hours" = "Užtildyti 8 valandom";
+
+/* Print time is being calculated */
+"Still stabilizing" = "Visdar stabilizuojama...";
+
+/* http://docs.octoprint.org/en/master/api/system.html */
+"System Commands" = "Sistemos komandos";
+
+/* (No Comment) */
+"Target Bed" = "Nustatyta paviršiaus temperatūra";
+
+/* (No Comment) */
+"Target Extruder" = "Nustatyta ekstruderio temperatūra";
+
+/* (No Comment) */
+"Target Extruder 2" = "Nustatyta antro ekstruderio temperatūra";
+
+/* (No Comment) */
+"Tasmota Plugs" = "Tasmota kištukai";
+
+/* Temperature */
+"Temperature" = "Termperatūra";
+
+/* (No Comment) */
+"Terminal" = "Terminalas";
+
+/* (No Comment) */
+"TPLink Smartplugs" = "TPLink jungtukai";
+
+/* (No Comment) */
+"Turn Off" = "Išjungti";
+
+/* (No Comment) */
+"Turn On" = "Įjungti";
+
+/* ETA is Unknown
+   File Type is Unknown
+   Origin is Unknown */
+"Unknown" = "nežinomas";
+
+/* Unknown Custom Control */
+"Unknown Control" = "Nežinoma kontrolė";
+
+/* (No Comment) */
+"Upload failed" = "Nepavyko įkelti";
+
+/* Siri suggested phrase */
+"Warm up printer bed" = "Warm up printer bed %@";
+
+/* Siri suggested phrase */
+"Warm up printer extruder" = "Warm up printer extruder %@";
+
+/* (No Comment) */
+"Warning" = "Įspėjimas";
+
+/* (No Comment) */
+"weeks ago" = "prieš %d savaičių";
+
+/* (No Comment) */
+"Wemo Switches" = "Wemo jungtukai";
+
+/* (No Comment) */
+"Yes" = "Taip";
+

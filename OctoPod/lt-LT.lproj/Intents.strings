@@ -1,0 +1,162 @@
+/* (No Comment) */
+"0xUDAM" = "${printer}";
+
+/* (No Comment) */
+"2TreiD" = "Set extruder temperature to ${temperature}";
+
+/* (No Comment) */
+"3eH6cZ" = "Failed to get remaing time information (${statusCode})";
+
+/* (No Comment) */
+"6k5AFm" = "Resume job";
+
+/* (No Comment) */
+"6vtMLs" = "Job Restarted";
+
+/* (No Comment) */
+"8tTCjD" = "Failed to cancel job (${statusCode})";
+
+/* (No Comment) */
+"9iz6yx" = "${printer}";
+
+/* (No Comment) */
+"9PozHf" = "${printer}";
+
+/* (No Comment) */
+"662LyZ" = "Restart job";
+
+/* (No Comment) */
+"bXGQKe" = "Cool down printer";
+
+/* (No Comment) */
+"D0kBGr" = "Restart running print job";
+
+/* (No Comment) */
+"doj4NA" = "Configure extruder's temperature";
+
+/* (No Comment) */
+"f8xirF" = "Cool down printer";
+
+/* (No Comment) */
+"FkSYZt" = "${printer}";
+
+/* (No Comment) */
+"fL3sow" = "Suspend running print job";
+
+/* (No Comment) */
+"FZ3z7Z" = "Set Bed's Temperature";
+
+/* (No Comment) */
+"gx0D0e" = "Job canceled";
+
+/* (No Comment) */
+"hPlRC4" = "Set bed temperature to ${temperature}";
+
+/* (No Comment) */
+"ihLqc7" = "Pause job";
+
+/* (No Comment) */
+"JmhfgL" = "Restart running print job";
+
+/* (No Comment) */
+"Kf7e4Y" = "Resume running print job";
+
+/* (No Comment) */
+"lrRige" = "Cancel running print job";
+
+/* (No Comment) */
+"LVlPuT" = "Cancel running print job";
+
+/* (No Comment) */
+"m6XJpy" = "Failed to cool down printer (${statusCode})";
+
+/* (No Comment) */
+"m9Jgmg" = "Job resumed";
+
+/* (No Comment) */
+"NG7rBh" = "Time left";
+
+/* (No Comment) */
+"NL98zi" = "Cools down bed and extruder";
+
+/* (No Comment) */
+"ovQf6Z" = "Job paused";
+
+/* (No Comment) */
+"P89qJr" = "Time left is ${time}";
+
+/* (No Comment) */
+"Pj7mEV" = "Cool down extruder";
+
+/* (No Comment) */
+"PppyPP" = "Configure bed's temperature";
+
+/* (No Comment) */
+"qLzk1S" = "Cool down bed";
+
+/* (No Comment) */
+"QSxXHq" = "Pause running print job";
+
+/* (No Comment) */
+"rFHPr4" = "${printer}";
+
+/* (No Comment) */
+"Rjw5oo" = "${printer}";
+
+/* (No Comment) */
+"rmKSv6" = "Failed to set extruder's temperature (${statusCode})";
+
+/* (No Comment) */
+"RrOrgy" = "Cancel job";
+
+/* (No Comment) */
+"SP4rN6" = "Set Extruder's Temperature";
+
+/* (No Comment) */
+"SRDf6Q" = "Extruder's temperature was set to ${temperature}";
+
+/* (No Comment) */
+"sRkyIL" = "Failed to restart job (${statusCode})";
+
+/* (No Comment) */
+"tKDODp" = "Remaining print time";
+
+/* (No Comment) */
+"UC9Zrq" = "Bed's temperature was set to ${temperature}";
+
+/* (No Comment) */
+"uoT27A" = "Failed to set bed's temperature (${statusCode})";
+
+/* (No Comment) */
+"Vc7DVt" = "Set extruder ${tool} temperature to ${temperature}";
+
+/* (No Comment) */
+"VDz0Q1" = "${printer}";
+
+/* (No Comment) */
+"vL7cy4" = "${printer}";
+
+/* (No Comment) */
+"VlxGJX" = "${printer}";
+
+/* (No Comment) */
+"WI2oQf" = "Return Print Time Left";
+
+/* (No Comment) */
+"WLkRl0" = "Failed to resume job (${statusCode})";
+
+/* (No Comment) */
+"wYzz4m" = "Printer is cooling down";
+
+/* (No Comment) */
+"XfWmGt" = "Resume running print job";
+
+/* (No Comment) */
+"xSARU0" = "Failed to pause job (${statusCode})";
+
+/* (No Comment) */
+"YGxUII" = "${printer}";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
+
