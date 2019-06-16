@@ -265,6 +265,9 @@
 /* (No Comment) */
 "MK3" = "MK3";
 
+/* (No Comment) */
+"MMU Requires User" = "MMU richiede l'intervento dell'utente";
+
 /* File Type is a Model */
 "Model" = "Modello";
 
@@ -357,6 +360,12 @@
 
 /* (No Comment) */
 "Service is down or incorrect port" = "Il servizio è inattivo o la porta è errata";
+
+/* Snooze notifications for 1 hour */
+"Snooze 1 hour" = "Non disturbare per 1 ora";
+
+/* Snooze notifications for 8 hours */
+"Snooze 8 hours" = "Non disturvare per 8 ore";
 
 /* Print time is being calculated */
 "Still stabilizing" = "Stabilizzazione...";
