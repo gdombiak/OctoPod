@@ -28,8 +28,14 @@
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Ugyldig sertifikat eller SSL-problem";
 
+/* (No Comment) */
+"Bed cooled" = "Skriveflate under spesifisert temperaturgrense";
+
 /* No comment provided by engineer. */
 "Bed Variance" = "Skriveflatevariasjon";
+
+/* (No Comment) */
+"Bed warmed" = "Skriveflate varmet til spesifisert temperatur og varighet";
 
 /* (No Comment) */
 "Cancel" = "Avbryt";
@@ -259,6 +265,9 @@
 /* (No Comment) */
 "MK3" = "MK3";
 
+/* (No Comment) */
+"MMU Requires User" = "MMU krever tilsyn";
+
 /* File Type is a Model */
 "Model" = "Modell";
 
@@ -351,6 +360,12 @@
 
 /* (No Comment) */
 "Service is down or incorrect port" = "Tjenesten er nede eller feil port";
+
+/* Snooze notifications for 1 hour */
+"Snooze 1 hour" = "Snooze 1 time";
+
+/* Snooze notifications for 8 hours */
+"Snooze 8 hours" = "snooze 8";
 
 /* Print time is being calculated */
 "Still stabilizing" = "Fortsatt stabilisering...";

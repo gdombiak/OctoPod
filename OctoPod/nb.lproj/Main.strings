@@ -166,6 +166,9 @@
 /* Class = "UIButton"; normalTitle = "Pause Job"; ObjectID = "d2Y-RO-6Yg"; */
 "d2Y-RO-6Yg.normalTitle" = "Pause";
 
+/* Class = "UITableViewSection"; headerTitle = "Reminders"; ObjectID = "dIa-e3-jnv"; */
+"dIa-e3-jnv.headerTitle" = "Påminnelser";
+
 /* Class = "UILabel"; text = "Frequently Asked Questions"; ObjectID = "dlU-c7-kpY"; */
 "dlU-c7-kpY.text" = "Ofte stilte spørsmål";
 
@@ -561,6 +564,9 @@
 
 /* Class = "UILabel"; text = "Control ATX/AUX power supply via PSU Control"; ObjectID = "Ysy-LO-1dL"; */
 "Ysy-LO-1dL.text" = "Kontroller ATX / AUX strømforsyning via PSU-kontroll";
+
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "yxh-PV-og3"; */
+"yxh-PV-og3.normalTitle" = "Avvis";
 
 /* Class = "UIButton"; normalTitle = "Send"; ObjectID = "z4Q-Gf-Y5G"; */
 "z4Q-Gf-Y5G.normalTitle" = "Send";
