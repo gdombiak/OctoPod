@@ -1,5 +1,20 @@
 # Change Log
 
+## [2.4](https://github.com/gdombiak/OctoPod/tree/2.4) (2019-06-16)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.3...2.4)
+
+**Implemented enhancements:**
+
+- Add Lithuanian translation [\#193](https://github.com/gdombiak/OctoPod/issues/193)
+- Display notification also when app is in the foreground [\#192](https://github.com/gdombiak/OctoPod/issues/192)
+- Display notification when MMU requires user assistance enhancement [\#191](https://github.com/gdombiak/OctoPod/issues/191)
+- Accept hostname specified without http:// [\#187](https://github.com/gdombiak/OctoPod/issues/187)
+
+**Fixed bugs:**
+
+- Notification sounds on iPhone [\#190](https://github.com/gdombiak/OctoPod/issues/190)
+- Include port number in Host header [\#189](https://github.com/gdombiak/OctoPod/issues/189)
+
 ## [2.3](https://github.com/gdombiak/OctoPod/tree/2.3) (2019-05-26)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.2...2.3)
 
