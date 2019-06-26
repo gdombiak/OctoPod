@@ -2,8 +2,10 @@ import UIKit
 
 class ChangeLanguageViewController: ThemedDynamicUITableViewController {
 
-    private static let CHANGE_LANGUAGE_OVERRIDE = "CHANGE_LANGUAGE_OVERRIDE"
+    static let CHANGE_LANGUAGE_OVERRIDE = "CHANGE_LANGUAGE_OVERRIDE"
     private static let LANGUAGE_KEY = "AppleLanguages"  // iOS key for languages
+
+    let notificationsManager: NotificationsManager = { return (UIApplication.shared.delegate as! AppDelegate).notificationsManager }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +112,10 @@ class ChangeLanguageViewController: ThemedDynamicUITableViewController {
         default:
             fatalError("ChangeLanguageViewController has more rows than languages")
         }
+        
+        // User changed languages so notifications coming from OctoPod plugin need to use new language
+        notificationsManager.userChangedLanguage()
+        
         // Close this window
         self.dismiss(animated: true, completion: nil)
     }

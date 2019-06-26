@@ -240,6 +240,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 } else if let mmuEvent = dict["mmu-event"] as? String {
                     // This is an MMU event notification
                     mmuNotificationsHandler.receivedNotification(printerID: printerID, event: mmuEvent, completionHandler: completionHandler)
+                } else {
+                    // Unknown command. Execute completion handler
+                    completionHandler(.noData)
                 }
             } else {
                 // No data was downloaded by this app

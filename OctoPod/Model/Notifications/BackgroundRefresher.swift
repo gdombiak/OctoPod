@@ -30,7 +30,7 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
             if test == true {
                 self.checkCompletedJobLocalNotification(printerName: printer.name, state: printerState, mediaURL: mediaURL, completion: 100, test: true)
             } else {
-                self.pushComplicationUpdate(printerName: printer.name, state: printerState, mediaURL: mediaURL, completion: progressCompletion)
+                self.pushComplicationUpdate(printerName: printer.name, octopodPluginInstalled: printer.octopodPluginInstalled, state: printerState, mediaURL: mediaURL, completion: progressCompletion)
             }
             completionHandler(.newData)
         } else {
@@ -72,7 +72,7 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
                         if let progress = result["progress"] as? NSDictionary {
                             progressCompletion = progress["completion"] as? Double
                         }
-                        self.pushComplicationUpdate(printerName: printer.name, state: state, mediaURL: nil, completion: progressCompletion)
+                        self.pushComplicationUpdate(printerName: printer.name, octopodPluginInstalled: printer.octopodPluginInstalled, state: state, mediaURL: nil, completion: progressCompletion)
                         completionHandler(.newData)
                     } else {
                         completionHandler(.noData)
@@ -101,35 +101,48 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
         // Do nothing
     }
     
-    // Notification that the current state of the printer has changed
+    /**
+     Notification that the current state of the printer has changed
+     - Parameter event: Printer status at the moment the event happened
+     */
     func printerStateUpdated(event: CurrentStateEvent) {
         if let printer = printerManager.getDefaultPrinter(), let state = event.state {
-            pushComplicationUpdate(printerName: printer.name, state: state, mediaURL: nil, completion: event.progressCompletion)
+            pushComplicationUpdate(printerName: printer.name, octopodPluginInstalled: printer.octopodPluginInstalled, state: state, mediaURL: nil, completion: event.progressCompletion)
         }
     }
     
-    // Notification that HTTP request failed (connection error, authentication error or unexpect http status code)
+    /**
+     Notification that requested HTTP request has failed (connection error, authentication error or unexpect http status code)
+     - Parameter error: Some error that happened while trying to make the HTTP request
+     - Parameter response: HTTP response that was received
+     */
     func handleConnectionError(error: Error?, response: HTTPURLResponse) {
         // Do nothing
     }
     
-    // Notification sent when websockets got connected
+    /**
+     Notification sent when websockets got connected
+     */
     func websocketConnected() {
         // Do nothing
     }
     
-    // Notification sent when websockets got disconnected due to an error (or failed to connect)
+    /**
+     Notification sent when websockets got disconnected due to an error (or failed to connect)
+     - Parameter error: Error that disconnected websocket
+    */
     func websocketConnectionFailed(error: Error) {
         // Do nothing
     }
     
     // MARK: - Private functions
     
-    fileprivate func pushComplicationUpdate(printerName: String, state: String, mediaURL: String?, completion: Double?) {
+    fileprivate func pushComplicationUpdate(printerName: String, octopodPluginInstalled: Bool, state: String, mediaURL: String?, completion: Double?) {
         // Check if state has changed since last refresh
         let lastState = self.lastKnownState[printerName]
         if lastState == nil || lastState?.state != state {
-            if let completion = completion {
+            if !octopodPluginInstalled, let completion = completion {
+                // Send local notification if OctoPod plugin for OctoPrint is not installed
                 checkCompletedJobLocalNotification(printerName: printerName, state: state, mediaURL: mediaURL, completion: completion, test: false)
             }
             // Update last known state

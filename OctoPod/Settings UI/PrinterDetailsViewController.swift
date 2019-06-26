@@ -7,6 +7,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
     let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    let notificationsManager: NotificationsManager = { return (UIApplication.shared.delegate as! AppDelegate).notificationsManager }()
 
     var updatePrinter: Printer? = nil
     var scannedKey: String?
@@ -68,6 +69,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     
     @IBAction func saveChanges(_ sender: Any) {
         if let printer = updatePrinter {
+            let nameChanged = printer.name != printerNameField.text!
             // Update existing printer
             printer.name = printerNameField.text!
             printer.hostname = hostnameField.text!
@@ -89,6 +91,10 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
             // Recreate Siri suggestions (user will need to manually delete recorded Shortcuts)
             IntentsDonations.deletePrinterIntents(printer: printer)
             IntentsDonations.donatePrinterIntents(printer: printer)
+            
+            if nameChanged {
+                notificationsManager.printerNameChanged(printer: printer)
+            }
         } else {
             // Add new printer (that will become default if it's the first one)
             if let newPrinter = printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, iCloudUpdate: true) {

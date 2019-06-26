@@ -43,10 +43,41 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
     func registerToken(token: String) {
         // Remember current APNS token that was given to the app
         currentToken = token
-        
+        let languageCode = appLanguageCode()
+
         for printer in printerManager.getPrinters() {
-            if printer.octopodPluginInstalled && printer.notificationToken != token {
+            if printer.octopodPluginInstalled && (printer.notificationToken != token || printer.octopodPluginPrinterName != printer.name || printer.octopodPluginLanguage != languageCode) {
                 // Update APNS token in this OctoPrint instance
+                updateNotificationToken(printer: printer)
+            }
+        }
+    }
+    
+    // MARK: - Notifications
+
+    /**
+     Notification that user has changed named of the specified printer. If OctoPrint instance has
+     OctoPod plugin installed then we need to refresh the printer name information in the plugin so
+     future notifications display the proper printer name and when user clicks on the notification we
+     can switch to the selected printer
+     - parameter printer: the printer whose name has been modified. It may or may not have OctoPod plugin installed
+     */
+    func printerNameChanged(printer: Printer) {
+        if printer.octopodPluginInstalled {
+            // Update APNS token and printer name of the modified printer
+            updateNotificationToken(printer: printer)
+        }
+    }
+    
+    /**
+     User selected a new language for the app. We need to refresh OctoPod plugins for all connected OctoPrint instances
+     to use the new languge. Changes to iOS languages are not going to force a refresh in the plugin. That case is
+     not supported yet.
+    */
+    func userChangedLanguage() {
+        for printer in printerManager.getPrinters() {
+            if printer.octopodPluginInstalled {
+                // Update language stored in OctoPod plugin
                 updateNotificationToken(printer: printer)
             }
         }
@@ -70,7 +101,27 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
         if let printerName = response.notification.request.content.userInfo["printerName"] as? String {
             if response.actionIdentifier == mmuSnooze1Identifier || response.actionIdentifier == mmuSnooze8Identifier {
                 // User selected to snooze MMU notifications for this printer
-                mmuNotificationsHandler.snoozeNotifications(printerName: printerName, hours: response.actionIdentifier == mmuSnooze1Identifier ? 1 : 8)
+                if let printer = printerManager.getPrinterByName(name: printerName), let _ = printer.octopodPluginPrinterName {
+                    // OctoPod plugin handles non-silent notifications so snooze is done in OctoPrint's server
+                    // Let's switch to the selected printer
+                    printerManager.changeToDefaultPrinter(printer)
+                    // Ask octoprintClient to connect to new OctoPrint server
+                    octoprintClient.connectToServer(printer: printer)
+                    // Request OctoPod plugin to snooze MMU events
+                    octoprintClient.snoozeAPNSEvents(eventCode: "mmu-event", minutes: response.actionIdentifier == mmuSnooze1Identifier ? 60 : 480) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                        if !requested {
+                            NSLog("Failed to request snooze of MMU events. Response: \(response)")
+                        }
+                        // Execute completion handler
+                        completionHandler()
+                    }
+
+                } else {
+                    // OctoPod plugin is not updated so app is using silent notifications. Snooze is handled by the app in this legacy mode
+                    mmuNotificationsHandler.snoozeNotifications(printerName: printerName, hours: response.actionIdentifier == mmuSnooze1Identifier ? 1 : 8)
+                    // Execute completion handler
+                    completionHandler()
+                }
             } else if let printer = printerManager.getPrinterByName(name: printerName) {
                 // User clicked on notification. Let's switch to the selected printer
                 printerManager.changeToDefaultPrinter(printer)
@@ -84,9 +135,13 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
 
                 // Update Apple Watch with new selected printer
                 watchSessionManager.pushPrinters()
+                // Execute completion handler
+                completionHandler()
             }
+        } else {
+            // Execute completion handler
+            completionHandler()
         }
-        completionHandler()
     }
     
     // Display notification even if app is in the foreground
@@ -100,14 +155,17 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
         if let newToken = currentToken {
             let deviceName = UIDevice.current.name
             let id = printer.objectID.uriRepresentation().absoluteString
+            let languageCode = appLanguageCode()
             let restClient = OctoPrintRESTClient()
             restClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
-            restClient.registerAPNSToken(oldToken: printer.notificationToken, newToken: newToken, deviceName: deviceName, printerID: id) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            restClient.registerAPNSToken(oldToken: printer.notificationToken, newToken: newToken, deviceName: deviceName, printerID: id, printerName: printer.name, languageCode: languageCode) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
                     let newObjectContext = self.printerManager.newPrivateContext()
                     let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
                     // Update flag that tracks if OctoPod plugin is installed
                     printerToUpdate.notificationToken = newToken
+                    printerToUpdate.octopodPluginPrinterName = printer.name
+                    printerToUpdate.octopodPluginLanguage = languageCode
                     // Persist updated printer
                     self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
                 } else {
@@ -119,5 +177,13 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
                 }
             }
         }
+    }
+    
+    fileprivate func appLanguageCode() -> String {
+        var languageCode = Locale.current.languageCode ?? "en"
+        if let override = UserDefaults.standard.string(forKey: ChangeLanguageViewController.CHANGE_LANGUAGE_OVERRIDE) {
+            languageCode = override
+        }
+        return languageCode
     }
 }

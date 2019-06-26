@@ -38,6 +38,8 @@ class Printer: NSManagedObject {
     @NSManaged var cancelObjectInstalled: Bool
     @NSManaged var octopodPluginInstalled: Bool
     @NSManaged var notificationToken: String?  // APNS token that was last registered with this OctoPrint instance
+    @NSManaged var octopodPluginPrinterName: String?  // APNS notifications will use printer name as title
+    @NSManaged var octopodPluginLanguage: String?  // APNS notifications will be sent with the specified language
 
     
     func getStreamPath() -> String {

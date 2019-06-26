@@ -510,9 +510,21 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     // MARK: - OctoPod Plugin operations
     
-    // Register new APNS token so app can receive push notifications from OctoPod plugin
-    func registerAPNSToken(oldToken: String?, newToken: String, deviceName: String, printerID: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
-        octoPrintRESTClient.registerAPNSToken(oldToken: oldToken, newToken: newToken, deviceName: deviceName, printerID: printerID, callback: callback)
+    /**
+     Register new APNS token so app can receive push notifications from OctoPod plugin
+     */
+    func registerAPNSToken(oldToken: String?, newToken: String, deviceName: String, printerID: String, printerName: String, languageCode: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.registerAPNSToken(oldToken: oldToken, newToken: newToken, deviceName: deviceName, printerID: printerID, printerName: printerName, languageCode: languageCode, callback: callback)
+    }
+
+    /**
+     Register new APNS token so app can receive push notifications from OctoPod plugin
+     - Parameter eventCode: code that identifies event that we want to snooze (eg. mmu-event)
+     - Parameter minutes: number of minutes to snooze
+     - Parameter callback: callback to execute when HTTP request is done
+     */
+    func snoozeAPNSEvents(eventCode: String, minutes: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.snoozeAPNSEvents(eventCode: eventCode, minutes: minutes, callback: callback)
     }
 
     // MARK: - Delegates operations
@@ -805,6 +817,8 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         let currentPrinterID = printer.objectID.uriRepresentation().absoluteString
         var installed = false
         var notificationToken: String?
+        var octopodPluginPrinterName: String?
+        var octopodPluginLanguage: String?
         if let octopodPlugin = plugins[Plugins.OCTOPOD] as? NSDictionary {
             // OctoPod plugin is installed
             installed = true
@@ -814,18 +828,22 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                     if let printerID = registeredToken["printerID"] as? String, let apnsToken = registeredToken["apnsToken"] as? String {
                         if printerID == currentPrinterID {
                             notificationToken = apnsToken
+                            octopodPluginPrinterName = registeredToken["printerName"] as? String
+                            octopodPluginLanguage = registeredToken["languageCode"] as? String
                             break
                         }
                     }
                 }
             }
         }
-        if printer.octopodPluginInstalled != installed || printer.notificationToken != notificationToken {
+        if printer.octopodPluginInstalled != installed || printer.notificationToken == nil || printer.notificationToken != notificationToken || printer.octopodPluginPrinterName != octopodPluginPrinterName || printer.octopodPluginLanguage != octopodPluginLanguage {
             let newObjectContext = printerManager.newPrivateContext()
             let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
             // Update flag that tracks if OctoPod plugin is installed
             printerToUpdate.octopodPluginInstalled = installed
             printerToUpdate.notificationToken = notificationToken
+            printerToUpdate.octopodPluginPrinterName = octopodPluginPrinterName
+            printerToUpdate.octopodPluginLanguage = octopodPluginLanguage
             // Persist updated printer
             printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
             

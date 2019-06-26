@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Printer" representedClassName=".Printer" syncable="YES">
+        <attribute name="apiKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cameraOrientation" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="cameras" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="cancelObjectInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="defaultPrinter" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="domoticzplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]" syncable="YES"/>
+        <attribute name="firstCameraAspectRatio16_9" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hostname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iCloudUpdate" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="invertX" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="invertY" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="invertZ" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notificationToken" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="octopodPluginInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="octopodPluginLanguage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="octopodPluginPrinterName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="psuControlInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="recordData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="recordName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sdSupport" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="streamUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tasmotaplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]" syncable="YES"/>
+        <attribute name="tpLinkSmartplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]" syncable="YES"/>
+        <attribute name="userModified" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wemoplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Printer" positionX="-63" positionY="-18" width="128" height="480"/>
+    </elements>
+</model>

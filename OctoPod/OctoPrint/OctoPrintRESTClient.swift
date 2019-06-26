@@ -663,8 +663,10 @@ class OctoPrintRESTClient {
 
     // MARK: - OctoPod Plugin operations
     
-    // Register new APNS token so app can receive push notifications from OctoPod plugin
-    func registerAPNSToken(oldToken: String?, newToken: String, deviceName: String, printerID: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+    /**
+     Register new APNS token so app can receive push notifications from OctoPod plugin
+     */
+    func registerAPNSToken(oldToken: String?, newToken: String, deviceName: String, printerID: String, printerName: String, languageCode: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
             json["command"] = "updateToken"
@@ -672,6 +674,27 @@ class OctoPrintRESTClient {
             json["newToken"] = newToken
             json["deviceName"] = deviceName
             json["printerID"] = printerID            
+            json["printerName"] = printerName
+            json["languageCode"] = languageCode
+            client.post("/api/plugin/octopod", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+
+    /**
+     Register new APNS token so app can receive push notifications from OctoPod plugin
+     - Parameter eventCode: code that identifies event that we want to snooze (eg. mmu-event)
+     - Parameter minutes: number of minutes to snooze
+     - Parameter callback: callback to execute when HTTP request is done
+     - Parameter Flag that indicates if request was successfull
+     */
+    func snoozeAPNSEvents(eventCode: String, minutes: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "snooze"
+            json["eventCode"] = eventCode
+            json["minutes"] = minutes
             client.post("/api/plugin/octopod", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                 callback(response.statusCode == 204, error, response)
             }
