@@ -1,6 +1,14 @@
 # Change Log
 
-## [2.4](https://github.com/gdombiak/OctoPod/tree/2.4) (2019-06-16)
+## [2.5](https://github.com/gdombiak/OctoPod/tree/2.5) (2019-06-30)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.4...2.5)
+
+
+**Implemented enhancements:**
+
+- Display local notifications only if OctoPod plugin is not installed [\#196](https://github.com/gdombiak/OctoPod/issues/196)
+
+## [2.4](https://github.com/gdombiak/OctoPod/tree/2.4) (2019-06-17)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.3...2.4)
 
 **Implemented enhancements:**
