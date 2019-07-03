@@ -1,5 +1,11 @@
 # OctoPod
+
+[![Version](https://img.shields.io/badge/dynamic/json.svg?color=brightgreen&label=version&url=https://api.github.com/repos/gdombiak/OctoPod/releases&query=$[0].name)]()
+[![Released](https://img.shields.io/badge/dynamic/json.svg?color=brightgreen&label=released&url=https://api.github.com/repos/gdombiak/OctoPod/releases&query=$[0].published_at)]()
+[![License](https://img.shields.io/github/license/gdombiak/OctoPod.svg)]()
+
 OctoPod is a free open source iPhone/iPad app for OctoPrint.
+
 
 <img src="screenshots/OctoPod_Panel.png" alt="" width="400px"/>
 
