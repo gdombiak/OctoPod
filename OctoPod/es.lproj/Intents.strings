@@ -5,13 +5,22 @@
 "2TreiD" = "Establezca temperatura del extrusor a ${temperature}";
 
 /* (No Comment) */
+"3Butzw" = "Temperatura de la caja se ajustó a ${temperature}";
+
+/* (No Comment) */
 "3eH6cZ" = "Error al obtener información de tiempo restante (${statusCode})";
+
+/* (No Comment) */
+"4OM8IX" = "${printer}";
 
 /* (No Comment) */
 "6k5AFm" = "Reanudar impresión";
 
 /* (No Comment) */
 "6vtMLs" = "Trabajo reiniciado";
+
+/* (No Comment) */
+"7eJPkN" = "Configurar temperatura de la caja";
 
 /* (No Comment) */
 "8tTCjD" = "Error al cancelar el trabajo (${statusCode})";
@@ -35,6 +44,9 @@
 "doj4NA" = "Configurar temperatura del extrusor";
 
 /* (No Comment) */
+"Eb3aa5" = "Falla al establecer temperatura de la caja (${statusCode})";
+
+/* (No Comment) */
 "f8xirF" = "Enfriar impresora";
 
 /* (No Comment) */
@@ -47,6 +59,9 @@
 "FZ3z7Z" = "Ajustar temperatura de la cama";
 
 /* (No Comment) */
+"G3JE6a" = "${printer}";
+
+/* (No Comment) */
 "gx0D0e" = "Trabajo cancelado";
 
 /* (No Comment) */
@@ -54,6 +69,9 @@
 
 /* (No Comment) */
 "ihLqc7" = "Suspender impresión";
+
+/* (No Comment) */
+"Jioukn" = "Establecer temperatura de la caja";
 
 /* (No Comment) */
 "JmhfgL" = "Reiniciar impresión";
@@ -110,6 +128,9 @@
 "RrOrgy" = "Cancelar impresión";
 
 /* (No Comment) */
+"RYurC5" = "Enfriar la caja";
+
+/* (No Comment) */
 "SP4rN6" = "Ajustar temperatura del extrusor";
 
 /* (No Comment) */
@@ -159,4 +180,7 @@
 
 /* (No Comment) */
 "yZeSdz" = "${printer}";
+
+/* (No Comment) */
+"zj1Vd9" = "Establecer temperatura de la caja a ${temperature}";
 

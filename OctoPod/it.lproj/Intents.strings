@@ -8,6 +8,9 @@
 "3eH6cZ" = "Errore nell'ottenere le informazioni sul tempo rimanente (${statusCode})";
 
 /* (No Comment) */
+"4OM8IX" = "${printer}";
+
+/* (No Comment) */
 "6k5AFm" = "Riprendi stampa";
 
 /* (No Comment) */
@@ -45,6 +48,9 @@
 
 /* (No Comment) */
 "FZ3z7Z" = "Imposta la temperatura del piatto";
+
+/* (No Comment) */
+"G3JE6a" = "${printer}";
 
 /* (No Comment) */
 "gx0D0e" = "Stampa annullata";

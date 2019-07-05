@@ -8,6 +8,9 @@
 "3eH6cZ" = "Keine Information über verbleibende Zeit erhalten (${statusCode})";
 
 /* (No Comment) */
+"4OM8IX" = "${printer}";
+
+/* (No Comment) */
 "6k5AFm" = "Auftrag fortsetzen";
 
 /* (No Comment) */
@@ -45,6 +48,9 @@
 
 /* (No Comment) */
 "FZ3z7Z" = "Stelle die Temperatur des Druckbetts ein";
+
+/* (No Comment) */
+"G3JE6a" = "${printer}";
 
 /* (No Comment) */
 "gx0D0e" = "Auftrag abgebrochen";

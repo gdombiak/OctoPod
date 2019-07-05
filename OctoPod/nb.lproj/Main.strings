@@ -310,6 +310,9 @@
 /* Class = "UILabel"; text = "Enter a valid URL"; ObjectID = "K6d-lk-BaS"; */
 "K6d-lk-BaS.text" = "Skriv inn en gyldig URL";
 
+/* Class = "UILabel"; text = "100 C"; ObjectID = "kGY-Bn-Qcb"; */
+"kGY-Bn-Qcb.text" = "100 C";
+
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "Fil";
 
@@ -448,6 +451,9 @@
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
 "S2I-HR-qgE.text" = "/";
 
+/* Class = "UILabel"; text = "/"; ObjectID = "sF0-zd-MZR"; */
+"sF0-zd-MZR.text" = "/";
+
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H"; */
 "sLc-Jv-G0H.placeholder" = "Brukernavn";
 
@@ -510,6 +516,9 @@
 
 /* Class = "UILabel"; text = "Zoom in/out"; ObjectID = "Vny-ch-OgO"; */
 "Vny-ch-OgO.text" = "Zoom inn/ut";
+
+/* Class = "UILabel"; text = "60.0 C"; ObjectID = "vpX-he-2FU"; */
+"vpX-he-2FU.text" = "60.0 C";
 
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection"; ObjectID = "Vr9-x7-66H"; */
 "Vr9-x7-66H.headerTitle" = "Skriverforbindelse";

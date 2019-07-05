@@ -8,6 +8,9 @@
 "3eH6cZ" = "Nepavyko gauti likusio laiko (${statusCode})";
 
 /* (No Comment) */
+"4OM8IX" = "${printer}";
+
+/* (No Comment) */
 "6k5AFm" = "Tęsti";
 
 /* (No Comment) */
@@ -45,6 +48,9 @@
 
 /* (No Comment) */
 "FZ3z7Z" = "Nustatyti paviršiaus temperatūrą";
+
+/* (No Comment) */
+"G3JE6a" = "${printer}";
 
 /* (No Comment) */
 "gx0D0e" = "Užduotis atšaukta";

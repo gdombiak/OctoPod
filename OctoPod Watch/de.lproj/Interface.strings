@@ -16,6 +16,9 @@
 /* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "MUA-6M-Ncu"; */
 "MUA-6M-Ncu.text" = "200 C";
 
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "R3c-gI-59i"; */
+"R3c-gI-59i.text" = "     ";
+
 /* Class = "WKInterfaceLabel"; text = "Open the iPhone app, it will share printer data with the watch"; ObjectID = "S0T-q4-2KQ"; */
 "S0T-q4-2KQ.text" = "Öffne die iPhone App, sie wird die Druckerprofile mit der Apple Watch teilen";
 

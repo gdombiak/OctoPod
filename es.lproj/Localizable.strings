@@ -13,6 +13,9 @@
 /* (No Comment) */
 "Actual Bed" = "Cama actual";
 
+/* No comment provided by engineer. */
+"Actual Chamber" = "Caja Actual";
+
 /* (No Comment) */
 "Actual Extruder" = "Extrusor actual";
 
@@ -96,6 +99,9 @@
 
 /* (No Comment) */
 "Connection failed" = "Error de conexión";
+
+/* Siri suggested phrase */
+"Cool down heated chamber" = "Enfriar la caja";
 
 /* Siri suggested phrase */
 "Cool down printer" = "Enfriar impresora";
@@ -376,6 +382,9 @@
 /* (No Comment) */
 "Target Bed" = "Cama objetivo";
 
+/* No comment provided by engineer. */
+"Target Chamber" = "Caja objetivo";
+
 /* (No Comment) */
 "Target Extruder" = "Extrusor objetivo";
 
@@ -410,6 +419,9 @@
 
 /* (No Comment) */
 "Upload failed" = "Error de subida";
+
+/* Siri suggested phrase */
+"Warm up heated chamber" = "Calentar la caja";
 
 /* Siri suggested phrase */
 "Warm up printer bed" = "Calentar cama de la impresora %@";
