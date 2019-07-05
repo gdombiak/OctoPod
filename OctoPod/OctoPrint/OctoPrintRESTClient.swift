@@ -224,6 +224,23 @@ class OctoPrintRESTClient {
         }
     }
     
+    /**
+     Sets target temperature for the printer’s heated chamber
+     - Parameter newTarget: new chamber temperature to set
+     - Parameter callback: callback to execute after HTTP request is done
+     */
+    func chamberTargetTemperature(newTarget: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "target"
+            json["target"] = newTarget
+            
+            client.post("/api/printer/chamber", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+    
     // Set the new flow rate for the requested extruder. Currently there is no way to read current flow rate value
     func toolFlowRate(toolNumber: Int, newFlowRate: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {

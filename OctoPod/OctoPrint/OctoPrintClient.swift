@@ -329,6 +329,15 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.toolTargetTemperature(toolNumber: toolNumber, newTarget: newTarget, callback: callback)
     }
     
+    /**
+     Sets target temperature for the printer’s heated chamber
+     - Parameter newTarget: new chamber temperature to set
+     - Parameter callback: callback to execute after HTTP request is done
+     */
+    func chamberTargetTemperature(newTarget: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.chamberTargetTemperature(newTarget: newTarget, callback: callback)
+    }
+
     // Set the new flow rate for the requested extruder. Currently there is no way to read current flow rate value
     func toolFlowRate(toolNumber: Int, newFlowRate: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.toolFlowRate(toolNumber: toolNumber, newFlowRate: newFlowRate, callback: callback)

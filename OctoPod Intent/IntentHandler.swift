@@ -8,6 +8,8 @@ class IntentHandler: INExtension {
             return SetBedTempIntentHandler(printerManager: printerManager)
         } else if intent is SetToolTempIntent {
             return SetToolTempIntentHandler(printerManager: printerManager)
+        } else if intent is SetChamberTempIntent {
+            return SetChamberTempIntentHandler(printerManager: printerManager)
         } else if intent is PauseJobIntent {
             return PauseJobIntentHandler(printerManager: printerManager)
         } else if intent is ResumeJobIntent {

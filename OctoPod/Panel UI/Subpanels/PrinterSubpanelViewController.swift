@@ -20,7 +20,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     @IBOutlet weak var tool0TextLabel: UILabel!
     @IBOutlet weak var bedTextLabel: UILabel!
     @IBOutlet weak var tool1TextLabel: UILabel!
-    
+    @IBOutlet weak var chamberTextLabel: UILabel!
+
     @IBOutlet weak var printerStatusLabel: UILabel!
     
     @IBOutlet weak var progressView: UIProgressView!
@@ -39,7 +40,11 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     @IBOutlet weak var tool1ActualLabel: UILabel!
     @IBOutlet weak var tool1TargetLabel: UILabel!
     @IBOutlet weak var tool1SplitLabel: UILabel!
-    
+    @IBOutlet weak var chamberSetTempButton: UIButton!
+    @IBOutlet weak var chamberActualLabel: UILabel!
+    @IBOutlet weak var chamberTargetLabel: UILabel!
+    @IBOutlet weak var chamberSplitLabel: UILabel!
+
     @IBOutlet weak var bedSetTempButton: UIButton!
     @IBOutlet weak var bedActualLabel: UILabel!
     @IBOutlet weak var bedTargetLabel: UILabel!
@@ -110,6 +115,17 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 // Make the popover appear at the middle of the button
                 segue.destination.popoverPresentationController!.sourceRect = CGRect(x: tool1SetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
             }
+        } else if segue.identifier == "chamber_tooltip" {
+            segue.destination.popoverPresentationController!.delegate = self
+            // Make the popover appear at the middle of the button
+            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: chamberSetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
+        } else if segue.identifier == "set_target_temp_chamber" {
+            if let controller = segue.destination as? SetTargetTempViewController {
+                controller.targetTempScope = SetTargetTempViewController.TargetScope.chamber
+                controller.popoverPresentationController!.delegate = self
+                // Make the popover appear at the middle of the button
+                segue.destination.popoverPresentationController!.sourceRect = CGRect(x: chamberSetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
+            }
         } else if segue.identifier == "print_job_info" {
             segue.destination.popoverPresentationController!.delegate = self
             // Make the popover appear at the middle of the button
@@ -171,10 +187,29 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
 
             if let tool1Actual = event.tool1TempActual {
                 self.tool1ActualLabel.text = "\(String(format: "%.1f", tool1Actual)) C"
+                self.tool1ActualLabel.isHidden = false
+                self.tool1SplitLabel.isHidden = false
+                self.tool1TextLabel.isHidden = false
+                self.tool1SetTempButton.isHidden = false
                 self.tool1Row.isHidden = false
             }
             if let tool1Target = event.tool1TempTarget {
                 self.tool1TargetLabel.text = "\(String(format: "%.0f", tool1Target)) C"
+                self.tool1TargetLabel.isHidden = false
+                self.tool1Row.isHidden = false
+            }
+            
+            if let chamberActual = event.chamberTempActual {
+                self.chamberActualLabel.text = "\(String(format: "%.1f", chamberActual)) C"
+                self.chamberActualLabel.isHidden = false
+                self.chamberSplitLabel.isHidden = false
+                self.chamberTextLabel.isHidden = false
+                self.chamberSetTempButton.isHidden = false
+                self.tool1Row.isHidden = false
+            }
+            if let chamberTarget = event.chamberTempTarget {
+                self.chamberTargetLabel.text = "\(String(format: "%.0f", chamberTarget)) C"
+                self.chamberTargetLabel.isHidden = false
                 self.tool1Row.isHidden = false
             }
             
@@ -191,6 +226,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 self.bedSetTempButton.isEnabled = !disconnected
                 self.tool0SetTempButton.isEnabled = !disconnected
                 self.tool1SetTempButton.isEnabled = !disconnected
+                self.chamberSetTempButton.isEnabled = !disconnected
 
                 self.presentToolTip(tooltipKey: PrinterSubpanelViewController.TOOLTIP_TEMP_BED, segueIdentifier: "bed_tooltip", button: self.bedSetTempButton)
                 self.presentToolTip(tooltipKey: PrinterSubpanelViewController.TOOLTIP_TEMP_TOOL, segueIdentifier: "tool0_tooltip", button: self.tool0SetTempButton)
@@ -299,9 +335,22 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             self.tool0ActualLabel.text = ""
             self.tool0TargetLabel.text = ""
             self.tool0SplitLabel.isHidden = true
-            // Hide second extruder unless printe reports that it has one
+            // Hide second extruder / chamber row unless printer reports info
             self.tool1Row.isHidden = true
-            
+            // Hide tool1 info
+            self.tool1ActualLabel.isHidden = true
+            self.tool1TargetLabel.isHidden = true
+            self.tool1SplitLabel.isHidden = true
+            self.tool1TextLabel.isHidden = true
+            self.tool1SetTempButton.isHidden = true
+            // Hide chamber info
+            self.chamberActualLabel.isHidden = true
+            self.chamberTargetLabel.isHidden = true
+            self.chamberSplitLabel.isHidden = true
+            self.chamberTextLabel.isHidden = true
+            self.chamberSetTempButton.isHidden = true
+
+
             self.bedActualLabel.text = "            " // Use empty spaces to position Bed label in a good place
             self.bedTargetLabel.text = "        " // Use empty spaces to position Bed label in a good place
             self.bedSplitLabel.isHidden = true
@@ -310,6 +359,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             self.bedSetTempButton.isEnabled = false
             self.tool0SetTempButton.isEnabled = false
             self.tool1SetTempButton.isEnabled = false
+            self.chamberSetTempButton.isEnabled = false
         }
     }
     
@@ -325,8 +375,10 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         tool0TextLabel.textColor = textLabelColor
         bedTextLabel.textColor = textLabelColor
         tool1TextLabel.textColor = textLabelColor
+        chamberTextLabel.textColor = textLabelColor
         tool0SplitLabel.textColor = textLabelColor
         tool1SplitLabel.textColor = textLabelColor
+        chamberSplitLabel.textColor = textLabelColor
         bedSplitLabel.textColor = textLabelColor
 
         printerStatusLabel.textColor = textColor
@@ -337,6 +389,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         tool0TargetLabel.textColor = textColor
         tool1ActualLabel.textColor = textColor
         tool1TargetLabel.textColor = textColor
+        chamberActualLabel.textColor = textColor
+        chamberTargetLabel.textColor = textColor
         bedActualLabel.textColor = textColor
         bedTargetLabel.textColor = textColor
     }

@@ -12,8 +12,11 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
     @IBOutlet weak var bedTempLabel: WKInterfaceLabel!
     @IBOutlet weak var tool0TempLabel: WKInterfaceLabel!
     @IBOutlet weak var tool1Group: WKInterfaceGroup!
+    @IBOutlet weak var tool1TempImage: WKInterfaceImage!
     @IBOutlet weak var tool1TempLabel: WKInterfaceLabel!
-    
+    @IBOutlet weak var chamberImage: WKInterfaceImage!
+    @IBOutlet weak var chamberTempLabel: WKInterfaceLabel!
+
     @IBOutlet weak var buttonsSeparator: WKInterfaceSeparator!
     @IBOutlet weak var buttonsGroup: WKInterfaceGroup!
     @IBOutlet weak var resumeButton: WKInterfaceButton!
@@ -30,7 +33,11 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
         // Configure interface objects here.
         self.hideJobButtons()
         self.tool1Group.setHidden(true)
-        
+        self.tool1TempImage.setHidden(true)
+        self.tool1TempLabel.setHidden(true)
+        self.chamberImage.setHidden(true)
+        self.chamberTempLabel.setHidden(true)
+
         // If Watch App just started and we have printers (because they were stored in the file)
         // then make this page the default one
         if !PrinterManager.instance.printers.isEmpty {
@@ -202,6 +209,10 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
                 self.bedTempLabel.setText("    ")
                 self.tool0TempLabel.setText("     ")
                 self.tool1Group.setHidden(true)
+                self.tool1TempImage.setHidden(true)
+                self.tool1TempLabel.setHidden(true)
+                self.chamberImage.setHidden(true)
+                self.chamberTempLabel.setHidden(true)
                 self.hideJobButtons()
             } else {
                 // Hide error message
@@ -228,13 +239,27 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
                     let temp = String(format: "%.1f", tool0Temp)
                     self.tool0TempLabel.setText("\(temp) C")
                     // Check if there is a second extruder and show group and temp
+                    var showSecondRow = false
                     if let tool1Temp = panelInfo["tool1Temp"] as? Double {
-                        let temp = String(format: "%.1f", tool1Temp)
-                        self.tool1TempLabel.setText("\(temp) C")
-                        self.tool1Group.setHidden(false)
+                        self.tool1TempLabel.setText("\(String(format: "%.1f", tool1Temp)) C")
+                        self.tool1TempImage.setHidden(false)
+                        self.tool1TempLabel.setHidden(false)
+                        showSecondRow = true
                     } else {
-                        self.tool1Group.setHidden(true)
+                        self.tool1TempImage.setHidden(true)
+                        self.tool1TempLabel.setHidden(true)
                     }
+                    // Check if there is a heated chamber and show group and temp
+                    if let chamberTemp = panelInfo["chamberTemp"] as? Double {
+                        self.chamberTempLabel.setText("\(String(format: "%.1f", chamberTemp)) C")
+                        self.chamberImage.setHidden(false)
+                        self.chamberTempLabel.setHidden(false)
+                        showSecondRow = true
+                    } else {
+                        self.chamberImage.setHidden(true)
+                        self.chamberTempLabel.setHidden(true)
+                    }
+                    self.tool1Group.setHidden(!showSecondRow)
                 }
                 if let printer = panelInfo["printer"] as? String {
                     self.buttonsSeparator.setHidden(false)
@@ -302,6 +327,7 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
         self.bedTempLabel.setText(nil)
         self.tool0TempLabel.setText("     ")  // Put some space so extruder icon looks ok
         self.tool1TempLabel.setText("     ")  // Put some space so extruder icon looks ok
+        self.chamberTempLabel.setText("     ")  // Put some space so extruder icon looks ok
     }
     
     fileprivate func secondsToTimeLeft(seconds: Int) -> String {

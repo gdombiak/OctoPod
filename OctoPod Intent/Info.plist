@@ -37,6 +37,7 @@
 				<string>RestartJobIntent</string>
 				<string>ResumeJobIntent</string>
 				<string>SetBedTempIntent</string>
+				<string>SetChamberTempIntent</string>
 				<string>SetToolTempIntent</string>
 			</array>
 			<key>IntentsRestrictedWhileProtectedDataUnavailable</key>
@@ -50,6 +51,7 @@
 				<string>RestartJobIntent</string>
 				<string>ResumeJobIntent</string>
 				<string>SetBedTempIntent</string>
+				<string>SetChamberTempIntent</string>
 				<string>SetToolTempIntent</string>
 			</array>
 		</dict>

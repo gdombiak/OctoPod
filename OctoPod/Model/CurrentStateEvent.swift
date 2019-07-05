@@ -19,6 +19,10 @@ class CurrentStateEvent {
     var tool1TempActual: Double?
     var tool1TempTarget: Double?
     
+    // Chamber temperatures (if present)
+    var chamberTempActual: Double?
+    var chamberTempTarget: Double?
+    
     // Operational, Connecting, Printing from SD, etc.
     var state: String?
     var operational: Bool?
@@ -51,6 +55,10 @@ class CurrentStateEvent {
         if let tool1 = temp["tool1"] as? NSDictionary {
             tool1TempActual = tool1["actual"] as? Double
             tool1TempTarget = tool1["target"] as? Double
+        }
+        if let chamber = temp["chamber"] as? NSDictionary {
+            chamberTempActual = chamber["actual"] as? Double
+            chamberTempTarget = chamber["target"] as? Double
         }
         if let time = temp["time"] as? Int {
             tempTime = time

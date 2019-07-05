@@ -43,6 +43,23 @@ class IntentsDonations {
         }
     }
     
+    static func donateChamberTemp(printer: Printer, temperature: Int) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = SetChamberTempIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            intent.temperature = temperature as NSNumber
+            if temperature > 0 {
+                intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Warm up heated chamber", comment: "Siri suggested phrase"), printer.name)
+            } else {
+                intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cool down heated chamber", comment: "Siri suggested phrase"), printer.name)
+            }
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "Chamber")
+        }
+    }
+    
     static func donateCoolDownPrinter(printer: Printer) {
         // Intent only available on iOS 12 or newer
         if #available(iOS 12.0, *) {

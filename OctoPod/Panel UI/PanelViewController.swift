@@ -194,6 +194,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             case SetTargetTempViewController.TargetScope.bed:
                 octoprintClient.bedTargetTemperature(newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     // TODO Handle error
+                    if !requested {
+                        NSLog("Failed to request setting bed's temperature. Response: \(response)")
+                    }
                 }
                 // Donate intent so user can create convenient Siri shortcuts
                 if let printer = printerManager.getPrinterByName(name: self.navigationItem.title ?? "_") {
@@ -202,6 +205,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             case SetTargetTempViewController.TargetScope.tool0:
                 octoprintClient.toolTargetTemperature(toolNumber: 0, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     // TODO Handle error
+                    if !requested {
+                        NSLog("Failed to request setting tool0's temperature. Response: \(response)")
+                    }
                 }
                 // Donate intent so user can create convenient Siri shortcuts
                 if let printer = printerManager.getPrinterByName(name: self.navigationItem.title ?? "_") {
@@ -210,10 +216,24 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             case SetTargetTempViewController.TargetScope.tool1:
                 octoprintClient.toolTargetTemperature(toolNumber: 1, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     // TODO Handle error
+                    if !requested {
+                        NSLog("Failed to request setting tool1's temperature. Response: \(response)")
+                    }
                 }
                 // Donate intent so user can create convenient Siri shortcuts
                 if let printer = printerManager.getPrinterByName(name: self.navigationItem.title ?? "_") {
                     IntentsDonations.donateToolTemp(printer: printer, tool: 1, temperature: newTarget)
+                }
+            case SetTargetTempViewController.TargetScope.chamber:
+                octoprintClient.chamberTargetTemperature(newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    // TODO Handle error
+                    if !requested {
+                        NSLog("Failed to request setting chamber's temperature. Response: \(response)")
+                    }
+                }
+                // Donate intent so user can create convenient Siri shortcuts
+                if let printer = printerManager.getPrinterByName(name: self.navigationItem.title ?? "_") {
+                    IntentsDonations.donateChamberTemp(printer: printer, temperature: newTarget)
                 }
             }
         }

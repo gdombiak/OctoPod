@@ -20,6 +20,10 @@ class TempHistory {
         var tool1TempActual: Double?
         var tool1TempTarget: Double?
 
+        // Chamber temperatures (if present)
+        var chamberTempActual: Double?
+        var chamberTempTarget: Double?
+        
         mutating func parseTemps(temp: NSDictionary) {
             if let bed = temp["bed"] as? NSDictionary {
                 bedTempActual = bed["actual"] as? Double
@@ -32,6 +36,10 @@ class TempHistory {
             if let tool1 = temp["tool1"] as? NSDictionary {
                 tool1TempActual = tool1["actual"] as? Double
                 tool1TempTarget = tool1["target"] as? Double
+            }
+            if let chamber = temp["chamber"] as? NSDictionary {
+                chamberTempActual = chamber["actual"] as? Double
+                chamberTempTarget = chamber["target"] as? Double
             }
             if let time = temp["time"] as? Int {
                 tempTime = time
@@ -48,6 +56,9 @@ class TempHistory {
             tool1TempActual = event.tool1TempActual
             tool1TempTarget = event.tool1TempTarget
             
+            chamberTempActual = event.chamberTempActual
+            chamberTempTarget = event.chamberTempTarget
+
             tempTime = event.tempTime
         }
     }

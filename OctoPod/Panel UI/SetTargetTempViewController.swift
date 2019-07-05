@@ -8,6 +8,7 @@ class SetTargetTempViewController: UITableViewController {
         case bed
         case tool0
         case tool1
+        case chamber
     }
 
     @IBOutlet weak var targetTempField: UITextField!
@@ -27,6 +28,9 @@ class SetTargetTempViewController: UITableViewController {
         case .bed:
             button1.setTitle("60", for: .normal)
             button2.setTitle("80", for: .normal)
+        case .chamber:
+            button1.setTitle("50", for: .normal)
+            button2.setTitle("70", for: .normal)
         default:
             button1.setTitle("210", for: .normal)
             button2.setTitle("235", for: .normal)

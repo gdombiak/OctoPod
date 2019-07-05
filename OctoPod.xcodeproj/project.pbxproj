@@ -187,6 +187,7 @@
 		3DD69AA121150F43005555ED /* FileUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD69AA021150F43005555ED /* FileUploadViewController.swift */; };
 		3DD9E9572108479000726DFD /* ThemedStaticUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */; };
 		3DD9E95921084BFD00726DFD /* ThemedUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */; };
+		3DDB5FC922CF164B005F8A9F /* SetChamberTempIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB5FC822CF164B005F8A9F /* SetChamberTempIntentHandler.swift */; };
 		3DDDB20121B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */; };
 		3DE3FE6D2154B9CE000D7D2A /* Plugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3FE6C2154B9CE000D7D2A /* Plugins.swift */; };
 		3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */; };
@@ -505,6 +506,7 @@
 		3DD69AA021150F43005555ED /* FileUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadViewController.swift; sourceTree = "<group>"; };
 		3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedStaticUITableViewController.swift; sourceTree = "<group>"; };
 		3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUITableViewController.swift; sourceTree = "<group>"; };
+		3DDB5FC822CF164B005F8A9F /* SetChamberTempIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetChamberTempIntentHandler.swift; sourceTree = "<group>"; };
 		3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolDownPrinterIntentHandler.swift; sourceTree = "<group>"; };
 		3DE3FE6C2154B9CE000D7D2A /* Plugins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plugins.swift; sourceTree = "<group>"; };
 		3DED77F121AFC5E3009A4CE5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -689,6 +691,7 @@
 				3DF7410B21ACEECC0069A9D4 /* Localizable.strings */,
 				3D450EBB21AB236C0049FBC0 /* SetBedTempIntentHandler.swift */,
 				3D450EC221AB45740049FBC0 /* SetToolTempIntentHandler.swift */,
+				3DDB5FC822CF164B005F8A9F /* SetChamberTempIntentHandler.swift */,
 				3D4064AA21AB7563000B05F9 /* PauseJobIntentHandler.swift */,
 				3D4064AC21AB75BF000B05F9 /* ResumeJobIntentHandler.swift */,
 				3D4064AE21AB75FF000B05F9 /* CancelJobIntentHandler.swift */,
@@ -1392,6 +1395,7 @@
 				3D4497D521B230BE00736F0F /* SharedPersistentContainer.swift in Sources */,
 				3D4064A821AB61F9000B05F9 /* Script.swift in Sources */,
 				3D4064A421AB61D2000B05F9 /* CustomControl.swift in Sources */,
+				3DDB5FC922CF164B005F8A9F /* SetChamberTempIntentHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

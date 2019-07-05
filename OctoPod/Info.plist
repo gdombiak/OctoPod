@@ -65,6 +65,7 @@
 		<string>RestartJobIntent</string>
 		<string>ResumeJobIntent</string>
 		<string>SetBedTempIntent</string>
+		<string>SetChamberTempIntent</string>
 		<string>SetToolTempIntent</string>
 	</array>
 	<key>UIBackgroundModes</key>

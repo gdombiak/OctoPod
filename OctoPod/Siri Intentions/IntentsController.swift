@@ -31,6 +31,18 @@ class IntentsController {
         }
     }
     
+    func chamberTemperature(printer: Printer, temperature: NSNumber?, callback: @escaping (Bool, Int?, Int) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        var newTarget: Int = 0
+        if let temperature = temperature {
+            let tempInt = Int(truncating: temperature)
+            newTarget = tempInt <= 0 ? 0 : tempInt
+        }
+        restClient.chamberTargetTemperature(newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested, newTarget, response.statusCode)
+        }
+    }
+    
     func coolDownPrinter(printer: Printer, callback: @escaping (Bool, Int) -> Void) {
         let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
         // Cool down extruder 0

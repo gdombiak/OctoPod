@@ -106,7 +106,9 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         var tool0TargetEntries = Array<ChartDataEntry>()
         var tool1ActualEntries = Array<ChartDataEntry>()
         var tool1TargetEntries = Array<ChartDataEntry>()
-        
+        var chamberActualEntries = Array<ChartDataEntry>()
+        var chamberTargetEntries = Array<ChartDataEntry>()
+
         let now = Date().timeIntervalSince1970.rounded()
         var minBedActual: Double = 0, maxBedActual: Double = 0
         var minTool0Actual: Double = 0, maxTool0Actual: Double = 0
@@ -145,6 +147,12 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
                 if let tool1Target = temp.tool1TempTarget {
                     tool1TargetEntries.append(ChartDataEntry(x: age, y: tool1Target))
                 }
+                if let chamberActual = temp.chamberTempActual {
+                    chamberActualEntries.append(ChartDataEntry(x: age, y: chamberActual))
+                }
+                if let chamberTarget = temp.chamberTempTarget {
+                    chamberTargetEntries.append(ChartDataEntry(x: age, y: chamberTarget))
+                }
             }
         }
         
@@ -181,6 +189,17 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
             lineChartData.addDataSet(line)
         }
         
+        if !chamberActualEntries.isEmpty {
+            let lineColor = UIColor(red: 204/255, green: 153/255, blue: 0/255, alpha: 1.0)
+            let line = createLine(values: chamberActualEntries, label: NSLocalizedString("Actual Chamber", comment: ""), lineColor: lineColor)
+            lineChartData.addDataSet(line)
+        }
+        if !chamberTargetEntries.isEmpty {
+            let lineColor = UIColor(red: 204/255, green: 204/255, blue: 0/255, alpha: 1.0)
+            let line = createLine(values: chamberTargetEntries, label: NSLocalizedString("Target Chamber", comment: ""), lineColor: lineColor)
+            lineChartData.addDataSet(line)
+        }
+
         if !lineChartData.dataSets.isEmpty {
             // Add data to chart view. This will cause an update in the UI
             lineChartView.data = lineChartData

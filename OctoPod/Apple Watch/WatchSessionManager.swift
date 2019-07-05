@@ -244,6 +244,9 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                             if let tool1Temp = event.tool1TempActual {
                                 reply["tool1Temp"] = tool1Temp
                             }
+                            if let chamberTemp = event.chamberTempActual {
+                                reply["chamberTemp"] = chamberTemp
+                            }
                         }
                     }
                     // Send reply back to Apple Watch with results
