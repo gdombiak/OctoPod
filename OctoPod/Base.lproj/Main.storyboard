@@ -88,6 +88,9 @@
                         <segue destination="14W-Wh-GnO" kind="popoverPresentation" identifier="show_reminders" popoverAnchorView="qbu-bG-uS0" id="JAK-GR-djn">
                             <popoverArrowDirection key="popoverArrowDirection"/>
                         </segue>
+                        <segue destination="1eA-yA-HPM" kind="popoverPresentation" identifier="updates_available" popoverAnchorView="qbu-bG-uS0" id="57v-Dx-Reh">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RPn-sw-RO1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1501,6 +1504,93 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxz-kC-aLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2334" y="-257"/>
+        </scene>
+        <!--Plugin Updates View Controller-->
+        <scene sceneID="2gr-Ea-99m">
+            <objects>
+                <viewController id="1eA-yA-HPM" customClass="PluginUpdatesViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eMt-Te-hPx">
+                        <rect key="frame" x="0.0" y="0.0" width="290" height="267"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tr2-st-qSC">
+                                <rect key="frame" x="0.0" y="0.0" width="290" height="221"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="updateAvailable" textLabel="QpW-7Y-LpA" detailTextLabel="lAO-Qe-VtX" rowHeight="34" style="IBUITableViewCellStyleValue1" id="kcS-1k-lrh">
+                                        <rect key="frame" x="0.0" y="28" width="290" height="34"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kcS-1k-lrh" id="IAs-3I-T3Q">
+                                            <rect key="frame" x="0.0" y="0.0" width="290" height="33.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QpW-7Y-LpA">
+                                                    <rect key="frame" x="15" y="9" width="28.5" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lAO-Qe-VtX">
+                                                    <rect key="frame" x="231" y="11" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="1eA-yA-HPM" id="6oz-uU-2Je"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUL-Ws-ypB">
+                                <rect key="frame" x="8" y="229" width="133" height="30"/>
+                                <color key="backgroundColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="133" id="6cN-Su-PFe"/>
+                                </constraints>
+                                <state key="normal" title="Ignore"/>
+                                <connections>
+                                    <action selector="ignoreClicked:" destination="1eA-yA-HPM" eventType="touchUpInside" id="teP-1N-GWB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qA-O2-3VZ">
+                                <rect key="frame" x="149" y="229" width="133" height="30"/>
+                                <color key="backgroundColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="133" id="omN-QJ-7ie"/>
+                                </constraints>
+                                <state key="normal" title="Dismiss"/>
+                                <connections>
+                                    <action selector="dismissClicked:" destination="1eA-yA-HPM" eventType="touchUpInside" id="tdY-zh-ikO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cLX-ro-QoH" firstAttribute="bottom" secondItem="hUL-Ws-ypB" secondAttribute="bottom" constant="8" id="8OH-6v-lij"/>
+                            <constraint firstItem="Tr2-st-qSC" firstAttribute="trailing" secondItem="cLX-ro-QoH" secondAttribute="trailing" id="BLU-50-5ke"/>
+                            <constraint firstItem="hUL-Ws-ypB" firstAttribute="top" secondItem="Tr2-st-qSC" secondAttribute="bottom" constant="8" id="Crn-eG-wyu"/>
+                            <constraint firstItem="hUL-Ws-ypB" firstAttribute="leading" secondItem="cLX-ro-QoH" secondAttribute="leading" constant="8" id="LLZ-fC-A9O"/>
+                            <constraint firstItem="Tr2-st-qSC" firstAttribute="top" secondItem="cLX-ro-QoH" secondAttribute="top" id="OXv-V5-qcu"/>
+                            <constraint firstItem="cLX-ro-QoH" firstAttribute="trailing" secondItem="2qA-O2-3VZ" secondAttribute="trailing" constant="8" id="Pkw-8h-okE"/>
+                            <constraint firstItem="cLX-ro-QoH" firstAttribute="bottom" secondItem="2qA-O2-3VZ" secondAttribute="bottom" constant="8" id="dLV-aS-vau"/>
+                            <constraint firstItem="Tr2-st-qSC" firstAttribute="leading" secondItem="cLX-ro-QoH" secondAttribute="leading" id="qmH-SD-8Kp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cLX-ro-QoH"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="290" height="267"/>
+                    <size key="freeformSize" width="290" height="267"/>
+                    <connections>
+                        <outlet property="tableView" destination="Tr2-st-qSC" id="roX-g5-CTw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zw2-ol-YJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1624" y="235.23238380809596"/>
         </scene>
         <!--Not Refreshing Reason View Controller-->
         <scene sceneID="Q9J-z7-RRa">
@@ -4462,7 +4552,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kJC-OU-89k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581" y="232"/>
+            <point key="canvasLocation" x="1099" y="240"/>
         </scene>
         <!--Move View Controller-->
         <scene sceneID="vrq-2B-vf0">

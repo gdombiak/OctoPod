@@ -188,6 +188,8 @@
 		3DD9E9572108479000726DFD /* ThemedStaticUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */; };
 		3DD9E95921084BFD00726DFD /* ThemedUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */; };
 		3DDB5FC922CF164B005F8A9F /* SetChamberTempIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB5FC822CF164B005F8A9F /* SetChamberTempIntentHandler.swift */; };
+		3DDB5FCB22D0F45E005F8A9F /* PluginUpdatesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB5FCA22D0F45E005F8A9F /* PluginUpdatesManager.swift */; };
+		3DDB5FCD22D11A24005F8A9F /* PluginUpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB5FCC22D11A24005F8A9F /* PluginUpdatesViewController.swift */; };
 		3DDDB20121B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */; };
 		3DE3FE6D2154B9CE000D7D2A /* Plugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3FE6C2154B9CE000D7D2A /* Plugins.swift */; };
 		3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */; };
@@ -507,6 +509,8 @@
 		3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedStaticUITableViewController.swift; sourceTree = "<group>"; };
 		3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUITableViewController.swift; sourceTree = "<group>"; };
 		3DDB5FC822CF164B005F8A9F /* SetChamberTempIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetChamberTempIntentHandler.swift; sourceTree = "<group>"; };
+		3DDB5FCA22D0F45E005F8A9F /* PluginUpdatesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginUpdatesManager.swift; sourceTree = "<group>"; };
+		3DDB5FCC22D11A24005F8A9F /* PluginUpdatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginUpdatesViewController.swift; sourceTree = "<group>"; };
 		3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolDownPrinterIntentHandler.swift; sourceTree = "<group>"; };
 		3DE3FE6C2154B9CE000D7D2A /* Plugins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plugins.swift; sourceTree = "<group>"; };
 		3DED77F121AFC5E3009A4CE5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -632,6 +636,7 @@
 				3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */,
 				3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */,
 				3D02D199229A6AC8004788B6 /* RemindersViewController.swift */,
+				3DDB5FCC22D11A24005F8A9F /* PluginUpdatesViewController.swift */,
 			);
 			path = "Panel UI";
 			sourceTree = "<group>";
@@ -864,6 +869,7 @@
 				3D92E6C721213B2400F58BA5 /* TempHistory.swift */,
 				3D88C3E82193F49500BC84DD /* CancelObject.swift */,
 				3D4497D321B230BE00736F0F /* SharedPersistentContainer.swift */,
+				3DDB5FCA22D0F45E005F8A9F /* PluginUpdatesManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1411,6 +1417,7 @@
 				3D071A14212682C1005301B4 /* OctoPrintPluginsDelegate.swift in Sources */,
 				3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */,
 				3D88C3E72193F17800BC84DD /* CancelObjectViewController.swift in Sources */,
+				3DDB5FCB22D0F45E005F8A9F /* PluginUpdatesManager.swift in Sources */,
 				3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */,
 				3D8B293220E556D400296D9D /* OctoPrintClient.swift in Sources */,
 				3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */,
@@ -1470,6 +1477,7 @@
 				3D8D51A921333D310006BBB1 /* CustomControlInputSlideViewCell.swift in Sources */,
 				3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */,
 				3D9AAD5122B325A00051BB1B /* MMUNotificationsHandler.swift in Sources */,
+				3DDB5FCD22D11A24005F8A9F /* PluginUpdatesViewController.swift in Sources */,
 				3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */,
 				3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */,
 				3D8D51A721333D170006BBB1 /* CustomControlInputViewCell.swift in Sources */,

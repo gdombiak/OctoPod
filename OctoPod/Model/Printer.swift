@@ -40,7 +40,10 @@ class Printer: NSManagedObject {
     @NSManaged var notificationToken: String?  // APNS token that was last registered with this OctoPrint instance
     @NSManaged var octopodPluginPrinterName: String?  // APNS notifications will use printer name as title
     @NSManaged var octopodPluginLanguage: String?  // APNS notifications will be sent with the specified language
-
+    
+    // Plugin updates tracking
+    @NSManaged var pluginsUpdateNextCheck: Date? // Date when we can check again for plugin updates
+    @NSManaged var pluginsUpdateSnooze: String? // Hash of last found updates that user asked to stop showing
     
     func getStreamPath() -> String {
         if let path = streamUrl {

@@ -529,6 +529,29 @@ class OctoPrintRESTClient {
         }
     }
     
+    // MARK: - Plugin updates operations
+
+    /**
+     Checks whether there are updates for installed plugins or not
+     - Parameters:
+         - callback: callback to execute after HTTP request is done
+         - json: NSObject with returned JSON in case of a successful call
+         - error: Optional error in case http request failed
+         - response: HTTP Response
+     */
+    func checkPluginUpdates(callback: @escaping (_ json: NSObject?, _ error: Error?, _ response: HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/plugin/softwareupdate/check") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error checking plugin updates. Error: \(error!.localizedDescription)")
+                }
+                callback(result, error, response)
+            }
+        }
+    }
+
+
     // MARK: - PSU Control Plugin operations
     
     func turnPSU(on: Bool, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {

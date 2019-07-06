@@ -9,6 +9,7 @@ class AppConfiguration: OctoPrintClientDelegate {
     private static let CONFIRMATION_ON_DISCONNECT = "APP_CONFIGURATION_CONF_ON_DISCONNECT"
     private static let DISABLE_CERT_VALIDATION = "APP_CONFIGURATION_DISABLE_CERT_VALIDATION"
     private static let DISABLE_TEMP_CHART_ZOOM = "APP_CONFIGURATION_DISABLE_TEMP_CHART_ZOOM"
+    private static let PLUGIN_UPDATES_CHECK_FREQUENCY = "APP_CONFIGURATION_PLUGIN_UPDATES_CHECK_FREQUENCY"
 
     var delegates: Array<AppConfigurationDelegate> = Array()
 
@@ -158,6 +159,23 @@ class AppConfiguration: OctoPrintClientDelegate {
     func tempChartZoomDisabled(disable: Bool) {
         let defaults = UserDefaults.standard
         defaults.set(disable, forKey: AppConfiguration.DISABLE_TEMP_CHART_ZOOM)
+    }
+    
+    // MARK: - Plugin updates
+
+    /// Frequency the app will check for plugin updates
+    /// - returns: Number of hours between plugin updates checks
+    func pluginUpdatesCheckFrequency() -> Int {
+        let defaults = UserDefaults.standard
+        let hours = defaults.integer(forKey: AppConfiguration.PLUGIN_UPDATES_CHECK_FREQUENCY)
+        return hours == 0 ? 24 : hours
+    }
+
+    /// Set frequency the app will check for plugin updates
+    /// - parameter hours: Number of hours between plugin updates checks
+    func pluginUpdatesCheckFrequency(hours: Int) {
+        let defaults = UserDefaults.standard
+        defaults.set(hours, forKey: AppConfiguration.PLUGIN_UPDATES_CHECK_FREQUENCY)
     }
     
     // MARK: - OctoPrintClientDelegate

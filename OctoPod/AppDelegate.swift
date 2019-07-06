@@ -303,4 +303,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var mmuNotificationsHandler: MMUNotificationsHandler = {
         return MMUNotificationsHandler(printerManager: self.printerManager!)
     }()
+    
+    lazy var pluginUpdatesManager: PluginUpdatesManager = {
+        return PluginUpdatesManager(printerManager: self.printerManager!, octoprintClient: self.octoprintClient, appConfiguration: self.appConfiguration)
+    }()
 }

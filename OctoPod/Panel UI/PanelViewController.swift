@@ -9,6 +9,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
     let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
+    let pluginUpdatesManager: PluginUpdatesManager = { return (UIApplication.shared.delegate as! AppDelegate).pluginUpdatesManager }()
 
     var printerConnected: Bool?
 
@@ -33,6 +34,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     var uiOrientationBeforeFullScreen: UIInterfaceOrientation?
     @IBOutlet weak var cameraHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var cameraBottomConstraint: NSLayoutConstraint!
+    
+    /// List of plugin updates that are available. Variable will have value only after we did the check
+    var updatesAvailable: Array<PluginUpdatesManager.UpdateAvailable>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -183,6 +187,15 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             segue.destination.popoverPresentationController!.delegate = self
             // Center the popover
             segue.destination.popoverPresentationController!.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY,width: 0,height: 0)
+        }
+        
+        if segue.identifier == "updates_available", let controller = segue.destination as? PluginUpdatesViewController {
+            controller.popoverPresentationController!.delegate = self
+            controller.availableUpdates = updatesAvailable
+            if let titleView = navigationController?.view, let height = tabBarController?.tabBar.frame.size.height {
+                // Center the popover at the navigation bar height
+                controller.popoverPresentationController!.sourceRect = CGRect(x: titleView.bounds.midX, y: height,width: 0,height: 0)
+            }
         }
     }
     
@@ -436,6 +449,28 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
 
             // Ask octoprintClient to connect to OctoPrint server
             octoprintClient.connectToServer(printer: printer)
+            
+            // Check for plugin updates
+            updatesAvailable = nil
+            pluginUpdatesManager.checkUpdatesFor(printer: printer) { (error: Error?, response: HTTPURLResponse, updatesAvailable: Array<PluginUpdatesManager.UpdateAvailable>?) in
+                if let updates = updatesAvailable {
+                    if updates.isEmpty {
+                        // No updates found
+                        return
+                    }
+                    self.updatesAvailable = updates
+                    // Redirect user to new popover that shows available updates
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "updates_available", sender: self)
+                    }
+                } else if response.statusCode == 200 {
+                    NSLog("User elected to ignore available plugin updates")
+                } else if response.statusCode == 304 {
+                    NSLog("Skipped checking for plugin updates")
+                } else {
+                    NSLog("Unkown case checking for plugin updates. Response: \(response)")
+                }
+            }
         } else {
             DispatchQueue.main.async {
                 self.notRefreshingReason = nil
