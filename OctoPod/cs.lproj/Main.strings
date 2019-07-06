@@ -1,6 +1,9 @@
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "1pO-wB-zKj"; */
 "1pO-wB-zKj.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "2qA-O2-3VZ"; */
+"2qA-O2-3VZ.normalTitle" = "Zrušit";
+
 /* Class = "UIButton"; normalTitle = "Change language"; ObjectID = "2wA-7u-KgW"; */
 "2wA-7u-KgW.normalTitle" = "Změnit jazyk";
 
@@ -316,6 +319,9 @@
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "Soubor";
 
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "lAO-Qe-VtX"; */
+"lAO-Qe-VtX.text" = "Podnadpis";
+
 /* Class = "UILabel"; text = "Siri Integration"; ObjectID = "LBx-lc-96t"; */
 "LBx-lc-96t.text" = "Propojení se Siri";
 
@@ -423,6 +429,9 @@
 
 /* Class = "UILabel"; text = "Fan"; ObjectID = "Qps-RG-QAh"; */
 "Qps-RG-QAh.text" = "Ventilátor";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "QpW-7Y-LpA"; */
+"QpW-7Y-LpA.text" = "Nadpis";
 
 /* Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ"; */
 "QwZ-7J-MwJ.normalTitle" = "Vypnuto";

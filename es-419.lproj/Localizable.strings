@@ -417,6 +417,9 @@
 /* Unknown Custom Control */
 "Unknown Control" = "Control Desconocido";
 
+/* Title for window that alerts user that updates for plugins are available */
+"Update Available" = "Actualización disponible";
+
 /* (No Comment) */
 "Upload failed" = "Error de Subida";
 
