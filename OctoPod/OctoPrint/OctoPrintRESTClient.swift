@@ -60,9 +60,9 @@ class OctoPrintRESTClient {
     
     // MARK: - Login operations
     
-    // Passive login has been added to OctoPrint 1.3.10 to increase security. Endpoint existed before
-    // but without passive mode. New version returns a "session" field that is used by websockets to
-    // allow websockets to work when Forcelogin Plugin is active (the default)
+    /// Passive login has been added to OctoPrint 1.3.10 to increase security. Endpoint existed before
+    /// but without passive mode. New version returns a "session" field that is used by websockets to
+    /// allow websockets to work when Forcelogin Plugin is active (the default)
     func passiveLogin(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
@@ -80,7 +80,7 @@ class OctoPrintRESTClient {
 
     // MARK: - Version information
     
-    // Return OctoPrint's version information. This includes API version and server version
+    /// Return OctoPrint's version information. This includes API version and server version
     func versionInformation(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             client.get("/api/version") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
@@ -95,7 +95,7 @@ class OctoPrintRESTClient {
     
     // MARK: - Connection operations
     
-    // Return connection status from OctoPrint to the 3D printer
+    /// Return connection status from OctoPrint to the 3D printer
     func connectionPrinterStatus(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             client.get("/api/connection") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
@@ -108,8 +108,8 @@ class OctoPrintRESTClient {
         }
     }
     
-    // Ask OctoPrint to connect using default settings. We always get 204 status code (unless there was some network error)
-    // To know if OctoPrint was able to connect to the 3D printer then we need to check for its connection status
+    /// Ask OctoPrint to connect using default settings. We always get 204 status code (unless there was some network error)
+    /// To know if OctoPrint was able to connect to the 3D printer then we need to check for its connection status
     func connectToPrinter(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
@@ -119,7 +119,7 @@ class OctoPrintRESTClient {
         }
     }
     
-    // Ask OctoPrint to disconnect from the 3D printer. Use connection status to check if it was successful
+    /// Ask OctoPrint to disconnect from the 3D printer. Use connection status to check if it was successful
     func disconnectFromPrinter(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
@@ -172,7 +172,7 @@ class OctoPrintRESTClient {
         }
     }
     
-    // There needs to be an active job that has been paused in order to be able to restart
+    /// There needs to be an active job that has been paused in order to be able to restart
     func restartCurrentJob(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
@@ -184,10 +184,10 @@ class OctoPrintRESTClient {
 
     // MARK: - Printer operations
     
-    // Retrieves the current state of the printer. Returned information includes:
-    // 1. temperature information (see also Retrieve the current tool state and Retrieve the current bed state)
-    // 2. sd state (if available, see also Retrieve the current SD state)
-    // 3. general printer state
+    /// Retrieves the current state of the printer. Returned information includes:
+    /// 1. temperature information (see also Retrieve the current tool state and Retrieve the current bed state)
+    /// 2. sd state (if available, see also Retrieve the current SD state)
+    /// 3. general printer state
     func printerState(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             client.get("/api/printer") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
@@ -241,7 +241,7 @@ class OctoPrintRESTClient {
         }
     }
     
-    // Set the new flow rate for the requested extruder. Currently there is no way to read current flow rate value
+    /// Set the new flow rate for the requested extruder. Currently there is no way to read current flow rate value
     func toolFlowRate(toolNumber: Int, newFlowRate: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             // We first need to select the tool and then set flow rate (using the selected tool)
@@ -344,7 +344,7 @@ class OctoPrintRESTClient {
         }
     }
     
-    // Set the feed rate factor using an integer argument
+    /// Set the feed rate factor using an integer argument
     func feedRate(factor: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
@@ -357,7 +357,7 @@ class OctoPrintRESTClient {
 
     // MARK: - File operations
     
-    // Returns list of existing files
+    /// Returns list of existing files
     func files(location: String, recursive: Bool = true, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             client.get("/api/files\(location)?recursive=\(recursive)") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
@@ -370,7 +370,7 @@ class OctoPrintRESTClient {
         }
     }
     
-    // Deletes the specified file
+    /// Deletes the specified file
     func deleteFile(origin: String, path: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             client.delete("/api/files/\(origin)/\(path)") { (success: Bool, error: Error?, response: HTTPURLResponse) in
@@ -383,7 +383,7 @@ class OctoPrintRESTClient {
         }
     }
     
-    // Prints the specified file
+    /// Prints the specified file
     func printFile(origin: String, path: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
@@ -395,8 +395,8 @@ class OctoPrintRESTClient {
         }
     }
     
-    // Uploads file to the specified location in OctoPrint's local file system
-    // If no folder is specified then file will be uploaded to root folder in OctoPrint
+    /// Uploads file to the specified location in OctoPrint's local file system
+    /// If no folder is specified then file will be uploaded to root folder in OctoPrint
     func uploadFileToOctoPrint(path: String?, filename: String, fileContent: Data , callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let parameters: [String: String]? = path == nil ? nil : ["path": path!]
@@ -404,7 +404,7 @@ class OctoPrintRESTClient {
         }
     }
     
-    // Uploads file to the SD Card (OctoPrint will first upload to OctoPrint and then copy to SD Card so we will end up with a copy in OctoPrint as well)
+    /// Uploads file to the SD Card (OctoPrint will first upload to OctoPrint and then copy to SD Card so we will end up with a copy in OctoPrint as well)
     func uploadFileToSDCard(filename: String, fileContent: Data , callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             client.upload("/api/files/sdcard", parameters: nil, filename: filename, fileContent: fileContent, expected: 201, callback: callback)
@@ -413,7 +413,7 @@ class OctoPrintRESTClient {
     
     // MARK: - SD Card operations
     
-    // Initialize the SD Card. Files will be read from the SD card during this operation
+    /// Initialize the SD Card. Files will be read from the SD card during this operation
     func initSD(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
@@ -422,7 +422,7 @@ class OctoPrintRESTClient {
         }
     }
     
-    // Read files from the SD card during this operation. You will need to call #files() when this operation was run successfully
+    /// Read files from the SD card during this operation. You will need to call #files() when this operation was run successfully
     func refreshSD(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
@@ -431,7 +431,7 @@ class OctoPrintRESTClient {
         }
     }
     
-    // Release the SD card from the printer. The reverse operation to initSD()
+    /// Release the SD card from the printer. The reverse operation to initSD()
     func releaseSD(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
@@ -442,8 +442,8 @@ class OctoPrintRESTClient {
 
     // MARK: - Fan operations
     
-    // Set the new fan speed. We receive a value between 0 and 100 and need to convert to rante 0-255
-    // There is no way to read current fan speed
+    /// Set the new fan speed. We receive a value between 0 and 100 and need to convert to rante 0-255
+    /// There is no way to read current fan speed
     func fanSpeed(speed: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         let newSpeed: Int = speed * 255 / 100
         let command = "M106 S\(newSpeed)"
@@ -563,9 +563,9 @@ class OctoPrintRESTClient {
     
     // MARK: - IP Plug Plugin (TPLink Smartplug, Wemo, Domoticz, etc.)
     
-    // Instruct an IP plugin (e.g. TPLinkSmartplug, WemoSwitch, domoticz) to turn on/off the
-    // device with the specified IP address. If request was successful we get back a 204
-    // and the status is reported via websockets
+    /// Instruct an IP plugin (e.g. TPLinkSmartplug, WemoSwitch, domoticz) to turn on/off the
+    /// device with the specified IP address. If request was successful we get back a 204
+    /// and the status is reported via websockets
     func turnIPPlug(plugin: String, on: Bool, plug: IPPlug, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         let json : NSMutableDictionary = NSMutableDictionary()
         json["command"] = on ? "turnOn" : "turnOff"
@@ -582,9 +582,9 @@ class OctoPrintRESTClient {
         pluginCommand(plugin: plugin, json: json, callback: callback)
     }
     
-    // Instruct an IP plugin (e.g. TPLinkSmartplug, WemoSwitch, domoticz) to turn on/off the
-    // device with the specified IP address. If request was successful we get back a 204
-    // and the status is reported via websockets
+    /// Instruct an IP plugin (e.g. TPLinkSmartplug, WemoSwitch, domoticz) to turn on/off the
+    /// device with the specified IP address. If request was successful we get back a 204
+    /// and the status is reported via websockets
     func turnIPPlug(plugin: String, on: Bool, plug: IPPlug, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         let json : NSMutableDictionary = NSMutableDictionary()
         json["command"] = on ? "turnOn" : "turnOff"
@@ -601,8 +601,8 @@ class OctoPrintRESTClient {
         pluginCommand(plugin: plugin, json: json, callback: callback)
     }
     
-    // Instruct an IP plugin to report the status of the device with the specified IP address
-    // If request was successful we get back a 204 and the status is reported via websockets
+    /// Instruct an IP plugin to report the status of the device with the specified IP address
+    /// If request was successful we get back a 204 and the status is reported via websockets
     func checkIPPlugStatus(plugin: String, plug: IPPlug, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         let json : NSMutableDictionary = NSMutableDictionary()
         json["command"] = "checkStatus"
@@ -619,8 +619,8 @@ class OctoPrintRESTClient {
         pluginCommand(plugin: plugin, json: json, callback: callback)
     }
 
-    // Instruct an IP plugin to report the status of the device with the specified IP address
-    // If request was successful we get back a 204 and the status is reported via websockets
+    /// Instruct an IP plugin to report the status of the device with the specified IP address
+    /// If request was successful we get back a 204 and the status is reported via websockets
     func checkIPPlugStatus(plugin: String, plug: IPPlug, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         let json : NSMutableDictionary = NSMutableDictionary()
         json["command"] = "checkStatus"
@@ -639,7 +639,7 @@ class OctoPrintRESTClient {
     
     // MARK: - Cancel Object Plugin operations
     
-    // Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
+    /// Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
     func getCancelObjects(callback: @escaping (Array<CancelObject>?, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
@@ -666,7 +666,7 @@ class OctoPrintRESTClient {
         }
     }
 
-    // Cancel the requested object id.
+    /// Cancel the requested object id.
     func cancelObject(id: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()

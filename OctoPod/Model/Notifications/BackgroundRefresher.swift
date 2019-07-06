@@ -96,41 +96,24 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
     
     // MARK: - OctoPrintClientDelegate
     
-    // Notification that we are about to connect to OctoPrint server
     func notificationAboutToConnectToServer() {
         // Do nothing
     }
     
-    /**
-     Notification that the current state of the printer has changed
-     - Parameter event: Printer status at the moment the event happened
-     */
     func printerStateUpdated(event: CurrentStateEvent) {
         if let printer = printerManager.getDefaultPrinter(), let state = event.state {
             pushComplicationUpdate(printerName: printer.name, octopodPluginInstalled: printer.octopodPluginInstalled, state: state, mediaURL: nil, completion: event.progressCompletion)
         }
     }
     
-    /**
-     Notification that requested HTTP request has failed (connection error, authentication error or unexpect http status code)
-     - Parameter error: Some error that happened while trying to make the HTTP request
-     - Parameter response: HTTP response that was received
-     */
     func handleConnectionError(error: Error?, response: HTTPURLResponse) {
         // Do nothing
     }
     
-    /**
-     Notification sent when websockets got connected
-     */
     func websocketConnected() {
         // Do nothing
     }
     
-    /**
-     Notification sent when websockets got disconnected due to an error (or failed to connect)
-     - Parameter error: Error that disconnected websocket
-    */
     func websocketConnectionFailed(error: Error) {
         // Do nothing
     }

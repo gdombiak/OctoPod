@@ -109,7 +109,6 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     
     // MARK: - OctoPrintClientDelegate
     
-    // Notification that OctoPrint state has changed. This may include printer status information
     func printerStateUpdated(event: CurrentStateEvent) {
         if let _ = event.logs {
             DispatchQueue.main.async {
@@ -118,19 +117,15 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         }
     }
     
-    // Notification sent when websockets got connected
     func websocketConnected() {
     }
     
-    // Notification sent when websockets got disconnected due to an error (or failed to connect)
     func websocketConnectionFailed(error: Error) {
     }
     
-    // Notification that we are about to connect to OctoPrint server
     func notificationAboutToConnectToServer() {
     }
     
-    // Notification that HTTP request failed (connection error, authentication error or unexpect http status code)
     func handleConnectionError(error: Error?, response: HTTPURLResponse) {
     }
 

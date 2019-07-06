@@ -199,7 +199,6 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         addRemoveVC(add: installed, vcIdentifier: { $0.isMember(of: PSUControlViewController.self) }, createVC: createPSUControlVC)
     }
     
-    // Notification that an IP plug plugin has changed. Could be availability or settings
     func ipPlugsChanged(plugin: String, plugs: Array<IPPlug>) {
         addRemoveIPPlugPluginVC(plugin: plugin, add: !plugs.isEmpty)
     }

@@ -1,7 +1,7 @@
 import Foundation
 import CoreData
 
-// A Printer (term used in the UI) actually represents an OctoPrint server
+/// A Printer (term used in the UI) actually represents an OctoPrint server
 class Printer: NSManagedObject {
     
     @NSManaged var recordName: String? // Unique identifier of this record in CloudKit

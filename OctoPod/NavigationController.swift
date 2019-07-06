@@ -45,7 +45,6 @@ class NavigationController: UINavigationController, OctoPrintSettingsDelegate, W
 
     // MARK: - OctoPrintSettingsDelegate
     
-    // Notification that OctoPrint's appearance has changed. A new color or its transparency has changed
     func octoPrintColorChanged(color: String) {
         DispatchQueue.main.async {
             self.refreshForPrinterColors(color: color)

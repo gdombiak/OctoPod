@@ -1,12 +1,12 @@
 import Foundation
 import UIKit
 
-// OctoPrint client that exposes the REST API described
-// here: http://docs.octoprint.org/en/master/api/index.html
-// A OctoPrintClient can connect to a single OctoPrint server at a time
-//
-// OctoPrintClient uses websockets for getting realtime updates from OctoPrint (read operations only)
-// and an HTTP Client is used for requesting services on the OctoPrint server.
+/// OctoPrint client that exposes the REST API described
+/// here: http://docs.octoprint.org/en/master/api/index.html
+/// A OctoPrintClient can connect to a single OctoPrint server at a time
+///
+/// OctoPrintClient uses websockets for getting realtime updates from OctoPrint (read operations only)
+/// and an HTTP Client is used for requesting services on the OctoPrint server.
 class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         
     var octoPrintRESTClient: OctoPrintRESTClient!
@@ -50,9 +50,9 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     // MARK: - OctoPrint server connection
     
-    // Connect to OctoPrint server and gather printer state
-    // A websocket connection will be attempted to get real time updates from OctoPrint
-    // An HTTPClient is created for sending requests to OctoPrint
+    /// Connect to OctoPrint server and gather printer state
+    /// A websocket connection will be attempted to get real time updates from OctoPrint
+    /// An HTTPClient is created for sending requests to OctoPrint
     func connectToServer(printer: Printer) {
         // Clean up any known printer state
         lastKnownState = nil
@@ -129,7 +129,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
     
-    // Disconnect from OctoPrint server
+    /// Disconnect from OctoPrint server
     func disconnectFromServer() {
         octoPrintRESTClient.disconnectFromServer()
         webSocketClient?.closeConnection()
@@ -149,7 +149,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
 
     // MARK: - WebSocketClientDelegate
     
-    // Notification that OctoPrint state has changed. This may include printer status information
+    /// Notification that OctoPrint state has changed. This may include printer status information
     func currentStateUpdated(event: CurrentStateEvent) {
         // Track event as last known state. Will be reset when changing printers or on app cold startup
         lastKnownState = event
@@ -167,13 +167,13 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
     
-    // Notification that contains history of temperatures. This information is received once after
-    // websocket connection was established. #currentStateUpdated contains new temps after this event
+    /// Notification that contains history of temperatures. This information is received once after
+    /// websocket connection was established. #currentStateUpdated contains new temps after this event
     func historyTemp(history: Array<TempHistory.Temp>) {
         tempHistory.addHistory(history: history)
     }
     
-    // Notifcation that OctoPrint's settings has changed
+    /// Notifcation that OctoPrint's settings has changed
     func octoPrintSettingsUpdated() {
         if let printer = printerManager.getDefaultPrinter() {
             // Verify that last known settings are still current
@@ -181,11 +181,12 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
     
-    // Notification sent by plugin via websockets
-    // plugin - identifier of the OctoPrint plugin
-    // data - whatever JSON data structure sent by the plugin
-    //
-    // Example: {data: {isPSUOn: false, hasGPIO: true}, plugin: "psucontrol"}
+    /// Notification sent by plugin via websockets
+    /// - Parameters:
+    ///     - plugin: identifier of the OctoPrint plugin
+    ///     - data: whatever JSON data structure sent by the plugin
+    ///
+    /// Example: {data: {isPSUOn: false, hasGPIO: true}, plugin: "psucontrol"}
     func pluginMessage(plugin: String, data: NSDictionary) {
         // Notify other listeners that we connected to OctoPrint
         for delegate in octoPrintPluginsDelegates {
@@ -193,7 +194,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
 
-    // Notification sent when websockets got connected
+    /// Notification sent when websockets got connected
     func websocketConnected() {
         // Websocket has been established. OctoPrint 1.3.10, by default, secures websocket so we need
         // to authenticate the websocket in order to be able to use it. In order to authenticate the websocket,
@@ -216,7 +217,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
     
-    // Notification sent when websockets got disconnected due to an error (or failed to connect)
+    /// Notification sent when websockets got disconnected due to an error (or failed to connect)
     func websocketConnectionFailed(error: Error) {
         for delegate in delegates {
             delegate.websocketConnectionFailed(error: error)
@@ -225,7 +226,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     // MARK: - AppConfigurationDelegate
     
-    // Notification that SSL certificate validation has changed (user enabled or disabled it)
+    /// Notification that SSL certificate validation has changed (user enabled or disabled it)
     func certValidationChanged(disabled: Bool) {
         // Recreate websocket connection since SSL cert validation has changed
         // HTTP connection relies on NSAllowsArbitraryLoads so will ignore this change/setting
@@ -263,27 +264,27 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     // MARK: - Login operations
 
-    // Passive login has been added to OctoPrint 1.3.10 to increase security. Endpoint existed before
-    // but without passive mode. New version returns a "session" field that is used by websockets to
-    // allow websockets to work when Forcelogin Plugin is active (the default)
+    /// Passive login has been added to OctoPrint 1.3.10 to increase security. Endpoint existed before
+    /// but without passive mode. New version returns a "session" field that is used by websockets to
+    /// allow websockets to work when Forcelogin Plugin is active (the default)
     func passiveLogin(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.passiveLogin(callback: callback)
     }
 
     // MARK: - Connection operations
 
-    // Return connection status from OctoPrint to the 3D printer
+    /// Return connection status from OctoPrint to the 3D printer
     func connectionPrinterStatus(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.connectionPrinterStatus(callback: callback)
     }
     
-    // Ask OctoPrint to connect using default settings. We always get 204 status code (unless there was some network error)
-    // To know if OctoPrint was able to connect to the 3D printer then we need to check for its connection status
+    /// Ask OctoPrint to connect using default settings. We always get 204 status code (unless there was some network error)
+    /// To know if OctoPrint was able to connect to the 3D printer then we need to check for its connection status
     func connectToPrinter(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.connectToPrinter(callback: callback)
     }
 
-    // Ask OctoPrint to disconnect from the 3D printer. Use connection status to check if it was successful
+    /// Ask OctoPrint to disconnect from the 3D printer. Use connection status to check if it was successful
     func disconnectFromPrinter(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.disconnectFromPrinter(callback: callback)
     }
@@ -313,10 +314,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     // MARK: - Printer operations
     
-    // Retrieves the current state of the printer. Returned information includes:
-    // 1. temperature information (see also Retrieve the current tool state and Retrieve the current bed state)
-    // 2. sd state (if available, see also Retrieve the current SD state)
-    // 3. general printer state
+    /// Retrieves the current state of the printer. Returned information includes:
+    /// 1. temperature information (see also Retrieve the current tool state and Retrieve the current bed state)
+    /// 2. sd state (if available, see also Retrieve the current SD state)
+    /// 3. general printer state
     func printerState(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.printerState(callback: callback)
     }
@@ -338,7 +339,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.chamberTargetTemperature(newTarget: newTarget, callback: callback)
     }
 
-    // Set the new flow rate for the requested extruder. Currently there is no way to read current flow rate value
+    /// Set the new flow rate for the requested extruder. Currently there is no way to read current flow rate value
     func toolFlowRate(toolNumber: Int, newFlowRate: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.toolFlowRate(toolNumber: toolNumber, newFlowRate: newFlowRate, callback: callback)
     }
@@ -376,55 +377,55 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     // MARK: - File operations
     
-    // Returns list of existing files
+    /// Returns list of existing files
     func files(folder: PrintFile? = nil, recursive: Bool = true, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         let location = folder == nil ? "" : "/\(folder!.origin!)/\(folder!.path!)"
         octoPrintRESTClient.files(location: location, recursive: recursive, callback: callback)
     }
     
-    // Deletes the specified file
+    /// Deletes the specified file
     func deleteFile(origin: String, path: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.deleteFile(origin: origin, path: path, callback: callback)
     }
     
-    // Prints the specified file
+    /// Prints the specified file
     func printFile(origin: String, path: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.printFile(origin: origin, path: path, callback: callback)
     }
     
-    // Uploads file to the specified location in OctoPrint's local file system
-    // If no folder is specified then file will be uploaded to root folder in OctoPrint
+    /// Uploads file to the specified location in OctoPrint's local file system
+    /// If no folder is specified then file will be uploaded to root folder in OctoPrint
     func uploadFileToOctoPrint(folder: PrintFile? = nil, filename: String, fileContent: Data , callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         let path: String? = folder == nil ? nil : folder!.path!
         octoPrintRESTClient.uploadFileToOctoPrint(path: path, filename: filename, fileContent: fileContent, callback: callback)
     }
     
-    // Uploads file to the SD Card (OctoPrint will first upload to OctoPrint and then copy to SD Card so we will end up with a copy in OctoPrint as well)
+    /// Uploads file to the SD Card (OctoPrint will first upload to OctoPrint and then copy to SD Card so we will end up with a copy in OctoPrint as well)
     func uploadFileToSDCard(filename: String, fileContent: Data , callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.uploadFileToSDCard(filename: filename, fileContent: fileContent, callback: callback)
     }
 
     // MARK: - SD Card operations
 
-    // Initialize the SD Card. Files will be read from the SD card during this operation
+    /// Initialize the SD Card. Files will be read from the SD card during this operation
     func initSD(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.initSD(callback: callback)
     }
 
-    // Read files from the SD card during this operation. You will need to call #files() when this operation was run successfully
+    /// Read files from the SD card during this operation. You will need to call #files() when this operation was run successfully
     func refreshSD(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.refreshSD(callback: callback)
     }
     
-    // Release the SD card from the printer. The reverse operation to initSD()
+    /// Release the SD card from the printer. The reverse operation to initSD()
     func releaseSD(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.releaseSD(callback: callback)
     }
 
     // MARK: - Fan operations
     
-    // Set the new fan speed. We receive a value between 0 and 100 and need to convert to rante 0-255
-    // There is no way to read current fan speed
+    /// Set the new fan speed. We receive a value between 0 and 100 and need to convert to rante 0-255
+    /// There is no way to read current fan speed
     func fanSpeed(speed: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.fanSpeed(speed: speed, callback: callback)
     }
@@ -479,40 +480,40 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
 
     // MARK: - IP Plug Plugin (TPLink Smartplug, Wemo, Domoticz, etc.)
     
-    // Instruct an IP plugin (e.g. TPLinkSmartplug, WemoSwitch, domoticz) to turn on/off the
-    // device with the specified IP address. If request was successful we get back a 204
-    // and the status is reported via websockets
+    /// Instruct an IP plugin (e.g. TPLinkSmartplug, WemoSwitch, domoticz) to turn on/off the
+    /// device with the specified IP address. If request was successful we get back a 204
+    /// and the status is reported via websockets
     func turnIPPlug(plugin: String, on: Bool, plug: IPPlug, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.turnIPPlug(plugin: plugin, on: on, plug: plug, callback: callback)
     }
     
-    // Instruct an IP plugin (e.g. TPLinkSmartplug, WemoSwitch, domoticz) to turn on/off the
-    // device with the specified IP address. If request was successful we get back a 204
-    // and the status is reported via websockets
+    /// Instruct an IP plugin (e.g. TPLinkSmartplug, WemoSwitch, domoticz) to turn on/off the
+    /// device with the specified IP address. If request was successful we get back a 204
+    /// and the status is reported via websockets
     func turnIPPlug(plugin: String, on: Bool, plug: IPPlug, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.turnIPPlug(plugin: plugin, on: on, plug: plug, callback: callback)
     }
     
-    // Instruct an IP plugin to report the status of the device with the specified IP address
-    // If request was successful we get back a 204 and the status is reported via websockets
+    /// Instruct an IP plugin to report the status of the device with the specified IP address
+    /// If request was successful we get back a 204 and the status is reported via websockets
     func checkIPPlugStatus(plugin: String, plug: IPPlug, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.checkIPPlugStatus(plugin: plugin, plug: plug, callback: callback)
     }
     
-    // Instruct an IP plugin to report the status of the device with the specified IP address
-    // If request was successful we get back a 204 and the status is reported via websockets
+    /// Instruct an IP plugin to report the status of the device with the specified IP address
+    /// If request was successful we get back a 204 and the status is reported via websockets
     func checkIPPlugStatus(plugin: String, plug: IPPlug, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.checkIPPlugStatus(plugin: plugin, plug: plug, callback: callback)
     }
     
     // MARK: - Cancel Object Plugin operations
     
-    // Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
+    /// Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
     func getCancelObjects(callback: @escaping (Array<CancelObject>?, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.getCancelObjects(callback: callback)
     }
     
-    // Cancel the requested object id.
+    /// Cancel the requested object id.
     func cancelObject(id: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.cancelObject(id: id, callback: callback)
     }

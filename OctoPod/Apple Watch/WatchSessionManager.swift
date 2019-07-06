@@ -133,19 +133,14 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     
     // MARK: - OctoPrintSettingsDelegate
     
-    // Notification that orientation of the camera hosted by OctoPrint has changed
     func cameraOrientationChanged(newOrientation: UIImage.Orientation) {
         pushPrinters()
     }
     
-    // Notification that path to camera hosted by OctoPrint has changed
     func cameraPathChanged(streamUrl: String) {
         pushPrinters()
     }
     
-    // Notification that a new camera has been added or removed. We rely on MultiCam
-    // plugin to be installed on OctoPrint so there is no need to re-enter this information
-    // URL to cameras is returned in /api/settings under plugins->multicam
     func camerasChanged(camerasURLs: Array<String>) {
         pushPrinters()
     }

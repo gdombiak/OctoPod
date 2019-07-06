@@ -145,7 +145,6 @@ class IPPlugViewController: ThemedDynamicUITableViewController, SubpanelViewCont
 
     // MARK: - OctoPrintSettingsDelegate
     
-    // Notification that an IP plug plugin has changed. Could be availability or settings
     func ipPlugsChanged(plugin: String, plugs: Array<IPPlug>) {
         if ipPlugPlugin == plugin {
             self.plugs = plugs

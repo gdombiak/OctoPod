@@ -273,7 +273,6 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     // MARK: - OctoPrintClientDelegate
     
-    // Notification that OctoPrint state has changed. This may include printer status information
     func printerStateUpdated(event: CurrentStateEvent) {
         if let closed = event.closedOrError {
             updateConnectButton(printerConnected: !closed)
@@ -281,7 +280,6 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         subpanelsViewController?.currentStateUpdated(event: event)
     }
 
-    // Notification sent when websockets got connected
     func websocketConnected() {
         DispatchQueue.main.async {
             self.notRefreshingReason = nil
@@ -289,7 +287,6 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
 
-    // Notification sent when websockets got disconnected due to an error (or failed to connect)
     func websocketConnectionFailed(error: Error) {
         DispatchQueue.main.async {
             self.notRefreshingReason = self.obtainConnectionErrorReason(error: error)
@@ -297,7 +294,6 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
-    // Notification that we are about to connect to OctoPrint server
     func notificationAboutToConnectToServer() {
         // Assume printer is not connected
         updateConnectButton(printerConnected: false)
@@ -308,7 +304,6 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
 
-    // Notification that HTTP request failed (connection error, authentication error or unexpect http status code)
     func handleConnectionError(error: Error?, response: HTTPURLResponse) {
         if let nsError = error as NSError?, let url = response.url {
             if nsError.code == Int(CFNetworkErrors.cfurlErrorTimedOut.rawValue) && url.host == "octopi.local" {
@@ -338,14 +333,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
-    // Notification that path to camera hosted by OctoPrint has changed
     func cameraPathChanged(streamUrl: String) {
         camerasViewController?.cameraPathChanged(streamUrl: streamUrl)
     }
 
-    // Notification that a new camera has been added or removed. We rely on MultiCam
-    // plugin to be installed on OctoPrint so there is no need to re-enter this information
-    // URL to cameras is returned in /api/settings under plugins->multicam
     func camerasChanged(camerasURLs: Array<String>) {
         camerasViewController?.camerasChanged(camerasURLs: camerasURLs)
     }
