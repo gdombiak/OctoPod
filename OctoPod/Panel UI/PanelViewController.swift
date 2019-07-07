@@ -38,6 +38,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     /// List of plugin updates that are available. Variable will have value only after we did the check
     var updatesAvailable: Array<PluginUpdatesManager.UpdateAvailable>?
     
+    // Gestures to switch between printers
+    var swipeLeftGestureRecognizer : UISwipeGestureRecognizer!
+    var swipeRightGestureRecognizer : UISwipeGestureRecognizer!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -64,6 +68,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         
         // Calculate constraint for subpanel
         calculateCameraHeightConstraints()
+        
+        // Add gestures to capture swipes on navigation bar to switch between printers
+        addNavBarSwipeGestures()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -426,6 +433,65 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     // Notification that a new default printer has been selected from the Apple Watch app
     func defaultPrinterChanged() {
         self.refreshNewSelectedPrinter()
+    }
+    
+    // MARK: - Private - Navigation Bar Swipe
+
+    fileprivate func addNavBarSwipeGestures() {
+        // Add gesture when we swipe from right to left
+        swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
+        swipeLeftGestureRecognizer.direction = .left
+        navigationController?.navigationBar.addGestureRecognizer(swipeLeftGestureRecognizer)
+        swipeLeftGestureRecognizer.cancelsTouchesInView = false
+        
+        // Add gesture when we swipe from left to right
+        swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
+        swipeRightGestureRecognizer.direction = .right
+        navigationController?.navigationBar.addGestureRecognizer(swipeRightGestureRecognizer)
+        swipeRightGestureRecognizer.cancelsTouchesInView = false
+    }
+    
+    @objc fileprivate func navigationBarSwiped(_ gesture: UIGestureRecognizer) {
+        if let printer = printerManager.getDefaultPrinter() {
+            // Swipe to change between printers
+            let printers = printerManager.getPrinters()
+            if printers.count < 2 {
+                // Nothing to do since there is only one OctoPrint instance (aka printer)
+                return
+            }
+            
+            var newPrinter: Printer!
+            if let index = printers.firstIndex(of: printer) {
+                if gesture == swipeLeftGestureRecognizer {
+                    // Right to left so move to the next printer
+                    if index == printers.count - 1 {
+                        // Go to the first printer in the array
+                        newPrinter = printers[0]
+                    } else {
+                        // Go to the next printer in the array
+                        newPrinter = printers[index + 1]
+                    }
+                } else {
+                    // Left to right so move to the previous printer
+                    if index == 0 {
+                        // Go to the last printer in the array
+                        newPrinter = printers.last
+                    } else {
+                        // Go to the previous printer in the array
+                        newPrinter = printers[index - 1]
+                    }
+                }
+
+                // Update stored printers
+                printerManager.changeToDefaultPrinter(newPrinter)
+                // Ask octoprintClient to connect to new OctoPrint server
+                octoprintClient.connectToServer(printer: newPrinter)
+                // Notify listeners of this change (ugly hack: use watch session listeners. Should be refactored)
+                for delegate in watchSessionManager.delegates {
+                    delegate.defaultPrinterChanged()
+                }
+            }
+        }
     }
     
     // MARK: - Private functions
