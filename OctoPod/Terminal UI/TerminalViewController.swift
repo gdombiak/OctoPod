@@ -16,6 +16,8 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     @IBOutlet weak var refreshSwitch: UISwitch!
     @IBOutlet weak var gcodeField: UITextField!
     @IBOutlet weak var sendGCodeButton: UIButton!
+    @IBOutlet weak var tempFilterButton: UIButton!
+    @IBOutlet weak var sdFilterButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +91,36 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         }
     }
 
+    @IBAction func toggleTemperatureFilter(_ sender: Any) {
+        if let index = octoprintClient.terminal.filters.firstIndex(of: Terminal.Filter.temperature) {
+            // Remove temperature filter
+            octoprintClient.terminal.filters.remove(at: index)
+            // Update button label
+            tempFilterButton.setTitle(NSLocalizedString("Suppress temp", comment: "Suppress temp messages in the terminal"), for: .normal)
+        } else {
+            // Add temperature filter
+            octoprintClient.terminal.filters.append(Terminal.Filter.temperature)
+            // Update button label
+            tempFilterButton.setTitle(NSLocalizedString("Include temp", comment: "Include temp messages in the terminal"), for: .normal)
+        }
+        self.updateTerminalLogs()
+    }
+    
+    @IBAction func toggleSDFilter(_ sender: Any) {
+        if let index = octoprintClient.terminal.filters.firstIndex(of: Terminal.Filter.sd) {
+            // Remove temperature filter
+            octoprintClient.terminal.filters.remove(at: index)
+            // Update button label
+            sdFilterButton.setTitle(NSLocalizedString("Suppress SD", comment: "Suppress SD messages in the terminal"), for: .normal)
+        } else {
+            // Add temperature filter
+            octoprintClient.terminal.filters.append(Terminal.Filter.sd)
+            // Update button label
+            sdFilterButton.setTitle(NSLocalizedString("Include SD", comment: "Include SD messages in the terminal"), for: .normal)
+        }
+        self.updateTerminalLogs()
+    }
+    
     // MARK: - OctoPrint Web operations
     
     @IBAction func openOctoPrintWeb(_ sender: Any) {
@@ -105,6 +137,8 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             // Update terminal now so UI has latest instead of waiting for new update from OctoPrint to update UI
             updateTerminalLogs()
         }
+        tempFilterButton.isEnabled = refreshSwitch.isOn
+        sdFilterButton.isEnabled = refreshSwitch.isOn
     }
     
     // MARK: - OctoPrintClientDelegate
@@ -156,7 +190,9 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     // Make sure to call this function from main thread
     fileprivate func updateTerminalLogs() {
         if refreshSwitch.isOn {
-            let logsText = octoprintClient.terminal.logs.joined(separator: "\n")
+            let terminal = octoprintClient.terminal
+            let log = terminal.filters.isEmpty ? terminal.logs : terminal.filteredLog
+            let logsText = log.joined(separator: "\n")
             terminalTextView.text = logsText
             // Keep scrolling to the bottom
             let bottom = NSMakeRange(terminalTextView.text.count - 1, 1)

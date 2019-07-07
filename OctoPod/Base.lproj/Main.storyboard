@@ -2946,29 +2946,47 @@
                                 </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1pO-wB-zKj">
-                                <rect key="frame" x="5" y="160" width="365" height="458"/>
+                                <rect key="frame" x="5" y="160" width="365" height="428"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AfS-HP-WTR">
+                                <rect key="frame" x="16" y="588" width="104" height="30"/>
+                                <state key="normal" title="Suppress temp"/>
+                                <connections>
+                                    <action selector="toggleTemperatureFilter:" destination="j5o-fo-R5v" eventType="touchUpInside" id="BoQ-n6-LBP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgi-wT-ubY">
+                                <rect key="frame" x="270" y="588" width="89" height="30"/>
+                                <state key="normal" title="Suppress SD"/>
+                                <connections>
+                                    <action selector="toggleSDFilter:" destination="j5o-fo-R5v" eventType="touchUpInside" id="Wen-l4-diC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="z4Q-Gf-Y5G" firstAttribute="leading" secondItem="RZc-hr-pTu" secondAttribute="trailing" constant="8.5" id="0qQ-6r-y9B"/>
                             <constraint firstItem="1pO-wB-zKj" firstAttribute="leading" secondItem="jaj-dp-ycd" secondAttribute="leading" constant="5" id="5BK-Sj-SLa"/>
+                            <constraint firstItem="sgi-wT-ubY" firstAttribute="bottom" secondItem="jaj-dp-ycd" secondAttribute="bottom" id="ABm-LU-jMJ"/>
                             <constraint firstItem="RZc-hr-pTu" firstAttribute="leading" secondItem="uge-6J-pcC" secondAttribute="trailing" constant="10" id="BLV-Lg-Y8p"/>
                             <constraint firstItem="jaj-dp-ycd" firstAttribute="trailing" secondItem="1pO-wB-zKj" secondAttribute="trailing" constant="5" id="DLP-y1-Ynb"/>
+                            <constraint firstItem="AfS-HP-WTR" firstAttribute="leading" secondItem="jaj-dp-ycd" secondAttribute="leading" constant="16" id="JS8-xp-uB3"/>
+                            <constraint firstItem="jaj-dp-ycd" firstAttribute="trailing" secondItem="sgi-wT-ubY" secondAttribute="trailing" constant="16" id="KFl-JD-FD7"/>
+                            <constraint firstItem="AfS-HP-WTR" firstAttribute="top" secondItem="1pO-wB-zKj" secondAttribute="bottom" id="KOh-Tm-yDf"/>
                             <constraint firstItem="1pO-wB-zKj" firstAttribute="top" secondItem="z4Q-Gf-Y5G" secondAttribute="bottom" constant="15" id="KzT-Y5-X0b"/>
                             <constraint firstItem="jaj-dp-ycd" firstAttribute="trailing" secondItem="z4Q-Gf-Y5G" secondAttribute="trailing" constant="16" id="LPB-Pd-zi7"/>
                             <constraint firstItem="jaj-dp-ycd" firstAttribute="trailing" secondItem="ZCY-xV-eWh" secondAttribute="trailing" constant="16" id="PhN-Mq-rwe"/>
                             <constraint firstItem="z4Q-Gf-Y5G" firstAttribute="top" secondItem="ZCY-xV-eWh" secondAttribute="bottom" constant="12" id="Pl4-h2-Wez"/>
                             <constraint firstItem="ZCY-xV-eWh" firstAttribute="leading" secondItem="53i-ST-HFr" secondAttribute="trailing" constant="5" id="QVC-vQ-Z0G"/>
+                            <constraint firstItem="AfS-HP-WTR" firstAttribute="bottom" secondItem="jaj-dp-ycd" secondAttribute="bottom" id="RGg-5c-eXJ"/>
                             <constraint firstItem="ZCY-xV-eWh" firstAttribute="top" secondItem="jaj-dp-ycd" secondAttribute="top" constant="8" id="Rbp-Da-HyN"/>
                             <constraint firstItem="53i-ST-HFr" firstAttribute="top" secondItem="jaj-dp-ycd" secondAttribute="top" constant="13" id="S9e-a0-8qw"/>
                             <constraint firstItem="uge-6J-pcC" firstAttribute="top" secondItem="53i-ST-HFr" secondAttribute="bottom" constant="22" id="TMF-IH-7uU"/>
-                            <constraint firstItem="1pO-wB-zKj" firstAttribute="bottom" secondItem="jaj-dp-ycd" secondAttribute="bottom" id="ZlN-uT-dzP"/>
                             <constraint firstItem="53i-ST-HFr" firstAttribute="leading" secondItem="jaj-dp-ycd" secondAttribute="leading" constant="16" id="cXy-25-KQH"/>
                             <constraint firstItem="uge-6J-pcC" firstAttribute="leading" secondItem="jaj-dp-ycd" secondAttribute="leading" constant="16" id="k0g-Db-mZe"/>
                             <constraint firstItem="1pO-wB-zKj" firstAttribute="top" secondItem="RZc-hr-pTu" secondAttribute="bottom" constant="15" id="kja-Bw-ZbT"/>
@@ -2987,7 +3005,9 @@
                         <outlet property="gcodeTextLabel" destination="uge-6J-pcC" id="MIV-sG-J3g"/>
                         <outlet property="refreshEnabledTextLabel" destination="53i-ST-HFr" id="tTD-Hx-E36"/>
                         <outlet property="refreshSwitch" destination="ZCY-xV-eWh" id="2cM-Rb-flN"/>
+                        <outlet property="sdFilterButton" destination="sgi-wT-ubY" id="28l-xh-YP0"/>
                         <outlet property="sendGCodeButton" destination="z4Q-Gf-Y5G" id="J7q-C1-eQu"/>
+                        <outlet property="tempFilterButton" destination="AfS-HP-WTR" id="iZg-Qo-PqP"/>
                         <outlet property="terminalTextView" destination="1pO-wB-zKj" id="5tP-px-dJe"/>
                     </connections>
                 </viewController>
