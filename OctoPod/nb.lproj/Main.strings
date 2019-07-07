@@ -208,6 +208,9 @@
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "fJ6-6T-dHU"; */
 "fJ6-6T-dHU.title" = "Innstillinger";
 
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "FJA-XK-nll"; */
+"FJA-XK-nll.normalTitle" = "Avvis";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
 "fNE-Hh-S8R.text" = "Lbael";
 
@@ -336,6 +339,9 @@
 
 /* Class = "UILabel"; text = "Light"; ObjectID = "MA6-Ay-j7Q"; */
 "MA6-Ay-j7Q.text" = "Lys";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Mab-7E-AEG"; */
+"Mab-7E-AEG.text" = "Tittel";
 
 /* Class = "UILabel"; text = "Print time"; ObjectID = "MI6-uy-Cea"; */
 "MI6-uy-Cea.text" = "Utskriftstid";

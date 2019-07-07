@@ -5,6 +5,9 @@
 "2TreiD" = "Sett ekstruderens temperatur til ${temperature}";
 
 /* (No Comment) */
+"3Butzw" = "Kammens temperatur ble satt til ${temperature}";
+
+/* (No Comment) */
 "3eH6cZ" = "Kunne ikke få gjenværende tidsinformasjon (${statusCode})";
 
 /* (No Comment) */
@@ -15,6 +18,9 @@
 
 /* (No Comment) */
 "6vtMLs" = "Restartet";
+
+/* (No Comment) */
+"7eJPkN" = "Konfigurer kammerets temperatur";
 
 /* (No Comment) */
 "8tTCjD" = "Kunne ikke avbryte jobben (${statusCode})";
@@ -36,6 +42,9 @@
 
 /* (No Comment) */
 "doj4NA" = "Konfigurer ekstruderens temperatur";
+
+/* (No Comment) */
+"Eb3aa5" = "Kunne ikke angi kammerets temperatur (${statusCode})";
 
 /* (No Comment) */
 "f8xirF" = "Kjøl ned skriver";
@@ -60,6 +69,9 @@
 
 /* (No Comment) */
 "ihLqc7" = "Pause jobb";
+
+/* (No Comment) */
+"Jioukn" = "Still inn kammerets temperatur";
 
 /* (No Comment) */
 "JmhfgL" = "Restart startet utskrift";
@@ -116,6 +128,9 @@
 "RrOrgy" = "Avbryt jobb";
 
 /* (No Comment) */
+"RYurC5" = "Kjøle ned kammeret";
+
+/* (No Comment) */
 "SP4rN6" = "Sett ekstruders temperatur";
 
 /* (No Comment) */
@@ -165,4 +180,7 @@
 
 /* (No Comment) */
 "yZeSdz" = "${printer}";
+
+/* (No Comment) */
+"zj1Vd9" = "Still kammertemperaturen til ${temperature}";
 
