@@ -244,6 +244,12 @@
 /* HTTP Request error info */
 "HTTP Request error" = "Errore nella richiesta. Risposta HTTP: %d";
 
+/* Include SD messages in the terminal */
+"Include SD" = "Includi SD";
+
+/* Include temp messages in the terminal */
+"Include temp" = "Includi temp";
+
 /* (No Comment) */
 "Incorrect API Key" = "Chiave API errata";
 
@@ -375,6 +381,12 @@
 
 /* Print time is being calculated */
 "Still stabilizing" = "Stabilizzazione...";
+
+/* Suppress SD messages in the terminal */
+"Suppress SD" = "Escludi SD";
+
+/* Suppress temp messages in the terminal */
+"Suppress temp" = "Escludi temp";
 
 /* http://docs.octoprint.org/en/master/api/system.html */
 "System Commands" = "Comandi di sistema";
