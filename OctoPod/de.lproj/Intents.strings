@@ -5,6 +5,9 @@
 "2TreiD" = "Stelle Düsentemperatur auf ${temperature}";
 
 /* (No Comment) */
+"3Butzw" = "Die Temperatur der Kammer wurde eingestellt auf ${temperature}";
+
+/* (No Comment) */
 "3eH6cZ" = "Keine Information über verbleibende Zeit erhalten (${statusCode})";
 
 /* (No Comment) */
@@ -15,6 +18,9 @@
 
 /* (No Comment) */
 "6vtMLs" = "Auftrag neu gestartet";
+
+/* (No Comment) */
+"7eJPkN" = "Kammer Temperatur einrichten";
 
 /* (No Comment) */
 "8tTCjD" = "Auftrag konnte nicht abgebrochen werden (${statusCode})";
@@ -36,6 +42,9 @@
 
 /* (No Comment) */
 "doj4NA" = "Temperatur der Düse konfigurieren";
+
+/* (No Comment) */
+"Eb3aa5" = "Einstellen der Temperatur der Kammer fehlgeschlagen (${statusCode})";
 
 /* (No Comment) */
 "f8xirF" = "Drucker abkühlen";
@@ -60,6 +69,9 @@
 
 /* (No Comment) */
 "ihLqc7" = "Laufenden Druckauftrag aussetzen";
+
+/* (No Comment) */
+"Jioukn" = "Kammer Temperatur vorgeben";
 
 /* (No Comment) */
 "JmhfgL" = "Laufenden Druckauftrag neu starten";
@@ -116,6 +128,9 @@
 "RrOrgy" = "Auftrag abbrechen";
 
 /* (No Comment) */
+"RYurC5" = "Kammer abkühlen";
+
+/* (No Comment) */
 "SP4rN6" = "Düsentemperatur konnte nicht eingestellt werden";
 
 /* (No Comment) */
@@ -165,4 +180,7 @@
 
 /* (No Comment) */
 "yZeSdz" = "${printer}";
+
+/* (No Comment) */
+"zj1Vd9" = "Stelle Temperatur der Kammer auf ${temperature}";
 
