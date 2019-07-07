@@ -115,6 +115,9 @@
 /* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "aFa-Qd-yIr"; */
 "aFa-Qd-yIr.placeholder" = "Název tiskárny (např. MK3)";
 
+/* Class = "UIButton"; normalTitle = "Suppress temp"; ObjectID = "AfS-HP-WTR"; */
+"AfS-HP-WTR.normalTitle" = "Zakázat teplotu";
+
 /* Class = "UIButton"; normalTitle = "View activity log"; ObjectID = "aJp-RM-Tuf"; */
 "aJp-RM-Tuf.normalTitle" = "Zobrazit výpis aktivit";
 
@@ -343,6 +346,9 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "LJV-z6-SX8"; */
 "LJV-z6-SX8.text" = "Nadpis";
 
+/* Class = "UILabel"; text = "Tip: Swipe to switch between printers"; ObjectID = "lyc-MY-uT5"; */
+"lyc-MY-uT5.text" = "Nápověda: Potáhněte pro přepnutí mezi tiskárnami";
+
 /* Class = "UILabel"; text = "Light"; ObjectID = "MA6-Ay-j7Q"; */
 "MA6-Ay-j7Q.text" = "Světlé";
 
@@ -474,6 +480,9 @@
 
 /* Class = "UILabel"; text = "/"; ObjectID = "sF0-zd-MZR"; */
 "sF0-zd-MZR.text" = "/";
+
+/* Class = "UIButton"; normalTitle = "Suppress SD"; ObjectID = "sgi-wT-ubY"; */
+"sgi-wT-ubY.normalTitle" = "Zakázat SD";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H"; */
 "sLc-Jv-G0H.placeholder" = "Uživatelské jméno";

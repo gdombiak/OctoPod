@@ -13,6 +13,9 @@
 /* (No Comment) */
 "Actual Bed" = "Tikra pagrindo temperatūra";
 
+/* No comment provided by engineer. */
+"Actual Chamber" = "Tikroji dėžės";
+
 /* (No Comment) */
 "Actual Extruder" = "Tikra ekstruderio temperatūra";
 
@@ -96,6 +99,9 @@
 
 /* (No Comment) */
 "Connection failed" = "Nepavyko prisijungti";
+
+/* Siri suggested phrase */
+"Cool down heated chamber" = "Atvėsinti šildomą dėžę";
 
 /* Siri suggested phrase */
 "Cool down printer" = "Atšaldyti spausdintuvą";
@@ -238,6 +244,12 @@
 /* HTTP Request error info */
 "HTTP Request error" = "HTTP atsakymas: %d";
 
+/* Include SD messages in the terminal */
+"Include SD" = "Rodyti SD";
+
+/* Include temp messages in the terminal */
+"Include temp" = "Rodyti temp";
+
 /* (No Comment) */
 "Incorrect API Key" = "Neteisingas API raktas";
 
@@ -370,11 +382,20 @@
 /* Print time is being calculated */
 "Still stabilizing" = "Visdar stabilizuojama...";
 
+/* Suppress SD messages in the terminal */
+"Suppress SD" = "Nerodyti SD";
+
+/* Suppress temp messages in the terminal */
+"Suppress temp" = "Nerodyti temp";
+
 /* http://docs.octoprint.org/en/master/api/system.html */
 "System Commands" = "Sistemos komandos";
 
 /* (No Comment) */
 "Target Bed" = "Nustatyta paviršiaus temperatūra";
+
+/* No comment provided by engineer. */
+"Target Chamber" = "Nustatyta dėžės";
 
 /* (No Comment) */
 "Target Extruder" = "Nustatyta ekstruderio temperatūra";
@@ -408,8 +429,14 @@
 /* Unknown Custom Control */
 "Unknown Control" = "Nežinoma kontrolė";
 
+/* Title for window that alerts user that updates for plugins are available */
+"Update Available" = "Yra atnaujinimų";
+
 /* (No Comment) */
 "Upload failed" = "Nepavyko įkelti";
+
+/* Siri suggested phrase */
+"Warm up heated chamber" = "Pašildyti šildomą dėžę";
 
 /* Siri suggested phrase */
 "Warm up printer bed" = "Pašildyti paviršių %@";

@@ -5,6 +5,9 @@
 "2TreiD" = "Nustatyti ekstruderio temperatūra į ${temperature}";
 
 /* (No Comment) */
+"3Butzw" = "Dėžės temperatūra buvo nustatyta į ${temperature}";
+
+/* (No Comment) */
 "3eH6cZ" = "Nepavyko gauti likusio laiko (${statusCode})";
 
 /* (No Comment) */
@@ -15,6 +18,9 @@
 
 /* (No Comment) */
 "6vtMLs" = "Pradėta iš naujo";
+
+/* (No Comment) */
+"7eJPkN" = "Konfigūruoti dėžės temperatūrą";
 
 /* (No Comment) */
 "8tTCjD" = "Nepavyko atšaukti (${statusCode})";
@@ -36,6 +42,9 @@
 
 /* (No Comment) */
 "doj4NA" = "Nustatyti ekstruderio temperatūrą";
+
+/* (No Comment) */
+"Eb3aa5" = "Nepavyko nustatyti dėžės temperatūros (${statusCode})";
 
 /* (No Comment) */
 "f8xirF" = "Atšaldyti spausdintuvą";
@@ -60,6 +69,9 @@
 
 /* (No Comment) */
 "ihLqc7" = "Užpauzinti dabartinę užduotį";
+
+/* (No Comment) */
+"Jioukn" = "Nustatyti dėžės temperatūrą";
 
 /* (No Comment) */
 "JmhfgL" = "Paleisti iš naujo dabartinę užduotį";
@@ -116,6 +128,9 @@
 "RrOrgy" = "Atšaukti užduotį";
 
 /* (No Comment) */
+"RYurC5" = "Atvėsinti dėžę";
+
+/* (No Comment) */
 "SP4rN6" = "Nustatyti ekstruderio temperatūrą";
 
 /* (No Comment) */
@@ -165,4 +180,7 @@
 
 /* (No Comment) */
 "yZeSdz" = "${printer}";
+
+/* (No Comment) */
+"zj1Vd9" = "Nustatyti dėžės temperatūrą į ${temperature}";
 
