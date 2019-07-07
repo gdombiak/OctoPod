@@ -13,6 +13,9 @@
 /* (No Comment) */
 "Actual Bed" = "Aktuální podložka";
 
+/* No comment provided by engineer. */
+"Actual Chamber" = "Teplota komory";
+
 /* (No Comment) */
 "Actual Extruder" = "Aktuální tryska";
 
@@ -96,6 +99,9 @@
 
 /* (No Comment) */
 "Connection failed" = "Připojení se nezdařilo";
+
+/* Siri suggested phrase */
+"Cool down heated chamber" = "Zchladit vyhřívanou komoru";
 
 /* Siri suggested phrase */
 "Cool down printer" = "Cool down printer";
@@ -376,6 +382,9 @@
 /* (No Comment) */
 "Target Bed" = "Zvolená podložka";
 
+/* No comment provided by engineer. */
+"Target Chamber" = "Požadovaná teplota komory";
+
 /* (No Comment) */
 "Target Extruder" = "Zvolená tryska";
 
@@ -408,8 +417,14 @@
 /* Unknown Custom Control */
 "Unknown Control" = "Neznámý ovladač";
 
+/* Title for window that alerts user that updates for plugins are available */
+"Update Available" = "Aktualizace je k dispozici";
+
 /* (No Comment) */
 "Upload failed" = "Nahrávání selhalo";
+
+/* Siri suggested phrase */
+"Warm up heated chamber" = "Nahřát vyhřívanou komoru";
 
 /* Siri suggested phrase */
 "Warm up printer bed" = "Warm up printer bed %@";

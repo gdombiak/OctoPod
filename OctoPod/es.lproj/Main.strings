@@ -214,6 +214,9 @@
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "fJ6-6T-dHU"; */
 "fJ6-6T-dHU.title" = "Ajustes";
 
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "FJA-XK-nll"; */
+"FJA-XK-nll.normalTitle" = "Descartar";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
 "fNE-Hh-S8R.text" = "Label";
 
@@ -343,8 +346,14 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "LJV-z6-SX8"; */
 "LJV-z6-SX8.text" = "Título";
 
+/* Class = "UILabel"; text = "Tip: Swipe to switch between printers"; ObjectID = "lyc-MY-uT5"; */
+"lyc-MY-uT5.text" = "Sugerencia: Desliza para cambiar impresoras";
+
 /* Class = "UILabel"; text = "Light"; ObjectID = "MA6-Ay-j7Q"; */
 "MA6-Ay-j7Q.text" = "Claro";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Mab-7E-AEG"; */
+"Mab-7E-AEG.text" = "Título";
 
 /* Class = "UILabel"; text = "Print time"; ObjectID = "MI6-uy-Cea"; */
 "MI6-uy-Cea.text" = "Tiempo impresión";

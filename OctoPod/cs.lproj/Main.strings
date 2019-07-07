@@ -184,6 +184,9 @@
 /* Class = "UITableViewController"; title = "Support"; ObjectID = "ec8-jM-jJs"; */
 "ec8-jM-jJs.title" = "Podpora";
 
+/* Class = "UILabel"; text = "Chamber"; ObjectID = "eD3-xa-2Ah"; */
+"eD3-xa-2Ah.text" = "Komora";
+
 /* Class = "UIButton"; normalTitle = "Proceed"; ObjectID = "erX-tJ-GVo"; */
 "erX-tJ-GVo.normalTitle" = "Pokračovat";
 
@@ -207,6 +210,9 @@
 
 /* Class = "UITabBarItem"; title = "Settings"; ObjectID = "fJ6-6T-dHU"; */
 "fJ6-6T-dHU.title" = "Nastavení";
+
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "FJA-XK-nll"; */
+"FJA-XK-nll.normalTitle" = "Zrušit";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
 "fNE-Hh-S8R.text" = "Label";
@@ -274,6 +280,9 @@
 /* Class = "UILabel"; text = "Tip: Click to set temperature"; ObjectID = "HUF-Dw-M7F"; */
 "HUF-Dw-M7F.text" = "Tip: Klikněte pro nastavení teploty";
 
+/* Class = "UIButton"; normalTitle = "Ignore"; ObjectID = "hUL-Ws-ypB"; */
+"hUL-Ws-ypB.normalTitle" = "Ignorovat";
+
 /* Class = "UITableViewSection"; headerTitle = "X Y"; ObjectID = "hWI-gF-onz"; */
 "hWI-gF-onz.headerTitle" = "X Y";
 
@@ -336,6 +345,9 @@
 
 /* Class = "UILabel"; text = "Light"; ObjectID = "MA6-Ay-j7Q"; */
 "MA6-Ay-j7Q.text" = "Světlé";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Mab-7E-AEG"; */
+"Mab-7E-AEG.text" = "Nadpis";
 
 /* Class = "UILabel"; text = "Print time"; ObjectID = "MI6-uy-Cea"; */
 "MI6-uy-Cea.text" = "Čas tisku";

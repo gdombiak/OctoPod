@@ -13,6 +13,9 @@
 /* (No Comment) */
 "Actual Bed" = "T effettiva piatto";
 
+/* No comment provided by engineer. */
+"Actual Chamber" = "T effettiva box";
+
 /* (No Comment) */
 "Actual Extruder" = "T effettiva estrusore";
 
@@ -96,6 +99,9 @@
 
 /* (No Comment) */
 "Connection failed" = "Connessione fallita";
+
+/* Siri suggested phrase */
+"Cool down heated chamber" = "Raffredda box riscaldato";
 
 /* Siri suggested phrase */
 "Cool down printer" = "Raffredda stampante";
@@ -376,6 +382,9 @@
 /* (No Comment) */
 "Target Bed" = "T obiettivo piatto";
 
+/* No comment provided by engineer. */
+"Target Chamber" = "T obiettivo box";
+
 /* (No Comment) */
 "Target Extruder" = "T obiettivo estrusore";
 
@@ -408,8 +417,14 @@
 /* Unknown Custom Control */
 "Unknown Control" = "Controllo sconosciuto";
 
+/* Title for window that alerts user that updates for plugins are available */
+"Update Available" = "Aggiornamento disponibile";
+
 /* (No Comment) */
 "Upload failed" = "Errore nel caricamento";
+
+/* Siri suggested phrase */
+"Warm up heated chamber" = "Riscalda box riscaldato";
 
 /* Siri suggested phrase */
 "Warm up printer bed" = "Riscalda il piatto della stampante %@";
