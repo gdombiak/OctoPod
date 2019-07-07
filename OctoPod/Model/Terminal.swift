@@ -10,7 +10,10 @@ class Terminal {
     }
     
     private let MAX_LOG_SIZE = 200
-    
+    private let MAX_COMMANDS_SIZE = 15
+
+    private static let COMMANDS_HISTORY_KEY = "TERMINAL_COMMANDS_HISTORY_KEY"
+
     /// Keeps unfiltered entries
     var logs = Array<String>()
     /// Log that holds filtered entries. Use only when filters is not empty
@@ -24,6 +27,18 @@ class Terminal {
             appendEntriesFilteredLog(entries: logs)
         }
         } }
+    
+    /// List of GCode commands that was sent from the terminal. List is shared
+    /// with all printer
+    private(set) var commandsHistory: Array<String> = Array()
+    
+    init() {
+        // Retrieve history of stored commands
+        let defaults = UserDefaults.standard
+        if let storedCommands = defaults.array(forKey: Terminal.COMMANDS_HISTORY_KEY) as? Array<String> {
+            commandsHistory = storedCommands
+        }
+    }
     
     /// Notification that we are about to connect to OctoPrint
     func websocketNewConnection() {
@@ -53,6 +68,25 @@ class Terminal {
                 appendEntriesFilteredLog(entries: newLogs)
             }
         }
+    }
+
+    // MARK: - Commands history
+    
+    func addCommand(command: String) {
+        // Command can only be in the history once. Remove any previous entries
+        commandsHistory.removeAll { (cmd) -> Bool in
+            return cmd == command
+        }
+        // Add new command to the front of the Array
+        commandsHistory.insert(command, at: 0)
+        // Check that we are not exceeding max size
+        if commandsHistory.count > MAX_COMMANDS_SIZE {
+            // Remove oldest command
+            commandsHistory.removeLast()
+        }
+        // Store history
+        let defaults = UserDefaults.standard
+        defaults.set(commandsHistory, forKey: Terminal.COMMANDS_HISTORY_KEY)
     }
 
     // MARK: - Private functions

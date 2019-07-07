@@ -4,6 +4,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     private static let CONNECT_CONFIRMATION = "PANEL_CONNECT_CONFIRMATION"
     private static let REMINDERS_SHOWN = "PANEL_REMINDERS_SHOWN_2_3"  // Key that stores if we should show reminders about important new things to users. Key might change per version
+    private static let TOOLTIP_SWIPE_PRINTERS = "PANEL_TOOLTIP_SWIPE_PRINTERS"
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -105,6 +106,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         // Disable showing this reminder since OctoPrint plugin is not yet available for public usage
         if !UserDefaults.standard.bool(forKey: PanelViewController.REMINDERS_SHOWN) {
             self.performSegue(withIdentifier: "show_reminders", sender: self)
+        } else {
+            presentToolTip(tooltipKey: PanelViewController.TOOLTIP_SWIPE_PRINTERS, segueIdentifier: "swipe_printers_tooltip")
         }
     }
     
@@ -177,9 +180,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             controller.onCompletion = {
                 self.refreshNewSelectedPrinter()
             }
-        }
-        
-        if segue.identifier == "connection_error_details", let controller = segue.destination as? NotRefreshingReasonViewController {
+        } else if segue.identifier == "connection_error_details", let controller = segue.destination as? NotRefreshingReasonViewController {
             controller.popoverPresentationController!.delegate = self
             // Make the popover appear at the middle of the button
             segue.destination.popoverPresentationController!.sourceRect = CGRect(x: notRefreshingButton.frame.size.width/2, y: 0 , width: 0, height: 0)
@@ -188,20 +189,23 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             } else {
                 controller.reason = NSLocalizedString("Unknown", comment: "")
             }
-        }
-
-        if segue.identifier == "show_reminders" {
+        } else if segue.identifier == "show_reminders" {
             segue.destination.popoverPresentationController!.delegate = self
             // Center the popover
             segue.destination.popoverPresentationController!.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY,width: 0,height: 0)
-        }
-        
-        if segue.identifier == "updates_available", let controller = segue.destination as? PluginUpdatesViewController {
+        } else if segue.identifier == "updates_available", let controller = segue.destination as? PluginUpdatesViewController {
             controller.popoverPresentationController!.delegate = self
             controller.availableUpdates = updatesAvailable
             if let titleView = navigationController?.view, let height = tabBarController?.tabBar.frame.size.height {
                 // Center the popover at the navigation bar height
                 controller.popoverPresentationController!.sourceRect = CGRect(x: titleView.bounds.midX, y: height,width: 0,height: 0)
+            }
+        } else if segue.identifier == "swipe_printers_tooltip" {
+            segue.destination.popoverPresentationController!.delegate = self
+            // Center the popover at the navigation bar height
+            if let titleView = navigationController?.view, let height = tabBarController?.tabBar.frame.size.height {
+                // Center the popover at the navigation bar height
+                segue.destination.popoverPresentationController!.sourceRect = CGRect(x: titleView.bounds.midX, y: height,width: 0,height: 0)
             }
         }
     }
@@ -665,6 +669,15 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             }
         }
         return error.localizedDescription
+    }
+    
+    fileprivate func presentToolTip(tooltipKey: String, segueIdentifier: String) {
+        let tooltipShown = UserDefaults.standard.bool(forKey: tooltipKey)
+        let viewShown = view.window != nil
+        if viewShown && !tooltipShown && self.presentedViewController == nil {
+            UserDefaults.standard.set(true, forKey: tooltipKey)
+            self.performSegue(withIdentifier: segueIdentifier, sender: self)
+        }
     }
     
     fileprivate func showAlert(_ title: String, message: String) {

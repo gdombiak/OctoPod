@@ -1,7 +1,7 @@
 import UIKit
 import SafariServices  // Used for opening browser in-app
 
-class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConfigurationDelegate, WatchSessionManagerDelegate {
+class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConfigurationDelegate, WatchSessionManagerDelegate, UITableViewDelegate, UITableViewDataSource {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -10,6 +10,9 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
 
     @IBOutlet weak var refreshEnabledTextLabel: UILabel!
     @IBOutlet weak var gcodeTextLabel: UILabel!
+    @IBOutlet weak var commandsHistoryView: UIView!
+    @IBOutlet weak var commandsHistoryTable: UITableView!
+    @IBOutlet weak var dismissHistoryButton: UIButton!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var terminalTextView: UITextView!
@@ -21,6 +24,10 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
+        // Add a border to the (by default) hidden commands history view
+        commandsHistoryView.layer.borderWidth = 1.5
+        commandsHistoryView.layer.borderColor = UIColor(red: 149/255, green: 170/255, blue: 204/255, alpha: 1.0).cgColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +46,9 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         appConfiguration.delegates.append(self)
         // Listen to changes coming from Apple Watch
         watchSessionManager.delegates.append(self)
+        
+        // Hide commands history table
+        showCommandsHistory(show: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -57,6 +67,15 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     
     // MARK: - GCode operations
 
+    @IBAction func gcodeEntered(_ sender: Any) {
+        // User clicked on gcode field so display commands history if there is something in the history
+        let hide = octoprintClient.terminal.commandsHistory.isEmpty
+        showCommandsHistory(show: !hide)
+        if !hide {
+            commandsHistoryTable.reloadData()
+        }
+    }
+    
     @IBAction func gcodeChanged(_ sender: Any) {
         var buttonEnabled = false
         if let text = gcodeField.text {
@@ -69,8 +88,11 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         if let text = gcodeField.text {
             // We are done editing the field so hide the keyboard
             gcodeField.endEditing(true)
+            // Hide history of sent commands
+            showCommandsHistory(show: false)
             // Send command to OctoPrint
-            octoprintClient.sendCommand(gcode: text.uppercased()) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            let command = text.uppercased()
+            octoprintClient.sendCommand(gcode: command) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
                     // Handle error
                     var message = NSLocalizedString("Failed to send GCode command", comment: "")
@@ -88,6 +110,8 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
                     }
                 }
             }
+            // Add new command to the history of sent commands
+            octoprintClient.terminal.addCommand(command: command)
         }
     }
 
@@ -119,6 +143,44 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             sdFilterButton.setTitle(NSLocalizedString("Include SD", comment: "Include SD messages in the terminal"), for: .normal)
         }
         self.updateTerminalLogs()
+    }
+    
+    // MARK: - Commands History
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return commandsHistoryTable.isHidden ? 0 : 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return octoprintClient.terminal.commandsHistory.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "sent_command", for: indexPath)
+        
+        // Configure the cell...
+        cell.textLabel?.text = octoprintClient.terminal.commandsHistory[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Update gcode to send from history selection
+        gcodeField.text = octoprintClient.terminal.commandsHistory[indexPath.row]
+        // Hide history of sent commands
+        showCommandsHistory(show: false)
+        // Enable send button
+        sendGCodeButton.isEnabled = true
+    }
+    
+    @IBAction func dismissCommandsHistory(_ sender: Any) {
+        showCommandsHistory(show: false)
+    }
+    
+    fileprivate func showCommandsHistory(show: Bool) {
+        commandsHistoryTable.isHidden = !show
+        dismissHistoryButton.isHidden = !show
+        commandsHistoryView.isHidden = !show
     }
     
     // MARK: - OctoPrint Web operations
