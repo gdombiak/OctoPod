@@ -256,9 +256,12 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             let log = terminal.filters.isEmpty ? terminal.logs : terminal.filteredLog
             let logsText = log.joined(separator: "\n")
             terminalTextView.text = logsText
-            // Keep scrolling to the bottom
-            let bottom = NSMakeRange(terminalTextView.text.count - 1, 1)
-            terminalTextView.scrollRangeToVisible(bottom)
+            // If text is not empty then scroll to bottom (this prevents an app crash with NSBigMutableString)
+            if terminalTextView.text.count > 1 {
+                // Keep scrolling to the bottom
+                let bottom = NSMakeRange(terminalTextView.text.count - 1, 1)
+                terminalTextView.scrollRangeToVisible(bottom)
+            }
         }
     }
 
