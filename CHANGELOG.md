@@ -1,8 +1,24 @@
 # Change Log
 
+## [2.6](https://github.com/gdombiak/OctoPod/tree/2.5) (2019-07-15)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.5...2.6)
+
+**Implemented enhancements:**
+
+- Display history of gcode commands [\#201](https://github.com/gdombiak/OctoPod/issues/201)
+- Quick switch between printers [\#200](https://github.com/gdombiak/OctoPod/issues/200)
+- Alert when there are new plugin versions [\#198](https://github.com/gdombiak/OctoPod/issues/198)
+- Add support for chamber temperature [\#197](https://github.com/gdombiak/OctoPod/issues/197)
+- Allow user to select sound to use for notifications [\#195](https://github.com/gdombiak/OctoPod/issues/195)
+- Allow to suppress temp and SD messages from Terminal  [\#153](https://github.com/gdombiak/OctoPod/issues/153)
+- Add support for push notifications [\#83](https://github.com/gdombiak/OctoPod/issues/83)
+
+**Fixed bugs:**
+
+- Websockets seem to be crashing for some users [\#202](https://github.com/gdombiak/OctoPod/issues/202)
+
 ## [2.5](https://github.com/gdombiak/OctoPod/tree/2.5) (2019-06-30)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.4...2.5)
-
 
 **Implemented enhancements:**
 
