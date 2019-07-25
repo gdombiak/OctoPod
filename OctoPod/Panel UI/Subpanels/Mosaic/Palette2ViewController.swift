@@ -35,8 +35,8 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
     
     var selectedPort: String?
     var connected: Bool?
-    var pingsHistory: Array<Dictionary<Int,String>>?
-    var pongsHistory: Array<Dictionary<Int,String>>?
+    var pingsHistory: Array<Dictionary<String,Any>>?
+    var pongsHistory: Array<Dictionary<String,Any>>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,6 +145,12 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
             controller.popoverPresentationController!.delegate = self
             // Set last selected port
             controller.selectedPort = selectedPort
+        } else if segue.identifier == "show_ping_history", let controller = segue.destination as? PingPongHistoryViewController {
+            controller.history = pingsHistory
+            controller.title = NSLocalizedString("Ping History", comment: "")
+        } else if segue.identifier == "show_pong_history", let controller = segue.destination as? PingPongHistoryViewController {
+            controller.history = pongsHistory
+            controller.title = NSLocalizedString("Pong History", comment: "")
         }
     }
 
@@ -228,16 +234,44 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
                 } else if command == "selectedPort", let port = data["data"] as? String {
                     // Current port being used by OctoPrint server to connect to Palette 2
                     selectedPort = port
-                } else if command == "pings", let pings = data["data"] as? Array<Dictionary<Int,String>> {
+                } else if command == "pings", let pings = data["data"] as? Array<Dictionary<String,Any>> {
                     // History of pings to Palette 2 device.
                     // A Ping is a checkpoint that compares the filament used with the amount expected
                     // Adjustments are automacatlly done by Palette based on this information
                     pingsHistory = pings
-                } else if command == "pongs", let pongs = data["data"] as? Array<Dictionary<Int,String>> {
+                    if pings.isEmpty {
+                        // Reset displayed values
+                        DispatchQueue.main.async {
+                            self.resetLatestPingUI()
+                        }
+                    } else {
+                        // Show latest ping values
+                        if let messages = Palette2ViewController.pingPongMessage(entry: pings[0]) {
+                            DispatchQueue.main.async {
+                                self.latestPingNumberValueLabel.text = messages.number
+                                self.latestPingOffsetValueLabel.text = messages.percent
+                            }
+                        }
+                    }
+                } else if command == "pongs", let pongs = data["data"] as? Array<Dictionary<String,Any>> {
                     // History of pongs from Palette 2 device
                     // Pongs help Palette make sure its own filament production is accurate
                     // Adjustments are automacatlly done by Palette based on this information
                     pongsHistory = pongs
+                    if pongs.isEmpty {
+                        // Reset displayed values
+                        DispatchQueue.main.async {
+                            self.resetLatestPongUI()
+                        }
+                    } else {
+                        // Show latest pong values
+                        if let messages = Palette2ViewController.pingPongMessage(entry: pongs[0]) {
+                            DispatchQueue.main.async {
+                                self.latestPongNumberValueLabel.text = messages.number
+                                self.latestPongOffsetValueLabel.text = messages.percent
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -270,8 +304,16 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
         self.spliceCurrentLabel.text = "0"
         self.spliceTotalLabel.text = "0"
         self.filamentUsedValueLabel.text = "0"
+        resetLatestPingUI()
+        resetLatestPongUI()
+    }
+    
+    fileprivate func resetLatestPingUI() {
         self.latestPingNumberValueLabel.text = "0"
         self.latestPingOffsetValueLabel.text = "-- %"
+    }
+    
+    fileprivate func resetLatestPongUI() {
         self.latestPongNumberValueLabel.text = "0"
         self.latestPongOffsetValueLabel.text = "-- %"
     }
@@ -341,6 +383,15 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
     
     fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
         UIUtils.showConfirm(presenter: self, message: message, yes: yes, no: no)
+    }
+    
+    // MARK: - Static functions
+    
+    static func pingPongMessage(entry: Dictionary<String,Any>) -> (number: String, percent: String)? {
+        if let number = entry["number"] as? Int, let percent = entry["percent"] as? String {
+            return ("\(number)" , percent == "MISSED" ? NSLocalizedString("Missed", comment: "") : "\(percent) %")
+        }
+        return nil
     }
 }
 

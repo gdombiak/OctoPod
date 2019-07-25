@@ -156,7 +156,7 @@ class Theme {
             case .Dark:
                 return UIColor(red: 0/255, green: 122.4/255, blue: 255/255, alpha: 1.0)
             case .Orange:
-                return UIColor(red: 242/255, green: 105/255, blue: 45/255, alpha: 1.0)
+                return UIColor(red: 247/255, green: 150/255, blue: 109/255, alpha: 1.0)
             }
         }
 
