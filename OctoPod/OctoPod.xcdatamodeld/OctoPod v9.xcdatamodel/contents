@@ -19,6 +19,9 @@
         <attribute name="octopodPluginInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="octopodPluginLanguage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="octopodPluginPrinterName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="palette2AutoConnect" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="palette2CanvasInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="palette2Installed" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pluginsUpdateNextCheck" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="pluginsUpdateSnooze" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,6 +37,6 @@
         <attribute name="wemoplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Printer" positionX="-63" positionY="-18" width="128" height="510"/>
+        <element name="Printer" positionX="-63" positionY="-18" width="128" height="555"/>
     </elements>
 </model>

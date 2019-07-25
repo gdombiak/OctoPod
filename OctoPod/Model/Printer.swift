@@ -40,6 +40,9 @@ class Printer: NSManagedObject {
     @NSManaged var notificationToken: String?  // APNS token that was last registered with this OctoPrint instance
     @NSManaged var octopodPluginPrinterName: String?  // APNS notifications will use printer name as title
     @NSManaged var octopodPluginLanguage: String?  // APNS notifications will be sent with the specified language
+    @NSManaged var palette2Installed: Bool
+    @NSManaged var palette2AutoConnect: Bool    
+    @NSManaged var palette2CanvasInstalled: Bool
     
     // Plugin updates tracking
     @NSManaged var pluginsUpdateNextCheck: Date? // Date when we can check again for plugin updates

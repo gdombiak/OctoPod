@@ -551,6 +551,59 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.snoozeAPNSEvents(eventCode: eventCode, minutes: minutes, callback: callback)
     }
 
+    // MARK: - Palette 2 Plugin
+    
+    /// Request Palette 2 plugin to send its status via websockets. If request was successful we get back a 200
+    /// and status is reported via websockets
+    /// - parameter callback: callback to execute when HTTP request is done
+    func palette2Status(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.palette2Status(plugin: Plugins.PALETTE_2, callback: callback)
+    }
+
+    /// Request Palette 2 plugin to send list of available ports via websockets. These are the ports available on
+    /// the server where OctoPrint runs so that Palette 2 can connect. If request was successful we get back a 200
+    /// and status is reported via websockets
+    /// - parameter callback: callback to execute when HTTP request is done
+    func palette2Ports(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.palette2Ports(plugin: Plugins.PALETTE_2, callback: callback)
+    }
+    
+    /// Request Palette 2 plugin to connect to Palette device. If request was successful we get back a 200
+    /// and status is reported via websockets
+    /// - parameter port: Port that Palette device is connected to on the OctoPrint server
+    /// - parameter callback: callback to execute when HTTP request is done
+    func palette2Connect(port: String?, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.palette2Connect(plugin: Plugins.PALETTE_2, port: port, callback: callback)
+    }
+
+    /// Request Palette 2 plugin to disconnect from Palette device. If request was successful we get back a 200
+    /// and status is reported via websockets
+    /// - parameter callback: callback to execute when HTTP request is done
+    func palette2Disconnect(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.palette2Disconnect(plugin: Plugins.PALETTE_2, callback: callback)
+    }
+    
+    /// Request Palette 2 plugin to tell Palette device to start printing. If request was successful we
+    /// get back a 200
+    /// - parameter callback: callback to execute when HTTP request is done
+    func palette2Print(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.palette2Print(plugin: Plugins.PALETTE_2, callback: callback)
+    }
+    
+    /// Request Palette 2 plugin to tell Palette device to perform a cut. If request was successful we
+    /// get back a 200
+    /// - parameter callback: callback to execute when HTTP request is done
+    func palette2Cut(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.palette2Cut(plugin: Plugins.PALETTE_2, callback: callback)
+    }
+    
+    /// Request Palette 2 plugin to tell Palette device to perform a clear. If request was successful we
+    /// get back a 200
+    /// - parameter callback: callback to execute when HTTP request is done
+    func palette2Clear(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.palette2Clear(plugin: Plugins.PALETTE_2, callback: callback)
+    }
+    
     // MARK: - Delegates operations
     
     func remove(octoPrintClientDelegate toRemove: OctoPrintClientDelegate) {
@@ -673,6 +726,8 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         updatePrinterFromTasmotaPlugin(printer: printer, plugins: plugins)
         updatePrinterFromCancelObjectPlugin(printer: printer, plugins: plugins)
         updatePrinterFromOctoPodPlugin(printer: printer, plugins: plugins)
+        updatePrinterFromPalette2Plugin(printer: printer, plugins: plugins)
+        updatePrinterFromPalette2CanvasPlugin(printer: printer, plugins: plugins)
     }
     
     fileprivate func updatePrinterFromMultiCamPlugin(printer: Printer, plugins: NSDictionary) {
@@ -874,6 +929,53 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
                 delegate.octoPodPluginChanged(installed: installed)
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromPalette2Plugin(printer: Printer, plugins: NSDictionary) {
+        var installed = false
+        var autoConnect = false
+        if let palette2Plugin = plugins[Plugins.PALETTE_2] as? NSDictionary {
+            // Palette2 plugin is installed
+            installed = true
+            if let autoconnect = palette2Plugin["autoconnect"] as? Bool {
+                autoConnect = autoconnect
+            }
+        }
+        if printer.palette2Installed != installed || printer.palette2AutoConnect != autoConnect {
+            let newObjectContext = printerManager.newPrivateContext()
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+            // Update flag that tracks if Palette2 plugin is installed
+            printerToUpdate.palette2Installed = installed
+            printerToUpdate.palette2AutoConnect = autoConnect
+            // Persist updated printer
+            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+            
+            // Notify listeners of change
+            for delegate in octoPrintSettingsDelegates {
+                delegate.palette2Changed(installed: installed)
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromPalette2CanvasPlugin(printer: Printer, plugins: NSDictionary) {
+        var installed = false
+        if let _ = plugins[Plugins.PALETTE_2_CANVAS] as? NSDictionary {
+            // Palette2 Canvas plugin is installed
+            installed = true
+        }
+        if printer.palette2CanvasInstalled != installed {
+            let newObjectContext = printerManager.newPrivateContext()
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+            // Update flag that tracks if Palette2 Canvas plugin is installed
+            printerToUpdate.palette2CanvasInstalled = installed
+            // Persist updated printer
+            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+            
+            // Notify listeners of change
+            for delegate in octoPrintSettingsDelegates {
+                delegate.palette2CanvasAvailabilityChanged(installed: installed)
             }
         }
     }

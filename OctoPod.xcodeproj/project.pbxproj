@@ -200,6 +200,8 @@
 		3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */; };
 		3DFA8074210E30C100B5BFAA /* CloudFilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA8073210E30C100B5BFAA /* CloudFilesManager.swift */; };
 		3DFE67CE218598F300F33019 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DFE67D0218598F300F33019 /* Localizable.strings */; };
+		583827DE22E36B9100784706 /* Palette2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583827DD22E36B9100784706 /* Palette2ViewController.swift */; };
+		583827E122E62D8700784706 /* Palette2PortsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583827E022E62D8700784706 /* Palette2PortsViewController.swift */; };
 		8267C0CF229350E955F7AF71 /* Pods_OctoPod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF04586ED8A4BC29EF06604 /* Pods_OctoPod.framework */; };
 /* End PBXBuildFile section */
 
@@ -534,6 +536,8 @@
 		3DFE67D4218598FC00F33019 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DFE67D5218598FD00F33019 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DFE67D6218598FD00F33019 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		583827DD22E36B9100784706 /* Palette2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette2ViewController.swift; sourceTree = "<group>"; };
+		583827E022E62D8700784706 /* Palette2PortsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette2PortsViewController.swift; sourceTree = "<group>"; };
 		A9F913620E58D596BED0BDF3 /* Pods_OctoPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctoPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF04586ED8A4BC29EF06604 /* Pods_OctoPod.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OctoPod.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA67A6E786F508F8752C975C /* Pods-OctoPod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctoPod.release.xcconfig"; path = "Pods/Target Support Files/Pods-OctoPod/Pods-OctoPod.release.xcconfig"; sourceTree = "<group>"; };
@@ -999,6 +1003,7 @@
 				3D74FA2821251BE600DA2CB3 /* IPPlugViewController.swift */,
 				3D88C3E62193F17800BC84DD /* CancelObjectViewController.swift */,
 				3D8AB6A521A73D3700E81CE5 /* SystemCommandsViewController.swift */,
+				583827DF22E62D4D00784706 /* Mosaic */,
 			);
 			path = Subpanels;
 			sourceTree = "<group>";
@@ -1029,6 +1034,15 @@
 				3DFA8073210E30C100B5BFAA /* CloudFilesManager.swift */,
 			);
 			path = "iCloud Files";
+			sourceTree = "<group>";
+		};
+		583827DF22E62D4D00784706 /* Mosaic */ = {
+			isa = PBXGroup;
+			children = (
+				583827DD22E36B9100784706 /* Palette2ViewController.swift */,
+				583827E022E62D8700784706 /* Palette2PortsViewController.swift */,
+			);
+			path = Mosaic;
 			sourceTree = "<group>";
 		};
 		8A0275A97AEECD00BBCBA6F6 /* Pods */ = {
@@ -1447,6 +1461,7 @@
 				3DD9E95921084BFD00726DFD /* ThemedUITableViewController.swift in Sources */,
 				3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */,
 				3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */,
+				583827DE22E36B9100784706 /* Palette2ViewController.swift in Sources */,
 				3D33B7A1213F6A0D002A4BE3 /* UIUtils.swift in Sources */,
 				3D78BA9F21039D770090D79A /* Terminal.swift in Sources */,
 				3D8DA01E2144EDCE00F5FD07 /* SupportViewController.swift in Sources */,
@@ -1494,6 +1509,7 @@
 				3D0FA48321047AFA0084FF52 /* FilesTreeViewController.swift in Sources */,
 				3DE3FE6D2154B9CE000D7D2A /* Plugins.swift in Sources */,
 				3D1A935921326B3C0050ED9A /* Command.swift in Sources */,
+				583827E122E62D8700784706 /* Palette2PortsViewController.swift in Sources */,
 				3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */,
 				3D1A9361213282190050ED9A /* CustomControlsViewController.swift in Sources */,
 				3D42AC1121731494004D9FD0 /* AppConfigurationDelegate.swift in Sources */,

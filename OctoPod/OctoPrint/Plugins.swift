@@ -13,4 +13,6 @@ struct Plugins {
     static let TASMOTA = "tasmota"                      // Considered an IP Plug plugin
     static let CANCEL_OBJECT = "cancelobject"
     static let OCTOPOD = "octopod"
+    static let PALETTE_2 = "palette2"
+    static let PALETTE_2_CANVAS = "canvas"
 }

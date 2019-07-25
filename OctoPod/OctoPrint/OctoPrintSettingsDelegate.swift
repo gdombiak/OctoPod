@@ -26,13 +26,23 @@ protocol OctoPrintSettingsDelegate: class {
     func sdSupportChanged(sdSupport: Bool)
     
     /// Notification that availability of Cancel Object plugin has changed
+    /// - parameter installed: True if plugin is installed in OctoPrint
     func cancelObjectAvailabilityChanged(installed: Bool)
     
     /// Notification that OctoPrint's appearance has changed. A new color or its transparency has changed
     func octoPrintColorChanged(color: String)
 
     /// Notification that availability of OctoPod plugin has changed
+    /// - parameter installed: True if plugin is installed in OctoPrint
     func octoPodPluginChanged(installed: Bool)
+
+    /// Notification that availability of Palette2 plugin has changed or its settings changed
+    /// - parameter installed: True if plugin is installed in OctoPrint
+    func palette2Changed(installed: Bool)
+
+    /// Notification that availability of Palette2 Canvas plugin has changed
+    /// - parameter installed: True if plugin is installed in OctoPrint
+    func palette2CanvasAvailabilityChanged(installed: Bool)
 }
 
 
@@ -57,7 +67,7 @@ extension OctoPrintSettingsDelegate {
     func sdSupportChanged(sdSupport: Bool) {
     }
     
-    func cancelObjectAvailabilityChanged(installed: Bool) {        
+    func cancelObjectAvailabilityChanged(installed: Bool) {
     }
 
     func octoPrintColorChanged(color: String) {
@@ -65,4 +75,11 @@ extension OctoPrintSettingsDelegate {
 
     func octoPodPluginChanged(installed: Bool){
     }
+    
+    func palette2Changed(installed: Bool) {
+    }
+    
+    func palette2CanvasAvailabilityChanged(installed: Bool) {        
+    }
+
 }

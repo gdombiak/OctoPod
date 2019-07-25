@@ -741,6 +741,98 @@ class OctoPrintRESTClient {
         }
     }
 
+    // MARK: - Palette 2 Plugin
+    
+    /// Request Palette 2 plugin to send its status via websockets. If request was successful we get back a 200
+    /// and status is reported via websockets
+    /// - parameters:
+    ///     - plugin: Identifier of the Palette 2 plugin. See Plugins structure
+    func palette2Status(plugin: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        let json : NSMutableDictionary = NSMutableDictionary()
+        json["command"] = "uiUpdate"
+        pluginCommand(plugin: plugin, json: json) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            callback(response.statusCode == 200, error, response)
+        }
+    }
+    
+    /// Request Palette 2 plugin to send list of available ports via websockets. These are the ports available on
+    /// the server where OctoPrint runs so that Palette 2 can connect. If request was successful we get back a 200
+    /// and status is reported via websockets
+    /// - parameters:
+    ///     - plugin: Identifier of the Palette 2 plugin. See Plugins structure
+    func palette2Ports(plugin: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        let json : NSMutableDictionary = NSMutableDictionary()
+        json["command"] = "displayPorts"
+        json["condition"] = "opening"  // Pass this parameter so that autoconnect is turned off
+        pluginCommand(plugin: plugin, json: json) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            callback(response.statusCode == 200, error, response)
+        }
+    }
+    
+    /// Request Palette 2 plugin to connect to Palette device. If request was successful we get back a 200
+    /// and status is reported via websockets
+    /// - parameters:
+    ///     - plugin: Identifier of the Palette 2 plugin. See Plugins structure
+    ///     - port: Port that Palette device is connected to on the OctoPrint server
+    func palette2Connect(plugin: String, port: String?, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        let json : NSMutableDictionary = NSMutableDictionary()
+        json["command"] = "connectOmega"
+        if let port = port {
+            json["port"] = port
+        }
+        pluginCommand(plugin: plugin, json: json) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            callback(response.statusCode == 200, error, response)
+        }
+    }
+
+    /// Request Palette 2 plugin to disconnect from Palette device. If request was successful we get back a 200
+    /// and status is reported via websockets
+    /// - parameters:
+    ///     - plugin: Identifier of the Palette 2 plugin. See Plugins structure
+    func palette2Disconnect(plugin: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        let json : NSMutableDictionary = NSMutableDictionary()
+        json["command"] = "disconnectPalette2"
+        pluginCommand(plugin: plugin, json: json) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            callback(response.statusCode == 200, error, response)
+        }
+    }
+    
+    /// Request Palette 2 plugin to tell Palette device to start printing. If request was successful we
+    /// get back a 200
+    /// - parameters:
+    ///     - plugin: Identifier of the Palette 2 plugin. See Plugins structure
+    func palette2Print(plugin: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        let json : NSMutableDictionary = NSMutableDictionary()
+        json["command"] = "startPrint"
+        pluginCommand(plugin: plugin, json: json) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            callback(response.statusCode == 200, error, response)
+        }
+    }
+    
+    /// Request Palette 2 plugin to tell Palette device to perform a cut. If request was successful we
+    /// get back a 200
+    /// - parameters:
+    ///     - plugin: Identifier of the Palette 2 plugin. See Plugins structure
+    func palette2Cut(plugin: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        let json : NSMutableDictionary = NSMutableDictionary()
+        json["command"] = "sendCutCmd"
+        pluginCommand(plugin: plugin, json: json) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            callback(response.statusCode == 200, error, response)
+        }
+    }
+    
+    /// Request Palette 2 plugin to tell Palette device to perform a clear. If request was successful we
+    /// get back a 200
+    /// - parameters:
+    ///     - plugin: Identifier of the Palette 2 plugin. See Plugins structure
+    func palette2Clear(plugin: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        let json : NSMutableDictionary = NSMutableDictionary()
+        json["command"] = "clearPalette2"
+        pluginCommand(plugin: plugin, json: json) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            callback(response.statusCode == 200, error, response)
+        }
+    }
+    
     // MARK: - Low level operations
     
     fileprivate func connectionPost(httpClient: HTTPClient, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {

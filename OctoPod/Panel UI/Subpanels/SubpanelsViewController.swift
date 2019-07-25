@@ -66,7 +66,10 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             if printer.cancelObjectInstalled {
                 orderedViewControllers.append(createCancelObjectVC(mainboard))
             }
-        }        
+            if printer.palette2Installed {
+                orderedViewControllers.append(createPalette2VC(mainboard))
+            }
+        }
         orderedViewControllers.append(mainboard.instantiateViewController(withIdentifier: "SystemCommandsViewController"))
 
         // Set number of pages in the page control
@@ -123,6 +126,8 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             addRemoveIPPlugPluginVC(plugin: Plugins.TASMOTA, add: addVC)
             
             addRemoveVC(add: printer.cancelObjectInstalled, vcIdentifier: { $0.isMember(of: CancelObjectViewController.self) }, createVC: createCancelObjectVC)
+
+            addRemoveVC(add: printer.palette2Installed, vcIdentifier: { $0.isMember(of: Palette2ViewController.self) }, createVC: createPalette2VC)
         }
         // Notify subpanels of change of printer (OctoPrint)
         for case let subpanel as SubpanelViewController in orderedViewControllers {
@@ -206,6 +211,14 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
     func cancelObjectAvailabilityChanged(installed: Bool) {
         addRemoveVC(add: installed, vcIdentifier: { $0.isMember(of: CancelObjectViewController.self) }, createVC: createCancelObjectVC)
     }
+    
+    func palette2Changed(installed: Bool) {
+        addRemoveVC(add: installed, vcIdentifier: { $0.isMember(of: Palette2ViewController.self) }, createVC: createPalette2VC)
+    }
+    
+    func palette2CanvasAvailabilityChanged(installed: Bool) {
+        // Implement this later. Do nothing for now
+    }
 
     // MARK: - Private functions
     
@@ -271,6 +284,10 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             }
             fatalError("Failed to instantiate an IPPlugViewController")
         }
+    }
+    
+    fileprivate func createPalette2VC(_ mainboard: UIStoryboard) -> UIViewController {
+        return mainboard.instantiateViewController(withIdentifier: "Palette2ViewController")
     }
     
     fileprivate func addRemoveIPPlugPluginVC(plugin: String, add: Bool) {
