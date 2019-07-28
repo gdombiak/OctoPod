@@ -81,7 +81,7 @@ class CancelObjectViewController: ThemedDynamicUITableViewController, SubpanelVi
     }
     
     func position() -> Int {
-        return 5
+        return 20
     }
 
     // MARK: - Button operations

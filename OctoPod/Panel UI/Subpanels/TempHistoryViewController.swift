@@ -79,7 +79,6 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         }
     }
     
-    // Notification that OctoPrint state has changed. This may include printer status information
     func currentStateUpdated(event: CurrentStateEvent) {
         if lineChartView == nil {
             // UI is still not ready so do not refresh yet
@@ -90,10 +89,8 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         }
     }
 
-    // Returns the position where this VC should appear in SubpanelsViewController's UIPageViewController
-    // SubpanelsViewController's will sort subpanels by this number when being displayed
     func position() -> Int {
-        return 1
+        return 10
     }
     
     // MARK: - Private functions

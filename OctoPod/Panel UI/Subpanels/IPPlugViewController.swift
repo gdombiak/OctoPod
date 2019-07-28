@@ -61,15 +61,12 @@ class IPPlugViewController: ThemedDynamicUITableViewController, SubpanelViewCont
         }
     }
     
-    // Notification that OctoPrint state has changed. This may include printer status information
     func currentStateUpdated(event: CurrentStateEvent) {
         // Do nothing
     }
     
-    // Returns the position where this VC should appear in SubpanelsViewController's UIPageViewController
-    // SubpanelsViewController's will sort subpanels by this number when being displayed
     func position() -> Int {
-        return 4
+        return 40
     }
     
     // MARK: - Table view data source

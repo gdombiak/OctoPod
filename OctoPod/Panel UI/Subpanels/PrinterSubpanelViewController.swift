@@ -147,7 +147,6 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         clearValues()
     }
     
-    // Notification that OctoPrint state has changed. This may include printer status information
     func currentStateUpdated(event: CurrentStateEvent) {
         // Check if we should prompt user to rate app
         checkRateApp(event: event)
@@ -234,8 +233,6 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         }
     }
     
-    // Returns the position where this VC should appear in SubpanelsViewController's UIPageViewController
-    // SubpanelsViewController's will sort subpanels by this number when being displayed
     func position() -> Int {
         return 0
     }

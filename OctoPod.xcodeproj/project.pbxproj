@@ -1000,12 +1000,12 @@
 				3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */,
 				3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */,
 				3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */,
-				3D1A93662132F5A50050ED9A /* Custom Controls */,
+				583827DF22E62D4D00784706 /* Mosaic */,
+				3D88C3E62193F17800BC84DD /* CancelObjectViewController.swift */,
 				3D74FA2621251BCF00DA2CB3 /* PSUControlViewController.swift */,
 				3D74FA2821251BE600DA2CB3 /* IPPlugViewController.swift */,
-				3D88C3E62193F17800BC84DD /* CancelObjectViewController.swift */,
+				3D1A93662132F5A50050ED9A /* Custom Controls */,
 				3D8AB6A521A73D3700E81CE5 /* SystemCommandsViewController.swift */,
-				583827DF22E62D4D00784706 /* Mosaic */,
 			);
 			path = Subpanels;
 			sourceTree = "<group>";

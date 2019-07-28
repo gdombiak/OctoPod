@@ -75,7 +75,8 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         // Set number of pages in the page control
         pageControl.numberOfPages = orderedViewControllers.count
         
-        renderFirstVC()
+        // Sort VCs and Render them
+        sortAndRender()
         
         // Listen to changes to OctoPrint Settings
         octoprintClient.octoPrintSettingsDelegates.append(self)
@@ -222,6 +223,15 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
 
     // MARK: - Private functions
     
+    fileprivate func sortAndRender() {
+        // Sort VCs since added VC might not need to go last
+        self.orderedViewControllers.sort(by: { (vc1: UIViewController, vc2: UIViewController) -> Bool in
+            (vc1 as! SubpanelViewController).position() < (vc2 as! SubpanelViewController).position()
+        })
+        
+        renderFirstVC()
+    }
+    
     fileprivate func renderFirstVC() {
         // Show first page as the initial page
         if let firstViewController = orderedViewControllers.first {
@@ -242,12 +252,8 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                 DispatchQueue.main.async {
                     let mainboard = UIStoryboard(name: "Main", bundle: nil)
                     self.orderedViewControllers.append(createVC(mainboard))
-                    // Sort VCs since added VC might not need to go last
-                    self.orderedViewControllers.sort(by: { (vc1: UIViewController, vc2: UIViewController) -> Bool in
-                        (vc1 as! SubpanelViewController).position() < (vc2 as! SubpanelViewController).position()
-                    })
-                    // Force refresh of cached VCs
-                    self.renderFirstVC()
+                    // Sort VCs and Render them
+                    self.sortAndRender()
                     // Update number of pages in page control
                     self.pageControl.numberOfPages = self.orderedViewControllers.count
                 }

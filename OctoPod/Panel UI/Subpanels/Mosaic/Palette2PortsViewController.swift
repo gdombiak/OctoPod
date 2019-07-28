@@ -50,7 +50,7 @@ class Palette2PortsViewController: ThemedDynamicUITableViewController, OctoPrint
         // Update selected port
         selectedPort = ports?[indexPath.row]
         // Close window
-        dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "backFromChangePorts", sender: self)
     }
 
     /*

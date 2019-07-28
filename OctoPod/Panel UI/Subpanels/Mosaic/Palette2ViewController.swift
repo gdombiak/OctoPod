@@ -177,7 +177,7 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
     }
     
     func position() -> Int {
-        return 7
+        return 11
     }
     
     // MARK: - UIPopoverPresentationControllerDelegate
