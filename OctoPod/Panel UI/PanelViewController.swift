@@ -558,9 +558,11 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
     
     fileprivate func refreshNewSelectedPrinter() {
+        // Connect to new selected printer and update main page
+        self.showDefaultPrinter()
+        // Update subviews (now that we are connected to new printer)
         self.subpanelsViewController?.printerSelectedChanged()
         self.camerasViewController?.printerSelectedChanged()
-        self.showDefaultPrinter()
     }
 
     fileprivate func updateConnectButton(printerConnected: Bool) {
