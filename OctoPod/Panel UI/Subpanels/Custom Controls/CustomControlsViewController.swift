@@ -53,6 +53,14 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
         return 44
     }
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return footerView.isHidden ? 1 : 50
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "container_cell", for: indexPath)
 

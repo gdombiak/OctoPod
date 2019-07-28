@@ -76,6 +76,16 @@ class SystemCommandsViewController: ThemedDynamicUITableViewController, Subpanel
         return appConfiguration.appLocked() ? nil : indexPath
     }
 
+    // MARK: - Table view operations
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+
     // MARK: - Refresh
     
     @IBAction func refreshControls(_ sender: UIRefreshControl) {

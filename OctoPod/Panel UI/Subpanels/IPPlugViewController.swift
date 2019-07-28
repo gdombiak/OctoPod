@@ -114,6 +114,14 @@ class IPPlugViewController: ThemedDynamicUITableViewController, SubpanelViewCont
         return 44
     }
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
     // MARK: - OctoPrintPluginsDelegate
     
     func pluginMessage(plugin: String, data: NSDictionary) {

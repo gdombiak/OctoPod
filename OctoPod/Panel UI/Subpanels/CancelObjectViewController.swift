@@ -51,6 +51,14 @@ class CancelObjectViewController: ThemedDynamicUITableViewController, SubpanelVi
         return 44
     }
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return footerView.isHidden ? 1 : 50
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cancel_object_cell", for: indexPath) as! CancelObjectViewCell
         
