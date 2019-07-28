@@ -330,6 +330,12 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
 
     func handleConnectionError(error: Error?, response: HTTPURLResponse) {
         if let nsError = error as NSError?, let url = response.url {
+            if let printerHostname = printerManager.getDefaultPrinter()?.hostname, let printerURL = URL(string: printerHostname) {
+                if printerURL.host != url.host || printerURL.port != url.port {
+                    // Do not show connection error alers of other printers. This might happen when quickly switching between printers
+                    return
+                }
+            }
             if nsError.code == Int(CFNetworkErrors.cfurlErrorTimedOut.rawValue) && url.host == "octopi.local" {
                 self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Cannot reach 'octopi.local' over mobile network or service is down", comment: ""))
             } else if nsError.code == Int(CFNetworkErrors.cfurlErrorTimedOut.rawValue) {
