@@ -494,12 +494,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
 
                 // Update stored printers
                 printerManager.changeToDefaultPrinter(newPrinter)
-                // Ask octoprintClient to connect to new OctoPrint server
-                octoprintClient.connectToServer(printer: newPrinter)
-                // Notify listeners of this change (ugly hack: use watch session listeners. Should be refactored)
-                for delegate in watchSessionManager.delegates {
-                    delegate.defaultPrinterChanged()
-                }
+                // Update Apple Watch with new selected printer
+                watchSessionManager.pushPrinters()
+                // Refresh UI to newly selected printer
+                self.refreshNewSelectedPrinter()
             }
         }
     }
