@@ -331,7 +331,7 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
                 self.resetUI()
             }
         }
-        // Request OctoPrint plugin to send latest status
+        // Request OctoPrint plugin to send latest status. Results will come via websockets. See #pluginMessage(plugin:data:)
         octoprintClient.palette2Status { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if !requested {
                 self.showAndLogAlert(error, response, "Palette - Error requesting status", NSLocalizedString("Failed to request status", comment: ""))

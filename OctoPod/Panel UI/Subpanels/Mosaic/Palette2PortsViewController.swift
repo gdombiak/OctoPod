@@ -15,6 +15,9 @@ class Palette2PortsViewController: ThemedDynamicUITableViewController, OctoPrint
         super.viewWillAppear(animated)
         // Listen to changes to OctoPrint Plugin messages
         octoprintClient.octoPrintPluginsDelegates.append(self)
+
+        // Fetch and render available ports
+        refreshPorts(done: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
