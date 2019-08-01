@@ -215,7 +215,7 @@
 "Failed to request to execute command" = "Kunde inte begära att köra kommando";
 
 /* (No Comment) */
-"Failed to request to extrude" = "Kunde inte begära att mata ut";
+"Failed to request to extrude" = "Kunde inte begära att extrude";
 
 /* (No Comment) */
 "Failed to request to go home" = "Kunde inte begära att gå hem";
@@ -224,7 +224,7 @@
 "Failed to request to print file" = "Kunde inte begära att skriva ut fil";
 
 /* (No Comment) */
-"Failed to request to retract" = "Kunde inte begära att dra tillbaka";
+"Failed to request to retract" = "Kunde inte begära att retract";
 
 /* (No Comment) */
 "Failed to request to turn power off" = "Kunde inte begära att stänga av strömmen";

@@ -140,7 +140,7 @@
 "sRkyIL" = "Kunde inte starta om jobb (${statusCode})";
 
 /* (No Comment) */
-"tKDODp" = "Återstående utskriftstid";
+"tKDODp" = "Tid kvar";
 
 /* (No Comment) */
 "UC9Zrq" = "Bäddens temperatur var inställt till ${temperature}";
