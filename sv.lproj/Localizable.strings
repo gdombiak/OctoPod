@@ -1,0 +1,497 @@
+/* (No Comment) */
+"1 day ago" = "1 dag sedan";
+
+/* (No Comment) */
+"1 hour ago" = "1 timme sedan";
+
+/* (No Comment) */
+"1 minute ago" = "1 minut sedan";
+
+/* (No Comment) */
+"1 week ago" = "1 vecka sedan";
+
+/* (No Comment) */
+"Actual Bed" = "Aktuell bädd";
+
+/* No comment provided by engineer. */
+"Actual Chamber" = "Aktuell kammare";
+
+/* (No Comment) */
+"Actual Extruder" = "Aktuell extruder";
+
+/* (No Comment) */
+"Actual Extruder 2" = "Aktuell extruder 2";
+
+/* (No Comment) */
+"Apply" = "Verkställ";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Autentisering misslyckades";
+
+/* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
+"Bad Certificate or SSL Problem" = "Ogiltigt certifikat eller SSL-problem";
+
+/* (No Comment) */
+"Bed cooled" = "Skrivarbädd under angiven temperaturgräns";
+
+/* No comment provided by engineer. */
+"Bed Variance" = "Bäddvariation";
+
+/* (No Comment) */
+"Bed warmed" = "Skrivarbädd uppvärmd till angiven temperatur och varaktighet";
+
+/* (No Comment) */
+"Cancel" = "Avbryt";
+
+/* Siri suggested phrase */
+"Cancel current print job" = "Avbryt aktuellt utskriftsjobb på %@";
+
+/* https://github.com/paukstelis/Octoprint-Cancelobject */
+"Cancel Objects" = "Avbryt objekt";
+
+/* (No Comment) */
+"Cannot print this file type" = "Kan inte skriva ut denna filtyp";
+
+/* (No Comment) */
+"Cannot reach 'octopi.local' over mobile network or service is down" = "Kan inte nå 'octopi.local' över mobilnät, eller tjänsten är nere";
+
+/* (No Comment) */
+"Cannot replace file that is being printed or printer is busy" = "Kan inte ersätta fil som skrivs ut, eller skrivaren är upptagen";
+
+/* File Type is GCode */
+"Code" = "Kod";
+
+/* (No Comment) */
+"Command not executed. Printer not operational" = "Kommandot ej utfört. Skrivaren är inte driftklar";
+
+/* (No Comment) */
+"Command not executed. Script not found" = "Kommandot ej utfört. Skript hittades inte";
+
+/* (No Comment) */
+"Confirm" = "Bekräfta";
+
+/* (No Comment) */
+"Confirm cancel object" = "Du håller på att avbryta utskrift av objekt. Fortsätt?";
+
+/* (No Comment) */
+"Confirm command" = "Kör kommandot '%@'?";
+
+/* (No Comment) */
+"Confirm connect" = "Vissa skrivare kan starta om när du ansluter. Fortsätt?";
+
+/* (No Comment) */
+"Confirm disconnect" = "Vill du koppla från skrivaren?";
+
+/* (No Comment) */
+"Confirm disconnect palette2" = "Vill du koppla från Palett 2?";
+
+/* (No Comment) */
+"Confirm intentions deletion" = "Du håller på att radera alla Siri-genvägar för appen. Fortsätt?";
+
+/* (No Comment) */
+"Confirm intentions regeneration" = "Du håller på att radera och omarbeta alla Siri-genvägar för appen. Fortsätt?";
+
+/* (No Comment) */
+"Confirm turn off plug" = "Du håller på att stänga av uttaget. Fortsätt?";
+
+/* (No Comment) */
+"Confirm turn off PSU" = "Du håller på att stänga av PSU. Fortsätt?";
+
+/* Connect */
+"Connect" = "Anslut";
+
+/* Connected */
+"Connected" = "Ansluten";
+
+/* Connecting */
+"Connecting" = "Ansluter";
+
+/* (No Comment) */
+"Connection failed" = "Anslutning misslyckad";
+
+/* Siri suggested phrase */
+"Cool down heated chamber" = "Kyl ner uppvärmd kammare";
+
+/* Siri suggested phrase */
+"Cool down printer" = "Kyl ner skrivare";
+
+/* Siri suggested phrase */
+"Cool down printer bed" = "Kyl ner skrivarbädd %@";
+
+/* Siri suggested phrase */
+"Cool down printer extruder" = "Kyl ner skrivarextruder %@";
+
+/* Connection to server failed */
+"Could not connect to the server" = "Kan inte ansluta till servern";
+
+/* http://docs.octoprint.org/en/master/features/custom_controls.html */
+"Custom Controls" = "Anpassade kontroller";
+
+/* (No Comment) */
+"days ago" = "%d dagar sedan";
+
+/* Disconnect */
+"Disconnect" = "Koppla från";
+
+/* Disconnected */
+"Disconnected" = "Frånkopplad";
+
+/* (No Comment) */
+"Dismiss" = "Avfärda";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Vill du avbryta jobbet?";
+
+/* (No Comment) */
+"Domoticz Plugs" = "Domoticz-uttag";
+
+/* (No Comment) */
+"Enable iCloud under iOS Settings to use this feature" = "Aktivera iCloud under iOS-inställningarna för att använda denna funktion";
+
+/* No comment provided by engineer. */
+"Extruder Variance" = "Extruder-variation";
+
+/* (No Comment) */
+"Failed to delete file" = "Kunde inte radera fil";
+
+/* (No Comment) */
+"Failed to disable motor" = "Kunde inte inaktivera motorn %@";
+
+/* Failed to get controls with HTTP Request error info */
+"Failed to get controls" = "Kunde inte hämta kontroller. HTTP-svar: %d";
+
+/* (No Comment) */
+"Failed to get list of cancel objects" = "Kunde inte hämta listan över avbrutna objekt. HTTP-svar: %d";
+
+/* Failed to get system commands with HTTP Request error info */
+"Failed to get system commands" = "Kunde inte hämta systemkommandon";
+
+/* (No Comment) */
+"Failed to initialize SD card" = "Kunde inte initialisera SD-kortet";
+
+/* (No Comment) */
+"Failed to read file from iCloud" = "Kunde inte läsa fil från iCloud";
+
+/* (No Comment) */
+"Failed to refresh SD card" = "Kunde inte uppdatera SD-kort";
+
+/* (No Comment) */
+"Failed to request moving back" = "Kunde inte begära att flytta bak";
+
+/* (No Comment) */
+"Failed to request moving down" = "Kunde inte begära att flytta ner";
+
+/* (No Comment) */
+"Failed to request moving front" = "Kunde inte begära att flytta fram";
+
+/* (No Comment) */
+"Failed to request moving left" = "Kunde inte begära att flytta vänster";
+
+/* (No Comment) */
+"Failed to request moving right" = "Kunde inte begära att flytta höger";
+
+/* (No Comment) */
+"Failed to request moving up" = "Kunde inte begära att flytta upp";
+
+/* No comment provided by engineer. */
+"Failed to request status" = "Kunde inte begära status";
+
+/* (No Comment) */
+"Failed to request to cancel object" = "Kunde inte begära att avbryta objekt. HTTP-svar: %d";
+
+/* No comment provided by engineer. */
+"Failed to request to clear" = "Kunde inte begära att rensa";
+
+/* No comment provided by engineer. */
+"Failed to request to connect" = "Kunde inte begära att ansluta";
+
+/* No comment provided by engineer. */
+"Failed to request to cut" = "Kunde inte begära att klippa ut";
+
+/* No comment provided by engineer. */
+"Failed to request to disconnect" = "Kunde inte begära att koppla från";
+
+/* (No Comment) */
+"Failed to request to execute command" = "Kunde inte begära att köra kommando";
+
+/* (No Comment) */
+"Failed to request to extrude" = "Kunde inte begära att mata ut";
+
+/* (No Comment) */
+"Failed to request to go home" = "Kunde inte begära att gå hem";
+
+/* (No Comment) */
+"Failed to request to print file" = "Kunde inte begära att skriva ut fil";
+
+/* (No Comment) */
+"Failed to request to retract" = "Kunde inte begära att dra tillbaka";
+
+/* (No Comment) */
+"Failed to request to turn power off" = "Kunde inte begära att stänga av strömmen";
+
+/* (No Comment) */
+"Failed to request to turn power on" = "Kunde inte begära att slå på strömmen";
+
+/* No comment provided by engineer. */
+"Failed to save JPEG file" = "Kunde inte spara JPEG-fil";
+
+/* (No Comment) */
+"Failed to send GCode command" = "Kunde inte skicka GCode-kommando";
+
+/* (No Comment) */
+"Failed to set new fan speed" = "Kunde inte ställa in ny fläkthastighet";
+
+/* (No Comment) */
+"Failed to set new feed rate" = "Kunde inte ställa in ny matningshastighet";
+
+/* (No Comment) */
+"Failed to set new flow rate" = "Kunde inte ställa in ny flödeshastighet";
+
+/* (No Comment) */
+"Failed to upload file" = "Kunde inte ladda upp fil";
+
+/* (No Comment) */
+"Failed turn power off" = "Kunde inte begära att stänga av strömmen";
+
+/* (No Comment) */
+"Failed turn power on" = "Kunde inte begära att slå på strömmen";
+
+/* (No Comment) */
+"File currently being printed" = "Filen håller på att skrivas ut";
+
+/* (No Comment) */
+"File is being copied to SD Card" = "Filen kopieras till SD-kort";
+
+/* File Type is a Folder */
+"Folder" = "Mapp";
+
+/* (No Comment) */
+"hours ago" = "%d timmar sedan";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Fel vid begäran. HTTP-svar: %d";
+
+/* Idle */
+"Idle" = "Inaktiv";
+
+/* Include SD messages in the terminal */
+"Include SD" = "Inkludera SD";
+
+/* Include temp messages in the terminal */
+"Include temp" = "Inkludera temp";
+
+/* (No Comment) */
+"Incorrect API Key" = "Felaktig API-nyckel";
+
+/* (No Comment) */
+"Incorrect authentication credentials" = "Felaktiga autentiseringsuppgifter";
+
+/* URL of camera is invalid */
+"Invalid camera URL" = "Ogiltig kamerawebbadress";
+
+/* (No Comment) */
+"Invalid file type" = "Ogiltig filtyp";
+
+/* (No Comment) */
+"iOS Language" = "iOS-språk";
+
+/* (No Comment) */
+"Job" = "Jobb";
+
+/* (No Comment) */
+"Location no longer valid. Refresh files" = "Plats inte längre giltig. Uppdatera filer";
+
+/* (No Comment) */
+"minutes ago" = "%d minuter sedan";
+
+/* No comment provided by engineer. */
+"Missed" = "Saknas";
+
+/* (No Comment) */
+"MK3" = "MK3";
+
+/* (No Comment) */
+"MMU Requires User" = "MMU kräver användarhjälp";
+
+/* File Type is a Model */
+"Model" = "Modell";
+
+/* (No Comment) */
+"Move" = "Flytta";
+
+/* (No Comment) */
+"No" = "Nej";
+
+/* No camera was found */
+"No camera" = "Ingen kamera";
+
+/* (No Comment) */
+"No printer" = "Ingen skrivare";
+
+/* No temperature history */
+"No temperature history" = "Ingen temperaturhistorik tillgänglig";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Kunde inte begära att avbryta jobb";
+
+/* (No Comment) */
+"Notify failed pause job" = "Kunde inte begära att pausa jobb";
+
+/* (No Comment) */
+"Notify failed print job again" = "Kunde inte begära att skiva ut jobb igen";
+
+/* (No Comment) */
+"Notify failed restart job" = "Kunde inte begära att starta om jobb";
+
+/* (No Comment) */
+"Notify failed resume job" = "Kunde inte begära att återuppta jobb";
+
+/* OctoPrint server */
+"OctoPrint" = "OctoPrint";
+
+/* Printer is Offline */
+"Offline" = "Offline";
+
+/* Siri suggested phrase */
+"Pause current print job" = "Pausa aktuellt utskriftsjobb på %@";
+
+/* (No Comment) */
+"Pause Job" = "Pausa jobb";
+
+/* (No Comment) */
+"Paused" = "Pausad";
+
+/* No comment provided by engineer. */
+"Ping History" = "Pinghistorik";
+
+/* No comment provided by engineer. */
+"Pong History" = "Ponghistorik";
+
+/* (No Comment) */
+"Print complete" = "Utskrift klar";
+
+/* (No Comment) */
+"Print File" = "Utskriftsfil";
+
+/* (No Comment) */
+"Printer not operational" = "Skrivare ej driftklar";
+
+/* (No Comment) */
+"Printing" = "Skriver ut";
+
+/* (No Comment) */
+"Pull down to refresh" = "Dra nedåt för att uppdatera";
+
+/* Siri suggested phrase */
+"Remaining time current print job" = "Kvarvarande tid på %@";
+
+/* Siri suggested phrase */
+"Restart current print job" = "Starta om aktuellt utskriftsjobb på %@";
+
+/* (No Comment) */
+"Restart Job" = "Starta om jobb";
+
+/* Siri suggested phrase */
+"Resume current print job" = "Återuppta aktuellt utskriftsjobb på %@";
+
+/* (No Comment) */
+"Resume Job" = "Återuppta jobb";
+
+/* Execute Command */
+"Run" = "Kör";
+
+/* Origin is SD Card */
+"SD Card" = "SD-kort";
+
+/* (No Comment) */
+"seconds ago" = "%d sekunder sedan";
+
+/* DNS resolution failed. Cannot resolve hostname */
+"Server cannot be found" = "Servern hittades inte";
+
+/* (No Comment) */
+"Service is down or incorrect port" = "Tjänsten är nere eller felaktig port";
+
+/* Snooze notifications for 1 hour */
+"Snooze 1 hour" = "Snooze 1 timma";
+
+/* Snooze notifications for 8 hours */
+"Snooze 8 hours" = "Snooze 8 timmar";
+
+/* Print time is being calculated */
+"Still stabilizing" = "Stabiliserar fortfarande...";
+
+/* Suppress SD messages in the terminal */
+"Suppress SD" = "Dämpa SD";
+
+/* Suppress temp messages in the terminal */
+"Suppress temp" = "Dämpa temp";
+
+/* http://docs.octoprint.org/en/master/api/system.html */
+"System Commands" = "Systemkommandon";
+
+/* (No Comment) */
+"Target Bed" = "Målbädd";
+
+/* No comment provided by engineer. */
+"Target Chamber" = "Målkammare";
+
+/* (No Comment) */
+"Target Extruder" = "Målextruder";
+
+/* (No Comment) */
+"Target Extruder 2" = "Målextruder 2";
+
+/* (No Comment) */
+"Tasmota Plugs" = "Tasmota-uttag";
+
+/* Temperature */
+"Temperature" = "Temperatur";
+
+/* (No Comment) */
+"Terminal" = "Terminal";
+
+/* (No Comment) */
+"TPLink Smartplugs" = "TP-Link Smarta uttag";
+
+/* (No Comment) */
+"Turn Off" = "Stäng av";
+
+/* (No Comment) */
+"Turn On" = "Slå på";
+
+/* ETA is Unknown
+   File Type is Unknown
+   Origin is Unknown */
+"Unknown" = "Okänd";
+
+/* Unknown Custom Control */
+"Unknown Control" = "Okänd kontroll";
+
+/* Title for window that alerts user that updates for plugins are available */
+"Update Available" = "Uppdatering tillgänglig";
+
+/* (No Comment) */
+"Upload failed" = "Uppladdning misslyckades";
+
+/* Siri suggested phrase */
+"Warm up heated chamber" = "Värm upp uppvärmd kammare";
+
+/* Siri suggested phrase */
+"Warm up printer bed" = "Värm upp skrivarbädden %@";
+
+/* Siri suggested phrase */
+"Warm up printer extruder" = "Värm upp skrivarextruder %@";
+
+/* (No Comment) */
+"Warning" = "Varning";
+
+/* (No Comment) */
+"weeks ago" = "%d veckor sedan";
+
+/* (No Comment) */
+"Wemo Switches" = "Wemo-strömbrytare";
+
+/* (No Comment) */
+"Yes" = "Ja";
+

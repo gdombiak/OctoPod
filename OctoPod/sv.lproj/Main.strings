@@ -1,0 +1,738 @@
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "1pO-wB-zKj"; */
+"1pO-wB-zKj.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "2qA-O2-3VZ"; */
+"2qA-O2-3VZ.normalTitle" = "Avfärda";
+
+/* Class = "UIButton"; normalTitle = "Change language"; ObjectID = "2wA-7u-KgW"; */
+"2wA-7u-KgW.normalTitle" = "Byt språk";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3c8-06-MDo"; */
+"3c8-06-MDo.text" = "Etikett";
+
+/* Class = "UILabel"; text = "Auto-lock while printing"; ObjectID = "3eo-D0-hAF"; */
+"3eo-D0-hAF.text" = "Auto-lås vid utskrift";
+
+/* Class = "UILabel"; text = "Flow rate"; ObjectID = "3IG-Y9-Ofi"; */
+"3IG-Y9-Ofi.text" = "Flödeshastighet";
+
+/* Class = "UITableViewSection"; headerTitle = "Language"; ObjectID = "3JO-XH-cf3"; */
+"3JO-XH-cf3.headerTitle" = "Språk";
+
+/* Class = "UILabel"; text = "Printed"; ObjectID = "3mU-gE-iQQ"; */
+"3mU-gE-iQQ.text" = "Utskriven";
+
+/* Class = "UITableViewSection"; headerTitle = "Speed"; ObjectID = "3tm-V0-9Gl"; */
+"3tm-V0-9Gl.headerTitle" = "Hastighet";
+
+/* Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[0] = "ABC"; ObjectID = "4bm-la-U47"; */
+"4bm-la-U47.segmentTitles[0]" = "ABC";
+
+/* Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[1] = "Date"; ObjectID = "4bm-la-U47"; */
+"4bm-la-U47.segmentTitles[1]" = "Datum";
+
+/* Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[2] = "Printed"; ObjectID = "4bm-la-U47"; */
+"4bm-la-U47.segmentTitles[2]" = "Utskriven";
+
+/* Class = "UILabel"; text = "Certificate validation"; ObjectID = "4Kd-tY-8l3"; */
+"4Kd-tY-8l3.text" = "Certifikatvalidering";
+
+/* Class = "UITextField"; placeholder = "Speed value"; ObjectID = "4Lh-Q8-wxW"; */
+"4Lh-Q8-wxW.placeholder" = "Hastighetsvärde";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "4qQ-FP-CUZ"; */
+"4qQ-FP-CUZ.text" = "Detaljer";
+
+/* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
+"4sv-CS-fGo.title" = "Utseende";
+
+/* Class = "UILabel"; text = "Splice"; ObjectID = "5GO-ai-ldL"; */
+"5GO-ai-ldL.text" = "Skarv";
+
+/* Class = "UILabel"; text = "Print Time Left"; ObjectID = "5hR-SK-V2r"; */
+"5hR-SK-V2r.text" = "Återstående utskriftstid";
+
+/* Class = "UILabel"; text = "250 C"; ObjectID = "5ry-aI-ZKw"; */
+"5ry-aI-ZKw.text" = "250 C";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6OW-hI-hem"; */
+"6OW-hI-hem.text" = "Etikett";
+
+/* Class = "UILabel"; text = "Size"; ObjectID = "6ox-ce-GOS"; */
+"6ox-ce-GOS.text" = "Storlek";
+
+/* Class = "UILabel"; text = "%"; ObjectID = "6tl-IB-smM"; */
+"6tl-IB-smM.text" = "%";
+
+/* Class = "UILabel"; text = "Disable Motor"; ObjectID = "6TZ-hb-gdQ"; */
+"6TZ-hb-gdQ.text" = "Inaktivera motor";
+
+/* Class = "UILabel"; text = "250.0 C"; ObjectID = "7Je-mU-81r"; */
+"7Je-mU-81r.text" = "250.0 C";
+
+/* Class = "UIButton"; normalTitle = "Z"; ObjectID = "7Mb-MK-CG7"; */
+"7Mb-MK-CG7.normalTitle" = "Z";
+
+/* Class = "UITableViewSection"; headerTitle = "Manual Control"; ObjectID = "7pE-fx-Ibe"; */
+"7pE-fx-Ibe.headerTitle" = "Manuell kontroll";
+
+/* Class = "UITableViewSection"; headerTitle = "Z"; ObjectID = "8d7-Fp-V0A"; */
+"8d7-Fp-V0A.headerTitle" = "Z";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "8qc-7f-G5G"; */
+"8qc-7f-G5G.text" = "Etikett";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "8TL-hx-EDz"; */
+"8TL-hx-EDz.text" = "Etikett";
+
+/* Class = "UILabel"; text = "Bed"; ObjectID = "8U9-mV-fYc"; */
+"8U9-mV-fYc.text" = "Bädd";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "9dR-Sn-lbP"; */
+"9dR-Sn-lbP.placeholder" = "Lösenord";
+
+/* Class = "UILabel"; text = "Uploaded"; ObjectID = "26j-Xb-FzE"; */
+"26j-Xb-FzE.text" = "Uppladdad";
+
+/* Class = "UILabel"; text = "Appearance"; ObjectID = "35a-ap-aeB"; */
+"35a-ap-aeB.text" = "Utseende";
+
+/* Class = "UIButton"; normalTitle = "E"; ObjectID = "48m-gj-F14"; */
+"48m-gj-F14.normalTitle" = "E";
+
+/* Class = "UILabel"; text = "Refresh enabled"; ObjectID = "53i-ST-HFr"; */
+"53i-ST-HFr.text" = "Uppdatering aktiverad";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "61C-mr-JBS"; */
+"61C-mr-JBS.text" = "Etikett";
+
+/* Class = "UILabel"; text = "About 10m"; ObjectID = "88V-gh-sQd"; */
+"88V-gh-sQd.text" = "Ca 10 min";
+
+/* Class = "UILabel"; text = "Devices"; ObjectID = "512-pk-AIB"; */
+"512-pk-AIB.text" = "Enheter";
+
+/* Class = "UIButton"; normalTitle = "Scan API Key"; ObjectID = "a0P-GP-CQD"; */
+"a0P-GP-CQD.normalTitle" = "Skanna API-nyckel";
+
+/* Class = "UILabel"; text = "250 C"; ObjectID = "A7g-Yw-Ucf"; */
+"A7g-Yw-Ucf.text" = "250 C";
+
+/* Class = "UILabel"; text = "/"; ObjectID = "a12-vD-JUc"; */
+"a12-vD-JUc.text" = "/";
+
+/* Class = "UIButton"; normalTitle = "Regenerate default shortcuts"; ObjectID = "aaG-XM-gnj"; */
+"aaG-XM-gnj.normalTitle" = "Återgenerera standardgenvägar";
+
+/* Class = "UIButton"; normalTitle = "Clear Palette 2"; ObjectID = "AcH-TF-NmP"; */
+"AcH-TF-NmP.normalTitle" = "Rensa Palett 2";
+
+/* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "aFa-Qd-yIr"; */
+"aFa-Qd-yIr.placeholder" = "Skrivarnamn (t.ex. MK3)";
+
+/* Class = "UIButton"; normalTitle = "Suppress temp"; ObjectID = "AfS-HP-WTR"; */
+"AfS-HP-WTR.normalTitle" = "Dämpa temp";
+
+/* Class = "UIButton"; normalTitle = "View activity log"; ObjectID = "aJp-RM-Tuf"; */
+"aJp-RM-Tuf.normalTitle" = "Visa aktivitetslogg";
+
+/* Class = "UILabel"; text = "Cancel Object plugin requires update"; ObjectID = "Aka-Ud-zQ7"; */
+"Aka-Ud-zQ7.text" = "Avbryt Objekttillägg kräver uppdatering";
+
+/* Class = "UILabel"; text = "OctoPrint"; ObjectID = "AU8-zV-v3w"; */
+"AU8-zV-v3w.text" = "OctoPrint";
+
+/* Class = "UIButton"; normalTitle = "Not refreshing"; ObjectID = "b0b-3X-MUJ"; */
+"b0b-3X-MUJ.normalTitle" = "Uppdaterar inte";
+
+/* Class = "UIButton"; normalTitle = "X"; ObjectID = "B7j-Fj-W6p"; */
+"B7j-Fj-W6p.normalTitle" = "X";
+
+/* Class = "UILabel"; text = "Origin"; ObjectID = "BDJ-1U-H9C"; */
+"BDJ-1U-H9C.text" = "Ursprung";
+
+/* Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf"; */
+"bep-Im-uzf.text" = "Utskriven";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
+"bNj-cj-oty.text" = "Etikett";
+
+/* Class = "UILabel"; text = "Error message"; ObjectID = "BXr-d8-f7x"; */
+"BXr-d8-f7x.text" = "Felmeddelande";
+
+/* Class = "UILabel"; text = "Sort by"; ObjectID = "Cdc-H8-bPm"; */
+"Cdc-H8-bPm.text" = "Sortera efter";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "CiW-up-Ju4"; */
+"CiW-up-Ju4.text" = "Etikett";
+
+/* Class = "UITabBarItem"; title = "Terminal"; ObjectID = "Cjs-F4-ynC"; */
+"Cjs-F4-ynC.title" = "Terminal";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ckk-gg-bxA"; */
+"Ckk-gg-bxA.text" = "Etikett";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "CNq-uw-hM5"; */
+"CNq-uw-hM5.text" = "Undertext";
+
+/* Class = "UITextField"; placeholder = "API Key"; ObjectID = "cQd-kb-e8D"; */
+"cQd-kb-e8D.placeholder" = "API-nyckel";
+
+/* Class = "UIButton"; normalTitle = "Print"; ObjectID = "Crn-wa-FLw"; */
+"Crn-wa-FLw.normalTitle" = "Skriv ut";
+
+/* Class = "UIButton"; normalTitle = "Cancel Job"; ObjectID = "Cxb-Rv-BSm"; */
+"Cxb-Rv-BSm.normalTitle" = "Avbryt jobb";
+
+/* Class = "UIButton"; normalTitle = "Pause Job"; ObjectID = "d2Y-RO-6Yg"; */
+"d2Y-RO-6Yg.normalTitle" = "Pausa jobb";
+
+/* Class = "UITableViewSection"; headerTitle = "Reminders"; ObjectID = "dIa-e3-jnv"; */
+"dIa-e3-jnv.headerTitle" = "Påminnelser";
+
+/* Class = "UILabel"; text = "Frequently Asked Questions"; ObjectID = "dlU-c7-kpY"; */
+"dlU-c7-kpY.text" = "Vanliga frågor";
+
+/* Class = "UIButton"; normalTitle = "Reset iCloud data from printers"; ObjectID = "e5p-Y4-n8X"; */
+"e5p-Y4-n8X.normalTitle" = "Återställ iCloud-data från skrivare";
+
+/* Class = "UITabBarItem"; title = "Files"; ObjectID = "e75-bh-dxQ"; */
+"e75-bh-dxQ.title" = "Filer";
+
+/* Class = "UITableViewController"; title = "Support"; ObjectID = "ec8-jM-jJs"; */
+"ec8-jM-jJs.title" = "Support";
+
+/* Class = "UILabel"; text = "Chamber"; ObjectID = "eD3-xa-2Ah"; */
+"eD3-xa-2Ah.text" = "Kammare";
+
+/* Class = "UILabel"; text = "1000"; ObjectID = "EKB-JK-mIs"; */
+"EKB-JK-mIs.text" = "1000";
+
+/* Class = "UILabel"; text = "#"; ObjectID = "eLm-a6-WEc"; */
+"eLm-a6-WEc.text" = "#";
+
+/* Class = "UIButton"; normalTitle = "Proceed"; ObjectID = "erX-tJ-GVo"; */
+"erX-tJ-GVo.normalTitle" = "Fortsätt";
+
+/* Class = "UILabel"; text = "Pong"; ObjectID = "eTh-LM-JEX"; */
+"eTh-LM-JEX.text" = "Pong";
+
+/* Class = "UILabel"; text = "Manually delete recorded Siri shortcuts after delete"; ObjectID = "EVr-c6-T8p"; */
+"EVr-c6-T8p.text" = "Radera inspelade Siri-genvägar manuellt efter radering";
+
+/* Class = "UITableViewSection"; headerTitle = "Lock Mode"; ObjectID = "eXf-GR-uL9"; */
+"eXf-GR-uL9.headerTitle" = "Låsläge";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "Fbe-op-Ixc"; */
+"Fbe-op-Ixc.text" = "Detaljer";
+
+/* Class = "UITableViewSection"; headerTitle = "Print job"; ObjectID = "FdM-r0-spe"; */
+"FdM-r0-spe.headerTitle" = "Utskriftsjobb";
+
+/* Class = "UILabel"; text = "%"; ObjectID = "ffd-HI-A62"; */
+"ffd-HI-A62.text" = "%";
+
+/* Class = "UILabel"; text = "Extruder 2"; ObjectID = "Fj0-uz-fxi"; */
+"Fj0-uz-fxi.text" = "Extruder 2";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "fJ6-6T-dHU"; */
+"fJ6-6T-dHU.title" = "Inställningar";
+
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "FJA-XK-nll"; */
+"FJA-XK-nll.normalTitle" = "Avfärda";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
+"fNE-Hh-S8R.text" = "Etikett";
+
+/* Class = "UITableViewSection"; headerTitle = "Temp Chart"; ObjectID = "GAt-su-C1i"; */
+"GAt-su-C1i.headerTitle" = "Tempdiagram";
+
+/* Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt"; */
+"gCt-Vk-Fgt.headerTitle" = "Anslutning";
+
+/* Class = "UITableViewSection"; headerTitle = "X Y Z"; ObjectID = "gHQ-Lu-mQ0"; */
+"gHQ-Lu-mQ0.headerTitle" = "X Y Z";
+
+/* Class = "UILabel"; text = "Record Siri phrase to use shortcuts"; ObjectID = "Ghq-m2-F0u"; */
+"Ghq-m2-F0u.text" = "Spela in Siri-fras för att använda genvägar";
+
+/* Class = "UITableViewController"; title = "File Details"; ObjectID = "GJo-uu-Qmb"; */
+"GJo-uu-Qmb.title" = "Fildetaljer";
+
+/* Class = "UILabel"; text = "Printing from SD"; ObjectID = "gJx-aQ-4FM"; */
+"gJx-aQ-4FM.text" = "Skriver ut från SD";
+
+/* Class = "UITableViewController"; title = "Devices"; ObjectID = "GmR-1U-jvf"; */
+"GmR-1U-jvf.title" = "Enheter";
+
+/* Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[0] = "1"; ObjectID = "GRh-JJ-DpF"; */
+"GRh-JJ-DpF.segmentTitles[0]" = "1";
+
+/* Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[1] = "5"; ObjectID = "GRh-JJ-DpF"; */
+"GRh-JJ-DpF.segmentTitles[1]" = "5";
+
+/* Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[2] = "10"; ObjectID = "GRh-JJ-DpF"; */
+"GRh-JJ-DpF.segmentTitles[2]" = "10";
+
+/* Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[3] = "100"; ObjectID = "GRh-JJ-DpF"; */
+"GRh-JJ-DpF.segmentTitles[3]" = "100";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "gvk-np-5oX"; */
+"gvk-np-5oX.text" = "Titel";
+
+/* Class = "UILabel"; text = "Extruder"; ObjectID = "H0f-on-KjQ"; */
+"H0f-on-KjQ.text" = "Extruder";
+
+/* Class = "UILabel"; text = "Support"; ObjectID = "HbJ-Bb-EXQ"; */
+"HbJ-Bb-EXQ.text" = "Support";
+
+/* Class = "UITableViewSection"; headerTitle = "Theme"; ObjectID = "hcE-dV-0vo"; */
+"hcE-dV-0vo.headerTitle" = "Tema";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Hcl-jl-BEb"; */
+"Hcl-jl-BEb.normalTitle" = "Knapp";
+
+/* Class = "UILabel"; text = "MISSED"; ObjectID = "hCQ-Pd-Tf0"; */
+"hCQ-Pd-Tf0.text" = "SAKNAS";
+
+/* Class = "UIBarButtonItem"; title = "OctoPrint Web"; ObjectID = "Hdi-Ra-Fgd"; */
+"Hdi-Ra-Fgd.title" = "OctoPrint Webb";
+
+/* Class = "UIButton"; normalTitle = "Y"; ObjectID = "heO-9b-ZeO"; */
+"heO-9b-ZeO.normalTitle" = "Y";
+
+/* Class = "UITableViewController"; title = "Security"; ObjectID = "hg7-6b-q0o"; */
+"hg7-6b-q0o.title" = "Säkerhet";
+
+/* Class = "UILabel"; text = "Upload to SD Card (root)"; ObjectID = "hrr-SZ-62l"; */
+"hrr-SZ-62l.text" = "Ladda upp till SD-kort (root)";
+
+/* Class = "UILabel"; text = "Tip: Click to set temperature"; ObjectID = "HUF-Dw-M7F"; */
+"HUF-Dw-M7F.text" = "Tips: Klicka för att ställa in temperatur";
+
+/* Class = "UIButton"; normalTitle = "Ignore"; ObjectID = "hUL-Ws-ypB"; */
+"hUL-Ws-ypB.normalTitle" = "Ignorera";
+
+/* Class = "UITableViewSection"; headerTitle = "X Y"; ObjectID = "hWI-gF-onz"; */
+"hWI-gF-onz.headerTitle" = "X Y";
+
+/* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[0] = "0.1"; ObjectID = "hzK-Nf-sCi"; */
+"hzK-Nf-sCi.segmentTitles[0]" = "0.1";
+
+/* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[1] = "1"; ObjectID = "hzK-Nf-sCi"; */
+"hzK-Nf-sCi.segmentTitles[1]" = "1";
+
+/* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[2] = "10"; ObjectID = "hzK-Nf-sCi"; */
+"hzK-Nf-sCi.segmentTitles[2]" = "10";
+
+/* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[3] = "100"; ObjectID = "hzK-Nf-sCi"; */
+"hzK-Nf-sCi.segmentTitles[3]" = "100";
+
+/* Class = "UIButton"; normalTitle = "Cut"; ObjectID = "i3l-7C-iJB"; */
+"i3l-7C-iJB.normalTitle" = "Klipp ut";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "io4-ZI-6xJ"; */
+"io4-ZI-6xJ.text" = "Titel";
+
+/* Class = "UILabel"; text = "Control Power"; ObjectID = "j09-72-h0o"; */
+"j09-72-h0o.text" = "Kontrollera ström";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "J17-Xa-0dv"; */
+"J17-Xa-0dv.text" = "Etikett";
+
+/* Class = "UILabel"; text = "m"; ObjectID = "JgS-9W-IR2"; */
+"JgS-9W-IR2.text" = "m";
+
+/* Class = "UILabel"; text = "250.0 C"; ObjectID = "JwP-eK-xNk"; */
+"JwP-eK-xNk.text" = "250.0 C";
+
+/* Class = "UILabel"; text = "Kill and restart app to take effect"; ObjectID = "jxG-8a-4b3"; */
+"jxG-8a-4b3.text" = "Döda och starta om appen för att verkställa";
+
+/* Class = "UILabel"; text = "Confirm to disconnect"; ObjectID = "JYC-5g-kqS"; */
+"JYC-5g-kqS.text" = "Bekräfta att koppla bort";
+
+/* Class = "UINavigationItem"; title = "Move"; ObjectID = "K4f-Fs-KaY"; */
+"K4f-Fs-KaY.title" = "Flytta";
+
+/* Class = "UIButton"; normalTitle = "Learn more about Custom Controls"; ObjectID = "K5o-xJ-EiZ"; */
+"K5o-xJ-EiZ.normalTitle" = "Läs dig mer om anpassade kontroller";
+
+/* Class = "UILabel"; text = "Enter a valid URL"; ObjectID = "K6d-lk-BaS"; */
+"K6d-lk-BaS.text" = "Ange en giltig webbadress";
+
+/* Class = "UILabel"; text = "100 C"; ObjectID = "kGY-Bn-Qcb"; */
+"kGY-Bn-Qcb.text" = "100 C";
+
+/* Class = "UILabel"; text = "Status"; ObjectID = "kPW-if-FGO"; */
+"kPW-if-FGO.text" = "Status";
+
+/* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
+"L1Q-WE-63g.text" = "Fil";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "lAO-Qe-VtX"; */
+"lAO-Qe-VtX.text" = "Undertext";
+
+/* Class = "UILabel"; text = "Siri Integration"; ObjectID = "LBx-lc-96t"; */
+"LBx-lc-96t.text" = "Siri-integration";
+
+/* Class = "UILabel"; text = "Origin"; ObjectID = "lfT-wn-CXk"; */
+"lfT-wn-CXk.text" = "Ursprung";
+
+/* Class = "UILabel"; text = "Size"; ObjectID = "LiL-J0-QDH"; */
+"LiL-J0-QDH.text" = "Storlek";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "LJV-z6-SX8"; */
+"LJV-z6-SX8.text" = "Titel";
+
+/* Class = "UILabel"; text = "Tip: Swipe to switch between printers"; ObjectID = "lyc-MY-uT5"; */
+"lyc-MY-uT5.text" = "Tips: Svep för att växla mellan skrivare";
+
+/* Class = "UILabel"; text = "Light"; ObjectID = "MA6-Ay-j7Q"; */
+"MA6-Ay-j7Q.text" = "Ljust";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Mab-7E-AEG"; */
+"Mab-7E-AEG.text" = "Titel";
+
+/* Class = "UILabel"; text = "Print time"; ObjectID = "MI6-uy-Cea"; */
+"MI6-uy-Cea.text" = "Utskriftstid";
+
+/* Class = "UILabel"; text = "Lock read-only mode"; ObjectID = "mqw-ve-Eec"; */
+"mqw-ve-Eec.text" = "Lås skrivskyddat läge";
+
+/* Class = "UILabel"; text = "Tap = Full Screen"; ObjectID = "MT2-fR-HJD"; */
+"MT2-fR-HJD.text" = "Tryck = Fullskärm";
+
+/* Class = "UIButton"; normalTitle = "SD"; ObjectID = "N5P-gn-chq"; */
+"N5P-gn-chq.normalTitle" = "SD";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb"; */
+"ncZ-xn-WCb.text" = "Titel";
+
+/* Class = "UIButton"; normalTitle = "Change Port"; ObjectID = "NDf-j6-3Gw"; */
+"NDf-j6-3Gw.normalTitle" = "Byt port";
+
+/* Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[0] = "0.1"; ObjectID = "NKo-dw-3Mg"; */
+"NKo-dw-3Mg.segmentTitles[0]" = "0.1";
+
+/* Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[1] = "1"; ObjectID = "NKo-dw-3Mg"; */
+"NKo-dw-3Mg.segmentTitles[1]" = "1";
+
+/* Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[2] = "10"; ObjectID = "NKo-dw-3Mg"; */
+"NKo-dw-3Mg.segmentTitles[2]" = "10";
+
+/* Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[3] = "100"; ObjectID = "NKo-dw-3Mg"; */
+"NKo-dw-3Mg.segmentTitles[3]" = "100";
+
+/* Class = "UILabel"; text = "100"; ObjectID = "nMR-mk-HWC"; */
+"nMR-mk-HWC.text" = "100";
+
+/* Class = "UILabel"; text = "Filament Used"; ObjectID = "ntu-wc-YX0"; */
+"ntu-wc-YX0.text" = "Använt filament";
+
+/* Class = "UIButton"; normalTitle = "Set"; ObjectID = "o8a-yF-u6j"; */
+"o8a-yF-u6j.normalTitle" = "Ställ in";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "oiL-nC-j2P"; */
+"oiL-nC-j2P.text" = "Etikett";
+
+/* Class = "UILabel"; text = "100"; ObjectID = "OJS-Cg-u9x"; */
+"OJS-Cg-u9x.text" = "100";
+
+/* Class = "UIButton"; normalTitle = "Configure controls using Custom Control Plugin"; ObjectID = "or6-Pr-Z6f"; */
+"or6-Pr-Z6f.normalTitle" = "Konfigurera kontroller med Custom Control-tillägget";
+
+/* Class = "UITableViewController"; title = "Siri"; ObjectID = "Orp-dU-Wpa"; */
+"Orp-dU-Wpa.title" = "Siri";
+
+/* Class = "UILabel"; text = "of"; ObjectID = "Otl-oh-byl"; */
+"Otl-oh-byl.text" = "av";
+
+/* Class = "UILabel"; text = "File"; ObjectID = "OYG-ih-yQg"; */
+"OYG-ih-yQg.text" = "Fil";
+
+/* Class = "UIButton"; normalTitle = "Delete shortcuts"; ObjectID = "oZE-yh-Myr"; */
+"oZE-yh-Myr.normalTitle" = "Radera genvägar";
+
+/* Class = "UITableViewController"; title = "Prompts"; ObjectID = "oZw-P5-oVG"; */
+"oZw-P5-oVG.title" = "Anvisningar";
+
+/* Class = "UITabBarItem"; title = "Move"; ObjectID = "Peq-4x-xQj"; */
+"Peq-4x-xQj.title" = "Flytta";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "pgl-mI-9eB"; */
+"pgl-mI-9eB.text" = "Etikett";
+
+/* Class = "UITableViewSection"; headerTitle = "Job Information"; ObjectID = "PiT-vE-psw"; */
+"PiT-vE-psw.headerTitle" = "Jobbinformation";
+
+/* Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU"; */
+"Po0-HZ-vzU.text" = "Logga in på iCloud för att synkronisera mellan enheter";
+
+/* Class = "UILabel"; text = "100"; ObjectID = "pWC-OR-Tvp"; */
+"pWC-OR-Tvp.text" = "100";
+
+/* Class = "UILabel"; text = "Orange"; ObjectID = "PXd-ZY-vbz"; */
+"PXd-ZY-vbz.text" = "Orange";
+
+/* Class = "UIBarButtonItem"; title = "Printer"; ObjectID = "PyK-FO-APL"; */
+"PyK-FO-APL.title" = "Skrivare";
+
+/* Class = "UILabel"; text = "Tip: Click to control print job"; ObjectID = "pyW-4g-EDz"; */
+"pyW-4g-EDz.text" = "Tips: Klicka för att kontrollera utskriftsjobb";
+
+/* Class = "UILabel"; text = "Offset"; ObjectID = "pzg-aD-Irm"; */
+"pzg-aD-Irm.text" = "Offset";
+
+/* Class = "UIButton"; normalTitle = "Retract"; ObjectID = "Q2b-xf-a3O"; */
+"Q2b-xf-a3O.normalTitle" = "Dra tillbaka";
+
+/* Class = "UILabel"; text = "Pinch = Zoom in"; ObjectID = "q4H-Sg-7Zd"; */
+"q4H-Sg-7Zd.text" = "Nyp = Zooma in";
+
+/* Class = "UIViewController"; title = "QR Code"; ObjectID = "QCe-zo-Ncw"; */
+"QCe-zo-Ncw.title" = "QR-kod";
+
+/* Class = "UILabel"; text = "Print Time"; ObjectID = "Qfz-1j-Keo"; */
+"Qfz-1j-Keo.text" = "Utskriftstid";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "qI9-wv-wTe"; */
+"qI9-wv-wTe.title" = "Titel";
+
+/* Class = "UILabel"; text = "Prompts"; ObjectID = "qio-ne-TXN"; */
+"qio-ne-TXN.text" = "Anvisningar";
+
+/* Class = "UILabel"; text = "Issues"; ObjectID = "QJp-Yj-1AF"; */
+"QJp-Yj-1AF.text" = "Problem";
+
+/* Class = "UILabel"; text = "Fan"; ObjectID = "Qps-RG-QAh"; */
+"Qps-RG-QAh.text" = "Fläkt";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "QpW-7Y-LpA"; */
+"QpW-7Y-LpA.text" = "Titel";
+
+/* Class = "UITableViewSection"; headerTitle = "Palette 2 Connection"; ObjectID = "qUK-6N-G11"; */
+"qUK-6N-G11.headerTitle" = "Palett 2-anslutning";
+
+/* Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ"; */
+"QwZ-7J-MwJ.normalTitle" = "Av";
+
+/* Class = "UILabel"; text = "Siri"; ObjectID = "R2d-Mv-REP"; */
+"R2d-Mv-REP.text" = "Siri";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87"; */
+"REX-gh-p87.normalTitle" = "Knapp";
+
+/* Class = "UILabel"; text = "Security"; ObjectID = "RJI-A7-98M"; */
+"RJI-A7-98M.text" = "Säkerhet";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "RlM-dP-k5T"; */
+"RlM-dP-k5T.text" = "Etikett";
+
+/* Class = "UILabel"; text = "100"; ObjectID = "Rml-IA-ght"; */
+"Rml-IA-ght.text" = "100";
+
+/* Class = "UITableViewController"; title = "Printer Details"; ObjectID = "RQs-UQ-7OZ"; */
+"RQs-UQ-7OZ.title" = "Skrivardetaljer";
+
+/* Class = "UILabel"; text = "1hr 25m 13sec"; ObjectID = "rwm-QC-qD1"; */
+"rwm-QC-qD1.text" = "1t 25m 13sek";
+
+/* Class = "UITextField"; placeholder = "Command"; ObjectID = "RZc-hr-pTu"; */
+"RZc-hr-pTu.placeholder" = "Kommando";
+
+/* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
+"S2I-HR-qgE.text" = "/";
+
+/* Class = "UILabel"; text = "/"; ObjectID = "sF0-zd-MZR"; */
+"sF0-zd-MZR.text" = "/";
+
+/* Class = "UIButton"; normalTitle = "Suppress SD"; ObjectID = "sgi-wT-ubY"; */
+"sgi-wT-ubY.normalTitle" = "Dämpa SD";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H"; */
+"sLc-Jv-G0H.placeholder" = "Användarnamn";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "SMa-NG-XzV"; */
+"SMa-NG-XzV.normalTitle" = "Avbryt";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "sOY-kO-6qH"; */
+"sOY-kO-6qH.text" = "Titel";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "SQ9-ls-Hf3"; */
+"SQ9-ls-Hf3.title" = "Inställningar";
+
+/* Class = "UITableViewSection"; headerTitle = "Fan & Motors"; ObjectID = "SwZ-jq-tKf"; */
+"SwZ-jq-tKf.headerTitle" = "Fläkt & Motorer";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
+"tFf-Rs-mOx.text" = "Titel";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "tgj-tb-vD5"; */
+"tgj-tb-vD5.text" = "Etikett";
+
+/* Class = "UINavigationItem"; title = "Printers"; ObjectID = "tit-bg-T68"; */
+"tit-bg-T68.title" = "Skrivare";
+
+/* Class = "UITextField"; placeholder = "Hostname (e.g. http://octopi.local)"; ObjectID = "tMP-2W-Iam"; */
+"tMP-2W-Iam.placeholder" = "Värdnamn (t.ex. http://octopi.local)";
+
+/* Class = "UITableViewSection"; headerTitle = "Palette 2"; ObjectID = "Tqi-wZ-CN5"; */
+"Tqi-wZ-CN5.headerTitle" = "Palett 2";
+
+/* Class = "UILabel"; text = "/"; ObjectID = "tTe-Q5-kkc"; */
+"tTe-Q5-kkc.text" = "/";
+
+/* Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ"; */
+"tzE-Y5-rVZ.text" = "Skrivare";
+
+/* Class = "UILabel"; text = "Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots"; ObjectID = "u6S-b1-CTI"; */
+"u6S-b1-CTI.text" = "Installera OctoPod-tillägget för OctoPrint för att få omedelbara pushnotiser med kameraskärmdumpar";
+
+/* Class = "UILabel"; text = "GCode command"; ObjectID = "uge-6J-pcC"; */
+"uge-6J-pcC.text" = "GCode-kommando";
+
+/* Class = "UILabel"; text = "60.0 C"; ObjectID = "UiU-6m-I6P"; */
+"UiU-6m-I6P.text" = "60.0 C";
+
+/* Class = "UILabel"; text = "Require passcode to unlock"; ObjectID = "uqf-BP-Wtn"; */
+"uqf-BP-Wtn.text" = "Kräv lösenkod för att låsa upp";
+
+/* Class = "UITableViewSection"; headerTitle = "Connection error details"; ObjectID = "uR6-pA-Rdj"; */
+"uR6-pA-Rdj.headerTitle" = "Detaljer om anslutningsfel";
+
+/* Class = "UITableViewSection"; headerTitle = "Printer Connection (REQUIRED)"; ObjectID = "uRd-RD-eAS"; */
+"uRd-RD-eAS.headerTitle" = "Skrivaranslutning (KRÄVS)";
+
+/* Class = "UIBarButtonItem"; title = "Connect"; ObjectID = "uRz-Gy-YAf"; */
+"uRz-Gy-YAf.title" = "Anslut";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "uVf-tq-wZi"; */
+"uVf-tq-wZi.text" = "Titel";
+
+/* Class = "UILabel"; text = "Status"; ObjectID = "VgY-ne-x6t"; */
+"VgY-ne-x6t.text" = "Status";
+
+/* Class = "UILabel"; text = "%"; ObjectID = "VkX-1W-xBG"; */
+"VkX-1W-xBG.text" = "%";
+
+/* Class = "UILabel"; text = "Printer status"; ObjectID = "VnD-Rc-TYw"; */
+"VnD-Rc-TYw.text" = "Skrivarstatus";
+
+/* Class = "UILabel"; text = "100.0%"; ObjectID = "vnu-ZQ-mJO"; */
+"vnu-ZQ-mJO.text" = "100.0%";
+
+/* Class = "UILabel"; text = "Zoom in/out"; ObjectID = "Vny-ch-OgO"; */
+"Vny-ch-OgO.text" = "Zooma in/ut";
+
+/* Class = "UILabel"; text = "60.0 C"; ObjectID = "vpX-he-2FU"; */
+"vpX-he-2FU.text" = "60.0 C";
+
+/* Class = "UITableViewSection"; headerTitle = "Printer Connection"; ObjectID = "Vr9-x7-66H"; */
+"Vr9-x7-66H.headerTitle" = "Skrivaranslutning";
+
+/* Class = "UIButton"; normalTitle = "Reset printers from iCloud data"; ObjectID = "vyb-aH-wc9"; */
+"vyb-aH-wc9.normalTitle" = "Återställ skrivare från iCloud-data";
+
+/* Class = "UISegmentedControl"; W0X-ef-NWv.segmentTitles[0] = "Default"; ObjectID = "W0X-ef-NWv"; */
+"W0X-ef-NWv.segmentTitles[0]" = "Standard";
+
+/* Class = "UISegmentedControl"; W0X-ef-NWv.segmentTitles[1] = "Custom"; ObjectID = "W0X-ef-NWv"; */
+"W0X-ef-NWv.segmentTitles[1]" = "Anpassad";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "w4s-Ud-7Zm"; */
+"w4s-Ud-7Zm.normalTitle" = "Knapp";
+
+/* Class = "UILabel"; text = "Dark"; ObjectID = "wHn-Dc-bWb"; */
+"wHn-Dc-bWb.text" = "Mörkt";
+
+/* Class = "UITableViewSection"; headerTitle = "HTTP Authentication"; ObjectID = "WKG-83-bZQ"; */
+"WKG-83-bZQ.headerTitle" = "HTTP-autentisering";
+
+/* Class = "UILabel"; text = "MISSED"; ObjectID = "WKI-cg-0j7"; */
+"WKI-cg-0j7.text" = "SAKNAS";
+
+/* Class = "UIButton"; normalTitle = "Extrude"; ObjectID = "wnO-2K-s2I"; */
+"wnO-2K-s2I.normalTitle" = "Mata ut";
+
+/* Class = "UIButton"; normalTitle = "URL Button"; ObjectID = "x8L-G5-sTU"; */
+"x8L-G5-sTU.normalTitle" = "Webbadressknapp";
+
+/* Class = "UITableViewSection"; headerTitle = "Printer status"; ObjectID = "XCh-oS-weO"; */
+"XCh-oS-weO.headerTitle" = "Skrivarstatus";
+
+/* Class = "UIButton"; normalTitle = "Delete"; ObjectID = "xE0-gE-Kuq"; */
+"xE0-gE-Kuq.normalTitle" = "Radera";
+
+/* Class = "UITableViewSection"; headerTitle = "Synchronization"; ObjectID = "Xhq-hp-2kd"; */
+"Xhq-hp-2kd.headerTitle" = "Synkronisering";
+
+/* Class = "UILabel"; text = "Confirm to connect"; ObjectID = "XOG-eU-T7f"; */
+"XOG-eU-T7f.text" = "Bekräfta för att ansluta";
+
+/* Class = "UILabel"; text = "Feed rate"; ObjectID = "Xs4-QQ-rLn"; */
+"Xs4-QQ-rLn.text" = "Matningshastighet";
+
+/* Class = "UILabel"; text = "Ping"; ObjectID = "xsQ-V9-zzo"; */
+"xsQ-V9-zzo.text" = "Ping";
+
+/* Class = "UIButton"; normalTitle = "Restart Job"; ObjectID = "XV8-g9-QIc"; */
+"XV8-g9-QIc.normalTitle" = "Starta om jobb";
+
+/* Class = "UINavigationItem"; title = "Printer Details"; ObjectID = "xvl-wE-Mht"; */
+"xvl-wE-Mht.title" = "Skrivardetaljer";
+
+/* Class = "UILabel"; text = "#"; ObjectID = "Xzl-Xc-Ng0"; */
+"Xzl-Xc-Ng0.text" = "#";
+
+/* Class = "UILabel"; text = "Contributing"; ObjectID = "yci-j8-y4w"; */
+"yci-j8-y4w.text" = "Bidragit";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "YdD-gF-Ajm"; */
+"YdD-gF-Ajm.text" = "Titel";
+
+/* Class = "UILabel"; text = "Control ATX/AUX power supply via PSU Control"; ObjectID = "Ysy-LO-1dL"; */
+"Ysy-LO-1dL.text" = "Kontrollera ATX/AUX nätaggregat via PSU Control";
+
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "yxh-PV-og3"; */
+"yxh-PV-og3.normalTitle" = "Avfärda";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "z4Q-Gf-Y5G"; */
+"z4Q-Gf-Y5G.normalTitle" = "Skicka";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ZCe-kf-ukt"; */
+"ZCe-kf-ukt.text" = "Etikett";
+
+/* Class = "UILabel"; text = "New temperature"; ObjectID = "zDs-gi-KIJ"; */
+"zDs-gi-KIJ.text" = "Ny temperatur";
+
+/* Class = "UITableViewSection"; headerTitle = "Extruder"; ObjectID = "ZeS-hE-vC8"; */
+"ZeS-hE-vC8.headerTitle" = "Extruder";
+
+/* Class = "UILabel"; text = "100 C"; ObjectID = "zf7-Un-ytQ"; */
+"zf7-Un-ytQ.text" = "100 C";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "ZF8-G0-f5Y"; */
+"ZF8-G0-f5Y.text" = "Detaljer";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Zhk-cN-7C9"; */
+"Zhk-cN-7C9.text" = "Etikett";
+
+/* Class = "UILabel"; text = "Upload to OctoPrint"; ObjectID = "Ziq-bR-QIe"; */
+"Ziq-bR-QIe.text" = "Ladda upp till OctoPrint";
+
+/* Class = "UITabBarItem"; title = "Panel"; ObjectID = "zqn-zS-suB"; */
+"zqn-zS-suB.title" = "Panel";
+
+/* Class = "UIButton"; normalTitle = "Siri Integration"; ObjectID = "zRw-xu-lEf"; */
+"zRw-xu-lEf.normalTitle" = "Siri-integration";
+
+/* Class = "UITableViewController"; title = "Log"; ObjectID = "ZSM-KR-Ovn"; */
+"ZSM-KR-Ovn.title" = "Logg";
+
+/* Class = "UILabel"; text = "Sync printers between iOS devices"; ObjectID = "zVf-Zx-3g4"; */
+"zVf-Zx-3g4.text" = "Synkronisera skrivare mellan iOS-enheter";
+
+/* Class = "UILabel"; text = "Offset"; ObjectID = "zws-KA-eU1"; */
+"zws-KA-eU1.text" = "Offset";
+

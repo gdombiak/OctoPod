@@ -14,6 +14,7 @@
 		3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */; };
 		3D0E3B1121097E7A0087F7E4 /* ThemeUIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E3B1021097E7A0087F7E4 /* ThemeUIUtils.swift */; };
 		3D0FA48321047AFA0084FF52 /* FilesTreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0FA48221047AFA0084FF52 /* FilesTreeViewController.swift */; };
+		3D17273522F2838600C0A341 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D17273322F2838600C0A341 /* InfoPlist.strings */; };
 		3D1A8ADF2298CB0E006FF38D /* BedNotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A8ADE2298CB0E006FF38D /* BedNotificationsHandler.swift */; };
 		3D1A935721326AEF0050ED9A /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935621326AEF0050ED9A /* CustomControl.swift */; };
 		3D1A935921326B3C0050ED9A /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935821326B3C0050ED9A /* Command.swift */; };
@@ -290,6 +291,12 @@
 		3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTargetTempViewController.swift; sourceTree = "<group>"; };
 		3D0E3B1021097E7A0087F7E4 /* ThemeUIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeUIUtils.swift; sourceTree = "<group>"; };
 		3D0FA48221047AFA0084FF52 /* FilesTreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTreeViewController.swift; sourceTree = "<group>"; };
+		3D17273422F2838600C0A341 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D17273622F2838600C0A341 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D17273722F2838600C0A341 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D17273822F2838600C0A341 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3D17273922F2838600C0A341 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D17273A22F2838600C0A341 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D1A8ADE2298CB0E006FF38D /* BedNotificationsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BedNotificationsHandler.swift; sourceTree = "<group>"; };
 		3D1A935621326AEF0050ED9A /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
 		3D1A935821326B3C0050ED9A /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
@@ -486,6 +493,14 @@
 		3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDefaultPrinterViewController.swift; sourceTree = "<group>"; };
 		3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateEvent.swift; sourceTree = "<group>"; };
 		3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClientDelegate.swift; sourceTree = "<group>"; };
+		3DBB691C22F12DD500C21430 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
+		3DBB691D22F12DD500C21430 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Intents.strings; sourceTree = "<group>"; };
+		3DBB691E22F12DD600C21430 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		3DBB691F22F12DD600C21430 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Interface.strings; sourceTree = "<group>"; };
+		3DBB692022F12DD600C21430 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		3DBB692122F12DD600C21430 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DBB692222F12DD600C21430 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DBB692322F12DD600C21430 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DBCE84721B4925F00ABB42D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DC65608219BE49F00F4CA0D /* OctoPod v7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v7.xcdatamodel"; sourceTree = "<group>"; };
 		3DC69BEC21804EC000DBE0D5 /* OctoPrintClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClient.swift; sourceTree = "<group>"; };
@@ -934,6 +949,7 @@
 			children = (
 				3DABB21F22C0044D00F32731 /* NotificationService.swift */,
 				3DABB22122C0044D00F32731 /* Info.plist */,
+				3D17273322F2838600C0A341 /* InfoPlist.strings */,
 			);
 			path = "OctoPod Notification Extension";
 			sourceTree = "<group>";
@@ -1246,6 +1262,7 @@
 				es,
 				nb,
 				"lt-LT",
+				sv,
 			);
 			mainGroup = 3D4527F520E15A370094CCB7;
 			productRefGroup = 3D4527FF20E15A370094CCB7 /* Products */;
@@ -1318,6 +1335,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D17273522F2838600C0A341 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1604,6 +1622,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3D17273322F2838600C0A341 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D17273422F2838600C0A341 /* sv */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		3D27DA95218A5FD8004F763A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1614,6 +1640,7 @@
 				3D27DA9B218A636C004F763A /* it */,
 				3D27DA9C218A675B004F763A /* de */,
 				3D9E268D22B416EC00386081 /* lt-LT */,
+				3D17273722F2838600C0A341 /* sv */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1629,6 +1656,7 @@
 				3DD3C77421B3234600350225 /* it */,
 				3DD3C77721B3239D00350225 /* nb */,
 				3D9E269722B416EC00386081 /* lt-LT */,
+				3DBB692022F12DD600C21430 /* sv */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -1644,6 +1672,7 @@
 				3D450E6B21AB1C080049FBC0 /* es */,
 				3D450E6D21AB1C090049FBC0 /* nb */,
 				3D9E269522B416EC00386081 /* lt-LT */,
+				3DBB691D22F12DD500C21430 /* sv */,
 			);
 			name = Intents.intentdefinition;
 			sourceTree = "<group>";
@@ -1659,6 +1688,7 @@
 				CB66535B2160B6C100269730 /* es */,
 				3D89E66E216121FA006794D0 /* nb */,
 				3D9E269622B416EC00386081 /* lt-LT */,
+				3DBB691C22F12DD500C21430 /* sv */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1673,6 +1703,7 @@
 				3D9E087A2160205100F11CD4 /* cs */,
 				CB66535C2160B6C200269730 /* es */,
 				3D89E66F216121FB006794D0 /* nb */,
+				3DBB691E22F12DD600C21430 /* sv */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1688,6 +1719,7 @@
 				3D6570DF218510DD00BD3A7B /* es */,
 				3D6570E1218510DE00BD3A7B /* nb */,
 				3D9E269822B416EC00386081 /* lt-LT */,
+				3DBB691F22F12DD600C21430 /* sv */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";
@@ -1703,6 +1735,7 @@
 				CB66535D2160B6C200269730 /* es */,
 				3D89E670216121FB006794D0 /* nb */,
 				3D9E269422B416EC00386081 /* lt-LT */,
+				3DBB692122F12DD600C21430 /* sv */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1717,6 +1750,7 @@
 				3D697ED42163376D00BFB849 /* it */,
 				3D27DA94218A5FD8004F763A /* es-419 */,
 				3D9E269022B416EC00386081 /* lt-LT */,
+				3D17273A22F2838600C0A341 /* sv */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1732,6 +1766,7 @@
 				3DD3C77621B3239D00350225 /* nb */,
 				3DBCE84721B4925F00ABB42D /* en */,
 				3D9E268E22B416EC00386081 /* lt-LT */,
+				3DBB692322F12DD600C21430 /* sv */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1746,6 +1781,7 @@
 				3DD3C77321B3234600350225 /* it */,
 				3DD3C77521B3239D00350225 /* nb */,
 				3D9E268F22B416EC00386081 /* lt-LT */,
+				3D17273622F2838600C0A341 /* sv */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1760,6 +1796,7 @@
 				3DED77F121AFC5E3009A4CE5 /* de */,
 				3DED77F421AFC6EB009A4CE5 /* nb */,
 				3D9E269122B416EC00386081 /* lt-LT */,
+				3D17273822F2838600C0A341 /* sv */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1774,6 +1811,7 @@
 				3DED77F221AFC5E3009A4CE5 /* de */,
 				3DED77F321AFC6EB009A4CE5 /* nb */,
 				3D9E269222B416EC00386081 /* lt-LT */,
+				3D17273922F2838600C0A341 /* sv */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1789,6 +1827,7 @@
 				3DFE67D5218598FD00F33019 /* es */,
 				3DFE67D6218598FD00F33019 /* nb */,
 				3D9E269322B416EC00386081 /* lt-LT */,
+				3DBB692222F12DD600C21430 /* sv */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

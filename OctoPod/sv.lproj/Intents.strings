@@ -1,0 +1,186 @@
+/* (No Comment) */
+"0xUDAM" = "${printer}";
+
+/* (No Comment) */
+"2TreiD" = "Ställ in extruder-temperatur till ${temperature}";
+
+/* (No Comment) */
+"3Butzw" = "Kammarens temperatur var inställt till ${temperature}";
+
+/* (No Comment) */
+"3eH6cZ" = "Kunde inte hämta information om återstående tid (${statusCode})";
+
+/* (No Comment) */
+"4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"6k5AFm" = "Återuppta jobb";
+
+/* (No Comment) */
+"6vtMLs" = "Jobbet startades om";
+
+/* (No Comment) */
+"7eJPkN" = "Konfigurera kammarens temperatur";
+
+/* (No Comment) */
+"8tTCjD" = "Kunde inte avbryta jobb (${statusCode})";
+
+/* (No Comment) */
+"9iz6yx" = "${printer}";
+
+/* (No Comment) */
+"9PozHf" = "${printer}";
+
+/* (No Comment) */
+"662LyZ" = "Starta om jobb";
+
+/* (No Comment) */
+"bXGQKe" = "Kyl ner skrivare";
+
+/* (No Comment) */
+"D0kBGr" = "Starta om pågående utskriftsjobb";
+
+/* (No Comment) */
+"doj4NA" = "Konfigurera extruder-temperatur";
+
+/* (No Comment) */
+"Eb3aa5" = "Kunde inte ställa in kammarens temperatur (${statusCode})";
+
+/* (No Comment) */
+"f8xirF" = "Kyl ner skrivare";
+
+/* (No Comment) */
+"FkSYZt" = "${printer}";
+
+/* (No Comment) */
+"fL3sow" = "Skjut upp pågående utskriftsjobb";
+
+/* (No Comment) */
+"FZ3z7Z" = "Ställ in bäddens temperatur";
+
+/* (No Comment) */
+"G3JE6a" = "${printer}";
+
+/* (No Comment) */
+"gx0D0e" = "Jobb avbrutet";
+
+/* (No Comment) */
+"hPlRC4" = "Ställ in bäddtemperatur till ${temperature}";
+
+/* (No Comment) */
+"ihLqc7" = "Pausa jobb";
+
+/* (No Comment) */
+"Jioukn" = "Ställ in kammarens temperatur";
+
+/* (No Comment) */
+"JmhfgL" = "Starta om pågående utskriftsjobb";
+
+/* (No Comment) */
+"Kf7e4Y" = "Återuppta pågående utskriftsjobb";
+
+/* (No Comment) */
+"lrRige" = "Avbryt pågående utskriftsjobb";
+
+/* (No Comment) */
+"LVlPuT" = "Avbryt pågående utskriftsjobb";
+
+/* (No Comment) */
+"m6XJpy" = "Kunde inte kyla ner skrivare (${statusCode})";
+
+/* (No Comment) */
+"m9Jgmg" = "Jobb återupptaget";
+
+/* (No Comment) */
+"NG7rBh" = "Tid kvar";
+
+/* (No Comment) */
+"NL98zi" = "Kyler ner bädden och extruder";
+
+/* (No Comment) */
+"ovQf6Z" = "Jobb pausat";
+
+/* (No Comment) */
+"P89qJr" = "Tid kvar är ${time}";
+
+/* (No Comment) */
+"Pj7mEV" = "Kyler ner extruder";
+
+/* (No Comment) */
+"PppyPP" = "Konfigurera bäddens temperatur";
+
+/* (No Comment) */
+"qLzk1S" = "Kyl ner bädd";
+
+/* (No Comment) */
+"QSxXHq" = "Pausa pågående utskriftsjobb";
+
+/* (No Comment) */
+"rFHPr4" = "${printer}";
+
+/* (No Comment) */
+"Rjw5oo" = "${printer}";
+
+/* (No Comment) */
+"rmKSv6" = "Kunde inte ställa in extruder-temperatur (${statusCode})";
+
+/* (No Comment) */
+"RrOrgy" = "Avbryt jobb";
+
+/* (No Comment) */
+"RYurC5" = "Kyl ner kammaren";
+
+/* (No Comment) */
+"SP4rN6" = "Ställ in extruder-temperatur";
+
+/* (No Comment) */
+"SRDf6Q" = "Extruder-temperatur var inställt till ${temperature}";
+
+/* (No Comment) */
+"sRkyIL" = "Kunde inte starta om jobb (${statusCode})";
+
+/* (No Comment) */
+"tKDODp" = "Återstående utskriftstid";
+
+/* (No Comment) */
+"UC9Zrq" = "Bäddens temperatur var inställt till ${temperature}";
+
+/* (No Comment) */
+"uoT27A" = "Kunde inte ställa in bäddens temperatur (${statusCode})";
+
+/* (No Comment) */
+"Vc7DVt" = "Ställ in extruder ${tool} temperatur till ${temperature}";
+
+/* (No Comment) */
+"VDz0Q1" = "${printer}";
+
+/* (No Comment) */
+"vL7cy4" = "${printer}";
+
+/* (No Comment) */
+"VlxGJX" = "${printer}";
+
+/* (No Comment) */
+"WI2oQf" = "Returnera återstående utskriftstid";
+
+/* (No Comment) */
+"WLkRl0" = "Kunde inte återuppta jobb (${statusCode})";
+
+/* (No Comment) */
+"wYzz4m" = "Skrivaren kyls ner";
+
+/* (No Comment) */
+"XfWmGt" = "Återuppta pågående utskriftsjobb";
+
+/* (No Comment) */
+"xSARU0" = "Kunde inte pausa jobb (${statusCode})";
+
+/* (No Comment) */
+"YGxUII" = "${printer}";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
+
+/* (No Comment) */
+"zj1Vd9" = "Ställ in kammarens temperatur till ${temperature}";
+

@@ -1,0 +1,54 @@
+/* HTTP authentication failed */
+"Authentication failed" = "Autentisering misslyckades";
+
+/* (No Comment) */
+"Confirm" = "Bekräfta";
+
+/* (No Comment) */
+"Connection failed" = "Anslutning misslyckad";
+
+/* (No Comment) */
+"Dismiss" = "Avfärda";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Vill du avbryta jobbet?";
+
+/* No comment provided by engineer. */
+"Do you want to pause the job?" = "Vill du pausa jobbet?";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Fel vid begäran. HTTP-svar: %d";
+
+/* (No Comment) */
+"Job" = "Jobb";
+
+/* No comment provided by engineer. */
+"MK3" = "MK3";
+
+/* (No Comment) */
+"No" = "Nej";
+
+/* No printer has been selected */
+"No printer" = "Ingen skrivare";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Kunde inte begära att avbryta jobb";
+
+/* (No Comment) */
+"Notify failed pause job" = "Kunde inte begära att pausa jobb";
+
+/* (No Comment) */
+"Notify failed resume job" = "Kunde inte begära att återuppta jobb";
+
+/* No comment provided by engineer. */
+"Paused" = "Pausad";
+
+/* No comment provided by engineer. */
+"Printing" = "Skriver ut";
+
+/* ETA is Unknown */
+"Unknown" = "Okänd";
+
+/* (No Comment) */
+"Yes" = "Ja";
+

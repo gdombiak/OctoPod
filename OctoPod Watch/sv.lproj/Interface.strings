@@ -1,0 +1,30 @@
+/* Class = "WKInterfaceController"; title = "Printers"; ObjectID = "AgC-eL-Hgc"; */
+"AgC-eL-Hgc.title" = "Skrivare";
+
+/* Class = "WKInterfaceController"; title = "Panel"; ObjectID = "DQ6-B5-o6I"; */
+"DQ6-B5-o6I.title" = "Panel";
+
+/* Class = "WKInterfaceLabel"; text = "    "; ObjectID = "Dtq-ww-SzR"; */
+"Dtq-ww-SzR.text" = "    ";
+
+/* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "HUy-Lk-z5k"; */
+"HUy-Lk-z5k.text" = "Etikett";
+
+/* Class = "WKInterfaceLabel"; text = "Alert Label"; ObjectID = "IdU-wH-bcW"; */
+"IdU-wH-bcW.text" = "Varningsetikett";
+
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "MUA-6M-Ncu"; */
+"MUA-6M-Ncu.text" = "     ";
+
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "R3c-gI-59i"; */
+"R3c-gI-59i.text" = "     ";
+
+/* Class = "WKInterfaceLabel"; text = "Open the iPhone app, it will share printer data with the watch"; ObjectID = "S0T-q4-2KQ"; */
+"S0T-q4-2KQ.text" = "Öppna iPhone-appen, den kommer att dela skrivardata med klockan";
+
+/* Class = "WKInterfaceController"; title = "Cameras"; ObjectID = "SvA-Pt-I7G"; */
+"SvA-Pt-I7G.title" = "Kameror";
+
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "vgs-ar-wlO"; */
+"vgs-ar-wlO.text" = "     ";
+
