@@ -540,7 +540,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 // Handle error
                 NSLog("Error moving E axis. HTTP status code \(response.statusCode)")
                 let message = delta > 0 ? NSLocalizedString("Failed to request to extrude", comment: "") : NSLocalizedString("Failed to request to retract", comment: "")
-                self.showAlert(message: NSLocalizedString(message, comment: ""))
+                self.showAlert(message: message)
             }
         })
     }
