@@ -79,7 +79,7 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
     @IBAction func connectDisconnectClicked(_ sender: Any) {
         if connected == true {
             // Prompt before trying to disconnect from Palette
-            showConfirm(message: NSLocalizedString("Confirm disconnect", comment: ""), yes: { (UIAlertAction) in
+            showConfirm(message: NSLocalizedString("Confirm disconnect palette2", comment: ""), yes: { (UIAlertAction) in
                 self.octoprintClient.palette2Disconnect { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if !requested {
                         self.showAndLogAlert(error, response, "Palette - Error requesting to disconnect", NSLocalizedString("Failed to request to disconnect", comment: ""))
