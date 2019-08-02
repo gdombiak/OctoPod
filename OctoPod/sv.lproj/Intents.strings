@@ -14,7 +14,7 @@
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
-"6k5AFm" = "Återuppta jobb";
+"6k5AFm" = "Återuppta";
 
 /* (No Comment) */
 "6vtMLs" = "Jobbet startades om";
@@ -32,7 +32,7 @@
 "9PozHf" = "${printer}";
 
 /* (No Comment) */
-"662LyZ" = "Starta om jobb";
+"662LyZ" = "Starta om";
 
 /* (No Comment) */
 "bXGQKe" = "Kyl ner skrivare";
@@ -125,7 +125,7 @@
 "rmKSv6" = "Kunde inte ställa in extruder-temperatur (${statusCode})";
 
 /* (No Comment) */
-"RrOrgy" = "Avbryt jobb";
+"RrOrgy" = "Avbryt";
 
 /* (No Comment) */
 "RYurC5" = "Kyl ner kammaren";

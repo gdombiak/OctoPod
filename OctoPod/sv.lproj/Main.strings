@@ -20,7 +20,7 @@
 "3JO-XH-cf3.headerTitle" = "Språk";
 
 /* Class = "UILabel"; text = "Printed"; ObjectID = "3mU-gE-iQQ"; */
-"3mU-gE-iQQ.text" = "Utskriven";
+"3mU-gE-iQQ.text" = "Utskrivet";
 
 /* Class = "UITableViewSection"; headerTitle = "Speed"; ObjectID = "3tm-V0-9Gl"; */
 "3tm-V0-9Gl.headerTitle" = "Hastighet";
@@ -32,7 +32,7 @@
 "4bm-la-U47.segmentTitles[1]" = "Datum";
 
 /* Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[2] = "Printed"; ObjectID = "4bm-la-U47"; */
-"4bm-la-U47.segmentTitles[2]" = "Utskriven";
+"4bm-la-U47.segmentTitles[2]" = "Utskrivet";
 
 /* Class = "UILabel"; text = "Certificate validation"; ObjectID = "4Kd-tY-8l3"; */
 "4Kd-tY-8l3.text" = "Certifikatvalidering";
@@ -131,7 +131,7 @@
 "aFa-Qd-yIr.placeholder" = "Skrivarnamn (t.ex. MK3)";
 
 /* Class = "UIButton"; normalTitle = "Suppress temp"; ObjectID = "AfS-HP-WTR"; */
-"AfS-HP-WTR.normalTitle" = "Dämpa temp";
+"AfS-HP-WTR.normalTitle" = "Tysta temp";
 
 /* Class = "UIButton"; normalTitle = "View activity log"; ObjectID = "aJp-RM-Tuf"; */
 "aJp-RM-Tuf.normalTitle" = "Visa aktivitetslogg";
@@ -152,7 +152,7 @@
 "BDJ-1U-H9C.text" = "Ursprung";
 
 /* Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf"; */
-"bep-Im-uzf.text" = "Utskriven";
+"bep-Im-uzf.text" = "Utskrivet";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
 "bNj-cj-oty.text" = "Etikett";
@@ -182,7 +182,7 @@
 "Crn-wa-FLw.normalTitle" = "Skriv ut";
 
 /* Class = "UIButton"; normalTitle = "Cancel Job"; ObjectID = "Cxb-Rv-BSm"; */
-"Cxb-Rv-BSm.normalTitle" = "Avbryt jobb";
+"Cxb-Rv-BSm.normalTitle" = "Avbryt";
 
 /* Class = "UIButton"; normalTitle = "Pause Job"; ObjectID = "d2Y-RO-6Yg"; */
 "d2Y-RO-6Yg.normalTitle" = "Pausa jobb";
@@ -548,7 +548,7 @@
 "sF0-zd-MZR.text" = "/";
 
 /* Class = "UIButton"; normalTitle = "Suppress SD"; ObjectID = "sgi-wT-ubY"; */
-"sgi-wT-ubY.normalTitle" = "Dämpa SD";
+"sgi-wT-ubY.normalTitle" = "Tysta SD";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H"; */
 "sLc-Jv-G0H.placeholder" = "Användarnamn";
@@ -677,7 +677,7 @@
 "xsQ-V9-zzo.text" = "Ping";
 
 /* Class = "UIButton"; normalTitle = "Restart Job"; ObjectID = "XV8-g9-QIc"; */
-"XV8-g9-QIc.normalTitle" = "Starta om jobb";
+"XV8-g9-QIc.normalTitle" = "Starta om";
 
 /* Class = "UINavigationItem"; title = "Printer Details"; ObjectID = "xvl-wE-Mht"; */
 "xvl-wE-Mht.title" = "Skrivardetaljer";
@@ -731,7 +731,7 @@
 "ZSM-KR-Ovn.title" = "Logg";
 
 /* Class = "UILabel"; text = "Sync printers between iOS devices"; ObjectID = "zVf-Zx-3g4"; */
-"zVf-Zx-3g4.text" = "Synkronisera skrivare mellan iOS-enheter";
+"zVf-Zx-3g4.text" = "Synka skrivare mellan iOS-enheter";
 
 /* Class = "UILabel"; text = "Offset"; ObjectID = "zws-KA-eU1"; */
 "zws-KA-eU1.text" = "Offset";
