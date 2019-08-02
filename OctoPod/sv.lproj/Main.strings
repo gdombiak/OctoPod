@@ -125,7 +125,7 @@
 "aaG-XM-gnj.normalTitle" = "Återgenerera standardgenvägar";
 
 /* Class = "UIButton"; normalTitle = "Clear Palette 2"; ObjectID = "AcH-TF-NmP"; */
-"AcH-TF-NmP.normalTitle" = "Rensa Palett 2";
+"AcH-TF-NmP.normalTitle" = "Rensa Palette 2";
 
 /* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "aFa-Qd-yIr"; */
 "aFa-Qd-yIr.placeholder" = "Skrivarnamn (t.ex. MK3)";
@@ -512,7 +512,7 @@
 "QpW-7Y-LpA.text" = "Titel";
 
 /* Class = "UITableViewSection"; headerTitle = "Palette 2 Connection"; ObjectID = "qUK-6N-G11"; */
-"qUK-6N-G11.headerTitle" = "Palett 2-anslutning";
+"qUK-6N-G11.headerTitle" = "Palette 2-anslutning";
 
 /* Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ"; */
 "QwZ-7J-MwJ.normalTitle" = "Av";
@@ -578,7 +578,7 @@
 "tMP-2W-Iam.placeholder" = "Värdnamn (t.ex. http://octopi.local)";
 
 /* Class = "UITableViewSection"; headerTitle = "Palette 2"; ObjectID = "Tqi-wZ-CN5"; */
-"Tqi-wZ-CN5.headerTitle" = "Palett 2";
+"Tqi-wZ-CN5.headerTitle" = "Palette 2";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "tTe-Q5-kkc"; */
 "tTe-Q5-kkc.text" = "/";
