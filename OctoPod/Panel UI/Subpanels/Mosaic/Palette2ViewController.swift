@@ -93,7 +93,12 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
             let port = selectedPort == nil ? "" : selectedPort!
             octoprintClient.palette2Connect(port: port) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
-                    self.showAndLogAlert(error, response, "Palette- Error requesting to connect", NSLocalizedString("Failed to request to connect", comment: ""))
+                    if response.statusCode == 500 {
+                        // Palette is offline or not connected or incorrect baudrate or some connectivity error
+                        self.showAndLogAlert(error, response, "Palette - Failed to connect", NSLocalizedString("Failed to connect", comment: ""))
+                    } else {
+                        self.showAndLogAlert(error, response, "Palette - Error requesting to connect", NSLocalizedString("Failed to request to connect", comment: ""))
+                    }
                 }
             }
         }
