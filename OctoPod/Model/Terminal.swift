@@ -88,6 +88,12 @@ class Terminal {
         let defaults = UserDefaults.standard
         defaults.set(commandsHistory, forKey: Terminal.COMMANDS_HISTORY_KEY)
     }
+    
+    /// Remove command specified at given position
+    /// - parameter position: zero index position of the command to remove from history
+    func removeCommand(position: Int) {
+        commandsHistory.remove(at: position)
+    }
 
     // MARK: - Private functions
     

@@ -173,6 +173,20 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         sendGCodeButton.isEnabled = true
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Only allow to delete command from history if app is not locked
+        return !appConfiguration.appLocked()
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Remove command from history
+            octoprintClient.terminal.removeCommand(position: indexPath.row)
+            // Refresh table UI
+            commandsHistoryTable.reloadData()
+        }
+    }
+    
     @IBAction func dismissCommandsHistory(_ sender: Any) {
         showCommandsHistory(show: false)
     }
