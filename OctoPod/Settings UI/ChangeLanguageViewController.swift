@@ -18,7 +18,7 @@ class ChangeLanguageViewController: ThemedDynamicUITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return 10
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,6 +65,10 @@ class ChangeLanguageViewController: ThemedDynamicUITableViewController {
             // Lithuanian
             cell.textLabel?.text = "Lietuvių"
             cell.accessoryType = languageOverride == "lt-LT" ? .checkmark : .none
+        case 9:
+            // Swedish
+            cell.textLabel?.text = "Svenska"
+            cell.accessoryType = languageOverride == "sv" ? .checkmark : .none
         default:
             fatalError("ChangeLanguageViewController has more rows than languages")
         }
@@ -109,6 +113,10 @@ class ChangeLanguageViewController: ThemedDynamicUITableViewController {
             // Lithuanian
             defaults.set(["lt-LT"], forKey: ChangeLanguageViewController.LANGUAGE_KEY)
             defaults.set("lt-LT", forKey: ChangeLanguageViewController.CHANGE_LANGUAGE_OVERRIDE)
+        case 9:
+            // Swedish
+            defaults.set(["sv"], forKey: ChangeLanguageViewController.LANGUAGE_KEY)
+            defaults.set("sv", forKey: ChangeLanguageViewController.CHANGE_LANGUAGE_OVERRIDE)
         default:
             fatalError("ChangeLanguageViewController has more rows than languages")
         }
@@ -119,15 +127,4 @@ class ChangeLanguageViewController: ThemedDynamicUITableViewController {
         // Close this window
         self.dismiss(animated: true, completion: nil)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
