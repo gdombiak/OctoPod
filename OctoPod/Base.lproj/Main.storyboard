@@ -4904,10 +4904,9 @@
                                             <constraints>
                                                 <constraint firstItem="kPW-if-FGO" firstAttribute="top" secondItem="DGV-6S-bR0" secondAttribute="topMargin" id="33b-kZ-bc6"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="tgj-tb-vD5" secondAttribute="trailing" id="Clf-69-DOC"/>
-                                                <constraint firstItem="tgj-tb-vD5" firstAttribute="top" secondItem="DGV-6S-bR0" secondAttribute="topMargin" id="WN1-yt-Jaq"/>
+                                                <constraint firstItem="tgj-tb-vD5" firstAttribute="centerY" secondItem="kPW-if-FGO" secondAttribute="centerY" id="IYs-he-MzC"/>
                                                 <constraint firstItem="tgj-tb-vD5" firstAttribute="leading" secondItem="kPW-if-FGO" secondAttribute="trailing" constant="5" id="eyB-ft-VxS"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="kPW-if-FGO" secondAttribute="bottom" constant="1" id="hKK-uj-3P7"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="tgj-tb-vD5" secondAttribute="bottom" constant="1" id="wNm-OU-fQA"/>
                                                 <constraint firstItem="kPW-if-FGO" firstAttribute="leading" secondItem="DGV-6S-bR0" secondAttribute="leadingMargin" id="yPQ-sC-rQm"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -4955,8 +4954,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TL-hx-EDz">
-                                                    <rect key="frame" x="71" y="11" width="288" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8TL-hx-EDz">
+                                                    <rect key="frame" x="71" y="12.5" width="288" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -4971,11 +4970,10 @@
                                             <constraints>
                                                 <constraint firstItem="VgY-ne-x6t" firstAttribute="leading" secondItem="ecP-FH-zRE" secondAttribute="leadingMargin" id="1iK-1F-sB5"/>
                                                 <constraint firstItem="8TL-hx-EDz" firstAttribute="trailing" secondItem="ecP-FH-zRE" secondAttribute="trailingMargin" id="8Ed-Kn-Vy1"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="8TL-hx-EDz" secondAttribute="bottom" constant="1" id="NcT-Ab-Tsx"/>
+                                                <constraint firstItem="8TL-hx-EDz" firstAttribute="centerY" secondItem="VgY-ne-x6t" secondAttribute="centerY" id="Kcp-sW-5DR"/>
                                                 <constraint firstItem="VgY-ne-x6t" firstAttribute="bottom" secondItem="ecP-FH-zRE" secondAttribute="bottomMargin" constant="1" id="S9e-86-zWp"/>
                                                 <constraint firstItem="VgY-ne-x6t" firstAttribute="top" secondItem="ecP-FH-zRE" secondAttribute="topMargin" id="avP-K3-ekD"/>
                                                 <constraint firstItem="8TL-hx-EDz" firstAttribute="leading" secondItem="VgY-ne-x6t" secondAttribute="trailing" constant="5" id="npH-ya-ix1"/>
-                                                <constraint firstItem="8TL-hx-EDz" firstAttribute="top" secondItem="ecP-FH-zRE" secondAttribute="topMargin" id="sXb-54-qjd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

@@ -153,10 +153,10 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
             // Make the popover appear at the middle of the button
             segue.destination.popoverPresentationController!.sourceRect = CGRect(x: 0, y: selectPortButton.frame.size.height/2 , width: 0, height: 0)
         } else if segue.identifier == "show_ping_history", let controller = segue.destination as? PingPongHistoryViewController {
-            controller.history = pingsHistory
+            controller.history = pingsHistory?.reversed()
             controller.title = NSLocalizedString("Ping History", comment: "")
         } else if segue.identifier == "show_pong_history", let controller = segue.destination as? PingPongHistoryViewController {
-            controller.history = pongsHistory
+            controller.history = pongsHistory?.reversed()
             controller.title = NSLocalizedString("Pong History", comment: "")
         }
     }
