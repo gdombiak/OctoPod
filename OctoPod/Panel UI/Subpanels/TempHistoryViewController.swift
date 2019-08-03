@@ -125,24 +125,24 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
                 if let bedTarget = temp.bedTempTarget {
                     bedTargetEntries.append(ChartDataEntry(x: age, y: bedTarget))
                 }
-                if let tool0Actual = temp.tool0TempActual {
-                    tool0ActualEntries.append(ChartDataEntry(x: age, y: tool0Actual))
+                if let toolActual = temp.tool0TempActual {
+                    tool0ActualEntries.append(ChartDataEntry(x: age, y: toolActual))
                     // Calculate min and max temperatures
-                    if minTool0Actual == 0 || tool0Actual < minTool0Actual {
-                        minTool0Actual = tool0Actual
+                    if minTool0Actual == 0 || toolActual < minTool0Actual {
+                        minTool0Actual = toolActual
                     }
-                    if maxTool0Actual == 0 || tool0Actual > maxTool0Actual {
-                        maxTool0Actual = tool0Actual
+                    if maxTool0Actual == 0 || toolActual > maxTool0Actual {
+                        maxTool0Actual = toolActual
                     }
                 }
-                if let tool0Target = temp.tool0TempTarget {
-                    tool0TargetEntries.append(ChartDataEntry(x: age, y: tool0Target))
+                if let toolTarget = temp.tool0TempTarget {
+                    tool0TargetEntries.append(ChartDataEntry(x: age, y: toolTarget))
                 }
-                if let tool1Actual = temp.tool1TempActual {
-                    tool1ActualEntries.append(ChartDataEntry(x: age, y: tool1Actual))
+                if let toolActual = temp.tool1TempActual {
+                    tool1ActualEntries.append(ChartDataEntry(x: age, y: toolActual))
                 }
-                if let tool1Target = temp.tool1TempTarget {
-                    tool1TargetEntries.append(ChartDataEntry(x: age, y: tool1Target))
+                if let toolTarget = temp.tool1TempTarget {
+                    tool1TargetEntries.append(ChartDataEntry(x: age, y: toolTarget))
                 }
                 if let chamberActual = temp.chamberTempActual {
                     chamberActualEntries.append(ChartDataEntry(x: age, y: chamberActual))

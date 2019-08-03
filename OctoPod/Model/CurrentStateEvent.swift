@@ -19,6 +19,18 @@ class CurrentStateEvent {
     var tool1TempActual: Double?
     var tool1TempTarget: Double?
     
+    /// Extruder 2 temperatures (if present)
+    var tool2TempActual: Double?
+    var tool2TempTarget: Double?
+    
+    /// Extruder 4 temperatures (if present)
+    var tool3TempActual: Double?
+    var tool3TempTarget: Double?
+    
+    /// Extruder 4 temperatures (if present)
+    var tool4TempActual: Double?
+    var tool4TempTarget: Double?
+    
     /// Chamber temperatures (if present)
     var chamberTempActual: Double?
     var chamberTempTarget: Double?
@@ -49,13 +61,25 @@ class CurrentStateEvent {
             bedTempActual = bed["actual"] as? Double
             bedTempTarget = bed["target"] as? Double
         }
-        if let tool0 = temp["tool0"] as? NSDictionary {
-            tool0TempActual = tool0["actual"] as? Double
-            tool0TempTarget = tool0["target"] as? Double
+        if let tool = temp["tool0"] as? NSDictionary {
+            tool0TempActual = tool["actual"] as? Double
+            tool0TempTarget = tool["target"] as? Double
         }
-        if let tool1 = temp["tool1"] as? NSDictionary {
-            tool1TempActual = tool1["actual"] as? Double
-            tool1TempTarget = tool1["target"] as? Double
+        if let tool = temp["tool1"] as? NSDictionary {
+            tool1TempActual = tool["actual"] as? Double
+            tool1TempTarget = tool["target"] as? Double
+        }
+        if let tool = temp["tool2"] as? NSDictionary {
+            tool2TempActual = tool["actual"] as? Double
+            tool2TempTarget = tool["target"] as? Double
+        }
+        if let tool = temp["tool3"] as? NSDictionary {
+            tool3TempActual = tool["actual"] as? Double
+            tool3TempTarget = tool["target"] as? Double
+        }
+        if let tool = temp["tool4"] as? NSDictionary {
+            tool4TempActual = tool["actual"] as? Double
+            tool4TempTarget = tool["target"] as? Double
         }
         if let chamber = temp["chamber"] as? NSDictionary {
             chamberTempActual = chamber["actual"] as? Double

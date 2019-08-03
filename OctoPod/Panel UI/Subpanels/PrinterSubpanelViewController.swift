@@ -17,10 +17,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     @IBOutlet weak var printTimeTextLabel: UILabel!
     @IBOutlet weak var printTimeLeftTextLabel: UILabel!
     @IBOutlet weak var printerStatusTextLabel: UILabel!
-    @IBOutlet weak var tool0TextLabel: UILabel!
+    @IBOutlet weak var tool0TitleLabel: UILabel!
     @IBOutlet weak var bedTextLabel: UILabel!
-    @IBOutlet weak var tool1TextLabel: UILabel!
-    @IBOutlet weak var chamberTextLabel: UILabel!
 
     @IBOutlet weak var printerStatusLabel: UILabel!
     
@@ -35,15 +33,36 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     @IBOutlet weak var tool0TargetLabel: UILabel!
     @IBOutlet weak var tool0SplitLabel: UILabel!
     
-    @IBOutlet weak var tool1Row: UITableViewCell!
+    @IBOutlet weak var toolRow1: UITableViewCell!
+    @IBOutlet weak var tool1TitleLabel: UILabel!
     @IBOutlet weak var tool1SetTempButton: UIButton!
     @IBOutlet weak var tool1ActualLabel: UILabel!
     @IBOutlet weak var tool1TargetLabel: UILabel!
     @IBOutlet weak var tool1SplitLabel: UILabel!
+    @IBOutlet weak var chamberTitleLabel: UILabel!
     @IBOutlet weak var chamberSetTempButton: UIButton!
     @IBOutlet weak var chamberActualLabel: UILabel!
     @IBOutlet weak var chamberTargetLabel: UILabel!
     @IBOutlet weak var chamberSplitLabel: UILabel!
+
+    @IBOutlet weak var toolRow2: UITableViewCell!
+    @IBOutlet weak var tool2TitleLabel: UILabel!
+    @IBOutlet weak var tool2SetTempButton: UIButton!
+    @IBOutlet weak var tool2ActualLabel: UILabel!
+    @IBOutlet weak var tool2TargetLabel: UILabel!
+    @IBOutlet weak var tool2SplitLabel: UILabel!
+    @IBOutlet weak var tool3TitleLabel: UILabel!
+    @IBOutlet weak var tool3SetTempButton: UIButton!
+    @IBOutlet weak var tool3ActualLabel: UILabel!
+    @IBOutlet weak var tool3TargetLabel: UILabel!
+    @IBOutlet weak var tool3SplitLabel: UILabel!
+
+    @IBOutlet weak var toolRow3: UITableViewCell!
+    @IBOutlet weak var tool4TitleLabel: UILabel!
+    @IBOutlet weak var tool4SetTempButton: UIButton!
+    @IBOutlet weak var tool4ActualLabel: UILabel!
+    @IBOutlet weak var tool4TargetLabel: UILabel!
+    @IBOutlet weak var tool4SplitLabel: UILabel!
 
     @IBOutlet weak var bedSetTempButton: UIButton!
     @IBOutlet weak var bedActualLabel: UILabel!
@@ -126,6 +145,27 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 // Make the popover appear at the middle of the button
                 segue.destination.popoverPresentationController!.sourceRect = CGRect(x: chamberSetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
             }
+        } else if segue.identifier == "set_target_temp_tool2" {
+            if let controller = segue.destination as? SetTargetTempViewController {
+                controller.targetTempScope = SetTargetTempViewController.TargetScope.tool2
+                controller.popoverPresentationController!.delegate = self
+                // Make the popover appear at the middle of the button
+                segue.destination.popoverPresentationController!.sourceRect = CGRect(x: tool2SetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
+            }
+        } else if segue.identifier == "set_target_temp_tool3" {
+            if let controller = segue.destination as? SetTargetTempViewController {
+                controller.targetTempScope = SetTargetTempViewController.TargetScope.tool3
+                controller.popoverPresentationController!.delegate = self
+                // Make the popover appear at the middle of the button
+                segue.destination.popoverPresentationController!.sourceRect = CGRect(x: tool3SetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
+            }
+        } else if segue.identifier == "set_target_temp_tool4" {
+            if let controller = segue.destination as? SetTargetTempViewController {
+                controller.targetTempScope = SetTargetTempViewController.TargetScope.tool4
+                controller.popoverPresentationController!.delegate = self
+                // Make the popover appear at the middle of the button
+                segue.destination.popoverPresentationController!.sourceRect = CGRect(x: tool4SetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
+            }
         } else if segue.identifier == "print_job_info" {
             segue.destination.popoverPresentationController!.delegate = self
             // Make the popover appear at the middle of the button
@@ -184,32 +224,74 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 self.tool0SplitLabel.isHidden = false
             }
 
-            if let tool1Actual = event.tool1TempActual {
-                self.tool1ActualLabel.text = "\(String(format: "%.1f", tool1Actual)) C"
-                self.tool1ActualLabel.isHidden = false
-                self.tool1SplitLabel.isHidden = false
-                self.tool1TextLabel.isHidden = false
-                self.tool1SetTempButton.isHidden = false
-                self.tool1Row.isHidden = false
+            if let toolActual = event.tool1TempActual {
+                self.tool1ActualLabel.text = "\(String(format: "%.1f", toolActual)) C"
+                self.state(view: self.tool1ActualLabel, enable: true)
+                self.state(view: self.tool1SplitLabel, enable: true)
+                self.state(view: self.tool1TitleLabel, enable: true)
+                self.tool1SetTempButton.isEnabled = true
+                self.toolRow1.isHidden = false
             }
-            if let tool1Target = event.tool1TempTarget {
-                self.tool1TargetLabel.text = "\(String(format: "%.0f", tool1Target)) C"
-                self.tool1TargetLabel.isHidden = false
-                self.tool1Row.isHidden = false
+            if let toolTarget = event.tool1TempTarget {
+                self.tool1TargetLabel.text = "\(String(format: "%.0f", toolTarget)) C"
+                self.state(view: self.tool1TargetLabel, enable: true)
+                self.toolRow1.isHidden = false
             }
             
             if let chamberActual = event.chamberTempActual {
                 self.chamberActualLabel.text = "\(String(format: "%.1f", chamberActual)) C"
-                self.chamberActualLabel.isHidden = false
-                self.chamberSplitLabel.isHidden = false
-                self.chamberTextLabel.isHidden = false
-                self.chamberSetTempButton.isHidden = false
-                self.tool1Row.isHidden = false
+                self.state(view: self.chamberActualLabel, enable: true)
+                self.state(view: self.chamberSplitLabel, enable: true)
+                self.state(view: self.chamberTitleLabel, enable: true)
+                self.chamberSetTempButton.isEnabled = true
+                self.toolRow1.isHidden = false
             }
             if let chamberTarget = event.chamberTempTarget {
                 self.chamberTargetLabel.text = "\(String(format: "%.0f", chamberTarget)) C"
-                self.chamberTargetLabel.isHidden = false
-                self.tool1Row.isHidden = false
+                self.state(view: self.chamberTargetLabel, enable: true)
+                self.toolRow1.isHidden = false
+            }
+            
+            if let toolActual = event.tool2TempActual {
+                self.tool2ActualLabel.text = "\(String(format: "%.1f", toolActual)) C"
+                self.state(view: self.tool2ActualLabel, enable: true)
+                self.state(view: self.tool2SplitLabel, enable: true)
+                self.state(view: self.tool2TitleLabel, enable: true)
+                self.tool2SetTempButton.isEnabled = true
+                self.toolRow2.isHidden = false
+            }
+            if let toolTarget = event.tool2TempTarget {
+                self.tool2TargetLabel.text = "\(String(format: "%.0f", toolTarget)) C"
+                self.state(view: self.tool2TargetLabel, enable: true)
+                self.toolRow2.isHidden = false
+            }
+            
+            if let toolActual = event.tool3TempActual {
+                self.tool3ActualLabel.text = "\(String(format: "%.1f", toolActual)) C"
+                self.state(view: self.tool3ActualLabel, enable: true)
+                self.state(view: self.tool3SplitLabel, enable: true)
+                self.state(view: self.tool3TitleLabel, enable: true)
+                self.tool3SetTempButton.isEnabled = true
+                self.toolRow2.isHidden = false
+            }
+            if let toolTarget = event.tool3TempTarget {
+                self.tool3TargetLabel.text = "\(String(format: "%.0f", toolTarget)) C"
+                self.state(view: self.tool3TargetLabel, enable: true)
+                self.toolRow2.isHidden = false
+            }
+            
+            if let toolActual = event.tool4TempActual {
+                self.tool4ActualLabel.text = "\(String(format: "%.1f", toolActual)) C"
+                self.state(view: self.tool4ActualLabel, enable: true)
+                self.state(view: self.tool4SplitLabel, enable: true)
+                self.state(view: self.tool4TitleLabel, enable: true)
+                self.tool4SetTempButton.isEnabled = true
+                self.toolRow3.isHidden = false
+            }
+            if let toolTarget = event.tool4TempTarget {
+                self.tool4TargetLabel.text = "\(String(format: "%.0f", toolTarget)) C"
+                self.state(view: self.tool4TargetLabel, enable: true)
+                self.toolRow3.isHidden = false
             }
             
             if let bedActual = event.bedTempActual {
@@ -224,8 +306,13 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             if let disconnected = event.closedOrError {
                 self.bedSetTempButton.isEnabled = !disconnected
                 self.tool0SetTempButton.isEnabled = !disconnected
-                self.tool1SetTempButton.isEnabled = !disconnected
-                self.chamberSetTempButton.isEnabled = !disconnected
+                if disconnected {
+                    self.tool1SetTempButton.isEnabled = false
+                    self.chamberSetTempButton.isEnabled = false
+                    self.tool2SetTempButton.isEnabled = false
+                    self.tool3SetTempButton.isEnabled = false
+                    self.tool4SetTempButton.isEnabled = false
+                }
 
                 self.presentToolTip(tooltipKey: PrinterSubpanelViewController.TOOLTIP_TEMP_BED, segueIdentifier: "bed_tooltip", button: self.bedSetTempButton)
                 self.presentToolTip(tooltipKey: PrinterSubpanelViewController.TOOLTIP_TEMP_TOOL, segueIdentifier: "tool0_tooltip", button: self.tool0SetTempButton)
@@ -332,21 +419,40 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             self.tool0ActualLabel.text = ""
             self.tool0TargetLabel.text = ""
             self.tool0SplitLabel.isHidden = true
-            // Hide second extruder / chamber row unless printer reports info
-            self.tool1Row.isHidden = true
-            // Hide tool1 info
-            self.tool1ActualLabel.isHidden = true
-            self.tool1TargetLabel.isHidden = true
-            self.tool1SplitLabel.isHidden = true
-            self.tool1TextLabel.isHidden = true
-            self.tool1SetTempButton.isHidden = true
-            // Hide chamber info
-            self.chamberActualLabel.isHidden = true
-            self.chamberTargetLabel.isHidden = true
-            self.chamberSplitLabel.isHidden = true
-            self.chamberTextLabel.isHidden = true
-            self.chamberSetTempButton.isHidden = true
-
+            // Hide 2nd,3rd,4th,5th extruders and chamber row unless printer reports info
+            self.toolRow1.isHidden = true
+            self.toolRow2.isHidden = true
+            self.toolRow3.isHidden = true
+            // Disable tool1 info
+            self.state(view: self.tool1ActualLabel, enable: false)
+            self.state(view: self.tool1TargetLabel, enable: false)
+            self.state(view: self.tool1SplitLabel, enable: false)
+            self.state(view: self.tool1TitleLabel, enable: false)
+            self.tool1SetTempButton.isEnabled = false
+            // Disable chamber info
+            self.state(view: self.chamberActualLabel, enable: false)
+            self.state(view: self.chamberTargetLabel, enable: false)
+            self.state(view: self.chamberSplitLabel, enable: false)
+            self.state(view: self.chamberTitleLabel, enable: false)
+            self.chamberSetTempButton.isEnabled = false
+            // Disable tool2 info
+            self.state(view: self.tool2ActualLabel, enable: false)
+            self.state(view: self.tool2TargetLabel, enable: false)
+            self.state(view: self.tool2SplitLabel, enable: false)
+            self.state(view: self.tool2TitleLabel, enable: false)
+            self.tool2SetTempButton.isEnabled = false
+            // Disable tool3 info
+            self.state(view: self.tool3ActualLabel, enable: false)
+            self.state(view: self.tool3TargetLabel, enable: false)
+            self.state(view: self.tool3SplitLabel, enable: false)
+            self.state(view: self.tool3TitleLabel, enable: false)
+            self.tool3SetTempButton.isEnabled = false
+            // Disable tool4 info
+            self.state(view: self.tool4ActualLabel, enable: false)
+            self.state(view: self.tool4TargetLabel, enable: false)
+            self.state(view: self.tool4SplitLabel, enable: false)
+            self.state(view: self.tool4TitleLabel, enable: false)
+            self.tool4SetTempButton.isEnabled = false
 
             self.bedActualLabel.text = "            " // Use empty spaces to position Bed label in a good place
             self.bedTargetLabel.text = "        " // Use empty spaces to position Bed label in a good place
@@ -355,9 +461,12 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             // Disable these buttons
             self.bedSetTempButton.isEnabled = false
             self.tool0SetTempButton.isEnabled = false
-            self.tool1SetTempButton.isEnabled = false
-            self.chamberSetTempButton.isEnabled = false
         }
+    }
+    
+    fileprivate func state(view: UILabel, enable: Bool) {
+        view.isEnabled = enable
+        view.alpha = enable ? 1.0 : 0.6
     }
     
     fileprivate func themeLabels() {
@@ -369,14 +478,20 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         printTimeTextLabel.textColor = textLabelColor
         printTimeLeftTextLabel.textColor = textLabelColor
         printerStatusTextLabel.textColor = textLabelColor
-        tool0TextLabel.textColor = textLabelColor
-        bedTextLabel.textColor = textLabelColor
-        tool1TextLabel.textColor = textLabelColor
-        chamberTextLabel.textColor = textLabelColor
+        tool0TitleLabel.textColor = textLabelColor
         tool0SplitLabel.textColor = textLabelColor
-        tool1SplitLabel.textColor = textLabelColor
-        chamberSplitLabel.textColor = textLabelColor
+        bedTextLabel.textColor = textLabelColor
         bedSplitLabel.textColor = textLabelColor
+        tool1TitleLabel.textColor = textLabelColor
+        tool1SplitLabel.textColor = textLabelColor
+        chamberTitleLabel.textColor = textLabelColor
+        chamberSplitLabel.textColor = textLabelColor
+        tool2TitleLabel.textColor = textLabelColor
+        tool2SplitLabel.textColor = textLabelColor
+        tool3TitleLabel.textColor = textLabelColor
+        tool3SplitLabel.textColor = textLabelColor
+        tool4TitleLabel.textColor = textLabelColor
+        tool4SplitLabel.textColor = textLabelColor
 
         printerStatusLabel.textColor = textColor
         progressLabel.textColor = textColor
@@ -388,6 +503,12 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         tool1TargetLabel.textColor = textColor
         chamberActualLabel.textColor = textColor
         chamberTargetLabel.textColor = textColor
+        tool2ActualLabel.textColor = textColor
+        tool2TargetLabel.textColor = textColor
+        tool3ActualLabel.textColor = textColor
+        tool3TargetLabel.textColor = textColor
+        tool4ActualLabel.textColor = textColor
+        tool4TargetLabel.textColor = textColor
         bedActualLabel.textColor = textColor
         bedTargetLabel.textColor = textColor
     }

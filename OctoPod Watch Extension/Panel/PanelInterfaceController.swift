@@ -11,11 +11,21 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
     
     @IBOutlet weak var bedTempLabel: WKInterfaceLabel!
     @IBOutlet weak var tool0TempLabel: WKInterfaceLabel!
-    @IBOutlet weak var tool1Group: WKInterfaceGroup!
+    @IBOutlet weak var toolGroup1: WKInterfaceGroup!
     @IBOutlet weak var tool1TempImage: WKInterfaceImage!
     @IBOutlet weak var tool1TempLabel: WKInterfaceLabel!
     @IBOutlet weak var chamberImage: WKInterfaceImage!
     @IBOutlet weak var chamberTempLabel: WKInterfaceLabel!
+
+    @IBOutlet weak var toolGroup2: WKInterfaceGroup!
+    @IBOutlet weak var tool2TempImage: WKInterfaceImage!
+    @IBOutlet weak var tool2TempLabel: WKInterfaceLabel!
+    @IBOutlet weak var tool3TempImage: WKInterfaceImage!
+    @IBOutlet weak var tool3TempLabel: WKInterfaceLabel!
+
+    @IBOutlet weak var toolGroup3: WKInterfaceGroup!
+    @IBOutlet weak var tool4TempImage: WKInterfaceImage!
+    @IBOutlet weak var tool4TempLabel: WKInterfaceLabel!
 
     @IBOutlet weak var buttonsSeparator: WKInterfaceSeparator!
     @IBOutlet weak var buttonsGroup: WKInterfaceGroup!
@@ -32,11 +42,21 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
         
         // Configure interface objects here.
         self.hideJobButtons()
-        self.tool1Group.setHidden(true)
-        self.tool1TempImage.setHidden(true)
-        self.tool1TempLabel.setHidden(true)
-        self.chamberImage.setHidden(true)
-        self.chamberTempLabel.setHidden(true)
+        self.toolGroup1.setHidden(true)
+        self.state(interaceObject: self.tool1TempImage, enable: false)
+        self.state(interaceObject: self.tool1TempLabel, enable: false)
+        self.state(interaceObject: self.chamberImage, enable: false)
+        self.state(interaceObject: self.chamberTempLabel, enable: false)
+
+        self.toolGroup2.setHidden(true)
+        self.state(interaceObject: self.tool2TempImage, enable: false)
+        self.state(interaceObject: self.tool2TempLabel, enable: false)
+        self.state(interaceObject: self.tool3TempImage, enable: false)
+        self.state(interaceObject: self.tool3TempLabel, enable: false)
+
+        self.toolGroup3.setHidden(true)
+        self.state(interaceObject: self.tool4TempImage, enable: false)
+        self.state(interaceObject: self.tool4TempLabel, enable: false)
 
         // If Watch App just started and we have printers (because they were stored in the file)
         // then make this page the default one
@@ -208,11 +228,19 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
                 self.printTimeLeftLabel.setText(nil)
                 self.bedTempLabel.setText("    ")
                 self.tool0TempLabel.setText("     ")
-                self.tool1Group.setHidden(true)
-                self.tool1TempImage.setHidden(true)
-                self.tool1TempLabel.setHidden(true)
-                self.chamberImage.setHidden(true)
-                self.chamberTempLabel.setHidden(true)
+                self.toolGroup1.setHidden(true)
+                self.state(interaceObject: self.tool1TempImage, enable: false)
+                self.state(interaceObject: self.tool1TempLabel, enable: false)
+                self.state(interaceObject: self.chamberImage, enable: false)
+                self.state(interaceObject: self.chamberTempLabel, enable: false)
+                self.toolGroup2.setHidden(true)
+                self.state(interaceObject: self.tool2TempImage, enable: false)
+                self.state(interaceObject: self.tool2TempLabel, enable: false)
+                self.state(interaceObject: self.tool3TempImage, enable: false)
+                self.state(interaceObject: self.tool3TempLabel, enable: false)
+                self.toolGroup3.setHidden(true)
+                self.state(interaceObject: self.tool4TempImage, enable: false)
+                self.state(interaceObject: self.tool4TempLabel, enable: false)
                 self.hideJobButtons()
             } else {
                 // Hide error message
@@ -239,27 +267,62 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
                     let temp = String(format: "%.1f", tool0Temp)
                     self.tool0TempLabel.setText("\(temp) C")
                     // Check if there is a second extruder and show group and temp
-                    var showSecondRow = false
+                    var showRow = false
                     if let tool1Temp = panelInfo["tool1Temp"] as? Double {
                         self.tool1TempLabel.setText("\(String(format: "%.1f", tool1Temp)) C")
-                        self.tool1TempImage.setHidden(false)
-                        self.tool1TempLabel.setHidden(false)
-                        showSecondRow = true
+                        self.state(interaceObject: self.tool1TempImage, enable: true)
+                        self.state(interaceObject: self.tool1TempLabel, enable: true)
+                        showRow = true
                     } else {
-                        self.tool1TempImage.setHidden(true)
-                        self.tool1TempLabel.setHidden(true)
+                        self.state(interaceObject: self.tool1TempImage, enable: false)
+                        self.state(interaceObject: self.tool1TempLabel, enable: false)
                     }
                     // Check if there is a heated chamber and show group and temp
                     if let chamberTemp = panelInfo["chamberTemp"] as? Double {
                         self.chamberTempLabel.setText("\(String(format: "%.1f", chamberTemp)) C")
-                        self.chamberImage.setHidden(false)
-                        self.chamberTempLabel.setHidden(false)
-                        showSecondRow = true
+                        self.state(interaceObject: self.chamberImage, enable: true)
+                        self.state(interaceObject: self.chamberTempLabel, enable: true)
+                        showRow = true
                     } else {
-                        self.chamberImage.setHidden(true)
-                        self.chamberTempLabel.setHidden(true)
+                        self.state(interaceObject: self.chamberImage, enable: false)
+                        self.state(interaceObject: self.chamberTempLabel, enable: false)
                     }
-                    self.tool1Group.setHidden(!showSecondRow)
+                    self.toolGroup1.setHidden(!showRow)
+
+                    // Check if there is a 3rd/4th extruder and show group and temp
+                    showRow = false
+                    if let toolTemp = panelInfo["tool2Temp"] as? Double {
+                        self.tool2TempLabel.setText("\(String(format: "%.1f", toolTemp)) C")
+                        self.state(interaceObject: self.tool2TempImage, enable: true)
+                        self.state(interaceObject: self.tool2TempLabel, enable: true)
+                        showRow = true
+                    } else {
+                        self.state(interaceObject: self.tool2TempImage, enable: false)
+                        self.state(interaceObject: self.tool2TempLabel, enable: false)
+                    }
+                    if let toolTemp = panelInfo["tool3Temp"] as? Double {
+                        self.tool3TempLabel.setText("\(String(format: "%.1f", toolTemp)) C")
+                        self.state(interaceObject: self.tool3TempImage, enable: true)
+                        self.state(interaceObject: self.tool3TempLabel, enable: true)
+                        showRow = true
+                    } else {
+                        self.state(interaceObject: self.tool3TempImage, enable: false)
+                        self.state(interaceObject: self.tool3TempLabel, enable: false)
+                    }
+                    self.toolGroup2.setHidden(!showRow)
+
+                    // Check if there is a 3rd/4th extruder and show group and temp
+                    showRow = false
+                    if let toolTemp = panelInfo["tool4Temp"] as? Double {
+                        self.tool4TempLabel.setText("\(String(format: "%.1f", toolTemp)) C")
+                        self.state(interaceObject: self.tool4TempImage, enable: true)
+                        self.state(interaceObject: self.tool4TempLabel, enable: true)
+                        showRow = true
+                    } else {
+                        self.state(interaceObject: self.tool4TempImage, enable: false)
+                        self.state(interaceObject: self.tool4TempLabel, enable: false)
+                    }
+                    self.toolGroup3.setHidden(!showRow)
                 }
                 if let printer = panelInfo["printer"] as? String {
                     self.buttonsSeparator.setHidden(false)
@@ -327,7 +390,14 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
         self.bedTempLabel.setText(nil)
         self.tool0TempLabel.setText("     ")  // Put some space so extruder icon looks ok
         self.tool1TempLabel.setText("     ")  // Put some space so extruder icon looks ok
+        self.tool2TempLabel.setText("     ")  // Put some space so extruder icon looks ok
+        self.tool3TempLabel.setText("     ")  // Put some space so extruder icon looks ok
+        self.tool4TempLabel.setText("     ")  // Put some space so extruder icon looks ok
         self.chamberTempLabel.setText("     ")  // Put some space so extruder icon looks ok
+    }
+    
+    fileprivate func state(interaceObject: WKInterfaceObject, enable: Bool) {
+        interaceObject.setAlpha(enable ? 1.0 : 0.6)
     }
     
     fileprivate func secondsToTimeLeft(seconds: Int) -> String {

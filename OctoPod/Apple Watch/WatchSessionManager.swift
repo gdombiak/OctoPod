@@ -233,11 +233,20 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                             if let bedTemp = event.bedTempActual {
                                 reply["bedTemp"] = bedTemp
                             }
-                            if let tool0Temp = event.tool0TempActual {
-                                reply["tool0Temp"] = tool0Temp
+                            if let toolTemp = event.tool0TempActual {
+                                reply["tool0Temp"] = toolTemp
                             }
-                            if let tool1Temp = event.tool1TempActual {
-                                reply["tool1Temp"] = tool1Temp
+                            if let toolTemp = event.tool1TempActual {
+                                reply["tool1Temp"] = toolTemp
+                            }
+                            if let toolTemp = event.tool2TempActual {
+                                reply["tool2Temp"] = toolTemp
+                            }
+                            if let toolTemp = event.tool3TempActual {
+                                reply["tool3Temp"] = toolTemp
+                            }
+                            if let toolTemp = event.tool4TempActual {
+                                reply["tool4Temp"] = toolTemp
                             }
                             if let chamberTemp = event.chamberTempActual {
                                 reply["chamberTemp"] = chamberTemp

@@ -8,6 +8,9 @@ class SetTargetTempViewController: UITableViewController {
         case bed
         case tool0
         case tool1
+        case tool2
+        case tool3
+        case tool4
         case chamber
     }
 

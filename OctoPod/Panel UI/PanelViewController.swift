@@ -248,6 +248,39 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 if let printer = printerManager.getPrinterByName(name: self.navigationItem.title ?? "_") {
                     IntentsDonations.donateToolTemp(printer: printer, tool: 1, temperature: newTarget)
                 }
+            case SetTargetTempViewController.TargetScope.tool2:
+                octoprintClient.toolTargetTemperature(toolNumber: 2, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    // TODO Handle error
+                    if !requested {
+                        NSLog("Failed to request setting tool2's temperature. Response: \(response)")
+                    }
+                }
+                // Donate intent so user can create convenient Siri shortcuts
+                if let printer = printerManager.getPrinterByName(name: self.navigationItem.title ?? "_") {
+                    IntentsDonations.donateToolTemp(printer: printer, tool: 2, temperature: newTarget)
+                }
+            case SetTargetTempViewController.TargetScope.tool3:
+                octoprintClient.toolTargetTemperature(toolNumber: 3, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    // TODO Handle error
+                    if !requested {
+                        NSLog("Failed to request setting tool3's temperature. Response: \(response)")
+                    }
+                }
+                // Donate intent so user can create convenient Siri shortcuts
+                if let printer = printerManager.getPrinterByName(name: self.navigationItem.title ?? "_") {
+                    IntentsDonations.donateToolTemp(printer: printer, tool: 3, temperature: newTarget)
+                }
+            case SetTargetTempViewController.TargetScope.tool4:
+                octoprintClient.toolTargetTemperature(toolNumber: 4, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    // TODO Handle error
+                    if !requested {
+                        NSLog("Failed to request setting tool4's temperature. Response: \(response)")
+                    }
+                }
+                // Donate intent so user can create convenient Siri shortcuts
+                if let printer = printerManager.getPrinterByName(name: self.navigationItem.title ?? "_") {
+                    IntentsDonations.donateToolTemp(printer: printer, tool: 4, temperature: newTarget)
+                }
             case SetTargetTempViewController.TargetScope.chamber:
                 octoprintClient.chamberTargetTemperature(newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     // TODO Handle error
