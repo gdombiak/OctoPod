@@ -90,6 +90,10 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
             }
         } else {
             // Connect to Palette
+            // Change button title to connecting so user knows we are trying to connect
+            self.connectButton.setTitle(NSLocalizedString("Connecting", comment: ""), for: .normal)
+            self.connectButton.isEnabled = false  // Make sure button is enabled since connecting will disable it
+            // Ask Palette2 plugin to connect to Palette
             let port = selectedPort == nil ? "" : selectedPort!
             octoprintClient.palette2Connect(port: port) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
@@ -218,6 +222,7 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
                     // Refresh UI
                     DispatchQueue.main.async {
                         self.connectionStatusValueLabel.text = status
+                        self.connectButton.isEnabled = true  // Make sure button is enabled since connecting will disable it
                         self.connectButton.setTitle(button, for: .normal)
                         // Enable/Disable buttons based on connection status
                         self.selectPortButton.isEnabled = !connected
