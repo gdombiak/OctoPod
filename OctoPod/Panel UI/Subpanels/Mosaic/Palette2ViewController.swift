@@ -226,8 +226,22 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
                     }
                 } else if command == "filamentLength", let length = data["data"] as? Int {
                     // Length of filament used so far
+                    let numberFormatter = NumberFormatter()
+                    numberFormatter.numberStyle = NumberFormatter.Style.decimal
+                    numberFormatter.maximumFractionDigits = 2
+                    let value = Float(length) / 1000
                     DispatchQueue.main.async {
-                        self.filamentUsedValueLabel.text = "\(length)"
+                        self.filamentUsedValueLabel.text = numberFormatter.string(from: (NSNumber(value: value)))
+                    }
+                } else if command == "totalSplices", let total = data["data"] as? Int {
+                    // Total number of splices
+                    DispatchQueue.main.async {
+                        self.spliceTotalLabel.text = "\(total)"
+                    }
+                } else if command == "currentSplice", let currentSplice = data["data"] as? Int {
+                    // Current splice
+                    DispatchQueue.main.async {
+                        self.spliceCurrentLabel.text = "\(currentSplice)"
                     }
                 } else if command == "currentStatus" {
                     // Palette 2 Status
@@ -253,7 +267,7 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
                         }
                     } else {
                         // Show latest ping values
-                        if let messages = Palette2ViewController.pingPongMessage(entry: pings[0]) {
+                        if let messages = Palette2ViewController.pingPongMessage(entry: pings.last!) {
                             DispatchQueue.main.async {
                                 self.latestPingNumberValueLabel.text = messages.number
                                 self.latestPingOffsetValueLabel.text = messages.percent
@@ -272,7 +286,7 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
                         }
                     } else {
                         // Show latest pong values
-                        if let messages = Palette2ViewController.pingPongMessage(entry: pongs[0]) {
+                        if let messages = Palette2ViewController.pingPongMessage(entry: pongs.last!) {
                             DispatchQueue.main.async {
                                 self.latestPongNumberValueLabel.text = messages.number
                                 self.latestPongOffsetValueLabel.text = messages.percent
