@@ -103,6 +103,12 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         var tool0TargetEntries = Array<ChartDataEntry>()
         var tool1ActualEntries = Array<ChartDataEntry>()
         var tool1TargetEntries = Array<ChartDataEntry>()
+        var tool2ActualEntries = Array<ChartDataEntry>()
+        var tool2TargetEntries = Array<ChartDataEntry>()
+        var tool3ActualEntries = Array<ChartDataEntry>()
+        var tool3TargetEntries = Array<ChartDataEntry>()
+        var tool4ActualEntries = Array<ChartDataEntry>()
+        var tool4TargetEntries = Array<ChartDataEntry>()
         var chamberActualEntries = Array<ChartDataEntry>()
         var chamberTargetEntries = Array<ChartDataEntry>()
 
@@ -144,6 +150,24 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
                 if let toolTarget = temp.tool1TempTarget {
                     tool1TargetEntries.append(ChartDataEntry(x: age, y: toolTarget))
                 }
+                if let toolActual = temp.tool2TempActual {
+                    tool2ActualEntries.append(ChartDataEntry(x: age, y: toolActual))
+                }
+                if let toolTarget = temp.tool2TempTarget {
+                    tool2TargetEntries.append(ChartDataEntry(x: age, y: toolTarget))
+                }
+                if let toolActual = temp.tool3TempActual {
+                    tool3ActualEntries.append(ChartDataEntry(x: age, y: toolActual))
+                }
+                if let toolTarget = temp.tool3TempTarget {
+                    tool3TargetEntries.append(ChartDataEntry(x: age, y: toolTarget))
+                }
+                if let toolActual = temp.tool4TempActual {
+                    tool4ActualEntries.append(ChartDataEntry(x: age, y: toolActual))
+                }
+                if let toolTarget = temp.tool4TempTarget {
+                    tool4TargetEntries.append(ChartDataEntry(x: age, y: toolTarget))
+                }
                 if let chamberActual = temp.chamberTempActual {
                     chamberActualEntries.append(ChartDataEntry(x: age, y: chamberActual))
                 }
@@ -183,6 +207,39 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         if !tool1TargetEntries.isEmpty {
             let lineColor = UIColor(red: 82/255, green: 170/255, blue: 90/255, alpha: 1.0)
             let line = createLine(values: tool1TargetEntries, label: NSLocalizedString("Target Extruder 2", comment: ""), lineColor: lineColor)
+            lineChartData.addDataSet(line)
+        }
+        
+        if !tool2ActualEntries.isEmpty {
+            let lineColor = UIColor(red: 225/255, green: 158/255, blue: 100/255, alpha: 1.0)
+            let line = createLine(values: tool2ActualEntries, label: NSLocalizedString("Actual Extruder 3", comment: ""), lineColor: lineColor)
+            lineChartData.addDataSet(line)
+        }
+        if !tool2TargetEntries.isEmpty {
+            let lineColor = UIColor(red: 226/255, green: 177/255, blue: 133/255, alpha: 1.0)
+            let line = createLine(values: tool2TargetEntries, label: NSLocalizedString("Target Extruder 3", comment: ""), lineColor: lineColor)
+            lineChartData.addDataSet(line)
+        }
+        
+        if !tool3ActualEntries.isEmpty {
+            let lineColor = UIColor(red: 255/255, green: 102/255, blue: 178/255, alpha: 1.0)
+            let line = createLine(values: tool3ActualEntries, label: NSLocalizedString("Actual Extruder 4", comment: ""), lineColor: lineColor)
+            lineChartData.addDataSet(line)
+        }
+        if !tool3TargetEntries.isEmpty {
+            let lineColor = UIColor(red: 255/255, green: 153/255, blue: 255/255, alpha: 1.0)
+            let line = createLine(values: tool3TargetEntries, label: NSLocalizedString("Target Extruder 4", comment: ""), lineColor: lineColor)
+            lineChartData.addDataSet(line)
+        }
+        
+        if !tool4ActualEntries.isEmpty {
+            let lineColor = UIColor(red: 153/255, green: 0/255, blue: 76/255, alpha: 1.0)
+            let line = createLine(values: tool4ActualEntries, label: NSLocalizedString("Actual Extruder 5", comment: ""), lineColor: lineColor)
+            lineChartData.addDataSet(line)
+        }
+        if !tool4TargetEntries.isEmpty {
+            let lineColor = UIColor(red: 204/255, green: 0/255, blue: 204/255, alpha: 1.0)
+            let line = createLine(values: tool4TargetEntries, label: NSLocalizedString("Target Extruder 5", comment: ""), lineColor: lineColor)
             lineChartData.addDataSet(line)
         }
         
