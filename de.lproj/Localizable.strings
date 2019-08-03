@@ -22,6 +22,15 @@
 /* (No Comment) */
 "Actual Extruder 2" = "Ist-Wert Extruder 2";
 
+/* No comment provided by engineer. */
+"Actual Extruder 3" = "Ist-Wert Extruder 3";
+
+/* No comment provided by engineer. */
+"Actual Extruder 4" = "Ist-Wert Extruder 4";
+
+/* No comment provided by engineer. */
+"Actual Extruder 5" = "Ist-Wert Extruder 5";
+
 /* (No Comment) */
 "Apply" = "Übernehmen";
 
@@ -94,7 +103,7 @@
 /* (No Comment) */
 "Confirm turn off PSU" = "Sie möchten das Netzteil ausschalten. Fortsetzen?";
 
-/* (No Comment) */
+/* Connect */
 "Connect" = "Verbinden";
 
 /* (No Comment) */
@@ -121,7 +130,7 @@
 /* (No Comment) */
 "days ago" = "Vor %d Tagen";
 
-/* (No Comment) */
+/* Disconnect */
 "Disconnect" = "Trennen";
 
 /* (No Comment) */
@@ -402,6 +411,15 @@
 
 /* (No Comment) */
 "Target Extruder 2" = "Soll-Wert Düse 2";
+
+/* No comment provided by engineer. */
+"Target Extruder 3" = "Soll-Wert Düse 3";
+
+/* No comment provided by engineer. */
+"Target Extruder 4" = "Soll-Wert Düse 4";
+
+/* No comment provided by engineer. */
+"Target Extruder 5" = "Soll-Wert Düse 5";
 
 /* (No Comment) */
 "Tasmota Plugs" = "Tasmota Steckdosen";

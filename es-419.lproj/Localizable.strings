@@ -22,6 +22,15 @@
 /* (No Comment) */
 "Actual Extruder 2" = "Extrusor 2 Actual";
 
+/* No comment provided by engineer. */
+"Actual Extruder 3" = "Extrusor 3 Actual";
+
+/* No comment provided by engineer. */
+"Actual Extruder 4" = "Extrusor 4 Actual";
+
+/* No comment provided by engineer. */
+"Actual Extruder 5" = "Extrusor 5 Actual";
+
 /* (No Comment) */
 "Apply" = "Aplicar";
 
@@ -83,6 +92,9 @@
 "Confirm disconnect" = "¿Desea desconectarse de la impresora?";
 
 /* (No Comment) */
+"Confirm disconnect palette2" = "¿Desea desconectarse del Palette 2?";
+
+/* (No Comment) */
 "Confirm intentions deletion" = "Estás a punto de eliminar todos los accesos directos de Siri de la aplicación. ¿Continuar?";
 
 /* (No Comment) */
@@ -94,8 +106,14 @@
 /* (No Comment) */
 "Confirm turn off PSU" = "Está por apagar la electridad. ¿Continuar?";
 
-/* (No Comment) */
+/* Connect */
 "Connect" = "Conectar";
+
+/* Connected */
+"Connected" = "Conectado";
+
+/* Connecting */
+"Connecting" = "Conectando";
 
 /* (No Comment) */
 "Connection failed" = "Error de conexión";
@@ -121,8 +139,11 @@
 /* (No Comment) */
 "days ago" = "Hace %d dias";
 
-/* (No Comment) */
+/* Disconnect */
 "Disconnect" = "Desconectar";
+
+/* Disconnected */
+"Disconnected" = "Desconectado";
 
 /* (No Comment) */
 "Dismiss" = "Cerrar";
@@ -138,6 +159,9 @@
 
 /* No comment provided by engineer. */
 "Extruder Variance" = "Variación extrusor";
+
+/* No comment provided by engineer. */
+"Failed to connect" = "Falla al conectarse";
 
 /* (No Comment) */
 "Failed to delete file" = "Falla al eliminar archivo";
@@ -181,8 +205,23 @@
 /* (No Comment) */
 "Failed to request moving up" = "Falla al pedir ir arriba";
 
+/* No comment provided by engineer. */
+"Failed to request status" = "Fall al solicitar estado";
+
 /* (No Comment) */
 "Failed to request to cancel object" = "Falla al pedir cancelar objeto. Respuesta HTTP: %d";
+
+/* No comment provided by engineer. */
+"Failed to request to clear" = "Falla al solicitar el borrado";
+
+/* No comment provided by engineer. */
+"Failed to request to connect" = "Falla al pedir conectarse";
+
+/* No comment provided by engineer. */
+"Failed to request to cut" = "Falla al pedir cortar";
+
+/* No comment provided by engineer. */
+"Failed to request to disconnect" = "Falla al pedir desconectarse";
 
 /* (No Comment) */
 "Failed to request to execute command" = "Falla al pedir ejecutar comando";
@@ -244,6 +283,9 @@
 /* HTTP Request error info */
 "HTTP Request error" = "Error con el pedido. Respuesta HTTP: %d";
 
+/* Idle */
+"Idle" = "Ocioso";
+
 /* Include SD messages in the terminal */
 "Include SD" = "Incluir SD";
 
@@ -273,6 +315,9 @@
 
 /* (No Comment) */
 "minutes ago" = "Hace %d minutos";
+
+/* No comment provided by engineer. */
+"Missed" = "Perdido";
 
 /* (No Comment) */
 "MK3" = "MK3";
@@ -327,6 +372,12 @@
 
 /* (No Comment) */
 "Paused" = "Suspendido";
+
+/* No comment provided by engineer. */
+"Ping History" = "Historia Pings";
+
+/* No comment provided by engineer. */
+"Pong History" = "Historia Pongs";
 
 /* (No Comment) */
 "Print complete" = "Impresión completa";
@@ -402,6 +453,15 @@
 
 /* (No Comment) */
 "Target Extruder 2" = "Extrusor 2 Objetivo";
+
+/* No comment provided by engineer. */
+"Target Extruder 3" = "Extrusor 3 Objetivo";
+
+/* No comment provided by engineer. */
+"Target Extruder 4" = "Extrusor 4 Objetivo";
+
+/* No comment provided by engineer. */
+"Target Extruder 5" = "Extrusor 5 Objetivo";
 
 /* (No Comment) */
 "Tasmota Plugs" = "Enchufes Tasmota";

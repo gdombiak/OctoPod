@@ -40,6 +40,9 @@
 /* Class = "UITextField"; placeholder = "Speed value"; ObjectID = "4Lh-Q8-wxW"; */
 "4Lh-Q8-wxW.placeholder" = "Hastighet verdi";
 
+/* Class = "UILabel"; text = "Detail"; ObjectID = "4qQ-FP-CUZ"; */
+"4qQ-FP-CUZ.text" = "Detalj";
+
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Utseende";
 
@@ -61,7 +64,7 @@
 /* Class = "UILabel"; text = "Disable Motor"; ObjectID = "6TZ-hb-gdQ"; */
 "6TZ-hb-gdQ.text" = "Deaktiver motor";
 
-/* Class = "UILabel"; text = "250.0 C"; ObjectID = "7Je-mU-81r"; */
+/* Class = "UILabel"; text = "0.0 C"; ObjectID = "7Je-mU-81r"; */
 "7Je-mU-81r.text" = "250.0 C";
 
 /* Class = "UIButton"; normalTitle = "Z"; ObjectID = "7Mb-MK-CG7"; */
@@ -72,6 +75,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "8qc-7f-G5G"; */
 "8qc-7f-G5G.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "8TL-hx-EDz"; */
+"8TL-hx-EDz.text" = "Label";
 
 /* Class = "UILabel"; text = "Bed"; ObjectID = "8U9-mV-fYc"; */
 "8U9-mV-fYc.text" = "Skriveflate";
@@ -103,7 +109,7 @@
 /* Class = "UIButton"; normalTitle = "Scan API Key"; ObjectID = "a0P-GP-CQD"; */
 "a0P-GP-CQD.normalTitle" = "Skann API-nøkkel";
 
-/* Class = "UILabel"; text = "250 C"; ObjectID = "A7g-Yw-Ucf"; */
+/* Class = "UILabel"; text = "0 C"; ObjectID = "A7g-Yw-Ucf"; */
 "A7g-Yw-Ucf.text" = "250 C";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "a12-vD-JUc"; */
@@ -138,6 +144,12 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
 "bNj-cj-oty.text" = "Label";
+
+/* Class = "UILabel"; text = "0.0 C"; ObjectID = "bsz-rk-3Em"; */
+"bsz-rk-3Em.text" = "0.0 C";
+
+/* Class = "UILabel"; text = "/"; ObjectID = "BxC-fi-O75"; */
+"BxC-fi-O75.text" = "/";
 
 /* Class = "UILabel"; text = "Error message"; ObjectID = "BXr-d8-f7x"; */
 "BXr-d8-f7x.text" = "Feilmelding";
@@ -183,6 +195,12 @@
 
 /* Class = "UITableViewController"; title = "Support"; ObjectID = "ec8-jM-jJs"; */
 "ec8-jM-jJs.title" = "Support";
+
+/* Class = "UILabel"; text = "1000"; ObjectID = "EKB-JK-mIs"; */
+"EKB-JK-mIs.text" = "1000";
+
+/* Class = "UILabel"; text = "#"; ObjectID = "eLm-a6-WEc"; */
+"eLm-a6-WEc.text" = "#";
 
 /* Class = "UIButton"; normalTitle = "Proceed"; ObjectID = "erX-tJ-GVo"; */
 "erX-tJ-GVo.normalTitle" = "Fortsett";
@@ -292,11 +310,17 @@
 /* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[3] = "100"; ObjectID = "hzK-Nf-sCi"; */
 "hzK-Nf-sCi.segmentTitles[3]" = "100";
 
+/* Class = "UILabel"; text = "Title"; ObjectID = "io4-ZI-6xJ"; */
+"io4-ZI-6xJ.text" = "Tittel";
+
 /* Class = "UILabel"; text = "Control Power"; ObjectID = "j09-72-h0o"; */
 "j09-72-h0o.text" = "Strømkontroll";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "J17-Xa-0dv"; */
 "J17-Xa-0dv.text" = "Label";
+
+/* Class = "UILabel"; text = "m"; ObjectID = "JgS-9W-IR2"; */
+"JgS-9W-IR2.text" = "m";
 
 /* Class = "UILabel"; text = "250.0 C"; ObjectID = "JwP-eK-xNk"; */
 "JwP-eK-xNk.text" = "250.0 C";
@@ -316,7 +340,10 @@
 /* Class = "UILabel"; text = "Enter a valid URL"; ObjectID = "K6d-lk-BaS"; */
 "K6d-lk-BaS.text" = "Skriv inn en gyldig URL";
 
-/* Class = "UILabel"; text = "100 C"; ObjectID = "kGY-Bn-Qcb"; */
+/* Class = "UILabel"; text = "0.0 C"; ObjectID = "k9w-2c-c6t"; */
+"k9w-2c-c6t.text" = "0.0 C";
+
+/* Class = "UILabel"; text = "0 C"; ObjectID = "kGY-Bn-Qcb"; */
 "kGY-Bn-Qcb.text" = "100 C";
 
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
@@ -370,14 +397,26 @@
 /* Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[3] = "100"; ObjectID = "NKo-dw-3Mg"; */
 "NKo-dw-3Mg.segmentTitles[3]" = "100";
 
+/* Class = "UILabel"; text = "100"; ObjectID = "nMR-mk-HWC"; */
+"nMR-mk-HWC.text" = "100";
+
+/* Class = "UILabel"; text = "0.0 C"; ObjectID = "NsL-9T-upI"; */
+"NsL-9T-upI.text" = "0.0 C";
+
 /* Class = "UIButton"; normalTitle = "Set"; ObjectID = "o8a-yF-u6j"; */
 "o8a-yF-u6j.normalTitle" = "Sett";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "oiL-nC-j2P"; */
 "oiL-nC-j2P.text" = "Label";
 
+/* Class = "UILabel"; text = "100"; ObjectID = "OJS-Cg-u9x"; */
+"OJS-Cg-u9x.text" = "100";
+
 /* Class = "UIButton"; normalTitle = "Configure controls using Custom Control Plugin"; ObjectID = "or6-Pr-Z6f"; */
 "or6-Pr-Z6f.normalTitle" = "Konfigurer kontroller ved hjelp av tilpassede tillegg";
+
+/* Class = "UILabel"; text = "Extruder 5"; ObjectID = "Orn-Uy-jOO"; */
+"Orn-Uy-jOO.text" = "Ekstruder 5";
 
 /* Class = "UITableViewController"; title = "Siri"; ObjectID = "Orp-dU-Wpa"; */
 "Orp-dU-Wpa.title" = "Siri";
@@ -391,6 +430,9 @@
 /* Class = "UITableViewController"; title = "Prompts"; ObjectID = "oZw-P5-oVG"; */
 "oZw-P5-oVG.title" = "Ledetekster";
 
+/* Class = "UILabel"; text = "0 C"; ObjectID = "PAD-Rg-10Y"; */
+"PAD-Rg-10Y.text" = "0 C";
+
 /* Class = "UITabBarItem"; title = "Move"; ObjectID = "Peq-4x-xQj"; */
 "Peq-4x-xQj.title" = "Flytt";
 
@@ -402,6 +444,9 @@
 
 /* Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU"; */
 "Po0-HZ-vzU.text" = "Logg på iCloud for å synkronisere mellom enheter";
+
+/* Class = "UILabel"; text = "100"; ObjectID = "pWC-OR-Tvp"; */
+"pWC-OR-Tvp.text" = "100";
 
 /* Class = "UILabel"; text = "Orange"; ObjectID = "PXd-ZY-vbz"; */
 "PXd-ZY-vbz.text" = "Oransje";
@@ -454,6 +499,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "RlM-dP-k5T"; */
 "RlM-dP-k5T.text" = "Etikett";
 
+/* Class = "UILabel"; text = "100"; ObjectID = "Rml-IA-ght"; */
+"Rml-IA-ght.text" = "100";
+
 /* Class = "UITableViewController"; title = "Printer Details"; ObjectID = "RQs-UQ-7OZ"; */
 "RQs-UQ-7OZ.title" = "Skriverdetaljer";
 
@@ -466,6 +514,9 @@
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
 "S2I-HR-qgE.text" = "/";
 
+/* Class = "UILabel"; text = "/"; ObjectID = "SAw-xr-VmY"; */
+"SAw-xr-VmY.text" = "/";
+
 /* Class = "UILabel"; text = "/"; ObjectID = "sF0-zd-MZR"; */
 "sF0-zd-MZR.text" = "/";
 
@@ -475,20 +526,32 @@
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "SMa-NG-XzV"; */
 "SMa-NG-XzV.normalTitle" = "Avbryt";
 
+/* Class = "UILabel"; text = "Title"; ObjectID = "sOY-kO-6qH"; */
+"sOY-kO-6qH.text" = "Tittel";
+
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "SQ9-ls-Hf3"; */
 "SQ9-ls-Hf3.title" = "Innstillinger";
 
 /* Class = "UITableViewSection"; headerTitle = "Fan & Motors"; ObjectID = "SwZ-jq-tKf"; */
 "SwZ-jq-tKf.headerTitle" = "Vifte & motor";
 
+/* Class = "UILabel"; text = "0 C"; ObjectID = "syx-MO-ExG"; */
+"syx-MO-ExG.text" = "0 C";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
 "tFf-Rs-mOx.text" = "Tittel";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "tgj-tb-vD5"; */
+"tgj-tb-vD5.text" = "Label";
 
 /* Class = "UINavigationItem"; title = "Printers"; ObjectID = "tit-bg-T68"; */
 "tit-bg-T68.title" = "Skrivere";
 
 /* Class = "UITextField"; placeholder = "Hostname (e.g. http://octopi.local)"; ObjectID = "tMP-2W-Iam"; */
 "tMP-2W-Iam.placeholder" = "Vertsnavn (f.eks. http://octopi.local)";
+
+/* Class = "UITableViewSection"; headerTitle = "Palette 2"; ObjectID = "Tqi-wZ-CN5"; */
+"Tqi-wZ-CN5.headerTitle" = "Palette 2";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "tTe-Q5-kkc"; */
 "tTe-Q5-kkc.text" = "/";
@@ -520,6 +583,9 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "uVf-tq-wZi"; */
 "uVf-tq-wZi.text" = "Tittel";
 
+/* Class = "UILabel"; text = "Extruder 3"; ObjectID = "uzd-Ys-rmS"; */
+"uzd-Ys-rmS.text" = "Ekstruder 3";
+
 /* Class = "UILabel"; text = "%"; ObjectID = "VkX-1W-xBG"; */
 "VkX-1W-xBG.text" = "%";
 
@@ -532,7 +598,7 @@
 /* Class = "UILabel"; text = "Zoom in/out"; ObjectID = "Vny-ch-OgO"; */
 "Vny-ch-OgO.text" = "Zoom inn/ut";
 
-/* Class = "UILabel"; text = "60.0 C"; ObjectID = "vpX-he-2FU"; */
+/* Class = "UILabel"; text = "0.0 C"; ObjectID = "vpX-he-2FU"; */
 "vpX-he-2FU.text" = "60.0 C";
 
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection"; ObjectID = "Vr9-x7-66H"; */
@@ -546,6 +612,9 @@
 
 /* Class = "UISegmentedControl"; W0X-ef-NWv.segmentTitles[1] = "Custom"; ObjectID = "W0X-ef-NWv"; */
 "W0X-ef-NWv.segmentTitles[1]" = "Tilpasset";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "w4s-Ud-7Zm"; */
+"w4s-Ud-7Zm.normalTitle" = "Knapp";
 
 /* Class = "UILabel"; text = "Dark"; ObjectID = "wHn-Dc-bWb"; */
 "wHn-Dc-bWb.text" = "Mørk";
@@ -580,6 +649,9 @@
 /* Class = "UINavigationItem"; title = "Printer Details"; ObjectID = "xvl-wE-Mht"; */
 "xvl-wE-Mht.title" = "Skriverdetaljer";
 
+/* Class = "UILabel"; text = "#"; ObjectID = "Xzl-Xc-Ng0"; */
+"Xzl-Xc-Ng0.text" = "#";
+
 /* Class = "UILabel"; text = "Contributing"; ObjectID = "yci-j8-y4w"; */
 "yci-j8-y4w.text" = "Hjelpe til";
 
@@ -589,8 +661,14 @@
 /* Class = "UILabel"; text = "Control ATX/AUX power supply via PSU Control"; ObjectID = "Ysy-LO-1dL"; */
 "Ysy-LO-1dL.text" = "Kontroller ATX / AUX strømforsyning via PSU-kontroll";
 
+/* Class = "UILabel"; text = "0 C"; ObjectID = "ywI-EB-V2L"; */
+"ywI-EB-V2L.text" = "0 C";
+
 /* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "yxh-PV-og3"; */
 "yxh-PV-og3.normalTitle" = "Avvis";
+
+/* Class = "UILabel"; text = "Extruder 4"; ObjectID = "z2y-Yi-bgx"; */
+"z2y-Yi-bgx.text" = "Ekstruder 4";
 
 /* Class = "UIButton"; normalTitle = "Send"; ObjectID = "z4Q-Gf-Y5G"; */
 "z4Q-Gf-Y5G.normalTitle" = "Send";
@@ -612,6 +690,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Zhk-cN-7C9"; */
 "Zhk-cN-7C9.text" = "Label";
+
+/* Class = "UILabel"; text = "/"; ObjectID = "zij-F2-lS7"; */
+"zij-F2-lS7.text" = "/";
 
 /* Class = "UILabel"; text = "Upload to OctoPrint"; ObjectID = "Ziq-bR-QIe"; */
 "Ziq-bR-QIe.text" = "Last opp til OctoPrint";

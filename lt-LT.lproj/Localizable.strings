@@ -94,7 +94,7 @@
 /* (No Comment) */
 "Confirm turn off PSU" = "Išjungti maitinimo bloką?";
 
-/* (No Comment) */
+/* Connect */
 "Connect" = "Prisijungti";
 
 /* (No Comment) */
@@ -121,7 +121,7 @@
 /* (No Comment) */
 "days ago" = "prieš %d dienas";
 
-/* (No Comment) */
+/* Disconnect */
 "Disconnect" = "Atsijungti";
 
 /* (No Comment) */

@@ -19,6 +19,15 @@
 /* (No Comment) */
 "Actual Extruder 2" = "Faktisk Ekstruder 2";
 
+/* No comment provided by engineer. */
+"Actual Extruder 3" = "Faktisk Ekstruder 3";
+
+/* No comment provided by engineer. */
+"Actual Extruder 4" = "Faktisk Ekstruder 4";
+
+/* No comment provided by engineer. */
+"Actual Extruder 5" = "Faktisk Ekstruder 5";
+
 /* (No Comment) */
 "Apply" = "Bruk";
 
@@ -91,7 +100,7 @@
 /* (No Comment) */
 "Confirm turn off PSU" = "Du holder på å slå av PSU. Fortsette?";
 
-/* (No Comment) */
+/* Connect */
 "Connect" = "Koble til";
 
 /* (No Comment) */
@@ -115,7 +124,7 @@
 /* (No Comment) */
 "days ago" = "%d dager siden";
 
-/* (No Comment) */
+/* Disconnect */
 "Disconnect" = "koble fra";
 
 /* (No Comment) */
@@ -381,6 +390,15 @@
 
 /* (No Comment) */
 "Target Extruder 2" = "Mål Ekstruder 2";
+
+/* No comment provided by engineer. */
+"Target Extruder 3" = "Mål Ekstruder 3";
+
+/* No comment provided by engineer. */
+"Target Extruder 4" = "Mål Ekstruder 4";
+
+/* No comment provided by engineer. */
+"Target Extruder 5" = "Mål Ekstruder 5";
 
 /* (No Comment) */
 "Tasmota Plugs" = "Tasmota Plugger";

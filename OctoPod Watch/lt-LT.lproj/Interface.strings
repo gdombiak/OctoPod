@@ -7,11 +7,17 @@
 /* Class = "WKInterfaceLabel"; text = "    "; ObjectID = "Dtq-ww-SzR"; */
 "Dtq-ww-SzR.text" = "    ";
 
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "fSR-FG-mh8"; */
+"fSR-FG-mh8.text" = "     ";
+
 /* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "HUy-Lk-z5k"; */
 "HUy-Lk-z5k.text" = "Label";
 
 /* Class = "WKInterfaceLabel"; text = "Alert Label"; ObjectID = "IdU-wH-bcW"; */
 "IdU-wH-bcW.text" = "Alert Label";
+
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "mc4-7a-frz"; */
+"mc4-7a-frz.text" = "     ";
 
 /* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "MUA-6M-Ncu"; */
 "MUA-6M-Ncu.text" = "     ";
@@ -24,6 +30,9 @@
 
 /* Class = "WKInterfaceController"; title = "Cameras"; ObjectID = "SvA-Pt-I7G"; */
 "SvA-Pt-I7G.title" = "Kameros";
+
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "sYn-tD-yHY"; */
+"sYn-tD-yHY.text" = "     ";
 
 /* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "vgs-ar-wlO"; */
 "vgs-ar-wlO.text" = "     ";

@@ -22,6 +22,15 @@
 /* (No Comment) */
 "Actual Extruder 2" = "T effettiva estrusore 2";
 
+/* No comment provided by engineer. */
+"Actual Extruder 3" = "T effettiva estrusore 3";
+
+/* No comment provided by engineer. */
+"Actual Extruder 4" = "T effettiva estrusore 4";
+
+/* No comment provided by engineer. */
+"Actual Extruder 5" = "T effettiva estrusore 5";
+
 /* (No Comment) */
 "Apply" = "Applica";
 
@@ -94,7 +103,7 @@
 /* (No Comment) */
 "Confirm turn off PSU" = "Stai per spegnere l'alimentazione. Procedere?";
 
-/* (No Comment) */
+/* Connect */
 "Connect" = "Connetti";
 
 /* (No Comment) */
@@ -121,7 +130,7 @@
 /* (No Comment) */
 "days ago" = "%d giorni fa";
 
-/* (No Comment) */
+/* Disconnect */
 "Disconnect" = "Disconnetti";
 
 /* (No Comment) */
@@ -402,6 +411,15 @@
 
 /* (No Comment) */
 "Target Extruder 2" = "T obiettivo estrusore 2";
+
+/* No comment provided by engineer. */
+"Target Extruder 3" = "T obiettivo estrusore 3";
+
+/* No comment provided by engineer. */
+"Target Extruder 4" = "T obiettivo estrusore 4";
+
+/* No comment provided by engineer. */
+"Target Extruder 5" = "T obiettivo estrusore 5";
 
 /* (No Comment) */
 "Tasmota Plugs" = "Prese Tasmota";
