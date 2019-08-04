@@ -92,6 +92,9 @@
 "Confirm disconnect" = "Chcete odpojit tiskárnu?";
 
 /* (No Comment) */
+"Confirm disconnect palette2" = "Chcete odpojit Palette 2?";
+
+/* (No Comment) */
 "Confirm intentions deletion" = "Smažete všechny zkratky Siri aplikace. Pokračovat?";
 
 /* (No Comment) */
@@ -105,6 +108,12 @@
 
 /* Connect */
 "Connect" = "Připojit";
+
+/* Connected */
+"Connected" = "Připojený";
+
+/* Connecting */
+"Connecting" = "Připojování";
 
 /* (No Comment) */
 "Connection failed" = "Připojení se nezdařilo";
@@ -133,6 +142,9 @@
 /* Disconnect */
 "Disconnect" = "Odpojit";
 
+/* Disconnected */
+"Disconnected" = "Odpojený";
+
 /* (No Comment) */
 "Dismiss" = "Zrušit";
 
@@ -147,6 +159,9 @@
 
 /* No comment provided by engineer. */
 "Extruder Variance" = "Odchylka trysky";
+
+/* No comment provided by engineer. */
+"Failed to connect" = "Nezdařilo se připojit";
 
 /* (No Comment) */
 "Failed to delete file" = "Nezdařilo se smazání souboru";
@@ -190,8 +205,23 @@
 /* (No Comment) */
 "Failed to request moving up" = "Nezdařila se žádost o posun nahoru";
 
+/* No comment provided by engineer. */
+"Failed to request status" = "Nezdařilo se získat stav";
+
 /* (No Comment) */
 "Failed to request to cancel object" = "Nezdařilo se zrušit objekt. Odpověď HTTP: %d";
+
+/* No comment provided by engineer. */
+"Failed to request to clear" = "Nezdařila se žádost o vyčištění";
+
+/* No comment provided by engineer. */
+"Failed to request to connect" = "Nezdařila se žádost o připojení";
+
+/* No comment provided by engineer. */
+"Failed to request to cut" = "Nezdařila se žádost o řezání";
+
+/* No comment provided by engineer. */
+"Failed to request to disconnect" = "Nezdařila se žádost pro odpojení";
 
 /* (No Comment) */
 "Failed to request to execute command" = "Nezdařila se žádost o provedení příkazu";
@@ -253,6 +283,9 @@
 /* HTTP Request error info */
 "HTTP Request error" = "Chyba požadavku. HTTP odpověď: %d";
 
+/* Idle */
+"Idle" = "Nečinný";
+
 /* Include SD messages in the terminal */
 "Include SD" = "Zahrnout SD";
 
@@ -282,6 +315,9 @@
 
 /* (No Comment) */
 "minutes ago" = "před %d minutami";
+
+/* No comment provided by engineer. */
+"Missed" = "Vynechanáno";
 
 /* (No Comment) */
 "MK3" = "MK3";
@@ -336,6 +372,12 @@
 
 /* (No Comment) */
 "Paused" = "Zastaveno";
+
+/* No comment provided by engineer. */
+"Ping History" = "Historie Ping";
+
+/* No comment provided by engineer. */
+"Pong History" = "Historie Pong";
 
 /* (No Comment) */
 "Print complete" = "Tisk dokončen";

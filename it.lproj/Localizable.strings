@@ -92,6 +92,9 @@
 "Confirm disconnect" = "Vuoi disconnetterti dalla stampante?";
 
 /* (No Comment) */
+"Confirm disconnect palette2" = "Vuoi disconnetterti da Palette 2?";
+
+/* (No Comment) */
 "Confirm intentions deletion" = "Stai per eliminare tutte le scorciatoie per Siri dell'app. Procedere?";
 
 /* (No Comment) */
@@ -105,6 +108,12 @@
 
 /* Connect */
 "Connect" = "Connetti";
+
+/* Connected */
+"Connected" = "Connesso";
+
+/* Connecting */
+"Connecting" = "In connessione";
 
 /* (No Comment) */
 "Connection failed" = "Connessione fallita";
@@ -133,6 +142,9 @@
 /* Disconnect */
 "Disconnect" = "Disconnetti";
 
+/* Disconnected */
+"Disconnected" = "Disconnesso";
+
 /* (No Comment) */
 "Dismiss" = "Chiudi";
 
@@ -147,6 +159,9 @@
 
 /* No comment provided by engineer. */
 "Extruder Variance" = "Varianza estrusore";
+
+/* No comment provided by engineer. */
+"Failed to connect" = "Impossibile connettersi";
 
 /* (No Comment) */
 "Failed to delete file" = "Errore nell'eliminazione del file";
@@ -190,8 +205,20 @@
 /* (No Comment) */
 "Failed to request moving up" = "Errore nella richiesta di spostarsi in alto";
 
+/* No comment provided by engineer. */
+"Failed to request status" = "Impossibile richiedere lo stato";
+
 /* (No Comment) */
 "Failed to request to cancel object" = "Impossibile richiedere la rimozione dell'oggetto. Risposta HTTP: %d";
+
+/* No comment provided by engineer. */
+"Failed to request to connect" = "Impossibile richiedere di connettersi";
+
+/* No comment provided by engineer. */
+"Failed to request to cut" = "Impossibile richiedere di tagliare";
+
+/* No comment provided by engineer. */
+"Failed to request to disconnect" = "Impossibile richiedere di disconnettersi";
 
 /* (No Comment) */
 "Failed to request to execute command" = "Errore nella richiesta di esecuzione del comando";
@@ -253,6 +280,9 @@
 /* HTTP Request error info */
 "HTTP Request error" = "Errore nella richiesta. Risposta HTTP: %d";
 
+/* Idle */
+"Idle" = "Inattivo";
+
 /* Include SD messages in the terminal */
 "Include SD" = "Includi SD";
 
@@ -282,6 +312,9 @@
 
 /* (No Comment) */
 "minutes ago" = "%d minuti fa";
+
+/* No comment provided by engineer. */
+"Missed" = "Mancato";
 
 /* (No Comment) */
 "MK3" = "MK3";
@@ -336,6 +369,12 @@
 
 /* (No Comment) */
 "Paused" = "In pausa";
+
+/* No comment provided by engineer. */
+"Ping History" = "Cronologia ping";
+
+/* No comment provided by engineer. */
+"Pong History" = "Cronologia pong";
 
 /* (No Comment) */
 "Print complete" = "Stampa completata";
