@@ -160,6 +160,9 @@
 /* No comment provided by engineer. */
 "Extruder Variance" = "Extruder-variation";
 
+/* No comment provided by engineer. */
+"Failed to connect" = "Kunde inte ansluta";
+
 /* (No Comment) */
 "Failed to delete file" = "Kunde inte radera fil";
 
