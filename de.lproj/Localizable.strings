@@ -92,6 +92,9 @@
 "Confirm disconnect" = "Möchten Sie die Verbindung zum Drucker trennen?";
 
 /* (No Comment) */
+"Confirm disconnect palette2" = "Möchtest du Palette 2 trennen?";
+
+/* (No Comment) */
 "Confirm intentions deletion" = "Sie sind dabei alle Siri Verknüpfungen der App zu löschen. Fortsetzen?";
 
 /* (No Comment) */
@@ -105,6 +108,12 @@
 
 /* Connect */
 "Connect" = "Verbinden";
+
+/* Connected */
+"Connected" = "Verbunden";
+
+/* Connecting */
+"Connecting" = "Verbinde";
 
 /* (No Comment) */
 "Connection failed" = "Verbindung fehlgeschlagen";
@@ -133,6 +142,9 @@
 /* Disconnect */
 "Disconnect" = "Trennen";
 
+/* Disconnected */
+"Disconnected" = "Getrennt";
+
 /* (No Comment) */
 "Dismiss" = "Verwerfen";
 
@@ -147,6 +159,9 @@
 
 /* No comment provided by engineer. */
 "Extruder Variance" = "Extruder Variante";
+
+/* No comment provided by engineer. */
+"Failed to connect" = "Verbinden fehlgeschlagen";
 
 /* (No Comment) */
 "Failed to delete file" = "Datei löschen fehlgeschlagen";
@@ -190,8 +205,23 @@
 /* (No Comment) */
 "Failed to request moving up" = "Anfrage Bewegung aufwärts gescheitert";
 
+/* No comment provided by engineer. */
+"Failed to request status" = "Statusabfrage fehlgeschlagen";
+
 /* (No Comment) */
 "Failed to request to cancel object" = "Anfrage an Cancel Objects Erweiterung fehlgeschlagen. HTTP antwort: %d";
+
+/* No comment provided by engineer. */
+"Failed to request to clear" = "";
+
+/* No comment provided by engineer. */
+"Failed to request to connect" = "Anforderung für Verbindungsaufbau fehlgeschlagen";
+
+/* No comment provided by engineer. */
+"Failed to request to cut" = "Schnittanforderung fehlgeschlagen";
+
+/* No comment provided by engineer. */
+"Failed to request to disconnect" = "Anforderungen zum trennen fehlgeschlagen";
 
 /* (No Comment) */
 "Failed to request to execute command" = "Anfrage Befehl ausführen gescheitert";
@@ -253,6 +283,9 @@
 /* HTTP Request error info */
 "HTTP Request error" = "Anfrage fehlerhaft. HTTP Antwort: %d";
 
+/* Idle */
+"Idle" = "Unbeschäftigt";
+
 /* Include SD messages in the terminal */
 "Include SD" = "SD einschließen";
 
@@ -282,6 +315,9 @@
 
 /* (No Comment) */
 "minutes ago" = "Vor %d Minuten";
+
+/* No comment provided by engineer. */
+"Missed" = "Verpasst";
 
 /* (No Comment) */
 "MK3" = "MK3";
@@ -336,6 +372,12 @@
 
 /* (No Comment) */
 "Paused" = "Pausiert";
+
+/* No comment provided by engineer. */
+"Ping History" = "Ping Verlauf";
+
+/* No comment provided by engineer. */
+"Pong History" = "Pong Verlauf";
 
 /* (No Comment) */
 "Print complete" = "Druck vollständig";

@@ -46,6 +46,9 @@
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Erscheinungsbild";
 
+/* Class = "UILabel"; text = "Splice"; ObjectID = "5GO-ai-ldL"; */
+"5GO-ai-ldL.text" = "Zusammenfügen";
+
 /* Class = "UILabel"; text = "Print Time Left"; ObjectID = "5hR-SK-V2r"; */
 "5hR-SK-V2r.text" = "Restzeit";
 
@@ -69,6 +72,9 @@
 
 /* Class = "UIButton"; normalTitle = "Z"; ObjectID = "7Mb-MK-CG7"; */
 "7Mb-MK-CG7.normalTitle" = "Z";
+
+/* Class = "UITableViewSection"; headerTitle = "Manual Control"; ObjectID = "7pE-fx-Ibe"; */
+"7pE-fx-Ibe.headerTitle" = "Manuelle Bedienung";
 
 /* Class = "UITableViewSection"; headerTitle = "Z"; ObjectID = "8d7-Fp-V0A"; */
 "8d7-Fp-V0A.headerTitle" = "Z";
@@ -117,6 +123,9 @@
 
 /* Class = "UIButton"; normalTitle = "Regenerate default shortcuts"; ObjectID = "aaG-XM-gnj"; */
 "aaG-XM-gnj.normalTitle" = "Standardverknüpfungen erneuern";
+
+/* Class = "UIButton"; normalTitle = "Clear Palette 2"; ObjectID = "AcH-TF-NmP"; */
+"AcH-TF-NmP.normalTitle" = "Palette 2 leeren";
 
 /* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "aFa-Qd-yIr"; */
 "aFa-Qd-yIr.placeholder" = "Drucker Name (z.B. MK3)";
@@ -211,6 +220,9 @@
 /* Class = "UIButton"; normalTitle = "Proceed"; ObjectID = "erX-tJ-GVo"; */
 "erX-tJ-GVo.normalTitle" = "Anwenden";
 
+/* Class = "UILabel"; text = "Pong"; ObjectID = "eTh-LM-JEX"; */
+"eTh-LM-JEX.text" = "Pong";
+
 /* Class = "UILabel"; text = "Manually delete recorded Siri shortcuts after delete"; ObjectID = "EVr-c6-T8p"; */
 "EVr-c6-T8p.text" = "Lösche aufgezeichnete Siri Verknüpfungen manuell nach dem Löschen";
 
@@ -286,6 +298,9 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Hcl-jl-BEb"; */
 "Hcl-jl-BEb.normalTitle" = "Button";
 
+/* Class = "UILabel"; text = "MISSED"; ObjectID = "hCQ-Pd-Tf0"; */
+"hCQ-Pd-Tf0.text" = "VERPASST";
+
 /* Class = "UIBarButtonItem"; title = "OctoPrint Web"; ObjectID = "Hdi-Ra-Fgd"; */
 "Hdi-Ra-Fgd.title" = "OctoPrint Web";
 
@@ -318,6 +333,9 @@
 
 /* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[3] = "100"; ObjectID = "hzK-Nf-sCi"; */
 "hzK-Nf-sCi.segmentTitles[3]" = "100";
+
+/* Class = "UIButton"; normalTitle = "Cut"; ObjectID = "i3l-7C-iJB"; */
+"i3l-7C-iJB.normalTitle" = "Schneiden";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "io4-ZI-6xJ"; */
 "io4-ZI-6xJ.text" = "Title";
@@ -354,6 +372,9 @@
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "kGY-Bn-Qcb"; */
 "kGY-Bn-Qcb.text" = "100 C";
+
+/* Class = "UILabel"; text = "Status"; ObjectID = "kPW-if-FGO"; */
+"kPW-if-FGO.text" = "Status";
 
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "Datei";
@@ -397,6 +418,9 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb"; */
 "ncZ-xn-WCb.text" = "Title";
 
+/* Class = "UIButton"; normalTitle = "Change Port"; ObjectID = "NDf-j6-3Gw"; */
+"NDf-j6-3Gw.normalTitle" = "Port ändern";
+
 /* Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[0] = "0.1"; ObjectID = "NKo-dw-3Mg"; */
 "NKo-dw-3Mg.segmentTitles[0]" = "0.1";
 
@@ -415,6 +439,9 @@
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "NsL-9T-upI"; */
 "NsL-9T-upI.text" = "0.0 C";
 
+/* Class = "UILabel"; text = "Filament Used"; ObjectID = "ntu-wc-YX0"; */
+"ntu-wc-YX0.text" = "Filament verbraucht";
+
 /* Class = "UIButton"; normalTitle = "Set"; ObjectID = "o8a-yF-u6j"; */
 "o8a-yF-u6j.normalTitle" = "Einstellen";
 
@@ -432,6 +459,9 @@
 
 /* Class = "UITableViewController"; title = "Siri"; ObjectID = "Orp-dU-Wpa"; */
 "Orp-dU-Wpa.title" = "Siri";
+
+/* Class = "UILabel"; text = "of"; ObjectID = "Otl-oh-byl"; */
+"Otl-oh-byl.text" = "von";
 
 /* Class = "UILabel"; text = "File"; ObjectID = "OYG-ih-yQg"; */
 "OYG-ih-yQg.text" = "Datei";
@@ -469,6 +499,9 @@
 /* Class = "UILabel"; text = "Tip: Click to control print job"; ObjectID = "pyW-4g-EDz"; */
 "pyW-4g-EDz.text" = "Tipp: Klicke um den Druckaufträge zu kontrollieren";
 
+/* Class = "UILabel"; text = "Offset"; ObjectID = "pzg-aD-Irm"; */
+"pzg-aD-Irm.text" = "Abgleich";
+
 /* Class = "UIButton"; normalTitle = "Retract"; ObjectID = "Q2b-xf-a3O"; */
 "Q2b-xf-a3O.normalTitle" = "Rückzug";
 
@@ -495,6 +528,9 @@
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "QpW-7Y-LpA"; */
 "QpW-7Y-LpA.text" = "Title";
+
+/* Class = "UITableViewSection"; headerTitle = "Palette 2 Connection"; ObjectID = "qUK-6N-G11"; */
+"qUK-6N-G11.headerTitle" = "Palette 2 Verbindung";
 
 /* Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ"; */
 "QwZ-7J-MwJ.normalTitle" = "Aus";
@@ -601,6 +637,9 @@
 /* Class = "UILabel"; text = "Extruder 3"; ObjectID = "uzd-Ys-rmS"; */
 "uzd-Ys-rmS.text" = "Düse 3";
 
+/* Class = "UILabel"; text = "Status"; ObjectID = "VgY-ne-x6t"; */
+"VgY-ne-x6t.text" = "Status";
+
 /* Class = "UILabel"; text = "%"; ObjectID = "VkX-1W-xBG"; */
 "VkX-1W-xBG.text" = "%";
 
@@ -637,6 +676,9 @@
 /* Class = "UITableViewSection"; headerTitle = "HTTP Authentication"; ObjectID = "WKG-83-bZQ"; */
 "WKG-83-bZQ.headerTitle" = "HTTP Authentifizierung";
 
+/* Class = "UILabel"; text = "MISSED"; ObjectID = "WKI-cg-0j7"; */
+"WKI-cg-0j7.text" = "VERPASST";
+
 /* Class = "UIButton"; normalTitle = "Extrude"; ObjectID = "wnO-2K-s2I"; */
 "wnO-2K-s2I.normalTitle" = "Vorschub";
 
@@ -657,6 +699,9 @@
 
 /* Class = "UILabel"; text = "Feed rate"; ObjectID = "Xs4-QQ-rLn"; */
 "Xs4-QQ-rLn.text" = "Tempo";
+
+/* Class = "UILabel"; text = "Ping"; ObjectID = "xsQ-V9-zzo"; */
+"xsQ-V9-zzo.text" = "Ping";
 
 /* Class = "UIButton"; normalTitle = "Restart Job"; ObjectID = "XV8-g9-QIc"; */
 "XV8-g9-QIc.normalTitle" = "Neustart";
@@ -723,4 +768,7 @@
 
 /* Class = "UILabel"; text = "Sync printers between iOS devices"; ObjectID = "zVf-Zx-3g4"; */
 "zVf-Zx-3g4.text" = "Drucker zwischen iOS-Geräten syncen";
+
+/* Class = "UILabel"; text = "Offset"; ObjectID = "zws-KA-eU1"; */
+"zws-KA-eU1.text" = "Abgleich";
 
