@@ -212,7 +212,7 @@
 "Failed to request to cancel object" = "Anfrage an Cancel Objects Erweiterung fehlgeschlagen. HTTP antwort: %d";
 
 /* No comment provided by engineer. */
-"Failed to request to clear" = "";
+"Failed to request to clear" = "Leeren kann nicht angefordert werden";
 
 /* No comment provided by engineer. */
 "Failed to request to connect" = "Anforderung für Verbindungsaufbau fehlgeschlagen";
