@@ -61,9 +61,9 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
 
     // MARK: - Authentication
     
-    // OctoPrint 1.3.10 now requires websockets to authenticate in order to become active. This is
-    // the default behavior now even though users can disable this. The sesion is obtained from
-    // doing a passive login
+    /// OctoPrint 1.3.10 now requires websockets to authenticate in order to become active. This is
+    /// the default behavior now even though users can disable this. The session is obtained from
+    /// doing a passive login
     func authenticate(user: String, session: String) {
         socketWrite(text: "{\"auth\": \"\(user):\(session)\"}")
     }
@@ -274,7 +274,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
 
     // MARK: - Private functions
 
-    func establishConnection() {
+    fileprivate func establishConnection() {
         if connecting {
             // Nothing to do
             return
@@ -305,7 +305,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
         socket = nil
     }
     
-    func abortConnection(error: Error) {
+    fileprivate func abortConnection(error: Error) {
         openRetries = -1
         closedByUser = false
         connectionAborted = true // Indicate that we decided to abort connecting
