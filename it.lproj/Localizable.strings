@@ -212,6 +212,9 @@
 "Failed to request to cancel object" = "Impossibile richiedere la rimozione dell'oggetto. Risposta HTTP: %d";
 
 /* No comment provided by engineer. */
+"Failed to request to clear" = "Impossibile richiedere di spurgare";
+
+/* No comment provided by engineer. */
 "Failed to request to connect" = "Impossibile richiedere di connettersi";
 
 /* No comment provided by engineer. */

@@ -124,6 +124,9 @@
 /* Class = "UIButton"; normalTitle = "Regenerate default shortcuts"; ObjectID = "aaG-XM-gnj"; */
 "aaG-XM-gnj.normalTitle" = "Riginera scorciatoie di default";
 
+/* Class = "UIButton"; normalTitle = "Clear Palette 2"; ObjectID = "AcH-TF-NmP"; */
+"AcH-TF-NmP.normalTitle" = "Spurga Palette 2";
+
 /* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "aFa-Qd-yIr"; */
 "aFa-Qd-yIr.placeholder" = "Nome stampante (ad es. MK3)";
 
