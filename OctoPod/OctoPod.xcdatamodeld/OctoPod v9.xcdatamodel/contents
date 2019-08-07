@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G87" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Printer" representedClassName=".Printer" syncable="YES">
         <attribute name="apiKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cameraOrientation" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -31,12 +31,13 @@
         <attribute name="sdSupport" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="streamUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tasmotaplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]" syncable="YES"/>
+        <attribute name="toolsNumber" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="tpLinkSmartplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]" syncable="YES"/>
         <attribute name="userModified" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="wemoplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Printer" positionX="-63" positionY="-18" width="128" height="555"/>
+        <element name="Printer" positionX="-63" positionY="-18" width="128" height="570"/>
     </elements>
 </model>

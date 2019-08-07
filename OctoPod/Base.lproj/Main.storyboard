@@ -4182,7 +4182,7 @@
         <scene sceneID="zva-KX-A2V">
             <objects>
                 <tableViewController id="avQ-HZ-xCk" customClass="MoveSubViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="20" sectionFooterHeight="1" id="IAz-64-eCI">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="20" sectionFooterHeight="1" id="IAz-64-eCI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="665"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -4193,7 +4193,7 @@
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VJZ-2Y-hYz" id="gzt-KR-TR2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWi-iC-0vm">
@@ -4272,7 +4272,7 @@
                                         <rect key="frame" x="0.0" y="179.5" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hF6-Wa-8KO" id="nkS-7J-gGM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="hzK-Nf-sCi">
@@ -4325,7 +4325,7 @@
                                         <rect key="frame" x="0.0" y="303.5" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jit-ua-MW9" id="dQF-6F-tsN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbn-Ah-Pat">
@@ -4346,11 +4346,44 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Extruder" id="ZeS-hE-vC8">
                                 <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="45" id="WCG-A4-HJN">
+                                        <rect key="frame" x="0.0" y="382.5" width="375" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WCG-A4-HJN" id="yeo-4q-ZnH">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Extruder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahs-Hn-dAX">
+                                                    <rect key="frame" x="16" y="12" width="159" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HHI-TR-3jC">
+                                                    <rect key="frame" x="180" y="8.5" width="179" height="29"/>
+                                                    <segments>
+                                                        <segment title="1" width="35"/>
+                                                        <segment title="2" width="35"/>
+                                                        <segment title="3" width="35"/>
+                                                        <segment title="4" width="35"/>
+                                                        <segment title="5" width="35"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ahs-Hn-dAX" firstAttribute="leading" secondItem="yeo-4q-ZnH" secondAttribute="leadingMargin" id="D1X-o3-fWj"/>
+                                                <constraint firstItem="HHI-TR-3jC" firstAttribute="leading" secondItem="ahs-Hn-dAX" secondAttribute="trailing" constant="5" id="PAs-PQ-xH6"/>
+                                                <constraint firstItem="HHI-TR-3jC" firstAttribute="centerY" secondItem="yeo-4q-ZnH" secondAttribute="centerY" id="bm2-xF-cjY"/>
+                                                <constraint firstItem="HHI-TR-3jC" firstAttribute="trailing" secondItem="yeo-4q-ZnH" secondAttribute="trailingMargin" id="dYT-xf-6Wl"/>
+                                                <constraint firstItem="ahs-Hn-dAX" firstAttribute="centerY" secondItem="yeo-4q-ZnH" secondAttribute="centerY" id="ljn-4D-gkz"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="90" id="AjF-Li-FQ4">
-                                        <rect key="frame" x="0.0" y="382.5" width="375" height="90"/>
+                                        <rect key="frame" x="0.0" y="427.5" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AjF-Li-FQ4" id="IEx-ZS-T4P">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Q2b-xf-a3O">
@@ -4441,10 +4474,10 @@
                             <tableViewSection headerTitle="Fan &amp; Motors" id="SwZ-jq-tKf">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="126" id="m00-ai-nim">
-                                        <rect key="frame" x="0.0" y="511.5" width="375" height="126"/>
+                                        <rect key="frame" x="0.0" y="556.5" width="375" height="126"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m00-ai-nim" id="WQn-Ly-v6f">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="125.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffd-HI-A62">
@@ -4625,6 +4658,9 @@
                         <outlet property="retractButton" destination="Q2b-xf-a3O" id="4O7-Z4-B4M"/>
                         <outlet property="rightButton" destination="Lj9-dc-lnA" id="Wh5-s7-AWT"/>
                         <outlet property="rightLeadingConstraint" destination="2gu-h6-hOQ" id="HYK-wJ-NIC"/>
+                        <outlet property="selectExtruderCell" destination="WCG-A4-HJN" id="7fE-Jv-xR2"/>
+                        <outlet property="selectExtruderLabel" destination="ahs-Hn-dAX" id="fUE-hb-wuI"/>
+                        <outlet property="selectExtruderSegmentedControl" destination="HHI-TR-3jC" id="5rs-bT-OPb"/>
                         <outlet property="upButton" destination="oLT-fK-F6P" id="Qfu-nM-Wnt"/>
                         <outlet property="xMotorButton" destination="B7j-Fj-W6p" id="aWY-mV-qQm"/>
                         <outlet property="xyStepSegmentedControl" destination="NKo-dw-3Mg" id="7OK-2M-i2B"/>

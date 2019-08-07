@@ -133,6 +133,9 @@
 /* Class = "UIButton"; normalTitle = "Suppress temp"; ObjectID = "AfS-HP-WTR"; */
 "AfS-HP-WTR.normalTitle" = "Zakázat teplotu";
 
+/* Class = "UILabel"; text = "Extruder"; ObjectID = "ahs-Hn-dAX"; */
+"ahs-Hn-dAX.text" = "Tryska";
+
 /* Class = "UIButton"; normalTitle = "View activity log"; ObjectID = "aJp-RM-Tuf"; */
 "aJp-RM-Tuf.normalTitle" = "Zobrazit výpis aktivit";
 
@@ -309,6 +312,21 @@
 
 /* Class = "UITableViewController"; title = "Security"; ObjectID = "hg7-6b-q0o"; */
 "hg7-6b-q0o.title" = "Bezpečnost";
+
+/* Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[0] = "1"; ObjectID = "HHI-TR-3jC"; */
+"HHI-TR-3jC.segmentTitles[0]" = "1";
+
+/* Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[1] = "2"; ObjectID = "HHI-TR-3jC"; */
+"HHI-TR-3jC.segmentTitles[1]" = "2";
+
+/* Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[2] = "3"; ObjectID = "HHI-TR-3jC"; */
+"HHI-TR-3jC.segmentTitles[2]" = "3";
+
+/* Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[3] = "4"; ObjectID = "HHI-TR-3jC"; */
+"HHI-TR-3jC.segmentTitles[3]" = "4";
+
+/* Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[4] = "5"; ObjectID = "HHI-TR-3jC"; */
+"HHI-TR-3jC.segmentTitles[4]" = "5";
 
 /* Class = "UILabel"; text = "Upload to SD Card (root)"; ObjectID = "hrr-SZ-62l"; */
 "hrr-SZ-62l.text" = "Nahrát na SD kartu (kořen)";

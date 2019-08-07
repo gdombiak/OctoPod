@@ -35,6 +35,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     // Remember last CurrentStateEvent that was reported from OctoPrint (via websockets)
     var lastKnownState: CurrentStateEvent?
     var octoPrintVersion: String?
+    var lastKnownToolsNumber: Int16?
     
     init(printerManager: PrinterManager) {
         self.printerManager = printerManager
@@ -56,6 +57,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     func connectToServer(printer: Printer) {
         // Clean up any known printer state
         lastKnownState = nil
+        lastKnownToolsNumber = nil
         
         // Create and keep httpClient while default printer does not change
         octoPrintRESTClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
@@ -156,10 +158,16 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         // Notify the terminal that OctoPrint and/or Printer state has changed
         terminal.currentStateUpdated(event: event)
         // Track temp history
-        if event.bedTempActual != nil || event.tool0TempActual != nil {
+        if event.bedTempActual != nil || event.tool0TempActual != nil || event.tool1TempActual != nil || event.tool2TempActual != nil || event.tool3TempActual != nil || event.tool4TempActual != nil {
             var temp = TempHistory.Temp()
             temp.parseTemps(event: event)
             tempHistory.addTemp(temp: temp)
+            
+            if lastKnownToolsNumber == nil, let printer = printerManager.getDefaultPrinter() {
+                // Updated if needed number of detected installed extruders in the printer
+                self.updatePrinterToolsNumber(printer: printer, event: event)
+                lastKnownToolsNumber = printer.toolsNumber  // Remember last known number of tools
+            }
         }
         // Notify other listeners that OctoPrint and/or Printer state has changed
         for delegate in delegates {
@@ -977,6 +985,29 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             for delegate in octoPrintSettingsDelegates {
                 delegate.palette2CanvasAvailabilityChanged(installed: installed)
             }
+        }
+    }
+    
+    fileprivate func updatePrinterToolsNumber(printer: Printer, event: CurrentStateEvent) {
+        var toolsNumber: Int16 = 0
+        if let _ = event.tool4TempActual {
+            toolsNumber = 5
+        } else if let _ = event.tool3TempActual {
+            toolsNumber = 4
+        } else if let _ = event.tool2TempActual {
+            toolsNumber = 3
+        } else if let _ = event.tool1TempActual {
+            toolsNumber = 2
+        } else if let _ = event.tool0TempActual {
+            toolsNumber = 1
+        }
+        if printer.toolsNumber != toolsNumber {
+            let newObjectContext = printerManager.newPrivateContext()
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+            // Update detected number of tools installed in the printer
+            printerToUpdate.toolsNumber = toolsNumber
+            // Persist updated printer
+            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
         }
     }
     

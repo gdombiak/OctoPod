@@ -47,6 +47,9 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
         // Some bug in XCode Storyboards is not translating text of refresh control so let's do it manually
         self.refreshControl?.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull down to refresh", comment: ""))
         
+        // Set 'Connect' as default value for connect button
+        self.connectButton.setTitle(NSLocalizedString("Connect", comment: "Connect"), for: .normal)
+        
         // Reset UI values and ignore storyboard dummy values
         self.resetUI()
     }

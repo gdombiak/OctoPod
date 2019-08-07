@@ -33,6 +33,10 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     
     @IBOutlet weak var goHomeButton: UIButton!
     
+    @IBOutlet weak var selectExtruderCell: UITableViewCell!
+    @IBOutlet weak var selectExtruderLabel: UILabel!
+    @IBOutlet weak var selectExtruderSegmentedControl: UISegmentedControl!
+    
     @IBOutlet weak var retractButton: UIButton!
     @IBOutlet weak var extrudeButton: UIButton!
     @IBOutlet weak var flowRateLabel: UILabel!
@@ -54,6 +58,8 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     var invertedX = false
     var invertedY = false
     var invertedZ = false
+    
+    var selectExtruderCellHeight = CGFloat(0)  // By default hide this cell
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +88,6 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             rightLeadingConstraint.constant = 10
             downLeadingConstraint.constant = 10
         }
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -427,6 +432,20 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         return 1
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section < 2 {
+            return 85
+        } else if indexPath.section == 2 {
+            return 40
+        } else if indexPath.section == 3 {
+            if indexPath.row == 0 {
+                return selectExtruderCellHeight
+            }
+            return 90
+        }
+        return 126
+    }
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -535,7 +554,8 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     }
     
     fileprivate func extrudeSpeed(delta: Int, speed: Int?) {
-        octoprintClient.extrude(toolNumber: 0, delta: delta, speed: speed, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+        let toolNumber = selectExtruderSegmentedControl.selectedSegmentIndex
+        octoprintClient.extrude(toolNumber: toolNumber, delta: delta, speed: speed, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if !requested {
                 // Handle error
                 NSLog("Error moving E axis. HTTP status code \(response.statusCode)")
@@ -552,6 +572,23 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             invertedX = printer.invertX
             invertedY = printer.invertY
             invertedZ = printer.invertZ
+            
+            // Hide or show the row that let's user select extruder to operate on
+            let oldHeight = selectExtruderCellHeight
+            selectExtruderCellHeight = printer.toolsNumber > 1 ? 44 : 0
+            // Reconfigure selectExtruderSegmentedControl based on number of tools if needed
+            if printer.toolsNumber > 1 && selectExtruderSegmentedControl.numberOfSegments != printer.toolsNumber {
+                selectExtruderSegmentedControl.removeAllSegments()
+                for index in 1...printer.toolsNumber {
+                    let segmentIndex = Int(index - 1)
+                    selectExtruderSegmentedControl.insertSegment(withTitle: "\(index)", at: segmentIndex, animated: false)
+                    selectExtruderSegmentedControl.setWidth(35, forSegmentAt: segmentIndex)
+                }
+            }
+            selectExtruderSegmentedControl.selectedSegmentIndex = 0  // Always select first element that is tool 0
+            if oldHeight != selectExtruderCellHeight {
+                tableView.reloadData()  // Repaint table only if cell height has changed
+            }
             
         } else {
             enableButtons(enable: false)
@@ -585,6 +622,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         zStepSegmentedControl.tintColor = tintColor
         eStepSegmentedControl.tintColor = tintColor
         
+        selectExtruderLabel.textColor = textLabelColor
+        selectExtruderSegmentedControl.tintColor = tintColor
+
         retractButton.tintColor = tintColor
         extrudeButton.tintColor = tintColor
         

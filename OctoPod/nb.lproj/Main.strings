@@ -121,6 +121,9 @@
 /* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "aFa-Qd-yIr"; */
 "aFa-Qd-yIr.placeholder" = "Skrivernavn (f.eks. MK3)";
 
+/* Class = "UILabel"; text = "Extruder"; ObjectID = "ahs-Hn-dAX"; */
+"ahs-Hn-dAX.text" = "Ekstruder";
+
 /* Class = "UIButton"; normalTitle = "View activity log"; ObjectID = "aJp-RM-Tuf"; */
 "aJp-RM-Tuf.normalTitle" = "Vis aktivitetslogg";
 
@@ -288,6 +291,21 @@
 
 /* Class = "UITableViewController"; title = "Security"; ObjectID = "hg7-6b-q0o"; */
 "hg7-6b-q0o.title" = "Sikkerhet";
+
+/* Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[0] = "1"; ObjectID = "HHI-TR-3jC"; */
+"HHI-TR-3jC.segmentTitles[0]" = "1";
+
+/* Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[1] = "2"; ObjectID = "HHI-TR-3jC"; */
+"HHI-TR-3jC.segmentTitles[1]" = "2";
+
+/* Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[2] = "3"; ObjectID = "HHI-TR-3jC"; */
+"HHI-TR-3jC.segmentTitles[2]" = "3";
+
+/* Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[3] = "4"; ObjectID = "HHI-TR-3jC"; */
+"HHI-TR-3jC.segmentTitles[3]" = "4";
+
+/* Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[4] = "5"; ObjectID = "HHI-TR-3jC"; */
+"HHI-TR-3jC.segmentTitles[4]" = "5";
 
 /* Class = "UILabel"; text = "Upload to SD Card (root)"; ObjectID = "hrr-SZ-62l"; */
 "hrr-SZ-62l.text" = "Last opp til SD-kort (root)";
