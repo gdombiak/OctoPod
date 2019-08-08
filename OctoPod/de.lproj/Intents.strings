@@ -14,13 +14,22 @@
 "3Butzw" = "Die Temperatur der Kammer wurde eingestellt auf ${temperature}";
 
 /* (No Comment) */
+"3cyBw6" = "Bitte Palette zu leeren";
+
+/* (No Comment) */
 "3eH6cZ" = "Keine Information über verbleibende Zeit erhalten (${statusCode})";
+
+/* (No Comment) */
+"3JiZye" = "Angefordert";
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
 "5i5htv" = "Verbunden";
+
+/* (No Comment) */
+"6b7Yce" = "Bitte Palette zu schneiden";
 
 /* (No Comment) */
 "6k5AFm" = "Auftrag fortsetzen";
@@ -33,6 +42,9 @@
 
 /* (No Comment) */
 "8cfoSa" = "Leeren kann nicht angefordert werden";
+
+/* (No Comment) */
+"8rFt1u" = "Bitte Palette zu leeren";
 
 /* (No Comment) */
 "8tTCjD" = "Auftrag konnte nicht abgebrochen werden (${statusCode})";
@@ -50,10 +62,16 @@
 "662LyZ" = "Neustart";
 
 /* (No Comment) */
+"AzqFAh" = "Angefordert";
+
+/* (No Comment) */
 "bXGQKe" = "Drucker abkühlen";
 
 /* (No Comment) */
 "D0kBGr" = "Laufenden Druckauftrag neu starten";
+
+/* (No Comment) */
+"D1wWxd" = "Trenne von Palette";
 
 /* (No Comment) */
 "doj4NA" = "Temperatur der Düse konfigurieren";
@@ -89,13 +107,22 @@
 "ihLqc7" = "Laufenden Druckauftrag aussetzen";
 
 /* (No Comment) */
+"jasUIn" = "Trenne von Palette";
+
+/* (No Comment) */
 "Jioukn" = "Kammer Temperatur vorgeben";
 
 /* (No Comment) */
 "JmhfgL" = "Laufenden Druckauftrag neu starten";
 
 /* (No Comment) */
+"JV2xQz" = "Verbinde zu Palette";
+
+/* (No Comment) */
 "Kf7e4Y" = "Laufenden Druckauftrag fortsetzen";
+
+/* (No Comment) */
+"KHvUZD" = "Bitte Palette zu schneiden";
 
 /* (No Comment) */
 "kSWyyv" = "${printer}";
@@ -114,6 +141,12 @@
 
 /* (No Comment) */
 "m9Jgmg" = "Auftrag fortgesetzt";
+
+/* (No Comment) */
+"N0vzJv" = "Bitte Palette zu leeren";
+
+/* (No Comment) */
+"N84M0s" = "Bitte Palette zu schneiden";
 
 /* (No Comment) */
 "NG7rBh" = "Restzeit";
@@ -140,6 +173,9 @@
 "QSxXHq" = "Druckauftrag pausieren";
 
 /* (No Comment) */
+"R5AlTe" = "Trenne von Palette";
+
+/* (No Comment) */
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
@@ -153,6 +189,9 @@
 
 /* (No Comment) */
 "RrOrgy" = "Auftrag abbrechen";
+
+/* (No Comment) */
+"RyGRDF" = "Verbinde zu Palette";
 
 /* (No Comment) */
 "RYurC5" = "Kammer abkühlen";
@@ -189,6 +228,9 @@
 
 /* (No Comment) */
 "VlxGJX" = "${printer}";
+
+/* (No Comment) */
+"vmbpr4" = "Verbinde zu Palette";
 
 /* (No Comment) */
 "WI2oQf" = "Verbleibende Druckzeit";

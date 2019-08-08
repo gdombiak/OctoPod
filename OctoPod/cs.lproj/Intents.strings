@@ -14,13 +14,22 @@
 "3Butzw" = "Teplota komory byla nastavena na ${temperature}";
 
 /* (No Comment) */
+"3cyBw6" = "Požádat Palette o vyčištění";
+
+/* (No Comment) */
 "3eH6cZ" = "Nezdařilo se získat informaci o zbývajícím čase (${statusCode})";
+
+/* (No Comment) */
+"3JiZye" = "Požádáno";
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
 "5i5htv" = "Připojený";
+
+/* (No Comment) */
+"6b7Yce" = "Požádat Palette o řezání";
 
 /* (No Comment) */
 "6k5AFm" = "Pokračovat v tisku";
@@ -33,6 +42,9 @@
 
 /* (No Comment) */
 "8cfoSa" = "Nezdařila se žádost o vyčištění";
+
+/* (No Comment) */
+"8rFt1u" = "Požádat Palette o vyčištění";
 
 /* (No Comment) */
 "8tTCjD" = "Nezdařilo se zrušit tisk (${statusCode})";
@@ -50,10 +62,16 @@
 "662LyZ" = "Restartovat tisk";
 
 /* (No Comment) */
+"AzqFAh" = "Požádáno";
+
+/* (No Comment) */
 "bXGQKe" = "Zchladit tiskárnu";
 
 /* (No Comment) */
 "D0kBGr" = "Restartovat probíhající tisk";
+
+/* (No Comment) */
+"D1wWxd" = "Odpojit se od Palette";
 
 /* (No Comment) */
 "doj4NA" = "Nastavit teplotu trysky";
@@ -89,13 +107,22 @@
 "ihLqc7" = "Přerušit tisk";
 
 /* (No Comment) */
+"jasUIn" = "Odpojit se od Palette";
+
+/* (No Comment) */
 "Jioukn" = "Nastavit teplotu komory";
 
 /* (No Comment) */
 "JmhfgL" = "Restartovat probíhající tisk";
 
 /* (No Comment) */
+"JV2xQz" = "Připojit se k Palette";
+
+/* (No Comment) */
 "Kf7e4Y" = "Pokračovat v tisku";
+
+/* (No Comment) */
+"KHvUZD" = "Požádat Palette o řezání";
 
 /* (No Comment) */
 "kSWyyv" = "${printer}";
@@ -114,6 +141,12 @@
 
 /* (No Comment) */
 "m9Jgmg" = "Tisk pokračuje";
+
+/* (No Comment) */
+"N0vzJv" = "Požádat Palette o vyčištění";
+
+/* (No Comment) */
+"N84M0s" = "Požádat Palette o řezání";
 
 /* (No Comment) */
 "NG7rBh" = "Zbývající čas";
@@ -140,6 +173,9 @@
 "QSxXHq" = "Pozastavit probíhající tisk";
 
 /* (No Comment) */
+"R5AlTe" = "Odpojit se od Palette";
+
+/* (No Comment) */
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
@@ -153,6 +189,9 @@
 
 /* (No Comment) */
 "RrOrgy" = "Zrušit tisk";
+
+/* (No Comment) */
+"RyGRDF" = "Připojit se k Palette";
 
 /* (No Comment) */
 "RYurC5" = "Zchladit komoru";
@@ -189,6 +228,9 @@
 
 /* (No Comment) */
 "VlxGJX" = "${printer}";
+
+/* (No Comment) */
+"vmbpr4" = "Připojit se k Palette";
 
 /* (No Comment) */
 "WI2oQf" = "Zaslat Zbývající čas";

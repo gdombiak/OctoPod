@@ -14,13 +14,22 @@
 "3Butzw" = "La tempertura della camera è stata impostata a ${temperature}";
 
 /* (No Comment) */
+"3cyBw6" = "Chiedi a Palette di spurgare";
+
+/* (No Comment) */
 "3eH6cZ" = "Errore nell'ottenere le informazioni sul tempo rimanente (${statusCode})";
+
+/* (No Comment) */
+"3JiZye" = "Richiesto";
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
 "5i5htv" = "Connesso";
+
+/* (No Comment) */
+"6b7Yce" = "Chiedi a Palette di tagliare";
 
 /* (No Comment) */
 "6k5AFm" = "Riprendi stampa";
@@ -33,6 +42,9 @@
 
 /* (No Comment) */
 "8cfoSa" = "Impossibile richiedere di spurgare";
+
+/* (No Comment) */
+"8rFt1u" = "Chiedi a Palette di spurgare";
 
 /* (No Comment) */
 "8tTCjD" = "Errore nell'annullamento della stampa (${statusCode})";
@@ -50,10 +62,16 @@
 "662LyZ" = "Riavvia la stampa";
 
 /* (No Comment) */
+"AzqFAh" = "Richiesto";
+
+/* (No Comment) */
 "bXGQKe" = "Raffredda stampante";
 
 /* (No Comment) */
 "D0kBGr" = "Riavvia la stampa in corso";
+
+/* (No Comment) */
+"D1wWxd" = "Disconnetti da Palette";
 
 /* (No Comment) */
 "doj4NA" = "Configura la temperatura dell'estrusore";
@@ -89,13 +107,22 @@
 "ihLqc7" = "Sospendi la stampa in corso";
 
 /* (No Comment) */
+"jasUIn" = "Disconnetti da Palette";
+
+/* (No Comment) */
 "Jioukn" = "Imposta temperatura box";
 
 /* (No Comment) */
 "JmhfgL" = "Riavvia la stampa in corso";
 
 /* (No Comment) */
+"JV2xQz" = "Connetti a Palette";
+
+/* (No Comment) */
 "Kf7e4Y" = "Riprendi la stampa in corso";
+
+/* (No Comment) */
+"KHvUZD" = "Chiedi a Palette di tagliare";
 
 /* (No Comment) */
 "kSWyyv" = "${printer}";
@@ -114,6 +141,12 @@
 
 /* (No Comment) */
 "m9Jgmg" = "Stampa ripresa";
+
+/* (No Comment) */
+"N0vzJv" = "Chiedi a Palette di spurgare";
+
+/* (No Comment) */
+"N84M0s" = "Chiedi a Palette di tagliare";
 
 /* (No Comment) */
 "NG7rBh" = "Tempo rimanente";
@@ -140,6 +173,9 @@
 "QSxXHq" = "Sospendi la stampa in corso";
 
 /* (No Comment) */
+"R5AlTe" = "Disconnetti da Palette";
+
+/* (No Comment) */
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
@@ -153,6 +189,9 @@
 
 /* (No Comment) */
 "RrOrgy" = "Annulla la stampa";
+
+/* (No Comment) */
+"RyGRDF" = "Connetti a Palette";
 
 /* (No Comment) */
 "RYurC5" = "Raffredda box";
@@ -189,6 +228,9 @@
 
 /* (No Comment) */
 "VlxGJX" = "${printer}";
+
+/* (No Comment) */
+"vmbpr4" = "Connetti a Palette";
 
 /* (No Comment) */
 "WI2oQf" = "Restituisci il tempo di stampa rimasto";
