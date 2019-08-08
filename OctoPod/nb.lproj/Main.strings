@@ -349,6 +349,9 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "io4-ZI-6xJ"; */
 "io4-ZI-6xJ.text" = "Tittel";
 
+/* Class = "UITableViewSection"; headerTitle = "Move"; ObjectID = "iY8-Rh-TKn"; */
+"iY8-Rh-TKn.headerTitle" = "Flytt";
+
 /* Class = "UILabel"; text = "Control Power"; ObjectID = "j09-72-h0o"; */
 "j09-72-h0o.text" = "Strømkontroll";
 

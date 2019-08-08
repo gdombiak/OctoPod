@@ -217,11 +217,11 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
 
     @IBAction func retract(_ sender: Any) {
         if let selected = eStepSegmentedControl.titleForSegment(at: eStepSegmentedControl.selectedSegmentIndex), let delta = Int(selected) {
-            if octoprintClient.isEqualOrNewerThan(major: 1, minor: 3, patch: 10) == true {
+            if octoprintClient.isEqualOrNewerThan(major: 1, minor: 3, patch: 10) == true && appConfiguration.promptSpeedExtrudeRetract() {
                 // OctoPrint supports custom speed so prompt user for speed
                 self.performSegue(withIdentifier: "retract_speed", sender: sender)
             } else {
-                // OctoPrint version is not known or is old so use default speed
+                // OctoPrint version is not known or is old so use default speed. Or user disabled prompt for speed
                 extrudeSpeed(delta: (delta * -1), speed: nil)
             }
         }
@@ -229,11 +229,11 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     
     @IBAction func extrude(_ sender: Any) {
         if let selected = eStepSegmentedControl.titleForSegment(at: eStepSegmentedControl.selectedSegmentIndex), let delta = Int(selected) {
-            if octoprintClient.isEqualOrNewerThan(major: 1, minor: 3, patch: 10) == true {
+            if octoprintClient.isEqualOrNewerThan(major: 1, minor: 3, patch: 10) == true && appConfiguration.promptSpeedExtrudeRetract() {
                 // OctoPrint supports custom speed so prompt user for speed
                 self.performSegue(withIdentifier: "extrude_speed", sender: sender)                
             } else {
-                // OctoPrint version is not known or is old so use default speed
+                // OctoPrint version is not known or is old so use default speed. Or user disabled prompt for speed
                 extrudeSpeed(delta: delta, speed: nil)
             }
         }

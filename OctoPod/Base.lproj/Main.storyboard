@@ -2487,6 +2487,39 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Move" id="iY8-Rh-TKn">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="J3I-Bz-b36">
+                                        <rect key="frame" x="0.0" y="199.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J3I-Bz-b36" id="Xdw-V3-kn2">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prompt Extrude Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zH4-HC-We7">
+                                                    <rect key="frame" x="16" y="12" width="286" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qjF-Kz-VcH">
+                                                    <rect key="frame" x="310" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="onPromptExtrudeSpeedChanged:" destination="oZw-P5-oVG" eventType="valueChanged" id="ZIK-M7-qvp"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qjF-Kz-VcH" firstAttribute="leading" secondItem="zH4-HC-We7" secondAttribute="trailing" constant="8" id="26U-JE-j8Y"/>
+                                                <constraint firstItem="zH4-HC-We7" firstAttribute="top" secondItem="Xdw-V3-kn2" secondAttribute="topMargin" constant="1" id="GsX-oV-WEZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="qjF-Kz-VcH" secondAttribute="trailing" constant="16" id="KAB-rD-O0I"/>
+                                                <constraint firstItem="qjF-Kz-VcH" firstAttribute="top" secondItem="Xdw-V3-kn2" secondAttribute="top" constant="6" id="PVS-ey-b41"/>
+                                                <constraint firstItem="zH4-HC-We7" firstAttribute="leading" secondItem="Xdw-V3-kn2" secondAttribute="leadingMargin" id="dJ6-pt-FMr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="oZw-P5-oVG" id="Ymf-ZV-kRG"/>
@@ -2498,6 +2531,8 @@
                         <outlet property="onConnectSwitch" destination="iAd-WT-rmK" id="9HS-x7-SZn"/>
                         <outlet property="onDisconnectLabel" destination="JYC-5g-kqS" id="Llw-r9-Vt8"/>
                         <outlet property="onDisconnectSwitch" destination="Web-AX-Ccm" id="JSw-8J-3mu"/>
+                        <outlet property="promptExtrudeSpeedLabel" destination="zH4-HC-We7" id="9S4-Xl-yq7"/>
+                        <outlet property="promptExtrudeSpeedSwitch" destination="qjF-Kz-VcH" id="6X8-26-WrA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7fa-1t-Gtn" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -7,6 +7,7 @@ class AppConfiguration: OctoPrintClientDelegate {
     private static let APP_AUTO_LOCK = "APP_CONFIGURATION_AUTO_LOCKED"
     private static let CONFIRMATION_ON_CONNECT = "APP_CONFIGURATION_CONF_ON_CONNECT"
     private static let CONFIRMATION_ON_DISCONNECT = "APP_CONFIGURATION_CONF_ON_DISCONNECT"
+    private static let PROMPT_SPEED_EXTRUDE = "APP_CONFIGURATION_PROMPT_SPEED_EXTRUDE"
     private static let DISABLE_CERT_VALIDATION = "APP_CONFIGURATION_DISABLE_CERT_VALIDATION"
     private static let DISABLE_TEMP_CHART_ZOOM = "APP_CONFIGURATION_DISABLE_TEMP_CHART_ZOOM"
     private static let PLUGIN_UPDATES_CHECK_FREQUENCY = "APP_CONFIGURATION_PLUGIN_UPDATES_CHECK_FREQUENCY"
@@ -119,6 +120,25 @@ class AppConfiguration: OctoPrintClientDelegate {
     func confirmationOnDisconnect(enable: Bool) {
         let defaults = UserDefaults.standard
         return defaults.set(enable, forKey: AppConfiguration.CONFIRMATION_ON_DISCONNECT)
+    }
+    
+    // MARK: - Move Confirmation
+
+    /// Prompt for speed when asking to extrude or retract
+    func promptSpeedExtrudeRetract() -> Bool {
+        let defaults = UserDefaults.standard
+        if let result = defaults.object(forKey: AppConfiguration.PROMPT_SPEED_EXTRUDE) as? Bool {
+            return result
+        }
+        // A value does not exist so default to true
+        promptSpeedExtrudeRetract(enable: true)
+        return true
+    }
+    
+    /// Set if prompting for speed when asking to extrude or retract is on/off
+    func promptSpeedExtrudeRetract(enable: Bool) {
+        let defaults = UserDefaults.standard
+        return defaults.set(enable, forKey: AppConfiguration.PROMPT_SPEED_EXTRUDE)
     }
     
     // MARK: - SSL Certificate Validation
