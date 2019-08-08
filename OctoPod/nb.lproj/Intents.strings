@@ -1,5 +1,11 @@
 /* (No Comment) */
+"0vck5K" = "Kunne ikke be om å kutte";
+
+/* (No Comment) */
 "0xUDAM" = "${printer}";
+
+/* (No Comment) */
+"1lbZOa" = "Kunne ikke be om å koble fra";
 
 /* (No Comment) */
 "2TreiD" = "Sett ekstruderens temperatur til ${temperature}";
@@ -14,6 +20,9 @@
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
+"5i5htv" = "Tilkoblet";
+
+/* (No Comment) */
 "6k5AFm" = "Fortsett jobb";
 
 /* (No Comment) */
@@ -23,7 +32,13 @@
 "7eJPkN" = "Konfigurer kammerets temperatur";
 
 /* (No Comment) */
+"8cfoSa" = "Kunne ikke be om å fjerne";
+
+/* (No Comment) */
 "8tTCjD" = "Kunne ikke avbryte jobben (${statusCode})";
+
+/* (No Comment) */
+"8xHCbl" = "${printer}";
 
 /* (No Comment) */
 "9iz6yx" = "${printer}";
@@ -62,6 +77,9 @@
 "G3JE6a" = "${printer}";
 
 /* (No Comment) */
+"g52Ub0" = "${printer}";
+
+/* (No Comment) */
 "gx0D0e" = "Jobb avbrutt";
 
 /* (No Comment) */
@@ -78,6 +96,12 @@
 
 /* (No Comment) */
 "Kf7e4Y" = "Restart startet utskrift";
+
+/* (No Comment) */
+"kSWyyv" = "${printer}";
+
+/* (No Comment) */
+"L25OHl" = "Kunne ikke be om å få forbindelse";
 
 /* (No Comment) */
 "lrRige" = "Avbryt utskriftsjobb";
@@ -119,6 +143,9 @@
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
+"RgRXpP" = "${printer}";
+
+/* (No Comment) */
 "Rjw5oo" = "${printer}";
 
 /* (No Comment) */
@@ -153,6 +180,9 @@
 
 /* (No Comment) */
 "VDz0Q1" = "${printer}";
+
+/* (No Comment) */
+"VItjhS" = "Frakoblet";
 
 /* (No Comment) */
 "vL7cy4" = "${printer}";

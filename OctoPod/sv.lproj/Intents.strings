@@ -1,5 +1,11 @@
 /* (No Comment) */
+"0vck5K" = "Kunde inte begära att klippa ut";
+
+/* (No Comment) */
 "0xUDAM" = "${printer}";
+
+/* (No Comment) */
+"1lbZOa" = "Kunde inte begära att koppla från";
 
 /* (No Comment) */
 "2TreiD" = "Ställ in extruder-temperatur till ${temperature}";
@@ -14,6 +20,9 @@
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
+"5i5htv" = "Ansluten";
+
+/* (No Comment) */
 "6k5AFm" = "Återuppta";
 
 /* (No Comment) */
@@ -23,7 +32,13 @@
 "7eJPkN" = "Konfigurera kammarens temperatur";
 
 /* (No Comment) */
+"8cfoSa" = "Kunde inte begära att rensa";
+
+/* (No Comment) */
 "8tTCjD" = "Kunde inte avbryta jobb (${statusCode})";
+
+/* (No Comment) */
+"8xHCbl" = "${printer}";
 
 /* (No Comment) */
 "9iz6yx" = "${printer}";
@@ -62,6 +77,9 @@
 "G3JE6a" = "${printer}";
 
 /* (No Comment) */
+"g52Ub0" = "${printer}";
+
+/* (No Comment) */
 "gx0D0e" = "Jobb avbrutet";
 
 /* (No Comment) */
@@ -78,6 +96,12 @@
 
 /* (No Comment) */
 "Kf7e4Y" = "Återuppta pågående utskriftsjobb";
+
+/* (No Comment) */
+"kSWyyv" = "${printer}";
+
+/* (No Comment) */
+"L25OHl" = "Kunde inte begära att ansluta";
 
 /* (No Comment) */
 "lrRige" = "Avbryt pågående utskriftsjobb";
@@ -119,6 +143,9 @@
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
+"RgRXpP" = "${printer}";
+
+/* (No Comment) */
 "Rjw5oo" = "${printer}";
 
 /* (No Comment) */
@@ -153,6 +180,9 @@
 
 /* (No Comment) */
 "VDz0Q1" = "${printer}";
+
+/* (No Comment) */
+"VItjhS" = "Frånkopplad";
 
 /* (No Comment) */
 "vL7cy4" = "${printer}";

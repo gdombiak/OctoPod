@@ -33,6 +33,10 @@
 			<array>
 				<string>CancelJobIntent</string>
 				<string>CoolDownPrinterIntent</string>
+				<string>PaletteClearIntent</string>
+				<string>PaletteConnectIntent</string>
+				<string>PaletteCutIntent</string>
+				<string>PaletteDisconnectIntent</string>
 				<string>PauseJobIntent</string>
 				<string>RestartJobIntent</string>
 				<string>ResumeJobIntent</string>
@@ -46,6 +50,10 @@
 			<array>
 				<string>CancelJobIntent</string>
 				<string>CoolDownPrinterIntent</string>
+				<string>PaletteClearIntent</string>
+				<string>PaletteConnectIntent</string>
+				<string>PaletteCutIntent</string>
+				<string>PaletteDisconnectIntent</string>
 				<string>PauseJobIntent</string>
 				<string>RemainingTimeIntent</string>
 				<string>RestartJobIntent</string>

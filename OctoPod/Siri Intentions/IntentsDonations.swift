@@ -6,7 +6,7 @@ class IntentsDonations {
     private static let GROUP_IDENTIFIER = "org.OctoPod.Intentions"  // Unique & Global idenfier for all Intents created by this app
     private static let DONATIONS_INITIALIZED = "IntentsDonations.init"
     
-    // MARK: - Create functions
+    // MARK: - Donate Printer Intents
 
     static func donateBedTemp(printer: Printer, temperature: Int) {
         // Intent only available on iOS 12 or newer
@@ -132,8 +132,8 @@ class IntentsDonations {
         }
     }
     
-    // Suggest Siri shortcuts for the printer. These are intents created when a Printer is added or modified
-    // The other donations are done based on user interaction with the app
+    /// Suggest Siri shortcuts for the printer. These are intents created when a Printer is added or modified
+    /// The other donations are done based on user interaction with the app
     static func donatePrinterIntents(printer: Printer) {
         // Donate convenient shortcut for cooling down bed and tool 0 with a single command
         // Individual cool down will be donated if/when user uses that feature. Not donated by default to reduce clutter
@@ -165,26 +165,98 @@ class IntentsDonations {
         defaults.set(true, forKey: DONATIONS_INITIALIZED)
     }
     
-    // MARK: - Delete functions
+    // MARK: - Delete Intents
 
+    /// Delete donate Siri commands that relate to the printer. This includes Palette intents as well
     static func deletePrinterIntents(printer: Printer) {
         INInteraction.delete(with: groupIdentifier(printer: printer)) { (error: Error?) in
             if let error = error {
-                NSLog("Failed to delete donated interactions for printer \(printer.name). Error: \(error.localizedDescription)")
+                NSLog("Failed to delete donated intentions for printer \(printer.name). Error: \(error.localizedDescription)")
             } else {
-                NSLog("Printer donated Interactions deleted")
+                NSLog("Printer donated Intentions deleted")
             }
         }
     }
     
+    /// Delete all donated Siri commands made by the app
     static func deleteAllDonatedIntents(done: ((Error?) -> Void)?) {
         INInteraction.deleteAll { (error: Error?) in
             if let error = error {
-                NSLog("Failed to delete all donated interactions. Error: \(error.localizedDescription)")
+                NSLog("Failed to delete all donated intentions. Error: \(error.localizedDescription)")
             } else {
-                NSLog("All donated Interactions deleted")
+                NSLog("All donated Intentions deleted")
             }
             done?(error)
+        }
+    }
+    
+    // MARK: - Donate Palette Intents
+    
+    /// Donate all Siri commands to control Palette
+    static func donatePaletteIntents(printer: Printer) {
+        donatePaletteConnect(printer: printer)
+        donatePaletteDisconnect(printer: printer)
+        donatePaletteClear(printer: printer)
+        donatePaletteCut(printer: printer)
+    }
+
+    /// Delete Siri commands that relate to Palette
+    static func deletePaletteIntents(printer: Printer) {
+        var toDelete = Array<String>()
+        toDelete.append(intentIdentifier(printer: printer, identifierSuffix: "PaletteConnect"))
+        toDelete.append(intentIdentifier(printer: printer, identifierSuffix: "PaletteDisconnect"))
+        toDelete.append(intentIdentifier(printer: printer, identifierSuffix: "PaletteClear"))
+        toDelete.append(intentIdentifier(printer: printer, identifierSuffix: "PaletteCut"))
+        INInteraction.delete(with: toDelete) { (error: Error?) in
+            if let error = error {
+                NSLog("Failed to delete donated Palette intentions for printer \(printer.name). Error: \(error.localizedDescription)")
+            } else {
+                NSLog("Palette donated Intentions deleted")
+            }
+        }
+    }
+
+    static func donatePaletteConnect(printer: Printer) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = PaletteConnectIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "PaletteConnect")
+        }
+    }
+    
+    static func donatePaletteDisconnect(printer: Printer) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = PaletteDisconnectIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "PaletteDisconnect")
+        }
+    }
+
+    static func donatePaletteClear(printer: Printer) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = PaletteClearIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "PaletteClear")
+        }
+    }
+    
+    static func donatePaletteCut(printer: Printer) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = PaletteCutIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "PaletteCut")
         }
     }
     
@@ -192,18 +264,22 @@ class IntentsDonations {
     
     fileprivate class func donateIntent(intent: INIntent, printer: Printer, identifierSuffix: String) {
         let interaction = INInteraction(intent: intent, response: nil)
-        interaction.identifier = "\(GROUP_IDENTIFIER).\(identifierSuffix)"
+        interaction.identifier = intentIdentifier(printer: printer, identifierSuffix: identifierSuffix)
         interaction.groupIdentifier = groupIdentifier(printer: printer)
 
         interaction.donate { (error) in
             if let error = error {
                 NSLog("Interaction donation failed: \(error.localizedDescription)")
             } else {
-                NSLog("Successfully donated interaction")
+                NSLog("Successfully donated interaction for intent: \(intent)")
             }
         }
     }
     
+    fileprivate class func intentIdentifier(printer: Printer, identifierSuffix: String) -> String {
+        return "\(GROUP_IDENTIFIER).\(printer.objectID.uriRepresentation()).\(identifierSuffix))"
+    }
+
     fileprivate class func groupIdentifier(printer: Printer) -> String {
         return "\(GROUP_IDENTIFIER).\(printer.objectID.uriRepresentation())"
     }

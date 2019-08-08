@@ -98,6 +98,11 @@
 		3D6350F121082E07001C10F7 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F021082E07001C10F7 /* AppearanceViewController.swift */; };
 		3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F221083BE0001C10F7 /* TabBarController.swift */; };
 		3D6350F721084334001C10F7 /* ThemedDynamicUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F621084334001C10F7 /* ThemedDynamicUITableViewController.swift */; };
+		3D669E1322FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D669E1222FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift */; };
+		3D669E1422FBB734002C68C1 /* Plugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3FE6C2154B9CE000D7D2A /* Plugins.swift */; };
+		3D669E1622FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D669E1522FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift */; };
+		3D669E1822FBBA6F002C68C1 /* PaletteCleartIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D669E1722FBBA6F002C68C1 /* PaletteCleartIntentHandler.swift */; };
+		3D669E1A22FBBAC0002C68C1 /* PaletteCutIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D669E1922FBBAC0002C68C1 /* PaletteCutIntentHandler.swift */; };
 		3D680FA8218E12BC006C9A79 /* PanelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D680FA7218E12BC006C9A79 /* PanelManager.swift */; };
 		3D680FAB218E12E9006C9A79 /* PanelManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D680FAA218E12E9006C9A79 /* PanelManagerDelegate.swift */; };
 		3D693C5D214CD23400823903 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D693C5C214CD23400823903 /* CloudKit.framework */; };
@@ -383,6 +388,10 @@
 		3D6570DD218510DB00BD3A7B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Interface.strings; sourceTree = "<group>"; };
 		3D6570DF218510DD00BD3A7B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Interface.strings; sourceTree = "<group>"; };
 		3D6570E1218510DE00BD3A7B /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Interface.strings; sourceTree = "<group>"; };
+		3D669E1222FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteConnectIntentHandler.swift; sourceTree = "<group>"; };
+		3D669E1522FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDisconnectIntentHandler.swift; sourceTree = "<group>"; };
+		3D669E1722FBBA6F002C68C1 /* PaletteCleartIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteCleartIntentHandler.swift; sourceTree = "<group>"; };
+		3D669E1922FBBAC0002C68C1 /* PaletteCutIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteCutIntentHandler.swift; sourceTree = "<group>"; };
 		3D680FA7218E12BC006C9A79 /* PanelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelManager.swift; sourceTree = "<group>"; };
 		3D680FAA218E12E9006C9A79 /* PanelManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelManagerDelegate.swift; sourceTree = "<group>"; };
 		3D693C5B214CCEC600823903 /* OctoPod v5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v5.xcdatamodel"; sourceTree = "<group>"; };
@@ -724,6 +733,7 @@
 				3D4064B021AB78F3000B05F9 /* RestartJobIntentHandler.swift */,
 				3D1ECB0721ABB85700691DCB /* RemainingTimeIntentHandler.swift */,
 				3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */,
+				3D669E1B22FBBAF5002C68C1 /* Mosaic */,
 			);
 			path = "OctoPod Intent";
 			sourceTree = "<group>";
@@ -821,6 +831,17 @@
 				3D0E3B1021097E7A0087F7E4 /* ThemeUIUtils.swift */,
 			);
 			path = Themes;
+			sourceTree = "<group>";
+		};
+		3D669E1B22FBBAF5002C68C1 /* Mosaic */ = {
+			isa = PBXGroup;
+			children = (
+				3D669E1222FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift */,
+				3D669E1522FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift */,
+				3D669E1722FBBA6F002C68C1 /* PaletteCleartIntentHandler.swift */,
+				3D669E1922FBBAC0002C68C1 /* PaletteCutIntentHandler.swift */,
+			);
+			path = Mosaic;
 			sourceTree = "<group>";
 		};
 		3D680FA9218E12CB006C9A79 /* Model */ = {
@@ -1413,27 +1434,32 @@
 				3D450E5F21AB1C040049FBC0 /* Intents.intentdefinition in Sources */,
 				3D4497D221B2243700736F0F /* Printer.swift in Sources */,
 				3D450ECB21AB5BCE0049FBC0 /* OctoPrintRESTClient.swift in Sources */,
+				3D669E1A22FBBAC0002C68C1 /* PaletteCutIntentHandler.swift in Sources */,
 				3D4064A521AB61E6000B05F9 /* CancelObject.swift in Sources */,
 				3D4064AF21AB75FF000B05F9 /* CancelJobIntentHandler.swift in Sources */,
 				3D4064A921AB6205000B05F9 /* ExecuteControl.swift in Sources */,
 				3D4064A121AB61B2000B05F9 /* SystemCommand.swift in Sources */,
+				3D669E1322FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift in Sources */,
 				3D4497D121B2241D00736F0F /* PrinterManager.swift in Sources */,
 				3D4064AB21AB7563000B05F9 /* PauseJobIntentHandler.swift in Sources */,
 				3D4497D021B2240700736F0F /* OctoPod.xcdatamodeld in Sources */,
 				3D1ECB0821ABB85700691DCB /* RemainingTimeIntentHandler.swift in Sources */,
 				3D450EC321AB45740049FBC0 /* SetToolTempIntentHandler.swift in Sources */,
 				3D4064B121AB78F3000B05F9 /* RestartJobIntentHandler.swift in Sources */,
+				3D669E1622FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift in Sources */,
 				3D4064A021AB619C000B05F9 /* HTTPClient.swift in Sources */,
 				3D4064A621AB61ED000B05F9 /* ControlInput.swift in Sources */,
 				3D450E5221AB1B210049FBC0 /* IntentHandler.swift in Sources */,
 				3D450EBC21AB236C0049FBC0 /* SetBedTempIntentHandler.swift in Sources */,
 				3D4064AD21AB75BF000B05F9 /* ResumeJobIntentHandler.swift in Sources */,
+				3D669E1822FBBA6F002C68C1 /* PaletteCleartIntentHandler.swift in Sources */,
 				3D4064A321AB61C9000B05F9 /* Container.swift in Sources */,
 				3DDDB20121B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift in Sources */,
 				3D4064A221AB61C4000B05F9 /* IPPlug.swift in Sources */,
 				3D4064A721AB61F7000B05F9 /* Command.swift in Sources */,
 				3D450EC921AB56F40049FBC0 /* IntentsController.swift in Sources */,
 				3D4497D521B230BE00736F0F /* SharedPersistentContainer.swift in Sources */,
+				3D669E1422FBB734002C68C1 /* Plugins.swift in Sources */,
 				3D4064A821AB61F9000B05F9 /* Script.swift in Sources */,
 				3D4064A421AB61D2000B05F9 /* CustomControl.swift in Sources */,
 				3DDB5FC922CF164B005F8A9F /* SetChamberTempIntentHandler.swift in Sources */,

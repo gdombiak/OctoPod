@@ -1,5 +1,11 @@
 /* (No Comment) */
+"0vck5K" = "Schnittanforderung fehlgeschlagen";
+
+/* (No Comment) */
 "0xUDAM" = "${printer}";
+
+/* (No Comment) */
+"1lbZOa" = "Anforderungen zum trennen fehlgeschlagen";
 
 /* (No Comment) */
 "2TreiD" = "Stelle Düsentemperatur auf ${temperature}";
@@ -14,6 +20,9 @@
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
+"5i5htv" = "Verbunden";
+
+/* (No Comment) */
 "6k5AFm" = "Auftrag fortsetzen";
 
 /* (No Comment) */
@@ -23,7 +32,13 @@
 "7eJPkN" = "Kammer Temperatur einrichten";
 
 /* (No Comment) */
+"8cfoSa" = "Leeren kann nicht angefordert werden";
+
+/* (No Comment) */
 "8tTCjD" = "Auftrag konnte nicht abgebrochen werden (${statusCode})";
+
+/* (No Comment) */
+"8xHCbl" = "${printer}";
 
 /* (No Comment) */
 "9iz6yx" = "${printer}";
@@ -62,6 +77,9 @@
 "G3JE6a" = "${printer}";
 
 /* (No Comment) */
+"g52Ub0" = "${printer}";
+
+/* (No Comment) */
 "gx0D0e" = "Auftrag abgebrochen";
 
 /* (No Comment) */
@@ -78,6 +96,12 @@
 
 /* (No Comment) */
 "Kf7e4Y" = "Laufenden Druckauftrag fortsetzen";
+
+/* (No Comment) */
+"kSWyyv" = "${printer}";
+
+/* (No Comment) */
+"L25OHl" = "Anforderung für Verbindungsaufbau fehlgeschlagen";
 
 /* (No Comment) */
 "lrRige" = "Laufenden Druckauftrag abbrechen";
@@ -119,6 +143,9 @@
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
+"RgRXpP" = "${printer}";
+
+/* (No Comment) */
 "Rjw5oo" = "${printer}";
 
 /* (No Comment) */
@@ -153,6 +180,9 @@
 
 /* (No Comment) */
 "VDz0Q1" = "${printer}";
+
+/* (No Comment) */
+"VItjhS" = "Getrennt";
 
 /* (No Comment) */
 "vL7cy4" = "${printer}";

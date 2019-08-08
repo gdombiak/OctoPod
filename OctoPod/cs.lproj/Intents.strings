@@ -1,5 +1,11 @@
 /* (No Comment) */
+"0vck5K" = "Nezdařila se žádost o řezání";
+
+/* (No Comment) */
 "0xUDAM" = "${printer}";
+
+/* (No Comment) */
+"1lbZOa" = "Nezdařila se žádost pro odpojení";
 
 /* (No Comment) */
 "2TreiD" = "Nastavit teplotu trysky na ${temperature}";
@@ -14,6 +20,9 @@
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
+"5i5htv" = "Připojený";
+
+/* (No Comment) */
 "6k5AFm" = "Pokračovat v tisku";
 
 /* (No Comment) */
@@ -23,7 +32,13 @@
 "7eJPkN" = "Změnit teplotu komory";
 
 /* (No Comment) */
+"8cfoSa" = "Nezdařila se žádost o vyčištění";
+
+/* (No Comment) */
 "8tTCjD" = "Nezdařilo se zrušit tisk (${statusCode})";
+
+/* (No Comment) */
+"8xHCbl" = "${printer}";
 
 /* (No Comment) */
 "9iz6yx" = "${printer}";
@@ -62,6 +77,9 @@
 "G3JE6a" = "${printer}";
 
 /* (No Comment) */
+"g52Ub0" = "${printer}";
+
+/* (No Comment) */
 "gx0D0e" = "Tisk zrušen";
 
 /* (No Comment) */
@@ -78,6 +96,12 @@
 
 /* (No Comment) */
 "Kf7e4Y" = "Pokračovat v tisku";
+
+/* (No Comment) */
+"kSWyyv" = "${printer}";
+
+/* (No Comment) */
+"L25OHl" = "Nezdařila se žádost o připojení";
 
 /* (No Comment) */
 "lrRige" = "Zrušit probíhající tisk";
@@ -119,6 +143,9 @@
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
+"RgRXpP" = "${printer}";
+
+/* (No Comment) */
 "Rjw5oo" = "${printer}";
 
 /* (No Comment) */
@@ -153,6 +180,9 @@
 
 /* (No Comment) */
 "VDz0Q1" = "${printer}";
+
+/* (No Comment) */
+"VItjhS" = "Odpojený";
 
 /* (No Comment) */
 "vL7cy4" = "${printer}";

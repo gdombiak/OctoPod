@@ -212,7 +212,7 @@
 "Failed to request to cancel object" = "Error al cancelar objeto. Respuesta HTTP: %d";
 
 /* No comment provided by engineer. */
-"Failed to request to clear" = "Error al solicitar el borrado";
+"Failed to request to clear" = "Error al solicitar la limpieza";
 
 /* No comment provided by engineer. */
 "Failed to request to connect" = "Error al pedir conectarse";

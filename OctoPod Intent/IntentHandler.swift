@@ -22,6 +22,14 @@ class IntentHandler: INExtension {
             return RemainingTimeIntentHandler(printerManager: printerManager)
         } else if intent is CoolDownPrinterIntent {
             return CoolDownPrinterIntentHandler(printerManager: printerManager)
+        } else if intent is PaletteConnectIntent {
+            return PaletteConnectIntentHandler(printerManager: printerManager)
+        } else if intent is PaletteDisconnectIntent {
+            return PaletteDisconnectIntentHandler(printerManager: printerManager)
+        } else if intent is PaletteClearIntent {
+            return PaletteClearIntentHandler(printerManager: printerManager)
+        } else if intent is PaletteCutIntent {
+            return PaletteCutIntentHandler(printerManager: printerManager)
         } else {
             fatalError("Unhandled intent type: \(intent)")
         }

@@ -1,5 +1,11 @@
 /* (No Comment) */
+"0vck5K" = "Impossibile richiedere di tagliare";
+
+/* (No Comment) */
 "0xUDAM" = "${printer}";
+
+/* (No Comment) */
+"1lbZOa" = "Impossibile richiedere di disconnettersi";
 
 /* (No Comment) */
 "2TreiD" = "Imposta la temperatura dell'estrusore su ${temperature}";
@@ -14,6 +20,9 @@
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
+"5i5htv" = "Connesso";
+
+/* (No Comment) */
 "6k5AFm" = "Riprendi stampa";
 
 /* (No Comment) */
@@ -23,7 +32,13 @@
 "7eJPkN" = "Configura la temperatura della camera";
 
 /* (No Comment) */
+"8cfoSa" = "Impossibile richiedere di spurgare";
+
+/* (No Comment) */
 "8tTCjD" = "Errore nell'annullamento della stampa (${statusCode})";
+
+/* (No Comment) */
+"8xHCbl" = "${printer}";
 
 /* (No Comment) */
 "9iz6yx" = "${printer}";
@@ -62,6 +77,9 @@
 "G3JE6a" = "${printer}";
 
 /* (No Comment) */
+"g52Ub0" = "${printer}";
+
+/* (No Comment) */
 "gx0D0e" = "Stampa annullata";
 
 /* (No Comment) */
@@ -78,6 +96,12 @@
 
 /* (No Comment) */
 "Kf7e4Y" = "Riprendi la stampa in corso";
+
+/* (No Comment) */
+"kSWyyv" = "${printer}";
+
+/* (No Comment) */
+"L25OHl" = "Impossibile richiedere di connettersi";
 
 /* (No Comment) */
 "lrRige" = "Annulla la stampa in corso";
@@ -119,6 +143,9 @@
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
+"RgRXpP" = "${printer}";
+
+/* (No Comment) */
 "Rjw5oo" = "${printer}";
 
 /* (No Comment) */
@@ -153,6 +180,9 @@
 
 /* (No Comment) */
 "VDz0Q1" = "${printer}";
+
+/* (No Comment) */
+"VItjhS" = "Disconnesso";
 
 /* (No Comment) */
 "vL7cy4" = "${printer}";

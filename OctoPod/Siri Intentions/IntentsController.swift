@@ -3,6 +3,8 @@ import UIKit
 
 class IntentsController {
     
+    // MARK: - Printer intents
+
     func bedTemperature(printer: Printer, temperature: NSNumber?, callback: @escaping (Bool, Int?, Int) -> Void) {
         let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
         var newTarget: Int = 0
@@ -100,6 +102,36 @@ class IntentsController {
             } else {
                 callback(false, nil, response.statusCode)
             }
+        }
+    }
+    
+    // MARK: - Palette intents
+
+    func palette2Connect(printer: Printer, callback: @escaping (Bool) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        restClient.palette2Connect(plugin: Plugins.PALETTE_2, port: "") { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested)
+        }
+    }
+    
+    func palette2Disconnect(printer: Printer, callback: @escaping (Bool) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        restClient.palette2Disconnect(plugin: Plugins.PALETTE_2) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested)
+        }
+    }
+    
+    func palette2Clear(printer: Printer, callback: @escaping (Bool) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        restClient.palette2Clear(plugin: Plugins.PALETTE_2) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested)
+        }
+    }
+    
+    func palette2Cut(printer: Printer, callback: @escaping (Bool) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        restClient.palette2Cut(plugin: Plugins.PALETTE_2) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested)
         }
     }
     

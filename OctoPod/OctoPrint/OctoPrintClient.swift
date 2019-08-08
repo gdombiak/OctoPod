@@ -35,7 +35,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     // Remember last CurrentStateEvent that was reported from OctoPrint (via websockets)
     var lastKnownState: CurrentStateEvent?
     var octoPrintVersion: String?
-    var lastKnownToolsNumber: Int16?
+    private var lastKnownToolsNumber: Int16?
     
     init(printerManager: PrinterManager) {
         self.printerManager = printerManager
@@ -959,6 +959,13 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             printerToUpdate.palette2AutoConnect = autoConnect
             // Persist updated printer
             printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+            
+            // Donate Siri commands to control Palette (or delete donated commands)
+            if installed {
+                IntentsDonations.donatePaletteIntents(printer: printer)
+            } else {
+                IntentsDonations.deletePaletteIntents(printer: printer)
+            }
             
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {

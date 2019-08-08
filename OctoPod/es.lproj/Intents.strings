@@ -1,5 +1,11 @@
 /* (No Comment) */
+"0vck5K" = "Error al pedir cortar";
+
+/* (No Comment) */
 "0xUDAM" = "${printer}";
+
+/* (No Comment) */
+"1lbZOa" = "Error al pedir desconectarse";
 
 /* (No Comment) */
 "2TreiD" = "Establezca temperatura del extrusor a ${temperature}";
@@ -8,10 +14,22 @@
 "3Butzw" = "Temperatura de la caja se ajustó a ${temperature}";
 
 /* (No Comment) */
+"3cyBw6" = "Pedirle a Palette que limpie";
+
+/* (No Comment) */
 "3eH6cZ" = "Error al obtener información de tiempo restante (${statusCode})";
 
 /* (No Comment) */
+"3JiZye" = "Pedido";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"5i5htv" = "Conectado";
+
+/* (No Comment) */
+"6b7Yce" = "Pedirle a Palette que corte";
 
 /* (No Comment) */
 "6k5AFm" = "Reanudar impresión";
@@ -23,7 +41,16 @@
 "7eJPkN" = "Configurar temperatura de la caja";
 
 /* (No Comment) */
+"8cfoSa" = "Error al solicitar la limpieza";
+
+/* (No Comment) */
+"8rFt1u" = "Pedirle a Palette que limpie";
+
+/* (No Comment) */
 "8tTCjD" = "Error al cancelar el trabajo (${statusCode})";
+
+/* (No Comment) */
+"8xHCbl" = "${printer}";
 
 /* (No Comment) */
 "9iz6yx" = "${printer}";
@@ -35,10 +62,16 @@
 "662LyZ" = "Reiniciar impresión";
 
 /* (No Comment) */
+"AzqFAh" = "Pedido";
+
+/* (No Comment) */
 "bXGQKe" = "Enfriar impresora";
 
 /* (No Comment) */
 "D0kBGr" = "Reiniciar impresión";
+
+/* (No Comment) */
+"D1wWxd" = "Desconectarse de Palette";
 
 /* (No Comment) */
 "doj4NA" = "Configurar temperatura del extrusor";
@@ -62,6 +95,9 @@
 "G3JE6a" = "${printer}";
 
 /* (No Comment) */
+"g52Ub0" = "${printer}";
+
+/* (No Comment) */
 "gx0D0e" = "Trabajo cancelado";
 
 /* (No Comment) */
@@ -71,13 +107,28 @@
 "ihLqc7" = "Suspender impresión";
 
 /* (No Comment) */
+"jasUIn" = "Desconectarse de Palette";
+
+/* (No Comment) */
 "Jioukn" = "Establecer temperatura de la caja";
 
 /* (No Comment) */
 "JmhfgL" = "Reiniciar impresión";
 
 /* (No Comment) */
+"JV2xQz" = "Conectar a Palette";
+
+/* (No Comment) */
 "Kf7e4Y" = "Reanudar impresión";
+
+/* (No Comment) */
+"KHvUZD" = "Pedirle a Palette que corte";
+
+/* (No Comment) */
+"kSWyyv" = "${printer}";
+
+/* (No Comment) */
+"L25OHl" = "Error al pedir conectarse";
 
 /* (No Comment) */
 "lrRige" = "Cancelar impresión";
@@ -90,6 +141,12 @@
 
 /* (No Comment) */
 "m9Jgmg" = "Trabajo reanudado";
+
+/* (No Comment) */
+"N0vzJv" = "Pedirle a Palette que limpie";
+
+/* (No Comment) */
+"N84M0s" = "Pedirle a Palette que corte";
 
 /* (No Comment) */
 "NG7rBh" = "Tiempo restante";
@@ -116,7 +173,13 @@
 "QSxXHq" = "Detener impresión";
 
 /* (No Comment) */
+"R5AlTe" = "Desconectarse de Palette";
+
+/* (No Comment) */
 "rFHPr4" = "${printer}";
+
+/* (No Comment) */
+"RgRXpP" = "${printer}";
 
 /* (No Comment) */
 "Rjw5oo" = "${printer}";
@@ -126,6 +189,9 @@
 
 /* (No Comment) */
 "RrOrgy" = "Cancelar impresión";
+
+/* (No Comment) */
+"RyGRDF" = "Conectar a Palette";
 
 /* (No Comment) */
 "RYurC5" = "Enfriar la caja";
@@ -155,10 +221,16 @@
 "VDz0Q1" = "${printer}";
 
 /* (No Comment) */
+"VItjhS" = "Desconectado";
+
+/* (No Comment) */
 "vL7cy4" = "${printer}";
 
 /* (No Comment) */
 "VlxGJX" = "${printer}";
+
+/* (No Comment) */
+"vmbpr4" = "Conectar a Palette";
 
 /* (No Comment) */
 "WI2oQf" = "Tiempo de impresión restante";

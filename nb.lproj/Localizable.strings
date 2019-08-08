@@ -89,6 +89,9 @@
 "Confirm disconnect" = "Ønsker du å koble fra skriveren?";
 
 /* (No Comment) */
+"Confirm disconnect palette2" = "Vil du koble fra Palett 2?";
+
+/* (No Comment) */
 "Confirm intentions deletion" = "Du er i ferd med å slette alle Siri snarveier av appen. Fortsette?";
 
 /* (No Comment) */
@@ -102,6 +105,12 @@
 
 /* Connect */
 "Connect" = "Koble til";
+
+/* Connected */
+"Connected" = "Tilkoblet";
+
+/* Connecting */
+"Connecting" = "Kobler til";
 
 /* (No Comment) */
 "Connection failed" = "Tilkobling feilet";
@@ -127,6 +136,9 @@
 /* Disconnect */
 "Disconnect" = "koble fra";
 
+/* Disconnected */
+"Disconnected" = "Frakoblet";
+
 /* (No Comment) */
 "Dismiss" = "Avvis";
 
@@ -141,6 +153,9 @@
 
 /* No comment provided by engineer. */
 "Extruder Variance" = "Ekstrudervariasjon";
+
+/* No comment provided by engineer. */
+"Failed to connect" = "Kunne ikke koble til";
 
 /* (No Comment) */
 "Failed to delete file" = "Kunne ikke slette filen";
@@ -184,8 +199,23 @@
 /* (No Comment) */
 "Failed to request moving up" = "Kunne ikke be om å flytte opp";
 
+/* No comment provided by engineer. */
+"Failed to request status" = "Kunne ikke be om status";
+
 /* (No Comment) */
 "Failed to request to cancel object" = "Kunne ikke be om å kansellere objektet. HTTP-respons: %d";
+
+/* No comment provided by engineer. */
+"Failed to request to clear" = "Kunne ikke be om å fjerne";
+
+/* No comment provided by engineer. */
+"Failed to request to connect" = "Kunne ikke be om å få forbindelse";
+
+/* No comment provided by engineer. */
+"Failed to request to cut" = "Kunne ikke be om å kutte";
+
+/* No comment provided by engineer. */
+"Failed to request to disconnect" = "Kunne ikke be om å koble fra";
 
 /* (No Comment) */
 "Failed to request to execute command" = "Kunne ikke be om å utføre kommandoen";
@@ -247,6 +277,9 @@
 /* HTTP Request error info */
 "HTTP Request error" = "Forespørselfeil. HTTP-respons: %d";
 
+/* Idle */
+"Idle" = "Inaktiv";
+
 /* (No Comment) */
 "Incorrect API Key" = "Feil API-nøkkel";
 
@@ -270,6 +303,9 @@
 
 /* (No Comment) */
 "minutes ago" = "%d minutter siden";
+
+/* No comment provided by engineer. */
+"Missed" = "Feilet";
 
 /* (No Comment) */
 "MK3" = "MK3";
@@ -324,6 +360,12 @@
 
 /* (No Comment) */
 "Paused" = "Pause";
+
+/* No comment provided by engineer. */
+"Ping History" = "Pinghistorie";
+
+/* No comment provided by engineer. */
+"Pong History" = "Ponghistorie";
 
 /* (No Comment) */
 "Print complete" = "Utskrift ferdig";
