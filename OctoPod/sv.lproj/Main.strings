@@ -68,7 +68,7 @@
 "6TZ-hb-gdQ.text" = "Inaktivera motor";
 
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "7Je-mU-81r"; */
-"7Je-mU-81r.text" = "250.0 C";
+"7Je-mU-81r.text" = "0.0 C";
 
 /* Class = "UIButton"; normalTitle = "Z"; ObjectID = "7Mb-MK-CG7"; */
 "7Mb-MK-CG7.normalTitle" = "Z";
@@ -116,7 +116,7 @@
 "a0P-GP-CQD.normalTitle" = "Skanna API-nyckel";
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "A7g-Yw-Ucf"; */
-"A7g-Yw-Ucf.text" = "250 C";
+"A7g-Yw-Ucf.text" = "0 C";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "a12-vD-JUc"; */
 "a12-vD-JUc.text" = "/";
@@ -377,7 +377,7 @@
 "jxG-8a-4b3.text" = "Döda och starta om appen för att verkställa";
 
 /* Class = "UILabel"; text = "Confirm to disconnect"; ObjectID = "JYC-5g-kqS"; */
-"JYC-5g-kqS.text" = "Bekräfta att koppla bort";
+"JYC-5g-kqS.text" = "Bekräfta vid frånkoppling";
 
 /* Class = "UINavigationItem"; title = "Move"; ObjectID = "K4f-Fs-KaY"; */
 "K4f-Fs-KaY.title" = "Flytta";
@@ -392,7 +392,7 @@
 "k9w-2c-c6t.text" = "0.0 C";
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "kGY-Bn-Qcb"; */
-"kGY-Bn-Qcb.text" = "100 C";
+"kGY-Bn-Qcb.text" = "0 C";
 
 /* Class = "UILabel"; text = "Status"; ObjectID = "kPW-if-FGO"; */
 "kPW-if-FGO.text" = "Status";
@@ -491,7 +491,7 @@
 "oZE-yh-Myr.normalTitle" = "Radera genvägar";
 
 /* Class = "UITableViewController"; title = "Prompts"; ObjectID = "oZw-P5-oVG"; */
-"oZw-P5-oVG.title" = "Anvisningar";
+"oZw-P5-oVG.title" = "Meddelanden";
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "PAD-Rg-10Y"; */
 "PAD-Rg-10Y.text" = "0 C";
@@ -539,7 +539,7 @@
 "qI9-wv-wTe.title" = "Titel";
 
 /* Class = "UILabel"; text = "Prompts"; ObjectID = "qio-ne-TXN"; */
-"qio-ne-TXN.text" = "Anvisningar";
+"qio-ne-TXN.text" = "Meddelanden";
 
 /* Class = "UILabel"; text = "Issues"; ObjectID = "QJp-Yj-1AF"; */
 "QJp-Yj-1AF.text" = "Problem";
@@ -674,7 +674,7 @@
 "Vny-ch-OgO.text" = "Zooma in/ut";
 
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "vpX-he-2FU"; */
-"vpX-he-2FU.text" = "60.0 C";
+"vpX-he-2FU.text" = "0.0 C";
 
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection"; ObjectID = "Vr9-x7-66H"; */
 "Vr9-x7-66H.headerTitle" = "Skrivaranslutning";
@@ -716,7 +716,7 @@
 "Xhq-hp-2kd.headerTitle" = "Synkronisering";
 
 /* Class = "UILabel"; text = "Confirm to connect"; ObjectID = "XOG-eU-T7f"; */
-"XOG-eU-T7f.text" = "Bekräfta för att ansluta";
+"XOG-eU-T7f.text" = "Bekräfta vid anslutning";
 
 /* Class = "UILabel"; text = "Feed rate"; ObjectID = "Xs4-QQ-rLn"; */
 "Xs4-QQ-rLn.text" = "Matning";

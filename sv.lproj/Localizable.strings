@@ -218,7 +218,7 @@
 "Failed to request to connect" = "Kunde inte begära att ansluta";
 
 /* No comment provided by engineer. */
-"Failed to request to cut" = "Kunde inte begära att klippa ut";
+"Failed to request to cut" = "Kunde inte begära att klippa";
 
 /* No comment provided by engineer. */
 "Failed to request to disconnect" = "Kunde inte begära att koppla från";
