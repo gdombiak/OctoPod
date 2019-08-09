@@ -769,6 +769,9 @@
 /* Class = "UILabel"; text = "Detail"; ObjectID = "ZF8-G0-f5Y"; */
 "ZF8-G0-f5Y.text" = "Detaljer";
 
+/* Class = "UILabel"; text = "Prompt Extrude Speed"; ObjectID = "zH4-HC-We7"; */
+"zH4-HC-We7.text" = "Meddela Extruder-hastighet";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "Zhk-cN-7C9"; */
 "Zhk-cN-7C9.text" = "Etikett";
 
