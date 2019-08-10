@@ -14,13 +14,22 @@
 "3Butzw" = "Dėžės temperatūra buvo nustatyta į ${temperature}";
 
 /* (No Comment) */
+"3cyBw6" = "Ask Palette to clear";
+
+/* (No Comment) */
 "3eH6cZ" = "Nepavyko gauti likusio laiko (${statusCode})";
+
+/* (No Comment) */
+"3JiZye" = "Prašoma";
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
 "5i5htv" = "Prisijungęs";
+
+/* (No Comment) */
+"6b7Yce" = "Ask Palette to cut";
 
 /* (No Comment) */
 "6k5AFm" = "Tęsti";
@@ -33,6 +42,9 @@
 
 /* (No Comment) */
 "8cfoSa" = "Nepavyko pabandyti išvalyti";
+
+/* (No Comment) */
+"8rFt1u" = "Ask Palette to clear";
 
 /* (No Comment) */
 "8tTCjD" = "Nepavyko atšaukti (${statusCode})";
@@ -50,10 +62,16 @@
 "662LyZ" = "Paleisti iš naujo";
 
 /* (No Comment) */
+"AzqFAh" = "Prašoma";
+
+/* (No Comment) */
 "bXGQKe" = "Atšaldyti spausdintuvą";
 
 /* (No Comment) */
 "D0kBGr" = "Paleisti iš naujo dabartinę užduotį";
+
+/* (No Comment) */
+"D1wWxd" = "Disconnect from Palette";
 
 /* (No Comment) */
 "doj4NA" = "Nustatyti ekstruderio temperatūrą";
@@ -89,13 +107,22 @@
 "ihLqc7" = "Užpauzinti dabartinę užduotį";
 
 /* (No Comment) */
+"jasUIn" = "Disconnect from Palette";
+
+/* (No Comment) */
 "Jioukn" = "Nustatyti dėžės temperatūrą";
 
 /* (No Comment) */
 "JmhfgL" = "Paleisti iš naujo dabartinę užduotį";
 
 /* (No Comment) */
+"JV2xQz" = "Connect to Palette";
+
+/* (No Comment) */
 "Kf7e4Y" = "Paleisti iš naujo dabartinę užduotį";
+
+/* (No Comment) */
+"KHvUZD" = "Ask Palette to cut";
 
 /* (No Comment) */
 "kSWyyv" = "${printer}";
@@ -114,6 +141,12 @@
 
 /* (No Comment) */
 "m9Jgmg" = "Darbas tęsiamas";
+
+/* (No Comment) */
+"N0vzJv" = "Ask Palette to clear";
+
+/* (No Comment) */
+"N84M0s" = "Ask Palette to cut";
 
 /* (No Comment) */
 "NG7rBh" = "Likęs laikas";
@@ -140,6 +173,9 @@
 "QSxXHq" = "Užpauzinti dabartinę užduotį";
 
 /* (No Comment) */
+"R5AlTe" = "Disconnect from Palette";
+
+/* (No Comment) */
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
@@ -153,6 +189,9 @@
 
 /* (No Comment) */
 "RrOrgy" = "Atšaukti užduotį";
+
+/* (No Comment) */
+"RyGRDF" = "Connect to Palette";
 
 /* (No Comment) */
 "RYurC5" = "Atvėsinti dėžę";
@@ -189,6 +228,9 @@
 
 /* (No Comment) */
 "VlxGJX" = "${printer}";
+
+/* (No Comment) */
+"vmbpr4" = "Connect to Palette";
 
 /* (No Comment) */
 "WI2oQf" = "Return Print Time Left";

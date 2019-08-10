@@ -130,6 +130,9 @@
 /* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "aFa-Qd-yIr"; */
 "aFa-Qd-yIr.placeholder" = "Skrivernavn (f.eks. MK3)";
 
+/* Class = "UIButton"; normalTitle = "Suppress temp"; ObjectID = "AfS-HP-WTR"; */
+"AfS-HP-WTR.normalTitle" = "Skjul temp";
+
 /* Class = "UILabel"; text = "Extruder"; ObjectID = "ahs-Hn-dAX"; */
 "ahs-Hn-dAX.text" = "Ekstruder";
 
@@ -207,6 +210,9 @@
 
 /* Class = "UITableViewController"; title = "Support"; ObjectID = "ec8-jM-jJs"; */
 "ec8-jM-jJs.title" = "Support";
+
+/* Class = "UILabel"; text = "Chamber"; ObjectID = "eD3-xa-2Ah"; */
+"eD3-xa-2Ah.text" = "Kammer";
 
 /* Class = "UILabel"; text = "1000"; ObjectID = "EKB-JK-mIs"; */
 "EKB-JK-mIs.text" = "1000";
@@ -328,6 +334,9 @@
 /* Class = "UILabel"; text = "Tip: Click to set temperature"; ObjectID = "HUF-Dw-M7F"; */
 "HUF-Dw-M7F.text" = "Tips: Klikk for å angi temperatur";
 
+/* Class = "UIButton"; normalTitle = "Ignore"; ObjectID = "hUL-Ws-ypB"; */
+"hUL-Ws-ypB.normalTitle" = "Ignorer";
+
 /* Class = "UITableViewSection"; headerTitle = "X Y"; ObjectID = "hWI-gF-onz"; */
 "hWI-gF-onz.headerTitle" = "X Y";
 
@@ -405,6 +414,9 @@
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "LJV-z6-SX8"; */
 "LJV-z6-SX8.text" = "Tittel";
+
+/* Class = "UILabel"; text = "Tip: Swipe to switch between printers"; ObjectID = "lyc-MY-uT5"; */
+"lyc-MY-uT5.text" = "Tips: Sveip for å veksle mellom skrivere";
 
 /* Class = "UILabel"; text = "Light"; ObjectID = "MA6-Ay-j7Q"; */
 "MA6-Ay-j7Q.text" = "Lys";
@@ -576,6 +588,9 @@
 
 /* Class = "UILabel"; text = "/"; ObjectID = "sF0-zd-MZR"; */
 "sF0-zd-MZR.text" = "/";
+
+/* Class = "UIButton"; normalTitle = "Suppress SD"; ObjectID = "sgi-wT-ubY"; */
+"sgi-wT-ubY.normalTitle" = "Skjul SD";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H"; */
 "sLc-Jv-G0H.placeholder" = "Brukernavn";
@@ -753,6 +768,9 @@
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "ZF8-G0-f5Y"; */
 "ZF8-G0-f5Y.text" = "Detalj";
+
+/* Class = "UILabel"; text = "Prompt Extrude Speed"; ObjectID = "zH4-HC-We7"; */
+"zH4-HC-We7.text" = "Be om ekstruderhastighet";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Zhk-cN-7C9"; */
 "Zhk-cN-7C9.text" = "Label";

@@ -13,6 +13,9 @@
 /* (No Comment) */
 "Actual Bed" = "Faktisk Skriveflate";
 
+/* No comment provided by engineer. */
+"Actual Chamber" = "Faktisk kammeret";
+
 /* (No Comment) */
 "Actual Extruder" = "Faktisk Ekstruder";
 
@@ -114,6 +117,9 @@
 
 /* (No Comment) */
 "Connection failed" = "Tilkobling feilet";
+
+/* Siri suggested phrase */
+"Cool down heated chamber" = "Avkjøl det oppvarmede kammeret";
 
 /* Siri suggested phrase */
 "Cool down printer" = "Kjøle ned skriveren";
@@ -280,6 +286,12 @@
 /* Idle */
 "Idle" = "Inaktiv";
 
+/* Include SD messages in the terminal */
+"Include SD" = "Inkluder SD";
+
+/* Include temp messages in the terminal */
+"Include temp" = "Inkluder temp";
+
 /* (No Comment) */
 "Incorrect API Key" = "Feil API-nøkkel";
 
@@ -421,11 +433,20 @@
 /* Print time is being calculated */
 "Still stabilizing" = "Fortsatt stabilisering...";
 
+/* Suppress SD messages in the terminal */
+"Suppress SD" = "Skjul SD";
+
+/* Suppress temp messages in the terminal */
+"Suppress temp" = "Skjul temp";
+
 /* http://docs.octoprint.org/en/master/api/system.html */
 "System Commands" = "Systemkommandoer";
 
 /* (No Comment) */
 "Target Bed" = "Mål Skriveflate";
+
+/* No comment provided by engineer. */
+"Target Chamber" = "Mål kammeret";
 
 /* (No Comment) */
 "Target Extruder" = "Mål Ekstruder";
@@ -468,8 +489,14 @@
 /* Unknown Custom Control */
 "Unknown Control" = "Ukjent kontroll";
 
+/* Title for window that alerts user that updates for plugins are available */
+"Update Available" = "Oppdatering tilgjengelig";
+
 /* (No Comment) */
 "Upload failed" = "Opplasting feilet";
+
+/* Siri suggested phrase */
+"Warm up heated chamber" = "Varm opp oppvarmet kammer";
 
 /* Siri suggested phrase */
 "Warm up printer bed" = "Varm opp skriveflate %@";

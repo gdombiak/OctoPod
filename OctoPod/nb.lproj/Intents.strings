@@ -11,16 +11,25 @@
 "2TreiD" = "Sett ekstruderens temperatur til ${temperature}";
 
 /* (No Comment) */
-"3Butzw" = "Kammens temperatur ble satt til ${temperature}";
+"3Butzw" = "Kammerets temperatur ble satt til ${temperature}";
+
+/* (No Comment) */
+"3cyBw6" = "Be Palette tømme";
 
 /* (No Comment) */
 "3eH6cZ" = "Kunne ikke få gjenværende tidsinformasjon (${statusCode})";
+
+/* (No Comment) */
+"3JiZye" = "Forespurt";
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
 "5i5htv" = "Tilkoblet";
+
+/* (No Comment) */
+"6b7Yce" = "Be Palette kutte";
 
 /* (No Comment) */
 "6k5AFm" = "Fortsett jobb";
@@ -33,6 +42,9 @@
 
 /* (No Comment) */
 "8cfoSa" = "Kunne ikke be om å fjerne";
+
+/* (No Comment) */
+"8rFt1u" = "Be Palette tømme";
 
 /* (No Comment) */
 "8tTCjD" = "Kunne ikke avbryte jobben (${statusCode})";
@@ -50,10 +62,16 @@
 "662LyZ" = "Restart jobb";
 
 /* (No Comment) */
+"AzqFAh" = "Forespurt";
+
+/* (No Comment) */
 "bXGQKe" = "Kjøl ned skriver";
 
 /* (No Comment) */
 "D0kBGr" = "Restart startet utskrift";
+
+/* (No Comment) */
+"D1wWxd" = "Koble fra Palette";
 
 /* (No Comment) */
 "doj4NA" = "Konfigurer ekstruderens temperatur";
@@ -89,13 +107,22 @@
 "ihLqc7" = "Pause jobb";
 
 /* (No Comment) */
+"jasUIn" = "Koble fra Palette";
+
+/* (No Comment) */
 "Jioukn" = "Still inn kammerets temperatur";
 
 /* (No Comment) */
 "JmhfgL" = "Restart startet utskrift";
 
 /* (No Comment) */
+"JV2xQz" = "Koble til Palette";
+
+/* (No Comment) */
 "Kf7e4Y" = "Restart startet utskrift";
+
+/* (No Comment) */
+"KHvUZD" = "Be Palette kutte";
 
 /* (No Comment) */
 "kSWyyv" = "${printer}";
@@ -114,6 +141,12 @@
 
 /* (No Comment) */
 "m9Jgmg" = "Utskrift fortsatt";
+
+/* (No Comment) */
+"N0vzJv" = "Be Palette tømme";
+
+/* (No Comment) */
+"N84M0s" = "Be Palette kutte";
 
 /* (No Comment) */
 "NG7rBh" = "Utskriftstid igjen";
@@ -140,6 +173,9 @@
 "QSxXHq" = "Pause utskrift";
 
 /* (No Comment) */
+"R5AlTe" = "Koble fra Palette";
+
+/* (No Comment) */
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
@@ -155,7 +191,10 @@
 "RrOrgy" = "Avbryt jobb";
 
 /* (No Comment) */
-"RYurC5" = "Kjøle ned kammeret";
+"RyGRDF" = "Koble til Palette";
+
+/* (No Comment) */
+"RYurC5" = "Avkjøl kammeret";
 
 /* (No Comment) */
 "SP4rN6" = "Sett ekstruders temperatur";
@@ -191,6 +230,9 @@
 "VlxGJX" = "${printer}";
 
 /* (No Comment) */
+"vmbpr4" = "Koble til Palette";
+
+/* (No Comment) */
 "WI2oQf" = "Returnerer utskriftstid igjen";
 
 /* (No Comment) */
@@ -212,5 +254,5 @@
 "yZeSdz" = "${printer}";
 
 /* (No Comment) */
-"zj1Vd9" = "Still kammertemperaturen til ${temperature}";
+"zj1Vd9" = "Still kamertemperaturen til ${temperature}";
 
