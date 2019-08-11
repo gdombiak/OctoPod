@@ -229,6 +229,9 @@
 /* Class = "UILabel"; text = "Pong"; ObjectID = "eTh-LM-JEX"; */
 "eTh-LM-JEX.text" = "Pong";
 
+/* Class = "UIButton"; normalTitle = "Scan"; ObjectID = "eVf-xw-qan"; */
+"eVf-xw-qan.normalTitle" = "Skanna";
+
 /* Class = "UILabel"; text = "Manually delete recorded Siri shortcuts after delete"; ObjectID = "EVr-c6-T8p"; */
 "EVr-c6-T8p.text" = "Radera inspelade Siri-genvägar manuellt efter radering";
 
