@@ -20,7 +20,7 @@
 "3eH6cZ" = "Nepavyko gauti likusio laiko (${statusCode})";
 
 /* (No Comment) */
-"3JiZye" = "Prašoma";
+"3JiZye" = "Paprašyta";
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
@@ -29,7 +29,7 @@
 "5i5htv" = "Prisijungęs";
 
 /* (No Comment) */
-"6b7Yce" = "Ask Palette to cut";
+"6b7Yce" = "Praprašyti Pallete nukirpti";
 
 /* (No Comment) */
 "6k5AFm" = "Tęsti";
@@ -62,7 +62,7 @@
 "662LyZ" = "Paleisti iš naujo";
 
 /* (No Comment) */
-"AzqFAh" = "Prašoma";
+"AzqFAh" = "Paprašyta";
 
 /* (No Comment) */
 "bXGQKe" = "Atšaldyti spausdintuvą";
@@ -71,7 +71,7 @@
 "D0kBGr" = "Paleisti iš naujo dabartinę užduotį";
 
 /* (No Comment) */
-"D1wWxd" = "Disconnect from Palette";
+"D1wWxd" = "Atsijungti nuo Pallete";
 
 /* (No Comment) */
 "doj4NA" = "Nustatyti ekstruderio temperatūrą";
@@ -107,7 +107,7 @@
 "ihLqc7" = "Užpauzinti dabartinę užduotį";
 
 /* (No Comment) */
-"jasUIn" = "Disconnect from Palette";
+"jasUIn" = "Atsijungti nuo Pallete";
 
 /* (No Comment) */
 "Jioukn" = "Nustatyti dėžės temperatūrą";
@@ -116,13 +116,13 @@
 "JmhfgL" = "Paleisti iš naujo dabartinę užduotį";
 
 /* (No Comment) */
-"JV2xQz" = "Connect to Palette";
+"JV2xQz" = "Prisijungti prie Pallete";
 
 /* (No Comment) */
 "Kf7e4Y" = "Paleisti iš naujo dabartinę užduotį";
 
 /* (No Comment) */
-"KHvUZD" = "Ask Palette to cut";
+"KHvUZD" = "Praprašyti Pallete nukirpti";
 
 /* (No Comment) */
 "kSWyyv" = "${printer}";
@@ -146,7 +146,7 @@
 "N0vzJv" = "Ask Palette to clear";
 
 /* (No Comment) */
-"N84M0s" = "Ask Palette to cut";
+"N84M0s" = "Praprašyti Pallete nukirpti";
 
 /* (No Comment) */
 "NG7rBh" = "Likęs laikas";
@@ -173,7 +173,7 @@
 "QSxXHq" = "Užpauzinti dabartinę užduotį";
 
 /* (No Comment) */
-"R5AlTe" = "Disconnect from Palette";
+"R5AlTe" = "Atsijungti nuo Pallete";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -191,7 +191,7 @@
 "RrOrgy" = "Atšaukti užduotį";
 
 /* (No Comment) */
-"RyGRDF" = "Connect to Palette";
+"RyGRDF" = "Prisijungti prie Pallete";
 
 /* (No Comment) */
 "RYurC5" = "Atvėsinti dėžę";
@@ -230,7 +230,7 @@
 "VlxGJX" = "${printer}";
 
 /* (No Comment) */
-"vmbpr4" = "Connect to Palette";
+"vmbpr4" = "Prisijungti prie Pallete";
 
 /* (No Comment) */
 "WI2oQf" = "Return Print Time Left";

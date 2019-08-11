@@ -202,6 +202,9 @@
 /* Class = "UILabel"; text = "Frequently Asked Questions"; ObjectID = "dlU-c7-kpY"; */
 "dlU-c7-kpY.text" = "Dažnai užduodami klausimai";
 
+/* Class = "UILabel"; text = "Title"; ObjectID = "dZz-iV-loq"; */
+"dZz-iV-loq.text" = "Title";
+
 /* Class = "UIButton"; normalTitle = "Reset iCloud data from printers"; ObjectID = "e5p-Y4-n8X"; */
 "e5p-Y4-n8X.normalTitle" = "Nustatyti iCloud informaciją iš naujo";
 
@@ -283,7 +286,7 @@
 /* Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[2] = "10"; ObjectID = "GRh-JJ-DpF"; */
 "GRh-JJ-DpF.segmentTitles[2]" = "10";
 
-/* Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[3] = "100"; ObjectID = "GRh-JJ-DpF"; */
+/* Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[3] = "50"; ObjectID = "GRh-JJ-DpF"; */
 "GRh-JJ-DpF.segmentTitles[3]" = "100";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "gvk-np-5oX"; */
@@ -435,6 +438,9 @@
 
 /* Class = "UIButton"; normalTitle = "SD"; ObjectID = "N5P-gn-chq"; */
 "N5P-gn-chq.normalTitle" = "SD";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "n9p-tg-bxl"; */
+"n9p-tg-bxl.text" = "Subtitras";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb"; */
 "ncZ-xn-WCb.text" = "Title";
@@ -770,7 +776,7 @@
 "ZF8-G0-f5Y.text" = "Detail";
 
 /* Class = "UILabel"; text = "Prompt Extrude Speed"; ObjectID = "zH4-HC-We7"; */
-"zH4-HC-We7.text" = "Greitas išspaudimo greitis";
+"zH4-HC-We7.text" = "Paklausti išspaudimo greičio";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Zhk-cN-7C9"; */
 "Zhk-cN-7C9.text" = "Label";

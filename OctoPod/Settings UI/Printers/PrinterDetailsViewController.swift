@@ -1,6 +1,6 @@
 import UIKit
 
-class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitPrinterDelegate {
+class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitPrinterDelegate, UIPopoverPresentationControllerDelegate {
     
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
@@ -20,6 +20,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var scanInstallationsButton: UIButton!
     @IBOutlet weak var scanAPIKeyButton: UIButton!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -34,12 +35,17 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         let theme = Theme.currentTheme()
         let tintColor = theme.tintColor()
         scanAPIKeyButton.tintColor = tintColor
+        scanInstallationsButton.tintColor = tintColor
 
         if let selectedPrinter = updatePrinter {
             updateFieldsForPrinter(printer: selectedPrinter)
+            // Disable scanning for OctoPrint instances
+            scanInstallationsButton.isEnabled = false
         } else {
             // Hide URL error message
             urlErrorMessageLabel.isHidden = true
+            // Enable scanning for OctoPrint instances
+            scanInstallationsButton.isEnabled = true
         }
 
         // Register for keyboard notifications
@@ -140,16 +146,30 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         return 44
     }
     
-    /*
+    // MARK: - Unwind operations
+    
+    @IBAction func backFromDiscoverOctoPrintInstances(_ sender: UIStoryboardSegue) {
+        if let controller = sender.source as? ScanInstallationsViewController, let selectedService = controller.selectedOctoPrint {
+            // Set name based on discovered OctoPrint instance
+            self.printerNameField.text = selectedService.name
+            // Update hostname based on discovered information
+            self.hostnameField.text = selectedService.hostname
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "goto_scan_installations" {
+            segue.destination.popoverPresentationController!.delegate = self
+            // Make the popover appear at the middle of the button
+            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: 0, y: scanInstallationsButton.frame.size.height/2, width: 0, height: 0)
+            // Adjust width of popover based on screen size
+            segue.destination.preferredContentSize = CGSize(width: tableView.frame.size.width * 0.80, height: 250)
+        }
     }
-    */
-    
+ 
     @IBAction func unwindScanQRCode(_ sender: UIStoryboardSegue) {
         if let scanner = sender.source as? ScannerViewController {
             self.apiKeyField.text = scanner.scannedQRCode
@@ -186,6 +206,18 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         }
     }
 
+
+    // MARK: - UIPopoverPresentationControllerDelegate
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    // We need to add this so it works on iPhone plus in landscape mode
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
     // MARK: - Private functions
 
     fileprivate func updateFieldsForPrinter(printer: Printer) {
@@ -246,5 +278,5 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     
     @objc func keyboardWillHide(notification: Notification) {
         adjustingHeight(show: false, notification: notification)
-    }
+    }    
 }

@@ -3983,7 +3983,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Printer Name (e.g. MK3)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aFa-Qd-yIr">
-                                                    <rect key="frame" x="16" y="6" width="343" height="30"/>
+                                                    <rect key="frame" x="16" y="6" width="303" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
@@ -3991,11 +3991,22 @@
                                                         <action selector="fieldChanged:" destination="RQs-UQ-7OZ" eventType="editingChanged" id="lwU-Qr-yzr"/>
                                                     </connections>
                                                 </textField>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVf-xw-qan">
+                                                    <rect key="frame" x="324" y="6" width="35" height="30"/>
+                                                    <state key="normal" title="Scan"/>
+                                                    <connections>
+                                                        <segue destination="YXi-X0-pX6" kind="popoverPresentation" identifier="goto_scan_installations" popoverAnchorView="eVf-xw-qan" id="gsF-Vf-wsl">
+                                                            <popoverArrowDirection key="popoverArrowDirection" right="YES"/>
+                                                        </segue>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="aFa-Qd-yIr" firstAttribute="top" secondItem="Rgd-tZ-olF" secondAttribute="top" constant="6" id="0LT-jH-flC"/>
+                                                <constraint firstItem="eVf-xw-qan" firstAttribute="top" secondItem="Rgd-tZ-olF" secondAttribute="top" constant="6" id="Adh-l1-8oX"/>
+                                                <constraint firstAttribute="trailing" secondItem="eVf-xw-qan" secondAttribute="trailing" constant="16" id="LPw-g0-C73"/>
+                                                <constraint firstItem="eVf-xw-qan" firstAttribute="leading" secondItem="aFa-Qd-yIr" secondAttribute="trailing" constant="5" id="Y01-fW-YyI"/>
                                                 <constraint firstAttribute="bottom" secondItem="aFa-Qd-yIr" secondAttribute="bottom" constant="7.5" id="dVq-fN-FH7"/>
-                                                <constraint firstAttribute="trailing" secondItem="aFa-Qd-yIr" secondAttribute="trailing" constant="16" id="tzc-d5-Vw9"/>
                                                 <constraint firstItem="aFa-Qd-yIr" firstAttribute="leading" secondItem="Rgd-tZ-olF" secondAttribute="leading" constant="16" id="yo3-wc-Q63"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -4162,6 +4173,7 @@
                         <outlet property="printerNameField" destination="aFa-Qd-yIr" id="dYn-Mk-F12"/>
                         <outlet property="saveButton" destination="Ptk-bD-UEk" id="RmJ-nb-Y9C"/>
                         <outlet property="scanAPIKeyButton" destination="a0P-GP-CQD" id="PLy-PZ-K5y"/>
+                        <outlet property="scanInstallationsButton" destination="eVf-xw-qan" id="xv1-i4-pkl"/>
                         <outlet property="urlErrorMessageLabel" destination="K6d-lk-BaS" id="kFf-mh-yR5"/>
                         <outlet property="usernameField" destination="sLc-Jv-G0H" id="n1O-OE-Z9w"/>
                         <segue destination="7mC-U2-bLa" kind="unwind" identifier="unwindPrintersUpdated" unwindAction="unwindPrintersUpdated:" id="R1q-a8-wh9"/>
@@ -4190,6 +4202,54 @@
                 <exit id="e8g-tI-n5i" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3353" y="3081"/>
+        </scene>
+        <!--Scan Installations View Controller-->
+        <scene sceneID="My8-cW-UYD">
+            <objects>
+                <tableViewController id="YXi-X0-pX6" customClass="ScanInstallationsViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="phj-t5-c9H">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="discovered_cell" textLabel="dZz-iV-loq" detailTextLabel="n9p-tg-bxl" style="IBUITableViewCellStyleSubtitle" id="Jz7-iq-Urb">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jz7-iq-Urb" id="cxF-nG-zMv">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dZz-iV-loq">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="n9p-tg-bxl">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YXi-X0-pX6" id="kqP-Xo-ZnU"/>
+                            <outlet property="delegate" destination="YXi-X0-pX6" id="rgB-L1-s82"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="lmt-aW-xaI" kind="unwind" identifier="backFromDiscoverOctoPrintInstances" unwindAction="backFromDiscoverOctoPrintInstances:" id="yhF-lg-pfk"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TCt-kd-9qZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="lmt-aW-xaI" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3998" y="3086"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="lSE-8G-mzy">

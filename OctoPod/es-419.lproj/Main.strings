@@ -202,6 +202,9 @@
 /* Class = "UILabel"; text = "Frequently Asked Questions"; ObjectID = "dlU-c7-kpY"; */
 "dlU-c7-kpY.text" = "Preguntas frecuentes";
 
+/* Class = "UILabel"; text = "Title"; ObjectID = "dZz-iV-loq"; */
+"dZz-iV-loq.text" = "Título";
+
 /* Class = "UIButton"; normalTitle = "Reset iCloud data from printers"; ObjectID = "e5p-Y4-n8X"; */
 "e5p-Y4-n8X.normalTitle" = "Resetear datos iCloud desde impresoras";
 
@@ -225,6 +228,9 @@
 
 /* Class = "UILabel"; text = "Pong"; ObjectID = "eTh-LM-JEX"; */
 "eTh-LM-JEX.text" = "Pong";
+
+/* Class = "UIButton"; normalTitle = "Scan"; ObjectID = "eVf-xw-qan"; */
+"eVf-xw-qan.normalTitle" = "Buscar";
 
 /* Class = "UILabel"; text = "Manually delete recorded Siri shortcuts after delete"; ObjectID = "EVr-c6-T8p"; */
 "EVr-c6-T8p.text" = "Eliminar manualmente los accesos directos de Siri después de borrar";
@@ -283,7 +289,7 @@
 /* Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[2] = "10"; ObjectID = "GRh-JJ-DpF"; */
 "GRh-JJ-DpF.segmentTitles[2]" = "10";
 
-/* Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[3] = "100"; ObjectID = "GRh-JJ-DpF"; */
+/* Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[3] = "50"; ObjectID = "GRh-JJ-DpF"; */
 "GRh-JJ-DpF.segmentTitles[3]" = "100";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "gvk-np-5oX"; */
@@ -435,6 +441,9 @@
 
 /* Class = "UIButton"; normalTitle = "SD"; ObjectID = "N5P-gn-chq"; */
 "N5P-gn-chq.normalTitle" = "SD";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "n9p-tg-bxl"; */
+"n9p-tg-bxl.text" = "Subtitulo";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb"; */
 "ncZ-xn-WCb.text" = "Título";

@@ -201,6 +201,7 @@
 		3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */; };
 		3DF0157621227ACB002B4C14 /* TempHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */; };
 		3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF232DF20F150CC00550652 /* MoveSubViewController.swift */; };
+		3DF6D59B23006EE800E0AFEE /* ScanInstallationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6D59A23006EE800E0AFEE /* ScanInstallationsViewController.swift */; };
 		3DF7410D21ACEECC0069A9D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DF7410B21ACEECC0069A9D4 /* Localizable.strings */; };
 		3DF7411021ACEECC0069A9D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DF7410E21ACEECC0069A9D4 /* InfoPlist.strings */; };
 		3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */; };
@@ -547,6 +548,7 @@
 		3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpanelsViewController.swift; sourceTree = "<group>"; };
 		3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHistoryViewController.swift; sourceTree = "<group>"; };
 		3DF232DF20F150CC00550652 /* MoveSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveSubViewController.swift; sourceTree = "<group>"; };
+		3DF6D59A23006EE800E0AFEE /* ScanInstallationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanInstallationsViewController.swift; sourceTree = "<group>"; };
 		3DF7410C21ACEECC0069A9D4 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3DF7410F21ACEECC0069A9D4 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3DF7411121ACF1900069A9D4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -641,16 +643,13 @@
 			isa = PBXGroup;
 			children = (
 				3D831E52210850E60004B7A5 /* SettingsViewController.swift */,
-				3D82873A20E407370035AE0B /* PrintersTableViewController.swift */,
-				3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */,
-				3D968DDC20E337C7006774A5 /* ScannerViewController.swift */,
-				3D6350F021082E07001C10F7 /* AppearanceViewController.swift */,
-				3DA77D7A21693C74003D65C9 /* ChangeLanguageViewController.swift */,
+				3DF6D59823006A2700E0AFEE /* Printers */,
+				3DF6D59923006A4B00E0AFEE /* Appearance */,
 				3D8DA01B2144BBF100F5FD07 /* SecurityViewController.swift */,
 				3D8FB25A2156A9F0008FF3E5 /* DialogsViewController.swift */,
-				3D7C884B2152BB32009FECEF /* CloudKitSync */,
-				3D8DA01D2144EDCE00F5FD07 /* SupportViewController.swift */,
+				3D7C884B2152BB32009FECEF /* Devices */,
 				3D450EC421AB50AF0049FBC0 /* SiriViewController.swift */,
+				3D8DA01D2144EDCE00F5FD07 /* SupportViewController.swift */,
 			);
 			path = "Settings UI";
 			sourceTree = "<group>";
@@ -887,13 +886,13 @@
 			path = "OctoPod Watch Extension";
 			sourceTree = "<group>";
 		};
-		3D7C884B2152BB32009FECEF /* CloudKitSync */ = {
+		3D7C884B2152BB32009FECEF /* Devices */ = {
 			isa = PBXGroup;
 			children = (
 				3D7C884321524426009FECEF /* DevicesSyncViewController.swift */,
 				3D7C88492152BB18009FECEF /* DevicesSyncLogViewController.swift */,
 			);
-			path = CloudKitSync;
+			path = Devices;
 			sourceTree = "<group>";
 		};
 		3D82873520E3EB730035AE0B /* Model */ = {
@@ -1065,6 +1064,26 @@
 				3D27DA9D218A8500004F763A /* ExtrudeSpeedViewController.swift */,
 			);
 			path = "Move UI";
+			sourceTree = "<group>";
+		};
+		3DF6D59823006A2700E0AFEE /* Printers */ = {
+			isa = PBXGroup;
+			children = (
+				3D82873A20E407370035AE0B /* PrintersTableViewController.swift */,
+				3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */,
+				3DF6D59A23006EE800E0AFEE /* ScanInstallationsViewController.swift */,
+				3D968DDC20E337C7006774A5 /* ScannerViewController.swift */,
+			);
+			path = Printers;
+			sourceTree = "<group>";
+		};
+		3DF6D59923006A4B00E0AFEE /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				3D6350F021082E07001C10F7 /* AppearanceViewController.swift */,
+				3DA77D7A21693C74003D65C9 /* ChangeLanguageViewController.swift */,
+			);
+			path = Appearance;
 			sourceTree = "<group>";
 		};
 		3DFA8072210E308100B5BFAA /* iCloud Files */ = {
@@ -1519,6 +1538,7 @@
 				3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */,
 				3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */,
 				3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */,
+				3DF6D59B23006EE800E0AFEE /* ScanInstallationsViewController.swift in Sources */,
 				3D693C5F214CEC0600823903 /* CloudKitPrinterManager.swift in Sources */,
 				3D92E6C821213B2400F58BA5 /* TempHistory.swift in Sources */,
 				3DFA8074210E30C100B5BFAA /* CloudFilesManager.swift in Sources */,
