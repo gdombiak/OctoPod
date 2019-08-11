@@ -4437,7 +4437,7 @@
                                                         <segment title="1"/>
                                                         <segment title="5"/>
                                                         <segment title="10"/>
-                                                        <segment title="100"/>
+                                                        <segment title="50"/>
                                                     </segments>
                                                 </segmentedControl>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnO-2K-s2I">
