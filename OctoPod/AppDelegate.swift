@@ -209,7 +209,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        NSLog("APNs registration failed: \(error)")
+        NSLog("APNS registration failed: \(error)")
     }
 
     // MARK: - Remote notifications
