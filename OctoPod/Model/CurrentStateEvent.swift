@@ -55,8 +55,10 @@ class CurrentStateEvent {
 
     /// Parse temps from received JSON.
     /// Websockets and HTTP use similar format so we can parse with same code
-    /// - Parameter temp: JSON of the temp element
-    func parseTemps(temp: NSDictionary) {
+    /// - Parameters:
+    ///     - temp: JSON of the temp element
+    ///     - sharedNozzle: Flag that indicates if printer has many extruders but a single nozzle
+    func parseTemps(temp: NSDictionary, sharedNozzle: Bool) {
         if let bed = temp["bed"] as? NSDictionary {
             bedTempActual = bed["actual"] as? Double
             bedTempTarget = bed["target"] as? Double
@@ -65,21 +67,28 @@ class CurrentStateEvent {
             tool0TempActual = tool["actual"] as? Double
             tool0TempTarget = tool["target"] as? Double
         }
-        if let tool = temp["tool1"] as? NSDictionary {
-            tool1TempActual = tool["actual"] as? Double
-            tool1TempTarget = tool["target"] as? Double
-        }
-        if let tool = temp["tool2"] as? NSDictionary {
-            tool2TempActual = tool["actual"] as? Double
-            tool2TempTarget = tool["target"] as? Double
-        }
-        if let tool = temp["tool3"] as? NSDictionary {
-            tool3TempActual = tool["actual"] as? Double
-            tool3TempTarget = tool["target"] as? Double
-        }
-        if let tool = temp["tool4"] as? NSDictionary {
-            tool4TempActual = tool["actual"] as? Double
-            tool4TempTarget = tool["target"] as? Double
+        // Parse temp of other extruders if nozzle is not being shared
+        // MMU2 has 5 extruders but a shared nozzle so there is actually
+        // only 1 temp to show. However, moving extruder will show all
+        // available extruders. Printer Profile in OctoPrint is where you
+        // can specify if nozzle is shared or not
+        if !sharedNozzle {
+            if let tool = temp["tool1"] as? NSDictionary {
+                tool1TempActual = tool["actual"] as? Double
+                tool1TempTarget = tool["target"] as? Double
+            }
+            if let tool = temp["tool2"] as? NSDictionary {
+                tool2TempActual = tool["actual"] as? Double
+                tool2TempTarget = tool["target"] as? Double
+            }
+            if let tool = temp["tool3"] as? NSDictionary {
+                tool3TempActual = tool["actual"] as? Double
+                tool3TempTarget = tool["target"] as? Double
+            }
+            if let tool = temp["tool4"] as? NSDictionary {
+                tool4TempActual = tool["actual"] as? Double
+                tool4TempTarget = tool["target"] as? Double
+            }
         }
         if let chamber = temp["chamber"] as? NSDictionary {
             chamberTempActual = chamber["actual"] as? Double

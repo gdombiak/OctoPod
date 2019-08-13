@@ -20,7 +20,8 @@ class Printer: NSManagedObject {
 
     @NSManaged var color: String?  // Information configured in OctoPrint -> Appearance to control color of UI
     
-    @NSManaged var toolsNumber: Int16  // Number of detected tools (extruders). This information is discovered based on reported temperatures
+    @NSManaged var toolsNumber: Int16  // Number of detected tools (extruders). This information is discovered based on reported temperatures or printer profiles
+    @NSManaged var sharedNozzle: Bool // A printer may have many extruders but a single nozzle (e.g. MMU)
 
     @NSManaged var firstCameraAspectRatio16_9: Bool // Remember aspect ratio of first camera so UI can adapt to proper aspect ratio
     @NSManaged var sdSupport: Bool

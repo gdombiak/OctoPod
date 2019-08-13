@@ -35,7 +35,6 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     // Remember last CurrentStateEvent that was reported from OctoPrint (via websockets)
     var lastKnownState: CurrentStateEvent?
     var octoPrintVersion: String?
-    private var lastKnownToolsNumber: Int16?
     
     init(printerManager: PrinterManager) {
         self.printerManager = printerManager
@@ -57,7 +56,6 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     func connectToServer(printer: Printer) {
         // Clean up any known printer state
         lastKnownState = nil
-        lastKnownToolsNumber = nil
         
         // Create and keep httpClient while default printer does not change
         octoPrintRESTClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
@@ -95,7 +93,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                 if let json = result as? NSDictionary {
                     event = CurrentStateEvent()
                     if let temp = json["temperature"] as? NSDictionary {
-                        event!.parseTemps(temp: temp)
+                        event!.parseTemps(temp: temp, sharedNozzle: printer.sharedNozzle)
                     }
                     if let state = json["state"] as? NSDictionary {
                         event!.parseState(state: state)
@@ -151,7 +149,6 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
 
     // MARK: - WebSocketClientDelegate
     
-    /// Notification that OctoPrint state has changed. This may include printer status information
     func currentStateUpdated(event: CurrentStateEvent) {
         // Track event as last known state. Will be reset when changing printers or on app cold startup
         lastKnownState = event
@@ -162,12 +159,6 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             var temp = TempHistory.Temp()
             temp.parseTemps(event: event)
             tempHistory.addTemp(temp: temp)
-            
-            if lastKnownToolsNumber == nil, let printer = printerManager.getDefaultPrinter() {
-                // Updated if needed number of detected installed extruders in the printer
-                self.updatePrinterToolsNumber(printer: printer, event: event)
-                lastKnownToolsNumber = printer.toolsNumber  // Remember last known number of tools
-            }
         }
         // Notify other listeners that OctoPrint and/or Printer state has changed
         for delegate in delegates {
@@ -175,13 +166,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
     
-    /// Notification that contains history of temperatures. This information is received once after
-    /// websocket connection was established. #currentStateUpdated contains new temps after this event
     func historyTemp(history: Array<TempHistory.Temp>) {
         tempHistory.addHistory(history: history)
     }
     
-    /// Notifcation that OctoPrint's settings has changed
     func octoPrintSettingsUpdated() {
         if let printer = printerManager.getDefaultPrinter() {
             // Verify that last known settings are still current
@@ -189,12 +177,13 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
     
-    /// Notification sent by plugin via websockets
-    /// - Parameters:
-    ///     - plugin: identifier of the OctoPrint plugin
-    ///     - data: whatever JSON data structure sent by the plugin
-    ///
-    /// Example: {data: {isPSUOn: false, hasGPIO: true}, plugin: "psucontrol"}
+    func printerProfileUpdated() {
+        if let printer = printerManager.getDefaultPrinter() {
+            // Update Printer from /api/printerprofiles information
+            reviewPrinterProfile(printer: printer)
+        }
+    }
+    
     func pluginMessage(plugin: String, data: NSDictionary) {
         // Notify other listeners that we connected to OctoPrint
         for delegate in octoPrintPluginsDelegates {
@@ -202,7 +191,6 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
 
-    /// Notification sent when websockets got connected
     func websocketConnected() {
         // Websocket has been established. OctoPrint 1.3.10, by default, secures websocket so we need
         // to authenticate the websocket in order to be able to use it. In order to authenticate the websocket,
@@ -225,7 +213,6 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
     
-    /// Notification sent when websockets got disconnected due to an error (or failed to connect)
     func websocketConnectionFailed(error: Error) {
         for delegate in delegates {
             delegate.websocketConnectionFailed(error: error)
@@ -995,29 +982,6 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
     
-    fileprivate func updatePrinterToolsNumber(printer: Printer, event: CurrentStateEvent) {
-        var toolsNumber: Int16 = 0
-        if let _ = event.tool4TempActual {
-            toolsNumber = 5
-        } else if let _ = event.tool3TempActual {
-            toolsNumber = 4
-        } else if let _ = event.tool2TempActual {
-            toolsNumber = 3
-        } else if let _ = event.tool1TempActual {
-            toolsNumber = 2
-        } else if let _ = event.tool0TempActual {
-            toolsNumber = 1
-        }
-        if printer.toolsNumber != toolsNumber {
-            let newObjectContext = printerManager.newPrivateContext()
-            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-            // Update detected number of tools installed in the printer
-            printerToUpdate.toolsNumber = toolsNumber
-            // Persist updated printer
-            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-        }
-    }
-    
     fileprivate func calculateImageOrientation(flipH: Bool, flipV: Bool, rotate90: Bool) -> UIImage.Orientation {
         if !flipH && !flipV && !rotate90 {
              // No flips selected
@@ -1132,6 +1096,31 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                         }
                     }
                 }
+                if let extruder = currentProfile["extruder"] as? NSDictionary {
+                    if let extruderCount = extruder["count"] as? Int16, let sharedNozzle = extruder["sharedNozzle"] as? Bool {
+                        updatePrinterToolsNumber(printer: printer, toolsNumber: extruderCount, sharedNozzle: sharedNozzle)
+                    }
+                }
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterToolsNumber(printer: Printer, toolsNumber: Int16, sharedNozzle: Bool) {
+        if printer.toolsNumber != toolsNumber || printer.sharedNozzle != sharedNozzle {
+            let newObjectContext = printerManager.newPrivateContext()
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+            // Update detected number of tools installed in the printer
+            printerToUpdate.toolsNumber = toolsNumber
+            printerToUpdate.sharedNozzle = sharedNozzle
+            // Persist updated printer
+            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+            
+            if printerToUpdate.defaultPrinter {
+                webSocketClient?.sharedNozzle = sharedNozzle
+            }
+
+            for delegate in printerProfilesDelegates {
+                delegate.toolsChanged(toolsNumber: toolsNumber, sharedNozzle: sharedNozzle)
             }
         }
     }

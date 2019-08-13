@@ -9,6 +9,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     var apiKey: String!
     var username: String?
     var password: String?
+    var sharedNozzle: Bool!
     
     var socket: WebSocket?
     var socketRequest: URLRequest?
@@ -31,6 +32,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
         apiKey = printer.apiKey
         username = printer.username
         password = printer.password
+        sharedNozzle = printer.sharedNozzle
         
         let urlString: String = "\(serverURL!)/sockjs/websocket"
         
@@ -144,7 +146,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
                         if let temps = current["temps"] as? NSArray {
                             if temps.count > 0 {
                                 if let tempFirst = temps[0] as? NSDictionary {
-                                    event.parseTemps(temp: tempFirst)
+                                    event.parseTemps(temp: tempFirst, sharedNozzle: sharedNozzle)
                                 }
                             }
                         }
@@ -165,6 +167,8 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
                         if let type = event["type"] as? String {
                             if type == "SettingsUpdated" {
                                 listener.octoPrintSettingsUpdated()
+                            } else if type == "PrinterProfileModified" {
+                                listener.printerProfileUpdated()
                             } else if type == "TransferDone" || type == "TransferFailed" {
                                 // Events denoting that upload to SD card is done or was cancelled
                                 let event = CurrentStateEvent()

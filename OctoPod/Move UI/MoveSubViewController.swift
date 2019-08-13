@@ -490,6 +490,12 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         }
     }
     
+    func toolsChanged(toolsNumber: Int16, sharedNozzle: Bool) {
+        DispatchQueue.main.async {
+            self.refreshNewSelectedPrinter()
+        }
+    }
+    
     // MARK: - AppConfigurationDelegate
     
     func appLockChanged(locked: Bool) {

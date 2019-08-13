@@ -177,15 +177,18 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         // If requested printer is selected printer then use existing REST client
         // if not then create a new REST client for this operation
         var restClient: OctoPrintRESTClient?
+        var sharedNozzle: Bool!
         if let printer = printerManager.getDefaultPrinter() {
             if printer.name == printerName {
                 restClient = octoprintClient.octoPrintRESTClient
+                sharedNozzle = printer.sharedNozzle
             }
         }
         if restClient == nil {
             if let printer = printerManager.getPrinterByName(name: printerName) {
                 restClient = OctoPrintRESTClient()
                 restClient?.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+                sharedNozzle = printer.sharedNozzle
             } else {
                 replyHandler(["error": NSLocalizedString("No printer", comment: "")])
                 return
@@ -228,7 +231,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                             }                            
                         }
                         if let temps = json["temperature"] as? NSDictionary {
-                            event.parseTemps(temp: temps)
+                            event.parseTemps(temp: temps, sharedNozzle: sharedNozzle)
 
                             if let bedTemp = event.bedTempActual {
                                 reply["bedTemp"] = bedTemp
