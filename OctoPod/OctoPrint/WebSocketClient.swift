@@ -222,7 +222,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
                             var historyTemps = Array<TempHistory.Temp>()
                             for case let temp as NSDictionary in temps {
                                 var historyTemp = TempHistory.Temp()
-                                historyTemp.parseTemps(temp: temp)
+                                historyTemp.parseTemps(temp: temp, sharedNozzle: sharedNozzle)
                                 historyTemps.append(historyTemp)
                             }
                             // Notify listener
