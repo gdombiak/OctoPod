@@ -239,7 +239,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
                 }
             } catch {
                 if !socket.isConnected {
-                    // Websocket is no longer connected and we JSON was invalid so was not possible to parse it
+                    // Websocket is no longer connected and received JSON was invalid so was not possible to parse it
                     // Just log this. #websocketDidDisconnect will be called after this
                     NSLog("JSON parsed error and websocket is already disconnected") // We are consuming from in-memory queue
                 } else {
@@ -255,6 +255,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
                         return
                     }
                     NSLog("Recreating websocket due to parsing error: \(error)" )
+                    socket.disconnect() // Close connection so we stop receiving messages
                     // Attempt to recreate socket
                     recreateSocket()
                     establishConnection()
