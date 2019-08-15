@@ -21,4 +21,15 @@ class SettingsViewController: ThemedStaticUITableViewController {
         siriLabel.textColor = theme.textColor()
         supportLabel.textColor = theme.textColor()
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        let footer: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
+        footer.textLabel?.textAlignment = .center
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        let dictionary = Bundle.main.infoDictionary!
+        let version = dictionary["CFBundleShortVersionString"] as! String
+        let build = dictionary["CFBundleVersion"] as! String
+        return "OctoPod v\(version) build \(build)"    }
 }
