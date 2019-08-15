@@ -290,7 +290,7 @@
 "GRh-JJ-DpF.segmentTitles[2]" = "10";
 
 /* Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[3] = "50"; ObjectID = "GRh-JJ-DpF"; */
-"GRh-JJ-DpF.segmentTitles[3]" = "100";
+"GRh-JJ-DpF.segmentTitles[3]" = "50";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "gvk-np-5oX"; */
 "gvk-np-5oX.text" = "Title";
