@@ -64,6 +64,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         }) 
         self.preRequest?()
         task.resume()
+        session.finishTasksAndInvalidate()
     }
     
     func delete(_ service: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
@@ -87,6 +88,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         })
         self.preRequest?()
         task.resume()
+        session.finishTasksAndInvalidate()
     }
 
     func post(_ service: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
@@ -109,6 +111,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
             })
             self.preRequest?()
             task.resume()
+            session.finishTasksAndInvalidate()
         } else {
             NSLog("POST not possible. Invalid URL found. Server: \(serverURL!). Service: \(service)")
             if let serverURL = URL(string: serverURL!) {
@@ -159,6 +162,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         })
         self.preRequest?()
         task.resume()
+        session.finishTasksAndInvalidate()
     }
     
     // MARK: Private functions
@@ -213,6 +217,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
             }) 
             self.preRequest?()
             task.resume()
+            session.finishTasksAndInvalidate()
         } catch let error as NSError {
             err = error
             // Fail to convert NSObject into JSON
