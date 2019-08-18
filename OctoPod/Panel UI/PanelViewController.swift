@@ -1,6 +1,6 @@
 import UIKit
 
-class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate, WatchSessionManagerDelegate {
+class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate, WatchSessionManagerDelegate, UITabBarControllerDelegate {
     
     private static let CONNECT_CONFIRMATION = "PANEL_CONNECT_CONFIRMATION"
     private static let REMINDERS_SHOWN = "PANEL_REMINDERS_SHOWN_2_3"  // Key that stores if we should show reminders about important new things to users. Key might change per version
@@ -81,6 +81,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         appConfiguration.delegates.append(self)
         // Listen to changes coming from Apple Watch
         watchSessionManager.delegates.append(self)
+        // Listen to tab controller events
+        if let tabController = self.tabBarController {
+            tabController.delegate = self  // Not ideal solution since we might be overriding other delegates. Good for now
+        }
         // Set background color to the view
         let theme = Theme.currentTheme()
         view.backgroundColor = theme.backgroundColor()
@@ -100,6 +104,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         appConfiguration.remove(appConfigurationDelegate: self)
         // Stop listening to changes coming from Apple Watch
         watchSessionManager.remove(watchSessionManagerDelegate: self)
+        // Stop listening to tab controller events
+        if let tabController = self.tabBarController {
+            tabController.delegate = nil
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -476,6 +484,15 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     // Notification that a new default printer has been selected from the Apple Watch app
     func defaultPrinterChanged() {
         self.refreshNewSelectedPrinter()
+    }
+    
+    // MARK: - UITabBarControllerDelegate
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        // If selected panel is this window then render first subpanel
+        if tabBarController.selectedIndex == 0 {
+            subpanelsViewController?.renderFirstVC()
+        }
     }
     
     // MARK: - Private - Navigation Bar Swipe

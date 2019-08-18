@@ -95,6 +95,18 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
 
     }
 
+    /// Render first panel
+    func renderFirstVC() {
+        // Show first page as the initial page
+        if let firstViewController = orderedViewControllers.first {
+            pageContainer.setViewControllers([firstViewController],
+                                             direction: .forward,
+                                             animated: true,
+                                             completion: nil)
+            pageControl.currentPage = 0
+        }
+    }
+    
     // MARK: - Notifications
     
     func printerSelectedChanged() {
@@ -230,17 +242,6 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         })
         
         renderFirstVC()
-    }
-    
-    fileprivate func renderFirstVC() {
-        // Show first page as the initial page
-        if let firstViewController = orderedViewControllers.first {
-            pageContainer.setViewControllers([firstViewController],
-                                             direction: .forward,
-                                             animated: true,
-                                             completion: nil)
-            pageControl.currentPage = 0
-        }
     }
     
     fileprivate func addRemoveVC(add: Bool, vcIdentifier: ((UIViewController) -> Bool), createVC: @escaping (UIStoryboard) -> UIViewController) {
