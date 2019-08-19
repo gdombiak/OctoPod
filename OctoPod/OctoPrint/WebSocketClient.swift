@@ -5,6 +5,19 @@ import Starscream
 // To receive socket events and received messages, create a WebSocketClientDelegate
 // and add it as a delegate of this WebSocketClient
 class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
+    
+    /// Create a serial queue for thread-safety when closing sockets. Serial is ok
+    /// since we do not have concurrent read threads
+    static private let closingQueue = DispatchQueue(label: "WebSocketClosingQueue")
+    /// Array of web sockets that are being closed. We keep them in a collection
+    /// since closing a websocket involves the client requesting the server to
+    /// close the socket. This means that the socket is still operational so we cannot release its reference
+    /// from memory. Releasing the reference will end up with a read-thread operating on a no-longer existing
+    /// object and the app will crash if this happens. See [bug](https://github.com/gdombiak/OctoPod/issues/217)
+    static private var closingSockets: Dictionary<WebSocket, Date> = Dictionary()
+    static private let SOCKET_CLOSING_EXPIRATION = 10 // time in seconds to keep socket in memory
+    static private var cleanupTimer: Timer?
+
     var serverURL: String!
     var apiKey: String!
     var username: String?
@@ -88,6 +101,11 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     }
     
     func websocketDidDisconnect(socket: WebSocket, error: Error?) {
+        // We can now release any reference to the socket that got closed
+        WebSocketClient.closingQueue.async {
+            WebSocketClient.forgetSocket(socket: socket)
+        }
+
         active = false
         connecting = false
         // Stop heatbeat timer
@@ -306,6 +324,19 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     func closeConnection() {
         openRetries = -1
         closedByUser = true
+        if let socket = socket, socket.isConnected {
+            // Remember socket before releasing reference to it. Add an expiration
+            // date for how long to remember. A background thread removes
+            // expired sockets. We have to do this since asking Websocket to disconnect
+            // just sends a request to the server and the server needs to close the connection
+            // and there is a chance that the server will send more data before closing the
+            // connection and the data that is read will produce a crash of the app since
+            // the read thread of StarScream will operate on an object that is gone from memory
+            WebSocketClient.closingQueue.async {
+                // Remember socket that is being closed
+                WebSocketClient.rememberSocket(socket: socket)
+            }
+        }
         socket?.disconnect()
         socket = nil
     }
@@ -359,5 +390,39 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     
     @objc func sendHeartbeat() {
         socketWrite(text: "{}")
+    }
+    
+    // MARK: - Static closing sockets functions
+
+    @objc static func cleanupClosingSockets() {
+        // Clean up expired sockets that we asked to close and the server never closed them
+        closingQueue.async {
+            for toRemove in closingSockets.filter({ (key: WebSocket, value: Date) -> Bool in
+                return value < Date()
+            }) {
+                forgetSocket(socket: toRemove.key)
+            }
+        }
+    }
+    
+    fileprivate static func rememberSocket(socket: WebSocket) {
+        if closingSockets.isEmpty {
+            // Start background thread that removes expired sockets
+            // Timer needs to be started from main thread to be repeatable
+            DispatchQueue.main.async {
+                cleanupTimer = Timer.scheduledTimer(timeInterval: TimeInterval(SOCKET_CLOSING_EXPIRATION), target: self, selector: #selector(cleanupClosingSockets), userInfo: nil, repeats: true)
+                cleanupTimer?.fire()
+            }
+        }
+
+        closingSockets[socket] = Date().addingTimeInterval(TimeInterval(SOCKET_CLOSING_EXPIRATION))
+    }
+    
+    fileprivate static func forgetSocket(socket: WebSocket) {
+        closingSockets.removeValue(forKey: socket)
+        // Stop background thread if there are no more sockets to verify their expiration
+        if closingSockets.isEmpty {
+            cleanupTimer?.invalidate()
+        }
     }
 }
