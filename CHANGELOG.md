@@ -1,17 +1,46 @@
 # Change Log
 
-## [2.6](https://github.com/gdombiak/OctoPod/tree/2.5) (2019-07-15)
+## [2.7](https://github.com/gdombiak/OctoPod/tree/2.7) (2019-08-23)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.6...2.7)
+
+**Implemented enhancements:**
+
+- Panel tab improvement - "rewind" to first page [\#216](https://github.com/gdombiak/OctoPod/issues/216)
+- Update pod Starscream to 3.1.0 [\#214](https://github.com/gdombiak/OctoPod/issues/214)
+- Change extrude by value: 100 to 50 [\#213](https://github.com/gdombiak/OctoPod/issues/213)
+- Add new setting to not prompt extrude/retract speed [\#212](https://github.com/gdombiak/OctoPod/issues/212)
+- Add Swedish translation [\#210](https://github.com/gdombiak/OctoPod/issues/210)
+- Add support for up to 5 extruders [\#209](https://github.com/gdombiak/OctoPod/issues/209)
+- Add slide to delete past gcodes in terminal [\#208](https://github.com/gdombiak/OctoPod/issues/208)
+- Optimize HTTP calls when swiping to change printers  [\#206](https://github.com/gdombiak/OctoPod/issues/206)
+- Do not show connection errors for not selected printers [\#205](https://github.com/gdombiak/OctoPod/issues/205)
+- Add Palette 2 Integration [\#204](https://github.com/gdombiak/OctoPod/issues/204)
+- Old Apple watch support??? [\#143](https://github.com/gdombiak/OctoPod/issues/143)
+- Add support to discover OctoPrint installations in the network [\#58](https://github.com/gdombiak/OctoPod/issues/58)
+
+**Fixed bugs:**
+
+- Fix crash with no-longer existing websocket connection [\#217](https://github.com/gdombiak/OctoPod/issues/217)
+- Fix memory leak using URLSession [\#215](https://github.com/gdombiak/OctoPod/issues/215)
+- Custom Control page does not refresh when switching printers [\#203](https://github.com/gdombiak/OctoPod/issues/203)
+
+**Closed issues:**
+
+- Webcam URL [\#211](https://github.com/gdombiak/OctoPod/issues/211)
+- Octopod Generates Tornado.access Errors when connecting to octoprint. [\#188](https://github.com/gdombiak/OctoPod/issues/188)
+
+## [2.6](https://github.com/gdombiak/OctoPod/tree/2.6) (2019-07-16)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.5...2.6)
 
 **Implemented enhancements:**
 
+- Allow user to select sound to use for notifications [\#195](https://github.com/gdombiak/OctoPod/issues/195)
+- Add support for push notifications [\#83](https://github.com/gdombiak/OctoPod/issues/83)
 - Display history of gcode commands [\#201](https://github.com/gdombiak/OctoPod/issues/201)
 - Quick switch between printers [\#200](https://github.com/gdombiak/OctoPod/issues/200)
 - Alert when there are new plugin versions [\#198](https://github.com/gdombiak/OctoPod/issues/198)
 - Add support for chamber temperature [\#197](https://github.com/gdombiak/OctoPod/issues/197)
-- Allow user to select sound to use for notifications [\#195](https://github.com/gdombiak/OctoPod/issues/195)
 - Allow to suppress temp and SD messages from Terminal  [\#153](https://github.com/gdombiak/OctoPod/issues/153)
-- Add support for push notifications [\#83](https://github.com/gdombiak/OctoPod/issues/83)
 
 **Fixed bugs:**
 
