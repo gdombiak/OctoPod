@@ -97,6 +97,9 @@ class JobInfoViewController: UITableViewController {
                             self.originLabel.text = self.printFile?.displayOrigin()
                             self.sizeLabel.text = self.printFile?.displaySize()
                             self.configureRestartReprintButton()
+                            // Force to recalculate rows height since file name could be too big
+                            self.tableView.beginUpdates()
+                            self.tableView.endUpdates()
                         }
                     }
                 }
