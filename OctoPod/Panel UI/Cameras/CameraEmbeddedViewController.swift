@@ -152,7 +152,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             
             setCameraOrientation(newOrientation: cameraOrientation)
 
-            if let url = URL(string: cameraURL) {
+            if let url = URL(string: cameraURL.trimmingCharacters(in: .whitespaces)) {
                 // Make sure that url button is clickable (visible when not hidden)
                 self.errorURLButton.isUserInteractionEnabled = true
                 // User authentication credentials if configured for the printer
