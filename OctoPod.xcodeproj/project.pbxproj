@@ -293,6 +293,11 @@
 		3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewController.swift; sourceTree = "<group>"; };
 		3D02D199229A6AC8004788B6 /* RemindersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewController.swift; sourceTree = "<group>"; };
 		3D071A13212682C1005301B4 /* OctoPrintPluginsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintPluginsDelegate.swift; sourceTree = "<group>"; };
+		3D0CF43F231796F8001066F5 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D0CF440231796F8001066F5 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D0CF441231796F8001066F5 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D0CF442231796F8001066F5 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D0CF443231796F8001066F5 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraEmbeddedViewController.swift; sourceTree = "<group>"; };
 		3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTargetTempViewController.swift; sourceTree = "<group>"; };
 		3D0E3B1021097E7A0087F7E4 /* ThemeUIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeUIUtils.swift; sourceTree = "<group>"; };
@@ -484,6 +489,16 @@
 		3D9E269722B416EC00386081 /* lt-LT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lt-LT"; path = "lt-LT.lproj/MainInterface.strings"; sourceTree = "<group>"; };
 		3D9E269822B416EC00386081 /* lt-LT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lt-LT"; path = "lt-LT.lproj/Interface.strings"; sourceTree = "<group>"; };
 		3DA252432105028300B60E31 /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
+		3DA44F162314D75D00EB9763 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DA44F172314D7B500EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		3DA44F182314D7B600EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Intents.strings; sourceTree = "<group>"; };
+		3DA44F192314D7B600EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		3DA44F1A2314D7B600EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Interface.strings; sourceTree = "<group>"; };
+		3DA44F1B2314D7B600EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		3DA44F1C2314D7B600EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DA44F1D2314D7B600EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DA44F1E2314D7B600EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DA44F1F2314D7B600EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DA77D7A21693C74003D65C9 /* ChangeLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageViewController.swift; sourceTree = "<group>"; };
 		3DABB21822BFF3F900F32731 /* OctoPod v9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v9.xcdatamodel"; sourceTree = "<group>"; };
 		3DABB21D22C0044D00F32731 /* OctoPod Notification Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "OctoPod Notification Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1303,6 +1318,7 @@
 				nb,
 				"lt-LT",
 				sv,
+				fr,
 			);
 			mainGroup = 3D4527F520E15A370094CCB7;
 			productRefGroup = 3D4527FF20E15A370094CCB7 /* Products */;
@@ -1672,6 +1688,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3D17273422F2838600C0A341 /* sv */,
+				3D0CF441231796F8001066F5 /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1687,6 +1704,7 @@
 				3D27DA9C218A675B004F763A /* de */,
 				3D9E268D22B416EC00386081 /* lt-LT */,
 				3D17273722F2838600C0A341 /* sv */,
+				3D0CF43F231796F8001066F5 /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1703,6 +1721,7 @@
 				3DD3C77721B3239D00350225 /* nb */,
 				3D9E269722B416EC00386081 /* lt-LT */,
 				3DBB692022F12DD600C21430 /* sv */,
+				3DA44F1B2314D7B600EB9763 /* fr */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -1719,6 +1738,7 @@
 				3D450E6D21AB1C090049FBC0 /* nb */,
 				3D9E269522B416EC00386081 /* lt-LT */,
 				3DBB691D22F12DD500C21430 /* sv */,
+				3DA44F182314D7B600EB9763 /* fr */,
 			);
 			name = Intents.intentdefinition;
 			sourceTree = "<group>";
@@ -1735,6 +1755,7 @@
 				3D89E66E216121FA006794D0 /* nb */,
 				3D9E269622B416EC00386081 /* lt-LT */,
 				3DBB691C22F12DD500C21430 /* sv */,
+				3DA44F172314D7B500EB9763 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1750,6 +1771,7 @@
 				CB66535C2160B6C200269730 /* es */,
 				3D89E66F216121FB006794D0 /* nb */,
 				3DBB691E22F12DD600C21430 /* sv */,
+				3DA44F192314D7B600EB9763 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1766,6 +1788,7 @@
 				3D6570E1218510DE00BD3A7B /* nb */,
 				3D9E269822B416EC00386081 /* lt-LT */,
 				3DBB691F22F12DD600C21430 /* sv */,
+				3DA44F1A2314D7B600EB9763 /* fr */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";
@@ -1782,6 +1805,7 @@
 				3D89E670216121FB006794D0 /* nb */,
 				3D9E269422B416EC00386081 /* lt-LT */,
 				3DBB692122F12DD600C21430 /* sv */,
+				3DA44F1C2314D7B600EB9763 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1797,6 +1821,7 @@
 				3D27DA94218A5FD8004F763A /* es-419 */,
 				3D9E269022B416EC00386081 /* lt-LT */,
 				3D17273A22F2838600C0A341 /* sv */,
+				3D0CF442231796F8001066F5 /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1813,6 +1838,7 @@
 				3DBCE84721B4925F00ABB42D /* en */,
 				3D9E268E22B416EC00386081 /* lt-LT */,
 				3DBB692322F12DD600C21430 /* sv */,
+				3DA44F1F2314D7B600EB9763 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1828,6 +1854,7 @@
 				3DD3C77521B3239D00350225 /* nb */,
 				3D9E268F22B416EC00386081 /* lt-LT */,
 				3D17273622F2838600C0A341 /* sv */,
+				3D0CF440231796F8001066F5 /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1843,6 +1870,8 @@
 				3DED77F421AFC6EB009A4CE5 /* nb */,
 				3D9E269122B416EC00386081 /* lt-LT */,
 				3D17273822F2838600C0A341 /* sv */,
+				3DA44F162314D75D00EB9763 /* en */,
+				3DA44F1E2314D7B600EB9763 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1858,6 +1887,7 @@
 				3DED77F321AFC6EB009A4CE5 /* nb */,
 				3D9E269222B416EC00386081 /* lt-LT */,
 				3D17273922F2838600C0A341 /* sv */,
+				3D0CF443231796F8001066F5 /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1874,6 +1904,7 @@
 				3DFE67D6218598FD00F33019 /* nb */,
 				3D9E269322B416EC00386081 /* lt-LT */,
 				3DBB692222F12DD600C21430 /* sv */,
+				3DA44F1D2314D7B600EB9763 /* fr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

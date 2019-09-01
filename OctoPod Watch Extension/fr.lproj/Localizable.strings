@@ -1,0 +1,54 @@
+/* HTTP authentication failed */
+"Authentication failed" = "Échec de l’identification";
+
+/* (No Comment) */
+"Confirm" = "Attention";
+
+/* (No Comment) */
+"Connection failed" = "Échec de connexion";
+
+/* (No Comment) */
+"Dismiss" = "Plus tard";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Souhaitez-vous annuler ?";
+
+/* No comment provided by engineer. */
+"Do you want to pause the job?" = "Souhaitez-vous mettre en pause ?";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Erreur. Réponse HTTP : %d";
+
+/* (No Comment) */
+"Job" = "Impression";
+
+/* No comment provided by engineer. */
+"MK3" = "MK3";
+
+/* (No Comment) */
+"No" = "Non";
+
+/* No printer has been selected */
+"No printer" = "Pas d’imprimante";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Échec de la demande d’annulation";
+
+/* (No Comment) */
+"Notify failed pause job" = "Échec de la demande de pause";
+
+/* (No Comment) */
+"Notify failed resume job" = "Échec de la demande de reprise";
+
+/* No comment provided by engineer. */
+"Paused" = "En pause";
+
+/* No comment provided by engineer. */
+"Printing" = "Impression";
+
+/* ETA is Unknown */
+"Unknown" = "Inconnu";
+
+/* (No Comment) */
+"Yes" = "Oui";
+

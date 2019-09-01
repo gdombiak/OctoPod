@@ -1,0 +1,518 @@
+/* (No Comment) */
+"1 day ago" = "Il y a 1 jour";
+
+/* (No Comment) */
+"1 hour ago" = "Il y a 1 heure";
+
+/* (No Comment) */
+"1 minute ago" = "Il y a 1 minute";
+
+/* (No Comment) */
+"1 week ago" = "Il y a 1 semaine";
+
+/* (No Comment) */
+"Actual Bed" = "Plateau actuel";
+
+/* No comment provided by engineer. */
+"Actual Chamber" = "Caisson actuel";
+
+/* (No Comment) */
+"Actual Extruder" = "Extrudeur actuel";
+
+/* (No Comment) */
+"Actual Extruder 2" = "Extrudeur actuel 2";
+
+/* No comment provided by engineer. */
+"Actual Extruder 3" = "Extrudeur actuel 3";
+
+/* No comment provided by engineer. */
+"Actual Extruder 4" = "Extrudeur actuel 4";
+
+/* No comment provided by engineer. */
+"Actual Extruder 5" = "Extrudeur actuel 5";
+
+/* (No Comment) */
+"Apply" = "Appliquer";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Erreur d’authentification";
+
+/* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
+"Bad Certificate or SSL Problem" = "Mauvais certificat ou erreur SSL";
+
+/* (No Comment) */
+"Bed cooled" = "Température du plateau en dessous du seuil spécifié";
+
+/* No comment provided by engineer. */
+"Bed Variance" = "Variance Plateau";
+
+/* (No Comment) */
+"Bed warmed" = "Plateau chauffé à la température et durée spécifiées";
+
+/* (No Comment) */
+"Cancel" = "Annuler";
+
+/* Siri suggested phrase */
+"Cancel current print job" = "Annuler l’impression en cours sur %@";
+
+/* https://github.com/paukstelis/Octoprint-Cancelobject */
+"Cancel Objects" = "Annuler les objets";
+
+/* (No Comment) */
+"Cannot print this file type" = "Mauvais type de fichier";
+
+/* (No Comment) */
+"Cannot reach 'octopi.local' over mobile network or service is down" = "“Octopi.local” injoignable sur réseau mobile ou serveur indisponible";
+
+/* (No Comment) */
+"Cannot replace file that is being printed or printer is busy" = "Impossible de remplacer un fichier en cours d’impression ou imprimante occupée";
+
+/* File Type is GCode */
+"Code" = "Code";
+
+/* (No Comment) */
+"Command not executed. Printer not operational" = "Commande non-exécutée. Imprimante non-opérationnelle.";
+
+/* (No Comment) */
+"Command not executed. Script not found" = "Commande non exécutée. Script introuvable.";
+
+/* (No Comment) */
+"Confirm" = "Attention";
+
+/* (No Comment) */
+"Confirm cancel object" = "Souhaitez-vous réellement annuler l’impression de cet objet ?";
+
+/* (No Comment) */
+"Confirm command" = "Exécuter la commande ‘%@‘ ?";
+
+/* (No Comment) */
+"Confirm connect" = "Certaines imprimantes peuvent redémarrer à la connexion. Confirmer ?";
+
+/* (No Comment) */
+"Confirm disconnect" = "Souhaitez-vous vous déconnecter de l’imprimante ?";
+
+/* (No Comment) */
+"Confirm disconnect palette2" = "Souhaitez-vous vous déconnecter de Palette 2 ?";
+
+/* (No Comment) */
+"Confirm intentions deletion" = "Souhaitez-vous réellement effacer tous les raccourcis Siri de l’App ?";
+
+/* (No Comment) */
+"Confirm intentions regeneration" = "Souhaitez-vous réellement effacer et regénérer tous les raccourcis Siri de l’App ?";
+
+/* (No Comment) */
+"Confirm turn off plug" = "Souhaitez-vous réellement éteindre la prise ?";
+
+/* (No Comment) */
+"Confirm turn off PSU" = "Souhaitez-vous réellement éteindre le PSU ?";
+
+/* Connect */
+"Connect" = "Connecter";
+
+/* Connected */
+"Connected" = "Connecté";
+
+/* Connecting */
+"Connecting" = "Connexion";
+
+/* (No Comment) */
+"Connection failed" = "La connexion a échoué";
+
+/* Siri suggested phrase */
+"Cool down heated chamber" = "Refroidir le caisson";
+
+/* Siri suggested phrase */
+"Cool down printer" = "Refroidir l’imprimante";
+
+/* Siri suggested phrase */
+"Cool down printer bed" = "Refroidir le plateau %@";
+
+/* Siri suggested phrase */
+"Cool down printer extruder" = "Refroidir l’extrudeur %@";
+
+/* Connection to server failed */
+"Could not connect to the server" = "Connexion au serveur impossible";
+
+/* http://docs.octoprint.org/en/master/features/custom_controls.html */
+"Custom Controls" = "Contrôles personnalisés";
+
+/* (No Comment) */
+"days ago" = "Il y a %d jours";
+
+/* Disconnect */
+"Disconnect" = "Déconnecter";
+
+/* Disconnected */
+"Disconnected" = "Déconnecté";
+
+/* (No Comment) */
+"Dismiss" = "Plus tard";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Souhaitez-vous annuler l’impression ?";
+
+/* (No Comment) */
+"Domoticz Plugs" = "Prises Domoticz";
+
+/* (No Comment) */
+"Enable iCloud under iOS Settings to use this feature" = "Activer iCloud dans les paramètres iOS pour utiliser cette fonctionnalité";
+
+/* No comment provided by engineer. */
+"Extruder Variance" = "Variance Extrudeur";
+
+/* No comment provided by engineer. */
+"Failed to connect" = "Erreur de connexion";
+
+/* (No Comment) */
+"Failed to delete file" = "Échec de la suppression du fichier";
+
+/* (No Comment) */
+"Failed to disable motor" = "Échec de la désactivation du moteur %@";
+
+/* Failed to get controls with HTTP Request error info */
+"Failed to get controls" = "Échec de la récupération des contrôles. Réponse HTTP : %d";
+
+/* (No Comment) */
+"Failed to get list of cancel objects" = "Échec de la récupération de la liste des objects annulés. Réponse HTTP : %d";
+
+/* Failed to get system commands with HTTP Request error info */
+"Failed to get system commands" = "Échec de la récupération des commandes système";
+
+/* (No Comment) */
+"Failed to initialize SD card" = "Échec de l’accès à la carte SD";
+
+/* (No Comment) */
+"Failed to read file from iCloud" = "Échec de la lecture depuis iCloud";
+
+/* (No Comment) */
+"Failed to refresh SD card" = "Échec de la mise à jour de la carte SD";
+
+/* (No Comment) */
+"Failed to request moving back" = "Échec de la demande de déplacement arrière";
+
+/* (No Comment) */
+"Failed to request moving down" = "Échec de la demande de déplacement vers le bas";
+
+/* (No Comment) */
+"Failed to request moving front" = "Échec de la demande de déplacement avant";
+
+/* (No Comment) */
+"Failed to request moving left" = "Échec de la demande de déplacement à gauche";
+
+/* (No Comment) */
+"Failed to request moving right" = "Échec de la demande de déplacement à droite";
+
+/* (No Comment) */
+"Failed to request moving up" = "Échec de la demande de déplacement vers le haut";
+
+/* No comment provided by engineer. */
+"Failed to request status" = "Échec de la demande de statut";
+
+/* (No Comment) */
+"Failed to request to cancel object" = "Échec de l’annulation d’objet. Réponse HTTP : %d";
+
+/* No comment provided by engineer. */
+"Failed to request to clear" = "Échec de la demande d’évacuation";
+
+/* No comment provided by engineer. */
+"Failed to request to connect" = "Échec de la demande de connexion";
+
+/* No comment provided by engineer. */
+"Failed to request to cut" = "Échec de la demande de coupe";
+
+/* No comment provided by engineer. */
+"Failed to request to disconnect" = "Échec de la demande de deconnexion";
+
+/* (No Comment) */
+"Failed to request to execute command" = "Échec de la demande d’exécution de commande";
+
+/* (No Comment) */
+"Failed to request to extrude" = "Échec de la demande d’extrusion";
+
+/* (No Comment) */
+"Failed to request to go home" = "Échec de la demande de retour en position initiale";
+
+/* (No Comment) */
+"Failed to request to print file" = "Échec de la demande d’impression";
+
+/* (No Comment) */
+"Failed to request to retract" = "Échec de la demande de rétraction";
+
+/* (No Comment) */
+"Failed to request to turn power off" = "Échec de la demande d’extinction";
+
+/* (No Comment) */
+"Failed to request to turn power on" = "Échec de la demande d’allumage";
+
+/* No comment provided by engineer. */
+"Failed to save JPEG file" = "Échec de sauvegarde de l’image";
+
+/* (No Comment) */
+"Failed to send GCode command" = "Échec de l’envoi de la commande GCode";
+
+/* (No Comment) */
+"Failed to set new fan speed" = "Échec du réglage du ventilateur";
+
+/* (No Comment) */
+"Failed to set new feed rate" = "Échec du réglage de la vitesse";
+
+/* (No Comment) */
+"Failed to set new flow rate" = "Échec du réglage du débit";
+
+/* (No Comment) */
+"Failed to upload file" = "Échec du chargement";
+
+/* (No Comment) */
+"Failed turn power off" = "Échec de la demande d’extinction";
+
+/* (No Comment) */
+"Failed turn power on" = "Échec de la demande d’allumage";
+
+/* (No Comment) */
+"File currently being printed" = "Fichier en cours d’impression";
+
+/* (No Comment) */
+"File is being copied to SD Card" = "Fichier en cours de copie sur la carte SD";
+
+/* File Type is a Folder */
+"Folder" = "Dossier";
+
+/* (No Comment) */
+"hours ago" = "Il y a %d heures";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Erreur. Réponse HTTP : %d";
+
+/* Idle */
+"Idle" = "Au repos";
+
+/* Include SD messages in the terminal */
+"Include SD" = "Inclure SD";
+
+/* Include temp messages in the terminal */
+"Include temp" = "Inclure Temp";
+
+/* (No Comment) */
+"Incorrect API Key" = "Clé API érronée";
+
+/* (No Comment) */
+"Incorrect authentication credentials" = "Informations d'authentification érronées";
+
+/* URL of camera is invalid */
+"Invalid camera URL" = "URL de la caméra invalide";
+
+/* (No Comment) */
+"Invalid file type" = "Type de fichier invalide";
+
+/* (No Comment) */
+"iOS Language" = "Langue iOS";
+
+/* (No Comment) */
+"Job" = "Impression";
+
+/* (No Comment) */
+"Location no longer valid. Refresh files" = "Emplacement introuvable. Rafraîchir.";
+
+/* (No Comment) */
+"minutes ago" = "Il y a %d minutes";
+
+/* No comment provided by engineer. */
+"Missed" = "Information perdue";
+
+/* (No Comment) */
+"MK3" = "MK3";
+
+/* (No Comment) */
+"MMU Requires User" = "Le MMU demande une assistance";
+
+/* File Type is a Model */
+"Model" = "Modèle";
+
+/* (No Comment) */
+"Move" = "Contrôles";
+
+/* (No Comment) */
+"No" = "Non";
+
+/* No camera was found */
+"No camera" = "Pas de caméra";
+
+/* (No Comment) */
+"No printer" = "Pas d’imprimante";
+
+/* No temperature history */
+"No temperature history" = "Aucun historique de température disponible";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Échec de la demande d’annulation";
+
+/* (No Comment) */
+"Notify failed pause job" = "Échec de la demande de pause";
+
+/* (No Comment) */
+"Notify failed print job again" = "Échec de la demande de réimpression";
+
+/* (No Comment) */
+"Notify failed restart job" = "Échec de la demande de réimpression";
+
+/* (No Comment) */
+"Notify failed resume job" = "Échec de la demande de reprise";
+
+/* OctoPrint server */
+"OctoPrint" = "OctoPrint";
+
+/* Printer is Offline */
+"Offline" = "Hors-ligne";
+
+/* Siri suggested phrase */
+"Pause current print job" = "Pause sur %@";
+
+/* (No Comment) */
+"Pause Job" = "Pause";
+
+/* (No Comment) */
+"Paused" = "En pause";
+
+/* No comment provided by engineer. */
+"Ping History" = "Ping historique";
+
+/* No comment provided by engineer. */
+"Pong History" = "Pong historique";
+
+/* (No Comment) */
+"Print complete" = "Impression terminée";
+
+/* (No Comment) */
+"Print File" = "Imprimer";
+
+/* (No Comment) */
+"Printer not operational" = "Imprimante non-opérationnelle";
+
+/* (No Comment) */
+"Printing" = "En cours d’impression";
+
+/* (No Comment) */
+"Pull down to refresh" = "Glisser pour rafraîchir";
+
+/* Siri suggested phrase */
+"Remaining time current print job" = "Temps restant sur %@";
+
+/* Siri suggested phrase */
+"Restart current print job" = "Recommencer sur %@";
+
+/* (No Comment) */
+"Restart Job" = "Recommencer";
+
+/* Siri suggested phrase */
+"Resume current print job" = "Reprendre sur %@";
+
+/* (No Comment) */
+"Resume Job" = "Reprendre";
+
+/* Execute Command */
+"Run" = "Run";
+
+/* Origin is SD Card */
+"SD Card" = "SD Card";
+
+/* (No Comment) */
+"seconds ago" = "Il y a %d secondes";
+
+/* DNS resolution failed. Cannot resolve hostname */
+"Server cannot be found" = "Serveur introuvable";
+
+/* (No Comment) */
+"Service is down or incorrect port" = "Serveur inaccessible ou erreur de port";
+
+/* Snooze notifications for 1 hour */
+"Snooze 1 hour" = "Repousser de 1 heure";
+
+/* Snooze notifications for 8 hours */
+"Snooze 8 hours" = "Repousser de 8 heures";
+
+/* Print time is being calculated */
+"Still stabilizing" = "En cours de stabilisation...";
+
+/* Suppress SD messages in the terminal */
+"Suppress SD" = "Masquer SD";
+
+/* Suppress temp messages in the terminal */
+"Suppress temp" = "Masquer Temp";
+
+/* http://docs.octoprint.org/en/master/api/system.html */
+"System Commands" = "Commandes système";
+
+/* (No Comment) */
+"Target Bed" = "Cible Plateau";
+
+/* No comment provided by engineer. */
+"Target Chamber" = "Température caisson";
+
+/* (No Comment) */
+"Target Extruder" = "Cible extrudeur";
+
+/* (No Comment) */
+"Target Extruder 2" = "Cible Extrudeur 2";
+
+/* No comment provided by engineer. */
+"Target Extruder 3" = "Cible Extrudeur 3";
+
+/* No comment provided by engineer. */
+"Target Extruder 4" = "Cible Extrudeur 4";
+
+/* No comment provided by engineer. */
+"Target Extruder 5" = "Cible Extrudeur 5";
+
+/* (No Comment) */
+"Tasmota Plugs" = "Prise Tasmota";
+
+/* Temperature */
+"Temperature" = "Température";
+
+/* (No Comment) */
+"Terminal" = "Terminal";
+
+/* (No Comment) */
+"TPLink Smartplugs" = "Smartplugs TPLink";
+
+/* (No Comment) */
+"Turn Off" = "Éteindre";
+
+/* (No Comment) */
+"Turn On" = "Allumer";
+
+/* ETA is Unknown
+   File Type is Unknown
+   Origin is Unknown */
+"Unknown" = "Inconnu";
+
+/* Unknown Custom Control */
+"Unknown Control" = "Contrôle inconnu";
+
+/* Title for window that alerts user that updates for plugins are available */
+"Update Available" = "Mise-à-jour disponible";
+
+/* (No Comment) */
+"Upload failed" = "Erreur de chargement";
+
+/* Siri suggested phrase */
+"Warm up heated chamber" = "Chauffage du caisson";
+
+/* Siri suggested phrase */
+"Warm up printer bed" = "Chauffage du plateau %@";
+
+/* Siri suggested phrase */
+"Warm up printer extruder" = "Chauffage de l’extrudeur %@";
+
+/* (No Comment) */
+"Warning" = "Attention";
+
+/* (No Comment) */
+"weeks ago" = "Il y a %d semaines";
+
+/* (No Comment) */
+"Wemo Switches" = "Prises Wemo";
+
+/* (No Comment) */
+"Yes" = "Oui";
+
