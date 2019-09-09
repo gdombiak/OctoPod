@@ -431,7 +431,7 @@
 "Mab-7E-AEG.text" = "Titre";
 
 /* Class = "UILabel"; text = "Print time"; ObjectID = "MI6-uy-Cea"; */
-"MI6-uy-Cea.text" = "Temps restant";
+"MI6-uy-Cea.text" = "Durée d’impression";
 
 /* Class = "UILabel"; text = "Lock read-only mode"; ObjectID = "mqw-ve-Eec"; */
 "mqw-ve-Eec.text" = "Verrouiller";
@@ -542,7 +542,7 @@
 "QCe-zo-Ncw.title" = "QR Code";
 
 /* Class = "UILabel"; text = "Print Time"; ObjectID = "Qfz-1j-Keo"; */
-"Qfz-1j-Keo.text" = "Temps restant";
+"Qfz-1j-Keo.text" = "Durée d’impression";
 
 /* Class = "UINavigationItem"; title = "Title"; ObjectID = "qI9-wv-wTe"; */
 "qI9-wv-wTe.title" = "Titre";
@@ -660,9 +660,6 @@
 
 /* Class = "UIBarButtonItem"; title = "Connect"; ObjectID = "uRz-Gy-YAf"; */
 "uRz-Gy-YAf.title" = "Se connecter";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "uVf-tq-wZi"; */
-"uVf-tq-wZi.text" = "Title";
 
 /* Class = "UILabel"; text = "Extruder 3"; ObjectID = "uzd-Ys-rmS"; */
 "uzd-Ys-rmS.text" = "Extrudeur 3";

@@ -233,7 +233,7 @@
 "vmbpr4" = "Se connecter à Palette";
 
 /* (No Comment) */
-"WI2oQf" = "Combien de temps jusqu’à la fin de l’impression";
+"WI2oQf" = "Retourner temps d’impression restant";
 
 /* (No Comment) */
 "WLkRl0" = "Échec de la reprise d’impression (${statusCode})";

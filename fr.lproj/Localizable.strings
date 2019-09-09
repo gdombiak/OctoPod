@@ -431,7 +431,7 @@
 "Snooze 8 hours" = "Repousser de 8 heures";
 
 /* Print time is being calculated */
-"Still stabilizing" = "En cours de stabilisation...";
+"Still stabilizing" = "Stabilisation...";
 
 /* Suppress SD messages in the terminal */
 "Suppress SD" = "Masquer SD";
