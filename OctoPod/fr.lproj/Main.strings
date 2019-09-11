@@ -1,9 +1,6 @@
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "1pO-wB-zKj"; */
 "1pO-wB-zKj.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
-/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "2qA-O2-3VZ"; */
-"2qA-O2-3VZ.normalTitle" = "Plus tard";
-
 /* Class = "UIButton"; normalTitle = "Change language"; ObjectID = "2wA-7u-KgW"; */
 "2wA-7u-KgW.normalTitle" = "Changer la langue";
 
@@ -254,7 +251,7 @@
 "fJ6-6T-dHU.title" = "Réglages";
 
 /* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "FJA-XK-nll"; */
-"FJA-XK-nll.normalTitle" = "Plus tard";
+"FJA-XK-nll.normalTitle" = "Ignorer";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
 "fNE-Hh-S8R.text" = "Label";
@@ -661,6 +658,9 @@
 /* Class = "UIBarButtonItem"; title = "Connect"; ObjectID = "uRz-Gy-YAf"; */
 "uRz-Gy-YAf.title" = "Se connecter";
 
+/* Class = "UILabel"; text = "Title"; ObjectID = "uVf-tq-wZi"; */
+"uVf-tq-wZi.text" = "Title";
+
 /* Class = "UILabel"; text = "Extruder 3"; ObjectID = "uzd-Ys-rmS"; */
 "uzd-Ys-rmS.text" = "Extrudeur 3";
 
@@ -752,7 +752,7 @@
 "ywI-EB-V2L.text" = "0 C";
 
 /* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "yxh-PV-og3"; */
-"yxh-PV-og3.normalTitle" = "Plus tard";
+"yxh-PV-og3.normalTitle" = "Ignorer";
 
 /* Class = "UILabel"; text = "Extruder 4"; ObjectID = "z2y-Yi-bgx"; */
 "z2y-Yi-bgx.text" = "Extrudeur 4";
