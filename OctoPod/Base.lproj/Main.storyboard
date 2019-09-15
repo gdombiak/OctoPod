@@ -1197,23 +1197,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="control_cell" textLabel="uVf-tq-wZi" style="IBUITableViewCellStyleDefault" id="4d8-6V-SkI">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="control_cell" id="4d8-6V-SkI" customClass="CustomControlViewCell" customModule="OctoPod" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4d8-6V-SkI" id="Fgl-Pm-Srn">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uVf-tq-wZi">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCP-AC-cQg">
+                                            <rect key="frame" x="55" y="12" width="269" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tys-oi-RME">
+                                            <rect key="frame" x="329" y="7" width="30" height="30"/>
+                                            <state key="normal" title="Run"/>
+                                            <connections>
+                                                <action selector="executeCommand:" destination="9rK-Yj-dCe" eventType="touchUpInside" id="tIn-lP-ceI"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Tys-oi-RME" secondAttribute="bottom" constant="6.5" id="4j3-pa-sUH"/>
+                                        <constraint firstItem="mCP-AC-cQg" firstAttribute="top" secondItem="Fgl-Pm-Srn" secondAttribute="topMargin" constant="1" id="Fgi-tP-cKL"/>
+                                        <constraint firstItem="mCP-AC-cQg" firstAttribute="leading" secondItem="Fgl-Pm-Srn" secondAttribute="leadingMargin" constant="39" id="HTX-Yu-IIy"/>
+                                        <constraint firstItem="Tys-oi-RME" firstAttribute="top" secondItem="Fgl-Pm-Srn" secondAttribute="top" constant="7" id="Nua-Qe-4jh"/>
+                                        <constraint firstAttribute="trailing" secondItem="Tys-oi-RME" secondAttribute="trailing" constant="16" id="Qla-aw-oyX"/>
+                                        <constraint firstItem="Tys-oi-RME" firstAttribute="leading" secondItem="mCP-AC-cQg" secondAttribute="trailing" constant="5" id="SJ5-EA-Wga"/>
+                                        <constraint firstItem="mCP-AC-cQg" firstAttribute="bottom" secondItem="Fgl-Pm-Srn" secondAttribute="bottomMargin" id="jEt-nf-tN1"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="nameLabel" destination="mCP-AC-cQg" id="RdE-MI-jS2"/>
+                                    <outlet property="runButton" destination="Tys-oi-RME" id="SP6-TO-fof"/>
                                     <segue destination="ldt-Jf-OpQ" kind="show" identifier="gotoControl" id="qab-VQ-dRW"/>
                                 </connections>
                             </tableViewCell>

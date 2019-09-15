@@ -158,6 +158,7 @@
 		3D9AAD5122B325A00051BB1B /* MMUNotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AAD5022B325A00051BB1B /* MMUNotificationsHandler.swift */; };
 		3D9AAD5322B326250051BB1B /* AbstractNotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AAD5222B326250051BB1B /* AbstractNotificationsHandler.swift */; };
 		3D9D9765214DCC440032443A /* CloudKitPrinterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D9764214DCC440032443A /* CloudKitPrinterDelegate.swift */; };
+		3D9DC75B231D867B00AE4DF7 /* CustomControlViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DC75A231D867B00AE4DF7 /* CustomControlViewCell.swift */; };
 		3D9E087E2160455400F11CD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D9E087C2160455400F11CD4 /* InfoPlist.strings */; };
 		3DA252442105028300B60E31 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA252432105028300B60E31 /* FolderViewController.swift */; };
 		3DA77D7B21693C74003D65C9 /* ChangeLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA77D7A21693C74003D65C9 /* ChangeLanguageViewController.swift */; };
@@ -466,6 +467,7 @@
 		3D9AAD5022B325A00051BB1B /* MMUNotificationsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMUNotificationsHandler.swift; sourceTree = "<group>"; };
 		3D9AAD5222B326250051BB1B /* AbstractNotificationsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractNotificationsHandler.swift; sourceTree = "<group>"; };
 		3D9D9764214DCC440032443A /* CloudKitPrinterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitPrinterDelegate.swift; sourceTree = "<group>"; };
+		3D9DC75A231D867B00AE4DF7 /* CustomControlViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControlViewCell.swift; sourceTree = "<group>"; };
 		3D9E08732160155500F11CD4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		3D9E08742160155600F11CD4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3D9E08752160155600F11CD4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 			isa = PBXGroup;
 			children = (
 				3D47BA3D21278956002420A0 /* IPPlugTableViewCell.swift */,
+				3D9DC75A231D867B00AE4DF7 /* CustomControlViewCell.swift */,
 				3D8D51A621333D170006BBB1 /* CustomControlInputViewCell.swift */,
 				3D8D51A821333D310006BBB1 /* CustomControlInputSlideViewCell.swift */,
 				3D88C3EB2194004800BC84DD /* CancelObjectViewCell.swift */,
@@ -1524,6 +1527,7 @@
 				3D7C88482152B25D009FECEF /* CloudKitPrinterLogEntry.swift in Sources */,
 				3D1A93682132F5E70050ED9A /* ChildrenCustomControlViewController.swift in Sources */,
 				3D831E53210850E60004B7A5 /* SettingsViewController.swift in Sources */,
+				3D9DC75B231D867B00AE4DF7 /* CustomControlViewCell.swift in Sources */,
 				3D98C1DA20E5D096007BB13F /* WebSocketClient.swift in Sources */,
 				3D1A936C213316850050ED9A /* ExecuteControl.swift in Sources */,
 				3D8DA01C2144BBF100F5FD07 /* SecurityViewController.swift in Sources */,
