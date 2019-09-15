@@ -225,12 +225,12 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
                     // Refresh UI
                     DispatchQueue.main.async {
                         self.connectionStatusValueLabel.text = status
-                        self.connectButton.isEnabled = true  // Make sure button is enabled since connecting will disable it
+                        self.connectButton.isEnabled = !self.appConfiguration.appLocked()  // Enable connect/disconnect button only if app is not locked
                         self.connectButton.setTitle(button, for: .normal)
                         // Enable/Disable buttons based on connection status
-                        self.selectPortButton.isEnabled = !connected
-                        self.cutButton.isEnabled = connected
-                        self.clearPaletteButton.isEnabled = connected
+                        self.selectPortButton.isEnabled = !connected && !self.appConfiguration.appLocked()
+                        self.cutButton.isEnabled = connected && !self.appConfiguration.appLocked()
+                        self.clearPaletteButton.isEnabled = connected && !self.appConfiguration.appLocked()
                     }
                 } else if command == "filamentLength", let length = data["data"] as? Int {
                     // Length of filament used so far
