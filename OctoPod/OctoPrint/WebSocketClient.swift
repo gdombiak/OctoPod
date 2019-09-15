@@ -273,7 +273,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
                         return
                     }
                     NSLog("Recreating websocket due to parsing error: \(error)" )
-                    socket.disconnect() // Close connection so we stop receiving messages
+                    disconnectSocket(socket: socket) // Close connection so we stop receiving messages
                     // Attempt to recreate socket
                     recreateSocket()
                     establishConnection()
@@ -325,28 +325,34 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
         openRetries = -1
         closedByUser = true
         if let socket = socket, socket.isConnected {
-            // Remember socket before releasing reference to it. Add an expiration
-            // date for how long to remember. A background thread removes
-            // expired sockets. We have to do this since asking Websocket to disconnect
-            // just sends a request to the server and the server needs to close the connection
-            // and there is a chance that the server will send more data before closing the
-            // connection and the data that is read will produce a crash of the app since
-            // the read thread of StarScream will operate on an object that is gone from memory
-            WebSocketClient.closingQueue.async {
-                // Remember socket that is being closed
-                WebSocketClient.rememberSocket(socket: socket)
-            }
+            disconnectSocket(socket: socket)
         }
-        socket?.disconnect()
         socket = nil
+    }
+    
+    fileprivate func disconnectSocket(socket: WebSocket) {
+        // Remember socket before releasing reference to it. Add an expiration
+        // date for how long to remember. A background thread removes
+        // expired sockets. We have to do this since asking Websocket to disconnect
+        // just sends a request to the server and the server needs to close the connection
+        // and there is a chance that the server will send more data before closing the
+        // connection and the data that is read will produce a crash of the app since
+        // the read thread of StarScream will operate on an object that is gone from memory
+        WebSocketClient.closingQueue.async {
+            // Remember socket that is being closed
+            WebSocketClient.rememberSocket(socket: socket)
+        }
+        socket.disconnect()
     }
     
     fileprivate func abortConnection(error: Error) {
         openRetries = -1
         closedByUser = false
         connectionAborted = true // Indicate that we decided to abort connecting
-        socket?.disconnect()
-        
+        if let socket = socket, socket.isConnected {
+            disconnectSocket(socket: socket)
+        }
+
         recreateSocket() // Recreate websocket object (not the actual network connection). In-memory queue of read messages will be ignored
 
         NSLog("Websocket corrupted?. Error: \(String(describing: error.localizedDescription)) - \(self.hash)")
@@ -400,6 +406,11 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
             for toRemove in closingSockets.filter({ (key: WebSocket, value: Date) -> Bool in
                 return value < Date()
             }) {
+                if toRemove.key.isConnected {
+                    // This time we force a disconnect from streams. This will stop read/write threads
+                    // rather than asking the server to close the connection
+                    toRemove.key.disconnect(forceTimeout: 0, closeCode: CloseCode.normal.rawValue)
+                }
                 forgetSocket(socket: toRemove.key)
             }
         }
