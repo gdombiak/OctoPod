@@ -10,7 +10,8 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
     let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
 
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var reorderButton: UIButton!
+    
     var printers: [Printer]!
 
     override func viewDidLoad() {
@@ -41,6 +42,8 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
 
         // Disable editing mode so that printers cannot be reordered
         tableView.isEditing = false
+        
+        reorderButton.isEnabled = !appConfiguration.appLocked()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
