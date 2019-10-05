@@ -14,6 +14,8 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
     
     var printers: [Printer]!
 
+    private var myReorderImage: UIImage? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -79,6 +81,30 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         ThemeUIUtils.themeCell(cell: cell)
+        
+        // Check if we need to change the color of the 3 bars to reorder printers
+        if tableView.isEditing {
+            let theme = Theme.currentTheme()
+            if theme == Theme.ThemeChoice.Dark || theme == Theme.ThemeChoice.Orange {
+                for subViewA in cell.subviews {
+                    if (subViewA.classForCoder.description() == "UITableViewCellReorderControl") {
+                        for subViewB in subViewA.subviews {
+                            if (subViewB.isKind(of: UIImageView.classForCoder())) {
+                                let imageView = subViewB as! UIImageView;
+                                if (myReorderImage == nil) {
+                                    let myImage = imageView.image;
+                                    myReorderImage = myImage?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
+                                }
+                                imageView.image = myReorderImage;
+                                imageView.tintColor = UIColor.white;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     // Delete is only available if app is not in read-only mode
@@ -145,6 +171,8 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
     @IBAction func reorderClicked(_ sender: Any) {
         // Enable or disable editing mode so that printers can be reordered
         tableView.isEditing = !tableView.isEditing
+        
+        tableView.reloadData()
     }
     
     // MARK: - Navigation
