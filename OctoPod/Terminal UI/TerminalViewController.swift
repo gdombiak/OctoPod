@@ -293,6 +293,7 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         let theme = Theme.currentTheme()
         let textLabelColor = theme.labelColor()
         let textColor = theme.textColor()
+        let tintColor = theme.tintColor()
 
         view.backgroundColor = theme.backgroundColor()
         
@@ -301,6 +302,9 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         
         terminalTextView.backgroundColor = theme.cellBackgroundColor()
         terminalTextView.textColor = textColor
+        
+        tempFilterButton.tintColor = tintColor
+        sdFilterButton.tintColor = tintColor
     }
     
     fileprivate func showAlert(_ title: String, message: String) {
