@@ -11,6 +11,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
 
     var updatePrinter: Printer? = nil
     var scannedKey: String?
+    var newPrinterPosition: Int16!  // Will have a value only when adding a new printer
 
     @IBOutlet weak var printerNameField: UITextField!
     @IBOutlet weak var hostnameField: UITextField!
@@ -103,7 +104,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
             }
         } else {
             // Add new printer (that will become default if it's the first one)
-            if let newPrinter = printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, iCloudUpdate: true) {
+            if let newPrinter = printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, iCloudUpdate: true) {
                 // Create Siri suggestions (user will need to manually delete recorded Shortcuts)
                 IntentsDonations.donatePrinterIntents(printer: newPrinter)
             }

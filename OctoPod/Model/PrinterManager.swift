@@ -76,7 +76,7 @@ class PrinterManager {
     
     func getPrinters(context: NSManagedObjectContext) -> [Printer] {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "position", ascending: true), NSSortDescriptor(key: "name", ascending: true)]
         
         if let fetchResults = (try? context.fetch(fetchRequest)) as? [Printer] {
             return fetchResults
@@ -90,13 +90,14 @@ class PrinterManager {
     
     // MARK: Writing operations
     
-    func addPrinter(name: String, hostname: String, apiKey: String, username: String?, password: String?, iCloudUpdate: Bool, modified: Date = Date()) -> Printer? {
+    func addPrinter(name: String, hostname: String, apiKey: String, username: String?, password: String?, position: Int16, iCloudUpdate: Bool, modified: Date = Date()) -> Printer? {
         let printer = NSEntityDescription.insertNewObject(forEntityName: "Printer", into: self.managedObjectContext!) as! Printer
         
         printer.name = name
         printer.hostname = hostname
         printer.apiKey = apiKey
         printer.userModified = modified // Track when settings were modified
+        printer.position = position
         
         printer.username = username
         printer.password = password

@@ -1,26 +1,46 @@
 import UIKit
 
-class PrintersTableViewController: ThemedDynamicUITableViewController, CloudKitPrinterDelegate {
+class PrintersTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CloudKitPrinterDelegate {
+
+    private var currentTheme: Theme.ThemeChoice!
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
     let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
 
+    @IBOutlet weak var tableView: UITableView!
+
     var printers: [Printer]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Remember current theme so we know when to repaint
+        currentTheme = Theme.currentTheme()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        if currentTheme != Theme.currentTheme() {
+            // Theme changed so repaint table now (to prevent quick flash in the UI with the old theme)
+            tableView.reloadData()
+            currentTheme = Theme.currentTheme()
+        }
+        // Paint UI based on theme
+        ThemeUIUtils.applyTheme(table: tableView, staticCells: false)
+        // Set background color to the view
+        view.backgroundColor = currentTheme.backgroundColor()
 
         // Get list of printers
         printers = printerManager.getPrinters()
 
         // Listen to events when printers get updated from iCloud information
         cloudKitPrinterManager.delegates.append(self)
+
+        // Disable editing mode so that printers cannot be reordered
+        tableView.isEditing = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -37,15 +57,15 @@ class PrintersTableViewController: ThemedDynamicUITableViewController, CloudKitP
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return printers.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "printerCell", for: indexPath)
 
         cell.textLabel?.text = printers[indexPath.row].name
@@ -53,14 +73,18 @@ class PrintersTableViewController: ThemedDynamicUITableViewController, CloudKitP
 
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        ThemeUIUtils.themeCell(cell: cell)
+    }
 
     // Delete is only available if app is not in read-only mode
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return !appConfiguration.appLocked()
     }
     
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let printerToDelete = printers[indexPath.row]
             // Update other devices via CloudKit
@@ -81,10 +105,45 @@ class PrintersTableViewController: ThemedDynamicUITableViewController, CloudKitP
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "gotoPrinterDetails", sender: self)
     }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return tableView.isEditing ? .none : .delete
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return !appConfiguration.appLocked()
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        // Reorder array of printers
+        let toMove = printers.remove(at: sourceIndexPath.row)
+        printers.insert(toMove, at: destinationIndexPath.row)
+        // Store new ordered printers
+        NSLog("Storing new printers order")
+        for (index, printer) in printers.enumerated() {
+            let newObjectContext = printerManager.newPrivateContext()
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+            // Update printer position
+            printerToUpdate.position = Int16(index)
+            // Persist updated printer
+            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+        }
+    }
 
+    // MARK: - Buttons
+
+    @IBAction func reorderClicked(_ sender: Any) {
+        // Enable or disable editing mode so that printers can be reordered
+        tableView.isEditing = !tableView.isEditing
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -96,6 +155,10 @@ class PrintersTableViewController: ThemedDynamicUITableViewController, CloudKitP
             if let printerDetailsController = segue.destination as? PrinterDetailsViewController {
                 let selectedPrinter: Printer = printers[(tableView.indexPathForSelectedRow?.row)!]
                 printerDetailsController.updatePrinter = selectedPrinter
+            }
+        } else if segue.identifier == "addNewPrinter" {
+            if let printerDetailsController = segue.destination as? PrinterDetailsViewController {
+                printerDetailsController.newPrinterPosition = Int16(printers.count)
             }
         }
     }

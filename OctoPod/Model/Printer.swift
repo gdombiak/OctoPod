@@ -8,6 +8,7 @@ class Printer: NSManagedObject {
     @NSManaged var recordData: Data? // Encoded data of the iCloud record
     @NSManaged var iCloudUpdate: Bool // Flag that indicates if this record needs to be created/updated in CloudKit
     
+    @NSManaged var position: Int16  // Zero-index position of this printer in the list of printers
     @NSManaged var name: String
     @NSManaged var hostname: String
     @NSManaged var streamUrl: String? // path to the webcam. Info discovered via api/settings

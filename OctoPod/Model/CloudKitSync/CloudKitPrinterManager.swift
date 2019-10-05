@@ -353,7 +353,8 @@ class CloudKitPrinterManager {
                 // Nothing was found in Core Data so create new printer and add to Core Data
                 let parsed = parseRecord(record: record)
                 if let name = parsed.name, let hostname = parsed.hostname, let apiKey = parsed.apiKey {
-                    if let printer = printerManager.addPrinter(name: name, hostname: hostname, apiKey: apiKey, username: parsed.username, password: parsed.password, iCloudUpdate: false, modified: (parsed.modified == nil ? Date() : parsed.modified!)) {
+                    let position = Int16(printerManager.getPrinters().count)  // Not transfering position information via iCloud (reducing work scope) so add new printers to bottom of list
+                    if let printer = printerManager.addPrinter(name: name, hostname: hostname, apiKey: apiKey, username: parsed.username, password: parsed.password, position: position, iCloudUpdate: false, modified: (parsed.modified == nil ? Date() : parsed.modified!)) {
                         // Update again to assign recordName and store encoded record
                         updateAndSave(printer: printer, serverRecord: record)
                         // Alert delegates that printer has been added from iCloud info
