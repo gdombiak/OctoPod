@@ -86,6 +86,17 @@ class PrintersInterfaceController: WKInterfaceController, PrinterManagerDelegate
     fileprivate func updateTable() {
         printers = PrinterManager.instance.printers
         
+        // Sort printers first by position and then by name (only if position is the same)
+        printers.sort { (printerOne: [String : Any], printerTwo: [String : Any]) -> Bool in
+            let positionOne = PrinterManager.instance.position(printer: printerOne)
+            let positionTwo = PrinterManager.instance.position(printer: printerTwo)
+            if positionOne == positionTwo {
+                // Both printers have same position so set order by Name ascending
+                return PrinterManager.instance.name(printer: printerOne) < PrinterManager.instance.name(printer: printerTwo)
+            }
+            return positionOne < positionTwo
+        }
+        
         syncPrintersLabel.setHidden(!printers.isEmpty)
         refreshButton.setHidden(printers.isEmpty)
         

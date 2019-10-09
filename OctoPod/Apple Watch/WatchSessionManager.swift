@@ -419,7 +419,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     fileprivate func encodePrinters() -> [String: [[String : Any]]] {
         var printers: [[String : Any]] = []
         for printer in printerManager.getPrinters() {
-            var printerDic = ["name": printer.name, "hostname": printer.hostname, "apiKey": printer.apiKey, "isDefault": printer.defaultPrinter] as [String : Any]
+            var printerDic = ["position": printer.position, "name": printer.name, "hostname": printer.hostname, "apiKey": printer.apiKey, "isDefault": printer.defaultPrinter] as [String : Any]
             if let username = printer.username {
                 printerDic["username"] = username
             }

@@ -122,6 +122,14 @@ class PrinterManager {
 
     // MARK: - Printer Properties - parsed
     
+    func position(printer: [String: Any]) -> Int16 {
+        // Position is a new field so might be missing in stored information in Apple Watch
+        if printer.keys.contains("position") {
+            return printer["position"] as! Int16
+        }
+        return 0
+    }
+    
     func name(printer: [String: Any]) -> String {
         return printer["name"] as! String
     }

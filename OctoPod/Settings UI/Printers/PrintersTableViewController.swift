@@ -164,6 +164,8 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
             // Persist updated printer
             printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
         }
+        // Push changes to Apple Watch
+        self.watchSessionManager.pushPrinters()
     }
 
     // MARK: - Buttons
