@@ -51,7 +51,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                         progressPrintTime = progress["printTime"] as? Int
                         progressCompletion = progress["completion"] as? Double
                     }
-                    let jobInfo = JobInfo(printerName: printer.name, state: printerState, progressCompletion: progressCompletion, printTimeLeft: printTimeLeft, progressPrintTime: progressPrintTime)
+                    let jobInfo = JobInfo(position: printer.position, printerName: printer.name, state: printerState, progressCompletion: progressCompletion, printTimeLeft: printTimeLeft, progressPrintTime: progressPrintTime)
                     DispatchQueue.main.sync {
                         newItems.append(jobInfo)
                         counter = counter - 1
@@ -59,7 +59,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 } else {
                     var jobInfo: JobInfo?
                     if let error = error {
-                        jobInfo = JobInfo(printerName: printer.name, state: error.localizedDescription, progressCompletion: nil, printTimeLeft: nil, progressPrintTime: nil)
+                        jobInfo = JobInfo(position: printer.position, printerName: printer.name, state: error.localizedDescription, progressCompletion: nil, printTimeLeft: nil, progressPrintTime: nil)
                     }
                     DispatchQueue.main.sync {
                         if let jobInfo = jobInfo {
@@ -70,6 +70,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 }
                 if counter == 0 {
                     DispatchQueue.main.async {
+                        newItems.sort { (one: JobInfo, two: JobInfo) -> Bool in
+                            if one.printTimeLeft != nil && two.printTimeLeft == nil {
+                                // First one is printing while second one is not so return first one
+                                return true
+                            }
+                            if two.printTimeLeft != nil && one.printTimeLeft == nil {
+                                // Second one is printing while first one is not so return second one
+                                return false
+                            }
+                            // Either both are printing or both are not priting so return by position
+                            return one.position < two.position
+                        }
                         self.items = newItems
                         self.tableView.reloadData()
                     }
@@ -234,6 +246,7 @@ extension TodayViewController : UITableViewDelegate, UITableViewDataSource {
 }
 
 struct JobInfo: Codable {
+    var position: Int16
     var printerName: String
     var state: String
     var progressCompletion: Double?
