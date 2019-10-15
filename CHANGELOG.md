@@ -1,10 +1,30 @@
 # Change Log
 
-## [2.7](https://github.com/gdombiak/OctoPod/tree/2.7) (2019-08-23)
+## [2.8](https://github.com/gdombiak/OctoPod/tree/2.7) (2019-10-15)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.7...2.8)
+
+**Implemented enhancements:**
+
+- Improve Today's widget to show running printers first [\#228](https://github.com/gdombiak/OctoPod/issues/228)
+- Printer List Order [\#222](https://github.com/gdombiak/OctoPod/issues/222)
+- File name on 2 lines in the "Files" tab [\#221](https://github.com/gdombiak/OctoPod/issues/221)
+- Add menu button to execute custom control [\#207](https://github.com/gdombiak/OctoPod/issues/207)
+
+**Fixed bugs:**
+
+- Disable Palette 2 buttons when app is locked [\#224](https://github.com/gdombiak/OctoPod/issues/224)
+- Invalid camera URL when there is an empty space [\#220](https://github.com/gdombiak/OctoPod/issues/220)
+
+**Closed issues:**
+
+- Custom System Commands Execute Error [\#227](https://github.com/gdombiak/OctoPod/issues/227)
+
+## [2.7](https://github.com/gdombiak/OctoPod/tree/2.7) (2019-08-24)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.6...2.7)
 
 **Implemented enhancements:**
 
+- Old Apple watch support??? [\#143](https://github.com/gdombiak/OctoPod/issues/143)
 - Panel tab improvement - "rewind" to first page [\#216](https://github.com/gdombiak/OctoPod/issues/216)
 - Update pod Starscream to 3.1.0 [\#214](https://github.com/gdombiak/OctoPod/issues/214)
 - Change extrude by value: 100 to 50 [\#213](https://github.com/gdombiak/OctoPod/issues/213)
@@ -15,7 +35,6 @@
 - Optimize HTTP calls when swiping to change printers  [\#206](https://github.com/gdombiak/OctoPod/issues/206)
 - Do not show connection errors for not selected printers [\#205](https://github.com/gdombiak/OctoPod/issues/205)
 - Add Palette 2 Integration [\#204](https://github.com/gdombiak/OctoPod/issues/204)
-- Old Apple watch support??? [\#143](https://github.com/gdombiak/OctoPod/issues/143)
 - Add support to discover OctoPrint installations in the network [\#58](https://github.com/gdombiak/OctoPod/issues/58)
 
 **Fixed bugs:**
