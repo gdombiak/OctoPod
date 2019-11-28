@@ -419,6 +419,10 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
     static func pingPongMessage(entry: Dictionary<String,Any>) -> (number: String, percent: String)? {
         if let number = entry["number"] as? Int, let percent = entry["percent"] as? String {
             return ("\(number)" , percent == "MISSED" ? NSLocalizedString("Missed", comment: "") : "\(percent) %")
+        } else if let number = entry["number"] as? Int, let percent = entry["percent"] as? Double {
+            // New version 2.3.1 of Palette 2 plugin uses Float(in Python) for sending percent. It used to be a String in previous versions.
+            // String is still used for indicating MISSED in this version
+            return ("\(number)" , "\(String(format: "%.1f", percent)) %")
         }
         return nil
     }
