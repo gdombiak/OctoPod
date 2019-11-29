@@ -265,7 +265,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     }
 
     fileprivate func adjustingHeight(show: Bool, notification: Notification) {
-        var userInfo = notification.userInfo!
+        let userInfo = notification.userInfo!
         let keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         //        let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
         let changeInHeight = (keyboardFrame.height + 40) * (show ? 1 : -1)
