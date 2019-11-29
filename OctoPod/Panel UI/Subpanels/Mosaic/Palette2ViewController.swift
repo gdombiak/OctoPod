@@ -422,7 +422,7 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
         } else if let number = entry["number"] as? Int, let percent = entry["percent"] as? Double {
             // New version 2.3.1 of Palette 2 plugin uses Float(in Python) for sending percent. It used to be a String in previous versions.
             // String is still used for indicating MISSED in this version
-            return ("\(number)" , "\(String(format: "%.1f", percent)) %")
+            return ("\(number)" , "\(String(format: "%.2f", percent)) %")
         }
         return nil
     }
