@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.9](https://github.com/gdombiak/OctoPod/tree/2.9) (2019-12-05)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.8...2.9)
+
+**Fixed bugs:**
+
+- Palette 2 Plugin 2.3.1 ping/pong values [\#231](https://github.com/gdombiak/OctoPod/issues/231)
+
 ## [2.8](https://github.com/gdombiak/OctoPod/tree/2.8) (2019-10-15)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.7...2.8)
 
