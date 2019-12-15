@@ -48,6 +48,9 @@ class UIUtils {
         } else if screenHeight == 1024 {
             // iPad (9.7-inch)
             return (571, 348, 432, 348)
+        } else if screenHeight == 1080 {
+            // iPad (7th generation) (2019)
+            return (608, 414, 457, 414)
         } else if screenHeight == 1112 {
             // iPad (10.5-inch)
             return (619, 414, 469, 414)
