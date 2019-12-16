@@ -1,5 +1,14 @@
 # Change Log
 
+
+## [2.10](https://github.com/gdombiak/OctoPod/tree/2.8) (2019-12-16)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.9...2.10)
+
+**Fixed bugs:**
+
+- iPad & iOS 13.2.3 Seems to induce weird Portrait/Landscape behaviour on Video Stream [\#233](https://github.com/gdombiak/OctoPod/issues/233)
+- Improve CancelObject plugin support by using ignored elements [\#234](https://github.com/gdombiak/OctoPod/issues/234)
+
 ## [2.9](https://github.com/gdombiak/OctoPod/tree/2.9) (2019-12-05)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.8...2.9)
 
