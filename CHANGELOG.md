@@ -1,7 +1,7 @@
 # Change Log
 
 
-## [2.10](https://github.com/gdombiak/OctoPod/tree/2.8) (2019-12-16)
+## [2.10](https://github.com/gdombiak/OctoPod/tree/2.10) (2019-12-16)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.9...2.10)
 
 **Fixed bugs:**
