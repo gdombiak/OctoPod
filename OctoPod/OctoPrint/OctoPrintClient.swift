@@ -519,7 +519,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     /// Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
     func getCancelObjects(callback: @escaping (Array<CancelObject>?, Error?, HTTPURLResponse) -> Void) {
-        octoPrintRESTClient.getCancelObjects(callback: callback)
+        if let printer = printerManager.getDefaultPrinter() {
+            let ignore = CancelObject.parseCancelObjectIgnore(ignored: printer.cancelObjectIgnored)
+            octoPrintRESTClient.getCancelObjects(ignore: ignore, callback: callback)
+        }
     }
     
     /// Cancel the requested object id.
@@ -868,15 +871,18 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
 
     fileprivate func updatePrinterFromCancelObjectPlugin(printer: Printer, plugins: NSDictionary) {
         var installed = false
-        if let _ = plugins[Plugins.CANCEL_OBJECT] as? NSDictionary {
+        var ignored: String?
+        if let cancelPlugin = plugins[Plugins.CANCEL_OBJECT] as? NSDictionary {
             // Cancel Object plugin is installed
             installed = true
+            ignored = cancelPlugin["ignored"] as? String
         }
-        if printer.cancelObjectInstalled != installed {
+        if printer.cancelObjectInstalled != installed || printer.cancelObjectIgnored != ignored {
             let newObjectContext = printerManager.newPrivateContext()
             let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
             // Update flag that tracks if Cancel Object plugin is installed
             printerToUpdate.cancelObjectInstalled = installed
+            printer.cancelObjectIgnored = ignored
             // Persist updated printer
             printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
             

@@ -15,6 +15,14 @@ class CancelObject {
         return nil
     }
     
+    /// Returns array with strings that represent objects that cannot be cancelled. Whitespaces are trimmed
+    static func parseCancelObjectIgnore(ignored: String?) -> Array<String> {
+        if let ignored = ignored {
+            return ignored.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+        }
+        return Array<String>()
+    }
+    
     private init(id: Int, object: String, cancelled: Bool, active: Bool, ignore: Bool) {
         self.id = id
         self.object = object

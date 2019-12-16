@@ -663,7 +663,7 @@ class OctoPrintRESTClient {
     // MARK: - Cancel Object Plugin operations
     
     /// Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
-    func getCancelObjects(callback: @escaping (Array<CancelObject>?, Error?, HTTPURLResponse) -> Void) {
+    func getCancelObjects(ignore: Array<String>, callback: @escaping (Array<CancelObject>?, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
             json["command"] = "objlist"
@@ -676,7 +676,8 @@ class OctoPrintRESTClient {
                     if let jsonArray = json["list"] as? NSArray {
                         var cancelObjects: Array<CancelObject> = Array()
                         for case let item as NSDictionary in jsonArray {
-                            if let cancelObject = CancelObject.parse(json: item) {
+                            if let cancelObject = CancelObject.parse(json: item), !ignore.contains(cancelObject.object) {
+                                // Only add object if not present in ignored list
                                 cancelObjects.append(cancelObject)
                             }
                         }
