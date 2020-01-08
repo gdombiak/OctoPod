@@ -345,5 +345,10 @@ class PrintFile {
             // Sort files by user prefered sort criteria
             self.children = PrintFile.sort(files: newChildren, sortBy: nil)
         }
+        // Check if there is no display information for the file and fallback to name
+        // This only happens with very old versions of OctoPrint like 1.3.4
+        if display == nil && name != nil {
+            display = name
+        }
     }
 }
