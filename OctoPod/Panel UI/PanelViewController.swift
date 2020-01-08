@@ -628,6 +628,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
     
     fileprivate func updateForCameraOrientation(orientation: UIImage.Orientation, devicePortrait: Bool = UIApplication.shared.statusBarOrientation.isPortrait) {
+        if cameraHeightConstraint == nil {
+            // Do nothing if for some reason the weak var cameraHeightConstraint is no longer there. Will fix a reported crash but not sure if it will crash later
+            return
+        }
         if orientation == UIImage.Orientation.left || orientation == UIImage.Orientation.leftMirrored || orientation == UIImage.Orientation.rightMirrored || orientation == UIImage.Orientation.right {
             cameraHeightConstraint.constant = 281 + 50
         } else {
