@@ -1,20 +1,36 @@
 # Change Log
 
+## [2.11](https://github.com/gdombiak/OctoPod/tree/2.11) (2020-01-07)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.10...2.11)
+
+**Fixed bugs:**
+
+- Fix app crash when changing device orientation [\#238](https://github.com/gdombiak/OctoPod/issues/238)
+- The Files view shows only source "SD card" or "Octoprint", but no file names. [\#237](https://github.com/gdombiak/OctoPod/issues/237)
 
 ## [2.10](https://github.com/gdombiak/OctoPod/tree/2.10) (2019-12-16)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.9...2.10)
 
 **Fixed bugs:**
 
-- iPad & iOS 13.2.3 Seems to induce weird Portrait/Landscape behaviour on Video Stream [\#233](https://github.com/gdombiak/OctoPod/issues/233)
 - Improve CancelObject plugin support by using ignored elements [\#234](https://github.com/gdombiak/OctoPod/issues/234)
+- iPad & iOS 13.2.3 Seems to induce weird Portrait/Landscape behaviour on Video Stream [\#233](https://github.com/gdombiak/OctoPod/issues/233)
 
 ## [2.9](https://github.com/gdombiak/OctoPod/tree/2.9) (2019-12-05)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.8...2.9)
 
+**Implemented enhancements:**
+
+- French Translation \(offer\) [\#218](https://github.com/gdombiak/OctoPod/issues/218)
+
 **Fixed bugs:**
 
 - Palette 2 Plugin 2.3.1 ping/pong values [\#231](https://github.com/gdombiak/OctoPod/issues/231)
+
+**Closed issues:**
+
+- Notification Settings [\#232](https://github.com/gdombiak/OctoPod/issues/232)
+- Notifications: Unknot code [\#229](https://github.com/gdombiak/OctoPod/issues/229)
 
 ## [2.8](https://github.com/gdombiak/OctoPod/tree/2.8) (2019-10-15)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.7...2.8)
