@@ -72,6 +72,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         
         // Add gestures to capture swipes on navigation bar to switch between printers
         addNavBarSwipeGestures()
+        
+        // Use aspect fit so image keeps aspect ratio
+        notRefreshingButton.imageView?.contentMode = .scaleAspectFit
     }
     
     override func viewWillAppear(_ animated: Bool) {

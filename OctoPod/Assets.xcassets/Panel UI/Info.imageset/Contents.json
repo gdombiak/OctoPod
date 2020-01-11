@@ -2,24 +2,22 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "question_24.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "settings_48.png",
+      "filename" : "question_48.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "settings_64.png",
+      "filename" : "question_64.png",
       "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
-  },
-  "properties" : {
-    "template-rendering-intent" : "original"
   }
 }
