@@ -232,6 +232,15 @@
 /* (No Comment) */
 "Failed to request to go home" = "Nepavyko judėti namo";
 
+/* No comment provided by engineer. */
+"Failed to request to go home X" = "Nepavyko judėti namo X";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Y" = "Nepavyko judėti namo Y";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Z" = "Nepavyko judėti namo Z";
+
 /* (No Comment) */
 "Failed to request to print file" = "Nepavyko spausdinimas";
 

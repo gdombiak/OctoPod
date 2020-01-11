@@ -349,8 +349,8 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     // MARK: - Print head operations (move operations)
     
-    func home(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
-        octoPrintRESTClient.home(callback: callback)
+    func home(axes: Array<String>, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.home(axes: axes, callback: callback)
     }
     
     func move(x delta: Float, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {

@@ -232,6 +232,15 @@
 /* (No Comment) */
 "Failed to request to go home" = "Échec de la demande de retour en position initiale";
 
+/* No comment provided by engineer. */
+"Failed to request to go home X" = "Échec de la demande de retour en position X initiale";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Y" = "Échec de la demande de retour en position Y initiale";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Z" = "Échec de la demande de retour en position Z initiale";
+
 /* (No Comment) */
 "Failed to request to print file" = "Échec de la demande d’impression";
 

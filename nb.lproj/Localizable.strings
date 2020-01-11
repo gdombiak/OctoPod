@@ -232,6 +232,15 @@
 /* (No Comment) */
 "Failed to request to go home" = "Kunne ikke be om å gå hjem";
 
+/* No comment provided by engineer. */
+"Failed to request to go home X" = "Kunne ikke be om å gå hjem X";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Y" = "Kunne ikke be om å gå hjem Y";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Z" = "Kunne ikke be om å gå hjem Z";
+
 /* (No Comment) */
 "Failed to request to print file" = "Kunne ikke be om å skrive ut fil";
 

@@ -232,6 +232,15 @@
 /* (No Comment) */
 "Failed to request to go home" = "Nezdařil se požadavek o posun domů";
 
+/* No comment provided by engineer. */
+"Failed to request to go home X" = "Nezdařil se požadavek o posun domů X";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Y" = "Nezdařil se požadavek o posun domů Y";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Z" = "Nezdařil se požadavek o posun domů Z";
+
 /* (No Comment) */
 "Failed to request to print file" = "Nezdařila se žádost o tisk souboru";
 

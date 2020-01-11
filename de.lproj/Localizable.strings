@@ -232,6 +232,15 @@
 /* (No Comment) */
 "Failed to request to go home" = "Anfrage Referenzfahrt fehlgeschlagen";
 
+/* No comment provided by engineer. */
+"Failed to request to go home X" = "Anfrage Referenzfahrt X fehlgeschlagen";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Y" = "Anfrage Referenzfahrt Y fehlgeschlagen";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Z" = "Anfrage Referenzfahrt Z fehlgeschlagen";
+
 /* (No Comment) */
 "Failed to request to print file" = "Anfrage Datei drucken gescheitert";
 

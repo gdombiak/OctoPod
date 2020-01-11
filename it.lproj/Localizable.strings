@@ -232,6 +232,15 @@
 /* (No Comment) */
 "Failed to request to go home" = "Errore nella richiesta di azzerare la posizione";
 
+/* No comment provided by engineer. */
+"Failed to request to go home X" = "Errore nella richiesta di azzerare la posizione X";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Y" = "Errore nella richiesta di azzerare la posizione Y";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Z" = "Errore nella richiesta di azzerare la posizione Z";
+
 /* (No Comment) */
 "Failed to request to print file" = "Errore nella richiesta di stampare il file";
 

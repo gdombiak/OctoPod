@@ -232,6 +232,15 @@
 /* (No Comment) */
 "Failed to request to go home" = "Error al ir al origen";
 
+/* No comment provided by engineer. */
+"Failed to request to go home X" = "Error al ir al origen X";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Y" = "Error al ir al origen Y";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Z" = "Error al ir al origen Z";
+
 /* (No Comment) */
 "Failed to request to print file" = "Error al imprimir archivo";
 

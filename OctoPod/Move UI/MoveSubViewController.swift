@@ -31,6 +31,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBOutlet weak var downButton: UIButton!
     @IBOutlet weak var downLeadingConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var goHomeXButton: UIButton!
+    @IBOutlet weak var goHomeYButton: UIButton!
+    @IBOutlet weak var goHomeZButton: UIButton!
     @IBOutlet weak var goHomeButton: UIButton!
     
     @IBOutlet weak var selectExtruderCell: UITableViewCell!
@@ -204,7 +207,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     }
     
     @IBAction func goHome(_ sender: Any) {
-        octoprintClient.home { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+        octoprintClient.home(axes: ["x", "y", "z"]) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if !requested {
                 // Handle error
                 NSLog("Error going home. HTTP status code \(response.statusCode)")
@@ -212,7 +215,38 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             }
         }
     }
+
+    @IBAction func goHomeX(_ sender: Any) {
+        octoprintClient.home(axes: ["x"]) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if !requested {
+                // Handle error
+                NSLog("Error going home X. HTTP status code \(response.statusCode)")
+                self.showAlert(message: NSLocalizedString("Failed to request to go home X", comment: ""))
+            }
+        }
+    }
     
+    @IBAction func goHomeY(_ sender: Any) {
+        octoprintClient.home(axes: ["y"]) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if !requested {
+                // Handle error
+                NSLog("Error going home Y. HTTP status code \(response.statusCode)")
+                self.showAlert(message: NSLocalizedString("Failed to request to go home Y", comment: ""))
+            }
+        }
+    }
+    
+    @IBAction func goHomeZ(_ sender: Any) {
+        octoprintClient.home(axes: ["z"]) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if !requested {
+                // Handle error
+                NSLog("Error going home Z. HTTP status code \(response.statusCode)")
+                self.showAlert(message: NSLocalizedString("Failed to request to go home Z", comment: ""))
+            }
+        }
+    }
+    
+
     // MARK: - E Operations
 
     @IBAction func retract(_ sender: Any) {
@@ -535,8 +569,11 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         upButton.isEnabled = enable
         downButton.isEnabled = enable
         
+        goHomeXButton.isEnabled = enable
+        goHomeYButton.isEnabled = enable
+        goHomeZButton.isEnabled = enable
         goHomeButton.isEnabled = enable
-        
+
         retractButton.isEnabled = enable
         extrudeButton.isEnabled = enable
         flowRateSlider.isEnabled = enable

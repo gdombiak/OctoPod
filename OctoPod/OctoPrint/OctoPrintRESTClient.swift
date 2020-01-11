@@ -304,11 +304,11 @@ class OctoPrintRESTClient {
     
     // MARK: - Print head operations (move operations)
     
-    func home(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+    func home(axes: Array<String>, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
             json["command"] = "home"
-            json["axes"] = ["x", "y", "z"]
+            json["axes"] = axes
             
             printHeadPost(httpClient: client, json: json, callback: callback)
         }
