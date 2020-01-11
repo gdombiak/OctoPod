@@ -41,6 +41,7 @@ class NavigationController: UINavigationController, OctoPrintSettingsDelegate, W
         let theme = Theme.currentTheme()
         navigationBar.barTintColor = theme.navigationTopColor(octoPrintColor: color)
         navigationBar.tintColor = theme.navigationTintColor(octoPrintColor: color)
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.navigationTitleColor(octoPrintColor: color)]
     }
 
     // MARK: - OctoPrintSettingsDelegate

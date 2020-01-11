@@ -9,12 +9,14 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
     @IBOutlet weak var darkCell: UITableViewCell!
     @IBOutlet weak var orangeCell: UITableViewCell!
     @IBOutlet weak var octoPrintCell: UITableViewCell!
-
+    @IBOutlet weak var systemCell: UITableViewCell!
+    
     @IBOutlet weak var lightLabel: UILabel!
     @IBOutlet weak var darkLabel: UILabel!
     @IBOutlet weak var orangeLabel: UILabel!
     @IBOutlet weak var octoPrintLabel: UILabel!
-
+    @IBOutlet weak var systemLabel: UILabel!
+    
     @IBOutlet weak var changeLanguageButton: UIButton!
     
     @IBOutlet weak var zoomInEnabledLabel: UILabel!
@@ -36,6 +38,7 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         darkLabel.textColor = theme.textColor()
         orangeLabel.textColor = theme.textColor()
         octoPrintLabel.textColor = theme.textColor()
+        systemLabel.textColor = theme.textColor()
         zoomInEnabledLabel.textColor = theme.textColor()
         changeLanguageButton.tintColor = theme.tintColor()
         
@@ -43,6 +46,15 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         
         checkAppLockStatus()
         refreshSelectedTheme(theme: theme)
+        
+        // Do not let user select iOS Dark mode if older than iOS 13
+        if #available(iOS 13.0, *) {
+            systemLabel.isEnabled = true
+            systemCell.isUserInteractionEnabled = true
+        } else {
+            systemLabel.isEnabled = false
+            systemCell.isUserInteractionEnabled = false
+        }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -56,14 +68,17 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
             Theme.switchTheme(choice: Theme.ThemeChoice.Dark)
         } else if indexPath.row == 2 {
             Theme.switchTheme(choice: Theme.ThemeChoice.Orange)
-        } else {
+        } else if indexPath.row == 3 {
             Theme.switchTheme(choice: Theme.ThemeChoice.OctoPrint)
+        } else {
+            Theme.switchTheme(choice: Theme.ThemeChoice.System)
         }
         // Update navigation bar
         let theme = Theme.currentTheme()
         let printer = printerManager.getDefaultPrinter()
         navigationController?.navigationBar.barTintColor = theme.navigationTopColor(octoPrintColor: printer?.color)
         navigationController?.navigationBar.tintColor = theme.navigationTintColor(octoPrintColor: printer?.color)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.navigationTitleColor(octoPrintColor: printer?.color)]
         tabBarController?.tabBar.barTintColor = theme.tabBarColor()
         tabBarController?.tabBar.tintColor = theme.tintColor()
         // Refresh table
@@ -81,21 +96,31 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
             darkCell.accessoryType = .none
             orangeCell.accessoryType = .none
             octoPrintCell.accessoryType = .none
+            systemCell.accessoryType = .none
         case .Dark:
             lightCell.accessoryType = .none
             darkCell.accessoryType = .checkmark
             orangeCell.accessoryType = .none
             octoPrintCell.accessoryType = .none
+            systemCell.accessoryType = .none
         case .Orange:
             lightCell.accessoryType = .none
             darkCell.accessoryType = .none
             orangeCell.accessoryType = .checkmark
             octoPrintCell.accessoryType = .none
+            systemCell.accessoryType = .none
         case .OctoPrint:
             lightCell.accessoryType = .none
             darkCell.accessoryType = .none
             orangeCell.accessoryType = .none
             octoPrintCell.accessoryType = .checkmark
+            systemCell.accessoryType = .none
+        case .System:
+            lightCell.accessoryType = .none
+            darkCell.accessoryType = .none
+            orangeCell.accessoryType = .none
+            octoPrintCell.accessoryType = .none
+            systemCell.accessoryType = .checkmark
         }
     }
     

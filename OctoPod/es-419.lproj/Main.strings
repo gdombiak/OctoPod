@@ -271,8 +271,8 @@
 /* Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt"; */
 "gCt-Vk-Fgt.headerTitle" = "Conexión";
 
-/* Class = "UITableViewSection"; headerTitle = "X Y Z"; ObjectID = "gHQ-Lu-mQ0"; */
-"gHQ-Lu-mQ0.headerTitle" = "X Y Z";
+/* Class = "UITableViewSection"; headerTitle = "Home"; ObjectID = "gHQ-Lu-mQ0"; */
+"gHQ-Lu-mQ0.headerTitle" = "Origen";
 
 /* Class = "UILabel"; text = "Record Siri phrase to use shortcuts"; ObjectID = "Ghq-m2-F0u"; */
 "Ghq-m2-F0u.text" = "Grabar frase de Siri para usar accesos directos";

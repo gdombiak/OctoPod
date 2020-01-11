@@ -661,12 +661,16 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         feedRateField.textColor = textColor
         feedRateLabel.textColor = textColor
         
-        xyStepSegmentedControl.tintColor = tintColor
-        zStepSegmentedControl.tintColor = tintColor
-        eStepSegmentedControl.tintColor = tintColor
+        xyStepSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: tintColor], for: .selected)
+        xyStepSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: textColor], for: .normal)
+        zStepSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: tintColor], for: .selected)
+        zStepSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: textColor], for: .normal)
+        eStepSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: tintColor], for: .selected)
+        eStepSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: textColor], for: .normal)
         
         selectExtruderLabel.textColor = textLabelColor
-        selectExtruderSegmentedControl.tintColor = tintColor
+        selectExtruderSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: tintColor], for: .selected)
+        selectExtruderSegmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: textColor], for: .normal)
 
         retractButton.tintColor = tintColor
         extrudeButton.tintColor = tintColor
