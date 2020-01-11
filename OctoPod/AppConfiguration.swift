@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 class AppConfiguration: OctoPrintClientDelegate {
     
@@ -9,6 +10,7 @@ class AppConfiguration: OctoPrintClientDelegate {
     private static let CONFIRMATION_ON_DISCONNECT = "APP_CONFIGURATION_CONF_ON_DISCONNECT"
     private static let PROMPT_SPEED_EXTRUDE = "APP_CONFIGURATION_PROMPT_SPEED_EXTRUDE"
     private static let DISABLE_CERT_VALIDATION = "APP_CONFIGURATION_DISABLE_CERT_VALIDATION"
+    private static let DISABLE_TURNOFF_IDLE = "APP_CONFIGURATION_DISABLE_TURNOFF_IDLE"
     private static let DISABLE_TEMP_CHART_ZOOM = "APP_CONFIGURATION_DISABLE_TEMP_CHART_ZOOM"
     private static let PLUGIN_UPDATES_CHECK_FREQUENCY = "APP_CONFIGURATION_PLUGIN_UPDATES_CHECK_FREQUENCY"
 
@@ -163,6 +165,27 @@ class AppConfiguration: OctoPrintClientDelegate {
         for delegate in delegates {
             delegate.certValidationChanged(disabled: disable)
         }
+    }
+    
+    // MARK: - Turn Off Screen when Idle
+    
+    /// Returns true if screen witll NOT be turned off when idle. By default iOS turns off displays when idle to save battery
+    /// Some users asked to be able to disable this iOS feature. TIMER IS ENABLED by default to conserve battery
+    func turnOffIdleDisabled() -> Bool {
+        let defaults = UserDefaults.standard
+        if let result = defaults.object(forKey: AppConfiguration.DISABLE_TURNOFF_IDLE) as? Bool {
+            return result
+        }
+        return false
+    }
+    
+    /// Sets whether display will be turned off when app is idle.  By default iOS turns off displays when idle to save battery
+    /// - parameter disable: True if display will NOT be turned off when idle
+    func turnOffIdleDisabled(disable: Bool) {
+        let defaults = UserDefaults.standard
+        defaults.set(disable, forKey: AppConfiguration.DISABLE_TURNOFF_IDLE)
+        // Set new value so that iOS knows about it
+        UIApplication.shared.isIdleTimerDisabled = disable
     }
     
     // MARK: - Temp Chart

@@ -46,6 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Initialize Siri shortcuts for existing printers (this is a one time operation)
         IntentsDonations.initIntentsForAllPrinters(printerManager: printerManager!)
+        
+        // Turn off/on idle timer that turns off display when app is idle. By default display
+        // will be turned off to save power
+        UIApplication.shared.isIdleTimerDisabled = appConfiguration.turnOffIdleDisabled()
 
         return true
     }

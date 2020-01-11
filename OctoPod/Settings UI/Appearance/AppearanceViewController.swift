@@ -19,6 +19,9 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
     
     @IBOutlet weak var changeLanguageButton: UIButton!
     
+    @IBOutlet weak var turnoffIdleLabel: UILabel!
+    @IBOutlet weak var turnoffIdleSwitch: UISwitch!
+    
     @IBOutlet weak var zoomInEnabledLabel: UILabel!
     @IBOutlet weak var zoomInEnabledSwitch: UISwitch!
     
@@ -39,9 +42,11 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         orangeLabel.textColor = theme.textColor()
         octoPrintLabel.textColor = theme.textColor()
         systemLabel.textColor = theme.textColor()
+        turnoffIdleLabel.textColor = theme.textColor()
         zoomInEnabledLabel.textColor = theme.textColor()
         changeLanguageButton.tintColor = theme.tintColor()
         
+        turnoffIdleSwitch.isOn = !appConfiguration.turnOffIdleDisabled()
         zoomInEnabledSwitch.isOn = !appConfiguration.tempChartZoomDisabled()
         
         checkAppLockStatus()
@@ -85,6 +90,10 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         viewWillAppear(true)
     }
 
+    @IBAction func turnoffIdleChanged(_ sender: Any) {
+        appConfiguration.turnOffIdleDisabled(disable: !turnoffIdleSwitch.isOn)
+    }
+    
     @IBAction func tempZoomChanged(_ sender: Any) {
         appConfiguration.tempChartZoomDisabled(disable: !zoomInEnabledSwitch.isOn)
     }
@@ -150,6 +159,7 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
     fileprivate func checkAppLockStatus() {
         // Do not let user change these settings when app is in locked mode
         changeLanguageButton.isEnabled = !appConfiguration.appLocked()
+        turnoffIdleSwitch.isEnabled = !appConfiguration.appLocked()
         zoomInEnabledSwitch.isEnabled = !appConfiguration.appLocked()
     }
 }
