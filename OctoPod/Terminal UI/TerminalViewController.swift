@@ -28,6 +28,25 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         // Add a border to the (by default) hidden commands history view
         commandsHistoryView.layer.borderWidth = 1.5
         commandsHistoryView.layer.borderColor = UIColor(red: 149/255, green: 170/255, blue: 204/255, alpha: 1.0).cgColor
+        
+        // Add numbers at the top of keyboard for sending GCODE
+        let bar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
+        bar.tintColor = .white
+        bar.barTintColor = .darkGray
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let b0 = UIBarButtonItem(title: "0", style: .plain, target: self, action: #selector(addNumber(sender:)))
+        let b1 = UIBarButtonItem(title: "1", style: .plain, target: self, action: #selector(addNumber(sender:)))
+        let b2 = UIBarButtonItem(title: "2", style: .plain, target: self, action: #selector(addNumber(sender:)))
+        let b3 = UIBarButtonItem(title: "3", style: .plain, target: self, action: #selector(addNumber(sender:)))
+        let b4 = UIBarButtonItem(title: "4", style: .plain, target: self, action: #selector(addNumber(sender:)))
+        let b5 = UIBarButtonItem(title: "5", style: .plain, target: self, action: #selector(addNumber(sender:)))
+        let b6 = UIBarButtonItem(title: "6", style: .plain, target: self, action: #selector(addNumber(sender:)))
+        let b7 = UIBarButtonItem(title: "7", style: .plain, target: self, action: #selector(addNumber(sender:)))
+        let b8 = UIBarButtonItem(title: "8", style: .plain, target: self, action: #selector(addNumber(sender:)))
+        let b9 = UIBarButtonItem(title: "9", style: .plain, target: self, action: #selector(addNumber(sender:)))
+        bar.items = [b1, flexSpace, b2, flexSpace, b3, flexSpace, b4, flexSpace, b5, flexSpace, b6, flexSpace, b7, flexSpace, b8, flexSpace, b9, flexSpace, b0]
+        bar.sizeToFit()
+        gcodeField.inputAccessoryView = bar
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -261,6 +280,12 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     fileprivate func configureBasedOnAppLockedState() {
         // Enable sending gcode commands only if app is not locked
         gcodeField.isEnabled = !appConfiguration.appLocked()
+    }
+    
+    @objc fileprivate func addNumber(sender: UIBarButtonItem) {
+        if let title = sender.title {
+            gcodeField.text!.append(title)
+        }
     }
     
     // Make sure to call this function from main thread
