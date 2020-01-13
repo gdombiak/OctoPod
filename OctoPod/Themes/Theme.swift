@@ -145,9 +145,9 @@ class Theme {
             case .Light:
                 return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
             case .Dark:
-                return UIColor(red: 47/255, green: 49/255, blue: 53/255, alpha: 1.0)
+                return UIColor(red: 56/255, green: 58/255, blue: 63/255, alpha: 1.0)
             case .Orange:
-                return UIColor(red: 47/255, green: 49/255, blue: 53/255, alpha: 1.0)
+                return UIColor(red: 56/255, green: 58/255, blue: 63/255, alpha: 1.0)
             case .OctoPrint:
                 return UIColor(red: 225/255, green: 225/255, blue: 220/255, alpha: 1.0)
             case .System:
@@ -155,7 +155,7 @@ class Theme {
                     return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
                         if UITraitCollection.userInterfaceStyle == .dark {
                             /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor(red: 47/255, green: 49/255, blue: 53/255, alpha: 1.0)
+                            return UIColor(red: 56/255, green: 58/255, blue: 63/255, alpha: 1.0)
                         } else {
                             /// Return the color for Light Mode. Same as OctoPrint color
                             return UIColor(red: 225/255, green: 225/255, blue: 220/255, alpha: 1.0)
