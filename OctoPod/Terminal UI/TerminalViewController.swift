@@ -275,6 +275,12 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         }
     }
     
+    // MARK: - Keyboard Actions
+    
+    @IBAction func gcodeSendTriggeredFromKeyboard(_ sender: Any) {
+        sendGCode(sender)
+    }
+    
     // MARK: - Private functions
 
     fileprivate func configureBasedOnAppLockedState() {
