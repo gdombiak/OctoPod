@@ -89,9 +89,11 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
 
     func printerSelectedChanged() {
         // Only refresh UI if view controller is being shown
-        if let _ = parent {
-            // Fetch and render custom controls
-            refreshCustomControls(done: nil)
+        DispatchQueue.main.async {
+            if let _ = self.parent {
+                // Fetch and render custom controls
+                self.refreshCustomControls(done: nil)
+            }
         }
     }
     

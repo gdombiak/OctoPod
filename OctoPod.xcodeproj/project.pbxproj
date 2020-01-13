@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */; };
 		3D02D19A229A6AC8004788B6 /* RemindersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D02D199229A6AC8004788B6 /* RemindersViewController.swift */; };
 		3D071A14212682C1005301B4 /* OctoPrintPluginsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D071A13212682C1005301B4 /* OctoPrintPluginsDelegate.swift */; };
 		3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */; };
@@ -291,7 +290,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobInfoViewController.swift; sourceTree = "<group>"; };
 		3D02D199229A6AC8004788B6 /* RemindersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewController.swift; sourceTree = "<group>"; };
 		3D071A13212682C1005301B4 /* OctoPrintPluginsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintPluginsDelegate.swift; sourceTree = "<group>"; };
 		3D0CF43F231796F8001066F5 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -678,7 +676,6 @@
 				3DF0157721227C42002B4C14 /* Subpanels */,
 				3D8B292920E54F7300296D9D /* PanelViewController.swift */,
 				3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */,
-				3D01E29120F3DE850020DE41 /* JobInfoViewController.swift */,
 				3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */,
 				3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */,
 				3D02D199229A6AC8004788B6 /* RemindersViewController.swift */,
@@ -1578,7 +1575,6 @@
 				3D450EC121AB37D60049FBC0 /* IntentsDonations.swift in Sources */,
 				3D866BF4218D55FF007AA493 /* BackgroundRefresher.swift in Sources */,
 				3D8D51A921333D310006BBB1 /* CustomControlInputSlideViewCell.swift in Sources */,
-				3D01E29220F3DE850020DE41 /* JobInfoViewController.swift in Sources */,
 				3D9AAD5122B325A00051BB1B /* MMUNotificationsHandler.swift in Sources */,
 				3DDB5FCD22D11A24005F8A9F /* PluginUpdatesViewController.swift in Sources */,
 				3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */,

@@ -307,23 +307,6 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
 
-    @IBAction func backFromFailedJobRequest(_ sender: UIStoryboardSegue) {
-        if let controller = sender.source as? JobInfoViewController, let jobOperation = controller.requestedJobOperation {
-            switch jobOperation {
-            case .cancel:
-                showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed cancel job", comment: ""))
-            case .pause:
-                showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed pause job", comment: ""))
-            case .resume:
-                showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed resume job", comment: ""))
-            case .restart:
-                showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed restart job", comment: ""))
-            case .reprint:
-                showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed print job again", comment: ""))
-            }
-        }
-    }
-    
     @IBAction func backFromShowReminders(_ sender: UIStoryboardSegue) {
         UserDefaults.standard.set(true, forKey: PanelViewController.REMINDERS_SHOWN)
     }

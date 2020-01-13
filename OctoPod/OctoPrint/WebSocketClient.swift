@@ -161,6 +161,10 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
                             event.parseState(state: state)
                         }
                         
+                        if let job = (current["job"] as? NSDictionary) {
+                            event.parseJob(job: job)
+                        }
+                        
                         if let temps = current["temps"] as? NSArray {
                             if temps.count > 0 {
                                 if let tempFirst = temps[0] as? NSDictionary {

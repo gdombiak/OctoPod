@@ -41,13 +41,17 @@ class CurrentStateEvent {
     var closedOrError: Bool?
     var printing: Bool?  // This could represent that printer is printing or printer is uploading file to SD Card. IOW, this means if printer is busy
     var paused: Bool?
-    
+    var pausing: Bool?
+    var cancelling: Bool?
+
     /// Current Z position (if present)
     var currentZ: Double?
     
     var progressCompletion: Double?
     var progressPrintTime: Int?
     var progressPrintTimeLeft: Int?
+    
+    var printFile: PrintFile?
     
     var logs: Array<String>?
     
@@ -107,8 +111,22 @@ class CurrentStateEvent {
         if let flags = state["flags"] as? NSDictionary {
             operational  = flags["operational"] as? Bool
             paused = flags["paused"] as? Bool
+            pausing = flags["pausing"] as? Bool
             printing = flags["printing"] as? Bool
+            cancelling = flags["cancelling"] as? Bool
             closedOrError = flags["closedOrError"] as? Bool
+        }
+    }
+
+    /// Parse job information from received JSON.
+    /// - Parameter job: JSON of the current job element
+    func parseJob(job: NSDictionary) {
+        if let file = job["file"] as? NSDictionary {
+            let printFile = PrintFile()
+            printFile.parse(json: file)
+            if printFile.path != nil {
+                self.printFile = printFile
+            }
         }
     }
 

@@ -78,9 +78,11 @@ class CancelObjectViewController: ThemedDynamicUITableViewController, SubpanelVi
     
     func printerSelectedChanged() {
         // Only refresh UI if view controller is being shown
-        if let _ = parent {
-            // Fetch and render list of objects that can be cancelled
-            refreshCancelObjects(done: nil)
+        DispatchQueue.main.async {
+            if let _ = self.parent {
+                // Fetch and render list of objects that can be cancelled
+                self.refreshCancelObjects(done: nil)
+            }
         }
     }
     

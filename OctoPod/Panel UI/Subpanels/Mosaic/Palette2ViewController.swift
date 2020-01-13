@@ -180,9 +180,11 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
     
     func printerSelectedChanged() {
         // Only refresh UI if view controller is being shown
-        if let _ = parent {
-            // Fetch and render palette status
-            refreshStatus(refreshUI: true, done: nil)
+        DispatchQueue.main.async {
+            if let _ = self.parent {
+                // Fetch and render palette status
+                self.refreshStatus(refreshUI: true, done: nil)
+            }
         }
     }
     

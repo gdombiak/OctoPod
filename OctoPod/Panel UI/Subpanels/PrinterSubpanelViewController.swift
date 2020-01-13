@@ -13,6 +13,10 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         case all_except_connect
     }
     
+    let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
+
     @IBOutlet weak var printedTextLabel: UILabel!
     @IBOutlet weak var printTimeTextLabel: UILabel!
     @IBOutlet weak var printTimeLeftTextLabel: UILabel!
@@ -22,11 +26,19 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
 
     @IBOutlet weak var printerStatusLabel: UILabel!
     
+    @IBOutlet weak var currentPrintDetailsRow: UITableViewCell!
+    @IBOutlet weak var currentPrintActionsRow: UITableViewCell!
+    @IBOutlet weak var printingFileLabel: UILabel!
+    @IBOutlet weak var printButton: UIButton!
+    @IBOutlet weak var restartButton: UIButton!
+    @IBOutlet weak var pauseButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var resumeButton: UIButton!
+    
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var printTimeLabel: UILabel!
     @IBOutlet weak var printTimeLeftLabel: UILabel!
-    @IBOutlet weak var printJobButton: UIButton!
     
     @IBOutlet weak var tool0SetTempButton: UIButton!
     @IBOutlet weak var tool0ActualLabel: UILabel!
@@ -69,6 +81,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     @IBOutlet weak var bedTargetLabel: UILabel!
     @IBOutlet weak var bedSplitLabel: UILabel!
     
+    var lastKnownPrintFile: PrintFile?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -99,6 +113,13 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 && (indexPath.row == 0 || indexPath.row == 1) && currentPrintDetailsRow.isHidden {
+            return 0
+        }
+        return super.tableView(tableView, heightForRowAt: indexPath)
     }
 
      // MARK: - Navigation
@@ -166,18 +187,6 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 // Make the popover appear at the middle of the button
                 segue.destination.popoverPresentationController!.sourceRect = CGRect(x: tool4SetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
             }
-        } else if segue.identifier == "print_job_info" {
-            segue.destination.popoverPresentationController!.delegate = self
-            // Make the popover appear at the middle of the button
-            let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
-            let y = devicePortrait ? 0 : printJobButton.frame.size.height
-            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: printJobButton.frame.size.width/2, y: y , width: 0, height: 0)
-        } else if segue.identifier == "print_job_tooltip" {
-            segue.destination.popoverPresentationController!.delegate = self
-            // Make the popover appear at the middle of the button
-            let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
-            let y = devicePortrait ? 0 : printJobButton.frame.size.height
-            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: printJobButton.frame.size.width/2, y: y , width: 0, height: 0)
         }
     }
     
@@ -192,17 +201,34 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         checkRateApp(event: event)
         
         DispatchQueue.main.async {
+            var reloadTable = false
+            
             if let state = event.state {
                 self.printerStatusLabel.text = state
             }
+            
+            if let printFile = event.printFile {
+                if self.printingFileLabel.text != printFile.name {
+                    self.printingFileLabel.text = printFile.name
+                    self.currentPrintDetailsRow.isHidden = false
+                    reloadTable = true
+                }
+            } else {
+                // Hide print job information (and action buttons) only if not printing and there is no print info available
+                // Printing and no info available may happen when receiving PrinterStateChanged events
+                if self.printingFileLabel.text != "" && event.printing != true {
+                    self.printingFileLabel.text = ""
+                    self.currentPrintDetailsRow.isHidden = true
+                    reloadTable = true
+                }
+            }
+            self.lastKnownPrintFile = event.printFile
+            self.refrechCurrentPrintButtons(event: event)
 
             if let progress = event.progressCompletion {
                 let progressText = String(format: "%.1f", progress)
                 self.progressLabel.text = "\(progressText)%"
                 self.progressView.setProgress(Float(progressText)! / 100, animated: true) // Convert Float from String to prevent weird behaviors
-                self.printJobButton.isEnabled = progress > 0
-                
-                self.presentToolTip(tooltipKey: PrinterSubpanelViewController.TOOLTIP_PRINT_INFO, segueIdentifier: "print_job_tooltip", button: self.printJobButton)
             }
             
             if let seconds = event.progressPrintTime {
@@ -317,6 +343,12 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 self.presentToolTip(tooltipKey: PrinterSubpanelViewController.TOOLTIP_TEMP_BED, segueIdentifier: "bed_tooltip", button: self.bedSetTempButton)
                 self.presentToolTip(tooltipKey: PrinterSubpanelViewController.TOOLTIP_TEMP_TOOL, segueIdentifier: "tool0_tooltip", button: self.tool0SetTempButton)
             }
+            
+            if reloadTable {
+                // Force to recalculate rows height since cells may be visible
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
+            }
         }
     }
     
@@ -333,6 +365,75 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     // We need to add this so it works on iPhone plus in landscape mode
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
+    }
+
+    // MARK: - Print Action Buttons
+
+    @IBAction func restartJob(_ sender: Any) {
+        showConfirm(message: NSLocalizedString("Do you want to restart print job from the beginning?", comment: ""), yes: { (UIAlertAction) in
+            self.octoprintClient.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                if !requested {
+                    NSLog("Error requesting to restart current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                    self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed restart job", comment: ""))
+                }
+            }
+        }, no: { (UIAlertAction) -> Void in
+            // Do nothing
+        })
+        if let printer = printerManager.getDefaultPrinter() {
+            IntentsDonations.donateRestartJob(printer: printer)
+        }
+    }
+    
+    @IBAction func pauseJob(_ sender: Any) {
+        self.octoprintClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if !requested {
+                NSLog("Error requesting to pause current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed pause job", comment: ""))
+            }
+        }
+        if let printer = printerManager.getDefaultPrinter() {
+            IntentsDonations.donatePauseJob(printer: printer)
+        }
+    }
+    
+    @IBAction func cancelJob(_ sender: Any) {
+        showConfirm(message: NSLocalizedString("Do you want to cancel job?", comment: ""), yes: { (UIAlertAction) in
+            self.octoprintClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                if !requested {
+                    NSLog("Error requesting to cancel current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                    self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed cancel job", comment: ""))
+                }
+            }
+        }, no: { (UIAlertAction) -> Void in
+            // Do nothing
+        })
+        if let printer = printerManager.getDefaultPrinter() {
+            IntentsDonations.donateCancelJob(printer: printer)
+        }
+    }
+    
+    @IBAction func printJob(_ sender: Any) {
+        if let lastFile = lastKnownPrintFile {
+            self.octoprintClient.printFile(origin: lastFile.origin!, path: lastFile.path!) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                if !requested {
+                    NSLog("Error requesting to reprint file: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                    self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed print job again", comment: ""))
+                }
+            }
+        }
+    }
+    
+    @IBAction func resumeJob(_ sender: Any) {
+        self.octoprintClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if !requested {
+                NSLog("Error requesting to resume current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed resume job", comment: ""))
+            }
+        }
+        if let printer = printerManager.getDefaultPrinter() {
+            IntentsDonations.donateResumeJob(printer: printer)
+        }
     }
 
     // MARK: - Rate app - Private functions
@@ -370,6 +471,65 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     }
     
     // MARK: - Private functions
+    
+    fileprivate func refrechCurrentPrintButtons(event: CurrentStateEvent) {
+        if let pausing = event.pausing, pausing {
+            // We are pausing so show Print (disabled), Pause (disabled) and Cancel (disabled)
+            self.printButton.isHidden = false
+            self.printButton.isEnabled = false
+            self.pauseButton.isHidden = false
+            self.pauseButton.isEnabled = false
+            self.cancelButton.isHidden = false
+            self.cancelButton.isEnabled = false
+
+            self.restartButton.isHidden = true
+            self.resumeButton.isHidden = true
+        } else if let cancelling = event.cancelling, cancelling {
+            // We are cancelling so show Print (disabled), Pause (disabled) and Cancel (disabled)
+            self.printButton.isHidden = false
+            self.printButton.isEnabled = false
+            self.pauseButton.isHidden = false
+            self.pauseButton.isEnabled = false
+            self.cancelButton.isHidden = false
+            self.cancelButton.isEnabled = false
+
+            self.restartButton.isHidden = true
+            self.resumeButton.isHidden = true
+        } else if let printing = event.printing, printing {
+            // We are printing so show Print (disabled), Pause and Cancel
+            self.printButton.isHidden = false
+            self.printButton.isEnabled = false
+            self.pauseButton.isHidden = false
+            self.pauseButton.isEnabled = !appConfiguration.appLocked()
+            self.cancelButton.isHidden = false
+            self.cancelButton.isEnabled = !appConfiguration.appLocked()
+
+            self.restartButton.isHidden = true
+            self.resumeButton.isHidden = true
+        } else if let paused = event.paused, paused {
+            // We are paused so offer Restart, Resume and Cancel
+            self.restartButton.isHidden = false
+            self.restartButton.isEnabled = !appConfiguration.appLocked()
+            self.resumeButton.isHidden = false
+            self.resumeButton.isEnabled = !appConfiguration.appLocked()
+            self.cancelButton.isHidden = false
+            self.cancelButton.isEnabled = !appConfiguration.appLocked()
+
+            self.pauseButton.isHidden = true
+            self.printButton.isHidden = true
+        } else if let printFile = event.printFile {
+            // We are not printing so show Print (disabled?), Pause (disabled) and Cancel (disabled)
+            self.printButton.isHidden = false
+            self.printButton.isEnabled = printFile.name != nil
+            self.pauseButton.isHidden = false
+            self.pauseButton.isEnabled = false
+            self.cancelButton.isHidden = false
+            self.cancelButton.isEnabled = false
+
+            self.restartButton.isHidden = true
+            self.resumeButton.isHidden = true
+        }
+    }
     
     // Converts number of seconds into a string that represents time (e.g. 23h 10m)
     func secondsToPrintTime(seconds: Int) -> String {
@@ -409,12 +569,21 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     fileprivate func clearValues() {
         DispatchQueue.main.async {
             self.printerStatusLabel.text = NSLocalizedString("Offline", comment: "Printer is Offline")
+            
+            self.currentPrintDetailsRow.isHidden = true
+            self.printingFileLabel.text = ""
+
+            self.printButton.isHidden = false
+            self.printButton.isEnabled = false
+            self.restartButton.isHidden = true
+            self.pauseButton.isHidden = true
+            self.cancelButton.isHidden = true
+            self.resumeButton.isHidden = true
 
             self.progressView.setProgress(0, animated: false)
             self.progressLabel.text = "0%"
             self.printTimeLabel.text = ""
             self.printTimeLeftLabel.text = ""
-            self.printJobButton.isEnabled = false
             
             self.tool0ActualLabel.text = ""
             self.tool0TargetLabel.text = ""
@@ -461,6 +630,10 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             // Disable these buttons
             self.bedSetTempButton.isEnabled = false
             self.tool0SetTempButton.isEnabled = false
+            
+            // Force to recalculate rows height since cells may not be visible
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
         }
     }
     
@@ -473,7 +646,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         let theme = Theme.currentTheme()
         let textLabelColor = theme.labelColor()
         let textColor = theme.textColor()
-        
+        let tintColor = theme.tintColor()
+
         printedTextLabel.textColor = textLabelColor
         printTimeTextLabel.textColor = textLabelColor
         printTimeLeftTextLabel.textColor = textLabelColor
@@ -494,6 +668,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         tool4SplitLabel.textColor = textLabelColor
 
         printerStatusLabel.textColor = textColor
+        printingFileLabel.textColor = textColor
         progressLabel.textColor = textColor
         printTimeLabel.textColor = textColor
         printTimeLeftLabel.textColor = textColor
@@ -511,5 +686,19 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         tool4TargetLabel.textColor = textColor
         bedActualLabel.textColor = textColor
         bedTargetLabel.textColor = textColor
+        
+        printButton.tintColor = tintColor
+        restartButton.tintColor = tintColor
+        pauseButton.tintColor = tintColor
+        cancelButton.tintColor = tintColor
+        resumeButton.tintColor = tintColor
+    }
+    
+    fileprivate func showAlert(_ title: String, message: String) {
+        UIUtils.showAlert(presenter: self, title: title, message: message, done: nil)
+    }
+    
+    fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
+        UIUtils.showConfirm(presenter: self, message: message, yes: yes, no: no)
     }
 }

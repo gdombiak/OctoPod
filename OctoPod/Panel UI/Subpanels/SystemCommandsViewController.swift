@@ -101,9 +101,11 @@ class SystemCommandsViewController: ThemedDynamicUITableViewController, Subpanel
 
     func printerSelectedChanged() {
         // Only refresh UI if view controller is being shown
-        if let _ = parent {
-            // Fetch and render system commands
-            refreshSystemCommands(done: nil)
+        DispatchQueue.main.async {
+            if let _ = self.parent {
+                // Fetch and render system commands
+                self.refreshSystemCommands(done: nil)
+            }
         }
     }
     
