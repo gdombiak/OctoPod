@@ -89,7 +89,7 @@
                         <segue destination="1eA-yA-HPM" kind="popoverPresentation" identifier="updates_available" popoverAnchorView="qbu-bG-uS0" id="57v-Dx-Reh">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
-                        <segue destination="yQ0-es-YtZ" kind="popoverPresentation" identifier="swipe_printers_tooltip" popoverAnchorView="qbu-bG-uS0" id="f50-ya-yWm">
+                        <segue destination="OXf-E1-7gx" kind="popoverPresentation" identifier="swipe_printers_tooltip" popoverAnchorView="qbu-bG-uS0" id="9vg-LD-XVj">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
                     </connections>
@@ -551,8 +551,8 @@
                                                     <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                                                     <state key="normal" image="Edit"/>
                                                     <connections>
-                                                        <segue destination="ChO-VC-a6I" kind="popoverPresentation" identifier="set_target_temp_tool0" popoverAnchorView="dD0-Ut-b2r" id="pkN-0l-kuN">
-                                                            <popoverArrowDirection key="popoverArrowDirection" down="YES" right="YES"/>
+                                                        <segue destination="FzB-sX-2wF" kind="popoverPresentation" identifier="tool0_tooltip" popoverAnchorView="dD0-Ut-b2r" id="BIh-D3-MxT">
+                                                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
                                                         </segue>
                                                     </connections>
                                                 </button>
@@ -585,8 +585,8 @@
                                                     <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                                                     <state key="normal" image="Edit"/>
                                                     <connections>
-                                                        <segue destination="ChO-VC-a6I" kind="popoverPresentation" identifier="set_target_temp_bed" popoverAnchorView="TQV-TF-lM6" id="Rs9-4F-Pao">
-                                                            <popoverArrowDirection key="popoverArrowDirection" down="YES" left="YES"/>
+                                                        <segue destination="FzB-sX-2wF" kind="popoverPresentation" identifier="bed_tooltip" popoverAnchorView="TQV-TF-lM6" id="dS0-iN-me3">
+                                                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
                                                         </segue>
                                                     </connections>
                                                 </button>
@@ -937,12 +937,6 @@
                         <outlet property="toolRow1" destination="ZNE-Qd-Ktw" id="Ukx-6F-xMm"/>
                         <outlet property="toolRow2" destination="g27-YF-CyG" id="KmL-dK-KIe"/>
                         <outlet property="toolRow3" destination="Grl-MC-zgd" id="bob-an-koT"/>
-                        <segue destination="2sM-TY-Rbf" kind="popoverPresentation" identifier="tool0_tooltip" popoverAnchorView="dD0-Ut-b2r" id="NcJ-tU-Hj5">
-                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
-                        </segue>
-                        <segue destination="2sM-TY-Rbf" kind="popoverPresentation" identifier="bed_tooltip" popoverAnchorView="TQV-TF-lM6" id="00m-oN-bio">
-                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
-                        </segue>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="arI-ui-M4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1194,7 +1188,7 @@
                         <attributedString key="attributedTitle">
                             <fragment content="Pull down to refresh">
                                 <attributes>
-                                    <font key="NSFont" metaFont="label" size="11"/>
+                                    <font key="NSFont" metaFont="menu" size="11"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -1293,7 +1287,7 @@
                         <attributedString key="attributedTitle">
                             <fragment content="Pull down to refresh">
                                 <attributes>
-                                    <font key="NSFont" metaFont="label" size="11"/>
+                                    <font key="NSFont" metaFont="menu" size="11"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -3892,7 +3886,7 @@
                         <attributedString key="attributedTitle">
                             <fragment content="Pull down to refresh">
                                 <attributes>
-                                    <font key="NSFont" metaFont="label" size="11"/>
+                                    <font key="NSFont" metaFont="menu" size="11"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -5703,99 +5697,67 @@
             </objects>
             <point key="canvasLocation" x="7409" y="-230"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="cOq-md-xzD">
+        <!--View Controller-->
+        <scene sceneID="scu-Ue-BWk">
             <objects>
-                <tableViewController id="2sM-TY-Rbf" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="x1v-Pt-ZD6">
-                        <rect key="frame" x="0.0" y="0.0" width="340" height="54"/>
+                <viewController id="FzB-sX-2wF" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rgl-bD-4DW">
+                        <rect key="frame" x="0.0" y="0.0" width="365" height="34"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <sections>
-                            <tableViewSection id="nW8-ns-mlH">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="54" id="jyC-mx-cId">
-                                        <rect key="frame" x="0.0" y="28" width="340" height="54"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jyC-mx-cId" id="oAc-bP-yRh">
-                                            <rect key="frame" x="0.0" y="0.0" width="340" height="54"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip: Click to set temperature" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="HUF-Dw-M7F">
-                                                    <rect key="frame" x="18" y="18" width="304" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" name="selectedContentBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="HUF-Dw-M7F" secondAttribute="trailing" constant="2" id="7py-ha-N6D"/>
-                                                <constraint firstItem="HUF-Dw-M7F" firstAttribute="leading" secondItem="oAc-bP-yRh" secondAttribute="leadingMargin" constant="2" id="WII-Qt-gXx"/>
-                                                <constraint firstItem="HUF-Dw-M7F" firstAttribute="centerY" secondItem="oAc-bP-yRh" secondAttribute="centerY" id="wXV-Rq-c4A"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="2sM-TY-Rbf" id="OKN-yM-wB6"/>
-                            <outlet property="delegate" destination="2sM-TY-Rbf" id="NdG-7d-Z2j"/>
-                        </connections>
-                    </tableView>
-                    <value key="contentSizeForViewInPopover" type="size" width="340" height="54"/>
-                    <size key="freeformSize" width="340" height="54"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mFH-9f-ilu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip: Click to set temperature" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="HUF-Dw-M7F">
+                                <rect key="frame" x="2" y="8" width="361" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" name="selectedContentBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="1HA-cl-2Zu" firstAttribute="bottom" secondItem="HUF-Dw-M7F" secondAttribute="bottom" constant="8" id="IME-Se-6CC"/>
+                            <constraint firstItem="HUF-Dw-M7F" firstAttribute="leading" secondItem="1HA-cl-2Zu" secondAttribute="leading" constant="2" id="PH1-Ie-ojP"/>
+                            <constraint firstItem="1HA-cl-2Zu" firstAttribute="trailing" secondItem="HUF-Dw-M7F" secondAttribute="trailing" constant="2" id="VIN-tD-2Es"/>
+                            <constraint firstItem="HUF-Dw-M7F" firstAttribute="top" secondItem="1HA-cl-2Zu" secondAttribute="top" constant="8" id="uA8-BW-6Ne"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1HA-cl-2Zu"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="365" height="34"/>
+                    <size key="freeformSize" width="365" height="34"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B2b-cX-vY0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4414" y="-501"/>
+            <point key="canvasLocation" x="3809" y="-573"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="XAT-Xu-U8f">
+        <!--View Controller-->
+        <scene sceneID="rwq-Ns-Fcm">
             <objects>
-                <tableViewController id="yQ0-es-YtZ" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="c5N-z7-UNd">
-                        <rect key="frame" x="0.0" y="0.0" width="340" height="54"/>
+                <viewController id="OXf-E1-7gx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PlU-Js-p9Y">
+                        <rect key="frame" x="0.0" y="0.0" width="365" height="34"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <sections>
-                            <tableViewSection id="DTJ-px-ohj">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="54" id="mnP-Jo-mBD">
-                                        <rect key="frame" x="0.0" y="28" width="340" height="54"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mnP-Jo-mBD" id="a7X-hs-X8c">
-                                            <rect key="frame" x="0.0" y="0.0" width="340" height="54"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip: Swipe to switch between printers" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="lyc-MY-uT5">
-                                                    <rect key="frame" x="18" y="18" width="304" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" name="selectedContentBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="lyc-MY-uT5" secondAttribute="trailing" constant="2" id="afL-2m-bau"/>
-                                                <constraint firstItem="lyc-MY-uT5" firstAttribute="leading" secondItem="a7X-hs-X8c" secondAttribute="leadingMargin" constant="2" id="dRM-T0-0C0"/>
-                                                <constraint firstItem="lyc-MY-uT5" firstAttribute="centerY" secondItem="a7X-hs-X8c" secondAttribute="centerY" id="eXt-AU-1Hl"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="yQ0-es-YtZ" id="3c6-Q0-4ns"/>
-                            <outlet property="delegate" destination="yQ0-es-YtZ" id="HfG-6R-fY2"/>
-                        </connections>
-                    </tableView>
-                    <value key="contentSizeForViewInPopover" type="size" width="340" height="54"/>
-                    <size key="freeformSize" width="340" height="54"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KVC-sx-pI3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip: Swipe to switch between printers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="lyc-MY-uT5">
+                                <rect key="frame" x="2" y="8" width="361" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" name="selectedContentBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lyc-MY-uT5" firstAttribute="leading" secondItem="ZBE-Sf-7QY" secondAttribute="leading" constant="2" id="J6p-fq-fFc"/>
+                            <constraint firstItem="ZBE-Sf-7QY" firstAttribute="bottom" secondItem="lyc-MY-uT5" secondAttribute="bottom" constant="8" id="KRq-hh-hey"/>
+                            <constraint firstItem="lyc-MY-uT5" firstAttribute="top" secondItem="ZBE-Sf-7QY" secondAttribute="top" constant="8" id="PKB-Yt-j1g"/>
+                            <constraint firstItem="ZBE-Sf-7QY" firstAttribute="trailing" secondItem="lyc-MY-uT5" secondAttribute="trailing" constant="2" id="ov7-Hm-a98"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZBE-Sf-7QY"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="365" height="34"/>
+                    <size key="freeformSize" width="365" height="34"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zya-lg-pNw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="944" y="-817"/>
+            <point key="canvasLocation" x="866" y="-894"/>
         </scene>
     </scenes>
     <resources>
@@ -5831,13 +5793,13 @@
         <image name="up" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NcJ-tU-Hj5"/>
+        <segue reference="dS0-iN-me3"/>
         <segue reference="RmO-No-yvG"/>
         <segue reference="56A-kx-eGb"/>
         <segue reference="MHg-Ec-Wqg"/>
         <segue reference="DPY-Lb-zDG"/>
         <segue reference="06R-xh-V19"/>
         <segue reference="uMu-cc-3h7"/>
-        <segue reference="JlG-hL-vqd"/>
+        <segue reference="KKl-Fj-b9B"/>
     </inferredMetricsTieBreakers>
 </document>
