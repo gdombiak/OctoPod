@@ -314,7 +314,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="PrinterSubpanelViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eqt-ME-zgd" customClass="PrinterSubpanelViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" id="vCl-Jw-w6u">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="440"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -551,8 +551,8 @@
                                                     <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                                                     <state key="normal" image="Edit"/>
                                                     <connections>
-                                                        <segue destination="FzB-sX-2wF" kind="popoverPresentation" identifier="tool0_tooltip" popoverAnchorView="dD0-Ut-b2r" id="BIh-D3-MxT">
-                                                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
+                                                        <segue destination="ChO-VC-a6I" kind="popoverPresentation" identifier="set_target_temp_tool0" popoverAnchorView="dD0-Ut-b2r" id="v4f-Gz-upx">
+                                                            <popoverArrowDirection key="popoverArrowDirection" down="YES" right="YES"/>
                                                         </segue>
                                                     </connections>
                                                 </button>
@@ -585,8 +585,8 @@
                                                     <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                                                     <state key="normal" image="Edit"/>
                                                     <connections>
-                                                        <segue destination="FzB-sX-2wF" kind="popoverPresentation" identifier="bed_tooltip" popoverAnchorView="TQV-TF-lM6" id="dS0-iN-me3">
-                                                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
+                                                        <segue destination="ChO-VC-a6I" kind="popoverPresentation" identifier="set_target_temp_bed" popoverAnchorView="TQV-TF-lM6" id="GIR-e5-9vP">
+                                                            <popoverArrowDirection key="popoverArrowDirection" down="YES" right="YES"/>
                                                         </segue>
                                                     </connections>
                                                 </button>
@@ -880,7 +880,7 @@
                             <outlet property="delegate" destination="eqt-ME-zgd" id="KyZ-UW-JeW"/>
                         </connections>
                     </tableView>
-                    <size key="freeformSize" width="375" height="440"/>
+                    <size key="freeformSize" width="375" height="640"/>
                     <connections>
                         <outlet property="bedActualLabel" destination="UiU-6m-I6P" id="ZIe-CD-pg8"/>
                         <outlet property="bedSetTempButton" destination="TQV-TF-lM6" id="qTG-iX-svF"/>
@@ -937,6 +937,12 @@
                         <outlet property="toolRow1" destination="ZNE-Qd-Ktw" id="Ukx-6F-xMm"/>
                         <outlet property="toolRow2" destination="g27-YF-CyG" id="KmL-dK-KIe"/>
                         <outlet property="toolRow3" destination="Grl-MC-zgd" id="bob-an-koT"/>
+                        <segue destination="FzB-sX-2wF" kind="popoverPresentation" identifier="tool0_tooltip" popoverAnchorView="dD0-Ut-b2r" id="zn3-Wa-ymQ">
+                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
+                        </segue>
+                        <segue destination="FzB-sX-2wF" kind="popoverPresentation" identifier="bed_tooltip" popoverAnchorView="TQV-TF-lM6" id="Ig9-4X-iPl">
+                            <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
+                        </segue>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="arI-ui-M4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1215,20 +1221,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="control_cell" id="4d8-6V-SkI" customClass="CustomControlViewCell" customModule="OctoPod" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4d8-6V-SkI" id="Fgl-Pm-Srn">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCP-AC-cQg">
-                                            <rect key="frame" x="55" y="12" width="269" height="21"/>
+                                            <rect key="frame" x="55" y="12" width="269" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tys-oi-RME">
-                                            <rect key="frame" x="329" y="7" width="30" height="30.5"/>
+                                            <rect key="frame" x="329" y="7" width="30" height="31"/>
                                             <state key="normal" title="Run"/>
                                             <connections>
                                                 <action selector="executeCommand:" destination="9rK-Yj-dCe" eventType="touchUpInside" id="tIn-lP-ceI"/>
@@ -1252,7 +1258,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="container_cell" textLabel="LJV-z6-SX8" imageView="CTX-My-Mzi" style="IBUITableViewCellStyleDefault" id="MOs-z9-ldD">
-                                <rect key="frame" x="0.0" y="72" width="375" height="43.5"/>
+                                <rect key="frame" x="0.0" y="72.5" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MOs-z9-ldD" id="ZV1-f1-o5l">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1864,7 +1870,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn off screen when idle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFi-SV-DAZ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto-Lock when idle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFi-SV-DAZ">
                                                     <rect key="frame" x="16" y="12" width="287" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -5793,13 +5799,13 @@
         <image name="up" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dS0-iN-me3"/>
+        <segue reference="Ig9-4X-iPl"/>
         <segue reference="RmO-No-yvG"/>
         <segue reference="56A-kx-eGb"/>
         <segue reference="MHg-Ec-Wqg"/>
         <segue reference="DPY-Lb-zDG"/>
         <segue reference="06R-xh-V19"/>
-        <segue reference="uMu-cc-3h7"/>
+        <segue reference="lue-Rc-QhY"/>
         <segue reference="KKl-Fj-b9B"/>
     </inferredMetricsTieBreakers>
 </document>
