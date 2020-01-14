@@ -520,7 +520,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         } else if let printFile = event.printFile {
             // We are not printing so show Print (disabled?), Pause (disabled) and Cancel (disabled)
             self.printButton.isHidden = false
-            self.printButton.isEnabled = printFile.name != nil
+            self.printButton.isEnabled = printFile.name != nil && !appConfiguration.appLocked()
             self.pauseButton.isHidden = false
             self.pauseButton.isEnabled = false
             self.cancelButton.isHidden = false
