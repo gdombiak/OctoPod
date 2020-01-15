@@ -20,6 +20,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     @IBOutlet weak var printedTextLabel: UILabel!
     @IBOutlet weak var printTimeTextLabel: UILabel!
     @IBOutlet weak var printTimeLeftTextLabel: UILabel!
+    @IBOutlet weak var printEstimatedCompletionTextLabel: UILabel!
     @IBOutlet weak var printerStatusTextLabel: UILabel!
     @IBOutlet weak var tool0TitleLabel: UILabel!
     @IBOutlet weak var bedTextLabel: UILabel!
@@ -39,6 +40,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var printTimeLabel: UILabel!
     @IBOutlet weak var printTimeLeftLabel: UILabel!
+    @IBOutlet weak var printEstimatedCompletionLabel: UILabel!
     
     @IBOutlet weak var tool0SetTempButton: UIButton!
     @IBOutlet weak var tool0ActualLabel: UILabel!
@@ -237,8 +239,10 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
 
             if let seconds = event.progressPrintTimeLeft {
                 self.printTimeLeftLabel.text = self.secondsToTimeLeft(seconds: seconds)
+                self.printEstimatedCompletionLabel.text = self.secondsToETA(seconds: seconds)
             } else if event.progressPrintTime != nil {
                 self.printTimeLeftLabel.text = NSLocalizedString("Still stabilizing", comment: "Print time is being calculated")
+                self.printEstimatedCompletionLabel.text = ""
             }
 
             if let tool0Actual = event.tool0TempActual {
@@ -541,6 +545,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         return formatter.string(from: duration)!
     }
     
+    /// Return estimated time based on number of estimated seconds to completion
+    /// - parameter seconds: estimated number of seconds to complection
     func secondsToTimeLeft(seconds: Int) -> String {
         if seconds == 0 {
             return ""
@@ -555,6 +561,37 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         formatter.includesApproximationPhrase = true
         formatter.allowedUnits = [ .day, .hour, .minute ]
         return formatter.string(from: duration)!
+    }
+    
+    /// Return estimated complection date based on number of estimated seconds to completion
+    /// - parameter seconds: estimated number of seconds to complection
+    func secondsToETA(seconds: Int) -> String {
+        if seconds == 0 {
+            return ""
+        } else if seconds < 0 {
+            // Should never happen but an OctoPrint plugin is returning negative values
+            // so return 'Unknown' when this happens
+            return NSLocalizedString("Unknown", comment: "ETA is Unknown")
+        }
+        
+        let calendar = Calendar.current
+        let now = Date()
+        if let etaDate = calendar.date(byAdding: .second, value: seconds, to: now) {
+            let formatter = DateFormatter()
+            if Calendar.current.isDate(now, inSameDayAs:etaDate) {
+                // Same day so just show hour
+                formatter.dateStyle = .none
+                formatter.timeStyle = .short
+            } else {
+                // Show short version of date and hour
+                formatter.dateStyle = .short
+                formatter.timeStyle = .short
+            }
+            return formatter.string(from: etaDate)
+        } else {
+            NSLog("Failed to create ETA date")
+            return ""
+        }
     }
     
     fileprivate func presentToolTip(tooltipKey: String, segueIdentifier: String, button: UIButton) {
@@ -584,6 +621,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             self.progressLabel.text = "0%"
             self.printTimeLabel.text = ""
             self.printTimeLeftLabel.text = ""
+            self.printEstimatedCompletionLabel.text = ""
             
             self.tool0ActualLabel.text = ""
             self.tool0TargetLabel.text = ""
@@ -651,6 +689,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         printedTextLabel.textColor = textLabelColor
         printTimeTextLabel.textColor = textLabelColor
         printTimeLeftTextLabel.textColor = textLabelColor
+        printEstimatedCompletionTextLabel.textColor = textLabelColor
         printerStatusTextLabel.textColor = textLabelColor
         tool0TitleLabel.textColor = textLabelColor
         tool0SplitLabel.textColor = textLabelColor
@@ -672,6 +711,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         progressLabel.textColor = textColor
         printTimeLabel.textColor = textColor
         printTimeLeftLabel.textColor = textColor
+        printEstimatedCompletionLabel.textColor = textColor
         tool0ActualLabel.textColor = textColor
         tool0TargetLabel.textColor = textColor
         tool1ActualLabel.textColor = textColor
