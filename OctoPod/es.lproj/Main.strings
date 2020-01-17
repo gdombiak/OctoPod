@@ -157,11 +157,11 @@
 /* Class = "UIButton"; normalTitle = "X"; ObjectID = "B7j-Fj-W6p"; */
 "B7j-Fj-W6p.normalTitle" = "X";
 
-/* Class = "UILabel"; text = "Origin"; ObjectID = "BDJ-1U-H9C"; */
-"BDJ-1U-H9C.text" = "Origen";
-
 /* Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf"; */
 "bep-Im-uzf.text" = "Impreso";
+
+/* Class = "UILabel"; text = "Estimated Completion"; ObjectID = "blG-5R-gJE"; */
+"blG-5R-gJE.text" = "Impresión completa";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
 "bNj-cj-oty.text" = "Label";
@@ -196,11 +196,8 @@
 /* Class = "UIButton"; normalTitle = "Print"; ObjectID = "Crn-wa-FLw"; */
 "Crn-wa-FLw.normalTitle" = "Imprimir";
 
-/* Class = "UIButton"; normalTitle = "Cancel Job"; ObjectID = "Cxb-Rv-BSm"; */
-"Cxb-Rv-BSm.normalTitle" = "Cancelar";
-
-/* Class = "UIButton"; normalTitle = "Pause Job"; ObjectID = "d2Y-RO-6Yg"; */
-"d2Y-RO-6Yg.normalTitle" = "Detener";
+/* Class = "UIButton"; normalTitle = "Pause"; ObjectID = "DI6-KC-pSc"; */
+"DI6-KC-pSc.normalTitle" = "Pausa";
 
 /* Class = "UITableViewSection"; headerTitle = "Reminders"; ObjectID = "dIa-e3-jnv"; */
 "dIa-e3-jnv.headerTitle" = "Recordatorios";
@@ -222,6 +219,9 @@
 
 /* Class = "UILabel"; text = "Chamber"; ObjectID = "eD3-xa-2Ah"; */
 "eD3-xa-2Ah.text" = "Caja";
+
+/* Class = "UIButton"; normalTitle = "Restart"; ObjectID = "eGI-qU-q22"; */
+"eGI-qU-q22.normalTitle" = "Reiniciar";
 
 /* Class = "UILabel"; text = "1000"; ObjectID = "EKB-JK-mIs"; */
 "EKB-JK-mIs.text" = "1000";
@@ -252,6 +252,9 @@
 
 /* Class = "UILabel"; text = "%"; ObjectID = "ffd-HI-A62"; */
 "ffd-HI-A62.text" = "%";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "FGy-9V-djf"; */
+"FGy-9V-djf.normalTitle" = "Cancelar";
 
 /* Class = "UILabel"; text = "Extruder 2"; ObjectID = "Fj0-uz-fxi"; */
 "Fj0-uz-fxi.text" = "Extrusora 2";
@@ -412,6 +415,9 @@
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "Archivo";
 
+/* Class = "UILabel"; text = " "; ObjectID = "L7b-hh-BO8"; */
+"L7b-hh-BO8.text" = " ";
+
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "lAO-Qe-VtX"; */
 "lAO-Qe-VtX.text" = "Subtitulo";
 
@@ -420,9 +426,6 @@
 
 /* Class = "UILabel"; text = "Origin"; ObjectID = "lfT-wn-CXk"; */
 "lfT-wn-CXk.text" = "Origen";
-
-/* Class = "UILabel"; text = "Size"; ObjectID = "LiL-J0-QDH"; */
-"LiL-J0-QDH.text" = "Tamaño";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "LJV-z6-SX8"; */
 "LJV-z6-SX8.text" = "Título";
@@ -502,9 +505,6 @@
 /* Class = "UILabel"; text = "of"; ObjectID = "Otl-oh-byl"; */
 "Otl-oh-byl.text" = "de";
 
-/* Class = "UILabel"; text = "File"; ObjectID = "OYG-ih-yQg"; */
-"OYG-ih-yQg.text" = "Archivo";
-
 /* Class = "UIButton"; normalTitle = "Delete shortcuts"; ObjectID = "oZE-yh-Myr"; */
 "oZE-yh-Myr.normalTitle" = "Borrar accesos directos de Siri";
 
@@ -520,9 +520,6 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "pgl-mI-9eB"; */
 "pgl-mI-9eB.text" = "Label";
 
-/* Class = "UITableViewSection"; headerTitle = "Job Information"; ObjectID = "PiT-vE-psw"; */
-"PiT-vE-psw.headerTitle" = "Información trabajo";
-
 /* Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU"; */
 "Po0-HZ-vzU.text" = "Ingrese a iCloud para sincronizar dispositivos";
 
@@ -534,9 +531,6 @@
 
 /* Class = "UIBarButtonItem"; title = "Printer"; ObjectID = "PyK-FO-APL"; */
 "PyK-FO-APL.title" = "Impresora";
-
-/* Class = "UILabel"; text = "Tip: Click to control print job"; ObjectID = "pyW-4g-EDz"; */
-"pyW-4g-EDz.text" = "Sugerencia: Clic controla trabajo de impresión";
 
 /* Class = "UILabel"; text = "Offset"; ObjectID = "pzg-aD-Irm"; */
 "pzg-aD-Irm.text" = "Compensación";
@@ -603,6 +597,9 @@
 
 /* Class = "UILabel"; text = "/"; ObjectID = "SAw-xr-VmY"; */
 "SAw-xr-VmY.text" = "/";
+
+/* Class = "UIButton"; normalTitle = "Resume"; ObjectID = "sCj-mw-VaE"; */
+"sCj-mw-VaE.normalTitle" = "Continuar";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "sF0-zd-MZR"; */
 "sF0-zd-MZR.text" = "/";
@@ -673,6 +670,9 @@
 /* Class = "UILabel"; text = "Extruder 3"; ObjectID = "uzd-Ys-rmS"; */
 "uzd-Ys-rmS.text" = "Extrusora 3";
 
+/* Class = "UILabel"; text = "Auto-Lock when idle"; ObjectID = "VFi-SV-DAZ"; */
+"VFi-SV-DAZ.text" = "Bloquear cuando está inactivo";
+
 /* Class = "UILabel"; text = "Status"; ObjectID = "VgY-ne-x6t"; */
 "VgY-ne-x6t.text" = "Estado";
 
@@ -730,6 +730,9 @@
 /* Class = "UITableViewSection"; headerTitle = "Synchronization"; ObjectID = "Xhq-hp-2kd"; */
 "Xhq-hp-2kd.headerTitle" = "Sincronización";
 
+/* Class = "UILabel"; text = "System"; ObjectID = "xkQ-uy-Aw1"; */
+"xkQ-uy-Aw1.text" = "Defecto";
+
 /* Class = "UILabel"; text = "Confirm to connect"; ObjectID = "XOG-eU-T7f"; */
 "XOG-eU-T7f.text" = "Confirmar para conectar";
 
@@ -739,11 +742,11 @@
 /* Class = "UILabel"; text = "Ping"; ObjectID = "xsQ-V9-zzo"; */
 "xsQ-V9-zzo.text" = "Ping";
 
-/* Class = "UIButton"; normalTitle = "Restart Job"; ObjectID = "XV8-g9-QIc"; */
-"XV8-g9-QIc.normalTitle" = "Reiniciar";
-
 /* Class = "UINavigationItem"; title = "Printer Details"; ObjectID = "xvl-wE-Mht"; */
 "xvl-wE-Mht.title" = "Detalle impresora";
+
+/* Class = "UIButton"; normalTitle = "Print"; ObjectID = "XYJ-kw-HRu"; */
+"XYJ-kw-HRu.normalTitle" = "Imprimir";
 
 /* Class = "UILabel"; text = "#"; ObjectID = "Xzl-Xc-Ng0"; */
 "Xzl-Xc-Ng0.text" = "#";
@@ -771,6 +774,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "ZCe-kf-ukt"; */
 "ZCe-kf-ukt.text" = "Etiqueta";
+
+/* Class = "UITableViewSection"; headerTitle = "Battery Impact"; ObjectID = "ZdA-nV-gwD"; */
+"ZdA-nV-gwD.headerTitle" = "Impacto en batería";
 
 /* Class = "UILabel"; text = "New temperature"; ObjectID = "zDs-gi-KIJ"; */
 "zDs-gi-KIJ.text" = "Nueva temperatura";

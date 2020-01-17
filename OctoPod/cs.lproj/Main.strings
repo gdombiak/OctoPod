@@ -157,11 +157,11 @@
 /* Class = "UIButton"; normalTitle = "X"; ObjectID = "B7j-Fj-W6p"; */
 "B7j-Fj-W6p.normalTitle" = "X";
 
-/* Class = "UILabel"; text = "Origin"; ObjectID = "BDJ-1U-H9C"; */
-"BDJ-1U-H9C.text" = "Původ";
-
 /* Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf"; */
 "bep-Im-uzf.text" = "Vytisknuto";
+
+/* Class = "UILabel"; text = "Estimated Completion"; ObjectID = "blG-5R-gJE"; */
+"blG-5R-gJE.text" = "Odhad dokončení";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
 "bNj-cj-oty.text" = "Label";
@@ -196,11 +196,8 @@
 /* Class = "UIButton"; normalTitle = "Print"; ObjectID = "Crn-wa-FLw"; */
 "Crn-wa-FLw.normalTitle" = "Tisknout";
 
-/* Class = "UIButton"; normalTitle = "Cancel Job"; ObjectID = "Cxb-Rv-BSm"; */
-"Cxb-Rv-BSm.normalTitle" = "Zrušit";
-
-/* Class = "UIButton"; normalTitle = "Pause Job"; ObjectID = "d2Y-RO-6Yg"; */
-"d2Y-RO-6Yg.normalTitle" = "Pozastavit";
+/* Class = "UIButton"; normalTitle = "Pause"; ObjectID = "DI6-KC-pSc"; */
+"DI6-KC-pSc.normalTitle" = "Pozastavit";
 
 /* Class = "UITableViewSection"; headerTitle = "Reminders"; ObjectID = "dIa-e3-jnv"; */
 "dIa-e3-jnv.headerTitle" = "Připomínky";
@@ -222,6 +219,9 @@
 
 /* Class = "UILabel"; text = "Chamber"; ObjectID = "eD3-xa-2Ah"; */
 "eD3-xa-2Ah.text" = "Komora";
+
+/* Class = "UIButton"; normalTitle = "Restart"; ObjectID = "eGI-qU-q22"; */
+"eGI-qU-q22.normalTitle" = "Restartovat";
 
 /* Class = "UILabel"; text = "1000"; ObjectID = "EKB-JK-mIs"; */
 "EKB-JK-mIs.text" = "1000";
@@ -253,6 +253,9 @@
 /* Class = "UILabel"; text = "%"; ObjectID = "ffd-HI-A62"; */
 "ffd-HI-A62.text" = "%";
 
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "FGy-9V-djf"; */
+"FGy-9V-djf.normalTitle" = "Zrušit";
+
 /* Class = "UILabel"; text = "Extruder 2"; ObjectID = "Fj0-uz-fxi"; */
 "Fj0-uz-fxi.text" = "Tryska 2";
 
@@ -271,8 +274,8 @@
 /* Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt"; */
 "gCt-Vk-Fgt.headerTitle" = "Připojení";
 
-/* Class = "UITableViewSection"; headerTitle = "X Y Z"; ObjectID = "gHQ-Lu-mQ0"; */
-"gHQ-Lu-mQ0.headerTitle" = "X Y Z";
+/* Class = "UITableViewSection"; headerTitle = "Home"; ObjectID = "gHQ-Lu-mQ0"; */
+"gHQ-Lu-mQ0.headerTitle" = "Domů";
 
 /* Class = "UILabel"; text = "Record Siri phrase to use shortcuts"; ObjectID = "Ghq-m2-F0u"; */
 "Ghq-m2-F0u.text" = "Nahrajte frázi Siri, abyste mohli používat zkratky";
@@ -421,9 +424,6 @@
 /* Class = "UILabel"; text = "Origin"; ObjectID = "lfT-wn-CXk"; */
 "lfT-wn-CXk.text" = "Původ";
 
-/* Class = "UILabel"; text = "Size"; ObjectID = "LiL-J0-QDH"; */
-"LiL-J0-QDH.text" = "Velikost";
-
 /* Class = "UILabel"; text = "Title"; ObjectID = "LJV-z6-SX8"; */
 "LJV-z6-SX8.text" = "Nadpis";
 
@@ -502,9 +502,6 @@
 /* Class = "UILabel"; text = "of"; ObjectID = "Otl-oh-byl"; */
 "Otl-oh-byl.text" = "z";
 
-/* Class = "UILabel"; text = "File"; ObjectID = "OYG-ih-yQg"; */
-"OYG-ih-yQg.text" = "Soubor";
-
 /* Class = "UIButton"; normalTitle = "Delete shortcuts"; ObjectID = "oZE-yh-Myr"; */
 "oZE-yh-Myr.normalTitle" = "Smazat zkratky Siri";
 
@@ -520,9 +517,6 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "pgl-mI-9eB"; */
 "pgl-mI-9eB.text" = "Label";
 
-/* Class = "UITableViewSection"; headerTitle = "Job Information"; ObjectID = "PiT-vE-psw"; */
-"PiT-vE-psw.headerTitle" = "Informace o tisku";
-
 /* Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU"; */
 "Po0-HZ-vzU.text" = "Přihlaste se do iCloudu pro synchronizaci mezi zařízeními";
 
@@ -534,9 +528,6 @@
 
 /* Class = "UIBarButtonItem"; title = "Printer"; ObjectID = "PyK-FO-APL"; */
 "PyK-FO-APL.title" = "Tiskárna";
-
-/* Class = "UILabel"; text = "Tip: Click to control print job"; ObjectID = "pyW-4g-EDz"; */
-"pyW-4g-EDz.text" = "Tip: Klikněte pro ovládání tisku";
 
 /* Class = "UILabel"; text = "Offset"; ObjectID = "pzg-aD-Irm"; */
 "pzg-aD-Irm.text" = "Odsazení";
@@ -603,6 +594,9 @@
 
 /* Class = "UILabel"; text = "/"; ObjectID = "SAw-xr-VmY"; */
 "SAw-xr-VmY.text" = "/";
+
+/* Class = "UIButton"; normalTitle = "Resume"; ObjectID = "sCj-mw-VaE"; */
+"sCj-mw-VaE.normalTitle" = "Obnovit";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "sF0-zd-MZR"; */
 "sF0-zd-MZR.text" = "/";
@@ -673,6 +667,9 @@
 /* Class = "UILabel"; text = "Extruder 3"; ObjectID = "uzd-Ys-rmS"; */
 "uzd-Ys-rmS.text" = "Tryska 3";
 
+/* Class = "UILabel"; text = "Auto-Lock when idle"; ObjectID = "VFi-SV-DAZ"; */
+"VFi-SV-DAZ.text" = "Automaticky uzamknout během nečinnosti";
+
 /* Class = "UILabel"; text = "Status"; ObjectID = "VgY-ne-x6t"; */
 "VgY-ne-x6t.text" = "Stav";
 
@@ -730,6 +727,9 @@
 /* Class = "UITableViewSection"; headerTitle = "Synchronization"; ObjectID = "Xhq-hp-2kd"; */
 "Xhq-hp-2kd.headerTitle" = "Synchronizace";
 
+/* Class = "UILabel"; text = "System"; ObjectID = "xkQ-uy-Aw1"; */
+"xkQ-uy-Aw1.text" = "Systém";
+
 /* Class = "UILabel"; text = "Confirm to connect"; ObjectID = "XOG-eU-T7f"; */
 "XOG-eU-T7f.text" = "Potvrdit připojení";
 
@@ -739,11 +739,11 @@
 /* Class = "UILabel"; text = "Ping"; ObjectID = "xsQ-V9-zzo"; */
 "xsQ-V9-zzo.text" = "Ping";
 
-/* Class = "UIButton"; normalTitle = "Restart Job"; ObjectID = "XV8-g9-QIc"; */
-"XV8-g9-QIc.normalTitle" = "Restartovat";
-
 /* Class = "UINavigationItem"; title = "Printer Details"; ObjectID = "xvl-wE-Mht"; */
 "xvl-wE-Mht.title" = "Detaily tiskárny";
+
+/* Class = "UIButton"; normalTitle = "Print"; ObjectID = "XYJ-kw-HRu"; */
+"XYJ-kw-HRu.normalTitle" = "Tisknout";
 
 /* Class = "UILabel"; text = "#"; ObjectID = "Xzl-Xc-Ng0"; */
 "Xzl-Xc-Ng0.text" = "#";
@@ -771,6 +771,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "ZCe-kf-ukt"; */
 "ZCe-kf-ukt.text" = "Štítek";
+
+/* Class = "UITableViewSection"; headerTitle = "Battery Impact"; ObjectID = "ZdA-nV-gwD"; */
+"ZdA-nV-gwD.headerTitle" = "Vliv na baterii";
 
 /* Class = "UILabel"; text = "New temperature"; ObjectID = "zDs-gi-KIJ"; */
 "zDs-gi-KIJ.text" = "Nová teplota";

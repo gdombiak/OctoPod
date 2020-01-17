@@ -151,6 +151,9 @@
 /* (No Comment) */
 "Do you want to cancel job?" = "Ar norite atšaukti?";
 
+/* No comment provided by engineer. */
+"Do you want to restart print job from the beginning?" = "Ar nori pradėt spausdinį iš naujo?";
+
 /* (No Comment) */
 "Domoticz Plugs" = "Domoticz kištukai";
 

@@ -151,6 +151,9 @@
 /* (No Comment) */
 "Do you want to cancel job?" = "¿Desea cancelar el trabajo?";
 
+/* No comment provided by engineer. */
+"Do you want to restart print job from the beginning?" = "¿Desea reiniciar el trabajo de impresión desde el principio?";
+
 /* (No Comment) */
 "Domoticz Plugs" = "Enchufes Domoticz";
 
