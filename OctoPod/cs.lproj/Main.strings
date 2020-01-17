@@ -668,7 +668,7 @@
 "uzd-Ys-rmS.text" = "Tryska 3";
 
 /* Class = "UILabel"; text = "Auto-Lock when idle"; ObjectID = "VFi-SV-DAZ"; */
-"VFi-SV-DAZ.text" = "Automaticky uzamknout během nečinnosti";
+"VFi-SV-DAZ.text" = "Auto-lock při nepoužívání";
 
 /* Class = "UILabel"; text = "Status"; ObjectID = "VgY-ne-x6t"; */
 "VgY-ne-x6t.text" = "Stav";
