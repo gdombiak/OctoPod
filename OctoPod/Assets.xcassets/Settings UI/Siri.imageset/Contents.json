@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "siri_32.png",
+      "filename" : "icons8-siri-32.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "siri_64.png",
+      "filename" : "icons8-siri-64.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "siri_96.png",
+      "filename" : "icons8-siri-128.png",
       "scale" : "3x"
     }
   ],

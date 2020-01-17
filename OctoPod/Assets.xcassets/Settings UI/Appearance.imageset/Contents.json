@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "emblem-art.png",
+      "filename" : "palette_32.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "emblem-art-1.png",
+      "filename" : "palette_64.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "emblem-art-2.png",
+      "filename" : "palette_128.png",
       "scale" : "3x"
     }
   ],

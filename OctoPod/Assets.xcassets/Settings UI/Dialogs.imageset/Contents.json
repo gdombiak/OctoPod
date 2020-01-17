@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "dialog-warning.png",
+      "filename" : "warning_32.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "dialog-warning-1.png",
+      "filename" : "warning_64.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "dialog-warning-2.png",
+      "filename" : "warning_128.png",
       "scale" : "3x"
     }
   ],

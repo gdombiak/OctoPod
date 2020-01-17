@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "iCloud_32.png",
+      "filename" : "icons8-icloud-32.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "iCloud_64.png",
+      "filename" : "icons8-icloud-64.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "iCloud_96.png",
+      "filename" : "icons8-icloud-128.png",
       "scale" : "3x"
     }
   ],
