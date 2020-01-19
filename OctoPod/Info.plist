@@ -64,6 +64,7 @@
 		<string>PaletteConnectIntent</string>
 		<string>PaletteCutIntent</string>
 		<string>PaletteDisconnectIntent</string>
+		<string>PalettePingStatsIntent</string>
 		<string>PauseJobIntent</string>
 		<string>RemainingTimeIntent</string>
 		<string>RestartJobIntent</string>

@@ -944,7 +944,17 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                 autoConnect = autoconnect
             }
         }
-        if printer.palette2Installed != installed || printer.palette2AutoConnect != autoConnect {
+
+        // Force donating new Intent if first time running version 3.0
+        // No need to ask users to uninstall and install Palette plugin
+        let donatedUpgradeKey = "OCTOPOD_3_0:PALETTE2_FORCE_DONATION"
+        var forceDonation = true
+        let defaults = UserDefaults.standard
+        if let donatedUpgrade = defaults.object(forKey: donatedUpgradeKey) as? Bool, donatedUpgrade {
+            forceDonation = false
+        }
+
+        if forceDonation || printer.palette2Installed != installed || printer.palette2AutoConnect != autoConnect {
             let newObjectContext = printerManager.newPrivateContext()
             let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
             // Update flag that tracks if Palette2 plugin is installed
@@ -956,6 +966,8 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             // Donate Siri commands to control Palette (or delete donated commands)
             if installed {
                 IntentsDonations.donatePaletteIntents(printer: printer)
+                // Indicate that donations of release 3.0 have been done
+                defaults.set(true, forKey: donatedUpgradeKey)
             } else {
                 IntentsDonations.deletePaletteIntents(printer: printer)
             }

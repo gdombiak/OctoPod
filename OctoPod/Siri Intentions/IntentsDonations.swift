@@ -198,6 +198,7 @@ class IntentsDonations {
         donatePaletteDisconnect(printer: printer)
         donatePaletteClear(printer: printer)
         donatePaletteCut(printer: printer)
+        donatePalettePingStats(printer: printer)
     }
 
     /// Delete Siri commands that relate to Palette
@@ -257,6 +258,17 @@ class IntentsDonations {
             intent.printerURL = printer.objectID.uriRepresentation().absoluteString
             
             donateIntent(intent: intent, printer: printer, identifierSuffix: "PaletteCut")
+        }
+    }
+
+    static func donatePalettePingStats(printer: Printer) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = PalettePingStatsIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "PalettePingStats")
         }
     }
     

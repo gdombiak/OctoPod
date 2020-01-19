@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,6 +32,7 @@
 		3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D36DD79210300C500884BD6 /* TerminalViewController.swift */; };
 		3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */; };
 		3D3CBABC2182D31C00D4FD54 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CBABB2182D31C00D4FD54 /* UIUtils.swift */; };
+		3D3D79A923D4DB7C00E5B6CA /* Palette2Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */; };
 		3D4064A021AB619C000B05F9 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292F20E5549B00296D9D /* HTTPClient.swift */; };
 		3D4064A121AB61B2000B05F9 /* SystemCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AB6A221A7390B00E81CE5 /* SystemCommand.swift */; };
 		3D4064A221AB61C4000B05F9 /* IPPlug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DE421817B23004A4223 /* IPPlug.swift */; };
@@ -206,6 +207,10 @@
 		3DF7411021ACEECC0069A9D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DF7410E21ACEECC0069A9D4 /* InfoPlist.strings */; };
 		3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */; };
 		3DFA8074210E30C100B5BFAA /* CloudFilesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA8073210E30C100B5BFAA /* CloudFilesManager.swift */; };
+		3DFB776E23D4CDA700ADF315 /* PalettePingStatsIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB776D23D4CDA700ADF315 /* PalettePingStatsIntentHandler.swift */; };
+		3DFB777023D4D46100ADF315 /* Palette2Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */; };
+		3DFB777123D4D50F00ADF315 /* Palette2Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */; };
+		3DFB777223D4D51000ADF315 /* Palette2Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */; };
 		3DFE67CE218598F300F33019 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DFE67D0218598F300F33019 /* Localizable.strings */; };
 		583827DE22E36B9100784706 /* Palette2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583827DD22E36B9100784706 /* Palette2ViewController.swift */; };
 		583827E122E62D8700784706 /* Palette2PortsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583827E022E62D8700784706 /* Palette2PortsViewController.swift */; };
@@ -571,6 +576,8 @@
 		3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterProfilesDelegate.swift; sourceTree = "<group>"; };
 		3DFA8071210E2EF100B5BFAA /* OctoPod.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OctoPod.entitlements; sourceTree = "<group>"; };
 		3DFA8073210E30C100B5BFAA /* CloudFilesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFilesManager.swift; sourceTree = "<group>"; };
+		3DFB776D23D4CDA700ADF315 /* PalettePingStatsIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettePingStatsIntentHandler.swift; sourceTree = "<group>"; };
+		3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette2Utils.swift; sourceTree = "<group>"; };
 		3DFE67CF218598F300F33019 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DFE67D1218598F700F33019 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3DFE67D2218598FA00F33019 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -819,6 +826,7 @@
 				3D45280D20E15A380094CCB7 /* LaunchScreen.storyboard */,
 				3D45281020E15A380094CCB7 /* Info.plist */,
 				3D9E087C2160455400F11CD4 /* InfoPlist.strings */,
+				3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */,
 			);
 			path = OctoPod;
 			sourceTree = "<group>";
@@ -854,6 +862,7 @@
 				3D669E1522FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift */,
 				3D669E1722FBBA6F002C68C1 /* PaletteCleartIntentHandler.swift */,
 				3D669E1922FBBAC0002C68C1 /* PaletteCutIntentHandler.swift */,
+				3DFB776D23D4CDA700ADF315 /* PalettePingStatsIntentHandler.swift */,
 			);
 			path = Mosaic;
 			sourceTree = "<group>";
@@ -1440,6 +1449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3D79A923D4DB7C00E5B6CA /* Palette2Utils.swift in Sources */,
 				3D4497F721B2628500736F0F /* CancelObject.swift in Sources */,
 				3D4497F221B2627300736F0F /* ControlInput.swift in Sources */,
 				3D4497EE21B2626900736F0F /* ExecuteControl.swift in Sources */,
@@ -1463,6 +1473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DFB777223D4D51000ADF315 /* Palette2Utils.swift in Sources */,
 				3D450E5F21AB1C040049FBC0 /* Intents.intentdefinition in Sources */,
 				3D4497D221B2243700736F0F /* Printer.swift in Sources */,
 				3D450ECB21AB5BCE0049FBC0 /* OctoPrintRESTClient.swift in Sources */,
@@ -1476,6 +1487,7 @@
 				3D4064AB21AB7563000B05F9 /* PauseJobIntentHandler.swift in Sources */,
 				3D4497D021B2240700736F0F /* OctoPod.xcdatamodeld in Sources */,
 				3D1ECB0821ABB85700691DCB /* RemainingTimeIntentHandler.swift in Sources */,
+				3DFB776E23D4CDA700ADF315 /* PalettePingStatsIntentHandler.swift in Sources */,
 				3D450EC321AB45740049FBC0 /* SetToolTempIntentHandler.swift in Sources */,
 				3D4064B121AB78F3000B05F9 /* RestartJobIntentHandler.swift in Sources */,
 				3D669E1622FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift in Sources */,
@@ -1531,6 +1543,7 @@
 				5843B64A22E9FA1D001EDBAC /* PingPongHistoryViewController.swift in Sources */,
 				3DB51080217C6C8C006CF8C3 /* WatchSessionManagerDelegate.swift in Sources */,
 				3D8873F820F534C400DCE987 /* PrintFile.swift in Sources */,
+				3DFB777023D4D46100ADF315 /* Palette2Utils.swift in Sources */,
 				3D47BA3E21278956002420A0 /* IPPlugTableViewCell.swift in Sources */,
 				3DD9E9572108479000726DFD /* ThemedStaticUITableViewController.swift in Sources */,
 				3D8B293020E5549B00296D9D /* HTTPClient.swift in Sources */,
@@ -1627,6 +1640,7 @@
 				3D680FAB218E12E9006C9A79 /* PanelManagerDelegate.swift in Sources */,
 				3D6EB0BE217B0D270093EC79 /* NotificationController.swift in Sources */,
 				3D6EB0C0217B0D270093EC79 /* ComplicationController.swift in Sources */,
+				3DFB777123D4D50F00ADF315 /* Palette2Utils.swift in Sources */,
 				3D6EB0BC217B0D270093EC79 /* ExtensionDelegate.swift in Sources */,
 				3D680FA8218E12BC006C9A79 /* PanelManager.swift in Sources */,
 				3D8AB6A421A7390B00E81CE5 /* SystemCommand.swift in Sources */,

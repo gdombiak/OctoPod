@@ -756,6 +756,30 @@ class OctoPrintRESTClient {
         }
     }
     
+    /// Request Palette 2 plugin to return ping history. If request was successful we get back in the response this information. It relies
+    /// on new API call added to Palette2 plugin (i.e. a new version is needed)
+    /// - parameters:
+    ///     - plugin: Identifier of the Palette 2 plugin. See Plugins structure
+    func palette2PingHistory(plugin: String, callback: @escaping (String?, String?, Error?, HTTPURLResponse) -> Void) {
+        let json : NSMutableDictionary = NSMutableDictionary()
+        json["command"] = "getPingHistory"
+        pluginCommand(plugin: plugin, json: json) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+            // Check if there was an error
+            if let _ = error {
+                NSLog("Error getting ping history from Palette2. Error: \(error!.localizedDescription)")
+            }
+            if let json = result as? NSDictionary {
+                if let pings = json["data"] as? Array<Dictionary<String,Any>> {
+                    if let lastPing = Palette2Utils.pingPongMessage(history: pings, index: pings.count - 1, reversed: false), let pingStats = Palette2Utils.pingPongVarianceStats(history: pings, reversed: false) {
+                        callback(lastPing.variance, pingStats.max, error, response)
+                        return
+                    }
+                }
+            }
+            callback(nil, nil, error, response)
+        }
+    }
+    
     /// Request Palette 2 plugin to send list of available ports via websockets. These are the ports available on
     /// the server where OctoPrint runs so that Palette 2 can connect. If request was successful we get back a 200
     /// and status is reported via websockets

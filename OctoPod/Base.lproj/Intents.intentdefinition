@@ -5,13 +5,15 @@
 	<key>INEnums</key>
 	<array/>
 	<key>INIntentDefinitionModelVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
+	<key>INIntentDefinitionNamespace</key>
+	<string>9KPzQV</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>18G87</string>
+	<string>19C57</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>10G8</string>
+	<string>11C504</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>10.3</string>
+	<string>11.3.1</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -44,8 +46,6 @@
 				</dict>
 				<key>temperature,printerURL,printer</key>
 				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
@@ -61,24 +61,71 @@
 			<key>INIntentParameters</key>
 			<array>
 				<dict>
+					<key>INIntentParameterDisplayName</key>
+					<string>temperature</string>
+					<key>INIntentParameterDisplayNameID</key>
+					<string>RxEUj3</string>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataDefaultValue</key>
+						<integer>60</integer>
+						<key>INIntentParameterMetadataMaximumValue</key>
+						<integer>130</integer>
+						<key>INIntentParameterMetadataType</key>
+						<string>Field</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>temperature</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>2</integer>
 					<key>INIntentParameterType</key>
 					<string>Integer</string>
+					<key>INIntentParameterUnsupportedReasons</key>
+					<array>
+						<dict>
+							<key>INIntentParameterUnsupportedReasonCode</key>
+							<string>negativeNumbersNotSupported</string>
+							<key>INIntentParameterUnsupportedReasonDefault</key>
+							<true/>
+							<key>INIntentParameterUnsupportedReasonFormatString</key>
+							<string>${displayName} can't be negative.</string>
+							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
+							<string>E1iFYG</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterUnsupportedReasonCode</key>
+							<string>greaterThanMaximumValue</string>
+							<key>INIntentParameterUnsupportedReasonDefault</key>
+							<true/>
+							<key>INIntentParameterUnsupportedReasonFormatString</key>
+							<string>${displayName} can't be higher than ${maximumValue}.</string>
+							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
+							<string>RbyC9o</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterUnsupportedReasonCode</key>
+							<string>lessThanMinimumValue</string>
+							<key>INIntentParameterUnsupportedReasonDefault</key>
+							<true/>
+							<key>INIntentParameterUnsupportedReasonFormatString</key>
+							<string>${displayName} can't be lower than ${minimumValue}.</string>
+							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
+							<string>mfflxG</string>
+						</dict>
+					</array>
 				</dict>
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printer</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>3</integer>
 					<key>INIntentParameterType</key>
@@ -87,10 +134,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>3</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printerURL</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>8</integer>
 					<key>INIntentParameterType</key>
@@ -103,16 +153,6 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to set bed's temperature (${statusCode})</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>uoT27A</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
 						<string>Bed's temperature was set to ${temperature}</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>UC9Zrq</string>
@@ -120,6 +160,14 @@
 						<string>success</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to set bed's temperature (${statusCode})</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>uoT27A</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
@@ -131,8 +179,6 @@
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>temperature</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>2</integer>
 						<key>INIntentResponseParameterType</key>
@@ -143,8 +189,6 @@
 						<integer>2</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>statusCode</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>4</integer>
 						<key>INIntentResponseParameterType</key>
@@ -160,8 +204,6 @@
 			<string>FZ3z7Z</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
@@ -195,8 +237,6 @@
 				</dict>
 				<key>printerURL,temperature,printer</key>
 				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
@@ -210,8 +250,6 @@
 				</dict>
 				<key>printerURL,temperature,printer,tool</key>
 				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
@@ -229,34 +267,113 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataMaximumValue</key>
+						<integer>1</integer>
+						<key>INIntentParameterMetadataType</key>
+						<string>Field</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>tool</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>2</integer>
 					<key>INIntentParameterType</key>
 					<string>Integer</string>
+					<key>INIntentParameterUnsupportedReasons</key>
+					<array>
+						<dict>
+							<key>INIntentParameterUnsupportedReasonCode</key>
+							<string>negativeNumbersNotSupported</string>
+							<key>INIntentParameterUnsupportedReasonDefault</key>
+							<true/>
+							<key>INIntentParameterUnsupportedReasonFormatString</key>
+							<string>${displayName} can't be negative.</string>
+							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
+							<string>ADfGbr</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterUnsupportedReasonCode</key>
+							<string>greaterThanMaximumValue</string>
+							<key>INIntentParameterUnsupportedReasonDefault</key>
+							<true/>
+							<key>INIntentParameterUnsupportedReasonFormatString</key>
+							<string>${displayName} can't be higher than ${maximumValue}.</string>
+							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
+							<string>cp3Rvj</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterUnsupportedReasonCode</key>
+							<string>lessThanMinimumValue</string>
+							<key>INIntentParameterUnsupportedReasonDefault</key>
+							<true/>
+							<key>INIntentParameterUnsupportedReasonFormatString</key>
+							<string>${displayName} can't be lower than ${minimumValue}.</string>
+							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
+							<string>jPI5sH</string>
+						</dict>
+					</array>
 				</dict>
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataMaximumValue</key>
+						<integer>1</integer>
+						<key>INIntentParameterMetadataType</key>
+						<string>Field</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>temperature</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>4</integer>
 					<key>INIntentParameterType</key>
 					<string>Integer</string>
+					<key>INIntentParameterUnsupportedReasons</key>
+					<array>
+						<dict>
+							<key>INIntentParameterUnsupportedReasonCode</key>
+							<string>negativeNumbersNotSupported</string>
+							<key>INIntentParameterUnsupportedReasonDefault</key>
+							<true/>
+							<key>INIntentParameterUnsupportedReasonFormatString</key>
+							<string>${displayName} can't be negative.</string>
+							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
+							<string>SK8bYR</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterUnsupportedReasonCode</key>
+							<string>greaterThanMaximumValue</string>
+							<key>INIntentParameterUnsupportedReasonDefault</key>
+							<true/>
+							<key>INIntentParameterUnsupportedReasonFormatString</key>
+							<string>${displayName} can't be higher than ${maximumValue}.</string>
+							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
+							<string>0jkA5V</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterUnsupportedReasonCode</key>
+							<string>lessThanMinimumValue</string>
+							<key>INIntentParameterUnsupportedReasonDefault</key>
+							<true/>
+							<key>INIntentParameterUnsupportedReasonFormatString</key>
+							<string>${displayName} can't be lower than ${minimumValue}.</string>
+							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
+							<string>ZfIsqj</string>
+						</dict>
+					</array>
 				</dict>
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>3</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printer</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>5</integer>
 					<key>INIntentParameterType</key>
@@ -265,10 +382,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>4</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printerURL</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>10</integer>
 					<key>INIntentParameterType</key>
@@ -281,16 +401,6 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to set extruder's temperature (${statusCode})</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>rmKSv6</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
 						<string>Extruder's temperature was set to ${temperature}</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>SRDf6Q</string>
@@ -298,6 +408,14 @@
 						<string>success</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to set extruder's temperature (${statusCode})</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>rmKSv6</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
@@ -309,8 +427,6 @@
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>temperature</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>2</integer>
 						<key>INIntentResponseParameterType</key>
@@ -321,8 +437,6 @@
 						<integer>2</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>statusCode</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>4</integer>
 						<key>INIntentResponseParameterType</key>
@@ -338,8 +452,6 @@
 			<string>SP4rN6</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
@@ -358,8 +470,6 @@
 			<dict>
 				<key>printer,printerURL</key>
 				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
@@ -377,10 +487,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printer</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>1</integer>
 					<key>INIntentParameterType</key>
@@ -389,10 +502,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printerURL</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>6</integer>
 					<key>INIntentParameterType</key>
@@ -405,16 +521,6 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to pause job (${statusCode})</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>xSARU0</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
 						<string>Job paused</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>ovQf6Z</string>
@@ -422,6 +528,14 @@
 						<string>success</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to pause job (${statusCode})</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>xSARU0</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
@@ -433,8 +547,6 @@
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>statusCode</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>2</integer>
 						<key>INIntentResponseParameterType</key>
@@ -450,8 +562,6 @@
 			<string>QSxXHq</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
@@ -470,8 +580,6 @@
 			<dict>
 				<key>printer,printerURL</key>
 				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
@@ -489,10 +597,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printer</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>1</integer>
 					<key>INIntentParameterType</key>
@@ -501,10 +612,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printerURL</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>6</integer>
 					<key>INIntentParameterType</key>
@@ -517,16 +631,6 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to resume job (${statusCode})</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>WLkRl0</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
 						<string>Job resumed</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>m9Jgmg</string>
@@ -534,6 +638,14 @@
 						<string>success</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to resume job (${statusCode})</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>WLkRl0</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
@@ -545,8 +657,6 @@
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>statusCode</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>2</integer>
 						<key>INIntentResponseParameterType</key>
@@ -562,8 +672,6 @@
 			<string>XfWmGt</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
@@ -582,8 +690,6 @@
 			<dict>
 				<key>printer,printerURL</key>
 				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
@@ -601,10 +707,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printer</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>1</integer>
 					<key>INIntentParameterType</key>
@@ -613,10 +722,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printerURL</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>6</integer>
 					<key>INIntentParameterType</key>
@@ -629,16 +741,6 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to cancel job (${statusCode})</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>8tTCjD</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
 						<string>Job canceled</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>gx0D0e</string>
@@ -646,6 +748,14 @@
 						<string>success</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to cancel job (${statusCode})</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>8tTCjD</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
@@ -657,8 +767,6 @@
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>statusCode</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>2</integer>
 						<key>INIntentResponseParameterType</key>
@@ -674,8 +782,6 @@
 			<string>lrRige</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
@@ -713,10 +819,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printer</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>1</integer>
 					<key>INIntentParameterType</key>
@@ -725,10 +834,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printerURL</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>6</integer>
 					<key>INIntentParameterType</key>
@@ -741,16 +853,6 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to restart job (${statusCode})</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>sRkyIL</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
 						<string>Job Restarted</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>6vtMLs</string>
@@ -758,6 +860,14 @@
 						<string>success</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to restart job (${statusCode})</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>sRkyIL</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
@@ -769,8 +879,6 @@
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>statusCode</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>2</integer>
 						<key>INIntentResponseParameterType</key>
@@ -786,8 +894,6 @@
 			<string>JmhfgL</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
@@ -806,8 +912,6 @@
 			<dict>
 				<key>printerURL,printer</key>
 				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
@@ -825,10 +929,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printer</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>1</integer>
 					<key>INIntentParameterType</key>
@@ -837,10 +944,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printerURL</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>6</integer>
 					<key>INIntentParameterType</key>
@@ -853,16 +963,6 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to get remaing time information (${statusCode})</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>3eH6cZ</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
 						<string>Time left is ${time}</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>P89qJr</string>
@@ -870,6 +970,14 @@
 						<string>success</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to get remaing time information (${statusCode})</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>3eH6cZ</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
@@ -881,8 +989,6 @@
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>time</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>1</integer>
 						<key>INIntentResponseParameterType</key>
@@ -893,8 +999,6 @@
 						<integer>2</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>statusCode</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>4</integer>
 						<key>INIntentResponseParameterType</key>
@@ -902,16 +1006,12 @@
 					</dict>
 				</array>
 			</dict>
-			<key>INIntentRestrictions</key>
-			<integer>0</integer>
 			<key>INIntentTitle</key>
 			<string>Return Print Time Left</string>
 			<key>INIntentTitleID</key>
 			<string>WI2oQf</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>View</string>
 		</dict>
@@ -930,8 +1030,6 @@
 			<dict>
 				<key>printer,printerURL</key>
 				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
@@ -949,10 +1047,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printer</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>1</integer>
 					<key>INIntentParameterType</key>
@@ -961,10 +1062,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printerURL</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>6</integer>
 					<key>INIntentParameterType</key>
@@ -977,16 +1081,6 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to cool down printer (${statusCode})</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>m6XJpy</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
 						<string>Printer is cooling down</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>wYzz4m</string>
@@ -994,6 +1088,14 @@
 						<string>success</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to cool down printer (${statusCode})</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>m6XJpy</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
@@ -1005,8 +1107,6 @@
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>statusCode</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>2</integer>
 						<key>INIntentResponseParameterType</key>
@@ -1022,8 +1122,6 @@
 			<string>bXGQKe</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
@@ -1057,8 +1155,6 @@
 				</dict>
 				<key>temperature,printerURL,printer</key>
 				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
@@ -1076,22 +1172,63 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataMaximumValue</key>
+						<integer>1</integer>
+						<key>INIntentParameterMetadataType</key>
+						<string>Field</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>temperature</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>2</integer>
 					<key>INIntentParameterType</key>
 					<string>Integer</string>
+					<key>INIntentParameterUnsupportedReasons</key>
+					<array>
+						<dict>
+							<key>INIntentParameterUnsupportedReasonCode</key>
+							<string>negativeNumbersNotSupported</string>
+							<key>INIntentParameterUnsupportedReasonDefault</key>
+							<true/>
+							<key>INIntentParameterUnsupportedReasonFormatString</key>
+							<string>${displayName} can't be negative.</string>
+							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
+							<string>AdooVp</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterUnsupportedReasonCode</key>
+							<string>greaterThanMaximumValue</string>
+							<key>INIntentParameterUnsupportedReasonDefault</key>
+							<true/>
+							<key>INIntentParameterUnsupportedReasonFormatString</key>
+							<string>${displayName} can't be higher than ${maximumValue}.</string>
+							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
+							<string>MbAvWs</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterUnsupportedReasonCode</key>
+							<string>lessThanMinimumValue</string>
+							<key>INIntentParameterUnsupportedReasonDefault</key>
+							<true/>
+							<key>INIntentParameterUnsupportedReasonFormatString</key>
+							<string>${displayName} can't be lower than ${minimumValue}.</string>
+							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
+							<string>817z4k</string>
+						</dict>
+					</array>
 				</dict>
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printer</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>3</integer>
 					<key>INIntentParameterType</key>
@@ -1100,10 +1237,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>3</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printerURL</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>8</integer>
 					<key>INIntentParameterType</key>
@@ -1116,16 +1256,6 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to set chamber's temperature (${statusCode})</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>Eb3aa5</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
 						<string>Chamber's temperature was set to ${temperature}</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>3Butzw</string>
@@ -1133,6 +1263,14 @@
 						<string>success</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to set chamber's temperature (${statusCode})</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>Eb3aa5</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
@@ -1144,8 +1282,6 @@
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>temperature</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>2</integer>
 						<key>INIntentResponseParameterType</key>
@@ -1156,8 +1292,6 @@
 						<integer>2</integer>
 						<key>INIntentResponseParameterName</key>
 						<string>statusCode</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
 						<key>INIntentResponseParameterTag</key>
 						<integer>4</integer>
 						<key>INIntentResponseParameterType</key>
@@ -1173,8 +1307,6 @@
 			<string>Jioukn</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
@@ -1193,8 +1325,6 @@
 			<dict>
 				<key>printer,printerURL</key>
 				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
@@ -1212,10 +1342,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printer</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>1</integer>
 					<key>INIntentParameterType</key>
@@ -1224,10 +1357,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printerURL</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>6</integer>
 					<key>INIntentParameterType</key>
@@ -1240,16 +1376,6 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to request to connect</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>L25OHl</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
 						<string>Connected</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>5i5htv</string>
@@ -1258,11 +1384,17 @@
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
 					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to request to connect</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>L25OHl</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
 				<integer>2</integer>
-				<key>INIntentResponseParameters</key>
-				<array/>
 			</dict>
 			<key>INIntentRestrictions</key>
 			<integer>1</integer>
@@ -1272,8 +1404,6 @@
 			<string>RyGRDF</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
@@ -1292,8 +1422,6 @@
 			<dict>
 				<key>printer,printerURL</key>
 				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
@@ -1311,10 +1439,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printer</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>1</integer>
 					<key>INIntentParameterType</key>
@@ -1323,10 +1454,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printerURL</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>6</integer>
 					<key>INIntentParameterType</key>
@@ -1339,16 +1473,6 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to request to disconnect</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>1lbZOa</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
 						<string>Disconnected</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>VItjhS</string>
@@ -1357,11 +1481,17 @@
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
 					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to request to disconnect</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>1lbZOa</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
 				<integer>2</integer>
-				<key>INIntentResponseParameters</key>
-				<array/>
 			</dict>
 			<key>INIntentRestrictions</key>
 			<integer>1</integer>
@@ -1371,8 +1501,6 @@
 			<string>D1wWxd</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
@@ -1391,8 +1519,6 @@
 			<dict>
 				<key>printer,printerURL</key>
 				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
@@ -1410,10 +1536,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printer</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>1</integer>
 					<key>INIntentParameterType</key>
@@ -1422,10 +1551,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printerURL</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>6</integer>
 					<key>INIntentParameterType</key>
@@ -1438,16 +1570,6 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to request to clear</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>8cfoSa</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
 						<string>Requested</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>3JiZye</string>
@@ -1456,11 +1578,17 @@
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
 					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to request to clear</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>8cfoSa</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
 				<integer>2</integer>
-				<key>INIntentResponseParameters</key>
-				<array/>
 			</dict>
 			<key>INIntentRestrictions</key>
 			<integer>1</integer>
@@ -1470,8 +1598,6 @@
 			<string>8rFt1u</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
@@ -1490,8 +1616,6 @@
 			<dict>
 				<key>printer,printerURL</key>
 				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<false/>
 					<key>INIntentParameterCombinationSubtitle</key>
 					<string>${printer}</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
@@ -1509,10 +1633,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printer</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>1</integer>
 					<key>INIntentParameterType</key>
@@ -1521,10 +1648,13 @@
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
 					<key>INIntentParameterName</key>
 					<string>printerURL</string>
-					<key>INIntentParameterSupportsMultipleValues</key>
-					<false/>
 					<key>INIntentParameterTag</key>
 					<integer>6</integer>
 					<key>INIntentParameterType</key>
@@ -1537,16 +1667,6 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Failed to request to cut</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>0vck5K</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
 						<string>Requested</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>AzqFAh</string>
@@ -1555,11 +1675,17 @@
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
 					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to request to cut</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>0vck5K</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
 				<integer>2</integer>
-				<key>INIntentResponseParameters</key>
-				<array/>
 			</dict>
 			<key>INIntentRestrictions</key>
 			<integer>1</integer>
@@ -1569,11 +1695,151 @@
 			<string>KHvUZD</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>information</string>
+			<key>INIntentDescription</key>
+			<string>Ask Palette ping statistics</string>
+			<key>INIntentDescriptionID</key>
+			<string>9eejxB</string>
+			<key>INIntentLastParameterTag</key>
+			<integer>6</integer>
+			<key>INIntentName</key>
+			<string>PalettePingStats</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key>printer,printerURL</key>
+				<dict>
+					<key>INIntentParameterCombinationSubtitle</key>
+					<string>${printer}</string>
+					<key>INIntentParameterCombinationSubtitleID</key>
+					<string>ZFUAR8</string>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Ask Palette ping statistics</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>2zYNqY</string>
+				</dict>
+			</dict>
+			<key>INIntentParameters</key>
+			<array>
+				<dict>
+					<key>INIntentParameterDisplayName</key>
+					<string>Printer</string>
+					<key>INIntentParameterDisplayNameID</key>
+					<string>M58YA9</string>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>printer</string>
+					<key>INIntentParameterTag</key>
+					<integer>1</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>printerURL</string>
+					<key>INIntentParameterTag</key>
+					<integer>6</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+			</array>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Last variation is ${lastVariation} and maximum variation is ${maxVariation}</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>hUstyz</string>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to request information</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>FOlLOy</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>No information available</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>ajupCt</string>
+						<key>INIntentResponseCodeName</key>
+						<string>unknown</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+				</array>
+				<key>INIntentResponseLastParameterTag</key>
+				<integer>9</integer>
+				<key>INIntentResponseParameters</key>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Max Variation</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>BUexSx</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>maxVariation</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>8</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>String</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Last Variation</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>5btOXI</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>lastVariation</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>9</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>String</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>Ask Palette ping statistics</string>
+			<key>INIntentTitleID</key>
+			<string>AU4oMs</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentVerb</key>
+			<string>View</string>
+		</dict>
 	</array>
+	<key>INTypes</key>
+	<array/>
 </dict>
 </plist>

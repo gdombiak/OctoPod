@@ -30,6 +30,8 @@ class IntentHandler: INExtension {
             return PaletteClearIntentHandler(printerManager: printerManager)
         } else if intent is PaletteCutIntent {
             return PaletteCutIntentHandler(printerManager: printerManager)
+        } else if intent is PalettePingStatsIntent {
+            return PalettePingStatsIntentHandler(printerManager: printerManager)
         } else {
             fatalError("Unhandled intent type: \(intent)")
         }

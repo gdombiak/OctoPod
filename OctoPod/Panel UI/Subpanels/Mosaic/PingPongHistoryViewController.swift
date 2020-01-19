@@ -25,7 +25,7 @@ class PingPongHistoryViewController: UIViewController, UITableViewDataSource, UI
         applyTheme()
         // To force repaint of theme when coming back straight from a new Appearance
         self.tableView.reloadData()
-        if let history = history, let stats = Palette2ViewController.pingPongVarianceStats(history: history, reversed: true) {
+        if let history = history, let stats = Palette2Utils.pingPongVarianceStats(history: history, reversed: true) {
             maxLabel.text = stats.max
             averageLabel.text = stats.average
             minLabel.text = stats.min
@@ -53,7 +53,7 @@ class PingPongHistoryViewController: UIViewController, UITableViewDataSource, UI
         let cell = tableView.dequeueReusableCell(withIdentifier: "history_cell", for: indexPath)
 
         // Configure the cell...
-        if let history = history, let messages = Palette2ViewController.pingPongMessage(history: history, index: indexPath.row, reversed: true) {
+        if let history = history, let messages = Palette2Utils.pingPongMessage(history: history, index: indexPath.row, reversed: true) {
             
             if let numberLabel = cell.viewWithTag(100) as? UILabel {
                 numberLabel.text = "# " + messages.number
