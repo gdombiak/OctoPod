@@ -188,8 +188,8 @@ class OctoPrintClient {
     
     // MARK: - Private functions
     
-    // Check if we have an active session to the iOS device and the iOS device is reachable
-    // This does not mean that the iOS app is reachable
+    /// Check if we have an active session to the iOS device and the iOS device is reachable
+    /// This does not mean that the iOS app is reachable
     fileprivate func sessionToiOS() -> WCSession? {
         if let session = WatchSessionManager.instance.session {
             if session.activationState == .activated && session.isReachable {

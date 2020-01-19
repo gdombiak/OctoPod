@@ -45,9 +45,9 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         }
     }
     
-    func updateComplications(printerName: String, printerState: String) {
+    func updateComplications(printerName: String, printerState: String, completion: Double?) {
         if let session = getSession(), session.activationState == .activated {
-            let info = ["printer": printerName, "state": printerState]
+            let info = ["printer": printerName, "state": printerState, "completion": completion ?? 0.0] as [String : Any]
             let complicationRequest = ["complications" : info]
             if session.isComplicationEnabled {
                 if session.remainingComplicationUserInfoTransfers > 0 {
@@ -63,6 +63,8 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                         NSLog("Failed to request WatchOS app to update context \(complicationRequest). Error: \(error)")
                     }
                 }
+            } else {
+                NSLog("Complication not installed on Apple Watch")
             }
         }
     }

@@ -216,7 +216,6 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
     
     // MARK: - PanelManagerDelegate
     
-    // Notification that new panel information has been received
     func panelInfoUpdate(printerName: String, panelInfo: [String : Any]) {
         DispatchQueue.main.async {
             if let error = panelInfo["error"] as? String {
@@ -356,8 +355,7 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
         }
     }
 
-    // Notification that we need to update complications. Originated from iOS App
-    func updateComplications(printerName: String, printerState: String) {
+    func updateComplications(printerName: String, printerState: String, completion: Double) {
         // Do nothing
     }
     

@@ -128,8 +128,6 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
                 // Send local notification if OctoPod plugin for OctoPrint is not installed
                 checkCompletedJobLocalNotification(printerName: printerName, state: state, mediaURL: mediaURL, completion: completion, test: false)
             }
-            // Update last known state
-            self.lastKnownState[printerName] = (state, completion)
             // There is a budget of 50 pushes to the Apple Watch so let's only send relevant events
             var pushState = state
             if state == "Printing from SD" {
@@ -137,9 +135,14 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
             } else if state.starts(with: "Offline (Error:") {
                 pushState = "Offline"
             }
-            if pushState == "Offline" || pushState == "Operational" || pushState == "Printing" || pushState == "Paused" {
-                // Update complication with received data
-                self.watchSessionManager.updateComplications(printerName: printerName, printerState: pushState)
+            // Ignore event with Printing and no completion
+            if pushState != "Printing" || completion != nil {
+                // Update last known state
+                self.lastKnownState[printerName] = (state, completion)
+                if pushState == "Offline" || pushState == "Operational" || pushState == "Printing" || pushState == "Paused" {
+                    // Update complication with received data
+                    self.watchSessionManager.updateComplications(printerName: printerName, printerState: pushState, completion: completion)
+                }
             }
         }
     }

@@ -45,10 +45,10 @@ class PanelManager: PrinterManagerDelegate {
         }
     }
     
-    func updateComplications(info: [String : String]) {
-        if let printerName = info["printer"], let state = info["state"] {
+    func updateComplications(info: [String : Any]) {
+        if let printerName = info["printer"] as? String, let state = info["state"] as? String, let completion = info["completion"] as? Double {
             for delegate in delegates {
-                delegate.updateComplications(printerName: printerName, printerState: state)
+                delegate.updateComplications(printerName: printerName, printerState: state, completion: completion)
             }
         }
     }

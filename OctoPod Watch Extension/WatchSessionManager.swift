@@ -58,14 +58,14 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
         if applicationContext["printers"] != nil {
             PrinterManager.instance.updatePrinters(printers: applicationContext["printers"] as! [[String : Any]])
         } else if applicationContext["complications"] != nil {
-            PanelManager.instance.updateComplications(info: applicationContext["complications"] as! [String : String])
+            PanelManager.instance.updateComplications(info: applicationContext["complications"] as! [String : Any])
         }
     }
     
     /** Called on the delegate of the receiver. Will be called on startup if the user info finished transferring when the receiver was not running. */
     public func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         if userInfo["complications"] != nil {
-            PanelManager.instance.updateComplications(info: userInfo["complications"] as! [String : String])
+            PanelManager.instance.updateComplications(info: userInfo["complications"] as! [String : Any])
         }
     }
 
