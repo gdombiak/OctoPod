@@ -23,6 +23,9 @@
 "Job" = "Trabajo";
 
 /* No comment provided by engineer. */
+"Missed" = "Perdido";
+
+/* No comment provided by engineer. */
 "MK3" = "MK3";
 
 /* (No Comment) */
@@ -39,9 +42,6 @@
 
 /* (No Comment) */
 "Notify failed resume job" = "Falla al pedir reanudar el trabajo";
-
-/* No comment provided by engineer. */
-"Paused" = "Suspendido";
 
 /* No comment provided by engineer. */
 "Printing" = "Imprimiendo";

@@ -1,4 +1,7 @@
 /* (No Comment) */
+"0jkA5V" = "${displayName} no puede ser superior a ${maximumValue}.";
+
+/* (No Comment) */
 "0vck5K" = "Error al pedir cortar";
 
 /* (No Comment) */
@@ -9,6 +12,9 @@
 
 /* (No Comment) */
 "2TreiD" = "Establezca temperatura del extrusor a ${temperature}";
+
+/* (No Comment) */
+"2zYNqY" = "Pedir a Palette estadísticas de pings";
 
 /* (No Comment) */
 "3Butzw" = "Temperatura de la caja se ajustó a ${temperature}";
@@ -24,6 +30,9 @@
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"5btOXI" = "Última variación";
 
 /* (No Comment) */
 "5i5htv" = "Conectado";
@@ -53,6 +62,9 @@
 "8xHCbl" = "${printer}";
 
 /* (No Comment) */
+"9eejxB" = "Pedir a Palette estadísticas de pings";
+
+/* (No Comment) */
 "9iz6yx" = "${printer}";
 
 /* (No Comment) */
@@ -62,10 +74,31 @@
 "662LyZ" = "Reiniciar impresión";
 
 /* (No Comment) */
+"817z4k" = "${displayName} no puede ser inferior a ${minimumValue}.";
+
+/* (No Comment) */
+"ADfGbr" = "${displayName} no puede ser negativo";
+
+/* (No Comment) */
+"AdooVp" = "${displayName} no puede ser negativo";
+
+/* (No Comment) */
+"ajupCt" = "No hay información disponible";
+
+/* (No Comment) */
+"AU4oMs" = "Pedir a Palette estadísticas de pings";
+
+/* (No Comment) */
 "AzqFAh" = "Pedido";
 
 /* (No Comment) */
+"BUexSx" = "Variación máxima";
+
+/* (No Comment) */
 "bXGQKe" = "Enfriar impresora";
+
+/* (No Comment) */
+"cp3Rvj" = "${displayName} no puede ser superior a ${maximumValue}.";
 
 /* (No Comment) */
 "D0kBGr" = "Reiniciar impresión";
@@ -75,6 +108,9 @@
 
 /* (No Comment) */
 "doj4NA" = "Configurar temperatura del extrusor";
+
+/* (No Comment) */
+"E1iFYG" = "${displayName} no puede ser negativo";
 
 /* (No Comment) */
 "Eb3aa5" = "Falla al establecer temperatura de la caja (${statusCode})";
@@ -87,6 +123,9 @@
 
 /* (No Comment) */
 "fL3sow" = "Suspender impresión";
+
+/* (No Comment) */
+"FOlLOy" = "Error al solicitar información";
 
 /* (No Comment) */
 "FZ3z7Z" = "Ajustar temperatura de la cama";
@@ -104,6 +143,9 @@
 "hPlRC4" = "Establecer temperatura de la cama a ${temperature}";
 
 /* (No Comment) */
+"hUstyz" = "La última variación es ${lastVariation} y la variación máxima es ${maxVariation}";
+
+/* (No Comment) */
 "ihLqc7" = "Suspender impresión";
 
 /* (No Comment) */
@@ -114,6 +156,9 @@
 
 /* (No Comment) */
 "JmhfgL" = "Reiniciar impresión";
+
+/* (No Comment) */
+"jPI5sH" = "${displayName} no puede ser inferior a ${minimumValue}.";
 
 /* (No Comment) */
 "JV2xQz" = "Conectar a Palette";
@@ -141,6 +186,15 @@
 
 /* (No Comment) */
 "m9Jgmg" = "Trabajo reanudado";
+
+/* (No Comment) */
+"M58YA9" = "Impresora";
+
+/* (No Comment) */
+"MbAvWs" = "${displayName} no puede ser superior a ${maximumValue}.";
+
+/* (No Comment) */
+"mfflxG" = "${displayName} no puede ser inferior a ${minimumValue}.";
 
 /* (No Comment) */
 "N0vzJv" = "Pedirle a Palette que limpie";
@@ -176,6 +230,9 @@
 "R5AlTe" = "Desconectarse de Palette";
 
 /* (No Comment) */
+"RbyC9o" = "${displayName} no puede ser superior a ${maximumValue}.";
+
+/* (No Comment) */
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
@@ -191,10 +248,16 @@
 "RrOrgy" = "Cancelar impresión";
 
 /* (No Comment) */
+"RxEUj3" = "temperatura";
+
+/* (No Comment) */
 "RyGRDF" = "Conectar a Palette";
 
 /* (No Comment) */
 "RYurC5" = "Enfriar la caja";
+
+/* (No Comment) */
+"SK8bYR" = "${displayName} no puede ser negativo";
 
 /* (No Comment) */
 "SP4rN6" = "Ajustar temperatura del extrusor";
@@ -252,6 +315,12 @@
 
 /* (No Comment) */
 "yZeSdz" = "${printer}";
+
+/* (No Comment) */
+"ZfIsqj" = "${displayName} no puede ser inferior a ${minimumValue}.";
+
+/* (No Comment) */
+"ZFUAR8" = "${printer}";
 
 /* (No Comment) */
 "zj1Vd9" = "Establecer temperatura de la caja a ${temperature}";

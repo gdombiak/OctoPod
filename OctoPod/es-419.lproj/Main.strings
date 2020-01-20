@@ -43,9 +43,6 @@
 /* Class = "UITextField"; placeholder = "Speed value"; ObjectID = "4Lh-Q8-wxW"; */
 "4Lh-Q8-wxW.placeholder" = "Valor velocidad";
 
-/* Class = "UILabel"; text = "Detail"; ObjectID = "4qQ-FP-CUZ"; */
-"4qQ-FP-CUZ.text" = "Detalle";
-
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Apariencia";
 
@@ -81,6 +78,9 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Manual Control"; ObjectID = "7pE-fx-Ibe"; */
 "7pE-fx-Ibe.headerTitle" = "Control Manual";
+
+/* Class = "UILabel"; text = "#"; ObjectID = "8aU-tf-jF4"; */
+"8aU-tf-jF4.text" = "#";
 
 /* Class = "UITableViewSection"; headerTitle = "Z"; ObjectID = "8d7-Fp-V0A"; */
 "8d7-Fp-V0A.headerTitle" = "Z";
@@ -160,7 +160,7 @@
 /* Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf"; */
 "bep-Im-uzf.text" = "Impreso";
 
-/* Class = "UILabel"; text = "Estimated Completion"; ObjectID = "blG-5R-gJE"; */
+/* Class = "UILabel"; text = "Print Completion"; ObjectID = "blG-5R-gJE"; */
 "blG-5R-gJE.text" = "Impresión completa";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
@@ -204,6 +204,12 @@
 
 /* Class = "UILabel"; text = "Frequently Asked Questions"; ObjectID = "dlU-c7-kpY"; */
 "dlU-c7-kpY.text" = "Preguntas frecuentes";
+
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "du3-LR-AIz"; */
+"du3-LR-AIz.text" = "0.0%";
+
+/* Class = "UILabel"; text = "Max"; ObjectID = "dZG-uJ-BYF"; */
+"dZG-uJ-BYF.text" = "Max";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "dZz-iV-loq"; */
 "dZz-iV-loq.text" = "Título";
@@ -264,6 +270,9 @@
 
 /* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "FJA-XK-nll"; */
 "FJA-XK-nll.normalTitle" = "Descartar";
+
+/* Class = "UILabel"; text = "Palette 2 - Last Variation"; ObjectID = "fMc-lm-k5V"; */
+"fMc-lm-k5V.text" = "Palette 2 - Última variación";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
 "fNE-Hh-S8R.text" = "Label";
@@ -343,8 +352,14 @@
 /* Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[4] = "5"; ObjectID = "HHI-TR-3jC"; */
 "HHI-TR-3jC.segmentTitles[4]" = "5";
 
+/* Class = "UILabel"; text = "Palette 2 - Max Variation"; ObjectID = "HJ0-c2-UaT"; */
+"HJ0-c2-UaT.text" = "Palette 2 - Variación máxima";
+
 /* Class = "UILabel"; text = "Upload to SD Card (root)"; ObjectID = "hrr-SZ-62l"; */
 "hrr-SZ-62l.text" = "Subir a Tarjeta SD (raíz)";
+
+/* Class = "UILabel"; text = "Min"; ObjectID = "ht4-c2-fkC"; */
+"ht4-c2-fkC.text" = "Min";
 
 /* Class = "UILabel"; text = "Tip: Click to set temperature"; ObjectID = "HUF-Dw-M7F"; */
 "HUF-Dw-M7F.text" = "Sugerencia: Clic ajusta temperatura";
@@ -369,9 +384,6 @@
 
 /* Class = "UIButton"; normalTitle = "Cut"; ObjectID = "i3l-7C-iJB"; */
 "i3l-7C-iJB.normalTitle" = "Cortar";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "io4-ZI-6xJ"; */
-"io4-ZI-6xJ.text" = "Título";
 
 /* Class = "UITableViewSection"; headerTitle = "Move"; ObjectID = "iY8-Rh-TKn"; */
 "iY8-Rh-TKn.headerTitle" = "Mover";
@@ -405,6 +417,9 @@
 
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "k9w-2c-c6t"; */
 "k9w-2c-c6t.text" = "0.0 C";
+
+/* Class = "UILabel"; text = "Palette 2 - Last Ping"; ObjectID = "kaq-fI-VzN"; */
+"kaq-fI-VzN.text" = "Palette 2 - Último Ping";
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "kGY-Bn-Qcb"; */
 "kGY-Bn-Qcb.text" = "100 C";
@@ -511,6 +526,9 @@
 /* Class = "UITableViewController"; title = "Prompts"; ObjectID = "oZw-P5-oVG"; */
 "oZw-P5-oVG.title" = "Confirmaciones";
 
+/* Class = "UILabel"; text = "Apple Watch"; ObjectID = "P28-Dm-1BA"; */
+"P28-Dm-1BA.text" = "Apple Watch";
+
 /* Class = "UILabel"; text = "0 C"; ObjectID = "PAD-Rg-10Y"; */
 "PAD-Rg-10Y.text" = "0 C";
 
@@ -574,6 +592,9 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87"; */
 "REX-gh-p87.normalTitle" = "Botón";
 
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "RFS-Os-AC5"; */
+"RFS-Os-AC5.text" = "0.0%";
+
 /* Class = "UILabel"; text = "Security"; ObjectID = "RJI-A7-98M"; */
 "RJI-A7-98M.text" = "Seguridad";
 
@@ -589,8 +610,14 @@
 /* Class = "UILabel"; text = "1hr 25m 13sec"; ObjectID = "rwm-QC-qD1"; */
 "rwm-QC-qD1.text" = "1hr 25m 13sec";
 
+/* Class = "UITableViewController"; title = "Apple Watch"; ObjectID = "rZ6-EP-93w"; */
+"rZ6-EP-93w.title" = "Apple Watch";
+
 /* Class = "UITextField"; placeholder = "Command"; ObjectID = "RZc-hr-pTu"; */
 "RZc-hr-pTu.placeholder" = "Comando";
+
+/* Class = "UITableViewSection"; headerTitle = "Complications Content"; ObjectID = "S1e-nz-awE"; */
+"S1e-nz-awE.headerTitle" = "Complicaciones Mostrar";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
 "S2I-HR-qgE.text" = "/";
@@ -625,6 +652,9 @@
 /* Class = "UILabel"; text = "0 C"; ObjectID = "syx-MO-ExG"; */
 "syx-MO-ExG.text" = "0 C";
 
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "t6e-82-YMx"; */
+"t6e-82-YMx.text" = "0.0%";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
 "tFf-Rs-mOx.text" = "Título";
 
@@ -645,6 +675,9 @@
 
 /* Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ"; */
 "tzE-Y5-rVZ.text" = "Impresoras";
+
+/* Class = "UILabel"; text = "Default Text"; ObjectID = "u5z-wR-iO9"; */
+"u5z-wR-iO9.text" = "Texto Predeterminado";
 
 /* Class = "UILabel"; text = "Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots"; ObjectID = "u6S-b1-CTI"; */
 "u6S-b1-CTI.text" = "Instale el plugin de OctoPod para OctoPrint y reciba notificaciones  inmediatas con fotos de la cámara";
@@ -721,6 +754,9 @@
 /* Class = "UIButton"; normalTitle = "URL Button"; ObjectID = "x8L-G5-sTU"; */
 "x8L-G5-sTU.normalTitle" = "Botón URL";
 
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "xC4-gH-ALO"; */
+"xC4-gH-ALO.text" = "0.0%";
+
 /* Class = "UITableViewSection"; headerTitle = "Printer status"; ObjectID = "XCh-oS-weO"; */
 "XCh-oS-weO.headerTitle" = "Estado Impresora";
 
@@ -732,6 +768,9 @@
 
 /* Class = "UILabel"; text = "System"; ObjectID = "xkQ-uy-Aw1"; */
 "xkQ-uy-Aw1.text" = "Defecto";
+
+/* Class = "UILabel"; text = "Avg"; ObjectID = "XnW-dU-oxg"; */
+"XnW-dU-oxg.text" = "Pro";
 
 /* Class = "UILabel"; text = "Confirm to connect"; ObjectID = "XOG-eU-T7f"; */
 "XOG-eU-T7f.text" = "Confirmar para conectar";
@@ -757,6 +796,9 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "YdD-gF-Ajm"; */
 "YdD-gF-Ajm.text" = "Título";
 
+/* Class = "UILabel"; text = "Variance"; ObjectID = "yPh-Gc-fNd"; */
+"yPh-Gc-fNd.text" = "Variación";
+
 /* Class = "UILabel"; text = "Control ATX/AUX power supply via PSU Control"; ObjectID = "Ysy-LO-1dL"; */
 "Ysy-LO-1dL.text" = "Fuente de alimentación ATX/AUX controlada a través de PSU Control";
 
@@ -771,6 +813,9 @@
 
 /* Class = "UIButton"; normalTitle = "Send"; ObjectID = "z4Q-Gf-Y5G"; */
 "z4Q-Gf-Y5G.normalTitle" = "Enviar";
+
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "zbP-eJ-7Gk"; */
+"zbP-eJ-7Gk.text" = "0.0%";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "ZCe-kf-ukt"; */
 "ZCe-kf-ukt.text" = "Etiqueta";
