@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "warning_32.png",
+      "filename" : "watch_32.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "warning_64.png",
+      "filename" : "watch_64.png",
       "scale" : "2x"
     },
     {

@@ -59,6 +59,8 @@ class WatchSessionManager: NSObject, WCSessionDelegate {
             PrinterManager.instance.updatePrinters(printers: applicationContext["printers"] as! [[String : Any]])
         } else if applicationContext["complications"] != nil {
             PanelManager.instance.updateComplications(info: applicationContext["complications"] as! [String : Any])
+        } else if applicationContext["complications:content_type"] != nil {
+            PanelManager.instance.updateComplicationsContentType(contentType: applicationContext["complications:content_type"] as! String)
         }
     }
     

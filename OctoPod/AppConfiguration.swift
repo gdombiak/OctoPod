@@ -13,6 +13,7 @@ class AppConfiguration: OctoPrintClientDelegate {
     private static let DISABLE_TURNOFF_IDLE = "APP_CONFIGURATION_DISABLE_TURNOFF_IDLE"
     private static let DISABLE_TEMP_CHART_ZOOM = "APP_CONFIGURATION_DISABLE_TEMP_CHART_ZOOM"
     private static let PLUGIN_UPDATES_CHECK_FREQUENCY = "APP_CONFIGURATION_PLUGIN_UPDATES_CHECK_FREQUENCY"
+    private static let COMPLICATION_CONTENT_TYPE_KEY = "APP_CONFIGURATION_COMPLICATION_CONTENT_TYPE"
 
     var delegates: Array<AppConfigurationDelegate> = Array()
 
@@ -204,6 +205,27 @@ class AppConfiguration: OctoPrintClientDelegate {
         defaults.set(disable, forKey: AppConfiguration.DISABLE_TEMP_CHART_ZOOM)
     }
     
+    // MARK: - Apple Watch
+    
+    /// Returns type of content that complications on the Apple Watch should display
+    /// - returns: content type to use for complications
+    func complicationContentType() -> ComplicationContentType.Choice {
+        let defaults = UserDefaults.standard
+        let savedContentType = defaults.integer(forKey: AppConfiguration.COMPLICATION_CONTENT_TYPE_KEY)
+        if let restoredContentType = ComplicationContentType.Choice(rawValue: savedContentType) {
+            return restoredContentType
+        }
+        // Fallback to default if no setting was specified
+        return ComplicationContentType.Choice.defaultText
+    }
+
+    /// Save type of content that complications on the Apple Watch should display
+    /// - parameter contentType: content type to use for complications
+    func complicationContentType(contentType: ComplicationContentType.Choice) {
+        let defaults = UserDefaults.standard
+        defaults.set(contentType.rawValue, forKey: AppConfiguration.COMPLICATION_CONTENT_TYPE_KEY)
+    }
+
     // MARK: - Plugin updates
 
     /// Frequency the app will check for plugin updates

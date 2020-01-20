@@ -6,6 +6,7 @@ class SettingsViewController: ThemedStaticUITableViewController {
     @IBOutlet weak var appearanceLabel: UILabel!
     @IBOutlet weak var securityLabel: UILabel!
     @IBOutlet weak var dialogsLabel: UILabel!
+    @IBOutlet weak var appleWatchLabel: UILabel!
     @IBOutlet weak var devicesLabel: UILabel!
     @IBOutlet weak var siriLabel: UILabel!
     @IBOutlet weak var supportLabel: UILabel!
@@ -17,6 +18,7 @@ class SettingsViewController: ThemedStaticUITableViewController {
         appearanceLabel.textColor = theme.textColor()
         securityLabel.textColor = theme.textColor()
         dialogsLabel.textColor = theme.textColor()
+        appleWatchLabel.textColor = theme.textColor()
         devicesLabel.textColor = theme.textColor()
         siriLabel.textColor = theme.textColor()
         supportLabel.textColor = theme.textColor()

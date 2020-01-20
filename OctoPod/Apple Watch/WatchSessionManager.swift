@@ -34,7 +34,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         }
     }
     
-    // MARK: - Push printers to Apple Watch
+    // MARK: - Push information to Apple Watch
 
     func pushPrinters() {
         do {
@@ -47,24 +47,65 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     
     func updateComplications(printerName: String, printerState: String, completion: Double?) {
         if let session = getSession(), session.activationState == .activated {
-            let info = ["printer": printerName, "state": printerState, "completion": completion ?? 0.0] as [String : Any]
+            var info = ["printer": printerName, "state": printerState, "completion": completion ?? 0.0] as [String : Any]
             let complicationRequest = ["complications" : info]
-            if session.isComplicationEnabled {
-                if session.remainingComplicationUserInfoTransfers > 0 {
-                    // We can update complications using high priority #transferCurrentComplicationUserInfo
-                    session.transferCurrentComplicationUserInfo(complicationRequest)
+            
+            let transmitDataBlock = {
+                if session.isComplicationEnabled {
+                    if session.remainingComplicationUserInfoTransfers > 0 {
+                        // We can update complications using high priority #transferCurrentComplicationUserInfo
+                        session.transferCurrentComplicationUserInfo(complicationRequest)
+                    } else {
+                        NSLog("Out of budget so updating complications via #updateApplicationContext")
+                        // We are out of budget so attempt updating complications this other way
+                        do {
+                            try session.updateApplicationContext(complicationRequest)
+                        }
+                        catch {
+                            NSLog("Failed to request WatchOS app to update context \(complicationRequest). Error: \(error)")
+                        }
+                    }
                 } else {
-                    NSLog("Out of budget so updating complications via #updateApplicationContext")
-                    // We are out of budget so attempt updating complications this other way
-                    do {
-                        try session.updateApplicationContext(complicationRequest)
-                    }
-                    catch {
-                        NSLog("Failed to request WatchOS app to update context \(complicationRequest). Error: \(error)")
-                    }
+                    NSLog("Complication not installed on Apple Watch")
                 }
+            }
+            
+            let tuple = restClientToPrinter(printerName: printerName)
+            let restClient: OctoPrintRESTClient? = tuple.restClient
+            let palette2PluginInstalled = tuple.palette2PluginInstalled
+            if restClient == nil || !palette2PluginInstalled {
+                transmitDataBlock()
             } else {
-                NSLog("Complication not installed on Apple Watch")
+                // Gather now Palette 2 pings stats
+                if palette2PluginInstalled {
+                    restClient!.palette2PingHistory(plugin: Plugins.PALETTE_2) { (lastPing: (number: String, percent: String, variance: String)?, pingStats: (max: String, average: String, min: String)?, error: Error?, response: HTTPURLResponse) in
+                        if let lastPing = lastPing, let pingStats = pingStats {
+                            info["palette2LastPing"] = lastPing.percent
+                            info["palette2LastVariation"] = lastPing.variance
+                            info["palette2MaxVariation"] = pingStats.max
+                        }
+                        // Send data to Apple Watch with updated data including Palette 2 pings information
+                        transmitDataBlock()
+                    }
+                } else {
+                    // Send data to Apple Watch with whatever data we have
+                    transmitDataBlock()
+                }
+            }
+        }
+    }
+    
+    /// Tell the Apple Watch to use the specified content type when rendering complications. Dependeing on
+    /// the complication, the content may not be rendered or may replace another text or may be appended
+    /// - parameter contentType: Possible values are: defaultText, palette2LastPing, palette2LastVariation, palette2MaxVariation
+    func updateComplicationsContentType(contentType: ComplicationContentType.Choice) {
+        if let session = getSession(), session.activationState == .activated {
+            let contentTypeRequest = ["complications:content_type" : "\(contentType)"]
+            do {
+                try session.updateApplicationContext(contentTypeRequest)
+            }
+            catch {
+                NSLog("Failed to request WatchOS app to update context \(contentTypeRequest). Error: \(error)")
             }
         }
     }
@@ -178,23 +219,13 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
 
         // If requested printer is selected printer then use existing REST client
         // if not then create a new REST client for this operation
-        var restClient: OctoPrintRESTClient?
-        var sharedNozzle: Bool!
-        if let printer = printerManager.getDefaultPrinter() {
-            if printer.name == printerName {
-                restClient = octoprintClient.octoPrintRESTClient
-                sharedNozzle = printer.sharedNozzle
-            }
-        }
+        let tuple = restClientToPrinter(printerName: printerName)
+        let restClient: OctoPrintRESTClient? = tuple.restClient
+        let sharedNozzle: Bool = tuple.sharedNozzle
+        let palette2PluginInstalled = tuple.palette2PluginInstalled
         if restClient == nil {
-            if let printer = printerManager.getPrinterByName(name: printerName) {
-                restClient = OctoPrintRESTClient()
-                restClient?.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
-                sharedNozzle = printer.sharedNozzle
-            } else {
-                replyHandler(["error": NSLocalizedString("No printer", comment: "")])
-                return
-            }
+            replyHandler(["error": NSLocalizedString("No printer", comment: "")])
+            return
         }
         
         // Execute request
@@ -258,8 +289,23 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                             }
                         }
                     }
-                    // Send reply back to Apple Watch with results
-                    replyHandler(reply)
+                    
+                    // Gather now Palette 2 pings stats
+                    if palette2PluginInstalled {
+                        restClient!.palette2PingHistory(plugin: Plugins.PALETTE_2) { (lastPing: (number: String, percent: String, variance: String)?, pingStats: (max: String, average: String, min: String)?, error: Error?, response: HTTPURLResponse) in
+                            if let lastPing = lastPing, let pingStats = pingStats {
+                                reply["palette2LastPing"] = lastPing.percent
+                                reply["palette2LastVariation"] = lastPing.variance
+                                reply["palette2MaxVariation"] = pingStats.max
+                            }
+                            // Send reply back to Apple Watch with results
+                            replyHandler(reply)
+                        }
+                        
+                    } else {
+                        // Send reply back to Apple Watch with results
+                        replyHandler(reply)
+                    }
                 }
             } else {
                 if response.statusCode == 403 {
@@ -407,6 +453,29 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
             }
         }
         return nil
+    }
+    
+    fileprivate func restClientToPrinter(printerName: String) -> (restClient: OctoPrintRESTClient?, sharedNozzle: Bool, palette2PluginInstalled: Bool) {
+        var restClient: OctoPrintRESTClient?
+        var sharedNozzle = false
+        var palette2PluginInstalled = false
+        if let printer = printerManager.getDefaultPrinter() {
+            if printer.name == printerName {
+                restClient = octoprintClient.octoPrintRESTClient
+                sharedNozzle = printer.sharedNozzle
+                palette2PluginInstalled = printer.palette2Installed
+            }
+        }
+        if restClient == nil {
+            if let printer = printerManager.getPrinterByName(name: printerName) {
+                restClient = OctoPrintRESTClient()
+                restClient?.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+                sharedNozzle = printer.sharedNozzle
+                palette2PluginInstalled = printer.palette2Installed
+            }
+        }
+        return (restClient, sharedNozzle, palette2PluginInstalled)
+
     }
     
     fileprivate func ensureDefaultPrinter(printerName: String) {

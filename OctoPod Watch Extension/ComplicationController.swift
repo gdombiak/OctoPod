@@ -3,12 +3,31 @@ import WatchKit
 
 class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerDelegate {
     
+    private let COMPLICATION_CONTENT_TYPE_KEY = "COMPLICATION_CONTENT_TYPE"
+    
+    /// Select what type of content should be displayed in complication
+    fileprivate enum ContentType: Int {
+        /// Display priner name
+        case defaultText
+        /// When Palette2 info is available, display last ping value. Fallback to printer name
+        case palette2LastPing
+        /// When Palette2 info is available, display last ping variance. Fallback to printer name
+        case palette2LastVariation
+        /// When Palette2 info is available, display max ping variance. Fallback to printer name
+        case palette2MaxVariation
+    }
+    
     /// Time when the next background task should run
     private var scheduledBackgroundTask: Date?
+    
+    private var complicationContentType: ContentType = .defaultText
 
     private var currentPrinterName: String!
     private var currentPrinterState: String!
     private var completion: Double!
+    private var palette2LastPing: String?
+    private var palette2LastVariation: String?
+    private var palette2MaxVariation: String?
     
     private let printColor = UIColor(red: 48/255, green: 140/255, blue: 140/255, alpha: 1.0)
     private let notPrintColor = UIColor(red: 0/255, green: 111/255, blue: 234/255, alpha: 1.0)
@@ -21,6 +40,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
         
         // Listen to changes to panel information
         PanelManager.instance.delegates.append(self)
+        
+        // Save new value as a setting
+        let savedContentType = UserDefaults.standard.integer(forKey: COMPLICATION_CONTENT_TYPE_KEY)
+        if let restoredContentType = ContentType(rawValue: savedContentType) {
+            complicationContentType = restoredContentType
+        }
     }
     
     // MARK: - Timeline Configuration
@@ -50,7 +75,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
             let template = CLKComplicationTemplateModularLargeStandardBody()
             template.headerTextProvider = CLKSimpleTextProvider(text: currentPrinterName)
             template.body1TextProvider = CLKSimpleTextProvider(text: currentPrinterState)
-            template.body2TextProvider = CLKSimpleTextProvider(text: hasCompletion ? "\(String(format: "%.1f", completion!))%" : "")
+            let completionText: String = hasCompletion ? "\(String(format: "%.1f", completion!))%" : ""
+            template.body2TextProvider = CLKSimpleTextProvider(text: complicationText(initial: completionText, replace: false))
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
 
@@ -64,7 +90,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
 
         case .extraLarge:
             let template = CLKComplicationTemplateExtraLargeRingText()
-            template.textProvider = CLKSimpleTextProvider(text: currentPrinterName)
+            template.textProvider = CLKSimpleTextProvider(text: complicationText(initial: currentPrinterName, replace: true))
             template.fillFraction = hasCompletion ? Float(completion / 100) : 0.0
             template.ringStyle = .closed
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
@@ -90,13 +116,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
         case .graphicCorner:
             if hasCompletion {
                 let template = CLKComplicationTemplateGraphicCornerGaugeText()
-                template.outerTextProvider = CLKSimpleTextProvider(text: currentPrinterName)
+                template.outerTextProvider = CLKSimpleTextProvider(text: complicationText(initial: currentPrinterName, replace: true))
                 template.gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: Float(completion / 100))
                 let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
                 handler(entry)
             } else {
                 let template = CLKComplicationTemplateGraphicCornerStackText()
-                template.outerTextProvider = CLKSimpleTextProvider(text: currentPrinterName)
+                template.outerTextProvider = CLKSimpleTextProvider(text: complicationText(initial: currentPrinterName, replace: true))
                 let innerTextProvider = CLKSimpleTextProvider(text: currentPrinterState)
                 innerTextProvider.tintColor = notPrintColor
                 template.innerTextProvider = innerTextProvider
@@ -113,7 +139,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
         case .graphicRectangular:
             let template = CLKComplicationTemplateGraphicRectangularTextGauge()
             template.headerTextProvider = CLKSimpleTextProvider(text: currentPrinterName)
-            template.body1TextProvider = CLKSimpleTextProvider(text: currentPrinterState)
+            template.body1TextProvider = CLKSimpleTextProvider(text: complicationText(initial: currentPrinterState, replace: false))
             template.gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: hasCompletion ? Float(completion / 100) : CLKSimpleGaugeProviderFillFractionEmpty)
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
@@ -211,18 +237,35 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
             }
             if pushState == "Offline" || pushState == "Operational" || pushState == "Printing" || pushState == "Paused" {
                 let completion = panelInfo["completion"] as? Double ?? 0
-                pushUpdateToComplications(printerName: printerName, state: pushState, completion: completion)
+                let palette2LastPing: String? = panelInfo["palette2LastPing"] as? String
+                let palette2LastVariation: String? = panelInfo["palette2LastVariation"] as? String
+                let palette2MaxVariation: String? = panelInfo["palette2MaxVariation"] as? String
+                pushUpdateToComplications(printerName: printerName, state: pushState, completion: completion, palette2LastPing: palette2LastPing, palette2LastVariation: palette2LastVariation, palette2MaxVariation: palette2MaxVariation)
             }
         }
     }
     
-    func updateComplications(printerName: String, printerState: String, completion: Double) {
-        pushUpdateToComplications(printerName: printerName, state: printerState, completion: completion)
+    func updateComplications(printerName: String, printerState: String, completion: Double, palette2LastPing: String?, palette2LastVariation: String?, palette2MaxVariation: String?) {
+        pushUpdateToComplications(printerName: printerName, state: printerState, completion: completion, palette2LastPing: palette2LastPing, palette2LastVariation: palette2LastVariation, palette2MaxVariation: palette2MaxVariation)
     }
     
+    func updateComplicationsContentType(contentType: String) {
+        if contentType == "defaultText" {
+            complicationContentType = .defaultText
+        } else if contentType == "palette2LastPing" {
+            complicationContentType = .palette2LastPing
+        } else if contentType == "palette2LastVariation" {
+            complicationContentType = .palette2LastVariation
+        } else if contentType == "palette2MaxVariation" {
+            complicationContentType = .palette2MaxVariation
+        }
+        // Save new value as a setting
+        UserDefaults.standard.set(complicationContentType.rawValue, forKey: COMPLICATION_CONTENT_TYPE_KEY)
+    }
+
     // MARK: - Private operations
     
-    fileprivate func pushUpdateToComplications(printerName: String, state: String, completion: Double) {
+    fileprivate func pushUpdateToComplications(printerName: String, state: String, completion: Double, palette2LastPing: String?, palette2LastVariation: String?, palette2MaxVariation: String?) {
         if completion > 0 && completion < 100 {
             // Schedule next background refresh in 20 minutes if we are printing
             scheduleNextBackgroundRefresh(minutes: 20)
@@ -234,11 +277,14 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
             // OctoPrint plugin installed or 3. user opened Apple Watch app while print is running
             scheduleNextBackgroundRefresh(minutes: 60)
         }
-        if currentPrinterName != printerName || currentPrinterState != state  || self.completion != completion {
+        if currentPrinterName != printerName || currentPrinterState != state  || self.completion != completion || self.palette2LastPing != palette2LastPing || self.palette2LastVariation != palette2LastVariation || self.palette2MaxVariation != palette2MaxVariation {
             // Update locally stored information
             currentPrinterName = printerName
             currentPrinterState = state
             self.completion = completion
+            self.palette2LastPing = palette2LastPing
+            self.palette2LastVariation = palette2LastVariation
+            self.palette2MaxVariation = palette2MaxVariation
             
             // Update complications since state has changed
             let complicationServer = CLKComplicationServer.sharedInstance()
@@ -248,6 +294,26 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
                 }
             }
         }
+    }
+    
+    fileprivate func complicationText(initial: String, replace: Bool) -> String {
+        switch complicationContentType {
+        case .defaultText:
+            return initial
+        case .palette2LastPing:
+            if let replacement = palette2LastPing, replacement != "" {
+                return replace ? replacement : "\(initial) - \(replacement)"
+            }
+        case .palette2LastVariation:
+            if let replacement = palette2LastVariation, replacement != ""  {
+                return replace ? replacement : "\(initial) - \(replacement)"
+            }
+        case .palette2MaxVariation:
+            if let replacement = palette2MaxVariation, replacement != ""  {
+                return replace ? replacement : "\(initial) - \(replacement)"
+            }
+        }
+        return initial
     }
 
     // MARK: - Background refresh task

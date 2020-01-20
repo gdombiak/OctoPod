@@ -137,9 +137,9 @@ class IntentsController {
     
     func palette2PingStats(printer: Printer, callback: @escaping (Bool, String?, String?) -> Void) {
         let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
-        restClient.palette2PingHistory(plugin: Plugins.PALETTE_2) { (lastVariance: String?, maxVariance: String?, error: Error?, response: HTTPURLResponse) in
-            if let lastVariance = lastVariance, let maxVariance = maxVariance {
-                callback(true, lastVariance, maxVariance)
+        restClient.palette2PingHistory(plugin: Plugins.PALETTE_2) { (lastPing: (number: String, percent: String, variance: String)?, pingStats: (max: String, average: String, min: String)?, error: Error?, response: HTTPURLResponse) in
+            if let lastPing = lastPing, let pingStats = pingStats {
+                callback(true, lastPing.variance, pingStats.max)
             } else if let _ = error, response.statusCode != 200 {
                 NSLog("Failed to request ping stats. HTTP status code: \(response.statusCode)")
                 callback(false, nil, nil)

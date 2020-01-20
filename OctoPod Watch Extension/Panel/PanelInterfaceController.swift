@@ -34,6 +34,10 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
     @IBOutlet weak var cancelButton: WKInterfaceButton!
     @IBOutlet weak var refreshButton: WKInterfaceButton!
     
+    @IBOutlet weak var palette2Group: WKInterfaceGroup!
+    @IBOutlet weak var lastPingLabel: WKInterfaceLabel!
+    @IBOutlet weak var lastVarianceLabel: WKInterfaceLabel!
+    
     // Keep track of the printer being displayed
     var printerURL: String?
     
@@ -352,10 +356,16 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
                     self.hideJobButtons()
                 }
             }
+            self.palette2Group.setHidden(true)
+            if let palette2LastPing = panelInfo["palette2LastPing"] as? String, let palette2LastVariation = panelInfo["palette2LastVariation"] as? String, let palette2MaxVariation = panelInfo["palette2MaxVariation"] as? String {
+                self.palette2Group.setHidden(false)
+                self.lastPingLabel.setText(palette2LastPing)
+                self.lastVarianceLabel.setText(palette2LastVariation)
+            }
         }
     }
 
-    func updateComplications(printerName: String, printerState: String, completion: Double) {
+    func updateComplications(printerName: String, printerState: String, completion: Double, palette2LastPing: String?, palette2LastVariation: String?, palette2MaxVariation: String?) {
         // Do nothing
     }
     

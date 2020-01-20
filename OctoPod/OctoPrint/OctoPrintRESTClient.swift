@@ -760,7 +760,7 @@ class OctoPrintRESTClient {
     /// on new API call added to Palette2 plugin (i.e. a new version is needed)
     /// - parameters:
     ///     - plugin: Identifier of the Palette 2 plugin. See Plugins structure
-    func palette2PingHistory(plugin: String, callback: @escaping (String?, String?, Error?, HTTPURLResponse) -> Void) {
+    func palette2PingHistory(plugin: String, callback: @escaping ((number: String, percent: String, variance: String)?, (max: String, average: String, min: String)?, Error?, HTTPURLResponse) -> Void) {
         let json : NSMutableDictionary = NSMutableDictionary()
         json["command"] = "getPingHistory"
         pluginCommand(plugin: plugin, json: json) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
@@ -769,9 +769,10 @@ class OctoPrintRESTClient {
                 NSLog("Error getting ping history from Palette2. Error: \(error!.localizedDescription)")
             }
             if let json = result as? NSDictionary {
+//                let pings = [["number": Int(1), "percent": 99.99], ["number": Int(2), "percent": 99.39], ["number": Int(3), "percent": 99.69]]
                 if let pings = json["data"] as? Array<Dictionary<String,Any>> {
                     if let lastPing = Palette2Utils.pingPongMessage(history: pings, index: pings.count - 1, reversed: false), let pingStats = Palette2Utils.pingPongVarianceStats(history: pings, reversed: false) {
-                        callback(lastPing.variance, pingStats.max, error, response)
+                        callback(lastPing, pingStats, error, response)
                         return
                     }
                 }

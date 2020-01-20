@@ -94,6 +94,8 @@
 		3D5849E4210CC8720068D87A /* OctoPrintSettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5849E3210CC8720068D87A /* OctoPrintSettingsDelegate.swift */; };
 		3D5879FA2176D2D20058A4DC /* NotRefreshingReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */; };
 		3D5D613621209F52000B66E7 /* CamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D613521209F52000B66E7 /* CamerasViewController.swift */; };
+		3D5D614623D5776200D988A2 /* AppleWatchSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D614523D5776200D988A2 /* AppleWatchSettingsViewController.swift */; };
+		3D5D614823D57C2000D988A2 /* ComplicationContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D614723D57C2000D988A2 /* ComplicationContentType.swift */; };
 		3D6350EA21080AD3001C10F7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350E921080AD3001C10F7 /* Theme.swift */; };
 		3D6350F121082E07001C10F7 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F021082E07001C10F7 /* AppearanceViewController.swift */; };
 		3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F221083BE0001C10F7 /* TabBarController.swift */; };
@@ -388,6 +390,8 @@
 		3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotRefreshingReasonViewController.swift; sourceTree = "<group>"; };
 		3D5D613421209B52000B66E7 /* OctoPod v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v3.xcdatamodel"; sourceTree = "<group>"; };
 		3D5D613521209F52000B66E7 /* CamerasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasViewController.swift; sourceTree = "<group>"; };
+		3D5D614523D5776200D988A2 /* AppleWatchSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleWatchSettingsViewController.swift; sourceTree = "<group>"; };
+		3D5D614723D57C2000D988A2 /* ComplicationContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationContentType.swift; sourceTree = "<group>"; };
 		3D6350E921080AD3001C10F7 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		3D6350F021082E07001C10F7 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
 		3D6350F221083BE0001C10F7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -672,6 +676,7 @@
 				3D7C884B2152BB32009FECEF /* Devices */,
 				3D450EC421AB50AF0049FBC0 /* SiriViewController.swift */,
 				3D8DA01D2144EDCE00F5FD07 /* SupportViewController.swift */,
+				3D5D614523D5776200D988A2 /* AppleWatchSettingsViewController.swift */,
 			);
 			path = "Settings UI";
 			sourceTree = "<group>";
@@ -1029,6 +1034,7 @@
 			children = (
 				3DB5107B217C16EE006CF8C3 /* WatchSessionManager.swift */,
 				3DB5107F217C6C8C006CF8C3 /* WatchSessionManagerDelegate.swift */,
+				3D5D614723D57C2000D988A2 /* ComplicationContentType.swift */,
 			);
 			path = "Apple Watch";
 			sourceTree = "<group>";
@@ -1516,6 +1522,7 @@
 			files = (
 				3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */,
 				3D9D9765214DCC440032443A /* CloudKitPrinterDelegate.swift in Sources */,
+				3D5D614623D5776200D988A2 /* AppleWatchSettingsViewController.swift in Sources */,
 				3D450EC821AB56F40049FBC0 /* IntentsController.swift in Sources */,
 				3D0E3B1121097E7A0087F7E4 /* ThemeUIUtils.swift in Sources */,
 				3DAD2DDC21816D62004A4223 /* OctoPrintRESTClient.swift in Sources */,
@@ -1527,6 +1534,7 @@
 				3D8B293220E556D400296D9D /* OctoPrintClient.swift in Sources */,
 				3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */,
 				3D74FA2721251BCF00DA2CB3 /* PSUControlViewController.swift in Sources */,
+				3D5D614823D57C2000D988A2 /* ComplicationContentType.swift in Sources */,
 				3DBAE49F20E6821900D2137D /* SelectDefaultPrinterViewController.swift in Sources */,
 				3D82874120E421610035AE0B /* MjpegStreamingController.swift in Sources */,
 				3D8AB6A321A7390B00E81CE5 /* SystemCommand.swift in Sources */,

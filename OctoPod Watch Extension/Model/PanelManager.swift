@@ -47,9 +47,19 @@ class PanelManager: PrinterManagerDelegate {
     
     func updateComplications(info: [String : Any]) {
         if let printerName = info["printer"] as? String, let state = info["state"] as? String, let completion = info["completion"] as? Double {
+            // Retrieve Palette 2 information if available
+            let palette2LastPing: String? = info["palette2LastPing"] as? String
+            let palette2LastVariation: String? = info["palette2LastVariation"] as? String
+            let palette2MaxVariation: String? = info["palette2MaxVariation"] as? String
             for delegate in delegates {
-                delegate.updateComplications(printerName: printerName, printerState: state, completion: completion)
+                delegate.updateComplications(printerName: printerName, printerState: state, completion: completion, palette2LastPing: palette2LastPing, palette2LastVariation: palette2LastVariation, palette2MaxVariation: palette2MaxVariation)
             }
+        }
+    }
+
+    func updateComplicationsContentType(contentType: String) {
+        for delegate in delegates {
+            delegate.updateComplicationsContentType(contentType: contentType)
         }
     }
     
