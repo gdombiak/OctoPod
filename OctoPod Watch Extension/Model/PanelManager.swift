@@ -18,6 +18,10 @@ class PanelManager: PrinterManagerDelegate {
 
     // MARK: - Refresh operations
 
+    /// Fetch current job information and then update complications and main panel window. Job information will be first attempted
+    /// to be loaded via iOS app and direct HTTP request as a fallback mechanism. When going via iOS app more information is included
+    /// like printer state and Palette 2 ping statistics. This method is called when 1. a new printer has been selected, 2. main Panel window
+    /// refreshes data, 3. printers data has changed (like name)
     func refresh(done: (() -> Void)?) {
         if let printer = PrinterManager.instance.defaultPrinter() {
             printerName = PrinterManager.instance.name(printer: printer)
@@ -45,6 +49,9 @@ class PanelManager: PrinterManagerDelegate {
         }
     }
     
+    /// Update complications with new updated data. This is requested when iOS app deteced that printer changed state. ComplicationController
+    /// also has a background refresh task that updates complications information. Complications are also updated from Apple Watch when it detects
+    /// 1. a new printer has been selected, 2. main Panel window refreshed data, 3. printers data has changed (like name). See refresh(:) above
     func updateComplications(info: [String : Any]) {
         if let printerName = info["printer"] as? String, let state = info["state"] as? String, let completion = info["completion"] as? Double {
             // Retrieve Palette 2 information if available

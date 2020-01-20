@@ -36,6 +36,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     
     // MARK: - Push information to Apple Watch
 
+    /// Send printers information to Apple Watch
     func pushPrinters() {
         do {
             try getSession()?.updateApplicationContext(encodePrinters())
@@ -45,6 +46,11 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         }
     }
     
+    /// Send updated complication information to Apple Watch. Push is only done when printer changed state. Complications are also
+    /// updated with a background refresh from the Apple Watch or when user opens Apple Watch app which results in fetching latest
+    /// data.
+    /// Push will be done only if Apple Watch has a complication installed. It will first be attempted via #transferCurrentComplicationUserInfo
+    /// if there is still budget. If not the same information will be sent via updateApplicationContext as a fallback mechanism
     func updateComplications(printerName: String, printerState: String, completion: Double?) {
         if let session = getSession(), session.activationState == .activated {
             var info = ["printer": printerName, "state": printerState, "completion": completion ?? 0.0] as [String : Any]

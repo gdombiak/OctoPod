@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15705" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38"/>
+    <device id="watch44"/>
     <dependencies>
         <deployment identifier="watchOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -32,7 +32,7 @@
                                 </tableRow>
                             </items>
                         </table>
-                        <button width="24" height="24" alignment="center" verticalAlignment="center" backgroundImage="Refresh" id="K7F-lC-ZQC">
+                        <button width="40" height="40" alignment="center" verticalAlignment="center" backgroundImage="Refresh" id="K7F-lC-ZQC">
                             <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="refresh" destination="AgC-eL-Hgc" id="lde-Yk-0Lb"/>
@@ -223,7 +223,7 @@
                         </separator>
                         <group width="1" alignment="left" layout="vertical" id="WRH-aL-lBa">
                             <items>
-                                <button width="24" height="24" alignment="center" verticalAlignment="center" backgroundImage="Refresh" id="Blm-Ik-qB5">
+                                <button width="40" height="40" alignment="center" verticalAlignment="center" backgroundImage="Refresh" id="Blm-Ik-qB5">
                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <connections>
                                         <action selector="refresh" destination="DQ6-B5-o6I" id="2Hu-Ej-Nah"/>
@@ -283,7 +283,7 @@
                                     <items>
                                         <group alignment="left" id="UGZ-Yo-ugC">
                                             <items>
-                                                <button width="24" height="24" alignment="left" backgroundImage="Prev" id="Jf9-Tw-QoZ">
+                                                <button width="40" height="40" alignment="left" backgroundImage="Prev" id="Jf9-Tw-QoZ">
                                                     <connections>
                                                         <action selector="previousClicked" destination="SvA-Pt-I7G" id="SNl-Gg-iJn"/>
                                                     </connections>
@@ -291,14 +291,14 @@
                                             </items>
                                             <edgeInsets key="margins" left="4" right="0.0" top="0.0" bottom="0.0"/>
                                         </group>
-                                        <button width="24" height="24" alignment="center" backgroundImage="Refresh" id="xJS-Tp-AOd">
+                                        <button width="40" height="40" alignment="center" backgroundImage="Refresh" id="xJS-Tp-AOd">
                                             <connections>
                                                 <action selector="refreshClicked" destination="SvA-Pt-I7G" id="Y0F-g5-ytt"/>
                                             </connections>
                                         </button>
                                         <group alignment="right" id="Cr1-eY-1Ta">
                                             <items>
-                                                <button width="24" height="24" alignment="right" backgroundImage="Next" id="8aw-nV-PYG">
+                                                <button width="40" height="40" alignment="right" backgroundImage="Next" id="8aw-nV-PYG">
                                                     <connections>
                                                         <action selector="nextClicked" destination="SvA-Pt-I7G" id="Mds-9b-qXg"/>
                                                     </connections>

@@ -120,6 +120,8 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
     
     // MARK: - Private functions
     
+    /// Push Apple Watch complication update only when printer changed state. If OctoPod plugin for OctoPrint is not installed then also use this time to send a local notification
+    /// Complications also get updated when they run a background refresh or when user opened the Apple Watch app and it fetched new data
     fileprivate func pushComplicationUpdate(printerName: String, octopodPluginInstalled: Bool, state: String, mediaURL: String?, completion: Double?) {
         // Check if state has changed since last refresh
         let lastState = self.lastKnownState[printerName]

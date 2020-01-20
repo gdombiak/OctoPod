@@ -29,6 +29,10 @@ class OctoPrintClient {
 
     // MARK: - Job operations
     
+    /// Fetch job information and if possible printer state and Palette 2 ping statistics. First attempt to load information
+    /// via iOS app and if that fails then fallback to direct HTTP requests. When going via iOS app more information is included
+    /// like printer state and Palette 2 ping statistics. Making many HTTP requests seems to be very slow so we only fetch job
+    /// information in this case
     func currentJobInfo(callback: @escaping ([String : Any]) -> Void) {
         let restCallback = { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
             if let error = error {
