@@ -33,5 +33,14 @@ class SettingsViewController: ThemedStaticUITableViewController {
         let dictionary = Bundle.main.infoDictionary!
         let version = dictionary["CFBundleShortVersionString"] as! String
         let build = dictionary["CFBundleVersion"] as! String
-        return "OctoPod v\(version) build \(build)"    }
+        return "OctoPod v\(version) build \(build)"
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 4 && UIDevice.current.userInterfaceIdiom == .pad {
+            // Hide Apple Watch settings when on the iPad
+            return 0
+        }
+        return 44
+    }
 }
