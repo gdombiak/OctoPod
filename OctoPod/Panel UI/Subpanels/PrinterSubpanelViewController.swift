@@ -623,7 +623,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             self.printTimeLeftLabel.text = ""
             self.printEstimatedCompletionLabel.text = ""
             
-            self.tool0ActualLabel.text = ""
+            self.tool0ActualLabel.text = " " // Use empty space to position Extruder label in a good place
             self.tool0TargetLabel.text = ""
             self.tool0SplitLabel.isHidden = true
             // Hide 2nd,3rd,4th,5th extruders and chamber row unless printer reports info

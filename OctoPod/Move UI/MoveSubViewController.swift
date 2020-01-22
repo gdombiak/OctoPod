@@ -468,16 +468,15 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section < 2 {
-            return 85
+            return 60
         } else if indexPath.section == 2 {
             return 40
         } else if indexPath.section == 3 {
             if indexPath.row == 0 {
                 return selectExtruderCellHeight
             }
-            return 90
         }
-        return 126
+        return UITableView.automaticDimension
     }
     
     // MARK: - Navigation
@@ -618,7 +617,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             
             // Hide or show the row that let's user select extruder to operate on
             let oldHeight = selectExtruderCellHeight
-            selectExtruderCellHeight = printer.toolsNumber > 1 ? 44 : 0
+            selectExtruderCellHeight = printer.toolsNumber > 1 ? UITableView.automaticDimension : 0
             // Reconfigure selectExtruderSegmentedControl based on number of tools if needed
             if printer.toolsNumber > 1 && selectExtruderSegmentedControl.numberOfSegments != printer.toolsNumber {
                 selectExtruderSegmentedControl.removeAllSegments()
