@@ -158,7 +158,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row < files.count {
             let file = files[indexPath.row]
-            return file.isFolder() ? 44 : 56
+            return file.isFolder() ? 44 : UITableView.automaticDimension
         }
         return 44
     }
