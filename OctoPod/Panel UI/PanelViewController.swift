@@ -328,6 +328,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         if let closed = event.closedOrError {
             updateConnectButton(printerConnected: !closed)
         }
+        camerasViewController?.currentStateUpdated(event: event)
         subpanelsViewController?.currentStateUpdated(event: event)
     }
 
@@ -667,6 +668,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 uiOrientationBeforeFullScreen = nil
             }
         }
+        camerasViewController?.displayPrintStatus(enabled: subpanelsView.isHidden)
     }
     
     @objc func appWillEnterForeground() {

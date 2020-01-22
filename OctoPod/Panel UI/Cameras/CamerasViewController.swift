@@ -3,6 +3,9 @@ import UIKit
 class CamerasViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var printTimeLeftLabel: UILabel!
+    @IBOutlet weak var tool0ActualLabel: UILabel!
+    @IBOutlet weak var bedActualLabel: UILabel!
     
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
 
@@ -58,6 +61,20 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         return nil
     }
 
+    func displayPrintStatus(enabled: Bool) {
+        DispatchQueue.main.async {
+            self.printTimeLeftLabel.isHidden = !enabled
+            self.tool0ActualLabel.isHidden = !enabled
+            self.bedActualLabel.isHidden = !enabled
+            if enabled {
+                // Reset values in case they are old
+                self.printTimeLeftLabel.text = " "
+                self.tool0ActualLabel.text = " "
+                self.bedActualLabel.text = " "
+            }
+        }
+    }
+    
     // MARK: - Notifications
 
     func printerSelectedChanged() {
@@ -81,7 +98,24 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             self.updateViewControllersForPrinter(cameraChanged: true)
         }
     }
+    
+    func currentStateUpdated(event: CurrentStateEvent) {
+        DispatchQueue.main.async {            
+            if let seconds = event.progressPrintTimeLeft {
+                self.printTimeLeftLabel.text = self.secondsToTimeLeft(seconds: seconds)
+            } else if event.progressPrintTime != nil {
+                self.printTimeLeftLabel.text = NSLocalizedString("Still stabilizing", comment: "Print time is being calculated")
+            }
 
+            if let tool0Actual = event.tool0TempActual {
+                self.tool0ActualLabel.text = "\(String(format: "%.1f", tool0Actual)) C"
+            }
+            if let bedActual = event.bedTempActual {
+                self.bedActualLabel.text = "\(String(format: "%.1f", bedActual)) C"
+            }
+        }
+    }
+    
     // MARK: - UIPageViewControllerDataSource
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -270,4 +304,23 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         }
         return nil
     }
+    
+    /// Return estimated time based on number of estimated seconds to completion
+    /// - parameter seconds: estimated number of seconds to complection
+    fileprivate func secondsToTimeLeft(seconds: Int) -> String {
+        if seconds == 0 {
+            return ""
+        } else if seconds < 0 {
+            // Should never happen but an OctoPrint plugin is returning negative values
+            // so return 'Unknown' when this happens
+            return NSLocalizedString("Unknown", comment: "ETA is Unknown")
+        }
+        let duration = TimeInterval(seconds)
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .brief
+        formatter.includesApproximationPhrase = true
+        formatter.allowedUnits = [ .day, .hour, .minute ]
+        return formatter.string(from: duration)!
+    }
+
 }
