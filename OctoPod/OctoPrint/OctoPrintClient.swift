@@ -245,8 +245,16 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                     let opMajor = Int((version as NSString).substring(with: match.range(at: 1)))!
                     let opMinor = Int((version as NSString).substring(with: match.range(at: 2)))!
                     let opPatch = Int((version as NSString).substring(with: match.range(at: 3)))!
-
-                    return opMajor >= major && opMinor >= minor && opPatch >= patch
+                    
+                    let currentVersion = [opMajor, opMinor, opPatch]
+                    let requiredVersion = [major, minor, patch]
+                    
+                    for (index, part) in currentVersion.enumerated() {
+                        if part != requiredVersion[index] {
+                            return part > requiredVersion[index]
+                        }
+                    }
+                    return true
                 }
             }
             catch {
