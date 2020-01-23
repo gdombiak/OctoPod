@@ -85,6 +85,55 @@ class UIUtils {
         formatter.allowedUnits = [ .day, .hour, .minute ]
         return formatter.string(from: duration)!
     }
+    
+    /// Return estimated time based on number of estimated seconds to completion
+    /// - parameter seconds: estimated number of seconds to complection
+    static func secondsToTimeLeft(seconds: Int, ifZero: String) -> String {
+        if seconds == 0 {
+            return ifZero
+        } else if seconds < 0 {
+            // Should never happen but an OctoPrint plugin is returning negative values
+            // so return 'Unknown' when this happens
+            return NSLocalizedString("Unknown", comment: "ETA is Unknown")
+        }
+        let duration = TimeInterval(seconds)
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .brief
+        formatter.includesApproximationPhrase = true
+        formatter.allowedUnits = [ .day, .hour, .minute ]
+        return formatter.string(from: duration)!
+    }
+    
+    /// Return estimated complection date based on number of estimated seconds to completion
+    /// - parameter seconds: estimated number of seconds to complection
+    static func secondsToETA(seconds: Int) -> String {
+        if seconds == 0 {
+            return ""
+        } else if seconds < 0 {
+            // Should never happen but an OctoPrint plugin is returning negative values
+            // so return 'Unknown' when this happens
+            return NSLocalizedString("Unknown", comment: "ETA is Unknown")
+        }
+        
+        let calendar = Calendar.current
+        let now = Date()
+        if let etaDate = calendar.date(byAdding: .second, value: seconds, to: now) {
+            let formatter = DateFormatter()
+            if Calendar.current.isDate(now, inSameDayAs:etaDate) {
+                // Same day so just show hour
+                formatter.dateStyle = .none
+                formatter.timeStyle = .short
+            } else {
+                // Show short version of date and hour
+                formatter.dateStyle = .short
+                formatter.timeStyle = .short
+            }
+            return formatter.string(from: etaDate)
+        } else {
+            NSLog("Failed to create ETA date")
+            return ""
+        }
+    }
 }
 
 extension UIImage {
