@@ -1,6 +1,6 @@
 import UIKit
 
-class MoveViewController: UIViewController, OctoPrintSettingsDelegate, CameraViewDelegate, WatchSessionManagerDelegate {
+class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSettingsDelegate, CameraViewDelegate, WatchSessionManagerDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -37,6 +37,8 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate, CameraVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // Listen to events coming from OctoPrintClient
+        octoprintClient.delegates.append(self)
         // Listen to changes to OctoPrint Settings in case the camera orientation has changed
         octoprintClient.octoPrintSettingsDelegates.append(self)
         // Listen to changes coming from Apple Watch
@@ -49,11 +51,36 @@ class MoveViewController: UIViewController, OctoPrintSettingsDelegate, CameraVie
         refreshNewSelectedPrinter()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        // Now that cameraVC has appeared, we can configure it to display print status info
+        camerasViewController?.displayPrintStatus(enabled: true)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
+        // Stop listening to changes from OctoPrintClient
+        octoprintClient.remove(octoPrintClientDelegate: self)
         // Stop listening to changes to OctoPrint Settings
         octoprintClient.remove(octoPrintSettingsDelegate: self)
         // Stop listening to changes coming from Apple Watch
         watchSessionManager.remove(watchSessionManagerDelegate: self)
+    }
+
+    // MARK: - OctoPrintClientDelegate
+    
+    func printerStateUpdated(event: CurrentStateEvent) {
+        camerasViewController?.currentStateUpdated(event: event)
+    }
+
+    func handleConnectionError(error: Error?, response: HTTPURLResponse) {
+    }
+    
+    func websocketConnected() {
+    }
+
+    func websocketConnectionFailed(error: Error) {
+    }
+    
+    func notificationAboutToConnectToServer() {
     }
 
     // MARK: - OctoPrintSettingsDelegate
