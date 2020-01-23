@@ -140,7 +140,7 @@
 "aFa-Qd-yIr.placeholder" = "Název tiskárny (např. MK3)";
 
 /* Class = "UIButton"; normalTitle = "Suppress temp"; ObjectID = "AfS-HP-WTR"; */
-"AfS-HP-WTR.normalTitle" = "Zakázat teplotu";
+"AfS-HP-WTR.normalTitle" = "Neukazovat teplotu";
 
 /* Class = "UILabel"; text = "Extruder"; ObjectID = "ahs-Hn-dAX"; */
 "ahs-Hn-dAX.text" = "Tryska";
@@ -641,7 +641,7 @@
 "sF0-zd-MZR.text" = "/";
 
 /* Class = "UIButton"; normalTitle = "Suppress SD"; ObjectID = "sgi-wT-ubY"; */
-"sgi-wT-ubY.normalTitle" = "Zakázat SD";
+"sgi-wT-ubY.normalTitle" = "Neukazovat SD";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H"; */
 "sLc-Jv-G0H.placeholder" = "Uživatelské jméno";
