@@ -40,6 +40,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         // Start listening to events when app comes back from background
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         // Listen when app went to background so we can stop any ongoing HTTP request
@@ -68,6 +69,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         // Stop listening to events when app comes back from background
         NotificationCenter.default.removeObserver(self)
 
@@ -75,7 +77,10 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         octoprintClient.remove(octoPrintSettingsDelegate: self)
 
         stopRenderingPrinter()
-        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         // Hide display printer status (so when it comes back there is no old info)
         displayPrintStatus(enabled: false)
     }
