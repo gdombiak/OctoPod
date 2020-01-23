@@ -1936,7 +1936,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Widget/OctoPod Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -1961,7 +1961,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Widget/OctoPod Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -1985,7 +1985,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent/OctoPod Intent.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Intent/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -2010,7 +2010,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent/OctoPod Intent.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Intent/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -2155,7 +2155,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OctoPod/OctoPod.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = OctoPod/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -2179,7 +2179,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OctoPod/OctoPod.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = OctoPod/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -2201,7 +2201,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				IBSC_MODULE = OctoPod_Watch_Extension;
 				INFOPLIST_FILE = "OctoPod Watch/Info.plist";
@@ -2224,7 +2224,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				IBSC_MODULE = OctoPod_Watch_Extension;
 				INFOPLIST_FILE = "OctoPod Watch/Info.plist";
@@ -2245,7 +2245,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2271,7 +2271,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2295,7 +2295,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Notification Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -2319,7 +2319,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Notification Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
