@@ -23,6 +23,9 @@
 "Job" = "Jobb";
 
 /* No comment provided by engineer. */
+"Missed" = "Saknas";
+
+/* No comment provided by engineer. */
 "MK3" = "MK3";
 
 /* (No Comment) */
@@ -39,9 +42,6 @@
 
 /* (No Comment) */
 "Notify failed resume job" = "Kunde inte begära att återuppta jobb";
-
-/* No comment provided by engineer. */
-"Paused" = "Pausad";
 
 /* No comment provided by engineer. */
 "Printing" = "Skriver ut";

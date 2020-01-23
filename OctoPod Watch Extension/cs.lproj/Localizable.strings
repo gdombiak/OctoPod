@@ -23,6 +23,9 @@
 "Job" = "Tisk";
 
 /* No comment provided by engineer. */
+"Missed" = "Vynechanáno";
+
+/* No comment provided by engineer. */
 "MK3" = "MK3";
 
 /* (No Comment) */
@@ -39,9 +42,6 @@
 
 /* (No Comment) */
 "Notify failed resume job" = "Nezdařil se požadavek k pokračování v tisku";
-
-/* No comment provided by engineer. */
-"Paused" = "Zastaveno";
 
 /* No comment provided by engineer. */
 "Printing" = "Tiskne se";

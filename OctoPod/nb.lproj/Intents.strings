@@ -1,4 +1,7 @@
 /* (No Comment) */
+"0jkA5V" = "${displayName} kan ikke være høyere enn ${maximumValue}.";
+
+/* (No Comment) */
 "0vck5K" = "Kunne ikke be om å kutte";
 
 /* (No Comment) */
@@ -9,6 +12,9 @@
 
 /* (No Comment) */
 "2TreiD" = "Sett ekstruderens temperatur til ${temperature}";
+
+/* (No Comment) */
+"2zYNqY" = "Spør Palette pingstatistikk";
 
 /* (No Comment) */
 "3Butzw" = "Kammerets temperatur ble satt til ${temperature}";
@@ -24,6 +30,9 @@
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"5btOXI" = "Siste variasjon";
 
 /* (No Comment) */
 "5i5htv" = "Tilkoblet";
@@ -53,6 +62,9 @@
 "8xHCbl" = "${printer}";
 
 /* (No Comment) */
+"9eejxB" = "Spør Palette pingstatistikk";
+
+/* (No Comment) */
 "9iz6yx" = "${printer}";
 
 /* (No Comment) */
@@ -62,10 +74,31 @@
 "662LyZ" = "Restart jobb";
 
 /* (No Comment) */
+"817z4k" = "${displayName} kan ikke være lavere enn ${minimumValue}.";
+
+/* (No Comment) */
+"ADfGbr" = "${displayName} kan ikke være negativ.";
+
+/* (No Comment) */
+"AdooVp" = "${displayName} kan ikke være negativ.";
+
+/* (No Comment) */
+"ajupCt" = "Ingen informasjon tilgjengelig";
+
+/* (No Comment) */
+"AU4oMs" = "Spør Palette pingstatistikk";
+
+/* (No Comment) */
 "AzqFAh" = "Forespurt";
 
 /* (No Comment) */
+"BUexSx" = "Maks variasjon";
+
+/* (No Comment) */
 "bXGQKe" = "Kjøl ned skriver";
+
+/* (No Comment) */
+"cp3Rvj" = "${displayName} kan ikke være høyere enn ${maximumValue}.";
 
 /* (No Comment) */
 "D0kBGr" = "Restart startet utskrift";
@@ -75,6 +108,9 @@
 
 /* (No Comment) */
 "doj4NA" = "Konfigurer ekstruderens temperatur";
+
+/* (No Comment) */
+"E1iFYG" = "${displayName} kan ikke være negativ.";
 
 /* (No Comment) */
 "Eb3aa5" = "Kunne ikke angi kammerets temperatur (${statusCode})";
@@ -87,6 +123,9 @@
 
 /* (No Comment) */
 "fL3sow" = "Stopp utskriftsjobb";
+
+/* (No Comment) */
+"FOlLOy" = "Kunne ikke be om informasjon";
 
 /* (No Comment) */
 "FZ3z7Z" = "Sett skriveflatetemperaturen";
@@ -104,6 +143,9 @@
 "hPlRC4" = "Sett skriveflatetemperaturen til ${temperature}";
 
 /* (No Comment) */
+"hUstyz" = "Siste variant er ${lastVariation} og maksimal variasjon er ${maxVariation}";
+
+/* (No Comment) */
 "ihLqc7" = "Pause jobb";
 
 /* (No Comment) */
@@ -114,6 +156,9 @@
 
 /* (No Comment) */
 "JmhfgL" = "Restart startet utskrift";
+
+/* (No Comment) */
+"jPI5sH" = "${displayName} kan ikke være lavere enn ${minimumValue}.";
 
 /* (No Comment) */
 "JV2xQz" = "Koble til Palette";
@@ -141,6 +186,15 @@
 
 /* (No Comment) */
 "m9Jgmg" = "Utskrift fortsatt";
+
+/* (No Comment) */
+"M58YA9" = "Skriver";
+
+/* (No Comment) */
+"MbAvWs" = "${displayName} kan ikke være høyere enn ${maximumValue}.";
+
+/* (No Comment) */
+"mfflxG" = "${displayName} kan ikke være lavere enn ${minimumValue}.";
 
 /* (No Comment) */
 "N0vzJv" = "Be Palette tømme";
@@ -176,6 +230,9 @@
 "R5AlTe" = "Koble fra Palette";
 
 /* (No Comment) */
+"RbyC9o" = "${displayName} kan ikke være høyere enn ${maximumValue}.";
+
+/* (No Comment) */
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
@@ -191,10 +248,16 @@
 "RrOrgy" = "Avbryt jobb";
 
 /* (No Comment) */
+"RxEUj3" = "temperatur";
+
+/* (No Comment) */
 "RyGRDF" = "Koble til Palette";
 
 /* (No Comment) */
 "RYurC5" = "Avkjøl kammeret";
+
+/* (No Comment) */
+"SK8bYR" = "${displayName} kan ikke være negativ.";
 
 /* (No Comment) */
 "SP4rN6" = "Sett ekstruders temperatur";
@@ -252,6 +315,12 @@
 
 /* (No Comment) */
 "yZeSdz" = "${printer}";
+
+/* (No Comment) */
+"ZfIsqj" = "${displayName} kan ikke være lavere enn ${minimumValue}.";
+
+/* (No Comment) */
+"ZFUAR8" = "${printer}";
 
 /* (No Comment) */
 "zj1Vd9" = "Still kamertemperaturen til ${temperature}";

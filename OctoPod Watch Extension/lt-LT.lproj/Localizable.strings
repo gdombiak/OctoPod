@@ -23,6 +23,9 @@
 "Job" = "Užduotis";
 
 /* No comment provided by engineer. */
+"Missed" = "Nepataikė";
+
+/* No comment provided by engineer. */
 "MK3" = "MK3";
 
 /* (No Comment) */
@@ -39,9 +42,6 @@
 
 /* (No Comment) */
 "Notify failed resume job" = "Nepavyko tęsti";
-
-/* No comment provided by engineer. */
-"Paused" = "Pauzė";
 
 /* No comment provided by engineer. */
 "Printing" = "Spausdina";

@@ -1,4 +1,7 @@
 /* (No Comment) */
+"0jkA5V" = "${displayName} negali būti didesnis nei ${maximumValue}.";
+
+/* (No Comment) */
 "0vck5K" = "Nepavyko pabandyti nukirpti";
 
 /* (No Comment) */
@@ -9,6 +12,9 @@
 
 /* (No Comment) */
 "2TreiD" = "Nustatyti ekstruderio temperatūra į ${temperature}";
+
+/* (No Comment) */
+"2zYNqY" = "Paprašyti Pallete ping statistikos";
 
 /* (No Comment) */
 "3Butzw" = "Dėžės temperatūra buvo nustatyta į ${temperature}";
@@ -24,6 +30,9 @@
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"5btOXI" = "Paskutinė variacija";
 
 /* (No Comment) */
 "5i5htv" = "Prisijungęs";
@@ -53,6 +62,9 @@
 "8xHCbl" = "${printer}";
 
 /* (No Comment) */
+"9eejxB" = "Paprašyti Pallete ping statistikos";
+
+/* (No Comment) */
 "9iz6yx" = "${printer}";
 
 /* (No Comment) */
@@ -62,10 +74,31 @@
 "662LyZ" = "Paleisti iš naujo";
 
 /* (No Comment) */
+"817z4k" = "${displayName} negali būti mažesnis nei ${minimumValue}.";
+
+/* (No Comment) */
+"ADfGbr" = "${displayName} negali būti neigiamas.";
+
+/* (No Comment) */
+"AdooVp" = "${displayName} negali būti neigiamas.";
+
+/* (No Comment) */
+"ajupCt" = "Nėra informacijos";
+
+/* (No Comment) */
+"AU4oMs" = "Paprašyti Pallete ping statistikos";
+
+/* (No Comment) */
 "AzqFAh" = "Paprašyta";
 
 /* (No Comment) */
+"BUexSx" = "Didžiausia variacija";
+
+/* (No Comment) */
 "bXGQKe" = "Atšaldyti spausdintuvą";
+
+/* (No Comment) */
+"cp3Rvj" = "${displayName} negali būti didesnis nei ${maximumValue}.";
 
 /* (No Comment) */
 "D0kBGr" = "Paleisti iš naujo dabartinę užduotį";
@@ -75,6 +108,9 @@
 
 /* (No Comment) */
 "doj4NA" = "Nustatyti ekstruderio temperatūrą";
+
+/* (No Comment) */
+"E1iFYG" = "${displayName} negali būti neigiamas.";
 
 /* (No Comment) */
 "Eb3aa5" = "Nepavyko nustatyti dėžės temperatūros (${statusCode})";
@@ -87,6 +123,9 @@
 
 /* (No Comment) */
 "fL3sow" = "Sustingdyti dabartinę užduotį";
+
+/* (No Comment) */
+"FOlLOy" = "Nepavyko gauti informacijos";
 
 /* (No Comment) */
 "FZ3z7Z" = "Nustatyti paviršiaus temperatūrą";
@@ -104,6 +143,9 @@
 "hPlRC4" = "Nustatyti paviršiaus temperatūrą į ${temperature}";
 
 /* (No Comment) */
+"hUstyz" = "Paskutinė variacija yra ${lastVariation} ir didžiausia variacija yra ${maxVariation}";
+
+/* (No Comment) */
 "ihLqc7" = "Užpauzinti dabartinę užduotį";
 
 /* (No Comment) */
@@ -114,6 +156,9 @@
 
 /* (No Comment) */
 "JmhfgL" = "Paleisti iš naujo dabartinę užduotį";
+
+/* (No Comment) */
+"jPI5sH" = "${displayName} negali būti mažesnis nei ${minimumValue}.";
 
 /* (No Comment) */
 "JV2xQz" = "Prisijungti prie Pallete";
@@ -141,6 +186,15 @@
 
 /* (No Comment) */
 "m9Jgmg" = "Darbas tęsiamas";
+
+/* (No Comment) */
+"M58YA9" = "Spausdintuvas";
+
+/* (No Comment) */
+"MbAvWs" = "${displayName} negali būti didesnis nei ${maximumValue}.";
+
+/* (No Comment) */
+"mfflxG" = "${displayName} negali būti mažesnis nei ${minimumValue}.";
 
 /* (No Comment) */
 "N0vzJv" = "Ask Palette to clear";
@@ -176,6 +230,9 @@
 "R5AlTe" = "Atsijungti nuo Pallete";
 
 /* (No Comment) */
+"RbyC9o" = "${displayName} negali būti didesnis nei ${maximumValue}.";
+
+/* (No Comment) */
 "rFHPr4" = "${printer}";
 
 /* (No Comment) */
@@ -191,10 +248,16 @@
 "RrOrgy" = "Atšaukti užduotį";
 
 /* (No Comment) */
+"RxEUj3" = "termperatūra";
+
+/* (No Comment) */
 "RyGRDF" = "Prisijungti prie Pallete";
 
 /* (No Comment) */
 "RYurC5" = "Atvėsinti dėžę";
+
+/* (No Comment) */
+"SK8bYR" = "${displayName} negali būti neigiamas.";
 
 /* (No Comment) */
 "SP4rN6" = "Nustatyti ekstruderio temperatūrą";
@@ -252,6 +315,12 @@
 
 /* (No Comment) */
 "yZeSdz" = "${printer}";
+
+/* (No Comment) */
+"ZfIsqj" = "${displayName} negali būti mažesnis nei ${minimumValue}.";
+
+/* (No Comment) */
+"ZFUAR8" = "${printer}";
 
 /* (No Comment) */
 "zj1Vd9" = "Nustatyti dėžės temperatūrą į ${temperature}";

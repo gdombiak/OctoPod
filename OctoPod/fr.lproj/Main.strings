@@ -7,6 +7,9 @@
 /* Class = "UIButton"; normalTitle = "Remind Later"; ObjectID = "2qA-O2-3VZ"; */
 "2qA-O2-3VZ.normalTitle" = "Plus tard";
 
+/* Class = "UILabel"; text = "250.0 C"; ObjectID = "2VN-EJ-YhR"; */
+"2VN-EJ-YhR.text" = "250.0 C";
+
 /* Class = "UIButton"; normalTitle = "Change language"; ObjectID = "2wA-7u-KgW"; */
 "2wA-7u-KgW.normalTitle" = "Changer la langue";
 
@@ -43,9 +46,6 @@
 /* Class = "UITextField"; placeholder = "Speed value"; ObjectID = "4Lh-Q8-wxW"; */
 "4Lh-Q8-wxW.placeholder" = "Vitesse";
 
-/* Class = "UILabel"; text = "Detail"; ObjectID = "4qQ-FP-CUZ"; */
-"4qQ-FP-CUZ.text" = "Détail";
-
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Apparence";
 
@@ -81,6 +81,9 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Manual Control"; ObjectID = "7pE-fx-Ibe"; */
 "7pE-fx-Ibe.headerTitle" = "Contrôle manuel";
+
+/* Class = "UILabel"; text = "#"; ObjectID = "8aU-tf-jF4"; */
+"8aU-tf-jF4.text" = "#";
 
 /* Class = "UITableViewSection"; headerTitle = "Z"; ObjectID = "8d7-Fp-V0A"; */
 "8d7-Fp-V0A.headerTitle" = "Z";
@@ -157,11 +160,11 @@
 /* Class = "UIButton"; normalTitle = "X"; ObjectID = "B7j-Fj-W6p"; */
 "B7j-Fj-W6p.normalTitle" = "X";
 
-/* Class = "UILabel"; text = "Origin"; ObjectID = "BDJ-1U-H9C"; */
-"BDJ-1U-H9C.text" = "Origine";
-
 /* Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf"; */
 "bep-Im-uzf.text" = "Imprimé";
+
+/* Class = "UILabel"; text = "Print Completion"; ObjectID = "blG-5R-gJE"; */
+"blG-5R-gJE.text" = "Fin estimée";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
 "bNj-cj-oty.text" = "Label";
@@ -196,17 +199,20 @@
 /* Class = "UIButton"; normalTitle = "Print"; ObjectID = "Crn-wa-FLw"; */
 "Crn-wa-FLw.normalTitle" = "Imprimer";
 
-/* Class = "UIButton"; normalTitle = "Cancel Job"; ObjectID = "Cxb-Rv-BSm"; */
-"Cxb-Rv-BSm.normalTitle" = "Annuler";
-
-/* Class = "UIButton"; normalTitle = "Pause Job"; ObjectID = "d2Y-RO-6Yg"; */
-"d2Y-RO-6Yg.normalTitle" = "Pause";
+/* Class = "UIButton"; normalTitle = "Pause"; ObjectID = "DI6-KC-pSc"; */
+"DI6-KC-pSc.normalTitle" = "Pause";
 
 /* Class = "UITableViewSection"; headerTitle = "Reminders"; ObjectID = "dIa-e3-jnv"; */
 "dIa-e3-jnv.headerTitle" = "Rappels";
 
 /* Class = "UILabel"; text = "Frequently Asked Questions"; ObjectID = "dlU-c7-kpY"; */
 "dlU-c7-kpY.text" = "Questions fréquentes";
+
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "du3-LR-AIz"; */
+"du3-LR-AIz.text" = "0.0%";
+
+/* Class = "UILabel"; text = "Max"; ObjectID = "dZG-uJ-BYF"; */
+"dZG-uJ-BYF.text" = "Max";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "dZz-iV-loq"; */
 "dZz-iV-loq.text" = "Titre";
@@ -222,6 +228,9 @@
 
 /* Class = "UILabel"; text = "Chamber"; ObjectID = "eD3-xa-2Ah"; */
 "eD3-xa-2Ah.text" = "Caisson";
+
+/* Class = "UIButton"; normalTitle = "Restart"; ObjectID = "eGI-qU-q22"; */
+"eGI-qU-q22.normalTitle" = "Recommencer";
 
 /* Class = "UILabel"; text = "1000"; ObjectID = "EKB-JK-mIs"; */
 "EKB-JK-mIs.text" = "1000";
@@ -253,6 +262,9 @@
 /* Class = "UILabel"; text = "%"; ObjectID = "ffd-HI-A62"; */
 "ffd-HI-A62.text" = "%";
 
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "FGy-9V-djf"; */
+"FGy-9V-djf.normalTitle" = "Annuler";
+
 /* Class = "UILabel"; text = "Extruder 2"; ObjectID = "Fj0-uz-fxi"; */
 "Fj0-uz-fxi.text" = "Extrudeur 2";
 
@@ -261,6 +273,9 @@
 
 /* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "FJA-XK-nll"; */
 "FJA-XK-nll.normalTitle" = "Ignorer";
+
+/* Class = "UILabel"; text = "Palette 2 - Last Variation"; ObjectID = "fMc-lm-k5V"; */
+"fMc-lm-k5V.text" = "Palette 2 - Dernière variation";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
 "fNE-Hh-S8R.text" = "Label";
@@ -271,8 +286,8 @@
 /* Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt"; */
 "gCt-Vk-Fgt.headerTitle" = "Connexion";
 
-/* Class = "UITableViewSection"; headerTitle = "X Y Z"; ObjectID = "gHQ-Lu-mQ0"; */
-"gHQ-Lu-mQ0.headerTitle" = "X Y Z";
+/* Class = "UITableViewSection"; headerTitle = "Home"; ObjectID = "gHQ-Lu-mQ0"; */
+"gHQ-Lu-mQ0.headerTitle" = "Home";
 
 /* Class = "UILabel"; text = "Record Siri phrase to use shortcuts"; ObjectID = "Ghq-m2-F0u"; */
 "Ghq-m2-F0u.text" = "Enregistrer une phrase Siri pour utiliser les raccourcis";
@@ -340,8 +355,14 @@
 /* Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[4] = "5"; ObjectID = "HHI-TR-3jC"; */
 "HHI-TR-3jC.segmentTitles[4]" = "5";
 
+/* Class = "UILabel"; text = "Palette 2 - Max Variation"; ObjectID = "HJ0-c2-UaT"; */
+"HJ0-c2-UaT.text" = "Palette 2 - Variation Max";
+
 /* Class = "UILabel"; text = "Upload to SD Card (root)"; ObjectID = "hrr-SZ-62l"; */
 "hrr-SZ-62l.text" = "Télécharger sur la carte SD";
+
+/* Class = "UILabel"; text = "Min"; ObjectID = "ht4-c2-fkC"; */
+"ht4-c2-fkC.text" = "Min";
 
 /* Class = "UILabel"; text = "Tip: Click to set temperature"; ObjectID = "HUF-Dw-M7F"; */
 "HUF-Dw-M7F.text" = "Astuce : Cliquer pour régler la température";
@@ -366,9 +387,6 @@
 
 /* Class = "UIButton"; normalTitle = "Cut"; ObjectID = "i3l-7C-iJB"; */
 "i3l-7C-iJB.normalTitle" = "Couper";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "io4-ZI-6xJ"; */
-"io4-ZI-6xJ.text" = "Titre";
 
 /* Class = "UITableViewSection"; headerTitle = "Move"; ObjectID = "iY8-Rh-TKn"; */
 "iY8-Rh-TKn.headerTitle" = "Contrôles";
@@ -403,6 +421,9 @@
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "k9w-2c-c6t"; */
 "k9w-2c-c6t.text" = "0.0 C";
 
+/* Class = "UILabel"; text = "Palette 2 - Last Ping"; ObjectID = "kaq-fI-VzN"; */
+"kaq-fI-VzN.text" = "Palette 2 - Dernier Ping";
+
 /* Class = "UILabel"; text = "0 C"; ObjectID = "kGY-Bn-Qcb"; */
 "kGY-Bn-Qcb.text" = "0 C";
 
@@ -412,6 +433,9 @@
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "Fichier";
 
+/* Class = "UILabel"; text = " "; ObjectID = "L7b-hh-BO8"; */
+"L7b-hh-BO8.text" = " ";
+
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "lAO-Qe-VtX"; */
 "lAO-Qe-VtX.text" = "Sous-titre";
 
@@ -420,9 +444,6 @@
 
 /* Class = "UILabel"; text = "Origin"; ObjectID = "lfT-wn-CXk"; */
 "lfT-wn-CXk.text" = "Origine";
-
-/* Class = "UILabel"; text = "Size"; ObjectID = "LiL-J0-QDH"; */
-"LiL-J0-QDH.text" = "Taille";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "LJV-z6-SX8"; */
 "LJV-z6-SX8.text" = "Titre";
@@ -475,6 +496,9 @@
 /* Class = "UILabel"; text = "100"; ObjectID = "nMR-mk-HWC"; */
 "nMR-mk-HWC.text" = "100";
 
+/* Class = "UILabel"; text = "About 10m"; ObjectID = "NQ5-25-ww1"; */
+"NQ5-25-ww1.text" = "About 10m";
+
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "NsL-9T-upI"; */
 "NsL-9T-upI.text" = "0.0 C";
 
@@ -502,14 +526,14 @@
 /* Class = "UILabel"; text = "of"; ObjectID = "Otl-oh-byl"; */
 "Otl-oh-byl.text" = "sur";
 
-/* Class = "UILabel"; text = "File"; ObjectID = "OYG-ih-yQg"; */
-"OYG-ih-yQg.text" = "Fichier";
-
 /* Class = "UIButton"; normalTitle = "Delete shortcuts"; ObjectID = "oZE-yh-Myr"; */
 "oZE-yh-Myr.normalTitle" = "Supprimer le raccourci";
 
 /* Class = "UITableViewController"; title = "Prompts"; ObjectID = "oZw-P5-oVG"; */
 "oZw-P5-oVG.title" = "Alertes";
+
+/* Class = "UILabel"; text = "Apple Watch"; ObjectID = "P28-Dm-1BA"; */
+"P28-Dm-1BA.text" = "Apple Watch";
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "PAD-Rg-10Y"; */
 "PAD-Rg-10Y.text" = "0 C";
@@ -519,9 +543,6 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "pgl-mI-9eB"; */
 "pgl-mI-9eB.text" = "Label";
-
-/* Class = "UITableViewSection"; headerTitle = "Job Information"; ObjectID = "PiT-vE-psw"; */
-"PiT-vE-psw.headerTitle" = "Détails";
 
 /* Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU"; */
 "Po0-HZ-vzU.text" = "Connectez-vous à iCloud pour synchroniser vos appareils";
@@ -535,9 +556,6 @@
 /* Class = "UIBarButtonItem"; title = "Printer"; ObjectID = "PyK-FO-APL"; */
 "PyK-FO-APL.title" = "Imprimante";
 
-/* Class = "UILabel"; text = "Tip: Click to control print job"; ObjectID = "pyW-4g-EDz"; */
-"pyW-4g-EDz.text" = "Astuce : Cliquer pour contrôler l’impression";
-
 /* Class = "UILabel"; text = "Offset"; ObjectID = "pzg-aD-Irm"; */
 "pzg-aD-Irm.text" = "Offset";
 
@@ -546,6 +564,9 @@
 
 /* Class = "UILabel"; text = "Pinch = Zoom in"; ObjectID = "q4H-Sg-7Zd"; */
 "q4H-Sg-7Zd.text" = "(Pincer pour zoomer)";
+
+/* Class = "UILabel"; text = "60.0 C"; ObjectID = "QaJ-LN-zeT"; */
+"QaJ-LN-zeT.text" = "60.0 C";
 
 /* Class = "UIViewController"; title = "QR Code"; ObjectID = "QCe-zo-Ncw"; */
 "QCe-zo-Ncw.title" = "QR Code";
@@ -580,6 +601,9 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87"; */
 "REX-gh-p87.normalTitle" = "Bouton";
 
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "RFS-Os-AC5"; */
+"RFS-Os-AC5.text" = "0.0%";
+
 /* Class = "UILabel"; text = "Security"; ObjectID = "RJI-A7-98M"; */
 "RJI-A7-98M.text" = "Sécurité";
 
@@ -595,14 +619,23 @@
 /* Class = "UILabel"; text = "1hr 25m 13sec"; ObjectID = "rwm-QC-qD1"; */
 "rwm-QC-qD1.text" = "1hr 25m 13sec";
 
+/* Class = "UITableViewController"; title = "Apple Watch"; ObjectID = "rZ6-EP-93w"; */
+"rZ6-EP-93w.title" = "Apple Watch";
+
 /* Class = "UITextField"; placeholder = "Command"; ObjectID = "RZc-hr-pTu"; */
 "RZc-hr-pTu.placeholder" = "Commande";
+
+/* Class = "UITableViewSection"; headerTitle = "Complications Content"; ObjectID = "S1e-nz-awE"; */
+"S1e-nz-awE.headerTitle" = "Contenu Complications";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
 "S2I-HR-qgE.text" = "/";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "SAw-xr-VmY"; */
 "SAw-xr-VmY.text" = "/";
+
+/* Class = "UIButton"; normalTitle = "Resume"; ObjectID = "sCj-mw-VaE"; */
+"sCj-mw-VaE.normalTitle" = "Reprendre";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "sF0-zd-MZR"; */
 "sF0-zd-MZR.text" = "/";
@@ -628,6 +661,9 @@
 /* Class = "UILabel"; text = "0 C"; ObjectID = "syx-MO-ExG"; */
 "syx-MO-ExG.text" = "0 C";
 
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "t6e-82-YMx"; */
+"t6e-82-YMx.text" = "0.0%";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
 "tFf-Rs-mOx.text" = "Title";
 
@@ -648,6 +684,9 @@
 
 /* Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ"; */
 "tzE-Y5-rVZ.text" = "Imprimantes";
+
+/* Class = "UILabel"; text = "Default Text"; ObjectID = "u5z-wR-iO9"; */
+"u5z-wR-iO9.text" = "Texte par défaut";
 
 /* Class = "UILabel"; text = "Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots"; ObjectID = "u6S-b1-CTI"; */
 "u6S-b1-CTI.text" = "Installez le plugin OctoPod pour recevoir des notifications instantanées avec la dernière image prise";
@@ -672,6 +711,9 @@
 
 /* Class = "UILabel"; text = "Extruder 3"; ObjectID = "uzd-Ys-rmS"; */
 "uzd-Ys-rmS.text" = "Extrudeur 3";
+
+/* Class = "UILabel"; text = "Auto-Lock when idle"; ObjectID = "VFi-SV-DAZ"; */
+"VFi-SV-DAZ.text" = "Verrouillage automatique";
 
 /* Class = "UILabel"; text = "Status"; ObjectID = "VgY-ne-x6t"; */
 "VgY-ne-x6t.text" = "Statut";
@@ -721,6 +763,9 @@
 /* Class = "UIButton"; normalTitle = "URL Button"; ObjectID = "x8L-G5-sTU"; */
 "x8L-G5-sTU.normalTitle" = "URL Button";
 
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "xC4-gH-ALO"; */
+"xC4-gH-ALO.text" = "0.0%";
+
 /* Class = "UITableViewSection"; headerTitle = "Printer status"; ObjectID = "XCh-oS-weO"; */
 "XCh-oS-weO.headerTitle" = "Statut";
 
@@ -729,6 +774,12 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Synchronization"; ObjectID = "Xhq-hp-2kd"; */
 "Xhq-hp-2kd.headerTitle" = "Synchronisation";
+
+/* Class = "UILabel"; text = "System"; ObjectID = "xkQ-uy-Aw1"; */
+"xkQ-uy-Aw1.text" = "Dark Mode iOS";
+
+/* Class = "UILabel"; text = "Avg"; ObjectID = "XnW-dU-oxg"; */
+"XnW-dU-oxg.text" = "Moy";
 
 /* Class = "UILabel"; text = "Confirm to connect"; ObjectID = "XOG-eU-T7f"; */
 "XOG-eU-T7f.text" = "Confirmation de connexion";
@@ -739,11 +790,11 @@
 /* Class = "UILabel"; text = "Ping"; ObjectID = "xsQ-V9-zzo"; */
 "xsQ-V9-zzo.text" = "Ping";
 
-/* Class = "UIButton"; normalTitle = "Restart Job"; ObjectID = "XV8-g9-QIc"; */
-"XV8-g9-QIc.normalTitle" = "Recommencer";
-
 /* Class = "UINavigationItem"; title = "Printer Details"; ObjectID = "xvl-wE-Mht"; */
 "xvl-wE-Mht.title" = "Détails de l’imprimante";
+
+/* Class = "UIButton"; normalTitle = "Print"; ObjectID = "XYJ-kw-HRu"; */
+"XYJ-kw-HRu.normalTitle" = "Imprimer";
 
 /* Class = "UILabel"; text = "#"; ObjectID = "Xzl-Xc-Ng0"; */
 "Xzl-Xc-Ng0.text" = "#";
@@ -753,6 +804,9 @@
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "YdD-gF-Ajm"; */
 "YdD-gF-Ajm.text" = "Title";
+
+/* Class = "UILabel"; text = "Variance"; ObjectID = "yPh-Gc-fNd"; */
+"yPh-Gc-fNd.text" = "Variance";
 
 /* Class = "UILabel"; text = "Control ATX/AUX power supply via PSU Control"; ObjectID = "Ysy-LO-1dL"; */
 "Ysy-LO-1dL.text" = "Contrôler l’alimentation ATX/AUX via le PSU";
@@ -769,8 +823,14 @@
 /* Class = "UIButton"; normalTitle = "Send"; ObjectID = "z4Q-Gf-Y5G"; */
 "z4Q-Gf-Y5G.normalTitle" = "Envoyer";
 
+/* Class = "UILabel"; text = "0.0%"; ObjectID = "zbP-eJ-7Gk"; */
+"zbP-eJ-7Gk.text" = "0.0%";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "ZCe-kf-ukt"; */
 "ZCe-kf-ukt.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Battery Impact"; ObjectID = "ZdA-nV-gwD"; */
+"ZdA-nV-gwD.headerTitle" = "Impact sur la batterie";
 
 /* Class = "UILabel"; text = "New temperature"; ObjectID = "zDs-gi-KIJ"; */
 "zDs-gi-KIJ.text" = "Nouvelle température";
