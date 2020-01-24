@@ -163,6 +163,9 @@
 /* Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf"; */
 "bep-Im-uzf.text" = "Gedruckt";
 
+/* Class = "UILabel"; text = "Print Completion"; ObjectID = "blG-5R-gJE"; */
+"blG-5R-gJE.text" = "Geschätze Endzeit";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
 "bNj-cj-oty.text" = "Label";
 
@@ -207,6 +210,9 @@
 
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "du3-LR-AIz"; */
 "du3-LR-AIz.text" = "0.0%";
+
+/* Class = "UILabel"; text = "Max"; ObjectID = "dZG-uJ-BYF"; */
+"dZG-uJ-BYF.text" = "Max";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "dZz-iV-loq"; */
 "dZz-iV-loq.text" = "Title";
@@ -257,7 +263,7 @@
 "ffd-HI-A62.text" = "%";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "FGy-9V-djf"; */
-"FGy-9V-djf.normalTitle" = "Stornieren";
+"FGy-9V-djf.normalTitle" = "Abbrechen";
 
 /* Class = "UILabel"; text = "Extruder 2"; ObjectID = "Fj0-uz-fxi"; */
 "Fj0-uz-fxi.text" = "Düse 2";
@@ -267,6 +273,9 @@
 
 /* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "FJA-XK-nll"; */
 "FJA-XK-nll.normalTitle" = "Entlassen";
+
+/* Class = "UILabel"; text = "Palette 2 - Last Variation"; ObjectID = "fMc-lm-k5V"; */
+"fMc-lm-k5V.text" = "Palette 2 - Letzte Variation";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
 "fNE-Hh-S8R.text" = "Label";
@@ -278,7 +287,7 @@
 "gCt-Vk-Fgt.headerTitle" = "Verbindung";
 
 /* Class = "UITableViewSection"; headerTitle = "Home"; ObjectID = "gHQ-Lu-mQ0"; */
-"gHQ-Lu-mQ0.headerTitle" = "X Y Z";
+"gHQ-Lu-mQ0.headerTitle" = "Grundstellung";
 
 /* Class = "UILabel"; text = "Record Siri phrase to use shortcuts"; ObjectID = "Ghq-m2-F0u"; */
 "Ghq-m2-F0u.text" = "Zeichne Siri Satz auf um Verknüpfungen zu nutzen";
@@ -346,8 +355,14 @@
 /* Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[4] = "5"; ObjectID = "HHI-TR-3jC"; */
 "HHI-TR-3jC.segmentTitles[4]" = "5";
 
+/* Class = "UILabel"; text = "Palette 2 - Max Variation"; ObjectID = "HJ0-c2-UaT"; */
+"HJ0-c2-UaT.text" = "Palette 2 - Größte Variation";
+
 /* Class = "UILabel"; text = "Upload to SD Card (root)"; ObjectID = "hrr-SZ-62l"; */
 "hrr-SZ-62l.text" = "Zur SD-Karte hochladen (root)";
+
+/* Class = "UILabel"; text = "Min"; ObjectID = "ht4-c2-fkC"; */
+"ht4-c2-fkC.text" = "Min";
 
 /* Class = "UILabel"; text = "Tip: Click to set temperature"; ObjectID = "HUF-Dw-M7F"; */
 "HUF-Dw-M7F.text" = "Tipp: Klicke um Temperatur einzustellen";
@@ -405,6 +420,9 @@
 
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "k9w-2c-c6t"; */
 "k9w-2c-c6t.text" = "0.0 C";
+
+/* Class = "UILabel"; text = "Palette 2 - Last Ping"; ObjectID = "kaq-fI-VzN"; */
+"kaq-fI-VzN.text" = "Palette 2 - Letzter Ping";
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "kGY-Bn-Qcb"; */
 "kGY-Bn-Qcb.text" = "100 C";
@@ -607,6 +625,9 @@
 /* Class = "UITextField"; placeholder = "Command"; ObjectID = "RZc-hr-pTu"; */
 "RZc-hr-pTu.placeholder" = "Befehl";
 
+/* Class = "UITableViewSection"; headerTitle = "Complications Content"; ObjectID = "S1e-nz-awE"; */
+"S1e-nz-awE.headerTitle" = "Komplikationen Inhalt";
+
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
 "S2I-HR-qgE.text" = "/";
 
@@ -664,6 +685,9 @@
 /* Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ"; */
 "tzE-Y5-rVZ.text" = "Drucker";
 
+/* Class = "UILabel"; text = "Default Text"; ObjectID = "u5z-wR-iO9"; */
+"u5z-wR-iO9.text" = "Standardtext";
+
 /* Class = "UILabel"; text = "Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots"; ObjectID = "u6S-b1-CTI"; */
 "u6S-b1-CTI.text" = "Installiere OctoPod Plugin für OctoPrint um sofortige Pushmitteilungen mit Kamera-Schnappschuss zu erhalten";
 
@@ -687,6 +711,9 @@
 
 /* Class = "UILabel"; text = "Extruder 3"; ObjectID = "uzd-Ys-rmS"; */
 "uzd-Ys-rmS.text" = "Düse 3";
+
+/* Class = "UILabel"; text = "Auto-Lock when idle"; ObjectID = "VFi-SV-DAZ"; */
+"VFi-SV-DAZ.text" = "Automatische Sperre im Leerlauf";
 
 /* Class = "UILabel"; text = "Status"; ObjectID = "VgY-ne-x6t"; */
 "VgY-ne-x6t.text" = "Status";
@@ -748,6 +775,12 @@
 /* Class = "UITableViewSection"; headerTitle = "Synchronization"; ObjectID = "Xhq-hp-2kd"; */
 "Xhq-hp-2kd.headerTitle" = "Synchronisierung";
 
+/* Class = "UILabel"; text = "System"; ObjectID = "xkQ-uy-Aw1"; */
+"xkQ-uy-Aw1.text" = "System";
+
+/* Class = "UILabel"; text = "Avg"; ObjectID = "XnW-dU-oxg"; */
+"XnW-dU-oxg.text" = "Ø";
+
 /* Class = "UILabel"; text = "Confirm to connect"; ObjectID = "XOG-eU-T7f"; */
 "XOG-eU-T7f.text" = "Verbinden bestätigen";
 
@@ -772,6 +805,9 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "YdD-gF-Ajm"; */
 "YdD-gF-Ajm.text" = "Title";
 
+/* Class = "UILabel"; text = "Variance"; ObjectID = "yPh-Gc-fNd"; */
+"yPh-Gc-fNd.text" = "Variationen";
+
 /* Class = "UILabel"; text = "Control ATX/AUX power supply via PSU Control"; ObjectID = "Ysy-LO-1dL"; */
 "Ysy-LO-1dL.text" = "Steuere ATX/AUX Netzteile via 'PSU Control'";
 
@@ -792,6 +828,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "ZCe-kf-ukt"; */
 "ZCe-kf-ukt.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Battery Impact"; ObjectID = "ZdA-nV-gwD"; */
+"ZdA-nV-gwD.headerTitle" = "Auswirkung auf Ladezustand der Batterie";
 
 /* Class = "UILabel"; text = "New temperature"; ObjectID = "zDs-gi-KIJ"; */
 "zDs-gi-KIJ.text" = "Neue Temperatur";

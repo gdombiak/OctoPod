@@ -1,5 +1,5 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} darf nicht höher als ${maximumValue} sein.";
+"0jkA5V" = "${displayName} kann nicht höher sein als ${maximumValue}.";
 
 /* (No Comment) */
 "0vck5K" = "Schnittanforderung fehlgeschlagen";
@@ -14,7 +14,7 @@
 "2TreiD" = "Stelle Düsentemperatur auf ${temperature}";
 
 /* (No Comment) */
-"2zYNqY" = "Fragen Sie die Paletten-Ping-Statistik";
+"2zYNqY" = "Rufe Statistik von Palette ab";
 
 /* (No Comment) */
 "3Butzw" = "Die Temperatur der Kammer wurde eingestellt auf ${temperature}";
@@ -62,7 +62,7 @@
 "8xHCbl" = "${printer}";
 
 /* (No Comment) */
-"9eejxB" = "Fragen Sie die Paletten-Ping-Statistik";
+"9eejxB" = "Rufe Statistik von Palette ab";
 
 /* (No Comment) */
 "9iz6yx" = "${printer}";
@@ -74,31 +74,31 @@
 "662LyZ" = "Neustart";
 
 /* (No Comment) */
-"817z4k" = "${displayName} darf nicht niedriger als ${minimumValue} sein.";
+"817z4k" = "${displayName} kann nicht niedriger sein als ${minimumValue}.";
 
 /* (No Comment) */
-"ADfGbr" = "${displayName} darf nicht negativ sein.";
+"ADfGbr" = "${displayName} kann nicht negativ sein.";
 
 /* (No Comment) */
-"AdooVp" = "${displayName} darf nicht negativ sein.";
+"AdooVp" = "${displayName} kann nicht negativ sein.";
 
 /* (No Comment) */
 "ajupCt" = "Keine Information verfügbar";
 
 /* (No Comment) */
-"AU4oMs" = "Fragen Sie die Paletten-Ping-Statistik";
+"AU4oMs" = "Rufe Statistik von Palette ab";
 
 /* (No Comment) */
 "AzqFAh" = "Angefordert";
 
 /* (No Comment) */
-"BUexSx" = "Maximale Variation";
+"BUexSx" = "Größte Variation";
 
 /* (No Comment) */
 "bXGQKe" = "Drucker abkühlen";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} darf nicht höher als ${maximumValue} sein.";
+"cp3Rvj" = "${displayName} kann nicht höher sein als ${maximumValue}.";
 
 /* (No Comment) */
 "D0kBGr" = "Laufenden Druckauftrag neu starten";
@@ -110,7 +110,7 @@
 "doj4NA" = "Temperatur der Düse konfigurieren";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} darf nicht negativ sein.";
+"E1iFYG" = "${displayName} kann nicht negativ sein.";
 
 /* (No Comment) */
 "Eb3aa5" = "Einstellen der Temperatur der Kammer fehlgeschlagen (${statusCode})";
@@ -125,7 +125,7 @@
 "fL3sow" = "Laufenden Druckauftrag aussetzen";
 
 /* (No Comment) */
-"FOlLOy" = "Informationen konnten nicht angefordert werden";
+"FOlLOy" = "Informationsabfrage fehlgeschlagen";
 
 /* (No Comment) */
 "FZ3z7Z" = "Stelle die Temperatur des Druckbetts ein";
@@ -143,7 +143,7 @@
 "hPlRC4" = "Stelle Druckbetttemperatur auf ${temperature}";
 
 /* (No Comment) */
-"hUstyz" = "Letzte Variation ist ${lastVariation} und maximale Variation ist ${maxVariation}";
+"hUstyz" = "Letzte Variation ist ${lastVariation} und größte Variation ist ${maxVariation}";
 
 /* (No Comment) */
 "ihLqc7" = "Laufenden Druckauftrag aussetzen";
@@ -158,7 +158,7 @@
 "JmhfgL" = "Laufenden Druckauftrag neu starten";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} darf nicht niedriger als ${minimumValue} sein.";
+"jPI5sH" = "${displayName} kann nicht niedriger sein als ${minimumValue}.";
 
 /* (No Comment) */
 "JV2xQz" = "Verbinde zu Palette";
@@ -191,10 +191,10 @@
 "M58YA9" = "Drucker";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} darf nicht höher als ${maximumValue} sein.";
+"MbAvWs" = "${displayName} kann nicht höher sein als ${maximumValue}.";
 
 /* (No Comment) */
-"mfflxG" = "${displayName} darf nicht niedriger als ${minimumValue} sein.";
+"mfflxG" = "${displayName} kann nicht niedriger sein als ${minimumValue}.";
 
 /* (No Comment) */
 "N0vzJv" = "Bitte Palette zu leeren";
@@ -230,7 +230,7 @@
 "R5AlTe" = "Trenne von Palette";
 
 /* (No Comment) */
-"RbyC9o" = "${displayName} darf nicht höher als ${maximumValue} sein.";
+"RbyC9o" = "${displayName} kann nicht höher sein als ${maximumValue}.";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -257,7 +257,7 @@
 "RYurC5" = "Kammer abkühlen";
 
 /* (No Comment) */
-"SK8bYR" = "${displayName} darf nicht negativ sein.";
+"SK8bYR" = "${displayName} kann nicht negativ sein.";
 
 /* (No Comment) */
 "SP4rN6" = "Düsentemperatur konnte nicht eingestellt werden";
@@ -317,7 +317,7 @@
 "yZeSdz" = "${printer}";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} darf nicht niedriger als ${minimumValue} sein.";
+"ZfIsqj" = "${displayName} kann nicht niedriger sein als ${minimumValue}.";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";
