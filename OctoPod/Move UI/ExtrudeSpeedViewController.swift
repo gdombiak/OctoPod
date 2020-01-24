@@ -48,6 +48,12 @@ class ExtrudeSpeedViewController: ThemedStaticUITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    // MARK: - Table view operations
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 36
+    }
+
     // MARK: - Private functions
 
     fileprivate func isCustomSpeed() -> Bool {

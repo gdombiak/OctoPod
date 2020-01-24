@@ -459,7 +459,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     // MARK: - Table view operations
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return 36
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

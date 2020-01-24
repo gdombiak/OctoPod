@@ -54,7 +54,7 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return 36
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

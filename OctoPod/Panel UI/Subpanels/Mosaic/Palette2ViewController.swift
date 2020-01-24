@@ -142,7 +142,7 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 34 : 28
+        return section == 0 ? 36 : 28
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
