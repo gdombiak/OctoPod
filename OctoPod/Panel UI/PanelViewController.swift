@@ -3,7 +3,7 @@ import UIKit
 class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate, WatchSessionManagerDelegate, UITabBarControllerDelegate {
     
     private static let CONNECT_CONFIRMATION = "PANEL_CONNECT_CONFIRMATION"
-    private static let REMINDERS_SHOWN = "PANEL_REMINDERS_SHOWN_2_3"  // Key that stores if we should show reminders about important new things to users. Key might change per version
+    private static let REMINDERS_SHOWN = "PANEL_REMINDERS_SHOWN_3_0"  // Key that stores if we should show reminders about important new things to users. Key might change per version
     private static let TOOLTIP_SWIPE_PRINTERS = "PANEL_TOOLTIP_SWIPE_PRINTERS"
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
@@ -114,9 +114,15 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        // Disable showing this reminder since OctoPrint plugin is not yet available for public usage
         if !UserDefaults.standard.bool(forKey: PanelViewController.REMINDERS_SHOWN) {
-            self.performSegue(withIdentifier: "show_reminders", sender: self)
+            if let printer = printerManager.getDefaultPrinter() {
+                if !printer.octopodPluginInstalled {
+                    self.performSegue(withIdentifier: "show_reminders", sender: self)
+                } else {
+                    // User already has OctoPod plugin installed so no need to show reminder
+                    UserDefaults.standard.set(true, forKey: PanelViewController.REMINDERS_SHOWN)
+                }
+            }
         } else {
             presentToolTip(tooltipKey: PanelViewController.TOOLTIP_SWIPE_PRINTERS, segueIdentifier: "swipe_printers_tooltip")
         }

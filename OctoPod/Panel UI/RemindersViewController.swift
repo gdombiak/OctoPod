@@ -1,9 +1,18 @@
 import UIKit
 
-class RemindersViewController: UITableViewController {
+class RemindersViewController: ThemedStaticUITableViewController {
 
+    @IBOutlet weak var octopodPluginLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Theme labels
+        themeLabels()
     }
 
     // MARK: - Table view data source
@@ -19,7 +28,7 @@ class RemindersViewController: UITableViewController {
     // MARK: - Table view operations
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return 36
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -32,4 +41,10 @@ class RemindersViewController: UITableViewController {
         }
     }
 
+    // MARK: - Private functions
+    fileprivate func themeLabels() {
+        let theme = Theme.currentTheme()
+        let textLabelColor = theme.labelColor()
+        octopodPluginLabel.textColor = textLabelColor
+}
 }
