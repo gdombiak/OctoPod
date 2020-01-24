@@ -51,6 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // will be turned off to save power
         UIApplication.shared.isIdleTimerDisabled = appConfiguration.turnOffIdleDisabled()
 
+        // Activate WatchkitConnectionSession when iOS app is launched. We need to do it here since the app may
+        // be launched in background when requested from the AppleWatch app
+        watchSessionManager.start()
+
         return true
     }
 
@@ -73,7 +77,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        watchSessionManager.start()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
