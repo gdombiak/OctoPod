@@ -1,12 +1,14 @@
 import UIKit
 
 // Ask user if they want to upload file to SD card of current folder
-class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate {
+class FileUploadViewController: ThemedStaticUITableViewController, UIDocumentPickerDelegate {
     
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let cloudFilesManager: CloudFilesManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudFilesManager }()
 
+    @IBOutlet weak var uploadOctoPrintLabel: UILabel!
+    
     @IBOutlet weak var sdCardCell: UITableViewCell!
     @IBOutlet weak var sdCardLabel: UILabel!
     
@@ -27,9 +29,17 @@ class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate 
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         // Hide uploading labels
         uploadingOctoPrintImage.isHidden = true
         uploadingSDCardImage.isHidden = true
+
+        // Theme color of labels
+        let theme = Theme.currentTheme()
+        uploadOctoPrintLabel.textColor = theme.labelColor()
+        sdCardLabel.textColor = theme.labelColor()
+        // Set background color of popover and its arrow
+        self.popoverPresentationController?.backgroundColor = theme.backgroundColor()
 
         // Clean up any previous selection
         uploaded = false
@@ -43,6 +53,12 @@ class FileUploadViewController: UITableViewController, UIDocumentPickerDelegate 
             sdCardLabel.isEnabled = sdUsable
             sdCardCell.selectionStyle = sdUsable ? .default : .none
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Adjust popover size to table size
+        self.preferredContentSize.height = tableView.contentSize.height
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
