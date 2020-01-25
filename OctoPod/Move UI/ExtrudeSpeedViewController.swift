@@ -11,6 +11,14 @@ class ExtrudeSpeedViewController: ThemedStaticUITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // Set background color of popover and its arrow based on current theme
+        let theme = Theme.currentTheme()
+        self.popoverPresentationController?.backgroundColor = theme.backgroundColor()
+    }
 
     @IBAction func speedChoiceChanged(_ sender: Any) {
         if isCustomSpeed()  {

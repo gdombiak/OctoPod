@@ -68,6 +68,8 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         
         // Hide commands history table
         showCommandsHistory(show: false)
+        // Apply theme to commands history table
+        ThemeUIUtils.applyTheme(table: commandsHistoryTable, staticCells: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -181,6 +183,10 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         cell.textLabel?.text = octoprintClient.terminal.commandsHistory[indexPath.row]
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        ThemeUIUtils.themeCell(cell: cell)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

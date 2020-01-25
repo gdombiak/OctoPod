@@ -1,6 +1,6 @@
 import UIKit
 
-class SetTargetTempViewController: UITableViewController {
+class SetTargetTempViewController: ThemedStaticUITableViewController {
     
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
@@ -14,6 +14,7 @@ class SetTargetTempViewController: UITableViewController {
         case chamber
     }
 
+    @IBOutlet weak var newTemperatureLabel: UILabel!
     @IBOutlet weak var targetTempField: UITextField!
     @IBOutlet weak var offButton: UIButton!
     @IBOutlet weak var setButton: UIButton!
@@ -27,6 +28,7 @@ class SetTargetTempViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         switch targetTempScope! {
         case .bed:
             button1.setTitle("60", for: .normal)
@@ -43,6 +45,12 @@ class SetTargetTempViewController: UITableViewController {
         offButton.isEnabled = !appConfiguration.appLocked()
         button1.isEnabled = !appConfiguration.appLocked()
         button2.isEnabled = !appConfiguration.appLocked()
+
+        // Change colors based on current theme
+        let theme = Theme.currentTheme()
+        newTemperatureLabel.textColor = theme.labelColor()
+        // Use separator color for more contrast on the arrow to make it more visible
+        self.popoverPresentationController?.backgroundColor = theme.separatorColor()
     }
 
     override func didReceiveMemoryWarning() {

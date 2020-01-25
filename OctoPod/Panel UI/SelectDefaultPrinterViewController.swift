@@ -1,6 +1,6 @@
 import UIKit
 
-class SelectDefaultPrinterViewController: UITableViewController {
+class SelectDefaultPrinterViewController: ThemedDynamicUITableViewController {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
@@ -13,7 +13,12 @@ class SelectDefaultPrinterViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         printers = printerManager.getPrinters()
+
+        // Set background color of popover and its arrow based on current theme
+        let theme = Theme.currentTheme()
+        self.popoverPresentationController?.backgroundColor = theme.backgroundColor()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,6 +43,11 @@ class SelectDefaultPrinterViewController: UITableViewController {
         cell.detailTextLabel?.text = printers[indexPath.row].hostname
         // Show a checkmark next to active printer
         cell.accessoryType = printers[indexPath.row].defaultPrinter ? .checkmark : .none
+
+        // Theme color of labels
+        let theme = Theme.currentTheme()
+        cell.textLabel?.textColor = theme.textColor()
+        cell.detailTextLabel?.textColor = theme.textColor()
 
         return cell
     }
