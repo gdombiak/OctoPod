@@ -348,7 +348,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 self.presentToolTip(tooltipKey: PrinterSubpanelViewController.TOOLTIP_TEMP_TOOL, segueIdentifier: "tool0_tooltip", button: self.tool0SetTempButton)
             }
             
-            if reloadTable {
+            if reloadTable && self.view.window != nil {
                 // Force to recalculate rows height since cells may be visible
                 self.tableView.beginUpdates()
                 self.tableView.endUpdates()
