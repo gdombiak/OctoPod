@@ -266,14 +266,18 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
     // MARK: - Private operations
     
     fileprivate func pushUpdateToComplications(printerName: String, state: String, completion: Double, palette2LastPing: String?, palette2LastVariation: String?, palette2MaxVariation: String?) {
+        // TODO: - Future release might let users configure when they sleep so we refresh at a slower
+        // rate when they do not use the app. There is a limit of 50 complication updates per day. Long
+        // prints > 12.5 hours will exceed the 50 complications upates per day :(
+
         if completion > 0 && completion < 100 {
-            // Schedule next background refresh in 20 minutes if we are printing
-            scheduleNextBackgroundRefresh(minutes: 20)
+            // Schedule next background refresh in 15 minutes if we are printing
+            scheduleNextBackgroundRefresh(minutes: 15)
         } else {
             // Schedule next background refresh in 60 minutes if we are NOT printing to save battery
             // If print started before next background refresh then complication will be updated if
             // 1. OctoPrint plugin is installed and a print started (iOS app will receive notification and ask Apple Watch
-            // to refresh complication) or 2. iOS app did background redresh and a print is running and there is no
+            // to refresh complication) or 2. iOS app did background refresh and a print is running and there is no
             // OctoPrint plugin installed or 3. user opened Apple Watch app while print is running
             scheduleNextBackgroundRefresh(minutes: 60)
         }

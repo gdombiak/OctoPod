@@ -25,6 +25,9 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
         octoprintClient.delegates.append(self)
     }
 
+    /// OctoPod plugin for OctoPrint sent a remote notification to the iOS app about the print job. If this is a test then display a local notification.
+    /// If not a test then instruct the Apple Watch app to update its complication. There is a 50 daily limit/budget for updating complications immediatelly
+    /// after that we will use a fallback mechanism that will eventually update the complication
     func refresh(printerID: String, printerState: String, progressCompletion: Double?, mediaURL: String?, test: Bool?, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let idURL = URL(string: printerID), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
             if test == true {
@@ -39,6 +42,8 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
         }
     }
 
+    /// iOS app has been woken up to execute its background task for fetching new content. If OctoPod plugin for OctoPrint
+    /// is installed then do nothing. This is a fallback for users that haven't installed the plugin yet for real time notifications
     func refresh(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let printer = printerManager.getDefaultPrinter() {
             // Check if OctoPrint instance has OctoPod plugin installed
@@ -101,6 +106,8 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
     }
     
     func printerStateUpdated(event: CurrentStateEvent) {
+        /// This notification is sent when iOS app is being used by user. This class listens to each event and if state has changed (or completion) then
+        /// a push notification to Apple Watch app will be sent to update its complications (if daily budget allows)
         if let printer = printerManager.getDefaultPrinter(), let state = event.state {
             pushComplicationUpdate(printerName: printer.name, octopodPluginInstalled: printer.octopodPluginInstalled, state: state, mediaURL: nil, completion: event.progressCompletion)
         }
