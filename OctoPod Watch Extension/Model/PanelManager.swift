@@ -22,8 +22,20 @@ class PanelManager: PrinterManagerDelegate {
     /// to be loaded via iOS app and direct HTTP request as a fallback mechanism. When going via iOS app more information is included
     /// like printer state and Palette 2 ping statistics. This method is called when 1. a new printer has been selected, 2. main Panel window
     /// refreshes data, 3. printers data has changed (like name)
-    func refresh(done: (() -> Void)?) {
+    func refresh(forceRefresh: Bool, done: (() -> Void)?) {
         if let printer = PrinterManager.instance.defaultPrinter() {
+            if !forceRefresh {
+                // If not forced to refresh then check that we have all required data and it is not "stale"
+                if let _ = PanelManager.instance.printerName, let _ = PanelManager.instance.panelInfo, let lastRefresh = PanelManager.instance.lastRefresh {
+                    // Check if information is stale
+                    let diff = Int(Date().timeIntervalSince1970 - lastRefresh.timeIntervalSince1970)
+                    if diff < 10 {
+                        // Information is less than 10 seconds old so do not fetch new data
+                        done?()
+                        return
+                    }
+                }
+            }
             printerName = PrinterManager.instance.name(printer: printer)
             let currentPrinterName = printerName
             // There is a default printer so fetch panel information
@@ -90,7 +102,7 @@ class PanelManager: PrinterManagerDelegate {
         lastRefresh = nil
 
         // Fetch state
-        refresh(done: nil)
+        refresh(forceRefresh: true, done: nil)
     }
     
     // Notification that selected printer has changed due to a remote change
@@ -103,7 +115,7 @@ class PanelManager: PrinterManagerDelegate {
         lastRefresh = nil
 
         // Fetch state
-        refresh(done: nil)
+        refresh(forceRefresh: true, done: nil)
     }
     
     // Notification that an image has been received from a received file

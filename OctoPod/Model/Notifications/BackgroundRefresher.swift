@@ -28,12 +28,21 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
     /// OctoPod plugin for OctoPrint sent a remote notification to the iOS app about the print job. If this is a test then display a local notification.
     /// If not a test then instruct the Apple Watch app to update its complication. There is a 50 daily limit/budget for updating complications immediatelly
     /// after that we will use a fallback mechanism that will eventually update the complication
-    func refresh(printerID: String, printerState: String, progressCompletion: Double?, mediaURL: String?, test: Bool?, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    /// - parameters:
+    ///     - printerID: ID of the printer for which its progress and state is reported
+    ///     - printerState: Printer state
+    ///     - progressCompletion: % of progress of the print
+    ///     - mediaURL: URL that holds a snapshot of the print
+    ///     - test: True if the remote notification is a test
+    ///     - forceUpdate: True uses #transferCurrentComplicationUserInfo that asks AppleWatch to update complication asap. This depends on budget availability. If no buget then use low priority messaging. Only applies to print completion progress
+    ///     - completionHandler: Block of code to execute once refresh has been processed
+    ///     - result: UIBackgroundFetchResult indicating if new data was processed
+    func refresh(printerID: String, printerState: String, progressCompletion: Double?, mediaURL: String?, test: Bool?, forceComplicationUpdate: Bool?, completionHandler: @escaping (_ result: UIBackgroundFetchResult) -> Void) {
         if let idURL = URL(string: printerID), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
             if test == true {
                 self.checkCompletedJobLocalNotification(printerName: printer.name, state: printerState, mediaURL: mediaURL, completion: 100, test: true)
             } else {
-                self.pushComplicationUpdate(printerName: printer.name, octopodPluginInstalled: printer.octopodPluginInstalled, state: printerState, mediaURL: mediaURL, completion: progressCompletion)
+                self.pushComplicationUpdate(printerName: printer.name, octopodPluginInstalled: printer.octopodPluginInstalled, state: printerState, mediaURL: mediaURL, completion: progressCompletion, forceUpdate: forceComplicationUpdate)
             }
             completionHandler(.newData)
         } else {
@@ -77,7 +86,7 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
                         if let progress = result["progress"] as? NSDictionary {
                             progressCompletion = progress["completion"] as? Double
                         }
-                        self.pushComplicationUpdate(printerName: printer.name, octopodPluginInstalled: printer.octopodPluginInstalled, state: state, mediaURL: nil, completion: progressCompletion)
+                        self.pushComplicationUpdate(printerName: printer.name, octopodPluginInstalled: printer.octopodPluginInstalled, state: state, mediaURL: nil, completion: progressCompletion, forceUpdate: false)
                         completionHandler(.newData)
                     } else {
                         completionHandler(.noData)
@@ -109,7 +118,7 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
         /// This notification is sent when iOS app is being used by user. This class listens to each event and if state has changed (or completion) then
         /// a push notification to Apple Watch app will be sent to update its complications (if daily budget allows)
         if let printer = printerManager.getDefaultPrinter(), let state = event.state {
-            pushComplicationUpdate(printerName: printer.name, octopodPluginInstalled: printer.octopodPluginInstalled, state: state, mediaURL: nil, completion: event.progressCompletion)
+            pushComplicationUpdate(printerName: printer.name, octopodPluginInstalled: printer.octopodPluginInstalled, state: state, mediaURL: nil, completion: event.progressCompletion, forceUpdate: false)
         }
     }
     
@@ -129,7 +138,32 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
     
     /// Push Apple Watch complication update only when printer changed state. If OctoPod plugin for OctoPrint is not installed then also use this time to send a local notification
     /// Complications also get updated when they run a background refresh or when user opened the Apple Watch app and it fetched new data
-    fileprivate func pushComplicationUpdate(printerName: String, octopodPluginInstalled: Bool, state: String, mediaURL: String?, completion: Double?) {
+    ///
+    /// Request to update compliation is always sent if printer changed state. It will first try to use #transferCurrentComplicationUserInfo if enough budget. Parameter **forceUpdate** is
+    /// used only if printer is already printing and the only change is the completion %.
+    ///
+    /// If state did not change and is printing and *not forced* then request to update completion happens only if progress is 10% bigger than before and 10 minutes have passed
+    /// since last update. Since it is not forced then #transferCurrentComplicationUserInfo is not going to be used.
+    ///
+    /// If state did not change and is printing and *forced* then only progress of 10% is considered and request will be made via #transferCurrentComplicationUserInfo so we depend
+    /// on available budget. If not enough budget then fallback to other method.
+    ///
+    /// - parameters:
+    ///     - printerName: Name of the printer for which its progress and state is reported
+    ///     - octopodPluginInstalled: True if OctoPod plugin for OctoPrint is installed. When not installed then a local notification is created when print is done
+    ///     - state: Printer state
+    ///     - mediaURL: URL that holds a snapshot of the print
+    ///     - completion: % of progress of the print
+    ///     - forceUpdate: True uses #transferCurrentComplicationUserInfo that asks AppleWatch to update complication asap. This depends on budget availability. If no buget then use low priority messaging. Only applies to print completion progress
+    fileprivate func pushComplicationUpdate(printerName: String, octopodPluginInstalled: Bool, state: String, mediaURL: String?, completion: Double?, forceUpdate: Bool?) {
+        // Normalize state
+        var pushState = state
+        if state == "Printing from SD" {
+            pushState = "Printing"
+        } else if state.starts(with: "Offline (Error:") {
+            pushState = "Offline"
+        }
+
         // Check if state has changed since last refresh
         let lastState = self.lastKnownState[printerName]
         if lastState == nil || lastState?.state != state {
@@ -138,21 +172,19 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
                 checkCompletedJobLocalNotification(printerName: printerName, state: state, mediaURL: mediaURL, completion: completion, test: false)
             }
             // There is a budget of 50 pushes to the Apple Watch so let's only send relevant events
-            var pushState = state
-            if state == "Printing from SD" {
-                pushState = "Printing"
-            } else if state.starts(with: "Offline (Error:") {
-                pushState = "Offline"
-            }
             // Ignore event with Printing and no completion
             if pushState != "Printing" || completion != nil {
                 // Update last known state
                 self.lastKnownState[printerName] = (state, completion)
                 if pushState == "Offline" || pushState == "Operational" || pushState == "Printing" || pushState == "Paused" {
                     // Update complication with received data
-                    self.watchSessionManager.updateComplications(printerName: printerName, printerState: pushState, completion: completion)
+                    self.watchSessionManager.updateComplications(printerName: printerName, printerState: pushState, completion: completion, useBudget: true)
                 }
             }
+        } else if let completion = completion, pushState == "Printing" {
+            // State is the same (still printing) and completion is not nil
+            // so check if we should send a complication update or not
+            self.watchSessionManager.optionalUpdateComplications(printerName: printerName, printerState: pushState, completion: completion, forceUpdate: forceUpdate ?? false)
         }
     }
     

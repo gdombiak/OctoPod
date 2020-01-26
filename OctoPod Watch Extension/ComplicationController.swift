@@ -15,6 +15,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
         case palette2LastVariation
         /// When Palette2 info is available, display max ping variance. Fallback to printer name
         case palette2MaxVariation
+        
+        func isPalette2Content() -> Bool {
+            return self == ContentType.palette2LastPing || self == ContentType.palette2LastVariation || self == ContentType.palette2MaxVariation
+        }
     }
     
     /// Time when the next background task should run
@@ -40,6 +44,11 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
         
         // Listen to changes to panel information
         PanelManager.instance.delegates.append(self)
+        
+        // Update complications with latest known information. This will also schedule next background refresh
+        if let printerName = PanelManager.instance.printerName, let panelInfo = PanelManager.instance.panelInfo {
+            panelInfoUpdate(printerName: printerName, panelInfo: panelInfo)
+        }
         
         // Save new value as a setting
         let savedContentType = UserDefaults.standard.integer(forKey: COMPLICATION_CONTENT_TYPE_KEY)
@@ -281,7 +290,17 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
             // OctoPrint plugin installed or 3. user opened Apple Watch app while print is running
             scheduleNextBackgroundRefresh(minutes: 60)
         }
-        if currentPrinterName != printerName || currentPrinterState != state  || self.completion != completion || self.palette2LastPing != palette2LastPing || self.palette2LastVariation != palette2LastVariation || self.palette2MaxVariation != palette2MaxVariation {
+        
+        let majorChange = currentPrinterName != printerName || currentPrinterState != state
+        let printProgressChange = self.completion != completion
+        let paletteChange = self.palette2LastPing != palette2LastPing || self.palette2LastVariation != palette2LastVariation || self.palette2MaxVariation != palette2MaxVariation
+        if  majorChange || printProgressChange || paletteChange {
+
+            // If only thing that changed is progress then check that it was meaningful enough to refresh progress
+            if !majorChange && !paletteChange && abs(completion - self.completion) < 10 {
+                return
+            }
+
             // Update locally stored information
             currentPrinterName = printerName
             currentPrinterState = state
@@ -290,6 +309,11 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
             self.palette2LastVariation = palette2LastVariation
             self.palette2MaxVariation = palette2MaxVariation
             
+            // If only thing that changed is Palette info and we are not displaying Palette info then do nothing
+            if !majorChange && !printProgressChange && paletteChange && !complicationContentType.isPalette2Content() {
+                return
+            }
+
             // Update complications since state has changed
             let complicationServer = CLKComplicationServer.sharedInstance()
             if let complications = complicationServer.activeComplications {
@@ -324,7 +348,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
     
     fileprivate func scheduleNextBackgroundRefresh(minutes: Int) {
         if scheduledBackgroundTask == nil || scheduledBackgroundTask! < Date() {
-            // Schedule a background refresh task to run in 20 minutes
+            // Schedule a background refresh task to run in the requested minutes
+            let now = Date()
             scheduledBackgroundTask = Date(timeIntervalSinceNow: Double(minutes * 60))
 
             WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: scheduledBackgroundTask!, userInfo: nil) { (error: Error?) in
@@ -333,7 +358,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
                     NSLog("Error schedulding background refresh task: \(error.localizedDescription)")
                     // TODO: There is no retry logic if scheduling task failed
                 } else {
-                    NSLog("ComplicationController: Next background update at %@", "\(self.scheduledBackgroundTask!)")
+                    NSLog("ComplicationController: Next background update at %@", "\(self.scheduledBackgroundTask!) now: \(now) seconds: \(Double(minutes * 60))")
                 }
             }
         }

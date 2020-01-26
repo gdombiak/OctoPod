@@ -238,7 +238,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let progressCompletion = dict["printer-completion"] as? Double
                     let mediaURL = dict["media-url"] as? String
                     let test = dict["test"] as? Bool
-                    backgroundRefresher.refresh(printerID: printerID, printerState: printerState, progressCompletion: progressCompletion, mediaURL: mediaURL, test: test, completionHandler: completionHandler)
+                    let forceComplicationUpdate = dict["complication-update"] as? Bool
+                    backgroundRefresher.refresh(printerID: printerID, printerState: printerState, progressCompletion: progressCompletion, mediaURL: mediaURL, test: test, forceComplicationUpdate: forceComplicationUpdate, completionHandler: completionHandler)
                 } else if let bedEvent = dict["bed-event"] as? String {
                     // This is a bed event notification
                     let bedTemperature = dict["bed-temperature"] as! Double

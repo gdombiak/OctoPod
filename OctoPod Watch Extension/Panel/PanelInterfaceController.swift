@@ -92,18 +92,14 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
             printerURL = url
             
             // Display last known panel information
-            if let printerName = PanelManager.instance.printerName, let panelInfo = PanelManager.instance.panelInfo, let lastRefresh = PanelManager.instance.lastRefresh, currentPrinterName == printerName {
+            if let printerName = PanelManager.instance.printerName, let panelInfo = PanelManager.instance.panelInfo, currentPrinterName == printerName {
                 panelInfoUpdate(printerName: printerName, panelInfo: panelInfo)
 
-                // Check if information is stale
-                let diff = Int(Date().timeIntervalSince1970 - lastRefresh.timeIntervalSince1970)
-                if diff > 10 {
-                    // Panel information is older than 10 seconds so refresh it
-                    renderPrinter()
-                }
+                // Fetch new information only if older than 10 seconds
+                renderPrinter(forceRefresh: false)
             } else {
                 // Refresh panel information
-                renderPrinter()
+                renderPrinter(forceRefresh: true)
             }
         } else {
             // Clear any fields information
@@ -135,7 +131,7 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
             } else {
                 // Wait 1 second and refresh UI
                 DispatchQueue.global().asyncAfter(deadline: .now() + 1, execute: {
-                    self.renderPrinter()
+                    self.renderPrinter(forceRefresh: true)
                 })
             }
         })
@@ -155,7 +151,7 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
                 } else {
                     // Wait 1 second and refresh UI
                     DispatchQueue.global().asyncAfter(deadline: .now() + 1, execute: {
-                        self.renderPrinter()
+                        self.renderPrinter(forceRefresh: true)
                     })
                 }
             })
@@ -177,7 +173,7 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
                 } else {
                     // Wait 1 second and refresh UI
                     DispatchQueue.global().asyncAfter(deadline: .now() + 1, execute: {
-                        self.renderPrinter()
+                        self.renderPrinter(forceRefresh: true)
                     })
                 }
             })
@@ -186,7 +182,7 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
     }
     
     @IBAction func refresh() {
-        renderPrinter()
+        renderPrinter(forceRefresh: true)
     }
     
     // MARK: - PrinterManagerDelegate
@@ -371,10 +367,10 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
     
     // MARK: - Private functions
     
-    fileprivate func renderPrinter() {
+    fileprivate func renderPrinter(forceRefresh: Bool) {
         // Disable refresh button to indicate we are "refreshing"
         self.refreshButton.setEnabled(false)
-        PanelManager.instance.refresh {
+        PanelManager.instance.refresh(forceRefresh: forceRefresh) {
             DispatchQueue.main.async {
                 // Done refreshing so enable button again
                 self.refreshButton.setEnabled(true)

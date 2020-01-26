@@ -9,6 +9,9 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     var session: WCSession?
     
     var delegates: Array<WatchSessionManagerDelegate> = []
+    
+    private var lastPushComplicationUpdate: Date?
+    private var lastPushedCompletion: Double?
 
     init(printerManager: PrinterManager, cloudKitPrinterManager: CloudKitPrinterManager, octoprintClient: OctoPrintClient) {
         self.printerManager = printerManager
@@ -51,21 +54,31 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     /// data.
     /// Push will be done only if Apple Watch has a complication installed. It will first be attempted via #transferCurrentComplicationUserInfo
     /// if there is still budget. If not the same information will be sent via updateApplicationContext as a fallback mechanism
-    func updateComplications(printerName: String, printerState: String, completion: Double?) {
+    func updateComplications(printerName: String, printerState: String, completion: Double?, useBudget: Bool) {
         if let session = getSession(), session.activationState == .activated {
             var info = ["printer": printerName, "state": printerState, "completion": completion ?? 0.0] as [String : Any]
             let complicationRequest = ["complications" : info]
             
             let transmitDataBlock = {
                 if session.isComplicationEnabled {
-                    if session.remainingComplicationUserInfoTransfers > 0 {
+                    if useBudget && session.remainingComplicationUserInfoTransfers > 0 {
                         // We can update complications using high priority #transferCurrentComplicationUserInfo
                         session.transferCurrentComplicationUserInfo(complicationRequest)
+                        // Remember last time we requested to update complication
+                        self.lastPushComplicationUpdate = Date()
+                        self.lastPushedCompletion = completion
                     } else {
-                        NSLog("Out of budget so updating complications via #updateApplicationContext")
+                        if useBudget {
+                            NSLog("Out of budget so updating complications via #updateApplicationContext")
+                        } else {
+                            NSLog("Requested to send complication update as low priority to not consume budget")
+                        }
                         // We are out of budget so attempt updating complications this other way
                         do {
                             try session.updateApplicationContext(complicationRequest)
+                            // Remember last time we requested to update complication
+                            self.lastPushComplicationUpdate = Date()
+                            self.lastPushedCompletion = completion
                         }
                         catch {
                             NSLog("Failed to request WatchOS app to update context \(complicationRequest). Error: \(error)")
@@ -96,6 +109,35 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                 } else {
                     // Send data to Apple Watch with whatever data we have
                     transmitDataBlock()
+                }
+            }
+        }
+    }
+    
+    /// Printer is printing and made more progress so check if it is time to request complications to be updated. There is a daily budget on
+    /// the Apple Watch for updating complications so we need to be carefull frequency for updating things. Not updating enough is also bad
+    /// since users will find complications useless
+    func optionalUpdateComplications(printerName: String, printerState: String, completion: Double, forceUpdate: Bool) {
+        if let session = getSession(), session.activationState == .activated, session.isComplicationEnabled {
+            if forceUpdate {
+                // Check if progress is bigger by 10%
+                if completion - (lastPushedCompletion ?? 0) > 10 {
+                    // Request to update complications and use #transferCurrentComplicationUserInfo budget
+                    updateComplications(printerName: printerName, printerState: printerState, completion: completion, useBudget: true)
+                }
+            } else {
+                if let lastPushedDate = lastPushComplicationUpdate, let lastPushedCompletion = lastPushedCompletion {
+                    let elapsedSeconds = Date().timeIntervalSince(lastPushedDate)
+                    // Check if progress is bigger by 10% and it has been at least 10 minutes since last update (or we started a new print)
+                    if (completion - lastPushedCompletion > 10 && elapsedSeconds >= 600) || completion < lastPushedCompletion {
+                        // Request to update complications but without consuming #transferCurrentComplicationUserInfo budget
+                        // since frequency of this type of updates could be high
+                        updateComplications(printerName: printerName, printerState: printerState, completion: completion, useBudget: false)
+                    }
+                } else {
+                    // No complication update has been sent yet (that we tracked) so start counting from this point
+                    self.lastPushComplicationUpdate = Date()
+                    self.lastPushedCompletion = completion
                 }
             }
         }
