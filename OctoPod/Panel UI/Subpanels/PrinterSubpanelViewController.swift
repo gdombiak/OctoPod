@@ -73,6 +73,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
 
     @IBOutlet weak var toolRow3: UITableViewCell!
     @IBOutlet weak var tool4TitleLabel: UILabel!
+    @IBOutlet weak var tool4TitleConstraint: NSLayoutConstraint!
     @IBOutlet weak var tool4SetTempButton: UIButton!
     @IBOutlet weak var tool4ActualLabel: UILabel!
     @IBOutlet weak var tool4TargetLabel: UILabel!
@@ -315,6 +316,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 self.state(view: self.tool4ActualLabel, enable: true)
                 self.state(view: self.tool4SplitLabel, enable: true)
                 self.state(view: self.tool4TitleLabel, enable: true)
+                self.tool4TitleConstraint?.isActive = true
                 self.tool4SetTempButton.isEnabled = true
                 self.toolRow3.isHidden = false
             }
@@ -610,6 +612,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             self.state(view: self.tool4TargetLabel, enable: false)
             self.state(view: self.tool4SplitLabel, enable: false)
             self.state(view: self.tool4TitleLabel, enable: false)
+            self.tool4TitleConstraint?.isActive = false
             self.tool4SetTempButton.isEnabled = false
 
             self.bedActualLabel.text = "            " // Use empty spaces to position Bed label in a good place

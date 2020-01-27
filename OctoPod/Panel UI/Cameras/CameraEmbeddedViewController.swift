@@ -127,10 +127,10 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             }
 
             if let tool0Actual = event.tool0TempActual {
-                self.tool0ActualLabel.text = "\(String(format: "%.1f", tool0Actual)) C"
+                self.tool0ActualLabel.text = "\(String(format: "%.1f", tool0Actual))C"
             }
             if let bedActual = event.bedTempActual {
-                self.bedActualLabel.text = "\(String(format: "%.1f", bedActual)) C"
+                self.bedActualLabel.text = "\(String(format: "%.1f", bedActual))C"
             }
         }
     }

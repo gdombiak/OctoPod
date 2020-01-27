@@ -851,6 +851,7 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kml-CB-5Yd">
                                                     <rect key="frame" x="335" y="9.5" width="24" height="24"/>
+                                                    <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                                                     <state key="normal" image="Edit"/>
                                                     <connections>
                                                         <segue destination="ChO-VC-a6I" kind="popoverPresentation" identifier="set_target_temp_tool3" popoverAnchorView="Kml-CB-5Yd" id="uMu-cc-3h7">
@@ -941,6 +942,7 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WT0-up-S9V">
                                                     <rect key="frame" x="100" y="9" width="24" height="24"/>
+                                                    <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                                                     <state key="normal" image="Edit"/>
                                                     <connections>
                                                         <segue destination="ChO-VC-a6I" kind="popoverPresentation" identifier="set_target_temp_tool4" popoverAnchorView="WT0-up-S9V" id="SPL-7k-CJ9">
@@ -1033,6 +1035,7 @@
                         <outlet property="tool4SetTempButton" destination="WT0-up-S9V" id="Ay7-Cr-la7"/>
                         <outlet property="tool4SplitLabel" destination="BxC-fi-O75" id="uOp-xS-znI"/>
                         <outlet property="tool4TargetLabel" destination="syx-MO-ExG" id="BGa-ab-m6v"/>
+                        <outlet property="tool4TitleConstraint" destination="iYu-aq-2bR" id="2vj-WJ-uC3"/>
                         <outlet property="tool4TitleLabel" destination="Orn-Uy-jOO" id="671-Rl-c0i"/>
                         <outlet property="toolRow1" destination="ZNE-Qd-Ktw" id="Ukx-6F-xMm"/>
                         <outlet property="toolRow2" destination="g27-YF-CyG" id="KmL-dK-KIe"/>
