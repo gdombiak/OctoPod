@@ -49,6 +49,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     @IBOutlet weak var toolRow1: UITableViewCell!
     @IBOutlet weak var tool1TitleLabel: UILabel!
+    @IBOutlet weak var tool1TitleConstraint: NSLayoutConstraint!
     @IBOutlet weak var tool1SetTempButton: UIButton!
     @IBOutlet weak var tool1ActualLabel: UILabel!
     @IBOutlet weak var tool1TargetLabel: UILabel!
@@ -61,6 +62,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
 
     @IBOutlet weak var toolRow2: UITableViewCell!
     @IBOutlet weak var tool2TitleLabel: UILabel!
+    @IBOutlet weak var tool2TitleConstraint: NSLayoutConstraint!
     @IBOutlet weak var tool2SetTempButton: UIButton!
     @IBOutlet weak var tool2ActualLabel: UILabel!
     @IBOutlet weak var tool2TargetLabel: UILabel!
@@ -260,6 +262,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 self.state(view: self.tool1ActualLabel, enable: true)
                 self.state(view: self.tool1SplitLabel, enable: true)
                 self.state(view: self.tool1TitleLabel, enable: true)
+                self.tool1TitleConstraint?.isActive = true
                 self.tool1SetTempButton.isEnabled = true
                 self.toolRow1.isHidden = false
             }
@@ -288,6 +291,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 self.state(view: self.tool2ActualLabel, enable: true)
                 self.state(view: self.tool2SplitLabel, enable: true)
                 self.state(view: self.tool2TitleLabel, enable: true)
+                self.tool2TitleConstraint?.isActive = true
                 self.tool2SetTempButton.isEnabled = true
                 self.toolRow2.isHidden = false
             }
@@ -588,6 +592,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             self.state(view: self.tool1TargetLabel, enable: false)
             self.state(view: self.tool1SplitLabel, enable: false)
             self.state(view: self.tool1TitleLabel, enable: false)
+            self.tool1TitleConstraint?.isActive = false
             self.tool1SetTempButton.isEnabled = false
             // Disable chamber info
             self.state(view: self.chamberActualLabel, enable: false)
@@ -600,6 +605,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             self.state(view: self.tool2TargetLabel, enable: false)
             self.state(view: self.tool2SplitLabel, enable: false)
             self.state(view: self.tool2TitleLabel, enable: false)
+            self.tool2TitleConstraint?.isActive = false
             self.tool2SetTempButton.isEnabled = false
             // Disable tool3 info
             self.state(view: self.tool3ActualLabel, enable: false)
