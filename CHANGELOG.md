@@ -1,6 +1,39 @@
 # Change Log
 
-## [2.11](https://github.com/gdombiak/OctoPod/tree/2.11) (2020-01-07)
+## [3.0](https://github.com/gdombiak/OctoPod/tree/3.0) (2020-01-28)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.11...3.0)
+
+**Implemented enhancements:**
+
+- Add info in full screen webcam view [\#251](https://github.com/gdombiak/OctoPod/issues/251)
+- Add support for Accessibility - Larger Text [\#250](https://github.com/gdombiak/OctoPod/issues/250)
+- New Siri shortcut for getting Palette 2 ping statistics [\#249](https://github.com/gdombiak/OctoPod/issues/249)
+- Apple Watch - Render Palette 2 ping statistics in app and complications [\#247](https://github.com/gdombiak/OctoPod/issues/247)
+- Apple Watch - Improve complications to display more information [\#246](https://github.com/gdombiak/OctoPod/issues/246)
+- Palette 2 - Display ping/pong variance [\#245](https://github.com/gdombiak/OctoPod/issues/245)
+- Update pod Charts to 3.4.0 [\#244](https://github.com/gdombiak/OctoPod/issues/244)
+- Update pod Starscream to 3.1.1 [\#243](https://github.com/gdombiak/OctoPod/issues/243)
+- Allow to go home on each axis independently [\#242](https://github.com/gdombiak/OctoPod/issues/242)
+- Improve pause/cancel/resume/restart UX [\#241](https://github.com/gdombiak/OctoPod/issues/241)
+- Add support for Dark Mode [\#240](https://github.com/gdombiak/OctoPod/issues/240)
+- Keyboard accessory for number rows when  [\#239](https://github.com/gdombiak/OctoPod/issues/239)
+- Option: Don‘t sleep [\#236](https://github.com/gdombiak/OctoPod/issues/236)
+- Add cell with date and time for expected print finish [\#219](https://github.com/gdombiak/OctoPod/issues/219)
+- Update icons to use newest design [\#199](https://github.com/gdombiak/OctoPod/issues/199)
+- Use the keyboard's "return" to send gcode \(+3 other small related things\) [\#162](https://github.com/gdombiak/OctoPod/issues/162)
+
+**Fixed bugs:**
+
+- Extrude speed configuration dialog does not appear [\#253](https://github.com/gdombiak/OctoPod/issues/253)
+- Removed gcode command from history comes back after restart [\#252](https://github.com/gdombiak/OctoPod/issues/252)
+- Watch app doesn't work without iPhone app running [\#194](https://github.com/gdombiak/OctoPod/issues/194)
+
+**Closed issues:**
+
+- Custom Controls not available during Print [\#255](https://github.com/gdombiak/OctoPod/issues/255)
+- Printer is restarting on Connect [\#248](https://github.com/gdombiak/OctoPod/issues/248)
+
+## [2.11](https://github.com/gdombiak/OctoPod/tree/2.11) (2020-01-08)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.10...2.11)
 
 **Fixed bugs:**
