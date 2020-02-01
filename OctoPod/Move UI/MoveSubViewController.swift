@@ -129,8 +129,11 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBAction func goBack(_ sender: Any) {
         if let selected = xyStepSegmentedControl.titleForSegment(at: xyStepSegmentedControl.selectedSegmentIndex) {
             let delta = (selected as NSString).floatValue * (invertedY ? 1 : -1)
+            let generator = prepareGenerator(delta)
             octoprintClient.move(y: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if !requested {
+                if requested {
+                    generator.impactOccurred()
+                } else {
                     // Handle error
                     NSLog("Error moving Y axis. HTTP status code \(response.statusCode)")
                     self.showAlert(message: NSLocalizedString("Failed to request moving back", comment: ""))
@@ -142,8 +145,11 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBAction func goFront(_ sender: Any) {
         if let selected = xyStepSegmentedControl.titleForSegment(at: xyStepSegmentedControl.selectedSegmentIndex) {
             let delta = (selected as NSString).floatValue * (invertedY ? -1 : 1)
+            let generator = prepareGenerator(delta)
             octoprintClient.move(y: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if !requested {
+                if requested {
+                    generator.impactOccurred()
+                } else {
                     // Handle error
                     NSLog("Error moving Y axis. HTTP status code \(response.statusCode)")
                     self.showAlert(message: NSLocalizedString("Failed to request moving front", comment: ""))
@@ -155,8 +161,11 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBAction func goLeft(_ sender: Any) {
         if let selected = xyStepSegmentedControl.titleForSegment(at: xyStepSegmentedControl.selectedSegmentIndex) {
             let delta = Float(selected)! * (invertedX ? 1 : -1)
+            let generator = prepareGenerator(delta)
             octoprintClient.move(x: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if !requested {
+                if requested {
+                    generator.impactOccurred()
+                } else {
                     // Handle error
                     NSLog("Error moving X axis. HTTP status code \(response.statusCode)")
                     self.showAlert(message: NSLocalizedString("Failed to request moving left", comment: ""))
@@ -168,8 +177,11 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBAction func goRight(_ sender: Any) {
         if let selected = xyStepSegmentedControl.titleForSegment(at: xyStepSegmentedControl.selectedSegmentIndex) {
             let delta = Float(selected)! * (invertedX ? -1 : 1)
+            let generator = prepareGenerator(delta)
             octoprintClient.move(x: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if !requested {
+                if requested {
+                    generator.impactOccurred()
+                } else {
                     // Handle error
                     NSLog("Error moving X axis. HTTP status code \(response.statusCode)")
                     self.showAlert(message: NSLocalizedString("Failed to request moving right", comment: ""))
@@ -183,8 +195,11 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBAction func goUp(_ sender: Any) {
         if let selected = zStepSegmentedControl.titleForSegment(at: zStepSegmentedControl.selectedSegmentIndex) {
             let delta = Float(selected)! * (invertedZ ? -1 : 1)
+            let generator = prepareGenerator(delta)
             octoprintClient.move(z: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if !requested {
+                if requested {
+                    generator.impactOccurred()
+                } else {
                     // Handle error
                     NSLog("Error moving Z axis. HTTP status code \(response.statusCode)")
                     self.showAlert(message: NSLocalizedString("Failed to request moving up", comment: ""))
@@ -196,8 +211,11 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBAction func goDown(_ sender: Any) {
         if let selected = zStepSegmentedControl.titleForSegment(at: zStepSegmentedControl.selectedSegmentIndex) {
             let delta = Float(selected)! * (invertedZ ? 1 : -1)
+            let generator = prepareGenerator(delta)
             octoprintClient.move(z: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if !requested {
+                if requested {
+                    generator.impactOccurred()
+                } else {
                     // Handle error
                     NSLog("Error moving Z axis. HTTP status code \(response.statusCode)")
                     self.showAlert(message: NSLocalizedString("Failed to request moving down", comment: ""))
@@ -207,8 +225,12 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     }
     
     @IBAction func goHome(_ sender: Any) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         octoprintClient.home(axes: ["x", "y", "z"]) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if !requested {
+            if requested {
+                generator.notificationOccurred(.success)
+            } else {
                 // Handle error
                 NSLog("Error going home. HTTP status code \(response.statusCode)")
                 self.showAlert(message: NSLocalizedString("Failed to request to go home", comment: ""))
@@ -217,8 +239,12 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     }
 
     @IBAction func goHomeX(_ sender: Any) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         octoprintClient.home(axes: ["x"]) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if !requested {
+            if requested {
+                generator.notificationOccurred(.success)
+            } else {
                 // Handle error
                 NSLog("Error going home X. HTTP status code \(response.statusCode)")
                 self.showAlert(message: NSLocalizedString("Failed to request to go home X", comment: ""))
@@ -227,8 +253,12 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     }
     
     @IBAction func goHomeY(_ sender: Any) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         octoprintClient.home(axes: ["y"]) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if !requested {
+            if requested {
+                generator.notificationOccurred(.success)
+            } else {
                 // Handle error
                 NSLog("Error going home Y. HTTP status code \(response.statusCode)")
                 self.showAlert(message: NSLocalizedString("Failed to request to go home Y", comment: ""))
@@ -237,8 +267,12 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     }
     
     @IBAction func goHomeZ(_ sender: Any) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         octoprintClient.home(axes: ["z"]) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if !requested {
+            if requested {
+                generator.notificationOccurred(.success)
+            } else {
                 // Handle error
                 NSLog("Error going home Z. HTTP status code \(response.statusCode)")
                 self.showAlert(message: NSLocalizedString("Failed to request to go home Z", comment: ""))
@@ -319,8 +353,12 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBAction func flowRateChanged(_ sender: UISlider) {
         // Ask OctoPrint to set new flow rate for extruder
         let newFlowRate = Int(String(format: "%.0f", sender.value))!
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         octoprintClient.toolFlowRate(toolNumber: 0, newFlowRate: newFlowRate, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if !requested {
+            if requested {
+                generator.notificationOccurred(.success)
+            } else {
                 // Handle error
                 NSLog("Error setting new flow rate. HTTP status code \(response.statusCode)")
                 self.showAlert(message: NSLocalizedString("Failed to set new flow rate", comment: ""))
@@ -338,8 +376,12 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBAction func fanSpeedChanged(_ sender: UISlider) {
         // Ask OctoPrint to set new fan speed
         let newSpeed = Int(String(format: "%.0f", sender.value))!
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         octoprintClient.fanSpeed(speed: newSpeed, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if !requested {
+            if requested {
+                generator.notificationOccurred(.success)
+            } else {
                 // Handle error
                 NSLog("Error setting new fan speed. HTTP status code \(response.statusCode)")
                 self.showAlert(message: NSLocalizedString("Failed to set new fan speed", comment: ""))
@@ -409,8 +451,12 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBAction func feedRateChanged(_ sender: UISlider) {
         // Ask OctoPrint to set new fan speed
         let newRate = Int(String(format: "%.0f", sender.value))!
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         octoprintClient.feedRate(factor: newRate, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if !requested {
+            if requested {
+                generator.notificationOccurred(.success)
+            } else {
                 // Handle error
                 NSLog("Error setting new feed rate. HTTP status code \(response.statusCode)")
                 self.showAlert(message: NSLocalizedString("Failed to set new feed rate", comment: ""))
@@ -586,8 +632,12 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     }
     
     fileprivate func disableMotor(axis: axis) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         octoprintClient.disableMotor(axis: axis, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if !requested {
+            if requested {
+                generator.notificationOccurred(.success)
+            } else {
                 // Handle error
                 NSLog("Error disabling \(axis) motor. HTTP status code \(response.statusCode)")
                 self.showAlert(message: String(format: NSLocalizedString("Failed to disable motor", comment: ""), "\(axis)"))
@@ -595,10 +645,27 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         })
     }
     
+    /// Create and return a prepared UIImpactFeedbackGenerator that will vibrate depending on the intensity of the move
+    fileprivate func prepareGenerator(_ delta: Float) -> UIImpactFeedbackGenerator {
+        let generator: UIImpactFeedbackGenerator!
+        if abs(delta) <= 5 {
+            generator = UIImpactFeedbackGenerator(style: .light)
+        } else if abs(delta) < 20 {
+            generator = UIImpactFeedbackGenerator(style: .medium)
+        } else {
+            generator = UIImpactFeedbackGenerator(style: .heavy)
+        }
+        generator.prepare()
+        return generator
+    }
+    
     fileprivate func extrudeSpeed(delta: Int, speed: Int?) {
         let toolNumber = selectExtruderSegmentedControl.selectedSegmentIndex
+        let generator = prepareGenerator(Float(delta))
         octoprintClient.extrude(toolNumber: toolNumber, delta: delta, speed: speed, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if !requested {
+            if requested {
+                generator.impactOccurred()
+            } else {
                 // Handle error
                 NSLog("Error moving E axis. HTTP status code \(response.statusCode)")
                 let message = delta > 0 ? NSLocalizedString("Failed to request to extrude", comment: "") : NSLocalizedString("Failed to request to retract", comment: "")
