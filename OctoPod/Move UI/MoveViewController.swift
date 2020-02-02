@@ -141,6 +141,7 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.updateForCameraOrientation(orientation: orientation)
             }
+            camerasViewController?.displayPrintStatus(enabled: true)
         }
     }
 

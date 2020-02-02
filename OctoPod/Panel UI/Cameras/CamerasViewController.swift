@@ -10,7 +10,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     var embeddedCameraTappedCallback: (() -> Void)?
     var embeddedCameraDelegate: CameraViewDelegate?
     
-    private var displayPrintStatus: Bool = false
+    private var displayPrintStatus: Bool?
 
     // The UIPageViewController
     private var pageContainer: UIPageViewController!
@@ -38,6 +38,10 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     override func viewWillAppear(_ animated: Bool) {
         updateViewControllersForPrinter(cameraChanged: false)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        displayPrintStatus = nil
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -61,9 +65,11 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     }
 
     func displayPrintStatus(enabled: Bool) {
-        displayPrintStatus = enabled
-        if let index = currentIndex {
-            orderedViewControllers[index].displayPrintStatus(enabled: enabled)
+        if displayPrintStatus != enabled {
+            if let index = currentIndex {
+                displayPrintStatus = enabled
+                orderedViewControllers[index].displayPrintStatus(enabled: enabled)
+            }
         }
     }
     
@@ -152,8 +158,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             currentIndex = pendingIndex
             if let index = currentIndex {
                 pageControl.currentPage = index
-                // Make sure that selected VC has the correct display print status state
-                orderedViewControllers[index].displayPrintStatus(enabled: displayPrintStatus)
+                displayPrintStatus = nil
             }
             embeddedCameraDelegate?.finishedTransitionNewPage()
         }

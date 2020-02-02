@@ -139,6 +139,7 @@
 		3D88C3E92193F49500BC84DD /* CancelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88C3E82193F49500BC84DD /* CancelObject.swift */; };
 		3D88C3EA2193F91000BC84DD /* CancelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88C3E82193F49500BC84DD /* CancelObject.swift */; };
 		3D88C3EC2194004800BC84DD /* CancelObjectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88C3EB2194004800BC84DD /* CancelObjectViewCell.swift */; };
+		3D89F88123E6324900E99110 /* SubpanelsVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D89F88023E6324900E99110 /* SubpanelsVCDelegate.swift */; };
 		3D8AB6A321A7390B00E81CE5 /* SystemCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AB6A221A7390B00E81CE5 /* SystemCommand.swift */; };
 		3D8AB6A421A7390B00E81CE5 /* SystemCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AB6A221A7390B00E81CE5 /* SystemCommand.swift */; };
 		3D8AB6A621A73D3700E81CE5 /* SystemCommandsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AB6A521A73D3700E81CE5 /* SystemCommandsViewController.swift */; };
@@ -454,6 +455,7 @@
 		3D89E670216121FB006794D0 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3D89E671216121FC006794D0 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D89E6722161235A006794D0 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D89F88023E6324900E99110 /* SubpanelsVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpanelsVCDelegate.swift; sourceTree = "<group>"; };
 		3D8AB6A221A7390B00E81CE5 /* SystemCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemCommand.swift; sourceTree = "<group>"; };
 		3D8AB6A521A73D3700E81CE5 /* SystemCommandsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemCommandsViewController.swift; sourceTree = "<group>"; };
 		3D8B292920E54F7300296D9D /* PanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
@@ -1063,6 +1065,7 @@
 			children = (
 				3D47BA3C21278923002420A0 /* UI Components */,
 				3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */,
+				3D89F88023E6324900E99110 /* SubpanelsVCDelegate.swift */,
 				3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */,
 				3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */,
 				3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */,
@@ -1521,6 +1524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */,
+				3D89F88123E6324900E99110 /* SubpanelsVCDelegate.swift in Sources */,
 				3D9D9765214DCC440032443A /* CloudKitPrinterDelegate.swift in Sources */,
 				3D5D614623D5776200D988A2 /* AppleWatchSettingsViewController.swift in Sources */,
 				3D450EC821AB56F40049FBC0 /* IntentsController.swift in Sources */,

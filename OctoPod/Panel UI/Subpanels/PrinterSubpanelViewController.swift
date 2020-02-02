@@ -42,6 +42,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     @IBOutlet weak var printTimeLeftLabel: UILabel!
     @IBOutlet weak var printEstimatedCompletionLabel: UILabel!
     
+    @IBOutlet weak var toolRow0: UITableViewCell!
     @IBOutlet weak var tool0SetTempButton: UIButton!
     @IBOutlet weak var tool0ActualLabel: UILabel!
     @IBOutlet weak var tool0TargetLabel: UILabel!
@@ -88,6 +89,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     var lastKnownPrintFile: PrintFile?
     
+    private var tool0ActualLabelIsVisibile = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -103,6 +106,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         themeLabels()
+        
+        checkTempLabelVisibility()
     }
     
     override func didReceiveMemoryWarning() {
@@ -127,6 +132,12 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         return super.tableView(tableView, heightForRowAt: indexPath)
     }
 
+    // MARK: - UIScrollViewDelegate
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        checkTempLabelVisibility()
+    }
+    
      // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -358,6 +369,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 // Force to recalculate rows height since cells may be visible
                 self.tableView.beginUpdates()
                 self.tableView.endUpdates()
+                self.checkTempLabelVisibility()
             }
         }
     }
@@ -632,12 +644,36 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             // Force to recalculate rows height since cells may not be visible
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
+            self.checkTempLabelVisibility()
         }
     }
     
     fileprivate func state(view: UILabel, enable: Bool) {
         view.isEnabled = enable
         view.alpha = enable ? 1.0 : 0.6
+    }
+    
+    /// Call from **main thread**. Alert if visibility of tool0ActualLabel has changed
+    fileprivate func checkTempLabelVisibility() {
+        let currentVisiblity = tempLabelVisible()
+        if tool0ActualLabelIsVisibile != currentVisiblity {
+            tool0ActualLabelIsVisibile = currentVisiblity
+            // Alert listeners about change in visibility
+            if let parentVC = parent?.parent as? SubpanelsViewController {
+                parentVC.toolLabelVisibilityChanged()
+            }
+        }
+    }
+
+    /// Call from **main thread**. Returns true if actual temperature of tool 0
+    /// is fully visible in the UI
+    func tempLabelVisible() -> Bool {
+        let rowOrigin = toolRow0.frame.origin
+        let labelFrame = tool0ActualLabel.frame
+        let labelOrigin = labelFrame.origin
+        let thePosition: CGRect =  CGRect(x: rowOrigin.x + labelOrigin.x, y: rowOrigin.y + labelOrigin.y, width: labelFrame.width, height: labelFrame.height)
+
+        return tableView.bounds.contains(thePosition)
     }
     
     fileprivate func themeLabels() {

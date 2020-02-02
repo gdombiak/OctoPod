@@ -1,6 +1,6 @@
 import UIKit
 
-class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate, WatchSessionManagerDelegate, UITabBarControllerDelegate {
+class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate, WatchSessionManagerDelegate, UITabBarControllerDelegate, SubpanelsVCDelegate {
     
     private static let CONNECT_CONFIRMATION = "PANEL_CONNECT_CONFIRMATION"
     private static let REMINDERS_SHOWN = "PANEL_REMINDERS_SHOWN_3_0"  // Key that stores if we should show reminders about important new things to users. Key might change per version
@@ -60,6 +60,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         // Indicate that we want to instruct users that gestures can be used to manipulate image
         // Messages will not be visible after user used these features
         camerasViewController?.infoGesturesAvailable = true
+        
+        // Listen to event when user swiped and changed active subpanel
+        subpanelsViewController?.subpanelsVCDelegate = self
 
         // Listen to events when app comes back from background
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -126,6 +129,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         } else {
             presentToolTip(tooltipKey: PanelViewController.TOOLTIP_SWIPE_PRINTERS, segueIdentifier: "swipe_printers_tooltip")
         }
+        checkDisplayPrintStatusOverCamera()
     }
     
     override func didReceiveMemoryWarning() {
@@ -415,6 +419,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         if let printer = printerManager.getDefaultPrinter() {
             // Update layout depending on camera orientation
             updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!, devicePortrait: size.height == screenHeight)
+            // Add some delay before calculating if we should render temp info
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.checkDisplayPrintStatusOverCamera()
+            }
         }
     }
     
@@ -469,7 +477,18 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 }
                 self.updateForCameraOrientation(orientation: orientation)
             }
+            self.checkDisplayPrintStatusOverCamera()
         }
+    }
+    
+    // MARK: - SubpanelsVCDelegate
+    
+    func finishedTransitionSubpanel(index: Int) {
+        checkDisplayPrintStatusOverCamera()
+    }
+    
+    func toolLabelVisibilityChanged() {
+        checkDisplayPrintStatusOverCamera()
     }
     
     // MARK: - WatchSessionManagerDelegate
@@ -485,6 +504,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         // If selected panel is this window then render first subpanel
         if tabBarController.selectedIndex == 0 {
             subpanelsViewController?.renderFirstVC()
+            checkDisplayPrintStatusOverCamera()
         }
     }
     
@@ -546,6 +566,12 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
     
     // MARK: - Private functions
+    
+    /// Runs on **main thread**. Enables or disables display of print status overlaid on top of camera view
+    fileprivate func checkDisplayPrintStatusOverCamera() {
+        let printerSubpanelViewController = subpanelsViewController?.currentSubpanelViewController() as? PrinterSubpanelViewController
+        camerasViewController?.displayPrintStatus(enabled: subpanelsView.isHidden || printerSubpanelViewController == nil || !printerSubpanelViewController!.tempLabelVisible())
+    }
     
     fileprivate func showDefaultPrinter() {
         if let printer = printerManager.getDefaultPrinter() {
@@ -674,7 +700,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 uiOrientationBeforeFullScreen = nil
             }
         }
-        camerasViewController?.displayPrintStatus(enabled: subpanelsView.isHidden)
+        // Add some delay before calculating if we should render temp info
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.checkDisplayPrintStatusOverCamera()
+        }
     }
     
     @objc func appWillEnterForeground() {

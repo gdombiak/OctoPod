@@ -13,6 +13,8 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
     private var orderedViewControllers: Array<UIViewController> = Array()
 
     private var pendingIndex: Int?
+    
+    var subpanelsVCDelegate: SubpanelsVCDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,6 +109,11 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         }
     }
     
+    /// Returns the currently selected SubpanelViewController
+    func currentSubpanelViewController() -> SubpanelViewController? {
+        return orderedViewControllers[pageControl.currentPage] as? SubpanelViewController
+    }
+    
     // MARK: - Notifications
     
     func printerSelectedChanged() {
@@ -152,6 +159,11 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         for case let subpanel as SubpanelViewController in orderedViewControllers {
             subpanel.currentStateUpdated(event: event)
         }
+    }
+    
+    /// Notification that visibility of tool0 temperature label has changed. Alert delegate
+    func toolLabelVisibilityChanged() {
+        subpanelsVCDelegate?.toolLabelVisibilityChanged()
     }
     
     // MARK: - UIPageViewControllerDataSource
@@ -207,6 +219,8 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         if completed {
             if let index = pendingIndex {
                 pageControl.currentPage = index
+                // Notify listeners about new active VC
+                subpanelsVCDelegate?.finishedTransitionSubpanel(index: index)
             }
         }
     }
