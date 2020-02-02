@@ -20,12 +20,12 @@ class IPPlugTableViewCell: UITableViewCell {
         if let on = isPowerOn {
             // Enable power button
             powerButton.isEnabled = !appConfiguration.appLocked() // Enable button only if app is not locked
-            powerButton.setImage(UIImage(named: on ? "TPPowerOff" : "TPPowerOn"), for: .normal)
+            powerButton.setImage(UIImage(named: on ? "TPPowerOn" : "TPPowerOff"), for: .normal)
         } else {
             // Disable power button since state is undefined
             powerButton.isEnabled = false
             // Assume power is off so render this image
-            powerButton.setImage(UIImage(named: "TPPowerOn"), for: .normal)
+            powerButton.setImage(UIImage(named: "TPPowerOff"), for: .normal)
         }
         self.isPowerOn = isPowerOn
     }
