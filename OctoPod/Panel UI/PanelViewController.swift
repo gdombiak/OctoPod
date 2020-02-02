@@ -336,7 +336,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     func printerStateUpdated(event: CurrentStateEvent) {
         if let closed = event.closedOrError {
-            updateConnectButton(printerConnected: !closed)
+            updateConnectButton(printerConnected: !closed, assumption: false)
         }
         camerasViewController?.currentStateUpdated(event: event)
         subpanelsViewController?.currentStateUpdated(event: event)
@@ -358,7 +358,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     func notificationAboutToConnectToServer() {
         // Assume printer is not connected
-        updateConnectButton(printerConnected: false)
+        updateConnectButton(printerConnected: false, assumption: true)
         DispatchQueue.main.async {
             // Clear any error message
             self.notRefreshingReason = nil
@@ -620,7 +620,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 self.notRefreshingButton.isHidden = true
             }
             // Assume printer is not connected
-            updateConnectButton(printerConnected: false)
+            updateConnectButton(printerConnected: false, assumption: true)
             // Ask octoprintClient to disconnect from OctoPrint server
             octoprintClient.disconnectFromServer()
         }
@@ -634,7 +634,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         self.camerasViewController?.printerSelectedChanged()
     }
 
-    fileprivate func updateConnectButton(printerConnected: Bool) {
+    fileprivate func updateConnectButton(printerConnected: Bool, assumption: Bool) {
         DispatchQueue.main.async {
             if !printerConnected {
                 self.printerConnected = false
@@ -643,6 +643,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 self.printerConnected = true
                 self.connectButton.title = NSLocalizedString("Disconnect", comment: "")
             }
+            // Only enable button if we are sure about connection state
+            self.connectButton.isEnabled = !assumption
         }
     }
     
