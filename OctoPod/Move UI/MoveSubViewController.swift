@@ -53,6 +53,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBOutlet weak var yMotorButton: UIButton!
     @IBOutlet weak var zMotorButton: UIButton!
     @IBOutlet weak var eMotorButton: UIButton!
+    @IBOutlet weak var allMotorsButton: UIButton!
     @IBOutlet weak var feedRateField: UITextField!
     @IBOutlet weak var feedRateLabel: UILabel!
     @IBOutlet weak var feedRateSlider: UISlider!
@@ -443,6 +444,10 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         disableMotor(axis: .E)
     }
     
+    @IBAction func disableAllMotors(_ sender: Any) {
+        disableMotor(axis: .ALL)
+    }
+    
     @IBAction func feedRateChanging(_ sender: UISlider) {
         // Update label with value of slider
         feedRateField.text = "\(String(format: "%.0f", sender.value))"
@@ -563,7 +568,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             invertedY = inverted
         case .Z:
             invertedZ = inverted
-        case .E:
+        case .E, .ALL:
             // Do nothing
             break
         }
@@ -628,6 +633,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         yMotorButton.isEnabled = enable
         zMotorButton.isEnabled = enable
         eMotorButton.isEnabled = enable
+        allMotorsButton.isEnabled = enable
         feedRateSlider.isEnabled = enable
     }
     

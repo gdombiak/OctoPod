@@ -5,6 +5,7 @@ enum axis {
     case Y
     case Z
     case E
+    case ALL
 }
 
 class OctoPrintRESTClient {
@@ -453,7 +454,7 @@ class OctoPrintRESTClient {
     // MARK: - Motor operations
     
     func disableMotor(axis: axis, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
-        let command = "M18 \(axis)"
+        let command = axis == .ALL ? "M18" : "M18 \(axis)"
         sendCommand(gcode: command, callback: callback)
     }
     
