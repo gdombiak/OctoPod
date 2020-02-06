@@ -234,12 +234,16 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     // MARK: - Unwind operations
 
     @IBAction func backFromSetTemperature(_ sender: UIStoryboardSegue) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         if let controller = sender.source as? SetTargetTempViewController, let text = controller.targetTempField.text, let newTarget: Int = Int(text) {
             switch controller.targetTempScope! {
             case SetTargetTempViewController.TargetScope.bed:
                 octoprintClient.bedTargetTemperature(newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                    // TODO Handle error
-                    if !requested {
+                    if requested {
+                        generator.notificationOccurred(.success)
+                    } else {
+                        generator.notificationOccurred(.error)
                         NSLog("Failed to request setting bed's temperature. Response: \(response)")
                     }
                 }
@@ -249,8 +253,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 }
             case SetTargetTempViewController.TargetScope.tool0:
                 octoprintClient.toolTargetTemperature(toolNumber: 0, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                    // TODO Handle error
-                    if !requested {
+                    if requested {
+                        generator.notificationOccurred(.success)
+                    } else {
+                        generator.notificationOccurred(.error)
                         NSLog("Failed to request setting tool0's temperature. Response: \(response)")
                     }
                 }
@@ -260,8 +266,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 }
             case SetTargetTempViewController.TargetScope.tool1:
                 octoprintClient.toolTargetTemperature(toolNumber: 1, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                    // TODO Handle error
-                    if !requested {
+                    if requested {
+                        generator.notificationOccurred(.success)
+                    } else {
+                        generator.notificationOccurred(.error)
                         NSLog("Failed to request setting tool1's temperature. Response: \(response)")
                     }
                 }
@@ -271,8 +279,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 }
             case SetTargetTempViewController.TargetScope.tool2:
                 octoprintClient.toolTargetTemperature(toolNumber: 2, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                    // TODO Handle error
-                    if !requested {
+                    if requested {
+                        generator.notificationOccurred(.success)
+                    } else {
+                        generator.notificationOccurred(.error)
                         NSLog("Failed to request setting tool2's temperature. Response: \(response)")
                     }
                 }
@@ -282,8 +292,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 }
             case SetTargetTempViewController.TargetScope.tool3:
                 octoprintClient.toolTargetTemperature(toolNumber: 3, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                    // TODO Handle error
-                    if !requested {
+                    if requested {
+                        generator.notificationOccurred(.success)
+                    } else {
+                        generator.notificationOccurred(.error)
                         NSLog("Failed to request setting tool3's temperature. Response: \(response)")
                     }
                 }
@@ -293,8 +305,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 }
             case SetTargetTempViewController.TargetScope.tool4:
                 octoprintClient.toolTargetTemperature(toolNumber: 4, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                    // TODO Handle error
-                    if !requested {
+                    if requested {
+                        generator.notificationOccurred(.success)
+                    } else {
+                        generator.notificationOccurred(.error)
                         NSLog("Failed to request setting tool4's temperature. Response: \(response)")
                     }
                 }
@@ -304,8 +318,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 }
             case SetTargetTempViewController.TargetScope.chamber:
                 octoprintClient.chamberTargetTemperature(newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                    // TODO Handle error
-                    if !requested {
+                    if requested {
+                        generator.notificationOccurred(.success)
+                    } else {
+                        generator.notificationOccurred(.error)
                         NSLog("Failed to request setting chamber's temperature. Response: \(response)")
                     }
                 }
