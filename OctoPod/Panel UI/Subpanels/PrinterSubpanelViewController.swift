@@ -393,8 +393,12 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
 
     @IBAction func restartJob(_ sender: Any) {
         showConfirm(message: NSLocalizedString("Do you want to restart print job from the beginning?", comment: ""), yes: { (UIAlertAction) in
+            let generator = UINotificationFeedbackGenerator()
+            generator.prepare()
             self.octoprintClient.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if !requested {
+                if requested {
+                    generator.notificationOccurred(.success)
+                } else {
                     NSLog("Error requesting to restart current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                     self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed restart job", comment: ""))
                 }
@@ -408,8 +412,12 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     }
     
     @IBAction func pauseJob(_ sender: Any) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         self.octoprintClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if !requested {
+            if requested {
+                generator.notificationOccurred(.success)
+            } else {
                 NSLog("Error requesting to pause current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                 self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed pause job", comment: ""))
             }
@@ -421,8 +429,12 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     @IBAction func cancelJob(_ sender: Any) {
         showConfirm(message: NSLocalizedString("Do you want to cancel job?", comment: ""), yes: { (UIAlertAction) in
+            let generator = UINotificationFeedbackGenerator()
+            generator.prepare()
             self.octoprintClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if !requested {
+                if requested {
+                    generator.notificationOccurred(.success)
+                } else {
                     NSLog("Error requesting to cancel current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                     self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed cancel job", comment: ""))
                 }
@@ -437,8 +449,12 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     @IBAction func printJob(_ sender: Any) {
         if let lastFile = lastKnownPrintFile {
+            let generator = UINotificationFeedbackGenerator()
+            generator.prepare()
             self.octoprintClient.printFile(origin: lastFile.origin!, path: lastFile.path!) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if !requested {
+                if requested {
+                    generator.notificationOccurred(.success)
+                } else {
                     NSLog("Error requesting to reprint file: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                     self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed print job again", comment: ""))
                 }
@@ -447,8 +463,12 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     }
     
     @IBAction func resumeJob(_ sender: Any) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
         self.octoprintClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if !requested {
+            if requested {
+                generator.notificationOccurred(.success)
+            } else {
                 NSLog("Error requesting to resume current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                 self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed resume job", comment: ""))
             }
