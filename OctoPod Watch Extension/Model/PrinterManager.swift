@@ -192,7 +192,7 @@ class PrinterManager {
             }
         }
         catch {
-            NSLog("Failed to save printers data to file. Error: \(error)")
+            NSLog("Failed to load printers data from file. Error: \(error)")
         }
         return nil
     }

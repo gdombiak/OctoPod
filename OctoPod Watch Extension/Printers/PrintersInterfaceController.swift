@@ -100,15 +100,19 @@ class PrintersInterfaceController: WKInterfaceController, PrinterManagerDelegate
         syncPrintersLabel.setHidden(!printers.isEmpty)
         refreshButton.setHidden(printers.isEmpty)
         
-        // Set number of rows based on printers count
-        printersTable.setNumberOfRows(printers.count, withRowType: "PrinterTableRowController")
-        
-        for (index, printer) in printers.enumerated() {
-            let row = printersTable.rowController(at: index) as! PrinterTableRowController
+        if WKExtension.shared().visibleInterfaceController == self {
+            // Set number of rows based on printers count
+            printersTable.setNumberOfRows(printers.count, withRowType: "PrinterTableRowController")
             
-            let printerName = PrinterManager.instance.name(printer: printer)
-            row.printerLabel.setText(printerName)
-            row.checkmarkImage.setHidden(!PrinterManager.instance.isDefault(printer: printer))
+            for (index, printer) in printers.enumerated() {
+                let row = printersTable.rowController(at: index) as! PrinterTableRowController
+                
+                let printerName = PrinterManager.instance.name(printer: printer)
+                row.printerLabel.setText(printerName)
+                row.checkmarkImage.setHidden(!PrinterManager.instance.isDefault(printer: printer))
+            }
+        } else {
+            NSLog("Skipping updating table. Active Interface is: \(String(describing: WKExtension.shared().visibleInterfaceController))")
         }
     }
 }
