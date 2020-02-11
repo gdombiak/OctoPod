@@ -370,7 +370,7 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
     fileprivate func renderPrinter(forceRefresh: Bool) {
         // Disable refresh button to indicate we are "refreshing"
         self.refreshButton.setEnabled(false)
-        PanelManager.instance.refresh(forceRefresh: forceRefresh) {
+        PanelManager.instance.refresh(forceRefresh: forceRefresh) { (refreshed: Bool) in
             DispatchQueue.main.async {
                 // Done refreshing so enable button again
                 self.refreshButton.setEnabled(true)

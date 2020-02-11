@@ -56,6 +56,8 @@ class OctoPrintClient {
                 // resume or cancel and temp information is not avaiable. Might reconsider
                 // this stratgy
                 callback(dict)
+            } else {
+                callback(["error": "Unexpected job response data"])
             }
         }
         if let printer = PrinterManager.instance.defaultPrinter() {
