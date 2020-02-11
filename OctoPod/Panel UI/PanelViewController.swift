@@ -34,7 +34,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
 
     var uiOrientationBeforeFullScreen: UIInterfaceOrientation?
     @IBOutlet weak var cameraHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var cameraBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cameraToSubpanelConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cameraToBottomConstraint: NSLayoutConstraint!
     
     /// List of plugin updates that are available. Variable will have value only after we did the check
     var updatesAvailable: Array<PluginUpdatesManager.UpdateAvailable>?
@@ -689,8 +690,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             // Hide bottom panel
             subpanelsView.isHidden = true
             // Switch constraints priority. Height does not matter now. Bottom constraint matters with 0 to safe view
-            cameraHeightConstraint.priority = UILayoutPriority(rawValue: 998)
-            cameraBottomConstraint.priority = UILayoutPriority(rawValue: 999)
+            cameraHeightConstraint.priority = UILayoutPriority(rawValue: 998)       // Ignore height of camera view
+            cameraToSubpanelConstraint.priority = UILayoutPriority(rawValue: 998)   // Ignore relationship to subpanel
+            cameraToBottomConstraint.priority = UILayoutPriority(rawValue: 999)     // Activate distance to bottom of screen
+
             // Flip orientation if needed
             let uiOrientation = UIApplication.shared.statusBarOrientation
             if uiOrientation != UIInterfaceOrientation.landscapeLeft && uiOrientation != UIInterfaceOrientation.landscapeRight {
@@ -709,8 +712,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             // Show bottom panel
             subpanelsView.isHidden = false
             // Switch constraints priority. Height matters again. Bottom constraint no longer matters
-            cameraHeightConstraint.priority = UILayoutPriority(rawValue: 999)
-            cameraBottomConstraint.priority = UILayoutPriority(rawValue: 998)
+            cameraHeightConstraint.priority = UILayoutPriority(rawValue: 999)      // Activate height of camera view
+            cameraToSubpanelConstraint.priority = UILayoutPriority(rawValue: 999)  // Activate relationship to subpanel
+            cameraToBottomConstraint.priority = UILayoutPriority(rawValue: 998)    // Ignore distance to bottom of screen
             // Flip orientation if needed
             if let orientation = uiOrientationBeforeFullScreen {
                 // When running full screen we are forcing landscape so we go back to portrait when leaving
