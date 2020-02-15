@@ -1,6 +1,25 @@
 # Change Log
 
-## [3.0](https://github.com/gdombiak/OctoPod/tree/3.0) (2020-01-28)
+## [3.1](https://github.com/gdombiak/OctoPod/tree/3.1) (2020-02-13)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.0...3.1)
+
+**Implemented enhancements:**
+
+- Overlay temp info and ETA over camera when temp info is not displayed [\#262](https://github.com/gdombiak/OctoPod/issues/262)
+- Feature request: UX improvements [\#261](https://github.com/gdombiak/OctoPod/issues/261)
+- Reduce spacing on main Panel so it fits on one screen [\#259](https://github.com/gdombiak/OctoPod/issues/259)
+- Terminal view improvements [\#256](https://github.com/gdombiak/OctoPod/issues/256)
+
+**Fixed bugs:**
+
+- Fix silent AppleWatch crash [\#263](https://github.com/gdombiak/OctoPod/issues/263)
+- Connect/Disconnect button is active even when connection state is unknown [\#254](https://github.com/gdombiak/OctoPod/issues/254)
+
+**Closed issues:**
+
+- Webcam stream and Reverse Proxy [\#260](https://github.com/gdombiak/OctoPod/issues/260)
+
+## [3.0](https://github.com/gdombiak/OctoPod/tree/3.0) (2020-01-30)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.11...3.0)
 
 **Implemented enhancements:**
