@@ -1,7 +1,7 @@
 import UIKit
 import StoreKit  // Import for rating app
 
-class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopoverPresentationControllerDelegate, SubpanelViewController {
+class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopoverPresentationControllerDelegate, SubpanelViewController, OctoPrintPluginsDelegate {
     
     private static let RATE_APP = "PANEL_RATE_APP"
     private static let TOOLTIP_PRINT_INFO = "PANEL_TOOLTIP_PRINT_INFO"
@@ -41,6 +41,13 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     @IBOutlet weak var printTimeLabel: UILabel!
     @IBOutlet weak var printTimeLeftLabel: UILabel!
     @IBOutlet weak var printEstimatedCompletionLabel: UILabel!
+    
+    @IBOutlet weak var currentHeightRow: UITableViewCell!
+    @IBOutlet weak var currentHeightTextLabel: UILabel!
+    @IBOutlet weak var currentHeightLabel: UILabel!
+    @IBOutlet weak var layerInfoRow: UITableViewCell!
+    @IBOutlet weak var layerTextLabel: UILabel!
+    @IBOutlet weak var layerLabel: UILabel!
     
     @IBOutlet weak var toolRow0: UITableViewCell!
     @IBOutlet weak var tool0SetTempButton: UIButton!
@@ -107,9 +114,19 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         super.viewWillAppear(animated)
         themeLabels()
         
+        // Listen to changes to OctoPrint Plugin messages
+        octoprintClient.octoPrintPluginsDelegates.append(self)
+
         checkTempLabelVisibility()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Stop listening to changes to OctoPrint Plugin messages
+        octoprintClient.remove(octoPrintPluginsDelegate: self)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -126,8 +143,14 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 && (indexPath.row == 0 || indexPath.row == 1) && currentPrintDetailsRow.isHidden {
-            return 0
+        if indexPath.section == 0 {
+            if (indexPath.row == 0 || indexPath.row == 1) && currentPrintDetailsRow.isHidden {
+                return 0
+            } else if indexPath.row == 6 && currentHeightRow.isHidden {
+                return 0
+            } else if indexPath.row == 7 && layerInfoRow.isHidden {
+                return 0
+            }
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
     }
@@ -138,7 +161,15 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         checkTempLabelVisibility()
     }
     
-     // MARK: - Navigation
+    // MARK: - OctoPrintPluginsDelegate
+     
+    func pluginMessage(plugin: String, data: NSDictionary) {
+        if plugin == Plugins.DISPLAY_LAYER_PROGRESS {
+            self.updateLayerPlugin(plugin, data: data)
+        }
+    }
+    
+    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -573,6 +604,27 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         }
     }
     
+    fileprivate func updateLayerPlugin(_ plugin: String, data: NSDictionary) {
+        if plugin == Plugins.DISPLAY_LAYER_PROGRESS {
+            if let stateMessage = data["stateMessage"] as? String, let heightMessage = data["heightMessage"] as? String {
+                // Refresh UI
+                DispatchQueue.main.async {
+                    if self.currentHeightRow.isHidden || self.layerInfoRow.isHidden {
+                        self.layerInfoRow.isHidden = false
+                        self.currentHeightRow.isHidden = false
+                        // Force to recalculate rows height since cell is no longer hidden
+                        self.tableView.beginUpdates()
+                        self.tableView.endUpdates()
+                    }
+                    self.currentHeightLabel.text = heightMessage
+                    self.layerLabel.text = stateMessage
+                }
+            }
+        } else {
+            NSLog("Unknown layer info plugin: \(plugin)")
+        }
+    }
+    
     // Converts number of seconds into a string that represents time (e.g. 23h 10m)
     func secondsToPrintTime(seconds: Int) -> String {
         let duration = TimeInterval(seconds)
@@ -611,6 +663,11 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             self.printTimeLabel.text = ""
             self.printTimeLeftLabel.text = ""
             self.printEstimatedCompletionLabel.text = ""
+            
+            self.currentHeightRow.isHidden = true   // Hide layer cell until we receive info that needs to be displayed. Comes from plugins, not OctoPrint itself
+            self.currentHeightLabel.text = ""
+            self.layerInfoRow.isHidden = true   // Hide layer cell until we receive info that needs to be displayed. Comes from plugins, not OctoPrint itself
+            self.layerLabel.text = ""
             
             self.tool0ActualLabel.text = " " // Use empty space to position Extruder label in a good place
             self.tool0TargetLabel.text = ""
@@ -707,6 +764,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         printTimeLeftTextLabel.textColor = textLabelColor
         printEstimatedCompletionTextLabel.textColor = textLabelColor
         printerStatusTextLabel.textColor = textLabelColor
+        currentHeightTextLabel.textColor = textLabelColor
+        layerTextLabel.textColor = textLabelColor
         tool0TitleLabel.textColor = textLabelColor
         tool0SplitLabel.textColor = textLabelColor
         bedTextLabel.textColor = textLabelColor
@@ -728,6 +787,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         printTimeLabel.textColor = textColor
         printTimeLeftLabel.textColor = textColor
         printEstimatedCompletionLabel.textColor = textColor
+        currentHeightLabel.textColor = textColor
+        layerLabel.textColor = textColor
         tool0ActualLabel.textColor = textColor
         tool0TargetLabel.textColor = textColor
         tool1ActualLabel.textColor = textColor
