@@ -1,0 +1,10 @@
+/* No comment provided by engineer. */
+"Missed" = "Отсутствует";
+
+/* Print time is being calculated */
+"Still stabilizing" = "Подсчёт времени печати ...";
+
+/* ETA is Unknown
+   Priner state is Unknown */
+"Unknown" = "Неизвестно";
+

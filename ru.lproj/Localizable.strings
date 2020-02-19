@@ -1,0 +1,530 @@
+/* (No Comment) */
+"1 day ago" = "день назад";
+
+/* (No Comment) */
+"1 hour ago" = "час назад";
+
+/* (No Comment) */
+"1 minute ago" = "минуту назад";
+
+/* (No Comment) */
+"1 week ago" = "неделю назад";
+
+/* (No Comment) */
+"Actual Bed" = "Стол, t° (актуал.)";
+
+/* No comment provided by engineer. */
+"Actual Chamber" = "Термокамера, t° (актуал.)";
+
+/* (No Comment) */
+"Actual Extruder" = "Экструдер, t° (актуал.)";
+
+/* (No Comment) */
+"Actual Extruder 2" = "Экструдер 2, t° (актуал.)";
+
+/* No comment provided by engineer. */
+"Actual Extruder 3" = "Экструдер 3, t° (актуал.)";
+
+/* No comment provided by engineer. */
+"Actual Extruder 4" = "Экструдер 4, t° (актуал.)";
+
+/* No comment provided by engineer. */
+"Actual Extruder 5" = "Экструдер 5, t° (актуал.)";
+
+/* (No Comment) */
+"Apply" = "Применить";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Ошибка аутентификации";
+
+/* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
+"Bad Certificate or SSL Problem" = "Неверный сертификат или проблема с SSL";
+
+/* (No Comment) */
+"Bed cooled" = "Стол принтера ниже заданного температурного порога";
+
+/* No comment provided by engineer. */
+"Bed Variance" = "Изменение температуры Стола";
+
+/* (No Comment) */
+"Bed warmed" = "Стол принтера нагревается до заданной температуры";
+
+/* (No Comment) */
+"Cancel" = "Отмена";
+
+/* Siri suggested phrase */
+"Cancel current print job" = "Отменить текущее задание печати на %@";
+
+/* https://github.com/paukstelis/Octoprint-Cancelobject */
+"Cancel Objects" = "Cancel Objects";
+
+/* (No Comment) */
+"Cannot print this file type" = "Не удается распечатать этот тип файла";
+
+/* (No Comment) */
+"Cannot reach 'octopi.local' over mobile network or service is down" = "Невозможно соединиться с «octopi.local» через мобильную сеть, или сервис недоступен";
+
+/* (No Comment) */
+"Cannot replace file that is being printed or printer is busy" = "Невозможно заменить печатаемый файл или принтер занят";
+
+/* File Type is GCode */
+"Code" = "Код";
+
+/* (No Comment) */
+"Command not executed. Printer not operational" = "Команда не выполнена. Принтер не работает";
+
+/* (No Comment) */
+"Command not executed. Script not found" = "Команда не выполнена. Скрипт не найден";
+
+/* (No Comment) */
+"Confirm" = "Подтвердить";
+
+/* (No Comment) */
+"Confirm cancel object" = "Вы собираетесь отменить печать объекта. Продолжить?";
+
+/* (No Comment) */
+"Confirm command" = "Выполнить команду '%@'?";
+
+/* (No Comment) */
+"Confirm connect" = "Некоторые принтеры могут перезагружаться при подключении. Продолжить?";
+
+/* (No Comment) */
+"Confirm disconnect" = "Вы хотите отключиться от принтера?";
+
+/* (No Comment) */
+"Confirm disconnect palette2" = "Вы хотите отключиться от Palette 2?";
+
+/* (No Comment) */
+"Confirm intentions deletion" = "Вы собираетесь удалить все быстрые команды Siri из приложения. Продолжить?";
+
+/* (No Comment) */
+"Confirm intentions regeneration" = "Вы собираетесь удалить и восстановить все быстрые команды Siri приложения. Продолжить?";
+
+/* (No Comment) */
+"Confirm turn off plug" = "Вы собираетесь отключить розетку. Продолжить?";
+
+/* (No Comment) */
+"Confirm turn off PSU" = "Вы собираетесь выключить блок питания. Продолжить?";
+
+/* Connect */
+"Connect" = "Подключить";
+
+/* Connected */
+"Connected" = "Подключен";
+
+/* Connecting */
+"Connecting" = "Подключение";
+
+/* (No Comment) */
+"Connection failed" = "Ошибка подключения";
+
+/* Siri suggested phrase */
+"Cool down heated chamber" = "Охладить термокамеру";
+
+/* Siri suggested phrase */
+"Cool down printer" = "Охладить принтер";
+
+/* Siri suggested phrase */
+"Cool down printer bed" = "Охладить стол принтера %@";
+
+/* Siri suggested phrase */
+"Cool down printer extruder" = "Охладить экструдер принтера %@";
+
+/* Connection to server failed */
+"Could not connect to the server" = "Не удалось установить соединение с сервером";
+
+/* http://docs.octoprint.org/en/master/features/custom_controls.html */
+"Custom Controls" = "Пользовательские элементы управления";
+
+/* (No Comment) */
+"days ago" = "%d дн. назад";
+
+/* Disconnect */
+"Disconnect" = "Отключить";
+
+/* Disconnected */
+"Disconnected" = "Отключено";
+
+/* (No Comment) */
+"Dismiss" = "Отклонить";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Вы хотите отменить задание?";
+
+/* No comment provided by engineer. */
+"Do you want to restart print job from the beginning?" = "Хотите перезапустить задание на печать с самого начала?";
+
+/* (No Comment) */
+"Domoticz Plugs" = "Розетки Domoticz";
+
+/* (No Comment) */
+"Enable iCloud under iOS Settings to use this feature" = "Включите iCloud в настройках iOS, чтобы использовать эту функцию";
+
+/* No comment provided by engineer. */
+"Extruder Variance" = "Изменение температуры Экструдера";
+
+/* No comment provided by engineer. */
+"Failed to connect" = "Не удалось подключиться";
+
+/* (No Comment) */
+"Failed to delete file" = "Не удалось удалить файл";
+
+/* (No Comment) */
+"Failed to disable motor" = "Не удалось отключить %@ двигатель";
+
+/* Failed to get controls with HTTP Request error info */
+"Failed to get controls" = "Не удалось получить контроль. HTTP-ответ: %d";
+
+/* (No Comment) */
+"Failed to get list of cancel objects" = "Не удалось получить список отменяемых объектов. HTTP-ответ: %d";
+
+/* Failed to get system commands with HTTP Request error info */
+"Failed to get system commands" = "Не удалось получить системные команды";
+
+/* (No Comment) */
+"Failed to initialize SD card" = "Не удалось инициализировать SD-карту";
+
+/* (No Comment) */
+"Failed to read file from iCloud" = "Не удалось прочитать файл из iCloud";
+
+/* (No Comment) */
+"Failed to refresh SD card" = "Не удалось обновить SD-карту";
+
+/* (No Comment) */
+"Failed to request moving back" = "Не удалось выполнить запрос на перемещение назад";
+
+/* (No Comment) */
+"Failed to request moving down" = "Не удалось выполнить запрос на перемещение вниз";
+
+/* (No Comment) */
+"Failed to request moving front" = "Не удалось выполнить запрос на перемещение вперед";
+
+/* (No Comment) */
+"Failed to request moving left" = "Не удалось выполнить запрос на перемещение влево";
+
+/* (No Comment) */
+"Failed to request moving right" = "Не удалось выполнить запрос на перемещение вправо";
+
+/* (No Comment) */
+"Failed to request moving up" = "Не удалось выполнить запрос на перемещение вверх";
+
+/* No comment provided by engineer. */
+"Failed to request status" = "Не удалось выполнить запрос статуса";
+
+/* (No Comment) */
+"Failed to request to cancel object" = "Не удалось выполнить запрос на отмену объекта. HTTP-ответ: %d";
+
+/* No comment provided by engineer. */
+"Failed to request to clear" = "Не удалось выполнить запрос на очистку";
+
+/* No comment provided by engineer. */
+"Failed to request to connect" = "Не удалось выполнить запрос на соединение";
+
+/* No comment provided by engineer. */
+"Failed to request to cut" = "Не удалось выполнить запрос на удаление";
+
+/* No comment provided by engineer. */
+"Failed to request to disconnect" = "Не удалось выполнить запрос на отключение";
+
+/* (No Comment) */
+"Failed to request to execute command" = "Не удалось выполнить запрос на выполнение команды";
+
+/* (No Comment) */
+"Failed to request to extrude" = "Не удалось выполнить запрос на экструзию";
+
+/* (No Comment) */
+"Failed to request to go home" = "Не удалось выполнить запрос на перемещение домой";
+
+/* No comment provided by engineer. */
+"Failed to request to go home X" = "Не удалось выполнить запрос на перемещение домой по оси X";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Y" = "Не удалось выполнить запрос на перемещение домой по оси Y";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Z" = "Не удалось выполнить запрос на перемещение домой по оси Z";
+
+/* (No Comment) */
+"Failed to request to print file" = "Не удалось выполнить запрос на печать файла";
+
+/* (No Comment) */
+"Failed to request to retract" = "Не удалось выполнить запрос на изменение отката";
+
+/* (No Comment) */
+"Failed to request to turn power off" = "Не удалось выполнить запрос на выключение питания";
+
+/* (No Comment) */
+"Failed to request to turn power on" = "Не удалось выполнить запрос на включение питания";
+
+/* No comment provided by engineer. */
+"Failed to save JPEG file" = "Не удалось сохранить файл JPEG";
+
+/* (No Comment) */
+"Failed to send GCode command" = "Не удалось отправить GCode команду";
+
+/* (No Comment) */
+"Failed to set new fan speed" = "Не удалось установть новую скорость вентилятора";
+
+/* (No Comment) */
+"Failed to set new feed rate" = "Не удалось установить новую скорость подачи";
+
+/* (No Comment) */
+"Failed to set new flow rate" = "Не удалось установить новую cкорость потока";
+
+/* (No Comment) */
+"Failed to upload file" = "Не удалось загрузить файл";
+
+/* (No Comment) */
+"Failed turn power off" = "Не удалось выполнить запрос на выключение питания";
+
+/* (No Comment) */
+"Failed turn power on" = "Не удалось выполнить запрос на включение питания";
+
+/* (No Comment) */
+"File currently being printed" = "Файл, который сейчас печатается";
+
+/* (No Comment) */
+"File is being copied to SD Card" = "Файл копируется на SD-карту";
+
+/* File Type is a Folder */
+"Folder" = "Папка";
+
+/* (No Comment) */
+"hours ago" = "%d ч. назад";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Ошибка запроса. HTTP-ответ: %d";
+
+/* Idle */
+"Idle" = "Не занят";
+
+/* Include SD messages in the terminal */
+"Include SD" = "Включая SD";
+
+/* Include temp messages in the terminal */
+"Include temp" = "Включая темп.";
+
+/* (No Comment) */
+"Incorrect API Key" = "Неверный API ключ";
+
+/* (No Comment) */
+"Incorrect authentication credentials" = "Неверные учетные данные";
+
+/* URL of camera is invalid */
+"Invalid camera URL" = "Неверный URL камеры";
+
+/* (No Comment) */
+"Invalid file type" = "Неверный тип файла";
+
+/* (No Comment) */
+"iOS Language" = "Настройки языка iOS";
+
+/* (No Comment) */
+"Job" = "Задание";
+
+/* (No Comment) */
+"Location no longer valid. Refresh files" = "Местоположение больше не действительно. Обновить файлы";
+
+/* (No Comment) */
+"minutes ago" = "%d мин. назад";
+
+/* No comment provided by engineer. */
+"Missed" = "Отсутсвует";
+
+/* (No Comment) */
+"MK3" = "MK3";
+
+/* (No Comment) */
+"MMU Requires User" = "MMU требуется помощь пользователя";
+
+/* File Type is a Model */
+"Model" = "Модель";
+
+/* (No Comment) */
+"Move" = "Пульт";
+
+/* (No Comment) */
+"No" = "Нет";
+
+/* No camera was found */
+"No camera" = "Камера не найдена";
+
+/* (No Comment) */
+"No printer" = "Принтер не найден";
+
+/* No temperature history */
+"No temperature history" = "История температуры недоступна";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Не удалось выполнить запрос на отмену задания";
+
+/* (No Comment) */
+"Notify failed pause job" = "Не удалось выполнить запрос на приостановку задание";
+
+/* (No Comment) */
+"Notify failed print job again" = "Не удалось выполнить запрос на печать задания с начала";
+
+/* (No Comment) */
+"Notify failed restart job" = "Не удалось выполнить запрос на перезапуск задания";
+
+/* (No Comment) */
+"Notify failed resume job" = "Не удалось выполнить запрос на возобновление задания";
+
+/* OctoPrint server */
+"OctoPrint" = "OctoPrint";
+
+/* Printer is Offline */
+"Offline" = "Не в сети";
+
+/* Siri suggested phrase */
+"Pause current print job" = "Приостановить текущее задание печати на %@";
+
+/* (No Comment) */
+"Pause Job" = "Приостановить Задание";
+
+/* (No Comment) */
+"Paused" = "Приостановлено";
+
+/* No comment provided by engineer. */
+"Ping History" = "Ping История";
+
+/* No comment provided by engineer. */
+"Pong History" = "Pong История";
+
+/* (No Comment) */
+"Print complete" = "Печать завершена";
+
+/* (No Comment) */
+"Print File" = "Распечатать файл";
+
+/* (No Comment) */
+"Printer not operational" = "Принтер не отвечает";
+
+/* (No Comment) */
+"Printing" = "Печать";
+
+/* (No Comment) */
+"Pull down to refresh" = "Потяните вниз, чтобы обновить";
+
+/* Siri suggested phrase */
+"Remaining time current print job" = "Осталось времени на %@";
+
+/* Siri suggested phrase */
+"Restart current print job" = "Перезапустить текущее задание печати на %@";
+
+/* (No Comment) */
+"Restart Job" = "Перезапустить задание";
+
+/* Siri suggested phrase */
+"Resume current print job" = "Возобновить текущее задание печати на %@";
+
+/* (No Comment) */
+"Resume Job" = "Возобновить печать";
+
+/* Execute Command */
+"Run" = "Выполнить";
+
+/* Origin is SD Card */
+"SD Card" = "SD-карта";
+
+/* (No Comment) */
+"seconds ago" = "%d сек. назад";
+
+/* DNS resolution failed. Cannot resolve hostname */
+"Server cannot be found" = "Сервер не найден";
+
+/* (No Comment) */
+"Service is down or incorrect port" = "Сервис не работает или неверный порт";
+
+/* Snooze notifications for 1 hour */
+"Snooze 1 hour" = "Отложить на 1 час";
+
+/* Snooze notifications for 8 hours */
+"Snooze 8 hours" = "Отложить на 8 часов";
+
+/* Print time is being calculated */
+"Still stabilizing" = "Подсчёт времени печати ...";
+
+/* Suppress SD messages in the terminal */
+"Suppress SD" = "Исключая SD";
+
+/* Suppress temp messages in the terminal */
+"Suppress temp" = "Исключая темп.";
+
+/* http://docs.octoprint.org/en/master/api/system.html */
+"System Commands" = "Системные команды";
+
+/* (No Comment) */
+"Target Bed" = "Стол, t° (цель.)";
+
+/* No comment provided by engineer. */
+"Target Chamber" = "Термокамера, t° (цель.)";
+
+/* (No Comment) */
+"Target Extruder" = "Экструдер, t° (цель.)";
+
+/* (No Comment) */
+"Target Extruder 2" = "Экструдер 2, t° (цель.)";
+
+/* No comment provided by engineer. */
+"Target Extruder 3" = "Экструдер 3, t° (цель.)";
+
+/* No comment provided by engineer. */
+"Target Extruder 4" = "Экструдер 4, t° (цель.)";
+
+/* No comment provided by engineer. */
+"Target Extruder 5" = "Экструдер 5, t° (цель.)";
+
+/* (No Comment) */
+"Tasmota Plugs" = "Розетки Tasmota";
+
+/* Temperature */
+"Temperature" = "Температура";
+
+/* (No Comment) */
+"Terminal" = "Терминал";
+
+/* (No Comment) */
+"TPLink Smartplugs" = "Умная розетка TPLink";
+
+/* (No Comment) */
+"Turn Off" = "Выключить";
+
+/* (No Comment) */
+"Turn On" = "Включить";
+
+/* ETA is Unknown
+   File Type is Unknown
+   Origin is Unknown */
+"Unknown" = "Неизвестно";
+
+/* Unknown Custom Control */
+"Unknown Control" = "Неизвестная пользовательская настройка";
+
+/* Title for window that alerts user that updates for plugins are available */
+"Update Available" = "Доступно обновление";
+
+/* (No Comment) */
+"Upload failed" = "Загрузка не удалась";
+
+/* Siri suggested phrase */
+"Warm up heated chamber" = "Подогрев термокамеры";
+
+/* Siri suggested phrase */
+"Warm up printer bed" = "Подогрев стола принтера %@";
+
+/* Siri suggested phrase */
+"Warm up printer extruder" = "Прогрев экструдера принтера %@";
+
+/* (No Comment) */
+"Warning" = "Предупреждение";
+
+/* (No Comment) */
+"weeks ago" = "%d нед. назад";
+
+/* (No Comment) */
+"Wemo Switches" = "Выключатели Wemo";
+
+/* (No Comment) */
+"Yes" = "Да";
+

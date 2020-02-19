@@ -1,0 +1,54 @@
+/* HTTP authentication failed */
+"Authentication failed" = "Ошибка аутентификации";
+
+/* (No Comment) */
+"Confirm" = "Подтверждение";
+
+/* (No Comment) */
+"Connection failed" = "Ошибка подключения";
+
+/* (No Comment) */
+"Dismiss" = "Отклонить";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Вы хотите отменить задание?";
+
+/* No comment provided by engineer. */
+"Do you want to pause the job?" = "Вы хотите приостановить задание?";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Ошибка запроса. HTTP-ответ: %d";
+
+/* (No Comment) */
+"Job" = "Задание";
+
+/* No comment provided by engineer. */
+"Missed" = "Отсутствует";
+
+/* No comment provided by engineer. */
+"MK3" = "MK3";
+
+/* (No Comment) */
+"No" = "Нет";
+
+/* No printer has been selected */
+"No printer" = "Принтер не выбран";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Не удалось отменить печать";
+
+/* (No Comment) */
+"Notify failed pause job" = "Не удалось приостановить печать";
+
+/* (No Comment) */
+"Notify failed resume job" = "Не удалось возобновить печать";
+
+/* No comment provided by engineer. */
+"Printing" = "Печать";
+
+/* ETA is Unknown */
+"Unknown" = "Неизвестно";
+
+/* (No Comment) */
+"Yes" = "Да";
+

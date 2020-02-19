@@ -1,0 +1,15 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "OctoPod";
+
+/* Bundle name */
+"CFBundleName" = "OctoPod";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Нам нужно получить доступ к вашей камере для сканирования QR-кода";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Нам нужно использовать FaceID, чтобы разблокировать приложение";
+
+/* Privacy - Siri Usage Description */
+"NSSiriUsageDescription" = "Управление притером используя Siri";
+
