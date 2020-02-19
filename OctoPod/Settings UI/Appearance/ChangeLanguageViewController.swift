@@ -75,7 +75,7 @@ class ChangeLanguageViewController: ThemedDynamicUITableViewController {
             cell.accessoryType = languageOverride == "fr" ? .checkmark : .none
         case 11:
             // Russian
-            cell.textLabel?.text = "русский язык"
+            cell.textLabel?.text = "Русский"
             cell.accessoryType = languageOverride == "ru" ? .checkmark : .none
         default:
             fatalError("ChangeLanguageViewController has more rows than languages")
