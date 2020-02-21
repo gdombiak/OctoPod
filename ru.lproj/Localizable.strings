@@ -11,25 +11,25 @@
 "1 week ago" = "неделю назад";
 
 /* (No Comment) */
-"Actual Bed" = "Стол, t° (актуал.)";
+"Actual Bed" = "Стол, t° (сейчас)";
 
 /* No comment provided by engineer. */
-"Actual Chamber" = "Термокамера, t° (актуал.)";
+"Actual Chamber" = "Термокамера, t° (сейчас)";
 
 /* (No Comment) */
-"Actual Extruder" = "Экструдер, t° (актуал.)";
+"Actual Extruder" = "Экструдер, t° (сейчас)";
 
 /* (No Comment) */
-"Actual Extruder 2" = "Экструдер 2, t° (актуал.)";
+"Actual Extruder 2" = "Экструдер 2, t° (сейчас)";
 
 /* No comment provided by engineer. */
-"Actual Extruder 3" = "Экструдер 3, t° (актуал.)";
+"Actual Extruder 3" = "Экструдер 3, t° (сейчас)";
 
 /* No comment provided by engineer. */
-"Actual Extruder 4" = "Экструдер 4, t° (актуал.)";
+"Actual Extruder 4" = "Экструдер 4, t° (сейчас)";
 
 /* No comment provided by engineer. */
-"Actual Extruder 5" = "Экструдер 5, t° (актуал.)";
+"Actual Extruder 5" = "Экструдер 5, t° (сейчас)";
 
 /* (No Comment) */
 "Apply" = "Применить";
@@ -44,7 +44,7 @@
 "Bed cooled" = "Стол принтера ниже заданного температурного порога";
 
 /* No comment provided by engineer. */
-"Bed Variance" = "Изменение температуры Стола";
+"Bed Variance" = "Изм. t° Стола";
 
 /* (No Comment) */
 "Bed warmed" = "Стол принтера нагревается до заданной температуры";
@@ -95,10 +95,10 @@
 "Confirm disconnect palette2" = "Вы хотите отключиться от Palette 2?";
 
 /* (No Comment) */
-"Confirm intentions deletion" = "Вы собираетесь удалить все быстрые команды Siri из приложения. Продолжить?";
+"Confirm intentions deletion" = "Удалить все быстрые команды Siri из приложения. Продолжить?";
 
 /* (No Comment) */
-"Confirm intentions regeneration" = "Вы собираетесь удалить и восстановить все быстрые команды Siri приложения. Продолжить?";
+"Confirm intentions regeneration" = "Удалить и восстановить все быстрые команды Siri этого приложения. Продолжить?";
 
 /* (No Comment) */
 "Confirm turn off plug" = "Вы собираетесь отключить розетку. Продолжить?";
@@ -134,7 +134,7 @@
 "Could not connect to the server" = "Не удалось установить соединение с сервером";
 
 /* http://docs.octoprint.org/en/master/features/custom_controls.html */
-"Custom Controls" = "Пользовательские элементы управления";
+"Custom Controls" = "Команды Custom Controls";
 
 /* (No Comment) */
 "days ago" = "%d дн. назад";
@@ -161,7 +161,7 @@
 "Enable iCloud under iOS Settings to use this feature" = "Включите iCloud в настройках iOS, чтобы использовать эту функцию";
 
 /* No comment provided by engineer. */
-"Extruder Variance" = "Изменение температуры Экструдера";
+"Extruder Variance" = "Изм. t° Экструдера";
 
 /* No comment provided by engineer. */
 "Failed to connect" = "Не удалось подключиться";
@@ -230,7 +230,7 @@
 "Failed to request to execute command" = "Не удалось выполнить запрос на выполнение команды";
 
 /* (No Comment) */
-"Failed to request to extrude" = "Не удалось выполнить запрос на экструзию";
+"Failed to request to extrude" = "Не удалось выполнить запрос на изменение подачи";
 
 /* (No Comment) */
 "Failed to request to go home" = "Не удалось выполнить запрос на перемещение домой";
@@ -263,7 +263,7 @@
 "Failed to send GCode command" = "Не удалось отправить GCode команду";
 
 /* (No Comment) */
-"Failed to set new fan speed" = "Не удалось установть новую скорость вентилятора";
+"Failed to set new fan speed" = "Не удалось установть новую скорость обдува";
 
 /* (No Comment) */
 "Failed to set new feed rate" = "Не удалось установить новую скорость подачи";
@@ -386,10 +386,10 @@
 "Paused" = "Приостановлено";
 
 /* No comment provided by engineer. */
-"Ping History" = "Ping История";
+"Ping History" = "История Ping";
 
 /* No comment provided by engineer. */
-"Pong History" = "Pong История";
+"Pong History" = "История Pong";
 
 /* (No Comment) */
 "Print complete" = "Печать завершена";
@@ -452,28 +452,28 @@
 "Suppress temp" = "Исключая темп.";
 
 /* http://docs.octoprint.org/en/master/api/system.html */
-"System Commands" = "Системные команды";
+"System Commands" = "Системные Команды";
 
 /* (No Comment) */
-"Target Bed" = "Стол, t° (цель.)";
+"Target Bed" = "Стол, t° (задана)";
 
 /* No comment provided by engineer. */
-"Target Chamber" = "Термокамера, t° (цель.)";
+"Target Chamber" = "Термокамера, t° (задана)";
 
 /* (No Comment) */
-"Target Extruder" = "Экструдер, t° (цель.)";
+"Target Extruder" = "Экструдер, t° (задана)";
 
 /* (No Comment) */
-"Target Extruder 2" = "Экструдер 2, t° (цель.)";
+"Target Extruder 2" = "Экструдер 2, t° (задана)";
 
 /* No comment provided by engineer. */
-"Target Extruder 3" = "Экструдер 3, t° (цель.)";
+"Target Extruder 3" = "Экструдер 3, t° (задана)";
 
 /* No comment provided by engineer. */
-"Target Extruder 4" = "Экструдер 4, t° (цель.)";
+"Target Extruder 4" = "Экструдер 4, t° (задана)";
 
 /* No comment provided by engineer. */
-"Target Extruder 5" = "Экструдер 5, t° (цель.)";
+"Target Extruder 5" = "Экструдер 5, t° (задана)";
 
 /* (No Comment) */
 "Tasmota Plugs" = "Розетки Tasmota";

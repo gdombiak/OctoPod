@@ -2,25 +2,25 @@
 "0jkA5V" = "${displayName} не может быть выше чем ${maximumValue}.";
 
 /* (No Comment) */
-"0vck5K" = "Не удалось запросить обрезку";
+"0vck5K" = "Не удалось выполнить запрос на обрезку";
 
 /* (No Comment) */
 "0xUDAM" = "${printer}";
 
 /* (No Comment) */
-"1lbZOa" = "Не удалось запросить отключение";
+"1lbZOa" = "Не удалось выполнить запрос на отключение";
 
 /* (No Comment) */
 "2TreiD" = "Установить температуру экструдера на ${temperature}";
 
 /* (No Comment) */
-"2zYNqY" = "Попросить Palette ping статистику";
+"2zYNqY" = "Запрос ping статистики Palette";
 
 /* (No Comment) */
 "3Butzw" = "Температура термокамеры установлена на ${temperature}";
 
 /* (No Comment) */
-"3cyBw6" = "Попросить Palette очистить";
+"3cyBw6" = "Запрос Palette на очистку";
 
 /* (No Comment) */
 "3eH6cZ" = "Не удалось получить информацию об оставшемся времени (${statusCode})";
@@ -38,7 +38,7 @@
 "5i5htv" = "Подключено";
 
 /* (No Comment) */
-"6b7Yce" = "Попросить Palette отрезать";
+"6b7Yce" = "Запрос Palette на обрезку";
 
 /* (No Comment) */
 "6k5AFm" = "Возобновить работу";
@@ -50,10 +50,10 @@
 "7eJPkN" = "Настройка температуры термокамеры";
 
 /* (No Comment) */
-"8cfoSa" = "Не удалось запросить очистку";
+"8cfoSa" = "Не удалось выполнить запрос на очистку";
 
 /* (No Comment) */
-"8rFt1u" = "Попросить Palette очистить";
+"8rFt1u" = "Запрос Palette на очистку";
 
 /* (No Comment) */
 "8tTCjD" = "Не удалось отменить задание (${statusCode})";
@@ -62,7 +62,7 @@
 "8xHCbl" = "${printer}";
 
 /* (No Comment) */
-"9eejxB" = "Попросить Palette ping статистику";
+"9eejxB" = "Запрос ping статистики Palette";
 
 /* (No Comment) */
 "9iz6yx" = "${printer}";
@@ -86,7 +86,7 @@
 "ajupCt" = "Информация отсутствует";
 
 /* (No Comment) */
-"AU4oMs" = "Попросить Palette ping статистику";
+"AU4oMs" = "Запрос ping статистики Palette";
 
 /* (No Comment) */
 "AzqFAh" = "Запрошено";
@@ -167,7 +167,7 @@
 "Kf7e4Y" = "Возобновить выполнение задания на печать";
 
 /* (No Comment) */
-"KHvUZD" = "Попросить Palette отрезать";
+"KHvUZD" = "Запрос Palette на обрезку";
 
 /* (No Comment) */
 "kSWyyv" = "${printer}";
@@ -197,10 +197,10 @@
 "mfflxG" = "${displayName} не может быть ниже чем ${minimumValue}.";
 
 /* (No Comment) */
-"N0vzJv" = "Попросить Palette очистить";
+"N0vzJv" = "Запрос Palette на очистку";
 
 /* (No Comment) */
-"N84M0s" = "Попросить Palette отрезать";
+"N84M0s" = "Запрос Palette на обрезку";
 
 /* (No Comment) */
 "NG7rBh" = "Осталось времени";
