@@ -131,8 +131,8 @@ class CloudKitPrinterManager {
                 defaults.set(true, forKey: self.SUBSCRIPTION_CREATED)
             }
             operation.qualityOfService = .utility
-            
-            let container = CKContainer.default()
+                        
+            let container = getiCloudContainer()
             let db = container.privateCloudDatabase
             db.add(operation)
         }
@@ -175,7 +175,7 @@ class CloudKitPrinterManager {
             }
         }
         operation.qualityOfService = .utility
-        let container = CKContainer.default()
+        let container = getiCloudContainer()
         let db = container.privateCloudDatabase
         db.add(operation)
     }
@@ -195,7 +195,7 @@ class CloudKitPrinterManager {
             completion(nil)
         }
         operation.qualityOfService = .utility
-        let container = CKContainer.default()
+        let container = getiCloudContainer()
         let db = container.privateCloudDatabase
         db.add(operation)
     }
@@ -211,7 +211,7 @@ class CloudKitPrinterManager {
             completion(nil)
         }
         operation.qualityOfService = .utility
-        let container = CKContainer.default()
+        let container = getiCloudContainer()
         let db = container.privateCloudDatabase
         db.add(operation)
     }
@@ -324,7 +324,7 @@ class CloudKitPrinterManager {
         }
         operation.qualityOfService = .utility
         
-        let container = CKContainer.default()
+        let container = getiCloudContainer()
         let db = container.privateCloudDatabase
         db.add(operation)
     }
@@ -610,7 +610,7 @@ class CloudKitPrinterManager {
         }
         operation.qualityOfService = .utility
         
-        let container = CKContainer.default()
+        let container = getiCloudContainer()
         let db = container.privateCloudDatabase
         db.add(operation)
     }
@@ -634,7 +634,7 @@ class CloudKitPrinterManager {
         }
         operation.qualityOfService = .utility
         
-        let container = CKContainer.default()
+        let container = getiCloudContainer()
         let db = container.privateCloudDatabase
         db.add(operation)
     }
@@ -680,7 +680,7 @@ class CloudKitPrinterManager {
         }
         operation.qualityOfService = .utility
         
-        let container = CKContainer.default()
+        let container = getiCloudContainer()
         let db = container.privateCloudDatabase
         db.add(operation)
     }
@@ -711,7 +711,7 @@ class CloudKitPrinterManager {
         }
         operation.qualityOfService = .utility
         
-        let container = CKContainer.default()
+        let container = getiCloudContainer()
         let db = container.privateCloudDatabase
         db.add(operation)
     }
@@ -781,7 +781,7 @@ class CloudKitPrinterManager {
     // MARK: - iCloud Account Status operations
     
     fileprivate func discoverAccountStatus(attemptLeft: Int = 3, completion: (() -> Void)?) {
-        CKContainer.default().accountStatus { status, error in
+        getiCloudContainer().accountStatus { status, error in
             if let error = error {
                 // some error occurred (probably a failed connection, try again)
                 if attemptLeft > 0 {
@@ -845,7 +845,11 @@ class CloudKitPrinterManager {
     
     // MARK: - Private operations
     
-    // Returns true if CKRecord and Printer represent same OctoPrint server
+    fileprivate func getiCloudContainer() -> CKContainer {
+        return CKContainer(identifier: "iCloud.org.OctoPod.OctoPod")
+    }
+    
+    /// Returns true if CKRecord and Printer represent same OctoPrint server
     fileprivate func sameOctoPrint(record: CKRecord, printer: Printer) -> Bool {
         if let ck_hostname = record["hostname"] as? String {
             if let recordName = printer.recordName {

@@ -625,7 +625,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         }
     }
     
-    // Converts number of seconds into a string that represents time (e.g. 23h 10m)
+    /// Converts number of seconds into a string that represents time (e.g. 23h 10m)
     func secondsToPrintTime(seconds: Int) -> String {
         let duration = TimeInterval(seconds)
         let formatter = DateComponentsFormatter()
