@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MonitorPrinter : View {
     @EnvironmentObject var service: ViewService
+    @EnvironmentObject var cameraService: CameraService
 
     var body: some View {
         HStack {
@@ -39,7 +40,34 @@ struct MonitorPrinter : View {
                     }
                 }
             }
-            Image("Image", bundle: nil)
+            VStack {
+                if cameraService.image != nil {
+                    Image(uiImage: cameraService.image!)
+                } else {
+                    Image("Image", bundle: nil)
+                    if cameraService.errorMessage != nil {
+                        Text(cameraService.errorMessage!)
+                    }
+                }
+                if cameraService.hasPrevious || cameraService.hasNext {
+                    HStack {
+                        if cameraService.hasPrevious {
+                            Button(action: {
+                                self.cameraService.renderPrevious()
+                            }) {
+                                Image("PreviousCamera", bundle: nil)
+                            }
+                        }
+                        if cameraService.hasNext {
+                            Button(action: {
+                                self.cameraService.renderNext()
+                            }) {
+                                Image("NextCamera", bundle: nil)
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

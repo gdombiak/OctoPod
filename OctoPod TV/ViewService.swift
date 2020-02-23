@@ -14,11 +14,10 @@ class ViewService: ObservableObject, WebSocketClientDelegate {
     @Published var currentHeight: String?
     @Published var layer: String?
 
-    var octoPrintRESTClient: OctoPrintRESTClient!
+    var octoPrintRESTClient = OctoPrintRESTClient()
     var webSocketClient: WebSocketClient?
     
     init() {
-        self.octoPrintRESTClient = OctoPrintRESTClient()
         self.clearValues()
     }
     

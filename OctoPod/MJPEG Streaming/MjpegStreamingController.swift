@@ -30,6 +30,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     open var didFinishLoading: (()->Void)?
     open var didFinishWithErrors: ((Error)->Void)?
     open var didFinishWithHTTPErrors: ((HTTPURLResponse)->Void)?
+    open var didFetchImage: ((UIImage)->Void)?
     open var didRenderImage: ((UIImage)->Void)?
     open var contentURL: URL?
     open var imageView: UIImageView?
@@ -105,7 +106,10 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
                 executeBlock { self.didFinishLoading?() }
             }
             
-            executeBlock { self.imageView?.image = receivedImage }
+            executeBlock {
+                self.imageView?.image = receivedImage
+                self.didFetchImage?(receivedImage)
+            }
             
             if firstTimeImage {
                 executeBlock { self.didRenderImage?(receivedImage) }
