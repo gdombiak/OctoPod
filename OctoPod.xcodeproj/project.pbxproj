@@ -128,6 +128,8 @@
 		3D718776215F367700A29D02 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D718778215F367700A29D02 /* Localizable.strings */; };
 		3D74FA2721251BCF00DA2CB3 /* PSUControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D74FA2621251BCF00DA2CB3 /* PSUControlViewController.swift */; };
 		3D74FA2921251BE600DA2CB3 /* IPPlugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D74FA2821251BE600DA2CB3 /* IPPlugViewController.swift */; };
+		3D778F7F2402D8BA00B68942 /* MjpegStreamingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873F20E421610035AE0B /* MjpegStreamingController.swift */; };
+		3D778F812402D8FB00B68942 /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D778F802402D8FB00B68942 /* CameraService.swift */; };
 		3D78BA9F21039D770090D79A /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78BA9E21039D770090D79A /* Terminal.swift */; };
 		3D78BAA12103C7CA0090D79A /* MoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78BAA02103C7CA0090D79A /* MoveViewController.swift */; };
 		3D7C884421524426009FECEF /* DevicesSyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7C884321524426009FECEF /* DevicesSyncViewController.swift */; };
@@ -496,6 +498,7 @@
 		3D718779215F368D00A29D02 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3D74FA2621251BCF00DA2CB3 /* PSUControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSUControlViewController.swift; sourceTree = "<group>"; };
 		3D74FA2821251BE600DA2CB3 /* IPPlugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPPlugViewController.swift; sourceTree = "<group>"; };
+		3D778F802402D8FB00B68942 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
 		3D78BA9E21039D770090D79A /* Terminal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Terminal.swift; sourceTree = "<group>"; };
 		3D78BAA02103C7CA0090D79A /* MoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveViewController.swift; sourceTree = "<group>"; };
 		3D7C884321524426009FECEF /* DevicesSyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesSyncViewController.swift; sourceTree = "<group>"; };
@@ -956,6 +959,7 @@
 				3D53714A240100FD00B28067 /* LaunchScreen.storyboard */,
 				3D53714D240100FD00B28067 /* Info.plist */,
 				3D537147240100FD00B28067 /* Preview Content */,
+				3D778F802402D8FB00B68942 /* CameraService.swift */,
 			);
 			path = "OctoPod TV";
 			sourceTree = "<group>";
@@ -1867,6 +1871,7 @@
 				3DC2363F2401029700D9EF28 /* Printer.swift in Sources */,
 				3DC23653240111EF00D9EF28 /* ViewService.swift in Sources */,
 				3DC236602401991700D9EF28 /* Plugins.swift in Sources */,
+				3D778F812402D8FB00B68942 /* CameraService.swift in Sources */,
 				3DC236442401030900D9EF28 /* CloudKitPrinterDelegate.swift in Sources */,
 				3DC2364C2401061400D9EF28 /* AppConfiguration.swift in Sources */,
 				3DC23658240113B400D9EF28 /* SystemCommand.swift in Sources */,
@@ -1882,6 +1887,7 @@
 				3DC23643240102FA00D9EF28 /* CloudKitPrinterManager.swift in Sources */,
 				3D53713F240100FC00B28067 /* AppDelegate.swift in Sources */,
 				3DC2365F2401982700D9EF28 /* UIUtils.swift in Sources */,
+				3D778F7F2402D8BA00B68942 /* MjpegStreamingController.swift in Sources */,
 				3DC23659240113C000D9EF28 /* CancelObject.swift in Sources */,
 				3DC236552401139100D9EF28 /* HTTPClient.swift in Sources */,
 				3D537144240100FC00B28067 /* ContentView.swift in Sources */,
