@@ -223,4 +223,7 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
     func printerDeleted(printer: Printer) {
         // Do nothing. We will process things on #printersUpdated
     }
+
+    func iCloudStatusChanged(connected: Bool) {
+    }
 }

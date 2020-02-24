@@ -18,9 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        // Start synchronizing with iCloud (if available)
-        self.cloudKitPrinterManager.start()
-
         // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
         // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
         let contentView = ContentView().environment(\.managedObjectContext, persistentContainer.viewContext)
@@ -50,6 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        // Start synchronizing with iCloud (if available)
+        self.cloudKitPrinterManager.start()
     }
 
     // MARK: - Core Data stack
@@ -101,6 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var printerManager: PrinterManager? = {
         let context = persistentContainer.viewContext
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         var printerManager = PrinterManager()
         printerManager.managedObjectContext = context
         return printerManager
@@ -114,5 +114,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return AppConfiguration()
     }()
     
+    lazy var tvPrinterManager: TVPrinterManager = {
+        return TVPrinterManager(printerManager: self.printerManager!, cloudKitPrinterManager: self.cloudKitPrinterManager)
+    }()
+
 }
 

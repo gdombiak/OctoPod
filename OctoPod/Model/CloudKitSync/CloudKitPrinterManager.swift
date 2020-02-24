@@ -354,12 +354,16 @@ class CloudKitPrinterManager {
                 let parsed = parseRecord(record: record)
                 if let name = parsed.name, let hostname = parsed.hostname, let apiKey = parsed.apiKey {
                     let position = Int16(printerManager.getPrinters().count)  // Not transfering position information via iCloud (reducing work scope) so add new printers to bottom of list
-                    if let printer = printerManager.addPrinter(name: name, hostname: hostname, apiKey: apiKey, username: parsed.username, password: parsed.password, position: position, iCloudUpdate: false, modified: (parsed.modified == nil ? Date() : parsed.modified!)) {
-                        // Update again to assign recordName and store encoded record
-                        updateAndSave(printer: printer, serverRecord: record)
-                        // Alert delegates that printer has been added from iCloud info
-                        notifyPrinterAdded(printer: printer)
-                        appendLog("Added new printer: \(printer.hostname)")
+                    if printerManager.addPrinter(name: name, hostname: hostname, apiKey: apiKey, username: parsed.username, password: parsed.password, position: position, iCloudUpdate: false, modified: (parsed.modified == nil ? Date() : parsed.modified!)) {
+                        if let printer = printerManager.getPrinterByName(name: name) {
+                            // Update again to assign recordName and store encoded record
+                            updateAndSave(printer: printer, serverRecord: record)
+                            // Alert delegates that printer has been added from iCloud info
+                            notifyPrinterAdded(printer: printer)
+                            appendLog("Added new printer: \(printer.hostname)")
+                        } else {
+                            appendLog("Missing newly added printer: \(hostname)")
+                        }
                     } else {
                         appendLog("Failed to add printer for record name: \(record.recordID.recordName)")
                     }
@@ -377,7 +381,9 @@ class CloudKitPrinterManager {
         if let printer = printerManager.getPrinterByRecordName(recordName: recordName) {
             appendLog("Deleted printer: \(printer.hostname)")
             // A printer exists for this PK so delete it
-            printerManager.deletePrinter(printer)
+            let newObjectContext = printerManager.newPrivateContext()
+            let printerToDelete = newObjectContext.object(with: printer.objectID) as! Printer
+            printerManager.deletePrinter(printerToDelete, context: newObjectContext)
             // Alert delegates that printer has been deleted from iCloud info
             notifyPrinterDeleted(printer: printer)
         }
@@ -520,7 +526,9 @@ class CloudKitPrinterManager {
                                 // We have at least 2 printers in Core Data for the same OctoPrint instance. Let's reduce duplication
                                 // Keep the duplicate printer since it is already linked to iCloud and delete the printer we
                                 // were requested to save to iCloud
-                                self.printerManager.deletePrinter(printer)
+                                let newObjectContext = self.printerManager.newPrivateContext()
+                                let printerToDelete = newObjectContext.object(with: printer.objectID) as! Printer
+                                self.printerManager.deletePrinter(printerToDelete, context: newObjectContext)
                                 // Alert delegates that we had to delete this printer
                                 self.notifyPrinterDeleted(printer: printer)
                                 // Execute callback
@@ -739,12 +747,11 @@ class CloudKitPrinterManager {
         }
     }
     
-    // Delete local stored data and recreate from CloudKit records
+    /// Delete local stored data and recreate from CloudKit records
     func resetLocalPrinters(completionHandler: (() -> Void)?, errorHandler: (() -> Void)?) {
         // Delete local printers
-        for printer in printerManager.getPrinters() {
-            printerManager.deletePrinter(printer)
-        }
+        let newObjectContext = printerManager.newPrivateContext()
+        printerManager.deleteAllPrinters(context: newObjectContext)
         // Delete CHANGE_TOKEN so all changes are fetched and processed
         UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
         // Pull changes
@@ -778,6 +785,12 @@ class CloudKitPrinterManager {
         }
     }
     
+    fileprivate func notifyiCloudStatusChanged(connected: Bool) {
+        for delegate in self.delegates {
+            delegate.iCloudStatusChanged(connected: connected)
+        }
+    }
+    
     // MARK: - iCloud Account Status operations
     
     fileprivate func discoverAccountStatus(attemptLeft: Int = 3, completion: (() -> Void)?) {
@@ -790,6 +803,7 @@ class CloudKitPrinterManager {
                     // Disable iCloud due to unkonwn error
                     self.appendLog("Disabling iCloud sync due to error: \(error.localizedDescription)")
                     self.iCloudAvailable = false
+                    self.notifyiCloudStatusChanged(connected: false)
                     completion?()
                 }
             } else {
@@ -797,10 +811,12 @@ class CloudKitPrinterManager {
                 case .available:
                     // the user is logged in
                     self.iCloudAvailable = true
+                    self.notifyiCloudStatusChanged(connected: true)
                     completion?()
                 case .noAccount:
                     // the user is NOT logged in
                     self.iCloudAvailable = false
+                    self.notifyiCloudStatusChanged(connected: false)
                     completion?()
                 case .couldNotDetermine:
                     // for some reason, the status could not be determined (try again)
@@ -810,11 +826,13 @@ class CloudKitPrinterManager {
                         // Disable iCloud due to unkonwn error
                         self.appendLog("Disabling iCloud sync. Account status is: 'couldNotDetermine'")
                         self.iCloudAvailable = false
+                        self.notifyiCloudStatusChanged(connected: false)
                         completion?()
                     }
                 case .restricted:
                     // iCloud settings are restricted by parental controls or a configuration profile
                     self.iCloudAvailable = false
+                    self.notifyiCloudStatusChanged(connected: false)
                     completion?()
                 }
             }
@@ -899,10 +917,12 @@ class CloudKitPrinterManager {
     }
     
     fileprivate func updateAndSave(printer: Printer, serverRecord: CKRecord) {
+        let newObjectContext = printerManager.newPrivateContext()
+        let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
         // This will encode new record data and also update last modified date (for future merges)
-        self.updatePrinterFields(printer: printer, from: serverRecord)
+        self.updatePrinterFields(printer: printerToUpdate, from: serverRecord)
         // Update printer in Core Data
-        self.printerManager.updatePrinter(printer)
+        self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
     }
     
     fileprivate func parseRecord(record: CKRecord) -> (name: String?, hostname: String?, apiKey: String?, username: String?, password: String?, modified: Date?) {

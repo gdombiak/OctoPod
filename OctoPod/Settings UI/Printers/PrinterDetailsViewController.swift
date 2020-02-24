@@ -207,6 +207,8 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         }
     }
 
+    func iCloudStatusChanged(connected: Bool) {
+    }
 
     // MARK: - UIPopoverPresentationControllerDelegate
     

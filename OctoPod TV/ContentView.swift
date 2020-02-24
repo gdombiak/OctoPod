@@ -1,53 +1,54 @@
-//
-//  ContentView.swift
-//  OctoPod TV
-//
-//  Created by Gaston Dombiak on 2/21/20.
-//  Copyright © 2020 Gaston Dombiak. All rights reserved.
-//
-
 import SwiftUI
+import CloudKit
 
 struct ContentView: View {
-    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
 
+    @ObservedObject private var tvPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).tvPrinterManager }()
     @ObservedObject private var service = ViewService()
     @ObservedObject private var cameraService = CameraService()
     @State private var selectedPrinter: Printer?
-
+        
     var body: some View {
         NavigationView {
             VStack {
                 MonitorPrinter()
                 Divider()
-                Text("Printers")
-                    .font(.headline)
-                ScrollView() {
-                    HStack {
-                        ForEach(printerManager.getPrinters(), id: \.self) {printer in
-                            Button(action: {
-                                self.selectedPrinter = printer
-                                // Open websocket to the new selected printer
-                                self.service.clearValues()
-                                self.service.connectToServer(printer: printer)
-                                self.cameraService.connectToServer(printer: printer)
-                            }) {
-                                Text(printer.name)
+                if tvPrinterManager.iCloudConnected {
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(tvPrinterManager.printers, id: \.name) { printer in
+                                Button(action: {
+                                    self.selectedPrinter = printer
+                                    // Open websocket to the new selected printer
+                                    self.service.clearValues()
+                                    self.service.connectToServer(printer: printer)
+                                    self.cameraService.connectToServer(printer: printer)
+                                }) {
+                                    HStack {
+                                        Image("Printer")
+                                        Text(printer.name)
+                                    }
+                                }
                             }
                         }
+                    }.frame(height: 100.0).alignmentGuide(HorizontalAlignment.center) { (d) -> CGFloat in
+                        d[.leading] + d.width / 2.0 - (d[explicit: .top] ?? 0)
                     }
-                }.alignmentGuide(HorizontalAlignment.center) { (d) -> CGFloat in
-                    d[.leading] + d.width / 2.0 - (d[explicit: .top] ?? 0)
+                } else {
+                    Text("Connect to iCloud to retrieve list of printers from your iPad/iPhone")
+                        .bold()
+                        .foregroundColor(.red)
                 }
+
             }.navigationBarTitle(self.selectedPrinter?.name ?? "")
         }
         .environmentObject(service)
         .environmentObject(cameraService)
         .onAppear() {
-            if let printer = self.printerManager.getDefaultPrinter() {
+            if let printer = self.tvPrinterManager.defaultPrinter {
                 self.selectedPrinter = printer
             } else {
-                let printers = self.printerManager.getPrinters()
+                let printers = self.tvPrinterManager.printers
                 if !printers.isEmpty {
                     self.selectedPrinter = printers[0]
                 }

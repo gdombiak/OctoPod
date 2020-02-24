@@ -2,6 +2,8 @@ import Foundation
 
 class AppConfiguration {
     
+    var delegates: Array<AppConfigurationDelegate> = Array()
+
     // MARK: - SSL Certificate Validation
     
     /// Returns true if SSL Certification validation is disabled. Not recommended

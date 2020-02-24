@@ -222,6 +222,9 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     func printerDeleted(printer: Printer) {
     }
     
+    func iCloudStatusChanged(connected: Bool) {
+    }
+    
     // MARK: - OctoPrintSettingsDelegate
     
     func cameraOrientationChanged(newOrientation: UIImage.Orientation) {

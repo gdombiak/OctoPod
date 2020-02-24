@@ -49,24 +49,24 @@ struct MonitorPrinter : View {
                         Text(cameraService.errorMessage!)
                     }
                 }
-                if cameraService.hasPrevious || cameraService.hasNext {
-                    HStack {
-                        if cameraService.hasPrevious {
-                            Button(action: {
-                                self.cameraService.renderPrevious()
-                            }) {
-                                Image("PreviousCamera", bundle: nil)
-                            }
-                        }
-                        if cameraService.hasNext {
-                            Button(action: {
-                                self.cameraService.renderNext()
-                            }) {
-                                Image("NextCamera", bundle: nil)
-                            }
-                        }
-                    }
-                }
+//                if cameraService.hasPrevious || cameraService.hasNext {
+//                    HStack {
+//                        if cameraService.hasPrevious {
+//                            Button(action: {
+//                                self.cameraService.renderPrevious()
+//                            }) {
+//                                Image("PreviousCamera", bundle: nil)
+//                            }.buttonStyle(PlainButtonStyle())
+//                        }
+//                        if cameraService.hasNext {
+//                            Button(action: {
+//                                self.cameraService.renderNext()
+//                            }) {
+//                                Image("NextCamera", bundle: nil)
+//                            }.buttonStyle(PlainButtonStyle())
+//                        }
+//                    }
+//                }
             }
         }
     }

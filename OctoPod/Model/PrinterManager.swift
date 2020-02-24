@@ -15,6 +15,7 @@ class PrinterManager {
     func newPrivateContext() -> NSManagedObjectContext {
         let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         context.parent = managedObjectContext!
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         return context
     }
 
@@ -90,8 +91,9 @@ class PrinterManager {
     
     // MARK: Writing operations
     
-    func addPrinter(name: String, hostname: String, apiKey: String, username: String?, password: String?, position: Int16, iCloudUpdate: Bool, modified: Date = Date()) -> Printer? {
-        let printer = NSEntityDescription.insertNewObject(forEntityName: "Printer", into: self.managedObjectContext!) as! Printer
+    func addPrinter(name: String, hostname: String, apiKey: String, username: String?, password: String?, position: Int16, iCloudUpdate: Bool, modified: Date = Date()) -> Bool {
+        let context = newPrivateContext()
+        let printer = NSEntityDescription.insertNewObject(forEntityName: "Printer", into: context) as! Printer
         
         printer.name = name
         printer.hostname = hostname
@@ -120,26 +122,34 @@ class PrinterManager {
             // No default printer was found so make this new printer the default one
             printer.defaultPrinter = true
         }
-        
+
+        var saved = false
         do {
-            try managedObjectContext!.save()
-            return printer
-        } catch let error as NSError {
+            try context.save()
+            managedObjectContext!.performAndWait {
+                do {
+                    try managedObjectContext!.save()
+                    saved = true
+                } catch {
+                    NSLog("Error adding printer \(printer.hostname). Error:\(error)")
+                }
+            }
+        } catch {
             NSLog("Error adding printer \(printer.hostname). Error:\(error)")
-        }
-        return nil
+        }        
+        return saved
     }
     
-    func changeToDefaultPrinter(_ printer: Printer) {
+    func changeToDefaultPrinter(_ printer: Printer, context: NSManagedObjectContext) {
         // Check if there is already a default Printer
-        if let currentDefaultPrinter: Printer = getDefaultPrinter() {
+        if let currentDefaultPrinter: Printer = getDefaultPrinter(context: context) {
             // Current default printer is no longer the default one
             currentDefaultPrinter.defaultPrinter = false
-            updatePrinter(currentDefaultPrinter)
+            updatePrinter(currentDefaultPrinter, context: context)
         }
         // Make this printer the default one
         printer.defaultPrinter = true
-        updatePrinter(printer)
+        updatePrinter(printer, context: context)
     }
     
     func updatePrinter(_ printer: Printer) {
@@ -175,21 +185,32 @@ class PrinterManager {
     
     // MARK: Delete operations
 
-    func deletePrinter(_ printer: Printer) {
-        managedObjectContext!.delete(printer)
+    func deletePrinter(_ printer: Printer, context: NSManagedObjectContext) {
+        context.delete(printer)
         
-        do {
-            try managedObjectContext!.save()
-        } catch let error as NSError {
-            NSLog("Error deleting printer \(printer.hostname). Error:\(error)")
-        }
+        updatePrinter(printer, context: context)
         
         if printer.defaultPrinter {
             // Find any printer and make it the default printer
-            for printer in getPrinters() {
-                changeToDefaultPrinter(printer)
+            for printer in getPrinters(context: context) {
+                changeToDefaultPrinter(printer, context: context)
                 break
             }
+        }
+    }
+    
+    func deleteAllPrinters(context: NSManagedObjectContext) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Printer")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try context.persistentStoreCoordinator?.execute(deleteRequest, with: context)
+            // Reset the Managed Object Context
+            context.reset()
+            managedObjectContext?.reset()
+        }
+        catch let error as NSError {
+            NSLog("Error deleting all printers. Error:\(error)")
         }
     }
     

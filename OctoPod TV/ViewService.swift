@@ -1,6 +1,7 @@
 import Foundation
+import UIKit
 
-class ViewService: ObservableObject, WebSocketClientDelegate {
+class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDelegate {
     @Published var printerStatus: String = "--"
     @Published var printingFile: String = "--"
     @Published var progress: String = "--%"
@@ -14,11 +15,19 @@ class ViewService: ObservableObject, WebSocketClientDelegate {
     @Published var currentHeight: String?
     @Published var layer: String?
 
-    var octoPrintRESTClient = OctoPrintRESTClient()
-    var webSocketClient: WebSocketClient?
+    var octoPrintClient: OctoPrintClient!
     
     init() {
+        let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
+
+        self.octoPrintClient = OctoPrintClient(printerManager: printerManager)
         self.clearValues()
+
+        // Listen to events coming from OctoPrintClient
+        octoPrintClient.delegates.append(self)
+
+        // Listen to changes to OctoPrint Plugin messages
+        octoPrintClient.octoPrintPluginsDelegates.append(self)
     }
     
     func clearValues() {
@@ -37,28 +46,16 @@ class ViewService: ObservableObject, WebSocketClientDelegate {
     }
     
     func connectToServer(printer: Printer) {
-        // Create and keep httpClient while default printer does not change
-        octoPrintRESTClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
-        
-        if webSocketClient?.isConnected(printer: printer) == true {
-            // Do nothing since we are already connected to the default printer
-            return
-        }
-    
-        // Close any previous connection
-        webSocketClient?.closeConnection()
-        
-        // Notify the terminal that we are about to connect to OctoPrint
-//        terminal.websocketNewConnection()
-        // Create websocket connection and connect
-        webSocketClient = WebSocketClient(printer: printer)
-        // Subscribe to events so we can update the UI as events get pushed
-        webSocketClient?.delegate = self
-}
+        octoPrintClient.connectToServer(printer: printer)        
+    }
 
-    // MARK: - WebSocketClientDelegate
+    // MARK: - OctoPrintClientDelegate
     
-    func currentStateUpdated(event: CurrentStateEvent) {
+    func notificationAboutToConnectToServer() {
+        self.clearValues()
+    }
+    
+    func printerStateUpdated(event: CurrentStateEvent) {
         // Update properties from event. This will fire event that will refresh UI
         DispatchQueue.main.async {
             if let state = event.state {
@@ -102,22 +99,19 @@ class ViewService: ObservableObject, WebSocketClientDelegate {
         }
     }
     
-    func historyTemp(history: Array<TempHistory.Temp>) {
+    func handleConnectionError(error: Error?, response: HTTPURLResponse) {
+        // TODO Update (new) variable for error message
     }
     
-    func octoPrintSettingsUpdated() {
-//        if let printer = printerManager.getDefaultPrinter() {
-//            // Verify that last known settings are still current
-//            reviewOctoPrintSettings(printer: printer)
-//        }
+    func websocketConnected() {
+        // TODO Clean up (new) variable for error message
+    }
+
+    func websocketConnectionFailed(error: Error) {
+        // TODO Update (new) variable for error message
     }
     
-    func printerProfileUpdated() {
-//        if let printer = printerManager.getDefaultPrinter() {
-//            // Update Printer from /api/printerprofiles information
-//            reviewPrinterProfile(printer: printer)
-//        }
-    }
+    // MARK: - OctoPrintPluginsDelegate
     
     func pluginMessage(plugin: String, data: NSDictionary) {
         if plugin == Plugins.DISPLAY_LAYER_PROGRESS {
@@ -129,43 +123,6 @@ class ViewService: ObservableObject, WebSocketClientDelegate {
                 }
             }
         }
-    }
-
-    func websocketConnected() {
-        // Websocket has been established. OctoPrint 1.3.10, by default, secures websocket so we need
-        // to authenticate the websocket in order to be able to use it. In order to authenticate the websocket,
-        // we need to execute a passive login that will return the user_id and session. This information is then
-        // passed back via websockets to OctoPrint.
-        passiveLogin { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
-            if let result = result as? NSDictionary {
-                if let name = result["name"] as? String, let session = result["session"] as? String {
-                    // OctoPrint requires authentication of websocket.
-                    self.webSocketClient?.authenticate(user: name, session: session)
-                }
-            }
-            
-//            // Notify the terminal that we connected to OctoPrint
-//            self.terminal.websocketConnected()
-            // Notify other listeners that we connected to OctoPrint
-//            for delegate in self.delegates {
-//                delegate.websocketConnected()
-//            }
-        }
-    }
-    
-    func websocketConnectionFailed(error: Error) {
-//        for delegate in delegates {
-//            delegate.websocketConnectionFailed(error: error)
-//        }
-    }
-
-    // MARK: - Login operations
-
-    /// Passive login has been added to OctoPrint 1.3.10 to increase security. Endpoint existed before
-    /// but without passive mode. New version returns a "session" field that is used by websockets to
-    /// allow websockets to work when Forcelogin Plugin is active (the default)
-    fileprivate func passiveLogin(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
-        octoPrintRESTClient.passiveLogin(callback: callback)
     }
 
     // MARK: - Private functions

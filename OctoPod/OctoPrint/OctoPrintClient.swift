@@ -39,13 +39,15 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     init(printerManager: PrinterManager) {
         self.printerManager = printerManager
         self.octoPrintRESTClient = OctoPrintRESTClient()
-        // Configure REST client to show network activity in iOS app when making requests
-        self.octoPrintRESTClient.preRequest = {
-            DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = true })
-        }
-        self.octoPrintRESTClient.postRequest = {
-            DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = false })
-        }
+        #if os(iOS)
+            // Configure REST client to show network activity in iOS app when making requests
+            self.octoPrintRESTClient.preRequest = {
+                DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = true })
+            }
+            self.octoPrintRESTClient.postRequest = {
+                DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = false })
+            }
+        #endif
     }
     
     // MARK: - OctoPrint server connection
@@ -971,14 +973,16 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             // Persist updated printer
             printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
             
-            // Donate Siri commands to control Palette (or delete donated commands)
-            if installed {
-                IntentsDonations.donatePaletteIntents(printer: printer)
-                // Indicate that donations of release 3.0 have been done
-                defaults.set(true, forKey: donatedUpgradeKey)
-            } else {
-                IntentsDonations.deletePaletteIntents(printer: printer)
-            }
+            #if os(iOS)
+                // Donate Siri commands to control Palette (or delete donated commands)
+                if installed {
+                    IntentsDonations.donatePaletteIntents(printer: printer)
+                    // Indicate that donations of release 3.0 have been done
+                    defaults.set(true, forKey: donatedUpgradeKey)
+                } else {
+                    IntentsDonations.deletePaletteIntents(printer: printer)
+                }
+            #endif
             
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
