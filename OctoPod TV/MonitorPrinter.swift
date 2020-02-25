@@ -6,40 +6,63 @@ struct MonitorPrinter : View {
 
     var body: some View {
         HStack {
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 8) {
+            VStack() {
+                HStack() {
                     Text("State")
-                    Text("File")
-                    Text("Progress")
-                    Text("Print Time")
-                    Text("Print Time Left")
-                    Text("Print Completion")
-                    Text("Extruder Temp")
-                    Text("Bed Temp")
-                    Text("Current Height")
-                    Text("Layer")
-                }
-                VStack(alignment: .trailing, spacing: 8) {
+                    Spacer()
                     Text(service.printerStatus)
+                }
+                HStack() {
+                    Text("File")
+                    Spacer()
                     Text(service.printingFile)
+                }
+                HStack() {
+                    Text("Progress")
+                    Spacer()
                     Text(service.progress)
+                }
+                HStack() {
+                    Text("Print Time")
+                    Spacer()
                     Text(service.printTime)
+                }
+                HStack() {
+                    Text("Print Time Left")
+                    Spacer()
                     Text(service.printTimeLeft)
+                }
+                HStack() {
+                    Text("Print Completion")
+                    Spacer()
                     Text(service.printEstimatedCompletion)
+                }
+                HStack() {
+                    Text("Extruder Temp")
+                    Spacer()
                     Text("\(service.tool0Actual) / \(service.tool0Target)")
+                }
+                HStack() {
+                    Text("Bed Temp")
+                    Spacer()
                     Text("\(service.bedActual) / \(service.bedTarget)")
-                    if service.currentHeight != nil {
+                }
+                if service.currentHeight != nil {
+                    HStack() {
+                        Text("Current Height")
+                        Spacer()
                         Text(service.currentHeight!)
-                    } else {
-                        Text("-")
                     }
-                    if service.layer != nil {
+                }
+                if service.layer != nil {
+                    HStack() {
+                        Text("Layer")
+                        Spacer()
                         Text(service.layer!)
-                    } else {
-                        Text("-")
                     }
                 }
             }
+            .frame(width: 500.0)
             VStack {
                 if cameraService.image != nil {
                     Image(uiImage: cameraService.image!)
@@ -75,5 +98,7 @@ struct MonitorPrinter : View {
 struct MonitorPrinter_Previews: PreviewProvider {
     static var previews: some View {
         MonitorPrinter()
+            .environmentObject(ViewService())
+            .environmentObject(CameraService())
     }
 }
