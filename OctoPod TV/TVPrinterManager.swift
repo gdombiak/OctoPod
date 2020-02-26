@@ -1,19 +1,19 @@
 import Foundation
 
 class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
-    @Published var printers: [Printer]
-    @Published var defaultPrinter: Printer?
+    @Published var printers: [Printer] = []
     @Published var iCloudConnected = true
 
     let printerManager: PrinterManager
     let cloudKitPrinterManager: CloudKitPrinterManager
+    
+    private(set) var connections: [Printer: (websocket: ViewService, cameraService: CameraService)] = [:]
 
     init(printerManager: PrinterManager, cloudKitPrinterManager: CloudKitPrinterManager) {
         self.printerManager = printerManager
         self.cloudKitPrinterManager = cloudKitPrinterManager
-        
-        self.printers = self.printerManager.getPrinters()
-        self.defaultPrinter = self.printerManager.getDefaultPrinter()
+
+        self.updatePrinters(newPrinters: self.printerManager.getPrinters())
 
         cloudKitPrinterManager.delegates.append(self)
     }
@@ -44,10 +44,28 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
     
     // MARK: - Private functions
 
+    fileprivate func updatePrinters(newPrinters: [Printer]) {
+        // Setup new connections before Views use them
+        for printer in newPrinters {
+            self.connections[printer] = (ViewService(), CameraService())
+        }
+        self.printers = newPrinters
+        
+        // Open websocket and start rendering cameras
+        for printer in self.printers {
+            // Open websocket to printer
+            self.connections[printer]?.websocket.connectToServer(printer: printer)
+            // Start rendering camera of printer
+            self.connections[printer]?.cameraService.connectToServer(printer: printer)
+        }
+    }
+    
     fileprivate func refreshState() {
+        // TODO: - Check if new printers are different from existing ones
+        // TODO: - Disconnect existing websocket and camera service
+
         DispatchQueue.main.async {
-            self.printers = self.printerManager.getPrinters()
-            self.defaultPrinter = self.printerManager.getDefaultPrinter()
+            self.updatePrinters(newPrinters: self.printerManager.getPrinters())
         }
         
         // Wait few seconds before looking for duplicates
