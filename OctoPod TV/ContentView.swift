@@ -24,9 +24,42 @@ struct PrintersRow: View {
     }
 }
 
+struct PaginationButtons: View {
+    @Binding var page: Int
+    let pages: Int
+    
+    var body: some View {
+        HStack {
+            if self.page > 1 {
+                Button(action: {
+                    self.page = self.page - 1
+                    NSLog("Going Back")
+                }) {
+                    Text("Go Back")
+                }
+            } else {
+                EmptyView()
+            }
+            Spacer()
+            if self.page < self.pages {
+                Button(action: {
+                    self.page = self.page + 1
+                    NSLog("Going Next")
+                }) {
+                    Text("Go Next")
+                }
+            } else {
+                EmptyView()
+            }
+        }
+    }
+}
+
 struct ContentView: View {
     
     @ObservedObject private var tvPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).tvPrinterManager }()
+    @State private var page: Int = 1
+    @State private var pages: Int = 1
     
     var body: some View {
         GeometryReader { geometry in
@@ -34,16 +67,19 @@ struct ContentView: View {
                 ScrollView(.vertical) {
                     if self.tvPrinterManager.iCloudConnected {
                         VStack {
-                            if self.tvPrinterManager.printers.count > 0 {
-                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: 1, row: 0, geometry: geometry)
+                            if self.tvPrinterManager.printers.count > (self.page - 1) * 6 {
+                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 0, geometry: geometry)
                             }
-                            if self.tvPrinterManager.printers.count > 2 {
+                            if self.tvPrinterManager.printers.count > (self.page - 1) * 6 + 2 {
                                 Divider()
-                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: 1, row: 1, geometry: geometry)
+                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 1, geometry: geometry)
                             }
-                            if self.tvPrinterManager.printers.count > 4 {
+                            if self.tvPrinterManager.printers.count > (self.page - 1) * 6 + 4 {
                                 Divider()
-                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: 1, row: 2, geometry: geometry)
+                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 2, geometry: geometry)
+                            }
+                            if self.pages > 1 {
+                                PaginationButtons(page: self.$page, pages: self.pages)
                             }
                         }
                     } else {

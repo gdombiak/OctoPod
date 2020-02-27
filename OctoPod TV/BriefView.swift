@@ -54,18 +54,20 @@ struct BriefView: View {
                         }.frame(minWidth: 500)
                     }.buttonStyle(PlainButtonStyle())
                 }
-                if cameraService.image != nil {
-                    Image(uiImage: cameraService.image!)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 200)
-                } else {
-                    Image("Image")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 200)
-                    if cameraService.errorMessage != nil {
-                        Text(cameraService.errorMessage!)
+                VStack {
+                    if cameraService.image != nil {
+                        Image(uiImage: cameraService.image!)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 200)
+                    } else {
+                        Image("Image")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 200)
+                        if cameraService.errorMessage != nil {
+                            Text(cameraService.errorMessage!)
+                        }
                     }
                 }
             }

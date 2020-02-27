@@ -56,6 +56,10 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
             }
             deduped.append(printer)
         }
+        // Sort printers by name (in the future could be by status so printing appear first)
+        deduped.sort { (left, right) -> Bool in
+            return left.name < right.name
+        }
 
         // Setup new connections before Views use them
         for printer in deduped {
