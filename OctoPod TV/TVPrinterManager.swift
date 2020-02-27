@@ -45,11 +45,23 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
     // MARK: - Private functions
 
     fileprivate func updatePrinters(newPrinters: [Printer]) {
-        // Setup new connections before Views use them
+        var deduped = Array<Printer>()
+        // Dedup printers with same names (due to a bug still not found)
         for printer in newPrinters {
+            if deduped.contains(where: { (check) -> Bool in
+                return printer.name == check.name
+            }) {
+                NSLog("Ignoring duplicate of \(printer)")
+                continue
+            }
+            deduped.append(printer)
+        }
+
+        // Setup new connections before Views use them
+        for printer in deduped {
             self.connections[printer] = (ViewService(), CameraService())
         }
-        self.printers = newPrinters
+        self.printers = deduped
         
         // Open websocket and start rendering cameras
         for printer in self.printers {
