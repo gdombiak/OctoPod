@@ -45,8 +45,14 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
         layer = nil
     }
     
+    // MARK: - Connection handling
+
     func connectToServer(printer: Printer) {
         octoPrintClient.connectToServer(printer: printer)        
+    }
+
+    func disconnectFromServer() {
+        octoPrintClient.disconnectFromServer()
     }
 
     // MARK: - OctoPrintClientDelegate

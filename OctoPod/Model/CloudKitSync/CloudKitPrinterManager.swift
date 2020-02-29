@@ -226,6 +226,7 @@ class CloudKitPrinterManager {
             completionHandler?()
             return
         }
+        var foundNewRecords = false
         let defaults = UserDefaults.standard
         var changeToken: CKServerChangeToken? = nil
         // Retrieve stored token that tracks last set of changes that were processed.
@@ -244,10 +245,12 @@ class CloudKitPrinterManager {
         operation.fetchAllChanges = true
         // Block to process created or updated records
         operation.recordChangedBlock = { record in
+            foundNewRecords = true
             self.recordChanged(record: record)
         }
         // Block to process deleted records
         operation.recordWithIDWasDeletedBlock = { recordID, recordType in
+            foundNewRecords = true
             self.recordDeleted(recordID: recordID)
         }
         // Block that records change token (to track how far we read so we can do next incremental read)
@@ -318,8 +321,10 @@ class CloudKitPrinterManager {
             if error == nil {
                 // Success. New data was downloaded
                 completionHandler?()
-                // Alert delegates that printers have been updated
-                self.notifyPrintersUpdated()
+                if foundNewRecords {
+                    // Alert delegates that printers have been updated
+                    self.notifyPrintersUpdated()
+                }
             }
         }
         operation.qualityOfService = .utility

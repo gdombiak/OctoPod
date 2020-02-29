@@ -1,39 +1,51 @@
 import SwiftUI
 import CloudKit
 
+private let printersPerPage = 2
+private let printersPerRow = 2
+
 struct PrintersRow: View {
     let tvPrinterManager: TVPrinterManager
     let page: Int
     let row: Int
     let geometry: GeometryProxy
-    
+        
     var body: some View {
         HStack {
-            BriefView(printer: self.tvPrinterManager.printers[(page - 1) * 6 + (row * 2)])
+            BriefView(printer: self.tvPrinterManager.printers[(page - 1) * printersPerPage + (row * printersPerRow)])
                 .frame(width: geometry.size.width / 2)
-                .environmentObject(self.tvPrinterManager.connections[self.tvPrinterManager.printers[(page - 1) * 6 + (row * 2)]]!.websocket)
-                .environmentObject(self.tvPrinterManager.connections[self.tvPrinterManager.printers[(page - 1) * 6 + (row * 2)]]!.cameraService)
+                .environmentObject(self.tvPrinterManager.connections[self.tvPrinterManager.printers[(page - 1) * printersPerPage + (row * printersPerRow)]]!.websocket)
+                .environmentObject(self.tvPrinterManager.connections[self.tvPrinterManager.printers[(page - 1) * printersPerPage + (row * printersPerRow)]]!.cameraService)
             Divider()
-            if self.tvPrinterManager.printers.count > (page - 1) * 6 + (row * 2) + 1 {
-                BriefView(printer: self.tvPrinterManager.printers[(page - 1) * 6 + (row * 2) + 1])
+            if self.tvPrinterManager.printers.count > (page - 1) * printersPerPage + (row * printersPerRow) + 1 {
+                BriefView(printer: self.tvPrinterManager.printers[(page - 1) * printersPerPage + (row * 2) + 1])
                     .frame(width: geometry.size.width / 2)
-                    .environmentObject(self.tvPrinterManager.connections[self.tvPrinterManager.printers[(page - 1) * 6 + (row * 2) + 1]]!.websocket)
-                    .environmentObject(self.tvPrinterManager.connections[self.tvPrinterManager.printers[(page - 1) * 6 + (row * 2) + 1]]!.cameraService)
+                    .environmentObject(self.tvPrinterManager.connections[self.tvPrinterManager.printers[(page - 1) * printersPerPage + (row * printersPerRow) + 1]]!.websocket)
+                    .environmentObject(self.tvPrinterManager.connections[self.tvPrinterManager.printers[(page - 1) * printersPerPage + (row * printersPerRow) + 1]]!.cameraService)
             }
         }
     }
 }
 
 struct PaginationButtons: View {
+    let tvPrinterManager: TVPrinterManager
     @Binding var page: Int
     let pages: Int
     
     var body: some View {
         HStack {
+            Spacer()
             if self.page > 1 {
                 Button(action: {
+                    // Disconnect printers from old page
+                    for index in 1...printersPerPage {
+                        self.tvPrinterManager.disconnectFromServer(printer: self.tvPrinterManager.printers[(self.page - 1) * printersPerPage + index - 1])
+                    }
                     self.page = self.page - 1
-                    NSLog("Going Back")
+                    // Connect printers of new page
+                    for index in 1...printersPerPage {
+                        self.tvPrinterManager.connectToServer(printer: self.tvPrinterManager.printers[(self.page - 1) * printersPerPage + index - 1])
+                    }
                 }) {
                     Text("Go Back")
                 }
@@ -41,16 +53,26 @@ struct PaginationButtons: View {
                 EmptyView()
             }
             Spacer()
+            Text("\(page) / \(pages)")
+            Spacer()
             if self.page < self.pages {
                 Button(action: {
+                    // Disconnect printers from old page
+                    for index in 1...printersPerPage {
+                        self.tvPrinterManager.disconnectFromServer(printer: self.tvPrinterManager.printers[(self.page - 1) * printersPerPage + index - 1])
+                    }
                     self.page = self.page + 1
-                    NSLog("Going Next")
+                    // Connect printers of new page
+                    for index in 1...printersPerPage {
+                        self.tvPrinterManager.connectToServer(printer: self.tvPrinterManager.printers[(self.page - 1) * printersPerPage + index - 1])
+                    }
                 }) {
                     Text("Go Next")
                 }
             } else {
                 EmptyView()
             }
+            Spacer()
         }
     }
 }
@@ -67,19 +89,19 @@ struct ContentView: View {
                 ScrollView(.vertical) {
                     if self.tvPrinterManager.iCloudConnected {
                         VStack {
-                            if self.tvPrinterManager.printers.count > (self.page - 1) * 6 {
+                            if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage {
                                 PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 0, geometry: geometry)
                             }
-                            if self.tvPrinterManager.printers.count > (self.page - 1) * 6 + 2 {
-                                Divider()
-                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 1, geometry: geometry)
-                            }
-                            if self.tvPrinterManager.printers.count > (self.page - 1) * 6 + 4 {
-                                Divider()
-                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 2, geometry: geometry)
-                            }
+//                            if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage + printersPerRow {
+//                                Divider()
+//                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 1, geometry: geometry)
+//                            }
+//                            if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage + (printersPerRow * 2) {
+//                                Divider()
+//                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 2, geometry: geometry)
+//                            }
                             if self.pages > 1 {
-                                PaginationButtons(page: self.$page, pages: self.pages)
+                                PaginationButtons(tvPrinterManager: self.tvPrinterManager, page: self.$page, pages: self.pages)
                             }
                         }
                     } else {
@@ -88,6 +110,23 @@ struct ContentView: View {
                             .foregroundColor(.red)
                     }
                 }.navigationBarTitle("Printers")
+            }.onReceive(self.tvPrinterManager.$printers) { printers in
+                // Close existing socket connections and open new ones for printers in page 1
+                if self.page > 1 {
+                    // Disconnect printers from old page
+                    for index in 1...printersPerPage {
+                        self.tvPrinterManager.disconnectFromServer(printer: self.tvPrinterManager.printers[(self.page - 1) * printersPerPage + index - 1])
+                    }
+                    // Update current page
+                    self.page = 1
+                }
+                // Connect printers of first page
+                for index in 1...printersPerPage {
+                    self.tvPrinterManager.connectToServer(printer: self.tvPrinterManager.printers[index - 1])
+                }
+
+                // Update total number of pages
+                self.pages = Int(ceil(Float(printers.count) / Float(printersPerPage)))
             }
         }
     }

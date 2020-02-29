@@ -28,6 +28,8 @@ class CameraService: ObservableObject {
         renderCamera(index: cameraIndex - 1)
     }
 
+    // MARK: - Connection handling
+
     func connectToServer(printer: Printer) {
         initCameras(printer: printer)
         
@@ -88,6 +90,10 @@ class CameraService: ObservableObject {
         
         // Start rendering the (first) camera
         renderCamera(index: 0)
+    }
+    
+    func disconnectFromServer() {
+        streamingController.stop()
     }
     
     // MARK: - Private functions

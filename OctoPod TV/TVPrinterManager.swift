@@ -18,6 +18,22 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
         cloudKitPrinterManager.delegates.append(self)
     }
     
+    // MARK: - Connection handling
+    
+    func connectToServer(printer: Printer) {
+        // Open websocket to printer
+        self.connections[printer]?.websocket.connectToServer(printer: printer)
+        // Start rendering camera of printer
+        self.connections[printer]?.cameraService.connectToServer(printer: printer)
+    }
+    
+    func disconnectFromServer(printer: Printer) {
+        // Open websocket to printer
+        self.connections[printer]?.websocket.disconnectFromServer()
+        // Start rendering camera of printer
+        self.connections[printer]?.cameraService.disconnectFromServer()
+    }
+
     // MARK: - CloudKitPrinterDelegate
     
     func printersUpdated() {
@@ -67,13 +83,13 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
         }
         self.printers = deduped
         
-        // Open websocket and start rendering cameras
-        for printer in self.printers {
-            // Open websocket to printer
-            self.connections[printer]?.websocket.connectToServer(printer: printer)
-            // Start rendering camera of printer
-            self.connections[printer]?.cameraService.connectToServer(printer: printer)
-        }
+//        // Open websocket and start rendering cameras
+//        for printer in self.printers {
+//            // Open websocket to printer
+//            self.connections[printer]?.websocket.connectToServer(printer: printer)
+//            // Start rendering camera of printer
+//            self.connections[printer]?.cameraService.connectToServer(printer: printer)
+//        }
     }
     
     fileprivate func refreshState() {
