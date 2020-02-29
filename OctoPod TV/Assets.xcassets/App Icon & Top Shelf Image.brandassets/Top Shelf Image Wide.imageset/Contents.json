@@ -2,18 +2,22 @@
   "images" : [
     {
       "idiom" : "tv",
+      "filename" : "animals-frog-poison_dart_2320x720.png",
       "scale" : "1x"
     },
     {
       "idiom" : "tv",
+      "filename" : "animals-frog-poison_dart_4640x1440.png",
       "scale" : "2x"
     },
     {
       "idiom" : "tv-marketing",
+      "filename" : "animals-frog-poison_dart_2320x720-1.png",
       "scale" : "1x"
     },
     {
       "idiom" : "tv-marketing",
+      "filename" : "animals-frog-poison_dart_4640x1440-1.png",
       "scale" : "2x"
     }
   ],

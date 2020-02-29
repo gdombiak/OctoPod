@@ -2,10 +2,12 @@
   "images" : [
     {
       "idiom" : "tv",
+      "filename" : "animals-frog-poison_dart_400x240_front.png",
       "scale" : "1x"
     },
     {
       "idiom" : "tv",
+      "filename" : "animals-frog-poison_dart_800x480_front.png",
       "scale" : "2x"
     }
   ],
