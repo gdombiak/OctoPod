@@ -20,18 +20,20 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
     
     // MARK: - Connection handling
     
-    func connectToServer(printer: Printer) {
-        // Open websocket to printer
-        self.connections[printer]?.websocket.connectToServer(printer: printer)
-        // Start rendering camera of printer
-        self.connections[printer]?.cameraService.connectToServer(printer: printer)
+    func connectToServer(printerIndex: Int) {
+        if printers.count - 1 >= printerIndex {
+            let printer = printers[printerIndex]
+            // Open websocket to printer
+            self.connections[printer]?.websocket.connectToServer(printer: printer)
+            // Start rendering camera of printer
+            self.connections[printer]?.cameraService.connectToServer(printer: printer)
+        }
     }
-    
-    func disconnectFromServer(printer: Printer) {
-        // Open websocket to printer
-        self.connections[printer]?.websocket.disconnectFromServer()
-        // Start rendering camera of printer
-        self.connections[printer]?.cameraService.disconnectFromServer()
+
+    func disconnectFromServer(printerIndex: Int) {
+        if printers.count - 1 >= printerIndex {
+            self.disconnectFromServer(printer: printers[printerIndex])
+        }
     }
 
     // MARK: - CloudKitPrinterDelegate
@@ -60,76 +62,62 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
     
     // MARK: - Private functions
 
+    fileprivate func samePrinter(_ printer: Printer, _ newPrinter: Printer) -> Bool {
+        return printer.name == newPrinter.name && printer.hostname == newPrinter.hostname && printer.recordName == newPrinter.recordName
+    }
+    
     fileprivate func updatePrinters(newPrinters: [Printer]) {
-        var deduped = Array<Printer>()
-        // Dedup printers with same names (due to a bug still not found)
-        for printer in newPrinters {
-            if deduped.contains(where: { (check) -> Bool in
-                return printer.name == check.name
-            }) {
-                NSLog("Ignoring duplicate of \(printer)")
-                continue
+        var newConnections: [Printer: (websocket: ViewService, cameraService: CameraService)] = [:]
+        var sortedPrinters = newPrinters
+        
+        // Create or reuse existing websocket and camera connections
+        for newPrinter in newPrinters {
+            var exist: Printer?
+            for printer in printers {
+                if samePrinter(printer, newPrinter) {
+                    // Found same printer
+                    exist = printer
+                    break
+                }
             }
-            deduped.append(printer)
+            if let existingPrinter = exist {
+                // Reuse existing connections
+                newConnections[newPrinter] = self.connections[existingPrinter]
+            } else {
+                // Setup new connections for new printer
+                newConnections[newPrinter] = (ViewService(), CameraService())
+            }
         }
-        // Sort printers by name (in the future could be by status so printing appear first)
-        deduped.sort { (left, right) -> Bool in
-            return left.name < right.name
+        // Close no longer needed connections
+        for printer in printers {
+            if !newPrinters.contains(where: { samePrinter($0, printer) }) {
+                disconnectFromServer(printer: printer)
+            }
         }
 
-        // Setup new connections before Views use them
-        for printer in deduped {
-            self.connections[printer] = (ViewService(), CameraService())
-        }
-        self.printers = deduped
+        // Store new valid conections for new printers
+        self.connections = newConnections
         
-//        // Open websocket and start rendering cameras
-//        for printer in self.printers {
-//            // Open websocket to printer
-//            self.connections[printer]?.websocket.connectToServer(printer: printer)
-//            // Start rendering camera of printer
-//            self.connections[printer]?.cameraService.connectToServer(printer: printer)
-//        }
+        // Sort printers by name (in the future could be by status so printing appear first)
+        sortedPrinters.sort { (left, right) -> Bool in
+            return left.name < right.name
+        }
+        
+        // Store sorted new printers
+        self.printers = sortedPrinters
     }
     
     fileprivate func refreshState() {
-        // TODO: - Check if new printers are different from existing ones
-        // TODO: - Disconnect existing websocket and camera service
-
         DispatchQueue.main.async {
             self.updatePrinters(newPrinters: self.printerManager.getPrinters())
         }
-        
-        // Wait few seconds before looking for duplicates
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
-            self.checkForDuplicates()
-        }
     }
     
-    /// It seems like iCloud maybe be merging a backup of Core Data for AppleTV after we
-    /// synched records from iCloud so we will end up with duplicated printers. Check if
-    /// this happened and reset local printers
-    fileprivate func checkForDuplicates() {
-        var duplicatesFound = false
-        var names = Array<String>()
-        let existingPrinters = printerManager.getPrinters()
-        for printer in existingPrinters {
-            if names.contains(printer.name) {
-                duplicatesFound = true
-                break
-            } else {
-                names.append(printer.name)
-            }
-        }
-        if duplicatesFound {
-            let oldCopy = self.printers
-            NSLog("Deleting duplicates printer entries")
-            self.cloudKitPrinterManager.resetLocalPrinters(completionHandler: {
-                NSLog("Core Data duplicates removed. Before \(oldCopy.count) Now \(self.printers.count)")
-                NSLog("Before \(existingPrinters.count) Now \(self.printerManager.getPrinters().count)")
-            }) {
-                NSLog("Error removing Core Data duplicates")
-            }
-        }
+    fileprivate func disconnectFromServer(printer: Printer) {
+        // Open websocket to printer
+        self.connections[printer]?.websocket.disconnectFromServer()
+        // Start rendering camera of printer
+        self.connections[printer]?.cameraService.disconnectFromServer()
     }
+
 }

@@ -39,12 +39,12 @@ struct PaginationButtons: View {
                 Button(action: {
                     // Disconnect printers from old page
                     for index in 1...printersPerPage {
-                        self.tvPrinterManager.disconnectFromServer(printer: self.tvPrinterManager.printers[(self.page - 1) * printersPerPage + index - 1])
+                        self.tvPrinterManager.disconnectFromServer(printerIndex: (self.page - 1) * printersPerPage + index - 1)
                     }
                     self.page = self.page - 1
                     // Connect printers of new page
                     for index in 1...printersPerPage {
-                        self.tvPrinterManager.connectToServer(printer: self.tvPrinterManager.printers[(self.page - 1) * printersPerPage + index - 1])
+                        self.tvPrinterManager.connectToServer(printerIndex: (self.page - 1) * printersPerPage + index - 1)
                     }
                 }) {
                     Text("Go Back")
@@ -59,12 +59,12 @@ struct PaginationButtons: View {
                 Button(action: {
                     // Disconnect printers from old page
                     for index in 1...printersPerPage {
-                        self.tvPrinterManager.disconnectFromServer(printer: self.tvPrinterManager.printers[(self.page - 1) * printersPerPage + index - 1])
+                        self.tvPrinterManager.disconnectFromServer(printerIndex: (self.page - 1) * printersPerPage + index - 1)
                     }
                     self.page = self.page + 1
                     // Connect printers of new page
                     for index in 1...printersPerPage {
-                        self.tvPrinterManager.connectToServer(printer: self.tvPrinterManager.printers[(self.page - 1) * printersPerPage + index - 1])
+                        self.tvPrinterManager.connectToServer(printerIndex: (self.page - 1) * printersPerPage + index - 1)
                     }
                 }) {
                     Text("Go Next")
@@ -115,14 +115,14 @@ struct ContentView: View {
                 if self.page > 1 {
                     // Disconnect printers from old page
                     for index in 1...printersPerPage {
-                        self.tvPrinterManager.disconnectFromServer(printer: self.tvPrinterManager.printers[(self.page - 1) * printersPerPage + index - 1])
+                        self.tvPrinterManager.disconnectFromServer(printerIndex: (self.page - 1) * printersPerPage + index - 1)
                     }
                     // Update current page
                     self.page = 1
                 }
                 // Connect printers of first page
                 for index in 1...printersPerPage {
-                    self.tvPrinterManager.connectToServer(printer: self.tvPrinterManager.printers[index - 1])
+                    self.tvPrinterManager.connectToServer(printerIndex: index - 1)
                 }
 
                 // Update total number of pages

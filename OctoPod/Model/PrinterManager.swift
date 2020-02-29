@@ -204,7 +204,7 @@ class PrinterManager {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         do {
-            try context.persistentStoreCoordinator?.execute(deleteRequest, with: context)
+            try context.execute(deleteRequest)
             // Reset the Managed Object Context
             context.reset()
             managedObjectContext?.reset()
