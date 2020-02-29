@@ -8,6 +8,8 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
     let cloudKitPrinterManager: CloudKitPrinterManager
     
     private(set) var connections: [Printer: (websocket: ViewService, cameraService: CameraService)] = [:]
+    /// Remember which connections should be active. When becomes active these connections will be reestablished
+    private var active: Array<String> = Array()
 
     init(printerManager: PrinterManager, cloudKitPrinterManager: CloudKitPrinterManager) {
         self.printerManager = printerManager
@@ -27,12 +29,36 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
             self.connections[printer]?.websocket.connectToServer(printer: printer)
             // Start rendering camera of printer
             self.connections[printer]?.cameraService.connectToServer(printer: printer)
+            // Track that connection to this printer is active
+            active.append(printer.name)
         }
     }
 
     func disconnectFromServer(printerIndex: Int) {
         if printers.count - 1 >= printerIndex {
             self.disconnectFromServer(printer: printers[printerIndex])
+        }
+    }
+    
+    func resumeConnections() {
+        for printerName in active {
+            if let printer = printers.first(where: {$0.name == printerName}) {
+                // Open websocket to printer
+                self.connections[printer]?.websocket.connectToServer(printer: printer)
+                // Start rendering camera of printer
+                self.connections[printer]?.cameraService.connectToServer(printer: printer)
+            }
+        }
+    }
+
+    func suspendConnections() {
+        for printerName in active {
+            if let printer = printers.first(where: {$0.name == printerName}) {
+                // Close websocket to printer
+                self.connections[printer]?.websocket.disconnectFromServer()
+                // Stop rendering camera of printer
+                self.connections[printer]?.cameraService.disconnectFromServer()
+            }
         }
     }
 
@@ -114,10 +140,12 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
     }
     
     fileprivate func disconnectFromServer(printer: Printer) {
-        // Open websocket to printer
+        // Close websocket to printer
         self.connections[printer]?.websocket.disconnectFromServer()
-        // Start rendering camera of printer
+        // Stop rendering camera of printer
         self.connections[printer]?.cameraService.disconnectFromServer()
+        // Track that connection to this printer is no longer active
+        active.removeAll(where: { $0 == printer.name})
     }
 
 }

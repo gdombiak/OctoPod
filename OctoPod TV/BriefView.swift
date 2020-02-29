@@ -51,7 +51,7 @@ struct BriefView: View {
                                     Text(service.layer!)
                                 }
                             }
-                        }.frame(minWidth: 500)
+                        }.frame(minWidth: 400)
                     }.buttonStyle(PlainButtonStyle())
                 }
                 VStack {
@@ -59,12 +59,12 @@ struct BriefView: View {
                         Image(uiImage: cameraService.image!)
                             .resizable()
                             .scaledToFit()
-                            .frame(height: 200)
+                            .frame(height: 320)
                     } else {
                         Image("Image")
                             .resizable()
                             .scaledToFit()
-                            .frame(height: 200)
+                            .frame(height: 320)
                         if cameraService.errorMessage != nil {
                             Text(cameraService.errorMessage!)
                         }

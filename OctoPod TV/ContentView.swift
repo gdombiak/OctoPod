@@ -1,7 +1,7 @@
 import SwiftUI
 import CloudKit
 
-private let printersPerPage = 2
+private let printersPerPage = 4
 private let printersPerRow = 2
 
 struct PrintersRow: View {
@@ -9,7 +9,7 @@ struct PrintersRow: View {
     let page: Int
     let row: Int
     let geometry: GeometryProxy
-        
+    
     var body: some View {
         HStack {
             BriefView(printer: self.tvPrinterManager.printers[(page - 1) * printersPerPage + (row * printersPerRow)])
@@ -35,43 +35,41 @@ struct PaginationButtons: View {
     var body: some View {
         HStack {
             Spacer()
-            if self.page > 1 {
-                Button(action: {
-                    // Disconnect printers from old page
-                    for index in 1...printersPerPage {
-                        self.tvPrinterManager.disconnectFromServer(printerIndex: (self.page - 1) * printersPerPage + index - 1)
-                    }
-                    self.page = self.page - 1
-                    // Connect printers of new page
-                    for index in 1...printersPerPage {
-                        self.tvPrinterManager.connectToServer(printerIndex: (self.page - 1) * printersPerPage + index - 1)
-                    }
-                }) {
-                    Text("Go Back")
+            Button(action: {
+                // Disconnect printers from old page
+                for index in 1...printersPerPage {
+                    self.tvPrinterManager.disconnectFromServer(printerIndex: (self.page - 1) * printersPerPage + index - 1)
                 }
-            } else {
-                EmptyView()
-            }
+                self.page = self.page - 1
+                // Connect printers of new page
+                for index in 1...printersPerPage {
+                    self.tvPrinterManager.connectToServer(printerIndex: (self.page - 1) * printersPerPage + index - 1)
+                }
+            }) {
+                HStack {
+                    Image("Back")
+                    Text("Back")
+                }
+            }.disabled(self.page == 1)
             Spacer()
             Text("\(page) / \(pages)")
             Spacer()
-            if self.page < self.pages {
-                Button(action: {
-                    // Disconnect printers from old page
-                    for index in 1...printersPerPage {
-                        self.tvPrinterManager.disconnectFromServer(printerIndex: (self.page - 1) * printersPerPage + index - 1)
-                    }
-                    self.page = self.page + 1
-                    // Connect printers of new page
-                    for index in 1...printersPerPage {
-                        self.tvPrinterManager.connectToServer(printerIndex: (self.page - 1) * printersPerPage + index - 1)
-                    }
-                }) {
-                    Text("Go Next")
+            Button(action: {
+                // Disconnect printers from old page
+                for index in 1...printersPerPage {
+                    self.tvPrinterManager.disconnectFromServer(printerIndex: (self.page - 1) * printersPerPage + index - 1)
                 }
-            } else {
-                EmptyView()
-            }
+                self.page = self.page + 1
+                // Connect printers of new page
+                for index in 1...printersPerPage {
+                    self.tvPrinterManager.connectToServer(printerIndex: (self.page - 1) * printersPerPage + index - 1)
+                }
+            }) {
+                HStack {
+                    Text("Next")
+                    Image("Next")
+                }
+            }.disabled(self.page >= self.pages)
             Spacer()
         }
     }
@@ -88,26 +86,30 @@ struct ContentView: View {
             NavigationView {
                 ScrollView(.vertical) {
                     if self.tvPrinterManager.iCloudConnected {
-                        VStack {
-                            if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage {
+                        if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage {
+                            VStack {
                                 PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 0, geometry: geometry)
+                                if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage + printersPerRow {
+                                    Divider()
+                                    PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 1, geometry: geometry)
+                                }
+                                if self.pages > 1 {
+                                    Spacer()
+                                    PaginationButtons(tvPrinterManager: self.tvPrinterManager, page: self.$page, pages: self.pages)
+                                }
                             }
-//                            if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage + printersPerRow {
-//                                Divider()
-//                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 1, geometry: geometry)
-//                            }
-//                            if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage + (printersPerRow * 2) {
-//                                Divider()
-//                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 2, geometry: geometry)
-//                            }
-                            if self.pages > 1 {
-                                PaginationButtons(tvPrinterManager: self.tvPrinterManager, page: self.$page, pages: self.pages)
-                            }
+                        } else {
+                            Spacer()
+                            Text("Retrieving printers information")
+                                .bold()
+                            Spacer()
                         }
                     } else {
+                        Spacer()
                         Text("Connect to iCloud to retrieve list of printers from your iPad/iPhone")
                             .bold()
                             .foregroundColor(.red)
+                        Spacer()
                     }
                 }.navigationBarTitle("Printers")
             }.onReceive(self.tvPrinterManager.$printers) { printers in
@@ -124,7 +126,7 @@ struct ContentView: View {
                 for index in 1...printersPerPage {
                     self.tvPrinterManager.connectToServer(printerIndex: index - 1)
                 }
-
+                
                 // Update total number of pages
                 self.pages = Int(ceil(Float(printers.count) / Float(printersPerPage)))
             }
