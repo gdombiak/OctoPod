@@ -84,32 +84,31 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
-                ScrollView(.vertical) {
+                Group {
                     if self.tvPrinterManager.iCloudConnected {
                         if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage {
-                            VStack {
-                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 0, geometry: geometry)
-                                if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage + printersPerRow {
-                                    Divider()
-                                    PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 1, geometry: geometry)
-                                }
-                                if self.pages > 1 {
+                            ScrollView(.vertical) {
+                                VStack {
+                                    PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 0, geometry: geometry)
+                                    if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage + printersPerRow {
+                                        Divider()
+                                        PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 1, geometry: geometry)
+                                    }
+                                    if self.pages > 1 {
+                                        Spacer()
+                                        PaginationButtons(tvPrinterManager: self.tvPrinterManager, page: self.$page, pages: self.pages)
+                                    }
                                     Spacer()
-                                    PaginationButtons(tvPrinterManager: self.tvPrinterManager, page: self.$page, pages: self.pages)
-                                }
+                                }.frame(width: geometry.size.width + geometry.safeAreaInsets.leading + geometry.safeAreaInsets.trailing , alignment: .leading)
                             }
                         } else {
-                            Spacer()
                             Text("Retrieving printers information")
                                 .bold()
-                            Spacer()
                         }
                     } else {
-                        Spacer()
                         Text("Connect to iCloud to retrieve list of printers from your iPad/iPhone")
                             .bold()
                             .foregroundColor(.red)
-                        Spacer()
                     }
                 }.navigationBarTitle("Printers")
             }.onReceive(self.tvPrinterManager.$printers) { printers in
