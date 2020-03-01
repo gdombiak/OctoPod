@@ -3,12 +3,13 @@ import SwiftUI
 struct DetailedView : View {
     let name: String
     
+    @ObservedObject private var tvPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).tvPrinterManager }()
+
     @EnvironmentObject var service: ViewService
     @EnvironmentObject var cameraService: CameraService
     
     var body: some View {
         GeometryReader { geometry in
-            NavigationView {
                 HStack {
                     VStack() {
                         HStack() {
@@ -98,7 +99,13 @@ struct DetailedView : View {
                         //                }
                     }
                 }.navigationBarTitle(self.name)
-            }
+        }.onDisappear {
+            // Ask TVPrinterManager to resume refreshing cameras that appear in main view
+            self.tvPrinterManager.resumeOtherCameraConnections(skip: self.name)
+        }.onAppear() {
+            // Ask TVPrinterManager to stop refreshing other cameras that appear in main view
+            // This will save CPU usage, websockets do not consume much
+            self.tvPrinterManager.suspendOtherCameraConnections(skip: self.name)
         }
     }
 }

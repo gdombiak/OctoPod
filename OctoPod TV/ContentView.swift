@@ -22,6 +22,9 @@ struct PrintersRow: View {
                     .frame(width: geometry.size.width / 2)
                     .environmentObject(self.tvPrinterManager.connections[self.tvPrinterManager.printers[(page - 1) * printersPerPage + (row * printersPerRow) + 1]]!.websocket)
                     .environmentObject(self.tvPrinterManager.connections[self.tvPrinterManager.printers[(page - 1) * printersPerPage + (row * printersPerRow) + 1]]!.cameraService)
+            } else {
+                Spacer()
+                    .frame(width: geometry.size.width / 2)
             }
         }
     }

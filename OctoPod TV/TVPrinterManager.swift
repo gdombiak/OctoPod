@@ -8,7 +8,8 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
     let cloudKitPrinterManager: CloudKitPrinterManager
     
     private(set) var connections: [Printer: (websocket: ViewService, cameraService: CameraService)] = [:]
-    /// Remember which connections should be active. When becomes active these connections will be reestablished
+    /// Remember which connections should be active. Active printers are those that appear in main view.
+    /// When app becomes active these connections will be reestablished. Printer name is stored in Array
     private var active: Array<String> = Array()
 
     init(printerManager: PrinterManager, cloudKitPrinterManager: CloudKitPrinterManager) {
@@ -22,6 +23,8 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
     
     // MARK: - Connection handling
     
+    /// Open websocket connection and refresh camera connection/thread for selected printer; and
+    /// keep printer in the list of active connections. This is useful for temporary halts (see #suspendConnections)
     func connectToServer(printerIndex: Int) {
         if printers.count - 1 >= printerIndex {
             let printer = printers[printerIndex]
@@ -34,23 +37,17 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
         }
     }
 
+    /// Close websocket connection and refresh camera connection/thread for selected printer; and
+    /// remove printer from list of active connections.
     func disconnectFromServer(printerIndex: Int) {
         if printers.count - 1 >= printerIndex {
             self.disconnectFromServer(printer: printers[printerIndex])
         }
     }
     
-    func resumeConnections() {
-        for printerName in active {
-            if let printer = printers.first(where: {$0.name == printerName}) {
-                // Open websocket to printer
-                self.connections[printer]?.websocket.connectToServer(printer: printer)
-                // Start rendering camera of printer
-                self.connections[printer]?.cameraService.connectToServer(printer: printer)
-            }
-        }
-    }
-
+    /// Close websocket connection and refresh camera connection/thread for active printers but
+    /// still remember active printers. This is useful when tvOS app is no longer active. User may be
+    /// in whatever page (pagination in Main view) so we need to remember which printers were active
     func suspendConnections() {
         for printerName in active {
             if let printer = printers.first(where: {$0.name == printerName}) {
@@ -61,6 +58,51 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
             }
         }
     }
+
+    /// Open websocket connection and refresh camera connection/thread for active printers for active
+    /// printers. This is useful when tvOS app becomes active again. Active printers are those that user see in
+    /// main view
+    func resumeConnections() {
+        for printerName in active {
+            if let printer = printers.first(where: {$0.name == printerName}) {
+                // Open websocket to printer
+                self.connections[printer]?.websocket.connectToServer(printer: printer)
+                // Start rendering camera of printer
+                self.connections[printer]?.cameraService.connectToServer(printer: printer)
+            }
+        }
+    }
+    
+    /// Close refresh camera connection/thread for all active printers except for specified one. List
+    /// of active printers is not modified. Camera connections is what consumes most of the CPU
+    /// so closing them when not being displayed is a good thing to save on.
+    func suspendOtherCameraConnections(skip: String) {
+        for printerName in active {
+            if printerName == skip {
+                continue
+            }
+            if let printer = printers.first(where: {$0.name == printerName}) {
+                // Stop rendering camera of printer
+                self.connections[printer]?.cameraService.disconnectFromServer()
+            }
+        }
+    }
+
+    /// Open refresh camera connection/thread for all active printers except for specified one. List
+    /// of active printers is not modified. Camera connections is what consumes most of the CPU
+    /// so closing them when not being displayed is a good thing to save on.
+    func resumeOtherCameraConnections(skip: String) {
+        for printerName in active {
+            if printerName == skip {
+                continue
+            }
+            if let printer = printers.first(where: {$0.name == printerName}) {
+                // Start rendering camera of printer
+                self.connections[printer]?.cameraService.connectToServer(printer: printer)
+            }
+        }
+    }
+
 
     // MARK: - CloudKitPrinterDelegate
     
