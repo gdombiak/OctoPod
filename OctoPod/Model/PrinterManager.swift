@@ -140,6 +140,11 @@ class PrinterManager {
         return saved
     }
     
+    /// Make sure to call this only from main thread
+    func changeToDefaultPrinter(_ printer: Printer) {
+        changeToDefaultPrinter(printer, context: managedObjectContext!)
+    }
+    
     func changeToDefaultPrinter(_ printer: Printer, context: NSManagedObjectContext) {
         // Check if there is already a default Printer
         if let currentDefaultPrinter: Printer = getDefaultPrinter(context: context) {

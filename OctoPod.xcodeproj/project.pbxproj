@@ -183,6 +183,7 @@
 		3D9E087E2160455400F11CD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D9E087C2160455400F11CD4 /* InfoPlist.strings */; };
 		3DA252442105028300B60E31 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA252432105028300B60E31 /* FolderViewController.swift */; };
 		3DA77D7B21693C74003D65C9 /* ChangeLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA77D7A21693C74003D65C9 /* ChangeLanguageViewController.swift */; };
+		3DA8F980240B530700CC6AAD /* PopularGCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA8F97F240B530700CC6AAD /* PopularGCodeViewController.swift */; };
 		3DABB22022C0044D00F32731 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DABB21F22C0044D00F32731 /* NotificationService.swift */; };
 		3DABB22422C0044D00F32731 /* OctoPod Notification Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3DABB21D22C0044D00F32731 /* OctoPod Notification Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3DAD2DDC21816D62004A4223 /* OctoPrintRESTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DDB21816D62004A4223 /* OctoPrintRESTClient.swift */; };
@@ -591,6 +592,7 @@
 		3DA44F1E2314D7B600EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DA44F1F2314D7B600EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DA77D7A21693C74003D65C9 /* ChangeLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageViewController.swift; sourceTree = "<group>"; };
+		3DA8F97F240B530700CC6AAD /* PopularGCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularGCodeViewController.swift; sourceTree = "<group>"; };
 		3DABB21822BFF3F900F32731 /* OctoPod v9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v9.xcdatamodel"; sourceTree = "<group>"; };
 		3DABB21D22C0044D00F32731 /* OctoPod Notification Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "OctoPod Notification Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DABB21F22C0044D00F32731 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -830,6 +832,7 @@
 			isa = PBXGroup;
 			children = (
 				3D36DD79210300C500884BD6 /* TerminalViewController.swift */,
+				3DA8F97F240B530700CC6AAD /* PopularGCodeViewController.swift */,
 			);
 			path = "Terminal UI";
 			sourceTree = "<group>";
@@ -1862,6 +1865,7 @@
 				3D1A935F213271680050ED9A /* Script.swift in Sources */,
 				3D8B292A20E54F7300296D9D /* PanelViewController.swift in Sources */,
 				3D450E5E21AB1C040049FBC0 /* Intents.intentdefinition in Sources */,
+				3DA8F980240B530700CC6AAD /* PopularGCodeViewController.swift in Sources */,
 				3D1A936A213314300050ED9A /* ExecuteControlViewController.swift in Sources */,
 				3D78BAA12103C7CA0090D79A /* MoveViewController.swift in Sources */,
 				3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */,

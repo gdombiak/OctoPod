@@ -104,9 +104,13 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
             }
         } else {
             // Add new printer (that will become default if it's the first one)
-            if let newPrinter = printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, iCloudUpdate: true) {
-                // Create Siri suggestions (user will need to manually delete recorded Shortcuts)
-                IntentsDonations.donatePrinterIntents(printer: newPrinter)
+            if printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, iCloudUpdate: true) {
+                if let printer = printerManager.getPrinterByName(name: printerNameField.text!) {
+                    // Create Siri suggestions (user will need to manually delete recorded Shortcuts)
+                    IntentsDonations.donatePrinterIntents(printer: printer)
+                    } else {
+                        NSLog("Missing newly added printer: \(printerNameField.text!)")
+                    }
             }
         }
         

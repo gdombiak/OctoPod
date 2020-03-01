@@ -123,7 +123,7 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
             IntentsDonations.deletePrinterIntents(printer: printerToDelete)
 
             // Delete the row from the data source
-            printerManager.deletePrinter(printerToDelete)
+            printerManager.deletePrinter(printerToDelete, context: printerManager.managedObjectContext!)
             printers = printerManager.getPrinters()
 
             // Push changes to Apple Watch

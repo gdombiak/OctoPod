@@ -1,7 +1,7 @@
 import UIKit
 import SafariServices  // Used for opening browser in-app
 
-class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConfigurationDelegate, WatchSessionManagerDelegate, UITableViewDelegate, UITableViewDataSource {
+class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConfigurationDelegate, WatchSessionManagerDelegate, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -13,6 +13,7 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     @IBOutlet weak var commandsHistoryView: UIView!
     @IBOutlet weak var commandsHistoryTable: UITableView!
     @IBOutlet weak var dismissHistoryButton: UIButton!
+    @IBOutlet weak var popularGCodeButton: UIButton!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var terminalTextView: UITextView!
@@ -164,6 +165,37 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             sdFilterButton.setTitle(NSLocalizedString("Include SD", comment: "Include SD messages in the terminal"), for: .normal)
         }
         self.updateTerminalLogs()
+    }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoPopularGCode" {
+            segue.destination.popoverPresentationController!.delegate = self
+        }
+    }
+    
+    // MARK: - Unwind operations
+
+    @IBAction func backFromPopularGCode(_ sender: UIStoryboardSegue) {
+        if let controller = sender.source as? PopularGCodeViewController {
+            // Replace gcode text with selected from popover
+            gcodeField.text = controller.selected
+            // Enable send button
+            sendGCodeButton.isEnabled = true
+        }
+    }
+    
+    // MARK: - UIPopoverPresentationControllerDelegate
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+
+    // We need to add this so it works on iPhone plus in landscape mode
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
     }
     
     // MARK: - Commands History
@@ -336,6 +368,7 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         
         refreshEnabledTextLabel.textColor = textLabelColor
         gcodeTextLabel.textColor = textLabelColor
+        popularGCodeButton.tintColor = tintColor
         
         terminalTextView.backgroundColor = theme.cellBackgroundColor()
         terminalTextView.textColor = textColor
