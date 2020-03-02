@@ -19,36 +19,32 @@ struct BriefView: View {
                                 Text("Printer")
                                     .font(.subheadline)
                                 Spacer()
-                                Text(printer.name)
-                                    .font(.subheadline)
+                                value(text: printer.name)
                                     .bold()
                             }
                             HStack {
                                 Text("State")
                                     .font(.subheadline)
                                 Spacer()
-                                Text(service.printerStatus)
-                                    .font(.subheadline)
+                                value(text: service.printerStatus)
                             }
                             HStack {
                                 Text("Progress")
                                     .font(.subheadline)
                                 Spacer()
-                                Text(service.progress)
-                                    .font(.subheadline)
+                                value(text: service.progress)
                             }
                             HStack {
                                 Text("Print Time Left")
                                     .font(.subheadline)
                                 Spacer()
-                                Text(service.printTimeLeft)
-                                    .font(.subheadline)
+                                value(text: service.printTimeLeft)
                             }
                             if service.layer != nil {
                                 HStack() {
                                     Text("Layer")
                                     Spacer()
-                                    Text(service.layer!)
+                                    value(text: service.layer!)
                                 }
                             }
                         }.frame(minWidth: 400)
@@ -72,6 +68,12 @@ struct BriefView: View {
                 }
             }
         }
+    }
+    
+    fileprivate func value(text: String) -> Text {
+        return Text(text)
+            .font(.subheadline)
+            .foregroundColor(Color(red: 47/255, green: 79/255, blue: 79/256))
     }
 }
 

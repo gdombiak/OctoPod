@@ -88,8 +88,8 @@ class CameraService: ObservableObject {
             }
         }
         
-        // Start rendering the (first) camera
-        renderCamera(index: 0)
+        // Start rendering the last selected camera
+        renderCamera(index: cameraIndex)
     }
     
     func disconnectFromServer() {

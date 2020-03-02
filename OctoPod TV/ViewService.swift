@@ -15,6 +15,12 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     @Published var currentHeight: String?
     @Published var layer: String?
 
+    @Published var printing: Bool?  // This could represent that printer is printing or printer is uploading file to SD Card. IOW, this means if printer is busy
+    @Published var paused: Bool?
+    @Published var pausing: Bool?
+    @Published var cancelling: Bool?
+    @Published var lastKnownPrintFile: PrintFile?
+
     var octoPrintClient: OctoPrintClient!
     
     init() {
@@ -43,6 +49,12 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
         bedTarget = "--C"
         currentHeight = nil
         layer = nil
+        
+        printing = nil
+        paused = nil
+        pausing = nil
+        cancelling = nil
+        lastKnownPrintFile = nil
     }
     
     // MARK: - Connection handling
@@ -55,6 +67,36 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
         octoPrintClient.disconnectFromServer()
     }
 
+    // MARK: - File operations
+
+    /// Prints the specified file
+    func printFile(origin: String, path: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintClient.printFile(origin: origin, path: path, callback: callback)
+    }
+    
+    // MARK: - Job operations
+
+    func currentJobInfo(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintClient.currentJobInfo(callback: callback)
+    }
+    
+    func pauseCurrentJob(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintClient.pauseCurrentJob(callback: callback)
+    }
+
+    func resumeCurrentJob(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintClient.resumeCurrentJob(callback: callback)
+    }
+    
+    func cancelCurrentJob(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintClient.cancelCurrentJob(callback: callback)
+    }
+    
+    // There needs to be an active job that has been paused in order to be able to restart
+    func restartCurrentJob(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintClient.restartCurrentJob(callback: callback)
+    }
+    
     // MARK: - OctoPrintClientDelegate
     
     func notificationAboutToConnectToServer() {
@@ -102,6 +144,12 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
             if let bedTarget = event.bedTempTarget {
                 self.bedTarget = "\(String(format: "%.0f", bedTarget)) C"
             }
+            self.printing = event.printing
+            self.pausing = event.pausing
+            self.paused = event.paused
+            self.cancelling = event.cancelling
+
+            self.lastKnownPrintFile = event.printFile
         }
     }
     
