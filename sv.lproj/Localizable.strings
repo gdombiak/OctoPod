@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"%@ / %@" = "%1$@ / %2$@";
+
 /* (No Comment) */
 "1 day ago" = "1 dag sedan";
 
@@ -39,6 +42,9 @@
 
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Ogiltigt certifikat eller SSL-problem";
+
+/* No comment provided by engineer. */
+"Bed" = "Bädd";
 
 /* (No Comment) */
 "Bed cooled" = "Skrivarbädd under angiven temperaturgräns";
@@ -161,6 +167,9 @@
 "Enable iCloud under iOS Settings to use this feature" = "Aktivera iCloud under iOS-inställningarna för att använda denna funktion";
 
 /* No comment provided by engineer. */
+"Extruder" = "Extruder";
+
+/* No comment provided by engineer. */
 "Extruder Variance" = "Extruder-variation";
 
 /* No comment provided by engineer. */
@@ -280,6 +289,9 @@
 /* (No Comment) */
 "Failed turn power on" = "Kunde inte begära att slå på strömmen";
 
+/* No comment provided by engineer. */
+"File" = "Fil";
+
 /* (No Comment) */
 "File currently being printed" = "Filen håller på att skrivas ut";
 
@@ -376,6 +388,9 @@
 /* Printer is Offline */
 "Offline" = "Offline";
 
+/* No comment provided by engineer. */
+"Pause" = "Pausa";
+
 /* Siri suggested phrase */
 "Pause current print job" = "Pausa aktuellt utskriftsjobb på %@";
 
@@ -391,14 +406,32 @@
 /* No comment provided by engineer. */
 "Pong History" = "Ponghistorik";
 
+/* No comment provided by engineer. */
+"Print" = "Skriv ut";
+
 /* (No Comment) */
 "Print complete" = "Utskrift klar";
+
+/* No comment provided by engineer. */
+"Print Completion" = "Uppskattad klartid";
 
 /* (No Comment) */
 "Print File" = "Utskriftsfil";
 
+/* No comment provided by engineer. */
+"Print Time" = "Totaltid";
+
+/* No comment provided by engineer. */
+"Print Time Left" = "Tid kvar";
+
+/* No comment provided by engineer. */
+"Printer" = "Skrivare";
+
 /* (No Comment) */
 "Printer not operational" = "Skrivare ej driftklar";
+
+/* No comment provided by engineer. */
+"Printers" = "Skrivare";
 
 /* (No Comment) */
 "Printing" = "Skriver ut";
@@ -409,11 +442,17 @@
 /* Siri suggested phrase */
 "Remaining time current print job" = "Kvarvarande tid på %@";
 
+/* (No Comment) */
+"Restart" = "Starta om";
+
 /* Siri suggested phrase */
 "Restart current print job" = "Starta om aktuellt utskriftsjobb på %@";
 
 /* (No Comment) */
 "Restart Job" = "Starta om";
+
+/* (No Comment) */
+"Resume" = "Återuppta";
 
 /* Siri suggested phrase */
 "Resume current print job" = "Återuppta aktuellt utskriftsjobb på %@";

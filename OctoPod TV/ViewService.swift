@@ -124,7 +124,7 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
             }
 
             if let seconds = event.progressPrintTimeLeft {
-                self.printTimeLeft = UIUtils.secondsToTimeLeft(seconds: seconds, ifZero: "")
+                self.printTimeLeft = UIUtils.secondsToTimeLeft(seconds: seconds, includesApproximationPhrase: false, ifZero: "")
                 self.printEstimatedCompletion = UIUtils.secondsToETA(seconds: seconds)
             } else if event.progressPrintTime != nil {
                 self.printTimeLeft = NSLocalizedString("Still stabilizing", comment: "Print time is being calculated")

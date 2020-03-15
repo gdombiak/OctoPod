@@ -283,7 +283,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             }
 
             if let seconds = event.progressPrintTimeLeft {
-                self.printTimeLeftLabel.text = UIUtils.secondsToTimeLeft(seconds: seconds, ifZero: "")
+                self.printTimeLeftLabel.text = UIUtils.secondsToTimeLeft(seconds: seconds, includesApproximationPhrase: true, ifZero: "")
                 self.printEstimatedCompletionLabel.text = UIUtils.secondsToETA(seconds: seconds)
             } else if event.progressPrintTime != nil {
                 self.printTimeLeftLabel.text = NSLocalizedString("Still stabilizing", comment: "Print time is being calculated")

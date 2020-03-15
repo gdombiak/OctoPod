@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"%@ / %@" = "%1$@ / %2$@";
+
 /* (No Comment) */
 "1 day ago" = "před 1 dnem";
 
@@ -39,6 +42,9 @@
 
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Neplatný certifikát nebo problém s SSL";
+
+/* No comment provided by engineer. */
+"Bed" = "Podložka";
 
 /* (No Comment) */
 "Bed cooled" = "Teplota podložky pod nastavenou mezí";
@@ -161,6 +167,9 @@
 "Enable iCloud under iOS Settings to use this feature" = "Povolte iCloud v nastavení iOS pro použití této funkce";
 
 /* No comment provided by engineer. */
+"Extruder" = "Tryska";
+
+/* No comment provided by engineer. */
 "Extruder Variance" = "Odchylka trysky";
 
 /* No comment provided by engineer. */
@@ -280,6 +289,9 @@
 /* (No Comment) */
 "Failed turn power on" = "Nezdařila se žádost o zapnutí";
 
+/* No comment provided by engineer. */
+"File" = "Soubor";
+
 /* (No Comment) */
 "File currently being printed" = "Soubor se právě tiskne";
 
@@ -376,6 +388,9 @@
 /* Printer is Offline */
 "Offline" = "Vypnutá";
 
+/* No comment provided by engineer. */
+"Pause" = "Pozastavit";
+
 /* Siri suggested phrase */
 "Pause current print job" = "Pause current print job on %@";
 
@@ -391,14 +406,32 @@
 /* No comment provided by engineer. */
 "Pong History" = "Historie Pong";
 
+/* No comment provided by engineer. */
+"Print" = "Tisknout";
+
 /* (No Comment) */
 "Print complete" = "Tisk dokončen";
+
+/* No comment provided by engineer. */
+"Print Completion" = "Odhad dokončení";
 
 /* (No Comment) */
 "Print File" = "Tisknout soubor";
 
+/* No comment provided by engineer. */
+"Print Time" = "Čas tisku";
+
+/* No comment provided by engineer. */
+"Print Time Left" = "Zbývající čas";
+
+/* No comment provided by engineer. */
+"Printer" = "Tiskárna";
+
 /* (No Comment) */
 "Printer not operational" = "Tiskárna není funkční";
+
+/* No comment provided by engineer. */
+"Printers" = "Tiskárny";
 
 /* (No Comment) */
 "Printing" = "Tiskne se";
@@ -409,11 +442,17 @@
 /* Siri suggested phrase */
 "Remaining time current print job" = "Time left on %@";
 
+/* (No Comment) */
+"Restart" = "Restartovat";
+
 /* Siri suggested phrase */
 "Restart current print job" = "Restart current print job on %@";
 
 /* (No Comment) */
 "Restart Job" = "Restartovat";
+
+/* (No Comment) */
+"Resume" = "Obnovit";
 
 /* Siri suggested phrase */
 "Resume current print job" = "Resume current print job on %@";

@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"%@ / %@" = "%1$@ / %2$@";
+
 /* (No Comment) */
 "1 day ago" = "Il y a 1 jour";
 
@@ -39,6 +42,9 @@
 
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Mauvais certificat ou erreur SSL";
+
+/* No comment provided by engineer. */
+"Bed" = "Plateau";
 
 /* (No Comment) */
 "Bed cooled" = "Température du plateau en dessous du seuil spécifié";
@@ -161,6 +167,9 @@
 "Enable iCloud under iOS Settings to use this feature" = "Activer iCloud dans les paramètres iOS pour utiliser cette fonctionnalité";
 
 /* No comment provided by engineer. */
+"Extruder" = "Extrudeur";
+
+/* No comment provided by engineer. */
 "Extruder Variance" = "Variance Extrudeur";
 
 /* No comment provided by engineer. */
@@ -280,6 +289,9 @@
 /* (No Comment) */
 "Failed turn power on" = "Échec de la demande d’allumage";
 
+/* No comment provided by engineer. */
+"File" = "Fichier";
+
 /* (No Comment) */
 "File currently being printed" = "Fichier en cours d’impression";
 
@@ -376,6 +388,9 @@
 /* Printer is Offline */
 "Offline" = "Hors-ligne";
 
+/* No comment provided by engineer. */
+"Pause" = "Pause";
+
 /* Siri suggested phrase */
 "Pause current print job" = "Pause sur %@";
 
@@ -391,14 +406,32 @@
 /* No comment provided by engineer. */
 "Pong History" = "Pong historique";
 
+/* No comment provided by engineer. */
+"Print" = "Imprimer";
+
 /* (No Comment) */
 "Print complete" = "Impression terminée";
+
+/* No comment provided by engineer. */
+"Print Completion" = "Fin estimée";
 
 /* (No Comment) */
 "Print File" = "Imprimer";
 
+/* No comment provided by engineer. */
+"Print Time" = "Durée d’impression";
+
+/* No comment provided by engineer. */
+"Print Time Left" = "Temps restant";
+
+/* No comment provided by engineer. */
+"Printer" = "Imprimante";
+
 /* (No Comment) */
 "Printer not operational" = "Imprimante non-opérationnelle";
+
+/* No comment provided by engineer. */
+"Printers" = "Imprimantes";
 
 /* (No Comment) */
 "Printing" = "En cours d’impression";
@@ -409,11 +442,17 @@
 /* Siri suggested phrase */
 "Remaining time current print job" = "Temps restant sur %@";
 
+/* (No Comment) */
+"Restart" = "Recommencer";
+
 /* Siri suggested phrase */
 "Restart current print job" = "Recommencer sur %@";
 
 /* (No Comment) */
 "Restart Job" = "Recommencer";
+
+/* (No Comment) */
+"Resume" = "Reprendre";
 
 /* Siri suggested phrase */
 "Resume current print job" = "Reprendre sur %@";

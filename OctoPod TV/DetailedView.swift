@@ -67,7 +67,7 @@ struct DetailedView : View {
                                 self.value(text: self.service.layer!)
                             }
                         }
-                    }.frame(minWidth: 450)
+                    }.frame(minWidth: 510)
                     VStack {
                         if self.cameraService.image != nil {
                             Image(uiImage: self.cameraService.image!)
@@ -178,12 +178,14 @@ struct DetailedView : View {
     }
     
     fileprivate func cancel(enabled: Bool) -> some View {
-        return PrintJobButton(confirmationText: "Do you want to cancel job?", type: PrintJobButton.JobType.Cancel, service: service)
+        let confirmText = NSLocalizedString("Do you want to cancel job?", comment: "")
+        return PrintJobButton(confirmationText: confirmText, type: PrintJobButton.JobType.Cancel, service: service)
             .disabled(!enabled)
     }
     
     fileprivate func restart() -> some View {
-        return PrintJobButton(confirmationText: "Do you want to restart print job from the beginning?", type: PrintJobButton.JobType.Restart, service: service)
+        let confirmText = NSLocalizedString("Do you want to restart print job from the beginning?", comment: "")
+        return PrintJobButton(confirmationText: confirmText, type: PrintJobButton.JobType.Restart, service: service)
     }
     
     fileprivate func resume() -> some View {

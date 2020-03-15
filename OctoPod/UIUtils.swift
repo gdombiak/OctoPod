@@ -88,7 +88,7 @@ class UIUtils {
     
     /// Return estimated time based on number of estimated seconds to completion
     /// - parameter seconds: estimated number of seconds to complection
-    static func secondsToTimeLeft(seconds: Int, ifZero: String) -> String {
+    static func secondsToTimeLeft(seconds: Int, includesApproximationPhrase: Bool, ifZero: String) -> String {
         if seconds == 0 {
             return ifZero
         } else if seconds < 0 {
@@ -99,7 +99,7 @@ class UIUtils {
         let duration = TimeInterval(seconds)
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .brief
-        formatter.includesApproximationPhrase = true
+        formatter.includesApproximationPhrase = includesApproximationPhrase
         formatter.allowedUnits = [ .day, .hour, .minute ]
         return formatter.string(from: duration)!
     }

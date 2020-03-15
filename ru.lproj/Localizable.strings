@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"%@ / %@" = "%1$@ / %2$@";
+
 /* (No Comment) */
 "1 day ago" = "день назад";
 
@@ -39,6 +42,9 @@
 
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Неверный сертификат или проблема с SSL";
+
+/* No comment provided by engineer. */
+"Bed" = "Стол";
 
 /* (No Comment) */
 "Bed cooled" = "Стол принтера ниже заданного температурного порога";
@@ -161,6 +167,9 @@
 "Enable iCloud under iOS Settings to use this feature" = "Включите iCloud в настройках iOS, чтобы использовать эту функцию";
 
 /* No comment provided by engineer. */
+"Extruder" = "Экструдер";
+
+/* No comment provided by engineer. */
 "Extruder Variance" = "Изм. t° Экструдера";
 
 /* No comment provided by engineer. */
@@ -280,6 +289,9 @@
 /* (No Comment) */
 "Failed turn power on" = "Не удалось выполнить запрос на включение питания";
 
+/* No comment provided by engineer. */
+"File" = "Файл";
+
 /* (No Comment) */
 "File currently being printed" = "Файл, который сейчас печатается";
 
@@ -376,6 +388,9 @@
 /* Printer is Offline */
 "Offline" = "Не в сети";
 
+/* No comment provided by engineer. */
+"Pause" = "Пауза";
+
 /* Siri suggested phrase */
 "Pause current print job" = "Приостановить текущее задание печати на %@";
 
@@ -391,14 +406,32 @@
 /* No comment provided by engineer. */
 "Pong History" = "История Pong";
 
+/* No comment provided by engineer. */
+"Print" = "Печать";
+
 /* (No Comment) */
 "Print complete" = "Печать завершена";
+
+/* No comment provided by engineer. */
+"Print Completion" = "Окончание";
 
 /* (No Comment) */
 "Print File" = "Распечатать файл";
 
+/* No comment provided by engineer. */
+"Print Time" = "Время печати";
+
+/* No comment provided by engineer. */
+"Print Time Left" = "Осталось";
+
+/* No comment provided by engineer. */
+"Printer" = "Принтер";
+
 /* (No Comment) */
 "Printer not operational" = "Принтер не отвечает";
+
+/* No comment provided by engineer. */
+"Printers" = "Принтеры";
 
 /* (No Comment) */
 "Printing" = "Печать";
@@ -409,11 +442,17 @@
 /* Siri suggested phrase */
 "Remaining time current print job" = "Осталось времени на %@";
 
+/* (No Comment) */
+"Restart" = "Перезапуск";
+
 /* Siri suggested phrase */
 "Restart current print job" = "Перезапустить текущее задание печати на %@";
 
 /* (No Comment) */
 "Restart Job" = "Перезапустить задание";
+
+/* (No Comment) */
+"Resume" = "Продолжить";
 
 /* Siri suggested phrase */
 "Resume current print job" = "Возобновить текущее задание печати на %@";

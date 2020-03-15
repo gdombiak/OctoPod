@@ -113,7 +113,7 @@ struct ContentView: View {
                             .bold()
                             .foregroundColor(.red)
                     }
-                }.navigationBarTitle("Printers")
+                }.navigationBarTitle(Text("Printers"))
             }.onReceive(self.tvPrinterManager.$printers) { printers in
                 // Close existing socket connections and open new ones for printers in page 1
                 if self.page > 1 {

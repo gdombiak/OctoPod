@@ -163,6 +163,9 @@
 /* Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf"; */
 "bep-Im-uzf.text" = "Impreso";
 
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "Bld-AB-rzW"; */
+"Bld-AB-rzW.text" = "Subtitle";
+
 /* Class = "UILabel"; text = "Print Completion"; ObjectID = "blG-5R-gJE"; */
 "blG-5R-gJE.text" = "Impresión completa";
 
@@ -390,6 +393,9 @@
 
 /* Class = "UIButton"; normalTitle = "Cut"; ObjectID = "i3l-7C-iJB"; */
 "i3l-7C-iJB.normalTitle" = "Cortar";
+
+/* Class = "UIButton"; normalTitle = "Popular GCode Commands"; ObjectID = "Iuu-Fk-Mu7"; */
+"Iuu-Fk-Mu7.normalTitle" = "Comandos GCode populares";
 
 /* Class = "UITableViewSection"; headerTitle = "Move"; ObjectID = "iY8-Rh-TKn"; */
 "iY8-Rh-TKn.headerTitle" = "Mover";
@@ -703,7 +709,10 @@
 /* Class = "UILabel"; text = "Layer"; ObjectID = "UcJ-hU-xU2"; */
 "UcJ-hU-xU2.text" = "Capa";
 
-/* Class = "UILabel"; text = "GCode command"; ObjectID = "uge-6J-pcC"; */
+/* Class = "UILabel"; text = "Title"; ObjectID = "ug1-TR-XyB"; */
+"ug1-TR-XyB.text" = "Title";
+
+/* Class = "UILabel"; text = "GCode"; ObjectID = "uge-6J-pcC"; */
 "uge-6J-pcC.text" = "Comando GCode";
 
 /* Class = "UILabel"; text = "60.0 C"; ObjectID = "UiU-6m-I6P"; */

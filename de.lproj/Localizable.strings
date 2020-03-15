@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"%@ / %@" = "%1$@ / %2$@";
+
 /* (No Comment) */
 "1 day ago" = "Vor 1 Tag";
 
@@ -20,16 +23,16 @@
 "Actual Extruder" = "Ist-Wert Düse";
 
 /* (No Comment) */
-"Actual Extruder 2" = "Ist-Wert Extruder 2";
+"Actual Extruder 2" = "Ist-Wert Düse 2";
 
 /* No comment provided by engineer. */
-"Actual Extruder 3" = "Ist-Wert Extruder 3";
+"Actual Extruder 3" = "Ist-Wert Düse 3";
 
 /* No comment provided by engineer. */
-"Actual Extruder 4" = "Ist-Wert Extruder 4";
+"Actual Extruder 4" = "Ist-Wert Düse 4";
 
 /* No comment provided by engineer. */
-"Actual Extruder 5" = "Ist-Wert Extruder 5";
+"Actual Extruder 5" = "Ist-Wert Düse 5";
 
 /* (No Comment) */
 "Apply" = "Übernehmen";
@@ -39,6 +42,9 @@
 
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Zertifikat fehlerhaft oder SSL Problem";
+
+/* No comment provided by engineer. */
+"Bed" = "Bett";
 
 /* (No Comment) */
 "Bed cooled" = "Druckbett unterhalb der vorgegebenen Temperaturschwelle";
@@ -161,6 +167,9 @@
 "Enable iCloud under iOS Settings to use this feature" = "Aktiviere iCloud in den iOS Einstellungen um diese Funktion zu nutzen";
 
 /* No comment provided by engineer. */
+"Extruder" = "Düse";
+
+/* No comment provided by engineer. */
 "Extruder Variance" = "Extruder Variante";
 
 /* No comment provided by engineer. */
@@ -280,6 +289,9 @@
 /* (No Comment) */
 "Failed turn power on" = "Spannung einschalten fehlgeschlagen";
 
+/* No comment provided by engineer. */
+"File" = "Datei";
+
 /* (No Comment) */
 "File currently being printed" = "Datei wird bereits gedruckt";
 
@@ -376,6 +388,9 @@
 /* Printer is Offline */
 "Offline" = "Getrennt";
 
+/* No comment provided by engineer. */
+"Pause" = "Pause";
+
 /* Siri suggested phrase */
 "Pause current print job" = "Aktuellen Druckauftrag an %@ pausieren";
 
@@ -391,14 +406,32 @@
 /* No comment provided by engineer. */
 "Pong History" = "Pong Verlauf";
 
+/* No comment provided by engineer. */
+"Print" = "Drucken";
+
 /* (No Comment) */
 "Print complete" = "Druck vollständig";
+
+/* No comment provided by engineer. */
+"Print Completion" = "Geschätze Endzeit";
 
 /* (No Comment) */
 "Print File" = "Datei drucken";
 
+/* No comment provided by engineer. */
+"Print Time" = "Druckzeit";
+
+/* No comment provided by engineer. */
+"Print Time Left" = "Restzeit";
+
+/* No comment provided by engineer. */
+"Printer" = "Drucker";
+
 /* (No Comment) */
 "Printer not operational" = "Drucker nicht in Betrieb";
+
+/* No comment provided by engineer. */
+"Printers" = "Drucker";
 
 /* (No Comment) */
 "Printing" = "Druckt";
@@ -409,11 +442,17 @@
 /* Siri suggested phrase */
 "Remaining time current print job" = "Verbleibende Zeit an %@";
 
+/* (No Comment) */
+"Restart" = "Neustart";
+
 /* Siri suggested phrase */
 "Restart current print job" = "Aktuellen Druckauftrag neu starten an %@";
 
 /* (No Comment) */
 "Restart Job" = "Neustart";
+
+/* (No Comment) */
+"Resume" = "Fortsetzen";
 
 /* Siri suggested phrase */
 "Resume current print job" = "Aktuellen Druckauftrag fortsetzen an %@";

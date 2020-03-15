@@ -1,3 +1,6 @@
+/* No comment provided by engineer. */
+"%@ / %@" = "%1$@ / %2$@";
+
 /* (No Comment) */
 "1 day ago" = "Hace 1 día";
 
@@ -37,8 +40,14 @@
 /* HTTP authentication failed */
 "Authentication failed" = "Error de autenticación";
 
+/* No comment provided by engineer. */
+"Back" = "Atrás";
+
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Problemas con el certificado o con SSL";
+
+/* No comment provided by engineer. */
+"Bed" = "Cama";
 
 /* (No Comment) */
 "Bed cooled" = "Cama de la impresora por debajo del umbral de temperatura especificado";
@@ -48,6 +57,9 @@
 
 /* (No Comment) */
 "Bed warmed" = "Cama de la impresora calentada a la temperatura y duración especificadas";
+
+/* No comment provided by engineer. */
+"Camera" = "Cámara";
 
 /* (No Comment) */
 "Cancel" = "Cancelar";
@@ -109,6 +121,9 @@
 /* Connect */
 "Connect" = "Conectar";
 
+/* No comment provided by engineer. */
+"Connect to iCloud to retrieve list of printers from your iPad/iPhone" = "Conéctese al iCloud para recuperar lista de impresoras de su iPad / iPhone";
+
 /* Connected */
 "Connected" = "Conectado";
 
@@ -132,6 +147,9 @@
 
 /* Connection to server failed */
 "Could not connect to the server" = "No se puede conectar con el servidor";
+
+/* No comment provided by engineer. */
+"Current Height" = "Altura actual";
 
 /* http://docs.octoprint.org/en/master/features/custom_controls.html */
 "Custom Controls" = "Controles personalizados";
@@ -159,6 +177,12 @@
 
 /* (No Comment) */
 "Enable iCloud under iOS Settings to use this feature" = "Habilita iCloud en la configuración de iOS para usar esta función";
+
+/* gcode name */
+"Endstop States" = "Estado de finales de carrera";
+
+/* No comment provided by engineer. */
+"Extruder" = "Extrusor";
 
 /* No comment provided by engineer. */
 "Extruder Variance" = "Variación extrusor";
@@ -280,6 +304,9 @@
 /* (No Comment) */
 "Failed turn power on" = "Error al encender";
 
+/* No comment provided by engineer. */
+"File" = "Archivo";
+
 /* (No Comment) */
 "File currently being printed" = "Archivo actualmente en impresión";
 
@@ -322,6 +349,12 @@
 /* (No Comment) */
 "Job" = "Trabajo";
 
+/* No comment provided by engineer. */
+"Layer" = "Capa";
+
+/* gcode name */
+"Load filament" = "Cargar filamento";
+
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "La ubicación ya no es válida. Actualizar archivos";
 
@@ -342,6 +375,9 @@
 
 /* (No Comment) */
 "Move" = "Mover";
+
+/* No comment provided by engineer. */
+"Next" = "Siguiente";
 
 /* (No Comment) */
 "No" = "No";
@@ -376,6 +412,9 @@
 /* Printer is Offline */
 "Offline" = "Fuera de Línea";
 
+/* No comment provided by engineer. */
+"Pause" = "Pausa";
+
 /* Siri suggested phrase */
 "Pause current print job" = "Suspender trabajo en impresora %@";
 
@@ -385,23 +424,50 @@
 /* (No Comment) */
 "Paused" = "Suspendido";
 
+/* gcode name */
+"PID Bed autotune" = "PID autoajuste de cama";
+
+/* gcode name */
+"PID Hotend autotune" = "PID autoajuste del hotend";
+
 /* No comment provided by engineer. */
 "Ping History" = "Historia Pings";
 
 /* No comment provided by engineer. */
 "Pong History" = "Historia Pongs";
 
+/* No comment provided by engineer. */
+"Print" = "Imprimir";
+
 /* (No Comment) */
 "Print complete" = "Impresión completa";
+
+/* No comment provided by engineer. */
+"Print Completion" = "Impresión completa";
 
 /* (No Comment) */
 "Print File" = "Imprimir";
 
+/* No comment provided by engineer. */
+"Print Time" = "Tiempo impresión";
+
+/* No comment provided by engineer. */
+"Print Time Left" = "Tiempo restante";
+
+/* No comment provided by engineer. */
+"Printer" = "Impresora";
+
 /* (No Comment) */
 "Printer not operational" = "Impresora no operativa";
 
+/* No comment provided by engineer. */
+"Printers" = "Impresoras";
+
 /* (No Comment) */
 "Printing" = "Imprimiendo";
+
+/* No comment provided by engineer. */
+"Progress" = "Progreso";
 
 /* (No Comment) */
 "Pull down to refresh" = "Tire hacia abajo para refrescar";
@@ -409,11 +475,23 @@
 /* Siri suggested phrase */
 "Remaining time current print job" = "Tiempo restante en %@";
 
+/* gcode name */
+"Report Settings" = "Mostrar configuración";
+
+/* (No Comment) */
+"Restart" = "Reiniciar";
+
 /* Siri suggested phrase */
 "Restart current print job" = "Reiniciar trabajo en impresora %@";
 
 /* (No Comment) */
 "Restart Job" = "Reiniciar";
+
+/* gcode name */
+"Restore Settings" = "Restaurar configuración";
+
+/* (No Comment) */
+"Resume" = "Continuar";
 
 /* Siri suggested phrase */
 "Resume current print job" = "Continuar trabajo en impresora %@";
@@ -421,8 +499,14 @@
 /* (No Comment) */
 "Resume Job" = "Reanudar";
 
+/* No comment provided by engineer. */
+"Retrieving printers information" = "Recuperando información de impresoras";
+
 /* Execute Command */
 "Run" = "Ejecutar";
+
+/* gcode name */
+"Save Settings" = "Guardar ajustes";
 
 /* Origin is SD Card */
 "SD Card" = "Tarjeta SD";
@@ -436,11 +520,20 @@
 /* (No Comment) */
 "Service is down or incorrect port" = "El servicio está inactivo o el puerto es incorrecto";
 
+/* gcode name */
+"Set Bed PID" = "Establecer PID de la cama";
+
+/* gcode name */
+"Set Hotend PID" = "Establecer PID del hotend";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Silenciar 1 hora";
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Silenciar 8 horas";
+
+/* No comment provided by engineer. */
+"State" = "Estado";
 
 /* Print time is being calculated */
 "Still stabilizing" = "Estabilizando...";
@@ -484,6 +577,15 @@
 /* (No Comment) */
 "Terminal" = "Terminal";
 
+/* gcode name */
+"TMC Bump Sensitivity" = "TMC Sensibilidad al golpe";
+
+/* gcode name */
+"TMC Debugging" = "TMC Depuración";
+
+/* gcode name */
+"TMC Motor Current" = "TMC Corriente del motor";
+
 /* (No Comment) */
 "TPLink Smartplugs" = "TPLink Smartplugs";
 
@@ -500,6 +602,9 @@
 
 /* Unknown Custom Control */
 "Unknown Control" = "Control desconocido";
+
+/* gcode name */
+"Unload filament" = "Descargar filamento";
 
 /* Title for window that alerts user that updates for plugins are available */
 "Update Available" = "Actualización disponible";
