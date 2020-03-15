@@ -40,6 +40,9 @@
 /* HTTP authentication failed */
 "Authentication failed" = "Chyba ověření";
 
+/* No comment provided by engineer. */
+"Back" = "Zpět";
+
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Neplatný certifikát nebo problém s SSL";
 
@@ -54,6 +57,9 @@
 
 /* (No Comment) */
 "Bed warmed" = "Podložka nahřáta na nastavenou teplotu a dobu";
+
+/* No comment provided by engineer. */
+"Camera" = "Kamera";
 
 /* (No Comment) */
 "Cancel" = "Zrušit";
@@ -115,6 +121,9 @@
 /* Connect */
 "Connect" = "Připojit";
 
+/* No comment provided by engineer. */
+"Connect to iCloud to retrieve list of printers from your iPad/iPhone" = "Připojit se na iCloud a získat seznam tiskáren z vašeho iPadu/iPhonu";
+
 /* Connected */
 "Connected" = "Připojený";
 
@@ -138,6 +147,9 @@
 
 /* Connection to server failed */
 "Could not connect to the server" = "Nelze se připojit k serveru";
+
+/* No comment provided by engineer. */
+"Current Height" = "Aktuální výška";
 
 /* http://docs.octoprint.org/en/master/features/custom_controls.html */
 "Custom Controls" = "Vlastní ovládání";
@@ -165,6 +177,9 @@
 
 /* (No Comment) */
 "Enable iCloud under iOS Settings to use this feature" = "Povolte iCloud v nastavení iOS pro použití této funkce";
+
+/* gcode name */
+"Endstop States" = "Stav koncových spínačů";
 
 /* No comment provided by engineer. */
 "Extruder" = "Tryska";
@@ -334,6 +349,12 @@
 /* (No Comment) */
 "Job" = "Tisk";
 
+/* No comment provided by engineer. */
+"Layer" = "Vrstva";
+
+/* gcode name */
+"Load filament" = "Zavést filament";
+
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Umístění již není platné. Obnovte soubory";
 
@@ -354,6 +375,9 @@
 
 /* (No Comment) */
 "Move" = "Posunout";
+
+/* No comment provided by engineer. */
+"Next" = "Další";
 
 /* (No Comment) */
 "No" = "Ne";
@@ -400,6 +424,12 @@
 /* (No Comment) */
 "Paused" = "Zastaveno";
 
+/* gcode name */
+"PID Bed autotune" = "PID autotune podložky";
+
+/* gcode name */
+"PID Hotend autotune" = "PID autotune trysky";
+
 /* No comment provided by engineer. */
 "Ping History" = "Historie Ping";
 
@@ -436,11 +466,17 @@
 /* (No Comment) */
 "Printing" = "Tiskne se";
 
+/* No comment provided by engineer. */
+"Progress" = "Pokrok";
+
 /* (No Comment) */
 "Pull down to refresh" = "Táhněte dolů pro obnovení";
 
 /* Siri suggested phrase */
 "Remaining time current print job" = "Time left on %@";
+
+/* gcode name */
+"Report Settings" = "Nahlásit nastavení";
 
 /* (No Comment) */
 "Restart" = "Restartovat";
@@ -451,6 +487,9 @@
 /* (No Comment) */
 "Restart Job" = "Restartovat";
 
+/* gcode name */
+"Restore Settings" = "Obnovit nastavení";
+
 /* (No Comment) */
 "Resume" = "Obnovit";
 
@@ -460,8 +499,14 @@
 /* (No Comment) */
 "Resume Job" = "Pokračovat";
 
+/* No comment provided by engineer. */
+"Retrieving printers information" = "Získávání informací o tiskárnách";
+
 /* Execute Command */
 "Run" = "Spustit";
+
+/* gcode name */
+"Save Settings" = "Uložit nastavení";
 
 /* Origin is SD Card */
 "SD Card" = "SD karta";
@@ -475,11 +520,20 @@
 /* (No Comment) */
 "Service is down or incorrect port" = "Služba není funkční nebo je špatný port";
 
+/* gcode name */
+"Set Bed PID" = "Nastavit PID podložky";
+
+/* gcode name */
+"Set Hotend PID" = "Nastavit PID trysky";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Odložit na 1 hodinu";
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Odložit na 8 hodin";
+
+/* No comment provided by engineer. */
+"State" = "Stav";
 
 /* Print time is being calculated */
 "Still stabilizing" = "Stále se stabilizuje...";
@@ -523,6 +577,15 @@
 /* (No Comment) */
 "Terminal" = "Terminál";
 
+/* gcode name */
+"TMC Bump Sensitivity" = "Citlivost nárazů TMC";
+
+/* gcode name */
+"TMC Debugging" = "TMC debugging";
+
+/* gcode name */
+"TMC Motor Current" = "Proud TMC motoru";
+
 /* (No Comment) */
 "TPLink Smartplugs" = "Chytré zásuvky TPLink";
 
@@ -539,6 +602,9 @@
 
 /* Unknown Custom Control */
 "Unknown Control" = "Neznámý ovladač";
+
+/* gcode name */
+"Unload filament" = "Vyvést filament";
 
 /* Title for window that alerts user that updates for plugins are available */
 "Update Available" = "Aktualizace je k dispozici";
