@@ -350,7 +350,7 @@
 "Job" = "Stampa";
 
 /* No comment provided by engineer. */
-"Layer" = "Strato";
+"Layer" = "Layer";
 
 /* gcode name */
 "Load filament" = "Carica filamento";
@@ -452,7 +452,7 @@
 "Print Time" = "Tempo di stampa";
 
 /* No comment provided by engineer. */
-"Print Time Left" = "Tempo di stampa rimasto";
+"Print Time Left" = "Tempo rimasto";
 
 /* No comment provided by engineer. */
 "Printer" = "Stampante";
@@ -476,7 +476,7 @@
 "Remaining time current print job" = "Tempo rimanente su %@";
 
 /* gcode name */
-"Report Settings" = "Segnala impostazioni";
+"Report Settings" = "Mostra impostazioni";
 
 /* (No Comment) */
 "Restart" = "Riavvia";

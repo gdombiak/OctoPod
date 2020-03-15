@@ -53,7 +53,7 @@
 "5GO-ai-ldL.text" = "Giunzione";
 
 /* Class = "UILabel"; text = "Print Time Left"; ObjectID = "5hR-SK-V2r"; */
-"5hR-SK-V2r.text" = "Tempo di stampa rimasto";
+"5hR-SK-V2r.text" = "Tempo rimasto";
 
 /* Class = "UILabel"; text = "250 C"; ObjectID = "5ry-aI-ZKw"; */
 "5ry-aI-ZKw.text" = "250 C";
@@ -707,7 +707,7 @@
 "u6S-b1-CTI.text" = "Installa il plugin di OctoPod per ricevere notifiche push immediate con anteprime della fotocamera";
 
 /* Class = "UILabel"; text = "Layer"; ObjectID = "UcJ-hU-xU2"; */
-"UcJ-hU-xU2.text" = "Strato";
+"UcJ-hU-xU2.text" = "Layer";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "ug1-TR-XyB"; */
 "ug1-TR-XyB.text" = "Title";
