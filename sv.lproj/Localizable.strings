@@ -476,7 +476,7 @@
 "Remaining time current print job" = "Kvarvarande tid på %@";
 
 /* gcode name */
-"Report Settings" = "Rapportinställningar";
+"Report Settings" = "Rapportera inställningar";
 
 /* (No Comment) */
 "Restart" = "Starta om";
@@ -488,7 +488,7 @@
 "Restart Job" = "Starta om";
 
 /* gcode name */
-"Restore Settings" = "Återställningsinställningar";
+"Restore Settings" = "Återställ inställningar";
 
 /* (No Comment) */
 "Resume" = "Återuppta";
