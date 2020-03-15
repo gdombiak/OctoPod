@@ -40,6 +40,9 @@
 /* HTTP authentication failed */
 "Authentication failed" = "Autentisering misslyckades";
 
+/* No comment provided by engineer. */
+"Back" = "Tillbaka";
+
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Ogiltigt certifikat eller SSL-problem";
 
@@ -54,6 +57,9 @@
 
 /* (No Comment) */
 "Bed warmed" = "Skrivarbädd uppvärmd till angiven temperatur och varaktighet";
+
+/* No comment provided by engineer. */
+"Camera" = "Kamera";
 
 /* (No Comment) */
 "Cancel" = "Avbryt";
@@ -115,6 +121,9 @@
 /* Connect */
 "Connect" = "Anslut";
 
+/* No comment provided by engineer. */
+"Connect to iCloud to retrieve list of printers from your iPad/iPhone" = "Anslut till iCloud för att hämta en lista över skrivare från din iPad/iPhone";
+
 /* Connected */
 "Connected" = "Ansluten";
 
@@ -138,6 +147,9 @@
 
 /* Connection to server failed */
 "Could not connect to the server" = "Kan inte ansluta till servern";
+
+/* No comment provided by engineer. */
+"Current Height" = "Aktuell höjd";
 
 /* http://docs.octoprint.org/en/master/features/custom_controls.html */
 "Custom Controls" = "Anpassade kontroller";
@@ -165,6 +177,9 @@
 
 /* (No Comment) */
 "Enable iCloud under iOS Settings to use this feature" = "Aktivera iCloud under iOS-inställningarna för att använda denna funktion";
+
+/* gcode name */
+"Endstop States" = "Ändlägestillstånd";
 
 /* No comment provided by engineer. */
 "Extruder" = "Extruder";
@@ -334,6 +349,12 @@
 /* (No Comment) */
 "Job" = "Jobb";
 
+/* No comment provided by engineer. */
+"Layer" = "Lager";
+
+/* gcode name */
+"Load filament" = "Ladda filament";
+
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Plats inte längre giltig. Uppdatera filer";
 
@@ -354,6 +375,9 @@
 
 /* (No Comment) */
 "Move" = "Flytta";
+
+/* No comment provided by engineer. */
+"Next" = "Nästa";
 
 /* (No Comment) */
 "No" = "Nej";
@@ -400,6 +424,12 @@
 /* (No Comment) */
 "Paused" = "Pausad";
 
+/* gcode name */
+"PID Bed autotune" = "PID Bädd autojustering";
+
+/* gcode name */
+"PID Hotend autotune" = "PID Hotend autojustering";
+
 /* No comment provided by engineer. */
 "Ping History" = "Pinghistorik";
 
@@ -436,11 +466,17 @@
 /* (No Comment) */
 "Printing" = "Skriver ut";
 
+/* No comment provided by engineer. */
+"Progress" = "Framsteg";
+
 /* (No Comment) */
 "Pull down to refresh" = "Dra nedåt för att uppdatera";
 
 /* Siri suggested phrase */
 "Remaining time current print job" = "Kvarvarande tid på %@";
+
+/* gcode name */
+"Report Settings" = "Rapportinställningar";
 
 /* (No Comment) */
 "Restart" = "Starta om";
@@ -451,6 +487,9 @@
 /* (No Comment) */
 "Restart Job" = "Starta om";
 
+/* gcode name */
+"Restore Settings" = "Återställningsinställningar";
+
 /* (No Comment) */
 "Resume" = "Återuppta";
 
@@ -460,8 +499,14 @@
 /* (No Comment) */
 "Resume Job" = "Återuppta";
 
+/* No comment provided by engineer. */
+"Retrieving printers information" = "Hämtar information om skrivare";
+
 /* Execute Command */
 "Run" = "Kör";
+
+/* gcode name */
+"Save Settings" = "Spara inställningar";
 
 /* Origin is SD Card */
 "SD Card" = "SD-kort";
@@ -475,11 +520,20 @@
 /* (No Comment) */
 "Service is down or incorrect port" = "Tjänsten är nere eller felaktig port";
 
+/* gcode name */
+"Set Bed PID" = "Ställ in Bädd-PID";
+
+/* gcode name */
+"Set Hotend PID" = "Ställ in Hotend-PID";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Snooze 1 timma";
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Snooze 8 timmar";
+
+/* No comment provided by engineer. */
+"State" = "Tillstånd";
 
 /* Print time is being calculated */
 "Still stabilizing" = "Stabiliserar fortfarande...";
@@ -523,6 +577,15 @@
 /* (No Comment) */
 "Terminal" = "Terminal";
 
+/* gcode name */
+"TMC Bump Sensitivity" = "TMC Stötkänslighet";
+
+/* gcode name */
+"TMC Debugging" = "TMC Felsökning";
+
+/* gcode name */
+"TMC Motor Current" = "TMC Aktuell motor";
+
 /* (No Comment) */
 "TPLink Smartplugs" = "TP-Link Smarta uttag";
 
@@ -539,6 +602,9 @@
 
 /* Unknown Custom Control */
 "Unknown Control" = "Okänd kontroll";
+
+/* gcode name */
+"Unload filament" = "Lossa filament";
 
 /* Title for window that alerts user that updates for plugins are available */
 "Update Available" = "Uppdatering tillgänglig";
