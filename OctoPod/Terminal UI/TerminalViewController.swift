@@ -15,7 +15,6 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     @IBOutlet weak var dismissHistoryButton: UIButton!
     @IBOutlet weak var popularGCodeButton: UIButton!
     
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var terminalTextView: UITextView!
     @IBOutlet weak var refreshSwitch: UISwitch!
     @IBOutlet weak var gcodeField: UITextField!
@@ -173,6 +172,8 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoPopularGCode" {
             segue.destination.popoverPresentationController!.delegate = self
+            // Make the popover appear at the middle of the button
+            segue.destination.popoverPresentationController!.sourceRect = CGRect(x: popularGCodeButton.frame.size.width/2, y: popularGCodeButton.frame.size.height/2 , width: 0, height: 0)
         }
     }
     
