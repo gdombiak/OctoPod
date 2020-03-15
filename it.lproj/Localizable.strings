@@ -40,6 +40,9 @@
 /* HTTP authentication failed */
 "Authentication failed" = "Autenticazione fallita";
 
+/* No comment provided by engineer. */
+"Back" = "Indietro";
+
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Certificato non valido o problema SSL";
 
@@ -54,6 +57,9 @@
 
 /* (No Comment) */
 "Bed warmed" = "Piatto della stampante riscaldato alla temperatura e per la durata specificate";
+
+/* No comment provided by engineer. */
+"Camera" = "Videocamera";
 
 /* (No Comment) */
 "Cancel" = "Annulla";
@@ -115,6 +121,9 @@
 /* Connect */
 "Connect" = "Connetti";
 
+/* No comment provided by engineer. */
+"Connect to iCloud to retrieve list of printers from your iPad/iPhone" = "Collegati a iCloud per recuperare la lista delle stampanti dal tuo iPad/iPhone";
+
 /* Connected */
 "Connected" = "Connesso";
 
@@ -138,6 +147,9 @@
 
 /* Connection to server failed */
 "Could not connect to the server" = "Impossibile connettersi al server";
+
+/* No comment provided by engineer. */
+"Current Height" = "Altezza attuale";
 
 /* http://docs.octoprint.org/en/master/features/custom_controls.html */
 "Custom Controls" = "Controlli personalizzati";
@@ -165,6 +177,9 @@
 
 /* (No Comment) */
 "Enable iCloud under iOS Settings to use this feature" = "Abilita iCloud nelle Impostazioni di iOS per usare questa funzione";
+
+/* gcode name */
+"Endstop States" = "Stato dei finecorsa";
 
 /* No comment provided by engineer. */
 "Extruder" = "Estrusore";
@@ -334,6 +349,12 @@
 /* (No Comment) */
 "Job" = "Stampa";
 
+/* No comment provided by engineer. */
+"Layer" = "Strato";
+
+/* gcode name */
+"Load filament" = "Carica filamento";
+
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Posizione non più valida. Aggiornare i file";
 
@@ -354,6 +375,9 @@
 
 /* (No Comment) */
 "Move" = "Sposta";
+
+/* No comment provided by engineer. */
+"Next" = "Successivo";
 
 /* (No Comment) */
 "No" = "No";
@@ -400,6 +424,12 @@
 /* (No Comment) */
 "Paused" = "In pausa";
 
+/* gcode name */
+"PID Bed autotune" = "Autotune PID piatto";
+
+/* gcode name */
+"PID Hotend autotune" = "Autotune PID estrusore";
+
 /* No comment provided by engineer. */
 "Ping History" = "Cronologia ping";
 
@@ -436,11 +466,17 @@
 /* (No Comment) */
 "Printing" = "In stampa";
 
+/* No comment provided by engineer. */
+"Progress" = "Avanzamento";
+
 /* (No Comment) */
 "Pull down to refresh" = "Trascina in basso per aggiornare";
 
 /* Siri suggested phrase */
 "Remaining time current print job" = "Tempo rimanente su %@";
+
+/* gcode name */
+"Report Settings" = "Segnala impostazioni";
 
 /* (No Comment) */
 "Restart" = "Riavvia";
@@ -451,6 +487,9 @@
 /* (No Comment) */
 "Restart Job" = "Ricomincia";
 
+/* gcode name */
+"Restore Settings" = "Ripristina impostazioni";
+
 /* (No Comment) */
 "Resume" = "Riprendi";
 
@@ -460,8 +499,14 @@
 /* (No Comment) */
 "Resume Job" = "Riprendi";
 
+/* No comment provided by engineer. */
+"Retrieving printers information" = "Recupero informazioni sulle stampanti";
+
 /* Execute Command */
 "Run" = "Esegui";
+
+/* gcode name */
+"Save Settings" = "Salva impostazioni";
 
 /* Origin is SD Card */
 "SD Card" = "Scheda SD";
@@ -475,11 +520,20 @@
 /* (No Comment) */
 "Service is down or incorrect port" = "Il servizio è inattivo o la porta è errata";
 
+/* gcode name */
+"Set Bed PID" = "Imposta PID piatto";
+
+/* gcode name */
+"Set Hotend PID" = "Imposta PID estrusore";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Non disturbare per 1 ora";
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Non disturvare per 8 ore";
+
+/* No comment provided by engineer. */
+"State" = "Stato";
 
 /* Print time is being calculated */
 "Still stabilizing" = "Stabilizzazione...";
@@ -523,6 +577,15 @@
 /* (No Comment) */
 "Terminal" = "Terminale";
 
+/* gcode name */
+"TMC Bump Sensitivity" = "Sensitività bump TMC";
+
+/* gcode name */
+"TMC Debugging" = "Debug TMC";
+
+/* gcode name */
+"TMC Motor Current" = "Corrente motore TMC";
+
 /* (No Comment) */
 "TPLink Smartplugs" = "Prese intelligenti TPLink";
 
@@ -539,6 +602,9 @@
 
 /* Unknown Custom Control */
 "Unknown Control" = "Controllo sconosciuto";
+
+/* gcode name */
+"Unload filament" = "Rimuovi filamento";
 
 /* Title for window that alerts user that updates for plugins are available */
 "Update Available" = "Aggiornamento disponibile";
