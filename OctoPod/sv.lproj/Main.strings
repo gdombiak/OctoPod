@@ -394,6 +394,9 @@
 /* Class = "UIButton"; normalTitle = "Cut"; ObjectID = "i3l-7C-iJB"; */
 "i3l-7C-iJB.normalTitle" = "Klipp ut";
 
+/* Class = "UIButton"; normalTitle = "Popular GCode Commands"; ObjectID = "Iuu-Fk-Mu7"; */
+"Iuu-Fk-Mu7.normalTitle" = "Populära GCode-kommandon";
+
 /* Class = "UITableViewSection"; headerTitle = "Move"; ObjectID = "iY8-Rh-TKn"; */
 "iY8-Rh-TKn.headerTitle" = "Flytta";
 
@@ -664,6 +667,9 @@
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "SQ9-ls-Hf3"; */
 "SQ9-ls-Hf3.title" = "Inställningar";
 
+/* Class = "UILabel"; text = "Current Height"; ObjectID = "suF-7z-jeI"; */
+"suF-7z-jeI.text" = "Aktuell höjd";
+
 /* Class = "UITableViewSection"; headerTitle = "Fan & Motors"; ObjectID = "SwZ-jq-tKf"; */
 "SwZ-jq-tKf.headerTitle" = "Fläkt & Motorer";
 
@@ -699,6 +705,9 @@
 
 /* Class = "UILabel"; text = "Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots"; ObjectID = "u6S-b1-CTI"; */
 "u6S-b1-CTI.text" = "Installera OctoPod-tillägget för OctoPrint för att få omedelbara pushnotiser med kameraskärmdumpar";
+
+/* Class = "UILabel"; text = "Layer"; ObjectID = "UcJ-hU-xU2"; */
+"UcJ-hU-xU2.text" = "Lager";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "ug1-TR-XyB"; */
 "ug1-TR-XyB.text" = "Title";
