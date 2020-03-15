@@ -139,6 +139,9 @@
 /* Connection to server failed */
 "Could not connect to the server" = "Не удалось установить соединение с сервером";
 
+/* No comment provided by engineer. */
+"Current Height" = "Текущая Высота";
+
 /* http://docs.octoprint.org/en/master/features/custom_controls.html */
 "Custom Controls" = "Команды Custom Controls";
 
@@ -333,6 +336,9 @@
 
 /* (No Comment) */
 "Job" = "Задание";
+
+/* No comment provided by engineer. */
+"Layer" = "Слой";
 
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Местоположение больше не действительно. Обновить файлы";
