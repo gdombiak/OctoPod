@@ -40,6 +40,9 @@
 /* HTTP authentication failed */
 "Authentication failed" = "Ошибка аутентификации";
 
+/* No comment provided by engineer. */
+"Back" = "Назад";
+
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Неверный сертификат или проблема с SSL";
 
@@ -54,6 +57,9 @@
 
 /* (No Comment) */
 "Bed warmed" = "Стол принтера нагревается до заданной температуры";
+
+/* No comment provided by engineer. */
+"Camera" = "Камера";
 
 /* (No Comment) */
 "Cancel" = "Отмена";
@@ -115,6 +121,9 @@
 /* Connect */
 "Connect" = "Подключить";
 
+/* No comment provided by engineer. */
+"Connect to iCloud to retrieve list of printers from your iPad/iPhone" = "Подключитесь к iCloud, чтобы получить список принтеров с вашего iPad / iPhone";
+
 /* Connected */
 "Connected" = "Подключен";
 
@@ -168,6 +177,9 @@
 
 /* (No Comment) */
 "Enable iCloud under iOS Settings to use this feature" = "Включите iCloud в настройках iOS, чтобы использовать эту функцию";
+
+/* gcode name */
+"Endstop States" = "Состояние концевых выключателей";
 
 /* No comment provided by engineer. */
 "Extruder" = "Экструдер";
@@ -340,6 +352,9 @@
 /* No comment provided by engineer. */
 "Layer" = "Слой";
 
+/* gcode name */
+"Load filament" = "Загрузка филамента";
+
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Местоположение больше не действительно. Обновить файлы";
 
@@ -360,6 +375,9 @@
 
 /* (No Comment) */
 "Move" = "Пульт";
+
+/* No comment provided by engineer. */
+"Next" = "Далее";
 
 /* (No Comment) */
 "No" = "Нет";
@@ -406,6 +424,12 @@
 /* (No Comment) */
 "Paused" = "Приостановлено";
 
+/* gcode name */
+"PID Bed autotune" = "Автонастройка PID стола";
+
+/* gcode name */
+"PID Hotend autotune" = "Автонастройка PID хотэнда";
+
 /* No comment provided by engineer. */
 "Ping History" = "История Ping";
 
@@ -442,11 +466,17 @@
 /* (No Comment) */
 "Printing" = "Печать";
 
+/* No comment provided by engineer. */
+"Progress" = "Прогресс";
+
 /* (No Comment) */
 "Pull down to refresh" = "Потяните вниз, чтобы обновить";
 
 /* Siri suggested phrase */
 "Remaining time current print job" = "Осталось времени на %@";
+
+/* gcode name */
+"Report Settings" = "Показать текущие настройки";
 
 /* (No Comment) */
 "Restart" = "Перезапуск";
@@ -457,6 +487,9 @@
 /* (No Comment) */
 "Restart Job" = "Перезапустить задание";
 
+/* gcode name */
+"Restore Settings" = "Восстановить настройки";
+
 /* (No Comment) */
 "Resume" = "Продолжить";
 
@@ -466,8 +499,14 @@
 /* (No Comment) */
 "Resume Job" = "Возобновить печать";
 
+/* No comment provided by engineer. */
+"Retrieving printers information" = "Получение информации о принтерах";
+
 /* Execute Command */
 "Run" = "Выполнить";
+
+/* gcode name */
+"Save Settings" = "Сохранить настройки";
 
 /* Origin is SD Card */
 "SD Card" = "SD-карта";
@@ -481,11 +520,20 @@
 /* (No Comment) */
 "Service is down or incorrect port" = "Сервис не работает или неверный порт";
 
+/* gcode name */
+"Set Bed PID" = "Установить PID стола";
+
+/* gcode name */
+"Set Hotend PID" = "Установить PID хотэнда";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Отложить на 1 час";
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Отложить на 8 часов";
+
+/* No comment provided by engineer. */
+"State" = "Состояние";
 
 /* Print time is being calculated */
 "Still stabilizing" = "Подсчёт времени печати ...";
@@ -529,6 +577,15 @@
 /* (No Comment) */
 "Terminal" = "Терминал";
 
+/* gcode name */
+"TMC Bump Sensitivity" = "TMC: Чувствительность удара";
+
+/* gcode name */
+"TMC Debugging" = "TMC: Отладка";
+
+/* gcode name */
+"TMC Motor Current" = "TMC: Ток двигателя";
+
 /* (No Comment) */
 "TPLink Smartplugs" = "Умная розетка TPLink";
 
@@ -545,6 +602,9 @@
 
 /* Unknown Custom Control */
 "Unknown Control" = "Неизвестная пользовательская настройка";
+
+/* gcode name */
+"Unload filament" = "Выгрузка филамента";
 
 /* Title for window that alerts user that updates for plugins are available */
 "Update Available" = "Доступно обновление";
