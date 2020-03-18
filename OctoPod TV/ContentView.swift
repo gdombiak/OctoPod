@@ -102,7 +102,7 @@ struct ContentView: View {
                                         PaginationButtons(tvPrinterManager: self.tvPrinterManager, page: self.$page, pages: self.pages)
                                     }
                                     Spacer()
-                                }.frame(width: geometry.size.width + geometry.safeAreaInsets.leading + geometry.safeAreaInsets.trailing , alignment: .leading)
+                                }
                             }
                         } else {
                             Text("Retrieving printers information")
