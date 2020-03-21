@@ -178,6 +178,9 @@
 /* (No Comment) */
 "Enable iCloud under iOS Settings to use this feature" = "Activer iCloud dans les paramètres iOS pour utiliser cette fonctionnalité";
 
+/* gcode name */
+"Endstop States" = "États des fins de course";
+
 /* No comment provided by engineer. */
 "Extruder" = "Extrudeur";
 
@@ -421,6 +424,12 @@
 /* (No Comment) */
 "Paused" = "En pause";
 
+/* gcode name */
+"PID Bed autotune" = "PID Plateau Auto";
+
+/* gcode name */
+"PID Hotend autotune" = "PID Extracteur Auto";
+
 /* No comment provided by engineer. */
 "Ping History" = "Ping historique";
 
@@ -465,6 +474,9 @@
 
 /* Siri suggested phrase */
 "Remaining time current print job" = "Temps restant sur %@";
+
+/* gcode name */
+"Report Settings" = "Afficher les réglages";
 
 /* (No Comment) */
 "Restart" = "Recommencer";
@@ -566,7 +578,13 @@
 "Terminal" = "Terminal";
 
 /* gcode name */
+"TMC Bump Sensitivity" = "Sensibilité de contact TMC";
+
+/* gcode name */
 "TMC Debugging" = "Debugging TMC";
+
+/* gcode name */
+"TMC Motor Current" = "Courant moteur TMC";
 
 /* (No Comment) */
 "TPLink Smartplugs" = "Smartplugs TPLink";
