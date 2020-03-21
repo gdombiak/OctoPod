@@ -101,9 +101,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             self.bedActualLabel.isHidden = !enabled
             if enabled {
                 // Reset values in case they are old
-                self.printTimeLeftLabel.text = " "
-                self.tool0ActualLabel.text = " "
-                self.bedActualLabel.text = " "
+                self.printTimeLeftLabel.text = ""
+                self.tool0ActualLabel.text = ""
+                self.bedActualLabel.text = ""
             }
         }
     }
@@ -288,6 +288,14 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             }
         }
     }
+    
+//    fileprivate func attributedLabel(_ text: String) -> NSAttributedString {
+//        return NSAttributedString(string: text, attributes: [
+//            NSAttributedString.Key.strokeColor: UIColor.black,
+//            NSAttributedString.Key.foregroundColor: UIColor.white, // UIColor(red: 118/255, green: 214/255, blue: 255/255, alpha: 1.0),
+//            NSAttributedString.Key.strokeWidth: -4.0,
+//            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 13.0)])
+//    }
     
     fileprivate func userUsedGestures() {
         let defaults = UserDefaults.standard
