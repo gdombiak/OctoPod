@@ -40,6 +40,9 @@
 /* HTTP authentication failed */
 "Authentication failed" = "Erreur d’authentification";
 
+/* No comment provided by engineer. */
+"Back" = "Retour";
+
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Mauvais certificat ou erreur SSL";
 
@@ -54,6 +57,9 @@
 
 /* (No Comment) */
 "Bed warmed" = "Plateau chauffé à la température et durée spécifiées";
+
+/* No comment provided by engineer. */
+"Camera" = "Caméra";
 
 /* (No Comment) */
 "Cancel" = "Annuler";
@@ -115,6 +121,9 @@
 /* Connect */
 "Connect" = "Connecter";
 
+/* No comment provided by engineer. */
+"Connect to iCloud to retrieve list of printers from your iPad/iPhone" = "Se connecter à iCloud pour récupérer la liste de vos imprimantes";
+
 /* Connected */
 "Connected" = "Connecté";
 
@@ -138,6 +147,9 @@
 
 /* Connection to server failed */
 "Could not connect to the server" = "Connexion au serveur impossible";
+
+/* No comment provided by engineer. */
+"Current Height" = "Hauteur actuelle";
 
 /* http://docs.octoprint.org/en/master/features/custom_controls.html */
 "Custom Controls" = "Contrôles personnalisés";
@@ -334,6 +346,12 @@
 /* (No Comment) */
 "Job" = "Impression";
 
+/* No comment provided by engineer. */
+"Layer" = "Layer";
+
+/* gcode name */
+"Load filament" = "Charger filament";
+
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Emplacement introuvable. Rafraîchir.";
 
@@ -354,6 +372,9 @@
 
 /* (No Comment) */
 "Move" = "Contrôles";
+
+/* No comment provided by engineer. */
+"Next" = "Suivant";
 
 /* (No Comment) */
 "No" = "Non";
@@ -436,6 +457,9 @@
 /* (No Comment) */
 "Printing" = "En cours d’impression";
 
+/* No comment provided by engineer. */
+"Progress" = "Progression";
+
 /* (No Comment) */
 "Pull down to refresh" = "Glisser pour rafraîchir";
 
@@ -451,6 +475,9 @@
 /* (No Comment) */
 "Restart Job" = "Recommencer";
 
+/* gcode name */
+"Restore Settings" = "Restaurer les réglages";
+
 /* (No Comment) */
 "Resume" = "Reprendre";
 
@@ -460,8 +487,14 @@
 /* (No Comment) */
 "Resume Job" = "Reprendre";
 
+/* No comment provided by engineer. */
+"Retrieving printers information" = "Récupération des informations";
+
 /* Execute Command */
 "Run" = "Run";
+
+/* gcode name */
+"Save Settings" = "Enregistrer réglages";
 
 /* Origin is SD Card */
 "SD Card" = "SD Card";
@@ -475,11 +508,20 @@
 /* (No Comment) */
 "Service is down or incorrect port" = "Serveur inaccessible ou erreur de port";
 
+/* gcode name */
+"Set Bed PID" = "Configurer PID du plateau";
+
+/* gcode name */
+"Set Hotend PID" = "Définir PID de l’extrudeur";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Repousser de 1 heure";
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Repousser de 8 heures";
+
+/* No comment provided by engineer. */
+"State" = "État";
 
 /* Print time is being calculated */
 "Still stabilizing" = "Stabilisation...";
@@ -523,6 +565,9 @@
 /* (No Comment) */
 "Terminal" = "Terminal";
 
+/* gcode name */
+"TMC Debugging" = "Debugging TMC";
+
 /* (No Comment) */
 "TPLink Smartplugs" = "Smartplugs TPLink";
 
@@ -539,6 +584,9 @@
 
 /* Unknown Custom Control */
 "Unknown Control" = "Contrôle inconnu";
+
+/* gcode name */
+"Unload filament" = "Décharger filament";
 
 /* Title for window that alerts user that updates for plugins are available */
 "Update Available" = "Mise-à-jour disponible";
