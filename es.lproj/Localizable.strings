@@ -188,10 +188,16 @@
 "Extruder Variance" = "Variación extrusor";
 
 /* No comment provided by engineer. */
+"Failed to add new layer notification" = "Error al agregar nueva notificación de capa";
+
+/* No comment provided by engineer. */
 "Failed to connect" = "Error al conectarse";
 
 /* (No Comment) */
 "Failed to delete file" = "Error al eliminar archivo";
+
+/* No comment provided by engineer. */
+"Failed to delete layer notification" = "Error al eliminar la notificación de capa";
 
 /* (No Comment) */
 "Failed to disable motor" = "Error al deshabilitar motor %@";
@@ -201,6 +207,9 @@
 
 /* (No Comment) */
 "Failed to get list of cancel objects" = "Error al obtener objetos a cancelar. Respuesta HTTP: %d";
+
+/* No comment provided by engineer. */
+"Failed to get list of layer notifications" = "Error al obtener la lista de notificaciones de capa";
 
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Error al obtener los comandos del sistema";
