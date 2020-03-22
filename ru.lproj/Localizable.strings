@@ -188,10 +188,16 @@
 "Extruder Variance" = "Изм. t° Экструдера";
 
 /* No comment provided by engineer. */
+"Failed to add new layer notification" = "Не удалось добавить уведомление о новом слое";
+
+/* No comment provided by engineer. */
 "Failed to connect" = "Не удалось подключиться";
 
 /* (No Comment) */
 "Failed to delete file" = "Не удалось удалить файл";
+
+/* No comment provided by engineer. */
+"Failed to delete layer notification" = "Не удалось удалить уведомление о слое";
 
 /* (No Comment) */
 "Failed to disable motor" = "Не удалось отключить %@ двигатель";
@@ -201,6 +207,9 @@
 
 /* (No Comment) */
 "Failed to get list of cancel objects" = "Не удалось получить список отменяемых объектов. HTTP-ответ: %d";
+
+/* No comment provided by engineer. */
+"Failed to get list of layer notifications" = "Не удалось получить список уведомлений о слоях";
 
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Не удалось получить системные команды";
