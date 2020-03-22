@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Printer" representedClassName=".Printer" syncable="YES">
         <attribute name="apiKey" optional="YES" attributeType="String"/>
+        <attribute name="bedTemps" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
         <attribute name="cameraOrientation" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="cameras" optional="YES" attributeType="Transformable" customClassName="[String]"/>
         <attribute name="cancelObjectIgnored" optional="YES" attributeType="String"/>
@@ -9,6 +10,7 @@
         <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="defaultPrinter" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="domoticzplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]"/>
+        <attribute name="extruderTemps" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
         <attribute name="firstCameraAspectRatio16_9" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="hostname" optional="YES" attributeType="String"/>
         <attribute name="iCloudUpdate" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
@@ -41,6 +43,6 @@
         <attribute name="wemoplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]"/>
     </entity>
     <elements>
-        <element name="Printer" positionX="-63" positionY="-18" width="128" height="613"/>
+        <element name="Printer" positionX="-63" positionY="-18" width="128" height="643"/>
     </elements>
 </model>

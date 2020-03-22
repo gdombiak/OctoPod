@@ -691,6 +691,30 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             }
         }
 
+        if let temperature = json["temperature"] as? NSDictionary {
+            if let profiles = temperature["profiles"] as? NSArray {
+                var bedTemps: Array<Int> = []
+                var extruderTemps: Array<Int> = []
+                for case let profile as NSDictionary in profiles {
+                    if let bedTemp = profile["bed"] as? Int {
+                        bedTemps.append(bedTemp)
+                    }
+                    if let extruderTemp = profile["extruder"] as? Int {
+                        extruderTemps.append(extruderTemp)
+                    }
+                }
+                bedTemps = bedTemps.sorted()
+                extruderTemps = extruderTemps.sorted()
+                if printerToUpdate.bedTemps != bedTemps || printerToUpdate.extruderTemps != extruderTemps {
+                    // Update profile temps from settings
+                    printerToUpdate.bedTemps = bedTemps
+                    printerToUpdate.extruderTemps = extruderTemps
+                    // Persist updated printer
+                    printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                }
+            }
+        }
+        
         if let webcam = json["webcam"] as? NSDictionary {
             if let flipH = webcam["flipH"] as? Bool, let flipV = webcam["flipV"] as? Bool, let rotate90 = webcam["rotate90"] as? Bool {
                 let newOrientation = calculateImageOrientation(flipH: flipH, flipV: flipV, rotate90: rotate90)

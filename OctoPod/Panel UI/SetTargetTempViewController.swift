@@ -2,6 +2,7 @@ import UIKit
 
 class SetTargetTempViewController: ThemedStaticUITableViewController {
     
+    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     enum TargetScope {
@@ -31,14 +32,24 @@ class SetTargetTempViewController: ThemedStaticUITableViewController {
         super.viewWillAppear(animated)
         switch targetTempScope! {
         case .bed:
-            button1.setTitle("60", for: .normal)
-            button2.setTitle("80", for: .normal)
+            if let printer = printerManager.getDefaultPrinter(), let bedTemps = printer.bedTemps, bedTemps.count > 1 {
+                button1.setTitle("\(bedTemps[0])", for: .normal)
+                button2.setTitle("\(bedTemps[1])", for: .normal)
+            } else {
+                button1.setTitle("60", for: .normal)
+                button2.setTitle("80", for: .normal)
+            }
         case .chamber:
             button1.setTitle("50", for: .normal)
             button2.setTitle("70", for: .normal)
         default:
-            button1.setTitle("210", for: .normal)
-            button2.setTitle("235", for: .normal)
+            if let printer = printerManager.getDefaultPrinter(), let extruderTemps = printer.extruderTemps, extruderTemps.count > 1 {
+                button1.setTitle("\(extruderTemps[0])", for: .normal)
+                button2.setTitle("\(extruderTemps[1])", for: .normal)
+            } else {
+                button1.setTitle("210", for: .normal)
+                button2.setTitle("235", for: .normal)
+            }
         }
 
         // Only enable buttons if app is not locked

@@ -33,6 +33,11 @@ class Printer: NSManagedObject {
     /// A printer may have many extruders but a single nozzle (e.g. MMU)
     @NSManaged var sharedNozzle: Bool
 
+    /// Array of Int (bed temperatures from OctoPrint settings)
+    @NSManaged var bedTemps: [Int]?
+    /// Array of Int (extruder temperatures from OctoPrint settings)
+    @NSManaged var extruderTemps: [Int]?
+
     /// Remember aspect ratio of first camera so UI can adapt to proper aspect ratio
     @NSManaged var firstCameraAspectRatio16_9: Bool
     @NSManaged var sdSupport: Bool
