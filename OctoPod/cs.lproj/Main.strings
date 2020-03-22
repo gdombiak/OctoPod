@@ -163,6 +163,9 @@
 /* Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf"; */
 "bep-Im-uzf.text" = "Vytisknuto";
 
+/* Class = "UIButton"; normalTitle = "+"; ObjectID = "Bjc-sA-egR"; */
+"Bjc-sA-egR.normalTitle" = "+";
+
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "Bld-AB-rzW"; */
 "Bld-AB-rzW.text" = "Subtitle";
 
@@ -429,6 +432,9 @@
 
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "k9w-2c-c6t"; */
 "k9w-2c-c6t.text" = "0.0 C";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "KAE-HV-Z5Q"; */
+"KAE-HV-Z5Q.text" = "Title";
 
 /* Class = "UILabel"; text = "Palette 2 - Last Ping"; ObjectID = "kaq-fI-VzN"; */
 "kaq-fI-VzN.text" = "Palette 2 - Poslední ping";
@@ -705,6 +711,9 @@
 
 /* Class = "UILabel"; text = "Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots"; ObjectID = "u6S-b1-CTI"; */
 "u6S-b1-CTI.text" = "Nainstalujte plug-in OctoPod pro OctoPrint, abyste dostávali okamžité oznámení s fotkami";
+
+/* Class = "UITextField"; placeholder = "Layer"; ObjectID = "Uc6-ok-eNN"; */
+"Uc6-ok-eNN.placeholder" = "Vrstva";
 
 /* Class = "UILabel"; text = "Layer"; ObjectID = "UcJ-hU-xU2"; */
 "UcJ-hU-xU2.text" = "Vrstva";
