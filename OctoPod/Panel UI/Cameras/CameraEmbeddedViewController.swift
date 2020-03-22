@@ -121,7 +121,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     func currentStateUpdated(event: CurrentStateEvent) {
         DispatchQueue.main.async {
             if let seconds = event.progressPrintTimeLeft {
-                self.printTimeLeftLabel.text = UIUtils.secondsToTimeLeft(seconds: seconds, includesApproximationPhrase: true, ifZero: " ")
+                self.printTimeLeftLabel.text = UIUtils.secondsToTimeLeft(seconds: seconds, includesApproximationPhrase: true, ifZero: "")
             } else if event.progressPrintTime != nil {
                 self.printTimeLeftLabel.text = NSLocalizedString("Still stabilizing", comment: "Print time is being calculated")
             }
