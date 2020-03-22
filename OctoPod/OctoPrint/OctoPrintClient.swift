@@ -558,7 +558,24 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     func snoozeAPNSEvents(eventCode: String, minutes: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.snoozeAPNSEvents(eventCode: eventCode, minutes: minutes, callback: callback)
     }
+    
+    /// Adds or removes notification for specified layer. DisplayLayerProgress and OctoPod plugins are required
+    /// - parameters:
+    ///     - layer: number of layer to be notified
+    ///     - add: Add or Delete notification for the specified layer
+    ///     - callback: callback to execute when HTTP request is done
+    func layerNotification(layer: String, add: Bool, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.layerNotification(layer: layer, add: add, callback: callback)
+    }
 
+    /// Returns layers for which a push notification will be sent. DisplayLayerProgress and OctoPod plugins are required
+    ///
+    /// - parameters:
+    ///     - callback: callback to execute when HTTP request is done
+    func getLayerNotifications(callback: @escaping (Array<String>?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.getLayerNotifications(callback: callback)
+    }
+    
     // MARK: - Palette 2 Plugin
     
     /// Request Palette 2 plugin to send its status via websockets. If request was successful we get back a 200

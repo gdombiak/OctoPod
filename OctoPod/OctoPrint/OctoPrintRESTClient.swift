@@ -742,6 +742,47 @@ class OctoPrintRESTClient {
             }
         }
     }
+    
+    /// Adds or removes notification for specified layer. DisplayLayerProgress and OctoPod plugins are required
+    ///
+    /// - parameters:
+    ///     - layer: number of layer to be notified
+    ///     - add: Add or Delete notification for the specified layer
+    ///     - callback: callback to execute when HTTP request is done
+    func layerNotification(layer: String, add: Bool, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = add ? "addLayer" : "removeLayer"
+            json["layer"] = layer
+            client.post("/api/plugin/octopod", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+
+    /// Returns layers for which a push notification will be sent. DisplayLayerProgress and OctoPod plugins are required
+    ///
+    /// - parameters:
+    ///     - callback: callback to execute when HTTP request is done
+    func getLayerNotifications(callback: @escaping (Array<String>?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "getLayers"
+            client.post("/api/plugin/octopod", json: json, expected: 200) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting list of layer notifications. Error: \(error!.localizedDescription)")
+                }
+                if let json = result as? NSDictionary {
+                    if let jsonArray = json["layers"] as? Array<String> {
+                        callback(jsonArray, error, response)
+                        return
+                    }
+                }
+                callback(nil, error, response)
+            }
+        }
+    }
 
     // MARK: - Palette 2 Plugin
     

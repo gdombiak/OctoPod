@@ -184,6 +184,7 @@
 		3D9E087E2160455400F11CD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D9E087C2160455400F11CD4 /* InfoPlist.strings */; };
 		3DA252442105028300B60E31 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA252432105028300B60E31 /* FolderViewController.swift */; };
 		3DA77D7B21693C74003D65C9 /* ChangeLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA77D7A21693C74003D65C9 /* ChangeLanguageViewController.swift */; };
+		3DA7DD502426A51700F686C8 /* LayerNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA7DD4F2426A51700F686C8 /* LayerNotificationsViewController.swift */; };
 		3DA8F980240B530700CC6AAD /* PopularGCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA8F97F240B530700CC6AAD /* PopularGCodeViewController.swift */; };
 		3DABB22022C0044D00F32731 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DABB21F22C0044D00F32731 /* NotificationService.swift */; };
 		3DABB22422C0044D00F32731 /* OctoPod Notification Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3DABB21D22C0044D00F32731 /* OctoPod Notification Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -593,6 +594,7 @@
 		3DA44F1E2314D7B600EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DA44F1F2314D7B600EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DA77D7A21693C74003D65C9 /* ChangeLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLanguageViewController.swift; sourceTree = "<group>"; };
+		3DA7DD4F2426A51700F686C8 /* LayerNotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerNotificationsViewController.swift; sourceTree = "<group>"; };
 		3DA8F97F240B530700CC6AAD /* PopularGCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularGCodeViewController.swift; sourceTree = "<group>"; };
 		3DABB21822BFF3F900F32731 /* OctoPod v9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v9.xcdatamodel"; sourceTree = "<group>"; };
 		3DABB21D22C0044D00F32731 /* OctoPod Notification Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "OctoPod Notification Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -801,6 +803,7 @@
 				3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */,
 				3D02D199229A6AC8004788B6 /* RemindersViewController.swift */,
 				3DDB5FCC22D11A24005F8A9F /* PluginUpdatesViewController.swift */,
+				3DA7DD4F2426A51700F686C8 /* LayerNotificationsViewController.swift */,
 			);
 			path = "Panel UI";
 			sourceTree = "<group>";
@@ -1788,6 +1791,7 @@
 				3D1A93682132F5E70050ED9A /* ChildrenCustomControlViewController.swift in Sources */,
 				3D831E53210850E60004B7A5 /* SettingsViewController.swift in Sources */,
 				3D9DC75B231D867B00AE4DF7 /* CustomControlViewCell.swift in Sources */,
+				3DA7DD502426A51700F686C8 /* LayerNotificationsViewController.swift in Sources */,
 				3D98C1DA20E5D096007BB13F /* WebSocketClient.swift in Sources */,
 				3D1A936C213316850050ED9A /* ExecuteControl.swift in Sources */,
 				3D8DA01C2144BBF100F5FD07 /* SecurityViewController.swift in Sources */,

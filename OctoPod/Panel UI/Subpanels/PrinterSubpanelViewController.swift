@@ -47,6 +47,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     @IBOutlet weak var currentHeightLabel: UILabel!
     @IBOutlet weak var layerInfoRow: UITableViewCell!
     @IBOutlet weak var layerTextLabel: UILabel!
+    @IBOutlet weak var layerNotificationsButton: UIButton!
     @IBOutlet weak var layerLabel: UILabel!
     
     @IBOutlet weak var toolRow0: UITableViewCell!
@@ -227,12 +228,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 // Make the popover appear at the middle of the button
                 segue.destination.popoverPresentationController!.sourceRect = CGRect(x: tool3SetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
             }
-        } else if segue.identifier == "set_target_temp_tool4" {
-            if let controller = segue.destination as? SetTargetTempViewController {
-                controller.targetTempScope = SetTargetTempViewController.TargetScope.tool4
+        } else if segue.identifier == "layer_notifications" {
+            if let controller = segue.destination as? LayerNotificationsViewController {
                 controller.popoverPresentationController!.delegate = self
-                // Make the popover appear at the middle of the button
-                segue.destination.popoverPresentationController!.sourceRect = CGRect(x: tool4SetTempButton.frame.size.width/2, y: 0 , width: 0, height: 0)
             }
         }
     }
@@ -288,6 +286,12 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             } else if event.progressPrintTime != nil {
                 self.printTimeLeftLabel.text = NSLocalizedString("Still stabilizing", comment: "Print time is being calculated")
                 self.printEstimatedCompletionLabel.text = ""
+            }
+            
+            if let printing = event.printing, let paused = event.paused, let pausing = event.pausing {
+                if let printer = self.printerManager.getDefaultPrinter() {
+                    self.layerNotificationsButton.isEnabled = (printing || paused || pausing) && printer.octopodPluginInstalled  // Cell will be hidden unless DisplayLayerProgress plugin is installed
+                }
             }
 
             if let tool0Actual = event.tool0TempActual {
@@ -667,6 +671,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             self.currentHeightRow.isHidden = true   // Hide layer cell until we receive info that needs to be displayed. Comes from plugins, not OctoPrint itself
             self.currentHeightLabel.text = ""
             self.layerInfoRow.isHidden = true   // Hide layer cell until we receive info that needs to be displayed. Comes from plugins, not OctoPrint itself
+            self.layerNotificationsButton.isEnabled = false  // Disable layer notifications button until print job is running
             self.layerLabel.text = ""
             
             self.tool0ActualLabel.text = " " // Use empty space to position Extruder label in a good place
