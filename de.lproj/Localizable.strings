@@ -188,10 +188,16 @@
 "Extruder Variance" = "Extruder Variante";
 
 /* No comment provided by engineer. */
+"Failed to add new layer notification" = "Fehler beim Hinzufügen einer neuen Schicht-Mitteilung";
+
+/* No comment provided by engineer. */
 "Failed to connect" = "Verbinden fehlgeschlagen";
 
 /* (No Comment) */
 "Failed to delete file" = "Datei löschen fehlgeschlagen";
+
+/* No comment provided by engineer. */
+"Failed to delete layer notification" = "Fehler beim Löschen der Schicht-Mitteilung";
 
 /* (No Comment) */
 "Failed to disable motor" = "%@ Motor ausschalten fehlgeschlagen";
@@ -201,6 +207,9 @@
 
 /* (No Comment) */
 "Failed to get list of cancel objects" = "Keine Liste der verfügbaren Objekte erhalten. HTTP antwort: %d";
+
+/* No comment provided by engineer. */
+"Failed to get list of layer notifications" = "Fehler bei der Auflistung von Schicht- Mitteilungen";
 
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Keine Systembefehle erhalten";
