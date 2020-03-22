@@ -188,10 +188,16 @@
 "Extruder Variance" = "Variance Extrudeur";
 
 /* No comment provided by engineer. */
+"Failed to add new layer notification" = "Erreur lors de l’ajout de la notification";
+
+/* No comment provided by engineer. */
 "Failed to connect" = "Erreur de connexion";
 
 /* (No Comment) */
 "Failed to delete file" = "Échec de la suppression du fichier";
+
+/* No comment provided by engineer. */
+"Failed to delete layer notification" = "Erreur de suppression de la notification";
 
 /* (No Comment) */
 "Failed to disable motor" = "Échec de la désactivation du moteur %@";
@@ -201,6 +207,9 @@
 
 /* (No Comment) */
 "Failed to get list of cancel objects" = "Échec de la récupération de la liste des objects annulés. Réponse HTTP : %d";
+
+/* No comment provided by engineer. */
+"Failed to get list of layer notifications" = "Erreur de récupération de la liste de notifications";
 
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Échec de la récupération des commandes système";
