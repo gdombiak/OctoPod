@@ -188,10 +188,16 @@
 "Extruder Variance" = "Extruder-variation";
 
 /* No comment provided by engineer. */
+"Failed to add new layer notification" = "Kunde inte lägga till nytt lageravisering";
+
+/* No comment provided by engineer. */
 "Failed to connect" = "Kunde inte ansluta";
 
 /* (No Comment) */
 "Failed to delete file" = "Kunde inte radera fil";
+
+/* No comment provided by engineer. */
+"Failed to delete layer notification" = "Kunde inte radera lageravisering";
 
 /* (No Comment) */
 "Failed to disable motor" = "Kunde inte inaktivera motorn %@";
@@ -201,6 +207,9 @@
 
 /* (No Comment) */
 "Failed to get list of cancel objects" = "Kunde inte hämta listan över avbrutna objekt. HTTP-svar: %d";
+
+/* No comment provided by engineer. */
+"Failed to get list of layer notifications" = "Kunde inte hämta lista över lageraviseringar";
 
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Kunde inte hämta systemkommandon";
