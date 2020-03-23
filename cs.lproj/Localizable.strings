@@ -188,10 +188,16 @@
 "Extruder Variance" = "Odchylka trysky";
 
 /* No comment provided by engineer. */
+"Failed to add new layer notification" = "Nezdařilo se přidat oznámení nové vrstvy";
+
+/* No comment provided by engineer. */
 "Failed to connect" = "Nezdařilo se připojit";
 
 /* (No Comment) */
 "Failed to delete file" = "Nezdařilo se smazání souboru";
+
+/* No comment provided by engineer. */
+"Failed to delete layer notification" = "Nezdařilo se smazat oznámení vrstvy";
 
 /* (No Comment) */
 "Failed to disable motor" = "Nezdařilo se vypnout %@ motor";
@@ -201,6 +207,9 @@
 
 /* (No Comment) */
 "Failed to get list of cancel objects" = "Nezdařilo se získat seznam zrušených objektů. Odpověď HTTP: %d";
+
+/* No comment provided by engineer. */
+"Failed to get list of layer notifications" = "Nezdařilo se získat seznam oznámení o vrstvě";
 
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Nezdařilo se získat systémové příkazy";
