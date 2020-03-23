@@ -188,10 +188,16 @@
 "Extruder Variance" = "Ekstruderio variacija";
 
 /* No comment provided by engineer. */
+"Failed to add new layer notification" = "Nepavyko pridėti naujo sluoksnio pranešimo";
+
+/* No comment provided by engineer. */
 "Failed to connect" = "Nepavyko prisijungti";
 
 /* (No Comment) */
 "Failed to delete file" = "Nepavyko ištrinti failo";
+
+/* No comment provided by engineer. */
+"Failed to delete layer notification" = "Nepavyko ištrinti sluoksnio pranešimo";
 
 /* (No Comment) */
 "Failed to disable motor" = "Nepavyko išjungti %@ motoro";
@@ -201,6 +207,9 @@
 
 /* (No Comment) */
 "Failed to get list of cancel objects" = "Nepavyko gauti 'Cancel objects' objektų. HTTP atsakymas: %d";
+
+/* No comment provided by engineer. */
+"Failed to get list of layer notifications" = "Nepavyko gauti sluoksnių pranešimų sąrašo";
 
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Nepavyko gauti sistemos komandų";

@@ -103,6 +103,9 @@
 /* Class = "UILabel"; text = "Uploaded"; ObjectID = "26j-Xb-FzE"; */
 "26j-Xb-FzE.text" = "Įkelta";
 
+/* Class = "UILabel"; text = "Update OctoPod plugin for OctoPrint to receive notifications at specified layers"; ObjectID = "27z-uP-BTs"; */
+"27z-uP-BTs.text" = "Atnaujink OctoPod įskiepį skirtą OctoPrint kad gautum pranešimus apie specifinius sluoksnius";
+
 /* Class = "UILabel"; text = "Appearance"; ObjectID = "35a-ap-aeB"; */
 "35a-ap-aeB.text" = "Išvaizda";
 
@@ -528,6 +531,9 @@
 
 /* Class = "UILabel"; text = "100"; ObjectID = "OJS-Cg-u9x"; */
 "OJS-Cg-u9x.text" = "100";
+
+/* Class = "UILabel"; text = "New Apple TV app is now available"; ObjectID = "oQM-8Y-Acc"; */
+"oQM-8Y-Acc.text" = "Nauja Apple TV programėlė jau prieinama";
 
 /* Class = "UIButton"; normalTitle = "Configure controls using Custom Control Plugin"; ObjectID = "or6-Pr-Z6f"; */
 "or6-Pr-Z6f.normalTitle" = "Konfigūruoti 'Custom Controls' įskiepį";
