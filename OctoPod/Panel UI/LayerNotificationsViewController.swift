@@ -94,7 +94,7 @@ class LayerNotificationsViewController: UIViewController, UITableViewDataSource,
         if let newLayer = addLayerTextField.text {
             // Assume operation was successful
             layers.append(newLayer)
-            layers = layers.sorted()
+            layers = sortedLayers(input: layers)
             // Refresh UI table
             tableView.reloadData()
 
@@ -123,7 +123,7 @@ class LayerNotificationsViewController: UIViewController, UITableViewDataSource,
     fileprivate func refreshLayerNotifications(done: (() -> Void)?) {
         octoprintClient.getLayerNotifications(callback: { (existingLayers: Array<String>?, error: Error?, response: HTTPURLResponse) in
             if let existingLayers = existingLayers {
-                self.layers = existingLayers.sorted()
+                self.layers = self.sortedLayers(input: existingLayers)
             } else {
                 self.layers = []
             }
@@ -137,6 +137,12 @@ class LayerNotificationsViewController: UIViewController, UITableViewDataSource,
             }
             // Execute done block when done
             done?()
+        })
+    }
+    
+    fileprivate func sortedLayers(input: [String]) -> [String] {
+        return input.sorted(by: { (left, right) -> Bool in
+            return Int(left)! < Int(right)!
         })
     }
     
