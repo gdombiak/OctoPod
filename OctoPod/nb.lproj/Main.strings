@@ -103,6 +103,9 @@
 /* Class = "UILabel"; text = "Uploaded"; ObjectID = "26j-Xb-FzE"; */
 "26j-Xb-FzE.text" = "Opplastet";
 
+/* Class = "UILabel"; text = "Update OctoPod plugin for OctoPrint to receive notifications at specified layers"; ObjectID = "27z-uP-BTs"; */
+"27z-uP-BTs.text" = "Oppdater OctoPod-plugin for OctoPrint for å motta varsler på spesifiserte lag";
+
 /* Class = "UILabel"; text = "Appearance"; ObjectID = "35a-ap-aeB"; */
 "35a-ap-aeB.text" = "Utseende";
 
@@ -397,6 +400,9 @@
 /* Class = "UIButton"; normalTitle = "Cut"; ObjectID = "i3l-7C-iJB"; */
 "i3l-7C-iJB.normalTitle" = "Klipp";
 
+/* Class = "UIButton"; normalTitle = "Popular GCode Commands"; ObjectID = "Iuu-Fk-Mu7"; */
+"Iuu-Fk-Mu7.normalTitle" = "Populære GCode-kommandoer";
+
 /* Class = "UITableViewSection"; headerTitle = "Move"; ObjectID = "iY8-Rh-TKn"; */
 "iY8-Rh-TKn.headerTitle" = "Flytt";
 
@@ -525,6 +531,9 @@
 
 /* Class = "UILabel"; text = "100"; ObjectID = "OJS-Cg-u9x"; */
 "OJS-Cg-u9x.text" = "100";
+
+/* Class = "UILabel"; text = "New Apple TV app is now available"; ObjectID = "oQM-8Y-Acc"; */
+"oQM-8Y-Acc.text" = "Ny Apple TV-app er nå tilgjengelig";
 
 /* Class = "UIButton"; normalTitle = "Configure controls using Custom Control Plugin"; ObjectID = "or6-Pr-Z6f"; */
 "or6-Pr-Z6f.normalTitle" = "Konfigurer kontroller ved hjelp av tilpassede tillegg";
@@ -670,6 +679,9 @@
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "SQ9-ls-Hf3"; */
 "SQ9-ls-Hf3.title" = "Innstillinger";
 
+/* Class = "UILabel"; text = "Current Height"; ObjectID = "suF-7z-jeI"; */
+"suF-7z-jeI.text" = "Nåværende høyde";
+
 /* Class = "UITableViewSection"; headerTitle = "Fan & Motors"; ObjectID = "SwZ-jq-tKf"; */
 "SwZ-jq-tKf.headerTitle" = "Vifte & motor";
 
@@ -705,6 +717,12 @@
 
 /* Class = "UILabel"; text = "Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots"; ObjectID = "u6S-b1-CTI"; */
 "u6S-b1-CTI.text" = "nstaller OctoPod-plugin for OctoPrint for å motta øyeblikkelige varslinger med øyeblikksbilder";
+
+/* Class = "UITextField"; placeholder = "Layer"; ObjectID = "Uc6-ok-eNN"; */
+"Uc6-ok-eNN.placeholder" = "Lag";
+
+/* Class = "UILabel"; text = "Layer"; ObjectID = "UcJ-hU-xU2"; */
+"UcJ-hU-xU2.text" = "Lag";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "ug1-TR-XyB"; */
 "ug1-TR-XyB.text" = "Title";

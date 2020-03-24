@@ -40,6 +40,9 @@
 /* HTTP authentication failed */
 "Authentication failed" = "Godkjenning mislyktes";
 
+/* No comment provided by engineer. */
+"Back" = "Tilbake";
+
 /* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
 "Bad Certificate or SSL Problem" = "Ugyldig sertifikat eller SSL-problem";
 
@@ -54,6 +57,9 @@
 
 /* (No Comment) */
 "Bed warmed" = "Skriveflate varmet til spesifisert temperatur og varighet";
+
+/* No comment provided by engineer. */
+"Camera" = "Kamera";
 
 /* (No Comment) */
 "Cancel" = "Avbryt";
@@ -115,6 +121,9 @@
 /* Connect */
 "Connect" = "Koble til";
 
+/* No comment provided by engineer. */
+"Connect to iCloud to retrieve list of printers from your iPad/iPhone" = "Koble til iCloud for å hente en liste over skrivere fra iPad / iPhone";
+
 /* Connected */
 "Connected" = "Tilkoblet";
 
@@ -138,6 +147,9 @@
 
 /* Connection to server failed */
 "Could not connect to the server" = "Kunne ikke koble til server";
+
+/* No comment provided by engineer. */
+"Current Height" = "Nåværende høyde";
 
 /* http://docs.octoprint.org/en/master/features/custom_controls.html */
 "Custom Controls" = "Tilpassede tillegg";
@@ -166,6 +178,9 @@
 /* (No Comment) */
 "Enable iCloud under iOS Settings to use this feature" = "Aktiver iCloud under iOS-innstillinger for å bruke denne funksjonen";
 
+/* gcode name */
+"Endstop States" = "Endstop tilstander";
+
 /* No comment provided by engineer. */
 "Extruder" = "Ekstruder";
 
@@ -173,10 +188,16 @@
 "Extruder Variance" = "Ekstrudervariasjon";
 
 /* No comment provided by engineer. */
+"Failed to add new layer notification" = "Kunne ikke legge til nytt lagvarsel";
+
+/* No comment provided by engineer. */
 "Failed to connect" = "Kunne ikke koble til";
 
 /* (No Comment) */
 "Failed to delete file" = "Kunne ikke slette filen";
+
+/* No comment provided by engineer. */
+"Failed to delete layer notification" = "Kunne ikke slette lagvarsling";
 
 /* (No Comment) */
 "Failed to disable motor" = "Kunne ikke deaktivere %@ motor";
@@ -186,6 +207,9 @@
 
 /* (No Comment) */
 "Failed to get list of cancel objects" = "Kunne ikke få liste over kanselleringsobjekter. HTTP-respons: %d";
+
+/* No comment provided by engineer. */
+"Failed to get list of layer notifications" = "Kunne ikke få en liste over lagvarsler";
 
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Mislyktes å få systemkommandoer";
@@ -334,6 +358,12 @@
 /* (No Comment) */
 "Job" = "Jobb";
 
+/* No comment provided by engineer. */
+"Layer" = "Lag";
+
+/* gcode name */
+"Load filament" = "Last inn filament";
+
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Plassering er ikke lenger gyldig. Oppdater filene";
 
@@ -354,6 +384,9 @@
 
 /* (No Comment) */
 "Move" = "Flytt";
+
+/* No comment provided by engineer. */
+"Next" = "Neste";
 
 /* (No Comment) */
 "No" = "Nei";
@@ -400,6 +433,12 @@
 /* (No Comment) */
 "Paused" = "Pause";
 
+/* gcode name */
+"PID Bed autotune" = "PID Bed autotune";
+
+/* gcode name */
+"PID Hotend autotune" = "PID Hotend autotune";
+
 /* No comment provided by engineer. */
 "Ping History" = "Pinghistorie";
 
@@ -436,11 +475,17 @@
 /* (No Comment) */
 "Printing" = "Skriver ut";
 
+/* No comment provided by engineer. */
+"Progress" = "Fremdrift";
+
 /* (No Comment) */
 "Pull down to refresh" = "Trekk ned for å oppdatere";
 
 /* Siri suggested phrase */
 "Remaining time current print job" = "Tid igjen på %@";
+
+/* gcode name */
+"Report Settings" = "Rapportinnstillinger";
 
 /* (No Comment) */
 "Restart" = "Start på nytt";
@@ -451,6 +496,9 @@
 /* (No Comment) */
 "Restart Job" = "Restart";
 
+/* gcode name */
+"Restore Settings" = "Gjenopprett innstillinger";
+
 /* (No Comment) */
 "Resume" = "Fortsett";
 
@@ -460,8 +508,14 @@
 /* (No Comment) */
 "Resume Job" = "Fortsett jobb";
 
+/* No comment provided by engineer. */
+"Retrieving printers information" = "Henter skriverinformasjon";
+
 /* Execute Command */
 "Run" = "Kjør";
+
+/* gcode name */
+"Save Settings" = "Lagre innstillinger";
 
 /* Origin is SD Card */
 "SD Card" = "SD-kort";
@@ -475,11 +529,20 @@
 /* (No Comment) */
 "Service is down or incorrect port" = "Tjenesten er nede eller feil port";
 
+/* gcode name */
+"Set Bed PID" = "Sett seng PID";
+
+/* gcode name */
+"Set Hotend PID" = "Still inn PID for Hotend";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Snooze 1 time";
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "snooze 8";
+
+/* No comment provided by engineer. */
+"State" = "Tilstander";
 
 /* Print time is being calculated */
 "Still stabilizing" = "Fortsatt stabilisering...";
@@ -523,6 +586,15 @@
 /* (No Comment) */
 "Terminal" = "Terminal";
 
+/* gcode name */
+"TMC Bump Sensitivity" = "TMC-støtfølsomhet";
+
+/* gcode name */
+"TMC Debugging" = "Feilsøking av TMC";
+
+/* gcode name */
+"TMC Motor Current" = "TMC motorstrøm";
+
 /* (No Comment) */
 "TPLink Smartplugs" = "TPLink Smartplugs";
 
@@ -539,6 +611,9 @@
 
 /* Unknown Custom Control */
 "Unknown Control" = "Ukjent kontroll";
+
+/* gcode name */
+"Unload filament" = "Tøm filament";
 
 /* Title for window that alerts user that updates for plugins are available */
 "Update Available" = "Oppdatering tilgjengelig";
