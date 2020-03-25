@@ -90,17 +90,16 @@ struct ContentView: View {
                 Group {
                     if self.tvPrinterManager.iCloudConnected {
                         if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage {
-                            ScrollView(.vertical) {
-                                VStack {
-                                    PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 0, geometry: geometry)
-                                    if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage + printersPerRow {
-                                        Divider()
-                                        PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 1, geometry: geometry)
-                                    }
-                                    if self.pages > 1 {
-                                        Spacer()
-                                        PaginationButtons(tvPrinterManager: self.tvPrinterManager, page: self.$page, pages: self.pages)
-                                    }
+                            VStack {
+                                PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 0, geometry: geometry)
+                                if self.tvPrinterManager.printers.count > (self.page - 1) * printersPerPage + printersPerRow {
+                                    Divider()
+                                    PrintersRow(tvPrinterManager: self.tvPrinterManager, page: self.page, row: 1, geometry: geometry)
+                                }
+                                if self.pages > 1 {
+                                    Spacer()
+                                    PaginationButtons(tvPrinterManager: self.tvPrinterManager, page: self.$page, pages: self.pages)
+                                } else {
                                     Spacer()
                                 }
                             }
