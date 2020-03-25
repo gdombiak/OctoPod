@@ -1,6 +1,23 @@
 # Change Log
 
-## [3.1](https://github.com/gdombiak/OctoPod/tree/3.1) (2020-02-13)
+## [3.2](https://github.com/gdombiak/OctoPod/tree/3.2) (2020-03-25)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.1...3.2)
+
+**Implemented enhancements:**
+
+- Allow to send notifications at certain layers [\#276](https://github.com/gdombiak/OctoPod/issues/276)
+- Add support for controlling layer notifications [\#275](https://github.com/gdombiak/OctoPod/issues/275)
+- Improve contrast of temp information overlaid on top of camera [\#273](https://github.com/gdombiak/OctoPod/issues/273)
+- Allow to select popular GCode commands to send from Terminal [\#269](https://github.com/gdombiak/OctoPod/issues/269)
+- Add Russian translation  [\#266](https://github.com/gdombiak/OctoPod/issues/266)
+- Request for Layer Number in Panel [\#265](https://github.com/gdombiak/OctoPod/issues/265)
+- Add Apple TV support [\#135](https://github.com/gdombiak/OctoPod/issues/135)
+
+**Closed issues:**
+
+- Add info on number of Palette splices [\#264](https://github.com/gdombiak/OctoPod/issues/264)
+
+## [3.1](https://github.com/gdombiak/OctoPod/tree/3.1) (2020-02-15)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.0...3.1)
 
 **Implemented enhancements:**
@@ -24,6 +41,7 @@
 
 **Implemented enhancements:**
 
+- Read predefined heating temperatures from OctoPrint [\#272](https://github.com/gdombiak/OctoPod/issues/272)
 - Add info in full screen webcam view [\#251](https://github.com/gdombiak/OctoPod/issues/251)
 - Add support for Accessibility - Larger Text [\#250](https://github.com/gdombiak/OctoPod/issues/250)
 - New Siri shortcut for getting Palette 2 ping statistics [\#249](https://github.com/gdombiak/OctoPod/issues/249)
