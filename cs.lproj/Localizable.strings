@@ -170,6 +170,9 @@
 "Do you want to cancel job?" = "Chcete zrušit tisk?";
 
 /* No comment provided by engineer. */
+"Do you want to pause job?" = "Chcete pozastavit tisk?";
+
+/* No comment provided by engineer. */
 "Do you want to restart print job from the beginning?" = "Chcete restartovat tisk a začít znovu?";
 
 /* (No Comment) */
@@ -415,14 +418,11 @@
 /* (No Comment) */
 "Notify failed resume job" = "Nezdařil se požadavek k pokračování v tisku";
 
-/* OctoPrint server */
+/* English translation for words in Swift files */
 "OctoPrint" = "OctoPrint";
 
 /* Printer is Offline */
 "Offline" = "Vypnutá";
-
-/* No comment provided by engineer. */
-"Pause" = "Pozastavit";
 
 /* Siri suggested phrase */
 "Pause current print job" = "Pause current print job on %@";

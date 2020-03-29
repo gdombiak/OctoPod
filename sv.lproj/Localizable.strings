@@ -170,6 +170,9 @@
 "Do you want to cancel job?" = "Vill du avbryta jobbet?";
 
 /* No comment provided by engineer. */
+"Do you want to pause job?" = "Vill du pausa jobbet?";
+
+/* No comment provided by engineer. */
 "Do you want to restart print job from the beginning?" = "Vill du starta om utskriftsjobbet från början?";
 
 /* (No Comment) */
@@ -415,14 +418,11 @@
 /* (No Comment) */
 "Notify failed resume job" = "Kunde inte begära att återuppta jobb";
 
-/* OctoPrint server */
+/* English translation for words in Swift files */
 "OctoPrint" = "OctoPrint";
 
 /* Printer is Offline */
 "Offline" = "Offline";
-
-/* No comment provided by engineer. */
-"Pause" = "Pausa";
 
 /* Siri suggested phrase */
 "Pause current print job" = "Pausa aktuellt utskriftsjobb på %@";
