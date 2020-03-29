@@ -173,16 +173,9 @@ struct DetailedView : View {
     }
     
     fileprivate func pause(enabled: Bool) -> some View {
-        return Button(action: {
-            self.service.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                NSLog("Pause requested successfully \(requested)")
-            }
-        }) {
-            HStack {
-                Image("Pause")
-                Text("Pause")
-            }
-        }.disabled(!enabled)
+        let confirmText = NSLocalizedString("Do you want to pause job?", comment: "")
+        return PrintJobButton(confirmationText: confirmText, type: PrintJobButton.JobType.Pause, service: service)
+            .disabled(!enabled)
     }
     
     fileprivate func cancel(enabled: Bool) -> some View {
@@ -221,6 +214,7 @@ struct DetailedView_Previews: PreviewProvider {
 struct PrintJobButton: View {
     enum JobType {
         case Cancel
+        case Pause
         case Restart
     }
     let confirmationText: String
@@ -238,6 +232,11 @@ struct PrintJobButton: View {
                     Image("Cancel")
                     Text("Cancel")
                 }
+            } else if self.type == JobType.Pause {
+                HStack {
+                    Image("Pause")
+                    Text("Pause")
+                }
             } else {
                 HStack {
                     Image("Print")
@@ -251,6 +250,10 @@ struct PrintJobButton: View {
                 case JobType.Cancel:
                     self.service.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                         NSLog("Cancel requested successfully \(requested)")
+                    }
+                case JobType.Pause:
+                    self.service.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                        NSLog("Pause requested successfully \(requested)")
                     }
                 case JobType.Restart:
                     self.service.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
