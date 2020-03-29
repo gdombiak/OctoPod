@@ -13,58 +13,66 @@ struct DetailedView : View {
             VStack {
                 HStack {
                     VStack {
-                        HStack() {
-                            Text("State")
-                            Spacer()
-                            self.value(text: self.service.printerStatus)
-                        }
-                        HStack() {
-                            Text("File")
-                            Spacer()
-                            self.value(text: self.service.printingFile)
-                        }
-                        HStack() {
-                            Text("Progress")
-                            Spacer()
-                            self.value(text: self.service.progress)
-                        }
-                        HStack() {
-                            Text("Print Time")
-                            Spacer()
-                            self.value(text: self.service.printTime)
-                        }
-                        HStack() {
-                            Text("Print Time Left")
-                            Spacer()
-                            self.value(text: self.service.printTimeLeft)
-                        }
-                        HStack() {
-                            Text("Print Completion")
-                            Spacer()
-                            self.value(text: self.service.printEstimatedCompletion)
-                        }
-                        HStack() {
-                            Text("Extruder")
-                            Spacer()
-                            self.value(text: "\(self.service.tool0Actual) / \(self.service.tool0Target)")
-                        }
-                        HStack() {
-                            Text("Bed")
-                            Spacer()
-                            self.value(text: "\(self.service.bedActual) / \(self.service.bedTarget)")
-                        }
-                        if self.service.currentHeight != nil {
+                        VStack {
                             HStack() {
-                                Text("Current Height")
+                                Text("State")
                                 Spacer()
-                                self.value(text: self.service.currentHeight!)
+                                self.value(text: self.service.printerStatus)
+                            }
+                            HStack() {
+                                Text("File")
+                                Spacer()
+                                self.value(text: self.service.printingFile)
                             }
                         }
-                        if self.service.layer != nil {
+                        Divider()
+                        VStack {
                             HStack() {
-                                Text("Layer")
+                                Text("Progress")
                                 Spacer()
-                                self.value(text: self.service.layer!)
+                                self.value(text: self.service.progress)
+                            }
+                            HStack() {
+                                Text("Print Time")
+                                Spacer()
+                                self.value(text: self.service.printTime)
+                            }
+                            HStack() {
+                                Text("Print Time Left")
+                                Spacer()
+                                self.value(text: self.service.printTimeLeft)
+                            }
+                            HStack() {
+                                Text("Print Completion")
+                                Spacer()
+                                self.value(text: self.service.printEstimatedCompletion)
+                            }
+                        }
+                        Divider()
+                        VStack {
+                            HStack() {
+                                Text("Extruder")
+                                Spacer()
+                                self.value(text: "\(self.service.tool0Actual) / \(self.service.tool0Target)")
+                            }
+                            HStack() {
+                                Text("Bed")
+                                Spacer()
+                                self.value(text: "\(self.service.bedActual) / \(self.service.bedTarget)")
+                            }
+                            if self.service.currentHeight != nil {
+                                HStack() {
+                                    Text("Current Height")
+                                    Spacer()
+                                    self.value(text: self.service.currentHeight!)
+                                }
+                            }
+                            if self.service.layer != nil {
+                                HStack() {
+                                    Text("Layer")
+                                    Spacer()
+                                    self.value(text: self.service.layer!)
+                                }
                             }
                         }
                     }.frame(minWidth: 510)
