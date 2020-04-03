@@ -63,7 +63,7 @@
                         <viewLayoutGuide key="safeArea" id="xB8-sn-f1e"/>
                     </view>
                     <navigationItem key="navigationItem" id="6LA-ce-uva">
-                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="Printer" id="PyK-FO-APL">
+                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="Printers" id="PyK-FO-APL">
                             <connections>
                                 <segue destination="eN7-5X-n42" kind="popoverPresentation" identifier="select_camera_popover" popoverAnchorBarButtonItem="PyK-FO-APL" id="G1I-G7-jID">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>

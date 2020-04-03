@@ -575,7 +575,7 @@
 "PXd-ZY-vbz.text" = "Orange";
 
 /* Class = "UIBarButtonItem"; title = "Printer"; ObjectID = "PyK-FO-APL"; */
-"PyK-FO-APL.title" = "Imprimante";
+"PyK-FO-APL.title" = "Imprimantes";
 
 /* Class = "UILabel"; text = "Offset"; ObjectID = "pzg-aD-Irm"; */
 "pzg-aD-Irm.text" = "Offset";
