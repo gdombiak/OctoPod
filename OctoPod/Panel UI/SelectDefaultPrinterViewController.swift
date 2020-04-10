@@ -1,24 +1,40 @@
 import UIKit
 
-class SelectDefaultPrinterViewController: ThemedDynamicUITableViewController {
+class SelectDefaultPrinterViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
-    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
 
     var printers: [Printer]!
-    var onCompletion: (()->Void)?
+    var panelViewController: PanelViewController?
+    
+    var currentTheme: Theme.ThemeChoice!
+    
+    @IBOutlet weak var dashboardButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Remember current theme so we know when to repaint
+        currentTheme = Theme.currentTheme()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         printers = printerManager.getPrinters()
 
+        ThemeUIUtils.applyTheme(table: tableView, staticCells: false)
+
+        if currentTheme != Theme.currentTheme() {
+            currentTheme = Theme.currentTheme()
+            tableView.reloadData()
+        }
+
         // Set background color of popover and its arrow based on current theme
-        let theme = Theme.currentTheme()
-        self.popoverPresentationController?.backgroundColor = theme.backgroundColor()
+        self.popoverPresentationController?.backgroundColor = currentTheme.backgroundColor()
+        
+        dashboardButton.setTitleColor(currentTheme.tintColor(), for: .normal) 
+        view.backgroundColor = currentTheme.backgroundColor()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,15 +44,15 @@ class SelectDefaultPrinterViewController: ThemedDynamicUITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return printers.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "printerCell", for: indexPath)
 
         cell.textLabel?.text = printers[indexPath.row].name // + (printers[indexPath.row].defaultPrinter ? " (Active)" : "")
@@ -52,10 +68,22 @@ class SelectDefaultPrinterViewController: ThemedDynamicUITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        printerManager.changeToDefaultPrinter(printers[indexPath.row])
-        // Update Apple Watch with new selected printer
-        watchSessionManager.pushPrinters()
-        dismiss(animated: true, completion: onCompletion)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        panelViewController?.changeDefaultPrinter(printer: printers[indexPath.row])
+        dismiss(animated: true, completion: nil)
+    }
+
+    // MARK: - UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        ThemeUIUtils.themeCell(cell: cell)
+    }
+
+    // MARK: - Button actions
+    
+    @IBAction func openPrintersDashboard(_ sender: Any) {
+        dismiss(animated: true) {
+            self.panelViewController?.performSegue(withIdentifier: "printers_dashboard", sender: nil)
+        }
     }
 }

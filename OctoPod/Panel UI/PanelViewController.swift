@@ -185,16 +185,26 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
+    // MARK: - Default printer operations
+    
+    func changeDefaultPrinter(printer: Printer) {
+        // Update printer to be the new selected one (i.e. new default)
+        printerManager.changeToDefaultPrinter(printer)
+        // Update Apple Watch with new selected printer
+        watchSessionManager.pushPrinters()
+        // Refresh UI
+        refreshNewSelectedPrinter()
+    }
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "select_camera_popover", let controller = segue.destination as? SelectDefaultPrinterViewController {
             controller.popoverPresentationController!.delegate = self
-            // Refresh based on new default printer
-            controller.onCompletion = {
-                self.refreshNewSelectedPrinter()
-            }
+            controller.panelViewController = self
+        } else if segue.identifier == "printers_dashboard", let controller = segue.destination as? PrintersDashboardViewController {
+            controller.panelViewController = self
         } else if segue.identifier == "connection_error_details", let controller = segue.destination as? NotRefreshingReasonViewController {
             controller.popoverPresentationController!.delegate = self
             // Make the popover appear at the middle of the button
