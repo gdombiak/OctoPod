@@ -103,9 +103,13 @@ class ExecuteControlViewController: ThemedDynamicUITableViewController {
     
     @objc func execute() {
         let executeBlock = {
+            let generator = UINotificationFeedbackGenerator()
+            generator.prepare()
             let json = self.control.executePayload()
             self.octoprintClient.executeCustomControl(control: json, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if !requested {
+                if requested {
+                    generator.notificationOccurred(.success)
+                } else {
                     // Handle error
                     NSLog("Error requesting to execute command \(json). HTTP status code \(response.statusCode)")
                     if response.statusCode == 409 {
