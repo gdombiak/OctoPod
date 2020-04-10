@@ -58,8 +58,12 @@ class SystemCommandsViewController: ThemedDynamicUITableViewController, Subpanel
         if let command = commands?[indexPath.row] {
             // Prompt for confirmation that we want to disconnect from printer
             showConfirm(message: String(format: NSLocalizedString("Confirm command", comment: ""), command.name), yes: { (UIAlertAction) -> Void in
+                let generator = UINotificationFeedbackGenerator()
+                generator.prepare()
                 self.octoprintClient.executeSystemCommand(command: command, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                    if !requested {
+                    if requested {
+                        generator.notificationOccurred(.success)
+                    } else {
                         // Handle error
                         NSLog("Error executing system command. HTTP status code \(response.statusCode)")
                         self.showAlert(NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Failed to request to execute command", comment: ""))
