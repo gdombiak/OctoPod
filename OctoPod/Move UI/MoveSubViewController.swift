@@ -129,7 +129,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
 
     @IBAction func goBack(_ sender: Any) {
         if let selected = xyStepSegmentedControl.titleForSegment(at: xyStepSegmentedControl.selectedSegmentIndex) {
-            let delta = (selected as NSString).floatValue * (invertedY ? 1 : -1)
+            let delta = (selected as NSString).floatValue * (invertedY ? -1 : 1)
             let generator = prepareGenerator(delta)
             octoprintClient.move(y: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
@@ -145,7 +145,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     
     @IBAction func goFront(_ sender: Any) {
         if let selected = xyStepSegmentedControl.titleForSegment(at: xyStepSegmentedControl.selectedSegmentIndex) {
-            let delta = (selected as NSString).floatValue * (invertedY ? -1 : 1)
+            let delta = (selected as NSString).floatValue * (invertedY ? 1 : -1)
             let generator = prepareGenerator(delta)
             octoprintClient.move(y: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
