@@ -169,11 +169,11 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     
     func pluginMessage(plugin: String, data: NSDictionary) {
         if plugin == Plugins.DISPLAY_LAYER_PROGRESS {
-            if let stateMessage = data["stateMessage"] as? String, let heightMessage = data["heightMessage"] as? String {
+            if let totalLayer = data["totalLayer"] as? String, let currentLayer = data["currentLayer"] as? String, let currentHeight = data["currentHeightFormatted"] as? String, let totalHeight = data["totalHeightFormatted"] as? String {
                 // Refresh UI
                 DispatchQueue.main.async {
-                    self.currentHeight = heightMessage
-                    self.layer = stateMessage
+                    self.currentHeight = "\(currentHeight) / \(totalHeight)"
+                    self.layer = "\(currentLayer) / \(totalLayer)"
                 }
             }
         }

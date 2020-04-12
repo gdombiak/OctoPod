@@ -610,7 +610,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     fileprivate func updateLayerPlugin(_ plugin: String, data: NSDictionary) {
         if plugin == Plugins.DISPLAY_LAYER_PROGRESS {
-            if let stateMessage = data["stateMessage"] as? String, let heightMessage = data["heightMessage"] as? String {
+            if let totalLayer = data["totalLayer"] as? String, let currentLayer = data["currentLayer"] as? String, let currentHeight = data["currentHeightFormatted"] as? String, let totalHeight = data["totalHeightFormatted"] as? String {
                 // Refresh UI
                 DispatchQueue.main.async {
                     if self.currentHeightRow.isHidden || self.layerInfoRow.isHidden {
@@ -620,8 +620,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                         self.tableView.beginUpdates()
                         self.tableView.endUpdates()
                     }
-                    self.currentHeightLabel.text = heightMessage
-                    self.layerLabel.text = stateMessage
+                    self.currentHeightLabel.text = "\(currentHeight) / \(totalHeight)"
+                    self.layerLabel.text = "\(currentLayer) / \(totalLayer)"
                 }
             }
         } else {

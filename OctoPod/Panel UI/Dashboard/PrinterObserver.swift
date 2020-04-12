@@ -111,11 +111,13 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
 
     func pluginMessage(plugin: String, data: NSDictionary) {
         if plugin == Plugins.DISPLAY_LAYER_PROGRESS {
-            if let stateMessage = data["stateMessage"] as? String, stateMessage != layer {
-                self.layer = stateMessage
-                printersDashboardViewController.refreshItem(row: row)
+            if let totalLayer = data["totalLayer"] as? String, let currentLayer = data["currentLayer"] as? String {
+                let newLayer = "\(currentLayer) / \(totalLayer)"
+                if newLayer != layer {
+                    self.layer = newLayer
+                    printersDashboardViewController.refreshItem(row: row)
+                }
             }
         }
     }
-
 }

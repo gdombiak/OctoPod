@@ -15,5 +15,6 @@ struct Plugins {
     static let OCTOPOD = "octopod"
     static let PALETTE_2 = "palette2"
     static let PALETTE_2_CANVAS = "canvas"
-    static let DISPLAY_LAYER_PROGRESS = "DisplayLayerProgress"
+    static let DISPLAY_LAYER_PROGRESS = "DisplayLayerProgress-websocket-payload"
+    static let ENCLOSURE = "enclosure"
 }
