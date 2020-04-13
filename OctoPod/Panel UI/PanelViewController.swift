@@ -411,10 +411,6 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     // MARK: - OctoPrintSettingsDelegate
     
-    func sdSupportChanged(sdSupport: Bool) {
-        // Do nothing
-    }
-    
     func cameraOrientationChanged(newOrientation: UIImage.Orientation) {
         DispatchQueue.main.async {
             self.updateForCameraOrientation(orientation: newOrientation)

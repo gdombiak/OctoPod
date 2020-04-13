@@ -43,6 +43,9 @@ protocol OctoPrintSettingsDelegate: class {
     /// Notification that availability of Palette2 Canvas plugin has changed
     /// - parameter installed: True if plugin is installed in OctoPrint
     func palette2CanvasAvailabilityChanged(installed: Bool)
+    
+    /// Notification that inputs of Enclosure plugin have changed
+    func enclosureInputsChanged()
 }
 
 
@@ -81,5 +84,7 @@ extension OctoPrintSettingsDelegate {
     
     func palette2CanvasAvailabilityChanged(installed: Bool) {        
     }
-
+    
+    func enclosureInputsChanged() {
+    }
 }

@@ -123,21 +123,19 @@ class PrinterManager {
             printer.defaultPrinter = true
         }
 
-        var saved = false
-        do {
-            try context.save()
-            managedObjectContext!.performAndWait {
-                do {
-                    try managedObjectContext!.save()
-                    saved = true
-                } catch {
-                    NSLog("Error adding printer \(printer.hostname). Error:\(error)")
-                }
-            }
-        } catch {
-            NSLog("Error adding printer \(printer.hostname). Error:\(error)")
-        }        
-        return saved
+        return saveObject(printer, context: context)
+    }
+    
+    /// Make sure that printer was loaded with the provided context
+    func addEnclosureInput(index: Int16, type: String, label: String, useFahrenheit: Bool, context: NSManagedObjectContext, printer: Printer) -> Bool {
+        let enclosureInput = NSEntityDescription.insertNewObject(forEntityName: "EnclosureInput", into: context) as! EnclosureInput
+        enclosureInput.index_id = index
+        enclosureInput.type = type
+        enclosureInput.label = label
+        enclosureInput.use_fahrenheit = useFahrenheit
+        enclosureInput.printer = printer
+        // Persist updated EnclosureInput
+        return saveObject(enclosureInput, context: context)
     }
     
     /// Make sure to call this only from main thread
@@ -184,6 +182,69 @@ class PrinterManager {
                 }
             } catch {
                 NSLog("Error updating printer \(error)")
+            }
+        }
+    }
+    
+    // MARK: Generic db operations
+
+    func saveObject(_ object: NSManagedObject, context: NSManagedObjectContext) -> Bool {
+        var saved = false
+        switch context.concurrencyType {
+        case .mainQueueConcurrencyType:
+            // If context runs in main thread then just run this code
+            do {
+                try managedObjectContext!.save()
+                saved = true
+            } catch let error as NSError {
+                NSLog("Error saving object \(object). Error: \(error)")
+            }
+        case .privateQueueConcurrencyType, .confinementConcurrencyType:
+            // If context runs in a non-main thread then just run this code
+            // .confinementConcurrencyType is not used. Delete once removed from Swift
+            do {
+                try context.save()
+                managedObjectContext!.performAndWait {
+                    do {
+                        try managedObjectContext!.save()
+                        saved = true
+                    } catch {
+                        NSLog("Error saving object \(error)")
+                    }
+                }
+            } catch {
+                NSLog("Error saving object \(error)")
+            }
+        }
+        return saved
+    }
+    
+    func deleteObject(_ object: NSManagedObject, context: NSManagedObjectContext) {
+        // Delete object from context
+        context.delete(object)
+        // Save context
+        switch context.concurrencyType {
+        case .mainQueueConcurrencyType:
+            // If context runs in main thread then just run this code
+            do {
+                try managedObjectContext!.save()
+            } catch let error as NSError {
+                NSLog("Error deleting object \(object). Error: \(error)")
+            }
+        case .privateQueueConcurrencyType, .confinementConcurrencyType:
+            // If context runs in a non-main thread then just run this code
+            // .confinementConcurrencyType is not used. Delete once removed from Swift
+            do {
+                try context.save()
+                managedObjectContext!.performAndWait {
+                    do {
+                        try managedObjectContext!.save()
+                    } catch {
+                        NSLog("Error deleting object \(error)")
+                    }
+                }
+            } catch {
+                NSLog("Error deleting object \(error)")
             }
         }
     }

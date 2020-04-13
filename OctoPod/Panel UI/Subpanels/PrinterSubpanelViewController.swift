@@ -1,7 +1,7 @@
 import UIKit
 import StoreKit  // Import for rating app
 
-class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopoverPresentationControllerDelegate, SubpanelViewController, OctoPrintPluginsDelegate {
+class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopoverPresentationControllerDelegate, SubpanelViewController, OctoPrintPluginsDelegate, OctoPrintSettingsDelegate {
     
     private static let RATE_APP = "PANEL_RATE_APP"
     private static let TOOLTIP_PRINT_INFO = "PANEL_TOOLTIP_PRINT_INFO"
@@ -96,11 +96,15 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     @IBOutlet weak var bedSplitLabel: UILabel!
     
     var lastKnownPrintFile: PrintFile?
-    
+    private var enclosureInputs: Array<EnclosureInputData> = []
+
     private var tool0ActualLabelIsVisibile = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // We used a new XIB (View file) for this cell so register with the table so we can dequeue it later
+        tableView.register(UINib(nibName: "EnclosureCellView", bundle: nil), forCellReuseIdentifier: "SensorDataCell")
 
         // Round the corners of the progres bar
         progressView.layer.cornerRadius = 8
@@ -118,7 +122,12 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         // Listen to changes to OctoPrint Plugin messages
         octoprintClient.octoPrintPluginsDelegates.append(self)
 
+        // Listen to changes to OctoPrint Settings
+        octoprintClient.octoPrintSettingsDelegates.append(self)
+
         checkTempLabelVisibility()
+        
+        getEnclosureInputsFromPrinter()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -126,6 +135,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         
         // Stop listening to changes to OctoPrint Plugin messages
         octoprintClient.remove(octoPrintPluginsDelegate: self)
+
+        // Stop listening to changes to OctoPrint Settings
+        octoprintClient.remove(octoPrintSettingsDelegate: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -133,6 +145,30 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Table data source
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 2 {
+            // Return number of sensors defined in Enclosure plugin (aka inputs)
+            return enclosureInputs.count
+        }
+        return super.tableView(tableView, numberOfRowsInSection: section)
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SensorDataCell", for: indexPath) as! EnclosureTempViewCell
+            let input = enclosureInputs[indexPath.row]
+            let tempUnit = input.celsius ? "C" : "F"
+            cell.sensorLabel.text = input.label
+            cell.temperatureLabel.text = input.temperature >= 0 ? "\(String(format: "%.1f", input.temperature)) \(tempUnit)" : "-- \(tempUnit)"
+            cell.humidityLabel.text = input.humidity >= 0 ? "\(String(format: "%.1f", input.humidity)) %" : "-- %"
+            return cell
+        }
+        return super.tableView(tableView, cellForRowAt: indexPath)
+    }
+    
+
     // MARK: - Table view operations
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -152,8 +188,27 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             } else if indexPath.row == 7 && layerInfoRow.isHidden {
                 return 0
             }
+        } else if indexPath.section == 1 {
+            if indexPath.row == 2 && toolRow1.isHidden {
+                return 0
+            } else if indexPath.row == 3 && toolRow2.isHidden {
+                return 0
+            } else if indexPath.row == 4 && toolRow3.isHidden {
+                return 0
+            }
+        } else if indexPath.section == 2 {
+            return UITableView.automaticDimension
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+         if indexPath.section == 2 {
+            let newIndexPath = IndexPath(row: 0, section: indexPath.section)
+            return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
+        }
+        return super.tableView(tableView, indentationLevelForRowAt: indexPath)
+
     }
 
     // MARK: - UIScrollViewDelegate
@@ -167,9 +222,20 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     func pluginMessage(plugin: String, data: NSDictionary) {
         if plugin == Plugins.DISPLAY_LAYER_PROGRESS {
             self.updateLayerPlugin(plugin, data: data)
+        } else if plugin == Plugins.ENCLOSURE {
+            self.updateEnclosurePlugin(plugin, data: data)
         }
     }
     
+    // MARK: - OctoPrintSettingsDelegate
+    
+    func enclosureInputsChanged() {
+        DispatchQueue.main.async {
+            self.getEnclosureInputsFromPrinter()
+            self.tableView.reloadData()
+        }
+    }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -239,6 +305,10 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
 
     func printerSelectedChanged() {
         clearValues()
+        DispatchQueue.main.async {
+            self.getEnclosureInputsFromPrinter()
+            self.tableView.reloadData()
+        }
     }
     
     func currentStateUpdated(event: CurrentStateEvent) {
@@ -629,6 +699,44 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         }
     }
     
+    fileprivate func updateEnclosurePlugin(_ plugin: String, data: NSDictionary) {
+        if let sensorsData = data["sensor_data"] as? NSArray {
+            var changedData = false
+            for case let sensorData as NSDictionary in sensorsData {
+                if let index_id = sensorData["index_id"] as? Int16, let temperature = sensorData["temperature"] as? Float, let humidity = sensorData["humidity"] as? Float {
+                    if let inputData = enclosureInputs.first(where: {$0.index == index_id}) {
+                        inputData.set(temperature: temperature, humidity: humidity)
+                        changedData = true
+                    }
+                }
+            }
+            if changedData {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+        
+    fileprivate func getEnclosureInputsFromPrinter() {
+        if let printer = printerManager.getDefaultPrinter(), let inputs = printer.enclosureInputs {
+            // Store existing inputs of the selected printer (store as Array)
+            var newInputs = Array<EnclosureInputData>()
+            for enclosureInput in inputs {
+                if enclosureInput.type == "temperature_sensor" {
+                    newInputs.append(EnclosureInputData(index: enclosureInput.index_id, label: enclosureInput.label, temperature: -1, celsius: !enclosureInput.use_fahrenheit, humidity: -1))
+                }
+            }
+            // Sort array by label for convenience/consistency
+            newInputs.sort {
+                return $0.label < $1.label
+            }
+            enclosureInputs = newInputs
+        } else {
+            enclosureInputs = []
+        }
+    }
+    
     /// Converts number of seconds into a string that represents time (e.g. 23h 10m)
     func secondsToPrintTime(seconds: Int) -> String {
         let duration = TimeInterval(seconds)
@@ -822,5 +930,26 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
         UIUtils.showConfirm(presenter: self, message: message, yes: yes, no: no)
+    }
+}
+
+private class EnclosureInputData {
+    var index: Int16
+    var label: String
+    var temperature: Float
+    var celsius: Bool
+    var humidity: Float
+    
+    init(index: Int16, label: String, temperature: Float, celsius: Bool, humidity: Float) {
+        self.index = index
+        self.label = label
+        self.temperature = temperature
+        self.celsius = celsius
+        self.humidity = humidity
+    }
+    
+    func set(temperature: Float, humidity: Float) {
+        self.temperature = temperature
+        self.humidity = humidity
     }
 }

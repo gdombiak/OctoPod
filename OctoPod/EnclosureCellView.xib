@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="pDx-Lu-u0y" customClass="EnclosureTempViewCell" customModule="OctoPod" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="316" height="82"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pDx-Lu-u0y" id="S2T-v0-v72">
+                <rect key="frame" x="0.0" y="0.0" width="316" height="82"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W25-Gz-imG">
+                        <rect key="frame" x="15" y="31" width="42" height="20.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ja2-oN-erl">
+                        <rect key="frame" x="61" y="6" width="201" height="70"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnw-sy-Bck">
+                        <rect key="frame" x="266" y="30.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hnw-sy-Bck" firstAttribute="centerY" secondItem="S2T-v0-v72" secondAttribute="centerY" id="Bb1-Ph-A7S"/>
+                    <constraint firstItem="W25-Gz-imG" firstAttribute="leading" secondItem="S2T-v0-v72" secondAttribute="leadingMargin" id="C7K-ZP-etS"/>
+                    <constraint firstItem="ja2-oN-erl" firstAttribute="leading" secondItem="W25-Gz-imG" secondAttribute="trailing" constant="4" id="Leu-YG-Mih"/>
+                    <constraint firstItem="hnw-sy-Bck" firstAttribute="leading" secondItem="ja2-oN-erl" secondAttribute="trailing" constant="4" id="nhh-5m-e8j"/>
+                    <constraint firstAttribute="trailing" secondItem="hnw-sy-Bck" secondAttribute="trailing" constant="8" id="oFP-WV-bqN"/>
+                    <constraint firstItem="ja2-oN-erl" firstAttribute="top" secondItem="S2T-v0-v72" secondAttribute="top" constant="6" id="r1R-mg-DpT"/>
+                    <constraint firstAttribute="bottom" secondItem="ja2-oN-erl" secondAttribute="bottom" constant="6" id="z81-IY-6ri"/>
+                    <constraint firstItem="W25-Gz-imG" firstAttribute="centerY" secondItem="S2T-v0-v72" secondAttribute="centerY" id="zem-YK-80u"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="humidityLabel" destination="hnw-sy-Bck" id="Bpr-IP-nd0"/>
+                <outlet property="sensorLabel" destination="W25-Gz-imG" id="gFW-Dw-BE4"/>
+                <outlet property="temperatureLabel" destination="ja2-oN-erl" id="Q4R-Lt-YMA"/>
+            </connections>
+            <point key="canvasLocation" x="-139.13043478260872" y="-75.669642857142847"/>
+        </tableViewCell>
+    </objects>
+</document>

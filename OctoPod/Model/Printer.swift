@@ -81,6 +81,8 @@ class Printer: NSManagedObject {
     /// Hash of last found updates that user asked to stop showing
     @NSManaged var pluginsUpdateSnooze: String?
     
+    @NSManaged public var enclosureInputs: Set<EnclosureInput>?
+    
     func getStreamPath() -> String {
         if let path = streamUrl {
             return path

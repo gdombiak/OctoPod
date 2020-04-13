@@ -777,6 +777,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         updatePrinterFromOctoPodPlugin(printer: printer, plugins: plugins)
         updatePrinterFromPalette2Plugin(printer: printer, plugins: plugins)
         updatePrinterFromPalette2CanvasPlugin(printer: printer, plugins: plugins)
+        updatePrinterFromEnclosurePlugin(printer: printer, plugins: plugins)
     }
     
     fileprivate func updatePrinterFromMultiCamPlugin(printer: Printer, plugins: NSDictionary) {
@@ -1049,6 +1050,69 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
                 delegate.palette2CanvasAvailabilityChanged(installed: installed)
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromEnclosurePlugin(printer: Printer, plugins: NSDictionary) {
+        if let enclosurePlugin = plugins[Plugins.ENCLOSURE] as? NSDictionary {
+            if let rpiInputs = enclosurePlugin["rpi_inputs"] as? NSArray {
+                var foundIds: Array<Int16> = Array()
+                var inputsChanged = false
+                for case let rpiInput as NSDictionary in rpiInputs {
+                    if let index_id = rpiInput["index_id"] as? Int16, let inputType = rpiInput["input_type"] as? String, let label = rpiInput["label"] as? String, let useFahrenheit = rpiInput["use_fahrenheit"] as? Bool {
+                        // Remember id that was seen. We will use this to know which ones to delete (if any)
+                        foundIds.append(index_id)
+                        var found = false
+                        if let existingInputs = printer.enclosureInputs {
+                            for enclosureInput in existingInputs {
+                                if enclosureInput.index_id == index_id {
+                                    found = true
+                                    // Check that values are current
+                                    if enclosureInput.type != inputType || enclosureInput.label != label || enclosureInput.use_fahrenheit != useFahrenheit {
+                                        // Update existing input
+                                        let newObjectContext = printerManager.newPrivateContext()
+                                        let enclosureInputToUpdate = newObjectContext.object(with: enclosureInput.objectID) as! EnclosureInput
+                                        enclosureInputToUpdate.type = inputType
+                                        enclosureInputToUpdate.label = label
+                                        enclosureInputToUpdate.use_fahrenheit = useFahrenheit
+                                        // Persist updated EnclosureInput
+                                        printerManager.saveObject(enclosureInputToUpdate, context: newObjectContext)
+                                        
+                                        inputsChanged = true
+                                        break
+                                    }
+                                }
+                            }
+                        }
+                        if !found {
+                            // Add new input
+                            let newObjectContext = printerManager.newPrivateContext()
+                            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                            printerManager.addEnclosureInput(index: index_id, type: inputType, label: label, useFahrenheit: useFahrenheit, context: newObjectContext, printer: printerToUpdate)
+                            inputsChanged = true
+                        }
+                    }
+                }
+                // Delete existing inputs that no longer exist
+                if let existingInputs = printer.enclosureInputs {
+                    for enclosureInput in existingInputs {
+                        if !foundIds.contains(enclosureInput.index_id) {
+                            // Delete input that no longer exists on the server
+                            let newObjectContext = printerManager.newPrivateContext()
+                            let enclosureInputToDelete = newObjectContext.object(with: enclosureInput.objectID) as! EnclosureInput
+                            printerManager.deleteObject(enclosureInputToDelete, context: newObjectContext)
+                            inputsChanged = true
+                        }
+                    }
+                }
+
+                if inputsChanged {
+                    // Notify listeners of change
+                    for delegate in octoPrintSettingsDelegates {
+                        delegate.enclosureInputsChanged()
+                    }
+                }
             }
         }
     }
