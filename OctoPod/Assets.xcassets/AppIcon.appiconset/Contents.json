@@ -1,112 +1,112 @@
 {
   "images" : [
     {
-      "size" : "20x20",
+      "filename" : "Octopod-40x40.png",
       "idiom" : "iphone",
-      "filename" : "animals-frog-poison_dart_40x40.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "20x20"
     },
     {
-      "size" : "20x20",
+      "filename" : "Octopod-60x60.png",
       "idiom" : "iphone",
-      "filename" : "animals-frog-poison_dart_60x60.png",
-      "scale" : "3x"
-    },
-    {
-      "idiom" : "iphone",
-      "size" : "29x29",
-      "scale" : "2x"
+      "scale" : "3x",
+      "size" : "20x20"
     },
     {
       "idiom" : "iphone",
-      "size" : "29x29",
-      "scale" : "3x"
+      "scale" : "2x",
+      "size" : "29x29"
     },
     {
-      "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "animals-frog-poison_dart_80x80-1.png",
-      "scale" : "2x"
+      "scale" : "3x",
+      "size" : "29x29"
     },
     {
-      "size" : "40x40",
+      "filename" : "Octopod-80x80.png",
       "idiom" : "iphone",
-      "filename" : "animals-frog-poison_dart_120x120-1.png",
-      "scale" : "3x"
+      "scale" : "2x",
+      "size" : "40x40"
     },
     {
-      "size" : "60x60",
+      "filename" : "Octopod-120x120.png",
       "idiom" : "iphone",
-      "filename" : "animals-frog-poison_dart_120x120.png",
-      "scale" : "2x"
+      "scale" : "3x",
+      "size" : "40x40"
     },
     {
-      "size" : "60x60",
+      "filename" : "Octopod-120x120-1.png",
       "idiom" : "iphone",
-      "filename" : "animals-frog-poison_dart_180x180.png",
-      "scale" : "3x"
+      "scale" : "2x",
+      "size" : "60x60"
     },
     {
-      "size" : "20x20",
+      "filename" : "Octopod-180x180.png",
+      "idiom" : "iphone",
+      "scale" : "3x",
+      "size" : "60x60"
+    },
+    {
+      "filename" : "Octopod-20x20.png",
       "idiom" : "ipad",
-      "filename" : "animals-frog-poison_dart_20x20.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "20x20"
     },
     {
-      "size" : "20x20",
+      "filename" : "Octopod-40x40-1.png",
       "idiom" : "ipad",
-      "filename" : "animals-frog-poison_dart_40x40-2.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "ipad",
-      "size" : "29x29",
-      "scale" : "1x"
+      "scale" : "2x",
+      "size" : "20x20"
     },
     {
       "idiom" : "ipad",
-      "size" : "29x29",
-      "scale" : "2x"
+      "scale" : "1x",
+      "size" : "29x29"
     },
     {
-      "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "animals-frog-poison_dart_40x40-1.png",
-      "scale" : "1x"
+      "scale" : "2x",
+      "size" : "29x29"
     },
     {
-      "size" : "40x40",
+      "filename" : "Octopod-40x40-2.png",
       "idiom" : "ipad",
-      "filename" : "animals-frog-poison_dart_80x80.png",
-      "scale" : "2x"
+      "scale" : "1x",
+      "size" : "40x40"
     },
     {
-      "size" : "76x76",
+      "filename" : "Octopod-80x80-1.png",
       "idiom" : "ipad",
-      "filename" : "animals-frog-poison_dart_76x76.png",
-      "scale" : "1x"
+      "scale" : "2x",
+      "size" : "40x40"
     },
     {
-      "size" : "76x76",
+      "filename" : "Octopod-76x76.png",
       "idiom" : "ipad",
-      "filename" : "animals-frog-poison_dart_152x152.png",
-      "scale" : "2x"
+      "scale" : "1x",
+      "size" : "76x76"
     },
     {
-      "size" : "83.5x83.5",
+      "filename" : "Octopod-152x152.png",
       "idiom" : "ipad",
-      "filename" : "animals-frog-poison_dart_167x167.png",
-      "scale" : "2x"
+      "scale" : "2x",
+      "size" : "76x76"
     },
     {
-      "size" : "1024x1024",
+      "filename" : "Octopod-167x167.png",
+      "idiom" : "ipad",
+      "scale" : "2x",
+      "size" : "83.5x83.5"
+    },
+    {
+      "filename" : "Octopod-1024x1024.png",
       "idiom" : "ios-marketing",
-      "filename" : "animals-frog-poison_dart_1024x1024.png",
-      "scale" : "1x"
+      "scale" : "1x",
+      "size" : "1024x1024"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
