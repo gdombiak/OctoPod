@@ -1,3 +1,6 @@
+/* Class = "UILabel"; text = "Time Left"; ObjectID = "0JQ-HI-Pcy"; */
+"0JQ-HI-Pcy.text" = "Tid igjen";
+
 /* Class = "UIViewController"; title = "Printers"; ObjectID = "0Ma-Ce-Fmq"; */
 "0Ma-Ce-Fmq.title" = "Skrivere";
 
@@ -843,6 +846,9 @@
 
 /* Class = "UILabel"; text = "System"; ObjectID = "xkQ-uy-Aw1"; */
 "xkQ-uy-Aw1.text" = "System";
+
+/* Class = "UIButton"; normalTitle = "Dashboard"; ObjectID = "xMr-Bq-gSB"; */
+"xMr-Bq-gSB.normalTitle" = "Dashboard";
 
 /* Class = "UILabel"; text = "Avg"; ObjectID = "XnW-dU-oxg"; */
 "XnW-dU-oxg.text" = "Avg";
