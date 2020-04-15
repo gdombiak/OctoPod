@@ -1,3 +1,6 @@
+/* Class = "UILabel"; text = "Time Left"; ObjectID = "0JQ-HI-Pcy"; */
+"0JQ-HI-Pcy.text" = "Tiempo Restante";
+
 /* Class = "UIViewController"; title = "Printers"; ObjectID = "0Ma-Ce-Fmq"; */
 "0Ma-Ce-Fmq.title" = "Impresoras";
 
@@ -45,6 +48,9 @@
 
 /* Class = "UITextField"; placeholder = "Speed value"; ObjectID = "4Lh-Q8-wxW"; */
 "4Lh-Q8-wxW.placeholder" = "Valor velocidad";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4ls-BU-eMv"; */
+"4ls-BU-eMv.text" = "Label";
 
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Apariencia";
@@ -250,6 +256,9 @@
 /* Class = "UIButton"; normalTitle = "Proceed"; ObjectID = "erX-tJ-GVo"; */
 "erX-tJ-GVo.normalTitle" = "Proceder";
 
+/* Class = "UILabel"; text = "Progress"; ObjectID = "ESw-zm-5bN"; */
+"ESw-zm-5bN.text" = "Progreso";
+
 /* Class = "UILabel"; text = "Pong"; ObjectID = "eTh-LM-JEX"; */
 "eTh-LM-JEX.text" = "Pong";
 
@@ -288,6 +297,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
 "fNE-Hh-S8R.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Printers"; ObjectID = "FqW-ud-y7C"; */
+"FqW-ud-y7C.title" = "Impresoras";
 
 /* Class = "UITableViewSection"; headerTitle = "Temp Chart"; ObjectID = "GAt-su-C1i"; */
 "GAt-su-C1i.headerTitle" = "Gráfico Temperatura";
@@ -330,6 +342,9 @@
 
 /* Class = "UILabel"; text = "Support"; ObjectID = "HbJ-Bb-EXQ"; */
 "HbJ-Bb-EXQ.text" = "Soporte";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Hbt-Tj-ZZJ"; */
+"Hbt-Tj-ZZJ.text" = "Label";
 
 /* Class = "UITableViewSection"; headerTitle = "Theme"; ObjectID = "hcE-dV-0vo"; */
 "hcE-dV-0vo.headerTitle" = "Tema";
@@ -396,6 +411,9 @@
 
 /* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[3] = "100"; ObjectID = "hzK-Nf-sCi"; */
 "hzK-Nf-sCi.segmentTitles[3]" = "100";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "I3c-tI-kJ0"; */
+"I3c-tI-kJ0.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Cut"; ObjectID = "i3l-7C-iJB"; */
 "i3l-7C-iJB.normalTitle" = "Cortar";
@@ -499,6 +517,9 @@
 /* Class = "UIButton"; normalTitle = "Change Port"; ObjectID = "NDf-j6-3Gw"; */
 "NDf-j6-3Gw.normalTitle" = "Cambiar Puerto";
 
+/* Class = "UILabel"; text = "Layer"; ObjectID = "Ndq-Hl-4qe"; */
+"Ndq-Hl-4qe.text" = "Capa";
+
 /* Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[0] = "0.1"; ObjectID = "NKo-dw-3Mg"; */
 "NKo-dw-3Mg.segmentTitles[0]" = "0.1";
 
@@ -568,13 +589,16 @@
 /* Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU"; */
 "Po0-HZ-vzU.text" = "Ingrese a iCloud para sincronizar dispositivos";
 
+/* Class = "UITableViewSection"; headerTitle = "Enclosure"; ObjectID = "prd-VS-kgg"; */
+"prd-VS-kgg.headerTitle" = "Enclosure";
+
 /* Class = "UILabel"; text = "100"; ObjectID = "pWC-OR-Tvp"; */
 "pWC-OR-Tvp.text" = "100";
 
 /* Class = "UILabel"; text = "Orange"; ObjectID = "PXd-ZY-vbz"; */
 "PXd-ZY-vbz.text" = "Naranja";
 
-/* Class = "UIBarButtonItem"; title = "Printer"; ObjectID = "PyK-FO-APL"; */
+/* Class = "UIBarButtonItem"; title = "Printers"; ObjectID = "PyK-FO-APL"; */
 "PyK-FO-APL.title" = "Impresoras";
 
 /* Class = "UILabel"; text = "Offset"; ObjectID = "pzg-aD-Irm"; */
@@ -691,6 +715,9 @@
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "t6e-82-YMx"; */
 "t6e-82-YMx.text" = "0.0%";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "taf-JE-egr"; */
+"taf-JE-egr.text" = "Label";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
 "tFf-Rs-mOx.text" = "Título";
 
@@ -732,6 +759,9 @@
 
 /* Class = "UILabel"; text = "60.0 C"; ObjectID = "UiU-6m-I6P"; */
 "UiU-6m-I6P.text" = "60.0 C";
+
+/* Class = "UILabel"; text = "State"; ObjectID = "Uop-QL-yoT"; */
+"Uop-QL-yoT.text" = "Estado";
 
 /* Class = "UILabel"; text = "Require passcode to unlock"; ObjectID = "uqf-BP-Wtn"; */
 "uqf-BP-Wtn.text" = "Requiere clave para desbloquear";
@@ -784,6 +814,9 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "w4s-Ud-7Zm"; */
 "w4s-Ud-7Zm.normalTitle" = "Botón";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "Wcu-9D-QXt"; */
+"Wcu-9D-QXt.text" = "Label";
+
 /* Class = "UILabel"; text = "Dark"; ObjectID = "wHn-Dc-bWb"; */
 "wHn-Dc-bWb.text" = "Oscuro";
 
@@ -813,6 +846,9 @@
 
 /* Class = "UILabel"; text = "System"; ObjectID = "xkQ-uy-Aw1"; */
 "xkQ-uy-Aw1.text" = "Defecto";
+
+/* Class = "UIButton"; normalTitle = "Dashboard"; ObjectID = "xMr-Bq-gSB"; */
+"xMr-Bq-gSB.normalTitle" = "Tablero";
 
 /* Class = "UILabel"; text = "Avg"; ObjectID = "XnW-dU-oxg"; */
 "XnW-dU-oxg.text" = "Pro";

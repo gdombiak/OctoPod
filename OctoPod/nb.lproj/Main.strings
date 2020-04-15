@@ -46,6 +46,9 @@
 /* Class = "UITextField"; placeholder = "Speed value"; ObjectID = "4Lh-Q8-wxW"; */
 "4Lh-Q8-wxW.placeholder" = "Hastighet verdi";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "4ls-BU-eMv"; */
+"4ls-BU-eMv.text" = "Label";
+
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Utseende";
 
@@ -250,6 +253,9 @@
 /* Class = "UIButton"; normalTitle = "Proceed"; ObjectID = "erX-tJ-GVo"; */
 "erX-tJ-GVo.normalTitle" = "Fortsett";
 
+/* Class = "UILabel"; text = "Progress"; ObjectID = "ESw-zm-5bN"; */
+"ESw-zm-5bN.text" = "Fremdrift";
+
 /* Class = "UILabel"; text = "Pong"; ObjectID = "eTh-LM-JEX"; */
 "eTh-LM-JEX.text" = "Pong";
 
@@ -288,6 +294,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
 "fNE-Hh-S8R.text" = "Lbael";
+
+/* Class = "UINavigationItem"; title = "Printers"; ObjectID = "FqW-ud-y7C"; */
+"FqW-ud-y7C.title" = "Skrivere";
 
 /* Class = "UITableViewSection"; headerTitle = "Temp Chart"; ObjectID = "GAt-su-C1i"; */
 "GAt-su-C1i.headerTitle" = "TEMP DIAGRAM";
@@ -330,6 +339,9 @@
 
 /* Class = "UILabel"; text = "Support"; ObjectID = "HbJ-Bb-EXQ"; */
 "HbJ-Bb-EXQ.text" = "Support";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Hbt-Tj-ZZJ"; */
+"Hbt-Tj-ZZJ.text" = "Label";
 
 /* Class = "UITableViewSection"; headerTitle = "Theme"; ObjectID = "hcE-dV-0vo"; */
 "hcE-dV-0vo.headerTitle" = "Tema";
@@ -396,6 +408,9 @@
 
 /* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[3] = "100"; ObjectID = "hzK-Nf-sCi"; */
 "hzK-Nf-sCi.segmentTitles[3]" = "100";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "I3c-tI-kJ0"; */
+"I3c-tI-kJ0.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Cut"; ObjectID = "i3l-7C-iJB"; */
 "i3l-7C-iJB.normalTitle" = "Klipp";
@@ -499,6 +514,9 @@
 /* Class = "UIButton"; normalTitle = "Change Port"; ObjectID = "NDf-j6-3Gw"; */
 "NDf-j6-3Gw.normalTitle" = "Endre port";
 
+/* Class = "UILabel"; text = "Layer"; ObjectID = "Ndq-Hl-4qe"; */
+"Ndq-Hl-4qe.text" = "Lag";
+
 /* Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[0] = "0.1"; ObjectID = "NKo-dw-3Mg"; */
 "NKo-dw-3Mg.segmentTitles[0]" = "0.1";
 
@@ -568,13 +586,16 @@
 /* Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU"; */
 "Po0-HZ-vzU.text" = "Logg på iCloud for å synkronisere mellom enheter";
 
+/* Class = "UITableViewSection"; headerTitle = "Enclosure"; ObjectID = "prd-VS-kgg"; */
+"prd-VS-kgg.headerTitle" = "Enclosure";
+
 /* Class = "UILabel"; text = "100"; ObjectID = "pWC-OR-Tvp"; */
 "pWC-OR-Tvp.text" = "100";
 
 /* Class = "UILabel"; text = "Orange"; ObjectID = "PXd-ZY-vbz"; */
 "PXd-ZY-vbz.text" = "Oransje";
 
-/* Class = "UIBarButtonItem"; title = "Printer"; ObjectID = "PyK-FO-APL"; */
+/* Class = "UIBarButtonItem"; title = "Printers"; ObjectID = "PyK-FO-APL"; */
 "PyK-FO-APL.title" = "Skrivere";
 
 /* Class = "UILabel"; text = "Offset"; ObjectID = "pzg-aD-Irm"; */
@@ -691,6 +712,9 @@
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "t6e-82-YMx"; */
 "t6e-82-YMx.text" = "0.0%";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "taf-JE-egr"; */
+"taf-JE-egr.text" = "Label";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
 "tFf-Rs-mOx.text" = "Tittel";
 
@@ -732,6 +756,9 @@
 
 /* Class = "UILabel"; text = "60.0 C"; ObjectID = "UiU-6m-I6P"; */
 "UiU-6m-I6P.text" = "60.0 C";
+
+/* Class = "UILabel"; text = "State"; ObjectID = "Uop-QL-yoT"; */
+"Uop-QL-yoT.text" = "Tilstander";
 
 /* Class = "UILabel"; text = "Require passcode to unlock"; ObjectID = "uqf-BP-Wtn"; */
 "uqf-BP-Wtn.text" = "Krev passord for å låse opp";
@@ -783,6 +810,9 @@
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "w4s-Ud-7Zm"; */
 "w4s-Ud-7Zm.normalTitle" = "Knapp";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Wcu-9D-QXt"; */
+"Wcu-9D-QXt.text" = "Label";
 
 /* Class = "UILabel"; text = "Dark"; ObjectID = "wHn-Dc-bWb"; */
 "wHn-Dc-bWb.text" = "Mørk";
