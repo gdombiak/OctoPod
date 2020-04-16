@@ -214,6 +214,9 @@
 /* Class = "UIButton"; normalTitle = "Print"; ObjectID = "Crn-wa-FLw"; */
 "Crn-wa-FLw.normalTitle" = "Печать";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "daK-38-bWh"; */
+"daK-38-bWh.text" = "Label";
+
 /* Class = "UIButton"; normalTitle = "Pause"; ObjectID = "DI6-KC-pSc"; */
 "DI6-KC-pSc.normalTitle" = "Пауза";
 
@@ -618,6 +621,9 @@
 
 /* Class = "UILabel"; text = "Print Time"; ObjectID = "Qfz-1j-Keo"; */
 "Qfz-1j-Keo.text" = "Время печати";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Qgg-OP-PZ0"; */
+"Qgg-OP-PZ0.text" = "Label";
 
 /* Class = "UINavigationItem"; title = "Title"; ObjectID = "qI9-wv-wTe"; */
 "qI9-wv-wTe.title" = "Title";
