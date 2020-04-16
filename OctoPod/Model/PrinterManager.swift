@@ -138,6 +138,16 @@ class PrinterManager {
         return saveObject(enclosureInput, context: context)
     }
     
+    func addEnclosureOutput(index: Int16, type: String, label: String, context: NSManagedObjectContext, printer: Printer) -> Bool {
+        let enclosureOutput = NSEntityDescription.insertNewObject(forEntityName: "EnclosureOutput", into: context) as! EnclosureOutput
+        enclosureOutput.index_id = index
+        enclosureOutput.type = type
+        enclosureOutput.label = label
+        enclosureOutput.printer = printer
+        // Persist updated EnclosureOutput
+        return saveObject(enclosureOutput, context: context)
+    }
+    
     /// Make sure to call this only from main thread
     func changeToDefaultPrinter(_ printer: Printer) {
         changeToDefaultPrinter(printer, context: managedObjectContext!)

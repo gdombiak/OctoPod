@@ -7,6 +7,12 @@
         <attribute name="use_fahrenheit" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="printer" maxCount="1" deletionRule="Nullify" destinationEntity="Printer" inverseName="enclosureInputs" inverseEntity="Printer"/>
     </entity>
+    <entity name="EnclosureOutput" representedClassName=".EnclosureOutput" syncable="YES">
+        <attribute name="index_id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="label" attributeType="String"/>
+        <attribute name="type" attributeType="String"/>
+        <relationship name="printer" maxCount="1" deletionRule="Nullify" destinationEntity="Printer" inverseName="enclosureOutputs" inverseEntity="Printer"/>
+    </entity>
     <entity name="Printer" representedClassName=".Printer" syncable="YES">
         <attribute name="apiKey" optional="YES" attributeType="String"/>
         <attribute name="bedTemps" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
@@ -49,9 +55,11 @@
         <attribute name="username" optional="YES" attributeType="String"/>
         <attribute name="wemoplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]"/>
         <relationship name="enclosureInputs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EnclosureInput" inverseName="printer" inverseEntity="EnclosureInput"/>
+        <relationship name="enclosureOutputs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EnclosureOutput" inverseName="printer" inverseEntity="EnclosureOutput"/>
     </entity>
     <elements>
         <element name="EnclosureInput" positionX="-63" positionY="135" width="128" height="118"/>
-        <element name="Printer" positionX="-63" positionY="-18" width="128" height="658"/>
+        <element name="Printer" positionX="-63" positionY="-18" width="128" height="673"/>
+        <element name="EnclosureOutput" positionX="-54" positionY="135" width="128" height="103"/>
     </elements>
 </model>

@@ -629,6 +629,23 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.palette2Clear(plugin: Plugins.PALETTE_2, callback: callback)
     }
     
+    // MARK: - Enclosure Plugin
+    
+    /// Returns the queried GPIO value for the specified GPIO output
+    func getEnclosureGPIOStatus(index_id: Int16, callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.getEnclosureGPIOStatus(index_id: index_id, callback: callback)
+    }
+    
+    /// Change status of GPIO pin via Enclosure plugin
+    func changeEnclosureGPIO(index_id: Int16, status: Bool, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.changeEnclosureGPIO(index_id: index_id, status: status, callback: callback)
+    }
+
+    /// Change PWM value via Enclosure plugin
+    func changeEnclosurePWM(index_id: Int16, dutyCycle: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.changeEnclosurePWM(index_id: index_id, dutyCycle: dutyCycle, callback: callback)
+    }
+
     // MARK: - Delegates operations
     
     func remove(octoPrintClientDelegate toRemove: OctoPrintClientDelegate) {
@@ -1111,6 +1128,67 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                     // Notify listeners of change
                     for delegate in octoPrintSettingsDelegates {
                         delegate.enclosureInputsChanged()
+                    }
+                }
+            }
+            if let rpiOutputs = enclosurePlugin["rpi_outputs"] as? NSArray {
+                var foundIds: Array<Int16> = Array()
+                var outputsChanged = false
+                for case let rpiOutput as NSDictionary in rpiOutputs {
+                    if let index_id = rpiOutput["index_id"] as? Int16, let outputType = rpiOutput["output_type"] as? String, let label = rpiOutput["label"] as? String, let hidden = rpiOutput["hide_btn_ui"] as? Bool {
+                        if hidden {
+                            // Output that are hidden from ui are treated as if they do not exist
+                            continue
+                        }
+                        // Remember id that was seen. We will use this to know which ones to delete (if any)
+                        foundIds.append(index_id)
+                        var found = false
+                        if let existingOutputs = printer.enclosureOutputs {
+                            for existingOutput in existingOutputs {
+                                if existingOutput.index_id == index_id {
+                                    found = true
+                                    // Check that values are current
+                                    if existingOutput.type != outputType || existingOutput.label != label {
+                                        // Update existing input
+                                        let newObjectContext = printerManager.newPrivateContext()
+                                        let enclosureOutputToUpdate = newObjectContext.object(with: existingOutput.objectID) as! EnclosureOutput
+                                        enclosureOutputToUpdate.type = outputType
+                                        enclosureOutputToUpdate.label = label
+                                        // Persist updated EnclosureOutput
+                                        printerManager.saveObject(enclosureOutputToUpdate, context: newObjectContext)
+                                        
+                                        outputsChanged = true
+                                        break
+                                    }
+                                }
+                            }
+                        }
+                        if !found {
+                            // Add new input
+                            let newObjectContext = printerManager.newPrivateContext()
+                            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                            printerManager.addEnclosureOutput(index: index_id, type: outputType, label: label, context: newObjectContext, printer: printerToUpdate)
+                            outputsChanged = true
+                        }
+                    }
+                }
+                // Delete existing inputs that no longer exist
+                if let existingOutputs = printer.enclosureOutputs {
+                    for existingOutput in existingOutputs {
+                        if !foundIds.contains(existingOutput.index_id) {
+                            // Delete input that no longer exists on the server
+                            let newObjectContext = printerManager.newPrivateContext()
+                            let enclosureOutputToDelete = newObjectContext.object(with: existingOutput.objectID) as! EnclosureOutput
+                            printerManager.deleteObject(enclosureOutputToDelete, context: newObjectContext)
+                            outputsChanged = true
+                        }
+                    }
+                }
+
+                if outputsChanged {
+                    // Notify listeners of change
+                    for delegate in octoPrintSettingsDelegates {
+                        delegate.enclosureOutputsChanged()
                     }
                 }
             }

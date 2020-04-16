@@ -104,7 +104,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         super.viewDidLoad()
 
         // We used a new XIB (View file) for this cell so register with the table so we can dequeue it later
-        tableView.register(UINib(nibName: "EnclosureCellView", bundle: nil), forCellReuseIdentifier: "SensorDataCell")
+        tableView.register(UINib(nibName: "EnclosureInputTempCellView", bundle: nil), forCellReuseIdentifier: "SensorDataCell")
 
         // Round the corners of the progres bar
         progressView.layer.cornerRadius = 8
@@ -209,6 +209,18 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         }
         return super.tableView(tableView, indentationLevelForRowAt: indexPath)
 
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
+        if indexPath.section == 2 {
+            let cell = cell as! EnclosureTempViewCell
+            let theme = Theme.currentTheme()
+            let textColor = theme.textColor()
+            cell.sensorLabel.textColor = textColor
+            cell.temperatureLabel.textColor = textColor
+            cell.humidityLabel.textColor = textColor
+        }
     }
 
     // MARK: - UIScrollViewDelegate

@@ -82,7 +82,8 @@ class Printer: NSManagedObject {
     @NSManaged var pluginsUpdateSnooze: String?
     
     @NSManaged public var enclosureInputs: Set<EnclosureInput>?
-    
+    @NSManaged public var enclosureOutputs: Set<EnclosureOutput>?
+
     func getStreamPath() -> String {
         if let path = streamUrl {
             return path
@@ -185,6 +186,21 @@ class Printer: NSManagedObject {
             return result
         }
         return nil
+    }
+    
+    /// Returns outputs defined in the enclosure plugin. Only outputs that can be
+    /// controlled from OctoPod are returned
+    func getEnclosureOutputs() -> Array<EnclosureOutput> {
+        var result: Array<EnclosureOutput> = []
+        if let outputs = self.enclosureOutputs {
+            for output in outputs {
+                // Only add supported types of outputs
+                if output.type == "regular" || output.type == "pwm" {
+                    result.append(output)
+                }
+            }
+        }
+        return result
     }
     
     fileprivate func encodeIPPlug(_ newPlug: IPPlug) -> [String] {

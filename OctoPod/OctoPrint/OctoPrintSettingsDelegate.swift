@@ -46,6 +46,9 @@ protocol OctoPrintSettingsDelegate: class {
     
     /// Notification that inputs of Enclosure plugin have changed
     func enclosureInputsChanged()
+
+    /// Notification that outputs of Enclosure plugin have changed
+    func enclosureOutputsChanged()
 }
 
 
@@ -86,5 +89,8 @@ extension OctoPrintSettingsDelegate {
     }
     
     func enclosureInputsChanged() {
+    }
+
+    func enclosureOutputsChanged() {
     }
 }

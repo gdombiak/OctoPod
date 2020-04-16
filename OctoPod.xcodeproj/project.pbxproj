@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B63B2FA5C65DB321F6D1121 /* Pods_OctoPod.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB4375666E33992FE40A2B5 /* Pods_OctoPod.framework */; };
-		3D0192FF2443692800970A06 /* EnclosureCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D0192FE2443692800970A06 /* EnclosureCellView.xib */; };
+		3D0192FF2443692800970A06 /* EnclosureInputTempCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D0192FE2443692800970A06 /* EnclosureInputTempCellView.xib */; };
 		3D02D19A229A6AC8004788B6 /* RemindersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D02D199229A6AC8004788B6 /* RemindersViewController.swift */; };
 		3D071A14212682C1005301B4 /* OctoPrintPluginsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D071A13212682C1005301B4 /* OctoPrintPluginsDelegate.swift */; };
 		3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */; };
@@ -213,6 +213,13 @@
 		3DB5107C217C16EE006CF8C3 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB5107B217C16EE006CF8C3 /* WatchSessionManager.swift */; };
 		3DB5107E217C4473006CF8C3 /* PrinterManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB5107D217C4473006CF8C3 /* PrinterManagerDelegate.swift */; };
 		3DB51080217C6C8C006CF8C3 /* WatchSessionManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB5107F217C6C8C006CF8C3 /* WatchSessionManagerDelegate.swift */; };
+		3DB932CA24475B7700A154FF /* EnclosureOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB932C924475B7700A154FF /* EnclosureOutput.swift */; };
+		3DB932CB24475E0800A154FF /* EnclosureOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB932C924475B7700A154FF /* EnclosureOutput.swift */; };
+		3DB932CC24475E0800A154FF /* EnclosureOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB932C924475B7700A154FF /* EnclosureOutput.swift */; };
+		3DB932CD24475E0900A154FF /* EnclosureOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB932C924475B7700A154FF /* EnclosureOutput.swift */; };
+		3DB932CF24475E8600A154FF /* EnclosureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB932CE24475E8600A154FF /* EnclosureViewController.swift */; };
+		3DB932D12447FADB00A154FF /* EnclosureGPIOViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB932D02447FADB00A154FF /* EnclosureGPIOViewCell.swift */; };
+		3DB932D32448101A00A154FF /* EnclosurePWMViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB932D22448101A00A154FF /* EnclosurePWMViewCell.swift */; };
 		3DBAE49F20E6821900D2137D /* SelectDefaultPrinterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */; };
 		3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */; };
 		3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */; };
@@ -366,7 +373,7 @@
 
 /* Begin PBXFileReference section */
 		3AD5958670549EF54DC82BC4 /* Pods-OctoPod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OctoPod.release.xcconfig"; path = "Target Support Files/Pods-OctoPod/Pods-OctoPod.release.xcconfig"; sourceTree = "<group>"; };
-		3D0192FE2443692800970A06 /* EnclosureCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnclosureCellView.xib; sourceTree = "<group>"; };
+		3D0192FE2443692800970A06 /* EnclosureInputTempCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnclosureInputTempCellView.xib; sourceTree = "<group>"; };
 		3D02D199229A6AC8004788B6 /* RemindersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewController.swift; sourceTree = "<group>"; };
 		3D071A13212682C1005301B4 /* OctoPrintPluginsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintPluginsDelegate.swift; sourceTree = "<group>"; };
 		3D0CF43F231796F8001066F5 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -623,6 +630,10 @@
 		3DB5107B217C16EE006CF8C3 /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		3DB5107D217C4473006CF8C3 /* PrinterManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManagerDelegate.swift; sourceTree = "<group>"; };
 		3DB5107F217C6C8C006CF8C3 /* WatchSessionManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManagerDelegate.swift; sourceTree = "<group>"; };
+		3DB932C924475B7700A154FF /* EnclosureOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnclosureOutput.swift; sourceTree = "<group>"; };
+		3DB932CE24475E8600A154FF /* EnclosureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnclosureViewController.swift; sourceTree = "<group>"; };
+		3DB932D02447FADB00A154FF /* EnclosureGPIOViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnclosureGPIOViewCell.swift; sourceTree = "<group>"; };
+		3DB932D22448101A00A154FF /* EnclosurePWMViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnclosurePWMViewCell.swift; sourceTree = "<group>"; };
 		3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDefaultPrinterViewController.swift; sourceTree = "<group>"; };
 		3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentStateEvent.swift; sourceTree = "<group>"; };
 		3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClientDelegate.swift; sourceTree = "<group>"; };
@@ -959,7 +970,6 @@
 				3D42AC1021731494004D9FD0 /* AppConfigurationDelegate.swift */,
 				3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */,
 				3D45280520E15A370094CCB7 /* Main.storyboard */,
-				3D0192FE2443692800970A06 /* EnclosureCellView.xib */,
 				3D45280B20E15A380094CCB7 /* Assets.xcassets */,
 				3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */,
 				3D450E6121AB1C040049FBC0 /* Intents.intentdefinition */,
@@ -980,6 +990,9 @@
 				3D8D51A821333D310006BBB1 /* CustomControlInputSlideViewCell.swift */,
 				3D88C3EB2194004800BC84DD /* CancelObjectViewCell.swift */,
 				3D8BBEA02442C35900E73FD8 /* EnclosureTempViewCell.swift */,
+				3D0192FE2443692800970A06 /* EnclosureInputTempCellView.xib */,
+				3DB932D02447FADB00A154FF /* EnclosureGPIOViewCell.swift */,
+				3DB932D22448101A00A154FF /* EnclosurePWMViewCell.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -1106,6 +1119,7 @@
 				3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */,
 				3D82873620E3EBC80035AE0B /* Printer.swift */,
 				3D6F74512443FB8A006847B6 /* EnclosureInput.swift */,
+				3DB932C924475B7700A154FF /* EnclosureOutput.swift */,
 				3D82873820E3EC3B0035AE0B /* PrinterManager.swift */,
 				3DAD2DE421817B23004A4223 /* IPPlug.swift */,
 				3D9D9763214D735D0032443A /* CloudKitSync */,
@@ -1256,6 +1270,7 @@
 				3D88C3E62193F17800BC84DD /* CancelObjectViewController.swift */,
 				3D74FA2621251BCF00DA2CB3 /* PSUControlViewController.swift */,
 				3D74FA2821251BE600DA2CB3 /* IPPlugViewController.swift */,
+				3DB932CE24475E8600A154FF /* EnclosureViewController.swift */,
 				3D1A93662132F5A50050ED9A /* Custom Controls */,
 				3D8AB6A521A73D3700E81CE5 /* SystemCommandsViewController.swift */,
 			);
@@ -1609,7 +1624,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D718776215F367700A29D02 /* Localizable.strings in Resources */,
-				3D0192FF2443692800970A06 /* EnclosureCellView.xib in Resources */,
+				3D0192FF2443692800970A06 /* EnclosureInputTempCellView.xib in Resources */,
 				3D9E087E2160455400F11CD4 /* InfoPlist.strings in Resources */,
 				3D45280F20E15A380094CCB7 /* LaunchScreen.storyboard in Resources */,
 				3D968DDB20E336F5006774A5 /* Default-568h@2x.png in Resources */,
@@ -1751,6 +1766,7 @@
 				3D4497ED21B2626600736F0F /* CustomControl.swift in Sources */,
 				3D4497F621B2627F00736F0F /* IPPlug.swift in Sources */,
 				3D4497DF21B2623400736F0F /* TodayViewController.swift in Sources */,
+				3DB932CC24475E0800A154FF /* EnclosureOutput.swift in Sources */,
 				3D6F74552443FB9A006847B6 /* EnclosureInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1768,6 +1784,7 @@
 				3D4064A521AB61E6000B05F9 /* CancelObject.swift in Sources */,
 				3D4064AF21AB75FF000B05F9 /* CancelJobIntentHandler.swift in Sources */,
 				3D4064A921AB6205000B05F9 /* ExecuteControl.swift in Sources */,
+				3DB932CB24475E0800A154FF /* EnclosureOutput.swift in Sources */,
 				3D4064A121AB61B2000B05F9 /* SystemCommand.swift in Sources */,
 				3D669E1322FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift in Sources */,
 				3D4497D121B2241D00736F0F /* PrinterManager.swift in Sources */,
@@ -1803,6 +1820,7 @@
 			files = (
 				3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */,
 				3D89F88123E6324900E99110 /* SubpanelsVCDelegate.swift in Sources */,
+				3DB932D12447FADB00A154FF /* EnclosureGPIOViewCell.swift in Sources */,
 				3D9D9765214DCC440032443A /* CloudKitPrinterDelegate.swift in Sources */,
 				3D5D614623D5776200D988A2 /* AppleWatchSettingsViewController.swift in Sources */,
 				3D450EC821AB56F40049FBC0 /* IntentsController.swift in Sources */,
@@ -1818,10 +1836,12 @@
 				3D74FA2721251BCF00DA2CB3 /* PSUControlViewController.swift in Sources */,
 				3DD3F26A2439994300EA3F84 /* PrinterViewCell.swift in Sources */,
 				3D5D614823D57C2000D988A2 /* ComplicationContentType.swift in Sources */,
+				3DB932CF24475E8600A154FF /* EnclosureViewController.swift in Sources */,
 				3DBAE49F20E6821900D2137D /* SelectDefaultPrinterViewController.swift in Sources */,
 				3D82874120E421610035AE0B /* MjpegStreamingController.swift in Sources */,
 				3D8AB6A321A7390B00E81CE5 /* SystemCommand.swift in Sources */,
 				3D7C88482152B25D009FECEF /* CloudKitPrinterLogEntry.swift in Sources */,
+				3DB932CA24475B7700A154FF /* EnclosureOutput.swift in Sources */,
 				3D1A93682132F5E70050ED9A /* ChildrenCustomControlViewController.swift in Sources */,
 				3D831E53210850E60004B7A5 /* SettingsViewController.swift in Sources */,
 				3D9DC75B231D867B00AE4DF7 /* CustomControlViewCell.swift in Sources */,
@@ -1866,6 +1886,7 @@
 				3DFA8074210E30C100B5BFAA /* CloudFilesManager.swift in Sources */,
 				3D7C884421524426009FECEF /* DevicesSyncViewController.swift in Sources */,
 				3D5849E4210CC8720068D87A /* OctoPrintSettingsDelegate.swift in Sources */,
+				3DB932D32448101A00A154FF /* EnclosurePWMViewCell.swift in Sources */,
 				3DA77D7B21693C74003D65C9 /* ChangeLanguageViewController.swift in Sources */,
 				3DA252442105028300B60E31 /* FolderViewController.swift in Sources */,
 				3D74FA2921251BE600DA2CB3 /* IPPlugViewController.swift in Sources */,
@@ -1924,6 +1945,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DC23648240103EF00D9EF28 /* TempHistory.swift in Sources */,
+				3DB932CD24475E0900A154FF /* EnclosureOutput.swift in Sources */,
 				3DC23641240102B400D9EF28 /* PrinterManager.swift in Sources */,
 				3DC2364A2401040200D9EF28 /* WebSocketClient.swift in Sources */,
 				3DC0AD802406320200E0B461 /* BriefView.swift in Sources */,

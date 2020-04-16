@@ -71,6 +71,9 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             if printer.palette2Installed {
                 orderedViewControllers.append(createPalette2VC(mainboard))
             }
+            if !printer.getEnclosureOutputs().isEmpty {
+                orderedViewControllers.append(createEnclosuretVC(mainboard))
+            }
         }
         orderedViewControllers.append(mainboard.instantiateViewController(withIdentifier: "SystemCommandsViewController"))
 
@@ -148,6 +151,8 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             addRemoveVC(add: printer.cancelObjectInstalled, vcIdentifier: { $0.isMember(of: CancelObjectViewController.self) }, createVC: createCancelObjectVC)
 
             addRemoveVC(add: printer.palette2Installed, vcIdentifier: { $0.isMember(of: Palette2ViewController.self) }, createVC: createPalette2VC)
+
+            addRemoveVC(add: !printer.getEnclosureOutputs().isEmpty, vcIdentifier: { $0.isMember(of: EnclosureViewController.self) }, createVC: createEnclosuretVC)
         }
         // Notify subpanels of change of printer (OctoPrint)
         for case let subpanel as SubpanelViewController in orderedViewControllers {
@@ -246,6 +251,14 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
     func palette2CanvasAvailabilityChanged(installed: Bool) {
         // Implement this later. Do nothing for now
     }
+    
+    func enclosureOutputsChanged() {
+        if let printer = printerManager.getDefaultPrinter() {
+            addRemoveVC(add: !printer.getEnclosureOutputs().isEmpty, vcIdentifier: { $0.isMember(of: EnclosureViewController.self) }, createVC: createEnclosuretVC)
+        } else {
+            addRemoveVC(add: false, vcIdentifier: { $0.isMember(of: EnclosureViewController.self) }, createVC: createEnclosuretVC)
+        }
+    }
 
     // MARK: - Private functions
     
@@ -323,5 +336,9 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
 
     fileprivate func createCancelObjectVC(_ mainboard: UIStoryboard) -> UIViewController {
         return mainboard.instantiateViewController(withIdentifier: "CancelObjectViewController")
+    }
+
+    fileprivate func createEnclosuretVC(_ mainboard: UIStoryboard) -> UIViewController {
+        return mainboard.instantiateViewController(withIdentifier: "EnclosureViewController")
     }
 }

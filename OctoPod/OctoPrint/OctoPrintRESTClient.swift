@@ -901,6 +901,55 @@ class OctoPrintRESTClient {
         }
     }
     
+    // MARK: - Enclosure Plugin
+    
+    /// Returns the queried GPIO value for the specified GPIO output
+    func getEnclosureGPIOStatus(index_id: Int16, callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/plugin/enclosure/outputs/\(index_id)") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting enclosure GPIO status. Error: \(error!.localizedDescription)")
+                    callback(nil, error, response)
+                } else if response.statusCode == 200 {
+                    if let jsonDict = result as? NSDictionary {
+                        if let currentValue = jsonDict["current_value"] as? Int {
+                            callback(currentValue == 1, error, response)
+                            return
+                        }
+                    }
+                    NSLog("Error getting enclosure GPIO status. Unexpected response body: \(String(describing: result))")
+                    callback(nil, error, response)
+                } else {
+                    NSLog("Error getting enclosure GPIO status. HTTP status: \(response.statusCode)")
+                    callback(nil, error, response)
+                }
+            }
+        }
+    }
+    
+    /// Change status of GPIO pin via Enclosure plugin
+    func changeEnclosureGPIO(index_id: Int16, status: Bool, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["status"] = status
+            client.patch("/plugin/enclosure/outputs/\(index_id)", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+
+    /// Change PWM value via Enclosure plugin
+    func changeEnclosurePWM(index_id: Int16, dutyCycle: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["duty_cycle"] = dutyCycle
+            client.patch("/plugin/enclosure/pwm/\(index_id)", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+
     // MARK: - Low level operations
     
     fileprivate func connectionPost(httpClient: HTTPClient, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
