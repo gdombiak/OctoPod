@@ -1,5 +1,36 @@
 # Change Log
 
+## [3.3](https://github.com/gdombiak/OctoPod/tree/3.3) (2020-04-18)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.2...3.3)
+
+
+**Implemented enhancements:**
+
+- Swipe down to check for plugin or OctoPrint updates [\#304](https://github.com/gdombiak/OctoPod/issues/304)
+- Add haptic feedback to system commands [\#294](https://github.com/gdombiak/OctoPod/issues/294)
+- Add haptic feedback to custom control [\#293](https://github.com/gdombiak/OctoPod/issues/293)
+- Update OctoPod Icon [\#291](https://github.com/gdombiak/OctoPod/issues/291)
+- Add printers dashboard to iOS app [\#286](https://github.com/gdombiak/OctoPod/issues/286)
+- \[ATV\] - Add confirmation to pause print job [\#282](https://github.com/gdombiak/OctoPod/issues/282)
+- \[ATV\] - Group information on detailed view [\#281](https://github.com/gdombiak/OctoPod/issues/281)
+- \[ATV\] - Disable screensaver [\#280](https://github.com/gdombiak/OctoPod/issues/280)
+- App needs fresh/modern Icon [\#278](https://github.com/gdombiak/OctoPod/issues/278)
+- Feature request - Add support for enclosure plugin - temperature probe [\#277](https://github.com/gdombiak/OctoPod/issues/277)
+
+**Fixed bugs:**
+
+- Y control button inverted [\#292](https://github.com/gdombiak/OctoPod/issues/292)
+- Tasmota plugin not showing on v3.2b4 [\#279](https://github.com/gdombiak/OctoPod/issues/279)
+- Icon of TPLink button does not show current state \(Issues with Kasa HS105\) [\#258](https://github.com/gdombiak/OctoPod/issues/258)
+
+**Closed issues:**
+
+- 02k [\#301](https://github.com/gdombiak/OctoPod/issues/301)
+- hostname is case sensitive \(at least on an octopi-0.170/octoprint-1.4.0\) [\#298](https://github.com/gdombiak/OctoPod/issues/298)
+- Connection Failed: Service is down or incorrect port [\#295](https://github.com/gdombiak/OctoPod/issues/295)
+- Octopod not able to cancel/pause prints [\#287](https://github.com/gdombiak/OctoPod/issues/287)
+- I am loving the AppleTV app! [\#285](https://github.com/gdombiak/OctoPod/issues/285)
+
 ## [3.2](https://github.com/gdombiak/OctoPod/tree/3.2) (2020-03-25)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.1...3.2)
 
@@ -8,10 +39,15 @@
 - Allow to send notifications at certain layers [\#276](https://github.com/gdombiak/OctoPod/issues/276)
 - Add support for controlling layer notifications [\#275](https://github.com/gdombiak/OctoPod/issues/275)
 - Improve contrast of temp information overlaid on top of camera [\#273](https://github.com/gdombiak/OctoPod/issues/273)
+- Read predefined heating temperatures from OctoPrint [\#272](https://github.com/gdombiak/OctoPod/issues/272)
 - Allow to select popular GCode commands to send from Terminal [\#269](https://github.com/gdombiak/OctoPod/issues/269)
 - Add Russian translation  [\#266](https://github.com/gdombiak/OctoPod/issues/266)
 - Request for Layer Number in Panel [\#265](https://github.com/gdombiak/OctoPod/issues/265)
 - Add Apple TV support [\#135](https://github.com/gdombiak/OctoPod/issues/135)
+
+**Fixed bugs:**
+
+- Layer Display broken with DisplayLayerProgress 1.19.1 [\#296](https://github.com/gdombiak/OctoPod/issues/296)
 
 **Closed issues:**
 
@@ -41,7 +77,6 @@
 
 **Implemented enhancements:**
 
-- Read predefined heating temperatures from OctoPrint [\#272](https://github.com/gdombiak/OctoPod/issues/272)
 - Add info in full screen webcam view [\#251](https://github.com/gdombiak/OctoPod/issues/251)
 - Add support for Accessibility - Larger Text [\#250](https://github.com/gdombiak/OctoPod/issues/250)
 - New Siri shortcut for getting Palette 2 ping statistics [\#249](https://github.com/gdombiak/OctoPod/issues/249)
