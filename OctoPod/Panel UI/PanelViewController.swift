@@ -43,6 +43,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     // Gestures to switch between printers
     var swipeLeftGestureRecognizer : UISwipeGestureRecognizer!
     var swipeRightGestureRecognizer : UISwipeGestureRecognizer!
+    var swipeDownGestureRecognizer : UISwipeGestureRecognizer!
+    var tapGestureRecognizer : UITapGestureRecognizer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,8 +76,6 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         // Calculate constraint for subpanel
         calculateCameraHeightConstraints()
         
-        // Add gestures to capture swipes on navigation bar to switch between printers
-        addNavBarSwipeGestures()
         
         // Use aspect fit so image keeps aspect ratio
         notRefreshingButton.imageView?.contentMode = .scaleAspectFit
@@ -102,6 +102,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         configureBasedOnAppLockedState()
         // Enable or disable printer select button depending on number of printers configured
         printerSelectButton.isEnabled = printerManager.getPrinters().count > 1
+        
+        // Add gestures to capture swipes and taps on navigation bar
+        addNavBarGestures()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -115,6 +118,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         if let tabController = self.tabBarController {
             tabController.delegate = nil
         }
+        // Remove gestures that capture swipes and taps on navigation bar
+        removeNavBarGestures()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -524,9 +529,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
-    // MARK: - Private - Navigation Bar Swipe
+    // MARK: - Private - Navigation Bar Gestures
 
-    fileprivate func addNavBarSwipeGestures() {
+    fileprivate func addNavBarGestures() {
         // Add gesture when we swipe from right to left
         swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
         swipeLeftGestureRecognizer.direction = .left
@@ -538,8 +543,35 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         swipeRightGestureRecognizer.direction = .right
         navigationController?.navigationBar.addGestureRecognizer(swipeRightGestureRecognizer)
         swipeRightGestureRecognizer.cancelsTouchesInView = false
+        
+        // Add gesture when we swipe down
+        swipeDownGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwipedDown(_:)))
+        swipeDownGestureRecognizer.direction = .down
+        navigationController?.navigationBar.addGestureRecognizer(swipeDownGestureRecognizer)
+        swipeDownGestureRecognizer.cancelsTouchesInView = false
+
+        // Add gesture when we tap on nav bar
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(navigationBarTapped(_:)))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        tapGestureRecognizer.numberOfTouchesRequired = 1
+        navigationController?.navigationBar.addGestureRecognizer(tapGestureRecognizer)
+        tapGestureRecognizer.cancelsTouchesInView = false
     }
-    
+
+    fileprivate func removeNavBarGestures() {
+        // Remove gesture when we swipe from right to left
+        navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
+        
+        // Remove gesture when we swipe from left to right
+        navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
+
+        // Remove gesture when we swipe down
+        navigationController?.navigationBar.removeGestureRecognizer(swipeDownGestureRecognizer)
+
+        // Remove gesture when we tap on nav bar
+        navigationController?.navigationBar.removeGestureRecognizer(tapGestureRecognizer)
+    }
+
     @objc fileprivate func navigationBarSwiped(_ gesture: UIGestureRecognizer) {
         if let printer = printerManager.getDefaultPrinter() {
             // Swipe to change between printers
@@ -581,12 +613,56 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
+    @objc fileprivate func navigationBarSwipedDown(_ gesture: UIGestureRecognizer) {
+        if let printer = printerManager.getDefaultPrinter() {
+            // Ignore last time we checked for updates. Force a new check again
+            printer.pluginsUpdateNextCheck = nil
+            // Check for updates of plugins or OctoPrint itself
+            checkUpdatesFor(printer)
+        }
+    }
+    
+    @objc fileprivate func navigationBarTapped(_ gesture: UIGestureRecognizer) {
+        // Make sure that a button is not tapped.
+        let location = gesture.location(in: self.navigationController?.navigationBar)
+        let hitView = self.navigationController?.navigationBar.hitTest(location, with: nil)
+
+        guard !(hitView is UIControl) else { return }
+
+        // User clicked on title so open dashboard
+        self.performSegue(withIdentifier: "printers_dashboard", sender: self)
+    }
+    
     // MARK: - Private functions
     
     /// Runs on **main thread**. Enables or disables display of print status overlaid on top of camera view
     fileprivate func checkDisplayPrintStatusOverCamera() {
         let printerSubpanelViewController = subpanelsViewController?.currentSubpanelViewController() as? PrinterSubpanelViewController
         camerasViewController?.displayPrintStatus(enabled: subpanelsView.isHidden || printerSubpanelViewController == nil || !printerSubpanelViewController!.tempLabelVisible())
+    }
+    
+    /// Check for plugin updates for specified printer. Printer#pluginsUpdateNextCheck defines when next check is going to happen
+    fileprivate func checkUpdatesFor(_ printer: Printer) {
+        updatesAvailable = nil
+        pluginUpdatesManager.checkUpdatesFor(printer: printer) { (error: Error?, response: HTTPURLResponse, updatesAvailable: Array<PluginUpdatesManager.UpdateAvailable>?) in
+            if let updates = updatesAvailable {
+                if updates.isEmpty {
+                    // No updates found
+                    return
+                }
+                self.updatesAvailable = updates
+                // Redirect user to new popover that shows available updates
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "updates_available", sender: self)
+                }
+            } else if response.statusCode == 200 {
+                NSLog("User elected to ignore available plugin updates")
+            } else if response.statusCode == 304 {
+                NSLog("Skipped checking for plugin updates")
+            } else {
+                NSLog("Unkown case checking for plugin updates. Response: \(response)")
+            }
+        }
     }
     
     fileprivate func showDefaultPrinter() {
@@ -610,26 +686,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             octoprintClient.connectToServer(printer: printer)
             
             // Check for plugin updates
-            updatesAvailable = nil
-            pluginUpdatesManager.checkUpdatesFor(printer: printer) { (error: Error?, response: HTTPURLResponse, updatesAvailable: Array<PluginUpdatesManager.UpdateAvailable>?) in
-                if let updates = updatesAvailable {
-                    if updates.isEmpty {
-                        // No updates found
-                        return
-                    }
-                    self.updatesAvailable = updates
-                    // Redirect user to new popover that shows available updates
-                    DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "updates_available", sender: self)
-                    }
-                } else if response.statusCode == 200 {
-                    NSLog("User elected to ignore available plugin updates")
-                } else if response.statusCode == 304 {
-                    NSLog("Skipped checking for plugin updates")
-                } else {
-                    NSLog("Unkown case checking for plugin updates. Response: \(response)")
-                }
-            }
+            checkUpdatesFor(printer)
         } else {
             DispatchQueue.main.async {
                 self.notRefreshingReason = nil

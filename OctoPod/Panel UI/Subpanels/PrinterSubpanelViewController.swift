@@ -715,11 +715,13 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         if let sensorsData = data["sensor_data"] as? NSArray {
             var changedData = false
             for case let sensorData as NSDictionary in sensorsData {
-                if let index_id = sensorData["index_id"] as? Int16, let temperature = sensorData["temperature"] as? Float, let humidity = sensorData["humidity"] as? Float {
+                if let index_id = sensorData["index_id"] as? Int16, let temperature = sensorData["temperature"] as? Double, let humidity = sensorData["humidity"] as? Double {
                     if let inputData = enclosureInputs.first(where: {$0.index == index_id}) {
                         inputData.set(temperature: temperature, humidity: humidity)
                         changedData = true
                     }
+                } else {
+                    NSLog("Enclosure plugin - Sensor Data with unknown format: \(sensorData)")
                 }
             }
             if changedData {
@@ -948,11 +950,11 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
 private class EnclosureInputData {
     var index: Int16
     var label: String
-    var temperature: Float
+    var temperature: Double
     var celsius: Bool
-    var humidity: Float
+    var humidity: Double
     
-    init(index: Int16, label: String, temperature: Float, celsius: Bool, humidity: Float) {
+    init(index: Int16, label: String, temperature: Double, celsius: Bool, humidity: Double) {
         self.index = index
         self.label = label
         self.temperature = temperature
@@ -960,7 +962,7 @@ private class EnclosureInputData {
         self.humidity = humidity
     }
     
-    func set(temperature: Float, humidity: Float) {
+    func set(temperature: Double, humidity: Double) {
         self.temperature = temperature
         self.humidity = humidity
     }
