@@ -10,6 +10,12 @@ class PrintersDashboardViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Disable estimated size for iOS 10 since it crashes on iPad and iPhone Plus
+        let os = ProcessInfo().operatingSystemVersion
+        if let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.estimatedItemSize = os.majorVersion == 10 ? CGSize(width: 0, height: 0) : UICollectionViewFlowLayout.automaticSize
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

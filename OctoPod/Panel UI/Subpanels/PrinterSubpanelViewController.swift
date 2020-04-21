@@ -484,8 +484,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             
             if reloadTable && self.view.window != nil {
                 // Force to recalculate rows height since cells may be visible
-                self.tableView.beginUpdates()
-                self.tableView.endUpdates()
+                self.tableView.reloadData()
                 self.checkTempLabelVisibility()
             }
         }
@@ -699,8 +698,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                         self.layerInfoRow.isHidden = false
                         self.currentHeightRow.isHidden = false
                         // Force to recalculate rows height since cell is no longer hidden
-                        self.tableView.beginUpdates()
-                        self.tableView.endUpdates()
+                        self.tableView.reloadData()
                     }
                     self.currentHeightLabel.text = "\(currentHeight) / \(totalHeight)"
                     self.layerLabel.text = "\(currentLayer) / \(totalLayer)"
@@ -846,8 +844,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             self.tool0SetTempButton.isEnabled = false
             
             // Force to recalculate rows height since cells may not be visible
-            self.tableView.beginUpdates()
-            self.tableView.endUpdates()
+            self.tableView.reloadData()
             self.checkTempLabelVisibility()
         }
     }
