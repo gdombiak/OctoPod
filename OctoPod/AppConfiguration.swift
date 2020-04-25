@@ -14,6 +14,7 @@ class AppConfiguration: OctoPrintClientDelegate {
     private static let DISABLE_TEMP_CHART_ZOOM = "APP_CONFIGURATION_DISABLE_TEMP_CHART_ZOOM"
     private static let PLUGIN_UPDATES_CHECK_FREQUENCY = "APP_CONFIGURATION_PLUGIN_UPDATES_CHECK_FREQUENCY"
     private static let COMPLICATION_CONTENT_TYPE_KEY = "APP_CONFIGURATION_COMPLICATION_CONTENT_TYPE"
+    private static let FILES_ONLY_GCODE = "APP_CONFIGURATION_FILES_ONLY_GCODE"
 
     var delegates: Array<AppConfigurationDelegate> = Array()
 
@@ -142,6 +143,25 @@ class AppConfiguration: OctoPrintClientDelegate {
     func promptSpeedExtrudeRetract(enable: Bool) {
         let defaults = UserDefaults.standard
         return defaults.set(enable, forKey: AppConfiguration.PROMPT_SPEED_EXTRUDE)
+    }
+    
+    // MARK: - Files Configuration
+
+    /// Show only gcode files or also model files when browsing files
+    func filesOnlyGCode() -> Bool {
+        let defaults = UserDefaults.standard
+        if let result = defaults.object(forKey: AppConfiguration.FILES_ONLY_GCODE) as? Bool {
+            return result
+        }
+        // A value does not exist so default to true
+        promptSpeedExtrudeRetract(enable: true)
+        return true
+    }
+
+    /// Set if browsing files should only show gcode files or also model files 
+    func filesOnlyGCode(gcodeOnly: Bool) {
+        let defaults = UserDefaults.standard
+        return defaults.set(gcodeOnly, forKey: AppConfiguration.FILES_ONLY_GCODE)
     }
     
     // MARK: - SSL Certificate Validation

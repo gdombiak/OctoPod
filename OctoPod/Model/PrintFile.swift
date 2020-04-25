@@ -72,10 +72,12 @@ class PrintFile {
         return ""
     }
     
+    /// Returns true if file represents a folder
     func isFolder() -> Bool {
         return type == "folder"
     }
     
+    /// Returns true if file represents a model and not a gcode file
     func isModel() -> Bool {
         return type == "model"
     }

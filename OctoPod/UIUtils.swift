@@ -3,7 +3,7 @@ import UIKit
 
 class UIUtils {
 
-    // Caller may not be running in Main thread
+    /// Caller may not be running in Main thread
     static func showAlert(presenter: UIViewController, title: String, message: String, done: (() -> Void)?) {
         // We are not always on the main thread so present dialog on main thread to prevent crashes
         DispatchQueue.main.async {
@@ -18,7 +18,7 @@ class UIUtils {
         }
     }
     
-    // Caller MUST be running in Main thread
+    /// Caller MUST be running in Main thread
     static func showConfirm(presenter: UIViewController, message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
         let alert = UIAlertController(title: NSLocalizedString("Confirm", comment: ""), message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Yes", comment: ""), style: .default, handler: yes))

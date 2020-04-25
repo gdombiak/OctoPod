@@ -348,8 +348,10 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         // Load all files and folders (recursive)
         octoprintClient.files { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
             self.files = Array()
-            // TODO Handle connection errors
-            if let json = result as? NSDictionary {
+            // Handle connection errors
+            if let error = error {
+                self.showAlert(NSLocalizedString("Warning", comment: ""), message: error.localizedDescription, done: nil)
+            } else if let json = result as? NSDictionary {
                 // OctoPrint uses 'files' field for root folder and 'children' for other folders
                 if let files = json["files"] as? NSArray {
                     let trashRegEx = "^trash[-\\w]+~1\\/.+"
@@ -364,6 +366,11 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
                             if trashTest.evaluate(with: path) {
                                 continue
                             }
+                        }
+                        
+                        // Check if we should ignore files that are not gcodes
+                        if self.appConfiguration.filesOnlyGCode() && printFile.isModel() {
+                            continue
                         }
                         
                         // Keep track of files and folders
