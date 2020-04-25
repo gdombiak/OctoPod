@@ -29,6 +29,24 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     // MARK: HTTP operations (GET/POST/PUT/DELETE)
 
     func get(_ service: String, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        getData(service) { (data: Data?, error: Error?, response: HTTPURLResponse) in
+            if let data = data {
+                // Parse string into JSON object
+                let result = String(data: data, encoding: String.Encoding.utf8)!
+                do {
+                    let json = try JSONSerialization.jsonObject(with: result.data(using: String.Encoding.utf8)!, options: [.mutableLeaves, .mutableContainers]) as? NSObject
+                    callback(json, nil, response)
+                }
+                catch let err as NSError {
+                    callback(nil, err, response)
+                }
+            } else {
+                callback(nil, error, response)
+            }
+        }
+    }
+    
+    func getData(_ service: String, callback: @escaping (Data?, Error?, HTTPURLResponse) -> Void) {
         let url: URL = URL(string: serverURL + service)!
         
         // Get session with the provided configuration
@@ -45,15 +63,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
                     callback(nil, error, httpRes)
                 } else {
                     if httpRes.statusCode == 200 {
-                        // Parse string into JSON object
-                        let result = String(data: data!, encoding: String.Encoding.utf8)!
-                        do {
-                            let json = try JSONSerialization.jsonObject(with: result.data(using: String.Encoding.utf8)!, options: [.mutableLeaves, .mutableContainers]) as? NSObject
-                            callback(json, nil, httpRes)
-                        }
-                        catch let err as NSError {
-                            callback(nil, err, httpRes)
-                        }
+                        callback( data!, nil, httpRes)
                     } else {
                         callback(nil, nil, httpRes)
                     }
@@ -61,7 +71,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
             } else {
                 callback(nil, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
             }
-        }) 
+        })
         self.preRequest?()
         task.resume()
         session.finishTasksAndInvalidate()

@@ -131,6 +131,17 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         }
         if let imageView = cell.viewWithTag(50) as? UIImageView {
             imageView.image = UIImage(named: file.isModel() ? "Model" : "GCode")
+            if let thumbnailURL = file.thumbnail {
+                octoprintClient.getThumbnailImage(path: thumbnailURL) { (data: Data?, error: Error?, response: HTTPURLResponse) in
+                    if let data = data, let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            if let resizedImaged = image.resizeWithWidth(width: 48) {
+                                imageView.image = resizedImaged
+                            }
+                        }
+                    }
+                }
+            }
         }
         
         return cell
@@ -153,14 +164,6 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         ThemeUIUtils.themeCell(cell: cell)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row < files.count {
-            let file = files[indexPath.row]
-            return file.isFolder() ? 44 : UITableView.automaticDimension
-        }
-        return 44
     }
     
     // MARK: - Unwind operations

@@ -646,6 +646,14 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.changeEnclosurePWM(index_id: index_id, dutyCycle: dutyCycle, callback: callback)
     }
 
+    // MARK: - PrusaSlicer Thumbnails & Ultimaker Format Package Plugins
+    
+    /// Returns content of thumbnail image. This informatin is only available when PrusaSlicer was configured properly
+    /// and PrusaSlicer Thumbnails plugin is installed
+    func getThumbnailImage(path: String, callback: @escaping (Data?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.getThumbnailImage(path: path, callback: callback)
+    }
+    
     // MARK: - Delegates operations
     
     func remove(octoPrintClientDelegate toRemove: OctoPrintClientDelegate) {

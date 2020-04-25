@@ -949,6 +949,17 @@ class OctoPrintRESTClient {
             }
         }
     }
+    
+    // MARK: - PrusaSlicer Thumbnails Plugin
+    
+    /// Returns content of thumbnail image. This informatin is only available when PrusaSlicer was configured properly
+    /// and PrusaSlicer Thumbnails plugin is installed
+    func getThumbnailImage(path: String, callback: @escaping (Data?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let correctedPath = path.starts(with: "/") ? path : "/\(path)"  // Old versions of plugins started with / 
+            client.getData(correctedPath, callback: callback)
+        }
+    }
 
     // MARK: - Low level operations
     

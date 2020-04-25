@@ -25,6 +25,8 @@ class PrintFile {
 
     var children: Array<PrintFile>?  // This is used by folders to track files in the folder and subfolders
     
+    var thumbnail: String? // relative URL to the thumbnail of this gcode. Requires PrusaSlicerThumbnails plugin
+    
     // Returns true if file can be sent to be printed
     func canBePrinted() -> Bool {
         return type == "machinecode"
@@ -317,6 +319,9 @@ class PrintFile {
         }
         if let newSize = json["size"] as? Int {
             size = newSize
+        }
+        if let newThumbnail = json["thumbnail"] as? String {
+            thumbnail = newThumbnail
         }
         if let gcodeAnalysis = json["gcodeAnalysis"] as? NSDictionary {
             if let newPrintTime = gcodeAnalysis["estimatedPrintTime"] as? Double {

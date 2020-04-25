@@ -3,6 +3,7 @@ import UIKit
 class FileDetailsViewController: ThemedStaticUITableViewController {
     
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+    let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
     var printFile: PrintFile?
 
@@ -19,6 +20,8 @@ class FileDetailsViewController: ThemedStaticUITableViewController {
     @IBOutlet weak var estimatedPrintTimeLabel: UILabel!
     @IBOutlet weak var uploadedDateLabel: UILabel!
     @IBOutlet weak var printedDateLabel: UILabel!
+    
+    @IBOutlet weak var thumbnailImageView: UIImageView!
     
     @IBOutlet weak var printButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
@@ -41,6 +44,22 @@ class FileDetailsViewController: ThemedStaticUITableViewController {
         
         printButton.isEnabled = printFile != nil && printFile!.canBePrinted() && !appConfiguration.appLocked()
         deleteButton.isEnabled = printFile != nil && printFile!.canBeDeleted() && !appConfiguration.appLocked()
+        
+        if let thumbnailURL = printFile?.thumbnail {
+            octoprintClient.getThumbnailImage(path: thumbnailURL) { (data: Data?, error: Error?, response: HTTPURLResponse) in
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.thumbnailImageView.image = image
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.thumbnailImageView.image = nil
+                    }
+                }
+            }
+        } else {
+            thumbnailImageView.image = nil
+        }
         
         themeLabels()
     }
