@@ -113,6 +113,9 @@
 "Confirm intentions regeneration" = "Estás a punto de eliminar y regenerar todos los accesos directos de Siri de la aplicación. ¿Continuar?";
 
 /* (No Comment) */
+"Confirm turn off" = "Confirmar apagar %@";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Está por apagar el enchufe. ¿Continuar?";
 
 /* (No Comment) */

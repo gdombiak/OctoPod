@@ -172,3 +172,5 @@
 
 "Restart" = "Restart";
 "Resume" = "Resume";
+
+"Confirm turn off" = "Confirm turn off %@";

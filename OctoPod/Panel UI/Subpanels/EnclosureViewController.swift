@@ -122,22 +122,33 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
         if let on = cell.isPowerOn {
             if let indexPath = self.tableView.indexPath(for: cell) {
                 let output = self.outputs[indexPath.row]
-                let generator = UINotificationFeedbackGenerator()
-                generator.prepare()
-                self.octoprintClient.changeEnclosureGPIO(index_id: output.index, status: !on) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                    if requested {
-                        generator.notificationOccurred(.success)
-                        // Update in memory status
-                        output.status = !on
-                        // Refresh row
-                        DispatchQueue.main.async {
-                            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                let changePower = {
+                    let generator = UINotificationFeedbackGenerator()
+                    generator.prepare()
+                    self.octoprintClient.changeEnclosureGPIO(index_id: output.index, status: !on) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                        if requested {
+                            generator.notificationOccurred(.success)
+                            // Update in memory status
+                            output.status = !on
+                            // Refresh row
+                            DispatchQueue.main.async {
+                                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                            }
+                        } else {
+                            // Handle error
+                            let message = !on ? NSLocalizedString("Failed to request to turn power on", comment: "") : NSLocalizedString("Failed to request to turn power off", comment: "")
+                            self.showAlert(NSLocalizedString("Warning", comment: ""), message: message)
                         }
-                    } else {
-                        // Handle error
-                        let message = !on ? NSLocalizedString("Failed to request to turn power on", comment: "") : NSLocalizedString("Failed to request to turn power off", comment: "")
-                        self.showAlert(NSLocalizedString("Warning", comment: ""), message: message)
                     }
+                }
+                if on {
+                    showConfirm(message: String(format: NSLocalizedString("Confirm turn off", comment: ""), output.label), yes: { (UIAlertAction) -> Void in
+                        changePower()
+                    }, no: { (UIAlertAction) -> Void in
+                        // Do nothing
+                    })
+                } else {
+                    changePower()
                 }
             }
         }
@@ -146,22 +157,33 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
     func pwmChanged(cell: EnclosurePWMViewCell, dutyCycle: Int) {
         if let indexPath = self.tableView.indexPath(for: cell) {
             let output = self.outputs[indexPath.row]
-            let generator = UINotificationFeedbackGenerator()
-            generator.prepare()
-            self.octoprintClient.changeEnclosurePWM(index_id: output.index, dutyCycle: dutyCycle) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if requested {
-                    generator.notificationOccurred(.success)
-                    DispatchQueue.main.async {
-                        // Clean up value of cell
-                        cell.pwmField.text = nil
-                        // Refresh row
-                        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            let changePower = {
+                let generator = UINotificationFeedbackGenerator()
+                generator.prepare()
+                self.octoprintClient.changeEnclosurePWM(index_id: output.index, dutyCycle: dutyCycle) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    if requested {
+                        generator.notificationOccurred(.success)
+                        DispatchQueue.main.async {
+                            // Clean up value of cell
+                            cell.pwmField.text = nil
+                            // Refresh row
+                            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                        }
+                    } else {
+                        // Handle error
+                        let message = dutyCycle > 0 ? NSLocalizedString("Failed to request to turn power on", comment: "") : NSLocalizedString("Failed to request to turn power off", comment: "")
+                        self.showAlert(NSLocalizedString("Warning", comment: ""), message: message)
                     }
-                } else {
-                    // Handle error
-                    let message = dutyCycle > 0 ? NSLocalizedString("Failed to request to turn power on", comment: "") : NSLocalizedString("Failed to request to turn power off", comment: "")
-                    self.showAlert(NSLocalizedString("Warning", comment: ""), message: message)
                 }
+            }
+            if dutyCycle <= 0 {
+                showConfirm(message: String(format: NSLocalizedString("Confirm turn off", comment: ""), output.label), yes: { (UIAlertAction) -> Void in
+                    changePower()
+                }, no: { (UIAlertAction) -> Void in
+                    // Do nothing
+                })
+            } else {
+                changePower()
             }
         }
     }
@@ -227,6 +249,10 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
     
     fileprivate func showAlert(_ title: String, message: String) {
         UIUtils.showAlert(presenter: self, title: title, message: message, done: nil)
+    }
+
+    fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
+        UIUtils.showConfirm(presenter: self, message: message, yes: yes, no: no)
     }
 }
 
