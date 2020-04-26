@@ -72,7 +72,10 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                 orderedViewControllers.append(createPalette2VC(mainboard))
             }
             if !printer.getEnclosureOutputs().isEmpty {
-                orderedViewControllers.append(createEnclosuretVC(mainboard))
+                orderedViewControllers.append(createEnclosureVC(mainboard))
+            }
+            if printer.filamentManagerInstalled {
+                orderedViewControllers.append(createFilamentManagerVC(mainboard))
             }
         }
         orderedViewControllers.append(mainboard.instantiateViewController(withIdentifier: "SystemCommandsViewController"))
@@ -152,7 +155,9 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
 
             addRemoveVC(add: printer.palette2Installed, vcIdentifier: { $0.isMember(of: Palette2ViewController.self) }, createVC: createPalette2VC)
 
-            addRemoveVC(add: !printer.getEnclosureOutputs().isEmpty, vcIdentifier: { $0.isMember(of: EnclosureViewController.self) }, createVC: createEnclosuretVC)
+            addRemoveVC(add: !printer.getEnclosureOutputs().isEmpty, vcIdentifier: { $0.isMember(of: EnclosureViewController.self) }, createVC: createEnclosureVC)
+            
+            addRemoveVC(add: printer.filamentManagerInstalled, vcIdentifier: { $0.isMember(of: FilamentManagerViewController.self) }, createVC: createFilamentManagerVC)
         }
         // Notify subpanels of change of printer (OctoPrint)
         for case let subpanel as SubpanelViewController in orderedViewControllers {
@@ -254,10 +259,14 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
     
     func enclosureOutputsChanged() {
         if let printer = printerManager.getDefaultPrinter() {
-            addRemoveVC(add: !printer.getEnclosureOutputs().isEmpty, vcIdentifier: { $0.isMember(of: EnclosureViewController.self) }, createVC: createEnclosuretVC)
+            addRemoveVC(add: !printer.getEnclosureOutputs().isEmpty, vcIdentifier: { $0.isMember(of: EnclosureViewController.self) }, createVC: createEnclosureVC)
         } else {
-            addRemoveVC(add: false, vcIdentifier: { $0.isMember(of: EnclosureViewController.self) }, createVC: createEnclosuretVC)
+            addRemoveVC(add: false, vcIdentifier: { $0.isMember(of: EnclosureViewController.self) }, createVC: createEnclosureVC)
         }
+    }
+    
+    func filamentManagerAvailabilityChanged(installed: Bool) {
+        addRemoveVC(add: installed, vcIdentifier: { $0.isMember(of: FilamentManagerViewController.self) }, createVC: createFilamentManagerVC)
     }
 
     // MARK: - Private functions
@@ -338,7 +347,11 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         return mainboard.instantiateViewController(withIdentifier: "CancelObjectViewController")
     }
 
-    fileprivate func createEnclosuretVC(_ mainboard: UIStoryboard) -> UIViewController {
+    fileprivate func createEnclosureVC(_ mainboard: UIStoryboard) -> UIViewController {
         return mainboard.instantiateViewController(withIdentifier: "EnclosureViewController")
+    }
+
+    fileprivate func createFilamentManagerVC(_ mainboard: UIStoryboard) -> UIViewController {
+        return mainboard.instantiateViewController(withIdentifier: "FilamentManagerViewController")
     }
 }

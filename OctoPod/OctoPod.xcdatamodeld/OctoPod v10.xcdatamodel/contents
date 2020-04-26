@@ -24,6 +24,7 @@
         <attribute name="defaultPrinter" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="domoticzplugs" optional="YES" attributeType="Transformable" customClassName="[[String]]"/>
         <attribute name="extruderTemps" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
+        <attribute name="filamentManagerInstalled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="firstCameraAspectRatio16_9" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="hostname" optional="YES" attributeType="String"/>
         <attribute name="iCloudUpdate" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
@@ -59,7 +60,7 @@
     </entity>
     <elements>
         <element name="EnclosureInput" positionX="-63" positionY="135" width="128" height="118"/>
-        <element name="Printer" positionX="-63" positionY="-18" width="128" height="673"/>
         <element name="EnclosureOutput" positionX="-54" positionY="135" width="128" height="103"/>
+        <element name="Printer" positionX="-63" positionY="-18" width="128" height="688"/>
     </elements>
 </model>

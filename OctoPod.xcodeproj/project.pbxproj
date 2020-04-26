@@ -256,6 +256,11 @@
 		3DC69BED21804EC000DBE0D5 /* OctoPrintClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC69BEC21804EC000DBE0D5 /* OctoPrintClient.swift */; };
 		3DC69BEE21804F2A00DBE0D5 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292F20E5549B00296D9D /* HTTPClient.swift */; };
 		3DC69BF02180531000DBE0D5 /* PanelInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC69BEF2180531000DBE0D5 /* PanelInterfaceController.swift */; };
+		3DC6DB33245553C30091E548 /* FilamentSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC6DB32245553C30091E548 /* FilamentSelection.swift */; };
+		3DC6DB352455589A0091E548 /* FilamentManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC6DB342455589A0091E548 /* FilamentManagerViewController.swift */; };
+		3DC6DB3724555A380091E548 /* FilamentSelectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC6DB3624555A380091E548 /* FilamentSelectionViewCell.swift */; };
+		3DC6DB39245601810091E548 /* FilamentSpool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC6DB38245601810091E548 /* FilamentSpool.swift */; };
+		3DC6DB3B245605F40091E548 /* FilamentChangeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC6DB3A245605F40091E548 /* FilamentChangeSelectionViewController.swift */; };
 		3DD3C76421B3222200350225 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DD3C76221B3222200350225 /* Localizable.strings */; };
 		3DD3C76721B3222200350225 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DD3C76521B3222200350225 /* InfoPlist.strings */; };
 		3DD3F2682439990000EA3F84 /* PrintersDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3F2672439990000EA3F84 /* PrintersDashboardViewController.swift */; };
@@ -653,6 +658,11 @@
 		3DC65608219BE49F00F4CA0D /* OctoPod v7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v7.xcdatamodel"; sourceTree = "<group>"; };
 		3DC69BEC21804EC000DBE0D5 /* OctoPrintClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClient.swift; sourceTree = "<group>"; };
 		3DC69BEF2180531000DBE0D5 /* PanelInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelInterfaceController.swift; path = "OctoPod Watch Extension/Panel/PanelInterfaceController.swift"; sourceTree = SOURCE_ROOT; };
+		3DC6DB32245553C30091E548 /* FilamentSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentSelection.swift; sourceTree = "<group>"; };
+		3DC6DB342455589A0091E548 /* FilamentManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentManagerViewController.swift; sourceTree = "<group>"; };
+		3DC6DB3624555A380091E548 /* FilamentSelectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentSelectionViewCell.swift; sourceTree = "<group>"; };
+		3DC6DB38245601810091E548 /* FilamentSpool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentSpool.swift; sourceTree = "<group>"; };
+		3DC6DB3A245605F40091E548 /* FilamentChangeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentChangeSelectionViewController.swift; sourceTree = "<group>"; };
 		3DD02E6223FCD9D800EB2E91 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3DD02E6323FCD9D800EB2E91 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3DD3C76321B3222200350225 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -993,6 +1003,7 @@
 				3D0192FE2443692800970A06 /* EnclosureInputTempCellView.xib */,
 				3DB932D02447FADB00A154FF /* EnclosureGPIOViewCell.swift */,
 				3DB932D22448101A00A154FF /* EnclosurePWMViewCell.swift */,
+				3DC6DB3624555A380091E548 /* FilamentSelectionViewCell.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -1122,6 +1133,7 @@
 				3DB932C924475B7700A154FF /* EnclosureOutput.swift */,
 				3D82873820E3EC3B0035AE0B /* PrinterManager.swift */,
 				3DAD2DE421817B23004A4223 /* IPPlug.swift */,
+				3DC6DB31245553970091E548 /* FilamentManager */,
 				3D9D9763214D735D0032443A /* CloudKitSync */,
 				3D8873F720F534C400DCE987 /* PrintFile.swift */,
 				3D78BA9E21039D770090D79A /* Terminal.swift */,
@@ -1247,6 +1259,24 @@
 			path = OctoPrint;
 			sourceTree = "<group>";
 		};
+		3DC6DB31245553970091E548 /* FilamentManager */ = {
+			isa = PBXGroup;
+			children = (
+				3DC6DB32245553C30091E548 /* FilamentSelection.swift */,
+				3DC6DB38245601810091E548 /* FilamentSpool.swift */,
+			);
+			path = FilamentManager;
+			sourceTree = "<group>";
+		};
+		3DC6DB3C245606030091E548 /* FilamentManager */ = {
+			isa = PBXGroup;
+			children = (
+				3DC6DB342455589A0091E548 /* FilamentManagerViewController.swift */,
+				3DC6DB3A245605F40091E548 /* FilamentChangeSelectionViewController.swift */,
+			);
+			path = FilamentManager;
+			sourceTree = "<group>";
+		};
 		3DD3F266243998C400EA3F84 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1268,6 +1298,7 @@
 				3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */,
 				583827DF22E62D4D00784706 /* Mosaic */,
 				3D88C3E62193F17800BC84DD /* CancelObjectViewController.swift */,
+				3DC6DB3C245606030091E548 /* FilamentManager */,
 				3D74FA2621251BCF00DA2CB3 /* PSUControlViewController.swift */,
 				3D74FA2821251BE600DA2CB3 /* IPPlugViewController.swift */,
 				3DB932CE24475E8600A154FF /* EnclosureViewController.swift */,
@@ -1833,6 +1864,7 @@
 				3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */,
 				3D8B293220E556D400296D9D /* OctoPrintClient.swift in Sources */,
 				3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */,
+				3DC6DB39245601810091E548 /* FilamentSpool.swift in Sources */,
 				3D74FA2721251BCF00DA2CB3 /* PSUControlViewController.swift in Sources */,
 				3DD3F26A2439994300EA3F84 /* PrinterViewCell.swift in Sources */,
 				3D5D614823D57C2000D988A2 /* ComplicationContentType.swift in Sources */,
@@ -1869,10 +1901,12 @@
 				3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */,
 				3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */,
 				583827DE22E36B9100784706 /* Palette2ViewController.swift in Sources */,
+				3DC6DB352455589A0091E548 /* FilamentManagerViewController.swift in Sources */,
 				3D33B7A1213F6A0D002A4BE3 /* UIUtils.swift in Sources */,
 				3D78BA9F21039D770090D79A /* Terminal.swift in Sources */,
 				3DD3F26C243A754800EA3F84 /* PrinterObserver.swift in Sources */,
 				3D8DA01E2144EDCE00F5FD07 /* SupportViewController.swift in Sources */,
+				3DC6DB3B245605F40091E548 /* FilamentChangeSelectionViewController.swift in Sources */,
 				3D45280A20E15A370094CCB7 /* OctoPod.xcdatamodeld in Sources */,
 				3D9AAD5322B326250051BB1B /* AbstractNotificationsHandler.swift in Sources */,
 				3D49A09D21D41FE2005002E7 /* NotificationsManager.swift in Sources */,
@@ -1906,6 +1940,7 @@
 				3D0E1C9D20E819B00036B5FE /* CameraEmbeddedViewController.swift in Sources */,
 				3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */,
 				3D8D51A721333D170006BBB1 /* CustomControlInputViewCell.swift in Sources */,
+				3DC6DB3724555A380091E548 /* FilamentSelectionViewCell.swift in Sources */,
 				3D27DA9E218A8500004F763A /* ExtrudeSpeedViewController.swift in Sources */,
 				3D2821E72178167D00976611 /* CameraViewDelegate.swift in Sources */,
 				3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */,
@@ -1922,6 +1957,7 @@
 				3D1A935921326B3C0050ED9A /* Command.swift in Sources */,
 				583827E122E62D8700784706 /* Palette2PortsViewController.swift in Sources */,
 				3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */,
+				3DC6DB33245553C30091E548 /* FilamentSelection.swift in Sources */,
 				3D1A9361213282190050ED9A /* CustomControlsViewController.swift in Sources */,
 				3D42AC1121731494004D9FD0 /* AppConfigurationDelegate.swift in Sources */,
 				3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */,

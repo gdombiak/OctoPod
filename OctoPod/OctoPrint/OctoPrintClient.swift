@@ -654,6 +654,23 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.getThumbnailImage(path: path, callback: callback)
     }
     
+    // MARK: - FilamentManager Plugin
+    
+    /// Returns current filament selection for each extruder
+    func filamentSelections(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.filamentSelections(callback: callback)
+    }
+
+    /// Returns configured filament spools. Answer also includes profile information (vendor and filament type)
+    func filamentSpools(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.filamentSpools(callback: callback)
+    }
+    
+    /// Changes filament selected for specified extruder
+    func changeFilamentSelection(toolNumber: Int, spoolId: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.changeFilamentSelection(toolNumber: toolNumber, spoolId: spoolId, callback: callback)
+    }
+    
     // MARK: - Delegates operations
     
     func remove(octoPrintClientDelegate toRemove: OctoPrintClientDelegate) {
@@ -803,6 +820,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         updatePrinterFromPalette2Plugin(printer: printer, plugins: plugins)
         updatePrinterFromPalette2CanvasPlugin(printer: printer, plugins: plugins)
         updatePrinterFromEnclosurePlugin(printer: printer, plugins: plugins)
+        updatePrinterFromFilamentManagerPlugin(printer: printer, plugins: plugins)
     }
     
     fileprivate func updatePrinterFromMultiCamPlugin(printer: Printer, plugins: NSDictionary) {
@@ -1199,6 +1217,27 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                         delegate.enclosureOutputsChanged()
                     }
                 }
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromFilamentManagerPlugin(printer: Printer, plugins: NSDictionary) {
+        var installed = false
+        if let _ = plugins[Plugins.FILAMENT_MANAGER] as? NSDictionary {
+            // FilamentManager plugin is installed
+            installed = true
+        }
+        if printer.filamentManagerInstalled != installed {
+            let newObjectContext = printerManager.newPrivateContext()
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+            // Update flag that tracks if FilamentManager plugin is installed
+            printerToUpdate.filamentManagerInstalled = installed
+            // Persist updated printer
+            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+            
+            // Notify listeners of change
+            for delegate in octoPrintSettingsDelegates {
+                delegate.filamentManagerAvailabilityChanged(installed: installed)
             }
         }
     }

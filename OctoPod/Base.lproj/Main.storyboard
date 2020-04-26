@@ -1328,7 +1328,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="arI-ui-M4J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3049" y="-230"/>
+            <point key="canvasLocation" x="3073" y="-81"/>
         </scene>
         <!--Set Target Temp View Controller-->
         <scene sceneID="u1R-Ze-839">
@@ -1462,7 +1462,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLa-et-C2y" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="LCC-ht-12A" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2837" y="256"/>
+            <point key="canvasLocation" x="2301" y="386"/>
         </scene>
         <!--Temp History View Controller-->
         <scene sceneID="up9-XL-whu">
@@ -5810,6 +5810,127 @@
             </objects>
             <point key="canvasLocation" x="6679" y="-230"/>
         </scene>
+        <!--Filament Change Selection View Controller-->
+        <scene sceneID="MWk-O7-8tj">
+            <objects>
+                <tableViewController id="1W1-oW-2gt" customClass="FilamentChangeSelectionViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="F6t-rV-UGR">
+                        <rect key="frame" x="0.0" y="0.0" width="370" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spool_cell" id="4Sw-Tb-Og3">
+                                <rect key="frame" x="0.0" y="28" width="370" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Sw-Tb-Og3" id="7QL-wh-vaP">
+                                    <rect key="frame" x="0.0" y="0.0" width="370" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1W1-oW-2gt" id="dpm-9p-qMr"/>
+                            <outlet property="delegate" destination="1W1-oW-2gt" id="ZVl-Qm-CLr"/>
+                        </connections>
+                    </tableView>
+                    <value key="contentSizeForViewInPopover" type="size" width="370" height="250"/>
+                    <size key="freeformSize" width="370" height="250"/>
+                    <connections>
+                        <segue destination="UJB-wW-7l3" kind="unwind" identifier="backFromChangeSelection" unwindAction="backFromChangeSelection:" id="uV8-QF-Yfg"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H5b-Zl-NUo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="UJB-wW-7l3" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="7434" y="-718"/>
+        </scene>
+        <!--Filament Manager View Controller-->
+        <scene sceneID="JFs-4T-O7J">
+            <objects>
+                <tableViewController storyboardIdentifier="FilamentManagerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Ao-Ly-yg0" customClass="FilamentManagerViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="e6P-Ah-TYM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="370"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="selection_cell" id="EaL-ic-iMD" customClass="FilamentSelectionViewCell" customModule="OctoPod" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="78"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EaL-ic-iMD" id="Via-C8-OAZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wf-TL-br5">
+                                            <rect key="frame" x="16" y="17" width="293" height="44"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTX-dw-fk4">
+                                            <rect key="frame" x="313" y="11" width="46" height="30.5"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="changeSelection:" destination="EaL-ic-iMD" eventType="touchUpInside" id="Xxr-8Z-RuW"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Or4-Wf-fDK">
+                                            <rect key="frame" x="313" y="47.5" width="46" height="19.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="OTX-dw-fk4" firstAttribute="top" secondItem="Via-C8-OAZ" secondAttribute="topMargin" id="89L-nU-LeW"/>
+                                        <constraint firstItem="1wf-TL-br5" firstAttribute="top" secondItem="Via-C8-OAZ" secondAttribute="topMargin" constant="6" id="958-Wt-Whb"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="1wf-TL-br5" secondAttribute="bottom" constant="6" id="D8f-at-mOu"/>
+                                        <constraint firstItem="Or4-Wf-fDK" firstAttribute="leading" secondItem="1wf-TL-br5" secondAttribute="trailing" constant="4" id="PPo-VN-rnI"/>
+                                        <constraint firstItem="Or4-Wf-fDK" firstAttribute="top" secondItem="OTX-dw-fk4" secondAttribute="bottom" constant="6" id="PVr-Yf-gmH"/>
+                                        <constraint firstItem="Or4-Wf-fDK" firstAttribute="bottom" secondItem="Via-C8-OAZ" secondAttribute="bottomMargin" id="Uca-5R-D4K"/>
+                                        <constraint firstItem="Or4-Wf-fDK" firstAttribute="trailing" secondItem="Via-C8-OAZ" secondAttribute="trailingMargin" id="ZMW-hm-dsQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="OTX-dw-fk4" secondAttribute="trailing" constant="16" id="gAL-yp-lOI"/>
+                                        <constraint firstItem="1wf-TL-br5" firstAttribute="leading" secondItem="Via-C8-OAZ" secondAttribute="leadingMargin" id="sdE-Cg-hpc"/>
+                                        <constraint firstItem="OTX-dw-fk4" firstAttribute="leading" secondItem="1wf-TL-br5" secondAttribute="trailing" constant="4" id="zAG-5D-HNN"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="selectionButton" destination="OTX-dw-fk4" id="Lo7-uU-coD"/>
+                                    <outlet property="toolLabel" destination="1wf-TL-br5" id="2u4-tB-D66"/>
+                                    <outlet property="usageLabel" destination="Or4-Wf-fDK" id="G55-jY-wHv"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2Ao-Ly-yg0" id="IID-XO-6qT"/>
+                            <outlet property="delegate" destination="2Ao-Ly-yg0" id="pbi-oE-qIx"/>
+                        </connections>
+                    </tableView>
+                    <size key="freeformSize" width="375" height="370"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="pVi-1H-9Qc">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Pull down to refresh">
+                                <attributes>
+                                    <font key="NSFont" size="11" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <connections>
+                            <action selector="refreshControls:" destination="2Ao-Ly-yg0" eventType="valueChanged" id="nmV-SK-kq7"/>
+                        </connections>
+                    </refreshControl>
+                    <connections>
+                        <segue destination="1W1-oW-2gt" kind="popoverPresentation" identifier="change_selection" popoverAnchorView="e6P-Ah-TYM" id="HGq-LM-PUf">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES"/>
+                        </segue>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PVb-d1-f8S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7430" y="-230"/>
+        </scene>
         <!--Enclosure View Controller-->
         <scene sceneID="7g9-MB-qar">
             <objects>
@@ -5923,7 +6044,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sg4-nF-s2b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7420" y="-230"/>
+            <point key="canvasLocation" x="8214" y="-230"/>
         </scene>
         <!--Palette2 View Controller-->
         <scene sceneID="m4G-Be-kS3">
@@ -6585,7 +6706,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TiL-qI-0Y8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8159" y="-230"/>
+            <point key="canvasLocation" x="8950" y="-230"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="scu-Ue-BWk">
@@ -6771,7 +6892,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="zn3-Wa-ymQ"/>
-        <segue reference="EPv-jl-Nxa"/>
+        <segue reference="YxJ-oN-rHm"/>
         <segue reference="56A-kx-eGb"/>
         <segue reference="MHg-Ec-Wqg"/>
         <segue reference="DPY-Lb-zDG"/>

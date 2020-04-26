@@ -49,6 +49,10 @@ protocol OctoPrintSettingsDelegate: class {
 
     /// Notification that outputs of Enclosure plugin have changed
     func enclosureOutputsChanged()
+    
+    /// Notification that availability of FilamentManager plugin has changed
+    /// - parameter installed: True if plugin is installed in OctoPrint
+    func filamentManagerAvailabilityChanged(installed: Bool)
 }
 
 
@@ -92,5 +96,8 @@ extension OctoPrintSettingsDelegate {
     }
 
     func enclosureOutputsChanged() {
+    }
+    
+    func filamentManagerAvailabilityChanged(installed: Bool) {
     }
 }

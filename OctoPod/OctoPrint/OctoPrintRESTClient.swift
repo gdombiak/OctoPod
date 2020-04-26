@@ -950,14 +950,53 @@ class OctoPrintRESTClient {
         }
     }
     
-    // MARK: - PrusaSlicer Thumbnails Plugin
-    
+    // MARK: - PrusaSlicer Thumbnails & Ultimaker Format Package Plugins
+
     /// Returns content of thumbnail image. This informatin is only available when PrusaSlicer was configured properly
     /// and PrusaSlicer Thumbnails plugin is installed
     func getThumbnailImage(path: String, callback: @escaping (Data?, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let correctedPath = path.starts(with: "/") ? path : "/\(path)"  // Old versions of plugins started with / 
             client.getData(correctedPath, callback: callback)
+        }
+    }
+
+    // MARK: - FilamentManager Plugin
+    
+    /// Returns current filament selection for each extruder
+    func filamentSelections(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/plugin/filamentmanager/selections") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting filamentmanager selections. Error: \(error!.localizedDescription)")
+                }
+                callback(result, error, response)
+            }
+        }
+    }
+
+    /// Returns configured filament spools. Answer also includes profile information (vendor and filament type)
+    func filamentSpools(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/plugin/filamentmanager/spools") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting filamentmanager spools. Error: \(error!.localizedDescription)")
+                }
+                callback(result, error, response)
+            }
+        }
+    }
+    
+    /// Changes filament selected for specified extruder
+    func changeFilamentSelection(toolNumber: Int, spoolId: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["selection"] = ["tool": toolNumber, "spool": ["id": spoolId]]
+            client.patch("/plugin/filamentmanager/selections/\(toolNumber)", json: json, expected: 200) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 200, error, response)
+            }
         }
     }
 
