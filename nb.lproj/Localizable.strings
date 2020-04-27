@@ -113,6 +113,9 @@
 "Confirm intentions regeneration" = "Du er i ferd med å slette og regenerere alle Siri snarveier av appen. Fortsette?";
 
 /* (No Comment) */
+"Confirm turn off" = "Bekreft slå av %@";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Du er i ferd med å slå av støpselet. Fortsette?";
 
 /* (No Comment) */
@@ -184,7 +187,7 @@
 /* gcode name */
 "Endstop States" = "Endstop tilstander";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Extruder" = "Ekstruder";
 
 /* No comment provided by engineer. */

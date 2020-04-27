@@ -113,6 +113,9 @@
 "Confirm intentions regeneration" = "Du håller på att radera och omarbeta alla Siri-genvägar för appen. Fortsätt?";
 
 /* (No Comment) */
+"Confirm turn off" = "Bekräfta avstängning av %@";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Du håller på att stänga av uttaget. Fortsätt?";
 
 /* (No Comment) */
@@ -184,7 +187,7 @@
 /* gcode name */
 "Endstop States" = "Ändlägestillstånd";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Extruder" = "Extruder";
 
 /* No comment provided by engineer. */

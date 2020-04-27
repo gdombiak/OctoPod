@@ -113,6 +113,9 @@
 "Confirm intentions regeneration" = "Souhaitez-vous réellement effacer et regénérer tous les raccourcis Siri de l’App ?";
 
 /* (No Comment) */
+"Confirm turn off" = "Confirmer l’extinction de %@";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Souhaitez-vous réellement éteindre la prise ?";
 
 /* (No Comment) */
@@ -184,7 +187,7 @@
 /* gcode name */
 "Endstop States" = "États des fins de course";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Extruder" = "Extrudeur";
 
 /* No comment provided by engineer. */

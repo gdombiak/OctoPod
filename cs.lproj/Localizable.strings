@@ -113,6 +113,9 @@
 "Confirm intentions regeneration" = "Smažete a obnovíte všechny zkratky Siri této aplikace. Pokračovat?";
 
 /* (No Comment) */
+"Confirm turn off" = "Potvrdit vypnutí %@";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Vypnete zásuvku. Pokračovat?";
 
 /* (No Comment) */
@@ -184,7 +187,7 @@
 /* gcode name */
 "Endstop States" = "Stav koncových spínačů";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Extruder" = "Tryska";
 
 /* No comment provided by engineer. */

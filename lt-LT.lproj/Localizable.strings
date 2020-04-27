@@ -113,6 +113,9 @@
 "Confirm intentions regeneration" = "Norite ištrinti visus Siri trumpinius ir atstatyti numatytus?";
 
 /* (No Comment) */
+"Confirm turn off" = "Patvirtinkite išjungimą %@";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Išjungti išmanujį kištuką?";
 
 /* (No Comment) */
@@ -184,7 +187,7 @@
 /* gcode name */
 "Endstop States" = "Endstop Būsenos";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Extruder" = "Ekstruderio";
 
 /* No comment provided by engineer. */
