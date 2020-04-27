@@ -94,7 +94,7 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
             sizeLabel.textColor = textColor
         }
         if let imageView = cell.viewWithTag(50) as? UIImageView {
-            imageView.image = UIImage(named: file.isModel() ? "Model" : "GCode")
+            imageView.image = UIImage(named: file.isModel() ? "Model_48" : "GCode_48")
             if let thumbnailURL = file.thumbnail {
                 octoprintClient.getThumbnailImage(path: thumbnailURL) { (data: Data?, error: Error?, response: HTTPURLResponse) in
                     if let data = data, let image = UIImage(data: data) {
