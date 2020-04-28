@@ -803,7 +803,7 @@
 "VgY-ne-x6t.text" = "Status";
 
 /* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "VIg-Mm-BM3"; */
-"VIg-Mm-BM3.text" = "Inkludera i Kontrollpanel";
+"VIg-Mm-BM3.text" = "Inkludera i Kontrollpanelen";
 
 /* Class = "UILabel"; text = "%"; ObjectID = "VkX-1W-xBG"; */
 "VkX-1W-xBG.text" = "%";
