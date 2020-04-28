@@ -26,9 +26,12 @@ class PrintersDashboardViewController: UICollectionViewController {
         
         printers = []
         for printer in printerManager.getPrinters() {
-            let printerObserver = PrinterObserver(printersDashboardViewController: self, row: printers.count)
-            printerObserver.connectToServer(printer: printer)
-            printers.append(printerObserver)
+            // Only add printers that want to be displayed in dashboard
+            if printer.includeInDashboard {
+                let printerObserver = PrinterObserver(printersDashboardViewController: self, row: printers.count)
+                printerObserver.connectToServer(printer: printer)
+                printers.append(printerObserver)
+            }
         }
     }
     

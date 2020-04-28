@@ -23,6 +23,10 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     
     @IBOutlet weak var scanInstallationsButton: UIButton!
     @IBOutlet weak var scanAPIKeyButton: UIButton!
+    
+    @IBOutlet weak var includeDashboardLabel: UILabel!
+    @IBOutlet weak var includeDashboardSwitch: UISwitch!
+    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -37,6 +41,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         let tintColor = theme.tintColor()
         scanAPIKeyButton.tintColor = tintColor
         scanInstallationsButton.tintColor = tintColor
+        includeDashboardLabel.textColor = theme.textColor()
 
         if let selectedPrinter = updatePrinter {
             updateFieldsForPrinter(printer: selectedPrinter)
@@ -86,6 +91,8 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
             printer.username = usernameField.text
             printer.password = passwordField.text
             
+            printer.includeInDashboard = includeDashboardSwitch.isOn
+            
             // Mark that iCloud needs to be updated
             printer.iCloudUpdate = true
             
@@ -106,6 +113,15 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
             // Add new printer (that will become default if it's the first one)
             if printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, iCloudUpdate: true) {
                 if let printer = printerManager.getPrinterByName(name: printerNameField.text!) {
+                    // Only update printer if dashboard configuration needs update
+                    if printer.includeInDashboard != includeDashboardSwitch.isOn {
+                        let newObjectContext = printerManager.newPrivateContext()
+                        let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                        // Update flag that tracks if Cancel Object plugin is installed
+                        printerToUpdate.includeInDashboard = includeDashboardSwitch.isOn
+                        // Persist updated printer
+                        printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                    }
                     // Create Siri suggestions (user will need to manually delete recorded Shortcuts)
                     IntentsDonations.donatePrinterIntents(printer: printer)
                     } else {
@@ -235,6 +251,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         apiKeyField.text = scannedKey == nil ? printer.apiKey : scannedKey
         usernameField.text = printer.username
         passwordField.text = printer.password
+        includeDashboardSwitch.isOn = printer.includeInDashboard
     }
     
     fileprivate func updateSaveButton() {

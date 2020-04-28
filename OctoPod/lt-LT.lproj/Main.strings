@@ -724,6 +724,9 @@
 /* Class = "UITableViewSection"; headerTitle = "Fan & Motors"; ObjectID = "SwZ-jq-tKf"; */
 "SwZ-jq-tKf.headerTitle" = "Ventiliatorius ir varikliai";
 
+/* Class = "UITableViewSection"; headerTitle = "Settings"; ObjectID = "sym-Tb-zFM"; */
+"sym-Tb-zFM.headerTitle" = "Nustatymai";
+
 /* Class = "UILabel"; text = "0 C"; ObjectID = "syx-MO-ExG"; */
 "syx-MO-ExG.text" = "0 C";
 
@@ -798,6 +801,9 @@
 
 /* Class = "UILabel"; text = "Status"; ObjectID = "VgY-ne-x6t"; */
 "VgY-ne-x6t.text" = "Statusas";
+
+/* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "VIg-Mm-BM3"; */
+"VIg-Mm-BM3.text" = "Pridėti į skydelį";
 
 /* Class = "UILabel"; text = "%"; ObjectID = "VkX-1W-xBG"; */
 "VkX-1W-xBG.text" = "%";

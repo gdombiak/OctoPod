@@ -24,6 +24,9 @@ class Printer: NSManagedObject {
 
     @NSManaged var username: String?
     @NSManaged var password: String?
+    
+    /// Show this printer in dashboard of printers. Defauilt is true
+    @NSManaged var includeInDashboard: Bool
 
     /// Information configured in OctoPrint -> Appearance to control color of UI
     @NSManaged var color: String?
