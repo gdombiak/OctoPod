@@ -1,27 +1,52 @@
 # Change Log
 
-## [3.3](https://github.com/gdombiak/OctoPod/tree/3.3) (2020-04-18)
-[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.2...3.3)
+## [3.3](https://github.com/gdombiak/OctoPod/tree/3.4) (2020-04-29)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.3...3.4)
 
 
 **Implemented enhancements:**
 
+- Hide printers from dashboard [\#314](https://github.com/gdombiak/OctoPod/issues/314)
+- Files window does not display errors when loading files [\#312](https://github.com/gdombiak/OctoPod/issues/312)
+- Add support for Ultimaker Format Package plugin  [\#311](https://github.com/gdombiak/OctoPod/issues/311)
+- Add support for PrusaSlicer Thumbnails plugin [\#310](https://github.com/gdombiak/OctoPod/issues/310)
+- Feature request - Enclosure plugin - Add confirmation dialog [\#307](https://github.com/gdombiak/OctoPod/issues/307)
+- iOS App: Filter file list [\#299](https://github.com/gdombiak/OctoPod/issues/299)
+- Add support for Filamentmanager plugin [\#274](https://github.com/gdombiak/OctoPod/issues/274)
+
+**Fixed bugs:**
+
+- System commands with spaces fail to execute [\#306](https://github.com/gdombiak/OctoPod/issues/306)
+
+**Closed issues:**
+
+- \[Feature Request\] Show thumbnail [\#313](https://github.com/gdombiak/OctoPod/issues/313)
+- Drop iOS 10 support. iOS 11 or newer is now supported [\#309](https://github.com/gdombiak/OctoPod/issues/309)
+- Starscream.WSError [\#308](https://github.com/gdombiak/OctoPod/issues/308)
+- Webcam not functioning / url broken [\#305](https://github.com/gdombiak/OctoPod/issues/305)
+
+## [3.3](https://github.com/gdombiak/OctoPod/tree/3.3) (2020-04-18)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.2...3.3)
+
+**Implemented enhancements:**
+
+- \[ATV\] - Add confirmation to pause print job [\#282](https://github.com/gdombiak/OctoPod/issues/282)
+- \[ATV\] - Group information on detailed view [\#281](https://github.com/gdombiak/OctoPod/issues/281)
+- \[ATV\] - Disable screensaver [\#280](https://github.com/gdombiak/OctoPod/issues/280)
 - Swipe down to check for plugin or OctoPrint updates [\#304](https://github.com/gdombiak/OctoPod/issues/304)
 - Add haptic feedback to system commands [\#294](https://github.com/gdombiak/OctoPod/issues/294)
 - Add haptic feedback to custom control [\#293](https://github.com/gdombiak/OctoPod/issues/293)
 - Update OctoPod Icon [\#291](https://github.com/gdombiak/OctoPod/issues/291)
 - Add printers dashboard to iOS app [\#286](https://github.com/gdombiak/OctoPod/issues/286)
-- \[ATV\] - Add confirmation to pause print job [\#282](https://github.com/gdombiak/OctoPod/issues/282)
-- \[ATV\] - Group information on detailed view [\#281](https://github.com/gdombiak/OctoPod/issues/281)
-- \[ATV\] - Disable screensaver [\#280](https://github.com/gdombiak/OctoPod/issues/280)
 - App needs fresh/modern Icon [\#278](https://github.com/gdombiak/OctoPod/issues/278)
 - Feature request - Add support for enclosure plugin - temperature probe [\#277](https://github.com/gdombiak/OctoPod/issues/277)
 
 **Fixed bugs:**
 
-- Y control button inverted [\#292](https://github.com/gdombiak/OctoPod/issues/292)
 - Tasmota plugin not showing on v3.2b4 [\#279](https://github.com/gdombiak/OctoPod/issues/279)
 - Icon of TPLink button does not show current state \(Issues with Kasa HS105\) [\#258](https://github.com/gdombiak/OctoPod/issues/258)
+- Layer Display broken with DisplayLayerProgress 1.19.1 [\#296](https://github.com/gdombiak/OctoPod/issues/296)
+- Y control button inverted [\#292](https://github.com/gdombiak/OctoPod/issues/292)
 
 **Closed issues:**
 
@@ -44,10 +69,6 @@
 - Add Russian translation  [\#266](https://github.com/gdombiak/OctoPod/issues/266)
 - Request for Layer Number in Panel [\#265](https://github.com/gdombiak/OctoPod/issues/265)
 - Add Apple TV support [\#135](https://github.com/gdombiak/OctoPod/issues/135)
-
-**Fixed bugs:**
-
-- Layer Display broken with DisplayLayerProgress 1.19.1 [\#296](https://github.com/gdombiak/OctoPod/issues/296)
 
 **Closed issues:**
 
