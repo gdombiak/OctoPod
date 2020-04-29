@@ -113,6 +113,9 @@
 "Confirm intentions regeneration" = "Sie sind dabei alle Siri Verknüpfungen aus der app zu entfernen und zu erneuern. Fortsetzen?";
 
 /* (No Comment) */
+"Confirm turn off" = "%@ wird ausgeschaltet";
+
+/* (No Comment) */
 "Confirm turn off plug" = "Sie möchten die Steckdose ausschalten. Fortsetzen?";
 
 /* (No Comment) */
@@ -184,7 +187,7 @@
 /* gcode name */
 "Endstop States" = "Endschalter Zustände";
 
-/* No comment provided by engineer. */
+/* (No Comment) */
 "Extruder" = "Düse";
 
 /* No comment provided by engineer. */
