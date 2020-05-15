@@ -111,8 +111,21 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             gcodeField.endEditing(true)
             // Hide history of sent commands
             showCommandsHistory(show: false)
+
+            // Format the command by uppercasing the tokens except possible label values
+            let commandTokens = string.split(separator: " ")
+
+            let commandAry : [String] = commandTokens.map {
+                if $0.contains("=") {
+                    var tokens = $0.components(separatedBy: "=")
+                    tokens[0] = tokens[0].uppercased()
+                    return tokens.joined(separator: "=")
+                } else {
+                    return $0.uppercased()
+                }
+            }
             // Send command to OctoPrint
-            let command = text.uppercased()
+            let command = commandAry.joined(separator: " ")
             octoprintClient.sendCommand(gcode: command) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
                     // Handle error
