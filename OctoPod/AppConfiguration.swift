@@ -154,7 +154,7 @@ class AppConfiguration: OctoPrintClientDelegate {
             return result
         }
         // A value does not exist so default to true
-        promptSpeedExtrudeRetract(enable: true)
+        filesOnlyGCode(gcodeOnly: true)
         return true
     }
 
