@@ -66,7 +66,7 @@ class PrintFile {
         if let currentSize = size {
             let bcf = ByteCountFormatter()
             bcf.allowedUnits = [.useKB, .useMB]
-            bcf.countStyle = .file
+            bcf.countStyle = .binary
             return bcf.string(fromByteCount: Int64(currentSize))
         }
         return ""
