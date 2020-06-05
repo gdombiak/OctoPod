@@ -463,6 +463,9 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "KAE-HV-Z5Q"; */
 "KAE-HV-Z5Q.text" = "Title";
 
+/* Class = "UILabel"; text = "Show Camera"; ObjectID = "Kan-Ak-roI"; */
+"Kan-Ak-roI.text" = "Zeige Kamera";
+
 /* Class = "UILabel"; text = "Palette 2 - Last Ping"; ObjectID = "kaq-fI-VzN"; */
 "kaq-fI-VzN.text" = "Palette 2 - Letzter Ping";
 

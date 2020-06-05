@@ -427,6 +427,9 @@
 /* Printer is Offline */
 "Offline" = "Не в сети";
 
+/* No comment provided by engineer. */
+"Pause" = "Пауза";
+
 /* Siri suggested phrase */
 "Pause current print job" = "Приостановить текущее задание печати на %@";
 

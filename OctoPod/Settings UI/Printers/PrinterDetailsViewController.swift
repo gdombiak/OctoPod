@@ -26,7 +26,9 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     
     @IBOutlet weak var includeDashboardLabel: UILabel!
     @IBOutlet weak var includeDashboardSwitch: UISwitch!
-    
+    @IBOutlet weak var showCameraLabel: UILabel!
+    @IBOutlet weak var showCameraSwitch: UISwitch!
+
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -42,6 +44,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         scanAPIKeyButton.tintColor = tintColor
         scanInstallationsButton.tintColor = tintColor
         includeDashboardLabel.textColor = theme.textColor()
+        showCameraLabel.textColor = theme.textColor()
 
         if let selectedPrinter = updatePrinter {
             updateFieldsForPrinter(printer: selectedPrinter)
@@ -92,6 +95,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
             printer.password = passwordField.text
             
             printer.includeInDashboard = includeDashboardSwitch.isOn
+            printer.hideCamera = !showCameraSwitch.isOn
             
             // Mark that iCloud needs to be updated
             printer.iCloudUpdate = true
@@ -114,11 +118,13 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
             if printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, iCloudUpdate: true) {
                 if let printer = printerManager.getPrinterByName(name: printerNameField.text!) {
                     // Only update printer if dashboard configuration needs update
-                    if printer.includeInDashboard != includeDashboardSwitch.isOn {
+                    if printer.includeInDashboard != includeDashboardSwitch.isOn || printer.hideCamera == showCameraSwitch.isOn {
                         let newObjectContext = printerManager.newPrivateContext()
                         let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-                        // Update flag that tracks if Cancel Object plugin is installed
+                        // Update flag that tracks if printer should be displayed in dashboard
                         printerToUpdate.includeInDashboard = includeDashboardSwitch.isOn
+                        // Update flag that tracks if camera subpanel will be displayed for this printer
+                        printerToUpdate.hideCamera = !showCameraSwitch.isOn
                         // Persist updated printer
                         printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
                     }
@@ -252,6 +258,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         usernameField.text = printer.username
         passwordField.text = printer.password
         includeDashboardSwitch.isOn = printer.includeInDashboard
+        showCameraSwitch.isOn = !printer.hideCamera
     }
     
     fileprivate func updateSaveButton() {
