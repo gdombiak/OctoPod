@@ -17,7 +17,7 @@ class Theme {
         func navigationTopColor(octoPrintColor: String?) -> UIColor {
             switch self {
             case .Light:
-                return UIColor(red: 247/255, green: 247/255, blue: 248/255, alpha: 1.0)
+                return UIColor(red: 218/255, green: 218/255, blue: 219/255, alpha: 1.0)
             case .Dark:
                 return UIColor(red: 53/255, green: 57/255, blue: 62/255, alpha: 1.0)
             case .Orange:
@@ -32,7 +32,7 @@ class Theme {
                     }
                 } else {
                     /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor(red: 247/255, green: 247/255, blue: 248/255, alpha: 1.0)
+                    return UIColor(red: 218/255, green: 218/255, blue: 219/255, alpha: 1.0)
                 }
             }
         }
@@ -346,11 +346,11 @@ class Theme {
                     return UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1.0)
                 } else {
                     // Unknown color so use default color
-                    return UIColor(red: 247/255, green: 247/255, blue: 248/255, alpha: 1.0)
+                    return UIColor(red: 218/255, green: 218/255, blue: 219/255, alpha: 1.0)
                 }
             } else {
                 // No printer defined so use default color
-                return UIColor(red: 247/255, green: 247/255, blue: 248/255, alpha: 1.0)
+                return UIColor(red: 218/255, green: 218/255, blue: 219/255, alpha: 1.0)
             }
         }
         
@@ -365,7 +365,7 @@ class Theme {
                 }
             } else {
                 // No printer defined so use default color
-                return UIColor(red: 247/255, green: 247/255, blue: 248/255, alpha: 1.0)
+                return UIColor(red: 218/255, green: 218/255, blue: 219/255, alpha: 1.0)
             }
         }
         
