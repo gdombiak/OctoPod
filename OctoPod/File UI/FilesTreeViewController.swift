@@ -110,7 +110,12 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "file_cell", for: indexPath)
         if let fileLabel = cell.viewWithTag(100) as? UILabel {
             fileLabel.text = file.display
-            fileLabel.textColor = textColor
+            if let success = file.lastSuccessfulPrint {
+                fileLabel.textColor = success ? UIColor(red: 70/255, green: 136/255, blue: 71/255, alpha: 1.0) : UIColor(red: 185/255, green: 74/255, blue: 72/255, alpha: 1.0)
+            } else {
+                // Use theme color since there is no info about last successful print
+                fileLabel.textColor = textColor
+            }
         }
         if let originLabel = cell.viewWithTag(200) as? UILabel {
             originLabel.text = file.displayOrigin()

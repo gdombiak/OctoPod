@@ -27,6 +27,8 @@ class PrintFile {
     
     var thumbnail: String? // relative URL to the thumbnail of this gcode. Requires PrusaSlicerThumbnails plugin
     
+    var lastSuccessfulPrint: Bool? // True if last print was successful, False if cancelled or error or nil if not printed
+    
     // Returns true if file can be sent to be printed
     func canBePrinted() -> Bool {
         return type == "machinecode"
@@ -337,6 +339,9 @@ class PrintFile {
             if let last = prints["last"] as? NSDictionary {
                 if let newDate = last["date"] as? Double {
                     lastPrintDate = Date(timeIntervalSince1970: newDate)
+                }
+                if let success = last["success"] as? Bool {
+                    lastSuccessfulPrint = success
                 }
             }
         }
