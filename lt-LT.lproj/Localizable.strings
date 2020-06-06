@@ -427,6 +427,9 @@
 /* Printer is Offline */
 "Offline" = "Išjungta";
 
+/* No comment provided by engineer. */
+"Pause" = "Pauzė";
+
 /* Siri suggested phrase */
 "Pause current print job" = "Užpauzinti dabartinį darbą ant %@";
 
