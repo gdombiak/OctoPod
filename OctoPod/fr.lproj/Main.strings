@@ -464,7 +464,7 @@
 "KAE-HV-Z5Q.text" = "Title";
 
 /* Class = "UILabel"; text = "Show Camera"; ObjectID = "Kan-Ak-roI"; */
-"Kan-Ak-roI.text" = "Montrer la caméra";
+"Kan-Ak-roI.text" = "Afficher la vidéo";
 
 /* Class = "UILabel"; text = "Palette 2 - Last Ping"; ObjectID = "kaq-fI-VzN"; */
 "kaq-fI-VzN.text" = "Palette 2 - Dernier Ping";
