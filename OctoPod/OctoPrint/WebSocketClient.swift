@@ -1,5 +1,6 @@
 import Foundation
 import Starscream
+import UIKit
 
 // Classic websocket client that connects to "<octoprint>/sockjs/websocket"
 // To receive socket events and received messages, create a WebSocketClientDelegate
