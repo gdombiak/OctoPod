@@ -726,6 +726,11 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             // Do nothing if for some reason the weak var cameraHeightConstraint is no longer there. Will fix a reported crash but not sure if it will crash later
             return
         }
+        // Check if user decided to hide camera subpanel for this printer 
+        if let printer = printerManager.getDefaultPrinter(), printer.hideCamera {
+            cameraHeightConstraint.constant = 0
+            return
+        }
         if orientation == UIImage.Orientation.left || orientation == UIImage.Orientation.leftMirrored || orientation == UIImage.Orientation.rightMirrored || orientation == UIImage.Orientation.right {
             cameraHeightConstraint.constant = 281 + 50
         } else {

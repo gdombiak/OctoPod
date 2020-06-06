@@ -170,6 +170,11 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
             // Do nothing since view never rendered
             return
         }
+        // Check if user decided to hide camera subpanel for this printer
+        if let printer = printerManager.getDefaultPrinter(), printer.hideCamera {
+            cameraHeightConstraint.constant = 0
+            return
+        }
         if orientation == UIImage.Orientation.left || orientation == UIImage.Orientation.leftMirrored || orientation == UIImage.Orientation.rightMirrored || orientation == UIImage.Orientation.right {
             cameraHeightConstraint.constant = 281 + 50
         } else {

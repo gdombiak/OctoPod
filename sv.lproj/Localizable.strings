@@ -427,6 +427,9 @@
 /* Printer is Offline */
 "Offline" = "Offline";
 
+/* No comment provided by engineer. */
+"Pause" = "Pausa";
+
 /* Siri suggested phrase */
 "Pause current print job" = "Pausa aktuellt utskriftsjobb på %@";
 
