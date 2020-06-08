@@ -637,6 +637,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     /// Runs on **main thread**. Enables or disables display of print status overlaid on top of camera view
     fileprivate func checkDisplayPrintStatusOverCamera() {
+        if subpanelsView == nil {
+            // Do nothing if for whatever reason subpanelsView is nil.
+            return
+        }
         let printerSubpanelViewController = subpanelsViewController?.currentSubpanelViewController() as? PrinterSubpanelViewController
         camerasViewController?.displayPrintStatus(enabled: subpanelsView.isHidden || printerSubpanelViewController == nil || !printerSubpanelViewController!.tempLabelVisible())
     }
