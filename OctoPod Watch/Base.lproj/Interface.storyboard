@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15705" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="16097" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <device id="watch44"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="16012"/>
     </dependencies>
     <scenes>
         <!--Printers-->
@@ -91,6 +91,20 @@
                                 <group alignment="right" verticalAlignment="center" id="HmE-1L-MOY">
                                     <items>
                                         <label alignment="right" verticalAlignment="center" id="y5e-8p-PeC">
+                                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                        </label>
+                                    </items>
+                                    <edgeInsets key="margins" left="3" right="0.0" top="0.0" bottom="0.0"/>
+                                </group>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="2"/>
+                        </group>
+                        <group width="1" alignment="left" id="aDi-cc-M90">
+                            <items>
+                                <imageView width="24" height="24" alignment="left" image="Completion" id="308-Co-Ujg"/>
+                                <group alignment="right" verticalAlignment="center" id="0I5-I9-eHy">
+                                    <items>
+                                        <label alignment="right" verticalAlignment="center" id="IHF-iK-Dyw">
                                             <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
                                         </label>
                                     </items>
@@ -246,6 +260,7 @@
                         <outlet property="lastVarianceLabel" destination="JfK-JO-R37" id="FlJ-ws-gEd"/>
                         <outlet property="palette2Group" destination="3Lw-Zs-UUm" id="0J7-rG-Cce"/>
                         <outlet property="pauseButton" destination="Liw-G2-yhy" id="z5k-Uc-HH8"/>
+                        <outlet property="printCompletionLabel" destination="IHF-iK-Dyw" id="Xqa-ZL-G5A"/>
                         <outlet property="printTimeLeftLabel" destination="y5e-8p-PeC" id="02d-61-k2P"/>
                         <outlet property="printerStateLabel" destination="1t9-IL-Tkp" id="pMg-2L-EIa"/>
                         <outlet property="refreshButton" destination="Blm-Ik-qB5" id="BnG-kz-bB4"/>
@@ -340,14 +355,15 @@
     </scenes>
     <resources>
         <image name="Bed" width="64" height="64"/>
-        <image name="Cancel" width="64" height="64"/>
+        <image name="Cancel" width="32" height="32"/>
         <image name="Chamber" width="64" height="64"/>
         <image name="Checkmark" width="10" height="7.5"/>
+        <image name="Completion" width="64" height="64"/>
         <image name="ETA" width="64" height="64"/>
         <image name="Extruder" width="64" height="64"/>
-        <image name="Next" width="64" height="64"/>
+        <image name="Next" width="32" height="32"/>
         <image name="Palette2" width="32" height="32"/>
-        <image name="Pause" width="64" height="64"/>
+        <image name="Pause" width="32" height="32"/>
         <image name="Prev" width="64" height="64"/>
         <image name="Progress" width="64" height="64"/>
         <image name="Refresh" width="64" height="64"/>
