@@ -223,6 +223,16 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         }
     }
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        // If no enclosure inputs then hide the Enclosures section
+        if (section == 2) {
+            if (enclosureInputs.count == 0) {
+                return nil
+            }
+        }
+        return super.tableView(tableView, titleForHeaderInSection: section)
+    }
+
     // MARK: - UIScrollViewDelegate
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
