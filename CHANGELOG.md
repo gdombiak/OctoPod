@@ -1,8 +1,39 @@
 # Change Log
 
-## [3.3](https://github.com/gdombiak/OctoPod/tree/3.4) (2020-04-29)
-[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.3...3.4)
+## [3.5](https://github.com/gdombiak/OctoPod/tree/3.5) (2020-06-09)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.4...3.5)
 
+**Implemented enhancements:**
+
+- Show Estimated Completion Time on Watch App [\#341](https://github.com/gdombiak/OctoPod/issues/341)
+- \[FR\] Display already printed files in a different color [\#334](https://github.com/gdombiak/OctoPod/issues/334)
+- Add setting to be able to hide camera for a printer [\#316](https://github.com/gdombiak/OctoPod/issues/316)
+- Move from Cocoapods to Swift Package Manager [\#270](https://github.com/gdombiak/OctoPod/issues/270)
+- Add support for doing PID calibration \(bed & nozzle\) [\#128](https://github.com/gdombiak/OctoPod/issues/128)
+- Add Turkish translation [\#117](https://github.com/gdombiak/OctoPod/issues/117)
+- Enable slide over & split view on iPad \(single instance\) [\#339](https://github.com/gdombiak/OctoPod/pull/339) ([andrew-codechimp](https://github.com/andrew-codechimp))
+
+**Fixed bugs:**
+
+- Fix app crash when overlaying info over camera [\#342](https://github.com/gdombiak/OctoPod/issues/342)
+- Prompt Extrude settings not saved [\#337](https://github.com/gdombiak/OctoPod/issues/337)
+- Theme contrast issues [\#329](https://github.com/gdombiak/OctoPod/issues/329)
+- Files Not Shown [\#284](https://github.com/gdombiak/OctoPod/issues/284)
+
+**Closed issues:**
+
+- Update charts library to 3.5.0 [\#338](https://github.com/gdombiak/OctoPod/issues/338)
+- Multiple OctoPrint installations on same Pi cause problems [\#331](https://github.com/gdombiak/OctoPod/issues/331)
+- Enclosure plugin doesn’t change gpios [\#324](https://github.com/gdombiak/OctoPod/issues/324)
+- Enclosure implementation not working for GPIO outputs [\#320](https://github.com/gdombiak/OctoPod/issues/320)
+- Hide Camera Pane if Webcam Support is disabled [\#317](https://github.com/gdombiak/OctoPod/issues/317)
+- Camera shows blank/gray image [\#171](https://github.com/gdombiak/OctoPod/issues/171)
+- Failed print when launching app [\#170](https://github.com/gdombiak/OctoPod/issues/170)
+- Duet support [\#164](https://github.com/gdombiak/OctoPod/issues/164)
+- logo proposal [\#122](https://github.com/gdombiak/OctoPod/issues/122)
+
+## [3.4](https://github.com/gdombiak/OctoPod/tree/3.4) (2020-04-29)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.3...3.4)
 
 **Implemented enhancements:**
 
@@ -16,6 +47,8 @@
 
 **Fixed bugs:**
 
+- OctoPod shows different file sizes [\#335](https://github.com/gdombiak/OctoPod/issues/335)
+- App store updated my iPad 4 from 3.2 build 4 release to the latest 3.3, now broken [\#319](https://github.com/gdombiak/OctoPod/issues/319)
 - System commands with spaces fail to execute [\#306](https://github.com/gdombiak/OctoPod/issues/306)
 
 **Closed issues:**

@@ -8,6 +8,7 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
     @IBOutlet weak var printerStateLabel: WKInterfaceLabel!
     @IBOutlet weak var completionLabel: WKInterfaceLabel!
     @IBOutlet weak var printTimeLeftLabel: WKInterfaceLabel!
+    @IBOutlet weak var printCompletionLabel: WKInterfaceLabel!
     
     @IBOutlet weak var bedTempLabel: WKInterfaceLabel!
     @IBOutlet weak var tool0TempLabel: WKInterfaceLabel!
@@ -225,6 +226,7 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
                 self.printerStateLabel.setText(nil)
                 self.completionLabel.setText(nil)
                 self.printTimeLeftLabel.setText(nil)
+                self.printCompletionLabel.setText(nil)
                 self.bedTempLabel.setText("    ")
                 self.tool0TempLabel.setText("     ")
                 self.toolGroup1.setHidden(true)
@@ -255,8 +257,10 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
                 }
                 if let printTimeLeft = panelInfo["printTimeLeft"] as? Int {
                     self.printTimeLeftLabel.setText(self.secondsToTimeLeft(seconds: printTimeLeft))
+                    self.printCompletionLabel.setText(UIUtils.secondsToETA(seconds: printTimeLeft))
                 } else if let printTimeLeft = panelInfo["printTimeLeft"] as? String {
                     self.printTimeLeftLabel.setText(printTimeLeft)
+                    self.printCompletionLabel.setText(nil)
                 }
                 if let bedTemp = panelInfo["bedTemp"] as? Double {
                     let temp = String(format: "%.1f", bedTemp)
@@ -343,6 +347,7 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
                         // Not printing and not paused and no printTimeLeft info then clean up text
                         if panelInfo["printTimeLeft"] == nil {
                             self.printTimeLeftLabel.setText(nil)
+                            self.printCompletionLabel.setText(nil)
                         }
                         if printer == "operational" {
                             self.hideJobButtons()
@@ -391,6 +396,7 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
         self.printerStateLabel.setText(nil)
         self.completionLabel.setText(nil)
         self.printTimeLeftLabel.setText(nil)
+        self.printCompletionLabel.setText(nil)
         self.bedTempLabel.setText(nil)
         self.tool0TempLabel.setText("     ")  // Put some space so extruder icon looks ok
         self.tool1TempLabel.setText("     ")  // Put some space so extruder icon looks ok
