@@ -172,13 +172,6 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     // MARK: - Table view operations
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        // If no enclosureInputs then hide section header
-        if (section == 2) {
-            if (enclosureInputs.count == 0) {
-                return 0.0
-            }
-        }
-
         return 36
     }
     
