@@ -84,7 +84,9 @@ class ChildrenCustomControlViewController: ThemedDynamicUITableViewController {
                     let json = control.executePayload()
                     self.octoprintClient.executeCustomControl(control: json, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                         if requested {
-                            generator.notificationOccurred(.success)
+                            DispatchQueue.main.async {
+                                generator.notificationOccurred(.success)
+                            }
                         } else {
                             // Handle error
                             NSLog("Error requesting to execute command \(json). HTTP status code \(response.statusCode)")
