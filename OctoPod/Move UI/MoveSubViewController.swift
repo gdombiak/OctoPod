@@ -226,9 +226,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             octoprintClient.move(z: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
                     DispatchQueue.main.async {
-                        DispatchQueue.main.async {
                             generator.impactOccurred()
-                        }
                     }
                 } else {
                     // Handle error
