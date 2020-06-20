@@ -513,7 +513,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             generator.prepare()
             self.octoprintClient.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
-                    generator.notificationOccurred(.success)
+                    DispatchQueue.main.async {
+                        generator.notificationOccurred(.success)
+                    }
                 } else {
                     NSLog("Error requesting to restart current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                     self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed restart job", comment: ""))
@@ -532,7 +534,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         generator.prepare()
         self.octoprintClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
-                generator.notificationOccurred(.success)
+                DispatchQueue.main.async {
+                    generator.notificationOccurred(.success)
+                }
             } else {
                 NSLog("Error requesting to pause current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                 self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed pause job", comment: ""))
@@ -549,7 +553,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             generator.prepare()
             self.octoprintClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
-                    generator.notificationOccurred(.success)
+                    DispatchQueue.main.async {
+                        generator.notificationOccurred(.success)
+                    }
                 } else {
                     NSLog("Error requesting to cancel current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                     self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed cancel job", comment: ""))
@@ -569,7 +575,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             generator.prepare()
             self.octoprintClient.printFile(origin: lastFile.origin!, path: lastFile.path!) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
-                    generator.notificationOccurred(.success)
+                    DispatchQueue.main.async {
+                        generator.notificationOccurred(.success)
+                    }
                 } else {
                     NSLog("Error requesting to reprint file: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                     self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed print job again", comment: ""))
@@ -583,7 +591,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         generator.prepare()
         self.octoprintClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
-                generator.notificationOccurred(.success)
+                DispatchQueue.main.async {
+                    generator.notificationOccurred(.success)
+                }
             } else {
                 NSLog("Error requesting to resume current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                 self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed resume job", comment: ""))

@@ -127,7 +127,9 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
                     generator.prepare()
                     self.octoprintClient.changeEnclosureGPIO(index_id: output.index, status: !on) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                         if requested {
-                            generator.notificationOccurred(.success)
+                           DispatchQueue.main.async {
+                                generator.notificationOccurred(.success)
+                            }
                             // Update in memory status
                             output.status = !on
                             // Refresh row
@@ -162,8 +164,8 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
                 generator.prepare()
                 self.octoprintClient.changeEnclosurePWM(index_id: output.index, dutyCycle: dutyCycle) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        generator.notificationOccurred(.success)
                         DispatchQueue.main.async {
+                            generator.notificationOccurred(.success)
                             // Clean up value of cell
                             cell.pwmField.text = nil
                             // Refresh row
