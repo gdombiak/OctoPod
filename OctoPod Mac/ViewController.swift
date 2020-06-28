@@ -49,20 +49,18 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
         if !self.serverConnected{
             connectToServer()
         }
-//    myTextField.bezeled         = NO;
-//    myTextField.editable        = NO;
-//    myTextField.drawsBackground = NO;
         
     streamingController = MjpegStreamingController(imageView: imageView)
         streamingController?.play(url: URL(string:"https://arijit.org/webcam/?action=stream")!)
     }
     
-    func updatePrinterStatusView(printerStatus:String,actualExtruderTemp:Double,targetExtruderTemp:Double,actualBedTemp:Double,targetBedTemp:Double){
-        printerStatusValue.stringValue = printerStatus
-        actualBedTempValue.doubleValue = actualBedTemp
-        targetBedTempValue.doubleValue = targetBedTemp
-        actualExtruderTempValue.doubleValue = actualExtruderTemp
-        targetExtruderTempValue.doubleValue = targetExtruderTemp
+    func updatePrinterStatusView(printerStatus:String?,actualExtruderTemp:Double?,targetExtruderTemp:Double?,actualBedTemp:Double?,targetBedTemp:Double?){
+
+        printerStatusValue.stringValue = printerStatus ?? "Unknown"
+        actualBedTempValue.doubleValue = actualBedTemp ?? actualBedTempValue.doubleValue
+        targetBedTempValue.doubleValue = targetBedTemp ??  targetBedTempValue.doubleValue
+        actualExtruderTempValue.doubleValue = actualExtruderTemp ?? actualExtruderTempValue.doubleValue
+        targetExtruderTempValue.doubleValue = targetExtruderTemp ?? targetExtruderTempValue.doubleValue
     }
     
     override var representedObject: Any? {
@@ -113,7 +111,7 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
     fileprivate func connectToServer() {
         let defaultPrinter = printerManager!.getDefaultPrinter()! as Printer
         octoPrintClient.connectToServer(printer : defaultPrinter)
-        print(defaultPrinter.getStreamPath())
+      
     }
     func notificationAboutToConnectToServer() {
         //print("*************")
@@ -125,12 +123,13 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
             if let closed = event.closedOrError {
                 self.updateConnectButton(printerConnected: !closed, assumption: false)
             }
+           
             self.updatePrinterStatusView(
-                printerStatus: event.state ?? "Unknown" ,
-                actualExtruderTemp: event.tool0TempActual ?? 0.0,
-                targetExtruderTemp: event.tool0TempTarget ?? 0.0,
-                actualBedTemp: event.bedTempActual ?? 0.0,
-                targetBedTemp: event.bedTempTarget ?? 0.0
+                printerStatus: event.state ,
+                actualExtruderTemp: event.tool0TempActual ,
+                targetExtruderTemp: event.tool0TempTarget ,
+                actualBedTemp: event.bedTempActual ,
+                targetBedTemp: event.bedTempTarget
             )
         }
     }
@@ -154,7 +153,12 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
         if printerConnected! {
             self.octoPrintClient.disconnectFromPrinter { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
-                    // add stuff
+                    DispatchQueue.main.async {
+                        self.actualBedTempValue.doubleValue = 0.0
+                        self.actualExtruderTempValue.doubleValue = 0.0
+                        self.targetExtruderTempValue.doubleValue = 0.0
+                        self.targetBedTempValue.doubleValue = 0.0
+                    }
                 }
                 
             }
