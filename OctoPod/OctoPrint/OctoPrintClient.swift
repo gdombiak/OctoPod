@@ -1,5 +1,10 @@
 import Foundation
+#if canImport(UIKit)
+// iOS, tvOS, and watchOS – use UIKit
 import UIKit
+#else
+// all other platforms meaning macOS
+#endif
 
 /// OctoPrint client that exposes the REST API described
 /// here: http://docs.octoprint.org/en/master/api/index.html
@@ -21,15 +26,17 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     var octoPrintSettingsDelegates: Array<OctoPrintSettingsDelegate> = Array()
     var printerProfilesDelegates: Array<PrinterProfilesDelegate> = Array()
     var octoPrintPluginsDelegates: Array<OctoPrintPluginsDelegate> = Array()
-    
+  
     var appConfiguration: AppConfiguration {
-        get {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            return appDelegate.appConfiguration
-        }
-        set(configuration) {
-            configuration.delegates.append(self)
-        }
+
+       get {
+//           let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//           return appDelegate.appConfiguration
+        return AppDelegate().appConfiguration
+       }
+       set(configuration) {
+//           configuration.delegates.append(self)
+       }
     }
 
     // Remember last CurrentStateEvent that was reported from OctoPrint (via websockets)
@@ -756,8 +763,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                 }
             }
         }
-        
+ 
         if let webcam = json["webcam"] as? NSDictionary {
+            #if canImport(UIKit)
+            // iOS, tvOS, and watchOS – use UIKit
             if let flipH = webcam["flipH"] as? Bool, let flipV = webcam["flipV"] as? Bool, let rotate90 = webcam["rotate90"] as? Bool {
                 let newOrientation = calculateImageOrientation(flipH: flipH, flipV: flipV, rotate90: rotate90)
                 if printer.cameraOrientation != newOrientation.rawValue {
@@ -772,6 +781,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                     }
                 }
             }
+            #else
+            // all other platforms meaning macOS
+            #endif
+            
             if let streamUrl = webcam["streamUrl"] as? String {
                 if printer.streamUrl != streamUrl {
                     // Update path to camera hosted by OctoPrint
@@ -1241,7 +1254,8 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             }
         }
     }
-    
+    #if canImport(UIKit)
+    // iOS, tvOS, and watchOS – use UIKit
     fileprivate func calculateImageOrientation(flipH: Bool, flipV: Bool, rotate90: Bool) -> UIImage.Orientation {
         if !flipH && !flipV && !rotate90 {
              // No flips selected
@@ -1269,6 +1283,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             return UIImage.Orientation.right
         }
     }
+    #else
+    // all other platforms meaning macOS
+    #endif
+    
     
     // MARK: - Private - Printer Profile functions
     
