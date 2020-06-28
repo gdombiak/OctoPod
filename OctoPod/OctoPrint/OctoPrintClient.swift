@@ -35,7 +35,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         return AppDelegate().appConfiguration
        }
        set(configuration) {
-//           configuration.delegates.append(self)
+           configuration.delegates.append(self)
        }
     }
 
