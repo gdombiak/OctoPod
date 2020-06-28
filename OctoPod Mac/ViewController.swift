@@ -17,6 +17,12 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
     @IBOutlet weak var printerStatusLabel: NSTextField!
     
     @IBOutlet weak var printerStatusValue: NSTextField!
+    
+    @IBOutlet weak var actualExtruderTempValue: NSTextField!
+    @IBOutlet weak var targetExtruderTempValue: NSTextField!
+    @IBOutlet weak var actualBedTempValue: NSTextField!
+    @IBOutlet weak var targetBedTempValue: NSTextField!
+    
     private var serverConnected = false
     private var printerConnected: Bool?
     var streamingController: MjpegStreamingController?
@@ -43,12 +49,20 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
         if !self.serverConnected{
             connectToServer()
         }
+//    myTextField.bezeled         = NO;
+//    myTextField.editable        = NO;
+//    myTextField.drawsBackground = NO;
+        
     streamingController = MjpegStreamingController(imageView: imageView)
         streamingController?.play(url: URL(string:"https://arijit.org/webcam/?action=stream")!)
     }
     
-    func updatePrinterStatusView(printerStatus:String,extruderTemp:Double,bedTemp:Double){
+    func updatePrinterStatusView(printerStatus:String,actualExtruderTemp:Double,targetExtruderTemp:Double,actualBedTemp:Double,targetBedTemp:Double){
         printerStatusValue.stringValue = printerStatus
+        actualBedTempValue.doubleValue = actualBedTemp
+        targetBedTempValue.doubleValue = targetBedTemp
+        actualExtruderTempValue.doubleValue = actualExtruderTemp
+        targetExtruderTempValue.doubleValue = targetExtruderTemp
     }
     
     override var representedObject: Any? {
@@ -106,11 +120,19 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
     }
     
     func printerStateUpdated(event: CurrentStateEvent) {
-        if let closed = event.closedOrError {
-            updateConnectButton(printerConnected: !closed, assumption: false)
+        DispatchQueue.main.async {
+            //Do UI Code here.
+            if let closed = event.closedOrError {
+                self.updateConnectButton(printerConnected: !closed, assumption: false)
+            }
+            self.updatePrinterStatusView(
+                printerStatus: event.state ?? "Unknown" ,
+                actualExtruderTemp: event.tool0TempActual ?? 0.0,
+                targetExtruderTemp: event.tool0TempTarget ?? 0.0,
+                actualBedTemp: event.bedTempActual ?? 0.0,
+                targetBedTemp: event.bedTempTarget ?? 0.0
+            )
         }
-        updatePrinterStatusView(printerStatus: event.state ?? "Not Populated" ,extruderTemp: event.tool0TempActual ?? 0.0,bedTemp: event.bedTempActual ?? 0.0)
-        
     }
     
     func handleConnectionError(error: Error?, response: HTTPURLResponse) {
