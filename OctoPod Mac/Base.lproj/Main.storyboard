@@ -107,7 +107,7 @@
                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Printer Status" drawsBackground="YES" id="LJl-mN-CTS">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.056776359776886665" green="1" blue="0.086625077736810718" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zrf-sa-JB3">
@@ -115,7 +115,7 @@
                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Extruder Temparature" drawsBackground="YES" id="kue-iV-gDe">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.056776359776886665" green="1" blue="0.086625077736810718" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XcA-mi-jG7">
@@ -123,7 +123,7 @@
                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Bed Temparature" drawsBackground="YES" id="e8c-TR-Lzk">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.056776359776886665" green="1" blue="0.086625077736810718" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pca-pc-Sf0">
@@ -131,7 +131,7 @@
                                                     <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="left" title="0.0" drawsBackground="YES" id="CKW-bQ-M0R">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.056776359776886665" green="1" blue="0.086625077736810718" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZJe-wD-7nJ">
@@ -139,7 +139,7 @@
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="/" drawsBackground="YES" id="Dwm-GW-J45">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.056776359776886665" green="1" blue="0.086625077736810718" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xAM-kj-9kG">
@@ -147,7 +147,7 @@
                                                     <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="left" title="0.0" placeholderString="0.0" drawsBackground="YES" id="azC-Fb-t9R">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.056776359776886665" green="1" blue="0.086625077736810718" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDp-UX-NLw">
@@ -155,7 +155,7 @@
                                                     <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="right" title="0.0" drawsBackground="YES" id="FNN-oo-Onm">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.056776359776886665" green="1" blue="0.086625077736810718" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eQE-By-dB0">
@@ -163,7 +163,7 @@
                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="/" drawsBackground="YES" id="G2X-AI-1H2">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.056776359776886665" green="1" blue="0.086625077736810718" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nm8-vm-mZp">
@@ -171,7 +171,7 @@
                                                     <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="right" title="0.0" drawsBackground="YES" id="sK1-uU-1r0">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.056776359776886665" green="1" blue="0.086625077736810718" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7PW-Rc-1Ri">
@@ -179,7 +179,7 @@
                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="???" drawsBackground="YES" id="8Yd-Wc-ejj">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" red="0.056776359776886665" green="1" blue="0.086625077736810718" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </textFieldCell>
                                                 </textField>
                                                 <imageView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cUk-ts-3RJ">
@@ -247,6 +247,23 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="874"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="YMY-cc-WyW">
+            <objects>
+                <viewController storyboardIdentifier="FullScreenViewController" id="BbO-MY-HxJ" sceneMemberID="viewController">
+                    <button key="view" verticalHuggingPriority="750" id="ny0-9n-7rK">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ocJ-P5-7UL">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                </viewController>
+                <customObject id="2SJ-nZ-Avo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="561" y="967"/>
         </scene>
     </scenes>
     <resources>
