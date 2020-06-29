@@ -85,10 +85,10 @@
                                     <action selector="toggleConnection:" target="XfG-lQ-9wD" id="AiT-do-zt7"/>
                                 </connections>
                             </button>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GBw-1Y-Xth">
-                                <rect key="frame" x="20" y="334" width="440" height="326"/>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GBw-1Y-Xth" userLabel="cameraImage" customClass="CameraImageView" customModule="OctoPod_Mac" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="329" width="480" height="333"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Quq-d5-5Ke"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="Quq-d5-5Ke"/>
                                 <color key="contentTintColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </imageView>
                             <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXQ-Yx-75P">
@@ -182,11 +182,11 @@
                                                         <color key="backgroundColor" red="0.056776359776886665" green="1" blue="0.086625077736810718" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <imageView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cUk-ts-3RJ">
+                                                <imageView identifier="ff" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cUk-ts-3RJ" userLabel="extruTempEdit">
                                                     <rect key="frame" x="163" y="57" width="24" height="24"/>
                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="Edit" id="Vaj-OG-4Pb"/>
                                                 </imageView>
-                                                <imageView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IO5-nc-oFs">
+                                                <imageView ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IO5-nc-oFs" userLabel="bedTempEdit">
                                                     <rect key="frame" x="434" y="57" width="24" height="24"/>
                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="Edit" id="5is-7t-TPV"/>
                                                 </imageView>
@@ -229,15 +229,15 @@
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="mSV-yx-5x5" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="5" id="iuu-Xw-aDg"/>
-                            <constraint firstAttribute="trailing" secondItem="mSV-yx-5x5" secondAttribute="trailing" constant="5" id="vy3-ZN-KhP"/>
+                            <constraint firstItem="mSV-yx-5x5" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="5" id="UdQ-Ph-8nA"/>
+                            <constraint firstAttribute="trailing" secondItem="mSV-yx-5x5" secondAttribute="trailing" constant="5" id="doh-b7-lrM"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="actualBedTempValue" destination="Nm8-vm-mZp" id="D22-Um-5GE"/>
                         <outlet property="actualExtruderTempValue" destination="pca-pc-Sf0" id="4vh-i0-JNB"/>
+                        <outlet property="cameraImageView" destination="GBw-1Y-Xth" id="5HH-hx-PZC"/>
                         <outlet property="connectButton" destination="mSV-yx-5x5" id="4hc-vw-W3F"/>
-                        <outlet property="imageView" destination="GBw-1Y-Xth" id="5HH-hx-PZC"/>
                         <outlet property="printerStatusLabel" destination="qTj-qH-uCL" id="c9L-cu-r7P"/>
                         <outlet property="printerStatusValue" destination="7PW-Rc-1Ri" id="zay-GB-hpI"/>
                         <outlet property="targetBedTempValue" destination="dDp-UX-NLw" id="kNS-vM-0iT"/>
@@ -247,23 +247,6 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="874"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="YMY-cc-WyW">
-            <objects>
-                <viewController storyboardIdentifier="FullScreenViewController" id="BbO-MY-HxJ" sceneMemberID="viewController">
-                    <button key="view" verticalHuggingPriority="750" id="ny0-9n-7rK">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ocJ-P5-7UL">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
-                </viewController>
-                <customObject id="2SJ-nZ-Avo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="561" y="967"/>
         </scene>
     </scenes>
     <resources>
