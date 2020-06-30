@@ -332,6 +332,8 @@
 		DE1F9EAC24A82F6B00A609B7 /* AppConfigurationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F9EAA24A82F6B00A609B7 /* AppConfigurationDelegate.swift */; };
 		DE1F9EBB24A87E3B00A609B7 /* MjpegStreamingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F9EB924A87E3A00A609B7 /* MjpegStreamingController.swift */; };
 		DE1F9EC024A9CB0700A609B7 /* CameraImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F9EBF24A9CB0700A609B7 /* CameraImageView.swift */; };
+		DE1F9EC324ABEAC200A609B7 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */; };
+		DE1F9EC524ABFB6600A609B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F9EC424ABFB6600A609B7 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -778,6 +780,7 @@
 		DE1F9EBA24A87E3A00A609B7 /* MjpegStreamingKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MjpegStreamingKit.h; sourceTree = "<group>"; };
 		DE1F9EBE24A9AF4E00A609B7 /* Octopod_Mac.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Octopod_Mac.entitlements; sourceTree = "<group>"; };
 		DE1F9EBF24A9CB0700A609B7 /* CameraImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraImageView.swift; sourceTree = "<group>"; };
+		DE1F9EC424ABFB6600A609B7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1442,6 +1445,7 @@
 				DE1F9EBE24A9AF4E00A609B7 /* Octopod_Mac.entitlements */,
 				DE1F9E7324A7299C00A609B7 /* Info.plist */,
 				DE1F9EBF24A9CB0700A609B7 /* CameraImageView.swift */,
+				DE1F9EC424ABFB6600A609B7 /* Extensions.swift */,
 			);
 			path = "OctoPod Mac";
 			sourceTree = "<group>";
@@ -2155,6 +2159,7 @@
 				DE1F9E7824A72D0F00A609B7 /* OctoPrintRESTClient.swift in Sources */,
 				DE1F9EA424A8284F00A609B7 /* OctoPrintSettingsDelegate.swift in Sources */,
 				DE1F9E8324A72DC500A609B7 /* Palette2Utils.swift in Sources */,
+				DE1F9EC324ABEAC200A609B7 /* UIUtils.swift in Sources */,
 				DE1F9EAB24A82F6B00A609B7 /* AppConfiguration.swift in Sources */,
 				DE1F9E9024A7E02300A609B7 /* TempHistory.swift in Sources */,
 				DE1F9E9724A7EF4800A609B7 /* PrinterProfilesDelegate.swift in Sources */,
@@ -2169,6 +2174,7 @@
 				DE1F9E8024A72D5200A609B7 /* IPPlug.swift in Sources */,
 				DE1F9E9D24A7F29800A609B7 /* ComplicationContentType.swift in Sources */,
 				DE1F9EA624A829F300A609B7 /* OctoPrintClient.swift in Sources */,
+				DE1F9EC524ABFB6600A609B7 /* Extensions.swift in Sources */,
 				DE1F9E8524A7DCC200A609B7 /* EnclosureInput.swift in Sources */,
 				DE1F9EC024A9CB0700A609B7 /* CameraImageView.swift in Sources */,
 				DE1F9EBB24A87E3B00A609B7 /* MjpegStreamingController.swift in Sources */,

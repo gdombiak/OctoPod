@@ -37,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     lazy var appConfiguration: AppConfiguration = {
         return AppConfiguration()
     }()
-    func showDashboard()  {
+    func showQuickView()  {
         guard let button = statusItem.button else {
             fatalError("Cannot get status button")
         }
@@ -61,7 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if event.type == NSEvent.EventType.rightMouseUp {
             NSMenu.popUpContextMenu(menu, with: event, for: sender)
         } else {
-            showDashboard()
+            showQuickView()
         }
     }
     

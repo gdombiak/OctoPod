@@ -1,8 +1,14 @@
 import Foundation
+#if canImport(UIKit)
+// iOS, tvOS, and watchOS – use UIKit
 import UIKit
+#else
+// all other platforms meaning macOS
+#endif
 
 class UIUtils {
-
+    #if canImport(UIKit)
+    // iOS, tvOS, and watchOS – use UIKit
     /// Caller may not be running in Main thread
     static func showAlert(presenter: UIViewController, title: String, message: String, done: (() -> Void)?) {
         // We are not always on the main thread so present dialog on main thread to prevent crashes
@@ -17,7 +23,12 @@ class UIUtils {
             }
         }
     }
+    #else
+    // all other platforms meaning macOS
+    #endif
     
+    #if canImport(UIKit)
+    // iOS, tvOS, and watchOS – use UIKit
     /// Caller MUST be running in Main thread
     static func showConfirm(presenter: UIViewController, message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
         let alert = UIAlertController(title: NSLocalizedString("Confirm", comment: ""), message: message, preferredStyle: .alert)
@@ -28,6 +39,10 @@ class UIUtils {
             // Nothing to do here
         }
     }
+    #else
+    // all other platforms meaning macOS
+    #endif
+    
     
     static func calculateCameraHeightConstraints(screenHeight: CGFloat) -> (cameraHeight4_3ConstraintPortrait: CGFloat, cameraHeight4_3ConstraintLandscape: CGFloat, camera16_9HeightConstraintPortrait: CGFloat, cameral16_9HeightConstraintLandscape: CGFloat){
         if screenHeight <= 568 {
@@ -103,7 +118,15 @@ class UIUtils {
         formatter.allowedUnits = [ .day, .hour, .minute ]
         return formatter.string(from: duration)!
     }
-    
+    /// Converts number of seconds into a string that represents time (e.g. 23h 10m)
+    static func secondsToPrintTime(seconds: Int) -> String {
+        let duration = TimeInterval(seconds)
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .brief
+        formatter.allowedUnits = [ .day, .hour, .minute, .second ]
+        formatter.zeroFormattingBehavior = [ .default ]
+        return formatter.string(from: duration)!
+    }
     /// Return estimated complection date based on number of estimated seconds to completion
     /// - parameter seconds: estimated number of seconds to complection
     static func secondsToETA(seconds: Int) -> String {
@@ -135,7 +158,8 @@ class UIUtils {
         }
     }
 }
-
+#if canImport(UIKit)
+// iOS, tvOS, and watchOS – use UIKit
 extension UIImage {
     func resizeWithWidth(width: CGFloat) -> UIImage? {
         let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))))
@@ -149,6 +173,9 @@ extension UIImage {
         return result
     }
 }
+#else
+// all other platforms meaning macOS
+#endif
 
 extension Date {
     func timeAgoDisplay() -> String {

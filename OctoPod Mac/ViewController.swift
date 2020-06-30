@@ -23,6 +23,13 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
     @IBOutlet weak var actualBedTempValue: NSTextField!
     @IBOutlet weak var targetBedTempValue: NSTextField!
     
+    @IBOutlet weak var progressPrintTimeValue: NSTextField!
+    @IBOutlet weak var progressPrintTimeLeftValue: NSTextField!
+    @IBOutlet weak var progressPrintCompletionValue: NSTextField!
+    
+    @IBOutlet weak var progressPercentValue: NSTextField!
+    @IBOutlet weak var progressBar: NSProgressIndicator!
+    
     private var serverConnected = false
     private var printerConnected: Bool?
     var streamingController: MjpegStreamingController?
@@ -54,13 +61,19 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
         streamingController?.play(url: URL(string:"https://arijit.org/webcam/?action=stream")!)
     }
     
-    func updatePrinterStatusView(printerStatus:String?,actualExtruderTemp:Double?,targetExtruderTemp:Double?,actualBedTemp:Double?,targetBedTemp:Double?){
+    func updatePrinterStatusView(printerStatus:String?,actualExtruderTemp:Double?,targetExtruderTemp:Double?,actualBedTemp:Double?,targetBedTemp:Double?,progressPrintTime:Int?,progressPrintTimeLeft:Int?, progressCompletion:Double?){
         
         printerStatusValue.stringValue = printerStatus ?? "Unknown"
         actualBedTempValue.doubleValue = actualBedTemp ?? actualBedTempValue.doubleValue
         targetBedTempValue.doubleValue = targetBedTemp ??  targetBedTempValue.doubleValue
         actualExtruderTempValue.doubleValue = actualExtruderTemp ?? actualExtruderTempValue.doubleValue
         targetExtruderTempValue.doubleValue = targetExtruderTemp ?? targetExtruderTempValue.doubleValue
+        progressBar.doubleValue = progressCompletion ?? progressBar.doubleValue
+        progressPercentValue.doubleValue = progressCompletion?.round(to: 1) ?? progressPercentValue.doubleValue
+        let progressPrintTimeLeftDouble = Double(progressPrintTimeLeft ?? 0)
+        progressPrintTimeValue.stringValue = UIUtils.secondsToPrintTime(seconds: progressPrintTime ?? 0)
+        progressPrintTimeLeftValue.stringValue = UIUtils.secondsToEstimatedPrintTime(seconds: progressPrintTimeLeftDouble)
+        progressPrintCompletionValue.stringValue = UIUtils.secondsToETA(seconds: progressPrintTimeLeft ?? 0)
     }
     
     override var representedObject: Any? {
@@ -129,7 +142,10 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
                 actualExtruderTemp: event.tool0TempActual ,
                 targetExtruderTemp: event.tool0TempTarget ,
                 actualBedTemp: event.bedTempActual ,
-                targetBedTemp: event.bedTempTarget
+                targetBedTemp: event.bedTempTarget,
+                progressPrintTime: event.progressPrintTime,
+                progressPrintTimeLeft: event.progressPrintTimeLeft,
+                progressCompletion: event.progressCompletion
             )
         }
     }
