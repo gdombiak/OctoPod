@@ -313,7 +313,6 @@
 		DE1F9E8724A7DD4000A609B7 /* CurrentStateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */; };
 		DE1F9E8824A7DD5100A609B7 /* PrintFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8873F720F534C400DCE987 /* PrintFile.swift */; };
 		DE1F9E8E24A7DEDB00A609B7 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = DE1F9E8D24A7DEDB00A609B7 /* Starscream */; };
-		DE1F9E8F24A7DF8C00A609B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280B20E15A380094CCB7 /* Assets.xcassets */; };
 		DE1F9E9024A7E02300A609B7 /* TempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92E6C721213B2400F58BA5 /* TempHistory.swift */; };
 		DE1F9E9124A7E0DF00A609B7 /* WebSocketClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */; };
 		DE1F9E9224A7E4F100A609B7 /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D98C1D920E5D096007BB13F /* WebSocketClient.swift */; };
@@ -332,6 +331,7 @@
 		DE1F9EAB24A82F6B00A609B7 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F9EA924A82F6B00A609B7 /* AppConfiguration.swift */; };
 		DE1F9EAC24A82F6B00A609B7 /* AppConfigurationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F9EAA24A82F6B00A609B7 /* AppConfigurationDelegate.swift */; };
 		DE1F9EBB24A87E3B00A609B7 /* MjpegStreamingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F9EB924A87E3A00A609B7 /* MjpegStreamingController.swift */; };
+		DE1F9EC024A9CB0700A609B7 /* CameraImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F9EBF24A9CB0700A609B7 /* CameraImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -772,11 +772,12 @@
 		DE1F9E6E24A7299C00A609B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE1F9E7124A7299C00A609B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE1F9E7324A7299C00A609B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DE1F9E7424A7299C00A609B7 /* OctoPod_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OctoPod_Mac.entitlements; sourceTree = "<group>"; };
 		DE1F9EA924A82F6B00A609B7 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppConfiguration.swift; path = "OctoPod TV/AppConfiguration.swift"; sourceTree = SOURCE_ROOT; };
 		DE1F9EAA24A82F6B00A609B7 /* AppConfigurationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppConfigurationDelegate.swift; path = "OctoPod TV/AppConfigurationDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		DE1F9EB924A87E3A00A609B7 /* MjpegStreamingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MjpegStreamingController.swift; sourceTree = "<group>"; };
 		DE1F9EBA24A87E3A00A609B7 /* MjpegStreamingKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MjpegStreamingKit.h; sourceTree = "<group>"; };
+		DE1F9EBE24A9AF4E00A609B7 /* Octopod_Mac.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Octopod_Mac.entitlements; sourceTree = "<group>"; };
+		DE1F9EBF24A9CB0700A609B7 /* CameraImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1438,8 +1439,9 @@
 				DE1F9E6C24A7299B00A609B7 /* ViewController.swift */,
 				DE1F9E6E24A7299C00A609B7 /* Assets.xcassets */,
 				DE1F9E7024A7299C00A609B7 /* Main.storyboard */,
+				DE1F9EBE24A9AF4E00A609B7 /* Octopod_Mac.entitlements */,
 				DE1F9E7324A7299C00A609B7 /* Info.plist */,
-				DE1F9E7424A7299C00A609B7 /* OctoPod_Mac.entitlements */,
+				DE1F9EBF24A9CB0700A609B7 /* CameraImageView.swift */,
 			);
 			path = "OctoPod Mac";
 			sourceTree = "<group>";
@@ -1821,7 +1823,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE1F9E8F24A7DF8C00A609B7 /* Assets.xcassets in Resources */,
 				DE1F9EA024A7FD5500A609B7 /* Assets.xcassets in Resources */,
 				DE1F9E7224A7299C00A609B7 /* Main.storyboard in Resources */,
 			);
@@ -2169,6 +2170,7 @@
 				DE1F9E9D24A7F29800A609B7 /* ComplicationContentType.swift in Sources */,
 				DE1F9EA624A829F300A609B7 /* OctoPrintClient.swift in Sources */,
 				DE1F9E8524A7DCC200A609B7 /* EnclosureInput.swift in Sources */,
+				DE1F9EC024A9CB0700A609B7 /* CameraImageView.swift in Sources */,
 				DE1F9EBB24A87E3B00A609B7 /* MjpegStreamingController.swift in Sources */,
 				DE1F9EA324A81CC700A609B7 /* SharedPersistentContainer.swift in Sources */,
 			);
@@ -2975,6 +2977,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Mac/OctoPod_Mac.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = QCEM4H639D;
@@ -2999,6 +3002,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Mac/OctoPod_Mac.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = QCEM4H639D;
