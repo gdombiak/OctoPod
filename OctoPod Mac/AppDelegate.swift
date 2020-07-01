@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import UserNotifications
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     var viewController: ViewController!
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        registerForPushNotifications()
         let itemImage = NSImage(named: NSImage.Name("Octopod"))
         itemImage?.size = NSMakeSize(20.0, 20.0);
         itemImage?.isTemplate = true
@@ -64,7 +66,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             showQuickView()
         }
     }
-    
+    func registerForPushNotifications() {
+        UNUserNotificationCenter.current() // 1
+            .requestAuthorization(options: [.alert, .sound, .badge]) { // 2
+                granted, error in
+                guard granted else { return }
+                self.getNotificationSettings()
+        }
+    }
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            print("Notification settings: \(settings)")
+        }
+    }
 }
 
 

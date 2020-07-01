@@ -30,8 +30,13 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
     @IBOutlet weak var progressPercentValue: NSTextField!
     @IBOutlet weak var progressBar: NSProgressIndicator!
     
+    @IBOutlet weak var cancelButton: NSButton!
+    @IBOutlet weak var pauseResumeButton: NSButton!
+    
     private var serverConnected = false
     private var printerConnected: Bool?
+    private var isPrinting : Bool!
+    private var isPaused : Bool!
     var streamingController: MjpegStreamingController?
     
     lazy var printerManager: PrinterManager? = {
@@ -135,6 +140,60 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
             //Do UI Code here.
             if let closed = event.closedOrError {
                 self.updateConnectButton(printerConnected: !closed, assumption: false)
+                
+            }
+            if let isPrinting = event.printing {
+                self.isPrinting = event.printing
+                DispatchQueue.main.async {
+                    if(isPrinting){
+                        self.cancelButton.isEnabled = true
+                        self.pauseResumeButton.isEnabled = true
+                        self.cancelButton.contentTintColor = .systemRed
+                        self.pauseResumeButton.contentTintColor = .systemYellow
+                        self.pauseResumeButton.title = "Pause"
+                    }else{
+                        self.cancelButton.isEnabled = false
+                        self.pauseResumeButton.isEnabled = false
+                        self.cancelButton.contentTintColor = .systemGray
+                        self.pauseResumeButton.contentTintColor = .systemGray
+                    }
+                }
+            }
+            if let isPaused = event.paused {
+                self.isPaused = event.paused
+                DispatchQueue.main.async {
+                    if(isPaused){
+                        self.pauseResumeButton.isEnabled = true
+                        self.cancelButton.isEnabled = true
+                        self.cancelButton.contentTintColor = .systemRed
+                        self.pauseResumeButton.contentTintColor = .systemGreen
+                        self.pauseResumeButton.title = "Resume"
+                    }
+                }
+            }
+            if let isPausing = event.pausing {
+                DispatchQueue.main.async {
+                    if(isPausing){
+                        self.pauseResumeButton.isEnabled = false
+                        self.cancelButton.isEnabled = false
+                        self.cancelButton.contentTintColor = .systemGray
+                        self.pauseResumeButton.contentTintColor = .systemGray
+                        self.pauseResumeButton.title = "Resume"
+                    }
+                }
+            }
+            
+            if let isCancelling = event.cancelling {
+                DispatchQueue.main.async {
+                    if(isCancelling){
+                        self.pauseResumeButton.isEnabled = false
+                        self.cancelButton.isEnabled = false
+                        self.cancelButton.contentTintColor = .systemGray
+                        self.pauseResumeButton.contentTintColor = .systemGray
+                        self.pauseResumeButton.title = "Pause"
+                    }
+                    
+                }
             }
             
             self.updatePrinterStatusView(
@@ -162,7 +221,10 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
     
     func websocketConnectionFailed(error: Error) {
         print("ERROR - websocketConnectionFailed")
+        self.octoPrintClient.disconnectFromServer()
+        self.updateConnectButton(printerConnected: false,assumption: false)
         self.serverConnected = false
+        
     }
     
     @IBAction func toggleConnection(_ sender: NSButton) {
@@ -188,6 +250,28 @@ class ViewController: NSViewController, OctoPrintClientDelegate {
         }
     }
     
+    @IBAction func togglePauseResume(_ sender: Any) {
+        pauseResumeButton.isEnabled = false
+        if(self.isPaused){
+            self.octoPrintClient.resumeCurrentJob { (request:Bool, error: Error?, response:HTTPURLResponse) in
+                print("Resumed")
+            }
+        }
+        else if(self.isPrinting){
+            self.octoPrintClient.pauseCurrentJob { (request:Bool, error: Error?, response:HTTPURLResponse) in
+                print("Paused")
+            }
+        }
+        
+    }
     
+    @IBAction func cancelPrint(_ sender: Any) {
+        cancelButton.isEnabled = false
+        if(self.isPrinting || self.isPaused){
+            self.octoPrintClient.cancelCurrentJob { (request:Bool, error: Error?, response:HTTPURLResponse) in
+                print("Cancelled")
+            }
+        }
+    }
 }
 
