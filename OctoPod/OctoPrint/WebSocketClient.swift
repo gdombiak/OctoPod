@@ -5,6 +5,7 @@ import Starscream
 import UIKit
 #else
 // all other platforms meaning macOS
+import Cocoa
 #endif
 // Classic websocket client that connects to "<octoprint>/sockjs/websocket"
 // To receive socket events and received messages, create a WebSocketClientDelegate
@@ -388,7 +389,9 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
             self.socket?.disableSSLCertValidation = appDelegate.appConfiguration.certValidationDisabled()
             #else
             // all other platforms meaning macOS
-            self.socket?.disableSSLCertValidation = false
+            let printerManager = (NSApp.delegate as! AppDelegate).printerManager!
+            let ignoreSSLCertValidation = printerManager.getDefaultPrinter()?.ignoreSSLCertValidationError
+            self.socket?.disableSSLCertValidation = ignoreSSLCertValidation ?? false
             #endif
         }
     }

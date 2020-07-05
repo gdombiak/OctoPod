@@ -89,7 +89,9 @@ class Printer: NSManagedObject {
     
     @NSManaged public var enclosureInputs: Set<EnclosureInput>?
     @NSManaged public var enclosureOutputs: Set<EnclosureOutput>?
-
+    /// whether to ignore SSL cert validation
+    @NSManaged var ignoreSSLCertValidationError: Bool
+    
     func getStreamPath() -> String {
         if let path = streamUrl {
             return path

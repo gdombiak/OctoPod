@@ -4,6 +4,7 @@ import Foundation
 import UIKit
 #else
 // all other platforms meaning macOS
+import Cocoa
 #endif
 
 class UIUtils {
@@ -25,6 +26,14 @@ class UIUtils {
     }
     #else
     // all other platforms meaning macOS
+    static func showAlert(title: String, message: String) {
+        let alert = NSAlert()
+        alert.messageText = title
+        alert.informativeText = message
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "OK")
+        alert.runModal()
+    }
     #endif
     
     #if canImport(UIKit)
@@ -41,6 +50,15 @@ class UIUtils {
     }
     #else
     // all other platforms meaning macOS
+    static func showConfirm(title: String, message: String) -> Bool {
+           let alert = NSAlert()
+           alert.messageText = title
+           alert.informativeText = message
+           alert.alertStyle = .warning
+           alert.addButton(withTitle: "OK")
+           alert.addButton(withTitle: "Cancel")
+           return alert.runModal() == .alertFirstButtonReturn
+    }
     #endif
     
     
@@ -157,7 +175,20 @@ class UIUtils {
             return ""
         }
     }
+    static func isValidURL(urlString: String) -> Bool {
+
+             let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_]|[\\.|/])*)+(:[0-9]+)?"
+             let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx)
+             var result = urlTest.evaluate(with: urlString)
+             if !result {
+                 let ipv6RegEx = "(http|https)://(\\[)?(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(])?(:[0-9]+)?"
+                 let ipv6Test = NSPredicate(format: "SELF MATCHES %@", ipv6RegEx)
+                 result = ipv6Test.evaluate(with: urlString)
+             }
+             return result
+     }
 }
+
 #if canImport(UIKit)
 // iOS, tvOS, and watchOS – use UIKit
 extension UIImage {

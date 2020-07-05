@@ -25,7 +25,6 @@ class CameraImageView: NSImageView {
             self.enterFullScreenMode(NSScreen.main!, withOptions: nil)
             
         }else{
-            
             self.exitFullScreenMode(options: nil)
         }
     }
