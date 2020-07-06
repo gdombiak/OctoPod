@@ -128,14 +128,15 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     fileprivate func connectToServer() {
         if let defaultPrinter = printerManager.getDefaultPrinter()
         {
+            DispatchQueue.main.async {
+                self.octoprintWebButton.isEnabled = !defaultPrinter.hostname.isEmpty
+            }
             if !self.serverConnected{
                 
                 octoPrintClient.connectToServer(printer : defaultPrinter)
                 connectCamera(printer: defaultPrinter)
                 printerNameLabel.stringValue = defaultPrinter.name
-                DispatchQueue.main.async {
-                self.octoprintWebButton.isEnabled = true
-                }
+                
             }
         }else{
             UIUtils.showAlert(title: "No Printer", message: "Please add a printer from OctoPod Preferences")
@@ -169,7 +170,6 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
             )
             self.printerNameLabel.stringValue = ""
             self.cameraImageView.isHidden = true
-            self.octoprintWebButton.isEnabled = false
         }
         self.updateConnectButton(printerConnected: false, assumption: true)
     }
@@ -268,7 +268,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
         print("ERROR - websocketConnectionFailed")
         disconnectFromServer()
         self.serverConnected = false
-        
+        connectToServer()
     }
     func printerAdded(printer: Printer) {
         print("printer added")
@@ -304,14 +304,12 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
                         self.targetBedTempValue.doubleValue = 0.0
                     }
                 }
-                
             }
         }else{
             self.octoPrintClient.connectToPrinter{ (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
                     // add stuff
                 }
-                
             }
         }
     }

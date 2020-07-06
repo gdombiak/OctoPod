@@ -322,7 +322,6 @@
 		DE1F9E9724A7EF4800A609B7 /* PrinterProfilesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFA806F210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift */; };
 		DE1F9E9A24A7F0BC00A609B7 /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78BA9E21039D770090D79A /* Terminal.swift */; };
 		DE1F9E9D24A7F29800A609B7 /* ComplicationContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D614723D57C2000D988A2 /* ComplicationContentType.swift */; };
-		DE1F9EA024A7FD5500A609B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE1F9E6E24A7299C00A609B7 /* Assets.xcassets */; };
 		DE1F9EA124A814D300A609B7 /* PrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873820E3EC3B0035AE0B /* PrinterManager.swift */; };
 		DE1F9EA224A81A5400A609B7 /* OctoPod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */; };
 		DE1F9EA324A81CC700A609B7 /* SharedPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4497D321B230BE00736F0F /* SharedPersistentContainer.swift */; };
@@ -336,6 +335,7 @@
 		DE1F9EC524ABFB6600A609B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F9EC424ABFB6600A609B7 /* Extensions.swift */; };
 		DE1F9EC824AEEF7E00A609B7 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F9EC724AEEF7E00A609B7 /* PreferencesViewController.swift */; };
 		DEE3256F24B06B45000375BD /* PreferencesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE3256E24B06B45000375BD /* PreferencesDelegate.swift */; };
+		DEE3257424B3CAEF000375BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE1F9E6E24A7299C00A609B7 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -773,7 +773,7 @@
 		DE1F9E6824A7299B00A609B7 /* OctoPod Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OctoPod Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1F9E6A24A7299B00A609B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE1F9E6C24A7299B00A609B7 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
-		DE1F9E6E24A7299C00A609B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DE1F9E6E24A7299C00A609B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "OctoPod Mac/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		DE1F9E7124A7299C00A609B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE1F9E7324A7299C00A609B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE1F9EA924A82F6B00A609B7 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppConfiguration.swift; path = "OctoPod TV/AppConfiguration.swift"; sourceTree = SOURCE_ROOT; };
@@ -1833,7 +1833,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE1F9EA024A7FD5500A609B7 /* Assets.xcassets in Resources */,
+				DEE3257424B3CAEF000375BD /* Assets.xcassets in Resources */,
 				DE1F9E7224A7299C00A609B7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2989,7 +2989,7 @@
 		DE1F9E7524A7299C00A609B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Mac";
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Mac/OctoPod_Mac.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -3001,7 +3001,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.OctoPod.OctoPod-Mac";
@@ -3014,7 +3014,7 @@
 		DE1F9E7624A7299C00A609B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Mac";
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Mac/OctoPod_Mac.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -3026,7 +3026,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.OctoPod.OctoPod-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";

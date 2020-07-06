@@ -49,7 +49,7 @@ class PreferencesViewController: NSViewController{
     }
     
     
-    @IBAction func addUpdatePrinter(_ sender: NSButton) {
+    @IBAction func addUpdatePrinter(_ sender: Any) {
         let apiKey = octoPrintAPITokenValue.stringValue
         let hostname = printerHostNameValue.stringValue
         let printerName = printerNameValue.stringValue
@@ -66,6 +66,7 @@ class PreferencesViewController: NSViewController{
                 listener.printerUpdated(printer: defaultPrinter)
             }
             UIUtils.showAlert(title: "Info", message: "Printer updated.")
+            self.view.window!.windowController!.close()
             
         }else{
             //new printer
@@ -78,9 +79,11 @@ class PreferencesViewController: NSViewController{
                         listener.printerAdded(printer: defaultPrinter)
                     }
                     UIUtils.showAlert(title: "Info", message: "Printer added.")
+                    self.view.window!.windowController!.close()
                 }
                 else{
                     UIUtils.showAlert(title: "Error", message: "Cannot add printer")
+                    
                 }
             }
             
@@ -128,4 +131,8 @@ class PreferencesViewController: NSViewController{
     @IBAction func apiTokenChanged(_ sender: Any) {
         updatePrinterButton.isEnabled = validateInput()
     }
+    @IBAction func gotoGithub(_ sender: NSButton) {
+        NSWorkspace.shared.open(URL(string: sender.title)!)
+    }
+    
 }

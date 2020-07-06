@@ -34,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         registerForPushNotifications()
-        let itemImage = NSImage(named: NSImage.Name("Octopod"))
+        let itemImage = NSImage(named: NSImage.Name("Status-Icon"))
         itemImage?.size = NSMakeSize(20.0, 20.0);
         itemImage?.isTemplate = true
         statusItem.button?.image = itemImage

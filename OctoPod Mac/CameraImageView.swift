@@ -26,6 +26,7 @@ class CameraImageView: NSImageView {
             
         }else{
             self.exitFullScreenMode(options: nil)
+            (NSApp.delegate as! AppDelegate).showQuickView()
         }
     }
 }

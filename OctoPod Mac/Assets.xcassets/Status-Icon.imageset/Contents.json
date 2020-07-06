@@ -1,17 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "128.png",
+      "filename" : "Octopod-48x48.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "256.png",
+      "filename" : "Octopod-48x48-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "512.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
