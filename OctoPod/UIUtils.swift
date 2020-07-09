@@ -1,4 +1,5 @@
 import Foundation
+import UserNotifications
 #if canImport(UIKit)
 // iOS, tvOS, and watchOS – use UIKit
 import UIKit
@@ -60,7 +61,28 @@ class UIUtils {
            return alert.runModal() == .alertFirstButtonReturn
     }
     #endif
-    
+    static func notifyUser(title: String, message: String)  {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = message
+        content.sound = UNNotificationSound.default
+        content.categoryIdentifier = "alarm"
+        // Configure the recurring date.
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
+
+        // Create the request
+        let uuidString = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uuidString,
+                    content: content, trigger: trigger)
+
+        // Schedule the request with the system.
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request) { (error) in
+           if error != nil {
+            print(error.debugDescription)
+           }
+        }
+    }
     
     static func calculateCameraHeightConstraints(screenHeight: CGFloat) -> (cameraHeight4_3ConstraintPortrait: CGFloat, cameraHeight4_3ConstraintLandscape: CGFloat, camera16_9HeightConstraintPortrait: CGFloat, cameral16_9HeightConstraintLandscape: CGFloat){
         if screenHeight <= 568 {

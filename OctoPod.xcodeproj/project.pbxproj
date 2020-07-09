@@ -294,7 +294,6 @@
 		5843B64A22E9FA1D001EDBAC /* PingPongHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5843B64922E9FA1D001EDBAC /* PingPongHistoryViewController.swift */; };
 		DE1F9E6B24A7299B00A609B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F9E6A24A7299B00A609B7 /* AppDelegate.swift */; };
 		DE1F9E6D24A7299B00A609B7 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F9E6C24A7299B00A609B7 /* PopoverViewController.swift */; };
-		DE1F9E7224A7299C00A609B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE1F9E7024A7299C00A609B7 /* Main.storyboard */; };
 		DE1F9E7824A72D0F00A609B7 /* OctoPrintRESTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DDB21816D62004A4223 /* OctoPrintRESTClient.swift */; };
 		DE1F9E7924A72D3400A609B7 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935621326AEF0050ED9A /* CustomControl.swift */; };
 		DE1F9E7A24A72D3400A609B7 /* ExecuteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A936B213316850050ED9A /* ExecuteControl.swift */; };
@@ -336,6 +335,7 @@
 		DE1F9EC824AEEF7E00A609B7 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1F9EC724AEEF7E00A609B7 /* PreferencesViewController.swift */; };
 		DEE3256F24B06B45000375BD /* PreferencesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE3256E24B06B45000375BD /* PreferencesDelegate.swift */; };
 		DEE3257424B3CAEF000375BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE1F9E6E24A7299C00A609B7 /* Assets.xcassets */; };
+		DEF8D00324B58B6B0027E2A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE1F9E7024A7299C00A609B7 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -774,7 +774,6 @@
 		DE1F9E6A24A7299B00A609B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE1F9E6C24A7299B00A609B7 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		DE1F9E6E24A7299C00A609B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "OctoPod Mac/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
-		DE1F9E7124A7299C00A609B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE1F9E7324A7299C00A609B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE1F9EA924A82F6B00A609B7 /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppConfiguration.swift; path = "OctoPod TV/AppConfiguration.swift"; sourceTree = SOURCE_ROOT; };
 		DE1F9EAA24A82F6B00A609B7 /* AppConfigurationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppConfigurationDelegate.swift; path = "OctoPod TV/AppConfigurationDelegate.swift"; sourceTree = SOURCE_ROOT; };
@@ -785,6 +784,7 @@
 		DE1F9EC424ABFB6600A609B7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DE1F9EC724AEEF7E00A609B7 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		DEE3256E24B06B45000375BD /* PreferencesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesDelegate.swift; sourceTree = "<group>"; };
+		DEF8D00424B58E4A0027E2A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1833,8 +1833,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEF8D00324B58B6B0027E2A9 /* Main.storyboard in Resources */,
 				DEE3257424B3CAEF000375BD /* Assets.xcassets in Resources */,
-				DE1F9E7224A7299C00A609B7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2473,7 +2473,7 @@
 		DE1F9E7024A7299C00A609B7 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DE1F9E7124A7299C00A609B7 /* Base */,
+				DEF8D00424B58E4A0027E2A9 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

@@ -79,7 +79,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
         return streamUrl
     }
     func updatePrinterStatusView(printerStatus:String?,actualExtruderTemp:Double?,targetExtruderTemp:Double?,actualBedTemp:Double?,targetBedTemp:Double?,progressPrintTime:Int?,progressPrintTimeLeft:Int?, progressCompletion:Double?){
-        
+        print("Updating Printer Status View")
         printerStatusValue.stringValue = printerStatus ?? "Unknown"
         actualBedTempValue.doubleValue = actualBedTemp ?? actualBedTempValue.doubleValue
         targetBedTempValue.doubleValue = targetBedTemp ??  targetBedTempValue.doubleValue
@@ -155,8 +155,10 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     }
     private func disconnectFromServer(){
         octoPrintClient.disconnectFromServer()
+        print("Disconnecting from server")
         serverConnected = false
         streamingController?.stop()
+        self.cameraImageView.isHidden = true
         DispatchQueue.main.async {
             self.updatePrinterStatusView(
                 printerStatus: "???" ,
@@ -168,7 +170,6 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
                 progressPrintTimeLeft: 0,
                 progressCompletion: 0.0
             )
-            self.printerNameLabel.stringValue = ""
             self.cameraImageView.isHidden = true
         }
         self.updateConnectButton(printerConnected: false, assumption: true)
@@ -183,7 +184,6 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
             //Do UI Code here.
             if let closed = event.closedOrError {
                 self.updateConnectButton(printerConnected: !closed, assumption: false)
-                
             }
         }
         if let isPrinting = event.printing {
@@ -261,6 +261,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     
     func websocketConnected() {
         print("WS Connected")
+        UIUtils.notifyUser(title: "OctoPod",message: "OctoPod is connected to OctoPrint")
         self.serverConnected = true
     }
     
@@ -333,6 +334,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
         cancelButton.isEnabled = false
         if(self.isPrinting || self.isPaused){
             self.octoPrintClient.cancelCurrentJob { (request:Bool, error: Error?, response:HTTPURLResponse) in
+                UIUtils.notifyUser(title: "OctoPod",message: "Print Cancelled")
                 print("Cancelled")
             }
         }
@@ -348,5 +350,9 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
         (NSApp.delegate as! AppDelegate).showPreferences()
     }
     
+    @IBAction func openPreferencesFromMainMenu(_ sender: NSMenuItem) {
+        (NSApp.delegate as! AppDelegate).showPreferences()
+    }
+
 }
 

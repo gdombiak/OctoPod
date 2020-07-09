@@ -41,6 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
         statusItem.button?.target = self
         statusItem.button?.action = #selector(statusBarButtonClicked)
+        statusItem.button?.toolTip = "OctoPod for OctoPrint"
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -89,6 +90,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.getNotificationSettings()
         }
     }
+    
     func getNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             print("Notification settings: \(settings)")
@@ -131,6 +133,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         })
         return container
     }()
+    
+    @IBAction func preferencesFromMainMenuClicked(_ sender: Any) {
+        showPreferences()
+    }
+    
 }
 
 

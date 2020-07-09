@@ -10,7 +10,58 @@
         <scene sceneID="JPo-4y-FX3">
             <objects>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
-                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6"/>
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+                        <items>
+                            <menuItem title="OctoPod for Mac" id="BWY-bR-QED">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="OctoPod for Mac" systemMenu="apple" id="OvO-7d-Sfy">
+                                    <items>
+                                        <menuItem title="About OctoPod" id="eTd-aO-ngF">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="OoL-Q8-Tuk"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" enabled="YES" id="0k8-VN-aYe"/>
+                                        <menuItem title="Preferences" keyEquivalent="P" id="F0d-jj-ord">
+                                            <connections>
+                                                <action selector="preferencesFromMainMenuClicked:" target="Voe-Tx-rLC" id="l72-oI-rZN"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" enabled="YES" id="lOc-Lu-gUN"/>
+                                        <menuItem title="Services" id="Lwu-M1-QXu">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Services" systemMenu="services" id="WrS-rV-egm"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="VJ2-GI-0EL"/>
+                                        <menuItem title="Hide OctoPod" keyEquivalent="h" id="tOH-g7-iQc">
+                                            <connections>
+                                                <action selector="hide:" target="Ady-hI-5gd" id="VXF-dU-1Vi"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Hide Others" keyEquivalent="h" id="hAQ-eG-s3O">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="GoI-yj-RzQ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show All" id="sko-MJ-lA5">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="m2y-o1-xcx"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="hXX-g0-k7r"/>
+                                        <menuItem title="Quit OctoPod" keyEquivalent="q" id="MEg-MW-uIe">
+                                            <connections>
+                                                <action selector="terminate:" target="Ady-hI-5gd" id="W9a-Qi-fpN"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
@@ -329,8 +380,8 @@
                                     <action selector="openPreferences:" target="XfG-lQ-9wD" id="0gd-9o-EDF"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mSV-yx-5x5">
-                                <rect key="frame" x="348" y="713" width="89" height="17"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mSV-yx-5x5">
+                                <rect key="frame" x="376" y="715" width="59" height="17"/>
                                 <buttonCell key="cell" type="inline" title="Connect" bezelStyle="inline" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nYw-oI-01d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystemBold"/>
@@ -339,12 +390,23 @@
                                     <action selector="toggleConnection:" target="XfG-lQ-9wD" id="AiT-do-zt7"/>
                                 </connections>
                             </button>
+                            <imageView translatesAutoresizingMaskIntoConstraints="NO" id="eYn-oR-sN8">
+                                <rect key="frame" x="5" y="700" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="0f8-lm-Lyg"/>
+                                    <constraint firstAttribute="width" constant="32" id="564-AW-bHk"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="Octopod" id="AUL-cf-LfN"/>
+                            </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="eYn-oR-sN8" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="5" id="6oO-SD-3fh"/>
                             <constraint firstAttribute="bottom" secondItem="oa1-8n-qIP" secondAttribute="bottom" constant="11" id="8aW-6j-fUd"/>
+                            <constraint firstItem="mSV-yx-5x5" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="5" id="ALh-QS-RHx"/>
                             <constraint firstAttribute="bottom" secondItem="RWO-LU-Tbq" secondAttribute="bottom" constant="11" id="KQN-kp-wIk"/>
                             <constraint firstItem="3V0-6W-taj" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="100" id="Olf-ca-8Sd"/>
                             <constraint firstAttribute="trailing" secondItem="oa1-8n-qIP" secondAttribute="trailing" constant="22" id="Pll-Pf-eWO"/>
+                            <constraint firstItem="eYn-oR-sN8" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="5" id="Qdh-r4-qf0"/>
                             <constraint firstItem="RWO-LU-Tbq" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="22" id="cff-jT-3GJ"/>
                             <constraint firstAttribute="trailing" secondItem="mSV-yx-5x5" secondAttribute="trailing" constant="5" id="doh-b7-lrM"/>
                             <constraint firstAttribute="trailing" secondItem="3V0-6W-taj" secondAttribute="trailing" constant="100" id="f6J-xL-kTD"/>
@@ -400,7 +462,7 @@
             <objects>
                 <viewController title="Preferences" storyboardIdentifier="PreferencesViewController" showSeguePresentationStyle="single" id="vDz-hQ-lLH" customClass="PreferencesViewController" customModule="OctoPod_Mac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="7OS-Rr-kaQ">
-                        <rect key="frame" x="0.0" y="0.0" width="483" height="379"/>
+                        <rect key="frame" x="0.0" y="0.0" width="483" height="382"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HiN-37-yFV">
@@ -415,8 +477,8 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tkF-DB-ROB">
-                                <rect key="frame" x="107" y="216" width="66" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Hostname" id="caf-iF-29q">
+                                <rect key="frame" x="46" y="216" width="127" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Octoprint Hostname" id="caf-iF-29q">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -434,7 +496,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2W-Nz-sym">
-                                <rect key="frame" x="216" y="236" width="245" height="21"/>
+                                <rect key="frame" x="216" y="239" width="245" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="eU6-IA-Q3h">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -446,7 +508,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Nuu-se-3g1">
                                 <rect key="frame" x="89" y="260" width="84" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Printer Name" id="9D5-LV-KhW">
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Printer Name" placeholderString="Printer Name" id="9D5-LV-KhW">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -461,7 +523,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GwX-TV-Gki">
-                                <rect key="frame" x="216" y="214" width="245" height="21"/>
+                                <rect key="frame" x="216" y="217" width="245" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="rtK-ff-bIn">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -489,8 +551,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="2rn-n4-egs">
-                                <rect key="frame" x="0.0" y="93" width="483" height="5"/>
+                            <box verticalHuggingPriority="750" ambiguous="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="2rn-n4-egs">
+                                <rect key="frame" x="0.0" y="91" width="483" height="9"/>
                             </box>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YmW-5W-607">
                                 <rect key="frame" x="392" y="109" width="75" height="32"/>
@@ -517,15 +579,11 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <imageView translatesAutoresizingMaskIntoConstraints="NO" id="j9L-wK-YAJ">
-                                <rect key="frame" x="178" y="317" width="128" height="62"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="Octopod" id="BDP-qO-8MW"/>
-                            </imageView>
-                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="pMZ-g6-lBB">
-                                <rect key="frame" x="0.0" y="315" width="483" height="5"/>
+                            <box verticalHuggingPriority="750" ambiguous="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="pMZ-g6-lBB">
+                                <rect key="frame" x="0.0" y="313" width="483" height="9"/>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uAq-em-1EC">
-                                <rect key="frame" x="216" y="19" width="267" height="17"/>
+                                <rect key="frame" x="216" y="22" width="267" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="inline" title="https://github.com/gdombiak/OctoPod" bezelStyle="inline" alignment="left" inset="2" id="BSl-Lp-Hp0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -536,13 +594,30 @@
                                     <action selector="gotoGithub:" target="vDz-hQ-lLH" id="Wzm-XY-wBS"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="32T-54-xCQ">
+                                <rect key="frame" x="139" y="334" width="205" height="25"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="OctoPod for OctoPrint" id="Ngo-tq-SU1">
+                                    <font key="font" size="20" name="HelveticaNeue"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView translatesAutoresizingMaskIntoConstraints="NO" id="j9L-wK-YAJ">
+                                <rect key="frame" x="5" y="313" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="MeT-xo-qWM"/>
+                                    <constraint firstAttribute="height" constant="64" id="s5X-SM-D5N"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="Octopod" id="BDP-qO-8MW"/>
+                            </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="pMZ-g6-lBB" firstAttribute="top" secondItem="7OS-Rr-kaQ" secondAttribute="top" constant="61" id="0Cg-lw-Ugh"/>
+                            <constraint firstItem="pMZ-g6-lBB" firstAttribute="top" secondItem="7OS-Rr-kaQ" secondAttribute="top" constant="64" id="0Cg-lw-Ugh"/>
                             <constraint firstItem="hIQ-ab-3VJ" firstAttribute="baseline" secondItem="YmW-5W-607" secondAttribute="baseline" id="39C-5z-IvM"/>
                             <constraint firstItem="cIt-kH-tsF" firstAttribute="top" secondItem="2rn-n4-egs" secondAttribute="bottom" constant="20" id="39L-mc-hSa"/>
                             <constraint firstItem="0gk-LF-hRI" firstAttribute="top" secondItem="pMZ-g6-lBB" secondAttribute="bottom" constant="10" id="4P2-bG-13w"/>
                             <constraint firstItem="GwX-TV-Gki" firstAttribute="top" secondItem="l2W-Nz-sym" secondAttribute="bottom" constant="1" id="63g-uD-vDq"/>
+                            <constraint firstItem="32T-54-xCQ" firstAttribute="centerX" secondItem="7OS-Rr-kaQ" secondAttribute="centerX" id="7lU-Vw-gg9"/>
                             <constraint firstItem="0gk-LF-hRI" firstAttribute="leading" secondItem="cIt-kH-tsF" secondAttribute="leading" id="7z2-nj-pi5"/>
                             <constraint firstItem="HiN-37-yFV" firstAttribute="leading" secondItem="l2W-Nz-sym" secondAttribute="leading" id="8Uc-bC-6rA"/>
                             <constraint firstItem="Nuu-se-3g1" firstAttribute="top" secondItem="0gk-LF-hRI" secondAttribute="bottom" constant="14" id="8e2-8h-F6x"/>
@@ -552,7 +627,6 @@
                             <constraint firstItem="HiN-37-yFV" firstAttribute="trailing" secondItem="l2W-Nz-sym" secondAttribute="trailing" id="CQr-UT-Qk9"/>
                             <constraint firstItem="Nuu-se-3g1" firstAttribute="baseline" secondItem="HiN-37-yFV" secondAttribute="baseline" id="CvQ-TJ-1ai"/>
                             <constraint firstItem="0gk-LF-hRI" firstAttribute="leading" secondItem="7OS-Rr-kaQ" secondAttribute="leading" constant="10" id="EPy-Ef-6r6"/>
-                            <constraint firstItem="pMZ-g6-lBB" firstAttribute="centerX" secondItem="j9L-wK-YAJ" secondAttribute="centerX" id="GNg-kf-m3g"/>
                             <constraint firstItem="YmW-5W-607" firstAttribute="leading" secondItem="hIQ-ab-3VJ" secondAttribute="trailing" constant="22" id="Gj6-g6-xoW"/>
                             <constraint firstItem="kZi-LZ-eJB" firstAttribute="top" secondItem="tkF-DB-ROB" secondAttribute="bottom" constant="22" id="IYU-i5-QXI"/>
                             <constraint firstItem="l2W-Nz-sym" firstAttribute="leading" secondItem="GwX-TV-Gki" secondAttribute="leading" id="JEe-qj-7rD"/>
@@ -564,16 +638,15 @@
                             <constraint firstItem="6eg-V8-UPu" firstAttribute="top" secondItem="cIt-kH-tsF" secondAttribute="bottom" constant="22" id="U1u-GM-vtz"/>
                             <constraint firstItem="4cH-bT-2fk" firstAttribute="top" secondItem="Nuu-se-3g1" secondAttribute="bottom" constant="6" id="aUn-i7-3Wc"/>
                             <constraint firstItem="tkF-DB-ROB" firstAttribute="top" secondItem="4cH-bT-2fk" secondAttribute="bottom" constant="6" id="eps-Iz-l9u"/>
+                            <constraint firstItem="j9L-wK-YAJ" firstAttribute="leading" secondItem="7OS-Rr-kaQ" secondAttribute="leading" constant="5" id="fcY-f0-oJ5"/>
                             <constraint firstItem="2rn-n4-egs" firstAttribute="top" secondItem="hIQ-ab-3VJ" secondAttribute="bottom" constant="20" symbolic="YES" id="feS-Ku-XqK"/>
-                            <constraint firstItem="pMZ-g6-lBB" firstAttribute="bottom" secondItem="j9L-wK-YAJ" secondAttribute="bottom" id="gRh-WQ-9U1"/>
                             <constraint firstItem="pMZ-g6-lBB" firstAttribute="trailing" secondItem="2rn-n4-egs" secondAttribute="trailing" id="j5L-2P-GsV"/>
                             <constraint firstAttribute="trailing" secondItem="HiN-37-yFV" secondAttribute="trailing" constant="22" id="jeh-Vi-94f"/>
                             <constraint firstItem="Nuu-se-3g1" firstAttribute="trailing" secondItem="4cH-bT-2fk" secondAttribute="trailing" id="l0l-Hx-nMR"/>
                             <constraint firstItem="kZi-LZ-eJB" firstAttribute="leading" secondItem="7OS-Rr-kaQ" secondAttribute="leading" constant="16" id="nzT-ZY-7kr"/>
                             <constraint firstItem="4cH-bT-2fk" firstAttribute="centerY" secondItem="l2W-Nz-sym" secondAttribute="centerY" id="ouE-hG-4uv"/>
                             <constraint firstItem="HiN-37-yFV" firstAttribute="leading" secondItem="Nuu-se-3g1" secondAttribute="trailing" constant="45" id="pHR-SN-4wz"/>
-                            <constraint firstItem="j9L-wK-YAJ" firstAttribute="top" secondItem="7OS-Rr-kaQ" secondAttribute="top" id="sNB-hb-LMx"/>
-                            <constraint firstItem="j9L-wK-YAJ" firstAttribute="centerX" secondItem="7OS-Rr-kaQ" secondAttribute="centerX" id="uhy-tH-eTX"/>
+                            <constraint firstItem="j9L-wK-YAJ" firstAttribute="top" secondItem="7OS-Rr-kaQ" secondAttribute="top" constant="5" id="qTw-E4-NJJ"/>
                             <constraint firstItem="4cH-bT-2fk" firstAttribute="trailing" secondItem="tkF-DB-ROB" secondAttribute="trailing" id="uyP-CO-xV4"/>
                             <constraint firstItem="tkF-DB-ROB" firstAttribute="trailing" secondItem="kZi-LZ-eJB" secondAttribute="trailing" id="xSM-iP-ywx"/>
                             <constraint firstItem="l2W-Nz-sym" firstAttribute="top" secondItem="HiN-37-yFV" secondAttribute="bottom" constant="1" id="zES-OO-xjJ"/>
@@ -589,7 +662,7 @@
                 </viewController>
                 <customObject id="k71-gv-yAW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1120.5" y="942.5"/>
+            <point key="canvasLocation" x="1120.5" y="942"/>
         </scene>
     </scenes>
     <resources>
