@@ -13,26 +13,26 @@ import CoreData
 class PreferencesViewController: NSViewController{
     
     @IBOutlet var printerNameValue : NSTextField!
-    
     @IBOutlet weak var printerHostNameValue: NSTextField!
     @IBOutlet weak var octoPrintAPITokenValue: NSTextField!
     @IBOutlet weak var ignoreSSLValue: NSButton!
     @IBOutlet weak var updatePrinterButton: NSButton!
+    @IBOutlet weak var cameraOrientationValue: NSPopUpButton!
     weak var delegate: PreferencesDelegate?
     
     let printerManager: PrinterManager = { return (NSApp.delegate as! AppDelegate).printerManager! }()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         if let defaultPrinter = printerManager.getDefaultPrinter()
         {
             printerHostNameValue.stringValue = defaultPrinter.hostname
             octoPrintAPITokenValue.stringValue = defaultPrinter.apiKey
             printerNameValue.stringValue = defaultPrinter.name
+            cameraOrientationValue.selectItem(at: Int(defaultPrinter.cameraOrientation))
             ignoreSSLValue.state = defaultPrinter.ignoreSSLCertValidationError ? NSControl.StateValue.on : NSControl.StateValue.off
         }
-        
-        
     }
     
     private func validateInput() -> Bool{
@@ -120,7 +120,7 @@ class PreferencesViewController: NSViewController{
         if !inputURL.lowercased().starts(with: "http") {
             printerHostNameValue.stringValue = "http://" + inputURL
         }
-            updatePrinterButton.isEnabled = validateInput()
+        updatePrinterButton.isEnabled = validateInput()
         
     }
     
@@ -133,6 +133,19 @@ class PreferencesViewController: NSViewController{
     }
     @IBAction func gotoGithub(_ sender: NSButton) {
         NSWorkspace.shared.open(URL(string: sender.title)!)
+    }
+    
+    @IBAction func cameraOrientationChanged(_ sender: NSPopUpButton) {
+        let index = sender.indexOfSelectedItem
+        let degrees = [0,90,180,270]
+        if let listener = delegate {
+            listener.cameraOrientationChanged(newOrientation: degrees[index])
+        }
+        print("New orientation = \(degrees[index])")
+        if let defaultPrinter = printerManager.getDefaultPrinter(){
+            defaultPrinter.cameraOrientation = Int16(index)
+            printerManager.updatePrinter(defaultPrinter)
+        }
     }
     
 }

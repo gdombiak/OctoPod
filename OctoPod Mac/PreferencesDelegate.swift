@@ -11,4 +11,5 @@ protocol PreferencesDelegate: class {
     func printerAdded(printer: Printer)
     func printerDeleted(printer: Printer)
     func printerUpdated(printer: Printer)
+    func cameraOrientationChanged(newOrientation: Int)
 }

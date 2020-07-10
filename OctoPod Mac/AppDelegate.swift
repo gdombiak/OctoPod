@@ -90,7 +90,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.getNotificationSettings()
         }
     }
-    
+
     func getNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             print("Notification settings: \(settings)")

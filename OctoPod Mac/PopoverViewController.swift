@@ -10,9 +10,6 @@ import Cocoa
 import CoreData
 
 class PopoverViewController: NSViewController, OctoPrintClientDelegate, PreferencesDelegate, OctoPrintSettingsDelegate {
-    
-    
-    
     @IBOutlet weak var cameraImageView: CameraImageView!
     @IBOutlet weak var connectButton: NSButton!
     
@@ -46,6 +43,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     private var isPrinting = false
     private var isPaused = false
     var streamingController: MjpegStreamingController?
+    private var lastEventReceivedAt = NSDate().timeIntervalSince1970
     
     let printerManager: PrinterManager = { return (NSApp.delegate as! AppDelegate).printerManager! }()
     
@@ -65,7 +63,18 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
         bedTempProgressBar.doubleValue = 0.0
         extruderTempProgressBar.doubleValue = 0.0
         connectToServer()
+        _ = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { timer in
+            if(!self.serverConnected){
+                self.onStaleReconnect()
+            }
+        }
     }
+    private func onStaleReconnect(){
+        print("Server is not in connect state for \(NSDate().timeIntervalSince1970-self.lastEventReceivedAt) seconds")
+        disconnectFromServer()
+        connectToServer()
+    }
+    
     fileprivate func octoPrintCameraAbsoluteUrl(hostname: String, streamUrl: String) -> String {
         if streamUrl.isEmpty {
             // Should never happen but let's be cautious
@@ -126,6 +135,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     }
     
     fileprivate func connectToServer() {
+        print("Connecting to server")
         if let defaultPrinter = printerManager.getDefaultPrinter()
         {
             DispatchQueue.main.async {
@@ -144,14 +154,18 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
         
     }
     private func connectCamera(printer:Printer){
-        streamingController = MjpegStreamingController(imageView: cameraImageView)
-        if  let defaultPrinterStreamURLString = printer.streamUrl{
-            let streamUrl = URL(string:octoPrintCameraAbsoluteUrl(hostname:printer.hostname, streamUrl: defaultPrinterStreamURLString))
-            streamingController?.play(url: streamUrl!)
-            DispatchQueue.main.async {
-                self.cameraImageView.isHidden = false
+        print("Connecting camera")
+        if let imageView = self.cameraImageView {
+            let degrees = [0,90,180,270]
+            imageView.rotate(byDegrees: CGFloat(degrees[Int(printer.cameraOrientation)]))
+            streamingController = MjpegStreamingController(imageView: imageView)
+            if  let defaultPrinterStreamURLString = printer.streamUrl{
+                let streamUrl = URL(string:octoPrintCameraAbsoluteUrl(hostname:printer.hostname, streamUrl: defaultPrinterStreamURLString))
+                streamingController?.play(url: streamUrl!)
+                imageView.isHidden = false
             }
         }
+        
     }
     private func disconnectFromServer(){
         octoPrintClient.disconnectFromServer()
@@ -170,8 +184,8 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
                 progressPrintTimeLeft: 0,
                 progressCompletion: 0.0
             )
-            self.cameraImageView.isHidden = true
         }
+        self.cameraImageView.isHidden = true
         self.updateConnectButton(printerConnected: false, assumption: true)
     }
     
@@ -179,7 +193,9 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
         //print("*************")
     }
     
+
     func printerStateUpdated(event: CurrentStateEvent) {
+        lastEventReceivedAt = NSDate().timeIntervalSince1970
         DispatchQueue.main.async {
             //Do UI Code here.
             if let closed = event.closedOrError {
@@ -251,7 +267,6 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
                 progressCompletion: event.progressCompletion
             )
         }
-        
     }
     
     func handleConnectionError(error: Error?, response: HTTPURLResponse) {
@@ -288,7 +303,15 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
         disconnectFromServer()
         connectToServer()
     }
+    
+    func cameraOrientationChanged(newOrientation: Int) {
+        if let imageView = cameraImageView {
+            imageView.rotate(byDegrees: CGFloat(newOrientation))
+        }
+    }
+    
     func cameraPathChanged(streamUrl: String) {
+        print("Camera path changed. new URL \(streamUrl)")
         if let defaultPrinter = printerManager.getDefaultPrinter()
         {
             connectCamera(printer: defaultPrinter)
@@ -347,10 +370,6 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
         }
     }
     @IBAction func openPreferences(_ sender: Any) {
-        (NSApp.delegate as! AppDelegate).showPreferences()
-    }
-    
-    @IBAction func openPreferencesFromMainMenu(_ sender: NSMenuItem) {
         (NSApp.delegate as! AppDelegate).showPreferences()
     }
 
