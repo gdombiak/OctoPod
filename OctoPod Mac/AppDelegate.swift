@@ -33,7 +33,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        registerForPushNotifications()
+        if #available(OSX 10.14, *) {
+            registerForPushNotifications()
+        } else {
+            // Fallback on earlier versions
+        }
         let itemImage = NSImage(named: NSImage.Name("Status-Icon"))
         itemImage?.size = NSMakeSize(20.0, 20.0);
         itemImage?.isTemplate = true
@@ -82,6 +86,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             showQuickView()
         }
     }
+    @available(OSX 10.14, *)
     func registerForPushNotifications() {
         UNUserNotificationCenter.current() // 1
             .requestAuthorization(options: [.alert, .sound, .badge]) { // 2
@@ -91,6 +96,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    @available(OSX 10.14, *)
     func getNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             print("Notification settings: \(settings)")

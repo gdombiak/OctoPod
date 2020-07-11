@@ -65,12 +65,19 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
         connectToServer()
         _ = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { timer in
             if(!self.serverConnected){
+                print("Server is not in connect state for \(NSDate().timeIntervalSince1970-self.lastEventReceivedAt) seconds")
+                self.onStaleReconnect()
+            }
+        }
+        
+        _ = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { timer in
+            if(self.serverConnected && (NSDate().timeIntervalSince1970-self.lastEventReceivedAt)>30){
+                print("Server is conneccted state but no data received for \(NSDate().timeIntervalSince1970-self.lastEventReceivedAt) seconds")
                 self.onStaleReconnect()
             }
         }
     }
     private func onStaleReconnect(){
-        print("Server is not in connect state for \(NSDate().timeIntervalSince1970-self.lastEventReceivedAt) seconds")
         disconnectFromServer()
         connectToServer()
     }
@@ -208,14 +215,23 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
                 if(isPrinting){
                     self.cancelButton.isEnabled = true
                     self.pauseResumeButton.isEnabled = true
-                    self.cancelButton.contentTintColor = .systemRed
-                    self.pauseResumeButton.contentTintColor = .systemYellow
+                    if #available(OSX 10.14, *) {
+                        self.cancelButton.contentTintColor = .systemRed
+                        self.pauseResumeButton.contentTintColor = .systemYellow
+                    } else {
+                        // Fallback on earlier versions
+                    }
                     self.pauseResumeButton.title = "Pause"
                 }else{
                     self.cancelButton.isEnabled = false
                     self.pauseResumeButton.isEnabled = false
-                    self.cancelButton.contentTintColor = .systemGray
-                    self.pauseResumeButton.contentTintColor = .systemGray
+                    if #available(OSX 10.14, *) {
+                        self.cancelButton.contentTintColor = .systemGray
+                        self.pauseResumeButton.contentTintColor = .systemGray
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                   
                 }
             }
         }
@@ -225,8 +241,13 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
                 if(isPaused){
                     self.pauseResumeButton.isEnabled = true
                     self.cancelButton.isEnabled = true
-                    self.cancelButton.contentTintColor = .systemRed
-                    self.pauseResumeButton.contentTintColor = .systemGreen
+                    if #available(OSX 10.14, *) {
+                        self.cancelButton.contentTintColor = .systemRed
+                        self.pauseResumeButton.contentTintColor = .systemGreen
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                    
                     self.pauseResumeButton.title = "Resume"
                 }
             }
@@ -236,8 +257,12 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
                 if(isPausing){
                     self.pauseResumeButton.isEnabled = false
                     self.cancelButton.isEnabled = false
-                    self.cancelButton.contentTintColor = .systemGray
-                    self.pauseResumeButton.contentTintColor = .systemGray
+                    if #available(OSX 10.14, *) {
+                        self.pauseResumeButton.contentTintColor = .systemGray
+                        self.cancelButton.contentTintColor = .systemGray
+                    } else {
+                        // Fallback on earlier versions
+                    }
                     self.pauseResumeButton.title = "Resume"
                 }
             }
@@ -248,8 +273,13 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
                 if(isCancelling){
                     self.pauseResumeButton.isEnabled = false
                     self.cancelButton.isEnabled = false
-                    self.cancelButton.contentTintColor = .systemGray
-                    self.pauseResumeButton.contentTintColor = .systemGray
+                    if #available(OSX 10.14, *) {
+                        self.cancelButton.contentTintColor = .systemGray
+                        self.pauseResumeButton.contentTintColor = .systemGray
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                    
                     self.pauseResumeButton.title = "Pause"
                 }
                 
@@ -276,7 +306,12 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     
     func websocketConnected() {
         print("WS Connected")
-        UIUtils.notifyUser(title: "OctoPod",message: "OctoPod is connected to OctoPrint")
+        lastEventReceivedAt = NSDate().timeIntervalSince1970
+        if #available(OSX 10.14, *) {
+            UIUtils.notifyUser(title: "OctoPod",message: "OctoPod is connected to OctoPrint")
+        } else {
+            // Fallback on earlier versions
+        }
         self.serverConnected = true
     }
     
@@ -339,6 +374,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     }
     
     @IBAction func togglePauseResume(_ sender: Any) {
+        
         pauseResumeButton.isEnabled = false
         if(self.isPaused){
             self.octoPrintClient.resumeCurrentJob { (request:Bool, error: Error?, response:HTTPURLResponse) in
@@ -346,6 +382,10 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
             }
         }
         else if(self.isPrinting){
+            let sure = UIUtils.showConfirm(title: "Confirmation", message: "Do you really want to pause this print?")
+            if(!sure){
+                return
+            }
             self.octoPrintClient.pauseCurrentJob { (request:Bool, error: Error?, response:HTTPURLResponse) in
                 print("Paused")
             }
@@ -354,10 +394,18 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     }
     
     @IBAction func cancelPrint(_ sender: Any) {
+        let sure = UIUtils.showConfirm(title: "Confirmation", message: "Do you really want to cancel this print?")
+        if(!sure){
+            return
+        }
         cancelButton.isEnabled = false
         if(self.isPrinting || self.isPaused){
             self.octoPrintClient.cancelCurrentJob { (request:Bool, error: Error?, response:HTTPURLResponse) in
-                UIUtils.notifyUser(title: "OctoPod",message: "Print Cancelled")
+                if #available(OSX 10.14, *) {
+                    UIUtils.notifyUser(title: "OctoPod",message: "Print Cancelled")
+                } else {
+                    // Fallback on earlier versions
+                }
                 print("Cancelled")
             }
         }

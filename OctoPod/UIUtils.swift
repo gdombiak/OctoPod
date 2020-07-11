@@ -61,6 +61,7 @@ class UIUtils {
            return alert.runModal() == .alertFirstButtonReturn
     }
     #endif
+    @available(OSX 10.14, *)
     static func notifyUser(title: String, message: String)  {
         let content = UNMutableNotificationContent()
         content.title = title

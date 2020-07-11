@@ -582,18 +582,6 @@
                             <box verticalHuggingPriority="750" ambiguous="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="pMZ-g6-lBB">
                                 <rect key="frame" x="0.0" y="330" width="483" height="9"/>
                             </box>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uAq-em-1EC">
-                                <rect key="frame" x="216" y="24" width="267" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="inline" title="https://github.com/gdombiak/OctoPod" bezelStyle="inline" alignment="left" inset="2" id="BSl-Lp-Hp0">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <color key="contentTintColor" name="linkColor" catalog="System" colorSpace="catalog"/>
-                                <connections>
-                                    <action selector="gotoGithub:" target="vDz-hQ-lLH" id="Wzm-XY-wBS"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="32T-54-xCQ">
                                 <rect key="frame" x="139" y="350" width="205" height="25"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="OctoPod for OctoPrint" id="Ngo-tq-SU1">
@@ -620,14 +608,14 @@
                             </textField>
                             <popUpButton verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VZJ-nw-MeU">
                                 <rect key="frame" x="214" y="156" width="88" height="25"/>
-                                <popUpButtonCell key="cell" type="push" title="0 deg" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="tCm-1i-qms" id="aRy-B9-M9g">
+                                <popUpButtonCell key="cell" type="push" title="0 deg" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="tCm-1i-qms" id="aRy-B9-M9g">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <menu key="menu" id="hQf-gA-ghO">
                                         <items>
-                                            <menuItem title="0 deg" id="tCm-1i-qms" userLabel="0 deg"/>
+                                            <menuItem title="0 deg" state="on" id="tCm-1i-qms" userLabel="0 deg"/>
                                             <menuItem title="90 deg" id="sJD-Zs-aqO" userLabel="90 deg"/>
-                                            <menuItem title="180 deg" state="on" id="sZ3-dA-Suk" userLabel="180 deg"/>
+                                            <menuItem title="180 deg" id="sZ3-dA-Suk" userLabel="180 deg"/>
                                             <menuItem title="270 deg" id="V7g-zq-QcB" userLabel="270 deg">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
@@ -638,6 +626,18 @@
                                     </connections>
                                 </popUpButtonCell>
                             </popUpButton>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uAq-em-1EC">
+                                <rect key="frame" x="216" y="19" width="267" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="inline" title="https://github.com/gdombiak/OctoPod" bezelStyle="inline" alignment="left" inset="2" id="BSl-Lp-Hp0">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="linkColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="gotoGithub:" target="vDz-hQ-lLH" id="Wzm-XY-wBS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="pMZ-g6-lBB" firstAttribute="top" secondItem="7OS-Rr-kaQ" secondAttribute="top" constant="64" id="0Cg-lw-Ugh"/>
