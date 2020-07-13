@@ -60,8 +60,10 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bedTempProgressBar.doubleValue = 0.0
-        extruderTempProgressBar.doubleValue = 0.0
+        DispatchQueue.main.async {
+            self.bedTempProgressBar.doubleValue = 0.0
+            self.extruderTempProgressBar.doubleValue = 0.0
+        }
         connectToServer()
         _ = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { timer in
             if(!self.serverConnected){
@@ -142,21 +144,22 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     }
     
     fileprivate func connectToServer() {
-        print("Connecting to server")
         if let defaultPrinter = printerManager.getDefaultPrinter()
         {
+            print("Connecting to server")
             DispatchQueue.main.async {
                 self.octoprintWebButton.isEnabled = !defaultPrinter.hostname.isEmpty
             }
             if !self.serverConnected{
-                
+                if (!UIUtils.isValidURL(urlString: defaultPrinter.hostname)){
+                    UIUtils.showAlert(title: "Invalid URL", message: "\(defaultPrinter.hostname) is not a valid URL. A valid URL should start with http:// or https://")
+                    return
+                }
                 octoPrintClient.connectToServer(printer : defaultPrinter)
                 connectCamera(printer: defaultPrinter)
                 printerNameLabel.stringValue = defaultPrinter.name
                 
             }
-        }else{
-            UIUtils.showAlert(title: "No Printer", message: "Please add a printer from OctoPod Preferences")
         }
         
     }

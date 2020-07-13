@@ -50,6 +50,10 @@ class PreferencesViewController: NSViewController{
     
     
     @IBAction func addUpdatePrinter(_ sender: Any) {
+        if(!validateInput()){
+            UIUtils.showAlert(title: "Validation error", message: "Please check printer details. Fields cannot be empty. Make sure your OctoPrint hostname starts with a protocol(http:// or https://)")
+            return
+        }
         let apiKey = octoPrintAPITokenValue.stringValue
         let hostname = printerHostNameValue.stringValue
         let printerName = printerNameValue.stringValue
@@ -120,16 +124,16 @@ class PreferencesViewController: NSViewController{
         if !inputURL.lowercased().starts(with: "http") {
             printerHostNameValue.stringValue = "http://" + inputURL
         }
-        updatePrinterButton.isEnabled = validateInput()
+       //updatePrinterButton.isEnabled = validateInput()
         
     }
     
     @IBAction func printerNameChanged(_ sender: Any) {
-        updatePrinterButton.isEnabled = validateInput()
+        //updatePrinterButton.isEnabled = validateInput()
     }
     
     @IBAction func apiTokenChanged(_ sender: Any) {
-        updatePrinterButton.isEnabled = validateInput()
+        //updatePrinterButton.isEnabled = validateInput()
     }
     @IBAction func gotoGithub(_ sender: NSButton) {
         NSWorkspace.shared.open(URL(string: sender.title)!)

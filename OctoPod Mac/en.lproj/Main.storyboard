@@ -461,8 +461,8 @@
         <scene sceneID="BQI-q5-I9S">
             <objects>
                 <viewController title="Preferences" storyboardIdentifier="PreferencesViewController" showSeguePresentationStyle="single" id="vDz-hQ-lLH" customClass="PreferencesViewController" customModule="OctoPod_Mac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="7OS-Rr-kaQ">
-                        <rect key="frame" x="0.0" y="0.0" width="483" height="399"/>
+                    <view key="view" misplaced="YES" id="7OS-Rr-kaQ">
+                        <rect key="frame" x="0.0" y="0.0" width="483" height="382"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HiN-37-yFV">
@@ -535,7 +535,7 @@
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hIQ-ab-3VJ">
                                 <rect key="frame" x="253" y="109" width="129" height="32"/>
-                                <buttonCell key="cell" type="push" title="Update Printer" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wEJ-CX-R4j">
+                                <buttonCell key="cell" type="push" title="Update Printer" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wEJ-CX-R4j">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -583,7 +583,7 @@
                                 <rect key="frame" x="0.0" y="330" width="483" height="9"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="32T-54-xCQ">
-                                <rect key="frame" x="139" y="350" width="205" height="25"/>
+                                <rect key="frame" x="139" y="333" width="205" height="25"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="OctoPod for OctoPrint" id="Ngo-tq-SU1">
                                     <font key="font" size="20" name="HelveticaNeue"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -627,7 +627,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uAq-em-1EC">
-                                <rect key="frame" x="216" y="19" width="267" height="17"/>
+                                <rect key="frame" x="216" y="2" width="267" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="inline" title="https://github.com/gdombiak/OctoPod" bezelStyle="inline" alignment="left" inset="2" id="BSl-Lp-Hp0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
