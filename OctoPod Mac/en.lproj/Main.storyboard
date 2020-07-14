@@ -34,6 +34,26 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="WrS-rV-egm"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VJ2-GI-0EL"/>
+                                        <menuItem title="Cut" hidden="YES" keyEquivalent="x" allowsKeyEquivalentWhenHidden="YES" id="Jiz-cT-Jlz">
+                                            <connections>
+                                                <action selector="cut:" target="Ady-hI-5gd" id="j0T-wg-qag"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Copy" hidden="YES" keyEquivalent="c" allowsKeyEquivalentWhenHidden="YES" id="ZRi-ya-zqo">
+                                            <connections>
+                                                <action selector="copy:" target="Ady-hI-5gd" id="JaS-8s-Tl6"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Paste" hidden="YES" keyEquivalent="v" allowsKeyEquivalentWhenHidden="YES" id="n5r-pj-ad6">
+                                            <connections>
+                                                <action selector="paste:" target="Ady-hI-5gd" id="lxH-Gb-955"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Select All" hidden="YES" keyEquivalent="a" allowsKeyEquivalentWhenHidden="YES" id="YFj-n1-ecQ">
+                                            <connections>
+                                                <action selector="selectAll:" target="Ady-hI-5gd" id="nbI-Ur-I7s"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Hide OctoPod" keyEquivalent="h" id="tOH-g7-iQc">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="VXF-dU-1Vi"/>
