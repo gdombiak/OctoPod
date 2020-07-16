@@ -99,7 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @available(OSX 10.14, *)
     func getNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
-            print("Notification settings: \(settings)")
+            NSLog("Notification settings: \(settings)")
         }
     }
     

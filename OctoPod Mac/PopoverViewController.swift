@@ -67,10 +67,10 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
         connectToServer()
         _ = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { timer in
             if(!self.serverConnected){
-                print("Server is not in connect state for \(NSDate().timeIntervalSince1970-self.lastEventReceivedAt) seconds")
+                NSLog("Server is not in connect state for \(NSDate().timeIntervalSince1970-self.lastEventReceivedAt) seconds")
                 self.onStaleReconnect(checkConnection: false)
             }else{
-                print("Server is conneccted state but no data received for \(NSDate().timeIntervalSince1970-self.lastEventReceivedAt) seconds")
+                NSLog("Server is conneccted state but no data received for \(NSDate().timeIntervalSince1970-self.lastEventReceivedAt) seconds")
                 self.onStaleReconnect(checkConnection: true)
             }
         }
@@ -105,10 +105,9 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
         return streamUrl
     }
     func updatePrinterStatusView(printerStatus:String?,actualExtruderTemp:Double?,targetExtruderTemp:Double?,actualBedTemp:Double?,targetBedTemp:Double?,progressPrintTime:Int?,progressPrintTimeLeft:Int?, progressCompletion:Double?){
-        print("Updating Printer Status View")
-        printerStatusValue.stringValue = printerStatus ?? "Unknown"
         actualBedTempValue.doubleValue = actualBedTemp ?? actualBedTempValue.doubleValue
         targetBedTempValue.doubleValue = targetBedTemp ??  targetBedTempValue.doubleValue
+        printerStatusValue.stringValue = printerStatus ?? "Unknown"
         actualExtruderTempValue.doubleValue = actualExtruderTemp ?? actualExtruderTempValue.doubleValue
         targetExtruderTempValue.doubleValue = targetExtruderTemp ?? targetExtruderTempValue.doubleValue
         progressBar.doubleValue = progressCompletion ?? progressBar.doubleValue
@@ -154,7 +153,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     fileprivate func connectToServer() {
         if let defaultPrinter = printerManager.getDefaultPrinter()
         {
-            print("Connecting to server")
+            NSLog("Connecting to server")
             DispatchQueue.main.async {
                 self.octoprintWebButton.isEnabled = !defaultPrinter.hostname.isEmpty
             }
@@ -172,13 +171,14 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     }
     private func connectCamera(printer:Printer){
         if(serverConnected){
-            print("Connecting camera")
+            NSLog("Connecting camera")
             if let imageView = self.cameraImageView {
-                
+                DispatchQueue.main.async {
+                    imageView.isHidden = false
+                }
                 let degrees = [0,90,180,270]
                 imageView.rotate(byDegrees: CGFloat(degrees[Int(printer.cameraOrientation)]))
                 streamingController = MjpegStreamingController(imageView: imageView)
-                imageView.isHidden = false
                 if  let defaultPrinterStreamURLString = printer.streamUrl{
                     let streamUrl = URL(string:octoPrintCameraAbsoluteUrl(hostname:printer.hostname, streamUrl: defaultPrinterStreamURLString))
                     streamingController?.play(url: streamUrl!)
@@ -190,7 +190,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     }
     private func disconnectFromServer(){
         octoPrintClient.disconnectFromServer()
-        print("Disconnecting from server")
+        NSLog("Disconnecting from server")
         serverConnected = false
         streamingController?.stop()
         DispatchQueue.main.async {
@@ -210,7 +210,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     }
     
     func notificationAboutToConnectToServer() {
-        //print("*************")
+        //NSLog("*************")
     }
     
     
@@ -298,7 +298,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
                 
             }
         }
-        DispatchQueue.main.async {
+        
             self.updatePrinterStatusView(
                 printerStatus: event.state ,
                 actualExtruderTemp: event.tool0TempActual ,
@@ -309,16 +309,24 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
                 progressPrintTimeLeft: event.progressPrintTimeLeft,
                 progressCompletion: event.progressCompletion
             )
-        }
+            self.cameraImageView.setPrinerDetails(printerStatus: event.state ,
+                                                  actualExtruderTemp: event.tool0TempActual ,
+                                                  targetExtruderTemp: event.tool0TempTarget ,
+                                                  actualBedTemp: event.bedTempActual ,
+                                                  targetBedTemp: event.bedTempTarget,
+                                                  progressPrintTime: event.progressPrintTime,
+                                                  progressPrintTimeLeft: event.progressPrintTimeLeft,
+                                                  progressCompletion: event.progressCompletion)
+        
     }
     
     func handleConnectionError(error: Error?, response: HTTPURLResponse) {
-        print("ERROR - handleConnectionError")
+        NSLog("ERROR - handleConnectionError")
         self.serverConnected = false
     }
     
     func websocketConnected() {
-        print("WS Connected")
+        NSLog("WS Connected")
         lastEventReceivedAt = NSDate().timeIntervalSince1970
         if #available(OSX 10.14, *) {
             UIUtils.notifyUser(title: "OctoPod",message: "OctoPod is connected to OctoPrint")
@@ -333,25 +341,25 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     }
     
     func websocketConnectionFailed(error: Error) {
-        print("ERROR - websocketConnectionFailed")
+        NSLog("ERROR - websocketConnectionFailed")
         disconnectFromServer()
         self.serverConnected = false
         connectToServer()
     }
     func printerAdded(printer: Printer) {
-        print("printer added")
+        NSLog("printer added")
         connectToServer()
     }
     
     func printerDeleted(printer: Printer) {
-        print("printer deleted")
+        NSLog("printer deleted")
         streamingController?.contentURL = URL(string: "")
         streamingController?.stop()
         disconnectFromServer()
     }
     
     func printerUpdated(printer: Printer) {
-        print("printer updated")
+        NSLog("printer updated")
         disconnectFromServer()
         connectToServer()
     }
@@ -363,7 +371,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
     }
     
     func cameraPathChanged(streamUrl: String) {
-        print("Camera path changed. new URL \(streamUrl)")
+        NSLog("Camera path changed. new URL \(streamUrl)")
         if let defaultPrinter = printerManager.getDefaultPrinter()
         {
             connectCamera(printer: defaultPrinter)
@@ -394,7 +402,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
         pauseResumeButton.isEnabled = false
         if(self.isPaused){
             self.octoPrintClient.resumeCurrentJob { (request:Bool, error: Error?, response:HTTPURLResponse) in
-                print("Resumed")
+                NSLog("Resumed")
             }
         }
         else if(self.isPrinting){
@@ -403,13 +411,13 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
                 return
             }
             self.octoPrintClient.pauseCurrentJob { (request:Bool, error: Error?, response:HTTPURLResponse) in
-                print("Paused")
+                NSLog("Paused")
             }
         }
         
     }
     
-    @IBAction func cancelPrint(_ sender: Any) {
+    @IBAction func cancelNSLog(_ sender: Any) {
         let sure = UIUtils.showConfirm(title: "Confirmation", message: "Do you really want to cancel this print?")
         if(!sure){
             return
@@ -422,7 +430,7 @@ class PopoverViewController: NSViewController, OctoPrintClientDelegate, Preferen
                 } else {
                     // Fallback on earlier versions
                 }
-                print("Cancelled")
+                NSLog("Cancelled")
             }
         }
     }

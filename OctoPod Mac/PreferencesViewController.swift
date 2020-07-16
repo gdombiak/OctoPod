@@ -145,7 +145,7 @@ class PreferencesViewController: NSViewController{
         if let listener = delegate {
             listener.cameraOrientationChanged(newOrientation: degrees[index])
         }
-        print("New orientation = \(degrees[index])")
+        NSLog("New orientation = \(degrees[index])")
         if let defaultPrinter = printerManager.getDefaultPrinter(){
             defaultPrinter.cameraOrientation = Int16(index)
             printerManager.updatePrinter(defaultPrinter)
