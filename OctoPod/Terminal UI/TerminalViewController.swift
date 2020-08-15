@@ -113,8 +113,9 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             showCommandsHistory(show: false)
 
             // Format the command by uppercasing the tokens except possible label values
-            let commandTokens = string.split(separator: " ")
+            let commandTokens = text.split(separator: " ")
 
+            // Convert to uppercase any words without = or the key part before = and leave the rest as is
             let commandAry : [String] = commandTokens.map {
                 if $0.contains("=") {
                     var tokens = $0.components(separatedBy: "=")
