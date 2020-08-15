@@ -62,7 +62,9 @@ class SystemCommandsViewController: ThemedDynamicUITableViewController, Subpanel
                 generator.prepare()
                 self.octoprintClient.executeSystemCommand(command: command, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        generator.notificationOccurred(.success)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.success)
+                        }
                     } else {
                         // Handle error
                         NSLog("Error executing system command. HTTP status code \(response.statusCode)")

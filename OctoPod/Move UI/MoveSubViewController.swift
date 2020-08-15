@@ -133,7 +133,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             let generator = prepareGenerator(delta)
             octoprintClient.move(y: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
-                    generator.impactOccurred()
+                    DispatchQueue.main.async {
+                        generator.impactOccurred()
+                    }
                 } else {
                     // Handle error
                     NSLog("Error moving Y axis. HTTP status code \(response.statusCode)")
@@ -149,7 +151,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             let generator = prepareGenerator(delta)
             octoprintClient.move(y: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
-                    generator.impactOccurred()
+                    DispatchQueue.main.async {
+                        generator.impactOccurred()
+                    }
                 } else {
                     // Handle error
                     NSLog("Error moving Y axis. HTTP status code \(response.statusCode)")
@@ -165,7 +169,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             let generator = prepareGenerator(delta)
             octoprintClient.move(x: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
-                    generator.impactOccurred()
+                    DispatchQueue.main.async {
+                        generator.impactOccurred()
+                    }
                 } else {
                     // Handle error
                     NSLog("Error moving X axis. HTTP status code \(response.statusCode)")
@@ -181,7 +187,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             let generator = prepareGenerator(delta)
             octoprintClient.move(x: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
-                    generator.impactOccurred()
+                    DispatchQueue.main.async {
+                        generator.impactOccurred()
+                    }
                 } else {
                     // Handle error
                     NSLog("Error moving X axis. HTTP status code \(response.statusCode)")
@@ -199,7 +207,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             let generator = prepareGenerator(delta)
             octoprintClient.move(z: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
-                    generator.impactOccurred()
+                    DispatchQueue.main.async {
+                        generator.impactOccurred()
+                    }
                 } else {
                     // Handle error
                     NSLog("Error moving Z axis. HTTP status code \(response.statusCode)")
@@ -215,7 +225,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             let generator = prepareGenerator(delta)
             octoprintClient.move(z: delta) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
-                    generator.impactOccurred()
+                    DispatchQueue.main.async {
+                            generator.impactOccurred()
+                    }
                 } else {
                     // Handle error
                     NSLog("Error moving Z axis. HTTP status code \(response.statusCode)")
@@ -230,7 +242,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         generator.prepare()
         octoprintClient.home(axes: ["x", "y", "z"]) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
-                generator.notificationOccurred(.success)
+                DispatchQueue.main.async {
+                    generator.notificationOccurred(.success)
+                }
             } else {
                 // Handle error
                 NSLog("Error going home. HTTP status code \(response.statusCode)")
@@ -244,7 +258,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         generator.prepare()
         octoprintClient.home(axes: ["x"]) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
-                generator.notificationOccurred(.success)
+                DispatchQueue.main.async {
+                    generator.notificationOccurred(.success)
+                }
             } else {
                 // Handle error
                 NSLog("Error going home X. HTTP status code \(response.statusCode)")
@@ -258,7 +274,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         generator.prepare()
         octoprintClient.home(axes: ["y"]) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
-                generator.notificationOccurred(.success)
+                DispatchQueue.main.async {
+                    generator.notificationOccurred(.success)
+                }
             } else {
                 // Handle error
                 NSLog("Error going home Y. HTTP status code \(response.statusCode)")
@@ -272,7 +290,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         generator.prepare()
         octoprintClient.home(axes: ["z"]) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
-                generator.notificationOccurred(.success)
+                DispatchQueue.main.async {
+                    generator.notificationOccurred(.success)
+                }
             } else {
                 // Handle error
                 NSLog("Error going home Z. HTTP status code \(response.statusCode)")
@@ -358,7 +378,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         generator.prepare()
         octoprintClient.toolFlowRate(toolNumber: 0, newFlowRate: newFlowRate, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
-                generator.notificationOccurred(.success)
+                DispatchQueue.main.async {
+                    generator.notificationOccurred(.success)
+                }
             } else {
                 // Handle error
                 NSLog("Error setting new flow rate. HTTP status code \(response.statusCode)")
@@ -381,7 +403,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         generator.prepare()
         octoprintClient.fanSpeed(speed: newSpeed, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
-                generator.notificationOccurred(.success)
+                DispatchQueue.main.async {
+                    generator.notificationOccurred(.success)
+                }
             } else {
                 // Handle error
                 NSLog("Error setting new fan speed. HTTP status code \(response.statusCode)")
@@ -460,7 +484,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         generator.prepare()
         octoprintClient.feedRate(factor: newRate, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
-                generator.notificationOccurred(.success)
+                DispatchQueue.main.async {
+                    generator.notificationOccurred(.success)
+                }
             } else {
                 // Handle error
                 NSLog("Error setting new feed rate. HTTP status code \(response.statusCode)")
@@ -642,7 +668,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         generator.prepare()
         octoprintClient.disableMotor(axis: axis, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
-                generator.notificationOccurred(.success)
+                DispatchQueue.main.async {
+                    generator.notificationOccurred(.success)
+                }
             } else {
                 // Handle error
                 NSLog("Error disabling \(axis) motor. HTTP status code \(response.statusCode)")
@@ -670,7 +698,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         let generator = prepareGenerator(Float(delta))
         octoprintClient.extrude(toolNumber: toolNumber, delta: delta, speed: speed, callback: { (requested: Bool, error: Error?, response: HTTPURLResponse) in
             if requested {
-                generator.impactOccurred()
+                DispatchQueue.main.async {
+                    generator.impactOccurred()
+                }
             } else {
                 // Handle error
                 NSLog("Error moving E axis. HTTP status code \(response.statusCode)")
