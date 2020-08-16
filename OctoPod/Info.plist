@@ -40,7 +40,8 @@
 	</dict>
 	<key>NSBonjourServices</key>
 	<array>
-		<string>_octopod._tcp</string>
+		<string>_http._tcp</string>
+		<string>_octoprint._tcp</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>We need to access your camera for scanning QR code</string>
