@@ -101,5 +101,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_octopod._tcp</string>
+	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>OctoPod uses your local network to discover and communicate to OctoPrint</string>
 </dict>
 </plist>

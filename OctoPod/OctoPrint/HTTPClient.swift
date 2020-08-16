@@ -288,6 +288,8 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         config.timeoutIntervalForRequest = timeoutIntervalForRequest
         // Timeout to receive data
         config.timeoutIntervalForResource = timeoutIntervalForResource
+        // iOS 14 might prompt user to allow connectivity to local network so we need to wait
+        config.waitsForConnectivity = true
         return config
     }
     
