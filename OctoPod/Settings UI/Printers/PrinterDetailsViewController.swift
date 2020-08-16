@@ -150,6 +150,10 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
             if !inputURL.lowercased().starts(with: "http") {
                 hostnameField.text = "http://" + inputURL
             }
+            // Remove trailing / if present
+            if inputURL.hasSuffix("/") {
+                hostnameField.text = String(hostnameField.text!.dropLast())
+            }
         }
         // Hide or show URL error message
         urlErrorMessageLabel.isHidden = isValidURL()

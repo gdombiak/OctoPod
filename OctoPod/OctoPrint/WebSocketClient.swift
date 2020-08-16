@@ -43,6 +43,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     init(printer: Printer) {
         super.init()
         serverURL = printer.hostname
+        serverURL = serverURL.hasSuffix("/") ? String(serverURL.dropLast()) : serverURL // Fix in case stored printer has invalid URL due to a bug that is now fixed
         apiKey = printer.apiKey
         username = printer.username
         password = printer.password

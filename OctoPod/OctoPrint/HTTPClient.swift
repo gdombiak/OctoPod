@@ -20,7 +20,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
 
     init(serverURL: String, apiKey: String, username: String?, password: String?) {
         super.init()
-        self.serverURL = serverURL
+        self.serverURL = serverURL.hasSuffix("/") ? String(serverURL.dropLast()) : serverURL // Fix in case stored printer has invalid URL due to a bug that is now fixed
         self.apiKey = apiKey
         self.username = username
         self.password = password

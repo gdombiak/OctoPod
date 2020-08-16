@@ -158,11 +158,19 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SensorDataCell", for: indexPath) as! EnclosureTempViewCell
-            let input = enclosureInputs[indexPath.row]
-            let tempUnit = input.celsius ? "C" : "F"
-            cell.sensorLabel.text = input.label
-            cell.temperatureLabel.text = input.temperature >= 0 ? "\(String(format: "%.1f", input.temperature)) \(tempUnit)" : "-- \(tempUnit)"
-            cell.humidityLabel.text = input.humidity >= 0 ? "\(String(format: "%.1f", input.humidity)) %" : "-- %"
+            // Check for weird case when enclosureInputs is still empty
+            if enclosureInputs.count > indexPath.row {
+                let input = enclosureInputs[indexPath.row]
+                let tempUnit = input.celsius ? "C" : "F"
+                cell.sensorLabel.text = input.label
+                cell.temperatureLabel.text = input.temperature >= 0 ? "\(String(format: "%.1f", input.temperature)) \(tempUnit)" : "-- \(tempUnit)"
+                cell.humidityLabel.text = input.humidity >= 0 ? "\(String(format: "%.1f", input.humidity)) %" : "-- %"
+
+            } else {
+                cell.sensorLabel.text = ""
+                cell.temperatureLabel.text = ""
+                cell.humidityLabel.text = ""
+            }
             return cell
         }
         return super.tableView(tableView, cellForRowAt: indexPath)
