@@ -38,10 +38,16 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_octopod._tcp</string>
+	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>We need to access your camera for scanning QR code</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>We need to use FaceID to unlock app</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>OctoPod uses your local network to discover and communicate to OctoPrint</string>
 	<key>NSSiriUsageDescription</key>
 	<string>Control printer using Siri</string>
 	<key>NSUbiquitousContainers</key>
@@ -101,11 +107,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSBonjourServices</key>
-	<array>
-		<string>_octopod._tcp</string>
-	</array>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>OctoPod uses your local network to discover and communicate to OctoPrint</string>
 </dict>
 </plist>

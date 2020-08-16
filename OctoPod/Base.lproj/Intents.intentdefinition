@@ -9,11 +9,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>9KPzQV</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>19C57</string>
+	<string>19G2021</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>11C504</string>
+	<string>11E708</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>11.3.1</string>
+	<string>11.6</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -782,6 +782,8 @@
 			<string>lrRige</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
+			<key>INIntentUserConfirmationRequired</key>
+			<true/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
@@ -1501,6 +1503,8 @@
 			<string>D1wWxd</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
+			<key>INIntentUserConfirmationRequired</key>
+			<true/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
 		</dict>
