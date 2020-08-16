@@ -548,12 +548,13 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
             if let password = printer.password {
                 printerDic["password"] = password
             }
-            if let cameras = printer.cameras, !cameras.isEmpty {
+            if let cameras = printer.getMultiCameras(), !cameras.isEmpty {
                 // MultiCam plugin is installed so show all cameras
                 var camerasArray: Array<Dictionary<String, Any>> = []
-                for url in cameras {
+                for multiCamera in cameras {
                     var cameraURL: String
                     var cameraOrientation: Int
+                    let url = multiCamera.cameraURL
                     if url == printer.getStreamPath() {
                         // This is camera hosted by OctoPrint so respect orientation
                         cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
@@ -566,7 +567,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                             // Use absolute URL to render camera
                             cameraURL = url
                         }
-                        cameraOrientation = UIImage.Orientation.up.rawValue // MultiCam has no information about orientation of extra cameras so assume "normal" position - no flips
+                        cameraOrientation = Int(multiCamera.cameraOrientation) // Respect orientation defined by MultiCamera plugin
                     }
                     let cameraDic = ["url" : cameraURL, "orientation": cameraOrientation] as [String : Any]                    
                     camerasArray.append(cameraDic)

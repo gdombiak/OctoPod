@@ -134,7 +134,7 @@ class PrinterManager {
         enclosureInput.label = label
         enclosureInput.use_fahrenheit = useFahrenheit
         enclosureInput.printer = printer
-        // Persist updated EnclosureInput
+        // Persist created EnclosureInput
         return saveObject(enclosureInput, context: context)
     }
     
@@ -144,8 +144,20 @@ class PrinterManager {
         enclosureOutput.type = type
         enclosureOutput.label = label
         enclosureOutput.printer = printer
-        // Persist updated EnclosureOutput
+        // Persist created EnclosureOutput
         return saveObject(enclosureOutput, context: context)
+    }
+    
+    func addMultiCamera(index: Int16, name: String, cameraURL: String, cameraOrientation: Int16, streamRatio: String, context: NSManagedObjectContext, printer: Printer) -> Bool {
+        let multiCamera = NSEntityDescription.insertNewObject(forEntityName: "MultiCamera", into: context) as! MultiCamera
+        multiCamera.index_id = index
+        multiCamera.name = name
+        multiCamera.cameraURL = cameraURL
+        multiCamera.cameraOrientation = cameraOrientation
+        multiCamera.streamRatio = streamRatio
+        multiCamera.printer = printer
+        // Persist created MultiCamera
+        return saveObject(multiCamera, context: context)
     }
     
     /// Make sure to call this only from main thread

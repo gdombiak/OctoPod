@@ -178,13 +178,14 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         // Create corresponding VCs according to the printer's cameras
         var newViewControllers: Array<CameraEmbeddedViewController> = Array()
         if let printer = printerManager.getDefaultPrinter() {
-            if let camerasURLs = printer.cameras {
+            if let cameras = printer.getMultiCameras() {
                 // MultiCam plugin is installed so show all cameras
                 var index = 0
-                for url in camerasURLs {
+                for multiCamera in cameras {
                     var cameraOrientation: UIImage.Orientation
                     var cameraURL: String
-                    
+                    let url = multiCamera.cameraURL
+
                     if url == printer.getStreamPath() {
                         // This is camera hosted by OctoPrint so respect orientation
                         cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
@@ -197,7 +198,8 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
                             // Use absolute URL to render camera
                             cameraURL = url
                         }
-                        cameraOrientation = UIImage.Orientation.up // MultiCam has no information about orientation of extra cameras so assume "normal" position - no flips
+                        // Respect orientation defined by MultiCamera plugin
+                        cameraOrientation = UIImage.Orientation(rawValue: Int(multiCamera.cameraOrientation))!
                     }
                     
                     newViewControllers.append(newEmbeddedCameraViewController(index: index, url: cameraURL, cameraOrientation: cameraOrientation))

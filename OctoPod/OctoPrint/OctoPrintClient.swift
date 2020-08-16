@@ -760,7 +760,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         if let webcam = json["webcam"] as? NSDictionary {
             if let flipH = webcam["flipH"] as? Bool, let flipV = webcam["flipV"] as? Bool, let rotate90 = webcam["rotate90"] as? Bool {
                 let newOrientation = calculateImageOrientation(flipH: flipH, flipV: flipV, rotate90: rotate90)
-                if printer.cameraOrientation != newOrientation.rawValue {
+                if printer.cameraOrientation != Int16(newOrientation.rawValue) {
                     // Update camera orientation
                     printerToUpdate.cameraOrientation = Int16(newOrientation.rawValue)
                     // Persist updated printer
@@ -824,34 +824,65 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     }
     
     fileprivate func updatePrinterFromMultiCamPlugin(printer: Printer, plugins: NSDictionary) {
-        // Check if MultiCam plugin is installed. If so then copy URL to cameras so there is
-        // no need to reenter this information
+        // Check if MultiCam plugin is installed. If so then copy cameras information
         var camerasURLs: Array<String> = Array()
+        var count: Int16 = 0
+        var camerasChanged = false
         if let multicam = plugins[Plugins.MULTICAM] as? NSDictionary {
             if let profiles = multicam["multicam_profiles"] as? NSArray {
                 for case let profile as NSDictionary in profiles {
-                    if let url = profile["URL"] as? String {
+                    count += 1
+                    if let url = profile["URL"] as? String, let flipH = profile["flipH"] as? Bool, let flipV = profile["flipV"] as? Bool, let rotate90 = profile["rotate90"] as? Bool, let name = profile["name"] as? String, let streamRatio = profile["streamRatio"] as? String {
+                        let newOrientation = calculateImageOrientation(flipH: flipH, flipV: flipV, rotate90: rotate90)
+                        var found = false
+                        if let existingCameras = printer.multiCameras {
+                            for existingCamera in existingCameras {
+                                if existingCamera.index_id == count {
+                                    found = true
+                                    // Check that values are current
+                                    if existingCamera.name != name || existingCamera.cameraURL != url || existingCamera.cameraOrientation != Int16(newOrientation.rawValue) || existingCamera.streamRatio != streamRatio {
+                                        // Update existing input
+                                        let newObjectContext = printerManager.newPrivateContext()
+                                        let cameraToUpdate = newObjectContext.object(with: existingCamera.objectID) as! MultiCamera
+                                        cameraToUpdate.name = name
+                                        cameraToUpdate.cameraURL = url
+                                        cameraToUpdate.cameraOrientation = Int16(newOrientation.rawValue)
+                                        cameraToUpdate.streamRatio = streamRatio
+                                        // Persist updated MultiCamera
+                                        printerManager.saveObject(cameraToUpdate, context: newObjectContext)
+                                        
+                                        camerasChanged = true
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                        if !found {
+                            // Add new camera
+                            let newObjectContext = printerManager.newPrivateContext()
+                            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                            printerManager.addMultiCamera(index: count, name: name, cameraURL: url, cameraOrientation: Int16(newOrientation.rawValue), streamRatio: streamRatio, context: newObjectContext, printer: printerToUpdate)
+                            camerasChanged = true
+                        }
                         camerasURLs.append(url)
                     }
                 }
             }
         }
-        // Check if url to cameras has changed
-        var update = false
-        if let existing = printer.cameras {
-            update = !existing.elementsEqual(camerasURLs)
-        } else {
-            update = true
+        // Delete existing cameras that no longer exist
+        if let existingCameras = printer.multiCameras {
+            for existingCamera in existingCameras {
+                if existingCamera.index_id > count {
+                    // Delete camera that no longer exists on the server
+                    let newObjectContext = printerManager.newPrivateContext()
+                    let cameraToDelete = newObjectContext.object(with: existingCamera.objectID) as! MultiCamera
+                    printerManager.deleteObject(cameraToDelete, context: newObjectContext)
+                    camerasChanged = true
+                }
+            }
         }
-        
-        if update {
-            let newObjectContext = printerManager.newPrivateContext()
-            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-            // Update array
-            printerToUpdate.cameras = camerasURLs
-            // Persist updated printer
-            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-            
+
+        if camerasChanged {
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
                 delegate.camerasChanged(camerasURLs: camerasURLs)

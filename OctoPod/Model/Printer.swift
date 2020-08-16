@@ -49,7 +49,7 @@ class Printer: NSManagedObject {
     /// Raw value of UIImageOrientation enum
     @NSManaged var cameraOrientation: Int16
     /// Array that holds URLs to cameras. OctoPrint needs to use MultiCam plugin
-    @NSManaged var cameras: [String]?
+    @NSManaged public var multiCameras: Set<MultiCamera>?
 
     @NSManaged var invertX: Bool  // Control of X is inverted
     @NSManaged var invertY: Bool  // Control of Y is inverted
@@ -100,6 +100,16 @@ class Printer: NSManagedObject {
     /// Returns true if returned getStreamPath() is coming from what OctoPrint reported via /api/settings. False means that it is assumed one
     func isStreamPathFromSettings() -> Bool {
         return streamUrl != nil
+    }
+    
+    /// Returns sorted array of cameras by their position as they were defined in OctoPrint
+    func getMultiCameras() -> Array<MultiCamera>? {
+        if let cameras = multiCameras {
+            return cameras.sorted { (l: MultiCamera, r: MultiCamera) -> Bool in
+                return l.index_id < r.index_id
+            }
+        }
+        return nil
     }
 
     func setTPLinkSmartplugs(plugs: [IPPlug]?) {
