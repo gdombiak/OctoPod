@@ -1,8 +1,16 @@
 import Foundation
+import UserNotifications
+#if canImport(UIKit)
+// iOS, tvOS, and watchOS – use UIKit
 import UIKit
+#else
+// all other platforms meaning macOS
+import Cocoa
+#endif
 
 class UIUtils {
-
+    #if canImport(UIKit)
+    // iOS, tvOS, and watchOS – use UIKit
     /// Caller may not be running in Main thread
     static func showAlert(presenter: UIViewController, title: String, message: String, done: (() -> Void)?) {
         // We are not always on the main thread so present dialog on main thread to prevent crashes
@@ -17,7 +25,20 @@ class UIUtils {
             }
         }
     }
+    #else
+    // all other platforms meaning macOS
+    static func showAlert(title: String, message: String) {
+        let alert = NSAlert()
+        alert.messageText = title
+        alert.informativeText = message
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "OK")
+        alert.runModal()
+    }
+    #endif
     
+    #if canImport(UIKit)
+    // iOS, tvOS, and watchOS – use UIKit
     /// Caller MUST be running in Main thread
     static func showConfirm(presenter: UIViewController, message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
         let alert = UIAlertController(title: NSLocalizedString("Confirm", comment: ""), message: message, preferredStyle: .alert)
@@ -26,6 +47,41 @@ class UIUtils {
         alert.addAction(UIAlertAction(title: NSLocalizedString("No", comment: ""), style: .default, handler: no))
         presenter.present(alert, animated: true) { () -> Void in
             // Nothing to do here
+        }
+    }
+    #else
+    // all other platforms meaning macOS
+    static func showConfirm(title: String, message: String) -> Bool {
+           let alert = NSAlert()
+           alert.messageText = title
+           alert.informativeText = message
+           alert.alertStyle = .warning
+           alert.addButton(withTitle: "OK")
+           alert.addButton(withTitle: "Cancel")
+           return alert.runModal() == .alertFirstButtonReturn
+    }
+    #endif
+    @available(OSX 10.14, *)
+    static func notifyUser(title: String, message: String)  {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = message
+        content.sound = UNNotificationSound.default
+        content.categoryIdentifier = "alarm"
+        // Configure the recurring date.
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
+
+        // Create the request
+        let uuidString = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uuidString,
+                    content: content, trigger: trigger)
+
+        // Schedule the request with the system.
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.add(request) { (error) in
+           if error != nil {
+            print(error.debugDescription)
+           }
         }
     }
     
@@ -103,7 +159,15 @@ class UIUtils {
         formatter.allowedUnits = [ .day, .hour, .minute ]
         return formatter.string(from: duration)!
     }
-    
+    /// Converts number of seconds into a string that represents time (e.g. 23h 10m)
+    static func secondsToPrintTime(seconds: Int) -> String {
+        let duration = TimeInterval(seconds)
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .brief
+        formatter.allowedUnits = [ .day, .hour, .minute, .second ]
+        formatter.zeroFormattingBehavior = [ .default ]
+        return formatter.string(from: duration)!
+    }
     /// Return estimated complection date based on number of estimated seconds to completion
     /// - parameter seconds: estimated number of seconds to complection
     static func secondsToETA(seconds: Int) -> String {
@@ -134,8 +198,22 @@ class UIUtils {
             return ""
         }
     }
+    static func isValidURL(urlString: String) -> Bool {
+
+             let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_]|[\\.|/])*)+(:[0-9]+)?"
+             let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx)
+             var result = urlTest.evaluate(with: urlString)
+             if !result {
+                 let ipv6RegEx = "(http|https)://(\\[)?(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(])?(:[0-9]+)?"
+                 let ipv6Test = NSPredicate(format: "SELF MATCHES %@", ipv6RegEx)
+                 result = ipv6Test.evaluate(with: urlString)
+             }
+             return result
+     }
 }
 
+#if canImport(UIKit)
+// iOS, tvOS, and watchOS – use UIKit
 extension UIImage {
     func resizeWithWidth(width: CGFloat) -> UIImage? {
         let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))))
@@ -149,6 +227,9 @@ extension UIImage {
         return result
     }
 }
+#else
+// all other platforms meaning macOS
+#endif
 
 extension Date {
     func timeAgoDisplay() -> String {

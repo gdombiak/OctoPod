@@ -1,12 +1,24 @@
 import Foundation
+import Starscream
+#if canImport(UIKit)
+// iOS, tvOS, and watchOS – use UIKit
 import UIKit
+#else
+// all other platforms meaning macOS
+#endif
 
 /// Listener that reacts to changes in OctoPrint Settings (/api/settings)
 /// This is done via the OctoPrint admin console
 protocol OctoPrintSettingsDelegate: class {
     
     /// Notification that orientation of the camera hosted by OctoPrint has changed
+    
+    #if canImport(UIKit)
+    // iOS, tvOS, and watchOS – use UIKit
     func cameraOrientationChanged(newOrientation: UIImage.Orientation)
+    #else
+    // all other platforms meaning macOS
+    #endif
 
     /// Notification that path to camera hosted by OctoPrint has changed
     func cameraPathChanged(streamUrl: String)
@@ -58,9 +70,15 @@ protocol OctoPrintSettingsDelegate: class {
 
 // Make everything optional so implementors of this protocol are not forced to implement everything
 extension OctoPrintSettingsDelegate {
-    
+    #if canImport(UIKit)
+    // iOS, tvOS, and watchOS – use UIKit
     func cameraOrientationChanged(newOrientation: UIImage.Orientation) {
     }
+    #else
+    // all other platforms meaning macOS
+    #endif
+    
+    
     
     func cameraPathChanged(streamUrl: String) {        
     }

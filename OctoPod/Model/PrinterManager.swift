@@ -1,5 +1,10 @@
 import Foundation
+#if canImport(UIKit)
+// iOS, tvOS, and watchOS – use UIKit
 import UIKit
+#else
+// all other platforms meaning macOS
+#endif
 import CoreData
 
 // Manager of persistent printer information (OctoPrint servers) that are stored in the iPhone
@@ -108,7 +113,13 @@ class PrinterManager {
         printer.iCloudUpdate = iCloudUpdate
         
         printer.sdSupport = true // Assume that printer supports SD card. Will get updated later with actual value
+        #if canImport(UIKit)
+        // iOS, tvOS, and watchOS – use UIKit
         printer.cameraOrientation = Int16(UIImage.Orientation.up.rawValue) // Assume no flips or rotations for camera. Will get updated later with actual value
+        #else
+        // all other platforms meaning macOS
+        #endif
+        
 
         printer.invertX = false // Assume control of X axis is not inverted. Will get updated later with actual value
         printer.invertY = false // Assume control of Y axis is not inverted. Will get updated later with actual value

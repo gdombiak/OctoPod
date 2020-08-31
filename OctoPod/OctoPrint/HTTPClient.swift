@@ -1,5 +1,5 @@
 import Foundation
-import UIKit   // Used for network indicator in the UI
+//import UIKit   // Used for network indicator in the UI
 
 // Basic HTTP Client that offers support for basic HTTP verbs.
 // Authentication (user/password) is supported in case a reverse proxy

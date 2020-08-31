@@ -29,6 +29,7 @@
         <attribute name="hideCamera" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="hostname" optional="YES" attributeType="String"/>
         <attribute name="iCloudUpdate" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="ignoreSSLCertValidationError" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="includeInDashboard" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="invertX" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="invertY" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -63,6 +64,6 @@
     <elements>
         <element name="EnclosureInput" positionX="-63" positionY="135" width="128" height="118"/>
         <element name="EnclosureOutput" positionX="-54" positionY="135" width="128" height="103"/>
-        <element name="Printer" positionX="-63" positionY="-18" width="128" height="718"/>
+        <element name="Printer" positionX="-63" positionY="-18" width="128" height="28"/>
     </elements>
 </model>
