@@ -25,7 +25,9 @@
 		3D1A93682132F5E70050ED9A /* ChildrenCustomControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A93672132F5E70050ED9A /* ChildrenCustomControlViewController.swift */; };
 		3D1A936A213314300050ED9A /* ExecuteControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A9369213314300050ED9A /* ExecuteControlViewController.swift */; };
 		3D1A936C213316850050ED9A /* ExecuteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A936B213316850050ED9A /* ExecuteControl.swift */; };
+		3D1AC8B42505A0EA00529F24 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1AC8B225059AEB00529F24 /* ProgressBarView.swift */; };
 		3D1ECB0821ABB85700691DCB /* RemainingTimeIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1ECB0721ABB85700691DCB /* RemainingTimeIntentHandler.swift */; };
+		3D2792A22505D08C00026ACF /* WidgetConfigurationIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2792A12505D08C00026ACF /* WidgetConfigurationIntentHandler.swift */; };
 		3D27DA97218A5FD8004F763A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D27DA95218A5FD8004F763A /* InfoPlist.strings */; };
 		3D27DA9E218A8500004F763A /* ExtrudeSpeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D27DA9D218A8500004F763A /* ExtrudeSpeedViewController.swift */; };
 		3D2821E72178167D00976611 /* CameraViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2821E62178167D00976611 /* CameraViewDelegate.swift */; };
@@ -51,6 +53,8 @@
 		3D4064AD21AB75BF000B05F9 /* ResumeJobIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4064AC21AB75BF000B05F9 /* ResumeJobIntentHandler.swift */; };
 		3D4064AF21AB75FF000B05F9 /* CancelJobIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4064AE21AB75FF000B05F9 /* CancelJobIntentHandler.swift */; };
 		3D4064B121AB78F3000B05F9 /* RestartJobIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4064B021AB78F3000B05F9 /* RestartJobIntentHandler.swift */; };
+		3D4208592506AA65001C3DE2 /* PrintJobDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4208582506AA65001C3DE2 /* PrintJobDataService.swift */; };
+		3D42085A2506B511001C3DE2 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */; };
 		3D42AC1121731494004D9FD0 /* AppConfigurationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42AC1021731494004D9FD0 /* AppConfigurationDelegate.swift */; };
 		3D4497D021B2240700736F0F /* OctoPod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */; };
 		3D4497D121B2241D00736F0F /* PrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873820E3EC3B0035AE0B /* PrinterManager.swift */; };
@@ -155,6 +159,7 @@
 		3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873820E3EC3B0035AE0B /* PrinterManager.swift */; };
 		3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873A20E407370035AE0B /* PrintersTableViewController.swift */; };
 		3D82874120E421610035AE0B /* MjpegStreamingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873F20E421610035AE0B /* MjpegStreamingController.swift */; };
+		3D82A2362505D1A700740B0D /* OctoPodWidget14.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5F53D24FC600200BFDAD3 /* OctoPodWidget14.intentdefinition */; };
 		3D831E53210850E60004B7A5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D831E52210850E60004B7A5 /* SettingsViewController.swift */; };
 		3D831E552108540E0004B7A5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D831E542108540E0004B7A5 /* NavigationController.swift */; };
 		3D866BF4218D55FF007AA493 /* BackgroundRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D866BF3218D55FF007AA493 /* BackgroundRefresher.swift */; };
@@ -184,6 +189,8 @@
 		3D968DDB20E336F5006774A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D968DDA20E336F5006774A5 /* Default-568h@2x.png */; };
 		3D968DDD20E337C7006774A5 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D968DDC20E337C7006774A5 /* ScannerViewController.swift */; };
 		3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */; };
+		3D97074F2506E0B90076C959 /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97074E2506E0B90076C959 /* CameraService.swift */; };
+		3D9707502506E0F40076C959 /* MjpegStreamingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873F20E421610035AE0B /* MjpegStreamingController.swift */; };
 		3D98C1DA20E5D096007BB13F /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D98C1D920E5D096007BB13F /* WebSocketClient.swift */; };
 		3D999B2124E9CDB4007AA99F /* MultiCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D999B2024E9CDB4007AA99F /* MultiCamera.swift */; };
 		3D999B2224E9D642007AA99F /* MultiCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D999B2024E9CDB4007AA99F /* MultiCamera.swift */; };
@@ -194,6 +201,7 @@
 		3D9D9765214DCC440032443A /* CloudKitPrinterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D9764214DCC440032443A /* CloudKitPrinterDelegate.swift */; };
 		3D9DC75B231D867B00AE4DF7 /* CustomControlViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DC75A231D867B00AE4DF7 /* CustomControlViewCell.swift */; };
 		3D9E087E2160455400F11CD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D9E087C2160455400F11CD4 /* InfoPlist.strings */; };
+		3DA0BD562506DB9B008233DE /* JobDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0BD552506DB9B008233DE /* JobDetailsView.swift */; };
 		3DA252442105028300B60E31 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA252432105028300B60E31 /* FolderViewController.swift */; };
 		3DA77D7B21693C74003D65C9 /* ChangeLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA77D7A21693C74003D65C9 /* ChangeLanguageViewController.swift */; };
 		3DA7DD502426A51700F686C8 /* LayerNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA7DD4F2426A51700F686C8 /* LayerNotificationsViewController.swift */; };
@@ -280,9 +288,27 @@
 		3DDB5FCD22D11A24005F8A9F /* PluginUpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB5FCC22D11A24005F8A9F /* PluginUpdatesViewController.swift */; };
 		3DDDB20121B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */; };
 		3DE3FE6D2154B9CE000D7D2A /* Plugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3FE6C2154B9CE000D7D2A /* Plugins.swift */; };
+		3DE5F53724FC600200BFDAD3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE5F53624FC600200BFDAD3 /* WidgetKit.framework */; };
+		3DE5F53924FC600200BFDAD3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE5F53824FC600200BFDAD3 /* SwiftUI.framework */; };
+		3DE5F53C24FC600200BFDAD3 /* OctoPodWidget14.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5F53B24FC600200BFDAD3 /* OctoPodWidget14.swift */; };
+		3DE5F53F24FC600300BFDAD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DE5F53E24FC600300BFDAD3 /* Assets.xcassets */; };
+		3DE5F54124FC600300BFDAD3 /* OctoPodWidget14.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5F53D24FC600200BFDAD3 /* OctoPodWidget14.intentdefinition */; };
+		3DE5F54524FC600300BFDAD3 /* OctoPodWidget14Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3DE5F53524FC600200BFDAD3 /* OctoPodWidget14Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */; };
 		3DF0157621227ACB002B4C14 /* TempHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */; };
 		3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF232DF20F150CC00550652 /* MoveSubViewController.swift */; };
+		3DF383582505F7E6003C803D /* OctoPrintRESTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DDB21816D62004A4223 /* OctoPrintRESTClient.swift */; };
+		3DF383592505F7F4003C803D /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292F20E5549B00296D9D /* HTTPClient.swift */; };
+		3DF3835A2505F81D003C803D /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935E213271680050ED9A /* Script.swift */; };
+		3DF3835B2505F820003C803D /* ControlInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935A21326C630050ED9A /* ControlInput.swift */; };
+		3DF3835C2505F823003C803D /* SystemCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8AB6A221A7390B00E81CE5 /* SystemCommand.swift */; };
+		3DF3835D2505F828003C803D /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935821326B3C0050ED9A /* Command.swift */; };
+		3DF3835E2505F82B003C803D /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935C2132709E0050ED9A /* Container.swift */; };
+		3DF3835F2505F82E003C803D /* ExecuteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A936B213316850050ED9A /* ExecuteControl.swift */; };
+		3DF383602505F831003C803D /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935621326AEF0050ED9A /* CustomControl.swift */; };
+		3DF383612505F847003C803D /* IPPlug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DE421817B23004A4223 /* IPPlug.swift */; };
+		3DF383622505F84D003C803D /* CancelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88C3E82193F49500BC84DD /* CancelObject.swift */; };
+		3DF383632505F86A003C803D /* Palette2Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */; };
 		3DF6D59B23006EE800E0AFEE /* ScanInstallationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6D59A23006EE800E0AFEE /* ScanInstallationsViewController.swift */; };
 		3DF7410D21ACEECC0069A9D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DF7410B21ACEECC0069A9D4 /* Localizable.strings */; };
 		3DF7411021ACEECC0069A9D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DF7410E21ACEECC0069A9D4 /* InfoPlist.strings */; };
@@ -341,6 +367,13 @@
 			remoteGlobalIDString = 3DABB21C22C0044D00F32731;
 			remoteInfo = "OctoPod Notification Extension";
 		};
+		3DE5F54324FC600300BFDAD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D4527F620E15A370094CCB7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DE5F53424FC600200BFDAD3;
+			remoteInfo = OctoPodWidget14Extension;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -350,6 +383,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				3DE5F54524FC600300BFDAD3 /* OctoPodWidget14Extension.appex in Embed App Extensions */,
 				3D4497E621B2623400736F0F /* OctoPod Widget.appex in Embed App Extensions */,
 				3D450E5621AB1B210049FBC0 /* OctoPod Intent.appex in Embed App Extensions */,
 				3DABB22422C0044D00F32731 /* OctoPod Notification Extension.appex in Embed App Extensions */,
@@ -410,7 +444,9 @@
 		3D1A93672132F5E70050ED9A /* ChildrenCustomControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenCustomControlViewController.swift; sourceTree = "<group>"; };
 		3D1A9369213314300050ED9A /* ExecuteControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteControlViewController.swift; sourceTree = "<group>"; };
 		3D1A936B213316850050ED9A /* ExecuteControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteControl.swift; sourceTree = "<group>"; };
+		3D1AC8B225059AEB00529F24 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		3D1ECB0721ABB85700691DCB /* RemainingTimeIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingTimeIntentHandler.swift; sourceTree = "<group>"; };
+		3D2792A12505D08C00026ACF /* WidgetConfigurationIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConfigurationIntentHandler.swift; sourceTree = "<group>"; };
 		3D27DA94218A5FD8004F763A /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3D27DA96218A5FD8004F763A /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3D27DA98218A601F004F763A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -431,6 +467,7 @@
 		3D4064AE21AB75FF000B05F9 /* CancelJobIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelJobIntentHandler.swift; sourceTree = "<group>"; };
 		3D4064B021AB78F3000B05F9 /* RestartJobIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartJobIntentHandler.swift; sourceTree = "<group>"; };
 		3D40C1822131115800384F4A /* OctoPod v4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v4.xcdatamodel"; sourceTree = "<group>"; };
+		3D4208582506AA65001C3DE2 /* PrintJobDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintJobDataService.swift; sourceTree = "<group>"; };
 		3D42AC1021731494004D9FD0 /* AppConfigurationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurationDelegate.swift; sourceTree = "<group>"; };
 		3D4497CF21B2235300736F0F /* OctoPod Intent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "OctoPod Intent.entitlements"; sourceTree = "<group>"; };
 		3D4497D321B230BE00736F0F /* SharedPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedPersistentContainer.swift; sourceTree = "<group>"; };
@@ -535,6 +572,7 @@
 		3D718773215F35F000A29D02 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		3D718777215F367700A29D02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3D718779215F368D00A29D02 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		3D7429132503325E00D42325 /* OctoPodWidget14Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OctoPodWidget14Extension.entitlements; sourceTree = "<group>"; };
 		3D74FA2621251BCF00DA2CB3 /* PSUControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSUControlViewController.swift; sourceTree = "<group>"; };
 		3D74FA2821251BE600DA2CB3 /* IPPlugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPPlugViewController.swift; sourceTree = "<group>"; };
 		3D778F802402D8FB00B68942 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
@@ -583,6 +621,7 @@
 		3D968DDA20E336F5006774A5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3D968DDC20E337C7006774A5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterDetailsViewController.swift; sourceTree = "<group>"; };
+		3D97074E2506E0B90076C959 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
 		3D98C1D920E5D096007BB13F /* WebSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
 		3D999B1F24E9CAA7007AA99F /* OctoPod v11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v11.xcdatamodel"; sourceTree = "<group>"; };
 		3D999B2024E9CDB4007AA99F /* MultiCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiCamera.swift; sourceTree = "<group>"; };
@@ -612,6 +651,7 @@
 		3D9E269622B416EC00386081 /* lt-LT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lt-LT"; path = "lt-LT.lproj/Main.strings"; sourceTree = "<group>"; };
 		3D9E269722B416EC00386081 /* lt-LT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lt-LT"; path = "lt-LT.lproj/MainInterface.strings"; sourceTree = "<group>"; };
 		3D9E269822B416EC00386081 /* lt-LT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lt-LT"; path = "lt-LT.lproj/Interface.strings"; sourceTree = "<group>"; };
+		3DA0BD552506DB9B008233DE /* JobDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailsView.swift; sourceTree = "<group>"; };
 		3DA252432105028300B60E31 /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
 		3DA44F162314D75D00EB9763 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DA44F172314D7B500EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
@@ -701,6 +741,13 @@
 		3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoolDownPrinterIntentHandler.swift; sourceTree = "<group>"; };
 		3DDEC1EA2443B9DA0086467E /* OctoPod v10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v10.xcdatamodel"; sourceTree = "<group>"; };
 		3DE3FE6C2154B9CE000D7D2A /* Plugins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plugins.swift; sourceTree = "<group>"; };
+		3DE5F53524FC600200BFDAD3 /* OctoPodWidget14Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OctoPodWidget14Extension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DE5F53624FC600200BFDAD3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		3DE5F53824FC600200BFDAD3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		3DE5F53B24FC600200BFDAD3 /* OctoPodWidget14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPodWidget14.swift; sourceTree = "<group>"; };
+		3DE5F53D24FC600200BFDAD3 /* OctoPodWidget14.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = OctoPodWidget14.intentdefinition; sourceTree = "<group>"; };
+		3DE5F53E24FC600300BFDAD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3DE5F54024FC600300BFDAD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DED77F121AFC5E3009A4CE5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DED77F221AFC5E3009A4CE5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3DED77F321AFC6EB009A4CE5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -790,6 +837,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3DE5F53224FC600200BFDAD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DE5F53924FC600200BFDAD3 /* SwiftUI.framework in Frameworks */,
+				3DE5F53724FC600200BFDAD3 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		93633FB4817BD78509497DA8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -809,6 +865,8 @@
 				3D4497DB21B2623400736F0F /* NotificationCenter.framework */,
 				3D49A0B321D43EE0005002E7 /* UserNotifications.framework */,
 				3D49A0B521D43EE0005002E7 /* UserNotificationsUI.framework */,
+				3DE5F53624FC600200BFDAD3 /* WidgetKit.framework */,
+				3DE5F53824FC600200BFDAD3 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -910,6 +968,7 @@
 				3D1ECB0721ABB85700691DCB /* RemainingTimeIntentHandler.swift */,
 				3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */,
 				3D669E1B22FBBAF5002C68C1 /* Mosaic */,
+				3D2792A12505D08C00026ACF /* WidgetConfigurationIntentHandler.swift */,
 			);
 			path = "OctoPod Intent";
 			sourceTree = "<group>";
@@ -926,12 +985,14 @@
 		3D4527F520E15A370094CCB7 = {
 			isa = PBXGroup;
 			children = (
+				3D7429132503325E00D42325 /* OctoPodWidget14Extension.entitlements */,
 				3D718778215F367700A29D02 /* Localizable.strings */,
 				3D968DDA20E336F5006774A5 /* Default-568h@2x.png */,
 				3D45280020E15A370094CCB7 /* OctoPod */,
 				3D6EB0A9217B0D260093EC79 /* OctoPod Watch */,
 				3D6EB0B8217B0D270093EC79 /* OctoPod Watch Extension */,
 				3D450E5021AB1B210049FBC0 /* OctoPod Intent */,
+				3DE5F53A24FC600200BFDAD3 /* OctoPodWidget14 */,
 				3D4497DD21B2623400736F0F /* OctoPod Widget */,
 				3DABB21E22C0044D00F32731 /* OctoPod Notification Extension */,
 				3D53713D240100FC00B28067 /* OctoPod TV */,
@@ -953,6 +1014,7 @@
 				3DABB21D22C0044D00F32731 /* OctoPod Notification Extension.appex */,
 				3D53713C240100FC00B28067 /* OctoPod TV.app */,
 				3D537152240100FD00B28067 /* OctoPod TVUITests.xctest */,
+				3DE5F53524FC600200BFDAD3 /* OctoPodWidget14Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1288,6 +1350,21 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
+		3DE5F53A24FC600200BFDAD3 /* OctoPodWidget14 */ = {
+			isa = PBXGroup;
+			children = (
+				3DE5F53B24FC600200BFDAD3 /* OctoPodWidget14.swift */,
+				3DA0BD552506DB9B008233DE /* JobDetailsView.swift */,
+				3D1AC8B225059AEB00529F24 /* ProgressBarView.swift */,
+				3D4208582506AA65001C3DE2 /* PrintJobDataService.swift */,
+				3D97074E2506E0B90076C959 /* CameraService.swift */,
+				3DE5F53D24FC600200BFDAD3 /* OctoPodWidget14.intentdefinition */,
+				3DE5F53E24FC600300BFDAD3 /* Assets.xcassets */,
+				3DE5F54024FC600300BFDAD3 /* Info.plist */,
+			);
+			path = OctoPodWidget14;
+			sourceTree = "<group>";
+		};
 		3DF0157721227C42002B4C14 /* Subpanels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1428,6 +1505,7 @@
 				3D450E5521AB1B210049FBC0 /* PBXTargetDependency */,
 				3D4497E521B2623400736F0F /* PBXTargetDependency */,
 				3DABB22322C0044D00F32731 /* PBXTargetDependency */,
+				3DE5F54424FC600300BFDAD3 /* PBXTargetDependency */,
 			);
 			name = OctoPod;
 			packageProductDependencies = (
@@ -1528,13 +1606,30 @@
 			productReference = 3DABB21D22C0044D00F32731 /* OctoPod Notification Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		3DE5F53424FC600200BFDAD3 /* OctoPodWidget14Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DE5F54824FC600300BFDAD3 /* Build configuration list for PBXNativeTarget "OctoPodWidget14Extension" */;
+			buildPhases = (
+				3DE5F53124FC600200BFDAD3 /* Sources */,
+				3DE5F53224FC600200BFDAD3 /* Frameworks */,
+				3DE5F53324FC600200BFDAD3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OctoPodWidget14Extension;
+			productName = OctoPodWidget14Extension;
+			productReference = 3DE5F53524FC600200BFDAD3 /* OctoPodWidget14Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		3D4527F620E15A370094CCB7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Gaston Dombiak";
 				TargetAttributes = {
@@ -1594,6 +1689,9 @@
 					3DABB21C22C0044D00F32731 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
+					3DE5F53424FC600200BFDAD3 = {
+						CreatedOnToolsVersion = 12.0;
+					};
 				};
 			};
 			buildConfigurationList = 3D4527F920E15A370094CCB7 /* Build configuration list for PBXProject "OctoPod" */;
@@ -1631,6 +1729,7 @@
 				3DABB21C22C0044D00F32731 /* OctoPod Notification Extension */,
 				3D53713B240100FC00B28067 /* OctoPod TV */,
 				3D537151240100FD00B28067 /* OctoPod TVUITests */,
+				3DE5F53424FC600200BFDAD3 /* OctoPodWidget14Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -1714,6 +1813,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3DE5F53324FC600200BFDAD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DE5F53F24FC600300BFDAD3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1768,12 +1875,14 @@
 				3D450EC321AB45740049FBC0 /* SetToolTempIntentHandler.swift in Sources */,
 				3D4064B121AB78F3000B05F9 /* RestartJobIntentHandler.swift in Sources */,
 				3D669E1622FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift in Sources */,
+				3D2792A22505D08C00026ACF /* WidgetConfigurationIntentHandler.swift in Sources */,
 				3D4064A021AB619C000B05F9 /* HTTPClient.swift in Sources */,
 				3D4064A621AB61ED000B05F9 /* ControlInput.swift in Sources */,
 				3D450E5221AB1B210049FBC0 /* IntentHandler.swift in Sources */,
 				3D450EBC21AB236C0049FBC0 /* SetBedTempIntentHandler.swift in Sources */,
 				3D4064AD21AB75BF000B05F9 /* ResumeJobIntentHandler.swift in Sources */,
 				3D669E1822FBBA6F002C68C1 /* PaletteCleartIntentHandler.swift in Sources */,
+				3D82A2362505D1A700740B0D /* OctoPodWidget14.intentdefinition in Sources */,
 				3D4064A321AB61C9000B05F9 /* Container.swift in Sources */,
 				3DDDB20121B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift in Sources */,
 				3D4064A221AB61C4000B05F9 /* IPPlug.swift in Sources */,
@@ -2022,6 +2131,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3DE5F53124FC600200BFDAD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DF383622505F84D003C803D /* CancelObject.swift in Sources */,
+				3D97074F2506E0B90076C959 /* CameraService.swift in Sources */,
+				3DE5F54124FC600300BFDAD3 /* OctoPodWidget14.intentdefinition in Sources */,
+				3DF383592505F7F4003C803D /* HTTPClient.swift in Sources */,
+				3DA0BD562506DB9B008233DE /* JobDetailsView.swift in Sources */,
+				3DF3835C2505F823003C803D /* SystemCommand.swift in Sources */,
+				3D1AC8B42505A0EA00529F24 /* ProgressBarView.swift in Sources */,
+				3D42085A2506B511001C3DE2 /* UIUtils.swift in Sources */,
+				3DE5F53C24FC600200BFDAD3 /* OctoPodWidget14.swift in Sources */,
+				3DF3835D2505F828003C803D /* Command.swift in Sources */,
+				3D9707502506E0F40076C959 /* MjpegStreamingController.swift in Sources */,
+				3DF3835A2505F81D003C803D /* Script.swift in Sources */,
+				3DF3835E2505F82B003C803D /* Container.swift in Sources */,
+				3DF383582505F7E6003C803D /* OctoPrintRESTClient.swift in Sources */,
+				3DF3835B2505F820003C803D /* ControlInput.swift in Sources */,
+				3DF383602505F831003C803D /* CustomControl.swift in Sources */,
+				3DF383612505F847003C803D /* IPPlug.swift in Sources */,
+				3DF3835F2505F82E003C803D /* ExecuteControl.swift in Sources */,
+				3DF383632505F86A003C803D /* Palette2Utils.swift in Sources */,
+				3D4208592506AA65001C3DE2 /* PrintJobDataService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2054,6 +2190,11 @@
 			isa = PBXTargetDependency;
 			target = 3DABB21C22C0044D00F32731 /* OctoPod Notification Extension */;
 			targetProxy = 3DABB22222C0044D00F32731 /* PBXContainerItemProxy */;
+		};
+		3DE5F54424FC600300BFDAD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DE5F53424FC600200BFDAD3 /* OctoPodWidget14Extension */;
+			targetProxy = 3DE5F54324FC600300BFDAD3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2810,6 +2951,57 @@
 			};
 			name = Release;
 		};
+		3DE5F54624FC600300BFDAD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = OctoPodWidget14Extension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ALV53VY374;
+				INFOPLIST_FILE = OctoPodWidget14/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.OctoPod.OctoPod.OctoPodWidget14;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3DE5F54724FC600300BFDAD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = OctoPodWidget14Extension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ALV53VY374;
+				INFOPLIST_FILE = OctoPodWidget14/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.OctoPod.OctoPod.OctoPodWidget14;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2890,6 +3082,15 @@
 			buildConfigurations = (
 				3DABB22622C0044E00F32731 /* Debug */,
 				3DABB22722C0044E00F32731 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DE5F54824FC600300BFDAD3 /* Build configuration list for PBXNativeTarget "OctoPodWidget14Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DE5F54624FC600300BFDAD3 /* Debug */,
+				3DE5F54724FC600300BFDAD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

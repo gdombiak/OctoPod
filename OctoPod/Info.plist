@@ -66,6 +66,7 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>CancelJobIntent</string>
+		<string>ConfigurationIntent</string>
 		<string>CoolDownPrinterIntent</string>
 		<string>PaletteClearIntent</string>
 		<string>PaletteConnectIntent</string>

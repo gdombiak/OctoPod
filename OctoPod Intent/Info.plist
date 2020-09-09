@@ -62,6 +62,7 @@
 				<string>SetBedTempIntent</string>
 				<string>SetChamberTempIntent</string>
 				<string>SetToolTempIntent</string>
+				<string>WidgetConfigurationIntent</string>
 			</array>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>

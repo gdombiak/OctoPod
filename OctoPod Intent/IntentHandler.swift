@@ -32,6 +32,13 @@ class IntentHandler: INExtension {
             return PaletteCutIntentHandler(printerManager: printerManager)
         } else if intent is PalettePingStatsIntent {
             return PalettePingStatsIntentHandler(printerManager: printerManager)
+        } else if intent is WidgetConfigurationIntent {
+            if #available(iOSApplicationExtension 14.0, *) {
+                return WidgetConfigurationIntentHandler(printerManager: printerManager)
+            } else {
+                // Fallback on earlier versions
+                fatalError("WidgetConfigurationIntent is only available on iOS 14 or newer")
+            }
         } else {
             fatalError("Unhandled intent type: \(intent)")
         }
