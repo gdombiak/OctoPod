@@ -39,5 +39,10 @@ class PrintJobDataService: ObservableObject {
             }
         }
     }
+    
+    func isPrinting() -> Bool {
+        // Assume that printer is printing if not operational, not offline and not unknown
+        return printerStatus != "Operational" && printerStatus != "Offline" && printerStatus != "--"
+    }
 
 }

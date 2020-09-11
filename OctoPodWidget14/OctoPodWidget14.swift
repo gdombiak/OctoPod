@@ -46,8 +46,11 @@ struct Provider: IntentTimelineProvider {
         getSnapshot(for: configuration, in: context) { (entry: SimpleEntry) in
             let entries: [SimpleEntry] = [entry]
             
-            let isPrinting: Bool = entry.printJobDataService != nil && entry.printJobDataService?.printerStatus != "Operational" && entry.printJobDataService?.printerStatus != "Offline"
-            
+            var isPrinting: Bool = false
+            if let printJobService = entry.printJobDataService {
+                isPrinting = printJobService.isPrinting()
+            }
+
             // Calcuate refresh date
             let calendar = Calendar.current
             let refreshDate = isPrinting ? calendar.date(byAdding: .minute, value: 5, to: Date())! : calendar.date(byAdding: .hour, value: 1, to: Date())!
