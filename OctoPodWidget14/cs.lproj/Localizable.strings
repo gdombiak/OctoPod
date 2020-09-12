@@ -1,0 +1,57 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"1 day ago" = "před 1 dnem";
+
+/* No comment provided by engineer. */
+"1 hour ago" = "před 1 hodinou";
+
+/* No comment provided by engineer. */
+"1 minute ago" = "před 1 minutou";
+
+/* No comment provided by engineer. */
+"1 week ago" = "před 1 týdnem";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Chyba ověření";
+
+/* No comment provided by engineer. */
+"Configure widget" = "Konfigurace widgetu";
+
+/* No comment provided by engineer. */
+"Confirm" = "Potvrdit";
+
+/* No comment provided by engineer. */
+"days ago" = "před %d dny";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Zrušit";
+
+/* No comment provided by engineer. */
+"hours ago" = "před %d hodinami";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Chyba požadavku. HTTP odpověď: %d";
+
+/* No comment provided by engineer. */
+"minutes ago" = "před %d minutami";
+
+/* No comment provided by engineer. */
+"Missed" = "Vynechanáno";
+
+/* No comment provided by engineer. */
+"No" = "Ne";
+
+/* No comment provided by engineer. */
+"seconds ago" = "před %d vteřinami";
+
+/* ETA is Unknown */
+"Unknown" = "neznámý";
+
+/* No comment provided by engineer. */
+"weeks ago" = "před %d týdny";
+
+/* No comment provided by engineer. */
+"Yes" = "Ano";
+

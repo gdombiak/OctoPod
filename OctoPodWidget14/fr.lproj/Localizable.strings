@@ -1,0 +1,57 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"1 day ago" = "Il y a 1 jour";
+
+/* No comment provided by engineer. */
+"1 hour ago" = "Il y a 1 heure";
+
+/* No comment provided by engineer. */
+"1 minute ago" = "Il y a 1 minute";
+
+/* No comment provided by engineer. */
+"1 week ago" = "Il y a 1 semaine";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Erreur d’authentification";
+
+/* No comment provided by engineer. */
+"Configure widget" = "Configurer le widget";
+
+/* No comment provided by engineer. */
+"Confirm" = "Attention";
+
+/* No comment provided by engineer. */
+"days ago" = "Il y a %d jours";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Ignorer";
+
+/* No comment provided by engineer. */
+"hours ago" = "Il y a %d heures";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Erreur. Réponse HTTP : %d";
+
+/* No comment provided by engineer. */
+"minutes ago" = "Il y a %d minutes";
+
+/* No comment provided by engineer. */
+"Missed" = "Information perdue";
+
+/* No comment provided by engineer. */
+"No" = "Non";
+
+/* No comment provided by engineer. */
+"seconds ago" = "Il y a %d secondes";
+
+/* ETA is Unknown */
+"Unknown" = "Inconnu";
+
+/* No comment provided by engineer. */
+"weeks ago" = "Il y a %d semaines";
+
+/* No comment provided by engineer. */
+"Yes" = "Oui";
+
