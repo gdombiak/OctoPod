@@ -50,6 +50,12 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if #available(iOS 13.0, *) {
+            // Use monospace font so that tables (eg M122) look better (still not perfect but better)
+            // Use whatever point size of callout so we can respect Accessibility configuration
+            terminalTextView.font = UIFont.monospacedDigitSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .callout).pointSize, weight: .regular)
+        }
+
         terminalTextView.layer.borderWidth = 1
         terminalTextView.layer.borderColor = UIColor.black.cgColor
         themeLabels()
@@ -383,6 +389,7 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         
         refreshEnabledTextLabel.textColor = textLabelColor
         gcodeTextLabel.textColor = textLabelColor
+        gcodeField.textColor = textColor
         popularGCodeButton.tintColor = tintColor
         
         terminalTextView.backgroundColor = theme.cellBackgroundColor()
