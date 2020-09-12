@@ -159,7 +159,6 @@
 		3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873820E3EC3B0035AE0B /* PrinterManager.swift */; };
 		3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873A20E407370035AE0B /* PrintersTableViewController.swift */; };
 		3D82874120E421610035AE0B /* MjpegStreamingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873F20E421610035AE0B /* MjpegStreamingController.swift */; };
-		3D82A2362505D1A700740B0D /* OctoPodWidget14.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5F53D24FC600200BFDAD3 /* OctoPodWidget14.intentdefinition */; };
 		3D831E53210850E60004B7A5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D831E52210850E60004B7A5 /* SettingsViewController.swift */; };
 		3D831E552108540E0004B7A5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D831E542108540E0004B7A5 /* NavigationController.swift */; };
 		3D866BF4218D55FF007AA493 /* BackgroundRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D866BF3218D55FF007AA493 /* BackgroundRefresher.swift */; };
@@ -185,6 +184,8 @@
 		3D8DA01E2144EDCE00F5FD07 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DA01D2144EDCE00F5FD07 /* SupportViewController.swift */; };
 		3D8FB25B2156A9F0008FF3E5 /* DialogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FB25A2156A9F0008FF3E5 /* DialogsViewController.swift */; };
 		3D91E918250D75C3008A59CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D91E916250D75C3008A59CD /* Localizable.strings */; };
+		3D91E922250D7F3A008A59CD /* OctoPodWidget14.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3D91E925250D7F3A008A59CD /* OctoPodWidget14.intentdefinition */; };
+		3D91E923250D7F3A008A59CD /* OctoPodWidget14.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3D91E925250D7F3A008A59CD /* OctoPodWidget14.intentdefinition */; };
 		3D92E6C821213B2400F58BA5 /* TempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92E6C721213B2400F58BA5 /* TempHistory.swift */; };
 		3D933F4A241DB5CC0041CFD8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D718778215F367700A29D02 /* Localizable.strings */; };
 		3D968DDB20E336F5006774A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D968DDA20E336F5006774A5 /* Default-568h@2x.png */; };
@@ -293,7 +294,6 @@
 		3DE5F53924FC600200BFDAD3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE5F53824FC600200BFDAD3 /* SwiftUI.framework */; };
 		3DE5F53C24FC600200BFDAD3 /* OctoPodWidget14.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5F53B24FC600200BFDAD3 /* OctoPodWidget14.swift */; };
 		3DE5F53F24FC600300BFDAD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DE5F53E24FC600300BFDAD3 /* Assets.xcassets */; };
-		3DE5F54124FC600300BFDAD3 /* OctoPodWidget14.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5F53D24FC600200BFDAD3 /* OctoPodWidget14.intentdefinition */; };
 		3DE5F54524FC600300BFDAD3 /* OctoPodWidget14Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3DE5F53524FC600200BFDAD3 /* OctoPodWidget14Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */; };
 		3DF0157621227ACB002B4C14 /* TempHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */; };
@@ -628,6 +628,18 @@
 		3D91E91F250D7CB8008A59CD /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3D91E920250D7DDD008A59CD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3D91E921250D7EEC008A59CD /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3D91E924250D7F3A008A59CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/OctoPodWidget14.intentdefinition; sourceTree = "<group>"; };
+		3D91E927250D7F41008A59CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/OctoPodWidget14.strings; sourceTree = "<group>"; };
+		3D91E929250D7F42008A59CD /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/OctoPodWidget14.strings; sourceTree = "<group>"; };
+		3D91E92B250D7F42008A59CD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/OctoPodWidget14.strings; sourceTree = "<group>"; };
+		3D91E92D250D7F43008A59CD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/OctoPodWidget14.strings; sourceTree = "<group>"; };
+		3D91E92F250D7F44008A59CD /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/OctoPodWidget14.strings; sourceTree = "<group>"; };
+		3D91E931250D7F45008A59CD /* lt-LT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lt-LT"; path = "lt-LT.lproj/OctoPodWidget14.strings"; sourceTree = "<group>"; };
+		3D91E933250D7F45008A59CD /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/OctoPodWidget14.strings; sourceTree = "<group>"; };
+		3D91E935250D7F46008A59CD /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/OctoPodWidget14.strings; sourceTree = "<group>"; };
+		3D91E937250D7F47008A59CD /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/OctoPodWidget14.strings; sourceTree = "<group>"; };
+		3D91E939250D7F47008A59CD /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/OctoPodWidget14.strings"; sourceTree = "<group>"; };
+		3D91E93B250D7F48008A59CD /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/OctoPodWidget14.strings; sourceTree = "<group>"; };
 		3D92E6C721213B2400F58BA5 /* TempHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHistory.swift; sourceTree = "<group>"; };
 		3D968DDA20E336F5006774A5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3D968DDC20E337C7006774A5 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -756,7 +768,6 @@
 		3DE5F53624FC600200BFDAD3 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		3DE5F53824FC600200BFDAD3 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3DE5F53B24FC600200BFDAD3 /* OctoPodWidget14.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPodWidget14.swift; sourceTree = "<group>"; };
-		3DE5F53D24FC600200BFDAD3 /* OctoPodWidget14.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = OctoPodWidget14.intentdefinition; sourceTree = "<group>"; };
 		3DE5F53E24FC600300BFDAD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3DE5F54024FC600300BFDAD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DED77F121AFC5E3009A4CE5 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1369,7 +1380,7 @@
 				3D1AC8B225059AEB00529F24 /* ProgressBarView.swift */,
 				3D4208582506AA65001C3DE2 /* PrintJobDataService.swift */,
 				3D97074E2506E0B90076C959 /* CameraService.swift */,
-				3DE5F53D24FC600200BFDAD3 /* OctoPodWidget14.intentdefinition */,
+				3D91E925250D7F3A008A59CD /* OctoPodWidget14.intentdefinition */,
 				3DE5F53E24FC600300BFDAD3 /* Assets.xcassets */,
 				3DE5F54024FC600300BFDAD3 /* Info.plist */,
 				3D91E916250D75C3008A59CD /* Localizable.strings */,
@@ -1895,7 +1906,7 @@
 				3D450EBC21AB236C0049FBC0 /* SetBedTempIntentHandler.swift in Sources */,
 				3D4064AD21AB75BF000B05F9 /* ResumeJobIntentHandler.swift in Sources */,
 				3D669E1822FBBA6F002C68C1 /* PaletteCleartIntentHandler.swift in Sources */,
-				3D82A2362505D1A700740B0D /* OctoPodWidget14.intentdefinition in Sources */,
+				3D91E922250D7F3A008A59CD /* OctoPodWidget14.intentdefinition in Sources */,
 				3D4064A321AB61C9000B05F9 /* Container.swift in Sources */,
 				3DDDB20121B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift in Sources */,
 				3D4064A221AB61C4000B05F9 /* IPPlug.swift in Sources */,
@@ -2150,7 +2161,7 @@
 			files = (
 				3DF383622505F84D003C803D /* CancelObject.swift in Sources */,
 				3D97074F2506E0B90076C959 /* CameraService.swift in Sources */,
-				3DE5F54124FC600300BFDAD3 /* OctoPodWidget14.intentdefinition in Sources */,
+				3D91E923250D7F3A008A59CD /* OctoPodWidget14.intentdefinition in Sources */,
 				3DF383592505F7F4003C803D /* HTTPClient.swift in Sources */,
 				3DA0BD562506DB9B008233DE /* JobDetailsView.swift in Sources */,
 				3DF3835C2505F823003C803D /* SystemCommand.swift in Sources */,
@@ -2367,6 +2378,25 @@
 				3D91E921250D7EEC008A59CD /* sv */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3D91E925250D7F3A008A59CD /* OctoPodWidget14.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D91E924250D7F3A008A59CD /* Base */,
+				3D91E927250D7F41008A59CD /* en */,
+				3D91E929250D7F42008A59CD /* cs */,
+				3D91E92B250D7F42008A59CD /* de */,
+				3D91E92D250D7F43008A59CD /* fr */,
+				3D91E92F250D7F44008A59CD /* it */,
+				3D91E931250D7F45008A59CD /* lt-LT */,
+				3D91E933250D7F45008A59CD /* nb */,
+				3D91E935250D7F46008A59CD /* ru */,
+				3D91E937250D7F47008A59CD /* es */,
+				3D91E939250D7F47008A59CD /* es-419 */,
+				3D91E93B250D7F48008A59CD /* sv */,
+			);
+			name = OctoPodWidget14.intentdefinition;
 			sourceTree = "<group>";
 		};
 		3D9E087C2160455400F11CD4 /* InfoPlist.strings */ = {
