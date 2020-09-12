@@ -35,6 +35,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     open var contentURL: URL?
     open var imageView: UIImageView?
     open var imageOrientation: UIImage.Orientation?
+    open var timeoutInterval: TimeInterval = 60.0
 
     public override init() {
         super.init()
@@ -72,7 +73,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
         executeBlock { self.didStartLoading?() }
         
         receivedData = NSMutableData()
-        let request = URLRequest(url: url)
+        let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeoutInterval)
         dataTask = session.dataTask(with: request)
         dataTask?.resume()
     }

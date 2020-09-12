@@ -17,10 +17,10 @@ struct Provider: IntentTimelineProvider {
     }
     
     func getSnapshot(for configuration: WidgetConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        if let widgetPrinter = configuration.printer, let hostname = widgetPrinter.hostname, let apiKey = widgetPrinter.apiKey {
+        if let widgetPrinter = configuration.printer, let hostname = widgetPrinter.hostname, let apiKey = widgetPrinter.apiKey, let widgetCamera = configuration.camera {
             let service = PrintJobDataService(hostname: hostname, apiKey: apiKey, username: widgetPrinter.username, password: widgetPrinter.password)
             var cameraService: CameraService?
-            if let cameraURL = widgetPrinter.cameraURL, let cameraOrientation = widgetPrinter.cameraOrientation {
+            if let cameraURL = widgetCamera.cameraURL, let cameraOrientation = widgetCamera.cameraOrientation {
                 cameraService = CameraService(cameraURL: cameraURL, cameraOrientation: Int(truncating: cameraOrientation), username: widgetPrinter.username, password: widgetPrinter.password)
             }
             let entry = SimpleEntry(date: Date(), configuration: configuration, printJobDataService: service, cameraService: cameraService)
@@ -129,7 +129,6 @@ struct OctoPodWidget14: Widget {
         .configurationDisplayName("OctoPod")
         .description("Monitor and control your 3d printer via OctoPod")
         .supportedFamilies([.systemSmall, .systemMedium])
-//        .supportedFamilies([.systemMedium])
     }
 }
 

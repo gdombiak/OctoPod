@@ -11,13 +11,15 @@ class CameraService: ObservableObject {
     private var username: String?
     private var password: String?
     
-    private var streamingController = MjpegStreamingController()
+    private var streamingController: MjpegStreamingController!
 
     init(cameraURL: String, cameraOrientation: Int, username: String?, password: String?) {
         self.cameraURL = cameraURL
         self.cameraOrientation = cameraOrientation
         self.username = username
         self.password = password
+        self.streamingController = MjpegStreamingController()
+        self.streamingController.timeoutInterval = 2 // Timeout fast so widget does not fail to render in case of an error
     }
     
     func renderImage(completion: @escaping () -> ()) {

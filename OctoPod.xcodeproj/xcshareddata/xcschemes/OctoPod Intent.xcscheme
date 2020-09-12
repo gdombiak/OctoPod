@@ -58,15 +58,9 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
       <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.notificationcenterui">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D450E4E21AB1B210049FBC0"
-            BuildableName = "OctoPod Intent.appex"
-            BlueprintName = "OctoPod Intent"
-            ReferencedContainer = "container:OctoPod.xcodeproj">
-         </BuildableReference>
+         runnableDebuggingMode = "1"
+         BundleIdentifier = "com.apple.shortcuts"
+         RemotePath = "/Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/Applications/Shortcuts.app">
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
