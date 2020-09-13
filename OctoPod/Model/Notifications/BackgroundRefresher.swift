@@ -182,15 +182,19 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
                     self.watchSessionManager.updateComplications(printerName: printerName, printerState: pushState, completion: completion, useBudget: true)
                 }
             }
-            // Refresh iOS 14 widgets as well (since we have a new printer state)
-            WidgetCenter.shared.reloadAllTimelines()
+            if #available(iOS 14, *) {
+                // Refresh iOS 14 widgets as well (since we have a new printer state)
+                WidgetCenter.shared.reloadAllTimelines()
+            }
         } else if let completion = completion, pushState == "Printing" {
             // State is the same (still printing) and completion is not nil
             // so check if we should send a complication update or not
             self.watchSessionManager.optionalUpdateComplications(printerName: printerName, printerState: pushState, completion: completion, forceUpdate: forceUpdate ?? false)
-            if completion.remainder(dividingBy: 5.0) == 0 {
-                // Refresh iOS 14 widgets as well (since progress is multiple of 5). This prevents updating widget every time. Helps save battery
-                WidgetCenter.shared.reloadAllTimelines()
+            if #available(iOS 14, *) {
+                if completion.remainder(dividingBy: 5.0) == 0 {
+                    // Refresh iOS 14 widgets as well (since progress is multiple of 5). This prevents updating widget every time. Helps save battery
+                    WidgetCenter.shared.reloadAllTimelines()
+                }
             }
         }
     }

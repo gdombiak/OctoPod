@@ -57,18 +57,8 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.springboard">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3DE5F53424FC600200BFDAD3"
-            BuildableName = "OctoPodWidget14Extension.appex"
-            BlueprintName = "OctoPodWidget14Extension"
-            ReferencedContainer = "container:OctoPod.xcodeproj">
-         </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3D4527FD20E15A370094CCB7"
@@ -76,7 +66,7 @@
             BlueprintName = "OctoPod"
             ReferencedContainer = "container:OctoPod.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "_XCWidgetKind"
