@@ -26,7 +26,8 @@ struct Provider: IntentTimelineProvider {
             let entry = SimpleEntry(date: Date(), configuration: configuration, printJobDataService: service, cameraService: cameraService)
             // Fetch update data and once data execute completion block
             service.updateData {
-                if cameraService != nil {
+                if cameraService != nil && context.family != .systemSmall {
+                    // Fetch image only if widget is medium and has been configured properly
                     cameraService?.renderImage(completion: {
                         completion(entry)
                     })
