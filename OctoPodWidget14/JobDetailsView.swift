@@ -28,7 +28,8 @@ struct JobDetailsView: View {
                         .frame(width: 24.0, height: 24.0)
                     Text(eta)
                         .font(.footnote)
-                }
+                        .minimumScaleFactor(0.65)
+                }.padding(.horizontal, 5)
             } else {
                 Text(printerStatus)
                     .font(.footnote)

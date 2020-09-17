@@ -17,10 +17,10 @@ struct Provider: IntentTimelineProvider {
     }
     
     func getSnapshot(for configuration: WidgetConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        if let widgetPrinter = configuration.printer, let hostname = widgetPrinter.hostname, let apiKey = widgetPrinter.apiKey, let widgetCamera = configuration.camera {
+        if let widgetPrinter = configuration.printer, let hostname = widgetPrinter.hostname, let apiKey = widgetPrinter.apiKey {
             let service = PrintJobDataService(hostname: hostname, apiKey: apiKey, username: widgetPrinter.username, password: widgetPrinter.password)
             var cameraService: CameraService?
-            if let cameraURL = widgetCamera.cameraURL, let cameraOrientation = widgetCamera.cameraOrientation {
+            if let widgetCamera = configuration.camera, let cameraURL = widgetCamera.cameraURL, let cameraOrientation = widgetCamera.cameraOrientation {
                 cameraService = CameraService(cameraURL: cameraURL, cameraOrientation: Int(truncating: cameraOrientation), username: widgetPrinter.username, password: widgetPrinter.password)
             }
             let entry = SimpleEntry(date: Date(), configuration: configuration, printJobDataService: service, cameraService: cameraService)

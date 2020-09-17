@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1200"
-   wasCreatedForAppExtension = "YES"
-   version = "1.3">
+   version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -15,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3D450E4E21AB1B210049FBC0"
-               BuildableName = "OctoPod Intent.appex"
-               BlueprintName = "OctoPod Intent"
+               BlueprintIdentifier = "3D6EB0A7217B0D250093EC79"
+               BuildableName = "OctoPod Watch.app"
+               BlueprintName = "OctoPod Watch"
                ReferencedContainer = "container:OctoPod.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,24 +46,28 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = ""
-      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      allowLocationSimulation = "YES"
+      launchAutomaticallySubstyle = "8"
+      notificationPayloadFile = "OctoPod Watch Extension/PushNotificationPayload.apns">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/OctoPod">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D4527FD20E15A370094CCB7"
-            BuildableName = "OctoPod.app"
-            BlueprintName = "OctoPod"
+            BlueprintIdentifier = "3D6EB0A7217B0D250093EC79"
+            BuildableName = "OctoPod Watch.app"
+            BlueprintName = "OctoPod Watch"
             ReferencedContainer = "container:OctoPod.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -72,17 +75,29 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES"
-      launchAutomaticallySubstyle = "2">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      launchAutomaticallySubstyle = "8"
+      notificationPayloadFile = "OctoPod Watch Extension/PushNotificationPayload.apns">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/OctoPod">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D4527FD20E15A370094CCB7"
-            BuildableName = "OctoPod.app"
-            BlueprintName = "OctoPod"
+            BlueprintIdentifier = "3D6EB0A7217B0D250093EC79"
+            BuildableName = "OctoPod Watch.app"
+            BlueprintName = "OctoPod Watch"
             ReferencedContainer = "container:OctoPod.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "3D6EB0A7217B0D250093EC79"
+            BuildableName = "OctoPod Watch.app"
+            BlueprintName = "OctoPod Watch"
+            ReferencedContainer = "container:OctoPod.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

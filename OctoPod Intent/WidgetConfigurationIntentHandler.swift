@@ -14,8 +14,8 @@ class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandl
 
     func resolvePrinter(for intent: WidgetConfigurationIntent, with completion: @escaping (WidgetPrinterResolutionResult) -> Void) {
         if let printerURL = intent.printer?.url, let url = URL(string: printerURL), let selectedPrinter = printerManager.getPrinterByObjectURL(url: url) {
-            let updatedConfigurationIntent = createWidgetPrinter(printer: selectedPrinter)
-            completion(WidgetPrinterResolutionResult.success(with: updatedConfigurationIntent))
+            let widgetPrinter = createWidgetPrinter(printer: selectedPrinter)
+            completion(WidgetPrinterResolutionResult.success(with: widgetPrinter))
         } else {
             // This case should not happen
             WidgetPrinterResolutionResult.needsValue()
@@ -97,6 +97,52 @@ class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandl
         }
         return nil
     }
+    
+//    func defaultCamera(for intent: WidgetConfigurationIntent) -> WidgetCamera? {
+//        // If intent has proper values then use it
+//        if let widgetCamera = intent.camera, let _ = widgetCamera.cameraURL {
+//            return widgetCamera
+//        }
+//        // Use printer of intent if any, if not use default printer
+//        var printer: Printer?
+//        if let printerURL = intent.printer?.url, let url = URL(string: printerURL), let selectedPrinter = printerManager.getPrinterByObjectURL(url: url) {
+//            printer = selectedPrinter
+//        } else if let defaultPrinter = printerManager.getDefaultPrinter() {
+//            printer = defaultPrinter
+//        }
+//
+//        // If a printer was found then return camera of printer
+//        if let printer = printer {
+//            if let cameras = printer.getMultiCameras(), !cameras.isEmpty {
+//                // MultiCam plugin is installed so return first camera from list
+//                let multiCamera = cameras[0]
+//                var cameraURL: String
+//                var cameraOrientation: Int
+//                let url = multiCamera.cameraURL
+//                if url == printer.getStreamPath() {
+//                    // This is camera hosted by OctoPrint so respect orientation
+//                    cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+//                    cameraOrientation = Int(printer.cameraOrientation)
+//                } else {
+//                    if url.starts(with: "/") {
+//                        // Another camera hosted by OctoPrint so build absolute URL
+//                        cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+//                    } else {
+//                        // Use absolute URL to render camera
+//                        cameraURL = url
+//                    }
+//                    cameraOrientation = Int(multiCamera.cameraOrientation) // Respect orientation defined by MultiCamera plugin
+//                }
+//                return createWidgetCamera(name: multiCamera.name, cameraURL: cameraURL, cameraOrientation: cameraOrientation)
+//            } else {
+//                // MultiCam plugin is not installed so use default camera
+//                let cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: printer.getStreamPath())
+//                let cameraOrientation = Int(printer.cameraOrientation)
+//                return createWidgetCamera(name: NSLocalizedString("Default", comment: ""), cameraURL: cameraURL, cameraOrientation: cameraOrientation)
+//            }
+//        }
+//        return nil
+//    }
     
     // MARK: - Private functions
 
