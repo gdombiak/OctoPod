@@ -10,6 +10,7 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
     let watchSessionManager: WatchSessionManager!
     
     private var lastKnownState: Dictionary<String, (state: String, completion: Double?)> = [:]
+    private let accessQueue = DispatchQueue(label: "lastKnownStateAccess", attributes: .concurrent)
     
     init(octoPrintClient: OctoPrintClient, printerManager: PrinterManager, watchSessionManager: WatchSessionManager) {
         self.octoprintClient = octoPrintClient
@@ -166,7 +167,11 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
         }
 
         // Check if state has changed since last refresh
-        let lastState = self.lastKnownState[printerName]
+        var lastState: (state: String, completion: Double?)?
+        // Dictionary is not thread safe. Use sync for read operations
+        self.accessQueue.sync {
+            lastState = self.lastKnownState[printerName]
+        }
         if lastState == nil || lastState?.state != state {
             if !octopodPluginInstalled, let completion = completion {
                 // Send local notification if OctoPod plugin for OctoPrint is not installed
@@ -176,7 +181,10 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
             // Ignore event with Printing and no completion
             if pushState != "Printing" || completion != nil {
                 // Update last known state
-                self.lastKnownState[printerName] = (state, completion)
+                // Dictionary is not thread safe. Use async for write operations
+                self.accessQueue.async {
+                    self.lastKnownState[printerName] = (state, completion)
+                }
                 if pushState == "Offline" || pushState == "Operational" || pushState == "Printing" || pushState == "Paused" {
                     // Update complication with received data
                     self.watchSessionManager.updateComplications(printerName: printerName, printerState: pushState, completion: completion, useBudget: true)
@@ -201,7 +209,11 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
     
     fileprivate func checkCompletedJobLocalNotification(printerName: String, state: String, mediaURL: String?, completion: Double, test: Bool) {
         var sendLocalNotification = false
-        if let lastState = self.lastKnownState[printerName] {
+        var lastState: (state: String, completion: Double?)?
+        self.accessQueue.sync {
+            lastState = self.lastKnownState[printerName]
+        }
+        if let lastState = lastState {
             sendLocalNotification = lastState.state != "Operational" && (state == "Finishing" || state == "Operational") && lastState.completion != 100 && completion == 100
         }
         if sendLocalNotification || test {
