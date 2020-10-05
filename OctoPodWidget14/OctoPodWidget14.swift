@@ -105,7 +105,6 @@ struct OctoPodWidget14EntryView : View {
                                 .resizable()
                         }
                     }
-                    .widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
                     .padding(10.0)
                 }
 

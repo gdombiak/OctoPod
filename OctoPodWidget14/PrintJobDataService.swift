@@ -25,6 +25,11 @@ class PrintJobDataService: ObservableObject {
                     
                     if let state = result["state"] as? String {
                         self.printerStatus = state
+                        if state == "Printing from SD" {
+                            self.printerStatus = "Printing"
+                        } else if state.starts(with: "Offline (Error:") {
+                            self.printerStatus = "Offline"
+                        }
                     }
                     if let progress = result["progress"] as? Dictionary<String, Any> {
                         if let completion = progress["completion"] as? Double {
