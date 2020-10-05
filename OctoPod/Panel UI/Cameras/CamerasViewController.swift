@@ -66,7 +66,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
 
     func displayPrintStatus(enabled: Bool) {
         if displayPrintStatus != enabled {
-            if let index = currentIndex {
+            if let index = currentIndex, orderedViewControllers.count > index {
                 displayPrintStatus = enabled
                 orderedViewControllers[index].displayPrintStatus(enabled: enabled)
             }
