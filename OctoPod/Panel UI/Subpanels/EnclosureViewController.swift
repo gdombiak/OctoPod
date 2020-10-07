@@ -1,6 +1,6 @@
 import UIKit
 
-class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelViewController, OctoPrintSettingsDelegate {
+class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelViewController, OctoPrintSettingsDelegate, OctoPrintPluginsDelegate {
     
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -21,6 +21,8 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
         // Fetch and render Enclosure outputs
         refreshOutputs(done: nil)
 
+        // Listen to changes to OctoPrint Plugin messages
+        octoprintClient.octoPrintPluginsDelegates.append(self)
         // Listen to changes to OctoPrint Settings
         octoprintClient.octoPrintSettingsDelegates.append(self)
     }
@@ -28,6 +30,8 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        // Stop listening to changes to OctoPrint Plugin messages
+        octoprintClient.remove(octoPrintPluginsDelegate: self)
         // Stop listening to changes to OctoPrint Settings
         octoprintClient.remove(octoPrintSettingsDelegate: self)
     }
@@ -113,6 +117,17 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
                 // Fetch and render Enclosure outputs
                 self.refreshOutputs(done: nil)
             }
+        }
+    }
+
+    // MARK: - OctoPrintPluginsDelegate
+    
+    func pluginMessage(plugin: String, data: NSDictionary) {
+        if plugin == Plugins.ENCLOSURE {
+            // Refresh status of outputs. Doing a new fetch is not the most
+            // efficient way to do this but this is an infrequent operation
+            // so it is good enough and we can reuse some code
+            refreshOutputsStatus(done: nil)
         }
     }
 
