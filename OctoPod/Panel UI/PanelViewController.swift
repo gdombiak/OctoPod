@@ -45,6 +45,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     var swipeRightGestureRecognizer : UISwipeGestureRecognizer!
     var swipeDownGestureRecognizer : UISwipeGestureRecognizer!
     var tapGestureRecognizer : UITapGestureRecognizer!
+    
+    /// Remember if screen turns off when app is idle. This is used when coming back from full screen camera
+    var previousIdleTimer = UIApplication.shared.isIdleTimerDisabled
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -797,6 +800,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             } else {
                 uiOrientationBeforeFullScreen = nil
             }
+            // Turn off idle timer that turns off display when app is idle. Full screen camera will prevent device from turning screen off
+            previousIdleTimer = UIApplication.shared.isIdleTimerDisabled
+            UIApplication.shared.isIdleTimerDisabled = true
         } else {
             // Show the navigation bar on this view controller
             self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -814,6 +820,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 UIDevice.current.setValue(Int(orientation.rawValue), forKey: "orientation")
                 uiOrientationBeforeFullScreen = nil
             }
+            // Restore idle timer to previous value before going full screen
+            UIApplication.shared.isIdleTimerDisabled = previousIdleTimer
         }
         // Add some delay before calculating if we should render temp info
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
