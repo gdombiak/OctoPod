@@ -454,6 +454,9 @@
 /* No comment provided by engineer. */
 "Print" = "Tisknout";
 
+/* No comment provided by engineer. */
+"Print Again" = "Tisknout znovu";
+
 /* (No Comment) */
 "Print complete" = "Tisk dokončen";
 

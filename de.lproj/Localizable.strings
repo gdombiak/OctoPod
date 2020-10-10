@@ -454,6 +454,9 @@
 /* No comment provided by engineer. */
 "Print" = "Drucken";
 
+/* No comment provided by engineer. */
+"Print Again" = "Erneut drucken";
+
 /* (No Comment) */
 "Print complete" = "Druck vollständig";
 

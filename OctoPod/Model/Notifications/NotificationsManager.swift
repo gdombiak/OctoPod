@@ -8,6 +8,9 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
     private let mmuSnooze1Identifier = "mmuSnooze1"
     private let mmuSnooze8Identifier = "mmuSnooze8"
 
+    static let printCompleteCategory = "printComplete"
+    private let printAgainIdentifier = "printAgain"
+
     private let printerManager: PrinterManager!
     private let octoprintClient: OctoPrintClient!
     private let watchSessionManager: WatchSessionManager!
@@ -33,8 +36,15 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
         let snooze8Action = UNNotificationAction(identifier: mmuSnooze8Identifier, title: NSLocalizedString("Snooze 8 hours", comment: "Snooze notifications for 8 hours"),options:[])
         
         // Create category that will include snooze action
-        let category = UNNotificationCategory(identifier: NotificationsManager.mmuSnoozeCategory, actions: [snooze1Action, snooze8Action], intentIdentifiers: [], options: [])
-        UNUserNotificationCenter.current().setNotificationCategories([category])
+        let mmuCategory = UNNotificationCategory(identifier: NotificationsManager.mmuSnoozeCategory, actions: [snooze1Action, snooze8Action], intentIdentifiers: [], options: [])
+
+        // Create action for print again button
+        let printAgainAction = UNNotificationAction(identifier: printAgainIdentifier, title: NSLocalizedString("Print Again", comment: ""),options:[])
+        
+        // Create category that will include print again
+        let printCompletedCategory = UNNotificationCategory(identifier: NotificationsManager.printCompleteCategory, actions: [printAgainAction], intentIdentifiers: [], options: [])
+
+        UNUserNotificationCenter.current().setNotificationCategories([mmuCategory, printCompletedCategory])
     }
 
     // Register the specified token with all OctoPrints that have the OctoPod Plugin installed
@@ -119,6 +129,25 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
                 } else {
                     // OctoPod plugin is not updated so app is using silent notifications. Snooze is handled by the app in this legacy mode
                     mmuNotificationsHandler.snoozeNotifications(printerName: printerName, hours: response.actionIdentifier == mmuSnooze1Identifier ? 1 : 8)
+                    // Execute completion handler
+                    completionHandler()
+                }
+            } else if response.actionIdentifier == printAgainIdentifier {
+                // Request OctoPrint to print again last completed print
+                if let printer = printerManager.getPrinterByName(name: printerName), let fileOrigin = response.notification.request.content.userInfo["file-origin"] as? String, let filePath = response.notification.request.content.userInfo["file-path"] as? String {                    
+                    // Let's switch to the selected printer
+                    printerManager.changeToDefaultPrinter(printer)
+                    // Ask octoprintClient to connect to new OctoPrint server
+                    octoprintClient.connectToServer(printer: printer)
+                    // Request OctoPrint to print again last printed file
+                    octoprintClient.printFile(origin: fileOrigin, path: filePath) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                        if !requested {
+                            NSLog("Failed to request to print again selected file. Response: \(response)")
+                        }
+                        // Execute completion handler
+                        completionHandler()
+                    }
+                } else {
                     // Execute completion handler
                     completionHandler()
                 }
