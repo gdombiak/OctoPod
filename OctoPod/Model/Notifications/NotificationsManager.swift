@@ -122,8 +122,10 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
                         if !requested {
                             NSLog("Failed to request snooze of MMU events. Response: \(response)")
                         }
-                        // Execute completion handler
-                        completionHandler()
+                        // Execute completion handler in main thread
+                        DispatchQueue.main.async {
+                            completionHandler()
+                        }
                     }
 
                 } else {
@@ -134,7 +136,7 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
                 }
             } else if response.actionIdentifier == printAgainIdentifier {
                 // Request OctoPrint to print again last completed print
-                if let printer = printerManager.getPrinterByName(name: printerName), let fileOrigin = response.notification.request.content.userInfo["file-origin"] as? String, let filePath = response.notification.request.content.userInfo["file-path"] as? String {                    
+                if let printer = printerManager.getPrinterByName(name: printerName), let fileOrigin = response.notification.request.content.userInfo["file-origin"] as? String, let filePath = response.notification.request.content.userInfo["file-path"] as? String {
                     // Let's switch to the selected printer
                     printerManager.changeToDefaultPrinter(printer)
                     // Ask octoprintClient to connect to new OctoPrint server
@@ -144,8 +146,10 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
                         if !requested {
                             NSLog("Failed to request to print again selected file. Response: \(response)")
                         }
-                        // Execute completion handler
-                        completionHandler()
+                        // Execute completion handler in main thread
+                        DispatchQueue.main.async {
+                            completionHandler()
+                        }
                     }
                 } else {
                     // Execute completion handler
