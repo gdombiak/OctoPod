@@ -46,6 +46,7 @@ class IntentHandler: INExtension {
     
     // MARK: - Lazy variables
 
+    /// Use static to return same instance to prevent app crash with core data when iOS creates multiple instances of this class
     static var persistentContainer: SharedPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -73,6 +74,7 @@ class IntentHandler: INExtension {
         return container
     }()
     
+    /// Use static to return same instance to prevent app crash with core data when iOS creates multiple instances of this class
     static var printerManager: PrinterManager = {
         let context = persistentContainer.viewContext
         var printerManager = PrinterManager()
