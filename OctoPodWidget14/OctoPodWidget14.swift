@@ -12,8 +12,11 @@ struct Provider: IntentTimelineProvider {
         jobService.printerStatus = "Printing"
         jobService.progress = 28.0
         jobService.printEstimatedCompletion = "9:30 PM"
+        
+        let cameraService = CameraService(cameraURL: "", cameraOrientation: 1, username: nil, password: nil)
+        cameraService.image = UIImage(named: "Image")
 
-        return SimpleEntry(date: Date(), configuration: configuration, printJobDataService: jobService, cameraService: nil)
+        return SimpleEntry(date: Date(), configuration: configuration, printJobDataService: jobService, cameraService: cameraService)
     }
     
     func getSnapshot(for configuration: WidgetConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
@@ -96,13 +99,24 @@ struct OctoPodWidget14EntryView : View {
                         VStack(spacing: 10) {
                             JobDetailsView(printerName: printerName, entry: entry)
                         }
-                        if let image = entry.cameraService?.image {
-                            Image(uiImage: image)
-                                .resizable()
-                                .scaledToFit()
+                        if let cameraService = entry.cameraService {
+                            if let image = cameraService.image {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFit()
+                            } else {
+                                // Failed to fetch image so display placeholder
+                                // In the future we could add a text with the reason of the failure
+                                Image("Image")
+                                    .resizable()
+                            }
                         } else {
-                            Image("Image")
-                                .resizable()
+                            // No camera was configured in the widget
+                            VStack {
+                                Image("Image")
+                                    .resizable()
+                                Text("Configure widget")
+                            }
                         }
                     }
                     .padding(10.0)
