@@ -142,6 +142,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     // MARK: - Connect / Disconnect
 
     @IBAction func toggleConnection(_ sender: Any) {
+        if printerConnected == nil {
+            // Do nothing if we do not know the connection status of the printer
+            return
+        }
         if printerConnected! {
             // Define connect logic that will be reused in 2 places. Variable to prevent copy/paste
             let disconnect = {
