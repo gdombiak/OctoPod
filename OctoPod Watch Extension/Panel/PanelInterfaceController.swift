@@ -79,6 +79,9 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
         // Listen to changes to panel information
         PanelManager.instance.delegates.append(self)
 
+        // Make sure we have an OctoPrintClient
+        OctoPrintClient.instance.configure()
+
         if let printer = PrinterManager.instance.defaultPrinter() {
             // Update title of window with printer name
             let currentPrinterName = PrinterManager.instance.name(printer: printer)
