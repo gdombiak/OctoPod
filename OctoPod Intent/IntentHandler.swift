@@ -5,36 +5,36 @@ class IntentHandler: INExtension {
     
     override func handler(for intent: INIntent) -> Any {
         if intent is SetBedTempIntent {
-            return SetBedTempIntentHandler(printerManager: printerManager)
+            return SetBedTempIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is SetToolTempIntent {
-            return SetToolTempIntentHandler(printerManager: printerManager)
+            return SetToolTempIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is SetChamberTempIntent {
-            return SetChamberTempIntentHandler(printerManager: printerManager)
+            return SetChamberTempIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is PauseJobIntent {
-            return PauseJobIntentHandler(printerManager: printerManager)
+            return PauseJobIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is ResumeJobIntent {
-            return ResumeJobIntentHandler(printerManager: printerManager)
+            return ResumeJobIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is CancelJobIntent {
-            return CancelJobIntentHandler(printerManager: printerManager)
+            return CancelJobIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is RestartJobIntent {
-            return RestartJobIntentHandler(printerManager: printerManager)
+            return RestartJobIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is RemainingTimeIntent {
-            return RemainingTimeIntentHandler(printerManager: printerManager)
+            return RemainingTimeIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is CoolDownPrinterIntent {
-            return CoolDownPrinterIntentHandler(printerManager: printerManager)
+            return CoolDownPrinterIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is PaletteConnectIntent {
-            return PaletteConnectIntentHandler(printerManager: printerManager)
+            return PaletteConnectIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is PaletteDisconnectIntent {
-            return PaletteDisconnectIntentHandler(printerManager: printerManager)
+            return PaletteDisconnectIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is PaletteClearIntent {
-            return PaletteClearIntentHandler(printerManager: printerManager)
+            return PaletteClearIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is PaletteCutIntent {
-            return PaletteCutIntentHandler(printerManager: printerManager)
+            return PaletteCutIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is PalettePingStatsIntent {
-            return PalettePingStatsIntentHandler(printerManager: printerManager)
+            return PalettePingStatsIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is WidgetConfigurationIntent {
             if #available(iOSApplicationExtension 14.0, *) {
-                return WidgetConfigurationIntentHandler(printerManager: printerManager)
+                return WidgetConfigurationIntentHandler(printerManager: IntentHandler.printerManager)
             } else {
                 // Fallback on earlier versions
                 fatalError("WidgetConfigurationIntent is only available on iOS 14 or newer")
@@ -46,7 +46,7 @@ class IntentHandler: INExtension {
     
     // MARK: - Lazy variables
 
-    lazy var persistentContainer: SharedPersistentContainer = {
+    static var persistentContainer: SharedPersistentContainer = {
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
@@ -73,7 +73,7 @@ class IntentHandler: INExtension {
         return container
     }()
     
-    lazy var printerManager: PrinterManager = {
+    static var printerManager: PrinterManager = {
         let context = persistentContainer.viewContext
         var printerManager = PrinterManager()
         printerManager.managedObjectContext = context
