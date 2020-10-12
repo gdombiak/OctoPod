@@ -1,6 +1,40 @@
 # Change Log
 
-## [3.6](https://github.com/gdombiak/OctoPod/tree/3.6) (2020-09-16)
+## [3.7](https://github.com/gdombiak/OctoPod/tree/3.7) (2020-10-12)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.6...3.7)
+
+**Implemented enhancements:**
+
+- Small improvement to iOS 14 widget to correctly render printer status [\#381](https://github.com/gdombiak/OctoPod/issues/381)
+- Placeholder image in widget [\#371](https://github.com/gdombiak/OctoPod/issues/371)
+- Keep display awake when webcam is in fullscreen [\#368](https://github.com/gdombiak/OctoPod/issues/368)
+- FR - An option to allow commands from ios lockscreen [\#330](https://github.com/gdombiak/OctoPod/issues/330)
+- Add Siri confirmation to cancel print command [\#268](https://github.com/gdombiak/OctoPod/issues/268)
+
+**Fixed bugs:**
+
+- Apple Watch app sometimes does not refresh when iOS app is not reachable [\#388](https://github.com/gdombiak/OctoPod/issues/388)
+- Apple Watch complication does not refresh without iOS app [\#387](https://github.com/gdombiak/OctoPod/issues/387)
+- Fix app crash when pressing connect/disconnect button [\#386](https://github.com/gdombiak/OctoPod/issues/386)
+- Fix silent app crash with Siri intents [\#385](https://github.com/gdombiak/OctoPod/issues/385)
+- Clicking on medium size iOS 14 widget does not switch to selected printer [\#382](https://github.com/gdombiak/OctoPod/issues/382)
+- Fix application crash in background refresh due to concurrency  [\#380](https://github.com/gdombiak/OctoPod/issues/380)
+- Fix application crash due to 'index out of range' in cameras [\#379](https://github.com/gdombiak/OctoPod/issues/379)
+- Issue with Enclosure Outputs in Octopod iPhone App [\#373](https://github.com/gdombiak/OctoPod/issues/373)
+
+**Closed issues:**
+
+- What should be in Widget View?  [\#378](https://github.com/gdombiak/OctoPod/issues/378)
+- Port to Android? [\#377](https://github.com/gdombiak/OctoPod/issues/377)
+- Webcam URL incorrect in ios app [\#375](https://github.com/gdombiak/OctoPod/issues/375)
+- Flow and federate sliders at 75% when starting app  [\#372](https://github.com/gdombiak/OctoPod/issues/372)
+- ngrok support [\#363](https://github.com/gdombiak/OctoPod/issues/363)
+- Octopod external network [\#350](https://github.com/gdombiak/OctoPod/issues/350)
+- iOS app stops printing when quit [\#336](https://github.com/gdombiak/OctoPod/issues/336)
+- Octopod Plugin + Octopod IOS: Get 10 Push-Messages for every status \(25%, 50%, 75%\) [\#333](https://github.com/gdombiak/OctoPod/issues/333)
+- Add support for iPad PiP  [\#168](https://github.com/gdombiak/OctoPod/issues/168)
+
+## [3.6](https://github.com/gdombiak/OctoPod/tree/3.6) (2020-09-17)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.5...3.6)
 
 **Implemented enhancements:**
