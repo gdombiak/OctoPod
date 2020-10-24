@@ -1,12 +1,14 @@
 import UIKit
 
-class FilamentManagerViewController : ThemedDynamicUITableViewController, SubpanelViewController, UIPopoverPresentationControllerDelegate {
+class FilamentManagerViewController : ThemedDynamicUITableViewController, SubpanelViewController, UIPopoverPresentationControllerDelegate, OctoPrintPluginsDelegate {
     
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     private var selections: Array<FilamentSelection> = []
     private var spools: Array<FilamentSpool> = []
+    
+    private var isPrinting = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +22,18 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
 
         // Fetch and render current filament selections
         refreshSelections(done: nil)
+
+        // Listen to changes to OctoPrint Plugin messages
+        octoprintClient.octoPrintPluginsDelegates.append(self)
+        
+        isPrinting = self.isPrinting(event: octoprintClient.lastKnownState)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Stop listening to changes to OctoPrint Plugin messages
+        octoprintClient.remove(octoPrintPluginsDelegate: self)
     }
 
     // MARK: - Table view data source
@@ -50,6 +64,8 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
         
         cell.selectionButton.setTitle(selection.displaySelection(), for: .normal)
         cell.selectionButton.setTitleColor(Theme.currentTheme().tintColor(), for: .normal)
+        cell.selectionButton.isEnabled = !self.isPrinting           // Diable button while printing
+        cell.selectionButton.alpha = self.isPrinting ? 0.5 : 1.0    // Make it look disabled when printing
         
         cell.usageLabel.text = selection.displayUsage()
         cell.usageLabel.textColor = currentTheme.textColor()
@@ -114,7 +130,13 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
     }
     
     func currentStateUpdated(event: CurrentStateEvent) {
-        // Do nothing
+        isPrinting = self.isPrinting(event: event)
+        // Only refresh UI if view controller is being shown
+        DispatchQueue.main.async {
+            if let _ = self.parent {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func position() -> Int {
@@ -127,6 +149,17 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
         performSegue(withIdentifier: "change_selection", sender: cell)
     }
     
+    // MARK: - OctoPrintPluginsDelegate
+    
+    func pluginMessage(plugin: String, data: NSDictionary) {
+        if plugin == Plugins.FILAMENT_MANAGER {
+            // Refresh status of outputs. Doing a new fetch is not the most
+            // efficient way to do this but this is an infrequent operation
+            // so it is good enough and we can reuse some code
+            refreshSelections(done: nil)
+        }
+    }
+
     // MARK: - UIPopoverPresentationControllerDelegate
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -199,6 +232,14 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
                 }
             }
         }
+    }
+    
+    /// Returns true if event indicates that we are printing. This is based on progress information
+    fileprivate func isPrinting(event: CurrentStateEvent?) -> Bool {
+        if let progress = event?.progressCompletion {
+            return progress > 0 && progress < 100
+        }
+        return false
     }
 
     fileprivate func showAlert(_ title: String, message: String, done: (() -> Void)?) {
