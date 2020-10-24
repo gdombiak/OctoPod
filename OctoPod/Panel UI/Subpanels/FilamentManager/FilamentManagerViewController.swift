@@ -67,7 +67,7 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
         cell.selectionButton.isEnabled = !self.isPrinting           // Diable button while printing
         cell.selectionButton.alpha = self.isPrinting ? 0.5 : 1.0    // Make it look disabled when printing
         
-        cell.usageLabel.text = selection.displayUsage()
+        cell.usageLabel.text = selection.displayRemaining()
         cell.usageLabel.textColor = currentTheme.textColor()
 
         return cell
