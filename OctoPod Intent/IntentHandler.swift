@@ -41,6 +41,13 @@ class IntentHandler: INExtension {
                 // Fallback on earlier versions
                 fatalError("WidgetConfigurationIntent is only available on iOS 14 or newer")
             }
+        } else if intent is DashboardWidgetConfigurationIntent {
+            if #available(iOSApplicationExtension 14.0, *) {
+                return DashboardWidgetConfigurationIntentHandler(printerManager: IntentHandler.printerManager)
+            } else {
+                // Fallback on earlier versions
+                fatalError("WidgetConfigurationIntent is only available on iOS 14 or newer")
+            }
         } else {
             fatalError("Unhandled intent type: \(intent)")
         }

@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 
 struct JobDetailsView: View {
     static let dateFormatter: DateFormatter = {
@@ -49,5 +50,6 @@ struct JobDetailsView: View {
 struct JobDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         JobDetailsView(printerName: "MK3", entry: SimpleEntry(date: Date(), configuration: WidgetConfigurationIntent(), printJobDataService: nil, cameraService: nil))
+            .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

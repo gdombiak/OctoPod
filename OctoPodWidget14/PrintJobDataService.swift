@@ -1,6 +1,7 @@
 import Foundation
 
 class PrintJobDataService: ObservableObject {
+    @Published var printerName: String = ""
     @Published var printerStatus: String = "--"
     @Published var progress: Double?
     @Published var printEstimatedCompletion: String = "--"
@@ -9,7 +10,8 @@ class PrintJobDataService: ObservableObject {
     
     private let restClient: OctoPrintRESTClient!
     
-    init(hostname: String, apiKey: String, username: String?, password: String?) {
+    init(name: String, hostname: String, apiKey: String, username: String?, password: String?) {
+        printerName = name
         restClient = OctoPrintRESTClient()
         restClient.connectToServer(serverURL: hostname, apiKey: apiKey, username: username, password: password)
     }

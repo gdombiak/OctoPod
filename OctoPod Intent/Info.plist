@@ -50,6 +50,7 @@
 			<array>
 				<string>CancelJobIntent</string>
 				<string>CoolDownPrinterIntent</string>
+				<string>DashboardWidgetConfigurationIntent</string>
 				<string>PaletteClearIntent</string>
 				<string>PaletteConnectIntent</string>
 				<string>PaletteCutIntent</string>

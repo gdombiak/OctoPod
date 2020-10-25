@@ -109,6 +109,7 @@
 		3D5849E4210CC8720068D87A /* OctoPrintSettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5849E3210CC8720068D87A /* OctoPrintSettingsDelegate.swift */; };
 		3D5879FA2176D2D20058A4DC /* NotRefreshingReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */; };
 		3D588C982545041400D96B86 /* SystemCommandIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D588C972545041400D96B86 /* SystemCommandIntentHandler.swift */; };
+		3D588CB52545DAD700D96B86 /* DashboardWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D588CB42545DAD700D96B86 /* DashboardWidget.swift */; };
 		3D5D613621209F52000B66E7 /* CamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D613521209F52000B66E7 /* CamerasViewController.swift */; };
 		3D5D614623D5776200D988A2 /* AppleWatchSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D614523D5776200D988A2 /* AppleWatchSettingsViewController.swift */; };
 		3D5D614823D57C2000D988A2 /* ComplicationContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D614723D57C2000D988A2 /* ComplicationContentType.swift */; };
@@ -116,6 +117,7 @@
 		3D6350F121082E07001C10F7 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F021082E07001C10F7 /* AppearanceViewController.swift */; };
 		3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F221083BE0001C10F7 /* TabBarController.swift */; };
 		3D6350F721084334001C10F7 /* ThemedDynamicUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F621084334001C10F7 /* ThemedDynamicUITableViewController.swift */; };
+		3D660C0325461E58003B7C9C /* DashboardJobDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D660BF825461E52003B7C9C /* DashboardJobDetailsView.swift */; };
 		3D669E1322FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D669E1222FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift */; };
 		3D669E1422FBB734002C68C1 /* Plugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3FE6C2154B9CE000D7D2A /* Plugins.swift */; };
 		3D669E1622FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D669E1522FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift */; };
@@ -283,6 +285,7 @@
 		3DD3F2682439990000EA3F84 /* PrintersDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3F2672439990000EA3F84 /* PrintersDashboardViewController.swift */; };
 		3DD3F26A2439994300EA3F84 /* PrinterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3F2692439994300EA3F84 /* PrinterViewCell.swift */; };
 		3DD3F26C243A754800EA3F84 /* PrinterObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3F26B243A754800EA3F84 /* PrinterObserver.swift */; };
+		3DD4745B2545F3C1001CD60F /* DashboardWidgetConfigurationIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD4745A2545F3C1001CD60F /* DashboardWidgetConfigurationIntentHandler.swift */; };
 		3DD69AA121150F43005555ED /* FileUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD69AA021150F43005555ED /* FileUploadViewController.swift */; };
 		3DD9D75B250E77070086A471 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE5F53624FC600200BFDAD3 /* WidgetKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3DD9E9572108479000726DFD /* ThemedStaticUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */; };
@@ -527,6 +530,7 @@
 		3D5849E5210CCB560068D87A /* OctoPod v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v2.xcdatamodel"; sourceTree = "<group>"; };
 		3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotRefreshingReasonViewController.swift; sourceTree = "<group>"; };
 		3D588C972545041400D96B86 /* SystemCommandIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemCommandIntentHandler.swift; sourceTree = "<group>"; };
+		3D588CB42545DAD700D96B86 /* DashboardWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DashboardWidget.swift; path = OctoPodWidget14/DashboardWidget.swift; sourceTree = SOURCE_ROOT; };
 		3D5D613421209B52000B66E7 /* OctoPod v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v3.xcdatamodel"; sourceTree = "<group>"; };
 		3D5D613521209F52000B66E7 /* CamerasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasViewController.swift; sourceTree = "<group>"; };
 		3D5D614523D5776200D988A2 /* AppleWatchSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleWatchSettingsViewController.swift; sourceTree = "<group>"; };
@@ -550,6 +554,7 @@
 		3D6570DD218510DB00BD3A7B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Interface.strings; sourceTree = "<group>"; };
 		3D6570DF218510DD00BD3A7B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Interface.strings; sourceTree = "<group>"; };
 		3D6570E1218510DE00BD3A7B /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Interface.strings; sourceTree = "<group>"; };
+		3D660BF825461E52003B7C9C /* DashboardJobDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DashboardJobDetailsView.swift; path = OctoPodWidget14/DashboardJobDetailsView.swift; sourceTree = SOURCE_ROOT; };
 		3D669E1222FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteConnectIntentHandler.swift; sourceTree = "<group>"; };
 		3D669E1522FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDisconnectIntentHandler.swift; sourceTree = "<group>"; };
 		3D669E1722FBBA6F002C68C1 /* PaletteCleartIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteCleartIntentHandler.swift; sourceTree = "<group>"; };
@@ -758,6 +763,7 @@
 		3DD3F2672439990000EA3F84 /* PrintersDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintersDashboardViewController.swift; sourceTree = "<group>"; };
 		3DD3F2692439994300EA3F84 /* PrinterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterViewCell.swift; sourceTree = "<group>"; };
 		3DD3F26B243A754800EA3F84 /* PrinterObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterObserver.swift; sourceTree = "<group>"; };
+		3DD4745A2545F3C1001CD60F /* DashboardWidgetConfigurationIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardWidgetConfigurationIntentHandler.swift; sourceTree = "<group>"; };
 		3DD69AA021150F43005555ED /* FileUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadViewController.swift; sourceTree = "<group>"; };
 		3DD9E9562108479000726DFD /* ThemedStaticUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedStaticUITableViewController.swift; sourceTree = "<group>"; };
 		3DD9E95821084BFD00726DFD /* ThemedUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedUITableViewController.swift; sourceTree = "<group>"; };
@@ -996,6 +1002,7 @@
 				3D669E1B22FBBAF5002C68C1 /* Mosaic */,
 				3D2792A12505D08C00026ACF /* WidgetConfigurationIntentHandler.swift */,
 				3D588C972545041400D96B86 /* SystemCommandIntentHandler.swift */,
+				3DD4745A2545F3C1001CD60F /* DashboardWidgetConfigurationIntentHandler.swift */,
 			);
 			path = "OctoPod Intent";
 			sourceTree = "<group>";
@@ -1381,6 +1388,8 @@
 			isa = PBXGroup;
 			children = (
 				3DE5F53B24FC600200BFDAD3 /* OctoPodWidget14.swift */,
+				3D588CB42545DAD700D96B86 /* DashboardWidget.swift */,
+				3D660BF825461E52003B7C9C /* DashboardJobDetailsView.swift */,
 				3DA0BD552506DB9B008233DE /* JobDetailsView.swift */,
 				3D1AC8B225059AEB00529F24 /* ProgressBarView.swift */,
 				3D4208582506AA65001C3DE2 /* PrintJobDataService.swift */,
@@ -1902,6 +1911,7 @@
 				3D4497D021B2240700736F0F /* OctoPod.xcdatamodeld in Sources */,
 				3D1ECB0821ABB85700691DCB /* RemainingTimeIntentHandler.swift in Sources */,
 				3DFB776E23D4CDA700ADF315 /* PalettePingStatsIntentHandler.swift in Sources */,
+				3DD4745B2545F3C1001CD60F /* DashboardWidgetConfigurationIntentHandler.swift in Sources */,
 				3D450EC321AB45740049FBC0 /* SetToolTempIntentHandler.swift in Sources */,
 				3D4064B121AB78F3000B05F9 /* RestartJobIntentHandler.swift in Sources */,
 				3D669E1622FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift in Sources */,
@@ -2172,6 +2182,7 @@
 				3DA0BD562506DB9B008233DE /* JobDetailsView.swift in Sources */,
 				3DF3835C2505F823003C803D /* SystemCommand.swift in Sources */,
 				3D1AC8B42505A0EA00529F24 /* ProgressBarView.swift in Sources */,
+				3D588CB52545DAD700D96B86 /* DashboardWidget.swift in Sources */,
 				3D42085A2506B511001C3DE2 /* UIUtils.swift in Sources */,
 				3DE5F53C24FC600200BFDAD3 /* OctoPodWidget14.swift in Sources */,
 				3DF3835D2505F828003C803D /* Command.swift in Sources */,
@@ -2182,6 +2193,7 @@
 				3DF3835B2505F820003C803D /* ControlInput.swift in Sources */,
 				3DF383602505F831003C803D /* CustomControl.swift in Sources */,
 				3DF383612505F847003C803D /* IPPlug.swift in Sources */,
+				3D660C0325461E58003B7C9C /* DashboardJobDetailsView.swift in Sources */,
 				3DF3835F2505F82E003C803D /* ExecuteControl.swift in Sources */,
 				3DF383632505F86A003C803D /* Palette2Utils.swift in Sources */,
 				3D4208592506AA65001C3DE2 /* PrintJobDataService.swift in Sources */,

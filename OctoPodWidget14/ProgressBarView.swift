@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 
 @available(iOSApplicationExtension 14.0, *)
 struct ProgressBarView: View {
@@ -27,5 +28,6 @@ struct ProgressBarView: View {
 struct ProgressBarView_Previews: PreviewProvider {
     static var previews: some View {
         ProgressBarView(progress: .constant(0.28))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
