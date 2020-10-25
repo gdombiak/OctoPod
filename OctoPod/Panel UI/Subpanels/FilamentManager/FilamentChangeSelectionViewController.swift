@@ -3,6 +3,7 @@ import UIKit
 class FilamentChangeSelectionViewController: ThemedDynamicUITableViewController {
 
     var toolNumber: Int!
+    var currentSpool: Int!
     var spools: Array<FilamentSpool> = []
     var selectedSpool: Int?  // Id of the selected spool
 
@@ -36,7 +37,10 @@ class FilamentChangeSelectionViewController: ThemedDynamicUITableViewController 
         let cell = tableView.dequeueReusableCell(withIdentifier: "spool_cell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = spools[indexPath.row].displaySpool()
+        let spool = spools[indexPath.row]
+        cell.textLabel?.text = spool.displaySpool()
+        // Show a checkmark next to current selected spool
+        cell.accessoryType = spool.spoolId == currentSpool ? .checkmark : .none
 
         return cell
     }

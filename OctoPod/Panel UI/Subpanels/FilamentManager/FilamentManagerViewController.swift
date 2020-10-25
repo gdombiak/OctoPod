@@ -92,6 +92,7 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
 
             let selection = self.selections[indexPath.row]
             controller.toolNumber = selection.toolNumber
+            controller.currentSpool = selection.spoolId
             controller.spools = spools
             
             // Make the popover appear at the middle of the button
