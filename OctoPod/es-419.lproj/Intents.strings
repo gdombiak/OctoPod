@@ -1,7 +1,4 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} no puede ser superior a ${maximumValue}.";
-
-/* (No Comment) */
 "0vck5K" = "Falla al pedir cortar";
 
 /* (No Comment) */
@@ -47,6 +44,9 @@
 "6vtMLs" = "Trabajo reiniciado";
 
 /* (No Comment) */
+"7c0KRL" = "Command Source";
+
+/* (No Comment) */
 "7eJPkN" = "Configurar temperatura de la caja";
 
 /* (No Comment) */
@@ -74,15 +74,6 @@
 "662LyZ" = "Reiniciar impresión";
 
 /* (No Comment) */
-"817z4k" = "${displayName} no puede ser inferior a ${minimumValue}.";
-
-/* (No Comment) */
-"ADfGbr" = "${displayName} no puede ser negativo";
-
-/* (No Comment) */
-"AdooVp" = "${displayName} no puede ser negativo";
-
-/* (No Comment) */
 "ajupCt" = "No hay información disponible";
 
 /* (No Comment) */
@@ -98,7 +89,7 @@
 "bXGQKe" = "Enfriar impresora";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} no puede ser superior a ${maximumValue}.";
+"bXrJk0" = "Command Action";
 
 /* (No Comment) */
 "D0kBGr" = "Reiniciar impresión";
@@ -107,13 +98,16 @@
 "D1wWxd" = "Desconectarse de Palette";
 
 /* (No Comment) */
+"DKIuk9" = "Ejecutar comando";
+
+/* (No Comment) */
 "doj4NA" = "Configurar temperatura del extrusor";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} no puede ser negativo";
+"Eb3aa5" = "Falla al establecer temperatura de la caja (${statusCode})";
 
 /* (No Comment) */
-"Eb3aa5" = "Falla al establecer temperatura de la caja (${statusCode})";
+"Eeyifr" = "Pedido";
 
 /* (No Comment) */
 "f8xirF" = "Enfriar impresora";
@@ -158,9 +152,6 @@
 "JmhfgL" = "Reiniciar impresión";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} no puede ser inferior a ${minimumValue}.";
-
-/* (No Comment) */
 "JV2xQz" = "Conectar a Palette";
 
 /* (No Comment) */
@@ -173,7 +164,13 @@
 "kSWyyv" = "${printer}";
 
 /* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
 "L25OHl" = "Falla al pedir conectarse";
+
+/* (No Comment) */
+"lOuQ7B" = "Falla al pedir ejecutar comando";
 
 /* (No Comment) */
 "lrRige" = "Cancelar impresión";
@@ -191,12 +188,6 @@
 "M58YA9" = "Impresora";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} no puede ser superior a ${maximumValue}.";
-
-/* (No Comment) */
-"mfflxG" = "${displayName} no puede ser inferior a ${minimumValue}.";
-
-/* (No Comment) */
 "N0vzJv" = "Pedirle a Palette que limpie";
 
 /* (No Comment) */
@@ -209,7 +200,16 @@
 "NL98zi" = "Enfría cama y extrusora";
 
 /* (No Comment) */
+"oe3uiM" = "Ejecutar comando ${commandName}";
+
+/* (No Comment) */
+"OOldQi" = "Command Name";
+
+/* (No Comment) */
 "ovQf6Z" = "Trabajo detenido";
+
+/* (No Comment) */
+"p9Vevg" = "Falla al pedir ejecutar comando";
 
 /* (No Comment) */
 "P89qJr" = "Tiempo restante es ${time}";
@@ -228,9 +228,6 @@
 
 /* (No Comment) */
 "R5AlTe" = "Desconectarse de Palette";
-
-/* (No Comment) */
-"RbyC9o" = "${displayName} no puede ser superior a ${maximumValue}.";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -257,9 +254,6 @@
 "RYurC5" = "Enfriar la caja";
 
 /* (No Comment) */
-"SK8bYR" = "${displayName} no puede ser negativo";
-
-/* (No Comment) */
 "SP4rN6" = "Establecer temperatura del extrusor";
 
 /* (No Comment) */
@@ -273,6 +267,9 @@
 
 /* (No Comment) */
 "UC9Zrq" = "Temperatura de la cama se fijó en ${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "Ejecutar comando";
 
 /* (No Comment) */
 "uoT27A" = "Fallal establecer la temperatura de la cama (${statusCode})";
@@ -314,10 +311,13 @@
 "YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yZeSdz" = "${printer}";
+"yMvnaP" = "Impresora";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} no puede ser inferior a ${minimumValue}.";
+"YQLomX" = "Pedido";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";

@@ -132,6 +132,21 @@ class IntentsDonations {
         }
     }
     
+    static func donateSystemCommand(printer: Printer, action: String, source: String, name: String) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = SystemCommandIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            intent.commandAction = action
+            intent.commandSource = source
+            intent.commandName = name
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Execute System Command", comment: "Siri suggested phrase"), printer.name)
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "SystemCommand")
+        }
+    }
+    
     /// Suggest Siri shortcuts for the printer. These are intents created when a Printer is added or modified
     /// The other donations are done based on user interaction with the app
     static func donatePrinterIntents(printer: Printer) {

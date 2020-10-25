@@ -5,15 +5,15 @@
 	<key>INEnums</key>
 	<array/>
 	<key>INIntentDefinitionModelVersion</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>INIntentDefinitionNamespace</key>
 	<string>9KPzQV</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>19G2021</string>
+	<string>19H2</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>11E708</string>
+	<string>12A7403</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>11.6</string>
+	<string>12.1</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -82,39 +82,6 @@
 					<integer>2</integer>
 					<key>INIntentParameterType</key>
 					<string>Integer</string>
-					<key>INIntentParameterUnsupportedReasons</key>
-					<array>
-						<dict>
-							<key>INIntentParameterUnsupportedReasonCode</key>
-							<string>negativeNumbersNotSupported</string>
-							<key>INIntentParameterUnsupportedReasonDefault</key>
-							<true/>
-							<key>INIntentParameterUnsupportedReasonFormatString</key>
-							<string>${displayName} can't be negative.</string>
-							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
-							<string>E1iFYG</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterUnsupportedReasonCode</key>
-							<string>greaterThanMaximumValue</string>
-							<key>INIntentParameterUnsupportedReasonDefault</key>
-							<true/>
-							<key>INIntentParameterUnsupportedReasonFormatString</key>
-							<string>${displayName} can't be higher than ${maximumValue}.</string>
-							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
-							<string>RbyC9o</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterUnsupportedReasonCode</key>
-							<string>lessThanMinimumValue</string>
-							<key>INIntentParameterUnsupportedReasonDefault</key>
-							<true/>
-							<key>INIntentParameterUnsupportedReasonFormatString</key>
-							<string>${displayName} can't be lower than ${minimumValue}.</string>
-							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
-							<string>mfflxG</string>
-						</dict>
-					</array>
 				</dict>
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
@@ -280,39 +247,6 @@
 					<integer>2</integer>
 					<key>INIntentParameterType</key>
 					<string>Integer</string>
-					<key>INIntentParameterUnsupportedReasons</key>
-					<array>
-						<dict>
-							<key>INIntentParameterUnsupportedReasonCode</key>
-							<string>negativeNumbersNotSupported</string>
-							<key>INIntentParameterUnsupportedReasonDefault</key>
-							<true/>
-							<key>INIntentParameterUnsupportedReasonFormatString</key>
-							<string>${displayName} can't be negative.</string>
-							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
-							<string>ADfGbr</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterUnsupportedReasonCode</key>
-							<string>greaterThanMaximumValue</string>
-							<key>INIntentParameterUnsupportedReasonDefault</key>
-							<true/>
-							<key>INIntentParameterUnsupportedReasonFormatString</key>
-							<string>${displayName} can't be higher than ${maximumValue}.</string>
-							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
-							<string>cp3Rvj</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterUnsupportedReasonCode</key>
-							<string>lessThanMinimumValue</string>
-							<key>INIntentParameterUnsupportedReasonDefault</key>
-							<true/>
-							<key>INIntentParameterUnsupportedReasonFormatString</key>
-							<string>${displayName} can't be lower than ${minimumValue}.</string>
-							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
-							<string>jPI5sH</string>
-						</dict>
-					</array>
 				</dict>
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
@@ -330,39 +264,6 @@
 					<integer>4</integer>
 					<key>INIntentParameterType</key>
 					<string>Integer</string>
-					<key>INIntentParameterUnsupportedReasons</key>
-					<array>
-						<dict>
-							<key>INIntentParameterUnsupportedReasonCode</key>
-							<string>negativeNumbersNotSupported</string>
-							<key>INIntentParameterUnsupportedReasonDefault</key>
-							<true/>
-							<key>INIntentParameterUnsupportedReasonFormatString</key>
-							<string>${displayName} can't be negative.</string>
-							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
-							<string>SK8bYR</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterUnsupportedReasonCode</key>
-							<string>greaterThanMaximumValue</string>
-							<key>INIntentParameterUnsupportedReasonDefault</key>
-							<true/>
-							<key>INIntentParameterUnsupportedReasonFormatString</key>
-							<string>${displayName} can't be higher than ${maximumValue}.</string>
-							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
-							<string>0jkA5V</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterUnsupportedReasonCode</key>
-							<string>lessThanMinimumValue</string>
-							<key>INIntentParameterUnsupportedReasonDefault</key>
-							<true/>
-							<key>INIntentParameterUnsupportedReasonFormatString</key>
-							<string>${displayName} can't be lower than ${minimumValue}.</string>
-							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
-							<string>ZfIsqj</string>
-						</dict>
-					</array>
 				</dict>
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
@@ -1187,39 +1088,6 @@
 					<integer>2</integer>
 					<key>INIntentParameterType</key>
 					<string>Integer</string>
-					<key>INIntentParameterUnsupportedReasons</key>
-					<array>
-						<dict>
-							<key>INIntentParameterUnsupportedReasonCode</key>
-							<string>negativeNumbersNotSupported</string>
-							<key>INIntentParameterUnsupportedReasonDefault</key>
-							<true/>
-							<key>INIntentParameterUnsupportedReasonFormatString</key>
-							<string>${displayName} can't be negative.</string>
-							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
-							<string>AdooVp</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterUnsupportedReasonCode</key>
-							<string>greaterThanMaximumValue</string>
-							<key>INIntentParameterUnsupportedReasonDefault</key>
-							<true/>
-							<key>INIntentParameterUnsupportedReasonFormatString</key>
-							<string>${displayName} can't be higher than ${maximumValue}.</string>
-							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
-							<string>MbAvWs</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterUnsupportedReasonCode</key>
-							<string>lessThanMinimumValue</string>
-							<key>INIntentParameterUnsupportedReasonDefault</key>
-							<true/>
-							<key>INIntentParameterUnsupportedReasonFormatString</key>
-							<string>${displayName} can't be lower than ${minimumValue}.</string>
-							<key>INIntentParameterUnsupportedReasonFormatStringID</key>
-							<string>817z4k</string>
-						</dict>
-					</array>
 				</dict>
 				<dict>
 					<key>INIntentParameterDisplayPriority</key>
@@ -1841,6 +1709,180 @@
 			<string>Custom</string>
 			<key>INIntentVerb</key>
 			<string>View</string>
+		</dict>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>generic</string>
+			<key>INIntentDescription</key>
+			<string>Execute System Command</string>
+			<key>INIntentDescriptionID</key>
+			<string>ukcwkW</string>
+			<key>INIntentLastParameterTag</key>
+			<integer>8</integer>
+			<key>INIntentName</key>
+			<string>SystemCommand</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key>commandAction,printerURL,printer,commandSource,commandName</key>
+				<dict>
+					<key>INIntentParameterCombinationSubtitle</key>
+					<string>${printer}</string>
+					<key>INIntentParameterCombinationSubtitleID</key>
+					<string>KUFtih</string>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Execute System Command ${commandName}</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>oe3uiM</string>
+				</dict>
+			</dict>
+			<key>INIntentParameters</key>
+			<array>
+				<dict>
+					<key>INIntentParameterDisplayName</key>
+					<string>Printer</string>
+					<key>INIntentParameterDisplayNameID</key>
+					<string>yMvnaP</string>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+						<key>INIntentParameterMetadataDefaultValueID</key>
+						<string>RV8D03</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>printer</string>
+					<key>INIntentParameterTag</key>
+					<integer>1</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+						<key>INIntentParameterMetadataDefaultValueID</key>
+						<string>kHODXM</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>printerURL</string>
+					<key>INIntentParameterTag</key>
+					<integer>2</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterDisplayName</key>
+					<string>Command Action</string>
+					<key>INIntentParameterDisplayNameID</key>
+					<string>bXrJk0</string>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>3</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+						<key>INIntentParameterMetadataDefaultValueID</key>
+						<string>ZtJMQj</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>commandAction</string>
+					<key>INIntentParameterTag</key>
+					<integer>4</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterDisplayName</key>
+					<string>Command Source</string>
+					<key>INIntentParameterDisplayNameID</key>
+					<string>7c0KRL</string>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>4</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+						<key>INIntentParameterMetadataDefaultValueID</key>
+						<string>LXD2G0</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>commandSource</string>
+					<key>INIntentParameterTag</key>
+					<integer>6</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterDisplayName</key>
+					<string>Command Name</string>
+					<key>INIntentParameterDisplayNameID</key>
+					<string>OOldQi</string>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>5</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+						<key>INIntentParameterMetadataDefaultValueID</key>
+						<string>dzziAs</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>commandName</string>
+					<key>INIntentParameterTag</key>
+					<integer>8</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+			</array>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>Requested</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>Eeyifr</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Requested</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>YQLomX</string>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>Failed to request to execute command</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>p9Vevg</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to request to execute command</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>lOuQ7B</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>Execute System Command</string>
+			<key>INIntentTitleID</key>
+			<string>DKIuk9</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentUserConfirmationRequired</key>
+			<true/>
+			<key>INIntentVerb</key>
+			<string>Do</string>
 		</dict>
 	</array>
 	<key>INTypes</key>

@@ -108,6 +108,7 @@
 		3D5371612401012200B28067 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5371602401012200B28067 /* CloudKit.framework */; };
 		3D5849E4210CC8720068D87A /* OctoPrintSettingsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5849E3210CC8720068D87A /* OctoPrintSettingsDelegate.swift */; };
 		3D5879FA2176D2D20058A4DC /* NotRefreshingReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */; };
+		3D588C982545041400D96B86 /* SystemCommandIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D588C972545041400D96B86 /* SystemCommandIntentHandler.swift */; };
 		3D5D613621209F52000B66E7 /* CamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D613521209F52000B66E7 /* CamerasViewController.swift */; };
 		3D5D614623D5776200D988A2 /* AppleWatchSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D614523D5776200D988A2 /* AppleWatchSettingsViewController.swift */; };
 		3D5D614823D57C2000D988A2 /* ComplicationContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D614723D57C2000D988A2 /* ComplicationContentType.swift */; };
@@ -525,6 +526,7 @@
 		3D5849E3210CC8720068D87A /* OctoPrintSettingsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintSettingsDelegate.swift; sourceTree = "<group>"; };
 		3D5849E5210CCB560068D87A /* OctoPod v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v2.xcdatamodel"; sourceTree = "<group>"; };
 		3D5879F92176D2D20058A4DC /* NotRefreshingReasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotRefreshingReasonViewController.swift; sourceTree = "<group>"; };
+		3D588C972545041400D96B86 /* SystemCommandIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemCommandIntentHandler.swift; sourceTree = "<group>"; };
 		3D5D613421209B52000B66E7 /* OctoPod v3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v3.xcdatamodel"; sourceTree = "<group>"; };
 		3D5D613521209F52000B66E7 /* CamerasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasViewController.swift; sourceTree = "<group>"; };
 		3D5D614523D5776200D988A2 /* AppleWatchSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleWatchSettingsViewController.swift; sourceTree = "<group>"; };
@@ -993,6 +995,7 @@
 				3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */,
 				3D669E1B22FBBAF5002C68C1 /* Mosaic */,
 				3D2792A12505D08C00026ACF /* WidgetConfigurationIntentHandler.swift */,
+				3D588C972545041400D96B86 /* SystemCommandIntentHandler.swift */,
 			);
 			path = "OctoPod Intent";
 			sourceTree = "<group>";
@@ -1887,6 +1890,7 @@
 				3D450ECB21AB5BCE0049FBC0 /* OctoPrintRESTClient.swift in Sources */,
 				3D669E1A22FBBAC0002C68C1 /* PaletteCutIntentHandler.swift in Sources */,
 				3D6F74532443FB96006847B6 /* EnclosureInput.swift in Sources */,
+				3D588C982545041400D96B86 /* SystemCommandIntentHandler.swift in Sources */,
 				3D4064A521AB61E6000B05F9 /* CancelObject.swift in Sources */,
 				3D4064AF21AB75FF000B05F9 /* CancelJobIntentHandler.swift in Sources */,
 				3D4064A921AB6205000B05F9 /* ExecuteControl.swift in Sources */,

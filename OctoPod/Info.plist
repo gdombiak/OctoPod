@@ -80,6 +80,7 @@
 		<string>SetBedTempIntent</string>
 		<string>SetChamberTempIntent</string>
 		<string>SetToolTempIntent</string>
+		<string>SystemCommandIntent</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

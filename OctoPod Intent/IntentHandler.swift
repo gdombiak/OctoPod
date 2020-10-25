@@ -32,6 +32,8 @@ class IntentHandler: INExtension {
             return PaletteCutIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is PalettePingStatsIntent {
             return PalettePingStatsIntentHandler(printerManager: IntentHandler.printerManager)
+        } else if intent is SystemCommandIntent {
+            return SystemCommandIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is WidgetConfigurationIntent {
             if #available(iOSApplicationExtension 14.0, *) {
                 return WidgetConfigurationIntentHandler(printerManager: IntentHandler.printerManager)

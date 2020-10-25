@@ -104,6 +104,14 @@ class IntentsController {
             }
         }
     }
+
+    func systemCommand(printer: Printer, action: String, source: String, callback: @escaping (Bool, Int) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        let command = SystemCommand(name: "", action: action, source: source)
+        restClient.executeSystemCommand(command: command) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested, response.statusCode)
+        }
+    }
     
     // MARK: - Palette intents
 

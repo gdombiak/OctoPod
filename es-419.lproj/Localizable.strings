@@ -187,6 +187,9 @@
 /* gcode name */
 "Endstop States" = "Estado de finales de carrera";
 
+/* Siri suggested phrase */
+"Execute System Command" = "Ejecutar comando";
+
 /* (No Comment) */
 "Extruder" = "Extrusor";
 

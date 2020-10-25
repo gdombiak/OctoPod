@@ -2,6 +2,7 @@ import UIKit
 
 class SystemCommandsViewController: ThemedDynamicUITableViewController, SubpanelViewController  {
 
+    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
@@ -75,6 +76,10 @@ class SystemCommandsViewController: ThemedDynamicUITableViewController, Subpanel
             }, no: { (UIAlertAction) -> Void in
                 // Do nothing
             })
+            // Donate System Command to Siri
+            if let printer = printerManager.getDefaultPrinter() {
+                    IntentsDonations.donateSystemCommand(printer: printer, action: command.action, source: command.source, name: command.name)
+            }
         }
     }
     

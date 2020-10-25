@@ -47,6 +47,7 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
+      intentQueryString = "Siri"
       selectedDebuggerIdentifier = ""
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
@@ -68,6 +69,7 @@
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
+      intentQueryString = "Siri"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
