@@ -125,7 +125,7 @@ struct DashboardWidget14EntryView : View {
                                     height: geometryProxy.size.height * heightPercentage)
                                 .background(Color(.sRGB, red: 154 / 255, green: 192 / 255, blue: 110 / 255, opacity: 1))
                             Divider()
-                            if printJobs.count >= 1 {
+                            if printJobs.count >= 2 {
                                 DashboardJobDetailsView(entry: entry, index: 1)
                                     .frame(
                                         width: geometryProxy.size.width * widthPercentage,
@@ -139,37 +139,37 @@ struct DashboardWidget14EntryView : View {
                             }
                         }
                         Divider()
-                        if printJobs.count >= 3 {
-                            HStack(spacing: 10) {
-                                DashboardJobDetailsView(entry: entry, index: 2)
-                                    .frame(
-                                        width: geometryProxy.size.width * widthPercentage,
-                                        height: geometryProxy.size.height * heightPercentage)
-                                    .background(Color(.sRGB, red: 154 / 255, green: 192 / 255, blue: 110 / 255, opacity: 1))
-                                Divider()
-                                if printJobs.count >= 3 {
-                                    DashboardJobDetailsView(entry: entry, index: 3)
+                        HStack(spacing: 10) {
+                            if printJobs.count >= 3 {
+                                    DashboardJobDetailsView(entry: entry, index: 2)
                                         .frame(
                                             width: geometryProxy.size.width * widthPercentage,
                                             height: geometryProxy.size.height * heightPercentage)
                                         .background(Color(.sRGB, red: 154 / 255, green: 192 / 255, blue: 110 / 255, opacity: 1))
-                                } else {
-                                    Spacer()
-                                        .frame(
-                                            width: geometryProxy.size.width * widthPercentage,
-                                            height: geometryProxy.size.height * heightPercentage)
-                                }
+                                    Divider()
+                                    if printJobs.count >= 4 {
+                                        DashboardJobDetailsView(entry: entry, index: 3)
+                                            .frame(
+                                                width: geometryProxy.size.width * widthPercentage,
+                                                height: geometryProxy.size.height * heightPercentage)
+                                            .background(Color(.sRGB, red: 154 / 255, green: 192 / 255, blue: 110 / 255, opacity: 1))
+                                    } else {
+                                        Spacer()
+                                            .frame(
+                                                width: geometryProxy.size.width * widthPercentage,
+                                                height: geometryProxy.size.height * heightPercentage)
+                                    }
+                            } else {
+                                Spacer()
+                                    .frame(
+                                        width: geometryProxy.size.width * widthPercentage,
+                                        height: geometryProxy.size.height * heightPercentage)
+                                Divider()
+                                Spacer()
+                                    .frame(
+                                        width: geometryProxy.size.width * widthPercentage,
+                                        height: geometryProxy.size.height * heightPercentage)
                             }
-                        } else {
-                            Spacer()
-                                .frame(
-                                    width: geometryProxy.size.width * widthPercentage,
-                                    height: geometryProxy.size.height * heightPercentage)
-                            Divider()
-                            Spacer()
-                                .frame(
-                                    width: geometryProxy.size.width * widthPercentage,
-                                    height: geometryProxy.size.height * heightPercentage)
                         }
                         Text("\(entry.date, formatter: Self.dateFormatter)")
                             .font(.caption2)
