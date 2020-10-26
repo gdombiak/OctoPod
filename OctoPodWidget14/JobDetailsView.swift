@@ -34,6 +34,7 @@ struct JobDetailsView: View {
             } else {
                 Text(printerStatus)
                     .font(.footnote)
+                    .frame(width: nil, height: 24.0)
             }
         } else if let printerStatus = entry.printJobDataService?.printerStatus {
             Spacer()

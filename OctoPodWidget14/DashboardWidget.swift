@@ -194,7 +194,7 @@ struct DashboardWidget14EntryView_Previews: PreviewProvider {
     
     static let jobService2: PrintJobDataService = {
         let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil)
-        service.printerStatus = "Printing"
+        service.printerStatus = "Paused"
         service.progress = 28.0
         service.printEstimatedCompletion = "9:30 PM"
         return service
@@ -202,9 +202,7 @@ struct DashboardWidget14EntryView_Previews: PreviewProvider {
     
     static let jobService3: PrintJobDataService = {
         let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil)
-        service.printerStatus = "Printing"
-        service.progress = 28.0
-        service.printEstimatedCompletion = "9:30 PM"
+        service.printerStatus = "Operational"
         return service
     }()
     

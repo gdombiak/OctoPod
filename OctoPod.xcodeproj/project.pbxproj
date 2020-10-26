@@ -187,8 +187,8 @@
 		3D8DA01E2144EDCE00F5FD07 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8DA01D2144EDCE00F5FD07 /* SupportViewController.swift */; };
 		3D8FB25B2156A9F0008FF3E5 /* DialogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FB25A2156A9F0008FF3E5 /* DialogsViewController.swift */; };
 		3D91E918250D75C3008A59CD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D91E916250D75C3008A59CD /* Localizable.strings */; };
-		3D91E922250D7F3A008A59CD /* OctoPodWidget14.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3D91E925250D7F3A008A59CD /* OctoPodWidget14.intentdefinition */; };
-		3D91E923250D7F3A008A59CD /* OctoPodWidget14.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3D91E925250D7F3A008A59CD /* OctoPodWidget14.intentdefinition */; };
+		3D91E922250D7F3A008A59CD /* OctoPodWidget14.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3D91E925250D7F3A008A59CD /* OctoPodWidget14.intentdefinition */; settings = {ATTRIBUTES = (private_codegen, ); }; };
+		3D91E923250D7F3A008A59CD /* OctoPodWidget14.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3D91E925250D7F3A008A59CD /* OctoPodWidget14.intentdefinition */; settings = {ATTRIBUTES = (private_codegen, ); }; };
 		3D92E6C821213B2400F58BA5 /* TempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D92E6C721213B2400F58BA5 /* TempHistory.swift */; };
 		3D933F4A241DB5CC0041CFD8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D718778215F367700A29D02 /* Localizable.strings */; };
 		3D968DDB20E336F5006774A5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D968DDA20E336F5006774A5 /* Default-568h@2x.png */; };

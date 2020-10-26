@@ -34,6 +34,7 @@ struct DashboardJobDetailsView: View {
                     } else {
                         Text(printerStatus)
                             .font(.footnote)
+                            .frame(width: nil, height: 24.0)
                     }
                 } else {
                     Text(printerStatus)
