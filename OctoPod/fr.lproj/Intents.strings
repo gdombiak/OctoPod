@@ -1,7 +1,4 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} ne peut pas être plus grand que ${maximumValue}.";
-
-/* (No Comment) */
 "0vck5K" = "Échec de la demande de coupe";
 
 /* (No Comment) */
@@ -47,6 +44,9 @@
 "6vtMLs" = "Impression reprise";
 
 /* (No Comment) */
+"7c0KRL" = "Command Source";
+
+/* (No Comment) */
 "7eJPkN" = "Configurer la température du caisson";
 
 /* (No Comment) */
@@ -74,15 +74,6 @@
 "662LyZ" = "Recommencer";
 
 /* (No Comment) */
-"817z4k" = "${displayName} ne peut pas être plus petit que ${minimumValue}.";
-
-/* (No Comment) */
-"ADfGbr" = "${displayName} ne peut pas être négatif.";
-
-/* (No Comment) */
-"AdooVp" = "${displayName} ne peut pas être négatif.";
-
-/* (No Comment) */
 "ajupCt" = "Aucune information disponible";
 
 /* (No Comment) */
@@ -98,7 +89,7 @@
 "bXGQKe" = "Refroidir l’imprimante";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} ne peut pas être plus grand que ${maximumValue}.";
+"bXrJk0" = "Command Action";
 
 /* (No Comment) */
 "D0kBGr" = "Reprendre l’impression";
@@ -107,13 +98,16 @@
 "D1wWxd" = "Se déconnecter de Palette";
 
 /* (No Comment) */
+"DKIuk9" = "Exécute la commande";
+
+/* (No Comment) */
 "doj4NA" = "Configurer la température d’extrusion";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} ne peut pas être négatif.";
+"Eb3aa5" = "Échec du réglage de la température du caisson (${statusCode})";
 
 /* (No Comment) */
-"Eb3aa5" = "Échec du réglage de la température du caisson (${statusCode})";
+"Eeyifr" = "Demande en cours";
 
 /* (No Comment) */
 "f8xirF" = "Refroidir l’imprimante";
@@ -158,9 +152,6 @@
 "JmhfgL" = "Reprendre l’impression";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} ne peut pas être plus petit que ${minimumValue}.";
-
-/* (No Comment) */
 "JV2xQz" = "Se connecter à Palette";
 
 /* (No Comment) */
@@ -173,7 +164,13 @@
 "kSWyyv" = "${printer}";
 
 /* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
 "L25OHl" = "Échec de la demande de connexion";
+
+/* (No Comment) */
+"lOuQ7B" = "La demande d’exécution de la commande a échouée";
 
 /* (No Comment) */
 "lrRige" = "Annuler";
@@ -191,12 +188,6 @@
 "M58YA9" = "Imprimante";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} ne peut pas être plus grand que ${maximumValue}.";
-
-/* (No Comment) */
-"mfflxG" = "${displayName} ne peut pas être plus petit que ${minimumValue}.";
-
-/* (No Comment) */
 "N0vzJv" = "Demander à Palette d’évacuer";
 
 /* (No Comment) */
@@ -209,7 +200,16 @@
 "NL98zi" = "Refroidit le plateau et l’extrudeur";
 
 /* (No Comment) */
+"oe3uiM" = "Exécute la commande ${commandName}";
+
+/* (No Comment) */
+"OOldQi" = "Command Name";
+
+/* (No Comment) */
 "ovQf6Z" = "Impression en pause";
+
+/* (No Comment) */
+"p9Vevg" = "La demande d’exécution de la commande a échouée";
 
 /* (No Comment) */
 "P89qJr" = "Temps restant : ${time}";
@@ -228,9 +228,6 @@
 
 /* (No Comment) */
 "R5AlTe" = "Se déconnecter de Palette";
-
-/* (No Comment) */
-"RbyC9o" = "${displayName} ne peut pas être plus grand que ${maximumValue}.";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -257,9 +254,6 @@
 "RYurC5" = "Refroidir le caisson";
 
 /* (No Comment) */
-"SK8bYR" = "${displayName} ne peut pas être négatif.";
-
-/* (No Comment) */
 "SP4rN6" = "Régler la température d’extrusion";
 
 /* (No Comment) */
@@ -273,6 +267,9 @@
 
 /* (No Comment) */
 "UC9Zrq" = "La température du plateau est réglée à ${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "Exécute la commande";
 
 /* (No Comment) */
 "uoT27A" = "Échec du réglage de la température du plateau (${statusCode})";
@@ -314,10 +311,13 @@
 "YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yZeSdz" = "${printer}";
+"yMvnaP" = "Imprimante";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} ne peut pas être plus petit que ${minimumValue}.";
+"YQLomX" = "Demande en cours";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";

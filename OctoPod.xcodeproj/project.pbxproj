@@ -999,9 +999,9 @@
 				3D4064B021AB78F3000B05F9 /* RestartJobIntentHandler.swift */,
 				3D1ECB0721ABB85700691DCB /* RemainingTimeIntentHandler.swift */,
 				3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */,
+				3D588C972545041400D96B86 /* SystemCommandIntentHandler.swift */,
 				3D669E1B22FBBAF5002C68C1 /* Mosaic */,
 				3D2792A12505D08C00026ACF /* WidgetConfigurationIntentHandler.swift */,
-				3D588C972545041400D96B86 /* SystemCommandIntentHandler.swift */,
 				3DD4745A2545F3C1001CD60F /* DashboardWidgetConfigurationIntentHandler.swift */,
 			);
 			path = "OctoPod Intent";

@@ -4,6 +4,9 @@
 /* Privacy - Face ID Usage Description */
 "NSFaceIDUsageDescription" = "Necesitamos usar FaceID para desbloquear la aplicación";
 
+/* Privacy - Local Network Usage Description */
+"NSLocalNetworkUsageDescription" = "OctoPod usa su red local para descubrir y comunicarse con OctoPrint";
+
 /* Privacy - Siri Usage Description */
 "NSSiriUsageDescription" = "Controle impresora usando Siri";
 

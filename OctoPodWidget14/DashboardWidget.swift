@@ -222,7 +222,7 @@ struct DashboardWidget: Widget {
         IntentConfiguration(kind: kind, intent: DashboardWidgetConfigurationIntent.self, provider: DashboardProvider()) { entry in
             DashboardWidget14EntryView(entry: entry)
         }
-        .configurationDisplayName(NSLocalizedString("Dashoard", comment: ""))
+        .configurationDisplayName(NSLocalizedString("Dashboard", comment: ""))
         .description(NSLocalizedString("Dashboard for multiple printers", comment: ""))
         .supportedFamilies([.systemLarge])
     }

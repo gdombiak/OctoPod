@@ -1,5 +1,14 @@
 /* (No Comment) */
+"0S62mn" = "Printer Name";
+
+/* (No Comment) */
 "9L8C08" = "Just to confirm, you wanted ‘${camera}’?";
+
+/* (No Comment) */
+"58usLm" = "Impresora 1";
+
+/* (No Comment) */
+"92wvRQ" = "Just to confirm, you wanted ‘${printer}’?";
 
 /* (No Comment) */
 "a8igcM" = "Select Printer";
@@ -8,10 +17,28 @@
 "AIJcYW" = "Cámara";
 
 /* (No Comment) */
+"aV41ZJ" = "Impresora 4";
+
+/* (No Comment) */
+"B1OXyb" = "Printer Name";
+
+/* (No Comment) */
+"cQFZl2" = "Impresora 2";
+
+/* (No Comment) */
+"DPGDO8" = "Just to confirm, you wanted ‘${printer}’?";
+
+/* (No Comment) */
+"E6nibW" = "Widget Configuration";
+
+/* (No Comment) */
 "errkUp" = "Username";
 
 /* (No Comment) */
 "GioA53" = "Api Key";
+
+/* (No Comment) */
+"gMNQ3I" = "There are ${count} options matching ‘${printer3}’.";
 
 /* (No Comment) */
 "gpCwrM" = "Widget Configuration";
@@ -20,7 +47,13 @@
 "grfLTZ" = "Camera Orientation";
 
 /* (No Comment) */
+"IHvqBt" = "Impresora 3";
+
+/* (No Comment) */
 "IWWISx" = "Widget Printer";
+
+/* (No Comment) */
+"jG50jC" = "There are ${count} options matching ‘${printer4}’.";
 
 /* (No Comment) */
 "jORyUD" = "Widget Camera";
@@ -47,6 +80,9 @@
 "qInAGv" = "There are ${count} options matching ‘${camera}’.";
 
 /* (No Comment) */
+"RVEOGf" = "There are ${count} options matching ‘${printer1}’.";
+
+/* (No Comment) */
 "RZDKSJ" = "Cámara";
 
 /* (No Comment) */
@@ -60,4 +96,19 @@
 
 /* (No Comment) */
 "tQN4nr" = "Printer Name";
+
+/* (No Comment) */
+"tZFlu1" = "Just to confirm, you wanted ‘${printer}’?";
+
+/* (No Comment) */
+"UGKaUk" = "Just to confirm, you wanted ‘${printer}’?";
+
+/* (No Comment) */
+"xaNGuB" = "Printer Name";
+
+/* (No Comment) */
+"xTlr14" = "There are ${count} options matching ‘${printer2}’.";
+
+/* (No Comment) */
+"YJQXqa" = "Printer Name";
 

@@ -23,6 +23,12 @@
 "Confirm" = "Confirmar";
 
 /* No comment provided by engineer. */
+"Dashboard" = "Tablero";
+
+/* No comment provided by engineer. */
+"Dashboard for multiple printers" = "Panel de control para varias impresoras";
+
+/* No comment provided by engineer. */
 "days ago" = "Hace %d dias";
 
 /* No comment provided by engineer. */
@@ -39,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Missed" = "Perdido";
+
+/* No comment provided by engineer. */
+"Monitor and control your 3d printer via OctoPod" = "Supervise y controle su impresora 3d a través de OctoPod";
 
 /* No comment provided by engineer. */
 "No" = "No";
