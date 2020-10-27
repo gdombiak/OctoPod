@@ -187,6 +187,9 @@
 /* gcode name */
 "Endstop States" = "Endschalter Zustände";
 
+/* Siri suggested phrase */
+"Execute System Command" = "Systembefehl ausführen";
+
 /* (No Comment) */
 "Extruder" = "Düse";
 

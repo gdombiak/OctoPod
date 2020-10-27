@@ -187,6 +187,9 @@
 /* gcode name */
 "Endstop States" = "Stav koncových spínačů";
 
+/* Siri suggested phrase */
+"Execute System Command" = "Spustit systémový příkaz";
+
 /* (No Comment) */
 "Extruder" = "Tryska";
 

@@ -1,7 +1,4 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} nesmí být vyšší než ${maximumValue}";
-
-/* (No Comment) */
 "0vck5K" = "Nezdařila se žádost o řezání";
 
 /* (No Comment) */
@@ -47,6 +44,9 @@
 "6vtMLs" = "Tisk restartován";
 
 /* (No Comment) */
+"7c0KRL" = "Command Source";
+
+/* (No Comment) */
 "7eJPkN" = "Změnit teplotu komory";
 
 /* (No Comment) */
@@ -74,15 +74,6 @@
 "662LyZ" = "Restartovat tisk";
 
 /* (No Comment) */
-"817z4k" = "${displayName} nesmí být nižší než ${minimumValue}";
-
-/* (No Comment) */
-"ADfGbr" = "${displayName} nesmí být záporné.";
-
-/* (No Comment) */
-"AdooVp" = "${displayName} nesmí být záporné.";
-
-/* (No Comment) */
 "ajupCt" = "Žádné dostupné informace";
 
 /* (No Comment) */
@@ -98,7 +89,7 @@
 "bXGQKe" = "Zchladit tiskárnu";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} nesmí být vyšší než ${maximumValue}";
+"bXrJk0" = "Command Action";
 
 /* (No Comment) */
 "D0kBGr" = "Restartovat probíhající tisk";
@@ -107,13 +98,16 @@
 "D1wWxd" = "Odpojit se od Palette";
 
 /* (No Comment) */
+"DKIuk9" = "Spustit systémový příkaz";
+
+/* (No Comment) */
 "doj4NA" = "Nastavit teplotu trysky";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} nesmí být záporné.";
+"Eb3aa5" = "Nezdařilo se nastavit teplotu komory (${statusCode})";
 
 /* (No Comment) */
-"Eb3aa5" = "Nezdařilo se nastavit teplotu komory (${statusCode})";
+"Eeyifr" = "Požádáno";
 
 /* (No Comment) */
 "f8xirF" = "Zchladit tiskárnu";
@@ -158,9 +152,6 @@
 "JmhfgL" = "Restartovat probíhající tisk";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} nesmí být nižší než ${minimumValue}";
-
-/* (No Comment) */
 "JV2xQz" = "Připojit se k Palette";
 
 /* (No Comment) */
@@ -173,7 +164,13 @@
 "kSWyyv" = "${printer}";
 
 /* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
 "L25OHl" = "Nezdařila se žádost o připojení";
+
+/* (No Comment) */
+"lOuQ7B" = "Nezdařila se žádost o spuštění příkazu";
 
 /* (No Comment) */
 "lrRige" = "Zrušit probíhající tisk";
@@ -191,12 +188,6 @@
 "M58YA9" = "Tiskárna";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} nesmí být vyšší než ${maximumValue}";
-
-/* (No Comment) */
-"mfflxG" = "${displayName} nesmí být nižší než ${minimumValue}";
-
-/* (No Comment) */
 "N0vzJv" = "Požádat Palette o vyčištění";
 
 /* (No Comment) */
@@ -209,7 +200,16 @@
 "NL98zi" = "Zchladí podložku a trysku";
 
 /* (No Comment) */
+"oe3uiM" = "Spustit systémový příkaz ${commandName}";
+
+/* (No Comment) */
+"OOldQi" = "Command Name";
+
+/* (No Comment) */
 "ovQf6Z" = "Tisk pozastaven";
+
+/* (No Comment) */
+"p9Vevg" = "Nezdařila se žádost o spuštění příkazu";
 
 /* (No Comment) */
 "P89qJr" = "Zbývající čas je ${time}";
@@ -228,9 +228,6 @@
 
 /* (No Comment) */
 "R5AlTe" = "Odpojit se od Palette";
-
-/* (No Comment) */
-"RbyC9o" = "${displayName} nesmí být vyšší než ${maximumValue}";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -257,9 +254,6 @@
 "RYurC5" = "Zchladit komoru";
 
 /* (No Comment) */
-"SK8bYR" = "${displayName} nesmí být záporné.";
-
-/* (No Comment) */
 "SP4rN6" = "Nastavit teplotu trysky";
 
 /* (No Comment) */
@@ -273,6 +267,9 @@
 
 /* (No Comment) */
 "UC9Zrq" = "Teplota podložky byla nastavena na ${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "Spustit systémový příkaz";
 
 /* (No Comment) */
 "uoT27A" = "Nezdařilo se nastavit teplotu podložky (${statusCode})";
@@ -314,10 +311,13 @@
 "YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yZeSdz" = "${printer}";
+"yMvnaP" = "Tiskárna";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} nesmí být nižší než ${minimumValue}";
+"YQLomX" = "Požádáno";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";

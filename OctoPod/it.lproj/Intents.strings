@@ -1,7 +1,4 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} non può essere maggiore di ${maximumValue}.";
-
-/* (No Comment) */
 "0vck5K" = "Impossibile richiedere di tagliare";
 
 /* (No Comment) */
@@ -47,6 +44,9 @@
 "6vtMLs" = "Stampa riavviata";
 
 /* (No Comment) */
+"7c0KRL" = "Command Source";
+
+/* (No Comment) */
 "7eJPkN" = "Configura la temperatura della camera";
 
 /* (No Comment) */
@@ -74,15 +74,6 @@
 "662LyZ" = "Riavvia la stampa";
 
 /* (No Comment) */
-"817z4k" = "${displayName} non può essere minore di ${minimumValue}.";
-
-/* (No Comment) */
-"ADfGbr" = "${displayName} non può essere negativa";
-
-/* (No Comment) */
-"AdooVp" = "${displayName} non può essere negativa";
-
-/* (No Comment) */
 "ajupCt" = "Nessuna informazione disponibile";
 
 /* (No Comment) */
@@ -98,7 +89,7 @@
 "bXGQKe" = "Raffredda stampante";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} non può essere maggiore di ${maximumValue}.";
+"bXrJk0" = "Command Action";
 
 /* (No Comment) */
 "D0kBGr" = "Riavvia la stampa in corso";
@@ -110,10 +101,10 @@
 "doj4NA" = "Configura la temperatura dell'estrusore";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} non può essere negativa";
+"Eb3aa5" = "Impossibile impostare la temperatura (${statusCode})";
 
 /* (No Comment) */
-"Eb3aa5" = "Impossibile impostare la temperatura (${statusCode})";
+"Eeyifr" = "Richiesto";
 
 /* (No Comment) */
 "f8xirF" = "Raffredda stampante";
@@ -158,9 +149,6 @@
 "JmhfgL" = "Riavvia la stampa in corso";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} non può essere minore di ${minimumValue}.";
-
-/* (No Comment) */
 "JV2xQz" = "Connetti a Palette";
 
 /* (No Comment) */
@@ -171,6 +159,9 @@
 
 /* (No Comment) */
 "kSWyyv" = "${printer}";
+
+/* (No Comment) */
+"KUFtih" = "${printer}";
 
 /* (No Comment) */
 "L25OHl" = "Impossibile richiedere di connettersi";
@@ -191,12 +182,6 @@
 "M58YA9" = "Stampante";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} non può essere maggiore di ${maximumValue}.";
-
-/* (No Comment) */
-"mfflxG" = "${displayName} non può essere minore di ${minimumValue}.";
-
-/* (No Comment) */
 "N0vzJv" = "Chiedi a Palette di spurgare";
 
 /* (No Comment) */
@@ -207,6 +192,9 @@
 
 /* (No Comment) */
 "NL98zi" = "Raffredda piatto ed estrusore";
+
+/* (No Comment) */
+"OOldQi" = "Command Name";
 
 /* (No Comment) */
 "ovQf6Z" = "Stampa sospesa";
@@ -228,9 +216,6 @@
 
 /* (No Comment) */
 "R5AlTe" = "Disconnetti da Palette";
-
-/* (No Comment) */
-"RbyC9o" = "${displayName} non può essere maggiore di ${maximumValue}.";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -255,9 +240,6 @@
 
 /* (No Comment) */
 "RYurC5" = "Raffredda box";
-
-/* (No Comment) */
-"SK8bYR" = "${displayName} non può essere negativa";
 
 /* (No Comment) */
 "SP4rN6" = "Imposta la temperatura dell'estrusore";
@@ -314,10 +296,13 @@
 "YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yZeSdz" = "${printer}";
+"yMvnaP" = "Stampante";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} non può essere minore di ${minimumValue}.";
+"YQLomX" = "Richiesto";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";

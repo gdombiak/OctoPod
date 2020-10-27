@@ -1,7 +1,4 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} kann nicht höher sein als ${maximumValue}.";
-
-/* (No Comment) */
 "0vck5K" = "Schnittanforderung fehlgeschlagen";
 
 /* (No Comment) */
@@ -47,6 +44,9 @@
 "6vtMLs" = "Auftrag neu gestartet";
 
 /* (No Comment) */
+"7c0KRL" = "Command Source";
+
+/* (No Comment) */
 "7eJPkN" = "Kammer Temperatur einrichten";
 
 /* (No Comment) */
@@ -74,15 +74,6 @@
 "662LyZ" = "Neustart";
 
 /* (No Comment) */
-"817z4k" = "${displayName} kann nicht niedriger sein als ${minimumValue}.";
-
-/* (No Comment) */
-"ADfGbr" = "${displayName} kann nicht negativ sein.";
-
-/* (No Comment) */
-"AdooVp" = "${displayName} kann nicht negativ sein.";
-
-/* (No Comment) */
 "ajupCt" = "Keine Information verfügbar";
 
 /* (No Comment) */
@@ -98,7 +89,7 @@
 "bXGQKe" = "Drucker abkühlen";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} kann nicht höher sein als ${maximumValue}.";
+"bXrJk0" = "Command Action";
 
 /* (No Comment) */
 "D0kBGr" = "Laufenden Druckauftrag neu starten";
@@ -107,13 +98,16 @@
 "D1wWxd" = "Trenne von Palette";
 
 /* (No Comment) */
+"DKIuk9" = "Systembefehl ausführen";
+
+/* (No Comment) */
 "doj4NA" = "Temperatur der Düse konfigurieren";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} kann nicht negativ sein.";
+"Eb3aa5" = "Einstellen der Temperatur der Kammer fehlgeschlagen (${statusCode})";
 
 /* (No Comment) */
-"Eb3aa5" = "Einstellen der Temperatur der Kammer fehlgeschlagen (${statusCode})";
+"Eeyifr" = "Angefordert";
 
 /* (No Comment) */
 "f8xirF" = "Drucker abkühlen";
@@ -158,9 +152,6 @@
 "JmhfgL" = "Laufenden Druckauftrag neu starten";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} kann nicht niedriger sein als ${minimumValue}.";
-
-/* (No Comment) */
 "JV2xQz" = "Verbinde zu Palette";
 
 /* (No Comment) */
@@ -173,7 +164,13 @@
 "kSWyyv" = "${printer}";
 
 /* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
 "L25OHl" = "Anforderung für Verbindungsaufbau fehlgeschlagen";
+
+/* (No Comment) */
+"lOuQ7B" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
 
 /* (No Comment) */
 "lrRige" = "Laufenden Druckauftrag abbrechen";
@@ -191,12 +188,6 @@
 "M58YA9" = "Drucker";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} kann nicht höher sein als ${maximumValue}.";
-
-/* (No Comment) */
-"mfflxG" = "${displayName} kann nicht niedriger sein als ${minimumValue}.";
-
-/* (No Comment) */
 "N0vzJv" = "Bitte Palette zu leeren";
 
 /* (No Comment) */
@@ -209,7 +200,16 @@
 "NL98zi" = "Kühlt Druckbett und Düse ab";
 
 /* (No Comment) */
+"oe3uiM" = "Systembefehl ausführen ${commandName}";
+
+/* (No Comment) */
+"OOldQi" = "Command Name";
+
+/* (No Comment) */
 "ovQf6Z" = "Auftrag pausiert";
+
+/* (No Comment) */
+"p9Vevg" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
 
 /* (No Comment) */
 "P89qJr" = "Verbleibende Zeit ist ${time}";
@@ -228,9 +228,6 @@
 
 /* (No Comment) */
 "R5AlTe" = "Trenne von Palette";
-
-/* (No Comment) */
-"RbyC9o" = "${displayName} kann nicht höher sein als ${maximumValue}.";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -257,9 +254,6 @@
 "RYurC5" = "Kammer abkühlen";
 
 /* (No Comment) */
-"SK8bYR" = "${displayName} kann nicht negativ sein.";
-
-/* (No Comment) */
 "SP4rN6" = "Düsentemperatur konnte nicht eingestellt werden";
 
 /* (No Comment) */
@@ -273,6 +267,9 @@
 
 /* (No Comment) */
 "UC9Zrq" = "Temperatur des Druckbetts wurde auf ${temperature} gestellt";
+
+/* (No Comment) */
+"ukcwkW" = "Systembefehl ausführen";
 
 /* (No Comment) */
 "uoT27A" = "Temperatur des Druckbetts konnte nicht eingestellt werden (${statusCode})";
@@ -314,10 +311,13 @@
 "YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yZeSdz" = "${printer}";
+"yMvnaP" = "Drucker";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} kann nicht niedriger sein als ${minimumValue}.";
+"YQLomX" = "Angefordert";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";

@@ -1,7 +1,4 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} не может быть выше чем ${maximumValue}.";
-
-/* (No Comment) */
 "0vck5K" = "Не удалось выполнить запрос на обрезку";
 
 /* (No Comment) */
@@ -47,6 +44,9 @@
 "6vtMLs" = "Работа возобновлена";
 
 /* (No Comment) */
+"7c0KRL" = "Command Source";
+
+/* (No Comment) */
 "7eJPkN" = "Настройка температуры термокамеры";
 
 /* (No Comment) */
@@ -74,15 +74,6 @@
 "662LyZ" = "Перезапустить задание";
 
 /* (No Comment) */
-"817z4k" = "${displayName} не может быть ниже чем ${minimumValue}.";
-
-/* (No Comment) */
-"ADfGbr" = "${displayName} не может быть отрицательным.";
-
-/* (No Comment) */
-"AdooVp" = "${displayName} не может быть отрицательным.";
-
-/* (No Comment) */
 "ajupCt" = "Информация отсутствует";
 
 /* (No Comment) */
@@ -98,7 +89,7 @@
 "bXGQKe" = "Охладить принтер";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} не может быть выше чем ${maximumValue}.";
+"bXrJk0" = "Command Action";
 
 /* (No Comment) */
 "D0kBGr" = "Перезапустить запущенное задание на печать";
@@ -107,13 +98,16 @@
 "D1wWxd" = "Отключиться от Palette";
 
 /* (No Comment) */
+"DKIuk9" = "Выполнить системную команду";
+
+/* (No Comment) */
 "doj4NA" = "Задать температуру экструдера";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} не может быть отрицательным.";
+"Eb3aa5" = "Не удалось установить температуру термокамеры (${statusCode})";
 
 /* (No Comment) */
-"Eb3aa5" = "Не удалось установить температуру термокамеры (${statusCode})";
+"Eeyifr" = "Запрошено";
 
 /* (No Comment) */
 "f8xirF" = "Охладить принтер";
@@ -158,9 +152,6 @@
 "JmhfgL" = "Перезапустить запущенное задание на печать";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} не может быть ниже чем ${minimumValue}.";
-
-/* (No Comment) */
 "JV2xQz" = "Подключиться к Palette";
 
 /* (No Comment) */
@@ -173,7 +164,13 @@
 "kSWyyv" = "${printer}";
 
 /* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
 "L25OHl" = "Не удалось установить соединение";
+
+/* (No Comment) */
+"lOuQ7B" = "Не удалось запросить выполнение команды";
 
 /* (No Comment) */
 "lrRige" = "Отмена выполнения задания печати";
@@ -191,12 +188,6 @@
 "M58YA9" = "Принтер";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} не может быть выше чем ${maximumValue}.";
-
-/* (No Comment) */
-"mfflxG" = "${displayName} не может быть ниже чем ${minimumValue}.";
-
-/* (No Comment) */
 "N0vzJv" = "Запрос Palette на очистку";
 
 /* (No Comment) */
@@ -209,7 +200,16 @@
 "NL98zi" = "Охладить стол и экструдер";
 
 /* (No Comment) */
+"oe3uiM" = "Выполнить системную команду ${commandName}";
+
+/* (No Comment) */
+"OOldQi" = "Command Name";
+
+/* (No Comment) */
 "ovQf6Z" = "Работа приостановлена";
+
+/* (No Comment) */
+"p9Vevg" = "Не удалось запросить выполнение команды";
 
 /* (No Comment) */
 "P89qJr" = "Осталось печатать ${time}";
@@ -228,9 +228,6 @@
 
 /* (No Comment) */
 "R5AlTe" = "Отключиться от Palette";
-
-/* (No Comment) */
-"RbyC9o" = "${displayName} не может быть выше чем ${maximumValue}.";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -257,9 +254,6 @@
 "RYurC5" = "Охладить термокамеру";
 
 /* (No Comment) */
-"SK8bYR" = "${displayName} не может быть отрицательным.";
-
-/* (No Comment) */
 "SP4rN6" = "Установить температуру экструдера";
 
 /* (No Comment) */
@@ -273,6 +267,9 @@
 
 /* (No Comment) */
 "UC9Zrq" = "Температура стола установлена на ${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "Выполнить системную команду";
 
 /* (No Comment) */
 "uoT27A" = "Не удалось установить температуру стола (${statusCode})";
@@ -314,10 +311,13 @@
 "YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yZeSdz" = "${printer}";
+"yMvnaP" = "Принтер";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} не может быть ниже чем ${minimumValue}.";
+"YQLomX" = "Запрошено";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";

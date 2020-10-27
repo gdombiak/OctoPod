@@ -187,6 +187,9 @@
 /* gcode name */
 "Endstop States" = "Состояние концевых выключателей";
 
+/* Siri suggested phrase */
+"Execute System Command" = "Выполнить системную команду";
+
 /* (No Comment) */
 "Extruder" = "Экструдер";
 
