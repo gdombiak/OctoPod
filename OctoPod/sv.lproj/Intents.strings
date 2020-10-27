@@ -1,7 +1,4 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} kan inte vara högre än ${maximumValue}.";
-
-/* (No Comment) */
 "0vck5K" = "Kunde inte begära att klippa ut";
 
 /* (No Comment) */
@@ -47,6 +44,9 @@
 "6vtMLs" = "Jobbet startades om";
 
 /* (No Comment) */
+"7c0KRL" = "Command Source";
+
+/* (No Comment) */
 "7eJPkN" = "Konfigurera kammarens temperatur";
 
 /* (No Comment) */
@@ -74,15 +74,6 @@
 "662LyZ" = "Starta om";
 
 /* (No Comment) */
-"817z4k" = "${displayName} kan inte vara lägre än ${minimumValue}.";
-
-/* (No Comment) */
-"ADfGbr" = "${displayName} kan inte vara negativt.";
-
-/* (No Comment) */
-"AdooVp" = "${displayName} kan inte vara negativt.";
-
-/* (No Comment) */
 "ajupCt" = "Ingen information tillgänglig";
 
 /* (No Comment) */
@@ -98,7 +89,7 @@
 "bXGQKe" = "Kyl ner skrivare";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} kan inte vara högre än ${maximumValue}.";
+"bXrJk0" = "Command Action";
 
 /* (No Comment) */
 "D0kBGr" = "Starta om pågående utskriftsjobb";
@@ -107,13 +98,16 @@
 "D1wWxd" = "Koppla från Palette";
 
 /* (No Comment) */
+"DKIuk9" = "Kör systemkommando";
+
+/* (No Comment) */
 "doj4NA" = "Konfigurera extruder-temperatur";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} kan inte vara negativt.";
+"Eb3aa5" = "Kunde inte ställa in kammarens temperatur (${statusCode})";
 
 /* (No Comment) */
-"Eb3aa5" = "Kunde inte ställa in kammarens temperatur (${statusCode})";
+"Eeyifr" = "Begärda";
 
 /* (No Comment) */
 "f8xirF" = "Kyl ner skrivare";
@@ -158,9 +152,6 @@
 "JmhfgL" = "Starta om pågående utskriftsjobb";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} kan inte vara lägre än ${minimumValue}.";
-
-/* (No Comment) */
 "JV2xQz" = "Anslut till Palette";
 
 /* (No Comment) */
@@ -173,7 +164,13 @@
 "kSWyyv" = "${printer}";
 
 /* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
 "L25OHl" = "Kunde inte begära att ansluta";
+
+/* (No Comment) */
+"lOuQ7B" = "Kunde inte begära körning av kommando";
 
 /* (No Comment) */
 "lrRige" = "Avbryt pågående utskriftsjobb";
@@ -191,12 +188,6 @@
 "M58YA9" = "Skrivare";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} kan inte vara högre än ${maximumValue}.";
-
-/* (No Comment) */
-"mfflxG" = "${displayName} kan inte vara lägre än ${minimumValue}.";
-
-/* (No Comment) */
 "N0vzJv" = "Be Palette att rensa";
 
 /* (No Comment) */
@@ -209,7 +200,16 @@
 "NL98zi" = "Kyler ner bädden och extruder";
 
 /* (No Comment) */
+"oe3uiM" = "Kör systemkommando ${commandName}";
+
+/* (No Comment) */
+"OOldQi" = "Command Name";
+
+/* (No Comment) */
 "ovQf6Z" = "Jobb pausat";
+
+/* (No Comment) */
+"p9Vevg" = "Kunde inte begära körning av kommando";
 
 /* (No Comment) */
 "P89qJr" = "Tid kvar är ${time}";
@@ -228,9 +228,6 @@
 
 /* (No Comment) */
 "R5AlTe" = "Koppla från Palette";
-
-/* (No Comment) */
-"RbyC9o" = "${displayName} kan inte vara högre än ${maximumValue}.";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -257,9 +254,6 @@
 "RYurC5" = "Kyl ner kammaren";
 
 /* (No Comment) */
-"SK8bYR" = "${displayName} kan inte vara negativt.";
-
-/* (No Comment) */
 "SP4rN6" = "Ställ in extruder-temperatur";
 
 /* (No Comment) */
@@ -273,6 +267,9 @@
 
 /* (No Comment) */
 "UC9Zrq" = "Bäddens temperatur var inställt till ${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "Kör systemkommando";
 
 /* (No Comment) */
 "uoT27A" = "Kunde inte ställa in bäddens temperatur (${statusCode})";
@@ -314,10 +311,13 @@
 "YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yZeSdz" = "${printer}";
+"yMvnaP" = "Skrivare";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} kan inte vara lägre än ${minimumValue}.";
+"YQLomX" = "Begärda";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";
