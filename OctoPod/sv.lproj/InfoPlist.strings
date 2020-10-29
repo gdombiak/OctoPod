@@ -10,6 +10,9 @@
 /* Privacy - Face ID Usage Description */
 "NSFaceIDUsageDescription" = "Vi behöver använda Face ID för att låsa upp appen";
 
+/* Privacy - Local Network Usage Description */
+"NSLocalNetworkUsageDescription" = "OctoPod använder ditt lokala nätverk för att upptäcka och kommunicera med OctoPrint";
+
 /* Privacy - Siri Usage Description */
 "NSSiriUsageDescription" = "Kontrollera skrivare med Siri";
 
