@@ -27,6 +27,7 @@
 		3D1A936C213316850050ED9A /* ExecuteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A936B213316850050ED9A /* ExecuteControl.swift */; };
 		3D1AC8B42505A0EA00529F24 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1AC8B225059AEB00529F24 /* ProgressBarView.swift */; };
 		3D1ECB0821ABB85700691DCB /* RemainingTimeIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1ECB0721ABB85700691DCB /* RemainingTimeIntentHandler.swift */; };
+		3D21CE0D254A8E720051449A /* LargetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D21CE0C254A8E720051449A /* LargetDetailsView.swift */; };
 		3D2792A22505D08C00026ACF /* WidgetConfigurationIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2792A12505D08C00026ACF /* WidgetConfigurationIntentHandler.swift */; };
 		3D27DA97218A5FD8004F763A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D27DA95218A5FD8004F763A /* InfoPlist.strings */; };
 		3D27DA9E218A8500004F763A /* ExtrudeSpeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D27DA9D218A8500004F763A /* ExtrudeSpeedViewController.swift */; };
@@ -452,6 +453,7 @@
 		3D1A936B213316850050ED9A /* ExecuteControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteControl.swift; sourceTree = "<group>"; };
 		3D1AC8B225059AEB00529F24 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		3D1ECB0721ABB85700691DCB /* RemainingTimeIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemainingTimeIntentHandler.swift; sourceTree = "<group>"; };
+		3D21CE0C254A8E720051449A /* LargetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargetDetailsView.swift; sourceTree = "<group>"; };
 		3D2792A12505D08C00026ACF /* WidgetConfigurationIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConfigurationIntentHandler.swift; sourceTree = "<group>"; };
 		3D27DA94218A5FD8004F763A /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3D27DA96218A5FD8004F763A /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1398,6 +1400,7 @@
 				3DE5F53E24FC600300BFDAD3 /* Assets.xcassets */,
 				3DE5F54024FC600300BFDAD3 /* Info.plist */,
 				3D91E916250D75C3008A59CD /* Localizable.strings */,
+				3D21CE0C254A8E720051449A /* LargetDetailsView.swift */,
 			);
 			path = OctoPodWidget14;
 			sourceTree = "<group>";
@@ -2193,6 +2196,7 @@
 				3DF3835B2505F820003C803D /* ControlInput.swift in Sources */,
 				3DF383602505F831003C803D /* CustomControl.swift in Sources */,
 				3DF383612505F847003C803D /* IPPlug.swift in Sources */,
+				3D21CE0D254A8E720051449A /* LargetDetailsView.swift in Sources */,
 				3D660C0325461E58003B7C9C /* DashboardJobDetailsView.swift in Sources */,
 				3DF3835F2505F82E003C803D /* ExecuteControl.swift in Sources */,
 				3DF383632505F86A003C803D /* Palette2Utils.swift in Sources */,

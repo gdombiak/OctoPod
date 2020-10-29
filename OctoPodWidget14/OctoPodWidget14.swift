@@ -94,7 +94,7 @@ struct OctoPodWidget14EntryView : View {
                         JobDetailsView(printerName: printerName, entry: entry)
                     }.widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
                     
-                default:
+                case .systemMedium:
                     HStack() {
                         VStack(spacing: 10) {
                             JobDetailsView(printerName: printerName, entry: entry)
@@ -120,9 +120,11 @@ struct OctoPodWidget14EntryView : View {
                         }
                     }
                     .padding(10.0)
+                default:
+                    LargetDetailsView(printerName: printerName, entry: entry)
+                        .padding(10.0)
+                        .widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
                 }
-
-                
             } else {
                 // No printer has been selected so ask to configure widget
                 Text("Configure widget")
@@ -150,14 +152,35 @@ struct OctoPodWidget14: Widget {
         }
         .configurationDisplayName("OctoPod")
         .description(NSLocalizedString("Monitor and control your 3d printer via OctoPod", comment: ""))
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 
 @available(iOSApplicationExtension 13.0, *)
 struct OctoPodWidget14_Previews: PreviewProvider {
+    static var intent: WidgetConfigurationIntent = {
+        let configuration = WidgetConfigurationIntent()
+        configuration.printer = WidgetPrinter(identifier: "MK3", display: "MK3")
+        configuration.printer?.name = "MK3"
+        return configuration
+    }()
+
+    static var jobService: PrintJobDataService = {
+        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil)
+        jobService.printerStatus = "Printing"
+        jobService.progress = 28.0
+        jobService.printEstimatedCompletion = "9:30 PM"
+        return jobService
+    }()
+    
+    static var cameraService: CameraService = {
+        let cameraService = CameraService(cameraURL: "", cameraOrientation: 1, username: nil, password: nil)
+        cameraService.image = UIImage(named: "Image")
+        return cameraService
+    }()
+
     static var previews: some View {
-        OctoPodWidget14EntryView(entry: SimpleEntry(date: Date(), configuration: WidgetConfigurationIntent(), printJobDataService: nil, cameraService: nil))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        OctoPodWidget14EntryView(entry: SimpleEntry(date: Date(), configuration: intent, printJobDataService: jobService, cameraService: cameraService))
+            .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
