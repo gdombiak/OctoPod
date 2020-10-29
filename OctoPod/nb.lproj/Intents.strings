@@ -98,6 +98,9 @@
 "D1wWxd" = "Koble fra Palette";
 
 /* (No Comment) */
+"DKIuk9" = "Utfør systemkommando";
+
+/* (No Comment) */
 "doj4NA" = "Konfigurer ekstruderens temperatur";
 
 /* (No Comment) */
@@ -167,6 +170,9 @@
 "L25OHl" = "Kunne ikke be om å få forbindelse";
 
 /* (No Comment) */
+"lOuQ7B" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
 "lrRige" = "Avbryt utskriftsjobb";
 
 /* (No Comment) */
@@ -194,10 +200,16 @@
 "NL98zi" = "Kjøler ned skriveflate og ekstruder";
 
 /* (No Comment) */
+"oe3uiM" = "Utfør systemkommando ${commandName}";
+
+/* (No Comment) */
 "OOldQi" = "Command Name";
 
 /* (No Comment) */
 "ovQf6Z" = "Utskrift pause";
+
+/* (No Comment) */
+"p9Vevg" = "Kunne ikke be om å utføre kommandoen";
 
 /* (No Comment) */
 "P89qJr" = "Tid igjen ${time}";
@@ -255,6 +267,9 @@
 
 /* (No Comment) */
 "UC9Zrq" = "Skriveflatens temperatur var satt til ${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "Utfør systemkommando";
 
 /* (No Comment) */
 "uoT27A" = "Kunne ikke sette skriveflatens temperatur (${statusCode})";

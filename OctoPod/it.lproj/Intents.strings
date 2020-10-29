@@ -98,6 +98,9 @@
 "D1wWxd" = "Disconnetti da Palette";
 
 /* (No Comment) */
+"DKIuk9" = "Esegui il comando di sistema";
+
+/* (No Comment) */
 "doj4NA" = "Configura la temperatura dell'estrusore";
 
 /* (No Comment) */
@@ -167,6 +170,9 @@
 "L25OHl" = "Impossibile richiedere di connettersi";
 
 /* (No Comment) */
+"lOuQ7B" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
 "lrRige" = "Annulla la stampa in corso";
 
 /* (No Comment) */
@@ -194,10 +200,16 @@
 "NL98zi" = "Raffredda piatto ed estrusore";
 
 /* (No Comment) */
+"oe3uiM" = "Esegui il comando di sistema ${commandName}";
+
+/* (No Comment) */
 "OOldQi" = "Command Name";
 
 /* (No Comment) */
 "ovQf6Z" = "Stampa sospesa";
+
+/* (No Comment) */
+"p9Vevg" = "Impossibile richiedere di eseguire il comando";
 
 /* (No Comment) */
 "P89qJr" = "Il tempo rimanente è ${time}";
@@ -255,6 +267,9 @@
 
 /* (No Comment) */
 "UC9Zrq" = "La temperatura del piatto è stata impostata su ${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "Esegui il comando di sistema";
 
 /* (No Comment) */
 "uoT27A" = "Errore nell'impostazione della temperatura del piatto (${statusCode})";
