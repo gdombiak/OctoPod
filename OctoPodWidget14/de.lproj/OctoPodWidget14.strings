@@ -2,16 +2,13 @@
 "0S62mn" = "Printer Name";
 
 /* (No Comment) */
-"9L8C08" = "Just to confirm, you wanted ‘${camera}’?";
-
-/* (No Comment) */
 "58usLm" = "Drucker 1";
 
 /* (No Comment) */
-"92wvRQ" = "Just to confirm, you wanted ‘${printer4}’?";
+"a8igcM" = "Select Printer";
 
 /* (No Comment) */
-"a8igcM" = "Select Printer";
+"ah6f7u" = "Dunkel";
 
 /* (No Comment) */
 "AIJcYW" = "Kamera";
@@ -23,10 +20,13 @@
 "B1OXyb" = "Printer Name";
 
 /* (No Comment) */
-"cQFZl2" = "Drucker 2";
+"c53Z1c" = "Benutzeroberfläche";
 
 /* (No Comment) */
-"DPGDO8" = "Just to confirm, you wanted ‘${printer2}’?";
+"CpDQAE" = "System";
+
+/* (No Comment) */
+"cQFZl2" = "Drucker 2";
 
 /* (No Comment) */
 "E6nibW" = "Widget Configuration";
@@ -38,22 +38,19 @@
 "GioA53" = "Api Key";
 
 /* (No Comment) */
-"gMNQ3I" = "There are ${count} options matching ‘${printer3}’.";
-
-/* (No Comment) */
 "gpCwrM" = "Widget Configuration";
 
 /* (No Comment) */
 "grfLTZ" = "Camera Orientation";
 
 /* (No Comment) */
+"Gs9ttO" = "Hell";
+
+/* (No Comment) */
 "IHvqBt" = "Drucker 3";
 
 /* (No Comment) */
 "IWWISx" = "Widget Printer";
-
-/* (No Comment) */
-"jG50jC" = "There are ${count} options matching ‘${printer4}’.";
 
 /* (No Comment) */
 "jORyUD" = "Widget Camera";
@@ -71,44 +68,95 @@
 "lZYSm5" = "Name";
 
 /* (No Comment) */
+"Mgaxsj" = "Benutzeroberfläche";
+
+/* (No Comment) */
+"o1NVDF" = "Benutzeroberfläche";
+
+/* (No Comment) */
 "O3EQKr" = "Url";
 
 /* (No Comment) */
 "owVY6J" = "Hostname";
 
 /* (No Comment) */
-"qInAGv" = "There are ${count} options matching ‘${camera}’.";
+"RAswNt" = "Unbekannt";
 
 /* (No Comment) */
-"RVEOGf" = "There are ${count} options matching ‘${printer1}’.";
+"rgdtBN-ah6f7u" = "There are ${count} options matching ‘Dark’.";
+
+/* (No Comment) */
+"rgdtBN-CpDQAE" = "There are ${count} options matching ‘System’.";
+
+/* (No Comment) */
+"rgdtBN-Gs9ttO" = "There are ${count} options matching ‘Light’.";
+
+/* (No Comment) */
+"rgdtBN-RAswNt" = "There are ${count} options matching ‘Unknown’.";
+
+/* (No Comment) */
+"rgdtBN-yymMQg" = "There are ${count} options matching ‘Default’.";
 
 /* (No Comment) */
 "RZDKSJ" = "Kamera";
 
 /* (No Comment) */
+"S2nCmZ-ah6f7u" = "Just to confirm, you wanted ‘Dark’?";
+
+/* (No Comment) */
+"S2nCmZ-CpDQAE" = "Just to confirm, you wanted ‘System’?";
+
+/* (No Comment) */
+"S2nCmZ-Gs9ttO" = "Just to confirm, you wanted ‘Light’?";
+
+/* (No Comment) */
+"S2nCmZ-RAswNt" = "Just to confirm, you wanted ‘Unknown’?";
+
+/* (No Comment) */
+"S2nCmZ-yymMQg" = "Just to confirm, you wanted ‘Default’?";
+
+/* (No Comment) */
 "SHDh7z" = "Password";
-
-/* (No Comment) */
-"T9WSS8" = "There are ${count} options matching ‘${printer}’.";
-
-/* (No Comment) */
-"tnE43G" = "Just to confirm, you wanted ‘${printer}’?";
 
 /* (No Comment) */
 "tQN4nr" = "Printer Name";
 
 /* (No Comment) */
-"tZFlu1" = "Just to confirm, you wanted ‘${printer1}’?";
+"trmH9n-ah6f7u" = "There are ${count} options matching ‘Dark’.";
 
 /* (No Comment) */
-"UGKaUk" = "Just to confirm, you wanted ‘${printer3}’?";
+"trmH9n-CpDQAE" = "There are ${count} options matching ‘System’.";
+
+/* (No Comment) */
+"trmH9n-Gs9ttO" = "There are ${count} options matching ‘Light’.";
+
+/* (No Comment) */
+"trmH9n-RAswNt" = "There are ${count} options matching ‘Unknown’.";
+
+/* (No Comment) */
+"trmH9n-yymMQg" = "There are ${count} options matching ‘Default’.";
+
+/* (No Comment) */
+"vCz6ng-ah6f7u" = "Just to confirm, you wanted ‘Dark’?";
+
+/* (No Comment) */
+"vCz6ng-CpDQAE" = "Just to confirm, you wanted ‘System’?";
+
+/* (No Comment) */
+"vCz6ng-Gs9ttO" = "Just to confirm, you wanted ‘Light’?";
+
+/* (No Comment) */
+"vCz6ng-RAswNt" = "Just to confirm, you wanted ‘Unknown’?";
+
+/* (No Comment) */
+"vCz6ng-yymMQg" = "Just to confirm, you wanted ‘Default’?";
 
 /* (No Comment) */
 "xaNGuB" = "Printer Name";
 
 /* (No Comment) */
-"xTlr14" = "There are ${count} options matching ‘${printer2}’.";
+"YJQXqa" = "Printer Name";
 
 /* (No Comment) */
-"YJQXqa" = "Printer Name";
+"yymMQg" = "Standard";
 

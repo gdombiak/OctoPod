@@ -869,7 +869,7 @@
 "Xhq-hp-2kd.headerTitle" = "Sincronización";
 
 /* Class = "UILabel"; text = "System"; ObjectID = "xkQ-uy-Aw1"; */
-"xkQ-uy-Aw1.text" = "Defecto";
+"xkQ-uy-Aw1.text" = "Sistema";
 
 /* Class = "UIButton"; normalTitle = "Dashboard"; ObjectID = "xMr-Bq-gSB"; */
 "xMr-Bq-gSB.normalTitle" = "Tablero";

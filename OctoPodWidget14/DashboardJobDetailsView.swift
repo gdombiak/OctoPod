@@ -48,6 +48,12 @@ struct DashboardJobDetailsView: View {
 }
 
 struct DashboardJobDetailsView_Previews: PreviewProvider {
+    static let configuration: DashboardWidgetConfigurationIntent = {
+        let configuration = DashboardWidgetConfigurationIntent()
+        configuration.theme = Theme.system
+        return configuration
+    }()
+
     //    static let jobService: PrintJobDataService = {
     //        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil)
     //        service.printerStatus = "Printing"
@@ -65,7 +71,7 @@ struct DashboardJobDetailsView_Previews: PreviewProvider {
     static let jobServices = [jobService]
     
     static var previews: some View {
-        DashboardJobDetailsView(entry: DashboardEntry(date: Date(), printJobDataServices: jobServices), index: 0)
+        DashboardJobDetailsView(entry: DashboardEntry(date: Date(), configuration: configuration, printJobDataServices: jobServices), index: 0)
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

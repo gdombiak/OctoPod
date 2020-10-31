@@ -26,6 +26,9 @@
 "Dashboard" = "Контрольная панель";
 
 /* No comment provided by engineer. */
+"Dashboard for multiple printers" = "Контрольная панель для нескольких принтеров";
+
+/* No comment provided by engineer. */
 "days ago" = "%d дн. назад";
 
 /* No comment provided by engineer. */
@@ -42,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Missed" = "Отсутсвует";
+
+/* No comment provided by engineer. */
+"Monitor and control your 3d printer via OctoPod" = "Контролируйте и управляйте своим 3D-принтером с помощью OctoPod";
 
 /* No comment provided by engineer. */
 "No" = "Нет";

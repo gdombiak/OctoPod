@@ -77,13 +77,31 @@ struct SimpleEntry: TimelineEntry {
 struct OctoPodWidget14EntryView : View {
     var entry: Provider.Entry
     
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.widgetFamily) var family
     
     @ViewBuilder
     var body: some View {
         ZStack {
-            Color(.sRGB, red: 154 / 255, green: 211 / 255, blue: 110 / 255, opacity: 0.75)
-                .edgesIgnoringSafeArea(.all)
+            switch self.entry.configuration.theme {
+            case Theme.light:
+                Color(.sRGB, red: 230 / 255, green: 230 / 255, blue: 230 / 255, opacity: 0.75)
+                    .edgesIgnoringSafeArea(.all)
+            case Theme.dark:
+                Color(.sRGB, red: 89 / 255, green: 89 / 255, blue: 89 / 255, opacity: 0.75)
+                    .edgesIgnoringSafeArea(.all)
+            case Theme.system:
+                if colorScheme == .dark {
+                    Color(.sRGB, red: 89 / 255, green: 89 / 255, blue: 89 / 255, opacity: 0.75)
+                        .edgesIgnoringSafeArea(.all)
+                } else {
+                    Color(.sRGB, red: 230 / 255, green: 230 / 255, blue: 230 / 255, opacity: 0.75)
+                        .edgesIgnoringSafeArea(.all)
+                }
+            default:
+                Color(.sRGB, red: 154 / 255, green: 211 / 255, blue: 110 / 255, opacity: 0.75)
+                    .edgesIgnoringSafeArea(.all)
+            }
             
             if let printerName = entry.configuration.printer?.name, let urlSafePrinter = printerName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
 

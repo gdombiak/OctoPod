@@ -26,6 +26,9 @@
 "Dashboard" = "Dashboard";
 
 /* No comment provided by engineer. */
+"Dashboard for multiple printers" = "Dashbord for flere skrivere";
+
+/* No comment provided by engineer. */
 "days ago" = "%d dager siden";
 
 /* No comment provided by engineer. */
@@ -42,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Missed" = "Feilet";
+
+/* No comment provided by engineer. */
+"Monitor and control your 3d printer via OctoPod" = "Overvåke og kontrollere 3d-skriveren din via OctoPod";
 
 /* No comment provided by engineer. */
 "No" = "Nei";

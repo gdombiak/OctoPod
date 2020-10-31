@@ -98,7 +98,7 @@
 "D1wWxd" = "Atsijungti nuo Pallete";
 
 /* (No Comment) */
-"DKIuk9" = "Vykdyti sistemos komandą";
+"DKIuk9" = "Vykdyti sisteminę komandą";
 
 /* (No Comment) */
 "doj4NA" = "Nustatyti ekstruderio temperatūrą";
@@ -170,7 +170,7 @@
 "L25OHl" = "Nepavyko pabandyti prisijungti";
 
 /* (No Comment) */
-"lOuQ7B" = "Nepavyko paprašyti įvykdyti komandos";
+"lOuQ7B" = "Nepavyko įvykdyti sisteminės komandos";
 
 /* (No Comment) */
 "lrRige" = "Atšaukti dabartinę užduotį";
@@ -200,7 +200,7 @@
 "NL98zi" = "Atšaldo paviršių ir ekstruderį";
 
 /* (No Comment) */
-"oe3uiM" = "Vykdyti sistemos komandą ${commandName}";
+"oe3uiM" = "Vykdyti sisteminę komandą ${commandName}";
 
 /* (No Comment) */
 "OOldQi" = "Command Name";
@@ -209,7 +209,7 @@
 "ovQf6Z" = "Darbas užpauzintas";
 
 /* (No Comment) */
-"p9Vevg" = "Nepavyko paprašyti įvykdyti komandos";
+"p9Vevg" = "Nepavyko įvykdyti sisteminės komandos";
 
 /* (No Comment) */
 "P89qJr" = "Likęs laikas yra ${time}";
@@ -269,7 +269,7 @@
 "UC9Zrq" = "Paviršiaus temperatūra buvo nustatyta į ${temperature}";
 
 /* (No Comment) */
-"ukcwkW" = "Vykdyti sistemos komandą";
+"ukcwkW" = "Vykdyti sisteminę komandą";
 
 /* (No Comment) */
 "uoT27A" = "Nepavyko nustatyti paviršiaus temperatūros (${statusCode})";

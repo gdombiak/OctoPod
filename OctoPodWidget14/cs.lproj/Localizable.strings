@@ -26,6 +26,9 @@
 "Dashboard" = "Přehled";
 
 /* No comment provided by engineer. */
+"Dashboard for multiple printers" = "Dashboard pro více tiskáren";
+
+/* No comment provided by engineer. */
 "days ago" = "před %d dny";
 
 /* No comment provided by engineer. */
@@ -42,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Missed" = "Vynechanáno";
+
+/* No comment provided by engineer. */
+"Monitor and control your 3d printer via OctoPod" = "Sledujte a ovládejte svoji tiskárnu pomocí OctoPodu";
 
 /* No comment provided by engineer. */
 "No" = "Ne";

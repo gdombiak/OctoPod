@@ -26,6 +26,9 @@
 "Dashboard" = "Tableau de bord";
 
 /* No comment provided by engineer. */
+"Dashboard for multiple printers" = "Tableau de bord pour plusieurs imprimantes";
+
+/* No comment provided by engineer. */
 "days ago" = "Il y a %d jours";
 
 /* No comment provided by engineer. */
@@ -42,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "Missed" = "Information perdue";
+
+/* No comment provided by engineer. */
+"Monitor and control your 3d printer via OctoPod" = "Surveillez et contrôlez votre imprimante 3D via OctoPod";
 
 /* No comment provided by engineer. */
 "No" = "Non";
