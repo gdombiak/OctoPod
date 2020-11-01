@@ -1,15 +1,38 @@
 # Change Log
 
+## [3.8](https://github.com/gdombiak/OctoPod/tree/3.8) (2020-11-01)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.7...3.8)
+
+**Implemented enhancements:**
+
+- FilamentManager - Display current selection when changing spool [\#398](https://github.com/gdombiak/OctoPod/issues/398)
+- FilamentManager - Disable changing spool while printing [\#396](https://github.com/gdombiak/OctoPod/issues/396)
+- Please add a dashboard view widget  [\#393](https://github.com/gdombiak/OctoPod/issues/393)
+- FilamentManager - Display remaining filament instead of used [\#392](https://github.com/gdombiak/OctoPod/issues/392)
+- Display Cancel button in red  [\#389](https://github.com/gdombiak/OctoPod/issues/389)
+- Change Background Color for iOS Widget [\#376](https://github.com/gdombiak/OctoPod/issues/376)
+- Siri intent or quick action for printer shutdown [\#297](https://github.com/gdombiak/OctoPod/issues/297)
+
+**Fixed bugs:**
+
+- FilamentManager - Does not refresh selected spool when changed from web UI [\#397](https://github.com/gdombiak/OctoPod/issues/397)
+
+**Closed issues:**
+
+- Layer Notifications [\#399](https://github.com/gdombiak/OctoPod/issues/399)
+- iPad iOS 14 Can’t add new printer on latest build [\#390](https://github.com/gdombiak/OctoPod/issues/390)
+- Siri suggestions not showing up in settings [\#384](https://github.com/gdombiak/OctoPod/issues/384)
+
 ## [3.7](https://github.com/gdombiak/OctoPod/tree/3.7) (2020-10-12)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.6...3.7)
 
 **Implemented enhancements:**
 
+- Add Siri confirmation to cancel print command [\#268](https://github.com/gdombiak/OctoPod/issues/268)
 - Small improvement to iOS 14 widget to correctly render printer status [\#381](https://github.com/gdombiak/OctoPod/issues/381)
 - Placeholder image in widget [\#371](https://github.com/gdombiak/OctoPod/issues/371)
 - Keep display awake when webcam is in fullscreen [\#368](https://github.com/gdombiak/OctoPod/issues/368)
 - FR - An option to allow commands from ios lockscreen [\#330](https://github.com/gdombiak/OctoPod/issues/330)
-- Add Siri confirmation to cancel print command [\#268](https://github.com/gdombiak/OctoPod/issues/268)
 
 **Fixed bugs:**
 
@@ -118,6 +141,7 @@
 - Drop iOS 10 support. iOS 11 or newer is now supported [\#309](https://github.com/gdombiak/OctoPod/issues/309)
 - Starscream.WSError [\#308](https://github.com/gdombiak/OctoPod/issues/308)
 - Webcam not functioning / url broken [\#305](https://github.com/gdombiak/OctoPod/issues/305)
+- hostname is case sensitive \(at least on an octopi-0.170/octoprint-1.4.0\) [\#298](https://github.com/gdombiak/OctoPod/issues/298)
 
 ## [3.3](https://github.com/gdombiak/OctoPod/tree/3.3) (2020-04-18)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.2...3.3)
@@ -145,7 +169,6 @@
 **Closed issues:**
 
 - 02k [\#301](https://github.com/gdombiak/OctoPod/issues/301)
-- hostname is case sensitive \(at least on an octopi-0.170/octoprint-1.4.0\) [\#298](https://github.com/gdombiak/OctoPod/issues/298)
 - Connection Failed: Service is down or incorrect port [\#295](https://github.com/gdombiak/OctoPod/issues/295)
 - Octopod not able to cancel/pause prints [\#287](https://github.com/gdombiak/OctoPod/issues/287)
 - I am loving the AppleTV app! [\#285](https://github.com/gdombiak/OctoPod/issues/285)
@@ -164,10 +187,6 @@
 - Request for Layer Number in Panel [\#265](https://github.com/gdombiak/OctoPod/issues/265)
 - Add Apple TV support [\#135](https://github.com/gdombiak/OctoPod/issues/135)
 
-**Closed issues:**
-
-- Add info on number of Palette splices [\#264](https://github.com/gdombiak/OctoPod/issues/264)
-
 ## [3.1](https://github.com/gdombiak/OctoPod/tree/3.1) (2020-02-15)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.0...3.1)
 
@@ -185,6 +204,7 @@
 
 **Closed issues:**
 
+- Add info on number of Palette splices [\#264](https://github.com/gdombiak/OctoPod/issues/264)
 - Webcam stream and Reverse Proxy [\#260](https://github.com/gdombiak/OctoPod/issues/260)
 
 ## [3.0](https://github.com/gdombiak/OctoPod/tree/3.0) (2020-01-30)
