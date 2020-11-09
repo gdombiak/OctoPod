@@ -116,7 +116,7 @@ struct OctoPodWidget14EntryView : View {
                     HStack() {
                         VStack(spacing: 10) {
                             JobDetailsView(printerName: printerName, entry: entry)
-                        }
+                        }.widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
                         if let cameraService = entry.cameraService {
                             if let image = cameraService.image {
                                 Image(uiImage: image)
