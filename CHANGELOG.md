@@ -1,5 +1,14 @@
 # Change Log
 
+## [3.9](https://github.com/gdombiak/OctoPod/tree/3.9) (2020-11-16)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.8...3.9)
+
+**Fixed bugs:**
+
+- Issue controlling Enclosure Plugin with Octopod [\#405](https://github.com/gdombiak/OctoPod/issues/405)
+- iOS 14 Widgets Open to Last State [\#402](https://github.com/gdombiak/OctoPod/issues/402)
+- Add Widget Url to medium Widget \#402 [\#403](https://github.com/gdombiak/OctoPod/pull/403) ([Willmac16](https://github.com/Willmac16))
+
 ## [3.8](https://github.com/gdombiak/OctoPod/tree/3.8) (2020-11-01)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.7...3.8)
 
@@ -141,7 +150,6 @@
 - Drop iOS 10 support. iOS 11 or newer is now supported [\#309](https://github.com/gdombiak/OctoPod/issues/309)
 - Starscream.WSError [\#308](https://github.com/gdombiak/OctoPod/issues/308)
 - Webcam not functioning / url broken [\#305](https://github.com/gdombiak/OctoPod/issues/305)
-- hostname is case sensitive \(at least on an octopi-0.170/octoprint-1.4.0\) [\#298](https://github.com/gdombiak/OctoPod/issues/298)
 
 ## [3.3](https://github.com/gdombiak/OctoPod/tree/3.3) (2020-04-18)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.2...3.3)
@@ -169,6 +177,7 @@
 **Closed issues:**
 
 - 02k [\#301](https://github.com/gdombiak/OctoPod/issues/301)
+- hostname is case sensitive \(at least on an octopi-0.170/octoprint-1.4.0\) [\#298](https://github.com/gdombiak/OctoPod/issues/298)
 - Connection Failed: Service is down or incorrect port [\#295](https://github.com/gdombiak/OctoPod/issues/295)
 - Octopod not able to cancel/pause prints [\#287](https://github.com/gdombiak/OctoPod/issues/287)
 - I am loving the AppleTV app! [\#285](https://github.com/gdombiak/OctoPod/issues/285)
@@ -187,6 +196,10 @@
 - Request for Layer Number in Panel [\#265](https://github.com/gdombiak/OctoPod/issues/265)
 - Add Apple TV support [\#135](https://github.com/gdombiak/OctoPod/issues/135)
 
+**Closed issues:**
+
+- Add info on number of Palette splices [\#264](https://github.com/gdombiak/OctoPod/issues/264)
+
 ## [3.1](https://github.com/gdombiak/OctoPod/tree/3.1) (2020-02-15)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.0...3.1)
 
@@ -204,7 +217,6 @@
 
 **Closed issues:**
 
-- Add info on number of Palette splices [\#264](https://github.com/gdombiak/OctoPod/issues/264)
 - Webcam stream and Reverse Proxy [\#260](https://github.com/gdombiak/OctoPod/issues/260)
 
 ## [3.0](https://github.com/gdombiak/OctoPod/tree/3.0) (2020-01-30)
