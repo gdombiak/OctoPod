@@ -124,10 +124,12 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
     
     func pluginMessage(plugin: String, data: NSDictionary) {
         if plugin == Plugins.ENCLOSURE {
-            // Refresh status of outputs. Doing a new fetch is not the most
-            // efficient way to do this but this is an infrequent operation
-            // so it is good enough and we can reuse some code
-            refreshOutputsStatus(done: nil)
+            if let _ = data["rpi_output_regular"] {
+                // Refresh status of outputs. Doing a new fetch is not the most
+                // efficient way to do this but this is an infrequent operation
+                // so it is good enough and we can reuse some code
+                refreshOutputsStatus(done: nil)
+            }
         }
     }
 
@@ -246,14 +248,17 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
         // Fetch current status for GPIO outputs
         for output in self.outputs {
             if output.type == "regular" {
+                let outputIndex = output.index
                 self.octoprintClient.getEnclosureGPIOStatus(index_id: output.index) { (value: Bool?, error: Error?, response: HTTPURLResponse) in
                     if let value = value {
-                        for (index, output) in self.outputs.enumerated() {
-                            // Update status in wrapper
-                            output.status = value
-                            // Refresh only row of updated status
-                            DispatchQueue.main.async {
-                                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+                        for (index, outputToUpdate) in self.outputs.enumerated() {
+                            if outputIndex == outputToUpdate.index {
+                                // Update status in wrapper
+                                outputToUpdate.status = value
+                                // Refresh only row of updated status
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+                                }
                             }
                         }
                     }
