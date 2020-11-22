@@ -70,7 +70,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         // Listen to event when user swiped and changed active subpanel
         subpanelsViewController?.subpanelsVCDelegate = self
 
-        // Listen to events when app comes back from background
+        // Listen to events when app goes to background and comes back from background
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         // Listen to events coming from OctoPrintClient
@@ -836,6 +837,11 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     @objc func appWillEnterForeground() {
         // Show default printer
         showDefaultPrinter()
+    }
+    
+    @objc func appDidEnterBackground() {
+        // Close websocket connection to stop network traffic
+        octoprintClient.disconnectFromServer()
     }
     
     // We are using Container Views so this is how we keep a reference to the contained view controllers
