@@ -325,6 +325,8 @@
 		3DFB777023D4D46100ADF315 /* Palette2Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */; };
 		3DFB777123D4D50F00ADF315 /* Palette2Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */; };
 		3DFB777223D4D51000ADF315 /* Palette2Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */; };
+		3DFBB8E42569D2FF00A7BD46 /* CameraMJPEGEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFBB8E32569D2FF00A7BD46 /* CameraMJPEGEmbeddedViewController.swift */; };
+		3DFBB8EF2569E07E00A7BD46 /* CameraHLSEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFBB8EE2569E07E00A7BD46 /* CameraHLSEmbeddedViewController.swift */; };
 		3DFE67CE218598F300F33019 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DFE67D0218598F300F33019 /* Localizable.strings */; };
 		583827DE22E36B9100784706 /* Palette2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583827DD22E36B9100784706 /* Palette2ViewController.swift */; };
 		583827E122E62D8700784706 /* Palette2PortsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583827E022E62D8700784706 /* Palette2PortsViewController.swift */; };
@@ -798,6 +800,8 @@
 		3DFA8073210E30C100B5BFAA /* CloudFilesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFilesManager.swift; sourceTree = "<group>"; };
 		3DFB776D23D4CDA700ADF315 /* PalettePingStatsIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalettePingStatsIntentHandler.swift; sourceTree = "<group>"; };
 		3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette2Utils.swift; sourceTree = "<group>"; };
+		3DFBB8E32569D2FF00A7BD46 /* CameraMJPEGEmbeddedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraMJPEGEmbeddedViewController.swift; sourceTree = "<group>"; };
+		3DFBB8EE2569E07E00A7BD46 /* CameraHLSEmbeddedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHLSEmbeddedViewController.swift; sourceTree = "<group>"; };
 		3DFE67CF218598F300F33019 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DFE67D1218598F700F33019 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3DFE67D2218598FA00F33019 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1432,6 +1436,8 @@
 				3D5D613521209F52000B66E7 /* CamerasViewController.swift */,
 				3D0E1C9C20E819B00036B5FE /* CameraEmbeddedViewController.swift */,
 				3D2821E62178167D00976611 /* CameraViewDelegate.swift */,
+				3DFBB8E32569D2FF00A7BD46 /* CameraMJPEGEmbeddedViewController.swift */,
+				3DFBB8EE2569E07E00A7BD46 /* CameraHLSEmbeddedViewController.swift */,
 			);
 			path = Cameras;
 			sourceTree = "<group>";
@@ -1996,11 +2002,13 @@
 				3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */,
 				3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */,
 				583827DE22E36B9100784706 /* Palette2ViewController.swift in Sources */,
+				3DFBB8EF2569E07E00A7BD46 /* CameraHLSEmbeddedViewController.swift in Sources */,
 				3DC6DB352455589A0091E548 /* FilamentManagerViewController.swift in Sources */,
 				3D33B7A1213F6A0D002A4BE3 /* UIUtils.swift in Sources */,
 				3D78BA9F21039D770090D79A /* Terminal.swift in Sources */,
 				3DD3F26C243A754800EA3F84 /* PrinterObserver.swift in Sources */,
 				3D8DA01E2144EDCE00F5FD07 /* SupportViewController.swift in Sources */,
+				3DFBB8E42569D2FF00A7BD46 /* CameraMJPEGEmbeddedViewController.swift in Sources */,
 				3DC6DB3B245605F40091E548 /* FilamentChangeSelectionViewController.swift in Sources */,
 				3D45280A20E15A370094CCB7 /* OctoPod.xcdatamodeld in Sources */,
 				3D9AAD5322B326250051BB1B /* AbstractNotificationsHandler.swift in Sources */,

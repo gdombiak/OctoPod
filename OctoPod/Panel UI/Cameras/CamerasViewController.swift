@@ -269,11 +269,14 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         var controller: CameraEmbeddedViewController
         // See if we can reuse existing controller
         let existing: CameraEmbeddedViewController? = orderedViewControllers.count > index ? orderedViewControllers[index] : nil
-        if let _ = existing {
+        let useHLS = url.hasSuffix(".m3u8")
+        if useHLS, let _ = existing as? CameraHLSEmbeddedViewController {
+            controller = existing!
+        } else if !useHLS, let _ = existing as? CameraMJPEGEmbeddedViewController{
             controller = existing!
         } else {
-            // Let's create a new one
-            controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CameraEmbeddedViewController") as! CameraEmbeddedViewController
+            // Let's create a new one. Use one for HLS and another one for MJPEG
+            controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: useHLS ? "CameraHLSEmbeddedViewController" : "CameraMJPEGEmbeddedViewController") as! CameraEmbeddedViewController
         }
         controller.cameraURL = url
         controller.cameraOrientation = cameraOrientation

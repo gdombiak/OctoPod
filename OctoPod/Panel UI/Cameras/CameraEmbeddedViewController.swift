@@ -8,8 +8,6 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
-    @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var printTimeLeftLabel: UILabel!
     @IBOutlet weak var tool0ActualLabel: UILabel!
     @IBOutlet weak var bedActualLabel: UILabel!
@@ -19,8 +17,6 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     @IBOutlet weak var tapMessageLabel: UILabel!
     @IBOutlet weak var pinchMessageLabel: UILabel!
-    
-    var streamingController: MjpegStreamingController?
     
     var cameraURL: String!
     var cameraOrientation: UIImage.Orientation!
@@ -33,12 +29,6 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
 
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        streamingController = MjpegStreamingController(imageView: imageView)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Start listening to events when app comes back from background
@@ -59,8 +49,8 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
 
         // Add a gesture recognizer to camera view so we can handle taps
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCameraTap))
-        imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(tapGesture)
+        gestureView().isUserInteractionEnabled = true
+        gestureView().addGestureRecognizer(tapGesture)
 
         renderPrinter()
         
@@ -91,7 +81,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     }
 
     func stopRenderingPrinter() {
-        streamingController?.stop()
+        stopPlaying()
     }
     
     func displayPrintStatus(enabled: Bool) {
@@ -169,10 +159,6 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
 
     // MARK: - UIScrollViewDelegate
     
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return imageView
-    }
-    
     func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
         // Record that user used this feature
         userUsedGestures()
@@ -186,7 +172,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     // MARK: - Private functions
 
-    fileprivate func renderPrinter() {
+    func renderPrinter() {
         // Hide error messages
         errorMessageLabel.isHidden = true
         errorURLButton.isHidden = true
@@ -198,72 +184,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             if let url = URL(string: cameraURL.trimmingCharacters(in: .whitespaces)) {
                 // Make sure that url button is clickable (visible when not hidden)
                 self.errorURLButton.isUserInteractionEnabled = true
-                // User authentication credentials if configured for the printer
-                if let username = printer.username, let password = printer.password {
-                    // Handle user authentication if webcam is configured this way (I hope people are being careful and doing this)
-                    streamingController?.authenticationHandler = { challenge in
-                        let credential = URLCredential(user: username, password: password, persistence: .forSession)
-                        return (.useCredential, credential)
-                    }
-                }
                 
-                streamingController?.authenticationFailedHandler = {
-                    DispatchQueue.main.async {
-                        self.imageView.image = nil
-                        // Display error messages
-                        self.errorMessageLabel.text = NSLocalizedString("Authentication failed", comment: "HTTP authentication failed")
-                        self.errorMessageLabel.numberOfLines = 1
-                        self.errorMessageLabel.isHidden = false
-                    }
-                }
-                
-                streamingController?.didFinishWithErrors = { error in
-                    DispatchQueue.main.async {
-                        self.imageView.image = nil
-                        // Display error messages
-                        self.errorMessageLabel.text = error.localizedDescription
-                        self.errorMessageLabel.numberOfLines = 2
-                        self.errorURLButton.setTitle(self.cameraURL, for: .normal)
-                        self.errorMessageLabel.isHidden = false
-                        self.errorURLButton.isHidden = false
-                    }
-                }
-                
-                streamingController?.didFinishWithHTTPErrors = { httpResponse in
-                    // We got a 404 or some 5XX error
-                    DispatchQueue.main.async {
-                        self.imageView.image = nil
-                        // Display error messages
-                        if httpResponse.statusCode == 503 && !printer.isStreamPathFromSettings() {
-                            // If URL to camera was not returned via /api/settings and
-                            // we got a 503 to the best guessed URL then show "no camera" error message
-                            self.errorMessageLabel.text = NSLocalizedString("No camera", comment: "No camera was found")
-                            self.errorMessageLabel.numberOfLines = 1
-                            self.errorMessageLabel.isHidden = false
-                            self.errorURLButton.isHidden = true
-                        } else {
-                            self.errorMessageLabel.text = String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode)
-                            self.errorMessageLabel.numberOfLines = 1
-                            self.errorURLButton.setTitle(self.cameraURL, for: .normal)
-                            self.errorMessageLabel.isHidden = false
-                            self.errorURLButton.isHidden = false
-                        }
-                    }
-                }
+                renderPrinter(printer: printer, url: url)
 
-                streamingController?.didRenderImage = { (image: UIImage) in
-                    // Notify that we got our first image and we know its ratio
-                    self.cameraViewDelegate?.imageAspectRatio(cameraIndex: self.cameraIndex, ratio: image.size.height / image.size.width)
-                }
-
-                streamingController?.didFinishLoading = {
-                    // Hide error messages since an image will be rendered (so that means that it worked!)
-                    self.errorMessageLabel.isHidden = true
-                    self.errorURLButton.isHidden = true
-                }
-                
-                // Start rendering the camera
-                streamingController?.play(url: url)
             } else {
                 // Camera URL was not valid (e.g. url string contains characters that are illegal in a URL, or is an empty string)
                 self.errorMessageLabel.text = NSLocalizedString("Invalid camera URL", comment: "URL of camera is invalid")
@@ -275,28 +198,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             }
         }
     }
-    
-    fileprivate func setCameraOrientation(newOrientation: UIImage.Orientation) {
-        streamingController?.imageOrientation = newOrientation
-        if newOrientation == UIImage.Orientation.left || newOrientation == UIImage.Orientation.leftMirrored || newOrientation == UIImage.Orientation.rightMirrored || newOrientation == UIImage.Orientation.right {
-            DispatchQueue.main.async {
-                self.imageView.contentMode = .scaleAspectFit
-            }
-        } else {
-            DispatchQueue.main.async {
-                self.imageView.contentMode = .scaleAspectFit
-            }
-        }
-    }
-    
-//    fileprivate func attributedLabel(_ text: String) -> NSAttributedString {
-//        return NSAttributedString(string: text, attributes: [
-//            NSAttributedString.Key.strokeColor: UIColor.black,
-//            NSAttributedString.Key.foregroundColor: UIColor.white, // UIColor(red: 118/255, green: 214/255, blue: 255/255, alpha: 1.0),
-//            NSAttributedString.Key.strokeWidth: -4.0,
-//            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 13.0)])
-//    }
-    
+
     fileprivate func userUsedGestures() {
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: CameraEmbeddedViewController.CAMERA_INFO_GESTURES)
@@ -308,6 +210,22 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     }
     
     @objc func appDidEnterBackground() {
-        streamingController?.stop()
+        stopPlaying()
+    }
+    
+    // MARK: - Abstract methods
+    
+    func setCameraOrientation(newOrientation: UIImage.Orientation) {
+    }
+
+    func renderPrinter(printer: Printer, url: URL) {
+    }
+
+    func stopPlaying() {
+    }
+    
+    func gestureView() -> UIView {
+        // Dummy return that will never execute
+        return view
     }
 }
