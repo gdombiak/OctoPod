@@ -1039,7 +1039,6 @@
 				3D537155240100FD00B28067 /* OctoPod TVUITests */,
 				3D4527FF20E15A370094CCB7 /* Products */,
 				2AF93107507B57283430D6F0 /* Frameworks */,
-				60CAB181B212B9D16A9EA3E1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1490,13 +1489,6 @@
 			path = Mosaic;
 			sourceTree = "<group>";
 		};
-		60CAB181B212B9D16A9EA3E1 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1676,7 +1668,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Gaston Dombiak";
 				TargetAttributes = {
 					3D4497D921B2623400736F0F = {
@@ -2661,6 +2653,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2723,6 +2716,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
