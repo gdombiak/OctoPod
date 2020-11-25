@@ -5,7 +5,7 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
     @IBOutlet weak var playerView: MyAVPlayerView!
     
     var player: AVPlayer?
-    var itemDelegate: ResourceLoadingDelegate?
+    var itemDelegate: AVAssetResourceLoaderDelegate?
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == #keyPath(AVPlayerItem.status) {
@@ -51,8 +51,8 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
         let asset = AVURLAsset(url: url)
         
         if let username = printer.username, let password = printer.password {
-            self.itemDelegate = ResourceLoadingDelegate(username: username, password: password)
-            asset.resourceLoader.setDelegate(self.itemDelegate, queue:  DispatchQueue.global(qos: .userInitiated))
+            itemDelegate = UIUtils.getAVAssetResourceLoaderDelegate(username: username, password: password)
+            asset.resourceLoader.setDelegate(itemDelegate, queue:  DispatchQueue.global(qos: .userInitiated))
         }
         
         let playerItem = AVPlayerItem(asset: asset)
@@ -60,23 +60,23 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
         playerItem.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status ), options: [.old, .new], context: nil)
         
         // Create AVPlayer object
-        self.player = AVPlayer(playerItem: playerItem)
+        player = AVPlayer(playerItem: playerItem)
         
         // Add player to AVPlayerLayer
-        let castedLayer = self.playerView.layer as! AVPlayerLayer
-        castedLayer.player = self.player
+        let castedLayer = playerView.layer as! AVPlayerLayer
+        castedLayer.player = player
         
         // Notify aspect ratio to use for this camera
-        if let camera = printer.getMultiCameras()?[self.cameraIndex] {
+        if let camera = printer.getMultiCameras()?[cameraIndex] {
             let ratio = camera.streamRatio == "16:9" ? CGFloat(0.5625) : CGFloat(0.75)
-            self.cameraViewDelegate?.imageAspectRatio(cameraIndex: self.cameraIndex, ratio: ratio)
+            cameraViewDelegate?.imageAspectRatio(cameraIndex: cameraIndex, ratio: ratio)
         } else {
             let ratio = printer.firstCameraAspectRatio16_9 ? CGFloat(0.5625) : CGFloat(0.75)
-            self.cameraViewDelegate?.imageAspectRatio(cameraIndex: self.cameraIndex, ratio: ratio)
+            cameraViewDelegate?.imageAspectRatio(cameraIndex: cameraIndex, ratio: ratio)
         }
         
         // Play Video
-        self.player!.play()
+        player!.play()
     }
     
     override func setCameraOrientation(newOrientation: UIImage.Orientation) {
@@ -136,27 +136,3 @@ class MyAVPlayerView: UIView {
     }
 }
 
-/// Custom AVAssetResourceLoaderDelegate for handing authentication
-class ResourceLoadingDelegate:NSObject, AVAssetResourceLoaderDelegate {
-    let username: String
-    let password: String
-    
-    init(username: String, password: String) {
-        self.username = username
-        self.password = password
-    }
-    
-    func resourceLoader(_ resourceLoader: AVAssetResourceLoader, shouldWaitForResponseTo authenticationChallenge: URLAuthenticationChallenge) -> Bool {
-        if let sender = authenticationChallenge.sender {
-            if authenticationChallenge.previousFailureCount > 0 {
-                sender.cancel(authenticationChallenge)
-                return false
-            } else {
-                let credential = URLCredential(user: username, password: password, persistence: .forSession)
-                sender.use(credential, for: authenticationChallenge)
-                return true
-            }
-        }
-        return false
-    }
-}

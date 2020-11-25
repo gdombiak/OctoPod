@@ -243,6 +243,9 @@
 		3DBAE49F20E6821900D2137D /* SelectDefaultPrinterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE49E20E6821900D2137D /* SelectDefaultPrinterViewController.swift */; };
 		3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */; };
 		3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */; };
+		3DBFB2E8256E1B2300DC43E8 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
+		3DBFB2F2256E1D1100DC43E8 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
+		3DBFB2FC256E1D1100DC43E8 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
 		3DC0AD802406320200E0B461 /* BriefView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0AD7F2406320200E0B461 /* BriefView.swift */; };
 		3DC2363F2401029700D9EF28 /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873620E3EBC80035AE0B /* Printer.swift */; };
 		3DC236402401029E00D9EF28 /* IPPlug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DE421817B23004A4223 /* IPPlug.swift */; };
@@ -732,6 +735,7 @@
 		3DBB692222F12DD600C21430 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DBB692322F12DD600C21430 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DBCE84721B4925F00ABB42D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSThumbnailUtil.swift; sourceTree = "<group>"; };
 		3DC0AD7F2406320200E0B461 /* BriefView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefView.swift; sourceTree = "<group>"; };
 		3DC2364B2401061400D9EF28 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		3DC2365024010DED00D9EF28 /* DetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedView.swift; sourceTree = "<group>"; };
@@ -1080,6 +1084,7 @@
 				3D8DA0192144716B00F5FD07 /* AppConfiguration.swift */,
 				3D42AC1021731494004D9FD0 /* AppConfigurationDelegate.swift */,
 				3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */,
+				3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */,
 				3D45280520E15A370094CCB7 /* Main.storyboard */,
 				3D45280B20E15A380094CCB7 /* Assets.xcassets */,
 				3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */,
@@ -1968,6 +1973,7 @@
 				3D7C88482152B25D009FECEF /* CloudKitPrinterLogEntry.swift in Sources */,
 				3DB932CA24475B7700A154FF /* EnclosureOutput.swift in Sources */,
 				3D1A93682132F5E70050ED9A /* ChildrenCustomControlViewController.swift in Sources */,
+				3DBFB2E8256E1B2300DC43E8 /* HLSThumbnailUtil.swift in Sources */,
 				3D831E53210850E60004B7A5 /* SettingsViewController.swift in Sources */,
 				3D9DC75B231D867B00AE4DF7 /* CustomControlViewCell.swift in Sources */,
 				3DA7DD502426A51700F686C8 /* LayerNotificationsViewController.swift in Sources */,
@@ -2086,6 +2092,7 @@
 				3DC23657240113AD00D9EF28 /* CustomControl.swift in Sources */,
 				3DC236402401029E00D9EF28 /* IPPlug.swift in Sources */,
 				3DC2365C240113E100D9EF28 /* ControlInput.swift in Sources */,
+				3DBFB2F2256E1D1100DC43E8 /* HLSThumbnailUtil.swift in Sources */,
 				3D778F8B24030F8F00B68942 /* TVPrinterManager.swift in Sources */,
 				3DC2365A240113CC00D9EF28 /* Palette2Utils.swift in Sources */,
 				3DC2363F2401029700D9EF28 /* Printer.swift in Sources */,
@@ -2180,6 +2187,7 @@
 			files = (
 				3DF383622505F84D003C803D /* CancelObject.swift in Sources */,
 				3D97074F2506E0B90076C959 /* CameraService.swift in Sources */,
+				3DBFB2FC256E1D1100DC43E8 /* HLSThumbnailUtil.swift in Sources */,
 				3D91E923250D7F3A008A59CD /* OctoPodWidget14.intentdefinition in Sources */,
 				3DF383592505F7F4003C803D /* HTTPClient.swift in Sources */,
 				3DA0BD562506DB9B008233DE /* JobDetailsView.swift in Sources */,

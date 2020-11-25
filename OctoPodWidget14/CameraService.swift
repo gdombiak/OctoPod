@@ -12,6 +12,7 @@ class CameraService: ObservableObject {
     private var password: String?
     
     private var streamingController: MjpegStreamingController!
+    private var hlsThumbnailGenerator: HLSThumbnailUtil?
 
     init(cameraURL: String, cameraOrientation: Int, username: String?, password: String?) {
         self.cameraURL = cameraURL
@@ -23,6 +24,24 @@ class CameraService: ObservableObject {
     }
     
     func renderImage(completion: @escaping () -> ()) {
+        if let url = URL(string: cameraURL) {
+            if UIUtils.isHLS(url: cameraURL) {
+                renderHLSImage(cameraURL: url, completion: completion)
+            } else {
+                renderMJPEGImage(cameraURL: url, completion: completion)
+            }
+        } else {
+            self.image = nil
+            // Display error messages
+            self.errorMessage = NSLocalizedString("No camera", comment: "No camera was configured")
+            // Execute completion block when done
+            completion()
+        }
+    }
+    
+    // MARK: - Private functions
+
+    fileprivate func renderMJPEGImage(cameraURL: URL, completion: @escaping () -> ()) {
         // User authentication credentials if configured for the printer
         if let username = self.username, let password = self.password {
             // Handle user authentication if webcam is configured this way (I hope people are being careful and doing this)
@@ -75,11 +94,31 @@ class CameraService: ObservableObject {
             }
         }
 
-        if let cameraURL = URL(string: cameraURL) {
-            streamingController.imageOrientation = UIImage.Orientation(rawValue: self.cameraOrientation)!
-            // Get first image and then stop streaming next images
-            streamingController.play(url: cameraURL)
-        }
+        streamingController.imageOrientation = UIImage.Orientation(rawValue: self.cameraOrientation)!
+        // Get first image and then stop streaming next images
+        streamingController.play(url: cameraURL)
     }
-
+    
+    fileprivate func renderHLSImage(cameraURL: URL, completion: @escaping () -> ()) {
+        hlsThumbnailGenerator = HLSThumbnailUtil(url: cameraURL, username: username, password: password) { (image: UIImage?) in
+            if let image = image {
+                DispatchQueue.main.async {
+                    // Notify that we got our first image and we know its ratio
+                    self.image = image
+                    self.imageRatio = image.size.height / image.size.width
+                    // Execute completion block when done
+                    completion()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.image = nil
+                    // Display error messages
+                    self.errorMessage = "No thumbnail generated"
+                    // Execute completion block when done
+                    completion()
+                }
+            }
+        }
+        hlsThumbnailGenerator!.generate()
+    }
 }

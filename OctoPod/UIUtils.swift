@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import AVKit
 
 class UIUtils {
 
@@ -73,7 +74,7 @@ class UIUtils {
         return ""
     }
     
-    // Converts number of seconds into a string that represents aproximate time (e.g. About 23h 10m)
+    /// Converts number of seconds into a string that represents aproximate time (e.g. About 23h 10m)
     static func secondsToEstimatedPrintTime(seconds: Double?) -> String {
         if seconds == nil || seconds == 0 {
             return ""
@@ -134,6 +135,14 @@ class UIUtils {
             return ""
         }
     }
+    
+    static func isHLS(url: String) -> Bool {
+        return url.hasSuffix(".m3u8")
+    }
+    
+    static func getAVAssetResourceLoaderDelegate(username: String, password: String) -> AVAssetResourceLoaderDelegate {
+        return ResourceLoadingDelegate(username: username, password: password)
+    }    
 }
 
 extension UIImage {
@@ -175,5 +184,30 @@ extension Date {
         }
         let weeks = secondsAgo / week
         return weeks == 1 ? NSLocalizedString("1 week ago", comment: "") :  String(format: NSLocalizedString("weeks ago", comment: ""), weeks)
+    }
+}
+
+/// Custom AVAssetResourceLoaderDelegate for handing authentication
+class ResourceLoadingDelegate:NSObject, AVAssetResourceLoaderDelegate {
+    let username: String
+    let password: String
+    
+    init(username: String, password: String) {
+        self.username = username
+        self.password = password
+    }
+    
+    func resourceLoader(_ resourceLoader: AVAssetResourceLoader, shouldWaitForResponseTo authenticationChallenge: URLAuthenticationChallenge) -> Bool {
+        if let sender = authenticationChallenge.sender {
+            if authenticationChallenge.previousFailureCount > 0 {
+                sender.cancel(authenticationChallenge)
+                return false
+            } else {
+                let credential = URLCredential(user: username, password: password, persistence: .forSession)
+                sender.use(credential, for: authenticationChallenge)
+                return true
+            }
+        }
+        return false
     }
 }

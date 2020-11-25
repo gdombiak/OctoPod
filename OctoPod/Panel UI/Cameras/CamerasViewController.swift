@@ -269,7 +269,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         var controller: CameraEmbeddedViewController
         // See if we can reuse existing controller
         let existing: CameraEmbeddedViewController? = orderedViewControllers.count > index ? orderedViewControllers[index] : nil
-        let useHLS = url.hasSuffix(".m3u8")
+        let useHLS = UIUtils.isHLS(url: url)
         if useHLS, let _ = existing as? CameraHLSEmbeddedViewController {
             controller = existing!
         } else if !useHLS, let _ = existing as? CameraMJPEGEmbeddedViewController{

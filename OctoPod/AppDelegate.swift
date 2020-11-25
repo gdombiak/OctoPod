@@ -3,6 +3,7 @@ import CoreData
 import CloudKit
 import UserNotifications
 import Intents
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -54,7 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Activate WatchkitConnectionSession when iOS app is launched. We need to do it here since the app may
         // be launched in background when requested from the AppleWatch app
         watchSessionManager.start()
-
+        
+        // Configure audio to be in the AVAudioSessionCategoryAmbient category. HLS video may start playing audio
+        // and user may be listening to music so do not stop music automatically. Let user decide
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient,
+                                                         mode: AVAudioSession.Mode.moviePlayback,
+                                                         options: [.mixWithOthers])
         return true
     }
 
