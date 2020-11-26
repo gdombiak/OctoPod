@@ -392,7 +392,9 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     
     fileprivate func recreateSocket() {
         // Remove self as a delegate from old socket
-        socket!.advancedDelegate = nil
+        if let socket = socket {
+            socket.advancedDelegate = nil
+        }
         
         createWebSocket()
         
