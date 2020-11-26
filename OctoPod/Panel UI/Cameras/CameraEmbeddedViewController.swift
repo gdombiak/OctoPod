@@ -52,7 +52,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         gestureView().isUserInteractionEnabled = true
         gestureView().addGestureRecognizer(tapGesture)
 
-        renderPrinter()
+        renderPrinter(appActive: UIApplication.shared.applicationState == .active)
         
         // Listen to changes to OctoPrint Settings in case the camera orientation has changed
         octoprintClient.octoPrintSettingsDelegates.append(self)
@@ -101,11 +101,11 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     // MARK: - Notifications
 
     func printerSelectedChanged() {
-        renderPrinter()
+        renderPrinter(appActive: UIApplication.shared.applicationState == .active)
     }
     
     func cameraSelectedChanged() {
-        renderPrinter()
+        renderPrinter(appActive: UIApplication.shared.applicationState == .active)
     }
     
     func currentStateUpdated(event: CurrentStateEvent) {
@@ -172,7 +172,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     // MARK: - Private functions
 
-    func renderPrinter() {
+    func renderPrinter(appActive: Bool) {
         // Hide error messages
         errorMessageLabel.isHidden = true
         errorURLButton.isHidden = true
@@ -185,7 +185,10 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                 // Make sure that url button is clickable (visible when not hidden)
                 self.errorURLButton.isUserInteractionEnabled = true
                 
-                renderPrinter(printer: printer, url: url)
+                if appActive {
+                    // Only render camera when running in foreground (this will save some battery and network/cell usage)
+                    renderPrinter(printer: printer, url: url)
+                }
 
             } else {
                 // Camera URL was not valid (e.g. url string contains characters that are illegal in a URL, or is an empty string)
@@ -206,7 +209,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
 
     @objc func appWillEnterForeground() {
         // Resume rendering printer
-        renderPrinter()
+        renderPrinter(appActive: true)
     }
     
     @objc func appDidEnterBackground() {

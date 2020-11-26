@@ -216,7 +216,6 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
     
     // MARK: - WatchSessionManagerDelegate
     
-    // Notification that a new default printer has been selected from the Apple Watch app
     func defaultPrinterChanged() {
         // Go back to root folder since we have a new printer
         DispatchQueue.main.async {

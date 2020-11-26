@@ -257,6 +257,14 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
             for delegate in delegates {
                 delegate.defaultPrinterChanged()
             }
+            // If not running in foreground then disconnect websocket
+            // For some reason even if app is in background websocket remains open
+            // and received data which potentially consumes cellular data
+            DispatchQueue.main.async {
+                if UIApplication.shared.applicationState != .active {
+                    self.octoprintClient.disconnectFromServer()
+                }
+            }
         }
     }
 
@@ -511,7 +519,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         var sharedNozzle = false
         var palette2PluginInstalled = false
         if let printer = printerManager.getDefaultPrinter() {
-            if printer.name == printerName {
+            if printer.name == printerName && octoprintClient.octoPrintRESTClient.isConfigured() {
                 restClient = octoprintClient.octoPrintRESTClient
                 sharedNozzle = printer.sharedNozzle
                 palette2PluginInstalled = printer.palette2Installed

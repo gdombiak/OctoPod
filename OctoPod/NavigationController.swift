@@ -54,7 +54,6 @@ class NavigationController: UINavigationController, OctoPrintSettingsDelegate, W
     
     // MARK: - WatchSessionManagerDelegate
     
-    // Notification that a new default printer has been selected from the Apple Watch app
     func defaultPrinterChanged() {
         DispatchQueue.main.async {
             let printer = self.printerManager.getDefaultPrinter()

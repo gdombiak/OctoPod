@@ -327,7 +327,6 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     
     // MARK: - WatchSessionManagerDelegate
     
-    // Notification that a new default printer has been selected from the Apple Watch app
     func defaultPrinterChanged() {
         DispatchQueue.main.async {
             self.refreshNewSelectedPrinter()
