@@ -98,7 +98,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     }
     
     func currentStateUpdated(event: CurrentStateEvent) {
-        if let index = currentIndex {
+        if let index = currentIndex, orderedViewControllers.count > index {
             orderedViewControllers[index].currentStateUpdated(event: event)
         }
     }
