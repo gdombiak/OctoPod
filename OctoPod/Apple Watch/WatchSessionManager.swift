@@ -12,6 +12,10 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     
     private var lastPushComplicationUpdate: Date?
     private var lastPushedCompletion: Double?
+    
+    // We need to keep this as an instance variable so it is not garbage collected and crashes
+    // the app since it uses KVO which crashes if observer has been GC'ed
+    private var hlsThumbnailGenerator: HLSThumbnailUtil?
 
     init(printerManager: PrinterManager, cloudKitPrinterManager: CloudKitPrinterManager, octoprintClient: OctoPrintClient) {
         self.printerManager = printerManager
@@ -380,77 +384,62 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     
     fileprivate func camera_take(_ replyHandler: @escaping ([String : Any]) -> Void, camera: Dictionary<String, Any>) {
         if let url = camera["url"] as? String, let cameraId = camera["cameraId"] as? String {
-            let streamingController = MjpegStreamingController()
-            let screenWidth = camera["width"] as! Int
-
-            if let username = camera["username"] as? String, let password = camera["password"] as? String {
-                // User authentication credentials if configured for the printer
-                streamingController.authenticationHandler = { challenge in
-                    let credential = URLCredential(user: username, password: password, persistence: .forSession)
-                    return (.useCredential, credential)
+            if let cameraURL = URL(string: url) {
+                let screenWidth = camera["width"] as! Int
+                let username = camera["username"] as? String
+                let password = camera["password"] as? String
+                var imageOrientation = UIImage.Orientation.up
+                if let orientation = camera["orientation"] as? Int {
+                    imageOrientation = UIImage.Orientation(rawValue: orientation)!
                 }
-            }
-            
-            streamingController.authenticationFailedHandler = {
-                let message = NSLocalizedString("Authentication failed", comment: "HTTP authentication failed")
-                replyHandler(["error": message])
-            }
 
-            streamingController.didFinishWithErrors = { error in
-                replyHandler(["error": error.localizedDescription])
-            }
-            
-            streamingController.didFinishWithHTTPErrors = { httpResponse in
-                // We got a 404 or some 5XX error
-                let message = String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode)
-                replyHandler(["error": message])
-            }
-
-            streamingController.didRenderImage = { (image: UIImage) in
-                // Stop loading next jpeg image (MJPEG is a stream of jpegs)
-                streamingController.stop()
-                var newImage: UIImage = image
-                DispatchQueue.main.async {
-                    // Resize image to save space
-                    if let resizedImage = image.resizeWithWidth(width: CGFloat(screenWidth - 10)) {
-                        newImage = resizedImage
-                    } else {
-                        NSLog("Failed to reduce image size")
-                    }
-                    // Save image to file with quality 80% to further reduce size. (Eg: 300KB -> 48K)
-                    if let data = newImage.jpegData(compressionQuality: 0.80) {
-                        if let fileURL = self.session?.watchDirectoryURL?.appendingPathComponent(UUID().uuidString) {
-                            do {
-                                try data.write(to: fileURL)
-                                // Send file to Apple Watch
-                                self.session?.transferFile(fileURL, metadata: ["cameraId": cameraId])
-                                // Send back confirmation that image file was created (DO WE NEED THIS)
-                                replyHandler(["done": ""])
+                let completion = { (image: UIImage?, reply: [String : Any]?) in
+                    if let image = image {
+                        var newImage: UIImage = image
+                        DispatchQueue.main.async {
+                            // Resize image to save space
+                            if let resizedImage = image.resizeWithWidth(width: CGFloat(screenWidth - 10)) {
+                                newImage = resizedImage
+                            } else {
+                                NSLog("Failed to reduce image size")
                             }
-                            catch {
-                                NSLog("Failed to save JPEG file. Error: \(error)")
+                            // Save image to file with quality 80% to further reduce size. (Eg: 300KB -> 48K)
+                            if let data = newImage.jpegData(compressionQuality: 0.80) {
+                                if let fileURL = self.session?.watchDirectoryURL?.appendingPathComponent(UUID().uuidString) {
+                                    do {
+                                        try data.write(to: fileURL)
+                                        // Send file to Apple Watch
+                                        self.session?.transferFile(fileURL, metadata: ["cameraId": cameraId])
+                                        // Send back confirmation that image file was created (DO WE NEED THIS)
+                                        replyHandler(["done": ""])
+                                    }
+                                    catch {
+                                        NSLog("Failed to save JPEG file. Error: \(error)")
+                                        let message = NSLocalizedString("Failed to save JPEG file", comment: "")
+                                        replyHandler(["error": message, "retry": true])
+                                    }
+                                    
+                                } else {
+                                    NSLog("WARNING - watchDirectoryURL seems to be NIL")
+                                    let message = NSLocalizedString("Failed to save JPEG file", comment: "")
+                                    replyHandler(["error": message, "retry": true])
+                                }
+                            } else {
                                 let message = NSLocalizedString("Failed to save JPEG file", comment: "")
                                 replyHandler(["error": message, "retry": true])
                             }
-                            
-                        } else {
-                            NSLog("WARNING - watchDirectoryURL seems to be NIL")
-                            let message = NSLocalizedString("Failed to save JPEG file", comment: "")
-                            replyHandler(["error": message, "retry": true])
                         }
-                    } else {
-                        let message = NSLocalizedString("Failed to save JPEG file", comment: "")
-                        replyHandler(["error": message, "retry": true])
+                    } else if let reply = reply {
+                        // No image so reply is an error
+                        replyHandler(reply)
                     }
                 }
-            }
-
-            if let cameraURL = URL(string: url) {
-                if let orientation = camera["orientation"] as? Int {
-                    streamingController.imageOrientation = UIImage.Orientation(rawValue: orientation)!
+                
+                if UIUtils.isHLS(url: url) {
+                    renderHLSImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, completion: completion)
+                } else {
+                    renderMJPEGImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, completion: completion)
                 }
-                // Get first image and then stop streaming next images
-                streamingController.play(url: cameraURL)
             } else {
                 NSLog("Invalid camera URL: \(url)")
                 let message = NSLocalizedString("Invalid camera URL", comment: "")
@@ -499,6 +488,56 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     }
 
     // MARK: - Private functions
+    
+    fileprivate func renderMJPEGImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, completion: @escaping (UIImage?, [String : Any]?) -> ()) {
+        let streamingController = MjpegStreamingController()
+
+        if let username = username, let password = password {
+            // User authentication credentials if configured for the printer
+            streamingController.authenticationHandler = { challenge in
+                let credential = URLCredential(user: username, password: password, persistence: .forSession)
+                return (.useCredential, credential)
+            }
+        }
+        
+        streamingController.authenticationFailedHandler = {
+            let message = NSLocalizedString("Authentication failed", comment: "HTTP authentication failed")
+            completion(nil, ["error": message])
+        }
+
+        streamingController.didFinishWithErrors = { error in
+            completion(nil, ["error": error.localizedDescription])
+        }
+        
+        streamingController.didFinishWithHTTPErrors = { httpResponse in
+            // We got a 404 or some 5XX error
+            let message = String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode)
+            completion(nil, ["error": message])
+        }
+
+        streamingController.didRenderImage = { (image: UIImage) in
+            // Stop loading next jpeg image (MJPEG is a stream of jpegs)
+            streamingController.stop()
+            completion(image, nil)
+        }
+
+        streamingController.imageOrientation = imageOrientation
+        // Get first image and then stop streaming next images
+        streamingController.play(url: cameraURL)
+    }
+    
+    fileprivate func renderHLSImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, completion: @escaping (UIImage?, [String : Any]?) -> ()) {
+        hlsThumbnailGenerator = HLSThumbnailUtil(url: cameraURL, imageOrientation: imageOrientation, username: username, password: password) { (image: UIImage?) in
+            if let image = image {
+                // Execute completion block when done
+                completion(image, nil)
+            } else {
+                // Execute completion block when done
+                completion(nil, ["error": "No thumbnail generated"])
+            }
+        }
+        hlsThumbnailGenerator!.generate()
+    }
     
     fileprivate func getSession() -> WCSession? {
         if let session = session {
