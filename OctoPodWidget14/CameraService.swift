@@ -100,7 +100,8 @@ class CameraService: ObservableObject {
     }
     
     fileprivate func renderHLSImage(cameraURL: URL, completion: @escaping () -> ()) {
-        hlsThumbnailGenerator = HLSThumbnailUtil(url: cameraURL, username: username, password: password) { (image: UIImage?) in
+        let imageOrientation = UIImage.Orientation(rawValue: self.cameraOrientation)!
+        hlsThumbnailGenerator = HLSThumbnailUtil(url: cameraURL, imageOrientation: imageOrientation, username: username, password: password) { (image: UIImage?) in
             if let image = image {
                 DispatchQueue.main.async {
                     // Notify that we got our first image and we know its ratio

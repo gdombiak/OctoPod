@@ -5,16 +5,18 @@ class HLSThumbnailUtil: NSObject {
     let url: URL
     let username: String?
     let password: String?
+    let imageOrientation: UIImage.Orientation
     let complete: ((UIImage?) -> Void)
     
     var player: AVPlayer?
     var itemDelegate: AVAssetResourceLoaderDelegate?
     var videOutput: AVPlayerItemVideoOutput?
     
-    init(url: URL, username: String?, password: String?, complete: @escaping ((UIImage?) -> Void)) {
+    init(url: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, complete: @escaping ((UIImage?) -> Void)) {
         self.url = url
         self.username = username
         self.password = password
+        self.imageOrientation = imageOrientation
         self.complete = complete
     }
     
@@ -96,8 +98,16 @@ class HLSThumbnailUtil: NSObject {
             let ciImage: CIImage = CIImage(cvPixelBuffer: buffer)
             let context: CIContext = CIContext.init(options: nil)
             if let cgImage: CGImage = context.createCGImage(ciImage, from: ciImage.extent) {
+                let receivedImage: UIImage
+                if imageOrientation != UIImage.Orientation.up {
+                    // Rotate image based on requested orientation
+                    receivedImage = UIImage(cgImage: cgImage, scale: CGFloat(1.0), orientation: imageOrientation)
+                } else {
+                    receivedImage = UIImage(cgImage: cgImage)
+                }
+
                 // Execute complete block with fetched image
-                complete(UIImage(cgImage: cgImage))
+                complete(receivedImage)
                 return
             }
         }
