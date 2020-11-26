@@ -63,4 +63,8 @@ class UIUtils {
             return ""
         }
     }
+
+    static func isHLS(url: String) -> Bool {
+        return url.hasSuffix(".m3u8")
+    }    
 }

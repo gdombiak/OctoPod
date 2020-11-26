@@ -131,26 +131,39 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
                 // Disable refresh button to indicate we are "refreshing"
                 refreshButton.setEnabled(false)
                 // Ask iOS App to fetch the image and resize it on the phone so it gets faster to the Apple Watch
-                OctoPrintClient.instance.camera_take(url: url, username: username, password: password, orientation: orientation, cameraId: cameraId) { (requested: Bool, retry: Bool?, error: String?) in
-                    if !requested {
-                        if retry == true {
-                            // For some reason request to iOS App failed to do all the work on
-                            // the Apple Watch. It can take many seconds to get the image
-                            self.directCameraFetch(url: url, orientation: orientation, username: username, password: password, cameraId: cameraId)
-                        } else {
-                            if let error = error {
-                                // iOS App found an error and we need to display it in Apple Watch
-                                DispatchQueue.main.async {
-                                    if cameraId == self.currentCameraId() {
-                                        self.cameraImage.setImage(nil)
-                                        // Display error messages
-                                        self.errorMessageLabel.setText(error)
-                                        self.errorMessageLabel.setHidden(false)
-                                        // Done refreshing so enable button again
-                                        self.refreshButton.setEnabled(true)
-                                    }
+                OctoPrintClient.instance.camera_take(url: url, username: username, password: password, orientation: orientation, cameraId: cameraId) { (requested: Bool, error: String?) in
+                    if requested {
+                        if let error = error {
+                            // iOS App found an error and we need to display it in Apple Watch
+                            DispatchQueue.main.async {
+                                if cameraId == self.currentCameraId() {
+                                    self.cameraImage.setImage(nil)
+                                    // Display error messages
+                                    self.errorMessageLabel.setText(error)
+                                    self.errorMessageLabel.setHidden(false)
+                                    // Done refreshing so enable button again
+                                    self.refreshButton.setEnabled(true)
                                 }
                             }
+                        }
+                    } else {
+                        // iPhone is out of reach or some Watch Connectivity error happened
+                        // Check if we can do a direct fetch from Apple Watch
+                        if UIUtils.isHLS(url: url) {
+                            // Show error since Apple Watch cannot render HLS feeds
+                            DispatchQueue.main.async {
+                                if cameraId == self.currentCameraId() {
+                                    self.cameraImage.setImage(nil)
+                                    // Display error messages
+                                    self.errorMessageLabel.setText(NSLocalizedString("HLS not supported", comment: "Apple Watch cannot render HTTP Live Streaming feeds"))
+                                    self.errorMessageLabel.setHidden(false)
+                                    // Done refreshing so enable button again
+                                    self.refreshButton.setEnabled(true)
+                                }
+                            }
+                        } else {
+                            // Fallback to fetching image directly from watch (might be slower)
+                            self.directCameraFetch(url: url, orientation: orientation, username: username, password: password, cameraId: cameraId)
                         }
                     }
                 }

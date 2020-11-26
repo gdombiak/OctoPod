@@ -166,7 +166,7 @@ class OctoPrintClient {
     
     // MARK: - Camera operations
     
-    func camera_take(url: String, username: String?, password: String?, orientation: Int, cameraId: String, callback: @escaping (Bool, Bool?, String?) -> Void) {
+    func camera_take(url: String, username: String?, password: String?, orientation: Int, cameraId: String, callback: @escaping (Bool, String?) -> Void) {
         if let session = sessionToiOS() {
             var requestDetail = ["url": url, "orientation" : orientation, "cameraId": cameraId] as [String : Any]
             if let username = username {
@@ -178,17 +178,34 @@ class OctoPrintClient {
             requestDetail["width"] = WKInterfaceDevice.current().screenBounds.size.width
             session.sendMessage(["camera_take" : requestDetail], replyHandler: { (reply: [String : Any]) in
                 if let error = reply["error"] as? String {
-                    callback(false, reply["retry"] != nil, error)
+                    if reply["retry"] != nil {
+                        // Retry one more time in case it was a transient error
+                        session.sendMessage(["camera_take" : requestDetail], replyHandler: { (reply: [String : Any]) in
+                            if let error = reply["error"] as? String {
+                                // Persistent error so tell that we requested the image and an error happened
+                                callback(true, error)
+                            } else {
+                                // Image was successfully requested this time. It will be be transfered as a file.
+                                // WatchSessionManager#session(session: WCSession, didReceive) will be invoked in another thread
+                                callback(true, nil)
+                            }
+                        })
+                    } else {
+                        // Unrecoverable error so tell that we requested the image and an error happened
+                        callback(true, error)
+                    }
                 } else {
-                    callback(true, nil, nil)
+                    // Image was successfully requested. It will be be transfered as a file.
+                    // WatchSessionManager#session(session: WCSession, didReceive) will be invoked in another thread
+                    callback(true, nil)
                 }
             }) { (error: Error) in
                 NSLog("Error asking 'camera_take' with Watch Connectivity Framework. Error: \(error)")
-                callback(false, true, error.localizedDescription)
+                callback(false, error.localizedDescription)
             }
         } else {
             NSLog("Using fallback for 'camera_take' since Watch Connectivity Framework is not available.")
-            callback(false, true, nil)
+            callback(false, nil)
         }
     }
     
