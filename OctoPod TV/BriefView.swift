@@ -1,4 +1,5 @@
 import SwiftUI
+import AVKit
 
 struct BriefView: View {
     let printer: Printer
@@ -55,6 +56,13 @@ struct BriefView: View {
                         Image(uiImage: cameraService.image!)
                             .resizable()
                             .scaledToFit()
+                            .frame(height: 320)
+                    } else if cameraService.player != nil {
+                        VideoPlayer(player: cameraService.player!)
+                            .disabled(true)  // Disable so cannot be selected
+                            .rotation3DEffect(cameraService.avPlayerEffect3D1!.angle, axis: cameraService.avPlayerEffect3D1!.axis)
+                            .rotation3DEffect(cameraService.avPlayerEffect3D2!.angle, axis: cameraService.avPlayerEffect3D2!.axis)
+                            .rotationEffect(cameraService.avPlayerEffect!)
                             .frame(height: 320)
                     } else {
                         Image("Image")

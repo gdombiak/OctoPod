@@ -244,7 +244,6 @@
 		3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */; };
 		3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */; };
 		3DBFB2E8256E1B2300DC43E8 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
-		3DBFB2F2256E1D1100DC43E8 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
 		3DBFB2FC256E1D1100DC43E8 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
 		3DC0AD802406320200E0B461 /* BriefView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0AD7F2406320200E0B461 /* BriefView.swift */; };
 		3DC2363F2401029700D9EF28 /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873620E3EBC80035AE0B /* Printer.swift */; };
@@ -2092,7 +2091,6 @@
 				3DC23657240113AD00D9EF28 /* CustomControl.swift in Sources */,
 				3DC236402401029E00D9EF28 /* IPPlug.swift in Sources */,
 				3DC2365C240113E100D9EF28 /* ControlInput.swift in Sources */,
-				3DBFB2F2256E1D1100DC43E8 /* HLSThumbnailUtil.swift in Sources */,
 				3D778F8B24030F8F00B68942 /* TVPrinterManager.swift in Sources */,
 				3DC2365A240113CC00D9EF28 /* Palette2Utils.swift in Sources */,
 				3DC2363F2401029700D9EF28 /* Printer.swift in Sources */,
@@ -2823,7 +2821,7 @@
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 13.0;
+				TVOS_DEPLOYMENT_TARGET = 14.0;
 			};
 			name = Debug;
 		};
@@ -2849,7 +2847,7 @@
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 13.0;
+				TVOS_DEPLOYMENT_TARGET = 14.0;
 			};
 			name = Release;
 		};

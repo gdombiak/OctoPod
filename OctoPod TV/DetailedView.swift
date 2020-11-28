@@ -1,4 +1,5 @@
 import SwiftUI
+import AVKit
 
 struct DetailedView : View {
     let name: String
@@ -7,6 +8,7 @@ struct DetailedView : View {
     
     @EnvironmentObject var service: ViewService
     @EnvironmentObject var cameraService: CameraService
+    @Namespace private var namespace
     
     var body: some View {
         GeometryReader { geometry in
@@ -82,6 +84,15 @@ struct DetailedView : View {
                                 .resizable()
                                 .scaledToFill()
                                 .frame(maxHeight: geometry.size.height * 0.85)
+                        } else if cameraService.detailedPlayer != nil {
+                            Spacer()
+                            VideoPlayer(player: cameraService.detailedPlayer!)
+                                .prefersDefaultFocus(false, in: self.namespace)
+                                .disabled(true)  // Disable so cannot be selected
+                                .rotation3DEffect(cameraService.avPlayerEffect3D1!.angle, axis: cameraService.avPlayerEffect3D1!.axis)
+                                .rotation3DEffect(cameraService.avPlayerEffect3D2!.angle, axis: cameraService.avPlayerEffect3D2!.axis)
+                                .rotationEffect(cameraService.avPlayerEffect!)
+                                .frame(maxHeight: geometry.size.height * 0.80)
                         } else {
                             Image("Image")
                             if self.cameraService.errorMessage != nil {
@@ -94,24 +105,28 @@ struct DetailedView : View {
                     if self.service.pausing == true || self.service.cancelling == true {
                         // We are pausing or cancelling so show Print (disabled), Pause (disabled) and Cancel (disabled)
                         self.print(enabled: false)
+                            .prefersDefaultFocus(true, in: self.namespace)
                             .padding(.leading)
                         self.pause(enabled: false)
                         self.cancel(enabled: false)
                     } else if self.service.printing == true{
                         // We are printing so show Print (disabled), Pause and Cancel
                         self.print(enabled: false)
+                            .prefersDefaultFocus(true, in: self.namespace)
                             .padding(.leading)
                         self.pause(enabled: true)
                         self.cancel(enabled: true)
                     } else if self.service.paused == true {
                         // We are paused so offer Restart, Resume and Cancel
                         self.restart()
+                            .prefersDefaultFocus(true, in: self.namespace)
                             .padding(.leading)
                         self.resume()
                         self.cancel(enabled: true)
                     } else {
                         // We are not printing so show Print (disabled?), Pause (disabled) and Cancel (disabled)
                         self.print(enabled: self.service.printingFile != "--")
+                            .prefersDefaultFocus(true, in: self.namespace)
                             .padding(.leading)
                         self.pause(enabled: false)
                         self.cancel(enabled: false)
@@ -127,6 +142,7 @@ struct DetailedView : View {
                                     Text("Camera")
                                 }
                             }
+                            .prefersDefaultFocus(true, in: self.namespace)
                         }
                         if self.cameraService.hasNext {
                             Button(action: {
@@ -137,19 +153,24 @@ struct DetailedView : View {
                                     Image("Next")
                                 }
                             }
+                            .prefersDefaultFocus(true, in: self.namespace)
                             .padding(.trailing)
                         }
                     }
                 }
-            }.navigationBarTitle(self.name)
+            }.navigationTitle(self.name)
         }.onDisappear {
             // Ask TVPrinterManager to resume refreshing cameras that appear in main view
             self.tvPrinterManager.resumeOtherCameraConnections(skip: self.name)
+            // Tell CameraService that it's not longer being used by detailed view
+            cameraService.changedView(detailed: false)
         }.onAppear() {
             // Ask TVPrinterManager to stop refreshing other cameras that appear in main view
             // This will save CPU usage, websockets do not consume much
             self.tvPrinterManager.suspendOtherCameraConnections(skip: self.name)
-        }
+            // Tell CameraService that it's being used by detailed view
+            cameraService.changedView(detailed: true)
+        }.focusScope(self.namespace)
     }
     
     fileprivate func value(text: String) -> Text {
