@@ -43,10 +43,16 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // Start listening to events when app will resign active state
+        NotificationCenter.default.addObserver(self, selector: #selector(appwillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+
         updateViewControllersForPrinter(cameraChanged: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        // Stop listening to events when app will resign active state
+        NotificationCenter.default.removeObserver(self)
+
         displayPrintStatus = nil
     }
 
@@ -343,6 +349,18 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         }
         pictureInPictureController?.stopPictureInPicture()
         userStartedPIP = false
+    }
+    
+    @objc func appwillResignActive() {
+        // If user did not start PIP then release pictureInPictureController
+        // Otherwise iOS will start PIP automatically if user is in a window with
+        // an HLS camera and user clicked on Home button or received a phone call
+        // or any other event that will make the app no longer be active
+        // Known issue: Double click on home and coming back to the app will no longer
+        // have pipController so clicking on PIP button will do nothing
+        if !userStartedPIP {
+            pictureInPictureController = nil
+        }
     }
 
     // MARK: - AVPictureInPictureControllerDelegate
