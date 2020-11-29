@@ -28,6 +28,8 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     var cameraIndex: Int!
 
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
+    
+    var camerasViewController: CamerasViewController!
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -124,6 +126,8 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             }
         }
     }
+    
+    func replacingViewControllers() {}
     
     // MARK: - Button actions
 

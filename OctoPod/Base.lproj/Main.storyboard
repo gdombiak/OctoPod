@@ -6976,6 +6976,15 @@
                                     <view clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ynA-Ym-86B" customClass="MyAVPlayerView" customModule="OctoPod" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEb-hJ-iLF">
+                                        <rect key="frame" x="8" y="8" width="30" height="34"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="togglePictureInPictureMode:" destination="0Az-YE-jhV" eventType="touchUpInside" id="7vL-e3-JJh"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap = Full Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owv-oi-R6e">
                                         <rect key="frame" x="262" y="200" width="103" height="14.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -7034,6 +7043,7 @@
                                     <constraint firstAttribute="bottom" secondItem="zhG-D6-Cgg" secondAttribute="bottom" constant="10" id="BKt-VC-T8C"/>
                                     <constraint firstAttribute="trailing" secondItem="oGo-K9-9oo" secondAttribute="trailing" constant="10" id="D2H-DK-Kgh"/>
                                     <constraint firstItem="ynA-Ym-86B" firstAttribute="top" secondItem="pEi-Og-muD" secondAttribute="top" id="Eq4-3G-FSE"/>
+                                    <constraint firstItem="DEb-hJ-iLF" firstAttribute="leading" secondItem="pEi-Og-muD" secondAttribute="leading" constant="8" id="GHY-Ib-4D7"/>
                                     <constraint firstItem="rU9-EM-Hqq" firstAttribute="top" secondItem="pEi-Og-muD" secondAttribute="top" constant="8" id="KO2-wF-9w8"/>
                                     <constraint firstAttribute="trailing" secondItem="h4l-mV-gFf" secondAttribute="trailing" constant="2" id="LDD-kt-P6P"/>
                                     <constraint firstAttribute="trailing" secondItem="owv-oi-R6e" secondAttribute="trailing" constant="10" id="OWo-dL-mE8"/>
@@ -7042,6 +7052,7 @@
                                     <constraint firstItem="zhG-D6-Cgg" firstAttribute="top" secondItem="owv-oi-R6e" secondAttribute="bottom" constant="5" id="btp-8N-DIh"/>
                                     <constraint firstAttribute="trailing" secondItem="PD3-li-xER" secondAttribute="trailing" constant="10" id="cJG-AQ-xel"/>
                                     <constraint firstItem="oGo-K9-9oo" firstAttribute="top" secondItem="PD3-li-xER" secondAttribute="bottom" constant="3" id="cTX-Eg-BTl"/>
+                                    <constraint firstItem="DEb-hJ-iLF" firstAttribute="top" secondItem="pEi-Og-muD" secondAttribute="top" constant="8" id="e5v-Oq-EPo"/>
                                     <constraint firstItem="ynA-Ym-86B" firstAttribute="leading" secondItem="pEi-Og-muD" secondAttribute="leading" id="epa-Gs-3HE"/>
                                     <constraint firstAttribute="trailing" secondItem="3hn-5x-4xy" secondAttribute="trailing" constant="2" id="gIB-vW-V8q"/>
                                     <constraint firstAttribute="trailing" secondItem="zhG-D6-Cgg" secondAttribute="trailing" constant="10" id="gtg-tQ-mrQ"/>
@@ -7071,6 +7082,7 @@
                         <outlet property="errorMessageLabel" destination="3hn-5x-4xy" id="1TV-Cx-em6"/>
                         <outlet property="errorURLButton" destination="h4l-mV-gFf" id="5lg-DJ-q0d"/>
                         <outlet property="pinchMessageLabel" destination="zhG-D6-Cgg" id="nUx-Ng-kKa"/>
+                        <outlet property="pipButton" destination="DEb-hJ-iLF" id="Bae-bV-Gkw"/>
                         <outlet property="playerView" destination="ynA-Ym-86B" id="RXK-QQ-WLG"/>
                         <outlet property="printTimeLeftLabel" destination="rU9-EM-Hqq" id="GIL-x2-xTb"/>
                         <outlet property="tapMessageLabel" destination="owv-oi-R6e" id="ifc-37-E7g"/>

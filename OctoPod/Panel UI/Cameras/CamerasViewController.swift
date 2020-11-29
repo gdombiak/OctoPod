@@ -1,6 +1,7 @@
 import UIKit
+import AVKit
 
-class CamerasViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class CamerasViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, AVPictureInPictureControllerDelegate {
 
     @IBOutlet weak var pageControl: UIPageControl!
     
@@ -19,6 +20,12 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     // Track the current index
     private var currentIndex: Int? // No camera has been selected by the app or the user. This means that we need to indicate which camera to display
     private var pendingIndex: Int?
+
+    var offerPIP = false
+    var pictureInPictureController: AVPictureInPictureController?
+    var userStartedPIP = false
+    private var pipCameraIndex = 0
+    private var pipClosedCallback: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -168,6 +175,12 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     // MARK: - Private functions
     
     fileprivate func updateViewControllersForPrinter(cameraChanged: Bool) {
+        if userStartedPIP {
+            // Stop PIP
+            self.stopPictureInPicture(pause: true)
+            orderedViewControllers[pipCameraIndex].replacingViewControllers()
+        }
+
         if cameraChanged, let index = currentIndex, index < orderedViewControllers.count {
             // Stop rendering current printer's camera
             // This VC may or may not be reused for the newly selected printer so
@@ -284,6 +297,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         controller.cameraTappedCallback = embeddedCameraTappedCallback
         controller.cameraViewDelegate = embeddedCameraDelegate
         controller.cameraIndex = index
+        controller.camerasViewController = self
         return controller
     }
     
@@ -296,5 +310,74 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             index = index + 1
         }
         return nil
+    }
+    
+    // MARK: - PIP support
+    
+    func initPictureInPictureController(playerLayer: AVPlayerLayer, pipClosedCallback: @escaping (() -> Void)) {
+        self.pipClosedCallback = pipClosedCallback
+        if userStartedPIP {
+            // User is using PIP so we need to stop it and close it
+            stopPictureInPicture(pause: false)
+        }
+        // Create a new controller, passing the reference to the AVPlayerLayer.
+        pictureInPictureController = AVPictureInPictureController(playerLayer: playerLayer)
+        pictureInPictureController?.delegate = self
+    }
+    
+    func togglePictureInPictureMode() {
+        if let pictureInPictureController = pictureInPictureController {
+            if pictureInPictureController.isPictureInPictureActive {
+                stopPictureInPicture(pause: false)
+            } else {
+                pictureInPictureController.startPictureInPicture()
+                userStartedPIP = true
+                pipCameraIndex = currentIndex!
+            }
+        }
+    }
+    
+    func stopPictureInPicture(pause: Bool) {
+        if pause {
+            pictureInPictureController?.playerLayer.player?.pause()
+        }
+        pictureInPictureController?.stopPictureInPicture()
+        userStartedPIP = false
+    }
+
+    // MARK: - AVPictureInPictureControllerDelegate
+    
+    func pictureInPictureControllerDidStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
+        pipClosedCallback?()
+        if userStartedPIP {
+            // User closed PIP rather than doing a pop-in
+            if let tabBarController = (UIApplication.shared.delegate as! AppDelegate).window!.rootViewController as? UITabBarController {
+                if tabBarController.selectedIndex == 0 && UIApplication.shared.applicationState == .active {
+                    // We were already in Panel tab and app is in foregound so resume playing
+                    pictureInPictureController.playerLayer.player?.play()
+                }
+            }
+            userStartedPIP = false
+        }
+    }
+    
+    func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
+        pipClosedCallback?()
+        // We could be in any tab so go back to Panel tab AND camera started PIP
+        if let tabBarController = (UIApplication.shared.delegate as! AppDelegate).window!.rootViewController as? UITabBarController {
+            if tabBarController.selectedIndex != 0 {
+                // Stop player since view will appear and will start a new player
+                pictureInPictureController.playerLayer.player?.pause()
+                // Go to Panel tab (we will already be on the proper camera since start PIP and then moving to another camera will stop PIP)
+                tabBarController.selectedIndex = 0
+            }
+        }
+
+        // Indicate that we are no longer in PIP.
+        // User requested to pop-in. This event is fired before #didStop event. If user closed PIP
+        // then this even is not fired and only #didStop is fired
+        userStartedPIP = false
+
+        completionHandler(true)
     }
 }

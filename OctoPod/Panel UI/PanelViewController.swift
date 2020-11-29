@@ -67,6 +67,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         // Messages will not be visible after user used these features
         camerasViewController?.infoGesturesAvailable = true
         
+        // Only offer PIP (if supported by device) from main panel window
+        camerasViewController?.offerPIP = true
+        
         // Listen to event when user swiped and changed active subpanel
         subpanelsViewController?.subpanelsVCDelegate = self
 

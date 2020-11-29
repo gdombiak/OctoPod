@@ -1,12 +1,33 @@
 import UIKit
 import AVFoundation
+import AVKit
 
 class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
     @IBOutlet weak var playerView: MyAVPlayerView!
+    @IBOutlet weak var pipButton: UIButton!
     
     var player: AVPlayer?
     var itemDelegate: AVAssetResourceLoaderDelegate?
     
+    var pipPossibleObservation: NSKeyValueObservation?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Configure PIP button
+        let startImage = AVPictureInPictureController.pictureInPictureButtonStartImage(compatibleWith: nil)
+        pipButton.setImage(startImage, for: .normal)
+        pipButton.isHidden = true
+    }
+    
+    @IBAction func togglePictureInPictureMode(_ sender: UIButton) {
+        camerasViewController.togglePictureInPictureMode()
+        if camerasViewController.userStartedPIP {
+            pipButton.setImage(AVPictureInPictureController.pictureInPictureButtonStopImage(compatibleWith: nil), for: .normal)
+        } else {
+            pipButton.setImage(AVPictureInPictureController.pictureInPictureButtonStartImage(compatibleWith: nil), for: .normal)
+        }
+    }
+
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == #keyPath(AVPlayerItem.status) {
             let status: AVPlayerItem.Status
@@ -44,9 +65,43 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
         }
     }
     
+    fileprivate func setupPictureInPicture() {
+        // Ensure PiP is supported by current device.
+        if camerasViewController.offerPIP && AVPictureInPictureController.isPictureInPictureSupported() {
+            let castedLayer = playerView.layer as! AVPlayerLayer
+         
+            let callback = {
+                DispatchQueue.main.async {
+                    self.pipButton.setImage(AVPictureInPictureController.pictureInPictureButtonStartImage(compatibleWith: nil), for: .normal)
+                }
+            }
+            // Create a new controller, passing the reference to the AVPlayerLayer.
+            camerasViewController.initPictureInPictureController(playerLayer: castedLayer, pipClosedCallback: callback)
+            // Observe whether using PiP mode is possible in the current context; for example, when the system is displaying
+            // an active FaceTime window. By observing this property, you can determine when it’s appropriate to change the
+            // enabled state of your PiP button.
+            pipPossibleObservation = camerasViewController.pictureInPictureController!.observe(\AVPictureInPictureController.isPictureInPicturePossible, options: [.initial, .new]) { [weak self] _, change in
+                // Update the PiP button's enabled state.
+                self?.pipButton.isHidden = !(change.newValue ?? false)
+            }
+        } else {
+            // PiP isn't supported by the current device. Disable the PiP button.
+            pipButton.isHidden = true
+        }
+    }
+
+    // MARK: - Notifications
+
+    override func replacingViewControllers() {
+        // Stop listening to events since player is going again. App will crash if KVO notification goes to a zombie object
+        player?.currentItem?.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status ))
+    }
+
     // MARK: - Abstract methods
     
     override func renderPrinter(printer: Printer, url: URL) {
+        setupPictureInPicture()
+
         // Create AVPlayerItem object
         let asset = AVURLAsset(url: url)
         
@@ -116,11 +171,13 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
     }
     
     override func stopPlaying() {
-        self.player?.pause()
-        let castedLayer = self.playerView.layer as! AVPlayerLayer
-        castedLayer.player = nil
-        self.player = nil
-        self.itemDelegate = nil
+        if !camerasViewController.userStartedPIP {
+            self.player?.pause()
+            let castedLayer = self.playerView.layer as! AVPlayerLayer
+            castedLayer.player = nil
+            self.player = nil
+            self.itemDelegate = nil
+        }
     }
     
     override func gestureView() -> UIView {
