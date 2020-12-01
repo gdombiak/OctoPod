@@ -187,6 +187,16 @@ extension Date {
     }
 }
 
+extension Array {
+    public subscript(safeIndex index: Int) -> Element? {
+        guard index >= 0, index < endIndex else {
+            return nil
+        }
+
+        return self[index]
+    }
+}
+
 /// Custom AVAssetResourceLoaderDelegate for handing authentication
 class ResourceLoadingDelegate:NSObject, AVAssetResourceLoaderDelegate {
     let username: String

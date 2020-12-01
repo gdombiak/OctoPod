@@ -122,7 +122,7 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
         castedLayer.player = player
         
         // Notify aspect ratio to use for this camera
-        if let camera = printer.getMultiCameras()?[cameraIndex] {
+        if let camera = printer.getMultiCameras()?[safeIndex: cameraIndex] {
             let ratio = camera.streamRatio == "16:9" ? CGFloat(0.5625) : CGFloat(0.75)
             cameraViewDelegate?.imageAspectRatio(cameraIndex: cameraIndex, ratio: ratio)
         } else {
