@@ -18,7 +18,7 @@ struct DetailedView : View {
                 if !cameraMaximized {
                     NormalCameraView(geometry: geometry, service: viewService, cameraService: cameraService, namespace: namespace, cameraMaximized: $cameraMaximized)
                 } else {
-                    MaximizedCameraView(geometry: geometry, cameraService: cameraService, namespace: namespace, cameraMaximized: $cameraMaximized)
+                    MaximizedCameraView(geometry: geometry, service: viewService, cameraService: cameraService, namespace: namespace, cameraMaximized: $cameraMaximized)
                 }
             }.navigationTitle(self.name)
         }.onDisappear {
@@ -202,7 +202,7 @@ struct NormalCameraView: View {
             .prefersDefaultFocus(true, in: self.namespace)
         }
     }
-
+    
     fileprivate func value(text: String) -> Text {
         return Text(text)
             .foregroundColor(Color(red: 47/255, green: 79/255, blue: 79/256))
@@ -258,6 +258,7 @@ struct NormalCameraView: View {
 
 struct MaximizedCameraView: View {
     let geometry: GeometryProxy
+    let service: ViewService
     let cameraService: CameraService
     let namespace: Namespace.ID
     @Binding var cameraMaximized: Bool
@@ -285,6 +286,59 @@ struct MaximizedCameraView: View {
             }
             VStack(alignment: .trailing) {
                 HStack(alignment: .top) {
+                    VStack(alignment: .leading) {
+                        HStack() {
+                            Text("State")
+                            Spacer()
+                            self.value(text: self.service.printerStatus)
+                        }
+                        HStack() {
+                            Text("Progress")
+                            Spacer()
+                            self.value(text: self.service.progress)
+                        }
+                        HStack() {
+                            Text("Print Time")
+                            Spacer()
+                            self.value(text: self.service.printTime)
+                        }
+                        HStack() {
+                            Text("Print Time Left")
+                            Spacer()
+                            self.value(text: self.service.printTimeLeft)
+                        }
+                        HStack() {
+                            Text("Print Completion")
+                            Spacer()
+                            self.value(text: self.service.printEstimatedCompletion)
+                        }
+                        HStack() {
+                            Text("Extruder")
+                            Spacer()
+                            self.value(text: "\(self.service.tool0Actual) / \(self.service.tool0Target)")
+                        }
+                        HStack() {
+                            Text("Bed")
+                            Spacer()
+                            self.value(text: "\(self.service.bedActual) / \(self.service.bedTarget)")
+                        }
+                        if self.service.currentHeight != nil {
+                            HStack() {
+                                Text("Current Height")
+                                Spacer()
+                                self.value(text: self.service.currentHeight!)
+                            }
+                        }
+                        if self.service.layer != nil {
+                            HStack() {
+                                Text("Layer")
+                                Spacer()
+                                self.value(text: self.service.layer!)
+                            }
+                        }
+                    }
+                    .background(Color.gray.opacity(0.80))
+                    .frame(maxWidth: geometry.size.width / 4)
                     Spacer()
                     Button(action: {
                         cameraMaximized = false
@@ -299,6 +353,11 @@ struct MaximizedCameraView: View {
                 Spacer()
             }
         }
+    }
+    
+    fileprivate func value(text: String) -> Text {
+        return Text(text)
+            .foregroundColor(Color(red: 47/255, green: 79/255, blue: 79/256))
     }
 }
 
