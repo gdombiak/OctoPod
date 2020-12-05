@@ -158,6 +158,15 @@ class IntentsController {
         }
     }
     
+    // MARK: - Enclosure Plugin intents
+    
+    func changeEnclosureGPIO(printer: Printer, index_id: Int16, status: Bool, callback: @escaping (Bool, Int) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        restClient.changeEnclosureGPIO(index_id: index_id, status: status) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested, response.statusCode)
+        }
+    }
+
     // MARK: - Private functions
     
     fileprivate func getRESTClient(hostname: String, apiKey: String, username: String?, password: String?) -> OctoPrintRESTClient {

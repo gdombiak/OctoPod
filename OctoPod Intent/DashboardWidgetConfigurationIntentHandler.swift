@@ -104,7 +104,7 @@ class DashboardWidgetConfigurationIntentHandler: NSObject, DashboardWidgetConfig
             completion(WidgetPrinterResolutionResult.success(with: widgetPrinter))
         } else {
             // This case should not happen
-            WidgetPrinterResolutionResult.needsValue()
+            completion(WidgetPrinterResolutionResult.needsValue())
         }
     }
     

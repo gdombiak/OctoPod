@@ -219,6 +219,21 @@ class Printer: NSManagedObject {
         return result
     }
     
+    /// Returns "regular" outputs defined in the enclosure plugin. These are switches
+    /// that can be turned off or on
+    func getEnclosureRegularOutputs() -> Array<EnclosureOutput> {
+        var result: Array<EnclosureOutput> = []
+        if let outputs = self.enclosureOutputs {
+            for output in outputs {
+                // Only add regular type of outputs
+                if output.type == "regular" {
+                    result.append(output)
+                }
+            }
+        }
+        return result
+    }
+    
     fileprivate func encodeIPPlug(_ newPlug: IPPlug) -> [String] {
         var result = [newPlug.ip, newPlug.label]
         if let idx = newPlug.idx {

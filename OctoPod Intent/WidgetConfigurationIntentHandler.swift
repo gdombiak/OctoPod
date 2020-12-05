@@ -18,7 +18,7 @@ class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandl
             completion(WidgetPrinterResolutionResult.success(with: widgetPrinter))
         } else {
             // This case should not happen
-            WidgetPrinterResolutionResult.needsValue()
+            completion(WidgetPrinterResolutionResult.needsValue())
         }
     }
     
@@ -40,7 +40,7 @@ class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandl
             completion(WidgetCameraResolutionResult.success(with: cameraWidget))
         } else {
             // This case should not happen
-            WidgetPrinterResolutionResult.needsValue()
+            completion(WidgetCameraResolutionResult.needsValue())
         }
     }
     

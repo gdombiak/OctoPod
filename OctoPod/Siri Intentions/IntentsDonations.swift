@@ -180,6 +180,34 @@ class IntentsDonations {
         defaults.set(true, forKey: DONATIONS_INITIALIZED)
     }
     
+    // MARK: - Donate Enclosure Plugin Intents
+    
+    static func donateEnclosureTurnOn(printer: Printer, switchLabel: String) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = EnclosureTurnOnIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            intent.label = switchLabel
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn on Enclosure switch", comment: "Siri suggested phrase"), printer.name)
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "EnclosureTurnOn")
+        }
+    }
+    
+    static func donateEnclosureTurnOff(printer: Printer, switchLabel: String) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = EnclosureTurnOffIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            intent.label = switchLabel
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn off Enclosure switch", comment: "Siri suggested phrase"), printer.name)
+
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "EnclosureTurnOff")
+        }
+    }
+    
     // MARK: - Delete Intents
 
     /// Delete donate Siri commands that relate to the printer. This includes Palette intents as well

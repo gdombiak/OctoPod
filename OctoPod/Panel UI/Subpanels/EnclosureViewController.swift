@@ -136,9 +136,14 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
     // MARK: - Notifications from Cells
     
     func powerPressed(cell: EnclosureGPIOViewCell) {
-        if let on = cell.isPowerOn {
+        if let on = cell.isPowerOn, let printer = printerManager.getDefaultPrinter() {
             if let indexPath = self.tableView.indexPath(for: cell) {
                 let output = self.outputs[indexPath.row]
+
+                // Donate Siri Intentions
+                IntentsDonations.donateEnclosureTurnOn(printer: printer, switchLabel: output.label)
+                IntentsDonations.donateEnclosureTurnOff(printer: printer, switchLabel: output.label)
+
                 let changePower = {
                     let generator = UINotificationFeedbackGenerator()
                     generator.prepare()

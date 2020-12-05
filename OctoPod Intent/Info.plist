@@ -33,6 +33,8 @@
 			<array>
 				<string>CancelJobIntent</string>
 				<string>CoolDownPrinterIntent</string>
+				<string>EnclosureTurnOffIntent</string>
+				<string>EnclosureTurnOnIntent</string>
 				<string>PaletteClearIntent</string>
 				<string>PaletteConnectIntent</string>
 				<string>PaletteCutIntent</string>
@@ -51,6 +53,8 @@
 				<string>CancelJobIntent</string>
 				<string>CoolDownPrinterIntent</string>
 				<string>DashboardWidgetConfigurationIntent</string>
+				<string>EnclosureTurnOffIntent</string>
+				<string>EnclosureTurnOnIntent</string>
 				<string>PaletteClearIntent</string>
 				<string>PaletteConnectIntent</string>
 				<string>PaletteCutIntent</string>

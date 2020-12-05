@@ -68,6 +68,8 @@
 		<string>CancelJobIntent</string>
 		<string>ConfigurationIntent</string>
 		<string>CoolDownPrinterIntent</string>
+		<string>EnclosureTurnOffIntent</string>
+		<string>EnclosureTurnOnIntent</string>
 		<string>PaletteClearIntent</string>
 		<string>PaletteConnectIntent</string>
 		<string>PaletteCutIntent</string>
