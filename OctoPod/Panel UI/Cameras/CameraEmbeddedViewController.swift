@@ -88,14 +88,16 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     func displayPrintStatus(enabled: Bool) {
         DispatchQueue.main.async {
-            self.printTimeLeftLabel.isHidden = !enabled
-            self.tool0ActualLabel.isHidden = !enabled
-            self.bedActualLabel.isHidden = !enabled
-            if enabled {
-                // Reset values in case they are old
-                self.printTimeLeftLabel.text = ""
-                self.tool0ActualLabel.text = ""
-                self.bedActualLabel.text = ""
+            if let _ = self.parent {
+                self.printTimeLeftLabel.isHidden = !enabled
+                self.tool0ActualLabel.isHidden = !enabled
+                self.bedActualLabel.isHidden = !enabled
+                if enabled {
+                    // Reset values in case they are old
+                    self.printTimeLeftLabel.text = ""
+                    self.tool0ActualLabel.text = ""
+                    self.bedActualLabel.text = ""
+                }
             }
         }
     }
@@ -112,17 +114,19 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     func currentStateUpdated(event: CurrentStateEvent) {
         DispatchQueue.main.async {
-            if let seconds = event.progressPrintTimeLeft {
-                self.printTimeLeftLabel.text = UIUtils.secondsToTimeLeft(seconds: seconds, includesApproximationPhrase: true, ifZero: "")
-            } else if event.progressPrintTime != nil {
-                self.printTimeLeftLabel.text = NSLocalizedString("Still stabilizing", comment: "Print time is being calculated")
-            }
+            if let _ = self.parent {
+                if let seconds = event.progressPrintTimeLeft {
+                    self.printTimeLeftLabel.text = UIUtils.secondsToTimeLeft(seconds: seconds, includesApproximationPhrase: true, ifZero: "")
+                } else if event.progressPrintTime != nil {
+                    self.printTimeLeftLabel.text = NSLocalizedString("Still stabilizing", comment: "Print time is being calculated")
+                }
 
-            if let tool0Actual = event.tool0TempActual {
-                self.tool0ActualLabel.text = "\(String(format: "%.1f", tool0Actual))C"
-            }
-            if let bedActual = event.bedTempActual {
-                self.bedActualLabel.text = "\(String(format: "%.1f", bedActual))C"
+                if let tool0Actual = event.tool0TempActual {
+                    self.tool0ActualLabel.text = "\(String(format: "%.1f", tool0Actual))C"
+                }
+                if let bedActual = event.bedTempActual {
+                    self.bedActualLabel.text = "\(String(format: "%.1f", bedActual))C"
+                }
             }
         }
     }

@@ -105,6 +105,11 @@ class HLSThumbnailUtil: NSObject {
                 } else {
                     receivedImage = UIImage(cgImage: cgImage)
                 }
+                
+                // Remove observer. This will prevent potential app crashes in case the observer was removed from memory
+                if let playerItem = player?.currentItem {
+                    playerItem.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status ))
+                }
 
                 // Execute complete block with fetched image
                 complete(receivedImage)
@@ -113,6 +118,12 @@ class HLSThumbnailUtil: NSObject {
         }
         // Stop player
         player?.pause()
+
+        // Remove observer. This will prevent potential app crashes in case the observer was removed from memory
+        if let playerItem = player?.currentItem {
+            playerItem.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status ))
+        }
+
         // Execute complete block with no fetched image
         complete(nil)
     }

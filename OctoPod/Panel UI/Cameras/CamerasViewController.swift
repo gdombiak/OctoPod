@@ -26,6 +26,8 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     var userStartedPIP = false
     private var pipCameraIndex = 0
     private var pipClosedCallback: (() -> Void)?
+    
+    private var lastPrinterID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +47,13 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     override func viewWillAppear(_ animated: Bool) {
         // Start listening to events when app will resign active state
         NotificationCenter.default.addObserver(self, selector: #selector(appwillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
-
-        updateViewControllersForPrinter(cameraChanged: false)
+        
+        if let printer = printerManager.getDefaultPrinter() {
+            let newPrinterID = printer.objectID.uriRepresentation().absoluteString
+            let cameraChanged = newPrinterID != lastPrinterID
+            lastPrinterID = newPrinterID
+            updateViewControllersForPrinter(cameraChanged: cameraChanged)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

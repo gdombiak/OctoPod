@@ -173,6 +173,10 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
     override func stopPlaying() {
         if !camerasViewController.userStartedPIP {
             self.player?.pause()
+
+            // Stop listening to events since player is going again. App will crash if KVO notification goes to a zombie object
+            player?.currentItem?.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status ))
+
             let castedLayer = self.playerView.layer as! AVPlayerLayer
             castedLayer.player = nil
             self.player = nil
