@@ -190,6 +190,9 @@
 /* Siri suggested phrase */
 "Execute System Command" = "Systembefehl ausführen";
 
+/* No comment provided by engineer. */
+"Expand" = "Vollbild";
+
 /* (No Comment) */
 "Extruder" = "Düse";
 
@@ -508,6 +511,9 @@
 /* (No Comment) */
 "Restart Job" = "Neustart";
 
+/* No comment provided by engineer. */
+"Restore" = "Vorherige Größe";
+
 /* gcode name */
 "Restore Settings" = "Einstellungen wiederherstellen";
 
@@ -613,8 +619,14 @@
 /* (No Comment) */
 "Turn Off" = "Ausschalten";
 
+/* Siri suggested phrase */
+"Turn off Enclosure switch" = "Gehäuseschalter ausschalten";
+
 /* (No Comment) */
 "Turn On" = "Einschalten";
+
+/* Siri suggested phrase */
+"Turn on Enclosure switch" = "Gehäuseschalter einschalten";
 
 /* ETA is Unknown
    File Type is Unknown

@@ -26,6 +26,9 @@
 "3JiZye" = "Angefordert";
 
 /* (No Comment) */
+"4B08aG" = "Ausschalten ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
@@ -80,6 +83,9 @@
 "ajupCt" = "Keine Information verfügbar";
 
 /* (No Comment) */
+"aTDQUI" = "Gehäuseschalter einschalten";
+
+/* (No Comment) */
 "AU4oMs" = "Rufe Statistik von Palette ab";
 
 /* (No Comment) */
@@ -117,6 +123,9 @@
 
 /* (No Comment) */
 "Eeyifr" = "Angefordert";
+
+/* (No Comment) */
+"eKSaMC" = "Einschalten ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Drucker abkühlen";
@@ -182,6 +191,9 @@
 "KUFtih" = "${printer}";
 
 /* (No Comment) */
+"KulRl5" = "Gehäuseschalter einschalten";
+
+/* (No Comment) */
 "L25OHl" = "Anforderung für Verbindungsaufbau fehlgeschlagen";
 
 /* (No Comment) */
@@ -245,6 +257,9 @@
 "QSxXHq" = "Druckauftrag pausieren";
 
 /* (No Comment) */
+"qwH2oF" = "Gehäuseschalter ausschalten";
+
+/* (No Comment) */
 "R5AlTe" = "Trenne von Palette";
 
 /* (No Comment) */
@@ -282,6 +297,9 @@
 
 /* (No Comment) */
 "sRkyIL" = "Auftrag konnte nicht neu gestartet werden (${statusCode})";
+
+/* (No Comment) */
+"TcPGnq" = "Gehäuseschalter ausschalten";
 
 /* (No Comment) */
 "tKDODp" = "Verbleibende Druckzeit";

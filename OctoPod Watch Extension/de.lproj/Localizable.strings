@@ -16,6 +16,9 @@
 /* No comment provided by engineer. */
 "Do you want to pause the job?" = "Möchten Sie den Auftrag pausieren?";
 
+/* Apple Watch cannot render HTTP Live Streaming feeds */
+"HLS not supported" = "HLS nicht unterstützt";
+
 /* HTTP Request error info */
 "HTTP Request error" = "Anfrage fehlerhaft. HTTP Antwort: %d";
 
