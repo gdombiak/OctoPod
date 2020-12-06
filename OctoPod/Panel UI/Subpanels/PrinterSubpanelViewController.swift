@@ -625,11 +625,11 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     // MARK: - Rate app - Private functions
 
     // Ask user to rate app. We will ask a maximum of 3 times and only after a job is 100% done.
-    // We will ask when job #3, #10 or #30 are done. Only for iOS 10.3 or newer installations
+    // We will ask when job #2, #7 or #13 are done. Only for iOS 10.3 or newer installations
     fileprivate func checkRateApp(event: CurrentStateEvent) {
-        let firstAsk = 2
-        let secondAsk = 9
-        let thirdAsk = 29
+        let firstAsk = 1
+        let secondAsk = 6
+        let thirdAsk = 12
         if let progress = event.progressCompletion {
             // Ask users to rate the app only when print job was completed (and after X number of jobs were done)
             if progress == 100 && progressView.progress < 1 {
