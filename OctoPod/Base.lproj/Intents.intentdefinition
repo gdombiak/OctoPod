@@ -1888,7 +1888,7 @@
 			<key>INIntentCategory</key>
 			<string>generic</string>
 			<key>INIntentDescription</key>
-			<string>Enclosure - Turn On Switch</string>
+			<string>Turn on Enclosure switch</string>
 			<key>INIntentDescriptionID</key>
 			<string>KulRl5</string>
 			<key>INIntentLastParameterTag</key>
@@ -2002,7 +2002,7 @@
 			<key>INIntentRestrictions</key>
 			<integer>1</integer>
 			<key>INIntentTitle</key>
-			<string>Enclosure Turn On Switch</string>
+			<string>Turn on Enclosure switch</string>
 			<key>INIntentTitleID</key>
 			<string>aTDQUI</string>
 			<key>INIntentType</key>
@@ -2016,7 +2016,7 @@
 			<key>INIntentCategory</key>
 			<string>generic</string>
 			<key>INIntentDescription</key>
-			<string>Enclosure - Turn Off Switch</string>
+			<string>Turn off Enclosure switch</string>
 			<key>INIntentDescriptionID</key>
 			<string>TcPGnq</string>
 			<key>INIntentLastParameterTag</key>
@@ -2130,7 +2130,7 @@
 			<key>INIntentRestrictions</key>
 			<integer>1</integer>
 			<key>INIntentTitle</key>
-			<string>Enclosure Turn Off Switch</string>
+			<string>Turn off Enclosure switch</string>
 			<key>INIntentTitleID</key>
 			<string>qwH2oF</string>
 			<key>INIntentType</key>

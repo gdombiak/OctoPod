@@ -26,6 +26,9 @@
 "3JiZye" = "Pedido";
 
 /* (No Comment) */
+"4B08aG" = "Apagar ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
@@ -74,13 +77,25 @@
 "662LyZ" = "Reiniciar impresión";
 
 /* (No Comment) */
+"a1UDyY" = "Pedido";
+
+/* (No Comment) */
 "ajupCt" = "No hay información disponible";
+
+/* (No Comment) */
+"aTDQUI" = "Encender interruptor via Enclosure plugin";
 
 /* (No Comment) */
 "AU4oMs" = "Pedir a Palette estadísticas de pings";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Pedido";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
 
 /* (No Comment) */
 "BUexSx" = "Variación máxima";
@@ -110,6 +125,9 @@
 "Eeyifr" = "Pedido";
 
 /* (No Comment) */
+"eKSaMC" = "Encender ${label}";
+
+/* (No Comment) */
 "f8xirF" = "Enfriar impresora";
 
 /* (No Comment) */
@@ -134,6 +152,9 @@
 "gx0D0e" = "Trabajo cancelado";
 
 /* (No Comment) */
+"H21bkX" = "Error al pedir ejecutar comando";
+
+/* (No Comment) */
 "hPlRC4" = "Establecer temperatura de la cama a ${temperature}";
 
 /* (No Comment) */
@@ -141,6 +162,9 @@
 
 /* (No Comment) */
 "ihLqc7" = "Suspender impresión";
+
+/* (No Comment) */
+"IXiy0v" = "Error al pedir ejecutar comando";
 
 /* (No Comment) */
 "jasUIn" = "Desconectarse de Palette";
@@ -165,6 +189,9 @@
 
 /* (No Comment) */
 "KUFtih" = "${printer}";
+
+/* (No Comment) */
+"KulRl5" = "Encender interruptor via Enclosure plugin";
 
 /* (No Comment) */
 "L25OHl" = "Error al pedir conectarse";
@@ -200,6 +227,9 @@
 "NL98zi" = "Enfría cama y extrusora";
 
 /* (No Comment) */
+"Oaidbo" = "Error al pedir ejecutar comando";
+
+/* (No Comment) */
 "oe3uiM" = "Ejecutar comando ${commandName}";
 
 /* (No Comment) */
@@ -225,6 +255,9 @@
 
 /* (No Comment) */
 "QSxXHq" = "Detener impresión";
+
+/* (No Comment) */
+"qwH2oF" = "Apaguar interruptor via Enclosure plugin";
 
 /* (No Comment) */
 "R5AlTe" = "Desconectarse de Palette";
@@ -254,6 +287,9 @@
 "RYurC5" = "Enfriar la caja";
 
 /* (No Comment) */
+"sDV9Jm" = "Pedido";
+
+/* (No Comment) */
 "SP4rN6" = "Ajustar temperatura del extrusor";
 
 /* (No Comment) */
@@ -261,6 +297,9 @@
 
 /* (No Comment) */
 "sRkyIL" = "Error al reiniciar trabajo (${statusCode})";
+
+/* (No Comment) */
+"TcPGnq" = "Apaguar interruptor via Enclosure plugin";
 
 /* (No Comment) */
 "tKDODp" = "Tiempo restante de impresión";
@@ -293,13 +332,22 @@
 "vmbpr4" = "Conectar a Palette";
 
 /* (No Comment) */
+"wabqoy" = "Error al pedir ejecutar comando";
+
+/* (No Comment) */
 "WI2oQf" = "Tiempo de impresión restante";
 
 /* (No Comment) */
 "WLkRl0" = "Error al reanudar el trabajo (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Pedido";
+
+/* (No Comment) */
 "wYzz4m" = "Impresora se está enfriando";
+
+/* (No Comment) */
+"x8aCII" = "Pedido";
 
 /* (No Comment) */
 "XfWmGt" = "Reanudar impresión";
