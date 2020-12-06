@@ -191,7 +191,6 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         if userStartedPIP {
             // Stop PIP
             self.stopPictureInPicture(pause: true)
-            orderedViewControllers[pipCameraIndex].replacingViewControllers()
         }
 
         if cameraChanged, let index = currentIndex, index < orderedViewControllers.count {

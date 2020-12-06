@@ -90,13 +90,6 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
         }
     }
 
-    // MARK: - Notifications
-
-    override func replacingViewControllers() {
-        // Stop listening to events since player is going again. App will crash if KVO notification goes to a zombie object
-        player?.currentItem?.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status ))
-    }
-
     // MARK: - Abstract methods
     
     override func renderPrinter(printer: Printer, url: URL) {
@@ -174,7 +167,7 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
         if !camerasViewController.userStartedPIP {
             self.player?.pause()
 
-            // Stop listening to events since player is going again. App will crash if KVO notification goes to a zombie object
+            // Stop listening to events since player is going away. App will crash if KVO notification goes to a zombie object
             player?.currentItem?.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status ))
 
             let castedLayer = self.playerView.layer as! AVPlayerLayer

@@ -54,7 +54,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         gestureView().isUserInteractionEnabled = true
         gestureView().addGestureRecognizer(tapGesture)
 
-        renderPrinter(appActive: UIApplication.shared.applicationState == .active)
+        renderPrinter(appActive: UIApplication.shared.applicationState != .background)
         
         // Listen to changes to OctoPrint Settings in case the camera orientation has changed
         octoprintClient.octoPrintSettingsDelegates.append(self)
@@ -130,8 +130,6 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             }
         }
     }
-    
-    func replacingViewControllers() {}
     
     // MARK: - Button actions
 
