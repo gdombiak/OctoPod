@@ -37,6 +37,34 @@ class SupportViewController: ThemedStaticUITableViewController {
             openBrowser(url: "https://github.com/gdombiak/OctoPod/issues")
         } else if indexPath.row == 3 {
             openBrowser(url: "https://github.com/gdombiak/OctoPod/blob/master/README.md")
+        } else if indexPath.row == 4 {
+            // User clicked on Facebook
+            let application = UIApplication.shared
+            let usersGroupInAppURL = URL(string: "fb://profile?id=671392683736523")!
+            let usersGroupInBrowserURL = URL(string: "https://www.facebook.com/groups/octopodprint")!
+            if application.canOpenURL(usersGroupInAppURL) {
+                // Open FB app and take user to target URL
+                application.open(usersGroupInAppURL)
+            } else {
+                // Open iOS browser and go to target URL
+                application.open(usersGroupInBrowserURL)
+            }
+            // Unselect row so when user comes back it does not appear as selected
+            tableView.deselectRow(at: indexPath, animated: false)
+        } else if indexPath.row == 5 {
+            // User clicked on Twitter
+            let application = UIApplication.shared
+            let twitterAccountInAppURL = URL(string: "twitter://user?screen_name=OctoPodPrint")!
+            let twitterAccountInBrowserURL = URL(string: "https://twitter.com/OctoPodPrint")!
+            if application.canOpenURL(twitterAccountInAppURL) {
+                // Open Twitter app and take user to target URL
+                application.open(twitterAccountInAppURL)
+            } else {
+                // Open iOS browser and go to target URL
+                application.open(twitterAccountInBrowserURL)
+            }
+            // Unselect row so when user comes back it does not appear as selected
+            tableView.deselectRow(at: indexPath, animated: false)
         } else {
             NSLog("SupportViewController - Click on unknown row")
         }
