@@ -74,13 +74,22 @@
 "662LyZ" = "Recommencer";
 
 /* (No Comment) */
+"a1UDyY" = "Demande en cours";
+
+/* (No Comment) */
 "ajupCt" = "Aucune information disponible";
 
 /* (No Comment) */
 "AU4oMs" = "Demander les statistiques de ping à Palette";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Demande en cours";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
 
 /* (No Comment) */
 "BUexSx" = "Variation Max";
@@ -134,6 +143,9 @@
 "gx0D0e" = "Impression annulée";
 
 /* (No Comment) */
+"H21bkX" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
 "hPlRC4" = "Régler la température du plateau à ${temperature}";
 
 /* (No Comment) */
@@ -141,6 +153,9 @@
 
 /* (No Comment) */
 "ihLqc7" = "Mettre en pause";
+
+/* (No Comment) */
+"IXiy0v" = "La demande d’exécution de la commande a échouée";
 
 /* (No Comment) */
 "jasUIn" = "Se déconnecter de Palette";
@@ -200,6 +215,9 @@
 "NL98zi" = "Refroidit le plateau et l’extrudeur";
 
 /* (No Comment) */
+"Oaidbo" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
 "oe3uiM" = "Exécute la commande ${commandName}";
 
 /* (No Comment) */
@@ -254,6 +272,9 @@
 "RYurC5" = "Refroidir le caisson";
 
 /* (No Comment) */
+"sDV9Jm" = "Demande en cours";
+
+/* (No Comment) */
 "SP4rN6" = "Régler la température d’extrusion";
 
 /* (No Comment) */
@@ -293,13 +314,22 @@
 "vmbpr4" = "Se connecter à Palette";
 
 /* (No Comment) */
+"wabqoy" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
 "WI2oQf" = "Retourner temps d’impression restant";
 
 /* (No Comment) */
 "WLkRl0" = "Échec de la reprise d’impression (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Demande en cours";
+
+/* (No Comment) */
 "wYzz4m" = "Imprimante en cours de refroidissement";
+
+/* (No Comment) */
+"x8aCII" = "Demande en cours";
 
 /* (No Comment) */
 "XfWmGt" = "Reprendre l’impression";

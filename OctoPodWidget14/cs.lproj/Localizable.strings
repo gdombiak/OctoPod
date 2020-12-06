@@ -52,6 +52,9 @@
 /* No comment provided by engineer. */
 "No" = "Ne";
 
+/* No camera was configured */
+"No camera" = "Žádná kamera";
+
 /* No comment provided by engineer. */
 "seconds ago" = "před %d vteřinami";
 

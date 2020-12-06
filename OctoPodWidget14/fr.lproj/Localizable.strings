@@ -47,10 +47,13 @@
 "Missed" = "Information perdue";
 
 /* No comment provided by engineer. */
-"Monitor and control your 3d printer via OctoPod" = "Surveillez et contrôlez votre imprimante 3D via OctoPod";
+"Monitor and control your 3d printer via OctoPod" = "Monitorer et contrôler votre imprimante 3D avec OctoPod";
 
 /* No comment provided by engineer. */
 "No" = "Non";
+
+/* No camera was configured */
+"No camera" = "Pas de caméra";
 
 /* No comment provided by engineer. */
 "seconds ago" = "Il y a %d secondes";

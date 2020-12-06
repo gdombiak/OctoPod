@@ -74,13 +74,22 @@
 "662LyZ" = "Neustart";
 
 /* (No Comment) */
+"a1UDyY" = "Angefordert";
+
+/* (No Comment) */
 "ajupCt" = "Keine Information verfügbar";
 
 /* (No Comment) */
 "AU4oMs" = "Rufe Statistik von Palette ab";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Angefordert";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
 
 /* (No Comment) */
 "BUexSx" = "Größte Variation";
@@ -134,6 +143,9 @@
 "gx0D0e" = "Auftrag abgebrochen";
 
 /* (No Comment) */
+"H21bkX" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
+
+/* (No Comment) */
 "hPlRC4" = "Stelle Druckbetttemperatur auf ${temperature}";
 
 /* (No Comment) */
@@ -141,6 +153,9 @@
 
 /* (No Comment) */
 "ihLqc7" = "Laufenden Druckauftrag aussetzen";
+
+/* (No Comment) */
+"IXiy0v" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
 
 /* (No Comment) */
 "jasUIn" = "Trenne von Palette";
@@ -200,6 +215,9 @@
 "NL98zi" = "Kühlt Druckbett und Düse ab";
 
 /* (No Comment) */
+"Oaidbo" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
+
+/* (No Comment) */
 "oe3uiM" = "Systembefehl ausführen ${commandName}";
 
 /* (No Comment) */
@@ -254,6 +272,9 @@
 "RYurC5" = "Kammer abkühlen";
 
 /* (No Comment) */
+"sDV9Jm" = "Angefordert";
+
+/* (No Comment) */
 "SP4rN6" = "Düsentemperatur konnte nicht eingestellt werden";
 
 /* (No Comment) */
@@ -293,13 +314,22 @@
 "vmbpr4" = "Verbinde zu Palette";
 
 /* (No Comment) */
+"wabqoy" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
+
+/* (No Comment) */
 "WI2oQf" = "Verbleibende Druckzeit";
 
 /* (No Comment) */
 "WLkRl0" = "Auftrag kann nicht fortgesetzt werden (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Angefordert";
+
+/* (No Comment) */
 "wYzz4m" = "Drucker kühlt ab";
+
+/* (No Comment) */
+"x8aCII" = "Angefordert";
 
 /* (No Comment) */
 "XfWmGt" = "Laufenden Druckauftrag fortsetzen";

@@ -74,13 +74,22 @@
 "662LyZ" = "Restartovat tisk";
 
 /* (No Comment) */
+"a1UDyY" = "Požádáno";
+
+/* (No Comment) */
 "ajupCt" = "Žádné dostupné informace";
 
 /* (No Comment) */
 "AU4oMs" = "Požádat Palette o ping data";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Požádáno";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
 
 /* (No Comment) */
 "BUexSx" = "Maximální variace";
@@ -134,6 +143,9 @@
 "gx0D0e" = "Tisk zrušen";
 
 /* (No Comment) */
+"H21bkX" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
 "hPlRC4" = "Nastavit teplotu podložky na ${temperature}";
 
 /* (No Comment) */
@@ -141,6 +153,9 @@
 
 /* (No Comment) */
 "ihLqc7" = "Přerušit tisk";
+
+/* (No Comment) */
+"IXiy0v" = "Nezdařila se žádost o spuštění příkazu";
 
 /* (No Comment) */
 "jasUIn" = "Odpojit se od Palette";
@@ -200,6 +215,9 @@
 "NL98zi" = "Zchladí podložku a trysku";
 
 /* (No Comment) */
+"Oaidbo" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
 "oe3uiM" = "Spustit systémový příkaz ${commandName}";
 
 /* (No Comment) */
@@ -254,6 +272,9 @@
 "RYurC5" = "Zchladit komoru";
 
 /* (No Comment) */
+"sDV9Jm" = "Požádáno";
+
+/* (No Comment) */
 "SP4rN6" = "Nastavit teplotu trysky";
 
 /* (No Comment) */
@@ -293,13 +314,22 @@
 "vmbpr4" = "Připojit se k Palette";
 
 /* (No Comment) */
+"wabqoy" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
 "WI2oQf" = "Zaslat Zbývající čas";
 
 /* (No Comment) */
 "WLkRl0" = "Nezdařilo se pokračovat v tisku (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Požádáno";
+
+/* (No Comment) */
 "wYzz4m" = "Tiskárna se chladí";
+
+/* (No Comment) */
+"x8aCII" = "Požádáno";
 
 /* (No Comment) */
 "XfWmGt" = "Pokračovat v tisku";

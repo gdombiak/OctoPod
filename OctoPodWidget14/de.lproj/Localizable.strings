@@ -52,6 +52,9 @@
 /* No comment provided by engineer. */
 "No" = "Nein";
 
+/* No camera was configured */
+"No camera" = "Keine Kamera";
+
 /* No comment provided by engineer. */
 "seconds ago" = "Vor %d Sekunden";
 
