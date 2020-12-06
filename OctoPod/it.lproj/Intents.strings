@@ -74,13 +74,22 @@
 "662LyZ" = "Riavvia la stampa";
 
 /* (No Comment) */
+"a1UDyY" = "Richiesto";
+
+/* (No Comment) */
 "ajupCt" = "Nessuna informazione disponibile";
 
 /* (No Comment) */
 "AU4oMs" = "Chiedi le statistiche di ping di Palette";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Richiesto";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
 
 /* (No Comment) */
 "BUexSx" = "Massima variazione";
@@ -134,6 +143,9 @@
 "gx0D0e" = "Stampa annullata";
 
 /* (No Comment) */
+"H21bkX" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
 "hPlRC4" = "Imposta la temperatura del piatto su ${temperature}";
 
 /* (No Comment) */
@@ -141,6 +153,9 @@
 
 /* (No Comment) */
 "ihLqc7" = "Sospendi la stampa in corso";
+
+/* (No Comment) */
+"IXiy0v" = "Impossibile richiedere di eseguire il comando";
 
 /* (No Comment) */
 "jasUIn" = "Disconnetti da Palette";
@@ -200,6 +215,9 @@
 "NL98zi" = "Raffredda piatto ed estrusore";
 
 /* (No Comment) */
+"Oaidbo" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
 "oe3uiM" = "Esegui il comando di sistema ${commandName}";
 
 /* (No Comment) */
@@ -254,6 +272,9 @@
 "RYurC5" = "Raffredda box";
 
 /* (No Comment) */
+"sDV9Jm" = "Richiesto";
+
+/* (No Comment) */
 "SP4rN6" = "Imposta la temperatura dell'estrusore";
 
 /* (No Comment) */
@@ -293,13 +314,22 @@
 "vmbpr4" = "Connetti a Palette";
 
 /* (No Comment) */
+"wabqoy" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
 "WI2oQf" = "Restituisci il tempo di stampa rimasto";
 
 /* (No Comment) */
 "WLkRl0" = "Errore nel riprendere la stampa (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Richiesto";
+
+/* (No Comment) */
 "wYzz4m" = "La stampante si sta raffreddando";
+
+/* (No Comment) */
+"x8aCII" = "Richiesto";
 
 /* (No Comment) */
 "XfWmGt" = "Riprendi la stampa in corso";

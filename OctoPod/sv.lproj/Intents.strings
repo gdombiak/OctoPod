@@ -74,13 +74,22 @@
 "662LyZ" = "Starta om";
 
 /* (No Comment) */
+"a1UDyY" = "Begärda";
+
+/* (No Comment) */
 "ajupCt" = "Ingen information tillgänglig";
 
 /* (No Comment) */
 "AU4oMs" = "Fråga Palette pingstatistik";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Begärda";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
 
 /* (No Comment) */
 "BUexSx" = "Max variation";
@@ -134,6 +143,9 @@
 "gx0D0e" = "Jobb avbrutet";
 
 /* (No Comment) */
+"H21bkX" = "Kunde inte begära körning av kommando";
+
+/* (No Comment) */
 "hPlRC4" = "Ställ in bäddtemperatur till ${temperature}";
 
 /* (No Comment) */
@@ -141,6 +153,9 @@
 
 /* (No Comment) */
 "ihLqc7" = "Pausa jobb";
+
+/* (No Comment) */
+"IXiy0v" = "Kunde inte begära körning av kommando";
 
 /* (No Comment) */
 "jasUIn" = "Koppla från Palette";
@@ -200,6 +215,9 @@
 "NL98zi" = "Kyler ner bädden och extruder";
 
 /* (No Comment) */
+"Oaidbo" = "Kunde inte begära körning av kommando";
+
+/* (No Comment) */
 "oe3uiM" = "Kör systemkommando ${commandName}";
 
 /* (No Comment) */
@@ -254,6 +272,9 @@
 "RYurC5" = "Kyl ner kammaren";
 
 /* (No Comment) */
+"sDV9Jm" = "Begärda";
+
+/* (No Comment) */
 "SP4rN6" = "Ställ in extruder-temperatur";
 
 /* (No Comment) */
@@ -293,13 +314,22 @@
 "vmbpr4" = "Anslut till Palette";
 
 /* (No Comment) */
+"wabqoy" = "Kunde inte begära körning av kommando";
+
+/* (No Comment) */
 "WI2oQf" = "Returnera återstående utskriftstid";
 
 /* (No Comment) */
 "WLkRl0" = "Kunde inte återuppta jobb (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Begärda";
+
+/* (No Comment) */
 "wYzz4m" = "Skrivaren kyls ner";
+
+/* (No Comment) */
+"x8aCII" = "Begärda";
 
 /* (No Comment) */
 "XfWmGt" = "Återuppta pågående utskriftsjobb";

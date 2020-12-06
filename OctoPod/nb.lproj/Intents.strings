@@ -74,13 +74,22 @@
 "662LyZ" = "Restart jobb";
 
 /* (No Comment) */
+"a1UDyY" = "Forespurt";
+
+/* (No Comment) */
 "ajupCt" = "Ingen informasjon tilgjengelig";
 
 /* (No Comment) */
 "AU4oMs" = "Spør Palette pingstatistikk";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Forespurt";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
 
 /* (No Comment) */
 "BUexSx" = "Maks variasjon";
@@ -134,6 +143,9 @@
 "gx0D0e" = "Jobb avbrutt";
 
 /* (No Comment) */
+"H21bkX" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
 "hPlRC4" = "Sett skriveflatetemperaturen til ${temperature}";
 
 /* (No Comment) */
@@ -141,6 +153,9 @@
 
 /* (No Comment) */
 "ihLqc7" = "Pause jobb";
+
+/* (No Comment) */
+"IXiy0v" = "Kunne ikke be om å utføre kommandoen";
 
 /* (No Comment) */
 "jasUIn" = "Koble fra Palette";
@@ -200,6 +215,9 @@
 "NL98zi" = "Kjøler ned skriveflate og ekstruder";
 
 /* (No Comment) */
+"Oaidbo" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
 "oe3uiM" = "Utfør systemkommando ${commandName}";
 
 /* (No Comment) */
@@ -254,6 +272,9 @@
 "RYurC5" = "Avkjøl kammeret";
 
 /* (No Comment) */
+"sDV9Jm" = "Forespurt";
+
+/* (No Comment) */
 "SP4rN6" = "Sett ekstruders temperatur";
 
 /* (No Comment) */
@@ -293,13 +314,22 @@
 "vmbpr4" = "Koble til Palette";
 
 /* (No Comment) */
+"wabqoy" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
 "WI2oQf" = "Returnerer utskriftstid igjen";
 
 /* (No Comment) */
 "WLkRl0" = "Kunne ikke fortsette utskrift (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Forespurt";
+
+/* (No Comment) */
 "wYzz4m" = "Skriver kjøler ned";
+
+/* (No Comment) */
+"x8aCII" = "Forespurt";
 
 /* (No Comment) */
 "XfWmGt" = "Restart startet utskrift";

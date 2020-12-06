@@ -52,6 +52,9 @@
 /* No comment provided by engineer. */
 "No" = "Нет";
 
+/* No camera was configured */
+"No camera" = "Камера не найдена";
+
 /* No comment provided by engineer. */
 "seconds ago" = "%d сек. назад";
 
