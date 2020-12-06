@@ -190,6 +190,9 @@
 /* Siri suggested phrase */
 "Execute System Command" = "Spustit systémový příkaz";
 
+/* No comment provided by engineer. */
+"Expand" = "Maximalizovat";
+
 /* (No Comment) */
 "Extruder" = "Tryska";
 
@@ -508,6 +511,9 @@
 /* (No Comment) */
 "Restart Job" = "Restartovat";
 
+/* No comment provided by engineer. */
+"Restore" = "Obnovit";
+
 /* gcode name */
 "Restore Settings" = "Obnovit nastavení";
 
@@ -613,8 +619,14 @@
 /* (No Comment) */
 "Turn Off" = "Vypnout";
 
+/* Siri suggested phrase */
+"Turn off Enclosure switch" = "Vypnout spínač Enclosure";
+
 /* (No Comment) */
 "Turn On" = "Zapnout";
+
+/* Siri suggested phrase */
+"Turn on Enclosure switch" = "Zapnout spínač Enclosure";
 
 /* ETA is Unknown
    File Type is Unknown

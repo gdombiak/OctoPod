@@ -26,6 +26,9 @@
 "3JiZye" = "Požádáno";
 
 /* (No Comment) */
+"4B08aG" = "Vypnout ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
@@ -80,6 +83,9 @@
 "ajupCt" = "Žádné dostupné informace";
 
 /* (No Comment) */
+"aTDQUI" = "Zapnout spínač Enclosure";
+
+/* (No Comment) */
 "AU4oMs" = "Požádat Palette o ping data";
 
 /* (No Comment) */
@@ -117,6 +123,9 @@
 
 /* (No Comment) */
 "Eeyifr" = "Požádáno";
+
+/* (No Comment) */
+"eKSaMC" = "Zapnout ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Zchladit tiskárnu";
@@ -182,6 +191,9 @@
 "KUFtih" = "${printer}";
 
 /* (No Comment) */
+"KulRl5" = "Zapnout spínač Enclosure";
+
+/* (No Comment) */
 "L25OHl" = "Nezdařila se žádost o připojení";
 
 /* (No Comment) */
@@ -245,6 +257,9 @@
 "QSxXHq" = "Pozastavit probíhající tisk";
 
 /* (No Comment) */
+"qwH2oF" = "Vypnout spínač Enclosure";
+
+/* (No Comment) */
 "R5AlTe" = "Odpojit se od Palette";
 
 /* (No Comment) */
@@ -282,6 +297,9 @@
 
 /* (No Comment) */
 "sRkyIL" = "Nezdařilo se restartovat tisk (${statusCode})";
+
+/* (No Comment) */
+"TcPGnq" = "Vypnout spínač Enclosure";
 
 /* (No Comment) */
 "tKDODp" = "Zbývající čas tisku";
