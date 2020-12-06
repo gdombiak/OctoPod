@@ -190,6 +190,9 @@
 /* Siri suggested phrase */
 "Execute System Command" = "Esegui il comando di sistema";
 
+/* No comment provided by engineer. */
+"Expand" = "Espandi";
+
 /* (No Comment) */
 "Extruder" = "Estrusore";
 
@@ -508,6 +511,9 @@
 /* (No Comment) */
 "Restart Job" = "Ricomincia";
 
+/* No comment provided by engineer. */
+"Restore" = "Ripristina";
+
 /* gcode name */
 "Restore Settings" = "Ripristina impostazioni";
 
@@ -613,8 +619,14 @@
 /* (No Comment) */
 "Turn Off" = "Spegni";
 
+/* Siri suggested phrase */
+"Turn off Enclosure switch" = "Spegni interruttore Enclosure";
+
 /* (No Comment) */
 "Turn On" = "Accendi";
+
+/* Siri suggested phrase */
+"Turn on Enclosure switch" = "Accendi interruttore Enclosure";
 
 /* ETA is Unknown
    File Type is Unknown

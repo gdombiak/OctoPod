@@ -26,6 +26,9 @@
 "3JiZye" = "Begärda";
 
 /* (No Comment) */
+"4B08aG" = "Stäng av ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
@@ -80,6 +83,9 @@
 "ajupCt" = "Ingen information tillgänglig";
 
 /* (No Comment) */
+"aTDQUI" = "Slå på Enclosure-brytaren";
+
+/* (No Comment) */
 "AU4oMs" = "Fråga Palette pingstatistik";
 
 /* (No Comment) */
@@ -117,6 +123,9 @@
 
 /* (No Comment) */
 "Eeyifr" = "Begärda";
+
+/* (No Comment) */
+"eKSaMC" = "Slå på ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Kyl ner skrivare";
@@ -182,6 +191,9 @@
 "KUFtih" = "${printer}";
 
 /* (No Comment) */
+"KulRl5" = "Slå på Enclosure-brytaren";
+
+/* (No Comment) */
 "L25OHl" = "Kunde inte begära att ansluta";
 
 /* (No Comment) */
@@ -245,6 +257,9 @@
 "QSxXHq" = "Pausa pågående utskriftsjobb";
 
 /* (No Comment) */
+"qwH2oF" = "Stäng av Enclosure-brytaren";
+
+/* (No Comment) */
 "R5AlTe" = "Koppla från Palette";
 
 /* (No Comment) */
@@ -282,6 +297,9 @@
 
 /* (No Comment) */
 "sRkyIL" = "Kunde inte starta om jobb (${statusCode})";
+
+/* (No Comment) */
+"TcPGnq" = "Stäng av Enclosure-brytaren";
 
 /* (No Comment) */
 "tKDODp" = "Tid kvar";

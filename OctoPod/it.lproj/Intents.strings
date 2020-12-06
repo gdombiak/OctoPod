@@ -26,6 +26,9 @@
 "3JiZye" = "Richiesto";
 
 /* (No Comment) */
+"4B08aG" = "Spegni ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
@@ -80,6 +83,9 @@
 "ajupCt" = "Nessuna informazione disponibile";
 
 /* (No Comment) */
+"aTDQUI" = "Accendi interruttore Enclosure";
+
+/* (No Comment) */
 "AU4oMs" = "Chiedi le statistiche di ping di Palette";
 
 /* (No Comment) */
@@ -117,6 +123,9 @@
 
 /* (No Comment) */
 "Eeyifr" = "Richiesto";
+
+/* (No Comment) */
+"eKSaMC" = "Accendi ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Raffredda stampante";
@@ -182,6 +191,9 @@
 "KUFtih" = "${printer}";
 
 /* (No Comment) */
+"KulRl5" = "Accendi interruttore Enclosure";
+
+/* (No Comment) */
 "L25OHl" = "Impossibile richiedere di connettersi";
 
 /* (No Comment) */
@@ -245,6 +257,9 @@
 "QSxXHq" = "Sospendi la stampa in corso";
 
 /* (No Comment) */
+"qwH2oF" = "Spegni interruttore Enclosure";
+
+/* (No Comment) */
 "R5AlTe" = "Disconnetti da Palette";
 
 /* (No Comment) */
@@ -282,6 +297,9 @@
 
 /* (No Comment) */
 "sRkyIL" = "Errore nel riavviare la stampa (${statusCode})";
+
+/* (No Comment) */
+"TcPGnq" = "Spegni interruttore Enclosure";
 
 /* (No Comment) */
 "tKDODp" = "Tempo di stampa rimanente";
