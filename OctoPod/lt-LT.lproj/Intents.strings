@@ -26,6 +26,9 @@
 "3JiZye" = "Paprašyta";
 
 /* (No Comment) */
+"4B08aG" = "Išjungti ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
@@ -80,6 +83,9 @@
 "ajupCt" = "Nėra informacijos";
 
 /* (No Comment) */
+"aTDQUI" = "Įjungti dežės jungiklį";
+
+/* (No Comment) */
 "AU4oMs" = "Paprašyti Pallete ping statistikos";
 
 /* (No Comment) */
@@ -117,6 +123,9 @@
 
 /* (No Comment) */
 "Eeyifr" = "Paprašyta";
+
+/* (No Comment) */
+"eKSaMC" = "Įjungti ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Atšaldyti spausdintuvą";
@@ -182,6 +191,9 @@
 "KUFtih" = "${printer}";
 
 /* (No Comment) */
+"KulRl5" = "Įjungti dežės jungiklį";
+
+/* (No Comment) */
 "L25OHl" = "Nepavyko pabandyti prisijungti";
 
 /* (No Comment) */
@@ -245,6 +257,9 @@
 "QSxXHq" = "Užpauzinti dabartinę užduotį";
 
 /* (No Comment) */
+"qwH2oF" = "Išjungti dežės jungiklį";
+
+/* (No Comment) */
 "R5AlTe" = "Atsijungti nuo Pallete";
 
 /* (No Comment) */
@@ -282,6 +297,9 @@
 
 /* (No Comment) */
 "sRkyIL" = "Nepavyko paleisti iš naujo (${statusCode})";
+
+/* (No Comment) */
+"TcPGnq" = "Išjungti dežės jungiklį";
 
 /* (No Comment) */
 "tKDODp" = "Likęs spausdinimo laikas";

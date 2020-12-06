@@ -190,6 +190,9 @@
 /* Siri suggested phrase */
 "Execute System Command" = "Vykdyti sistemos komandą";
 
+/* No comment provided by engineer. */
+"Expand" = "Padidinti vaizdą";
+
 /* (No Comment) */
 "Extruder" = "Ekstruderio";
 
@@ -508,6 +511,9 @@
 /* (No Comment) */
 "Restart Job" = "Pradėti iš naujo";
 
+/* No comment provided by engineer. */
+"Restore" = "Atstatyti vaizdą";
+
 /* gcode name */
 "Restore Settings" = "Numatytieji nustatymai";
 
@@ -613,8 +619,14 @@
 /* (No Comment) */
 "Turn Off" = "Išjungti";
 
+/* Siri suggested phrase */
+"Turn off Enclosure switch" = "Išjungti dežės jungiklį";
+
 /* (No Comment) */
 "Turn On" = "Įjungti";
+
+/* Siri suggested phrase */
+"Turn on Enclosure switch" = "Įjungti dežės jungiklį";
 
 /* ETA is Unknown
    File Type is Unknown
