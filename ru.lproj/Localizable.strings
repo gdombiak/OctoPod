@@ -190,6 +190,9 @@
 /* Siri suggested phrase */
 "Execute System Command" = "Выполнить системную команду";
 
+/* No comment provided by engineer. */
+"Expand" = "Развернуть";
+
 /* (No Comment) */
 "Extruder" = "Экструдер";
 
@@ -508,6 +511,9 @@
 /* (No Comment) */
 "Restart Job" = "Перезапустить задание";
 
+/* No comment provided by engineer. */
+"Restore" = "Восстановить";
+
 /* gcode name */
 "Restore Settings" = "Восстановить настройки";
 
@@ -613,8 +619,14 @@
 /* (No Comment) */
 "Turn Off" = "Выключить";
 
+/* Siri suggested phrase */
+"Turn off Enclosure switch" = "Выключить переключатель \"Enclosure\"";
+
 /* (No Comment) */
 "Turn On" = "Включить";
+
+/* Siri suggested phrase */
+"Turn on Enclosure switch" = "Включить переключатель \"Enclosure\"";
 
 /* ETA is Unknown
    File Type is Unknown

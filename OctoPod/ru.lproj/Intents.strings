@@ -26,6 +26,9 @@
 "3JiZye" = "Запрошено";
 
 /* (No Comment) */
+"4B08aG" = "Отключить ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
@@ -80,6 +83,9 @@
 "ajupCt" = "Информация отсутствует";
 
 /* (No Comment) */
+"aTDQUI" = "Включить переключатель \"Enclosure\"";
+
+/* (No Comment) */
 "AU4oMs" = "Запрос ping статистики Palette";
 
 /* (No Comment) */
@@ -117,6 +123,9 @@
 
 /* (No Comment) */
 "Eeyifr" = "Запрошено";
+
+/* (No Comment) */
+"eKSaMC" = "Включить ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Охладить принтер";
@@ -182,6 +191,9 @@
 "KUFtih" = "${printer}";
 
 /* (No Comment) */
+"KulRl5" = "Включить переключатель \"Enclosure\"";
+
+/* (No Comment) */
 "L25OHl" = "Не удалось установить соединение";
 
 /* (No Comment) */
@@ -245,6 +257,9 @@
 "QSxXHq" = "Приостановить выполнение задания на печать";
 
 /* (No Comment) */
+"qwH2oF" = "Выключить переключатель \"Enclosure\"";
+
+/* (No Comment) */
 "R5AlTe" = "Отключиться от Palette";
 
 /* (No Comment) */
@@ -282,6 +297,9 @@
 
 /* (No Comment) */
 "sRkyIL" = "Не удалось перезапустить задание (${statusCode})";
+
+/* (No Comment) */
+"TcPGnq" = "Выключить переключатель \"Enclosure\"";
 
 /* (No Comment) */
 "tKDODp" = "Оставшееся время печати";
