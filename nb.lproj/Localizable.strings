@@ -190,6 +190,9 @@
 /* Siri suggested phrase */
 "Execute System Command" = "Utfør systemkommando";
 
+/* No comment provided by engineer. */
+"Expand" = "Maksimer";
+
 /* (No Comment) */
 "Extruder" = "Ekstruder";
 
@@ -508,6 +511,9 @@
 /* (No Comment) */
 "Restart Job" = "Restart";
 
+/* No comment provided by engineer. */
+"Restore" = "Restaurere";
+
 /* gcode name */
 "Restore Settings" = "Gjenopprett innstillinger";
 
@@ -613,8 +619,14 @@
 /* (No Comment) */
 "Turn Off" = "Slå av";
 
+/* Siri suggested phrase */
+"Turn off Enclosure switch" = "Slå av bryteren via Enclosure";
+
 /* (No Comment) */
 "Turn On" = "Slå på";
+
+/* Siri suggested phrase */
+"Turn on Enclosure switch" = "Slå på bryteren via Enclosure";
 
 /* ETA is Unknown
    File Type is Unknown

@@ -26,6 +26,9 @@
 "3JiZye" = "Forespurt";
 
 /* (No Comment) */
+"4B08aG" = "Skru av ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
@@ -80,6 +83,9 @@
 "ajupCt" = "Ingen informasjon tilgjengelig";
 
 /* (No Comment) */
+"aTDQUI" = "Slå på bryteren via Enclosure";
+
+/* (No Comment) */
 "AU4oMs" = "Spør Palette pingstatistikk";
 
 /* (No Comment) */
@@ -117,6 +123,9 @@
 
 /* (No Comment) */
 "Eeyifr" = "Forespurt";
+
+/* (No Comment) */
+"eKSaMC" = "Slå på ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Kjøl ned skriver";
@@ -182,6 +191,9 @@
 "KUFtih" = "${printer}";
 
 /* (No Comment) */
+"KulRl5" = "Slå på bryteren via Enclosure";
+
+/* (No Comment) */
 "L25OHl" = "Kunne ikke be om å få forbindelse";
 
 /* (No Comment) */
@@ -245,6 +257,9 @@
 "QSxXHq" = "Pause utskrift";
 
 /* (No Comment) */
+"qwH2oF" = "Slå av bryteren via Enclosure";
+
+/* (No Comment) */
 "R5AlTe" = "Koble fra Palette";
 
 /* (No Comment) */
@@ -282,6 +297,9 @@
 
 /* (No Comment) */
 "sRkyIL" = "Kunne ikke starte jobben igjen (${statusCode})";
+
+/* (No Comment) */
+"TcPGnq" = "Slå av bryteren via Enclosure";
 
 /* (No Comment) */
 "tKDODp" = "Resterende utskriftstid";
