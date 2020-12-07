@@ -190,6 +190,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
 "bNj-cj-oty.text" = "Label";
 
+/* Class = "UILabel"; text = "Print Time"; ObjectID = "BrM-2D-Rbd"; */
+"BrM-2D-Rbd.text" = "Spausdinimo laikas";
+
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "bsz-rk-3Em"; */
 "bsz-rk-3Em.text" = "0.0 C";
 
@@ -676,6 +679,9 @@
 /* Class = "UILabel"; text = "Siri"; ObjectID = "R2d-Mv-REP"; */
 "R2d-Mv-REP.text" = "Siri";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "r08-sj-cCD"; */
+"r08-sj-cCD.text" = "Label";
+
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87"; */
 "REX-gh-p87.normalTitle" = "Mygtukas";
 
@@ -847,6 +853,9 @@
 /* Class = "UIButton"; normalTitle = "Reset printers from iCloud data"; ObjectID = "vyb-aH-wc9"; */
 "vyb-aH-wc9.normalTitle" = "Ištrinti spausdintuvus iš iCloud";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "W0K-Js-tt5"; */
+"W0K-Js-tt5.text" = "Label";
+
 /* Class = "UISegmentedControl"; W0X-ef-NWv.segmentTitles[0] = "Default"; ObjectID = "W0X-ef-NWv"; */
 "W0X-ef-NWv.segmentTitles[0]" = "Numatytas";
 
@@ -858,6 +867,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Wcu-9D-QXt"; */
 "Wcu-9D-QXt.text" = "Label";
+
+/* Class = "UILabel"; text = "Print Completion"; ObjectID = "weI-5t-9zz"; */
+"weI-5t-9zz.text" = "Numatytas baigimas";
 
 /* Class = "UILabel"; text = "Dark"; ObjectID = "wHn-Dc-bWb"; */
 "wHn-Dc-bWb.text" = "Tamsi";
