@@ -12,7 +12,9 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
     var printerName: String = ""
     var printerStatus: String = "--"
     var progress: String = "--%"
+    var printTime: String = "--"
     var printTimeLeft: String = "--"
+    var printCompletion: String = "--"
     var layer: String?
     
     init(printersDashboardViewController: PrintersDashboardViewController, row: Int) {
@@ -76,16 +78,30 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
             }
         }
         
+        if let seconds = event.progressPrintTime {
+            let newTime = UIUtils.secondsToPrintTime(seconds: seconds)
+            if newTime != printTime {
+                self.printTime = newTime
+                changed = true
+            }
+        }
+
         if let seconds = event.progressPrintTimeLeft {
             let newTimeLeft = UIUtils.secondsToTimeLeft(seconds: seconds, includesApproximationPhrase: false, ifZero: "")
             if newTimeLeft != printTimeLeft {
                 self.printTimeLeft = newTimeLeft
                 changed = true
             }
+            let newPrintEstimatedCompletion = UIUtils.secondsToETA(seconds: seconds)
+            if newPrintEstimatedCompletion != printCompletion {
+                printCompletion = newPrintEstimatedCompletion
+                changed = true
+            }
         } else if event.progressPrintTime != nil {
             let newTimeLeft = NSLocalizedString("Still stabilizing", comment: "Print time is being calculated")
             if newTimeLeft != printTimeLeft {
                 self.printTimeLeft = newTimeLeft
+                self.printCompletion = ""
                 changed = true
             }
         }

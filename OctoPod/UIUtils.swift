@@ -96,6 +96,17 @@ class UIUtils {
         return formatter.string(from: duration)!
     }
     
+    /// Converts number of seconds into a string that represents time (e.g. 23h 10m)
+    /// - parameter seconds: seconds since print started
+    static func secondsToPrintTime(seconds: Int) -> String {
+        let duration = TimeInterval(seconds)
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .brief
+        formatter.allowedUnits = [ .day, .hour, .minute, .second ]
+        formatter.zeroFormattingBehavior = [ .default ]
+        return formatter.string(from: duration)!
+    }
+    
     /// Return estimated time based on number of estimated seconds to completion
     /// - parameter seconds: estimated number of seconds to complection
     static func secondsToTimeLeft(seconds: Int, includesApproximationPhrase: Bool, ifZero: String) -> String {

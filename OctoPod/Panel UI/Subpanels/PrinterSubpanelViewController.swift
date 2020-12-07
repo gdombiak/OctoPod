@@ -112,6 +112,10 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         progressView.layer.sublayers![1].cornerRadius = 8
         progressView.subviews[1].clipsToBounds = true
         
+        // Change color of Cancel button when enabled or disabled
+        cancelButton.setTitleColor(UIColor.red, for: .normal)
+        cancelButton.setTitleColor(UIColor(red: 167/255, green: 88/255, blue: 88/255, alpha: 1.0), for: .disabled)
+
         clearValues()
     }
     
@@ -377,7 +381,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             }
             
             if let seconds = event.progressPrintTime {
-                self.printTimeLabel.text = self.secondsToPrintTime(seconds: seconds)
+                self.printTimeLabel.text = UIUtils.secondsToPrintTime(seconds: seconds)
             }
 
             if let seconds = event.progressPrintTimeLeft {
@@ -775,16 +779,6 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         } else {
             enclosureInputs = []
         }
-    }
-    
-    /// Converts number of seconds into a string that represents time (e.g. 23h 10m)
-    func secondsToPrintTime(seconds: Int) -> String {
-        let duration = TimeInterval(seconds)
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .brief
-        formatter.allowedUnits = [ .day, .hour, .minute, .second ]
-        formatter.zeroFormattingBehavior = [ .default ]
-        return formatter.string(from: duration)!
     }
     
     fileprivate func presentToolTip(tooltipKey: String, segueIdentifier: String, button: UIButton) {

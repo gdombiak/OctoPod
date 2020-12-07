@@ -1014,10 +1014,10 @@
 				3DDDB20021B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift */,
 				3D588C972545041400D96B86 /* SystemCommandIntentHandler.swift */,
 				3DD598A4257B472F0027B4D2 /* EnclosureTurnOnIntentHandler.swift */,
+				3DE04925257B767400C7E55F /* EnclosureTurnOffIntentHandler.swift */,
 				3D669E1B22FBBAF5002C68C1 /* Mosaic */,
 				3D2792A12505D08C00026ACF /* WidgetConfigurationIntentHandler.swift */,
 				3DD4745A2545F3C1001CD60F /* DashboardWidgetConfigurationIntentHandler.swift */,
-				3DE04925257B767400C7E55F /* EnclosureTurnOffIntentHandler.swift */,
 			);
 			path = "OctoPod Intent";
 			sourceTree = "<group>";

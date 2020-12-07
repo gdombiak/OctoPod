@@ -63,7 +63,9 @@ class PrintersDashboardViewController: UICollectionViewController {
         cell.printerLabel.text = printerObserver.printerName
         cell.printerStatusLabel.text = printerObserver.printerStatus
         cell.progressLabel.text = printerObserver.progress
+        cell.printTimeLabel.text = printerObserver.printTime
         cell.printTimeLeftLabel.text = printerObserver.printTimeLeft
+        cell.printEstimatedCompletionLabel.text = printerObserver.printCompletion
         cell.layerLabel.text = printerObserver.layer
     
         return cell
@@ -89,11 +91,16 @@ class PrintersDashboardViewController: UICollectionViewController {
         if let cell = cell as? PrinterViewCell {
             cell.printerLabel?.textColor = textColor
             cell.printedTextLabel?.textColor = labelColor
+            cell.printTimeTextLabel?.textColor = labelColor
             cell.printTimeLeftTextLabel?.textColor = labelColor
+            cell.printEstimatedCompletionTextLabel?.textColor = labelColor
             cell.printerStatusTextLabel?.textColor = labelColor
             cell.printerStatusLabel?.textColor = textColor
+            
             cell.progressLabel?.textColor = textColor
+            cell.printTimeLabel?.textColor = textColor
             cell.printTimeLeftLabel?.textColor = textColor
+            cell.printEstimatedCompletionLabel?.textColor = textColor
             cell.layerTextLabel?.textColor = labelColor
             cell.layerLabel?.textColor = textColor
         }
