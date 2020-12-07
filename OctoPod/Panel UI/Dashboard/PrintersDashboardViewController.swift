@@ -58,15 +58,16 @@ class PrintersDashboardViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PrinterViewCell
     
-        // Configure the cell
-        let printerObserver = printers[indexPath.row]
-        cell.printerLabel.text = printerObserver.printerName
-        cell.printerStatusLabel.text = printerObserver.printerStatus
-        cell.progressLabel.text = printerObserver.progress
-        cell.printTimeLabel.text = printerObserver.printTime
-        cell.printTimeLeftLabel.text = printerObserver.printTimeLeft
-        cell.printEstimatedCompletionLabel.text = printerObserver.printCompletion
-        cell.layerLabel.text = printerObserver.layer
+        if let printerObserver = printers[safeIndex: indexPath.row] {
+            // Configure the cell            
+            cell.printerLabel.text = printerObserver.printerName
+            cell.printerStatusLabel.text = printerObserver.printerStatus
+            cell.progressLabel.text = printerObserver.progress
+            cell.printTimeLabel.text = printerObserver.printTime
+            cell.printTimeLeftLabel.text = printerObserver.printTimeLeft
+            cell.printEstimatedCompletionLabel.text = printerObserver.printCompletion
+            cell.layerLabel.text = printerObserver.layer
+        }
     
         return cell
     }
