@@ -26,6 +26,9 @@
 "3JiZye" = "Demande en cours";
 
 /* (No Comment) */
+"4B08aG" = "Éteindre ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
 
 /* (No Comment) */
@@ -80,6 +83,9 @@
 "ajupCt" = "Aucune information disponible";
 
 /* (No Comment) */
+"aTDQUI" = "Allumer l’interrupteur Enclosure";
+
+/* (No Comment) */
 "AU4oMs" = "Demander les statistiques de ping à Palette";
 
 /* (No Comment) */
@@ -117,6 +123,9 @@
 
 /* (No Comment) */
 "Eeyifr" = "Demande en cours";
+
+/* (No Comment) */
+"eKSaMC" = "Allumer ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Refroidir l’imprimante";
@@ -182,6 +191,9 @@
 "KUFtih" = "${printer}";
 
 /* (No Comment) */
+"KulRl5" = "Allumer l’interrupteur Enclosure";
+
+/* (No Comment) */
 "L25OHl" = "Échec de la demande de connexion";
 
 /* (No Comment) */
@@ -245,6 +257,9 @@
 "QSxXHq" = "Mettre en pause";
 
 /* (No Comment) */
+"qwH2oF" = "Éteindre l’interrupteur Enclosure";
+
+/* (No Comment) */
 "R5AlTe" = "Se déconnecter de Palette";
 
 /* (No Comment) */
@@ -282,6 +297,9 @@
 
 /* (No Comment) */
 "sRkyIL" = "Échec de la reprise (${statusCode})";
+
+/* (No Comment) */
+"TcPGnq" = "Éteindre l’interrupteur Enclosure";
 
 /* (No Comment) */
 "tKDODp" = "Temps restant";
