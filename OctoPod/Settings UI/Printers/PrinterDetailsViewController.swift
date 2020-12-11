@@ -38,13 +38,7 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        // Theme labels
-        let theme = Theme.currentTheme()
-        let tintColor = theme.tintColor()
-        scanAPIKeyButton.tintColor = tintColor
-        scanInstallationsButton.tintColor = tintColor
-        includeDashboardLabel.textColor = theme.textColor()
-        showCameraLabel.textColor = theme.textColor()
+        themeLabels()
 
         if let selectedPrinter = updatePrinter {
             updateFieldsForPrinter(printer: selectedPrinter)
@@ -305,6 +299,26 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         let changeInHeight = (keyboardFrame.height + 40) * (show ? 1 : -1)
         // Set the table content inset to the keyboard height
         tableView.contentInset.bottom = changeInHeight
+    }
+    
+    fileprivate func themeLabels() {
+        // Theme labels
+        let theme = Theme.currentTheme()
+        let tintColor = theme.tintColor()
+        scanAPIKeyButton.tintColor = tintColor
+        scanInstallationsButton.tintColor = tintColor
+        includeDashboardLabel.textColor = theme.textColor()
+        showCameraLabel.textColor = theme.textColor()
+        printerNameField.backgroundColor = theme.backgroundColor()
+        printerNameField.textColor = theme.textColor()
+        hostnameField.backgroundColor = theme.backgroundColor()
+        hostnameField.textColor = theme.textColor()
+        apiKeyField.backgroundColor = theme.backgroundColor()
+        apiKeyField.textColor = theme.textColor()
+        usernameField.backgroundColor = theme.backgroundColor()
+        usernameField.textColor = theme.textColor()
+        passwordField.backgroundColor = theme.backgroundColor()
+        passwordField.textColor = theme.textColor()
     }
     
     @objc func keyboardWillShow(notification: Notification) {

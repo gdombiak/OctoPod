@@ -60,6 +60,8 @@ class SetTargetTempViewController: ThemedStaticUITableViewController {
         // Change colors based on current theme
         let theme = Theme.currentTheme()
         newTemperatureLabel.textColor = theme.labelColor()
+        targetTempField.backgroundColor = theme.backgroundColor()
+        targetTempField.textColor = theme.textColor()
         // Use separator color for more contrast on the arrow to make it more visible
         self.popoverPresentationController?.backgroundColor = theme.separatorColor()
     }
