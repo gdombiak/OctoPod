@@ -1,5 +1,35 @@
 # Change Log
 
+## [3.10](https://github.com/gdombiak/OctoPod/tree/3.10) (2020-12-11)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.9...3.10)
+
+**Implemented enhancements:**
+
+- Add "Printing Time" and "Print Completion Time" to dashboard [\#421](https://github.com/gdombiak/OctoPod/issues/421)
+- \[TV\] Add support for HLS feed [\#415](https://github.com/gdombiak/OctoPod/issues/415)
+- Configured camera feed for iPad Air 2020 & iPhone 12 series [\#414](https://github.com/gdombiak/OctoPod/issues/414)
+- Add Siri Shortcuts to control Enclosure plugin switches [\#406](https://github.com/gdombiak/OctoPod/issues/406)
+- Feature Request: iOS picture in Picture [\#383](https://github.com/gdombiak/OctoPod/issues/383)
+- HLS Video Feed for Octoprint/Octopod - \(Investigation/Enhancement\) [\#302](https://github.com/gdombiak/OctoPod/issues/302)
+- Apple TV: fullscreen video in detail view [\#300](https://github.com/gdombiak/OctoPod/issues/300)
+
+**Fixed bugs:**
+
+- Text color in Light Theme and Dark Mode [\#426](https://github.com/gdombiak/OctoPod/issues/426)
+- Fix app crash in dashboard [\#422](https://github.com/gdombiak/OctoPod/issues/422)
+- Fix random crash with cameras - index out of bounds [\#413](https://github.com/gdombiak/OctoPod/issues/413)
+- Fix random crash recreating websocket connection [\#412](https://github.com/gdombiak/OctoPod/issues/412)
+- Very high data usage over cellular [\#408](https://github.com/gdombiak/OctoPod/issues/408)
+- Apple Watch : there is no camera  [\#394](https://github.com/gdombiak/OctoPod/issues/394)
+
+**Closed issues:**
+
+- Add Facebook and Twitter support links [\#419](https://github.com/gdombiak/OctoPod/issues/419)
+- iOS app not available on AppleSilicon Macs? [\#411](https://github.com/gdombiak/OctoPod/issues/411)
+- I can’t add my printer [\#410](https://github.com/gdombiak/OctoPod/issues/410)
+- Update charts library to 3.6.0 [\#409](https://github.com/gdombiak/OctoPod/issues/409)
+- DNS Query Pulls from Public DNS [\#407](https://github.com/gdombiak/OctoPod/issues/407)
+
 ## [3.9](https://github.com/gdombiak/OctoPod/tree/3.9) (2020-11-16)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.8...3.9)
 
