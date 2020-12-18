@@ -51,10 +51,12 @@ class PSUControlViewController: ThemedStaticUITableViewController, SubpanelViewC
     func printerSelectedChanged() {
         // Assume power is off to be safe
         isPSUOn = false
-        // Only refresh UI if view controller is being shown
-        if let _ = parent {
-            // Fetch status now and refresh UI. Websockets will eventually send updates
-            fetchPSUStatus()
+        DispatchQueue.main.async {
+            // Only refresh UI if view controller is being shown
+            if let _ = self.parent {
+                // Fetch status now and refresh UI. Websockets will eventually send updates
+                self.fetchPSUStatus()
+            }
         }
     }
     
