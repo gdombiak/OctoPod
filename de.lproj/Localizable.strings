@@ -74,7 +74,7 @@
 "Cannot print this file type" = "Dieser Dateityp kann nicht gedruckt werden";
 
 /* (No Comment) */
-"Cannot reach 'octopi.local' over mobile network or service is down" = "Kann 'octopi.local' nicht via Mobilfunk aufrufen oder der Dienst nicht nicht verfügbar";
+"Cannot reach 'octopi.local' over mobile network or service is down" = "Kann 'octopi.local' nicht via Mobilfunk aufrufen oder der Dienst ist nicht verfügbar";
 
 /* (No Comment) */
 "Cannot replace file that is being printed or printer is busy" = "Kann die Datei nicht ersetzen während sie gedruckt wird oder der Drucker ist noch beschäftigt";
@@ -104,7 +104,7 @@
 "Confirm disconnect" = "Möchten Sie die Verbindung zum Drucker trennen?";
 
 /* (No Comment) */
-"Confirm disconnect palette2" = "Möchtest du Palette 2 trennen?";
+"Confirm disconnect palette2" = "Möchten Sie Palette 2 trennen?";
 
 /* (No Comment) */
 "Confirm intentions deletion" = "Sie sind dabei alle Siri Verknüpfungen der App zu löschen. Fortsetzen?";
@@ -149,7 +149,7 @@
 "Cool down printer extruder" = "Düse abkühlen %@";
 
 /* Connection to server failed */
-"Could not connect to the server" = "Konnte nicht mit dem Server verbinden";
+"Could not connect to the server" = "Konnte keine Verbindung mit dem Server herstellen";
 
 /* No comment provided by engineer. */
 "Current Height" = "Aktuelle Höhe";
@@ -173,10 +173,10 @@
 "Do you want to cancel job?" = "Möchten Sie den Auftrag abbrechen?";
 
 /* No comment provided by engineer. */
-"Do you want to pause job?" = "Möchtest du den Auftrag pausieren?";
+"Do you want to pause job?" = "Möchten Sie den Auftrag pausieren?";
 
 /* No comment provided by engineer. */
-"Do you want to restart print job from the beginning?" = "Willst du den Druckauftrag von Anfang an neu starten?";
+"Do you want to restart print job from the beginning?" = "Wollen Sie den Druckauftrag von Anfang an neu starten?";
 
 /* (No Comment) */
 "Domoticz Plugs" = "Domoticz Steckdosen";
