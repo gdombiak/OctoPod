@@ -226,6 +226,12 @@
 		3DAD2DE621817B65004A4223 /* IPPlug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DE421817B23004A4223 /* IPPlug.swift */; };
 		3DADB59C217D35940028B06B /* MjpegStreaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DADB59B217D35940028B06B /* MjpegStreaming.swift */; };
 		3DADB59E217D38E90028B06B /* CamerasInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DADB59D217D38E90028B06B /* CamerasInterfaceController.swift */; };
+		3DB377DA2596CF03008220EE /* SoCTempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB377D92596CF03008220EE /* SoCTempHistory.swift */; };
+		3DB377F92596D49E008220EE /* SoCTempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB377D92596CF03008220EE /* SoCTempHistory.swift */; };
+		3DB378162596D4C3008220EE /* SoCTempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB377D92596CF03008220EE /* SoCTempHistory.swift */; };
+		3DB378202596D4C4008220EE /* SoCTempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB377D92596CF03008220EE /* SoCTempHistory.swift */; };
+		3DB378212596D4C4008220EE /* SoCTempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB377D92596CF03008220EE /* SoCTempHistory.swift */; };
+		3DB378222596D4C5008220EE /* SoCTempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB377D92596CF03008220EE /* SoCTempHistory.swift */; };
 		3DB51070217C1115006CF8C3 /* PrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB5106F217C1115006CF8C3 /* PrinterManager.swift */; };
 		3DB51072217C11B8006CF8C3 /* WatchSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB51071217C11B8006CF8C3 /* WatchSessionManager.swift */; };
 		3DB51077217C1317006CF8C3 /* PrintersInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB51076217C1317006CF8C3 /* PrintersInterfaceController.swift */; };
@@ -713,6 +719,7 @@
 		3DAD2DE421817B23004A4223 /* IPPlug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPPlug.swift; sourceTree = "<group>"; };
 		3DADB59B217D35940028B06B /* MjpegStreaming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MjpegStreaming.swift; sourceTree = "<group>"; };
 		3DADB59D217D38E90028B06B /* CamerasInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasInterfaceController.swift; sourceTree = "<group>"; };
+		3DB377D92596CF03008220EE /* SoCTempHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoCTempHistory.swift; sourceTree = "<group>"; };
 		3DB5106F217C1115006CF8C3 /* PrinterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManager.swift; sourceTree = "<group>"; };
 		3DB51071217C11B8006CF8C3 /* WatchSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionManager.swift; sourceTree = "<group>"; };
 		3DB51076217C1317006CF8C3 /* PrintersInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintersInterfaceController.swift; sourceTree = "<group>"; };
@@ -1253,6 +1260,7 @@
 				3D88C3E82193F49500BC84DD /* CancelObject.swift */,
 				3D4497D321B230BE00736F0F /* SharedPersistentContainer.swift */,
 				3DDB5FCA22D0F45E005F8A9F /* PluginUpdatesManager.swift */,
+				3DB377D92596CF03008220EE /* SoCTempHistory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1891,6 +1899,7 @@
 				3D4497F121B2627000736F0F /* Script.swift in Sources */,
 				3D4497F021B2626E00736F0F /* Command.swift in Sources */,
 				3D4497F821B2628B00736F0F /* SharedPersistentContainer.swift in Sources */,
+				3DB378212596D4C4008220EE /* SoCTempHistory.swift in Sources */,
 				3D4497ED21B2626600736F0F /* CustomControl.swift in Sources */,
 				3D4497F621B2627F00736F0F /* IPPlug.swift in Sources */,
 				3D999B2324E9D642007AA99F /* MultiCamera.swift in Sources */,
@@ -1920,6 +1929,7 @@
 				3D669E1322FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift in Sources */,
 				3DE04926257B767400C7E55F /* EnclosureTurnOffIntentHandler.swift in Sources */,
 				3D4497D121B2241D00736F0F /* PrinterManager.swift in Sources */,
+				3DB378202596D4C4008220EE /* SoCTempHistory.swift in Sources */,
 				3D4064AB21AB7563000B05F9 /* PauseJobIntentHandler.swift in Sources */,
 				3D4497D021B2240700736F0F /* OctoPod.xcdatamodeld in Sources */,
 				3D1ECB0821ABB85700691DCB /* RemainingTimeIntentHandler.swift in Sources */,
@@ -1977,6 +1987,7 @@
 				3DBAE49F20E6821900D2137D /* SelectDefaultPrinterViewController.swift in Sources */,
 				3D82874120E421610035AE0B /* MjpegStreamingController.swift in Sources */,
 				3D8AB6A321A7390B00E81CE5 /* SystemCommand.swift in Sources */,
+				3DB377DA2596CF03008220EE /* SoCTempHistory.swift in Sources */,
 				3D7C88482152B25D009FECEF /* CloudKitPrinterLogEntry.swift in Sources */,
 				3DB932CA24475B7700A154FF /* EnclosureOutput.swift in Sources */,
 				3D1A93682132F5E70050ED9A /* ChildrenCustomControlViewController.swift in Sources */,
@@ -2117,6 +2128,7 @@
 				3DC2365124010DED00D9EF28 /* DetailedView.swift in Sources */,
 				3DC2365D240113EF00D9EF28 /* Command.swift in Sources */,
 				3DC23642240102E700D9EF28 /* OctoPod.xcdatamodeld in Sources */,
+				3DB377F92596D49E008220EE /* SoCTempHistory.swift in Sources */,
 				3DC2365B240113D800D9EF28 /* Script.swift in Sources */,
 				3DC23643240102FA00D9EF28 /* CloudKitPrinterManager.swift in Sources */,
 				3D778F872402F86100B68942 /* Terminal.swift in Sources */,
@@ -2149,6 +2161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DB378162596D4C3008220EE /* SoCTempHistory.swift in Sources */,
 				3DADB59E217D38E90028B06B /* CamerasInterfaceController.swift in Sources */,
 				3DB5107E217C4473006CF8C3 /* PrinterManagerDelegate.swift in Sources */,
 				3DC69BEE21804F2A00DBE0D5 /* HTTPClient.swift in Sources */,
@@ -2205,6 +2218,7 @@
 				3DF3835D2505F828003C803D /* Command.swift in Sources */,
 				3D9707502506E0F40076C959 /* MjpegStreamingController.swift in Sources */,
 				3DF3835A2505F81D003C803D /* Script.swift in Sources */,
+				3DB378222596D4C5008220EE /* SoCTempHistory.swift in Sources */,
 				3DF3835E2505F82B003C803D /* Container.swift in Sources */,
 				3DF383582505F7E6003C803D /* OctoPrintRESTClient.swift in Sources */,
 				3DF3835B2505F820003C803D /* ControlInput.swift in Sources */,

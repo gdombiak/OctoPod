@@ -784,6 +784,34 @@ class OctoPrintRESTClient {
         }
     }
 
+    /// Returns history of System on a chip (SoC) temperatures from OctoPod plugin (if installed)
+    ///
+    /// - parameters:
+    ///     - callback: callback to execute when HTTP request is done
+    func getSoCTemperatures(callback: @escaping (Array<SoCTempHistory.Temp>?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "getSoCTemps"
+            client.post("/api/plugin/octopod", json: json, expected: 200) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting history of SoC temps from OctoPod plugin. Error: \(error!.localizedDescription)")
+                }
+                if let jsonArray = result as? NSArray {
+                    var retrieved: Array<SoCTempHistory.Temp> = Array()
+                    for case let item as NSDictionary in jsonArray {
+                        var temp = SoCTempHistory.Temp()
+                        temp.parseTemps(data: item)
+                        retrieved.append(temp)
+                    }
+                    callback(retrieved, error, response)
+                    return
+                }
+                callback(nil, error, response)
+            }
+        }
+    }
+
     // MARK: - Palette 2 Plugin
     
     /// Request Palette 2 plugin to send its status via websockets. If request was successful we get back a 200

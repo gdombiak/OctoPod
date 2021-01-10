@@ -16,7 +16,8 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     let terminal = Terminal()
     let tempHistory = TempHistory()
-    
+    let socTempHistory = SoCTempHistory()
+
     var delegates: Array<OctoPrintClientDelegate> = Array()
     var octoPrintSettingsDelegates: Array<OctoPrintSettingsDelegate> = Array()
     var printerProfilesDelegates: Array<PrinterProfilesDelegate> = Array()
@@ -73,6 +74,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         
         // Clean up any temp history
         tempHistory.clear()
+        socTempHistory.clear()
         
         // We need to rediscover the version of OctoPrint so clean up old values
         octoPrintVersion = nil
@@ -129,6 +131,18 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                 }
             }
         }
+        
+        // Retrieve history of System on a chip (SoC) temperatures from OctoPod plugin (if installed)
+        // We can now track RPi temperatures
+        octoPrintRESTClient.getSoCTemperatures { (result: Array<SoCTempHistory.Temp>?, error: Error?, response: HTTPURLResponse) in
+            if let history = result {
+                self.socTempHistory.addHistory(history: history)
+                // Notify other listeners that history of temperature state has changed
+                for delegate in self.delegates {
+                    delegate.tempHistoryChanged()
+                }
+            }
+        }
     }
     
     /// Disconnect from OctoPrint server
@@ -170,6 +184,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     func historyTemp(history: Array<TempHistory.Temp>) {
         tempHistory.addHistory(history: history)
+        // Notify other listeners that history of temperature state has changed
+        for delegate in self.delegates {
+            delegate.tempHistoryChanged()
+        }
     }
     
     func octoPrintSettingsUpdated() {
@@ -187,6 +205,14 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     }
     
     func pluginMessage(plugin: String, data: NSDictionary) {
+        // Special case for tracking SoC temperatures reported by OctoPod plugin
+        if plugin == Plugins.OCTOPOD {
+            if let _ = data["temp"] as? Double, let _ = data["time"] as? Int {
+                var temp = SoCTempHistory.Temp()
+                temp.parseTemps(data: data)
+                socTempHistory.addTemp(temp: temp)
+            }
+        }
         // Notify other listeners that we connected to OctoPrint
         for delegate in octoPrintPluginsDelegates {
             delegate.pluginMessage(plugin: plugin, data: data)

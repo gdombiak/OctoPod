@@ -22,4 +22,11 @@ protocol OctoPrintClientDelegate: class {
     /// - Parameter error: Error that disconnected websocket
     func websocketConnectionFailed(error: Error)
 
+    /// Notification that temperature history has changed
+    func tempHistoryChanged()
+}
+
+// Make everything optional so implementors of this protocol are not forced to implement everything
+extension OctoPrintClientDelegate {
+    func tempHistoryChanged() {}
 }

@@ -1,13 +1,25 @@
 import UIKit
 import Charts
 
-class TempHistoryViewController: UIViewController, SubpanelViewController {
+class TempHistoryViewController: UIViewController, SubpanelViewController, OctoPrintPluginsDelegate {
 
+    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var chartTempButton: UIButton!
+    
+    /// Chart will show printer temps by default
+    var chartTemp = ChartTemps.printer
+    
+    enum ChartTemps {
+        /// Display temperatures of printer
+        case printer
+        /// Display temperatures of SoC (e,g. RPi)
+        case soc
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +44,13 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         lineChartView.backgroundColor = theme.backgroundColor()
         lineChartView.xAxis.labelTextColor = labelColor
         lineChartView.leftAxis.labelTextColor = labelColor
-        lineChartView.rightAxis.labelTextColor = labelColor
+        lineChartView.rightAxis.drawLabelsEnabled = false
         lineChartView.chartDescription?.textColor = labelColor
         lineChartView.legend.textColor = labelColor
         lineChartView.noDataTextColor = labelColor
 
         lineChartView.chartDescription?.font = .systemFont(ofSize: 10.0)
-        lineChartView.chartDescription?.text = NSLocalizedString("Temperature", comment: "Temperature")
+        updateChartDescription()
         lineChartView.noDataText = NSLocalizedString("No temperature history", comment: "No temperature history")
         
         lineChartView.xAxis.axisMaximum = 0
@@ -58,6 +70,15 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         lineChartView.highlightPerDragEnabled = false
 
         paintChart()
+
+        // Listen to changes to OctoPrint Plugin messages
+        octoprintClient.octoPrintPluginsDelegates.append(self)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Stop listening to changes to OctoPrint Plugin messages
+        octoprintClient.remove(octoPrintPluginsDelegate: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,7 +86,15 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func toggleChartTemp(_ sender: Any) {
+        if chartTemp == ChartTemps.printer {
+            chartTemp = ChartTemps.soc
+        } else {
+            chartTemp = ChartTemps.printer
+        }
+        paintChart()
+    }
+    
     // MARK: - SubpanelViewController
     
     func printerSelectedChanged() {
@@ -93,9 +122,59 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         return 10
     }
     
+    func tempHistoryChanged() {
+        // Refresh UI
+        DispatchQueue.main.async {
+            if self.lineChartView != nil {
+                self.paintChart()
+            }
+        }
+    }
+    
+    // MARK: - OctoPrintPluginsDelegate
+    
+    func pluginMessage(plugin: String, data: NSDictionary) {
+        if plugin == Plugins.OCTOPOD {
+            if chartTemp == ChartTemps.soc {
+                // Refresh UI
+                DispatchQueue.main.async {
+                    if self.lineChartView != nil {
+                        self.paintChart()
+                    }
+                }
+            }
+        }
+    }
+    
     // MARK: - Private functions
     
+    fileprivate func updateChartDescription() {
+        if chartTemp == ChartTemps.printer {
+            lineChartView.chartDescription?.text = NSLocalizedString("Temperature", comment: "Temperature")
+        } else {
+            lineChartView.chartDescription?.text = NSLocalizedString("SoC Temperature", comment: "SoC Temperature")
+        }
+    }
     fileprivate func paintChart() {
+        if let printer = printerManager.getDefaultPrinter() {
+            if printer.octopodPluginInstalled {
+                chartTempButton.isEnabled = true
+            } else {
+                chartTemp = ChartTemps.printer
+                chartTempButton.isEnabled = false
+            }
+        }
+        let buttonImage = chartTemp == ChartTemps.printer ? "Printers" : "SoC"
+        chartTempButton.setImage(UIImage(named: buttonImage), for: .normal)
+        
+        if chartTemp == ChartTemps.printer {
+            paintPrinterChart()
+        } else {
+            paintSoCChart()
+        }
+    }
+
+    fileprivate func paintPrinterChart() {
         let lineChartData = LineChartData()
         var bedActualEntries = Array<ChartDataEntry>()
         var bedTargetEntries = Array<ChartDataEntry>()
@@ -117,7 +196,7 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
         var minTool0Actual: Double = 0, maxTool0Actual: Double = 0
         for temp in octoprintClient.tempHistory.temps {
             if let time = temp.tempTime {
-                let age = ((Double(time) - now) / 60).rounded()
+                let age = (Double(time) - now) / 60
                 if let bedActual = temp.bedTempActual {
                     bedActualEntries.append(ChartDataEntry(x: age, y: bedActual))
                     // Calculate min and max temperatures
@@ -262,10 +341,39 @@ class TempHistoryViewController: UIViewController, SubpanelViewController {
             lineChartView.chartDescription?.text = NSLocalizedString("Extruder Variance", comment: "") + ": \(String(format: "%0.*f", 1, (maxTool0Actual - minTool0Actual))) - " + NSLocalizedString("Bed Variance", comment: "") + ": \(String(format: "%0.*f", 1, (maxBedActual - minBedActual)))"
         } else {
             lineChartView.data = nil
-            lineChartView.chartDescription?.text = NSLocalizedString("Temperature", comment: "Temperature")
+            updateChartDescription()
         }
     }
     
+    fileprivate func paintSoCChart() {
+        let lineChartData = LineChartData()
+        var socEntries = Array<ChartDataEntry>()
+
+        let now = Date().timeIntervalSince1970.rounded()
+        for temp in octoprintClient.socTempHistory.temps {
+            if let time = temp.tempTime {
+                let age = (Double(time) - now) / 60
+                if let socTemp = temp.tempActual {
+                    socEntries.append(ChartDataEntry(x: age, y: socTemp))
+                }
+            }
+        }
+        
+        if !socEntries.isEmpty {
+            let lineColor = UIColor(red: 255/255, green: 125/255, blue: 130/255, alpha: 1.0)
+            let line = createLine(values: socEntries, label: NSLocalizedString("SoC", comment: "SoC"), lineColor: lineColor)
+            lineChartData.addDataSet(line)
+        }
+
+        if !lineChartData.dataSets.isEmpty {
+            // Add data to chart view. This will cause an update in the UI
+            lineChartView.data = lineChartData
+        } else {
+            lineChartView.data = nil
+        }
+        updateChartDescription()
+    }
+
     fileprivate func createLine(values: [ChartDataEntry], label: String, lineColor: UIColor) -> LineChartDataSet {
         let line = LineChartDataSet(entries: values, label: label)
         line.colors = [lineColor]

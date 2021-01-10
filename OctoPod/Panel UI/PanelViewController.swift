@@ -453,6 +453,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
+    func tempHistoryChanged() {
+        subpanelsViewController?.tempHistoryChanged()
+    }
+    
     // MARK: - OctoPrintSettingsDelegate
     
     func cameraOrientationChanged(newOrientation: UIImage.Orientation) {
@@ -760,7 +764,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 self.connectButton.title = NSLocalizedString("Disconnect", comment: "")
             }
             // Only enable button if we are sure about connection state
-            self.connectButton.isEnabled = !assumption
+            self.connectButton.isEnabled = !assumption && !self.appConfiguration.appLocked()
         }
     }
     
