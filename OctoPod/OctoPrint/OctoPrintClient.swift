@@ -697,6 +697,13 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.changeFilamentSelection(toolNumber: toolNumber, spoolId: spoolId, callback: callback)
     }
     
+    // MARK: - DisplayLayerProgress Plugin
+    
+    /// Ask DisplayLayerProgress to send latest status via websockets
+    func refreshDisplayLayerProgress(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.refreshDisplayLayerProgress(callback: callback)
+    }
+    
     // MARK: - Delegates operations
     
     func remove(octoPrintClientDelegate toRemove: OctoPrintClientDelegate) {
@@ -732,6 +739,17 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             if response.statusCode == 200 {
                 if let json = result as? NSDictionary {
                     self.updatePrinterFromSettings(printer: printer, json: json)
+                    // if DisplayLayerProgress plugin is installed then request latest info
+                    // (Otherwise info is not sent until there is a layer/height change)
+                    if let plugins = json["plugins"] as? NSDictionary, let _ = plugins["DisplayLayerProgress"] as? NSDictionary {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.refreshDisplayLayerProgress { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                                if !requested && response.statusCode != 404 {
+                                    NSLog("Error refreshing DisplayLayerProgress status. Error: \(response). Response: \(response)")
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -1028,6 +1028,17 @@ class OctoPrintRESTClient {
         }
     }
 
+    // MARK: - DisplayLayerProgress Plugin
+    
+    /// Ask DisplayLayerProgress to send latest status via websockets
+    func refreshDisplayLayerProgress(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/api/plugin/DisplayLayerProgress") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+
     // MARK: - Low level operations
     
     fileprivate func connectionPost(httpClient: HTTPClient, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
