@@ -508,6 +508,46 @@ class OctoPrintRESTClient {
         }
     }
 
+    // MARK: - Timelapse operations
+    
+    /// Retrieve a list of timelapses
+    func timelapses(callback: @escaping (Array<Timelapse>?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/api/timelapse") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting timelapses. Error: \(error!.localizedDescription)")
+                }
+                callback(self.parseTimelapses(json: result), error, response)
+            }
+        }
+    }
+
+    /// Delete the specified timelapse
+    /// - Parameters:
+    ///     - timelapse: Timelapse to delete
+    ///     - callback: callback to execute after HTTP request is done
+    func deleteTimelapse(timelapse: Timelapse, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient, let filename = timelapse.name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+            client.delete("/api/timelapse/\(filename)") { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                callback(requested, error, response)
+            }
+        }
+    }
+    
+    /// Download specified timelapse file
+    /// - Parameters:
+    ///     - timelapse: Timelapse to delete
+    ///     - callback: callback to execute after HTTP request is done
+    func downloadTimelapse(timelapse: Timelapse, callback: @escaping (Data?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient, let filename = timelapse.name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+            client.getData("/api/timelapse/\(filename)") { (data: Data?, error: Error?, response: HTTPURLResponse) in
+                callback(data, error, response)
+            }
+        }
+    }
+
+
     // MARK: - Custom Controls operations
     
     func customControls(callback: @escaping (Array<Container>?, Error?, HTTPURLResponse) -> Void) {
@@ -1118,6 +1158,29 @@ class OctoPrintRESTClient {
                 return nil
             }
             return SystemCommand(name: name, action: action, source: source)
+        }
+        return nil
+    }
+    
+    // MARK: - Private - Timelapses functions
+    fileprivate func parseTimelapses(json: NSObject?)  -> Array<Timelapse>? {
+        if let jsonDict = json as? NSDictionary {
+            var timelapses: Array<Timelapse> = Array()
+            if let jsonArray = jsonDict["files"] as? NSArray {
+                for case let item as NSDictionary in jsonArray {
+                    if let timelapse = parseTimelapse(json: item) {
+                        timelapses.append(timelapse)
+                    }
+                }
+            }
+            return timelapses
+        }
+        return nil
+    }
+    
+    fileprivate func parseTimelapse(json: NSDictionary) -> Timelapse? {
+        if let name = json["name"] as? String, let size = json["size"] as? String, let bytes = json["bytes"] as? Int, let date = json["date"] as? String, let url = json["url"] as? String {
+            return Timelapse(name: name, size: size, bytes: bytes, date: date, url: url)
         }
         return nil
     }

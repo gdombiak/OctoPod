@@ -124,6 +124,12 @@
 		3D669E1622FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D669E1522FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift */; };
 		3D669E1822FBBA6F002C68C1 /* PaletteCleartIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D669E1722FBBA6F002C68C1 /* PaletteCleartIntentHandler.swift */; };
 		3D669E1A22FBBAC0002C68C1 /* PaletteCutIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D669E1922FBBAC0002C68C1 /* PaletteCutIntentHandler.swift */; };
+		3D67AA9525B51A3600302A2B /* Timelapse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67AA9425B51A3600302A2B /* Timelapse.swift */; };
+		3D67AA9F25B51DF000302A2B /* Timelapse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67AA9425B51A3600302A2B /* Timelapse.swift */; };
+		3D67AAA925B51DF100302A2B /* Timelapse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67AA9425B51A3600302A2B /* Timelapse.swift */; };
+		3D67AAAA25B51DF200302A2B /* Timelapse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67AA9425B51A3600302A2B /* Timelapse.swift */; };
+		3D67AAAB25B51DF300302A2B /* Timelapse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67AA9425B51A3600302A2B /* Timelapse.swift */; };
+		3D67AAAC25B51DF600302A2B /* Timelapse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D67AA9425B51A3600302A2B /* Timelapse.swift */; };
 		3D680FA8218E12BC006C9A79 /* PanelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D680FA7218E12BC006C9A79 /* PanelManager.swift */; };
 		3D680FAB218E12E9006C9A79 /* PanelManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D680FAA218E12E9006C9A79 /* PanelManagerDelegate.swift */; };
 		3D693C5D214CD23400823903 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D693C5C214CD23400823903 /* CloudKit.framework */; };
@@ -289,6 +295,7 @@
 		3DC6DB3724555A380091E548 /* FilamentSelectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC6DB3624555A380091E548 /* FilamentSelectionViewCell.swift */; };
 		3DC6DB39245601810091E548 /* FilamentSpool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC6DB38245601810091E548 /* FilamentSpool.swift */; };
 		3DC6DB3B245605F40091E548 /* FilamentChangeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC6DB3A245605F40091E548 /* FilamentChangeSelectionViewController.swift */; };
+		3DCD4CBA25B549C800E3227E /* TimelapseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCD4CB925B549C800E3227E /* TimelapseViewController.swift */; };
 		3DD3C76421B3222200350225 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DD3C76221B3222200350225 /* Localizable.strings */; };
 		3DD3C76721B3222200350225 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DD3C76521B3222200350225 /* InfoPlist.strings */; };
 		3DD3F2682439990000EA3F84 /* PrintersDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD3F2672439990000EA3F84 /* PrintersDashboardViewController.swift */; };
@@ -573,6 +580,7 @@
 		3D669E1522FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDisconnectIntentHandler.swift; sourceTree = "<group>"; };
 		3D669E1722FBBA6F002C68C1 /* PaletteCleartIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteCleartIntentHandler.swift; sourceTree = "<group>"; };
 		3D669E1922FBBAC0002C68C1 /* PaletteCutIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteCutIntentHandler.swift; sourceTree = "<group>"; };
+		3D67AA9425B51A3600302A2B /* Timelapse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timelapse.swift; sourceTree = "<group>"; };
 		3D680FA7218E12BC006C9A79 /* PanelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelManager.swift; sourceTree = "<group>"; };
 		3D680FAA218E12E9006C9A79 /* PanelManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelManagerDelegate.swift; sourceTree = "<group>"; };
 		3D693C5B214CCEC600823903 /* OctoPod v5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v5.xcdatamodel"; sourceTree = "<group>"; };
@@ -756,6 +764,7 @@
 		3DC6DB3624555A380091E548 /* FilamentSelectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentSelectionViewCell.swift; sourceTree = "<group>"; };
 		3DC6DB38245601810091E548 /* FilamentSpool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentSpool.swift; sourceTree = "<group>"; };
 		3DC6DB3A245605F40091E548 /* FilamentChangeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilamentChangeSelectionViewController.swift; sourceTree = "<group>"; };
+		3DCD4CB925B549C800E3227E /* TimelapseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelapseViewController.swift; sourceTree = "<group>"; };
 		3DD02E6223FCD9D800EB2E91 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3DD02E6323FCD9D800EB2E91 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3DD3C76321B3222200350225 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1261,6 +1270,7 @@
 				3D4497D321B230BE00736F0F /* SharedPersistentContainer.swift */,
 				3DDB5FCA22D0F45E005F8A9F /* PluginUpdatesManager.swift */,
 				3DB377D92596CF03008220EE /* SoCTempHistory.swift */,
+				3D67AA9425B51A3600302A2B /* Timelapse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1363,6 +1373,7 @@
 		3DC57D5B20F4190B0061A87E /* File UI */ = {
 			isa = PBXGroup;
 			children = (
+				3DCD4CC425B549D000E3227E /* Timelapse */,
 				3D0FA48221047AFA0084FF52 /* FilesTreeViewController.swift */,
 				3DA252432105028300B60E31 /* FolderViewController.swift */,
 				3D8873F920F5BD2700DCE987 /* FileDetailsViewController.swift */,
@@ -1395,6 +1406,14 @@
 				3DC6DB3A245605F40091E548 /* FilamentChangeSelectionViewController.swift */,
 			);
 			path = FilamentManager;
+			sourceTree = "<group>";
+		};
+		3DCD4CC425B549D000E3227E /* Timelapse */ = {
+			isa = PBXGroup;
+			children = (
+				3DCD4CB925B549C800E3227E /* TimelapseViewController.swift */,
+			);
+			path = Timelapse;
 			sourceTree = "<group>";
 		};
 		3DD3F266243998C400EA3F84 /* Dashboard */ = {
@@ -1899,6 +1918,7 @@
 				3D4497F121B2627000736F0F /* Script.swift in Sources */,
 				3D4497F021B2626E00736F0F /* Command.swift in Sources */,
 				3D4497F821B2628B00736F0F /* SharedPersistentContainer.swift in Sources */,
+				3D67AAAA25B51DF200302A2B /* Timelapse.swift in Sources */,
 				3DB378212596D4C4008220EE /* SoCTempHistory.swift in Sources */,
 				3D4497ED21B2626600736F0F /* CustomControl.swift in Sources */,
 				3D4497F621B2627F00736F0F /* IPPlug.swift in Sources */,
@@ -1926,6 +1946,7 @@
 				3D4064A921AB6205000B05F9 /* ExecuteControl.swift in Sources */,
 				3DB932CB24475E0800A154FF /* EnclosureOutput.swift in Sources */,
 				3D4064A121AB61B2000B05F9 /* SystemCommand.swift in Sources */,
+				3D67AAA925B51DF100302A2B /* Timelapse.swift in Sources */,
 				3D669E1322FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift in Sources */,
 				3DE04926257B767400C7E55F /* EnclosureTurnOffIntentHandler.swift in Sources */,
 				3D4497D121B2241D00736F0F /* PrinterManager.swift in Sources */,
@@ -2009,6 +2030,7 @@
 				3D47BA3E21278956002420A0 /* IPPlugTableViewCell.swift in Sources */,
 				3DD9E9572108479000726DFD /* ThemedStaticUITableViewController.swift in Sources */,
 				3D8B293020E5549B00296D9D /* HTTPClient.swift in Sources */,
+				3DCD4CBA25B549C800E3227E /* TimelapseViewController.swift in Sources */,
 				3D8FB25B2156A9F0008FF3E5 /* DialogsViewController.swift in Sources */,
 				3D8B292D20E5514A00296D9D /* PrinterSubpanelViewController.swift in Sources */,
 				3D7C88462152B012009FECEF /* CloudKitPrinterLogDelegate.swift in Sources */,
@@ -2032,6 +2054,7 @@
 				3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */,
 				3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */,
 				3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */,
+				3D67AA9525B51A3600302A2B /* Timelapse.swift in Sources */,
 				3DF6D59B23006EE800E0AFEE /* ScanInstallationsViewController.swift in Sources */,
 				3D693C5F214CEC0600823903 /* CloudKitPrinterManager.swift in Sources */,
 				3D6F74522443FB8A006847B6 /* EnclosureInput.swift in Sources */,
@@ -2130,6 +2153,7 @@
 				3DC23642240102E700D9EF28 /* OctoPod.xcdatamodeld in Sources */,
 				3DB377F92596D49E008220EE /* SoCTempHistory.swift in Sources */,
 				3DC2365B240113D800D9EF28 /* Script.swift in Sources */,
+				3D67AAAB25B51DF300302A2B /* Timelapse.swift in Sources */,
 				3DC23643240102FA00D9EF28 /* CloudKitPrinterManager.swift in Sources */,
 				3D778F872402F86100B68942 /* Terminal.swift in Sources */,
 				3D999B2424E9D644007AA99F /* MultiCamera.swift in Sources */,
@@ -2179,6 +2203,7 @@
 				3DFB777123D4D50F00ADF315 /* Palette2Utils.swift in Sources */,
 				3D6EB0BC217B0D270093EC79 /* ExtensionDelegate.swift in Sources */,
 				3D680FA8218E12BC006C9A79 /* PanelManager.swift in Sources */,
+				3D67AA9F25B51DF000302A2B /* Timelapse.swift in Sources */,
 				3D8AB6A421A7390B00E81CE5 /* SystemCommand.swift in Sources */,
 				3DAD2DDE21817973004A4223 /* CustomControl.swift in Sources */,
 				3DC69BED21804EC000DBE0D5 /* OctoPrintClient.swift in Sources */,
@@ -2220,6 +2245,7 @@
 				3DF3835A2505F81D003C803D /* Script.swift in Sources */,
 				3DB378222596D4C5008220EE /* SoCTempHistory.swift in Sources */,
 				3DF3835E2505F82B003C803D /* Container.swift in Sources */,
+				3D67AAAC25B51DF600302A2B /* Timelapse.swift in Sources */,
 				3DF383582505F7E6003C803D /* OctoPrintRESTClient.swift in Sources */,
 				3DF3835B2505F820003C803D /* ControlInput.swift in Sources */,
 				3DF383602505F831003C803D /* CustomControl.swift in Sources */,

@@ -489,6 +489,29 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.executeSystemCommand(command: command, callback: callback)
     }
 
+    // MARK: - Timelapse operations
+    
+    /// Retrieve a list of timelapses
+    func timelapses(callback: @escaping (Array<Timelapse>?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.timelapses(callback: callback)
+    }
+
+    /// Delete the specified timelapse
+    /// - Parameters:
+    ///     - timelapse: Timelapse to delete
+    ///     - callback: callback to execute after HTTP request is done
+    func deleteTimelapse(timelapse: Timelapse, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.deleteTimelapse(timelapse: timelapse, callback: callback)
+    }
+    
+    /// Download specified timelapse file
+    /// - Parameters:
+    ///     - timelapse: Timelapse to delete
+    ///     - callback: callback to execute after HTTP request is done
+    func downloadTimelapse(timelapse: Timelapse, callback: @escaping (Data?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.downloadTimelapse(timelapse: timelapse, callback: callback)
+    }
+    
     // MARK: - Custom Controls operations
 
     func customControls(callback: @escaping (Array<Container>?, Error?, HTTPURLResponse) -> Void) {
