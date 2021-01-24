@@ -538,11 +538,16 @@ class OctoPrintRESTClient {
     /// Download specified timelapse file
     /// - Parameters:
     ///     - timelapse: Timelapse to delete
-    ///     - callback: callback to execute after HTTP request is done
-    func downloadTimelapse(timelapse: Timelapse, callback: @escaping (Data?, Error?, HTTPURLResponse) -> Void) {
+    ///     - progress: callback to execute while download is in progress
+    ///     - completion: callback to execute after download is done
+    func downloadTimelapse(timelapse: Timelapse, progress: @escaping (Int64, Int64) -> Void, completion: @escaping (Data?, Error?) -> Void) {
         if let client = httpClient, let filename = timelapse.name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
-            client.getData("/api/timelapse/\(filename)") { (data: Data?, error: Error?, response: HTTPURLResponse) in
-                callback(data, error, response)
+            client.download("/api/timelapse/\(filename)", progress: progress) { (data: Data?, error: Error?) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error dowloading timelapse: \(filename). Error: \(error!.localizedDescription)")
+                }
+                completion(data, error)
             }
         }
     }

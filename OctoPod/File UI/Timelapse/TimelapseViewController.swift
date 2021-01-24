@@ -13,6 +13,9 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var tableView: UITableView!
     var refreshControl: UIRefreshControl?
 
+    var progressView: UIProgressView!
+    var progressLabel: UILabel!
+
     var files: Array<Timelapse> = Array()
 
     var itemDelegate: AVAssetResourceLoaderDelegate?
@@ -29,6 +32,30 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.addSubview(refreshControl!)
         tableView.alwaysBounceVertical = true
         self.refreshControl?.addTarget(self, action: #selector(refreshFiles), for: UIControl.Event.valueChanged)
+        
+        // Add Progress View
+        progressView = UIProgressView(progressViewStyle: .bar)
+        self.progressView.setProgress(0.5, animated: false)
+        progressView.isHidden = true
+        tableView.addSubview(progressView)
+        NSLayoutConstraint.activate([
+            progressView.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor),
+            progressView.centerYAnchor.constraint(equalTo: self.tableView.centerYAnchor),
+            progressView.heightAnchor.constraint(equalToConstant: 5),
+            progressView.widthAnchor.constraint(equalToConstant: 200)
+        ])
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+
+        // Add a progress label under Progress View
+        progressLabel = UILabel()
+        progressLabel.font = UIFont.preferredFont(forTextStyle: .callout)
+        progressLabel.isHidden = true
+        tableView.addSubview(progressLabel)
+        NSLayoutConstraint.activate([
+            progressLabel.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor),
+            progressLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 8)
+        ])
+        progressLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,7 +164,28 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
         let shareAction = UIContextualAction(style: .normal, title: NSLocalizedString("Share", comment: "Share action"), handler: { (action, view, completionHandler) in
             // Update data source when user taps action
             let file = self.files[indexPath.row]
-            self.octoprintClient.downloadTimelapse(timelapse: file) { (data: Data?, error: Error?, response: HTTPURLResponse) in
+            // Display progress bar and reset it to zero
+            self.progressView.setProgress(0, animated: false)
+            self.progressView.isHidden = false
+            self.progressLabel.text = "0 %"
+            self.progressLabel.isHidden = false
+            // Disable user interaction with the table so it cannot be refreshed or click on another cell to share another video
+            tableView.isUserInteractionEnabled = false
+
+            self.octoprintClient.downloadTimelapse(timelapse: file) { (totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) in
+                // Update progress bar as download makes progress
+                let progress = Float(totalBytesWritten) / Float(file.bytes)
+                DispatchQueue.main.async {
+                    self.progressView.setProgress(progress, animated: true)
+                    self.progressLabel.text = "\(String(format: "%.1f", (progress * 100))) %"
+                }
+            } completion: { (data: Data?, error: Error?) in
+                // Hide progress bar and reenable user interaction with the table
+                DispatchQueue.main.async {
+                    self.progressView.isHidden = true
+                    self.progressLabel.isHidden = true
+                    tableView.isUserInteractionEnabled = true
+                }
                 if let error = error {
                     self.showAlert(NSLocalizedString("Warning", comment: ""), message: error.localizedDescription) {
                         completionHandler(false)
@@ -156,7 +204,6 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
                     completionHandler(false)
                 }
             }
-            completionHandler(true)
           })
         if #available(iOS 13.0, *) {
             shareAction.image = UIImage(systemName: "square.and.arrow.up")
@@ -225,6 +272,8 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
         
         // Set background color to the view
         view.backgroundColor = theme.backgroundColor()
+        
+        progressLabel.textColor = theme.labelColor()
 
         ThemeUIUtils.applyTheme(table: tableView, staticCells: false)
     }

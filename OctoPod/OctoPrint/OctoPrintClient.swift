@@ -507,9 +507,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     /// Download specified timelapse file
     /// - Parameters:
     ///     - timelapse: Timelapse to delete
-    ///     - callback: callback to execute after HTTP request is done
-    func downloadTimelapse(timelapse: Timelapse, callback: @escaping (Data?, Error?, HTTPURLResponse) -> Void) {
-        octoPrintRESTClient.downloadTimelapse(timelapse: timelapse, callback: callback)
+    ///     - progress: callback to execute while download is in progress
+    ///     - completion: callback to execute after download is done
+    func downloadTimelapse(timelapse: Timelapse, progress: @escaping (Int64, Int64) -> Void, completion: @escaping (Data?, Error?) -> Void) {
+        octoPrintRESTClient.downloadTimelapse(timelapse: timelapse, progress: progress, completion: completion)
     }
     
     // MARK: - Custom Controls operations

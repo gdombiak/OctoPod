@@ -77,6 +77,26 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         session.finishTasksAndInvalidate()
     }
     
+    func download(_ service: String, progress: @escaping (Int64, Int64) -> Void, completion: @escaping (Data?, Error?) -> Void) {
+        let url: URL = URL(string: serverURL + service)!
+        
+        // Get session with the provided configuration
+        let delegate = WrappedDownloadTaskDelegate(httpClient: self, progress: progress, completion: completion)
+        let configuration = getConfiguration(false)
+        // Increate timeouts
+        configuration.timeoutIntervalForResource = 90
+        let session = Foundation.URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
+        
+        // Create background task that will perform the HTTP request
+        var request = URLRequest(url: url)
+        // Add API Key header
+        request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
+        let task = session.downloadTask(with: request)
+        self.preRequest?()
+        task.resume()
+        session.finishTasksAndInvalidate()
+    }
+    
     func delete(_ service: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         let url: URL = URL(string: serverURL + service)!
         
@@ -293,6 +313,8 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         return config
     }
     
+    // MARK: URLSessionDelegate
+
     func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         
         if challenge.previousFailureCount > 0 {
@@ -302,5 +324,39 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
             let credential = URLCredential(user: self.username ?? "", password: self.password ?? "", persistence: .forSession)
             completionHandler(Foundation.URLSession.AuthChallengeDisposition.useCredential, credential)
         }
+    }
+}
+
+private class WrappedDownloadTaskDelegate: NSObject, URLSessionDownloadDelegate {
+    
+    private let progress: (Int64, Int64) -> Void
+    private let completion: (Data?, Error?) -> Void
+    private let httpClient: HTTPClient
+    
+    init(httpClient: HTTPClient, progress: @escaping (Int64, Int64) -> Void, completion: @escaping (Data?, Error?) -> Void) {
+        self.progress = progress
+        self.completion = completion
+        self.httpClient = httpClient
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        do {
+            let reader = try FileHandle(forReadingFrom: location)
+            completion(reader.readDataToEndOfFile(), nil)
+        } catch {
+            completion(nil, error)
+        }
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        completion(nil, error)
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        progress(totalBytesWritten, totalBytesExpectedToWrite)
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        httpClient.urlSession(session, task: task, didReceive: challenge, completionHandler: completionHandler)
     }
 }
