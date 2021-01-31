@@ -127,9 +127,13 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete selected file
-            self.deleteRow(forRowAt: indexPath)
-            self.tableView.reloadData()
+            showConfirm(message: NSLocalizedString("Do you want to delete this file?", comment: "")) { (UIAlertAction) in
+                // Delete selected file
+                self.deleteRow(forRowAt: indexPath)
+                self.tableView.reloadData()
+            } no: { (UIAlertAction) in
+                // Do nothing
+            }
         }
     }
     
@@ -269,5 +273,9 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
     
     fileprivate func showAlert(_ title: String, message: String, done: (() -> Void)?) {
         UIUtils.showAlert(presenter: self, title: title, message: message, done: done)
+    }
+
+    fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
+        UIUtils.showConfirm(presenter: self, message: message, yes: yes, no: no)
     }
 }

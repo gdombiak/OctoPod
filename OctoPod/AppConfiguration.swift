@@ -8,6 +8,9 @@ class AppConfiguration: OctoPrintClientDelegate {
     private static let APP_AUTO_LOCK = "APP_CONFIGURATION_AUTO_LOCKED"
     private static let CONFIRMATION_ON_CONNECT = "APP_CONFIGURATION_CONF_ON_CONNECT"
     private static let CONFIRMATION_ON_DISCONNECT = "APP_CONFIGURATION_CONF_ON_DISCONNECT"
+    private static let CONFIRMATION_PRINT = "APP_CONFIGURATION_CONF_PRINT"
+    private static let CONFIRMATION_PAUSE = "APP_CONFIGURATION_CONF_PAUSE"
+    private static let CONFIRMATION_RESUME = "APP_CONFIGURATION_CONF_RESUME"
     private static let PROMPT_SPEED_EXTRUDE = "APP_CONFIGURATION_PROMPT_SPEED_EXTRUDE"
     private static let DISABLE_CERT_VALIDATION = "APP_CONFIGURATION_DISABLE_CERT_VALIDATION"
     private static let DISABLE_TURNOFF_IDLE = "APP_CONFIGURATION_DISABLE_TURNOFF_IDLE"
@@ -126,6 +129,47 @@ class AppConfiguration: OctoPrintClientDelegate {
         return defaults.set(enable, forKey: AppConfiguration.CONFIRMATION_ON_DISCONNECT)
     }
     
+    // MARK: - Print Job Confirmations
+
+    /// Prompt for confirmation before starting new print
+    /// Off by default.
+    func confirmationStartPrint() -> Bool {
+        let defaults = UserDefaults.standard
+        return defaults.bool(forKey: AppConfiguration.CONFIRMATION_PRINT)
+    }
+    
+    /// Set if prompt for confirmation before starting new print
+    func confirmationStartPrint(enable: Bool) {
+        let defaults = UserDefaults.standard
+        return defaults.set(enable, forKey: AppConfiguration.CONFIRMATION_PRINT)
+    }
+
+    /// Prompt for confirmation before pausing print
+    /// Off by default.
+    func confirmationPausePrint() -> Bool {
+        let defaults = UserDefaults.standard
+        return defaults.bool(forKey: AppConfiguration.CONFIRMATION_PAUSE)
+    }
+    
+    /// Set if prompt for confirmation before pausing print
+    func confirmationPausePrint(enable: Bool) {
+        let defaults = UserDefaults.standard
+        return defaults.set(enable, forKey: AppConfiguration.CONFIRMATION_PAUSE)
+    }
+
+    /// Prompt for confirmation before pausing print
+    /// Off by default.
+    func confirmationResumePrint() -> Bool {
+        let defaults = UserDefaults.standard
+        return defaults.bool(forKey: AppConfiguration.CONFIRMATION_RESUME)
+    }
+    
+    /// Set if prompt for confirmation before pausing print
+    func confirmationResumePrint(enable: Bool) {
+        let defaults = UserDefaults.standard
+        return defaults.set(enable, forKey: AppConfiguration.CONFIRMATION_RESUME)
+    }
+
     // MARK: - Move Confirmation
 
     /// Prompt for speed when asking to extrude or retract

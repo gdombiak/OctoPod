@@ -552,20 +552,31 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     }
     
     @IBAction func pauseJob(_ sender: Any) {
-        let generator = UINotificationFeedbackGenerator()
-        generator.prepare()
-        self.octoprintClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if requested {
-                DispatchQueue.main.async {
-                    generator.notificationOccurred(.success)
+        let action = {
+            let generator = UINotificationFeedbackGenerator()
+            generator.prepare()
+            self.octoprintClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                if requested {
+                    DispatchQueue.main.async {
+                        generator.notificationOccurred(.success)
+                    }
+                } else {
+                    NSLog("Error requesting to pause current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                    self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed pause job", comment: ""))
                 }
-            } else {
-                NSLog("Error requesting to pause current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
-                self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed pause job", comment: ""))
+            }
+            if let printer = self.printerManager.getDefaultPrinter() {
+                IntentsDonations.donatePauseJob(printer: printer)
             }
         }
-        if let printer = printerManager.getDefaultPrinter() {
-            IntentsDonations.donatePauseJob(printer: printer)
+        if appConfiguration.confirmationPausePrint() {
+            showConfirm(message: NSLocalizedString("Do you want to pause print?", comment: "")) { (UIAlertAction) in
+                action()
+            } no: { (UIAlertAction) in
+                // Do nothing
+            }
+        } else {
+            action()
         }
     }
     
@@ -593,36 +604,58 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     @IBAction func printJob(_ sender: Any) {
         if let lastFile = lastKnownPrintFile {
-            let generator = UINotificationFeedbackGenerator()
-            generator.prepare()
-            self.octoprintClient.printFile(origin: lastFile.origin!, path: lastFile.path!) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if requested {
-                    DispatchQueue.main.async {
-                        generator.notificationOccurred(.success)
+            let action = {
+                let generator = UINotificationFeedbackGenerator()
+                generator.prepare()
+                self.octoprintClient.printFile(origin: lastFile.origin!, path: lastFile.path!) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    if requested {
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.success)
+                        }
+                    } else {
+                        NSLog("Error requesting to reprint file: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                        self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed print job again", comment: ""))
                     }
-                } else {
-                    NSLog("Error requesting to reprint file: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
-                    self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed print job again", comment: ""))
                 }
+            }
+            if appConfiguration.confirmationStartPrint() {
+                showConfirm(message: NSLocalizedString("Do you want to print this file?", comment: "")) { (UIAlertAction) in
+                    action()
+                } no: { (UIAlertAction) in
+                    // Do nothing
+                }
+            } else {
+                action()
             }
         }
     }
     
     @IBAction func resumeJob(_ sender: Any) {
-        let generator = UINotificationFeedbackGenerator()
-        generator.prepare()
-        self.octoprintClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if requested {
-                DispatchQueue.main.async {
-                    generator.notificationOccurred(.success)
+        let action = {
+            let generator = UINotificationFeedbackGenerator()
+            generator.prepare()
+            self.octoprintClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                if requested {
+                    DispatchQueue.main.async {
+                        generator.notificationOccurred(.success)
+                    }
+                } else {
+                    NSLog("Error requesting to resume current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                    self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed resume job", comment: ""))
                 }
-            } else {
-                NSLog("Error requesting to resume current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
-                self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed resume job", comment: ""))
+            }
+            if let printer = self.printerManager.getDefaultPrinter() {
+                IntentsDonations.donateResumeJob(printer: printer)
             }
         }
-        if let printer = printerManager.getDefaultPrinter() {
-            IntentsDonations.donateResumeJob(printer: printer)
+        if appConfiguration.confirmationResumePrint() {
+            showConfirm(message: NSLocalizedString("Do you want to resume printing?", comment: "")) { (UIAlertAction) in
+                action()
+            } no: { (UIAlertAction) in
+                // Do nothing
+            }
+        } else {
+            action()
         }
     }
 

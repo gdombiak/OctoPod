@@ -138,21 +138,25 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Delete action"), handler: { (action, view, completionHandler) in
-            let file = self.files[indexPath.row]
-            // Delete timelapse from OctoPrint
-            self.octoprintClient.deleteTimelapse(timelapse: file) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if let error = error {
-                    self.showAlert(NSLocalizedString("Warning", comment: ""), message: error.localizedDescription) {
-                        completionHandler(false)
+            self.showConfirm(message: NSLocalizedString("Do you want to delete this file?", comment: "")) { (UIAlertAction) in
+                let file = self.files[indexPath.row]
+                // Delete timelapse from OctoPrint
+                self.octoprintClient.deleteTimelapse(timelapse: file) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    if let error = error {
+                        self.showAlert(NSLocalizedString("Warning", comment: ""), message: error.localizedDescription) {
+                            completionHandler(false)
+                        }
+                    } else {
+                        // Remove timelapse from files and refresh table
+                        self.files.remove(at: indexPath.row)
+                        DispatchQueue.main.async {
+                            tableView.deleteRows(at: [indexPath], with: .fade)
+                        }
+                        completionHandler(true)
                     }
-                } else {
-                    // Remove timelapse from files and refresh table
-                    self.files.remove(at: indexPath.row)
-                    DispatchQueue.main.async {
-                        tableView.deleteRows(at: [indexPath], with: .fade)
-                    }
-                    completionHandler(true)
                 }
+            } no: { (UIAlertAction) in
+                completionHandler(false)
             }
           })
         if #available(iOS 13.0, *) {
@@ -323,5 +327,9 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
     
     fileprivate func showAlert(_ title: String, message: String, done: (() -> Void)?) {
         UIUtils.showAlert(presenter: self, title: title, message: message, done: done)
+    }
+
+    fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
+        UIUtils.showConfirm(presenter: self, message: message, yes: yes, no: no)
     }
 }
