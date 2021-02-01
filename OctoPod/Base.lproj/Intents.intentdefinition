@@ -9,11 +9,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>9KPzQV</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>20B29</string>
+	<string>20C69</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>12B45b</string>
+	<string>12D4e</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>12.2</string>
+	<string>12.4</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -2133,6 +2133,224 @@
 			<string>Turn off Enclosure switch</string>
 			<key>INIntentTitleID</key>
 			<string>qwH2oF</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentUserConfirmationRequired</key>
+			<true/>
+			<key>INIntentVerb</key>
+			<string>Do</string>
+		</dict>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>generic</string>
+			<key>INIntentDescription</key>
+			<string>Turn on PSU</string>
+			<key>INIntentDescriptionID</key>
+			<string>bKwkw6</string>
+			<key>INIntentLastParameterTag</key>
+			<integer>2</integer>
+			<key>INIntentName</key>
+			<string>PSUControlOn</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key>printer,printerURL</key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSubtitle</key>
+					<string>${printer}</string>
+					<key>INIntentParameterCombinationSubtitleID</key>
+					<string>kHMMRT</string>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Turn on PSU</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>Xk9F6S</string>
+				</dict>
+			</dict>
+			<key>INIntentParameters</key>
+			<array>
+				<dict>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+						<key>INIntentParameterMetadataDefaultValueID</key>
+						<string>iN4U4Y</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>printer</string>
+					<key>INIntentParameterTag</key>
+					<integer>1</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+						<key>INIntentParameterMetadataDefaultValueID</key>
+						<string>VWTNyX</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>printerURL</string>
+					<key>INIntentParameterTag</key>
+					<integer>2</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+			</array>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>Requested</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>1qMmy1</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Requested</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>VKupAQ</string>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>Failed to request to execute command</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>SZLVG3</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to request to execute command</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>4Tu0Kl</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>PSU Control On</string>
+			<key>INIntentTitleID</key>
+			<string>XUSWIb</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentUserConfirmationRequired</key>
+			<true/>
+			<key>INIntentVerb</key>
+			<string>Do</string>
+		</dict>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>generic</string>
+			<key>INIntentDescription</key>
+			<string>Turn off PSU</string>
+			<key>INIntentDescriptionID</key>
+			<string>8uLpUQ</string>
+			<key>INIntentLastParameterTag</key>
+			<integer>3</integer>
+			<key>INIntentName</key>
+			<string>PSUControlOff</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key>printer,printerURL</key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSubtitle</key>
+					<string>${printer}</string>
+					<key>INIntentParameterCombinationSubtitleID</key>
+					<string>C1mTOm</string>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Turn off PSU</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>pfroH1</string>
+				</dict>
+			</dict>
+			<key>INIntentParameters</key>
+			<array>
+				<dict>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+						<key>INIntentParameterMetadataDefaultValueID</key>
+						<string>4tup2L</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>printer</string>
+					<key>INIntentParameterTag</key>
+					<integer>2</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+						<key>INIntentParameterMetadataDefaultValueID</key>
+						<string>DsIOD2</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>printerURL</string>
+					<key>INIntentParameterTag</key>
+					<integer>3</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+			</array>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>Requested</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>YfmWYd</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Requested</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>hE6yXX</string>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>Failed to request to execute command</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>Vix5SL</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Failed to request to execute command</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>Ge6TbJ</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>PSU Control Off</string>
+			<key>INIntentTitleID</key>
+			<string>q1Oynq</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
 			<key>INIntentUserConfirmationRequired</key>

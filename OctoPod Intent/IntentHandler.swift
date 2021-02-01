@@ -38,6 +38,10 @@ class IntentHandler: INExtension {
             return EnclosureTurnOnIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is EnclosureTurnOffIntent {
             return EnclosureTurnOffIntentHandler(printerManager: IntentHandler.printerManager)
+        } else if intent is PSUControlOnIntent {
+            return PSUControlOnIntentHandler(printerManager: IntentHandler.printerManager)
+        } else if intent is PSUControlOffIntent {
+            return PSUControlOffIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is WidgetConfigurationIntent {
             if #available(iOSApplicationExtension 14.0, *) {
                 return WidgetConfigurationIntentHandler(printerManager: IntentHandler.printerManager)
@@ -90,8 +94,7 @@ class IntentHandler: INExtension {
     /// Use static to return same instance to prevent app crash with core data when iOS creates multiple instances of this class
     static var printerManager: PrinterManager = {
         let context = persistentContainer.viewContext
-        var printerManager = PrinterManager()
-        printerManager.managedObjectContext = context
+        var printerManager = PrinterManager(managedObjectContext: context, persistentContainer: persistentContainer)
         return printerManager
     }()
 

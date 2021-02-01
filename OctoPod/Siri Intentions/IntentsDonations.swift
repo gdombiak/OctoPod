@@ -208,6 +208,32 @@ class IntentsDonations {
         }
     }
     
+    // MARK: - Donate PSU Control Plugin Intents
+    
+    static func donatePSUControlTurnOn(printer: Printer) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = PSUControlOnIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn on PSU", comment: "Siri suggested phrase"), printer.name)
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "PSUControlTurnOn")
+        }
+    }
+    
+    static func donatePSUControlTurnOff(printer: Printer) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = PSUControlOffIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn off PSU", comment: "Siri suggested phrase"), printer.name)
+
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "PSUControlTurnOff")
+        }
+    }
+    
     // MARK: - Delete Intents
 
     /// Delete donate Siri commands that relate to the printer. This includes Palette intents as well

@@ -55,6 +55,8 @@
 				<string>DashboardWidgetConfigurationIntent</string>
 				<string>EnclosureTurnOffIntent</string>
 				<string>EnclosureTurnOnIntent</string>
+				<string>PSUControlOffIntent</string>
+				<string>PSUControlOnIntent</string>
 				<string>PaletteClearIntent</string>
 				<string>PaletteConnectIntent</string>
 				<string>PaletteCutIntent</string>

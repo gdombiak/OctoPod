@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) needs permission to save videos on your device</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -56,6 +54,8 @@
 	<string>We need to use FaceID to unlock app</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>OctoPod uses your local network to discover and communicate to OctoPrint</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs permission to save videos on your device</string>
 	<key>NSSiriUsageDescription</key>
 	<string>Control printer using Siri</string>
 	<key>NSUbiquitousContainers</key>
@@ -77,6 +77,8 @@
 		<string>CoolDownPrinterIntent</string>
 		<string>EnclosureTurnOffIntent</string>
 		<string>EnclosureTurnOnIntent</string>
+		<string>PSUControlOffIntent</string>
+		<string>PSUControlOnIntent</string>
 		<string>PaletteClearIntent</string>
 		<string>PaletteConnectIntent</string>
 		<string>PaletteCutIntent</string>

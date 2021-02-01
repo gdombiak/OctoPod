@@ -167,6 +167,15 @@ class IntentsController {
         }
     }
 
+    // MARK: - PSUControl Plugin intents
+    
+    func powerPSUControl(printer: Printer, on: Bool, callback: @escaping (Bool, Int) -> Void) {
+        let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        restClient.turnPSU(on: on) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            callback(requested, response.statusCode)
+        }
+    }
+
     // MARK: - Private functions
     
     fileprivate func getRESTClient(hostname: String, apiKey: String, username: String?, password: String?) -> OctoPrintRESTClient {
