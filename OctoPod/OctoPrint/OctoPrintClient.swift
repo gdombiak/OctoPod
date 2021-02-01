@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import CoreData
 
 /// OctoPrint client that exposes the REST API described
 /// here: http://docs.octoprint.org/en/master/api/index.html
@@ -36,6 +37,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     // Remember last CurrentStateEvent that was reported from OctoPrint (via websockets)
     var lastKnownState: CurrentStateEvent?
     var octoPrintVersion: String?
+    private var printerID: NSManagedObjectID?
     
     init(printerManager: PrinterManager) {
         self.printerManager = printerManager
@@ -59,6 +61,9 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     func connectToServer(printer: Printer) {
         // Clean up any known printer state
         lastKnownState = nil
+        
+        // Remember printer we are connected to
+        printerID = printer.objectID
         
         // Create and keep httpClient while default printer does not change
         octoPrintRESTClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
@@ -191,14 +196,14 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     }
     
     func octoPrintSettingsUpdated() {
-        if let printer = printerManager.getDefaultPrinter() {
+        if let id = printerID, let idURL = URL(string: id.uriRepresentation().absoluteString), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
             // Verify that last known settings are still current
             reviewOctoPrintSettings(printer: printer)
         }
     }
     
     func printerProfileUpdated() {
-        if let printer = printerManager.getDefaultPrinter() {
+        if let id = printerID, let idURL = URL(string: id.uriRepresentation().absoluteString), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
             // Update Printer from /api/printerprofiles information
             reviewPrinterProfile(printer: printer)
         }
@@ -254,7 +259,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         // Recreate websocket connection since SSL cert validation has changed
         // HTTP connection relies on NSAllowsArbitraryLoads so will ignore this change/setting
         disconnectFromServer()
-        if let printer = printerManager.getDefaultPrinter() {
+        if let id = printerID, let idURL = URL(string: id.uriRepresentation().absoluteString), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
             connectToServer(printer: printer)
         }
     }
@@ -579,7 +584,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     /// Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
     func getCancelObjects(callback: @escaping (Array<CancelObject>?, Error?, HTTPURLResponse) -> Void) {
-        if let printer = printerManager.getDefaultPrinter() {
+        if let id = printerID, let idURL = URL(string: id.uriRepresentation().absoluteString), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
             let ignore = CancelObject.parseCancelObjectIgnore(ignored: printer.cancelObjectIgnored)
             octoPrintRESTClient.getCancelObjects(ignore: ignore, callback: callback)
         }
