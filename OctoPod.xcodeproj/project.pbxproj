@@ -258,6 +258,8 @@
 		3DBFB2E8256E1B2300DC43E8 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
 		3DBFB2FC256E1D1100DC43E8 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
 		3DC0AD802406320200E0B461 /* BriefView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0AD7F2406320200E0B461 /* BriefView.swift */; };
+		3DC11E6525C68D600099BFE9 /* PSUControlOnIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC11E6425C68D600099BFE9 /* PSUControlOnIntentHandler.swift */; };
+		3DC11E7025C68EC30099BFE9 /* PSUControlOffIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC11E6F25C68EC30099BFE9 /* PSUControlOffIntentHandler.swift */; };
 		3DC2363F2401029700D9EF28 /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873620E3EBC80035AE0B /* Printer.swift */; };
 		3DC236402401029E00D9EF28 /* IPPlug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DE421817B23004A4223 /* IPPlug.swift */; };
 		3DC23641240102B400D9EF28 /* PrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873820E3EC3B0035AE0B /* PrinterManager.swift */; };
@@ -753,6 +755,8 @@
 		3DBCE84721B4925F00ABB42D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSThumbnailUtil.swift; sourceTree = "<group>"; };
 		3DC0AD7F2406320200E0B461 /* BriefView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefView.swift; sourceTree = "<group>"; };
+		3DC11E6425C68D600099BFE9 /* PSUControlOnIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSUControlOnIntentHandler.swift; sourceTree = "<group>"; };
+		3DC11E6F25C68EC30099BFE9 /* PSUControlOffIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSUControlOffIntentHandler.swift; sourceTree = "<group>"; };
 		3DC2364B2401061400D9EF28 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		3DC2365024010DED00D9EF28 /* DetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedView.swift; sourceTree = "<group>"; };
 		3DC23652240111EF00D9EF28 /* ViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewService.swift; sourceTree = "<group>"; };
@@ -1034,6 +1038,8 @@
 				3D669E1B22FBBAF5002C68C1 /* Mosaic */,
 				3D2792A12505D08C00026ACF /* WidgetConfigurationIntentHandler.swift */,
 				3DD4745A2545F3C1001CD60F /* DashboardWidgetConfigurationIntentHandler.swift */,
+				3DC11E6425C68D600099BFE9 /* PSUControlOnIntentHandler.swift */,
+				3DC11E6F25C68EC30099BFE9 /* PSUControlOffIntentHandler.swift */,
 			);
 			path = "OctoPod Intent";
 			sourceTree = "<group>";
@@ -1934,6 +1940,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DFB777223D4D51000ADF315 /* Palette2Utils.swift in Sources */,
+				3DC11E7025C68EC30099BFE9 /* PSUControlOffIntentHandler.swift in Sources */,
 				3D450E5F21AB1C040049FBC0 /* Intents.intentdefinition in Sources */,
 				3D4497D221B2243700736F0F /* Printer.swift in Sources */,
 				3D450ECB21AB5BCE0049FBC0 /* OctoPrintRESTClient.swift in Sources */,
@@ -1953,6 +1960,7 @@
 				3DB378202596D4C4008220EE /* SoCTempHistory.swift in Sources */,
 				3D4064AB21AB7563000B05F9 /* PauseJobIntentHandler.swift in Sources */,
 				3D4497D021B2240700736F0F /* OctoPod.xcdatamodeld in Sources */,
+				3DC11E6525C68D600099BFE9 /* PSUControlOnIntentHandler.swift in Sources */,
 				3D1ECB0821ABB85700691DCB /* RemainingTimeIntentHandler.swift in Sources */,
 				3DFB776E23D4CDA700ADF315 /* PalettePingStatsIntentHandler.swift in Sources */,
 				3DD4745B2545F3C1001CD60F /* DashboardWidgetConfigurationIntentHandler.swift in Sources */,

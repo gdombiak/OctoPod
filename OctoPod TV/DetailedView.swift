@@ -36,15 +36,16 @@ struct DetailedView : View {
     }
 }
 
-struct DetailedView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailedView(name: "MK3")
-            .environmentObject(ViewService())
-            .environmentObject(CameraService())
-    }
-}
+//struct DetailedView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailedView(name: "MK3")
+//            .environmentObject(ViewService(tvPrinterManager: ...)
+//            .environmentObject(CameraService())
+//    }
+//}
 
 struct NormalCameraView: View {
+    @ObservedObject var appConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
     let geometry: GeometryProxy
     let service: ViewService
     let cameraService: CameraService
@@ -146,16 +147,16 @@ struct NormalCameraView: View {
                 self.print(enabled: false)
                 self.pause(enabled: false)
                 self.cancel(enabled: false)
-            } else if self.service.printing == true{
+            } else if self.service.printing == true {
                 // We are printing so show Print (disabled), Pause and Cancel
                 self.print(enabled: false)
-                self.pause(enabled: true)
-                self.cancel(enabled: true)
+                self.pause(enabled: !appConfiguration.appAutoLock() && !appConfiguration.appLocked()) // Button is enabled only if app is not locked
+                self.cancel(enabled: !appConfiguration.appAutoLock() && !appConfiguration.appLocked()) // Button is enabled only if app is not locked
             } else if self.service.paused == true {
                 // We are paused so offer Restart, Resume and Cancel
-                self.restart()
-                self.resume()
-                self.cancel(enabled: true)
+                self.restart(enabled: !appConfiguration.appAutoLock() && !appConfiguration.appLocked()) // Button is enabled only if app is not locked)
+                self.resume(enabled: !appConfiguration.appAutoLock() && !appConfiguration.appLocked()) // Button is enabled only if app is not locked)
+                self.cancel(enabled: !appConfiguration.appAutoLock() && !appConfiguration.appLocked()) // Button is enabled only if app is not locked
             } else {
                 // We are not printing so show Print (disabled?), Pause (disabled) and Cancel (disabled)
                 self.print(enabled: self.service.printingFile != "--")
@@ -209,50 +210,28 @@ struct NormalCameraView: View {
     }
     
     fileprivate func print(enabled: Bool) -> some View {
-        return Button(action: {
-            if let lastFile = self.service.lastKnownPrintFile, let origin = lastFile.origin, let path = lastFile.path {
-                self.service.printFile(origin: origin, path: path) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                    NSLog("Print requested successfully \(requested)")
-                }
-            }
-        }) {
-            HStack {
-                Image("Print")
-                Text("Print")
-                    .minimumScaleFactor(0.70)
-                    .lineLimit(1)
-            }
-        }.disabled(!enabled)
+        return PrintJobButton(type: PrintJobButton.JobType.Print, service: service)
+            .disabled(!enabled)
     }
     
     fileprivate func pause(enabled: Bool) -> some View {
-        let confirmText = NSLocalizedString("Do you want to pause job?", comment: "")
-        return PrintJobButton(confirmationText: confirmText, type: PrintJobButton.JobType.Pause, service: service)
+        return PrintJobButton(type: PrintJobButton.JobType.Pause, service: service)
             .disabled(!enabled)
     }
     
     fileprivate func cancel(enabled: Bool) -> some View {
-        let confirmText = NSLocalizedString("Do you want to cancel job?", comment: "")
-        return PrintJobButton(confirmationText: confirmText, type: PrintJobButton.JobType.Cancel, service: service)
+        return PrintJobButton(type: PrintJobButton.JobType.Cancel, service: service)
             .disabled(!enabled)
     }
     
-    fileprivate func restart() -> some View {
-        let confirmText = NSLocalizedString("Do you want to restart print job from the beginning?", comment: "")
-        return PrintJobButton(confirmationText: confirmText, type: PrintJobButton.JobType.Restart, service: service)
+    fileprivate func restart(enabled: Bool) -> some View {
+        return PrintJobButton(type: PrintJobButton.JobType.Restart, service: service)
+            .disabled(!enabled)
     }
     
-    fileprivate func resume() -> some View {
-        return Button(action: {
-            self.service.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                NSLog("Resume requested successfully \(requested)")
-            }
-        }) {
-            HStack {
-                Image("Print")
-                Text("Resume")
-            }
-        }
+    fileprivate func resume(enabled: Bool) -> some View {
+        return PrintJobButton(type: PrintJobButton.JobType.Resume, service: service)
+            .disabled(!enabled)
     }
 }
 
@@ -362,20 +341,70 @@ struct MaximizedCameraView: View {
 }
 
 struct PrintJobButton: View {
+    @ObservedObject var appConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
     enum JobType {
         case Cancel
         case Pause
         case Restart
+        case Print
+        case Resume
     }
-    let confirmationText: String
     let type: JobType
     let service: ViewService
+    
+    fileprivate func action() {
+        switch self.type {
+        case JobType.Cancel:
+            self.service.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                NSLog("Cancel requested successfully \(requested)")
+            }
+        case JobType.Pause:
+            self.service.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                NSLog("Pause requested successfully \(requested)")
+            }
+        case JobType.Restart:
+            self.service.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                NSLog("Restart requested successfully \(requested)")
+            }
+        case JobType.Print:
+            if let lastFile = self.service.lastKnownPrintFile, let origin = lastFile.origin, let path = lastFile.path {
+                self.service.printFile(origin: origin, path: path) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    NSLog("Print requested successfully \(requested)")
+                }
+            }
+        case JobType.Resume:
+            self.service.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                NSLog("Resume requested successfully \(requested)")
+            }
+        }
+    }
+    
+    fileprivate func confirmationText() -> String? {
+        switch self.type {
+        case JobType.Cancel:
+            return NSLocalizedString("Do you want to cancel job?", comment: "")
+        case JobType.Pause:
+            return appConfiguration.confirmationPausePrint() ? NSLocalizedString("Do you want to pause job?", comment: "") : nil
+        case JobType.Restart:
+            return NSLocalizedString("Do you want to restart print job from the beginning?", comment: "")
+        case JobType.Print:
+            return appConfiguration.confirmationStartPrint() ? NSLocalizedString("Do you want to print this file?", comment: "") : nil
+        case JobType.Resume:
+            return appConfiguration.confirmationResumePrint() ? NSLocalizedString("Do you want to resume printing?", comment: "") : nil
+        }
+    }
     
     @State private var showingAlert = false
     
     var body: some View {
         Button(action: {
-            self.showingAlert = true
+            if let _ = confirmationText() {
+                // Show confirmation alert before executing action
+                self.showingAlert = true
+            } else {
+                // Execute button without an alert
+                action()
+            }
         }) {
             if self.type == JobType.Cancel {
                 HStack {
@@ -391,6 +420,20 @@ struct PrintJobButton: View {
                         .minimumScaleFactor(0.70)
                         .lineLimit(1)
                 }
+            } else if self.type == JobType.Print {
+                HStack {
+                    Image("Print")
+                    Text("Print")
+                        .minimumScaleFactor(0.70)
+                        .lineLimit(1)
+                }
+            } else if self.type == JobType.Resume {
+                HStack {
+                    Image("Print")
+                    Text("Resume")
+                        .minimumScaleFactor(0.70)
+                        .lineLimit(1)
+                }
             } else {
                 HStack {
                     Image("Print")
@@ -401,21 +444,8 @@ struct PrintJobButton: View {
             }
         }
         .alert(isPresented:$showingAlert) {
-            Alert(title: Text("Confirm"), message: Text(confirmationText), primaryButton: .destructive(Text("Yes")) {
-                switch self.type {
-                case JobType.Cancel:
-                    self.service.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                        NSLog("Cancel requested successfully \(requested)")
-                    }
-                case JobType.Pause:
-                    self.service.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                        NSLog("Pause requested successfully \(requested)")
-                    }
-                case JobType.Restart:
-                    self.service.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                        NSLog("Restart requested successfully \(requested)")
-                    }
-                }
+            Alert(title: Text("Confirm"), message: Text(confirmationText() ?? ""), primaryButton: .destructive(Text("Yes")) {
+                action()
             }, secondaryButton: .cancel())
         }
     }

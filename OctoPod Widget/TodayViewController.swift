@@ -184,8 +184,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     lazy var printerManager: PrinterManager = {
         let context = TodayViewController.persistentContainer.viewContext
-        var printerManager = PrinterManager()
-        printerManager.managedObjectContext = context
+        var printerManager = PrinterManager(managedObjectContext: context, persistentContainer: TodayViewController.persistentContainer)
         return printerManager
     }()
 }

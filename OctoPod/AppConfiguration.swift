@@ -19,12 +19,27 @@ class AppConfiguration: OctoPrintClientDelegate {
     private static let COMPLICATION_CONTENT_TYPE_KEY = "APP_CONFIGURATION_COMPLICATION_CONTENT_TYPE"
     private static let FILES_ONLY_GCODE = "APP_CONFIGURATION_FILES_ONLY_GCODE"
 
+    private static let UBIQUITOUS_CONFIGURED = "APP_CONFIGURATION_UBIQUITOUS_CONFIGURED"
+
     var delegates: Array<AppConfigurationDelegate> = Array()
+    
+    private let keyValStore = NSUbiquitousKeyValueStore()
 
     init(octoprintClient: OctoPrintClient) {
         octoprintClient.appConfiguration = self
         // Listen to events coming from OctoPrintClient
         octoprintClient.delegates.append(self)
+        
+        if keyValStore.bool(forKey: AppConfiguration.UBIQUITOUS_CONFIGURED) {
+            // iCloud key-value has beeb configured so copy configuration from iCloud
+            self.updateConfigurationFromiCloud()
+        } else {
+            // First time opening app since NSUbiquitousKeyValueStore support was added
+            // Copy existing configuration to iCloud key-value
+            self.copyConfigurationToiCloud()
+        }
+        // Listen to changes to NSUbiquitousKeyValueStore
+        NotificationCenter.default.addObserver(self, selector: #selector(updateConfigurationFromiCloud), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: keyValStore)
     }
 
     // MARK: - Delegates operations
@@ -72,6 +87,10 @@ class AppConfiguration: OctoPrintClientDelegate {
             // Do nothing
             return
         }
+        // Save setting in iCloud-based
+        keyValStore.set(locked, forKey: AppConfiguration.APP_LOCKED)
+        keyValStore.synchronize()
+        // Save locally as well
         let defaults = UserDefaults.standard
         defaults.set(locked, forKey: AppConfiguration.APP_LOCKED)
         // Notify listeners that status has changed
@@ -90,6 +109,10 @@ class AppConfiguration: OctoPrintClientDelegate {
     /// Sets whether the app will automatically lock when active printer
     /// is running a print job
     func appAutoLock(autoLock: Bool) {
+        // Save setting in iCloud-based
+        keyValStore.set(autoLock, forKey: AppConfiguration.APP_AUTO_LOCK)
+        keyValStore.synchronize()
+        // Save locally as well
         let defaults = UserDefaults.standard
         return defaults.set(autoLock, forKey: AppConfiguration.APP_AUTO_LOCK)
     }
@@ -107,6 +130,10 @@ class AppConfiguration: OctoPrintClientDelegate {
     /// Set if prompt for confirmation when asking OctoPrint to connect to printer is on/off
     /// Some users might want to turn this on to prevent resetting the printer when connecting
     func confirmationOnConnect(enable: Bool) {
+        // Save setting in iCloud-based
+        keyValStore.set(enable, forKey: AppConfiguration.CONFIRMATION_ON_CONNECT)
+        keyValStore.synchronize()
+        // Save locally as well
         let defaults = UserDefaults.standard
         return defaults.set(enable, forKey: AppConfiguration.CONFIRMATION_ON_CONNECT)
     }
@@ -125,6 +152,10 @@ class AppConfiguration: OctoPrintClientDelegate {
     
     /// Set if prompt for confirmation when asking OctoPrint to disconnect from printer is on/off
     func confirmationOnDisconnect(enable: Bool) {
+        // Save setting in iCloud-based
+        keyValStore.set(enable, forKey: AppConfiguration.CONFIRMATION_ON_DISCONNECT)
+        keyValStore.synchronize()
+        // Save locally as well
         let defaults = UserDefaults.standard
         return defaults.set(enable, forKey: AppConfiguration.CONFIRMATION_ON_DISCONNECT)
     }
@@ -140,6 +171,10 @@ class AppConfiguration: OctoPrintClientDelegate {
     
     /// Set if prompt for confirmation before starting new print
     func confirmationStartPrint(enable: Bool) {
+        // Save setting in iCloud-based
+        keyValStore.set(enable, forKey: AppConfiguration.CONFIRMATION_PRINT)
+        keyValStore.synchronize()
+        // Save locally as well
         let defaults = UserDefaults.standard
         return defaults.set(enable, forKey: AppConfiguration.CONFIRMATION_PRINT)
     }
@@ -153,6 +188,10 @@ class AppConfiguration: OctoPrintClientDelegate {
     
     /// Set if prompt for confirmation before pausing print
     func confirmationPausePrint(enable: Bool) {
+        // Save setting in iCloud-based
+        keyValStore.set(enable, forKey: AppConfiguration.CONFIRMATION_PAUSE)
+        keyValStore.synchronize()
+        // Save locally as well
         let defaults = UserDefaults.standard
         return defaults.set(enable, forKey: AppConfiguration.CONFIRMATION_PAUSE)
     }
@@ -166,6 +205,10 @@ class AppConfiguration: OctoPrintClientDelegate {
     
     /// Set if prompt for confirmation before pausing print
     func confirmationResumePrint(enable: Bool) {
+        // Save setting in iCloud-based
+        keyValStore.set(enable, forKey: AppConfiguration.CONFIRMATION_RESUME)
+        keyValStore.synchronize()
+        // Save locally as well
         let defaults = UserDefaults.standard
         return defaults.set(enable, forKey: AppConfiguration.CONFIRMATION_RESUME)
     }
@@ -185,6 +228,10 @@ class AppConfiguration: OctoPrintClientDelegate {
     
     /// Set if prompting for speed when asking to extrude or retract is on/off
     func promptSpeedExtrudeRetract(enable: Bool) {
+        // Save setting in iCloud-based
+        keyValStore.set(enable, forKey: AppConfiguration.PROMPT_SPEED_EXTRUDE)
+        keyValStore.synchronize()
+        // Save locally as well
         let defaults = UserDefaults.standard
         return defaults.set(enable, forKey: AppConfiguration.PROMPT_SPEED_EXTRUDE)
     }
@@ -224,6 +271,10 @@ class AppConfiguration: OctoPrintClientDelegate {
     /// that run OctoPrint with self-signed certificates and still want to use HTTPS
     /// Enabled by default
     func certValidationDisabled(disable: Bool) {
+        // Save setting in iCloud-based
+        keyValStore.set(disable, forKey: AppConfiguration.DISABLE_CERT_VALIDATION)
+        keyValStore.synchronize()
+        // Save locally as well
         let defaults = UserDefaults.standard
         defaults.set(disable, forKey: AppConfiguration.DISABLE_CERT_VALIDATION)
         // Notify listeners that cert validation setting has changed
@@ -247,6 +298,10 @@ class AppConfiguration: OctoPrintClientDelegate {
     /// Sets whether display will be turned off when app is idle.  By default iOS turns off displays when idle to save battery
     /// - parameter disable: True if display will NOT be turned off when idle
     func turnOffIdleDisabled(disable: Bool) {
+        // Save setting in iCloud-based
+        keyValStore.set(disable, forKey: AppConfiguration.DISABLE_TURNOFF_IDLE)
+        keyValStore.synchronize()
+        // Save locally as well
         let defaults = UserDefaults.standard
         defaults.set(disable, forKey: AppConfiguration.DISABLE_TURNOFF_IDLE)
         // Set new value so that iOS knows about it
@@ -265,6 +320,10 @@ class AppConfiguration: OctoPrintClientDelegate {
     /// Sets whether temp chart will let users do zoom in/out
     /// Enabled by default
     func tempChartZoomDisabled(disable: Bool) {
+        // Save setting in iCloud-based
+        keyValStore.set(disable, forKey: AppConfiguration.DISABLE_TEMP_CHART_ZOOM)
+        keyValStore.synchronize()
+        // Save locally as well
         let defaults = UserDefaults.standard
         defaults.set(disable, forKey: AppConfiguration.DISABLE_TEMP_CHART_ZOOM)
     }
@@ -337,5 +396,37 @@ class AppConfiguration: OctoPrintClientDelegate {
     func websocketConnectionFailed(error: Error) {
         // Do nothing
     }
-
+    
+    // MARK: Private functions
+    
+    fileprivate func copyConfigurationToiCloud() {
+        self.appAutoLock(autoLock: self.appAutoLock())
+        self.confirmationOnConnect(enable: self.confirmationOnConnect())
+        self.confirmationOnDisconnect(enable: self.confirmationOnDisconnect())
+        self.confirmationStartPrint(enable: self.confirmationStartPrint())
+        self.confirmationPausePrint(enable: self.confirmationPausePrint())
+        self.confirmationResumePrint(enable: self.confirmationResumePrint())
+        self.promptSpeedExtrudeRetract(enable: self.promptSpeedExtrudeRetract())
+        self.certValidationDisabled(disable: self.certValidationDisabled())
+        self.turnOffIdleDisabled(disable: self.turnOffIdleDisabled())
+        self.tempChartZoomDisabled(disable: self.tempChartZoomDisabled())
+        
+        // Mark that iCloud key-value has been configured from local configuration
+        keyValStore.set(true, forKey: AppConfiguration.UBIQUITOUS_CONFIGURED)
+    }
+    
+    @objc fileprivate func updateConfigurationFromiCloud() {
+        let defaults = UserDefaults.standard
+        defaults.set(keyValStore.bool(forKey: AppConfiguration.APP_LOCKED), forKey: AppConfiguration.APP_LOCKED)
+        defaults.set(keyValStore.bool(forKey: AppConfiguration.APP_AUTO_LOCK), forKey: AppConfiguration.APP_AUTO_LOCK)
+        defaults.set(keyValStore.bool(forKey: AppConfiguration.CONFIRMATION_ON_CONNECT), forKey: AppConfiguration.CONFIRMATION_ON_CONNECT)
+        defaults.set(keyValStore.bool(forKey: AppConfiguration.CONFIRMATION_ON_DISCONNECT), forKey: AppConfiguration.CONFIRMATION_ON_DISCONNECT)
+        defaults.set(keyValStore.bool(forKey: AppConfiguration.CONFIRMATION_PRINT), forKey: AppConfiguration.CONFIRMATION_PRINT)
+        defaults.set(keyValStore.bool(forKey: AppConfiguration.CONFIRMATION_PAUSE), forKey: AppConfiguration.CONFIRMATION_PAUSE)
+        defaults.set(keyValStore.bool(forKey: AppConfiguration.CONFIRMATION_RESUME), forKey: AppConfiguration.CONFIRMATION_RESUME)
+        defaults.set(keyValStore.bool(forKey: AppConfiguration.PROMPT_SPEED_EXTRUDE), forKey: AppConfiguration.PROMPT_SPEED_EXTRUDE)
+        defaults.set(keyValStore.bool(forKey: AppConfiguration.DISABLE_CERT_VALIDATION), forKey: AppConfiguration.DISABLE_CERT_VALIDATION)
+        defaults.set(keyValStore.bool(forKey: AppConfiguration.DISABLE_TURNOFF_IDLE), forKey: AppConfiguration.DISABLE_TURNOFF_IDLE)
+        defaults.set(keyValStore.bool(forKey: AppConfiguration.DISABLE_TEMP_CHART_ZOOM), forKey: AppConfiguration.DISABLE_TEMP_CHART_ZOOM)
+    }
 }
