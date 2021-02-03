@@ -3,6 +3,9 @@ import SafariServices  // Used for opening browser in-app
 
 class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConfigurationDelegate, WatchSessionManagerDelegate, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
 
+    private static let TERMINAL_SUPPRESS_TEMP = "TERMINAL_SUPPRESS_TEMP"
+    private static let TERMINAL_SUPPRESS_SD = "TERMINAL_SUPPRESS_SD"
+
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
@@ -47,6 +50,14 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         bar.items = [b1, flexSpace, b2, flexSpace, b3, flexSpace, b4, flexSpace, b5, flexSpace, b6, flexSpace, b7, flexSpace, b8, flexSpace, b9, flexSpace, b0]
         bar.sizeToFit()
         gcodeField.inputAccessoryView = bar
+        
+        // Restore last saved settings
+        if UserDefaults.standard.bool(forKey: TerminalViewController.TERMINAL_SUPPRESS_TEMP) {
+            toggleTemperatureFilter(self)
+        }
+        if UserDefaults.standard.bool(forKey: TerminalViewController.TERMINAL_SUPPRESS_SD) {
+            toggleSDFilter(self)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -162,11 +173,15 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             octoprintClient.terminal.filters.remove(at: index)
             // Update button label
             tempFilterButton.setTitle(NSLocalizedString("Suppress temp", comment: "Suppress temp messages in the terminal"), for: .normal)
+            // Remember setting in case app gets killed or phone restarted
+            UserDefaults.standard.set(false, forKey: TerminalViewController.TERMINAL_SUPPRESS_TEMP)
         } else {
             // Add temperature filter
             octoprintClient.terminal.filters.append(Terminal.Filter.temperature)
             // Update button label
             tempFilterButton.setTitle(NSLocalizedString("Include temp", comment: "Include temp messages in the terminal"), for: .normal)
+            // Remember setting in case app gets killed or phone restarted
+            UserDefaults.standard.set(true, forKey: TerminalViewController.TERMINAL_SUPPRESS_TEMP)
         }
         self.updateTerminalLogs()
     }
@@ -177,11 +192,15 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             octoprintClient.terminal.filters.remove(at: index)
             // Update button label
             sdFilterButton.setTitle(NSLocalizedString("Suppress SD", comment: "Suppress SD messages in the terminal"), for: .normal)
+            // Remember setting in case app gets killed or phone restarted
+            UserDefaults.standard.set(false, forKey: TerminalViewController.TERMINAL_SUPPRESS_SD)
         } else {
             // Add temperature filter
             octoprintClient.terminal.filters.append(Terminal.Filter.sd)
             // Update button label
             sdFilterButton.setTitle(NSLocalizedString("Include SD", comment: "Include SD messages in the terminal"), for: .normal)
+            // Remember setting in case app gets killed or phone restarted
+            UserDefaults.standard.set(true, forKey: TerminalViewController.TERMINAL_SUPPRESS_SD)
         }
         self.updateTerminalLogs()
     }
