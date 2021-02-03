@@ -55,6 +55,7 @@ struct NormalCameraView: View {
     var body: some View {
         HStack {
             VStack {
+                Spacer()
                 VStack {
                     HStack() {
                         Text("State")
@@ -117,6 +118,10 @@ struct NormalCameraView: View {
                         }
                     }
                 }
+                Spacer()
+                Image(!appConfiguration.appAutoLock() && !appConfiguration.appLocked() ? "Unlocked" : "Locked")
+                    .resizable()
+                    .frame(width: 48, height: 48)
             }.frame(minWidth: 510)
             VStack {
                 if self.cameraService.image != nil {
