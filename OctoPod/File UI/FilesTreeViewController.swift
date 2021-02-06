@@ -1,6 +1,6 @@
 import UIKit
 
-class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate, WatchSessionManagerDelegate {
+class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate, WatchSessionManagerDelegate, UISearchBarDelegate {
     
     private var currentTheme: Theme.ThemeChoice!
 
@@ -10,12 +10,15 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var sortByTextLabel: UILabel!
     @IBOutlet weak var sortByControl: UISegmentedControl!
     @IBOutlet weak var refreshSDButton: UIButton!
     var refreshControl: UIRefreshControl?
 
     var files: Array<PrintFile> = Array()
+    var searching: Bool = false
+    var searchedFiles: Array<PrintFile> = Array()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,9 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.addSubview(refreshControl!)
         tableView.alwaysBounceVertical = true
         self.refreshControl?.addTarget(self, action: #selector(refreshFiles), for: UIControl.Event.valueChanged)
+        
+        // Listen to search bar events
+        self.searchBar.delegate = self
         
         // Update sort control based on user preferences for sorting
         var selectIndex = 0
@@ -88,13 +94,14 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return files.count
+        return searching ? searchedFiles.count : files.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let theme = Theme.currentTheme()
         let textColor = theme.textColor()
         
+        let files = searching ? searchedFiles : self.files
         let file = files[indexPath.row]
         
         if file.isFolder() {
@@ -153,6 +160,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let files = searching ? searchedFiles : self.files
         if indexPath.row < files.count {
             return !files[indexPath.row].isFolder() && !appConfiguration.appLocked()
         }
@@ -179,6 +187,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
 
     @IBAction func backFromPrint(_ sender: UIStoryboardSegue) {
         if let row = tableView.indexPathForSelectedRow?.row {
+            let files = searching ? searchedFiles : self.files
             let printFile = files[row]
             // Request to print file
             octoprintClient.printFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
@@ -229,6 +238,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let files = searching ? searchedFiles : self.files
         if segue.identifier == "gotoFileDetails" {
             if let controller = segue.destination as? FileDetailsViewController {
                 controller.printFile = files[(tableView.indexPathForSelectedRow?.row)!]
@@ -265,6 +275,27 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+    // MARK: - UISearchBarDelegate
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searching = !searchText.isEmpty
+        updatedSearchedFiles(searchText)
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Hide keyboard but leave cancel button enabled (if there is search text)
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        updatedSearchedFiles("")
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        tableView.reloadData()
+    }
+    
     // MARK: - Button actions
 
     // Initialize SD card if needed and refresh files from SD card
@@ -292,10 +323,13 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         // Sort by new criteria
         if sortByControl.selectedSegmentIndex == 0 {
             files = PrintFile.resort(rootFiles: files, sortBy: PrintFile.SortBy.alphabetical)
+            searchedFiles = PrintFile.resort(rootFiles: searchedFiles, sortBy: PrintFile.SortBy.alphabetical)
         } else if sortByControl.selectedSegmentIndex == 1 {
             files = PrintFile.resort(rootFiles: files, sortBy: PrintFile.SortBy.uploadDate)
+            searchedFiles = PrintFile.resort(rootFiles: searchedFiles, sortBy: PrintFile.SortBy.uploadDate)
         } else {
             files = PrintFile.resort(rootFiles: files, sortBy: PrintFile.SortBy.lastPrintDate)
+            searchedFiles = PrintFile.resort(rootFiles: searchedFiles, sortBy: PrintFile.SortBy.lastPrintDate)
         }
         // Refresh UI
         tableView.reloadData()
@@ -325,15 +359,38 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     
     fileprivate func applyTheme() {
         let theme = Theme.currentTheme()
+        let textLabelColor = theme.labelColor()
         let tintColor = theme.tintColor()
-        
+        let textColor = theme.textColor()
+
         // Set background color to the view
         view.backgroundColor = theme.backgroundColor()
         // Set background color to the refresh SD button
         refreshSDButton.setTitleColor(tintColor, for: .normal)
         // Set background color to the sort control
-        sortByTextLabel.textColor = theme.labelColor()
+        sortByTextLabel.textColor = textLabelColor
         sortByControl.tintColor = tintColor
+        // Theme search bar
+        searchBar.barTintColor = theme.backgroundColor()
+        let disabledColor = tintColor.withAlphaComponent(0.35)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.foregroundColor: tintColor], for: .normal)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.foregroundColor: disabledColor], for: .disabled)
+        if #available(iOS 13.0, *) {
+            let searchTextField = self.searchBar.searchTextField
+            searchTextField.textColor = textColor
+            if let iconView = searchTextField.leftView {
+                iconView.tintColor = textLabelColor
+            }
+        } else {
+            // Fallback on earlier versions
+            if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+                textField.textColor = textColor
+                if let iconView = textField.leftView as? UIImageView {
+                    //Magnifying glass
+                    iconView.tintColor = textLabelColor
+                }
+            }
+        }
     }
 
     // MARK: - Private functions
@@ -391,6 +448,9 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             }
             // Refresh table (even if there was an error so it is empty)
             DispatchQueue.main.async {
+                // Refresh searched files
+                self.updatedSearchedFiles(self.searchBar.text ?? "")
+                // Close refresh control
                 self.refreshControl?.endRefreshing()
                 self.tableView.reloadData()
             }
@@ -400,9 +460,20 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     fileprivate func deleteRow(forRowAt indexPath: IndexPath) {
-        let printFile = files[indexPath.row]
-        // Remove file from UI
-        files.remove(at: indexPath.row)
+        let printFile: PrintFile!
+        if searching {
+            printFile = searchedFiles[indexPath.row]
+            // Remove file from UI
+            searchedFiles.remove(at: indexPath.row)
+            files.removeAll { (someFile: PrintFile) -> Bool in
+                return someFile == printFile
+            }
+        } else {
+            printFile = files[indexPath.row]
+            // Remove file from UI
+            files.remove(at: indexPath.row)
+        }
+        
         // Delete from server (if failed then show error message and reload)
         octoprintClient.deleteFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
             if !success {
@@ -423,6 +494,16 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             refreshSDButton.isEnabled = printer.sdSupport && !appConfiguration.appLocked()
             
             loadFiles(done: nil)
+        }
+    }
+    
+    fileprivate func updatedSearchedFiles(_ searchText: String) {
+        if searchText.isEmpty {
+            searchBar.setShowsCancelButton(false, animated: false)
+            searchedFiles = Array()
+        } else {
+            searchBar.setShowsCancelButton(true, animated: false)
+            searchedFiles = files.filter { $0.display.lowercased().contains(searchText.lowercased()) }
         }
     }
     

@@ -2,20 +2,26 @@ import UIKit
 
 // VC that renders content of a folder
 // Files were already fetched by FilesTreeViewController
-class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresentationControllerDelegate, WatchSessionManagerDelegate {
+class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresentationControllerDelegate, WatchSessionManagerDelegate, UISearchBarDelegate {
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
     let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
 
+    @IBOutlet weak var searchBar: UISearchBar!
+
     var filesTreeVC: FilesTreeViewController!
     var folder: PrintFile!
     var files: Array<PrintFile> = Array()  // Track files of the folder
+    var searching: Bool = false
+    var searchedFiles: Array<PrintFile> = Array()
 
     override func viewDidLoad() {
         super.viewDidLoad()        
         // Some bug in XCode Storyboards is not translating text of refresh control so let's do it manually
         self.refreshControl?.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull down to refresh", comment: ""))
+        // Listen to search bar events
+        self.searchBar.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -30,6 +36,9 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
         
         files = folder.children!
         
+        // Refresh searched files
+        self.updatedSearchedFiles(self.searchBar.text ?? "")
+
         // Clear selected row when going back to this VC
         if let selectionIndexPath = self.tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectionIndexPath, animated: animated)
@@ -37,6 +46,8 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
 
         // Listen to changes coming from Apple Watch
         watchSessionManager.delegates.append(self)
+        
+        applyTheme()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,13 +63,14 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return files.count
+        return searching ? searchedFiles.count : files.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let theme = Theme.currentTheme()
         let textColor = theme.textColor()
 
+        let files = searching ? searchedFiles : self.files
         let file = files[indexPath.row]
         
         if file.isFolder() {
@@ -118,6 +130,7 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
 
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let files = searching ? searchedFiles : self.files
         if indexPath.row < files.count {
             return !files[indexPath.row].isFolder() && !appConfiguration.appLocked()
         }
@@ -145,6 +158,7 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
     
     @IBAction func backFromPrint(_ sender: UIStoryboardSegue) {
         if let row = tableView.indexPathForSelectedRow?.row {
+            let files = searching ? searchedFiles : self.files
             let printFile = files[row]
             // Request to print file
             octoprintClient.printFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
@@ -190,6 +204,7 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let files = searching ? searchedFiles : self.files
         if segue.identifier == "gotoFileDetails" {
             if let controller = segue.destination as? FileDetailsViewController {
                 controller.printFile = files[(tableView.indexPathForSelectedRow?.row)!]
@@ -227,12 +242,74 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
         }
     }
     
+    // MARK: - UISearchBarDelegate
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searching = !searchText.isEmpty
+        updatedSearchedFiles(searchText)
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Hide keyboard but leave cancel button enabled (if there is search text)
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        updatedSearchedFiles("")
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        tableView.reloadData()
+    }
+    
+    // MARK: - Theme functions
+    
+    fileprivate func applyTheme() {
+        let theme = Theme.currentTheme()
+        let textLabelColor = theme.labelColor()
+        let tintColor = theme.tintColor()
+        let textColor = theme.textColor()
+
+        // Theme search bar
+        searchBar.barTintColor = theme.backgroundColor()
+        let disabledColor = tintColor.withAlphaComponent(0.35)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.foregroundColor: tintColor], for: .normal)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.foregroundColor: disabledColor], for: .disabled)
+        if #available(iOS 13.0, *) {
+            let searchTextField = self.searchBar.searchTextField
+            searchTextField.textColor = textColor
+            if let iconView = searchTextField.leftView {
+                iconView.tintColor = textLabelColor
+            }
+        } else {
+            // Fallback on earlier versions
+            if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+                textField.textColor = textColor
+                if let iconView = textField.leftView as? UIImageView {
+                    //Magnifying glass
+                    iconView.tintColor = textLabelColor
+                }
+            }
+        }
+    }
+
     // MARK: - Private functions
     
     fileprivate func deleteRow(forRowAt indexPath: IndexPath) {
-        let printFile = files[indexPath.row]
-        // Remove file from UI
-        files.remove(at: indexPath.row)
+        let printFile: PrintFile!
+        if searching {
+            printFile = searchedFiles[indexPath.row]
+            // Remove file from UI
+            searchedFiles.remove(at: indexPath.row)
+            files.removeAll { (someFile: PrintFile) -> Bool in
+                return someFile == printFile
+            }
+        } else {
+            printFile = files[indexPath.row]
+            // Remove file from UI
+            files.remove(at: indexPath.row)
+        }
         // Remove from model in memory
         folder.children!.remove(at: indexPath.row)
         // Refresh UI
@@ -247,7 +324,11 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
                     // Add back to model in memory
                     self.folder.children!.append(printFile)
                     // Refresh UI
-                    DispatchQueue.main.async { self.tableView.reloadData() }
+                    DispatchQueue.main.async {
+                        // Refresh searched files
+                        self.updatedSearchedFiles(self.searchBar.text ?? "")
+                        self.tableView.reloadData()
+                    }
                 })
             }
         }
@@ -259,6 +340,8 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
                 self.folder = updated
                 self.files = updated.children!
                 DispatchQueue.main.async {
+                    // Refresh searched files
+                    self.updatedSearchedFiles(self.searchBar.text ?? "")
                     self.tableView.reloadData()
                     refreshControl?.endRefreshing()
                 }
@@ -268,6 +351,16 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
                     self.performSegue(withIdentifier: "gobackToRootFolder", sender: self)
                 }
             }
+        }
+    }
+    
+    fileprivate func updatedSearchedFiles(_ searchText: String) {
+        if searchText.isEmpty {
+            searchBar.setShowsCancelButton(false, animated: false)
+            searchedFiles = Array()
+        } else {
+            searchBar.setShowsCancelButton(true, animated: false)
+            searchedFiles = files.filter { $0.display.lowercased().contains(searchText.lowercased()) }
         }
     }
     

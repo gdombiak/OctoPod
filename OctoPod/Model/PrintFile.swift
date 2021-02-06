@@ -1,6 +1,6 @@
 import Foundation
 
-class PrintFile {
+class PrintFile: NSObject {
     private static let SORT_BY_PREFERENCE = "filesSortBy"
     
     enum SortBy: Int {
