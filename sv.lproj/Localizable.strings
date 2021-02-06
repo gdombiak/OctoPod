@@ -160,6 +160,9 @@
 /* (No Comment) */
 "days ago" = "%d dagar sedan";
 
+/* Delete action */
+"Delete" = "Radera";
+
 /* Disconnect */
 "Disconnect" = "Koppla från";
 
@@ -173,10 +176,22 @@
 "Do you want to cancel job?" = "Vill du avbryta jobbet?";
 
 /* No comment provided by engineer. */
+"Do you want to delete this file?" = "Vill du radera denna fil?";
+
+/* No comment provided by engineer. */
 "Do you want to pause job?" = "Vill du pausa jobbet?";
 
 /* No comment provided by engineer. */
+"Do you want to pause print?" = "Vill du pausa utskriften?";
+
+/* No comment provided by engineer. */
+"Do you want to print this file?" = "Vill du skriva ut denna fil?";
+
+/* No comment provided by engineer. */
 "Do you want to restart print job from the beginning?" = "Vill du starta om utskriftsjobbet från början?";
+
+/* No comment provided by engineer. */
+"Do you want to resume printing?" = "Vill du återuppta utskriften?";
 
 /* (No Comment) */
 "Domoticz Plugs" = "Domoticz-uttag";
@@ -553,11 +568,20 @@
 /* gcode name */
 "Set Hotend PID" = "Ställ in Hotend-PID";
 
+/* Share action */
+"Share" = "Dela";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Snooze 1 timma";
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Snooze 8 timmar";
+
+/* SoC */
+"SoC" = "SoC";
+
+/* SoC Temperature */
+"SoC Temperature" = "SoC-temperatur";
 
 /* No comment provided by engineer. */
 "State" = "Tillstånd";

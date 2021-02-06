@@ -7,6 +7,9 @@
 /* Privacy - Local Network Usage Description */
 "NSLocalNetworkUsageDescription" = "OctoPod bruker ditt lokale nettverk for å oppdage og kommunisere til OctoPrint";
 
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "OctoPod trenger tillatelse til å lagre videoer på enheten";
+
 /* Privacy - Siri Usage Description */
 "NSSiriUsageDescription" = "Kontroller skriver med Siri";
 

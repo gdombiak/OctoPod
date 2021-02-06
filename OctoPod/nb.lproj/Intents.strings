@@ -8,6 +8,9 @@
 "1lbZOa" = "Kunne ikke be om å koble fra";
 
 /* (No Comment) */
+"1qMmy1" = "Forespurt";
+
+/* (No Comment) */
 "2TreiD" = "Sett ekstruderens temperatur til ${temperature}";
 
 /* (No Comment) */
@@ -30,6 +33,9 @@
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"4Tu0Kl" = "Kunne ikke be om å utføre kommandoen";
 
 /* (No Comment) */
 "5btOXI" = "Siste variasjon";
@@ -107,6 +113,9 @@
 "bXrJk0" = "Command Action";
 
 /* (No Comment) */
+"C1mTOm" = "${printer}";
+
+/* (No Comment) */
 "D0kBGr" = "Restart startet utskrift";
 
 /* (No Comment) */
@@ -149,10 +158,16 @@
 "g52Ub0" = "${printer}";
 
 /* (No Comment) */
+"Ge6TbJ" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
 "gx0D0e" = "Jobb avbrutt";
 
 /* (No Comment) */
 "H21bkX" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
+"hE6yXX" = "Forespurt";
 
 /* (No Comment) */
 "hPlRC4" = "Sett skriveflatetemperaturen til ${temperature}";
@@ -180,6 +195,9 @@
 
 /* (No Comment) */
 "Kf7e4Y" = "Restart startet utskrift";
+
+/* (No Comment) */
+"kHMMRT" = "${printer}";
 
 /* (No Comment) */
 "KHvUZD" = "Be Palette kutte";
@@ -299,6 +317,9 @@
 "sRkyIL" = "Kunne ikke starte jobben igjen (${statusCode})";
 
 /* (No Comment) */
+"SZLVG3" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
 "TcPGnq" = "Slå av bryteren via Enclosure";
 
 /* (No Comment) */
@@ -321,6 +342,12 @@
 
 /* (No Comment) */
 "VItjhS" = "Frakoblet";
+
+/* (No Comment) */
+"Vix5SL" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
+"VKupAQ" = "Forespurt";
 
 /* (No Comment) */
 "vL7cy4" = "${printer}";
@@ -354,6 +381,9 @@
 
 /* (No Comment) */
 "xSARU0" = "Kunne ikke pause jobben (${statusCode})";
+
+/* (No Comment) */
+"YfmWYd" = "Forespurt";
 
 /* (No Comment) */
 "YGxUII" = "${printer}";

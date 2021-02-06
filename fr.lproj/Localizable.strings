@@ -160,6 +160,9 @@
 /* (No Comment) */
 "days ago" = "Il y a %d jours";
 
+/* Delete action */
+"Delete" = "Effacer";
+
 /* Disconnect */
 "Disconnect" = "Déconnecter";
 
@@ -173,10 +176,22 @@
 "Do you want to cancel job?" = "Souhaitez-vous annuler l’impression ?";
 
 /* No comment provided by engineer. */
+"Do you want to delete this file?" = "Supprimer ce fichier ?";
+
+/* No comment provided by engineer. */
 "Do you want to pause job?" = "Souhaitez-vous mettre en pause?";
 
 /* No comment provided by engineer. */
+"Do you want to pause print?" = "Mettre en pause l'impression ?";
+
+/* No comment provided by engineer. */
+"Do you want to print this file?" = "Imprimer ce fichier ?";
+
+/* No comment provided by engineer. */
 "Do you want to restart print job from the beginning?" = "Souhaitez-vous recommencer l’impression depuis le début ?";
+
+/* No comment provided by engineer. */
+"Do you want to resume printing?" = "Reprendre l'impression ?";
 
 /* (No Comment) */
 "Domoticz Plugs" = "Prises Domoticz";
@@ -553,11 +568,20 @@
 /* gcode name */
 "Set Hotend PID" = "Définir PID de l’extrudeur";
 
+/* Share action */
+"Share" = "Partager";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Repousser de 1 heure";
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Repousser de 8 heures";
+
+/* SoC */
+"SoC" = "SoC";
+
+/* SoC Temperature */
+"SoC Temperature" = "Température SoC";
 
 /* No comment provided by engineer. */
 "State" = "État";

@@ -8,6 +8,9 @@
 "1lbZOa" = "Échec de la demande de déconnexion";
 
 /* (No Comment) */
+"1qMmy1" = "Demande en cours";
+
+/* (No Comment) */
 "2TreiD" = "Régler la température d’extrusion à ${temperature}";
 
 /* (No Comment) */
@@ -30,6 +33,9 @@
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"4Tu0Kl" = "La demande d’exécution de la commande a échouée";
 
 /* (No Comment) */
 "5btOXI" = "Dernière Variation";
@@ -107,6 +113,9 @@
 "bXrJk0" = "Command Action";
 
 /* (No Comment) */
+"C1mTOm" = "${printer}";
+
+/* (No Comment) */
 "D0kBGr" = "Reprendre l’impression";
 
 /* (No Comment) */
@@ -149,10 +158,16 @@
 "g52Ub0" = "${printer}";
 
 /* (No Comment) */
+"Ge6TbJ" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
 "gx0D0e" = "Impression annulée";
 
 /* (No Comment) */
 "H21bkX" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
+"hE6yXX" = "Demande en cours";
 
 /* (No Comment) */
 "hPlRC4" = "Régler la température du plateau à ${temperature}";
@@ -180,6 +195,9 @@
 
 /* (No Comment) */
 "Kf7e4Y" = "Reprendre l’impression";
+
+/* (No Comment) */
+"kHMMRT" = "${printer}";
 
 /* (No Comment) */
 "KHvUZD" = "Demander à Palette de couper";
@@ -299,6 +317,9 @@
 "sRkyIL" = "Échec de la reprise (${statusCode})";
 
 /* (No Comment) */
+"SZLVG3" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
 "TcPGnq" = "Éteindre l’interrupteur Enclosure";
 
 /* (No Comment) */
@@ -321,6 +342,12 @@
 
 /* (No Comment) */
 "VItjhS" = "Déconnecté";
+
+/* (No Comment) */
+"Vix5SL" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
+"VKupAQ" = "Demande en cours";
 
 /* (No Comment) */
 "vL7cy4" = "${printer}";
@@ -354,6 +381,9 @@
 
 /* (No Comment) */
 "xSARU0" = "Échec de la mise en pause (${statusCode})";
+
+/* (No Comment) */
+"YfmWYd" = "Demande en cours";
 
 /* (No Comment) */
 "YGxUII" = "${printer}";
