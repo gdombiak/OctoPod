@@ -68,6 +68,9 @@
 "8tTCjD" = "Kunde inte avbryta jobb (${statusCode})";
 
 /* (No Comment) */
+"8uLpUQ" = "Stäng av PSU";
+
+/* (No Comment) */
 "8xHCbl" = "${printer}";
 
 /* (No Comment) */
@@ -102,6 +105,9 @@
 
 /* (No Comment) */
 "Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Slå på PSU";
 
 /* (No Comment) */
 "BUexSx" = "Max variation";
@@ -263,10 +269,16 @@
 "P89qJr" = "Tid kvar är ${time}";
 
 /* (No Comment) */
+"pfroH1" = "Stäng av PSU";
+
+/* (No Comment) */
 "Pj7mEV" = "Kyler ner extruder";
 
 /* (No Comment) */
 "PppyPP" = "Konfigurera bäddens temperatur";
+
+/* (No Comment) */
+"q1Oynq" = "PSU-kontroll Av";
 
 /* (No Comment) */
 "qLzk1S" = "Kyl ner bädd";
@@ -380,7 +392,13 @@
 "XfWmGt" = "Återuppta pågående utskriftsjobb";
 
 /* (No Comment) */
+"Xk9F6S" = "Slå på PSU";
+
+/* (No Comment) */
 "xSARU0" = "Kunde inte pausa jobb (${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "PSU-kontroll På";
 
 /* (No Comment) */
 "YfmWYd" = "Begärda";

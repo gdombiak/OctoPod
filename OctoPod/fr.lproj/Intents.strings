@@ -68,6 +68,9 @@
 "8tTCjD" = "Échec de l’annulation (${statusCode})";
 
 /* (No Comment) */
+"8uLpUQ" = "Désactiver l'alimentation";
+
+/* (No Comment) */
 "8xHCbl" = "${printer}";
 
 /* (No Comment) */
@@ -102,6 +105,9 @@
 
 /* (No Comment) */
 "Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Activer l'alimentation";
 
 /* (No Comment) */
 "BUexSx" = "Variation Max";
@@ -263,10 +269,16 @@
 "P89qJr" = "Temps restant : ${time}";
 
 /* (No Comment) */
+"pfroH1" = "Désactiver l'alimentation";
+
+/* (No Comment) */
 "Pj7mEV" = "Refroidir l’extrudeur";
 
 /* (No Comment) */
 "PppyPP" = "Configurer la température du plateau";
+
+/* (No Comment) */
+"q1Oynq" = "Contrôle de l'alimentation désactivé";
 
 /* (No Comment) */
 "qLzk1S" = "Refroidir le plateau";
@@ -380,7 +392,13 @@
 "XfWmGt" = "Reprendre l’impression";
 
 /* (No Comment) */
+"Xk9F6S" = "Activer l'alimentation";
+
+/* (No Comment) */
 "xSARU0" = "Échec de la mise en pause (${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "Contrôle de l'alimentation activé";
 
 /* (No Comment) */
 "YfmWYd" = "Demande en cours";
