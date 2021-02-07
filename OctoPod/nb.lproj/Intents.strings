@@ -68,6 +68,9 @@
 "8tTCjD" = "Kunne ikke avbryte jobben (${statusCode})";
 
 /* (No Comment) */
+"8uLpUQ" = "Slå av PSU";
+
+/* (No Comment) */
 "8xHCbl" = "${printer}";
 
 /* (No Comment) */
@@ -102,6 +105,9 @@
 
 /* (No Comment) */
 "Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Slå på PSU";
 
 /* (No Comment) */
 "BUexSx" = "Maks variasjon";
@@ -263,10 +269,16 @@
 "P89qJr" = "Tid igjen ${time}";
 
 /* (No Comment) */
+"pfroH1" = "Slå av PSU";
+
+/* (No Comment) */
 "Pj7mEV" = "Kjøl ned ekstruder";
 
 /* (No Comment) */
 "PppyPP" = "Konfigurer skriveflatens temperatur";
+
+/* (No Comment) */
+"q1Oynq" = "PSU kontroll Av";
 
 /* (No Comment) */
 "qLzk1S" = "Kjøl ned skriveflate";
@@ -380,7 +392,13 @@
 "XfWmGt" = "Restart startet utskrift";
 
 /* (No Comment) */
+"Xk9F6S" = "Slå på PSU";
+
+/* (No Comment) */
 "xSARU0" = "Kunne ikke pause jobben (${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "PSU kontroll På";
 
 /* (No Comment) */
 "YfmWYd" = "Forespurt";
