@@ -628,11 +628,17 @@
 /* Siri suggested phrase */
 "Turn off Enclosure switch" = "Gehäuseschalter ausschalten";
 
+/* Siri suggested phrase */
+"Turn off PSU" = "Netzteil ausschalten";
+
 /* (No Comment) */
 "Turn On" = "Einschalten";
 
 /* Siri suggested phrase */
 "Turn on Enclosure switch" = "Gehäuseschalter einschalten";
+
+/* Siri suggested phrase */
+"Turn on PSU" = "Netzteil einschalten";
 
 /* ETA is Unknown
    File Type is Unknown

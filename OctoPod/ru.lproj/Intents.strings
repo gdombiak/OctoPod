@@ -68,6 +68,9 @@
 "8tTCjD" = "Не удалось отменить задание (${statusCode})";
 
 /* (No Comment) */
+"8uLpUQ" = "Выключите БП";
+
+/* (No Comment) */
 "8xHCbl" = "${printer}";
 
 /* (No Comment) */
@@ -102,6 +105,9 @@
 
 /* (No Comment) */
 "Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Включите БП";
 
 /* (No Comment) */
 "BUexSx" = "Макс. Изменение";
@@ -263,10 +269,16 @@
 "P89qJr" = "Осталось печатать ${time}";
 
 /* (No Comment) */
+"pfroH1" = "Выключите БП";
+
+/* (No Comment) */
 "Pj7mEV" = "Охладить экструдер";
 
 /* (No Comment) */
 "PppyPP" = "Задать температуру стола";
+
+/* (No Comment) */
+"q1Oynq" = "Управление блоком питания выключено";
 
 /* (No Comment) */
 "qLzk1S" = "Охладить стол";
@@ -380,7 +392,13 @@
 "XfWmGt" = "Возобновить выполнение задания на печать";
 
 /* (No Comment) */
+"Xk9F6S" = "Включите БП";
+
+/* (No Comment) */
 "xSARU0" = "Не удалось приостановить работу (${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "Управление блоком питания включено";
 
 /* (No Comment) */
 "YfmWYd" = "Запрошено";

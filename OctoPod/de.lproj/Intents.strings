@@ -68,6 +68,9 @@
 "8tTCjD" = "Auftrag konnte nicht abgebrochen werden (${statusCode})";
 
 /* (No Comment) */
+"8uLpUQ" = "Netzteil ausschalten";
+
+/* (No Comment) */
 "8xHCbl" = "${printer}";
 
 /* (No Comment) */
@@ -102,6 +105,9 @@
 
 /* (No Comment) */
 "Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Netzteil einschalten";
 
 /* (No Comment) */
 "BUexSx" = "Größte Variation";
@@ -263,10 +269,16 @@
 "P89qJr" = "Verbleibende Zeit ist ${time}";
 
 /* (No Comment) */
+"pfroH1" = "Netzteil ausschalten";
+
+/* (No Comment) */
 "Pj7mEV" = "Düse abkühlen";
 
 /* (No Comment) */
 "PppyPP" = "Temperatur des Druckbetts konfiguriert";
+
+/* (No Comment) */
+"q1Oynq" = "PSU Control Off";
 
 /* (No Comment) */
 "qLzk1S" = "Druckbett abkühlen";
@@ -380,7 +392,13 @@
 "XfWmGt" = "Laufenden Druckauftrag fortsetzen";
 
 /* (No Comment) */
+"Xk9F6S" = "Netzteil einschalten";
+
+/* (No Comment) */
 "xSARU0" = "Auftrag konnte nicht pausiert werden (${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "PSU Control On";
 
 /* (No Comment) */
 "YfmWYd" = "Angefordert";

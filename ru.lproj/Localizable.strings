@@ -628,11 +628,17 @@
 /* Siri suggested phrase */
 "Turn off Enclosure switch" = "Выключить переключатель \"Enclosure\"";
 
+/* Siri suggested phrase */
+"Turn off PSU" = "Выключите БП";
+
 /* (No Comment) */
 "Turn On" = "Включить";
 
 /* Siri suggested phrase */
 "Turn on Enclosure switch" = "Включить переключатель \"Enclosure\"";
+
+/* Siri suggested phrase */
+"Turn on PSU" = "Включите БП";
 
 /* ETA is Unknown
    File Type is Unknown

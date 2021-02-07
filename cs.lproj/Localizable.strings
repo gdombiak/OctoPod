@@ -628,11 +628,17 @@
 /* Siri suggested phrase */
 "Turn off Enclosure switch" = "Vypnout spínač Enclosure";
 
+/* Siri suggested phrase */
+"Turn off PSU" = "Vypnout PSU";
+
 /* (No Comment) */
 "Turn On" = "Zapnout";
 
 /* Siri suggested phrase */
 "Turn on Enclosure switch" = "Zapnout spínač Enclosure";
+
+/* Siri suggested phrase */
+"Turn on PSU" = "Zapnout PSU";
 
 /* ETA is Unknown
    File Type is Unknown
