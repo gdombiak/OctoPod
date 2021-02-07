@@ -278,7 +278,7 @@
 "PppyPP" = "Temperatur des Druckbetts konfiguriert";
 
 /* (No Comment) */
-"q1Oynq" = "PSU Control Off";
+"q1Oynq" = "Netzteil Steuerung aus";
 
 /* (No Comment) */
 "qLzk1S" = "Druckbett abkühlen";
@@ -398,7 +398,7 @@
 "xSARU0" = "Auftrag konnte nicht pausiert werden (${statusCode})";
 
 /* (No Comment) */
-"XUSWIb" = "PSU Control On";
+"XUSWIb" = "Netzteil Steuerung ein";
 
 /* (No Comment) */
 "YfmWYd" = "Angefordert";

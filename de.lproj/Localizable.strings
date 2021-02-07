@@ -176,10 +176,22 @@
 "Do you want to cancel job?" = "Möchten Sie den Auftrag abbrechen?";
 
 /* No comment provided by engineer. */
+"Do you want to delete this file?" = "Wollen SIe diese Datei löschen?";
+
+/* No comment provided by engineer. */
 "Do you want to pause job?" = "Möchten Sie den Auftrag pausieren?";
 
 /* No comment provided by engineer. */
+"Do you want to pause print?" = "Wollen Sie diesen Druck pausieren?";
+
+/* No comment provided by engineer. */
+"Do you want to print this file?" = "Wollen Sie diese Datei drucken?";
+
+/* No comment provided by engineer. */
 "Do you want to restart print job from the beginning?" = "Wollen Sie den Druckauftrag von Anfang an neu starten?";
+
+/* No comment provided by engineer. */
+"Do you want to resume printing?" = "Wollen Sie diesen Druck fortsetzen?";
 
 /* (No Comment) */
 "Domoticz Plugs" = "Domoticz Steckdosen";
@@ -556,6 +568,9 @@
 /* gcode name */
 "Set Hotend PID" = "Setze Düse PID";
 
+/* Share action */
+"Share" = "Teilen";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Stumm für 1 Stunde";
 
@@ -564,6 +579,9 @@
 
 /* SoC */
 "SoC" = "SoC";
+
+/* SoC Temperature */
+"SoC Temperature" = "SoC Temperatur";
 
 /* No comment provided by engineer. */
 "State" = "Zustand";
