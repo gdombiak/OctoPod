@@ -68,7 +68,7 @@
 "8tTCjD" = "Nezdařilo se zrušit tisk (${statusCode})";
 
 /* (No Comment) */
-"8uLpUQ" = "Vypnout PSU";
+"8uLpUQ" = "Vypnout zdroj napětí";
 
 /* (No Comment) */
 "8xHCbl" = "${printer}";
@@ -107,7 +107,7 @@
 "Big0yU" = "${printer}";
 
 /* (No Comment) */
-"bKwkw6" = "Zapnout PSU";
+"bKwkw6" = "Zapnout zdroj napětí";
 
 /* (No Comment) */
 "BUexSx" = "Maximální variace";
@@ -269,7 +269,7 @@
 "P89qJr" = "Zbývající čas je ${time}";
 
 /* (No Comment) */
-"pfroH1" = "Vypnout PSU";
+"pfroH1" = "Vypnout zdroj napětí";
 
 /* (No Comment) */
 "Pj7mEV" = "Zchladit trysku";
@@ -278,7 +278,7 @@
 "PppyPP" = "Nastavit teplotu podložky";
 
 /* (No Comment) */
-"q1Oynq" = "PSU Control Off";
+"q1Oynq" = "Vypnout ovládání zdroje napětí";
 
 /* (No Comment) */
 "qLzk1S" = "Zchladit podložku";
@@ -392,13 +392,13 @@
 "XfWmGt" = "Pokračovat v tisku";
 
 /* (No Comment) */
-"Xk9F6S" = "Zapnout PSU";
+"Xk9F6S" = "Zapnout zdroj napětí";
 
 /* (No Comment) */
 "xSARU0" = "Nezdařilo se pozastavit tisk (${statusCode})";
 
 /* (No Comment) */
-"XUSWIb" = "PSU Control On";
+"XUSWIb" = "Zapnout ovládání zdroje napětí";
 
 /* (No Comment) */
 "YfmWYd" = "Požádáno";
