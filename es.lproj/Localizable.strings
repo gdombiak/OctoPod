@@ -160,6 +160,9 @@
 /* (No Comment) */
 "days ago" = "Hace %d dias";
 
+/* Delete action */
+"Delete" = "Eliminar";
+
 /* Disconnect */
 "Disconnect" = "Desconectar";
 
@@ -173,10 +176,22 @@
 "Do you want to cancel job?" = "¿Desea cancelar el trabajo?";
 
 /* No comment provided by engineer. */
+"Do you want to delete this file?" = "¿Desea eliminar el archivo?";
+
+/* No comment provided by engineer. */
 "Do you want to pause job?" = "¿Desea suspender el trabajo?";
 
 /* No comment provided by engineer. */
+"Do you want to pause print?" = "¿Desea pausar la impresión?";
+
+/* No comment provided by engineer. */
+"Do you want to print this file?" = "¿Desea imprimir este archivo?";
+
+/* No comment provided by engineer. */
 "Do you want to restart print job from the beginning?" = "¿Desea reiniciar el trabajo de impresión desde el principio?";
+
+/* No comment provided by engineer. */
+"Do you want to resume printing?" = "¿Desea reanudar la impresión?";
 
 /* (No Comment) */
 "Domoticz Plugs" = "Enchufes Domoticz";
@@ -553,11 +568,20 @@
 /* gcode name */
 "Set Hotend PID" = "Establecer PID del hotend";
 
+/* Share action */
+"Share" = "Compartir";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Silenciar 1 hora";
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Silenciar 8 horas";
+
+/* SoC */
+"SoC" = "SoC";
+
+/* SoC Temperature */
+"SoC Temperature" = "Temperatura del SoC";
 
 /* No comment provided by engineer. */
 "State" = "Estado";
@@ -622,11 +646,17 @@
 /* Siri suggested phrase */
 "Turn off Enclosure switch" = "Apaguar interruptor via Enclosure plugin";
 
+/* Siri suggested phrase */
+"Turn off PSU" = "Apagar PSU";
+
 /* (No Comment) */
 "Turn On" = "Encender";
 
 /* Siri suggested phrase */
 "Turn on Enclosure switch" = "Encender interruptor via Enclosure plugin";
+
+/* Siri suggested phrase */
+"Turn on PSU" = "Encender PSU";
 
 /* ETA is Unknown
    File Type is Unknown
