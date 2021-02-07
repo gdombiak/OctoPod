@@ -160,6 +160,9 @@
 /* (No Comment) */
 "days ago" = "před %d dny";
 
+/* Delete action */
+"Delete" = "Smazat";
+
 /* Disconnect */
 "Disconnect" = "Odpojit";
 
@@ -558,6 +561,9 @@
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Odložit na 8 hodin";
+
+/* SoC */
+"SoC" = "SoC";
 
 /* No comment provided by engineer. */
 "State" = "Stav";

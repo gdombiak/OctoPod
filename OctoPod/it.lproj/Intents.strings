@@ -8,6 +8,9 @@
 "1lbZOa" = "Impossibile richiedere di disconnettersi";
 
 /* (No Comment) */
+"1qMmy1" = "Richiesto";
+
+/* (No Comment) */
 "2TreiD" = "Imposta la temperatura dell'estrusore su ${temperature}";
 
 /* (No Comment) */
@@ -30,6 +33,9 @@
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"4Tu0Kl" = "Impossibile richiedere di eseguire il comando";
 
 /* (No Comment) */
 "5btOXI" = "Ultima variazione";
@@ -107,6 +113,9 @@
 "bXrJk0" = "Command Action";
 
 /* (No Comment) */
+"C1mTOm" = "${printer}";
+
+/* (No Comment) */
 "D0kBGr" = "Riavvia la stampa in corso";
 
 /* (No Comment) */
@@ -149,10 +158,16 @@
 "g52Ub0" = "${printer}";
 
 /* (No Comment) */
+"Ge6TbJ" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
 "gx0D0e" = "Stampa annullata";
 
 /* (No Comment) */
 "H21bkX" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
+"hE6yXX" = "Richiesto";
 
 /* (No Comment) */
 "hPlRC4" = "Imposta la temperatura del piatto su ${temperature}";
@@ -180,6 +195,9 @@
 
 /* (No Comment) */
 "Kf7e4Y" = "Riprendi la stampa in corso";
+
+/* (No Comment) */
+"kHMMRT" = "${printer}";
 
 /* (No Comment) */
 "KHvUZD" = "Chiedi a Palette di tagliare";
@@ -299,6 +317,9 @@
 "sRkyIL" = "Errore nel riavviare la stampa (${statusCode})";
 
 /* (No Comment) */
+"SZLVG3" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
 "TcPGnq" = "Spegni interruttore Enclosure";
 
 /* (No Comment) */
@@ -321,6 +342,12 @@
 
 /* (No Comment) */
 "VItjhS" = "Disconnesso";
+
+/* (No Comment) */
+"Vix5SL" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
+"VKupAQ" = "Richiesto";
 
 /* (No Comment) */
 "vL7cy4" = "${printer}";
@@ -354,6 +381,9 @@
 
 /* (No Comment) */
 "xSARU0" = "Errore nel sospendere la stampa (${statusCode})";
+
+/* (No Comment) */
+"YfmWYd" = "Richiesto";
 
 /* (No Comment) */
 "YGxUII" = "${printer}";

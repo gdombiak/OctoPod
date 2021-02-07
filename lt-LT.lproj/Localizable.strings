@@ -160,6 +160,9 @@
 /* (No Comment) */
 "days ago" = "prieš %d dienas";
 
+/* Delete action */
+"Delete" = "Ištrinti";
+
 /* Disconnect */
 "Disconnect" = "Atsijungti";
 
@@ -558,6 +561,9 @@
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Užtildyti 8 valandom";
+
+/* SoC */
+"SoC" = "SoC";
 
 /* No comment provided by engineer. */
 "State" = "Būsena";

@@ -160,6 +160,9 @@
 /* (No Comment) */
 "days ago" = "Vor %d Tagen";
 
+/* Delete action */
+"Delete" = "Löschen";
+
 /* Disconnect */
 "Disconnect" = "Trennen";
 
@@ -558,6 +561,9 @@
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Stumm für 8 Stunden";
+
+/* SoC */
+"SoC" = "SoC";
 
 /* No comment provided by engineer. */
 "State" = "Zustand";

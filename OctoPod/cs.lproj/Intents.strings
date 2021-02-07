@@ -8,6 +8,9 @@
 "1lbZOa" = "Nezdařila se žádost pro odpojení";
 
 /* (No Comment) */
+"1qMmy1" = "Požádáno";
+
+/* (No Comment) */
 "2TreiD" = "Nastavit teplotu trysky na ${temperature}";
 
 /* (No Comment) */
@@ -30,6 +33,9 @@
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"4Tu0Kl" = "Nezdařila se žádost o spuštění příkazu";
 
 /* (No Comment) */
 "5btOXI" = "Poslední variace";
@@ -107,6 +113,9 @@
 "bXrJk0" = "Command Action";
 
 /* (No Comment) */
+"C1mTOm" = "${printer}";
+
+/* (No Comment) */
 "D0kBGr" = "Restartovat probíhající tisk";
 
 /* (No Comment) */
@@ -149,10 +158,16 @@
 "g52Ub0" = "${printer}";
 
 /* (No Comment) */
+"Ge6TbJ" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
 "gx0D0e" = "Tisk zrušen";
 
 /* (No Comment) */
 "H21bkX" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
+"hE6yXX" = "Požádáno";
 
 /* (No Comment) */
 "hPlRC4" = "Nastavit teplotu podložky na ${temperature}";
@@ -180,6 +195,9 @@
 
 /* (No Comment) */
 "Kf7e4Y" = "Pokračovat v tisku";
+
+/* (No Comment) */
+"kHMMRT" = "${printer}";
 
 /* (No Comment) */
 "KHvUZD" = "Požádat Palette o řezání";
@@ -299,6 +317,9 @@
 "sRkyIL" = "Nezdařilo se restartovat tisk (${statusCode})";
 
 /* (No Comment) */
+"SZLVG3" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
 "TcPGnq" = "Vypnout spínač Enclosure";
 
 /* (No Comment) */
@@ -321,6 +342,12 @@
 
 /* (No Comment) */
 "VItjhS" = "Odpojený";
+
+/* (No Comment) */
+"Vix5SL" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
+"VKupAQ" = "Požádáno";
 
 /* (No Comment) */
 "vL7cy4" = "${printer}";
@@ -354,6 +381,9 @@
 
 /* (No Comment) */
 "xSARU0" = "Nezdařilo se pozastavit tisk (${statusCode})";
+
+/* (No Comment) */
+"YfmWYd" = "Požádáno";
 
 /* (No Comment) */
 "YGxUII" = "${printer}";

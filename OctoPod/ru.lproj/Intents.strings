@@ -8,6 +8,9 @@
 "1lbZOa" = "Не удалось выполнить запрос на отключение";
 
 /* (No Comment) */
+"1qMmy1" = "Запрошено";
+
+/* (No Comment) */
 "2TreiD" = "Установить температуру экструдера на ${temperature}";
 
 /* (No Comment) */
@@ -30,6 +33,9 @@
 
 /* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"4Tu0Kl" = "Не удалось запросить выполнение команды";
 
 /* (No Comment) */
 "5btOXI" = "Последнее Изменение";
@@ -107,6 +113,9 @@
 "bXrJk0" = "Command Action";
 
 /* (No Comment) */
+"C1mTOm" = "${printer}";
+
+/* (No Comment) */
 "D0kBGr" = "Перезапустить запущенное задание на печать";
 
 /* (No Comment) */
@@ -149,10 +158,16 @@
 "g52Ub0" = "${printer}";
 
 /* (No Comment) */
+"Ge6TbJ" = "Не удалось запросить выполнение команды";
+
+/* (No Comment) */
 "gx0D0e" = "Работа отменена";
 
 /* (No Comment) */
 "H21bkX" = "Не удалось запросить выполнение команды";
+
+/* (No Comment) */
+"hE6yXX" = "Запрошено";
 
 /* (No Comment) */
 "hPlRC4" = "Установить температуру стола на ${temperature}";
@@ -180,6 +195,9 @@
 
 /* (No Comment) */
 "Kf7e4Y" = "Возобновить выполнение задания на печать";
+
+/* (No Comment) */
+"kHMMRT" = "${printer}";
 
 /* (No Comment) */
 "KHvUZD" = "Запрос Palette на обрезку";
@@ -299,6 +317,9 @@
 "sRkyIL" = "Не удалось перезапустить задание (${statusCode})";
 
 /* (No Comment) */
+"SZLVG3" = "Не удалось запросить выполнение команды";
+
+/* (No Comment) */
 "TcPGnq" = "Выключить переключатель \"Enclosure\"";
 
 /* (No Comment) */
@@ -321,6 +342,12 @@
 
 /* (No Comment) */
 "VItjhS" = "Отключиться";
+
+/* (No Comment) */
+"Vix5SL" = "Не удалось запросить выполнение команды";
+
+/* (No Comment) */
+"VKupAQ" = "Запрошено";
 
 /* (No Comment) */
 "vL7cy4" = "${printer}";
@@ -354,6 +381,9 @@
 
 /* (No Comment) */
 "xSARU0" = "Не удалось приостановить работу (${statusCode})";
+
+/* (No Comment) */
+"YfmWYd" = "Запрошено";
 
 /* (No Comment) */
 "YGxUII" = "${printer}";
