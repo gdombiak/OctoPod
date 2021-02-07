@@ -5613,6 +5613,77 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="BLTouch" id="4LI-ea-uZQ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="mMb-sL-Owa">
+                                        <rect key="frame" x="0.0" y="675.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mMb-sL-Owa" id="veX-OA-aW0">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Phx-uT-KLD">
+                                                    <rect key="frame" x="56" y="10" width="24" height="24"/>
+                                                    <state key="normal" image="ProbeUp"/>
+                                                    <connections>
+                                                        <action selector="blTouchProbeUp:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="nb9-EK-YGn"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CnD-j6-6z2">
+                                                    <rect key="frame" x="96" y="10" width="24" height="24"/>
+                                                    <state key="normal" image="ProbeTest"/>
+                                                    <connections>
+                                                        <action selector="blTouchSelfTest:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="xbQ-IU-0J7"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MlK-QY-xjV">
+                                                    <rect key="frame" x="136" y="10" width="24" height="24"/>
+                                                    <state key="normal" image="ProbeRelease"/>
+                                                    <connections>
+                                                        <action selector="blTouchReleaseAlarm:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="TPW-QD-oIf"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdR-f1-uD4">
+                                                    <rect key="frame" x="295" y="10" width="24" height="24"/>
+                                                    <state key="normal" image="ProbeBed"/>
+                                                    <connections>
+                                                        <action selector="blTouchProbeBed:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="UOL-Ib-l7Z"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbB-LS-LDL">
+                                                    <rect key="frame" x="16" y="10" width="24" height="24"/>
+                                                    <state key="normal" image="ProbeDown"/>
+                                                    <connections>
+                                                        <action selector="blTouchProbeDown:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="inq-LD-o1F"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJa-6T-pzF">
+                                                    <rect key="frame" x="335" y="10" width="24" height="24"/>
+                                                    <state key="normal" image="ProbeSave"/>
+                                                    <connections>
+                                                        <action selector="blTouchSaveSettings:" destination="avQ-HZ-xCk" eventType="touchUpInside" id="0EU-K7-fXG"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="CnD-j6-6z2" firstAttribute="centerY" secondItem="veX-OA-aW0" secondAttribute="centerY" id="2TD-9o-paO"/>
+                                                <constraint firstItem="CnD-j6-6z2" firstAttribute="leading" secondItem="Phx-uT-KLD" secondAttribute="trailing" constant="16" id="4Hf-z8-5eZ"/>
+                                                <constraint firstItem="Phx-uT-KLD" firstAttribute="centerY" secondItem="veX-OA-aW0" secondAttribute="centerY" id="C7C-nj-e4S"/>
+                                                <constraint firstItem="MlK-QY-xjV" firstAttribute="centerY" secondItem="veX-OA-aW0" secondAttribute="centerY" id="Cky-wl-nDw"/>
+                                                <constraint firstAttribute="trailing" secondItem="TJa-6T-pzF" secondAttribute="trailing" constant="16" id="Cn5-bU-J89"/>
+                                                <constraint firstItem="UdR-f1-uD4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MlK-QY-xjV" secondAttribute="trailing" constant="16" id="E9n-U3-iqU"/>
+                                                <constraint firstItem="TJa-6T-pzF" firstAttribute="leading" secondItem="UdR-f1-uD4" secondAttribute="trailing" constant="16" id="HQy-Jf-1Ds"/>
+                                                <constraint firstItem="MlK-QY-xjV" firstAttribute="leading" secondItem="CnD-j6-6z2" secondAttribute="trailing" constant="16" id="Mq2-EW-I2s"/>
+                                                <constraint firstItem="hbB-LS-LDL" firstAttribute="leading" secondItem="veX-OA-aW0" secondAttribute="leading" constant="16" id="PHB-fg-tup"/>
+                                                <constraint firstItem="Phx-uT-KLD" firstAttribute="leading" secondItem="hbB-LS-LDL" secondAttribute="trailing" constant="16" id="ZCJ-IA-6Nq"/>
+                                                <constraint firstItem="TJa-6T-pzF" firstAttribute="centerY" secondItem="veX-OA-aW0" secondAttribute="centerY" id="aKF-zD-Csu"/>
+                                                <constraint firstItem="hbB-LS-LDL" firstAttribute="centerY" secondItem="veX-OA-aW0" secondAttribute="centerY" id="eaj-9S-lDL"/>
+                                                <constraint firstItem="UdR-f1-uD4" firstAttribute="centerY" secondItem="veX-OA-aW0" secondAttribute="centerY" id="ur6-MA-F6v"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="avQ-HZ-xCk" id="795-kc-c1N"/>
@@ -5625,6 +5696,12 @@
                         <outlet property="allMotorsButton" destination="su3-K9-lTR" id="ZKa-N9-1df"/>
                         <outlet property="backButton" destination="tWi-iC-0vm" id="xnS-eC-Q4T"/>
                         <outlet property="backLeadingConstraint" destination="Q4P-TS-s2f" id="6iL-wb-lcz"/>
+                        <outlet property="blTouchProbeBedButton" destination="UdR-f1-uD4" id="5wS-2B-Bga"/>
+                        <outlet property="blTouchProbeDownButton" destination="hbB-LS-LDL" id="gy2-0A-zK1"/>
+                        <outlet property="blTouchProbeUpButton" destination="Phx-uT-KLD" id="MIY-Di-HZU"/>
+                        <outlet property="blTouchReleaseAlarmButton" destination="MlK-QY-xjV" id="4Kb-8D-Fjb"/>
+                        <outlet property="blTouchSaveSettingsButton" destination="TJa-6T-pzF" id="NFd-8a-gh6"/>
+                        <outlet property="blTouchSelfTestButton" destination="CnD-j6-6z2" id="ptv-QM-iRc"/>
                         <outlet property="disableMotorLabel" destination="6TZ-hb-gdQ" id="sJn-Mv-Jhc"/>
                         <outlet property="downButton" destination="si4-O4-P2M" id="Jb3-ba-lJd"/>
                         <outlet property="downLeadingConstraint" destination="bQO-qX-SzX" id="z0N-Dv-cdy"/>
@@ -7400,6 +7477,12 @@
         <image name="PSUPowerOn" width="128" height="128"/>
         <image name="Panel" width="24" height="24"/>
         <image name="Printers" width="32" height="32"/>
+        <image name="ProbeBed" width="24" height="24"/>
+        <image name="ProbeDown" width="24" height="24"/>
+        <image name="ProbeRelease" width="24" height="24"/>
+        <image name="ProbeSave" width="24" height="24"/>
+        <image name="ProbeTest" width="24" height="24"/>
+        <image name="ProbeUp" width="24" height="24"/>
         <image name="Refresh SD" width="24" height="24"/>
         <image name="Reorder" width="32" height="32"/>
         <image name="Security" width="32" height="32"/>

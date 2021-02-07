@@ -113,9 +113,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                     event!.closedOrError = true
                     event!.state = "Offline"
                 }
-                if let _ = event {
+                if let event = event {
+                    self.lastKnownState = event
                     // Notify that we received new status information from OctoPrint
-                    self.currentStateUpdated(event: event!)
+                    self.currentStateUpdated(event: event)
                 }
             } else {
                 // Notify of connection error
@@ -894,6 +895,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         updatePrinterFromPalette2CanvasPlugin(printer: printer, plugins: plugins)
         updatePrinterFromEnclosurePlugin(printer: printer, plugins: plugins)
         updatePrinterFromFilamentManagerPlugin(printer: printer, plugins: plugins)
+        updatePrinterFromBLTouchPlugin(printer: printer, plugins: plugins)
     }
     
     fileprivate func updatePrinterFromMultiCamPlugin(printer: Printer, plugins: NSDictionary) {
@@ -1342,6 +1344,67 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
                 delegate.filamentManagerAvailabilityChanged(installed: installed)
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromBLTouchPlugin(printer: Printer, plugins: NSDictionary) {
+        if let pluginSettings = plugins[Plugins.BL_TOUCH] as? NSDictionary {
+            // BLTouch plugin is installed
+            var changed = false
+            if let probeUp = pluginSettings["cmdProbeUp"] as? String, let probeDown = pluginSettings["cmdProbeDown"] as? String, let selfTest = pluginSettings["cmdSelfTest"] as? String, let releaseAlarm = pluginSettings["cmdReleaseAlarm"] as? String, let probeBed = pluginSettings["cmdProbeBed"] as? String, let saveSettings = pluginSettings["cmdSaveSettings"] as? String {
+                
+                if let blTouch = printer.blTouch {
+                    if blTouch.cmdProbeUp != probeUp || blTouch.cmdProbeDown != probeDown || blTouch.cmdSelfTest != selfTest || blTouch.cmdReleaseAlarm != releaseAlarm || blTouch.cmdProbeBed != probeBed || blTouch.cmdSaveSettings != saveSettings {
+                        // Update BLTouch instance with settings of plugin
+                        let newObjectContext = printerManager.newPrivateContext()
+                        let blTouchToUpdate = newObjectContext.object(with: blTouch.objectID) as! BLTouch
+                        // Update BLTouch plugin settings
+                        blTouchToUpdate.cmdProbeUp = probeUp
+                        blTouchToUpdate.cmdProbeDown = probeDown
+                        blTouchToUpdate.cmdSelfTest = selfTest
+                        blTouchToUpdate.cmdReleaseAlarm = releaseAlarm
+                        blTouchToUpdate.cmdProbeBed = probeBed
+                        blTouchToUpdate.cmdSaveSettings = saveSettings
+
+                        // Persist updated printer
+                        if printerManager.saveObject(blTouchToUpdate, context: newObjectContext) {
+                            changed = true
+                        } else {
+                            NSLog("Failed to update BLTouch settings in core data")
+                        }
+                    }
+                } else {
+                    // Create new BLTouch instance with settings of plugin
+                    let newObjectContext = printerManager.newPrivateContext()
+                    let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                    // Update BLTouch plugin settings
+                    if printerManager.addBLTouch(cmdProbeUp: probeUp, cmdProbeDown: probeDown, cmdSelfTest: selfTest, cmdReleaseAlarm: releaseAlarm, cmdProbeBed: probeBed, cmdSaveSettings: saveSettings, context: newObjectContext, printer: printerToUpdate) {
+                        changed = true
+                    } else {
+                        NSLog("Failed to create BLTouch settings in core data")
+                    }
+                }
+                if changed {
+                    // Notify listeners of change
+                    for delegate in octoPrintSettingsDelegates {
+                        delegate.blTouchSettingsChanged(installed: true)
+                    }
+                }
+            }
+        } else {
+            // BLTouch not installed
+            if let _ = printer.blTouch {
+                // Delete existing blTouch settings
+                let newObjectContext = printerManager.newPrivateContext()
+                let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                printerToUpdate.blTouch = nil
+                printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+
+                // Notify listeners of change
+                for delegate in octoPrintSettingsDelegates {
+                    delegate.blTouchSettingsChanged(installed: false)
+                }
             }
         }
     }

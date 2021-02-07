@@ -3,7 +3,7 @@ import UIKit
 // OctoPrint does not report current fan speed, extruder flow rate or feed rate so we
 // initially assume 100% and then just leave last value set by user. Display
 // value will go back to 100% if app is terminated
-class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesDelegate, AppConfigurationDelegate, WatchSessionManagerDelegate, UIPopoverPresentationControllerDelegate {
+class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesDelegate, OctoPrintClientDelegate, AppConfigurationDelegate, WatchSessionManagerDelegate, UIPopoverPresentationControllerDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -58,12 +58,20 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     @IBOutlet weak var feedRateLabel: UILabel!
     @IBOutlet weak var feedRateSlider: UISlider!
     
+    @IBOutlet weak var blTouchProbeUpButton: UIButton!
+    @IBOutlet weak var blTouchProbeDownButton: UIButton!
+    @IBOutlet weak var blTouchSelfTestButton: UIButton!
+    @IBOutlet weak var blTouchReleaseAlarmButton: UIButton!
+    @IBOutlet weak var blTouchProbeBedButton: UIButton!
+    @IBOutlet weak var blTouchSaveSettingsButton: UIButton!
+
     // Track if axis are inverted
     var invertedX = false
     var invertedY = false
     var invertedZ = false
     
     var selectExtruderCellHeight = CGFloat(0)  // By default hide this cell
+    var blTouchCellHeight = CGFloat(0)  // By default hide this cell
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +107,8 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         
         // Listen to PrintProfile events
         octoprintClient.printerProfilesDelegates.append(self)
+        // Listen to events coming from OctoPrintClient
+        octoprintClient.delegates.append(self)
         // Listen to changes when app is locked or unlocked
         appConfiguration.delegates.append(self)
         // Listen to changes coming from Apple Watch
@@ -114,6 +124,8 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         
         // Stop listening to PrintProfile events
         octoprintClient.remove(printerProfilesDelegate: self)
+        // Stop listening to changes from OctoPrintClient
+        octoprintClient.remove(octoPrintClientDelegate: self)
         // Stop listening to changes when app is locked or unlocked
         appConfiguration.remove(appConfigurationDelegate: self)
         // Stop listening to changes coming from Apple Watch
@@ -533,8 +545,57 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         }
     }
     
+    // MARK: - BL Touch Operations
+
+    @IBAction func blTouchProbeDown(_ sender: Any) {
+        if let printer = printerManager.getDefaultPrinter(), let blTouch = printer.blTouch {
+            sendGCode(gcode: blTouch.cmdProbeDown, commandDescription: "BL Touch to probe down")
+        }
+    }
+    
+    @IBAction func blTouchProbeUp(_ sender: Any) {
+        if let printer = printerManager.getDefaultPrinter(), let blTouch = printer.blTouch {
+            sendGCode(gcode: blTouch.cmdProbeUp, commandDescription: "BL Touch to probe up")
+        }
+    }
+    
+    @IBAction func blTouchSelfTest(_ sender: Any) {
+        if let printer = printerManager.getDefaultPrinter(), let blTouch = printer.blTouch {
+            sendGCode(gcode: blTouch.cmdSelfTest, commandDescription: "BL Touch to self test")
+        }
+    }
+    
+    @IBAction func blTouchReleaseAlarm(_ sender: Any) {
+        if let printer = printerManager.getDefaultPrinter(), let blTouch = printer.blTouch {
+            sendGCode(gcode: blTouch.cmdReleaseAlarm, commandDescription: "BL Touch to release alarm")
+        }
+    }
+    
+    @IBAction func blTouchProbeBed(_ sender: Any) {
+        if let printer = printerManager.getDefaultPrinter(), let blTouch = printer.blTouch {
+            sendGCode(gcode: blTouch.cmdProbeBed, commandDescription: "BL Touch to probe the bed")
+        }
+    }
+    
+    @IBAction func blTouchSaveSettings(_ sender: Any) {
+        if let printer = printerManager.getDefaultPrinter(), let blTouch = printer.blTouch {
+            sendGCode(gcode: blTouch.cmdSaveSettings, commandDescription: "Save Settings")
+        }
+    }
+    
     // MARK: - Table view operations
     
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 5 {
+            // Only show BL Touch section if printer has BL Touch plugin installed
+            if blTouchCellHeight == 0 {
+                // Hide header for BL Touch Section
+                return nil
+            }
+        }
+        return super.tableView(tableView, titleForHeaderInSection: section)
+    }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 36
     }
@@ -552,6 +613,9 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             if indexPath.row == 0 {
                 return selectExtruderCellHeight
             }
+        } else if indexPath.section == 5 {
+            // Show BL Touch buttons only if printer has BL Touch plugin installed
+            return blTouchCellHeight
         }
         return UITableView.automaticDimension
     }
@@ -606,6 +670,14 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         }
     }
     
+    // MARKL - OctoPrintClientDelegate
+    
+    func printerStateUpdated(event: CurrentStateEvent) {
+        DispatchQueue.main.async {
+            self.enableButtons(enable: !self.appConfiguration.appLocked()) // Enable/disable buttons based on app locked status and printer status
+        }
+    }
+    
     // MARK: - AppConfigurationDelegate
     
     func appLockChanged(locked: Bool) {
@@ -636,30 +708,43 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     // MARK: - Private fuctions
     
     fileprivate func enableButtons(enable: Bool) {
-        backButton.isEnabled = enable
-        frontButton.isEnabled = enable
-        leftButton.isEnabled = enable
-        rightButton.isEnabled = enable
+        let printerOperational = PrinterUtils.isOperational(event: octoprintClient.lastKnownState)
+        let printerPrinting = PrinterUtils.isPrinting(event: octoprintClient.lastKnownState)
         
-        upButton.isEnabled = enable
-        downButton.isEnabled = enable
+        backButton.isEnabled = enable && printerOperational && !printerPrinting
+        frontButton.isEnabled = enable && printerOperational && !printerPrinting
+        leftButton.isEnabled = enable && printerOperational && !printerPrinting
+        rightButton.isEnabled = enable && printerOperational && !printerPrinting
         
-        goHomeXButton.isEnabled = enable
-        goHomeYButton.isEnabled = enable
-        goHomeZButton.isEnabled = enable
-        goHomeButton.isEnabled = enable
+        upButton.isEnabled = enable && printerOperational && !printerPrinting
+        downButton.isEnabled = enable && printerOperational && !printerPrinting
+        
+        goHomeXButton.isEnabled = enable && printerOperational && !printerPrinting
+        goHomeYButton.isEnabled = enable && printerOperational && !printerPrinting
+        goHomeZButton.isEnabled = enable && printerOperational && !printerPrinting
+        goHomeButton.isEnabled = enable && printerOperational && !printerPrinting
 
-        retractButton.isEnabled = enable
-        extrudeButton.isEnabled = enable
-        flowRateSlider.isEnabled = enable
+        retractButton.isEnabled = enable && printerOperational && !printerPrinting
+        extrudeButton.isEnabled = enable && printerOperational && !printerPrinting
+        flowRateSlider.isEnabled = enable && printerOperational
+        flowRateField.isEnabled = enable && printerOperational
         
-        fanSpeedSlider.isEnabled = enable
-        xMotorButton.isEnabled = enable
-        yMotorButton.isEnabled = enable
-        zMotorButton.isEnabled = enable
-        eMotorButton.isEnabled = enable
-        allMotorsButton.isEnabled = enable
-        feedRateSlider.isEnabled = enable
+        fanSpeedSlider.isEnabled = enable && printerOperational
+        fanSpeedField.isEnabled = enable && printerOperational
+        xMotorButton.isEnabled = enable && printerOperational && !printerPrinting
+        yMotorButton.isEnabled = enable && printerOperational && !printerPrinting
+        zMotorButton.isEnabled = enable && printerOperational && !printerPrinting
+        eMotorButton.isEnabled = enable && printerOperational && !printerPrinting
+        allMotorsButton.isEnabled = enable && printerOperational && !printerPrinting
+        feedRateSlider.isEnabled = enable && printerOperational
+        feedRateField.isEnabled = enable && printerOperational
+        
+        blTouchProbeUpButton.isEnabled = enable && printerOperational && !printerPrinting
+        blTouchProbeDownButton.isEnabled = enable && printerOperational && !printerPrinting
+        blTouchSelfTestButton.isEnabled = enable && printerOperational && !printerPrinting
+        blTouchReleaseAlarmButton.isEnabled = enable && printerOperational && !printerPrinting
+        blTouchProbeBedButton.isEnabled = enable && printerOperational && !printerPrinting
+        blTouchSaveSettingsButton.isEnabled = enable && printerOperational && !printerPrinting
     }
     
     fileprivate func disableMotor(axis: axis) {
@@ -676,6 +761,22 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 self.showAlert(message: String(format: NSLocalizedString("Failed to disable motor", comment: ""), "\(axis)"))
             }
         })
+    }
+    
+    fileprivate func sendGCode(gcode: String, commandDescription: String) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
+        octoprintClient.sendCommand(gcode: gcode) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            if requested {
+                DispatchQueue.main.async {
+                    generator.notificationOccurred(.success)
+                }
+            } else {
+                // Handle error
+                NSLog("Error asking \(commandDescription). HTTP status code \(response.statusCode)")
+                self.showAlert(message: NSLocalizedString("Failed to request to execute command", comment: ""))
+            }
+        }
     }
     
     /// Create and return a prepared UIImpactFeedbackGenerator that will vibrate depending on the intensity of the move
@@ -730,7 +831,16 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
                 }
             }
             selectExtruderSegmentedControl.selectedSegmentIndex = 0  // Always select first element that is tool 0
-            if oldHeight != selectExtruderCellHeight {
+            
+            // Check if we should show BL Touch cell or not (depends if BL Touch plugin is installed)
+            let oldBLTouchCellHeight = blTouchCellHeight
+            if let _ = printer.blTouch {
+                blTouchCellHeight = 44  // Show cell
+            } else {
+                blTouchCellHeight = 0  // Hide cell
+            }
+            
+            if oldHeight != selectExtruderCellHeight || oldBLTouchCellHeight != blTouchCellHeight {
                 tableView.reloadData()  // Repaint table only if cell height has changed
             }
             

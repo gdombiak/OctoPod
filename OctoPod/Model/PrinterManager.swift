@@ -161,6 +161,19 @@ class PrinterManager {
         return saveObject(multiCamera, context: context)
     }
     
+    func addBLTouch(cmdProbeUp: String, cmdProbeDown: String, cmdSelfTest: String, cmdReleaseAlarm: String, cmdProbeBed: String, cmdSaveSettings: String, context: NSManagedObjectContext, printer: Printer) -> Bool {
+        let blTouch = NSEntityDescription.insertNewObject(forEntityName: "BLTouch", into: context) as! BLTouch
+        blTouch.cmdProbeUp = cmdProbeUp
+        blTouch.cmdProbeDown = cmdProbeDown
+        blTouch.cmdSelfTest = cmdSelfTest
+        blTouch.cmdReleaseAlarm = cmdReleaseAlarm
+        blTouch.cmdProbeBed = cmdProbeBed
+        blTouch.cmdSaveSettings = cmdSaveSettings
+        blTouch.printer = printer
+        // Persist created BLTouch
+        return saveObject(blTouch, context: context)
+    }
+    
     /// Make sure to call this only from main thread
     func changeToDefaultPrinter(_ printer: Printer) {
         changeToDefaultPrinter(printer, context: managedObjectContext)

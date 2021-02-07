@@ -26,7 +26,7 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
         // Listen to changes to OctoPrint Plugin messages
         octoprintClient.octoPrintPluginsDelegates.append(self)
         
-        isPrinting = self.isPrinting(event: octoprintClient.lastKnownState)
+        isPrinting = PrinterUtils.isPrinting(event: octoprintClient.lastKnownState)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -131,7 +131,7 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
     }
     
     func currentStateUpdated(event: CurrentStateEvent) {
-        isPrinting = self.isPrinting(event: event)
+        isPrinting = PrinterUtils.isPrinting(event: event)
         // Only refresh UI if view controller is being shown
         DispatchQueue.main.async {
             if let _ = self.parent {
@@ -235,14 +235,6 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
         }
     }
     
-    /// Returns true if event indicates that we are printing. This is based on progress information
-    fileprivate func isPrinting(event: CurrentStateEvent?) -> Bool {
-        if let progress = event?.progressCompletion {
-            return progress > 0 && progress < 100
-        }
-        return false
-    }
-
     fileprivate func showAlert(_ title: String, message: String, done: (() -> Void)?) {
         UIUtils.showAlert(presenter: self, title: title, message: message, done: done)
     }

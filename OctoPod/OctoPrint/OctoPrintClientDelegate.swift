@@ -28,5 +28,13 @@ protocol OctoPrintClientDelegate: class {
 
 // Make everything optional so implementors of this protocol are not forced to implement everything
 extension OctoPrintClientDelegate {
+    func notificationAboutToConnectToServer() {}
+ 
+    func handleConnectionError(error: Error?, response: HTTPURLResponse) {}
+
+    func websocketConnected() {}
+
+    func websocketConnectionFailed(error: Error) {}
+
     func tempHistoryChanged() {}
 }

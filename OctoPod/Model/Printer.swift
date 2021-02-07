@@ -90,6 +90,8 @@ class Printer: NSManagedObject {
     @NSManaged public var enclosureInputs: Set<EnclosureInput>?
     @NSManaged public var enclosureOutputs: Set<EnclosureOutput>?
 
+    @NSManaged public var blTouch: BLTouch?
+
     func getStreamPath() -> String {
         if let path = streamUrl {
             return path

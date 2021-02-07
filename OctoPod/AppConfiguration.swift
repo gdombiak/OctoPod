@@ -385,18 +385,6 @@ class AppConfiguration: OctoPrintClientDelegate {
         }
     }
     
-    func handleConnectionError(error: Error?, response: HTTPURLResponse) {
-        // Do nothing
-    }
-    
-    func websocketConnected() {
-        // Do nothing
-    }
-    
-    func websocketConnectionFailed(error: Error) {
-        // Do nothing
-    }
-    
     // MARK: Private functions
     
     fileprivate func copyConfigurationToiCloud() {

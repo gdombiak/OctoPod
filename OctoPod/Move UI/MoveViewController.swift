@@ -71,18 +71,6 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
         camerasViewController?.currentStateUpdated(event: event)
     }
 
-    func handleConnectionError(error: Error?, response: HTTPURLResponse) {
-    }
-    
-    func websocketConnected() {
-    }
-
-    func websocketConnectionFailed(error: Error) {
-    }
-    
-    func notificationAboutToConnectToServer() {
-    }
-
     // MARK: - OctoPrintSettingsDelegate
     
     func sdSupportChanged(sdSupport: Bool) {

@@ -58,10 +58,6 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
 
     // MARK: - OctoPrintClientDelegate
     
-    func notificationAboutToConnectToServer() {
-        
-    }
-    
     func printerStateUpdated(event: CurrentStateEvent) {
         var changed = false
         
@@ -111,19 +107,7 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
         }
     }
        
-    func handleConnectionError(error: Error?, response: HTTPURLResponse) {
-        
-    }
-
-    func websocketConnected() {
-        
-    }
-
-    func websocketConnectionFailed(error: Error) {
-        
-    }
-
-    // MARK: - OctoPrintClientDelegate
+    // MARK: - OctoPrintPluginsDelegate
 
     func pluginMessage(plugin: String, data: NSDictionary) {
         if plugin == Plugins.DISPLAY_LAYER_PROGRESS {

@@ -323,18 +323,6 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             }
         }
     }
-    
-    func websocketConnected() {
-    }
-    
-    func websocketConnectionFailed(error: Error) {
-    }
-    
-    func notificationAboutToConnectToServer() {
-    }
-    
-    func handleConnectionError(error: Error?, response: HTTPURLResponse) {
-    }
 
     // MARK: - AppConfigurationDelegate
     
