@@ -68,6 +68,9 @@
 "8tTCjD" = "Nepavyko atšaukti (${statusCode})";
 
 /* (No Comment) */
+"8uLpUQ" = "Išjungti maitblokį";
+
+/* (No Comment) */
 "8xHCbl" = "${printer}";
 
 /* (No Comment) */
@@ -102,6 +105,9 @@
 
 /* (No Comment) */
 "Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Įjungti maitblokį";
 
 /* (No Comment) */
 "BUexSx" = "Didžiausia variacija";
@@ -263,10 +269,16 @@
 "P89qJr" = "Likęs laikas yra ${time}";
 
 /* (No Comment) */
+"pfroH1" = "Išjungti maitblokį";
+
+/* (No Comment) */
 "Pj7mEV" = "Atvėsinti ekstruderį";
 
 /* (No Comment) */
 "PppyPP" = "Nustatyti paviršiaus temperatūrą";
+
+/* (No Comment) */
+"q1Oynq" = "Maitblokio kontrolė išjungta";
 
 /* (No Comment) */
 "qLzk1S" = "Atšaldyti paviršių";
@@ -380,7 +392,13 @@
 "XfWmGt" = "Tęsti dabartinę užduotį";
 
 /* (No Comment) */
+"Xk9F6S" = "Įjungti maitblokį";
+
+/* (No Comment) */
 "xSARU0" = "Nepavyko užpauzinti (${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "Maitblokio kontrolė įjungta";
 
 /* (No Comment) */
 "YfmWYd" = "Paprašyta";

@@ -68,6 +68,9 @@
 "8tTCjD" = "Errore nell'annullamento della stampa (${statusCode})";
 
 /* (No Comment) */
+"8uLpUQ" = "Spegni PSU";
+
+/* (No Comment) */
 "8xHCbl" = "${printer}";
 
 /* (No Comment) */
@@ -102,6 +105,9 @@
 
 /* (No Comment) */
 "Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Accendi PSU";
 
 /* (No Comment) */
 "BUexSx" = "Massima variazione";
@@ -263,10 +269,16 @@
 "P89qJr" = "Il tempo rimanente è ${time}";
 
 /* (No Comment) */
+"pfroH1" = "Spegni PSU";
+
+/* (No Comment) */
 "Pj7mEV" = "Raffredda l'estrusore";
 
 /* (No Comment) */
 "PppyPP" = "Configura la temperatura del piatto";
+
+/* (No Comment) */
+"q1Oynq" = "Controllo PSU disattivato";
 
 /* (No Comment) */
 "qLzk1S" = "Raffredda il piatto";
@@ -380,7 +392,13 @@
 "XfWmGt" = "Riprendi la stampa in corso";
 
 /* (No Comment) */
+"Xk9F6S" = "Accendi PSU";
+
+/* (No Comment) */
 "xSARU0" = "Errore nel sospendere la stampa (${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "Controllo PSU attivato";
 
 /* (No Comment) */
 "YfmWYd" = "Richiesto";

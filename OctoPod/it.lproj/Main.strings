@@ -544,6 +544,9 @@
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "n9p-tg-bxl"; */
 "n9p-tg-bxl.text" = "Sottotitolo";
 
+/* Class = "UILabel"; text = "Confirm to resume"; ObjectID = "nAj-Qp-lbZ"; */
+"nAj-Qp-lbZ.text" = "Conferma per riprendere";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb"; */
 "ncZ-xn-WCb.text" = "Titolo";
 
@@ -748,6 +751,9 @@
 /* Class = "UIButton"; normalTitle = "Suppress SD"; ObjectID = "sgi-wT-ubY"; */
 "sgi-wT-ubY.normalTitle" = "Escludi SD";
 
+/* Class = "UILabel"; text = "Confirm to print"; ObjectID = "SJQ-Kb-Ggy"; */
+"SJQ-Kb-Ggy.text" = "Conferma per stampare";
+
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H"; */
 "sLc-Jv-G0H.placeholder" = "Nome utente";
 
@@ -888,6 +894,9 @@
 
 /* Class = "UILabel"; text = "Print Completion"; ObjectID = "weI-5t-9zz"; */
 "weI-5t-9zz.text" = "Stima completam.";
+
+/* Class = "UILabel"; text = "Confirm to pause"; ObjectID = "wff-HF-WSb"; */
+"wff-HF-WSb.text" = "Conferma per sospendere";
 
 /* Class = "UILabel"; text = "Dark"; ObjectID = "wHn-Dc-bWb"; */
 "wHn-Dc-bWb.text" = "Scuro";
