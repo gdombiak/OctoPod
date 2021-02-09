@@ -100,6 +100,14 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
             rightLeadingConstraint.constant = 10
             downLeadingConstraint.constant = 10
         }
+        
+        // Set default values
+        self.flowRateField.text = "100"
+        self.flowRateSlider.value = 100
+        self.fanSpeedField.text = "0"
+        self.fanSpeedSlider.value = 0
+        self.feedRateField.text = "100"
+        self.feedRateSlider.value = 100
     }
     
     override func viewWillAppear(_ animated: Bool) {
