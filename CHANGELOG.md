@@ -1,17 +1,53 @@
 # Change Log
 
+## [3.11](https://github.com/gdombiak/OctoPod/tree/3.11) (2021-02-11)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.10...3.11)
+
+**Implemented enhancements:**
+
+- Buttons in Move Panel should only be enabled when not printing [\#462](https://github.com/gdombiak/OctoPod/issues/462)
+- Save the "Suppress temp/SD" state between sessions [\#460](https://github.com/gdombiak/OctoPod/issues/460)
+- Enhancement: Search in file list [\#459](https://github.com/gdombiak/OctoPod/issues/459)
+- Settings are now shared between iOS and Apple TV devices [\#456](https://github.com/gdombiak/OctoPod/issues/456)
+- Confirmation dialogs for pause, print and resume follows iOS configuration [\#455](https://github.com/gdombiak/OctoPod/issues/455)
+- Add confirmation dialog to pause and resume [\#454](https://github.com/gdombiak/OctoPod/issues/454)
+- Prompt confirmation to start, pause or resume printing [\#452](https://github.com/gdombiak/OctoPod/issues/452)
+- BL Touch Commands in Octopod [\#451](https://github.com/gdombiak/OctoPod/issues/451)
+- Display RPi temperature [\#442](https://github.com/gdombiak/OctoPod/issues/442)
+- Add social sharing from the app [\#436](https://github.com/gdombiak/OctoPod/issues/436)
+- PSUControl with sirishortcut ? [\#432](https://github.com/gdombiak/OctoPod/issues/432)
+- Confirmation in file delete [\#428](https://github.com/gdombiak/OctoPod/issues/428)
+- Auto-lock job buttons based on iOS configuration [\#420](https://github.com/gdombiak/OctoPod/issues/420)
+- Manage Timelapses Feature Request [\#323](https://github.com/gdombiak/OctoPod/issues/323)
+
+**Fixed bugs:**
+
+- Changing camera orientation in OctoPrint does not take effect immediately  [\#458](https://github.com/gdombiak/OctoPod/issues/458)
+- Incorrect printer configuration may be updated when changing OctoPrint settings [\#457](https://github.com/gdombiak/OctoPod/issues/457)
+- Current layer and height are sometimes not shown [\#447](https://github.com/gdombiak/OctoPod/issues/447)
+- Min variance ignores when variance is 0 [\#446](https://github.com/gdombiak/OctoPod/issues/446)
+- Fix app crash when connecting to OctoPrint [\#431](https://github.com/gdombiak/OctoPod/issues/431)
+- Update Localizable.strings [\#434](https://github.com/gdombiak/OctoPod/pull/434) ([Shaewen-Chronicles](https://github.com/Shaewen-Chronicles))
+
+**Closed issues:**
+
+- Webcam upside down on AppleTV [\#453](https://github.com/gdombiak/OctoPod/issues/453)
+- Add custom default temperatures [\#440](https://github.com/gdombiak/OctoPod/issues/440)
+- Add support for RTSP stream from IP cameras [\#433](https://github.com/gdombiak/OctoPod/issues/433)
+- Please i need PSU Plugin into the app [\#430](https://github.com/gdombiak/OctoPod/issues/430)
+
 ## [3.10](https://github.com/gdombiak/OctoPod/tree/3.10) (2020-12-11)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.9...3.10)
 
 **Implemented enhancements:**
 
-- Add "Printing Time" and "Print Completion Time" to dashboard [\#421](https://github.com/gdombiak/OctoPod/issues/421)
 - \[TV\] Add support for HLS feed [\#415](https://github.com/gdombiak/OctoPod/issues/415)
+- Apple TV: fullscreen video in detail view [\#300](https://github.com/gdombiak/OctoPod/issues/300)
+- Add "Printing Time" and "Print Completion Time" to dashboard [\#421](https://github.com/gdombiak/OctoPod/issues/421)
 - Configured camera feed for iPad Air 2020 & iPhone 12 series [\#414](https://github.com/gdombiak/OctoPod/issues/414)
 - Add Siri Shortcuts to control Enclosure plugin switches [\#406](https://github.com/gdombiak/OctoPod/issues/406)
 - Feature Request: iOS picture in Picture [\#383](https://github.com/gdombiak/OctoPod/issues/383)
 - HLS Video Feed for Octoprint/Octopod - \(Investigation/Enhancement\) [\#302](https://github.com/gdombiak/OctoPod/issues/302)
-- Apple TV: fullscreen video in detail view [\#300](https://github.com/gdombiak/OctoPod/issues/300)
 
 **Fixed bugs:**
 
@@ -24,11 +60,11 @@
 
 **Closed issues:**
 
-- Add Facebook and Twitter support links [\#419](https://github.com/gdombiak/OctoPod/issues/419)
-- iOS app not available on AppleSilicon Macs? [\#411](https://github.com/gdombiak/OctoPod/issues/411)
 - I can’t add my printer [\#410](https://github.com/gdombiak/OctoPod/issues/410)
-- Update charts library to 3.6.0 [\#409](https://github.com/gdombiak/OctoPod/issues/409)
 - DNS Query Pulls from Public DNS [\#407](https://github.com/gdombiak/OctoPod/issues/407)
+- Add Facebook and Twitter support links [\#419](https://github.com/gdombiak/OctoPod/issues/419)
+- Update charts library to 3.6.0 [\#409](https://github.com/gdombiak/OctoPod/issues/409)
+- iOS app not available on AppleSilicon Macs? [\#411](https://github.com/gdombiak/OctoPod/issues/411)
 
 ## [3.9](https://github.com/gdombiak/OctoPod/tree/3.9) (2020-11-16)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.8...3.9)
@@ -38,6 +74,10 @@
 - Issue controlling Enclosure Plugin with Octopod [\#405](https://github.com/gdombiak/OctoPod/issues/405)
 - iOS 14 Widgets Open to Last State [\#402](https://github.com/gdombiak/OctoPod/issues/402)
 - Add Widget Url to medium Widget \#402 [\#403](https://github.com/gdombiak/OctoPod/pull/403) ([Willmac16](https://github.com/Willmac16))
+
+**Closed issues:**
+
+- iPad iOS 14 Can’t add new printer on latest build [\#390](https://github.com/gdombiak/OctoPod/issues/390)
 
 ## [3.8](https://github.com/gdombiak/OctoPod/tree/3.8) (2020-11-01)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.7...3.8)
@@ -59,7 +99,6 @@
 **Closed issues:**
 
 - Layer Notifications [\#399](https://github.com/gdombiak/OctoPod/issues/399)
-- iPad iOS 14 Can’t add new printer on latest build [\#390](https://github.com/gdombiak/OctoPod/issues/390)
 - Siri suggestions not showing up in settings [\#384](https://github.com/gdombiak/OctoPod/issues/384)
 
 ## [3.7](https://github.com/gdombiak/OctoPod/tree/3.7) (2020-10-12)
