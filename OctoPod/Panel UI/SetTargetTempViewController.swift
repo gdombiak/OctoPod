@@ -32,9 +32,14 @@ class SetTargetTempViewController: ThemedStaticUITableViewController {
         super.viewWillAppear(animated)
         switch targetTempScope! {
         case .bed:
-            if let printer = printerManager.getDefaultPrinter(), let bedTemps = printer.bedTemps, bedTemps.count > 1 {
+            if let printer = printerManager.getDefaultPrinter(), let bedTemps = printer.bedTemps, !bedTemps.isEmpty {
                 button1.setTitle("\(bedTemps[0])", for: .normal)
-                button2.setTitle("\(bedTemps[1])", for: .normal)
+                if bedTemps.count > 1 {
+                    button2.setTitle("\(bedTemps[1])", for: .normal)
+                    button2.isHidden = false
+                } else {
+                    button2.isHidden = true
+                }
             } else {
                 button1.setTitle("60", for: .normal)
                 button2.setTitle("80", for: .normal)
@@ -43,9 +48,14 @@ class SetTargetTempViewController: ThemedStaticUITableViewController {
             button1.setTitle("50", for: .normal)
             button2.setTitle("70", for: .normal)
         default:
-            if let printer = printerManager.getDefaultPrinter(), let extruderTemps = printer.extruderTemps, extruderTemps.count > 1 {
+            if let printer = printerManager.getDefaultPrinter(), let extruderTemps = printer.extruderTemps, !extruderTemps.isEmpty {
                 button1.setTitle("\(extruderTemps[0])", for: .normal)
-                button2.setTitle("\(extruderTemps[1])", for: .normal)
+                if extruderTemps.count > 1 {
+                    button2.setTitle("\(extruderTemps[1])", for: .normal)
+                    button2.isHidden = false
+                } else {
+                    button2.isHidden = true
+                }
             } else {
                 button1.setTitle("210", for: .normal)
                 button2.setTitle("235", for: .normal)
