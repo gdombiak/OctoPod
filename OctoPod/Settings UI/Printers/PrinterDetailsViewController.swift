@@ -235,19 +235,25 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
         // Theme labels
         let theme = Theme.currentTheme()
         let tintColor = theme.tintColor()
+        let placeHolderAttributes: [ NSAttributedString.Key : Any ] = [.foregroundColor: theme.placeholderColor()]
         scanAPIKeyButton.tintColor = tintColor
         scanInstallationsButton.tintColor = tintColor
         includeDashboardLabel.textColor = theme.textColor()
         showCameraLabel.textColor = theme.textColor()
         printerNameField.backgroundColor = theme.backgroundColor()
+        printerNameField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Printer Name (e.g. MK3)", comment: ""), attributes: placeHolderAttributes)
         printerNameField.textColor = theme.textColor()
         hostnameField.backgroundColor = theme.backgroundColor()
+        hostnameField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Hostname (e.g. http://octopi.local)", comment: ""), attributes: placeHolderAttributes)
         hostnameField.textColor = theme.textColor()
         apiKeyField.backgroundColor = theme.backgroundColor()
+        apiKeyField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("API Key", comment: ""), attributes: placeHolderAttributes)
         apiKeyField.textColor = theme.textColor()
         usernameField.backgroundColor = theme.backgroundColor()
+        usernameField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Username", comment: ""), attributes: placeHolderAttributes)
         usernameField.textColor = theme.textColor()
         passwordField.backgroundColor = theme.backgroundColor()
+        passwordField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""), attributes: placeHolderAttributes)
         passwordField.textColor = theme.textColor()
     }
     
