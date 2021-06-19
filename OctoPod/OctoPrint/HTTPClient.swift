@@ -47,7 +47,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
     
     func getData(_ service: String, callback: @escaping (Data?, Error?, HTTPURLResponse) -> Void) {
-        let url: URL = URL(string: serverURL + service)!
+        let url: URL = service.starts(with: serverURL) ? URL(string: service)! : URL(string: serverURL + service)!
         
         // Get session with the provided configuration
         let session = Foundation.URLSession(configuration: getConfiguration(false), delegate: self, delegateQueue: nil)

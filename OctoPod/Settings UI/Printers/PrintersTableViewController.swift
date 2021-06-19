@@ -1,6 +1,6 @@
 import UIKit
 
-class PrintersTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CloudKitPrinterDelegate {
+class PrintersTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CloudKitPrinterDelegate, UIPopoverPresentationControllerDelegate {
 
     private var currentTheme: Theme.ThemeChoice!
 
@@ -189,16 +189,59 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
                 let selectedPrinter: Printer = printers[(tableView.indexPathForSelectedRow?.row)!]
                 printerDetailsController.updatePrinter = selectedPrinter
             }
-        } else if segue.identifier == "addNewPrinter" {
+        } else if segue.identifier == "addNewPrinterGlobalAPI" {
             if let printerDetailsController = segue.destination as? PrinterDetailsViewController {
                 printerDetailsController.newPrinterPosition = Int16(printers.count)
+            }
+        } else if segue.identifier == "addNewPrinterAppKey" {
+            if let appKeyProbeViewController = segue.destination as? AppKeyViewController {
+                appKeyProbeViewController.newPrinterPosition = Int16(printers.count)
+            }
+        } else if segue.identifier == "addNewPrinterOctoEverywhere" {
+            if let printerDetailsController = segue.destination as? AddOctoEverywherePrinterViewController {
+                printerDetailsController.newPrinterPosition = Int16(printers.count)
+            }
+        } else if segue.identifier == "selectConnectivityType" {
+            if let controller = segue.destination as? PrinterConnectionTypeTableViewController {
+                controller.popoverPresentationController!.delegate = self
             }
         }
     }
     
+    // MARK: - Unwind operations
+
     @IBAction func unwindPrintersUpdated(_ sender: UIStoryboardSegue) {
         printers = printerManager.getPrinters()
         tableView.reloadData()
+    }
+    
+    @IBAction func addNewPrinterGlobalAPI(_ sender: UIStoryboardSegue) {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "addNewPrinterGlobalAPI", sender: self)
+        }
+    }
+    
+    @IBAction func addNewPrinterAppKey(_ sender: UIStoryboardSegue) {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "addNewPrinterAppKey", sender: self)
+        }
+    }
+    
+    @IBAction func addNewPrinterOctoEverywhere(_ sender: UIStoryboardSegue) {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "addNewPrinterOctoEverywhere", sender: self)
+        }
+    }
+    
+    // MARK: - UIPopoverPresentationControllerDelegate
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+
+    // We need to add this so it works on iPhone plus in landscape mode
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
     }
     
     // MARK: - CloudKitPrinterDelegate

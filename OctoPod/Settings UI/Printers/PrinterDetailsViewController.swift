@@ -1,13 +1,8 @@
 import UIKit
 
-class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitPrinterDelegate, UIPopoverPresentationControllerDelegate {
+class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPrinterDelegate, UIPopoverPresentationControllerDelegate {
     
-    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
-    let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
-    let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
-    let notificationsManager: NotificationsManager = { return (UIApplication.shared.delegate as! AppDelegate).notificationsManager }()
 
     var updatePrinter: Printer? = nil
     var scannedKey: String?
@@ -78,63 +73,11 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     
     @IBAction func saveChanges(_ sender: Any) {
         if let printer = updatePrinter {
-            let nameChanged = printer.name != printerNameField.text!
-            // Update existing printer
-            printer.name = printerNameField.text!
-            printer.hostname = hostnameField.text!
-            printer.apiKey = apiKeyField.text!
-            printer.userModified = Date() // Track when settings were modified
-            
-            printer.username = usernameField.text
-            printer.password = passwordField.text
-            
-            printer.includeInDashboard = includeDashboardSwitch.isOn
-            printer.hideCamera = !showCameraSwitch.isOn
-            
-            // Mark that iCloud needs to be updated
-            printer.iCloudUpdate = true
-            
-            printerManager.updatePrinter(printer)
-            
-            // If default printer was edited then we need to update connections to use new settings
-            if printer.defaultPrinter {
-                octoprintClient.connectToServer(printer: printer)
-            }
-            // Recreate Siri suggestions (user will need to manually delete recorded Shortcuts)
-            IntentsDonations.deletePrinterIntents(printer: printer)
-            IntentsDonations.donatePrinterIntents(printer: printer)
-            
-            if nameChanged {
-                notificationsManager.printerNameChanged(printer: printer)
-            }
+            updatePrinter(printer: printer, name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
         } else {
             // Add new printer (that will become default if it's the first one)
-            if printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, iCloudUpdate: true) {
-                if let printer = printerManager.getPrinterByName(name: printerNameField.text!) {
-                    // Only update printer if dashboard configuration needs update
-                    if printer.includeInDashboard != includeDashboardSwitch.isOn || printer.hideCamera == showCameraSwitch.isOn {
-                        let newObjectContext = printerManager.newPrivateContext()
-                        let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-                        // Update flag that tracks if printer should be displayed in dashboard
-                        printerToUpdate.includeInDashboard = includeDashboardSwitch.isOn
-                        // Update flag that tracks if camera subpanel will be displayed for this printer
-                        printerToUpdate.hideCamera = !showCameraSwitch.isOn
-                        // Persist updated printer
-                        printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-                    }
-                    // Create Siri suggestions (user will need to manually delete recorded Shortcuts)
-                    IntentsDonations.donatePrinterIntents(printer: printer)
-                    } else {
-                        NSLog("Missing newly added printer: \(printerNameField.text!)")
-                    }
-            }
+            createPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
         }
-        
-        // Push changes to iCloud so other devices of the user get updated (only if iCloud enabled and user is logged in)
-        cloudKitPrinterManager.pushChanges(completion: nil)
-        // Push changes to Apple Watch
-        watchSessionManager.pushPrinters()
-        
         goBack()
     }
     
@@ -272,22 +215,9 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         }
     }
     
-    fileprivate func goBack() {
-        // Go back to previous page and execute the unwinsScanQRCode IBAction
-        performSegue(withIdentifier: "unwindPrintersUpdated", sender: self)
-    }
-    
     fileprivate func isValidURL() -> Bool {
         if let inputURL = hostnameField.text {
-            let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_]|[\\.|/])*)+(:[0-9]+)?"
-            let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx)
-            var result = urlTest.evaluate(with: inputURL)
-            if !result {
-                let ipv6RegEx = "(http|https)://(\\[)?(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(])?(:[0-9]+)?"
-                let ipv6Test = NSPredicate(format: "SELF MATCHES %@", ipv6RegEx)
-                result = ipv6Test.evaluate(with: inputURL)
-            }
-            return result
+            return UIUtils.isValidURL(inputURL: inputURL)
         }
         return false
     }

@@ -78,6 +78,87 @@ class OctoPrintRESTClient {
             }
         }
     }
+    
+    /// Probes for application key workflow support
+    /// - parameters:
+    ///     - callback: success; error; http response
+    ///     - success: true if application key is supported/enabled
+    ///     - error: any error that happened making the HTTP request
+    ///     - response: HTTP response
+    func appkeyProbe(callback: @escaping (_ success: Bool, _ error: Error?, _ response: HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/plugin/appkeys/probe") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error probing for workflow support. Error: \(error!.localizedDescription)")
+                }
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+
+    /// Starts the authorization process to obtain an application key. Callback will receive the Location URL
+    /// to poll or nil if process failed to start.
+    /// - parameters:
+    ///     - app: application identifier to use for the request, case insensitive
+    ///     - callback: location; error; http response
+    ///     - location: URL for polling
+    ///     - error: any error that happened making the HTTP request
+    ///     - response: HTTP response
+    func appkeyRequest(app: String, callback: @escaping (_ location: String?, _ error: Error?, _ response: HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["app"] = app
+            
+            client.post("/plugin/appkeys/request", json: json, expected: 201) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                if response.statusCode == 201 {
+                    if #available(iOS 13.0, watchOSApplicationExtension 6.0, *) {
+                        callback(response.value(forHTTPHeaderField: "Location"), error, response)
+                    } else {
+                        // Fallback on earlier versions
+                        let location = response.allHeaderFields["Location"] as? String
+                        callback(location, error, response)
+                    }
+                } else {
+                    callback(nil, error, response)
+                }
+            }
+        }
+    }
+
+    /// Poll for decision on existing application key request.
+    /// - parameters:
+    ///     - location: URL to poll. URL was returned as an HTTP header when #appkeyRequest was executed
+    ///     - callback: api_key;  keep polling; error; http response
+    ///     - api_key: API key generated for the application
+    ///     - retry: true if we need to keep polling for a decision
+    ///     - error: any error that happened making the HTTP request
+    ///     - response: HTTP response
+    func appkeyPoll(location: String, callback: @escaping (_ api_key: String?, _ retry: Bool, _ error: Error?, _ response: HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get(location) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error polling for application key. Error: \(error!.localizedDescription)")
+                }
+                if response.statusCode == 202 {
+                    // User did not decide yet. Keep polling
+                    callback(nil, true, error, response)
+                } else if response.statusCode == 200 {
+                    // User accepted so return app key
+                    if let json = result as? NSDictionary, let api_key = json["api_key"] as? String {
+                        callback(api_key, false, error, response)
+                    }
+                } else if response.statusCode == 404 {
+                    // request has been denied or timed out
+                    callback(nil, false, error, response)
+                } else {
+                    // Some unknown error so keep polling
+                    callback(nil, true, error, response)
+                }
+            }
+        }
+    }
 
     // MARK: - Version information
     

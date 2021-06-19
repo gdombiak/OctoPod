@@ -308,6 +308,40 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.passiveLogin(callback: callback)
     }
 
+    /// Probes for application key workflow support
+    /// - parameters:
+    ///     - callback: success; error; http response
+    ///     - success: true if application key is supported/enabled
+    ///     - error: any error that happened making the HTTP request
+    ///     - response: HTTP response
+    func appkeyProbe(callback: @escaping (_ success: Bool, _ error: Error?, _ response: HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.appkeyProbe(callback: callback)
+    }
+
+    /// Starts the authorization process to obtain an application key. Callback will receive the Location URL
+    /// to poll or nil if process failed to start.
+    /// - parameters:
+    ///     - app: application identifier to use for the request, case insensitive
+    ///     - callback: location; error; http response
+    ///     - location: URL for polling
+    ///     - error: any error that happened making the HTTP request
+    ///     - response: HTTP response
+    func appkeyRequest(app: String, callback: @escaping (_ location: String?, _ error: Error?, _ response: HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.appkeyRequest(app: app, callback: callback)
+    }
+
+    /// Poll for decision on existing application key request.
+    /// - parameters:
+    ///     - location: URL to poll. URL was returned as an HTTP header when #appkeyRequest was executed
+    ///     - callback: api_key;  keep polling; error; http response
+    ///     - api_key: API key generated for the application
+    ///     - retry: true if we need to keep polling for a decision
+    ///     - error: any error that happened making the HTTP request
+    ///     - response: HTTP response
+    func appkeyPoll(location: String, callback: @escaping (_ api_key: String?, _ retry: Bool, _ error: Error?, _ response: HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.appkeyPoll(location: location, callback: callback)
+    }
+
     // MARK: - Connection operations
 
     /// Return connection status from OctoPrint to the 3D printer
