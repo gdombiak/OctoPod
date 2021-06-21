@@ -8,7 +8,7 @@ struct Provider: IntentTimelineProvider {
         configuration.printer = WidgetPrinter(identifier: "MK3", display: "MK3")
         configuration.printer?.name = "MK3"
 
-        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil)
+        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
         jobService.printerStatus = "Printing"
         jobService.progress = 28.0
         jobService.printEstimatedCompletion = "9:30 PM"
@@ -21,7 +21,7 @@ struct Provider: IntentTimelineProvider {
     
     func getSnapshot(for configuration: WidgetConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         if let widgetPrinter = configuration.printer, let printerName = widgetPrinter.name, let hostname = widgetPrinter.hostname, let apiKey = widgetPrinter.apiKey {
-            let service = PrintJobDataService(name: printerName, hostname: hostname, apiKey: apiKey, username: widgetPrinter.username, password: widgetPrinter.password)
+            let service = PrintJobDataService(name: printerName, hostname: hostname, apiKey: apiKey, username: widgetPrinter.username, password: widgetPrinter.password, preemptive: true)
             var cameraService: CameraService?
             if let widgetCamera = configuration.camera, let cameraURL = widgetCamera.cameraURL, let cameraOrientation = widgetCamera.cameraOrientation {
                 cameraService = CameraService(cameraURL: cameraURL, cameraOrientation: Int(truncating: cameraOrientation), username: widgetPrinter.username, password: widgetPrinter.password)
@@ -184,7 +184,7 @@ struct OctoPodWidget14_Previews: PreviewProvider {
     }()
 
     static var jobService: PrintJobDataService = {
-        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil)
+        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
         jobService.printerStatus = "Printing"
         jobService.progress = 28.0
         jobService.printEstimatedCompletion = "9:30 PM"

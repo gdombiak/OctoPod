@@ -63,7 +63,7 @@ struct DashboardJobDetailsView_Previews: PreviewProvider {
     //    }()
     
     static let jobService: PrintJobDataService = {
-        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil)
+        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
         service.printerStatus = "Operational"
         return service
     }()

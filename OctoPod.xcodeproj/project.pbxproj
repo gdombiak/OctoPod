@@ -344,6 +344,10 @@
 		3DF383612505F847003C803D /* IPPlug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DE421817B23004A4223 /* IPPlug.swift */; };
 		3DF383622505F84D003C803D /* CancelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D88C3E82193F49500BC84DD /* CancelObject.swift */; };
 		3DF383632505F86A003C803D /* Palette2Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */; };
+		3DF5CD01268009B1002295D2 /* PrinterConnectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5CD00268009B1002295D2 /* PrinterConnectionType.swift */; };
+		3DF5CD02268009C2002295D2 /* PrinterConnectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5CD00268009B1002295D2 /* PrinterConnectionType.swift */; };
+		3DF5CD03268009C3002295D2 /* PrinterConnectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5CD00268009B1002295D2 /* PrinterConnectionType.swift */; };
+		3DF5CD04268009C4002295D2 /* PrinterConnectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5CD00268009B1002295D2 /* PrinterConnectionType.swift */; };
 		3DF6D59B23006EE800E0AFEE /* ScanInstallationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF6D59A23006EE800E0AFEE /* ScanInstallationsViewController.swift */; };
 		3DF7410D21ACEECC0069A9D4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DF7410B21ACEECC0069A9D4 /* Localizable.strings */; };
 		3DF7411021ACEECC0069A9D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DF7410E21ACEECC0069A9D4 /* InfoPlist.strings */; };
@@ -833,6 +837,8 @@
 		3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubpanelsViewController.swift; sourceTree = "<group>"; };
 		3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHistoryViewController.swift; sourceTree = "<group>"; };
 		3DF232DF20F150CC00550652 /* MoveSubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveSubViewController.swift; sourceTree = "<group>"; };
+		3DF5CD00268009B1002295D2 /* PrinterConnectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterConnectionType.swift; sourceTree = "<group>"; };
+		3DF5CD0526800BB0002295D2 /* OctoPod v13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v13.xcdatamodel"; sourceTree = "<group>"; };
 		3DF6D59A23006EE800E0AFEE /* ScanInstallationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanInstallationsViewController.swift; sourceTree = "<group>"; };
 		3DF7410C21ACEECC0069A9D4 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3DF7410F21ACEECC0069A9D4 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1279,6 +1285,7 @@
 				3D1A935521326ACC0050ED9A /* Commands */,
 				3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */,
 				3D82873620E3EBC80035AE0B /* Printer.swift */,
+				3DF5CD00268009B1002295D2 /* PrinterConnectionType.swift */,
 				3D999B2024E9CDB4007AA99F /* MultiCamera.swift */,
 				3D6F74512443FB8A006847B6 /* EnclosureInput.swift */,
 				3DB932C924475B7700A154FF /* EnclosureOutput.swift */,
@@ -1936,6 +1943,7 @@
 				3D4497F721B2628500736F0F /* CancelObject.swift in Sources */,
 				3D4497F221B2627300736F0F /* ControlInput.swift in Sources */,
 				3DA7785925CFAFCC0048405A /* BLTouch.swift in Sources */,
+				3DF5CD03268009C3002295D2 /* PrinterConnectionType.swift in Sources */,
 				3D4497EE21B2626900736F0F /* ExecuteControl.swift in Sources */,
 				3D4497F321B2627600736F0F /* SystemCommand.swift in Sources */,
 				3D4497F921B2629800736F0F /* OctoPod.xcdatamodeld in Sources */,
@@ -1994,6 +2002,7 @@
 				3D2792A22505D08C00026ACF /* WidgetConfigurationIntentHandler.swift in Sources */,
 				3D4064A021AB619C000B05F9 /* HTTPClient.swift in Sources */,
 				3D4064A621AB61ED000B05F9 /* ControlInput.swift in Sources */,
+				3DF5CD02268009C2002295D2 /* PrinterConnectionType.swift in Sources */,
 				3D450E5221AB1B210049FBC0 /* IntentHandler.swift in Sources */,
 				3D450EBC21AB236C0049FBC0 /* SetBedTempIntentHandler.swift in Sources */,
 				3D4064AD21AB75BF000B05F9 /* ResumeJobIntentHandler.swift in Sources */,
@@ -2021,6 +2030,7 @@
 				3D89F88123E6324900E99110 /* SubpanelsVCDelegate.swift in Sources */,
 				3DB932D12447FADB00A154FF /* EnclosureGPIOViewCell.swift in Sources */,
 				3D9D9765214DCC440032443A /* CloudKitPrinterDelegate.swift in Sources */,
+				3DF5CD01268009B1002295D2 /* PrinterConnectionType.swift in Sources */,
 				3D5D614623D5776200D988A2 /* AppleWatchSettingsViewController.swift in Sources */,
 				3D450EC821AB56F40049FBC0 /* IntentsController.swift in Sources */,
 				3D0E3B1121097E7A0087F7E4 /* ThemeUIUtils.swift in Sources */,
@@ -2193,6 +2203,7 @@
 				3DB377F92596D49E008220EE /* SoCTempHistory.swift in Sources */,
 				3DC2365B240113D800D9EF28 /* Script.swift in Sources */,
 				3D67AAAB25B51DF300302A2B /* Timelapse.swift in Sources */,
+				3DF5CD04268009C4002295D2 /* PrinterConnectionType.swift in Sources */,
 				3DC23643240102FA00D9EF28 /* CloudKitPrinterManager.swift in Sources */,
 				3D778F872402F86100B68942 /* Terminal.swift in Sources */,
 				3D999B2424E9D644007AA99F /* MultiCamera.swift in Sources */,
@@ -3319,6 +3330,7 @@
 		3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				3DF5CD0526800BB0002295D2 /* OctoPod v13.xcdatamodel */,
 				3DA7783A25CFAF230048405A /* OctoPod v12.xcdatamodel */,
 				3D999B1F24E9CAA7007AA99F /* OctoPod v11.xcdatamodel */,
 				3DDEC1EA2443B9DA0086467E /* OctoPod v10.xcdatamodel */,
@@ -3332,7 +3344,7 @@
 				3D5849E5210CCB560068D87A /* OctoPod v2.xcdatamodel */,
 				3D45280920E15A370094CCB7 /* OctoPod.xcdatamodel */,
 			);
-			currentVersion = 3DA7783A25CFAF230048405A /* OctoPod v12.xcdatamodel */;
+			currentVersion = 3DF5CD0526800BB0002295D2 /* OctoPod v13.xcdatamodel */;
 			path = OctoPod.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -37,6 +37,7 @@
         <attribute name="cancelObjectIgnored" optional="YES" attributeType="String"/>
         <attribute name="cancelObjectInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="connectionType" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="defaultPrinter" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="domoticzplugs" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[[String]]"/>
         <attribute name="extruderTemps" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int]"/>
@@ -83,6 +84,6 @@
         <element name="EnclosureInput" positionX="-63" positionY="135" width="128" height="118"/>
         <element name="EnclosureOutput" positionX="-54" positionY="135" width="128" height="103"/>
         <element name="MultiCamera" positionX="-54" positionY="135" width="128" height="133"/>
-        <element name="Printer" positionX="-63" positionY="-18" width="128" height="719"/>
+        <element name="Printer" positionX="-63" positionY="-18" width="128" height="734"/>
     </elements>
 </model>

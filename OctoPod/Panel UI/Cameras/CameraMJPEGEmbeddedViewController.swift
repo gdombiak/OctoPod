@@ -22,10 +22,14 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
     override func renderPrinter(printer: Printer, url: URL) {
         // User authentication credentials if configured for the printer
         if let username = printer.username, let password = printer.password {
-            // Handle user authentication if webcam is configured this way (I hope people are being careful and doing this)
-            streamingController?.authenticationHandler = { challenge in
-                let credential = URLCredential(user: username, password: password, persistence: .forSession)
-                return (.useCredential, credential)
+            if printer.preemptiveAuthentication() {
+                streamingController?.authorizationHeader = HTTPClient.authBasicHeader(username: username, password: password)
+            } else {
+                // Handle user authentication if webcam is configured this way (I hope people are being careful and doing this)
+                streamingController?.authenticationHandler = { challenge in
+                    let credential = URLCredential(user: username, password: password, persistence: .forSession)
+                    return (.useCredential, credential)
+                }
             }
         }
         

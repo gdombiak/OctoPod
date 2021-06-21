@@ -92,10 +92,11 @@ class PrinterManager {
     
     // MARK: Writing operations
     
-    func addPrinter(name: String, hostname: String, apiKey: String, username: String?, password: String?, position: Int16, iCloudUpdate: Bool, modified: Date = Date()) -> Bool {
+    func addPrinter(connectionType: PrinterConnectionType, name: String, hostname: String, apiKey: String, username: String?, password: String?, position: Int16, iCloudUpdate: Bool, modified: Date = Date()) -> Bool {
         let context = newPrivateContext()
         let printer = NSEntityDescription.insertNewObject(forEntityName: "Printer", into: context) as! Printer
         
+        printer.setPrinterConnectionType(connectionType: connectionType)
         printer.name = name
         printer.hostname = hostname
         printer.apiKey = apiKey

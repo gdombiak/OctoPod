@@ -10,10 +10,10 @@ class PrintJobDataService: ObservableObject {
     
     private let restClient: OctoPrintRESTClient!
     
-    init(name: String, hostname: String, apiKey: String, username: String?, password: String?) {
+    init(name: String, hostname: String, apiKey: String, username: String?, password: String?, preemptive: Bool) {
         printerName = name
         restClient = OctoPrintRESTClient()
-        restClient.connectToServer(serverURL: hostname, apiKey: apiKey, username: username, password: password)
+        restClient.connectToServer(serverURL: hostname, apiKey: apiKey, username: username, password: password, preemptive: preemptive)
     }
     
     func updateData(completion: @escaping () -> ()) {

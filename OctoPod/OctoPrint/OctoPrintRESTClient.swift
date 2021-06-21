@@ -47,8 +47,8 @@ class OctoPrintRESTClient {
 
     // MARK: - OctoPrint connection
 
-    func connectToServer(serverURL: String, apiKey: String, username: String?, password: String?) {
-        httpClient = HTTPClient(serverURL: serverURL, apiKey: apiKey, username: username, password: password)
+    func connectToServer(serverURL: String, apiKey: String, username: String?, password: String?, preemptive: Bool) {
+        httpClient = HTTPClient(serverURL: serverURL, apiKey: apiKey, username: username, password: password, preemptive: preemptive)
     }
     
     func disconnectFromServer() {

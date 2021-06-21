@@ -2,11 +2,8 @@ import UIKit
 
 class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentationControllerDelegate {
 
-    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-
     /// Application Key that was obtained from OctoPrint after user clicked "Request" button
     var appKey: String?
-    var newPrinterPosition: Int16!  // Will have a value only when adding a new printer
 
     @IBOutlet weak var printerNameField: UITextField!
     @IBOutlet weak var hostnameField: UITextField!
@@ -102,7 +99,7 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
             self.scanInstallationsButton.isEnabled = false
         }
         let restClient = OctoPrintRESTClient()
-        restClient.connectToServer(serverURL: hostnameField.text!, apiKey: "", username: usernameField.text, password: passwordField.text)
+        restClient.connectToServer(serverURL: hostnameField.text!, apiKey: "", username: usernameField.text, password: passwordField.text, preemptive: false)
         restClient.appkeyProbe { (supported: Bool, error: Error?, response: HTTPURLResponse) in
             if supported {
                 // Start request for obtaining application key for this OctoPod app
@@ -139,7 +136,7 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
     
     @IBAction func saveChanges(_ sender: Any) {
         // Add new printer (that will become default if it's the first one)
-        createPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: appKey!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
+        createPrinter(connectionType: .applicationKey, name: printerNameField.text!, hostname: hostnameField.text!, apiKey: appKey!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
         goBack()
     }
     
@@ -176,7 +173,7 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
                 self.appKey = appKey
                 DispatchQueue.main.async {
                     self.requestStatusLabel.text = NSLocalizedString("Application Key obtained. Click save to finish.", comment: "")
-                    self.requestStatusLabel.textColor = UIColor.green
+                    self.requestStatusLabel.textColor = UIColor.systemGreen
                     self.tableView.reloadData()
                     // Enable save button (if app is not locked)
                     self.saveButton.isEnabled = !self.appConfiguration.appLocked()

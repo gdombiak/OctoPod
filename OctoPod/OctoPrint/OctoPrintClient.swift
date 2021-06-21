@@ -66,7 +66,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         printerID = printer.objectID
         
         // Create and keep httpClient while default printer does not change
-        octoPrintRESTClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        octoPrintRESTClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuthentication())
         
         if webSocketClient?.isConnected(printer: printer) == true {
             // Do nothing since we are already connected to the default printer

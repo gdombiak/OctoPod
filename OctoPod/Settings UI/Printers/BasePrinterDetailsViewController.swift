@@ -3,13 +3,16 @@ import UIKit
 class BasePrinterDetailsViewController: ThemedStaticUITableViewController {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
     let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
     let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let notificationsManager: NotificationsManager = { return (UIApplication.shared.delegate as! AppDelegate).notificationsManager }()
 
-    func createPrinter(name: String, hostname: String, apiKey: String, username: String?, password: String?, position: Int16, includeInDashboard: Bool, showCamera: Bool) {
-        if printerManager.addPrinter(name: name, hostname: hostname, apiKey: apiKey, username: username, password: password, position: position, iCloudUpdate: true) {
+    var newPrinterPosition: Int16!  // Will have a value only when adding a new printer
+
+    func createPrinter(connectionType: PrinterConnectionType, name: String, hostname: String, apiKey: String, username: String?, password: String?, position: Int16, includeInDashboard: Bool, showCamera: Bool) {
+        if printerManager.addPrinter(connectionType: connectionType, name: name, hostname: hostname, apiKey: apiKey, username: username, password: password, position: position, iCloudUpdate: true) {
             if let printer = printerManager.getPrinterByName(name: name) {
                 // Only update printer if dashboard configuration needs update
                 if printer.includeInDashboard != includeInDashboard || printer.hideCamera == showCamera {

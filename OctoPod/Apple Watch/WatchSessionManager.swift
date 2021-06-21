@@ -388,6 +388,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                 let screenWidth = camera["width"] as! Int
                 let username = camera["username"] as? String
                 let password = camera["password"] as? String
+                let preemptive = camera["preemptive"] as! Bool
                 var imageOrientation = UIImage.Orientation.up
                 if let orientation = camera["orientation"] as? Int {
                     imageOrientation = UIImage.Orientation(rawValue: orientation)!
@@ -438,7 +439,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                 if UIUtils.isHLS(url: url) {
                     renderHLSImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, completion: completion)
                 } else {
-                    renderMJPEGImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, completion: completion)
+                    renderMJPEGImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, preemptive: preemptive, completion: completion)
                 }
             } else {
                 NSLog("Invalid camera URL: \(url)")
@@ -489,14 +490,18 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
 
     // MARK: - Private functions
     
-    fileprivate func renderMJPEGImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, completion: @escaping (UIImage?, [String : Any]?) -> ()) {
+    fileprivate func renderMJPEGImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, preemptive: Bool, completion: @escaping (UIImage?, [String : Any]?) -> ()) {
         let streamingController = MjpegStreamingController()
 
         if let username = username, let password = password {
             // User authentication credentials if configured for the printer
-            streamingController.authenticationHandler = { challenge in
-                let credential = URLCredential(user: username, password: password, persistence: .forSession)
-                return (.useCredential, credential)
+            if preemptive {
+                streamingController.authorizationHeader = HTTPClient.authBasicHeader(username: username, password: password)
+            } else {
+                streamingController.authenticationHandler = { challenge in
+                    let credential = URLCredential(user: username, password: password, persistence: .forSession)
+                    return (.useCredential, credential)
+                }
             }
         }
         
@@ -567,7 +572,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         if restClient == nil {
             if let printer = printerManager.getPrinterByName(name: printerName) {
                 restClient = OctoPrintRESTClient()
-                restClient?.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+                restClient?.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuthentication())
                 sharedNozzle = printer.sharedNozzle
                 palette2PluginInstalled = printer.palette2Installed
             }
@@ -588,7 +593,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     fileprivate func encodePrinters() -> [String: [[String : Any]]] {
         var printers: [[String : Any]] = []
         for printer in printerManager.getPrinters() {
-            var printerDic = ["position": printer.position, "name": printer.name, "hostname": printer.hostname, "apiKey": printer.apiKey, "isDefault": printer.defaultPrinter] as [String : Any]
+            var printerDic = ["position": printer.position, "name": printer.name, "hostname": printer.hostname, "apiKey": printer.apiKey, "isDefault": printer.defaultPrinter, "preemptive": printer.preemptiveAuthentication()] as [String : Any]
             if let username = printer.username {
                 printerDic["username"] = username
             }

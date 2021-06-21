@@ -391,7 +391,7 @@ class Theme {
                 }
             } else {
                 // No printer defined so use default color
-                return UIColor(red: 218/255, green: 218/255, blue: 219/255, alpha: 1.0)
+                return UIColor.black
             }
         }
         

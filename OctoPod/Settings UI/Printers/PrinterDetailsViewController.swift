@@ -2,11 +2,8 @@ import UIKit
 
 class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPrinterDelegate, UIPopoverPresentationControllerDelegate {
     
-    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-
     var updatePrinter: Printer? = nil
     var scannedKey: String?
-    var newPrinterPosition: Int16!  // Will have a value only when adding a new printer
 
     @IBOutlet weak var printerNameField: UITextField!
     @IBOutlet weak var hostnameField: UITextField!
@@ -39,6 +36,12 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
             updateFieldsForPrinter(printer: selectedPrinter)
             // Disable scanning for OctoPrint instances
             scanInstallationsButton.isEnabled = false
+            if selectedPrinter.getPrinterConnectionType() == .octoEverywhere {
+                // Disable editing hostname, username and password
+                hostnameField.isEnabled = false
+                usernameField.isEnabled = false
+                passwordField.isEnabled = false
+            }
         } else {
             // Hide URL error message
             urlErrorMessageLabel.isHidden = true
@@ -76,7 +79,7 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
             updatePrinter(printer: printer, name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
         } else {
             // Add new printer (that will become default if it's the first one)
-            createPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
+            createPrinter(connectionType: .apiKey, name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
         }
         goBack()
     }
@@ -125,6 +128,14 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
         }
     }
     
+    @IBAction func unwindScanQRCode(_ sender: UIStoryboardSegue) {
+        if let scanner = sender.source as? ScannerViewController {
+            self.apiKeyField.text = scanner.scannedQRCode
+            scannedKey = scanner.scannedQRCode
+            self.updateSaveButton()
+        }
+    }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -138,14 +149,6 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
         }
     }
  
-    @IBAction func unwindScanQRCode(_ sender: UIStoryboardSegue) {
-        if let scanner = sender.source as? ScannerViewController {
-            self.apiKeyField.text = scanner.scannedQRCode
-            scannedKey = scanner.scannedQRCode
-            self.updateSaveButton()
-        }
-    }
-
     // MARK: - CloudKitPrinterDelegate
     
     func printersUpdated() {

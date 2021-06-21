@@ -11,6 +11,8 @@ class Printer: NSManagedObject {
     /// Flag that indicates if this record needs to be created/updated in CloudKit
     @NSManaged var iCloudUpdate: Bool
     
+    /// Raw value of PrinterConnectionType enum
+    @NSManaged var connectionType: Int16
     /// Zero-index position of this printer in the list of printers
     @NSManaged var position: Int16
     @NSManaged var name: String
@@ -91,6 +93,8 @@ class Printer: NSManagedObject {
     @NSManaged public var enclosureOutputs: Set<EnclosureOutput>?
 
     @NSManaged public var blTouch: BLTouch?
+
+    // MARK: - Properties
 
     func getStreamPath() -> String {
         if let path = streamUrl {
@@ -236,6 +240,24 @@ class Printer: NSManagedObject {
         return result
     }
     
+    /// Return type of connection being used to talk to OctoPrint
+    func getPrinterConnectionType() -> PrinterConnectionType {
+        return PrinterConnectionType(rawValue: connectionType)!
+    }
+    
+    /// Set type of connection being used to talk to OctoPrint
+    func setPrinterConnectionType(connectionType: PrinterConnectionType) {
+        self.connectionType = connectionType.rawValue
+    }
+    
+    /// Returns true if HTTP Basic authentication should be preemptive or wait for challenge response header
+    func preemptiveAuthentication() -> Bool {
+        // Only OctoEverywhere uses preemptive authentication
+        return getPrinterConnectionType() == .octoEverywhere
+    }
+    
+    // MARK: - Private functions
+
     fileprivate func encodeIPPlug(_ newPlug: IPPlug) -> [String] {
         var result = [newPlug.ip, newPlug.label]
         if let idx = newPlug.idx {
