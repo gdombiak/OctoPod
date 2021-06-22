@@ -450,6 +450,16 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             }
         } else if response.statusCode == 403 {
             self.showAlert(NSLocalizedString("Authentication failed", comment: ""), message: NSLocalizedString("Incorrect API Key", comment: ""))
+        } else if response.statusCode == 600 {
+            self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Internal OctoEverywhere error", comment: ""))
+        } else if response.statusCode == 601 {
+            self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Printer is not connected to OctoEverywhere", comment: ""))
+        } else if response.statusCode == 602 {
+            self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("OctoEverywhere's connection to OctoPrint timed out", comment: ""))
+        } else if response.statusCode == 603 || response.statusCode == 604 {
+            self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Recreate printer in OctoEverywhere and OctoPod", comment: ""))
+        } else if response.statusCode == 605 {
+            self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Account is no longer an OctoEverywhere supporter", comment: ""))
         }
     }
     

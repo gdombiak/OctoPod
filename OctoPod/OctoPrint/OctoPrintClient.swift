@@ -163,6 +163,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             return true
         } else if response.statusCode == 403 {
             return true
+        } else if response.statusCode >= 600 &&  response.statusCode <= 605 {
+            // These are OctoEverywhere special error codes
+            // See https://octoeverywhere.stoplight.io/docs/octoeverywhere-api-docs/docs/App-Connection-Usage.md
+            return true
         } else {
             // Return that there were no errors
             return false
