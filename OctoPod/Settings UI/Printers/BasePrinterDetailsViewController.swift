@@ -78,4 +78,24 @@ class BasePrinterDetailsViewController: ThemedStaticUITableViewController {
         // Go back to previous page and execute the unwinsScanQRCode IBAction
         performSegue(withIdentifier: "unwindPrintersUpdated", sender: self)
     }
+
+    /// Scroll table up when keyboard appears and restore normal position when keyboard is gone
+    /// - Parameters:
+    ///     - show: true when keyboard will appear
+    ///     - notification: notification sent by NotificationCenter to observer when event happens
+    fileprivate func adjustingHeight(show: Bool, notification: Notification) {
+        let userInfo = notification.userInfo!
+        let keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let changeInHeight = (keyboardFrame.height + 40) * (show ? 1 : -1)
+        // Set the table content inset to the keyboard height
+        tableView.contentInset.bottom = changeInHeight
+    }
+
+    @objc func keyboardWillShow(notification: Notification) {
+        adjustingHeight(show: true, notification: notification)
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        adjustingHeight(show: false, notification: notification)
+    }
 }

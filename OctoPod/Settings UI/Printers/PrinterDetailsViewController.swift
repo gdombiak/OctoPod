@@ -225,15 +225,6 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
         return false
     }
 
-    fileprivate func adjustingHeight(show: Bool, notification: Notification) {
-        let userInfo = notification.userInfo!
-        let keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        //        let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
-        let changeInHeight = (keyboardFrame.height + 40) * (show ? 1 : -1)
-        // Set the table content inset to the keyboard height
-        tableView.contentInset.bottom = changeInHeight
-    }
-    
     fileprivate func themeLabels() {
         // Theme labels
         let theme = Theme.currentTheme()
@@ -258,13 +249,5 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
         passwordField.backgroundColor = theme.backgroundColor()
         passwordField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""), attributes: placeHolderAttributes)
         passwordField.textColor = theme.textColor()
-    }
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        adjustingHeight(show: true, notification: notification)
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        adjustingHeight(show: false, notification: notification)
     }    
 }

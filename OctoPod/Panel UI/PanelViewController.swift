@@ -567,7 +567,6 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     // MARK: - WatchSessionManagerDelegate
     
-    // Notification that a new default printer has been selected from the Apple Watch app
     func defaultPrinterChanged() {
         self.refreshNewSelectedPrinter()
     }
@@ -656,12 +655,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                     }
                 }
 
-                // Update stored printers
-                printerManager.changeToDefaultPrinter(newPrinter)
-                // Update Apple Watch with new selected printer
-                watchSessionManager.pushPrinters()
-                // Refresh UI to newly selected printer
-                self.refreshNewSelectedPrinter()
+                // Change default printer
+                changeDefaultPrinter(printer: newPrinter)
             }
         }
     }
