@@ -1,6 +1,6 @@
 import UIKit
 
-class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate, WatchSessionManagerDelegate, UITabBarControllerDelegate, SubpanelsVCDelegate {
+class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate, DefaultPrinterManagerDelegate, UITabBarControllerDelegate, SubpanelsVCDelegate {
     
     private static let CONNECT_CONFIRMATION = "PANEL_CONNECT_CONFIRMATION"
     private static let REMINDERS_SHOWN = "PANEL_REMINDERS_SHOWN_3_2"  // Key that stores if we should show reminders about important new things to users. Key might change per version
@@ -9,7 +9,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
+    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
     let pluginUpdatesManager: PluginUpdatesManager = { return (UIApplication.shared.delegate as! AppDelegate).pluginUpdatesManager }()
 
     var printerConnected: Bool?
@@ -93,8 +93,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         octoprintClient.octoPrintSettingsDelegates.append(self)
         // Listen to changes when app is locked or unlocked
         appConfiguration.delegates.append(self)
-        // Listen to changes coming from Apple Watch
-        watchSessionManager.delegates.append(self)
+        // Listen to changes to default printer
+        defaultPrinterManager.delegates.append(self)
         // Listen to tab controller events
         if let tabController = self.tabBarController {
             tabController.delegate = self  // Not ideal solution since we might be overriding other delegates. Good for now
@@ -119,8 +119,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         octoprintClient.remove(octoPrintSettingsDelegate: self)
         // Stop listening to changes when app is locked or unlocked
         appConfiguration.remove(appConfigurationDelegate: self)
-        // Stop listening to changes coming from Apple Watch
-        watchSessionManager.remove(watchSessionManagerDelegate: self)
+        // Stop listening to changes to default printer
+        defaultPrinterManager.remove(defaultPrinterManagerDelegate: self)
         // Stop listening to tab controller events
         if let tabController = self.tabBarController {
             tabController.delegate = nil
@@ -205,9 +205,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     func changeDefaultPrinter(printer: Printer) {
         // Update printer to be the new selected one (i.e. new default)
-        printerManager.changeToDefaultPrinter(printer)
-        // Update Apple Watch with new selected printer
-        watchSessionManager.pushPrinters()
+        defaultPrinterManager.changeToDefaultPrinter(printer: printer, updateWatch: true, connect: false)
         // Refresh UI
         refreshNewSelectedPrinter()
     }
@@ -565,7 +563,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         checkDisplayPrintStatusOverCamera()
     }
     
-    // MARK: - WatchSessionManagerDelegate
+    // MARK: - DefaultPrinterManagerDelegate
     
     func defaultPrinterChanged() {
         self.refreshNewSelectedPrinter()
@@ -625,40 +623,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
 
     @objc fileprivate func navigationBarSwiped(_ gesture: UIGestureRecognizer) {
-        if let printer = printerManager.getDefaultPrinter() {
-            // Swipe to change between printers
-            let printers = printerManager.getPrinters()
-            if printers.count < 2 {
-                // Nothing to do since there is only one OctoPrint instance (aka printer)
-                return
-            }
-            
-            var newPrinter: Printer!
-            if let index = printers.firstIndex(of: printer) {
-                if gesture == swipeLeftGestureRecognizer {
-                    // Right to left so move to the next printer
-                    if index == printers.count - 1 {
-                        // Go to the first printer in the array
-                        newPrinter = printers[0]
-                    } else {
-                        // Go to the next printer in the array
-                        newPrinter = printers[index + 1]
-                    }
-                } else {
-                    // Left to right so move to the previous printer
-                    if index == 0 {
-                        // Go to the last printer in the array
-                        newPrinter = printers.last
-                    } else {
-                        // Go to the previous printer in the array
-                        newPrinter = printers[index - 1]
-                    }
-                }
-
-                // Change default printer
-                changeDefaultPrinter(printer: newPrinter)
-            }
-        }
+        // Change default printer
+        let direction: DefaultPrinterManager.SwipeDirection = gesture == swipeLeftGestureRecognizer ? .left : .right
+        defaultPrinterManager.navigationBarSwiped(direction: direction)
     }
     
     @objc fileprivate func navigationBarSwipedDown(_ gesture: UIGestureRecognizer) {

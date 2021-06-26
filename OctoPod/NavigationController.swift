@@ -1,10 +1,10 @@
 import UIKit
 
-class NavigationController: UINavigationController, OctoPrintSettingsDelegate, WatchSessionManagerDelegate {
+class NavigationController: UINavigationController, OctoPrintSettingsDelegate, DefaultPrinterManagerDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
-    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
+    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +22,8 @@ class NavigationController: UINavigationController, OctoPrintSettingsDelegate, W
         
         // Listen to changes to OctoPrint Settings in case the camera orientation has changed
         octoprintClient.octoPrintSettingsDelegates.append(self)
-        // Listen to changes coming from Apple Watch
-        watchSessionManager.delegates.append(self)
+        // Listen to changes to default printer
+        defaultPrinterManager.delegates.append(self)
 
         let printer = printerManager.getDefaultPrinter()
         refreshForPrinterColors(color: printer?.color)
@@ -33,8 +33,8 @@ class NavigationController: UINavigationController, OctoPrintSettingsDelegate, W
         super.viewWillDisappear(animated)
         // Stop listening to changes to OctoPrint Settings
         octoprintClient.remove(octoPrintSettingsDelegate: self)
-        // Stop listening to changes coming from Apple Watch
-        watchSessionManager.remove(watchSessionManagerDelegate: self)
+        // Stop listening to changes to default printer
+        defaultPrinterManager.remove(defaultPrinterManagerDelegate: self)
     }
     
     func refreshForPrinterColors(color: String?) {
@@ -52,7 +52,7 @@ class NavigationController: UINavigationController, OctoPrintSettingsDelegate, W
         }
     }
     
-    // MARK: - WatchSessionManagerDelegate
+    // MARK: - DefaultPrinterManagerDelegate
     
     func defaultPrinterChanged() {
         DispatchQueue.main.async {

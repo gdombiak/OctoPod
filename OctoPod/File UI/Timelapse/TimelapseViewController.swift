@@ -1,14 +1,14 @@
 import UIKit
 import AVKit
 
-class TimelapseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, WatchSessionManagerDelegate {
+class TimelapseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DefaultPrinterManagerDelegate {
 
     private var currentTheme: Theme.ThemeChoice!
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
+    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
 
     @IBOutlet weak var tableView: UITableView!
     var refreshControl: UIRefreshControl?
@@ -61,8 +61,8 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        // Listen to changes coming from Apple Watch
-        watchSessionManager.delegates.append(self)
+        // Listen to changes to default printer
+        defaultPrinterManager.delegates.append(self)
 
         if currentTheme != Theme.currentTheme() {
             // Theme changed so repaint table now (to prevent quick flash in the UI with the old theme)
@@ -78,8 +78,8 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // Stop listening to changes coming from Apple Watch
-        watchSessionManager.remove(watchSessionManagerDelegate: self)
+        // Stop listening to changes to default printer
+        defaultPrinterManager.remove(defaultPrinterManagerDelegate: self)
     }
     
     // MARK: - Table view data source
@@ -255,7 +255,7 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
 
-    // MARK: - WatchSessionManagerDelegate
+    // MARK: - DefaultPrinterManagerDelegate
     
     func defaultPrinterChanged() {
         DispatchQueue.main.async {

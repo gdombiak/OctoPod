@@ -2,13 +2,17 @@ import UIKit
 
 // VC that renders content of a folder
 // Files were already fetched by FilesTreeViewController
-class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresentationControllerDelegate, WatchSessionManagerDelegate, UISearchBarDelegate {
+class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresentationControllerDelegate, DefaultPrinterManagerDelegate, UISearchBarDelegate {
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
+    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
 
     @IBOutlet weak var searchBar: UISearchBar!
+
+    // Gestures to switch between printers
+    var swipeLeftGestureRecognizer : UISwipeGestureRecognizer!
+    var swipeRightGestureRecognizer : UISwipeGestureRecognizer!
 
     var filesTreeVC: FilesTreeViewController!
     var folder: PrintFile!
@@ -44,16 +48,21 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
             tableView.deselectRow(at: selectionIndexPath, animated: animated)
         }
 
-        // Listen to changes coming from Apple Watch
-        watchSessionManager.delegates.append(self)
-        
+        // Listen to changes to default printer
+        defaultPrinterManager.delegates.append(self)
+
         applyTheme()
+
+        // Add gestures to capture swipes and taps on navigation bar
+        addNavBarGestures()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // Stop listening to changes coming from Apple Watch
-        watchSessionManager.remove(watchSessionManagerDelegate: self)
+        // Stop listening to changes to default printer
+        defaultPrinterManager.remove(defaultPrinterManagerDelegate: self)
+        // Remove gestures that capture swipes and taps on navigation bar
+        removeNavBarGestures()
     }
 
     // MARK: - Table view data source
@@ -233,7 +242,7 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
         return UIModalPresentationStyle.none
     }
     
-    // MARK: - WatchSessionManagerDelegate
+    // MARK: - DefaultPrinterManagerDelegate
     
     func defaultPrinterChanged() {
         // Go back to root folder since we have a new printer
@@ -292,6 +301,36 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
                 }
             }
         }
+    }
+
+    // MARK: - Private - Navigation Bar Gestures
+
+    fileprivate func addNavBarGestures() {
+        // Add gesture when we swipe from right to left
+        swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
+        swipeLeftGestureRecognizer.direction = .left
+        navigationController?.navigationBar.addGestureRecognizer(swipeLeftGestureRecognizer)
+        swipeLeftGestureRecognizer.cancelsTouchesInView = false
+        
+        // Add gesture when we swipe from left to right
+        swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
+        swipeRightGestureRecognizer.direction = .right
+        navigationController?.navigationBar.addGestureRecognizer(swipeRightGestureRecognizer)
+        swipeRightGestureRecognizer.cancelsTouchesInView = false
+    }
+
+    fileprivate func removeNavBarGestures() {
+        // Remove gesture when we swipe from right to left
+        navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
+        
+        // Remove gesture when we swipe from left to right
+        navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
+    }
+
+    @objc fileprivate func navigationBarSwiped(_ gesture: UIGestureRecognizer) {
+        // Change default printer
+        let direction: DefaultPrinterManager.SwipeDirection = gesture == swipeLeftGestureRecognizer ? .left : .right
+        defaultPrinterManager.navigationBarSwiped(direction: direction)
     }
 
     // MARK: - Private functions

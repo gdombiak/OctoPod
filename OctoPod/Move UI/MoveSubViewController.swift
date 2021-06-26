@@ -3,12 +3,12 @@ import UIKit
 // OctoPrint does not report current fan speed, extruder flow rate or feed rate so we
 // initially assume 100% and then just leave last value set by user. Display
 // value will go back to 100% if app is terminated
-class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesDelegate, OctoPrintClientDelegate, AppConfigurationDelegate, WatchSessionManagerDelegate, UIPopoverPresentationControllerDelegate {
+class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesDelegate, OctoPrintClientDelegate, AppConfigurationDelegate, DefaultPrinterManagerDelegate, UIPopoverPresentationControllerDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
+    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
 
     @IBOutlet weak var flowRateTextLabel: UILabel!
     @IBOutlet weak var fanTextLabel: UILabel!
@@ -119,8 +119,8 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         octoprintClient.delegates.append(self)
         // Listen to changes when app is locked or unlocked
         appConfiguration.delegates.append(self)
-        // Listen to changes coming from Apple Watch
-        watchSessionManager.delegates.append(self)
+        // Listen to changes to default printer
+        defaultPrinterManager.delegates.append(self)
 
         refreshNewSelectedPrinter()
 
@@ -136,8 +136,8 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         octoprintClient.remove(octoPrintClientDelegate: self)
         // Stop listening to changes when app is locked or unlocked
         appConfiguration.remove(appConfigurationDelegate: self)
-        // Stop listening to changes coming from Apple Watch
-        watchSessionManager.remove(watchSessionManagerDelegate: self)
+        // Stop listening to changes to default printer
+        defaultPrinterManager.remove(defaultPrinterManagerDelegate: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -694,7 +694,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         }
     }
 
-    // MARK: - WatchSessionManagerDelegate
+    // MARK: - DefaultPrinterManagerDelegate
     
     func defaultPrinterChanged() {
         DispatchQueue.main.async {

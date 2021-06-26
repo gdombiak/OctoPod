@@ -180,7 +180,7 @@ class PrinterManager {
         changeToDefaultPrinter(printer, context: managedObjectContext)
     }
     
-    func changeToDefaultPrinter(_ printer: Printer, context: NSManagedObjectContext) {
+    fileprivate func changeToDefaultPrinter(_ printer: Printer, context: NSManagedObjectContext) {
         // Check if there is already a default Printer
         if let currentDefaultPrinter: Printer = getDefaultPrinter(context: context) {
             // Current default printer is no longer the default one

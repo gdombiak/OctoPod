@@ -6,9 +6,8 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
 
     var printerManager: PrinterManager
     var octoprintClient: OctoPrintClient
+    var defaultPrinterManager: DefaultPrinterManager!
     var session: WCSession?
-    
-    var delegates: Array<WatchSessionManagerDelegate> = []
     
     private var lastPushComplicationUpdate: Date?
     private var lastPushedCompletion: Double?
@@ -243,24 +242,11 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         pushPrinters()
     }
 
-    // MARK: - Delegates operations
-    
-    func remove(watchSessionManagerDelegate toRemove: WatchSessionManagerDelegate) {
-        delegates.removeAll(where: { $0 === toRemove })
-    }
-
     // MARK: - Commands private functions
     
     fileprivate func changeDefaultPrinter(printerName: String) {
         if let printer = printerManager.getPrinterByName(name: printerName) {
-            // Update stored printers
-            printerManager.changeToDefaultPrinter(printer)
-            // Ask octoprintClient to connect to new OctoPrint server
-            octoprintClient.connectToServer(printer: printer)
-            // Notify listeners of this change
-            for delegate in delegates {
-                delegate.defaultPrinterChanged()
-            }
+            defaultPrinterManager.changeToDefaultPrinter(printer: printer, updateWatch: false, connect: true)
             // If not running in foreground then disconnect websocket
             // For some reason even if app is in background websocket remains open
             // and received data which potentially consumes cellular data

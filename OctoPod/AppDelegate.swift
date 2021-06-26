@@ -100,16 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let printerName = url.host?.removingPercentEncoding {
             // Switch to printer user clicked on when using Today's widget
             if let printer = printerManager?.getPrinterByName(name: printerName) {
-                // Update stored printers
-                printerManager?.changeToDefaultPrinter(printer)
-                // Update Apple Watch with new selected printer
-                watchSessionManager.pushPrinters()
-                // Ask octoprintClient to connect to new OctoPrint server
-                octoprintClient.connectToServer(printer: printer)
-                // Notify listeners of this change (ugly hack: use watch session listeners. Should be refactored)
-                for delegate in watchSessionManager.delegates {
-                    delegate.defaultPrinterChanged()
-                }
+                defaultPrinterManager.changeToDefaultPrinter(printer: printer)
 
                 // Go to main Panel window
                 if let tabBarController = self.window!.rootViewController as? UITabBarController {
@@ -307,7 +298,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     lazy var notificationsManager: NotificationsManager = {
-        return NotificationsManager(printerManager: self.printerManager!, octoprintClient: self.octoprintClient, watchSessionManager: self.watchSessionManager, mmuNotificationsHandler: self.mmuNotificationsHandler)
+        return NotificationsManager(printerManager: self.printerManager!, octoprintClient: self.octoprintClient, defaultPrinterManager: self.defaultPrinterManager, mmuNotificationsHandler: self.mmuNotificationsHandler)
     }()
     
     lazy var bedNotificationsHandler: BedNotificationsHandler = {
@@ -320,5 +311,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var pluginUpdatesManager: PluginUpdatesManager = {
         return PluginUpdatesManager(printerManager: self.printerManager!, octoprintClient: self.octoprintClient, appConfiguration: self.appConfiguration)
+    }()
+
+    lazy var defaultPrinterManager: DefaultPrinterManager = {
+        return DefaultPrinterManager(printerManager: self.printerManager!, octoprintClient: self.octoprintClient, watchSessionManager: self.watchSessionManager)
     }()
 }

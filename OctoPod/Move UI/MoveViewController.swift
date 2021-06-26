@@ -1,10 +1,10 @@
 import UIKit
 
-class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSettingsDelegate, CameraViewDelegate, WatchSessionManagerDelegate {
+class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSettingsDelegate, CameraViewDelegate, DefaultPrinterManagerDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
-    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
+    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
 
     var camerasViewController: CamerasViewController?
 
@@ -18,6 +18,10 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
     
     @IBOutlet weak var cameraHeightConstraint: NSLayoutConstraint!
     
+    // Gestures to switch between printers
+    var swipeLeftGestureRecognizer : UISwipeGestureRecognizer!
+    var swipeRightGestureRecognizer : UISwipeGestureRecognizer!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,14 +45,17 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
         octoprintClient.delegates.append(self)
         // Listen to changes to OctoPrint Settings in case the camera orientation has changed
         octoprintClient.octoPrintSettingsDelegates.append(self)
-        // Listen to changes coming from Apple Watch
-        watchSessionManager.delegates.append(self)
+        // Listen to changes to default printer
+        defaultPrinterManager.delegates.append(self)
 
         // Set background color to the view
         let theme = Theme.currentTheme()
         view.backgroundColor = theme.backgroundColor()
 
         refreshNewSelectedPrinter()
+
+        // Add gestures to capture swipes and taps on navigation bar
+        addNavBarGestures()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,8 +68,10 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
         octoprintClient.remove(octoPrintClientDelegate: self)
         // Stop listening to changes to OctoPrint Settings
         octoprintClient.remove(octoPrintSettingsDelegate: self)
-        // Stop listening to changes coming from Apple Watch
-        watchSessionManager.remove(watchSessionManagerDelegate: self)
+        // Stop listening to changes to default printer
+        defaultPrinterManager.remove(defaultPrinterManagerDelegate: self)
+        // Remove gestures that capture swipes and taps on navigation bar
+        removeNavBarGestures()
     }
 
     // MARK: - OctoPrintClientDelegate
@@ -133,7 +142,7 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
         }
     }
 
-    // MARK: - WatchSessionManagerDelegate
+    // MARK: - DefaultPrinterManagerDelegate
     
     func defaultPrinterChanged() {
         DispatchQueue.main.async {
@@ -142,6 +151,36 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
         }
     }
     
+    // MARK: - Private - Navigation Bar Gestures
+
+    fileprivate func addNavBarGestures() {
+        // Add gesture when we swipe from right to left
+        swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
+        swipeLeftGestureRecognizer.direction = .left
+        navigationController?.navigationBar.addGestureRecognizer(swipeLeftGestureRecognizer)
+        swipeLeftGestureRecognizer.cancelsTouchesInView = false
+        
+        // Add gesture when we swipe from left to right
+        swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
+        swipeRightGestureRecognizer.direction = .right
+        navigationController?.navigationBar.addGestureRecognizer(swipeRightGestureRecognizer)
+        swipeRightGestureRecognizer.cancelsTouchesInView = false
+    }
+
+    fileprivate func removeNavBarGestures() {
+        // Remove gesture when we swipe from right to left
+        navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
+        
+        // Remove gesture when we swipe from left to right
+        navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
+    }
+
+    @objc fileprivate func navigationBarSwiped(_ gesture: UIGestureRecognizer) {
+        // Change default printer
+        let direction: DefaultPrinterManager.SwipeDirection = gesture == swipeLeftGestureRecognizer ? .left : .right
+        defaultPrinterManager.navigationBarSwiped(direction: direction)
+    }
+
     // MARK: - Private functions
     
     // We are using Container Views so this is how we keep a reference to the contained view controllers

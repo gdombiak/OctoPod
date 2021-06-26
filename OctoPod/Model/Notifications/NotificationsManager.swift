@@ -13,15 +13,15 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
 
     private let printerManager: PrinterManager!
     private let octoprintClient: OctoPrintClient!
-    private let watchSessionManager: WatchSessionManager!
+    private let defaultPrinterManager: DefaultPrinterManager!
     private let mmuNotificationsHandler: MMUNotificationsHandler!
     
     private var currentToken: String?
 
-    init(printerManager: PrinterManager, octoprintClient: OctoPrintClient, watchSessionManager: WatchSessionManager, mmuNotificationsHandler: MMUNotificationsHandler) {
+    init(printerManager: PrinterManager, octoprintClient: OctoPrintClient, defaultPrinterManager: DefaultPrinterManager, mmuNotificationsHandler: MMUNotificationsHandler) {
         self.printerManager = printerManager
         self.octoprintClient = octoprintClient
-        self.watchSessionManager = watchSessionManager
+        self.defaultPrinterManager = defaultPrinterManager
         self.mmuNotificationsHandler = mmuNotificationsHandler
         
         super.init()
@@ -113,10 +113,7 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
                 // User selected to snooze MMU notifications for this printer
                 if let printer = printerManager.getPrinterByName(name: printerName), let _ = printer.octopodPluginPrinterName {
                     // OctoPod plugin handles non-silent notifications so snooze is done in OctoPrint's server
-                    // Let's switch to the selected printer
-                    printerManager.changeToDefaultPrinter(printer)
-                    // Ask octoprintClient to connect to new OctoPrint server
-                    octoprintClient.connectToServer(printer: printer)
+                    defaultPrinterManager.changeToDefaultPrinter(printer: printer, updateWatch: false, connect: true)
                     // Request OctoPod plugin to snooze MMU events
                     octoprintClient.snoozeAPNSEvents(eventCode: "mmu-event", minutes: response.actionIdentifier == mmuSnooze1Identifier ? 60 : 480) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                         if !requested {
@@ -138,9 +135,7 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
                 // Request OctoPrint to print again last completed print
                 if let printer = printerManager.getPrinterByName(name: printerName), let fileOrigin = response.notification.request.content.userInfo["file-origin"] as? String, let filePath = response.notification.request.content.userInfo["file-path"] as? String {
                     // Let's switch to the selected printer
-                    printerManager.changeToDefaultPrinter(printer)
-                    // Ask octoprintClient to connect to new OctoPrint server
-                    octoprintClient.connectToServer(printer: printer)
+                    defaultPrinterManager.changeToDefaultPrinter(printer: printer, updateWatch: false, connect: true)
                     // Request OctoPrint to print again last printed file
                     octoprintClient.printFile(origin: fileOrigin, path: filePath) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                         if !requested {
@@ -157,17 +152,7 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
                 }
             } else if let printer = printerManager.getPrinterByName(name: printerName) {
                 // User clicked on notification. Let's switch to the selected printer
-                printerManager.changeToDefaultPrinter(printer)
-
-                // Ask octoprintClient to connect to new OctoPrint server
-                octoprintClient.connectToServer(printer: printer)
-                // Notify listeners of this change
-                for delegate in watchSessionManager.delegates {
-                    delegate.defaultPrinterChanged()
-                }
-
-                // Update Apple Watch with new selected printer
-                watchSessionManager.pushPrinters()
+                defaultPrinterManager.changeToDefaultPrinter(printer: printer)
                 // Execute completion handler
                 completionHandler()
             }
