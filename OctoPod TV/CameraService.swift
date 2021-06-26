@@ -32,6 +32,7 @@ class CameraService: ObservableObject {
     
     private var username: String?
     private var password: String?
+    private var preemptiveAuthentication: Bool = false
     private var isStreamPathFromSettings: Bool = true
     
     /// Render next camera
@@ -52,6 +53,7 @@ class CameraService: ObservableObject {
         }
         username = printer.username
         password = printer.password
+        preemptiveAuthentication = printer.preemptiveAuthentication()
         isStreamPathFromSettings = printer.isStreamPathFromSettings()
         
         initCameras(printer: printer)
@@ -89,10 +91,14 @@ class CameraService: ObservableObject {
         streamingController = MjpegStreamingController()
         // User authentication credentials if configured for the printer
         if let username = username, let password = password {
-            // Handle user authentication if webcam is configured this way (I hope people are being careful and doing this)
-            streamingController!.authenticationHandler = { challenge in
-                let credential = URLCredential(user: username, password: password, persistence: .forSession)
-                return (.useCredential, credential)
+            if preemptiveAuthentication {
+                streamingController?.authorizationHeader = HTTPClient.authBasicHeader(username: username, password: password)
+            } else {
+                // Handle user authentication if webcam is configured this way (I hope people are being careful and doing this)
+                streamingController!.authenticationHandler = { challenge in
+                    let credential = URLCredential(user: username, password: password, persistence: .forSession)
+                    return (.useCredential, credential)
+                }
             }
         }
         
