@@ -418,7 +418,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                     }
                 }
                 
-                CameraUtils.shared.renderImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, preemptive: preemptive, completion: completion)
+                CameraUtils.shared.renderImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, preemptive: preemptive, timeoutInterval: nil, completion: completion)
             } else {
                 NSLog("Invalid camera URL: \(url)")
                 let message = NSLocalizedString("Invalid camera URL", comment: "")

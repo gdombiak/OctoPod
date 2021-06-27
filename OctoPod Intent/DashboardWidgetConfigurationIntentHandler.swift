@@ -94,6 +94,7 @@ class DashboardWidgetConfigurationIntentHandler: NSObject, DashboardWidgetConfig
         widgetPrinter.apiKey = printer.apiKey
         widgetPrinter.username = printer.username
         widgetPrinter.password = printer.password
+        widgetPrinter.preemptiveAuth = printer.preemptiveAuthentication() ? 1 : 0
         
         return widgetPrinter
     }

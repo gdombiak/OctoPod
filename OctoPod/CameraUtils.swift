@@ -13,11 +13,11 @@ class CameraUtils {
     private init() {
     }
     
-    func renderImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, preemptive: Bool, completion: @escaping (UIImage?, String?) -> ()) {
+    func renderImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, preemptive: Bool, timeoutInterval: TimeInterval?, completion: @escaping (UIImage?, String?) -> ()) {
         if isHLS(url: cameraURL.absoluteString) {
             renderHLSImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, completion: completion)
         } else {
-            renderMJPEGImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, preemptive: preemptive, completion: completion)
+            renderMJPEGImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, preemptive: preemptive, timeoutInterval: timeoutInterval, completion: completion)
         }
     }
     
@@ -40,8 +40,12 @@ class CameraUtils {
 
     // MARK: - Private functions
     
-    fileprivate func renderMJPEGImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, preemptive: Bool, completion: @escaping (UIImage?, String?) -> ()) {
+    fileprivate func renderMJPEGImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, preemptive: Bool, timeoutInterval: TimeInterval?, completion: @escaping (UIImage?, String?) -> ()) {
         let streamingController = MjpegStreamingController()
+        
+        if let timeout = timeoutInterval {
+            streamingController.timeoutInterval = timeout
+        }
 
         if let username = username, let password = password {
             // User authentication credentials if configured for the printer

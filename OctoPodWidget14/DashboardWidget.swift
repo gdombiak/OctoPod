@@ -24,25 +24,25 @@ struct DashboardProvider: IntentTimelineProvider {
         var printerJobs: Array<PrintJobDataService> = []
         if let printer = configuration.printer1 {
             if let name = printer.name, let hostname = printer.hostname, let apiKey = printer.apiKey {
-                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, preemptive: true)
+                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuth == 1)
                 printerJobs.append(service)
             }
         }
         if let printer = configuration.printer2 {
             if let name = printer.name, let hostname = printer.hostname, let apiKey = printer.apiKey {
-                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, preemptive: true)
+                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuth == 1)
                 printerJobs.append(service)
             }
         }
         if let printer = configuration.printer3 {
             if let name = printer.name, let hostname = printer.hostname, let apiKey = printer.apiKey {
-                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, preemptive: true)
+                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuth == 1)
                 printerJobs.append(service)
             }
         }
         if let printer = configuration.printer4 {
             if let name = printer.name, let hostname = printer.hostname, let apiKey = printer.apiKey {
-                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, preemptive: true)
+                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuth == 1)
                 printerJobs.append(service)
             }
         }

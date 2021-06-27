@@ -73,11 +73,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>88xZPY</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>19H2</string>
+	<string>20F71</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>12A7403</string>
+	<string>12E507</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>12.1</string>
+	<string>12.5.1</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -538,7 +538,7 @@
 			<key>INTypeDisplayNameID</key>
 			<string>IWWISx</string>
 			<key>INTypeLastPropertyTag</key>
-			<integer>108</integer>
+			<integer>110</integer>
 			<key>INTypeName</key>
 			<string>WidgetPrinter</string>
 			<key>INTypeProperties</key>
@@ -676,6 +676,27 @@
 					<integer>105</integer>
 					<key>INTypePropertyType</key>
 					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>11</integer>
+					<key>INTypePropertyMetadata</key>
+					<dict>
+						<key>INTypePropertyMetadataFalseDisplayName</key>
+						<string>false</string>
+						<key>INTypePropertyMetadataFalseDisplayNameID</key>
+						<string>9eyZ4N</string>
+						<key>INTypePropertyMetadataTrueDisplayName</key>
+						<string>true</string>
+						<key>INTypePropertyMetadataTrueDisplayNameID</key>
+						<string>xmeFlp</string>
+					</dict>
+					<key>INTypePropertyName</key>
+					<string>preemptiveAuth</string>
+					<key>INTypePropertyTag</key>
+					<integer>110</integer>
+					<key>INTypePropertyType</key>
+					<string>Boolean</string>
 				</dict>
 			</array>
 		</dict>

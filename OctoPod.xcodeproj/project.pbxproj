@@ -39,6 +39,7 @@
 		3D33B7A1213F6A0D002A4BE3 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */; };
 		3D349847268810FC0027BFEE /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3D450E6121AB1C040049FBC0 /* Intents.intentdefinition */; };
 		3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D36DD79210300C500884BD6 /* TerminalViewController.swift */; };
+		3D386CC62688FD08007AD634 /* CameraUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0490C2687EE5500C98379 /* CameraUtils.swift */; };
 		3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */; };
 		3D3CBABC2182D31C00D4FD54 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CBABB2182D31C00D4FD54 /* UIUtils.swift */; };
 		3D3D79A923D4DB7C00E5B6CA /* Palette2Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */; };
@@ -2398,6 +2399,7 @@
 				3D42085A2506B511001C3DE2 /* UIUtils.swift in Sources */,
 				3DE5F53C24FC600200BFDAD3 /* OctoPodWidget14.swift in Sources */,
 				3DC290A72687F8B5002E246F /* HLSThumbnailUtil.swift in Sources */,
+				3D386CC62688FD08007AD634 /* CameraUtils.swift in Sources */,
 				3DF3835D2505F828003C803D /* Command.swift in Sources */,
 				3D9707502506E0F40076C959 /* MjpegStreamingController.swift in Sources */,
 				3DF3835A2505F81D003C803D /* Script.swift in Sources */,

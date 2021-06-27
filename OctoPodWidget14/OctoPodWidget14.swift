@@ -13,7 +13,7 @@ struct Provider: IntentTimelineProvider {
         jobService.progress = 28.0
         jobService.printEstimatedCompletion = "9:30 PM"
         
-        let cameraService = CameraService(cameraURL: "", cameraOrientation: 1, username: nil, password: nil)
+        let cameraService = CameraService(cameraURL: "", cameraOrientation: 1, username: nil, password: nil, preemptiveAuth: false)
         cameraService.image = UIImage(named: "Image")
 
         return SimpleEntry(date: Date(), configuration: configuration, printJobDataService: jobService, cameraService: cameraService)
@@ -21,10 +21,14 @@ struct Provider: IntentTimelineProvider {
     
     func getSnapshot(for configuration: WidgetConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         if let widgetPrinter = configuration.printer, let printerName = widgetPrinter.name, let hostname = widgetPrinter.hostname, let apiKey = widgetPrinter.apiKey {
-            let service = PrintJobDataService(name: printerName, hostname: hostname, apiKey: apiKey, username: widgetPrinter.username, password: widgetPrinter.password, preemptive: true)
+            var preemptive: Bool = false
+            if let preemptiveAuth = widgetPrinter.preemptiveAuth {
+                preemptive = preemptiveAuth == 1
+            }
+            let service = PrintJobDataService(name: printerName, hostname: hostname, apiKey: apiKey, username: widgetPrinter.username, password: widgetPrinter.password, preemptive: preemptive)
             var cameraService: CameraService?
             if let widgetCamera = configuration.camera, let cameraURL = widgetCamera.cameraURL, let cameraOrientation = widgetCamera.cameraOrientation {
-                cameraService = CameraService(cameraURL: cameraURL, cameraOrientation: Int(truncating: cameraOrientation), username: widgetPrinter.username, password: widgetPrinter.password)
+                cameraService = CameraService(cameraURL: cameraURL, cameraOrientation: Int(truncating: cameraOrientation), username: widgetPrinter.username, password: widgetPrinter.password, preemptiveAuth: preemptive)
             }
             let entry = SimpleEntry(date: Date(), configuration: configuration, printJobDataService: service, cameraService: cameraService)
             // Fetch update data and once data execute completion block
@@ -192,7 +196,7 @@ struct OctoPodWidget14_Previews: PreviewProvider {
     }()
     
     static var cameraService: CameraService = {
-        let cameraService = CameraService(cameraURL: "", cameraOrientation: 1, username: nil, password: nil)
+        let cameraService = CameraService(cameraURL: "", cameraOrientation: 1, username: nil, password: nil, preemptiveAuth: false)
         cameraService.image = UIImage(named: "Image")
         return cameraService
     }()
