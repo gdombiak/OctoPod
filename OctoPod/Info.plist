@@ -92,6 +92,7 @@
 		<string>SetChamberTempIntent</string>
 		<string>SetToolTempIntent</string>
 		<string>SystemCommandIntent</string>
+		<string>TakeSnapshotIntent</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

@@ -37,6 +37,7 @@
 		3D2BEA71248B32CB00EF6859 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 3D2BEA70248B32CB00EF6859 /* Charts */; };
 		3D2BEA73248B33C800EF6859 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 3D2BEA72248B33C800EF6859 /* Starscream */; };
 		3D33B7A1213F6A0D002A4BE3 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */; };
+		3D349847268810FC0027BFEE /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3D450E6121AB1C040049FBC0 /* Intents.intentdefinition */; };
 		3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D36DD79210300C500884BD6 /* TerminalViewController.swift */; };
 		3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */; };
 		3D3CBABC2182D31C00D4FD54 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CBABB2182D31C00D4FD54 /* UIUtils.swift */; };
@@ -217,6 +218,10 @@
 		3D9D9765214DCC440032443A /* CloudKitPrinterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9D9764214DCC440032443A /* CloudKitPrinterDelegate.swift */; };
 		3D9DC75B231D867B00AE4DF7 /* CustomControlViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DC75A231D867B00AE4DF7 /* CustomControlViewCell.swift */; };
 		3D9E087E2160455400F11CD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D9E087C2160455400F11CD4 /* InfoPlist.strings */; };
+		3DA0490B2687ED1C00C98379 /* TakeSnapshotIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0490A2687ED1C00C98379 /* TakeSnapshotIntentHandler.swift */; };
+		3DA0490D2687EE5500C98379 /* CameraUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0490C2687EE5500C98379 /* CameraUtils.swift */; };
+		3DA0490E2687F00C00C98379 /* CameraUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0490C2687EE5500C98379 /* CameraUtils.swift */; };
+		3DA049142687F59900C98379 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
 		3DA0BD562506DB9B008233DE /* JobDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0BD552506DB9B008233DE /* JobDetailsView.swift */; };
 		3DA252442105028300B60E31 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA252432105028300B60E31 /* FolderViewController.swift */; };
 		3DA7783C25CFAFBB0048405A /* BLTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA7783B25CFAFBB0048405A /* BLTouch.swift */; };
@@ -265,7 +270,6 @@
 		3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */; };
 		3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */; };
 		3DBFB2E8256E1B2300DC43E8 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
-		3DBFB2FC256E1D1100DC43E8 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
 		3DC0AD802406320200E0B461 /* BriefView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0AD7F2406320200E0B461 /* BriefView.swift */; };
 		3DC11E6525C68D600099BFE9 /* PSUControlOnIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC11E6425C68D600099BFE9 /* PSUControlOnIntentHandler.swift */; };
 		3DC11E7025C68EC30099BFE9 /* PSUControlOffIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC11E6F25C68EC30099BFE9 /* PSUControlOffIntentHandler.swift */; };
@@ -298,6 +302,13 @@
 		3DC2365E240113F600D9EF28 /* ExecuteControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A936B213316850050ED9A /* ExecuteControl.swift */; };
 		3DC2365F2401982700D9EF28 /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */; };
 		3DC236602401991700D9EF28 /* Plugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3FE6C2154B9CE000D7D2A /* Plugins.swift */; };
+		3DC290A52687F7D0002E246F /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */; };
+		3DC290A62687F856002E246F /* MjpegStreamingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873F20E421610035AE0B /* MjpegStreamingController.swift */; };
+		3DC290A72687F8B5002E246F /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
+		3DC290B02688080C002E246F /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC290AF2688080C002E246F /* IntentsUI.framework */; };
+		3DC290B32688080C002E246F /* TakeSnapshotIntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC290B22688080C002E246F /* TakeSnapshotIntentViewController.swift */; };
+		3DC290B62688080C002E246F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DC290B42688080C002E246F /* MainInterface.storyboard */; };
+		3DC290BA2688080C002E246F /* OctoPod Intent UI - Take Snapshot.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3DC290AE2688080C002E246F /* OctoPod Intent UI - Take Snapshot.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3DC69BED21804EC000DBE0D5 /* OctoPrintClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC69BEC21804EC000DBE0D5 /* OctoPrintClient.swift */; };
 		3DC69BEE21804F2A00DBE0D5 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292F20E5549B00296D9D /* HTTPClient.swift */; };
 		3DC69BF02180531000DBE0D5 /* PanelInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC69BEF2180531000DBE0D5 /* PanelInterfaceController.swift */; };
@@ -409,6 +420,13 @@
 			remoteGlobalIDString = 3DABB21C22C0044D00F32731;
 			remoteInfo = "OctoPod Notification Extension";
 		};
+		3DC290B82688080C002E246F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D4527F620E15A370094CCB7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DC290AD2688080C002E246F;
+			remoteInfo = "OctoPod Intent UI - Take Snapshot";
+		};
 		3DE5F54324FC600300BFDAD3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3D4527F620E15A370094CCB7 /* Project object */;
@@ -429,6 +447,7 @@
 				3D4497E621B2623400736F0F /* OctoPod Widget.appex in Embed App Extensions */,
 				3D450E5621AB1B210049FBC0 /* OctoPod Intent.appex in Embed App Extensions */,
 				3DABB22422C0044D00F32731 /* OctoPod Notification Extension.appex in Embed App Extensions */,
+				3DC290BA2688080C002E246F /* OctoPod Intent UI - Take Snapshot.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -724,6 +743,8 @@
 		3D9E269622B416EC00386081 /* lt-LT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lt-LT"; path = "lt-LT.lproj/Main.strings"; sourceTree = "<group>"; };
 		3D9E269722B416EC00386081 /* lt-LT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lt-LT"; path = "lt-LT.lproj/MainInterface.strings"; sourceTree = "<group>"; };
 		3D9E269822B416EC00386081 /* lt-LT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lt-LT"; path = "lt-LT.lproj/Interface.strings"; sourceTree = "<group>"; };
+		3DA0490A2687ED1C00C98379 /* TakeSnapshotIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeSnapshotIntentHandler.swift; sourceTree = "<group>"; };
+		3DA0490C2687EE5500C98379 /* CameraUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraUtils.swift; sourceTree = "<group>"; };
 		3DA0BD552506DB9B008233DE /* JobDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailsView.swift; sourceTree = "<group>"; };
 		3DA252432105028300B60E31 /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
 		3DA44F162314D75D00EB9763 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -781,6 +802,11 @@
 		3DC2364B2401061400D9EF28 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		3DC2365024010DED00D9EF28 /* DetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedView.swift; sourceTree = "<group>"; };
 		3DC23652240111EF00D9EF28 /* ViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewService.swift; sourceTree = "<group>"; };
+		3DC290AE2688080C002E246F /* OctoPod Intent UI - Take Snapshot.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "OctoPod Intent UI - Take Snapshot.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DC290AF2688080C002E246F /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		3DC290B22688080C002E246F /* TakeSnapshotIntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeSnapshotIntentViewController.swift; sourceTree = "<group>"; };
+		3DC290B52688080C002E246F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		3DC290B72688080C002E246F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DC65608219BE49F00F4CA0D /* OctoPod v7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v7.xcdatamodel"; sourceTree = "<group>"; };
 		3DC69BEC21804EC000DBE0D5 /* OctoPrintClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClient.swift; sourceTree = "<group>"; };
 		3DC69BEF2180531000DBE0D5 /* PanelInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PanelInterfaceController.swift; path = "OctoPod Watch Extension/Panel/PanelInterfaceController.swift"; sourceTree = SOURCE_ROOT; };
@@ -853,6 +879,7 @@
 		3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette2Utils.swift; sourceTree = "<group>"; };
 		3DFBB8E32569D2FF00A7BD46 /* CameraMJPEGEmbeddedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraMJPEGEmbeddedViewController.swift; sourceTree = "<group>"; };
 		3DFBB8EE2569E07E00A7BD46 /* CameraHLSEmbeddedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHLSEmbeddedViewController.swift; sourceTree = "<group>"; };
+		3DFC828826881677007FBE6E /* OctoPod Intent UI - Take Snapshot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "OctoPod Intent UI - Take Snapshot.entitlements"; sourceTree = "<group>"; };
 		3DFE67CF218598F300F33019 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DFE67D1218598F700F33019 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3DFE67D2218598FA00F33019 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -926,6 +953,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3DC290AB2688080C002E246F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DC290B02688080C002E246F /* IntentsUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3DE5F53224FC600200BFDAD3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -956,6 +991,7 @@
 				3D49A0B521D43EE0005002E7 /* UserNotificationsUI.framework */,
 				3DE5F53624FC600200BFDAD3 /* WidgetKit.framework */,
 				3DE5F53824FC600200BFDAD3 /* SwiftUI.framework */,
+				3DC290AF2688080C002E246F /* IntentsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1064,6 +1100,7 @@
 				3DD4745A2545F3C1001CD60F /* DashboardWidgetConfigurationIntentHandler.swift */,
 				3DC11E6425C68D600099BFE9 /* PSUControlOnIntentHandler.swift */,
 				3DC11E6F25C68EC30099BFE9 /* PSUControlOffIntentHandler.swift */,
+				3DA0490A2687ED1C00C98379 /* TakeSnapshotIntentHandler.swift */,
 			);
 			path = "OctoPod Intent";
 			sourceTree = "<group>";
@@ -1087,6 +1124,7 @@
 				3D6EB0A9217B0D260093EC79 /* OctoPod Watch */,
 				3D6EB0B8217B0D270093EC79 /* OctoPod Watch Extension */,
 				3D450E5021AB1B210049FBC0 /* OctoPod Intent */,
+				3DC290B12688080C002E246F /* OctoPod Intent UI - Take Snapshot */,
 				3DE5F53A24FC600200BFDAD3 /* OctoPodWidget14 */,
 				3D4497DD21B2623400736F0F /* OctoPod Widget */,
 				3DABB21E22C0044D00F32731 /* OctoPod Notification Extension */,
@@ -1109,6 +1147,7 @@
 				3D53713C240100FC00B28067 /* OctoPod TV.app */,
 				3D537152240100FD00B28067 /* OctoPod TVUITests.xctest */,
 				3DE5F53524FC600200BFDAD3 /* OctoPodWidget14Extension.appex */,
+				3DC290AE2688080C002E246F /* OctoPod Intent UI - Take Snapshot.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1145,6 +1184,7 @@
 				3D9E087C2160455400F11CD4 /* InfoPlist.strings */,
 				3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */,
 				3D276C4525D05C7400B75EB3 /* PrinterUtils.swift */,
+				3DA0490C2687EE5500C98379 /* CameraUtils.swift */,
 			);
 			path = OctoPod;
 			sourceTree = "<group>";
@@ -1403,6 +1443,17 @@
 			path = "Apple Watch";
 			sourceTree = "<group>";
 		};
+		3DC290B12688080C002E246F /* OctoPod Intent UI - Take Snapshot */ = {
+			isa = PBXGroup;
+			children = (
+				3DFC828826881677007FBE6E /* OctoPod Intent UI - Take Snapshot.entitlements */,
+				3DC290B22688080C002E246F /* TakeSnapshotIntentViewController.swift */,
+				3DC290B42688080C002E246F /* MainInterface.storyboard */,
+				3DC290B72688080C002E246F /* Info.plist */,
+			);
+			path = "OctoPod Intent UI - Take Snapshot";
+			sourceTree = "<group>";
+		};
 		3DC57D5B20F4190B0061A87E /* File UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -1627,6 +1678,7 @@
 				3D4497E521B2623400736F0F /* PBXTargetDependency */,
 				3DABB22322C0044D00F32731 /* PBXTargetDependency */,
 				3DE5F54424FC600300BFDAD3 /* PBXTargetDependency */,
+				3DC290B92688080C002E246F /* PBXTargetDependency */,
 			);
 			name = OctoPod;
 			packageProductDependencies = (
@@ -1727,6 +1779,23 @@
 			productReference = 3DABB21D22C0044D00F32731 /* OctoPod Notification Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		3DC290AD2688080C002E246F /* OctoPod Intent UI - Take Snapshot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DC290BB2688080C002E246F /* Build configuration list for PBXNativeTarget "OctoPod Intent UI - Take Snapshot" */;
+			buildPhases = (
+				3DC290AA2688080C002E246F /* Sources */,
+				3DC290AB2688080C002E246F /* Frameworks */,
+				3DC290AC2688080C002E246F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "OctoPod Intent UI - Take Snapshot";
+			productName = "OctoPod Intent UI - Take Snapshot";
+			productReference = 3DC290AE2688080C002E246F /* OctoPod Intent UI - Take Snapshot.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		3DE5F53424FC600200BFDAD3 /* OctoPodWidget14Extension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3DE5F54824FC600300BFDAD3 /* Build configuration list for PBXNativeTarget "OctoPodWidget14Extension" */;
@@ -1750,7 +1819,7 @@
 		3D4527F620E15A370094CCB7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Gaston Dombiak";
 				TargetAttributes = {
@@ -1810,6 +1879,9 @@
 					3DABB21C22C0044D00F32731 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
+					3DC290AD2688080C002E246F = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
 					3DE5F53424FC600200BFDAD3 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -1851,6 +1923,7 @@
 				3D53713B240100FC00B28067 /* OctoPod TV */,
 				3D537151240100FD00B28067 /* OctoPod TVUITests */,
 				3DE5F53424FC600200BFDAD3 /* OctoPodWidget14Extension */,
+				3DC290AD2688080C002E246F /* OctoPod Intent UI - Take Snapshot */,
 			);
 		};
 /* End PBXProject section */
@@ -1934,6 +2007,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3DC290AC2688080C002E246F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DC290B62688080C002E246F /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3DE5F53324FC600200BFDAD3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1989,7 +2070,9 @@
 				3D669E1A22FBBAC0002C68C1 /* PaletteCutIntentHandler.swift in Sources */,
 				3D6F74532443FB96006847B6 /* EnclosureInput.swift in Sources */,
 				3D588C982545041400D96B86 /* SystemCommandIntentHandler.swift in Sources */,
+				3DA0490E2687F00C00C98379 /* CameraUtils.swift in Sources */,
 				3DD598A5257B472F0027B4D2 /* EnclosureTurnOnIntentHandler.swift in Sources */,
+				3DA049142687F59900C98379 /* HLSThumbnailUtil.swift in Sources */,
 				3D4064A521AB61E6000B05F9 /* CancelObject.swift in Sources */,
 				3D4064AF21AB75FF000B05F9 /* CancelJobIntentHandler.swift in Sources */,
 				3D4064A921AB6205000B05F9 /* ExecuteControl.swift in Sources */,
@@ -2000,6 +2083,7 @@
 				3DE04926257B767400C7E55F /* EnclosureTurnOffIntentHandler.swift in Sources */,
 				3D4497D121B2241D00736F0F /* PrinterManager.swift in Sources */,
 				3DB378202596D4C4008220EE /* SoCTempHistory.swift in Sources */,
+				3DA0490B2687ED1C00C98379 /* TakeSnapshotIntentHandler.swift in Sources */,
 				3D4064AB21AB7563000B05F9 /* PauseJobIntentHandler.swift in Sources */,
 				3D4497D021B2240700736F0F /* OctoPod.xcdatamodeld in Sources */,
 				3DC11E6525C68D600099BFE9 /* PSUControlOnIntentHandler.swift in Sources */,
@@ -2023,12 +2107,14 @@
 				3DDDB20121B10DC0007056C2 /* CoolDownPrinterIntentHandler.swift in Sources */,
 				3D4064A221AB61C4000B05F9 /* IPPlug.swift in Sources */,
 				3D4064A721AB61F7000B05F9 /* Command.swift in Sources */,
+				3DC290A52687F7D0002E246F /* UIUtils.swift in Sources */,
 				3D450EC921AB56F40049FBC0 /* IntentsController.swift in Sources */,
 				3D4497D521B230BE00736F0F /* SharedPersistentContainer.swift in Sources */,
 				3D669E1422FBB734002C68C1 /* Plugins.swift in Sources */,
 				3D4064A821AB61F9000B05F9 /* Script.swift in Sources */,
 				3D4064A421AB61D2000B05F9 /* CustomControl.swift in Sources */,
 				3D999B2224E9D642007AA99F /* MultiCamera.swift in Sources */,
+				3DC290A62687F856002E246F /* MjpegStreamingController.swift in Sources */,
 				3DDB5FC922CF164B005F8A9F /* SetChamberTempIntentHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2159,6 +2245,7 @@
 				583827E122E62D8700784706 /* Palette2PortsViewController.swift in Sources */,
 				3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */,
 				3DC6DB33245553C30091E548 /* FilamentSelection.swift in Sources */,
+				3DA0490D2687EE5500C98379 /* CameraUtils.swift in Sources */,
 				3D9C77CC266D71BD003E6FD9 /* AddOctoEverywherePrinterViewController.swift in Sources */,
 				3D1A9361213282190050ED9A /* CustomControlsViewController.swift in Sources */,
 				3D42AC1121731494004D9FD0 /* AppConfigurationDelegate.swift in Sources */,
@@ -2287,13 +2374,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3DC290AA2688080C002E246F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D349847268810FC0027BFEE /* Intents.intentdefinition in Sources */,
+				3DC290B32688080C002E246F /* TakeSnapshotIntentViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3DE5F53124FC600200BFDAD3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3DF383622505F84D003C803D /* CancelObject.swift in Sources */,
 				3D97074F2506E0B90076C959 /* CameraService.swift in Sources */,
-				3DBFB2FC256E1D1100DC43E8 /* HLSThumbnailUtil.swift in Sources */,
 				3D91E923250D7F3A008A59CD /* OctoPodWidget14.intentdefinition in Sources */,
 				3DF383592505F7F4003C803D /* HTTPClient.swift in Sources */,
 				3DA0BD562506DB9B008233DE /* JobDetailsView.swift in Sources */,
@@ -2302,6 +2397,7 @@
 				3D588CB52545DAD700D96B86 /* DashboardWidget.swift in Sources */,
 				3D42085A2506B511001C3DE2 /* UIUtils.swift in Sources */,
 				3DE5F53C24FC600200BFDAD3 /* OctoPodWidget14.swift in Sources */,
+				3DC290A72687F8B5002E246F /* HLSThumbnailUtil.swift in Sources */,
 				3DF3835D2505F828003C803D /* Command.swift in Sources */,
 				3D9707502506E0F40076C959 /* MjpegStreamingController.swift in Sources */,
 				3DF3835A2505F81D003C803D /* Script.swift in Sources */,
@@ -2352,6 +2448,11 @@
 			isa = PBXTargetDependency;
 			target = 3DABB21C22C0044D00F32731 /* OctoPod Notification Extension */;
 			targetProxy = 3DABB22222C0044D00F32731 /* PBXContainerItemProxy */;
+		};
+		3DC290B92688080C002E246F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DC290AD2688080C002E246F /* OctoPod Intent UI - Take Snapshot */;
+			targetProxy = 3DC290B82688080C002E246F /* PBXContainerItemProxy */;
 		};
 		3DE5F54424FC600300BFDAD3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2552,6 +2653,14 @@
 				3DD02E6323FCD9D800EB2E91 /* ru */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3DC290B42688080C002E246F /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DC290B52688080C002E246F /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 		3DD3C76221B3222200350225 /* Localizable.strings */ = {
@@ -3151,6 +3260,51 @@
 			};
 			name = Release;
 		};
+		3DC290BC2688080C002E246F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent UI - Take Snapshot/OctoPod Intent UI - Take Snapshot.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ALV53VY374;
+				INFOPLIST_FILE = "OctoPod Intent UI - Take Snapshot/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.OctoPod.OctoPod.OctoPod-Intent-UI-Take-Snapshot";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3DC290BD2688080C002E246F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent UI - Take Snapshot/OctoPod Intent UI - Take Snapshot.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ALV53VY374;
+				INFOPLIST_FILE = "OctoPod Intent UI - Take Snapshot/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.OctoPod.OctoPod.OctoPod-Intent-UI-Take-Snapshot";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		3DE5F54624FC600300BFDAD3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3286,6 +3440,15 @@
 			buildConfigurations = (
 				3DABB22622C0044E00F32731 /* Debug */,
 				3DABB22722C0044E00F32731 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3DC290BB2688080C002E246F /* Build configuration list for PBXNativeTarget "OctoPod Intent UI - Take Snapshot" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DC290BC2688080C002E246F /* Debug */,
+				3DC290BD2688080C002E246F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

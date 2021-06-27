@@ -132,6 +132,18 @@ class IntentsDonations {
         }
     }
     
+    static func donateTakeSnapshot(printer: Printer) {
+        // Intent only available on iOS 14 or newer
+        if #available(iOS 14.0, *) {
+            let intent = TakeSnapshotIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Take snapshot", comment: "Siri suggested phrase") + " " + printer.name, printer.name)
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "Snapshot")
+        }
+    }
+    
     static func donateSystemCommand(printer: Printer, action: String, source: String, name: String) {
         // Intent only available on iOS 12 or newer
         if #available(iOS 12.0, *) {
@@ -161,6 +173,7 @@ class IntentsDonations {
         donateRestartJob(printer: printer)
         // Remaining print time
         donateRemainingTime(printer: printer)
+        donateTakeSnapshot(printer: printer)
     }
 
     // Do a one time initialization for existing printers. This means that intents will

@@ -12,10 +12,6 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     private var lastPushComplicationUpdate: Date?
     private var lastPushedCompletion: Double?
     
-    // We need to keep this as an instance variable so it is not garbage collected and crashes
-    // the app since it uses KVO which crashes if observer has been GC'ed
-    private var hlsThumbnailGenerator: HLSThumbnailUtil?
-
     init(printerManager: PrinterManager, cloudKitPrinterManager: CloudKitPrinterManager, octoprintClient: OctoPrintClient) {
         self.printerManager = printerManager
         self.octoprintClient = octoprintClient
@@ -380,7 +376,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                     imageOrientation = UIImage.Orientation(rawValue: orientation)!
                 }
 
-                let completion = { (image: UIImage?, reply: [String : Any]?) in
+                let completion = { (image: UIImage?, errorMessage: String?) in
                     if let image = image {
                         var newImage: UIImage = image
                         DispatchQueue.main.async {
@@ -416,17 +412,13 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                                 replyHandler(["error": message, "retry": true])
                             }
                         }
-                    } else if let reply = reply {
+                    } else if let errorMessage = errorMessage {
                         // No image so reply is an error
-                        replyHandler(reply)
+                        replyHandler(["error": errorMessage])
                     }
                 }
                 
-                if UIUtils.isHLS(url: url) {
-                    renderHLSImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, completion: completion)
-                } else {
-                    renderMJPEGImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, preemptive: preemptive, completion: completion)
-                }
+                CameraUtils.shared.renderImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, preemptive: preemptive, completion: completion)
             } else {
                 NSLog("Invalid camera URL: \(url)")
                 let message = NSLocalizedString("Invalid camera URL", comment: "")
@@ -475,60 +467,6 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     }
 
     // MARK: - Private functions
-    
-    fileprivate func renderMJPEGImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, preemptive: Bool, completion: @escaping (UIImage?, [String : Any]?) -> ()) {
-        let streamingController = MjpegStreamingController()
-
-        if let username = username, let password = password {
-            // User authentication credentials if configured for the printer
-            if preemptive {
-                streamingController.authorizationHeader = HTTPClient.authBasicHeader(username: username, password: password)
-            } else {
-                streamingController.authenticationHandler = { challenge in
-                    let credential = URLCredential(user: username, password: password, persistence: .forSession)
-                    return (.useCredential, credential)
-                }
-            }
-        }
-        
-        streamingController.authenticationFailedHandler = {
-            let message = NSLocalizedString("Authentication failed", comment: "HTTP authentication failed")
-            completion(nil, ["error": message])
-        }
-
-        streamingController.didFinishWithErrors = { error in
-            completion(nil, ["error": error.localizedDescription])
-        }
-        
-        streamingController.didFinishWithHTTPErrors = { httpResponse in
-            // We got a 404 or some 5XX error
-            let message = String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode)
-            completion(nil, ["error": message])
-        }
-
-        streamingController.didRenderImage = { (image: UIImage) in
-            // Stop loading next jpeg image (MJPEG is a stream of jpegs)
-            streamingController.stop()
-            completion(image, nil)
-        }
-
-        streamingController.imageOrientation = imageOrientation
-        // Get first image and then stop streaming next images
-        streamingController.play(url: cameraURL)
-    }
-    
-    fileprivate func renderHLSImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, completion: @escaping (UIImage?, [String : Any]?) -> ()) {
-        hlsThumbnailGenerator = HLSThumbnailUtil(url: cameraURL, imageOrientation: imageOrientation, username: username, password: password) { (image: UIImage?) in
-            if let image = image {
-                // Execute completion block when done
-                completion(image, nil)
-            } else {
-                // Execute completion block when done
-                completion(nil, ["error": "No thumbnail generated"])
-            }
-        }
-        hlsThumbnailGenerator!.generate()
-    }
     
     fileprivate func getSession() -> WCSession? {
         if let session = session {
@@ -595,12 +533,12 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                     let url = multiCamera.cameraURL
                     if url == printer.getStreamPath() {
                         // This is camera hosted by OctoPrint so respect orientation
-                        cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+                        cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
                         cameraOrientation = Int(printer.cameraOrientation)
                     } else {
                         if url.starts(with: "/") {
                             // Another camera hosted by OctoPrint so build absolute URL
-                            cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+                            cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
                         } else {
                             // Use absolute URL to render camera
                             cameraURL = url
@@ -613,7 +551,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                 printerDic["cameras"] = camerasArray
             } else {
                 // MultiCam plugin is not installed so just show default camera
-                let cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: printer.getStreamPath())
+                let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
                 let cameraOrientation = Int(printer.cameraOrientation)
                 let cameraDic = ["url" : cameraURL, "orientation": cameraOrientation] as [String : Any]
                 printerDic["cameras"] = [cameraDic]
@@ -623,18 +561,5 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
 //        NSLog("Encoded printers: \(["printers" : printers])")
         
         return ["printers" : printers]
-    }
-    
-    fileprivate func octoPrintCameraAbsoluteUrl(hostname: String, streamUrl: String) -> String {
-        if streamUrl.isEmpty {
-            // Should never happen but let's be cautious
-            return hostname
-        }
-        if streamUrl.starts(with: "/") {
-            // Build absolute URL from relative URL
-            return hostname + streamUrl
-        }
-        // streamURL is an absolute URL so return it
-        return streamUrl
-    }
+    }    
 }

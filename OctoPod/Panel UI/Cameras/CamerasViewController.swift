@@ -213,12 +213,12 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
 
                     if url == printer.getStreamPath() {
                         // This is camera hosted by OctoPrint so respect orientation
-                        cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+                        cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
                         cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
                     } else {
                         if url.starts(with: "/") {
                             // Another camera hosted by OctoPrint so build absolute URL
-                            cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+                            cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
                         } else {
                             // Use absolute URL to render camera
                             cameraURL = url
@@ -233,7 +233,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             }
             if newViewControllers.isEmpty {
                 // MultiCam plugin is not installed so just show default camera
-                let cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: printer.getStreamPath())
+                let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
                 let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
                 newViewControllers.append(newEmbeddedCameraViewController(index: 0, url: cameraURL, cameraOrientation: cameraOrientation))
             }
@@ -277,24 +277,11 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         }
     }
     
-    fileprivate func octoPrintCameraAbsoluteUrl(hostname: String, streamUrl: String) -> String {
-        if streamUrl.isEmpty {
-            // Should never happen but let's be cautious
-            return hostname
-        }
-        if streamUrl.starts(with: "/") {
-            // Build absolute URL from relative URL
-            return hostname + streamUrl
-        }
-        // streamURL is an absolute URL so return it
-        return streamUrl
-    }
-
     fileprivate func newEmbeddedCameraViewController(index: Int, url: String, cameraOrientation: UIImage.Orientation) -> CameraEmbeddedViewController {
         var controller: CameraEmbeddedViewController
         // See if we can reuse existing controller
         let existing: CameraEmbeddedViewController? = orderedViewControllers.count > index ? orderedViewControllers[index] : nil
-        let useHLS = UIUtils.isHLS(url: url)
+        let useHLS = CameraUtils.shared.isHLS(url: url)
         if useHLS, let _ = existing as? CameraHLSEmbeddedViewController {
             controller = existing!
         } else if !useHLS, let _ = existing as? CameraMJPEGEmbeddedViewController{

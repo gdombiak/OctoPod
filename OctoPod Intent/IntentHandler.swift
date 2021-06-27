@@ -56,6 +56,8 @@ class IntentHandler: INExtension {
                 // Fallback on earlier versions
                 fatalError("WidgetConfigurationIntent is only available on iOS 14 or newer")
             }
+        } else if intent is TakeSnapshotIntent {
+            return TakeSnapshotIntentHandler(printerManager: IntentHandler.printerManager)
         } else {
             fatalError("Unhandled intent type: \(intent)")
         }

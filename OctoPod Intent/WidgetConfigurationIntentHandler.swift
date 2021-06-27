@@ -55,12 +55,12 @@ class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandl
                     let url = multiCamera.cameraURL
                     if url == selectedPrinter.getStreamPath() {
                         // This is camera hosted by OctoPrint so respect orientation
-                        cameraURL = octoPrintCameraAbsoluteUrl(hostname: selectedPrinter.hostname, streamUrl: url)
+                        cameraURL = CameraUtils.shared.absoluteURL(hostname: selectedPrinter.hostname, streamUrl: url)
                         cameraOrientation = Int(selectedPrinter.cameraOrientation)
                     } else {
                         if url.starts(with: "/") {
                             // Another camera hosted by OctoPrint so build absolute URL
-                            cameraURL = octoPrintCameraAbsoluteUrl(hostname: selectedPrinter.hostname, streamUrl: url)
+                            cameraURL = CameraUtils.shared.absoluteURL(hostname: selectedPrinter.hostname, streamUrl: url)
                         } else {
                             // Use absolute URL to render camera
                             cameraURL = url
@@ -71,7 +71,7 @@ class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandl
                 }
             } else {
                 // MultiCam plugin is not installed so just show default camera
-                let cameraURL = octoPrintCameraAbsoluteUrl(hostname: selectedPrinter.hostname, streamUrl: selectedPrinter.getStreamPath())
+                let cameraURL = CameraUtils.shared.absoluteURL(hostname: selectedPrinter.hostname, streamUrl: selectedPrinter.getStreamPath())
                 let cameraOrientation = Int(selectedPrinter.cameraOrientation)
                 widgetCameras.append(createWidgetCamera(name: NSLocalizedString("Default", comment: ""), cameraURL: cameraURL, cameraOrientation: cameraOrientation))
             }
@@ -121,12 +121,12 @@ class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandl
 //                let url = multiCamera.cameraURL
 //                if url == printer.getStreamPath() {
 //                    // This is camera hosted by OctoPrint so respect orientation
-//                    cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+//                    cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
 //                    cameraOrientation = Int(printer.cameraOrientation)
 //                } else {
 //                    if url.starts(with: "/") {
 //                        // Another camera hosted by OctoPrint so build absolute URL
-//                        cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+//                        cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
 //                    } else {
 //                        // Use absolute URL to render camera
 //                        cameraURL = url
@@ -136,7 +136,7 @@ class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandl
 //                return createWidgetCamera(name: multiCamera.name, cameraURL: cameraURL, cameraOrientation: cameraOrientation)
 //            } else {
 //                // MultiCam plugin is not installed so use default camera
-//                let cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: printer.getStreamPath())
+//                let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
 //                let cameraOrientation = Int(printer.cameraOrientation)
 //                return createWidgetCamera(name: NSLocalizedString("Default", comment: ""), cameraURL: cameraURL, cameraOrientation: cameraOrientation)
 //            }
@@ -166,18 +166,4 @@ class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandl
         widgetCamera.cameraOrientation = NSNumber(value: cameraOrientation)
         return widgetCamera
     }
-    
-    fileprivate func octoPrintCameraAbsoluteUrl(hostname: String, streamUrl: String) -> String {
-        if streamUrl.isEmpty {
-            // Should never happen but let's be cautious
-            return hostname
-        }
-        if streamUrl.starts(with: "/") {
-            // Build absolute URL from relative URL
-            return hostname + streamUrl
-        }
-        // streamURL is an absolute URL so return it
-        return streamUrl
-    }
-
 }

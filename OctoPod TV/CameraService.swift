@@ -287,12 +287,12 @@ class CameraService: ObservableObject {
                 let url = multiCamera.cameraURL
                 if url == printer.getStreamPath() {
                     // This is camera hosted by OctoPrint so respect orientation
-                    cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+                    cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
                     cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
                 } else {
                     if url.starts(with: "/") {
                         // Another camera hosted by OctoPrint so build absolute URL
-                        cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+                        cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
                     } else {
                         // Use absolute URL to render camera
                         cameraURL = url
@@ -307,22 +307,9 @@ class CameraService: ObservableObject {
         }
         if cameras.isEmpty {
             // MultiCam plugin is not installed so just show default camera
-            let cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: printer.getStreamPath())
+            let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
             let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
             cameras.append(Camera(index: 0, url: cameraURL, orientation: cameraOrientation, streamRatio: printer.firstCameraAspectRatio16_9 ? CGFloat(0.5625) : CGFloat(0.75)))
         }
-    }
-
-    fileprivate func octoPrintCameraAbsoluteUrl(hostname: String, streamUrl: String) -> String {
-        if streamUrl.isEmpty {
-            // Should never happen but let's be cautious
-            return hostname
-        }
-        if streamUrl.starts(with: "/") {
-            // Build absolute URL from relative URL
-            return hostname + streamUrl
-        }
-        // streamURL is an absolute URL so return it
-        return streamUrl
     }
 }

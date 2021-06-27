@@ -9,11 +9,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>9KPzQV</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>20C69</string>
+	<string>20F71</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>12D4e</string>
+	<string>12E507</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>12.4</string>
+	<string>12.5.1</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -2357,6 +2357,133 @@
 			<true/>
 			<key>INIntentVerb</key>
 			<string>Do</string>
+		</dict>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>information</string>
+			<key>INIntentDescription</key>
+			<string>Take Snapshot</string>
+			<key>INIntentDescriptionID</key>
+			<string>2O3S2V</string>
+			<key>INIntentLastParameterTag</key>
+			<integer>2</integer>
+			<key>INIntentName</key>
+			<string>TakeSnapshot</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key>printer,printerURL</key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSubtitle</key>
+					<string>${printer}</string>
+					<key>INIntentParameterCombinationSubtitleID</key>
+					<string>5iTPOd</string>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Take Snapshot</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>9107Xn</string>
+				</dict>
+			</dict>
+			<key>INIntentParameters</key>
+			<array>
+				<dict>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+						<key>INIntentParameterMetadataDefaultValueID</key>
+						<string>1Eb8q8</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>printer</string>
+					<key>INIntentParameterTag</key>
+					<integer>1</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>2</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCapitalization</key>
+						<string>Sentences</string>
+						<key>INIntentParameterMetadataDefaultValueID</key>
+						<string>Os3waZ</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>printerURL</string>
+					<key>INIntentParameterTag</key>
+					<integer>2</integer>
+					<key>INIntentParameterType</key>
+					<string>String</string>
+				</dict>
+			</array>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+				</array>
+				<key>INIntentResponseLastParameterTag</key>
+				<integer>4</integer>
+				<key>INIntentResponseParameters</key>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Snapshot</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>KxJmrF</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>image</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>File</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterMetadata</key>
+						<dict>
+							<key>INIntentResponseParameterMetadataFalseDisplayNameID</key>
+							<string>7wX8ag</string>
+							<key>INIntentResponseParameterMetadataTrueDisplayNameID</key>
+							<string>eHqWgJ</string>
+						</dict>
+						<key>INIntentResponseParameterName</key>
+						<string>imageAspectRatio16_9</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>4</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Boolean</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>Take Snapshot</string>
+			<key>INIntentTitleID</key>
+			<string>P6usJW</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentVerb</key>
+			<string>View</string>
 		</dict>
 	</array>
 	<key>INTypes</key>
