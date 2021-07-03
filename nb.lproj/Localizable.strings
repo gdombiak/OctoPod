@@ -352,6 +352,9 @@
 /* File Type is a Folder */
 "Folder" = "Mappe";
 
+/* No comment provided by engineer. */
+"Hostname (e.g. http://octopi.local)" = "Vertsnavn (f.eks. http://octopi.local)";
+
 /* (No Comment) */
 "hours ago" = "%d timer siden";
 
@@ -449,6 +452,9 @@
 "Offline" = "Frakoblet";
 
 /* No comment provided by engineer. */
+"Password" = "Passord";
+
+/* No comment provided by engineer. */
 "Pause" = "Pause";
 
 /* Siri suggested phrase */
@@ -495,6 +501,9 @@
 
 /* No comment provided by engineer. */
 "Printer" = "Skriver";
+
+/* No comment provided by engineer. */
+"Printer Name (e.g. MK3)" = "Skrivernavn (f.eks. MK3)";
 
 /* (No Comment) */
 "Printer not operational" = "Skriveren er ikke operativ";
@@ -674,6 +683,9 @@
 
 /* (No Comment) */
 "Upload failed" = "Opplasting feilet";
+
+/* No comment provided by engineer. */
+"Username" = "Brukernavn";
 
 /* Siri suggested phrase */
 "Warm up heated chamber" = "Varm opp oppvarmet kammer";

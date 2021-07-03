@@ -1,9 +1,54 @@
 /* No comment provided by engineer. */
+"1 day ago" = "день назад";
+
+/* No comment provided by engineer. */
+"1 hour ago" = "час назад";
+
+/* No comment provided by engineer. */
+"1 minute ago" = "минуту назад";
+
+/* No comment provided by engineer. */
+"1 week ago" = "неделю назад";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Ошибка аутентификации";
+
+/* No comment provided by engineer. */
+"Confirm" = "Подтвердить";
+
+/* No comment provided by engineer. */
+"days ago" = "%d дн. назад";
+
+/* No comment provided by engineer. */
 "Default" = "Исходная";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Отклонить";
+
+/* No comment provided by engineer. */
+"hours ago" = "%d ч. назад";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Ошибка запроса. HTTP-ответ: %d";
+
+/* No comment provided by engineer. */
+"minutes ago" = "%d мин. назад";
 
 /* No comment provided by engineer. */
 "Missed" = "Отсутствует";
 
+/* No comment provided by engineer. */
+"No" = "Нет";
+
+/* No comment provided by engineer. */
+"seconds ago" = "%d сек. назад";
+
 /* ETA is Unknown */
 "Unknown" = "Неизвестно";
+
+/* No comment provided by engineer. */
+"weeks ago" = "%d нед. назад";
+
+/* No comment provided by engineer. */
+"Yes" = "Да";
 

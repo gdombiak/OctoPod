@@ -1,3 +1,9 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "OctoPod";
+
+/* Bundle name */
+"CFBundleName" = "OctoPod";
+
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Vi trenger tilgang til kameraet for å skanne QR-kode";
 

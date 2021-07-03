@@ -352,6 +352,9 @@
 /* File Type is a Folder */
 "Folder" = "Dossier";
 
+/* No comment provided by engineer. */
+"Hostname (e.g. http://octopi.local)" = "Hostname (ex. : http://octopi.local)";
+
 /* (No Comment) */
 "hours ago" = "Il y a %d heures";
 
@@ -449,6 +452,9 @@
 "Offline" = "Hors-ligne";
 
 /* No comment provided by engineer. */
+"Password" = "Mot de passe";
+
+/* No comment provided by engineer. */
 "Pause" = "Pause";
 
 /* Siri suggested phrase */
@@ -495,6 +501,9 @@
 
 /* No comment provided by engineer. */
 "Printer" = "Imprimante";
+
+/* No comment provided by engineer. */
+"Printer Name (e.g. MK3)" = "Nom de l’imprimante (ex. : MK3)";
 
 /* (No Comment) */
 "Printer not operational" = "Imprimante non-opérationnelle";
@@ -674,6 +683,9 @@
 
 /* (No Comment) */
 "Upload failed" = "Erreur de chargement";
+
+/* No comment provided by engineer. */
+"Username" = "Utilisateur";
 
 /* Siri suggested phrase */
 "Warm up heated chamber" = "Chauffage du caisson";

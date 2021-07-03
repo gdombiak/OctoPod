@@ -352,6 +352,9 @@
 /* File Type is a Folder */
 "Folder" = "Aplankas";
 
+/* No comment provided by engineer. */
+"Hostname (e.g. http://octopi.local)" = "Hostname (pvz. http://octopi.local)";
+
 /* (No Comment) */
 "hours ago" = "prieš %d valandas";
 
@@ -449,6 +452,9 @@
 "Offline" = "Išjungta";
 
 /* No comment provided by engineer. */
+"Password" = "Slaptažodis";
+
+/* No comment provided by engineer. */
 "Pause" = "Pauzė";
 
 /* Siri suggested phrase */
@@ -495,6 +501,9 @@
 
 /* No comment provided by engineer. */
 "Printer" = "Spausdintuvas";
+
+/* No comment provided by engineer. */
+"Printer Name (e.g. MK3)" = "Spausdintuvo vardas (pvz MK3)";
 
 /* (No Comment) */
 "Printer not operational" = "Spausdintuvas išjungtas";
@@ -674,6 +683,9 @@
 
 /* (No Comment) */
 "Upload failed" = "Nepavyko įkelti";
+
+/* No comment provided by engineer. */
+"Username" = "Prisijungimo vardas";
 
 /* Siri suggested phrase */
 "Warm up heated chamber" = "Pašildyti šildomą dėžę";

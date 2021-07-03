@@ -352,6 +352,9 @@
 /* File Type is a Folder */
 "Folder" = "Mapp";
 
+/* No comment provided by engineer. */
+"Hostname (e.g. http://octopi.local)" = "Värdnamn (t.ex. http://octopi.local)";
+
 /* (No Comment) */
 "hours ago" = "%d timmar sedan";
 
@@ -449,6 +452,9 @@
 "Offline" = "Offline";
 
 /* No comment provided by engineer. */
+"Password" = "Lösenord";
+
+/* No comment provided by engineer. */
 "Pause" = "Pausa";
 
 /* Siri suggested phrase */
@@ -495,6 +501,9 @@
 
 /* No comment provided by engineer. */
 "Printer" = "Skrivare";
+
+/* No comment provided by engineer. */
+"Printer Name (e.g. MK3)" = "Skrivarnamn (t.ex. MK3)";
 
 /* (No Comment) */
 "Printer not operational" = "Skrivare ej driftklar";
@@ -674,6 +683,9 @@
 
 /* (No Comment) */
 "Upload failed" = "Uppladdning misslyckades";
+
+/* No comment provided by engineer. */
+"Username" = "Användarnamn";
 
 /* Siri suggested phrase */
 "Warm up heated chamber" = "Värm upp uppvärmd kammare";
