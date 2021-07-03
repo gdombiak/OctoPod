@@ -475,6 +475,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "Error al reanudar el trabajo";
 
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Límite de cámara excedido";
+
 /* No comment provided by engineer. */
 "OctoEverywhere's connection to OctoPrint timed out" = "Se agotó el tiempo de espera de la conexión de OctoEverywhere a OctoPrint";
 
