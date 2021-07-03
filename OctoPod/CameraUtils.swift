@@ -69,8 +69,13 @@ class CameraUtils {
         }
         
         streamingController.didFinishWithHTTPErrors = { httpResponse in
-            // We got a 404 or some 5XX error
-            let message = String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode)
+            let message: String
+            if httpResponse.statusCode == 609 {
+                message = NSLocalizedString("OctoEverywhere: Webcam Limit Exceeded", comment: "Error message from OctoEverywhere")
+            } else {
+                // We got a 404 or some 5XX error
+                message = String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode)
+            }
             completion(nil, message)
         }
 
