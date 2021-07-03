@@ -32,8 +32,8 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Create the page container
-        pageContainer = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        // Create the page container (seems that using .pageCurl avoids some assertion crash)
+        pageContainer = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: nil)
         pageContainer.delegate = self
         pageContainer.dataSource = self
 

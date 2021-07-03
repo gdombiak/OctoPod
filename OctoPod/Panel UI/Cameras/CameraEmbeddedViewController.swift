@@ -21,15 +21,13 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     var cameraURL: String!
     var cameraOrientation: UIImage.Orientation!
     
-    var uiPreviousOrientation: UIInterfaceOrientation?
-    
     var cameraTappedCallback: (() -> Void)?
     var cameraViewDelegate: CameraViewDelegate?
     var cameraIndex: Int!
 
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
     
-    var camerasViewController: CamerasViewController!
+    var camerasViewController: CamerasViewController?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

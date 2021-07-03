@@ -16,6 +16,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
 
     @IBOutlet weak var printerSelectButton: UIBarButtonItem!
     @IBOutlet weak var connectButton: UIBarButtonItem!
+    @IBOutlet weak var cameraGridButton: UIButton!
     
     @IBOutlet weak var notRefreshingButton: UIButton!
     var notRefreshingReason: String?
@@ -481,6 +482,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         camerasViewController?.camerasChanged(camerasURLs: camerasURLs)
     }
 
+    // MARK: - Orientation change
+
     // React when device orientation changes
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -491,6 +494,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         if let printer = printerManager.getDefaultPrinter() {
             // Update layout depending on camera orientation
             updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!, devicePortrait: size.height == screenHeight)
+            // Hide/show camera grid button based on orientation
+            self.cameraGridButton.isHidden = !self.showCameraGridButton()
             // Add some delay before calculating if we should render temp info
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.checkDisplayPrintStatusOverCamera()
@@ -692,6 +697,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 if let navigationController = self.navigationController as? NavigationController {
                     navigationController.refreshForPrinterColors(color: printer.color)
                 }
+                // Show camera grid button only if printer has many cameras
+                self.cameraGridButton.isHidden = !self.showCameraGridButton()
             }
             
             // Use last known aspect ratio of first camera of this printer
@@ -710,12 +717,22 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             DispatchQueue.main.async {
                 self.notRefreshingReason = nil
                 self.notRefreshingButton.isHidden = true
+                self.cameraGridButton.isHidden = true
             }
             // Assume printer is not connected
             updateConnectButton(printerConnected: false, assumption: true)
             // Ask octoprintClient to disconnect from OctoPrint server
             octoprintClient.disconnectFromServer()
         }
+    }
+    
+    fileprivate func showCameraGridButton() -> Bool {
+        // Show camera grid button only if printer has many cameras
+        if let printer = printerManager.getDefaultPrinter(), let cameras = printer.getMultiCameras(), cameras.count > 1 {
+            // Hide button when in landscape
+            return !UIDevice.current.orientation.isLandscape
+        }
+        return false
     }
     
     fileprivate func refreshNewSelectedPrinter() {
@@ -769,6 +786,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             self.tabBarController?.tabBar.isHidden = true
             // Hide bottom panel
             subpanelsView.isHidden = true
+            // Hide camera grid button
+            cameraGridButton.isHidden = true
             // Switch constraints priority. Height does not matter now. Bottom constraint matters with 0 to safe view
             cameraHeightConstraint.priority = UILayoutPriority(rawValue: 998)       // Ignore height of camera view
             cameraToSubpanelConstraint.priority = UILayoutPriority(rawValue: 998)   // Ignore relationship to subpanel
@@ -794,6 +813,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             self.tabBarController?.tabBar.isHidden = false
             // Show bottom panel
             subpanelsView.isHidden = false
+            // Show camera grid button only if printer has many cameras
+            cameraGridButton.isHidden = !showCameraGridButton()
             // Switch constraints priority. Height matters again. Bottom constraint no longer matters
             cameraHeightConstraint.priority = UILayoutPriority(rawValue: 999)      // Activate height of camera view
             cameraToSubpanelConstraint.priority = UILayoutPriority(rawValue: 999)  // Activate relationship to subpanel

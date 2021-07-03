@@ -20,8 +20,8 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
     }
     
     @IBAction func togglePictureInPictureMode(_ sender: UIButton) {
-        camerasViewController.togglePictureInPictureMode()
-        if camerasViewController.userStartedPIP {
+        camerasViewController?.togglePictureInPictureMode()
+        if camerasViewController?.userStartedPIP ?? false {
             pipButton.setImage(AVPictureInPictureController.pictureInPictureButtonStopImage(compatibleWith: nil), for: .normal)
         } else {
             pipButton.setImage(AVPictureInPictureController.pictureInPictureButtonStartImage(compatibleWith: nil), for: .normal)
@@ -67,7 +67,7 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
     
     fileprivate func setupPictureInPicture() {
         // Ensure PiP is supported by current device.
-        if camerasViewController.offerPIP && AVPictureInPictureController.isPictureInPictureSupported() {
+        if camerasViewController?.offerPIP ?? false && AVPictureInPictureController.isPictureInPictureSupported() {
             let castedLayer = playerView.layer as! AVPlayerLayer
          
             let callback = {
@@ -76,11 +76,11 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
                 }
             }
             // Create a new controller, passing the reference to the AVPlayerLayer.
-            camerasViewController.initPictureInPictureController(playerLayer: castedLayer, pipClosedCallback: callback)
+            camerasViewController?.initPictureInPictureController(playerLayer: castedLayer, pipClosedCallback: callback)
             // Observe whether using PiP mode is possible in the current context; for example, when the system is displaying
             // an active FaceTime window. By observing this property, you can determine when it’s appropriate to change the
             // enabled state of your PiP button.
-            pipPossibleObservation = camerasViewController.pictureInPictureController!.observe(\AVPictureInPictureController.isPictureInPicturePossible, options: [.initial, .new]) { [weak self] _, change in
+            pipPossibleObservation = camerasViewController?.pictureInPictureController!.observe(\AVPictureInPictureController.isPictureInPicturePossible, options: [.initial, .new]) { [weak self] _, change in
                 // Update the PiP button's enabled state.
                 self?.pipButton.isHidden = !(change.newValue ?? false)
             }
@@ -164,7 +164,7 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
     }
     
     override func stopPlaying() {
-        if !camerasViewController.userStartedPIP {
+        if !(camerasViewController?.userStartedPIP ?? false) {
             self.player?.pause()
 
             // Stop listening to events since player is going away. App will crash if KVO notification goes to a zombie object

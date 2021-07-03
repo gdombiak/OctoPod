@@ -47,6 +47,17 @@
                                     </segue>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gty-Bk-E2K">
+                                <rect key="frame" x="5" y="49" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="MIb-QT-0hb"/>
+                                    <constraint firstAttribute="width" constant="24" id="a9n-yZ-w8c"/>
+                                </constraints>
+                                <state key="normal" image="CameraGrid"/>
+                                <connections>
+                                    <segue destination="khO-l4-al7" kind="show" id="1ac-Ly-3HO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xB8-sn-f1e"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -60,7 +71,9 @@
                             <constraint firstItem="uff-mu-aBi" firstAttribute="leading" secondItem="qbu-bG-uS0" secondAttribute="leading" id="OUR-aT-aHE"/>
                             <constraint firstItem="uff-mu-aBi" firstAttribute="trailing" secondItem="qbu-bG-uS0" secondAttribute="trailing" id="Ynb-gY-yIl"/>
                             <constraint firstItem="n53-As-HXW" firstAttribute="bottom" secondItem="xB8-sn-f1e" secondAttribute="bottom" id="e56-lU-MLu"/>
+                            <constraint firstItem="gty-Bk-E2K" firstAttribute="leading" secondItem="xB8-sn-f1e" secondAttribute="leading" constant="5" id="fy3-Rg-aEZ"/>
                             <constraint firstItem="n53-As-HXW" firstAttribute="top" secondItem="uff-mu-aBi" secondAttribute="bottom" priority="999" id="laI-d5-TdD"/>
+                            <constraint firstItem="gty-Bk-E2K" firstAttribute="top" secondItem="xB8-sn-f1e" secondAttribute="top" constant="5" id="qwm-wZ-jlx"/>
                             <constraint firstItem="b0b-3X-MUJ" firstAttribute="leading" secondItem="xB8-sn-f1e" secondAttribute="leading" constant="20" id="yqY-tW-mWr"/>
                         </constraints>
                     </view>
@@ -79,6 +92,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cameraGridButton" destination="gty-Bk-E2K" id="8CB-Y8-GCO"/>
                         <outlet property="cameraHeightConstraint" destination="aUz-z4-Qhc" id="gH0-RG-tja"/>
                         <outlet property="cameraToBottomConstraint" destination="3lf-Xf-FPY" id="av1-P2-Pup"/>
                         <outlet property="cameraToSubpanelConstraint" destination="laI-d5-TdD" id="2tW-KO-QyK"/>
@@ -8128,6 +8142,41 @@
             </objects>
             <point key="canvasLocation" x="3746" y="-769"/>
         </scene>
+        <!--Cameras-->
+        <scene sceneID="UVY-sb-UGa">
+            <objects>
+                <collectionViewController id="khO-l4-al7" customClass="CamerasGridViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Amk-FE-MEw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uAH-Oz-nwc">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cameraGridCell" id="KlF-PU-xP3" customClass="CameraGridViewCell" customModule="OctoPod" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="sJV-av-Ynb">
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="khO-l4-al7" id="3rk-rf-a0R"/>
+                            <outlet property="delegate" destination="khO-l4-al7" id="CF1-FY-Skj"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Cameras" id="cYo-7v-8Bn"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Voc-7w-OsJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4502" y="-769"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="zn3-Wa-ymQ"/>
@@ -8145,6 +8194,7 @@
         <image name="All Motors" width="24" height="24"/>
         <image name="Appearance" width="32" height="32"/>
         <image name="Apple Watch" width="32" height="32"/>
+        <image name="CameraGrid" width="24" height="24"/>
         <image name="Dashboard" width="24" height="24"/>
         <image name="Devices" width="32" height="32"/>
         <image name="Dialogs" width="32" height="32"/>
