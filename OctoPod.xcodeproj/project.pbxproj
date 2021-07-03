@@ -16,6 +16,8 @@
 		3D0FA48321047AFA0084FF52 /* FilesTreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0FA48221047AFA0084FF52 /* FilesTreeViewController.swift */; };
 		3D1265B7268FF751007F3ED4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D1265B5268FF751007F3ED4 /* InfoPlist.strings */; };
 		3D1265BA268FF751007F3ED4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D1265B8268FF751007F3ED4 /* InfoPlist.strings */; };
+		3D1265D626900BAB007F3ED4 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
+		3D1265D726900BB2007F3ED4 /* CameraUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0490C2687EE5500C98379 /* CameraUtils.swift */; };
 		3D17273522F2838600C0A341 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D17273322F2838600C0A341 /* InfoPlist.strings */; };
 		3D1A8ADF2298CB0E006FF38D /* BedNotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A8ADE2298CB0E006FF38D /* BedNotificationsHandler.swift */; };
 		3D1A935721326AEF0050ED9A /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935621326AEF0050ED9A /* CustomControl.swift */; };
@@ -2315,6 +2317,7 @@
 				3DC236542401138600D9EF28 /* OctoPrintRESTClient.swift in Sources */,
 				3D778F862402F85200B68942 /* OctoPrintPluginsDelegate.swift in Sources */,
 				3DC23657240113AD00D9EF28 /* CustomControl.swift in Sources */,
+				3D1265D726900BB2007F3ED4 /* CameraUtils.swift in Sources */,
 				3DC236402401029E00D9EF28 /* IPPlug.swift in Sources */,
 				3DC2365C240113E100D9EF28 /* ControlInput.swift in Sources */,
 				3D778F8B24030F8F00B68942 /* TVPrinterManager.swift in Sources */,
@@ -2333,6 +2336,7 @@
 				3DC236462401031100D9EF28 /* CloudKitPrinterLogEntry.swift in Sources */,
 				3DC2364F240109C800D9EF28 /* PrintFile.swift in Sources */,
 				3DA7786325CFAFCF0048405A /* BLTouch.swift in Sources */,
+				3D1265D626900BAB007F3ED4 /* HLSThumbnailUtil.swift in Sources */,
 				3DC2365124010DED00D9EF28 /* DetailedView.swift in Sources */,
 				3DC2365D240113EF00D9EF28 /* Command.swift in Sources */,
 				3DC23642240102E700D9EF28 /* OctoPod.xcdatamodeld in Sources */,
