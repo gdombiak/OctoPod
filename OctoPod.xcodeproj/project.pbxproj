@@ -930,6 +930,13 @@
 		3DFF0B252690C286009151DA /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3DFF0B282690DE99009151DA /* CamerasGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasGridViewController.swift; sourceTree = "<group>"; };
 		3DFF0B2B2690FAC4009151DA /* CameraGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraGridViewCell.swift; sourceTree = "<group>"; };
+		3DFF0B2D26911E5E009151DA /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DFF0B2E26912016009151DA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DFF0B2F2691201E009151DA /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DFF0B302691202E009151DA /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DFF0B3126912041009151DA /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DFF0B3226912050009151DA /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DFF0B33269120F4009151DA /* lt-LT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lt-LT"; path = "lt-LT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		583827DD22E36B9100784706 /* Palette2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette2ViewController.swift; sourceTree = "<group>"; };
 		583827E022E62D8700784706 /* Palette2PortsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette2PortsViewController.swift; sourceTree = "<group>"; };
 		5843B64922E9FA1D001EDBAC /* PingPongHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingPongHistoryViewController.swift; sourceTree = "<group>"; };
@@ -2864,6 +2871,13 @@
 				3DFF0B222690C196009151DA /* it */,
 				3DFF0B242690C27C009151DA /* es */,
 				3DFF0B252690C286009151DA /* es-419 */,
+				3DFF0B2D26911E5E009151DA /* sv */,
+				3DFF0B2E26912016009151DA /* ru */,
+				3DFF0B2F2691201E009151DA /* fr */,
+				3DFF0B302691202E009151DA /* nb */,
+				3DFF0B3126912041009151DA /* cs */,
+				3DFF0B3226912050009151DA /* de */,
+				3DFF0B33269120F4009151DA /* lt-LT */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

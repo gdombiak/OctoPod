@@ -274,6 +274,9 @@
 /* Class = "UITableViewSection"; headerTitle = "HTTP Authentication"; ObjectID = "cYc-2L-RG7"; */
 "cYc-2L-RG7.headerTitle" = "Autenticazione HTTP";
 
+/* Class = "UINavigationItem"; title = "Cameras"; ObjectID = "cYo-7v-8Bn"; */
+"cYo-7v-8Bn.title" = "Videocamere";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "daK-38-bWh"; */
 "daK-38-bWh.text" = "Label";
 

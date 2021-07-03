@@ -13,6 +13,9 @@
 /* (No Comment) */
 "1 week ago" = "1 vecka sedan";
 
+/* No comment provided by engineer. */
+"Account is no longer an OctoEverywhere supporter" = "Kontot är inte längre en OctoEverywhere-supporter";
+
 /* (No Comment) */
 "Actual Bed" = "Aktuell bädd";
 
@@ -33,6 +36,18 @@
 
 /* No comment provided by engineer. */
 "Actual Extruder 5" = "Aktuell extruder 5";
+
+/* No comment provided by engineer. */
+"API Key" = "API-nyckel";
+
+/* No comment provided by engineer. */
+"API Key or Application Key" = "API-nyckel eller Programnyckel";
+
+/* No comment provided by engineer. */
+"Application Key not enabled in OctoPrint." = "Programnyckel inte aktiverad i OctoPrint.";
+
+/* No comment provided by engineer. */
+"Application Key obtained. Click save to finish." = "Programnyckel erhållen. Klicka spara för att slutföra.";
 
 /* (No Comment) */
 "Apply" = "Verkställ";
@@ -88,6 +103,9 @@
 /* (No Comment) */
 "Command not executed. Script not found" = "Kommandot ej utfört. Skript hittades inte";
 
+/* No comment provided by engineer. */
+"Complete information and click save to finish." = "Komplettera information och klicka spara för att slutföra.";
+
 /* (No Comment) */
 "Confirm" = "Bekräfta";
 
@@ -135,6 +153,9 @@
 
 /* (No Comment) */
 "Connection failed" = "Anslutning misslyckad";
+
+/* No comment provided by engineer. */
+"Contacting OctoPrint." = "Kontaktar OctoPrint.";
 
 /* Siri suggested phrase */
 "Cool down heated chamber" = "Kyl ner uppvärmd kammare";
@@ -201,6 +222,9 @@
 
 /* gcode name */
 "Endstop States" = "Ändlägestillstånd";
+
+/* No comment provided by engineer. */
+"Error obtaining Application Key." = "Fel vid hämtning av programnyckel.";
 
 /* Siri suggested phrase */
 "Execute System Command" = "Kör systemkommando";
@@ -376,6 +400,9 @@
 /* (No Comment) */
 "Incorrect authentication credentials" = "Felaktiga autentiseringsuppgifter";
 
+/* No comment provided by engineer. */
+"Internal OctoEverywhere error" = "Internt OctoEverywhere-fel";
+
 /* URL of camera is invalid */
 "Invalid camera URL" = "Ogiltig kamerawebbadress";
 
@@ -396,6 +423,9 @@
 
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Plats inte längre giltig. Uppdatera filer";
+
+/* No comment provided by engineer. */
+"Log into OctoPrint to approve access request." = "Logga in i OctoPrint för att godkänna åtkomstbegäran.";
 
 /* (No Comment) */
 "minutes ago" = "%d minuter sedan";
@@ -444,6 +474,12 @@
 
 /* (No Comment) */
 "Notify failed resume job" = "Kunde inte begära att återuppta jobb";
+
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Gräns för webbkameran överskriden";
+
+/* No comment provided by engineer. */
+"OctoEverywhere's connection to OctoPrint timed out" = "Tidsgränsen för OctoEverywhere's anslutning till OctoPrint utgick";
 
 /* English translation for words in Swift files */
 "OctoPrint" = "OctoPrint";
@@ -503,6 +539,9 @@
 "Printer" = "Skrivare";
 
 /* No comment provided by engineer. */
+"Printer is not connected to OctoEverywhere" = "Skrivaren är inte ansluten till OctoEverywhere";
+
+/* No comment provided by engineer. */
 "Printer Name (e.g. MK3)" = "Skrivarnamn (t.ex. MK3)";
 
 /* (No Comment) */
@@ -519,6 +558,9 @@
 
 /* (No Comment) */
 "Pull down to refresh" = "Dra nedåt för att uppdatera";
+
+/* No comment provided by engineer. */
+"Recreate printer in OctoEverywhere and OctoPod" = "Återskapa skrivare i OctoEverywhere och OctoPod";
 
 /* Siri suggested phrase */
 "Remaining time current print job" = "Kvarvarande tid på %@";
@@ -565,6 +607,9 @@
 /* (No Comment) */
 "seconds ago" = "%d sekunder sedan";
 
+/* No comment provided by engineer. */
+"Select printer from OctoEverywhere." = "Välj skrivare från OctoEverywhere";
+
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Servern hittades inte";
 
@@ -606,6 +651,9 @@
 
 /* http://docs.octoprint.org/en/master/api/system.html */
 "System Commands" = "Systemkommandon";
+
+/* Siri suggested phrase */
+"Take snapshot" = "Ta ögonblicksbild";
 
 /* (No Comment) */
 "Target Bed" = "Målbädd";
@@ -683,6 +731,9 @@
 
 /* (No Comment) */
 "Upload failed" = "Uppladdning misslyckades";
+
+/* No comment provided by engineer. */
+"User declined or request timed out." = "Användaren avvisades eller tidsgränsen för begäran utgick.";
 
 /* No comment provided by engineer. */
 "Username" = "Användarnamn";
