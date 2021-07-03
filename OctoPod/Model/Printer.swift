@@ -110,6 +110,10 @@ class Printer: NSManagedObject {
     
     /// Returns sorted array of cameras by their position as they were defined in OctoPrint
     func getMultiCameras() -> Array<MultiCamera>? {
+        // OctoEverywhere only supports one camera for proxy streaming
+        if getPrinterConnectionType() == .octoEverywhere {
+            return nil
+        }
         if let cameras = multiCameras {
             return cameras.sorted { (l: MultiCamera, r: MultiCamera) -> Bool in
                 return l.index_id < r.index_id
