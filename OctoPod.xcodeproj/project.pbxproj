@@ -377,6 +377,7 @@
 		3DFBB8E42569D2FF00A7BD46 /* CameraMJPEGEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFBB8E32569D2FF00A7BD46 /* CameraMJPEGEmbeddedViewController.swift */; };
 		3DFBB8EF2569E07E00A7BD46 /* CameraHLSEmbeddedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFBB8EE2569E07E00A7BD46 /* CameraHLSEmbeddedViewController.swift */; };
 		3DFE67CE218598F300F33019 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DFE67D0218598F300F33019 /* Localizable.strings */; };
+		3DFF0B232690C196009151DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DFF0B212690C196009151DA /* InfoPlist.strings */; };
 		583827DE22E36B9100784706 /* Palette2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583827DD22E36B9100784706 /* Palette2ViewController.swift */; };
 		583827E122E62D8700784706 /* Palette2PortsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583827E022E62D8700784706 /* Palette2PortsViewController.swift */; };
 		5843B64A22E9FA1D001EDBAC /* PingPongHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5843B64922E9FA1D001EDBAC /* PingPongHistoryViewController.swift */; };
@@ -922,6 +923,9 @@
 		3DFE67D4218598FC00F33019 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DFE67D5218598FD00F33019 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DFE67D6218598FD00F33019 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3DFF0B222690C196009151DA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DFF0B242690C27C009151DA /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3DFF0B252690C286009151DA /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		583827DD22E36B9100784706 /* Palette2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette2ViewController.swift; sourceTree = "<group>"; };
 		583827E022E62D8700784706 /* Palette2PortsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette2PortsViewController.swift; sourceTree = "<group>"; };
 		5843B64922E9FA1D001EDBAC /* PingPongHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingPongHistoryViewController.swift; sourceTree = "<group>"; };
@@ -1257,6 +1261,7 @@
 				3D537145240100FD00B28067 /* Assets.xcassets */,
 				3D53714A240100FD00B28067 /* LaunchScreen.storyboard */,
 				3D53714D240100FD00B28067 /* Info.plist */,
+				3DFF0B212690C196009151DA /* InfoPlist.strings */,
 				3D537147240100FD00B28067 /* Preview Content */,
 			);
 			path = "OctoPod TV";
@@ -2007,6 +2012,7 @@
 				3D933F4A241DB5CC0041CFD8 /* Localizable.strings in Resources */,
 				3D537149240100FD00B28067 /* Preview Assets.xcassets in Resources */,
 				3D537146240100FD00B28067 /* Assets.xcassets in Resources */,
+				3DFF0B232690C196009151DA /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2834,6 +2840,16 @@
 				3D65464023F8DDE20061E5FA /* ru */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3DFF0B212690C196009151DA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3DFF0B222690C196009151DA /* it */,
+				3DFF0B242690C27C009151DA /* es */,
+				3DFF0B252690C286009151DA /* es-419 */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

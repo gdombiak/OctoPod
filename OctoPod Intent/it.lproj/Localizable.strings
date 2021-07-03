@@ -40,6 +40,9 @@
 /* No comment provided by engineer. */
 "No" = "No";
 
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Superato il limite delle webcam";
+
 /* No comment provided by engineer. */
 "seconds ago" = "%d secondi fa";
 

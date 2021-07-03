@@ -13,6 +13,9 @@
 /* (No Comment) */
 "1 week ago" = "1 settimana fa";
 
+/* No comment provided by engineer. */
+"Account is no longer an OctoEverywhere supporter" = "L'account non è più un sostenitore di OctoEverywhere";
+
 /* (No Comment) */
 "Actual Bed" = "T effettiva piatto";
 
@@ -33,6 +36,18 @@
 
 /* No comment provided by engineer. */
 "Actual Extruder 5" = "T effettiva estrusore 5";
+
+/* No comment provided by engineer. */
+"API Key" = "Chiave API";
+
+/* No comment provided by engineer. */
+"API Key or Application Key" = "Chiave API o Chiave Applicazione";
+
+/* No comment provided by engineer. */
+"Application Key not enabled in OctoPrint." = "Chiave Applicazione non attivata in OctoPrint.";
+
+/* No comment provided by engineer. */
+"Application Key obtained. Click save to finish." = "Chiave Applicazione ottenuta. Clicca Salva per terminare.";
 
 /* (No Comment) */
 "Apply" = "Applica";
@@ -88,6 +103,9 @@
 /* (No Comment) */
 "Command not executed. Script not found" = "Comando non eseguito. Script non trovato.";
 
+/* No comment provided by engineer. */
+"Complete information and click save to finish." = "Completa le informazioni e clicca Salva per terminare.";
+
 /* (No Comment) */
 "Confirm" = "Conferma";
 
@@ -135,6 +153,9 @@
 
 /* (No Comment) */
 "Connection failed" = "Connessione fallita";
+
+/* No comment provided by engineer. */
+"Contacting OctoPrint." = "Contatto OctoPrint.";
 
 /* Siri suggested phrase */
 "Cool down heated chamber" = "Raffredda box riscaldato";
@@ -201,6 +222,9 @@
 
 /* gcode name */
 "Endstop States" = "Stato dei finecorsa";
+
+/* No comment provided by engineer. */
+"Error obtaining Application Key." = "Errore nell'ottenimento della Chiave Applicazione.";
 
 /* Siri suggested phrase */
 "Execute System Command" = "Esegui il comando di sistema";
@@ -376,6 +400,9 @@
 /* (No Comment) */
 "Incorrect authentication credentials" = "Credenziali di autenticazione errate";
 
+/* No comment provided by engineer. */
+"Internal OctoEverywhere error" = "Errore interno di OctoEverywhere";
+
 /* URL of camera is invalid */
 "Invalid camera URL" = "URL della videocamera non valido";
 
@@ -396,6 +423,9 @@
 
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Posizione non più valida. Aggiornare i file";
+
+/* No comment provided by engineer. */
+"Log into OctoPrint to approve access request." = "Accedi a OctoPrint per approvare la richiesta di accesso.";
 
 /* (No Comment) */
 "minutes ago" = "%d minuti fa";
@@ -444,6 +474,12 @@
 
 /* (No Comment) */
 "Notify failed resume job" = "Errore nella richiesta di riprendere la stampa";
+
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Superato il limite delle webcam";
+
+/* No comment provided by engineer. */
+"OctoEverywhere's connection to OctoPrint timed out" = "La connessione di OctoEverywhere a OctoPrint è scaduta";
 
 /* English translation for words in Swift files */
 "OctoPrint" = "OctoPrint";
@@ -503,6 +539,9 @@
 "Printer" = "Stampante";
 
 /* No comment provided by engineer. */
+"Printer is not connected to OctoEverywhere" = "La stampante non è collegata a OctoEverywhere";
+
+/* No comment provided by engineer. */
 "Printer Name (e.g. MK3)" = "Nome stampante (ad es. MK3)";
 
 /* (No Comment) */
@@ -519,6 +558,9 @@
 
 /* (No Comment) */
 "Pull down to refresh" = "Trascina in basso per aggiornare";
+
+/* No comment provided by engineer. */
+"Recreate printer in OctoEverywhere and OctoPod" = "Ricrea la stampante in OctoEverywhere e OctoPod";
 
 /* Siri suggested phrase */
 "Remaining time current print job" = "Tempo rimanente su %@";
@@ -565,6 +607,9 @@
 /* (No Comment) */
 "seconds ago" = "%d secondi fa";
 
+/* No comment provided by engineer. */
+"Select printer from OctoEverywhere." = "Seleziona la stampante da OctoEverywhere.";
+
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Impossibile trovare il server";
 
@@ -606,6 +651,9 @@
 
 /* http://docs.octoprint.org/en/master/api/system.html */
 "System Commands" = "Comandi di sistema";
+
+/* Siri suggested phrase */
+"Take snapshot" = "Scatta istantanea";
 
 /* (No Comment) */
 "Target Bed" = "T obiettivo piatto";
@@ -683,6 +731,9 @@
 
 /* (No Comment) */
 "Upload failed" = "Errore nel caricamento";
+
+/* No comment provided by engineer. */
+"User declined or request timed out." = "L'utente ha rifiutato o la richiesta è scaduta.";
 
 /* No comment provided by engineer. */
 "Username" = "Nome utente";
