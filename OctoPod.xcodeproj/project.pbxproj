@@ -14,6 +14,8 @@
 		3D0E1C9F20E85EDF0036B5FE /* SetTargetTempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */; };
 		3D0E3B1121097E7A0087F7E4 /* ThemeUIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E3B1021097E7A0087F7E4 /* ThemeUIUtils.swift */; };
 		3D0FA48321047AFA0084FF52 /* FilesTreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0FA48221047AFA0084FF52 /* FilesTreeViewController.swift */; };
+		3D1265B7268FF751007F3ED4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D1265B5268FF751007F3ED4 /* InfoPlist.strings */; };
+		3D1265BA268FF751007F3ED4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D1265B8268FF751007F3ED4 /* InfoPlist.strings */; };
 		3D17273522F2838600C0A341 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D17273322F2838600C0A341 /* InfoPlist.strings */; };
 		3D1A8ADF2298CB0E006FF38D /* BedNotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A8ADE2298CB0E006FF38D /* BedNotificationsHandler.swift */; };
 		3D1A935721326AEF0050ED9A /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935621326AEF0050ED9A /* CustomControl.swift */; };
@@ -490,6 +492,12 @@
 		3D0E1C9E20E85EDF0036B5FE /* SetTargetTempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTargetTempViewController.swift; sourceTree = "<group>"; };
 		3D0E3B1021097E7A0087F7E4 /* ThemeUIUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeUIUtils.swift; sourceTree = "<group>"; };
 		3D0FA48221047AFA0084FF52 /* FilesTreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTreeViewController.swift; sourceTree = "<group>"; };
+		3D1265B4268FF751007F3ED4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		3D1265B6268FF751007F3ED4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D1265B9268FF751007F3ED4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D1265BB268FF75D007F3ED4 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/MainInterface.strings"; sourceTree = "<group>"; };
+		3D1265BC268FF75D007F3ED4 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3D1265BD268FF75D007F3ED4 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3D17273422F2838600C0A341 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D17273622F2838600C0A341 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D17273722F2838600C0A341 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1451,6 +1459,7 @@
 				3DC290B22688080C002E246F /* TakeSnapshotIntentViewController.swift */,
 				3DC290B42688080C002E246F /* MainInterface.storyboard */,
 				3DC290B72688080C002E246F /* Info.plist */,
+				3D1265B5268FF751007F3ED4 /* InfoPlist.strings */,
 			);
 			path = "OctoPod Intent UI - Take Snapshot";
 			sourceTree = "<group>";
@@ -1533,6 +1542,7 @@
 				3D91E925250D7F3A008A59CD /* OctoPodWidget14.intentdefinition */,
 				3DE5F53E24FC600300BFDAD3 /* Assets.xcassets */,
 				3DE5F54024FC600300BFDAD3 /* Info.plist */,
+				3D1265B8268FF751007F3ED4 /* InfoPlist.strings */,
 				3D91E916250D75C3008A59CD /* Localizable.strings */,
 				3D21CE0C254A8E720051449A /* LargetDetailsView.swift */,
 			);
@@ -2013,6 +2023,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DC290B62688080C002E246F /* MainInterface.storyboard in Resources */,
+				3D1265B7268FF751007F3ED4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2021,6 +2032,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DE5F53F24FC600300BFDAD3 /* Assets.xcassets in Resources */,
+				3D1265BA268FF751007F3ED4 /* InfoPlist.strings in Resources */,
 				3D91E918250D75C3008A59CD /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2464,6 +2476,24 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3D1265B5268FF751007F3ED4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D1265B6268FF751007F3ED4 /* es */,
+				3D1265BC268FF75D007F3ED4 /* es-419 */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3D1265B8268FF751007F3ED4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3D1265B9268FF751007F3ED4 /* es */,
+				3D1265BD268FF75D007F3ED4 /* es-419 */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		3D17273322F2838600C0A341 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2661,6 +2691,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				3DC290B52688080C002E246F /* Base */,
+				3D1265B4268FF751007F3ED4 /* es */,
+				3D1265BB268FF75D007F3ED4 /* es-419 */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";

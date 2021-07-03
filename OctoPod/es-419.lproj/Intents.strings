@@ -11,6 +11,9 @@
 "1qMmy1" = "Pedido";
 
 /* (No Comment) */
+"2O3S2V" = "Sacar Foto";
+
+/* (No Comment) */
 "2TreiD" = "Establecer temperatura del extrusor a ${temperature}";
 
 /* (No Comment) */
@@ -42,6 +45,9 @@
 
 /* (No Comment) */
 "5i5htv" = "Conectado";
+
+/* (No Comment) */
+"5iTPOd" = "${printer}";
 
 /* (No Comment) */
 "6b7Yce" = "Pedirle a Palette que corte";
@@ -84,6 +90,9 @@
 
 /* (No Comment) */
 "662LyZ" = "Reiniciar impresión";
+
+/* (No Comment) */
+"9107Xn" = "Sacar Foto";
 
 /* (No Comment) */
 "a1UDyY" = "Pedido";
@@ -218,6 +227,9 @@
 "KulRl5" = "Encender interruptor via Enclosure plugin";
 
 /* (No Comment) */
+"KxJmrF" = "Foto";
+
+/* (No Comment) */
 "L25OHl" = "Falla al pedir conectarse";
 
 /* (No Comment) */
@@ -261,6 +273,9 @@
 
 /* (No Comment) */
 "ovQf6Z" = "Trabajo detenido";
+
+/* (No Comment) */
+"P6usJW" = "Sacar Foto";
 
 /* (No Comment) */
 "p9Vevg" = "Falla al pedir ejecutar comando";
