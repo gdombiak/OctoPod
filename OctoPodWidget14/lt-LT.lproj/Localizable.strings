@@ -55,6 +55,9 @@
 /* No camera was configured */
 "No camera" = "Nėra kameros";
 
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: viršytas kamerų limitas";
+
 /* No comment provided by engineer. */
 "seconds ago" = "prieš %d sekundžių";
 

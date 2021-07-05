@@ -11,7 +11,7 @@
 "1qMmy1" = "Požádáno";
 
 /* (No Comment) */
-"2O3S2V" = "Zachytit snímek";
+"2O3S2V" = "Vytvořit snímek";
 
 /* (No Comment) */
 "2TreiD" = "Nastavit teplotu trysky na ${temperature}";
@@ -92,7 +92,7 @@
 "662LyZ" = "Restartovat tisk";
 
 /* (No Comment) */
-"9107Xn" = "Zachytit snímek";
+"9107Xn" = "Vytvořit snímek";
 
 /* (No Comment) */
 "a1UDyY" = "Požádáno";
@@ -227,7 +227,7 @@
 "KulRl5" = "Zapnout spínač Enclosure";
 
 /* (No Comment) */
-"KxJmrF" = "Momentka";
+"KxJmrF" = "Snímek";
 
 /* (No Comment) */
 "L25OHl" = "Nezdařila se žádost o připojení";
@@ -275,7 +275,7 @@
 "ovQf6Z" = "Tisk pozastaven";
 
 /* (No Comment) */
-"P6usJW" = "Zachytit snímek";
+"P6usJW" = "Vytvořit snímek";
 
 /* (No Comment) */
 "p9Vevg" = "Nezdařila se žádost o spuštění příkazu";

@@ -10,6 +10,9 @@
 /* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "1dd-tF-khE"; */
 "1dd-tF-khE.text" = "Zahrnout v přehledu";
 
+/* Class = "UIButton"; normalTitle = "Request"; ObjectID = "1gP-AF-De1"; */
+"1gP-AF-De1.normalTitle" = "Požádat";
+
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "1pO-wB-zKj"; */
 "1pO-wB-zKj.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
@@ -81,6 +84,9 @@
 
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Vzhled";
+
+/* Class = "UILabel"; text = "Connect directly by requesting an application key"; ObjectID = "4yc-YH-f8v"; */
+"4yc-YH-f8v.text" = "Připojte se přímo pomocí vyžádaného klíče aplikace";
 
 /* Class = "UILabel"; text = "Show Camera"; ObjectID = "5BW-iP-ejE"; */
 "5BW-iP-ejE.text" = "Ukázat kameru";
@@ -202,6 +208,9 @@
 /* Class = "UILabel"; text = "OctoPrint"; ObjectID = "AU8-zV-v3w"; */
 "AU8-zV-v3w.text" = "OctoPrint";
 
+/* Class = "UIButton"; normalTitle = "Scan QR Code Key"; ObjectID = "azq-J2-MuJ"; */
+"azq-J2-MuJ.normalTitle" = "Naskenovat QR kód klíče";
+
 /* Class = "UIButton"; normalTitle = "Not refreshing"; ObjectID = "b0b-3X-MUJ"; */
 "b0b-3X-MUJ.normalTitle" = "Neobnovuje se";
 
@@ -286,6 +295,9 @@
 /* Class = "UIBarButtonItem"; title = "Files"; ObjectID = "DUc-ra-F2o"; */
 "DUc-ra-F2o.title" = "Soubory";
 
+/* Class = "UITableViewController"; title = "Application Key"; ObjectID = "dY2-wB-5s1"; */
+"dY2-wB-5s1.title" = "Klíč aplikace";
+
 /* Class = "UILabel"; text = "Max"; ObjectID = "dZG-uJ-BYF"; */
 "dZG-uJ-BYF.text" = "Max";
 
@@ -357,6 +369,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
 "fNE-Hh-S8R.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "API Key or Application Key"; ObjectID = "foG-IV-lL7"; */
+"foG-IV-lL7.placeholder" = "API klíč nebo klíč aplikace";
 
 /* Class = "UINavigationItem"; title = "Printers"; ObjectID = "FqW-ud-y7C"; */
 "FqW-ud-y7C.title" = "Tiskárny";
@@ -504,6 +519,9 @@
 
 /* Class = "UILabel"; text = "Kill and restart app to take effect"; ObjectID = "jxG-8a-4b3"; */
 "jxG-8a-4b3.text" = "Zavřete a restartujte aplikaci pro aktualizaci";
+
+/* Class = "UILabel"; text = "OctoPrint - Global API Key"; ObjectID = "jxN-GW-tlu"; */
+"jxN-GW-tlu.text" = "OctoPrint: Hlavní API klíč";
 
 /* Class = "UITableViewController"; title = "OctoEverywhere"; ObjectID = "JXO-le-4sU"; */
 "JXO-le-4sU.title" = "OctoEverywhere";
@@ -718,6 +736,9 @@
 /* Class = "UIViewController"; title = "QR Code"; ObjectID = "QCe-zo-Ncw"; */
 "QCe-zo-Ncw.title" = "QR kód";
 
+/* Class = "UILabel"; text = "OctoPrint - Application Key"; ObjectID = "qdv-m8-Jgb"; */
+"qdv-m8-Jgb.text" = "OctoPrint: Klíč aplikace";
+
 /* Class = "UILabel"; text = "Print Time"; ObjectID = "Qfz-1j-Keo"; */
 "Qfz-1j-Keo.text" = "Čas tisku";
 
@@ -775,6 +796,9 @@
 /* Class = "UILabel"; text = "100"; ObjectID = "Rml-IA-ght"; */
 "Rml-IA-ght.text" = "100";
 
+/* Class = "UILabel"; text = "Connect easily from remote locations (over the internet)"; ObjectID = "rNP-Sb-Zba"; */
+"rNP-Sb-Zba.text" = "Snadno se připojte ze vzdálených míst (přes internet)";
+
 /* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "rob-ry-eO0"; */
 "rob-ry-eO0.placeholder" = "Název tiskárny (např. MK3)";
 
@@ -798,6 +822,9 @@
 
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
 "S2I-HR-qgE.text" = "/";
+
+/* Class = "UINavigationItem"; title = "Application Key"; ObjectID = "saA-I3-RLW"; */
+"saA-I3-RLW.title" = "Klíč aplikace";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "SAw-xr-VmY"; */
 "SAw-xr-VmY.text" = "/";
@@ -861,6 +888,9 @@
 
 /* Class = "UITextField"; placeholder = "Hostname (e.g. http://octopi.local)"; ObjectID = "tMP-2W-Iam"; */
 "tMP-2W-Iam.placeholder" = "Název hostitele (např. http://octopi.local)";
+
+/* Class = "UITableViewSection"; headerTitle = "Select Connection Type"; ObjectID = "toN-uy-OtV"; */
+"toN-uy-OtV.headerTitle" = "Zvolte typ připojení";
 
 /* Class = "UITableViewSection"; headerTitle = "Palette 2"; ObjectID = "Tqi-wZ-CN5"; */
 "Tqi-wZ-CN5.headerTitle" = "Palette 2";
@@ -1065,6 +1095,9 @@
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "ZF8-G0-f5Y"; */
 "ZF8-G0-f5Y.text" = "Detail";
+
+/* Class = "UILabel"; text = "Connect directly using registered Global API key (deprecated)"; ObjectID = "Zgx-Ee-m6r"; */
+"Zgx-Ee-m6r.text" = "Připojte se přímo pomocí vyžádaného hlavního klíče (zastaralé)";
 
 /* Class = "UILabel"; text = "Prompt Extrude Speed"; ObjectID = "zH4-HC-We7"; */
 "zH4-HC-We7.text" = "Nabídnout rychlost vytlačení";

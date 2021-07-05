@@ -55,6 +55,9 @@
 /* No camera was configured */
 "No camera" = "Žádná kamera";
 
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Překročen limit webkamery";
+
 /* No comment provided by engineer. */
 "seconds ago" = "před %d vteřinami";
 
