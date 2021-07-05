@@ -40,6 +40,9 @@
 /* No comment provided by engineer. */
 "No" = "Ne";
 
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: viršytas kameros riba";
+
 /* No comment provided by engineer. */
 "seconds ago" = "prieš %d sekundžių";
 
