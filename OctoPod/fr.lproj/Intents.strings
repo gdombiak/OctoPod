@@ -11,7 +11,7 @@
 "1qMmy1" = "Demande en cours";
 
 /* (No Comment) */
-"2O3S2V" = "Prendre un instantané";
+"2O3S2V" = "Prendre une photo";
 
 /* (No Comment) */
 "2TreiD" = "Régler la température d’extrusion à ${temperature}";
@@ -92,7 +92,7 @@
 "662LyZ" = "Recommencer";
 
 /* (No Comment) */
-"9107Xn" = "Prendre un instantané";
+"9107Xn" = "Prendre une photo";
 
 /* (No Comment) */
 "a1UDyY" = "Demande en cours";
@@ -227,7 +227,7 @@
 "KulRl5" = "Allumer l’interrupteur Enclosure";
 
 /* (No Comment) */
-"KxJmrF" = "Instantané";
+"KxJmrF" = "Photo";
 
 /* (No Comment) */
 "L25OHl" = "Échec de la demande de connexion";
@@ -275,7 +275,7 @@
 "ovQf6Z" = "Impression en pause";
 
 /* (No Comment) */
-"P6usJW" = "Prendre un instantané";
+"P6usJW" = "Prendre une photo";
 
 /* (No Comment) */
 "p9Vevg" = "La demande d’exécution de la commande a échouée";
