@@ -590,7 +590,7 @@
 "n9p-tg-bxl.text" = "Hilfe";
 
 /* Class = "UILabel"; text = "Confirm to resume"; ObjectID = "nAj-Qp-lbZ"; */
-"nAj-Qp-lbZ.text" = "Bestätigen Sie zum WIederaufnehmen";
+"nAj-Qp-lbZ.text" = "Bestätigen Sie zum Wiederaufnehmen";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb"; */
 "ncZ-xn-WCb.text" = "Title";
