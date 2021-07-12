@@ -67,9 +67,14 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
                     self.errorMessageLabel.numberOfLines = 1
                     self.errorMessageLabel.isHidden = false
                     self.errorURLButton.isHidden = true
+                } else if httpResponse.statusCode == 605 {
+                    self.errorMessageLabel.text = NSLocalizedString("Account is no longer an OctoEverywhere supporter", comment: "")
+                    self.errorMessageLabel.numberOfLines = 2
+                    self.errorMessageLabel.isHidden = false
+                    self.errorURLButton.isHidden = true
                 } else if httpResponse.statusCode == 609 {
                     self.errorMessageLabel.text = NSLocalizedString("OctoEverywhere: Webcam Limit Exceeded", comment: "Error message from OctoEverywhere")
-                    self.errorMessageLabel.numberOfLines = 1
+                    self.errorMessageLabel.numberOfLines = 2
                     self.errorMessageLabel.isHidden = false
                     self.errorURLButton.isHidden = true
                 } else {

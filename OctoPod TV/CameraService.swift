@@ -127,6 +127,10 @@ class CameraService: ObservableObject {
                     // If URL to camera was not returned via /api/settings and
                     // we got a 503 to the best guessed URL then show "no camera" error message
                     self.errorMessage = NSLocalizedString("No camera", comment: "No camera was found")
+                } else if httpResponse.statusCode == 605 {
+                    self.errorMessage = NSLocalizedString("Account is no longer an OctoEverywhere supporter", comment: "")
+                } else if httpResponse.statusCode == 609 {
+                    self.errorMessage = NSLocalizedString("OctoEverywhere: Webcam Limit Exceeded", comment: "Error message from OctoEverywhere")
                 } else {
                     self.errorMessage = String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode)
                 }
