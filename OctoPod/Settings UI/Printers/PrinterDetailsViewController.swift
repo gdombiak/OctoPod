@@ -220,7 +220,7 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
     
     fileprivate func isValidURL() -> Bool {
         if let inputURL = hostnameField.text {
-            return UIUtils.isValidURL(inputURL: inputURL)
+            return PrinterUtils.isValidURL(inputURL: inputURL)
         }
         return false
     }
