@@ -13,6 +13,9 @@
 /* (No Comment) */
 "1 week ago" = "Vor 1 Woche";
 
+/* No comment provided by engineer. */
+"Account is no longer an OctoEverywhere supporter" = "Konto ist kein OctoEverywhere-Unterstützer mehr";
+
 /* (No Comment) */
 "Actual Bed" = "Ist-Wert Heizbett";
 
@@ -33,6 +36,18 @@
 
 /* No comment provided by engineer. */
 "Actual Extruder 5" = "Ist-Wert Düse 5";
+
+/* No comment provided by engineer. */
+"API Key" = "API-Schlüssel";
+
+/* No comment provided by engineer. */
+"API Key or Application Key" = "API-Schlüssel- oder Anwendungsschlüssel";
+
+/* No comment provided by engineer. */
+"Application Key not enabled in OctoPrint." = "Anwendungsschlüssel nicht in OctoPrint aktiviert.";
+
+/* No comment provided by engineer. */
+"Application Key obtained. Click save to finish." = "Anwendungsschlüssel erhalten. Klicken Sie zum Abschluss auf Speichern.";
 
 /* (No Comment) */
 "Apply" = "Übernehmen";
@@ -88,6 +103,9 @@
 /* (No Comment) */
 "Command not executed. Script not found" = "Befehl nicht ausgeführt. Script nicht gefunden";
 
+/* No comment provided by engineer. */
+"Complete information and click save to finish." = "Vervollständigen Sie Informationen und klicken Sie zum Abschluss auf Speichern.";
+
 /* (No Comment) */
 "Confirm" = "Bestätigen";
 
@@ -135,6 +153,9 @@
 
 /* (No Comment) */
 "Connection failed" = "Verbindung fehlgeschlagen";
+
+/* No comment provided by engineer. */
+"Contacting OctoPrint." = "Wenden Sie sich an OctoPrint.";
 
 /* Siri suggested phrase */
 "Cool down heated chamber" = "aufgeheizte Kammer abkühlen";
@@ -201,6 +222,9 @@
 
 /* gcode name */
 "Endstop States" = "Endschalter Zustände";
+
+/* No comment provided by engineer. */
+"Error obtaining Application Key." = "Fehler beim Erhalten der Anwendungstaste.";
 
 /* Siri suggested phrase */
 "Execute System Command" = "Systembefehl ausführen";
@@ -376,6 +400,9 @@
 /* (No Comment) */
 "Incorrect authentication credentials" = "Fehlerhafte Authentifizierungsinformationen";
 
+/* No comment provided by engineer. */
+"Internal OctoEverywhere error" = "Interner OctoEverywhere Fehler.";
+
 /* URL of camera is invalid */
 "Invalid camera URL" = "Ungültige Kamera URL";
 
@@ -396,6 +423,9 @@
 
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Speicherort nicht länger gültig. Aktualisiere Dateien";
+
+/* No comment provided by engineer. */
+"Log into OctoPrint to approve access request." = "Melden Sie sich bei OctoPrint an, um die Zugriffsanfrage zu genehmigen.";
 
 /* (No Comment) */
 "minutes ago" = "Vor %d Minuten";
@@ -444,6 +474,12 @@
 
 /* (No Comment) */
 "Notify failed resume job" = "Anfrage Auftrag fortsetzen gescheitert";
+
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEnywhere: Webcam-Limit überschritten";
+
+/* No comment provided by engineer. */
+"OctoEverywhere's connection to OctoPrint timed out" = "Zeitüberschreitung von OctoEverywhere Verbindung zu Octoprint";
 
 /* English translation for words in Swift files */
 "OctoPrint" = "OctoPrint";
@@ -503,6 +539,9 @@
 "Printer" = "Drucker";
 
 /* No comment provided by engineer. */
+"Printer is not connected to OctoEverywhere" = "Der Drucker ist nicht mit OctoEverywhere verbunden";
+
+/* No comment provided by engineer. */
 "Printer Name (e.g. MK3)" = "Drucker Name (z.B. MK3)";
 
 /* (No Comment) */
@@ -519,6 +558,9 @@
 
 /* (No Comment) */
 "Pull down to refresh" = "Zum Aktualisieren nach unten ziehen";
+
+/* No comment provided by engineer. */
+"Recreate printer in OctoEverywhere and OctoPod" = "Drucker in OctoEverywhere und OctoPod neu erstellen";
 
 /* Siri suggested phrase */
 "Remaining time current print job" = "Verbleibende Zeit an %@";
@@ -565,6 +607,9 @@
 /* (No Comment) */
 "seconds ago" = "Vor %d Sekunden";
 
+/* No comment provided by engineer. */
+"Select printer from OctoEverywhere." = "Wählen Sie den Drucker von OctoEverywhere aus.";
+
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Server kann nicht gefunden werden";
 
@@ -606,6 +651,9 @@
 
 /* http://docs.octoprint.org/en/master/api/system.html */
 "System Commands" = "Systembefehle";
+
+/* Siri suggested phrase */
+"Take snapshot" = "Schnappschuss machen";
 
 /* (No Comment) */
 "Target Bed" = "Soll-Wert Heizbett";
@@ -683,6 +731,9 @@
 
 /* (No Comment) */
 "Upload failed" = "Hochladen fehlgeschlagen";
+
+/* No comment provided by engineer. */
+"User declined or request timed out." = "Der Benutzer lehnte ab oder Zeit bei Anforderung überschritten";
 
 /* No comment provided by engineer. */
 "Username" = "Benutzername";
