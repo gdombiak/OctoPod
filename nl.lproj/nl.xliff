@@ -1,4 +1,4 @@
-<?xml version="1.0"?><xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
   <file source-language="en" target-language="nl" datatype="plaintext" original="en.lproj/Localizable.strings">
     <header>
       <tool build-num="11E608c" tool-version="11.5" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
@@ -55,7 +55,8 @@
       <trans-unit id="Bed" xml:space="preserve"><source>Bed</source>
 <target>Bed</target>
 <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Bed Variance" xml:space="preserve"><source>Bed Variance</source><target state="translated">Afwijking van bed</target>
+      <trans-unit id="Bed Variance" xml:space="preserve"><source>Bed Variance</source>
+<target state="translated">Afwijking van bed</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Bed cooled" xml:space="preserve"><source>Printer bed below specified temperature threshold</source>
 <target state="translated">Printerbed onder opgegeven temperatuurdrempel</target>
@@ -69,7 +70,8 @@
       <trans-unit id="Cancel" xml:space="preserve"><source>Cancel</source>
 <target>Annuleer</target>
 <note/></trans-unit>
-      <trans-unit id="Cancel Objects" xml:space="preserve"><source>Cancel Objects</source><target state="translated">Objecten annuleren</target>
+      <trans-unit id="Cancel Objects" xml:space="preserve"><source>Cancel Objects</source>
+<target state="translated">Objecten annuleren</target>
 <note>https://github.com/paukstelis/Octoprint-Cancelobject</note></trans-unit>
       <trans-unit id="Cancel current print job" xml:space="preserve"><source>Cancel current print job on %@</source>
 <target>Annuleer huidige printopdracht op %@</target>
@@ -128,18 +130,23 @@
       <trans-unit id="Connect" xml:space="preserve"><source>Connect</source>
 <target state="translated">Verbind</target>
 <note>Connect</note></trans-unit>
-      <trans-unit id="Connect to iCloud to retrieve list of printers from your iPad/iPhone" xml:space="preserve"><source>Connect to iCloud to retrieve list of printers from your iPad/iPhone</source><target state="translated">Verbind met iCloud om de lijst met printers op te halen</target>
+      <trans-unit id="Connect to iCloud to retrieve list of printers from your iPad/iPhone" xml:space="preserve"><source>Connect to iCloud to retrieve list of printers from your iPad/iPhone</source>
+<target state="translated">Verbind met iCloud om de lijst met printers op te halen</target>
 <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Connected" xml:space="preserve"><source>Connected</source><target state="translated">Verbonden</target>
+      <trans-unit id="Connected" xml:space="preserve"><source>Connected</source>
+<target state="translated">Verbonden</target>
 <note>Connected</note></trans-unit>
-      <trans-unit id="Connecting" xml:space="preserve"><source>Connecting</source><target state="translated">Verbinden</target>
+      <trans-unit id="Connecting" xml:space="preserve"><source>Connecting</source>
+<target state="translated">Verbinden</target>
 <note>Connecting</note></trans-unit>
       <trans-unit id="Connection failed" xml:space="preserve"><source>Connection Failed</source>
 <target state="translated">Verbinding mislukt</target>
 <note/></trans-unit>
-      <trans-unit id="Cool down heated chamber" xml:space="preserve"><source>Cool down heated chamber</source><target state="translated">Kamer afkoelen</target>
+      <trans-unit id="Cool down heated chamber" xml:space="preserve"><source>Cool down heated chamber</source>
+<target state="translated">Kamer afkoelen</target>
 <note>Siri suggested phrase</note></trans-unit>
-      <trans-unit id="Cool down printer" xml:space="preserve"><source>Cool down printer</source><target state="translated">Printer afkoelen</target>
+      <trans-unit id="Cool down printer" xml:space="preserve"><source>Cool down printer</source>
+<target state="translated">Printer afkoelen</target>
 <note>Siri suggested phrase</note></trans-unit>
       <trans-unit id="Cool down printer bed" xml:space="preserve"><source>Cool down printer bed %@</source>
 <target state="translated">Printer bed afkoelen %@</target>
@@ -150,7 +157,8 @@
       <trans-unit id="Could not connect to the server" xml:space="preserve"><source>Could not connect to the server</source>
 <target state="translated">Kan niet verbinden met de server</target>
 <note>Connection to server failed</note></trans-unit>
-      <trans-unit id="Current Height" xml:space="preserve"><source>Current Height</source><target state="translated">Actuele hoogte</target>
+      <trans-unit id="Current Height" xml:space="preserve"><source>Current Height</source>
+<target state="translated">Actuele hoogte</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Custom Controls" xml:space="preserve"><source>Custom Controls</source>
 <target state="translated">Eigen opdrachten</target>
@@ -158,7 +166,8 @@
       <trans-unit id="Disconnect" xml:space="preserve"><source>Disconnect</source>
 <target state="translated">Verbinding met de printer verbreken</target>
 <note>Disconnect</note></trans-unit>
-      <trans-unit id="Disconnected" xml:space="preserve"><source>Disconnected</source><target state="translated">Niet verdonden</target>
+      <trans-unit id="Disconnected" xml:space="preserve"><source>Disconnected</source>
+<target state="translated">Niet verdonden</target>
 <note>Disconnected</note></trans-unit>
       <trans-unit id="Dismiss" xml:space="preserve"><source>Dismiss</source>
 <target state="translated">Afwijzen</target>
@@ -166,9 +175,11 @@
       <trans-unit id="Do you want to cancel job?" xml:space="preserve"><source>Do you want to cancel the job?</source>
 <target state="translated">Wil je de opdracht annuleren?</target>
 <note/></trans-unit>
-      <trans-unit id="Do you want to pause job?" xml:space="preserve"><source>Do you want to pause job?</source><target state="translated">Wil je de opdracht pauzeren?</target>
+      <trans-unit id="Do you want to pause job?" xml:space="preserve"><source>Do you want to pause job?</source>
+<target state="translated">Wil je de opdracht pauzeren?</target>
 <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Do you want to restart print job from the beginning?" xml:space="preserve"><source>Do you want to restart print job from the beginning?</source><target state="translated">Wil je de opdracht herstarten?</target>
+      <trans-unit id="Do you want to restart print job from the beginning?" xml:space="preserve"><source>Do you want to restart print job from the beginning?</source>
+<target state="translated">Wil je de opdracht herstarten?</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Domoticz Plugs" xml:space="preserve"><source>Domoticz Plugs</source>
 <target state="translated">Domoticz Stekkers</target>
@@ -176,21 +187,26 @@
       <trans-unit id="Enable iCloud under iOS Settings to use this feature" xml:space="preserve"><source>Enable iCloud under iOS Settings to use this feature</source>
 <target state="translated">Zet i/Cloud aan in de iOS instellingen om gebruik te kunnen maken van deze functie</target>
 <note/></trans-unit>
-      <trans-unit id="Endstop States" xml:space="preserve"><source>Endstop States</source><target state="translated">Stopschakelaars status</target>
+      <trans-unit id="Endstop States" xml:space="preserve"><source>Endstop States</source>
+<target state="translated">Stopschakelaars status</target>
 <note>gcode name</note></trans-unit>
       <trans-unit id="Extruder" xml:space="preserve"><source>Extruder</source>
 <target state="translated">Extruder</target>
 <note/></trans-unit>
-      <trans-unit id="Extruder Variance" xml:space="preserve"><source>Extruder Variance</source><target state="translated">Afwijking van extruder</target>
+      <trans-unit id="Extruder Variance" xml:space="preserve"><source>Extruder Variance</source>
+<target state="translated">Afwijking van extruder</target>
 <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Failed to add new layer notification" xml:space="preserve"><source>Failed to add new layer notification</source><target state="translated">Toevoegen van nieuwe laag mislukt notificatie</target>
+      <trans-unit id="Failed to add new layer notification" xml:space="preserve"><source>Failed to add new layer notification</source>
+<target state="translated">Toevoegen van nieuwe laag mislukt notificatie</target>
 <note>No comment provided by engineer.</note></trans-unit>
-      <trans-unit id="Failed to connect" xml:space="preserve"><source>Failed to connect</source><target state="translated">Verbinden mislukt</target>
+      <trans-unit id="Failed to connect" xml:space="preserve"><source>Failed to connect</source>
+<target state="translated">Verbinden mislukt</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Failed to delete file" xml:space="preserve"><source>Failed to delete file</source>
 <target state="translated">Verwijderen van bestand mislukt</target>
 <note/></trans-unit>
-      <trans-unit id="Failed to delete layer notification" xml:space="preserve"><source>Failed to delete layer notification</source><target state="translated">Verwijderen van nieuwe laag mislukt notificatie</target>
+      <trans-unit id="Failed to delete layer notification" xml:space="preserve"><source>Failed to delete layer notification</source>
+<target state="translated">Verwijderen van nieuwe laag mislukt notificatie</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Failed to disable motor" xml:space="preserve"><source>Failed to disable %@ motor</source>
 <target state="translated">Motor %@ uitschakelen mislukt</target>
@@ -202,15 +218,16 @@
 <target state="translated">Lijst van geannuleerde objecten ophalen mislukt! HTTP response: %d</target>
 <note/></trans-unit>
       <trans-unit id="Failed to get list of layer notifications" xml:space="preserve"><source>Failed to get list of layer notifications</source>
+<target>Ophalen van laaglijst is mislukt</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Failed to get system commands" xml:space="preserve"><source>Failed to get system commands</source>
-<target/>
+<target>Ophalen van systeemcommando's mislukt</target>
 <note>Failed to get system commands with HTTP Request error info</note></trans-unit>
       <trans-unit id="Failed to initialize SD card" xml:space="preserve"><source>Failed to initialize SD card</source>
-<target/>
+<target>Initialiseren van de SD kaart is mislukt</target>
 <note/></trans-unit>
       <trans-unit id="Failed to read file from iCloud" xml:space="preserve"><source>Failed to read file from iCloud</source>
-<target/>
+<target>Bestand van iCloud lezen is mislukt</target>
 <note/></trans-unit>
       <trans-unit id="Failed to refresh SD card" xml:space="preserve"><source>Failed to refresh SD card</source>
 <target state="translated">SD kaart verversen mislukt</target>
@@ -233,39 +250,47 @@
       <trans-unit id="Failed to request moving up" xml:space="preserve"><source>Failed to request moving up</source>
 <target state="translated">Verzoek tot verplaatsen naar boven mislukt</target>
 <note/></trans-unit>
-      <trans-unit id="Failed to request status" xml:space="preserve"><source>Failed to request status</source><target state="translated">Opvragen van status mislukt</target>
+      <trans-unit id="Failed to request status" xml:space="preserve"><source>Failed to request status</source>
+<target state="translated">Opvragen van status mislukt</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Failed to request to cancel object" xml:space="preserve"><source>Failed to request to cancel object. HTTP response: %d</source>
-<target/>
+<target>Object annuleren is mislukt. HTTP antwoord: %d</target>
 <note/></trans-unit>
       <trans-unit id="Failed to request to clear" xml:space="preserve"><source>Failed to request to clear</source>
+<target>Verzoek tot verschonen mislukt</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Failed to request to connect" xml:space="preserve"><source>Failed to request to connect</source>
+<target>Verzoek tot verbinden mislukt</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Failed to request to cut" xml:space="preserve"><source>Failed to request to cut</source>
+<target>Verzoek tot knippen mislukt</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Failed to request to disconnect" xml:space="preserve"><source>Failed to request to disconnect</source>
+<target>Verzoek tot verbreken verbinding mislukt</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Failed to request to execute command" xml:space="preserve"><source>Failed to request to execute command</source>
-<target/>
+<target>Verzoek tot commando excecutie mislukt</target>
 <note/></trans-unit>
       <trans-unit id="Failed to request to extrude" xml:space="preserve"><source>Failed to request to extrude</source>
-<target/>
+<target>Verzoek tot extruderen mislukt</target>
 <note/></trans-unit>
       <trans-unit id="Failed to request to go home" xml:space="preserve"><source>Failed to request to go home</source>
-<target/>
+<target>Verzoek tot homen mislukt</target>
 <note/></trans-unit>
       <trans-unit id="Failed to request to go home X" xml:space="preserve"><source>Failed to request to go home X</source>
+<target>Verzoek tot homen X mislukt</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Failed to request to go home Y" xml:space="preserve"><source>Failed to request to go home Y</source>
+<target>Verzoek tot homen Y mislukt</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Failed to request to go home Z" xml:space="preserve"><source>Failed to request to go home Z</source>
+<target>Verzoek tot homen Z mislukt</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Failed to request to print file" xml:space="preserve"><source>Failed to request to print file</source>
-<target/>
+<target>Verzoek tot printen van bestand mislukt</target>
 <note/></trans-unit>
       <trans-unit id="Failed to request to retract" xml:space="preserve"><source>Failed to request to retract</source>
-<target/>
+<target>Verzoek tot terugtrekken mislukt</target>
 <note/></trans-unit>
       <trans-unit id="Failed to request to turn power off" xml:space="preserve"><source>Failed to request to turn power off</source>
 <target state="translated">Verzoek tot uitzetten van de printer mislukt</target>
@@ -273,7 +298,8 @@
       <trans-unit id="Failed to request to turn power on" xml:space="preserve"><source>Failed to request to turn power on</source>
 <target state="translated">Verzoek tot aanzetten van de printer mislukt</target>
 <note/></trans-unit>
-      <trans-unit id="Failed to save JPEG file" xml:space="preserve"><source>Failed to save JPEG file</source><target state="translated">Opslaan van JPEG bestand mislukt</target>
+      <trans-unit id="Failed to save JPEG file" xml:space="preserve"><source>Failed to save JPEG file</source>
+<target state="translated">Opslaan van JPEG bestand mislukt</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Failed to send GCode command" xml:space="preserve"><source>Failed to send GCode command</source>
 <target>Gcode commando versturen mislukt</target>
@@ -309,25 +335,28 @@
 <target>Map</target>
 <note>File Type is a Folder</note></trans-unit>
       <trans-unit id="HTTP Request error" xml:space="preserve"><source>Request error. HTTP response: %d</source>
-<target/>
+<target>Verzoekfout. HTTP antwoord:: %d</target>
 <note>HTTP Request error info</note></trans-unit>
       <trans-unit id="Idle" xml:space="preserve"><source>Idle</source>
+<target>Inactief</target>
 <note>Idle</note></trans-unit>
       <trans-unit id="Include SD" xml:space="preserve"><source>Include SD</source>
+<target>SD Weergeven</target>
 <note>Include SD messages in the terminal</note></trans-unit>
       <trans-unit id="Include temp" xml:space="preserve"><source>Include temp</source>
+<target>Temperatuur weergeven</target>
 <note>Include temp messages in the terminal</note></trans-unit>
       <trans-unit id="Incorrect API Key" xml:space="preserve"><source>Incorrect API Key</source>
 <target state="translated">Ongeldige API sleutel</target>
 <note/></trans-unit>
       <trans-unit id="Incorrect authentication credentials" xml:space="preserve"><source>Incorrect authentication credentials</source>
-<target/>
+<target>Incorrecte authentificatie gegevens</target>
 <note/></trans-unit>
       <trans-unit id="Invalid camera URL" xml:space="preserve"><source>Invalid camera URL</source>
 <target>Ongeldige camera URL</target>
 <note>URL of camera is invalid</note></trans-unit>
       <trans-unit id="Invalid file type" xml:space="preserve"><source>Invalid file type</source>
-<target/>
+<target>Ongeldige bestandstype</target>
 <note/></trans-unit>
       <trans-unit id="Job" xml:space="preserve"><source>Job</source>
 <target>Opdracht</target>
@@ -336,20 +365,22 @@
 <target>Laag</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Load filament" xml:space="preserve"><source>Load filament</source>
+<target>Laad fillament</target>
 <note>gcode name</note></trans-unit>
       <trans-unit id="Location no longer valid. Refresh files" xml:space="preserve"><source>Location no longer valid. Refresh files</source>
-<target/>
+<target>Locatie ongeldig. Vernieuw bestanden</target>
 <note/></trans-unit>
       <trans-unit id="MK3" xml:space="preserve"><source>MK3</source>
 <target>MK3</target>
 <note/></trans-unit>
       <trans-unit id="MMU Requires User" xml:space="preserve"><source>MMU Requires User Assistance</source>
-<target/>
+<target>MMU heeft Gebruikers hulp nodig</target>
 <note/></trans-unit>
       <trans-unit id="Missed" xml:space="preserve"><source>Missed</source>
+<target>Gemist</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Model" xml:space="preserve"><source>Model</source>
-<target/>
+<target>Model</target>
 <note>File Type is a Model</note></trans-unit>
       <trans-unit id="Move" xml:space="preserve"><source>Move</source>
 <target>Verplaats</target>
@@ -367,22 +398,22 @@
 <target>Geen Printer gevonden</target>
 <note/></trans-unit>
       <trans-unit id="No temperature history" xml:space="preserve"><source>No temperature history available</source>
-<target/>
+<target>Geen temperatuurgeschiedenis bekend</target>
 <note>No temperature history</note></trans-unit>
       <trans-unit id="Notify failed cancel job" xml:space="preserve"><source>Failed to request to cancel job</source>
-<target/>
+<target>Verzoek tot annuleren van printopdracht mislukt</target>
 <note/></trans-unit>
       <trans-unit id="Notify failed pause job" xml:space="preserve"><source>Failed to request to pause job</source>
-<target/>
+<target>Verzoek tot pauzeren van printopdracht mislukt</target>
 <note/></trans-unit>
       <trans-unit id="Notify failed print job again" xml:space="preserve"><source>Failed to request to print job again</source>
-<target/>
+<target>Verzoek tot opnieuw printen van printopdracht mislukt</target>
 <note/></trans-unit>
       <trans-unit id="Notify failed restart job" xml:space="preserve"><source>Failed to request to restart job</source>
-<target/>
+<target>Verzoek tot herstarten van printopdracht mislukt</target>
 <note/></trans-unit>
       <trans-unit id="Notify failed resume job" xml:space="preserve"><source>Failed to request to resume job</source>
-<target/>
+<target>Verzoek tot hervatten van printopdracht mislukt</target>
 <note/></trans-unit>
       <trans-unit id="OctoPrint" xml:space="preserve"><source>OctoPrint</source>
 <target>OctoPrint</target>
@@ -391,8 +422,10 @@
 <target>Offline</target>
 <note>Printer is Offline</note></trans-unit>
       <trans-unit id="PID Bed autotune" xml:space="preserve"><source>PID Bed autotune</source>
+<target>PID Bed Calibratie</target>
 <note>gcode name</note></trans-unit>
       <trans-unit id="PID Hotend autotune" xml:space="preserve"><source>PID Hotend autotune</source>
+<target>PID Extruder Calibratie</target>
 <note>gcode name</note></trans-unit>
       <trans-unit id="Pause" xml:space="preserve"><source>Pause</source>
 <target>Pauzeer</target>
@@ -401,25 +434,31 @@
 <target>Pauzeer opdracht</target>
 <note/></trans-unit>
       <trans-unit id="Pause current print job" xml:space="preserve"><source>Pause current print job on %@</source>
-<target/>
+<target>Pauzeer huidige print opdracht op %@</target>
 <note>Siri suggested phrase</note></trans-unit>
       <trans-unit id="Paused" xml:space="preserve"><source>Paused</source>
 <target>Gepauzeerd</target>
 <note/></trans-unit>
       <trans-unit id="Ping History" xml:space="preserve"><source>Ping History</source>
+<target>Ping Geschiedenis</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Pong History" xml:space="preserve"><source>Pong History</source>
+<target>Pong Geschiedenis</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Print" xml:space="preserve"><source>Print</source>
+<target>Print</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Print Completion" xml:space="preserve"><source>Print Completion</source>
+<target>Print Voltooid</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Print File" xml:space="preserve"><source>Print File</source>
-<target/>
+<target>Print Bestand</target>
 <note/></trans-unit>
       <trans-unit id="Print Time" xml:space="preserve"><source>Print Time</source>
+<target>Print Tijd</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Print Time Left" xml:space="preserve"><source>Print Time Left</source>
+<target>Resterende Print Tijd</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Print complete" xml:space="preserve"><source>Print complete</source>
 <target>Printen voltooid</target>
@@ -431,6 +470,7 @@
 <target>Printer niet operationeel</target>
 <note/></trans-unit>
       <trans-unit id="Printers" xml:space="preserve"><source>Printers</source>
+<target>Printers</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Printing" xml:space="preserve"><source>Printing</source>
 <target>Aan het printen</target>
@@ -439,12 +479,13 @@
 <target>Voortgang</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Pull down to refresh" xml:space="preserve"><source>Pull down to refresh</source>
-<target/>
+<target>Veeg naar beneden om te vernieuwen</target>
 <note/></trans-unit>
       <trans-unit id="Remaining time current print job" xml:space="preserve"><source>Time left on %@</source>
-<target/>
+<target>Tijd resterend: %@</target>
 <note>Siri suggested phrase</note></trans-unit>
       <trans-unit id="Report Settings" xml:space="preserve"><source>Report Settings</source>
+<target>Rapporteer instellingen</target>
 <note>gcode name</note></trans-unit>
       <trans-unit id="Restart" xml:space="preserve"><source>Restart</source>
 <target>Herstart</target>
@@ -453,7 +494,7 @@
 <target>Opdracht herstarten</target>
 <note/></trans-unit>
       <trans-unit id="Restart current print job" xml:space="preserve"><source>Restart current print job on %@</source>
-<target/>
+<target>Herstart huidige printopdracht op %@</target>
 <note>Siri suggested phrase</note></trans-unit>
       <trans-unit id="Restore Settings" xml:space="preserve"><source>Restore Settings</source>
 <target>Instellingen herstellen</target>
@@ -465,9 +506,10 @@
 <target>Opdracht hervatten</target>
 <note/></trans-unit>
       <trans-unit id="Resume current print job" xml:space="preserve"><source>Resume current print job on %@</source>
-<target/>
+<target>Hervat huidige printopdracht op %@</target>
 <note>Siri suggested phrase</note></trans-unit>
       <trans-unit id="Retrieving printers information" xml:space="preserve"><source>Retrieving printers information</source>
+<target>Ophalen van printer informatie</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Run" xml:space="preserve"><source>Run</source>
 <target>Voer uit</target>
@@ -485,41 +527,51 @@
 <target>Server lijkt offline te zijn</target>
 <note/></trans-unit>
       <trans-unit id="Set Bed PID" xml:space="preserve"><source>Set Bed PID</source>
+<target>Stel Bed PID in</target>
 <note>gcode name</note></trans-unit>
       <trans-unit id="Set Hotend PID" xml:space="preserve"><source>Set Hotend PID</source>
+<target>Stel Extruder PID in</target>
 <note>gcode name</note></trans-unit>
       <trans-unit id="Snooze 1 hour" xml:space="preserve"><source>Snooze 1 hour</source>
-<target/>
+<target>Stil voor 1 uur</target>
 <note>Snooze notifications for 1 hour</note></trans-unit>
       <trans-unit id="Snooze 8 hours" xml:space="preserve"><source>Snooze 8 hours</source>
-<target/>
+<target>Stil voor 8 uur</target>
 <note>Snooze notifications for 8 hours</note></trans-unit>
       <trans-unit id="State" xml:space="preserve"><source>State</source>
 <target>Status</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Still stabilizing" xml:space="preserve"><source>Still stabilizing...</source>
-<target/>
+<target>Nog steeds berekenen...</target>
 <note>Print time is being calculated</note></trans-unit>
       <trans-unit id="Suppress SD" xml:space="preserve"><source>Suppress SD</source>
+<target>SD verbergen</target>
 <note>Suppress SD messages in the terminal</note></trans-unit>
       <trans-unit id="Suppress temp" xml:space="preserve"><source>Suppress temp</source>
+<target>Temperatuur verbergen</target>
 <note>Suppress temp messages in the terminal</note></trans-unit>
       <trans-unit id="System Commands" xml:space="preserve"><source>System Commands</source>
-<target/>
+<target>Systeem commando's</target>
 <note>http://docs.octoprint.org/en/master/api/system.html</note></trans-unit>
       <trans-unit id="TMC Bump Sensitivity" xml:space="preserve"><source>TMC Bump Sensitivity</source>
+<target>20 / 5000
+Vertaalresultaten
+TMC-stootgevoeligheid</target>
 <note>gcode name</note></trans-unit>
       <trans-unit id="TMC Debugging" xml:space="preserve"><source>TMC Debugging</source>
+<target>TMC Debugging</target>
 <note>gcode name</note></trans-unit>
       <trans-unit id="TMC Motor Current" xml:space="preserve"><source>TMC Motor Current</source>
+<target>TMC Motor Stroomsterkte</target>
 <note>gcode name</note></trans-unit>
       <trans-unit id="TPLink Smartplugs" xml:space="preserve"><source>TPLink Smartplugs</source>
-<target/>
+<target>TPLink Slimme Stekkers</target>
 <note/></trans-unit>
       <trans-unit id="Target Bed" xml:space="preserve"><source>Target Bed</source>
 <target>Doel Bed</target>
 <note/></trans-unit>
       <trans-unit id="Target Chamber" xml:space="preserve"><source>Target Chamber</source>
+<target>Doel kamer</target>
 <note>No comment provided by engineer.</note></trans-unit>
       <trans-unit id="Target Extruder" xml:space="preserve"><source>Target Extruder</source>
 <target>Doel Extruder</target>
@@ -569,12 +621,13 @@
 <target>Uploaden gefaald</target>
 <note/></trans-unit>
       <trans-unit id="Warm up heated chamber" xml:space="preserve"><source>Warm up heated chamber</source>
+<target>Verwarm kamer</target>
 <note>Siri suggested phrase</note></trans-unit>
       <trans-unit id="Warm up printer bed" xml:space="preserve"><source>Warm up printer bed %@</source>
-<target/>
+<target>Verwarm bed %@</target>
 <note>Siri suggested phrase</note></trans-unit>
       <trans-unit id="Warm up printer extruder" xml:space="preserve"><source>Warm up printer extruder %@</source>
-<target/>
+<target>Verwarm extruder %@</target>
 <note>Siri suggested phrase</note></trans-unit>
       <trans-unit id="Warning" xml:space="preserve"><source>Warning</source>
 <target>Waarschuwing</target>
@@ -1307,7 +1360,7 @@
 <target/>
 <note>Class = "UIButton"; normalTitle = "Clear Palette 2"; ObjectID = "AcH-TF-NmP";</note></trans-unit>
       <trans-unit id="AfS-HP-WTR.normalTitle" xml:space="preserve"><source>Suppress temp</source>
-<target state="translated">Onderdruk temperatuur </target>
+<target state="translated">Onderdruk temperatuur</target>
 <note>Class = "UIButton"; normalTitle = "Suppress temp"; ObjectID = "AfS-HP-WTR";</note></trans-unit>
       <trans-unit id="Aka-Ud-zQ7.text" xml:space="preserve"><source>Cancel Object plugin requires update</source>
 <target/>
