@@ -1363,7 +1363,7 @@ TMC-stootgevoeligheid</target>
 <target state="translated">Onderdruk temperatuur</target>
 <note>Class = "UIButton"; normalTitle = "Suppress temp"; ObjectID = "AfS-HP-WTR";</note></trans-unit>
       <trans-unit id="Aka-Ud-zQ7.text" xml:space="preserve"><source>Cancel Object plugin requires update</source>
-<target/>
+<target>Update vereist voor Cancel Object plugin</target>
 <note>Class = "UILabel"; text = "Cancel Object plugin requires update"; ObjectID = "Aka-Ud-zQ7";</note></trans-unit>
       <trans-unit id="B7j-Fj-W6p.normalTitle" xml:space="preserve"><source>X</source>
 <target>X</target>
@@ -1447,7 +1447,7 @@ TMC-stootgevoeligheid</target>
 <target>50</target>
 <note>Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[3] = "50"; ObjectID = "GRh-JJ-DpF";</note></trans-unit>
       <trans-unit id="Ghq-m2-F0u.text" xml:space="preserve"><source>Record Siri phrase to use shortcuts</source>
-<target/>
+<target>Zin opnemen voor Siri opdrachten</target>
 <note>Class = "UILabel"; text = "Record Siri phrase to use shortcuts"; ObjectID = "Ghq-m2-F0u";</note></trans-unit>
       <trans-unit id="GmR-1U-jvf.title" xml:space="preserve"><source>Devices</source>
 <target state="translated">Apparaten</target>
@@ -1474,7 +1474,7 @@ TMC-stootgevoeligheid</target>
 <target>5</target>
 <note>Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[4] = "5"; ObjectID = "HHI-TR-3jC";</note></trans-unit>
       <trans-unit id="HJ0-c2-UaT.text" xml:space="preserve"><source>Palette 2 - Max Variation</source>
-<target/>
+<target>Palette 2 - Max Variatie</target>
 <note>Class = "UILabel"; text = "Palette 2 - Max Variation"; ObjectID = "HJ0-c2-UaT";</note></trans-unit>
       <trans-unit id="HUF-Dw-M7F.text" xml:space="preserve"><source>Tip: Click to set temperature</source>
 <target>Tip: Klik hier om de temperatuur in te stellen</target>
@@ -1513,7 +1513,7 @@ TMC-stootgevoeligheid</target>
 <target state="translated">Verplaats</target>
 <note>Class = "UINavigationItem"; title = "Move"; ObjectID = "K4f-Fs-KaY";</note></trans-unit>
       <trans-unit id="K5o-xJ-EiZ.normalTitle" xml:space="preserve"><source>Learn more about Custom Controls</source>
-<target/>
+<target>Lees meer over Custom Controls</target>
 <note>Class = "UIButton"; normalTitle = "Learn more about Custom Controls"; ObjectID = "K5o-xJ-EiZ";</note></trans-unit>
       <trans-unit id="K6d-lk-BaS.text" xml:space="preserve"><source>Enter a valid URL</source>
 <target>Voer een geldige URL in</target>
@@ -1663,7 +1663,7 @@ TMC-stootgevoeligheid</target>
 <target>100</target>
 <note>Class = "UILabel"; text = "100"; ObjectID = "Rml-IA-ght";</note></trans-unit>
       <trans-unit id="S1e-nz-awE.headerTitle" xml:space="preserve"><source>Complications Content</source>
-<target/>
+<target>Complicaties Inhoud</target>
 <note>Class = "UITableViewSection"; headerTitle = "Complications Content"; ObjectID = "S1e-nz-awE";</note></trans-unit>
       <trans-unit id="S2I-HR-qgE.text" xml:space="preserve"><source>/</source>
 <target>/</target>
@@ -1681,7 +1681,7 @@ TMC-stootgevoeligheid</target>
 <target/>
 <note>Class = "UILabel"; text = " "; ObjectID = "Sm9-eX-ACf";</note></trans-unit>
       <trans-unit id="SwZ-jq-tKf.headerTitle" xml:space="preserve"><source>Fan &amp; Motors</source>
-<target/>
+<target>Ventilatoren en Motoren</target>
 <note>Class = "UITableViewSection"; headerTitle = "Fan &amp; Motors"; ObjectID = "SwZ-jq-tKf";</note></trans-unit>
       <trans-unit id="Tqi-wZ-CN5.headerTitle" xml:space="preserve"><source>Palette 2</source>
 <target>Palette 2</target>
@@ -1702,10 +1702,10 @@ TMC-stootgevoeligheid</target>
 <target>Staat</target>
 <note>Class = "UILabel"; text = "State"; ObjectID = "Uop-QL-yoT";</note></trans-unit>
       <trans-unit id="VFi-SV-DAZ.text" xml:space="preserve"><source>Auto-Lock when idle</source>
-<target/>
+<target>Automatisch vergrendelen tijdens inactieviteit</target>
 <note>Class = "UILabel"; text = "Auto-Lock when idle"; ObjectID = "VFi-SV-DAZ";</note></trans-unit>
       <trans-unit id="VIg-Mm-BM3.text" xml:space="preserve"><source>Include in Dashboard</source>
-<target/>
+<target>In Dashboard Weergeven</target>
 <note>Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "VIg-Mm-BM3";</note></trans-unit>
       <trans-unit id="VgY-ne-x6t.text" xml:space="preserve"><source>Status</source>
 <target>Status</target>
@@ -1753,7 +1753,7 @@ TMC-stootgevoeligheid</target>
 <target>Ong</target>
 <note>Class = "UILabel"; text = "Avg"; ObjectID = "XnW-dU-oxg";</note></trans-unit>
       <trans-unit id="Xs4-QQ-rLn.text" xml:space="preserve"><source>Feed rate</source>
-<target/>
+<target>Voedingssnelheid</target>
 <note>Class = "UILabel"; text = "Feed rate"; ObjectID = "Xs4-QQ-rLn";</note></trans-unit>
       <trans-unit id="Xzl-Xc-Ng0.text" xml:space="preserve"><source>#</source>
 <target>#</target>
@@ -1774,7 +1774,7 @@ TMC-stootgevoeligheid</target>
 <target>Log</target>
 <note>Class = "UITableViewController"; title = "Log"; ObjectID = "ZSM-KR-Ovn";</note></trans-unit>
       <trans-unit id="ZdA-nV-gwD.headerTitle" xml:space="preserve"><source>Battery Impact</source>
-<target/>
+<target>Gevolgen op de batterij</target>
 <note>Class = "UITableViewSection"; headerTitle = "Battery Impact"; ObjectID = "ZdA-nV-gwD";</note></trans-unit>
       <trans-unit id="ZeS-hE-vC8.headerTitle" xml:space="preserve"><source>Extruder</source>
 <target>Extruder</target>
@@ -1795,16 +1795,16 @@ TMC-stootgevoeligheid</target>
 <target>Printer Naam (b.v. MK3)</target>
 <note>Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "aFa-Qd-yIr";</note></trans-unit>
       <trans-unit id="aJp-RM-Tuf.normalTitle" xml:space="preserve"><source>View activity log</source>
-<target/>
+<target>Bekijk activiteitenlog</target>
 <note>Class = "UIButton"; normalTitle = "View activity log"; ObjectID = "aJp-RM-Tuf";</note></trans-unit>
       <trans-unit id="aaG-XM-gnj.normalTitle" xml:space="preserve"><source>Regenerate default shortcuts</source>
-<target/>
+<target>Stel standaardopdrachten opnieuw in</target>
 <note>Class = "UIButton"; normalTitle = "Regenerate default shortcuts"; ObjectID = "aaG-XM-gnj";</note></trans-unit>
       <trans-unit id="ahs-Hn-dAX.text" xml:space="preserve"><source>Extruder</source>
 <target>Extruder</target>
 <note>Class = "UILabel"; text = "Extruder"; ObjectID = "ahs-Hn-dAX";</note></trans-unit>
       <trans-unit id="b0b-3X-MUJ.normalTitle" xml:space="preserve"><source>Not refreshing</source>
-<target/>
+<target>Niet vernieuwen</target>
 <note>Class = "UIButton"; normalTitle = "Not refreshing"; ObjectID = "b0b-3X-MUJ";</note></trans-unit>
       <trans-unit id="bNj-cj-oty.text" xml:space="preserve"><source>Label</source>
 <target>Label</target>
@@ -1813,7 +1813,7 @@ TMC-stootgevoeligheid</target>
 <target>Geprint</target>
 <note>Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf";</note></trans-unit>
       <trans-unit id="blG-5R-gJE.text" xml:space="preserve"><source>Print Completion</source>
-<target/>
+<target>Print Compleet op</target>
 <note>Class = "UILabel"; text = "Print Completion"; ObjectID = "blG-5R-gJE";</note></trans-unit>
       <trans-unit id="bsz-rk-3Em.text" xml:space="preserve"><source>0.0 C</source>
 <target>0.0 C</target>
@@ -1840,7 +1840,7 @@ TMC-stootgevoeligheid</target>
 <target>0.0%</target>
 <note>Class = "UILabel"; text = "0.0%"; ObjectID = "du3-LR-AIz";</note></trans-unit>
       <trans-unit id="e5p-Y4-n8X.normalTitle" xml:space="preserve"><source>Reset iCloud data from printers</source>
-<target/>
+<target>Reset Icloud data van printers</target>
 <note>Class = "UIButton"; normalTitle = "Reset iCloud data from printers"; ObjectID = "e5p-Y4-n8X";</note></trans-unit>
       <trans-unit id="e75-bh-dxQ.title" xml:space="preserve"><source>Files</source>
 <target>Bestanden</target>
@@ -1861,7 +1861,7 @@ TMC-stootgevoeligheid</target>
 <target>Scannen</target>
 <note>Class = "UIButton"; normalTitle = "Scan"; ObjectID = "eVf-xw-qan";</note></trans-unit>
       <trans-unit id="eXf-GR-uL9.headerTitle" xml:space="preserve"><source>Lock Mode</source>
-<target/>
+<target>Vergrendelings Modus</target>
 <note>Class = "UITableViewSection"; headerTitle = "Lock Mode"; ObjectID = "eXf-GR-uL9";</note></trans-unit>
       <trans-unit id="ec8-jM-jJs.title" xml:space="preserve"><source>Support</source>
 <target>Ondersteuning</target>
@@ -1873,7 +1873,7 @@ TMC-stootgevoeligheid</target>
 <target>Instellingen</target>
 <note>Class = "UITabBarItem"; title = "Settings"; ObjectID = "fJ6-6T-dHU";</note></trans-unit>
       <trans-unit id="fMc-lm-k5V.text" xml:space="preserve"><source>Palette 2 - Last Variation</source>
-<target/>
+<target>Palette 2 - Laatste Variatie</target>
 <note>Class = "UILabel"; text = "Palette 2 - Last Variation"; ObjectID = "fMc-lm-k5V";</note></trans-unit>
       <trans-unit id="fNE-Hh-S8R.text" xml:space="preserve"><source>Label</source>
 <target>Label</target>
@@ -1912,7 +1912,7 @@ TMC-stootgevoeligheid</target>
 <target>Beveiliging</target>
 <note>Class = "UITableViewController"; title = "Security"; ObjectID = "hg7-6b-q0o";</note></trans-unit>
       <trans-unit id="hrr-SZ-62l.text" xml:space="preserve"><source>Upload to SD Card (root)</source>
-<target/>
+<target>Naar SD Kaart uploaden (root)</target>
 <note>Class = "UILabel"; text = "Upload to SD Card (root)"; ObjectID = "hrr-SZ-62l";</note></trans-unit>
       <trans-unit id="ht4-c2-fkC.text" xml:space="preserve"><source>Min</source>
 <target>Min</target>
@@ -1939,7 +1939,7 @@ TMC-stootgevoeligheid</target>
 <target>Stroom bediening</target>
 <note>Class = "UILabel"; text = "Control Power"; ObjectID = "j09-72-h0o";</note></trans-unit>
       <trans-unit id="jxG-8a-4b3.text" xml:space="preserve"><source>Kill and restart app to take effect</source>
-<target/>
+<target>Stop en herstart de app om de nieuwe instellingen toe te passen</target>
 <note>Class = "UILabel"; text = "Kill and restart app to take effect"; ObjectID = "jxG-8a-4b3";</note></trans-unit>
       <trans-unit id="k9w-2c-c6t.text" xml:space="preserve"><source>0.0 C</source>
 <target>0.0 C</target>
@@ -1951,7 +1951,7 @@ TMC-stootgevoeligheid</target>
 <target>Status</target>
 <note>Class = "UILabel"; text = "Status"; ObjectID = "kPW-if-FGO";</note></trans-unit>
       <trans-unit id="kaq-fI-VzN.text" xml:space="preserve"><source>Palette 2 - Last Ping</source>
-<target/>
+<target>Palette 2 - Laatste Ping</target>
 <note>Class = "UILabel"; text = "Palette 2 - Last Ping"; ObjectID = "kaq-fI-VzN";</note></trans-unit>
       <trans-unit id="lAO-Qe-VtX.text" xml:space="preserve"><source>Subtitle</source>
 <target>Subtitle</target>
@@ -1966,7 +1966,7 @@ TMC-stootgevoeligheid</target>
 <target>Title</target>
 <note>Class = "UILabel"; text = "Title"; ObjectID = "mCP-AC-cQg";</note></trans-unit>
       <trans-unit id="mqw-ve-Eec.text" xml:space="preserve"><source>Lock read-only mode</source>
-<target/>
+<target>Vergrendel alleen-lezen modus</target>
 <note>Class = "UILabel"; text = "Lock read-only mode"; ObjectID = "mqw-ve-Eec";</note></trans-unit>
       <trans-unit id="n9p-tg-bxl.text" xml:space="preserve"><source>Subtitle</source>
 <target>Subtitle</target>
@@ -1978,16 +1978,16 @@ TMC-stootgevoeligheid</target>
 <target>Title</target>
 <note>Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb";</note></trans-unit>
       <trans-unit id="ntu-wc-YX0.text" xml:space="preserve"><source>Filament Used</source>
-<target/>
+<target>Fillament Gebruikt</target>
 <note>Class = "UILabel"; text = "Filament Used"; ObjectID = "ntu-wc-YX0";</note></trans-unit>
       <trans-unit id="o8a-yF-u6j.normalTitle" xml:space="preserve"><source>Set</source>
 <target>Stel in</target>
 <note>Class = "UIButton"; normalTitle = "Set"; ObjectID = "o8a-yF-u6j";</note></trans-unit>
       <trans-unit id="oQM-8Y-Acc.text" xml:space="preserve"><source>New Apple TV app is now available</source>
-<target/>
+<target>Nieuwe Apple TV app is nu beschikbaar</target>
 <note>Class = "UILabel"; text = "New Apple TV app is now available"; ObjectID = "oQM-8Y-Acc";</note></trans-unit>
       <trans-unit id="oZE-yh-Myr.normalTitle" xml:space="preserve"><source>Delete shortcuts</source>
-<target/>
+<target>Verwijder opdrachten</target>
 <note>Class = "UIButton"; normalTitle = "Delete shortcuts"; ObjectID = "oZE-yh-Myr";</note></trans-unit>
       <trans-unit id="oZw-P5-oVG.title" xml:space="preserve"><source>Prompts</source>
 <target state="translated">Gevraagd</target>
@@ -1996,7 +1996,7 @@ TMC-stootgevoeligheid</target>
 <target>Label</target>
 <note>Class = "UILabel"; text = "Label"; ObjectID = "oiL-nC-j2P";</note></trans-unit>
       <trans-unit id="or6-Pr-Z6f.normalTitle" xml:space="preserve"><source>Configure controls using Custom Control Plugin</source>
-<target/>
+<target>Configureer controls via de Custom Control Plugin</target>
 <note>Class = "UIButton"; normalTitle = "Configure controls using Custom Control Plugin"; ObjectID = "or6-Pr-Z6f";</note></trans-unit>
       <trans-unit id="pWC-OR-Tvp.text" xml:space="preserve"><source>100</source>
 <target>100</target>
@@ -2005,13 +2005,13 @@ TMC-stootgevoeligheid</target>
 <target>Label</target>
 <note>Class = "UILabel"; text = "Label"; ObjectID = "pgl-mI-9eB";</note></trans-unit>
       <trans-unit id="prd-VS-kgg.headerTitle" xml:space="preserve"><source>Enclosure</source>
-<target/>
+<target>Behuizing</target>
 <note>Class = "UITableViewSection"; headerTitle = "Enclosure"; ObjectID = "prd-VS-kgg";</note></trans-unit>
       <trans-unit id="pzg-aD-Irm.text" xml:space="preserve"><source>Offset</source>
-<target/>
+<target>Offset</target>
 <note>Class = "UILabel"; text = "Offset"; ObjectID = "pzg-aD-Irm";</note></trans-unit>
       <trans-unit id="q4H-Sg-7Zd.text" xml:space="preserve"><source>Pinch = Zoom in</source>
-<target/>
+<target>Knijpen = Inzoomen</target>
 <note>Class = "UILabel"; text = "Pinch = Zoom in"; ObjectID = "q4H-Sg-7Zd";</note></trans-unit>
       <trans-unit id="qI9-wv-wTe.title" xml:space="preserve"><source>Title</source>
 <target>Title</target>
