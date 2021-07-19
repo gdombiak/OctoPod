@@ -550,6 +550,9 @@
 /* Class = "UILabel"; text = "Palette 2 - Last Ping"; ObjectID = "kaq-fI-VzN"; */
 "kaq-fI-VzN.text" = "Palette 2 - paskutinis Ping";
 
+/* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "KC4-pP-rEh"; */
+"KC4-pP-rEh.text" = "Pridėti į skydelį";
+
 /* Class = "UILabel"; text = "Detail"; ObjectID = "kdJ-8e-1mO"; */
 "kdJ-8e-1mO.text" = "Detališkumas";
 
@@ -786,6 +789,9 @@
 
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "RFS-Os-AC5"; */
 "RFS-Os-AC5.text" = "0.0%";
+
+/* Class = "UITableViewSection"; headerTitle = "QR Code"; ObjectID = "RIJ-UL-fxM"; */
+"RIJ-UL-fxM.headerTitle" = "QR Kodas";
 
 /* Class = "UILabel"; text = "Security"; ObjectID = "RJI-A7-98M"; */
 "RJI-A7-98M.text" = "Saugumas";

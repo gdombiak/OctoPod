@@ -21,6 +21,9 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
     @IBOutlet weak var showCameraLabel: UILabel!
     @IBOutlet weak var showCameraSwitch: UISwitch!
 
+    @IBOutlet weak var printerURLLabel: UILabel!
+    @IBOutlet weak var shareQRCodeButton: UIButton!
+    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -47,6 +50,8 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
             urlErrorMessageLabel.isHidden = true
             // Enable scanning for OctoPrint instances
             scanInstallationsButton.isEnabled = true
+            // Calculate printer URL and enable/disable share QR Code button
+            updatePrinterURL()
         }
 
         // Register for keyboard notifications
@@ -103,8 +108,17 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
         updateSaveButton()
     }
     
+    @IBAction func sharePrinterURLQRCode(_ sender: Any) {
+        if let printerURL = printerURLLabel.text, let image = generateQRCode(from: printerURL) {
+            let items = [image]
+            let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            present(ac, animated: true)
+        }
+    }
+    
     @IBAction func fieldChanged(_ sender: Any) {
         updateSaveButton()
+        updatePrinterURL()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -125,6 +139,7 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
             self.printerNameField.text = selectedService.name
             // Update hostname based on discovered information
             self.hostnameField.text = selectedService.hostname
+            self.updatePrinterURL()
         }
     }
     
@@ -203,6 +218,7 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
         passwordField.text = printer.password
         includeDashboardSwitch.isOn = printer.includeInDashboard
         showCameraSwitch.isOn = !printer.hideCamera
+        updatePrinterURL()
     }
     
     fileprivate func updateSaveButton() {
@@ -218,6 +234,30 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
         }
     }
     
+    fileprivate func updatePrinterURL() {
+        if let printerName = printerNameField.text, !printerName.isEmpty {
+            printerURLLabel.text = "octopod://\(printerName)"
+            shareQRCodeButton.isEnabled = true
+        } else {
+            printerURLLabel.text = "octopod://"
+            shareQRCodeButton.isEnabled = false
+        }
+    }
+    
+    fileprivate func generateQRCode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+
+            if let output = filter.outputImage?.transformed(by: transform) {
+                return UIImage(ciImage: output)
+            }
+        }
+        return nil
+    }
+    
     fileprivate func isValidURL() -> Bool {
         if let inputURL = hostnameField.text {
             return PrinterUtils.isValidURL(inputURL: inputURL)
@@ -229,25 +269,28 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
         // Theme labels
         let theme = Theme.currentTheme()
         let tintColor = theme.tintColor()
+        let textColor = theme.textColor()
+        let backgroundColor = theme.backgroundColor()
         let placeHolderAttributes: [ NSAttributedString.Key : Any ] = [.foregroundColor: theme.placeholderColor()]
         scanAPIKeyButton.tintColor = tintColor
         scanInstallationsButton.tintColor = tintColor
-        includeDashboardLabel.textColor = theme.textColor()
-        showCameraLabel.textColor = theme.textColor()
-        printerNameField.backgroundColor = theme.backgroundColor()
+        includeDashboardLabel.textColor = textColor
+        showCameraLabel.textColor = textColor
+        printerNameField.backgroundColor = backgroundColor
         printerNameField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Printer Name (e.g. MK3)", comment: ""), attributes: placeHolderAttributes)
-        printerNameField.textColor = theme.textColor()
-        hostnameField.backgroundColor = theme.backgroundColor()
+        printerNameField.textColor = textColor
+        hostnameField.backgroundColor = backgroundColor
         hostnameField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Hostname (e.g. http://octopi.local)", comment: ""), attributes: placeHolderAttributes)
-        hostnameField.textColor = theme.textColor()
-        apiKeyField.backgroundColor = theme.backgroundColor()
+        hostnameField.textColor = textColor
+        apiKeyField.backgroundColor = backgroundColor
         apiKeyField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("API Key", comment: ""), attributes: placeHolderAttributes)
-        apiKeyField.textColor = theme.textColor()
-        usernameField.backgroundColor = theme.backgroundColor()
+        apiKeyField.textColor = textColor
+        usernameField.backgroundColor = backgroundColor
         usernameField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Username", comment: ""), attributes: placeHolderAttributes)
-        usernameField.textColor = theme.textColor()
-        passwordField.backgroundColor = theme.backgroundColor()
+        usernameField.textColor = textColor
+        passwordField.backgroundColor = backgroundColor
         passwordField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""), attributes: placeHolderAttributes)
-        passwordField.textColor = theme.textColor()
+        passwordField.textColor = textColor
+        printerURLLabel.textColor = textColor
     }    
 }

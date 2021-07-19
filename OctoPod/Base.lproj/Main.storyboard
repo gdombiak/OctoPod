@@ -5653,6 +5653,45 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="QR Code" id="RIJ-UL-fxM">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dv8-7q-pRY">
+                                        <rect key="frame" x="0.0" y="577.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dv8-7q-pRY" id="rHj-Tt-x2c">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Include in Dashboard" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="KC4-pP-rEh">
+                                                    <rect key="frame" x="16" y="12" width="307" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEE-83-Z9O">
+                                                    <rect key="frame" x="327" y="6" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="BJ6-Tf-lHn"/>
+                                                        <constraint firstAttribute="height" constant="32" id="hcT-zv-Ql2"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Share"/>
+                                                    <connections>
+                                                        <action selector="sharePrinterURLQRCode:" destination="RQs-UQ-7OZ" eventType="touchUpInside" id="zgZ-Z5-jvl"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="jEE-83-Z9O" secondAttribute="trailing" constant="16" id="9Ki-eH-whJ"/>
+                                                <constraint firstItem="KC4-pP-rEh" firstAttribute="top" secondItem="rHj-Tt-x2c" secondAttribute="topMargin" constant="1" id="HvI-6N-ITP"/>
+                                                <constraint firstItem="jEE-83-Z9O" firstAttribute="centerY" secondItem="rHj-Tt-x2c" secondAttribute="centerY" id="SQs-Mj-hw9"/>
+                                                <constraint firstItem="jEE-83-Z9O" firstAttribute="leading" secondItem="KC4-pP-rEh" secondAttribute="trailing" constant="4" id="lwP-5v-Vr1"/>
+                                                <constraint firstItem="KC4-pP-rEh" firstAttribute="bottom" secondItem="rHj-Tt-x2c" secondAttribute="bottomMargin" id="t5m-29-iHb"/>
+                                                <constraint firstItem="KC4-pP-rEh" firstAttribute="leading" secondItem="rHj-Tt-x2c" secondAttribute="leadingMargin" id="z6L-f1-bd9"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="RQs-UQ-7OZ" id="kxx-gd-7Co"/>
@@ -5678,9 +5717,11 @@
                         <outlet property="includeDashboardSwitch" destination="rGy-gu-uXF" id="yhu-r8-ynS"/>
                         <outlet property="passwordField" destination="9dR-Sn-lbP" id="2xT-jt-Aga"/>
                         <outlet property="printerNameField" destination="aFa-Qd-yIr" id="dYn-Mk-F12"/>
+                        <outlet property="printerURLLabel" destination="KC4-pP-rEh" id="df8-V5-j2f"/>
                         <outlet property="saveButton" destination="Ptk-bD-UEk" id="RmJ-nb-Y9C"/>
                         <outlet property="scanAPIKeyButton" destination="a0P-GP-CQD" id="PLy-PZ-K5y"/>
                         <outlet property="scanInstallationsButton" destination="eVf-xw-qan" id="xv1-i4-pkl"/>
+                        <outlet property="shareQRCodeButton" destination="jEE-83-Z9O" id="vrE-UW-n2G"/>
                         <outlet property="showCameraLabel" destination="Kan-Ak-roI" id="vah-I7-Udx"/>
                         <outlet property="showCameraSwitch" destination="agR-SZ-yTe" id="OGu-fD-ygY"/>
                         <outlet property="urlErrorMessageLabel" destination="K6d-lk-BaS" id="kFf-mh-yR5"/>
@@ -8182,8 +8223,8 @@
         <segue reference="zn3-Wa-ymQ"/>
         <segue reference="YxJ-oN-rHm"/>
         <segue reference="56A-kx-eGb"/>
-        <segue reference="CCi-yq-5nQ"/>
-        <segue reference="29V-jA-f9F"/>
+        <segue reference="gsF-Vf-wsl"/>
+        <segue reference="pe1-rk-9Hw"/>
         <segue reference="BVW-8A-vSd"/>
         <segue reference="dlk-YT-PiH"/>
         <segue reference="iMc-Wi-01S"/>
@@ -8223,6 +8264,7 @@
         <image name="Reorder" width="32" height="32"/>
         <image name="Security" width="32" height="32"/>
         <image name="Settings" width="24" height="24"/>
+        <image name="Share" width="32" height="32"/>
         <image name="Siri" width="32" height="32"/>
         <image name="Support" width="32" height="32"/>
         <image name="TPPowerOn" width="32" height="32"/>
