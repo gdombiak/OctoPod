@@ -2,6 +2,7 @@ import UIKit
 
 class PSUControlViewController: ThemedStaticUITableViewController, SubpanelViewController, OctoPrintPluginsDelegate {
 
+    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
@@ -51,10 +52,12 @@ class PSUControlViewController: ThemedStaticUITableViewController, SubpanelViewC
     func printerSelectedChanged() {
         // Assume power is off to be safe
         isPSUOn = false
-        // Only refresh UI if view controller is being shown
-        if let _ = parent {
-            // Fetch status now and refresh UI. Websockets will eventually send updates
-            fetchPSUStatus()
+        DispatchQueue.main.async {
+            // Only refresh UI if view controller is being shown
+            if let _ = self.parent {
+                // Fetch status now and refresh UI. Websockets will eventually send updates
+                self.fetchPSUStatus()
+            }
         }
     }
     
@@ -81,6 +84,12 @@ class PSUControlViewController: ThemedStaticUITableViewController, SubpanelViewC
     // MARK: - Button action
 
     @IBAction func powerButtonPressed(_ sender: Any) {
+        if let printer = printerManager.getDefaultPrinter() {
+            // Donate Siri Intentions
+            IntentsDonations.donatePSUControlTurnOn(printer: printer)
+            IntentsDonations.donatePSUControlTurnOff(printer: printer)
+        }
+
         let changePower = {
             self.octoprintClient.turnPSU(on: !self.isPSUOn) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {

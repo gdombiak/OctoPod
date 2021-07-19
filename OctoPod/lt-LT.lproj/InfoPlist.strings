@@ -1,3 +1,6 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "OctoPod";
+
 /* Bundle name */
 "CFBundleName" = "OctoPod";
 
@@ -6,6 +9,12 @@
 
 /* Privacy - Face ID Usage Description */
 "NSFaceIDUsageDescription" = "Leiskite naudoti FaceID kad atrakinti programėlę";
+
+/* Privacy - Local Network Usage Description */
+"NSLocalNetworkUsageDescription" = "Octopod naudoja vietinį tinklą kad surastų ir komunikuotų su OctoPrint";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "OctoPod prašo leidimo išsaugoti failus jūsų įrenginyje";
 
 /* Privacy - Siri Usage Description */
 "NSSiriUsageDescription" = "Valdykite spausdintuvą su Siri";

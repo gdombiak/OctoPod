@@ -11,6 +11,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     var apiKey: String!
     var username: String?
     var password: String?
+    var preemptive: Bool! // Use HTTP Basic preemptive authentication or wait for WWW-Authenticate Response Header
     
     var timeoutIntervalForRequest = 10.0
     var timeoutIntervalForResource = 16.0
@@ -18,12 +19,13 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     var preRequest: (() -> Void)?
     var postRequest: (() -> Void)?
 
-    init(serverURL: String, apiKey: String, username: String?, password: String?) {
+    init(serverURL: String, apiKey: String, username: String?, password: String?, preemptive: Bool = false) {
         super.init()
-        self.serverURL = serverURL
+        self.serverURL = serverURL.hasSuffix("/") ? String(serverURL.dropLast()) : serverURL // Fix in case stored printer has invalid URL due to a bug that is now fixed
         self.apiKey = apiKey
         self.username = username
         self.password = password
+        self.preemptive = preemptive
     }
     
     // MARK: HTTP operations (GET/POST/PUT/DELETE)
@@ -47,15 +49,15 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
     
     func getData(_ service: String, callback: @escaping (Data?, Error?, HTTPURLResponse) -> Void) {
-        let url: URL = URL(string: serverURL + service)!
+        let url: URL = service.starts(with: serverURL) ? URL(string: service)! : URL(string: serverURL + service)!
         
         // Get session with the provided configuration
-        let session = Foundation.URLSession(configuration: getConfiguration(false), delegate: self, delegateQueue: nil)
+        let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
         
         // Create background task that will perform the HTTP request
         var request = URLRequest(url: url)
         // Add API Key header
-        request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
+        addApiKey(&request)
         let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             self.postRequest?()
             if let httpRes = response as? HTTPURLResponse {
@@ -77,17 +79,37 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         session.finishTasksAndInvalidate()
     }
     
+    func download(_ service: String, progress: @escaping (Int64, Int64) -> Void, completion: @escaping (Data?, Error?) -> Void) {
+        let url: URL = URL(string: serverURL + service)!
+        
+        // Get session with the provided configuration
+        let delegate = WrappedDownloadTaskDelegate(httpClient: self, progress: progress, completion: completion)
+        let configuration = getConfiguration()
+        // Increate timeouts
+        configuration.timeoutIntervalForResource = 90
+        let session = Foundation.URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
+        
+        // Create background task that will perform the HTTP request
+        var request = URLRequest(url: url)
+        // Add API Key header
+        addApiKey(&request)
+        let task = session.downloadTask(with: request)
+        self.preRequest?()
+        task.resume()
+        session.finishTasksAndInvalidate()
+    }
+    
     func delete(_ service: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         let url: URL = URL(string: serverURL + service)!
         
         // Get session with the provided configuration
-        let session = Foundation.URLSession(configuration: getConfiguration(false), delegate: self, delegateQueue: nil)
+        let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
         
         // Create background task that will perform the HTTP request
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         // Add API Key header
-        request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
+        addApiKey(&request)
         let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             self.postRequest?()
             if let httpRes = response as? HTTPURLResponse {
@@ -104,13 +126,13 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     func post(_ service: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let url: URL = URL(string: serverURL! + service) {            
             // Get session with the provided configuration
-            let session = Foundation.URLSession(configuration: getConfiguration(false), delegate: self, delegateQueue: nil)
+            let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
             
             // Create background task that will perform the HTTP request
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             // Add API Key header
-            request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
+            addApiKey(&request)
             let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
                 self.postRequest?()
                 if let httpRes = response as? HTTPURLResponse {
@@ -162,7 +184,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         let url: URL = URL(string: serverURL! + service)!
 
         // Get session with the provided configuration
-        let session = Foundation.URLSession(configuration: getConfiguration(false), delegate: self, delegateQueue: nil)
+        let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
         
         // Create background task that will perform the HTTP request
         var request = URLRequest(url: url)
@@ -171,7 +193,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         let boundary = "Boundary-\(UUID().uuidString)"
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         // Add API Key header
-        request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
+        addApiKey(&request)
         // Create multipart that includes file
         request.httpBody = createMultiPartBody(parameters: parameters, boundary: boundary, data: fileContent, mimeType: "application/octet-stream", filename: filename)
         // Send request
@@ -193,11 +215,11 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     fileprivate func requestWithBody(_ url: URL, verb: String, expected: Int, json: NSObject?, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         
         // Get session with the provided configuration
-        let session = Foundation.URLSession(configuration: getConfiguration(false), delegate: self, delegateQueue: nil)
+        let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
         
         var request = URLRequest(url: url)
         // Add API Key header
-        request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
+        addApiKey(&request)
         request.httpMethod = verb
         var err: NSError?
         do {
@@ -275,22 +297,35 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         return body
     }
     
-    fileprivate func getConfiguration(_ preemptive: Bool) -> URLSessionConfiguration {
+    class func authBasicHeader(username: String, password: String) -> String {
+        let userPasswordString = username + ":" + password
+        let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
+        let base64EncodedCredential = userPasswordData!.base64EncodedString(options: [])
+        return "Basic \(base64EncodedCredential)"
+    }
+    
+    fileprivate func getConfiguration() -> URLSessionConfiguration {
         let config = URLSessionConfiguration.default
-        if preemptive && username != nil && password != nil {
-            let userPasswordString = username! + ":" + password!
-            let userPasswordData = userPasswordString.data(using: String.Encoding.utf8)
-            let base64EncodedCredential = userPasswordData!.base64EncodedString(options: [])
-            let authString = "Basic \(base64EncodedCredential)"
-            config.httpAdditionalHeaders = ["Authorization" : authString]
+        if let username = username, let password = password, preemptive {
+            config.httpAdditionalHeaders = ["Authorization" : HTTPClient.authBasicHeader(username: username, password: password)]
         }
         // Timeout to start transmitting
         config.timeoutIntervalForRequest = timeoutIntervalForRequest
         // Timeout to receive data
         config.timeoutIntervalForResource = timeoutIntervalForResource
+        // iOS 14 might prompt user to allow connectivity to local network so we need to wait
+        config.waitsForConnectivity = true
         return config
     }
     
+    fileprivate func addApiKey(_ request: inout URLRequest) {
+        if !apiKey.isEmpty {
+            request.addValue(apiKey, forHTTPHeaderField: "X-Api-Key")
+        }
+    }
+    
+    // MARK: URLSessionDelegate
+
     func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         
         if challenge.previousFailureCount > 0 {
@@ -300,5 +335,39 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
             let credential = URLCredential(user: self.username ?? "", password: self.password ?? "", persistence: .forSession)
             completionHandler(Foundation.URLSession.AuthChallengeDisposition.useCredential, credential)
         }
+    }
+}
+
+private class WrappedDownloadTaskDelegate: NSObject, URLSessionDownloadDelegate {
+    
+    private let progress: (Int64, Int64) -> Void
+    private let completion: (Data?, Error?) -> Void
+    private let httpClient: HTTPClient
+    
+    init(httpClient: HTTPClient, progress: @escaping (Int64, Int64) -> Void, completion: @escaping (Data?, Error?) -> Void) {
+        self.progress = progress
+        self.completion = completion
+        self.httpClient = httpClient
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        do {
+            let reader = try FileHandle(forReadingFrom: location)
+            completion(reader.readDataToEndOfFile(), nil)
+        } catch {
+            completion(nil, error)
+        }
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        completion(nil, error)
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        progress(totalBytesWritten, totalBytesExpectedToWrite)
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        httpClient.urlSession(session, task: task, didReceive: challenge, completionHandler: completionHandler)
     }
 }

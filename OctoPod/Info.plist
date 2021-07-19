@@ -31,6 +31,11 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>twitter</string>
+		<string>fb</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -38,10 +43,19 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_http._tcp</string>
+		<string>_octoprint._tcp</string>
+	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>We need to access your camera for scanning QR code</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>We need to use FaceID to unlock app</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>OctoPod uses your local network to discover and communicate to OctoPrint</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs permission to save videos on your device</string>
 	<key>NSSiriUsageDescription</key>
 	<string>Control printer using Siri</string>
 	<key>NSUbiquitousContainers</key>
@@ -59,7 +73,12 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>CancelJobIntent</string>
+		<string>ConfigurationIntent</string>
 		<string>CoolDownPrinterIntent</string>
+		<string>EnclosureTurnOffIntent</string>
+		<string>EnclosureTurnOnIntent</string>
+		<string>PSUControlOffIntent</string>
+		<string>PSUControlOnIntent</string>
 		<string>PaletteClearIntent</string>
 		<string>PaletteConnectIntent</string>
 		<string>PaletteCutIntent</string>
@@ -72,9 +91,12 @@
 		<string>SetBedTempIntent</string>
 		<string>SetChamberTempIntent</string>
 		<string>SetToolTempIntent</string>
+		<string>SystemCommandIntent</string>
+		<string>TakeSnapshotIntent</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>audio</string>
 		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
@@ -87,7 +109,7 @@
 		<string>armv7</string>
 	</array>
 	<key>UIRequiresFullScreen</key>
-	<true/>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

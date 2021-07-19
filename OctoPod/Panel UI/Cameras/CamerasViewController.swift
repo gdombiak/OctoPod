@@ -1,6 +1,7 @@
 import UIKit
+import AVKit
 
-class CamerasViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class CamerasViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, AVPictureInPictureControllerDelegate {
 
     @IBOutlet weak var pageControl: UIPageControl!
     
@@ -20,11 +21,19 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     private var currentIndex: Int? // No camera has been selected by the app or the user. This means that we need to indicate which camera to display
     private var pendingIndex: Int?
 
+    var offerPIP = false
+    var pictureInPictureController: AVPictureInPictureController?
+    var userStartedPIP = false
+    private var pipCameraIndex = 0
+    private var pipClosedCallback: (() -> Void)?
+    
+    private var lastPrinterID: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Create the page container
-        pageContainer = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        // Create the page container (seems that using .pageCurl avoids some assertion crash)
+        pageContainer = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: nil)
         pageContainer.delegate = self
         pageContainer.dataSource = self
 
@@ -36,10 +45,21 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateViewControllersForPrinter(cameraChanged: false)
+        // Start listening to events when app will resign active state
+        NotificationCenter.default.addObserver(self, selector: #selector(appwillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
+        
+        if let printer = printerManager.getDefaultPrinter() {
+            let newPrinterID = printer.objectID.uriRepresentation().absoluteString
+            let cameraChanged = newPrinterID != lastPrinterID
+            lastPrinterID = newPrinterID
+            updateViewControllersForPrinter(cameraChanged: cameraChanged)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        // Stop listening to events when app will resign active state
+        NotificationCenter.default.removeObserver(self)
+
         displayPrintStatus = nil
     }
 
@@ -66,7 +86,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
 
     func displayPrintStatus(enabled: Bool) {
         if displayPrintStatus != enabled {
-            if let index = currentIndex {
+            if let index = currentIndex, orderedViewControllers.count > index {
                 displayPrintStatus = enabled
                 orderedViewControllers[index].displayPrintStatus(enabled: enabled)
             }
@@ -98,7 +118,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     }
     
     func currentStateUpdated(event: CurrentStateEvent) {
-        if let index = currentIndex {
+        if let index = currentIndex, orderedViewControllers.count > index {
             orderedViewControllers[index].currentStateUpdated(event: event)
         }
     }
@@ -168,6 +188,11 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     // MARK: - Private functions
     
     fileprivate func updateViewControllersForPrinter(cameraChanged: Bool) {
+        if userStartedPIP {
+            // Stop PIP
+            self.stopPictureInPicture(pause: true)
+        }
+
         if cameraChanged, let index = currentIndex, index < orderedViewControllers.count {
             // Stop rendering current printer's camera
             // This VC may or may not be reused for the newly selected printer so
@@ -178,26 +203,28 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         // Create corresponding VCs according to the printer's cameras
         var newViewControllers: Array<CameraEmbeddedViewController> = Array()
         if let printer = printerManager.getDefaultPrinter() {
-            if let camerasURLs = printer.cameras {
+            if let cameras = printer.getMultiCameras() {
                 // MultiCam plugin is installed so show all cameras
                 var index = 0
-                for url in camerasURLs {
+                for multiCamera in cameras {
                     var cameraOrientation: UIImage.Orientation
                     var cameraURL: String
-                    
+                    let url = multiCamera.cameraURL
+
                     if url == printer.getStreamPath() {
                         // This is camera hosted by OctoPrint so respect orientation
-                        cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+                        cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
                         cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
                     } else {
                         if url.starts(with: "/") {
                             // Another camera hosted by OctoPrint so build absolute URL
-                            cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+                            cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
                         } else {
                             // Use absolute URL to render camera
                             cameraURL = url
                         }
-                        cameraOrientation = UIImage.Orientation.up // MultiCam has no information about orientation of extra cameras so assume "normal" position - no flips
+                        // Respect orientation defined by MultiCamera plugin
+                        cameraOrientation = UIImage.Orientation(rawValue: Int(multiCamera.cameraOrientation))!
                     }
                     
                     newViewControllers.append(newEmbeddedCameraViewController(index: index, url: cameraURL, cameraOrientation: cameraOrientation))
@@ -206,7 +233,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             }
             if newViewControllers.isEmpty {
                 // MultiCam plugin is not installed so just show default camera
-                let cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: printer.getStreamPath())
+                let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
                 let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
                 newViewControllers.append(newEmbeddedCameraViewController(index: 0, url: cameraURL, cameraOrientation: cameraOrientation))
             }
@@ -250,28 +277,18 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         }
     }
     
-    fileprivate func octoPrintCameraAbsoluteUrl(hostname: String, streamUrl: String) -> String {
-        if streamUrl.isEmpty {
-            // Should never happen but let's be cautious
-            return hostname
-        }
-        if streamUrl.starts(with: "/") {
-            // Build absolute URL from relative URL
-            return hostname + streamUrl
-        }
-        // streamURL is an absolute URL so return it
-        return streamUrl
-    }
-
     fileprivate func newEmbeddedCameraViewController(index: Int, url: String, cameraOrientation: UIImage.Orientation) -> CameraEmbeddedViewController {
         var controller: CameraEmbeddedViewController
         // See if we can reuse existing controller
         let existing: CameraEmbeddedViewController? = orderedViewControllers.count > index ? orderedViewControllers[index] : nil
-        if let _ = existing {
+        let useHLS = CameraUtils.shared.isHLS(url: url)
+        if useHLS, let _ = existing as? CameraHLSEmbeddedViewController {
+            controller = existing!
+        } else if !useHLS, let _ = existing as? CameraMJPEGEmbeddedViewController{
             controller = existing!
         } else {
-            // Let's create a new one
-            controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CameraEmbeddedViewController") as! CameraEmbeddedViewController
+            // Let's create a new one. Use one for HLS and another one for MJPEG
+            controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: useHLS ? "CameraHLSEmbeddedViewController" : "CameraMJPEGEmbeddedViewController") as! CameraEmbeddedViewController
         }
         controller.cameraURL = url
         controller.cameraOrientation = cameraOrientation
@@ -279,6 +296,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         controller.cameraTappedCallback = embeddedCameraTappedCallback
         controller.cameraViewDelegate = embeddedCameraDelegate
         controller.cameraIndex = index
+        controller.camerasViewController = self
         return controller
     }
     
@@ -291,5 +309,86 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             index = index + 1
         }
         return nil
+    }
+    
+    // MARK: - PIP support
+    
+    func initPictureInPictureController(playerLayer: AVPlayerLayer, pipClosedCallback: @escaping (() -> Void)) {
+        self.pipClosedCallback = pipClosedCallback
+        if userStartedPIP {
+            // User is using PIP so we need to stop it and close it
+            stopPictureInPicture(pause: false)
+        }
+        // Create a new controller, passing the reference to the AVPlayerLayer.
+        pictureInPictureController = AVPictureInPictureController(playerLayer: playerLayer)
+        pictureInPictureController?.delegate = self
+    }
+    
+    func togglePictureInPictureMode() {
+        if let pictureInPictureController = pictureInPictureController {
+            if pictureInPictureController.isPictureInPictureActive {
+                stopPictureInPicture(pause: false)
+            } else {
+                pictureInPictureController.startPictureInPicture()
+                userStartedPIP = true
+                pipCameraIndex = currentIndex!
+            }
+        }
+    }
+    
+    func stopPictureInPicture(pause: Bool) {
+        if pause {
+            pictureInPictureController?.playerLayer.player?.pause()
+        }
+        pictureInPictureController?.stopPictureInPicture()
+        userStartedPIP = false
+    }
+    
+    @objc func appwillResignActive() {
+        // If user did not start PIP then release pictureInPictureController
+        // Otherwise iOS will start PIP automatically if user is in a window with
+        // an HLS camera and user clicked on Home button or received a phone call
+        // or any other event that will make the app no longer be active
+        // Known issue: Double click on home and coming back to the app will no longer
+        // have pipController so clicking on PIP button will do nothing
+        if !userStartedPIP {
+            pictureInPictureController = nil
+        }
+    }
+
+    // MARK: - AVPictureInPictureControllerDelegate
+    
+    func pictureInPictureControllerDidStopPictureInPicture(_ pictureInPictureController: AVPictureInPictureController) {
+        pipClosedCallback?()
+        if userStartedPIP {
+            // User closed PIP rather than doing a pop-in
+            if let tabBarController = (UIApplication.shared.delegate as! AppDelegate).window!.rootViewController as? UITabBarController {
+                if tabBarController.selectedIndex == 0 && UIApplication.shared.applicationState == .active {
+                    // We were already in Panel tab and app is in foregound so resume playing
+                    pictureInPictureController.playerLayer.player?.play()
+                }
+            }
+            userStartedPIP = false
+        }
+    }
+    
+    func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
+        pipClosedCallback?()
+        // We could be in any tab so go back to Panel tab AND camera started PIP
+        if let tabBarController = (UIApplication.shared.delegate as! AppDelegate).window!.rootViewController as? UITabBarController {
+            if tabBarController.selectedIndex != 0 {
+                // Stop player since view will appear and will start a new player
+                pictureInPictureController.playerLayer.player?.pause()
+                // Go to Panel tab (we will already be on the proper camera since start PIP and then moving to another camera will stop PIP)
+                tabBarController.selectedIndex = 0
+            }
+        }
+
+        // Indicate that we are no longer in PIP.
+        // User requested to pop-in. This event is fired before #didStop event. If user closed PIP
+        // then this even is not fired and only #didStop is fired
+        userStartedPIP = false
+
+        completionHandler(true)
     }
 }

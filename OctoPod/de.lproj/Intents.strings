@@ -1,7 +1,4 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} kann nicht höher sein als ${maximumValue}.";
-
-/* (No Comment) */
 "0vck5K" = "Schnittanforderung fehlgeschlagen";
 
 /* (No Comment) */
@@ -9,6 +6,12 @@
 
 /* (No Comment) */
 "1lbZOa" = "Anforderungen zum trennen fehlgeschlagen";
+
+/* (No Comment) */
+"1qMmy1" = "Angefordert";
+
+/* (No Comment) */
+"2O3S2V" = "Schnappschuss machen";
 
 /* (No Comment) */
 "2TreiD" = "Stelle Düsentemperatur auf ${temperature}";
@@ -29,13 +32,22 @@
 "3JiZye" = "Angefordert";
 
 /* (No Comment) */
+"4B08aG" = "Ausschalten ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"4Tu0Kl" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
 
 /* (No Comment) */
 "5btOXI" = "Letzte Variation";
 
 /* (No Comment) */
 "5i5htv" = "Verbunden";
+
+/* (No Comment) */
+"5iTPOd" = "${printer}";
 
 /* (No Comment) */
 "6b7Yce" = "Bitte Palette zu schneiden";
@@ -45,6 +57,9 @@
 
 /* (No Comment) */
 "6vtMLs" = "Auftrag neu gestartet";
+
+/* (No Comment) */
+"7c0KRL" = "Command Source";
 
 /* (No Comment) */
 "7eJPkN" = "Kammer Temperatur einrichten";
@@ -57,6 +72,9 @@
 
 /* (No Comment) */
 "8tTCjD" = "Auftrag konnte nicht abgebrochen werden (${statusCode})";
+
+/* (No Comment) */
+"8uLpUQ" = "Netzteil ausschalten";
 
 /* (No Comment) */
 "8xHCbl" = "${printer}";
@@ -74,22 +92,31 @@
 "662LyZ" = "Neustart";
 
 /* (No Comment) */
-"817z4k" = "${displayName} kann nicht niedriger sein als ${minimumValue}.";
+"9107Xn" = "Schnappschuss machen";
 
 /* (No Comment) */
-"ADfGbr" = "${displayName} kann nicht negativ sein.";
-
-/* (No Comment) */
-"AdooVp" = "${displayName} kann nicht negativ sein.";
+"a1UDyY" = "Angefordert";
 
 /* (No Comment) */
 "ajupCt" = "Keine Information verfügbar";
 
 /* (No Comment) */
+"aTDQUI" = "Gehäuseschalter einschalten";
+
+/* (No Comment) */
 "AU4oMs" = "Rufe Statistik von Palette ab";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Angefordert";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Netzteil einschalten";
 
 /* (No Comment) */
 "BUexSx" = "Größte Variation";
@@ -98,7 +125,10 @@
 "bXGQKe" = "Drucker abkühlen";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} kann nicht höher sein als ${maximumValue}.";
+"bXrJk0" = "Command Action";
+
+/* (No Comment) */
+"C1mTOm" = "${printer}";
 
 /* (No Comment) */
 "D0kBGr" = "Laufenden Druckauftrag neu starten";
@@ -107,13 +137,19 @@
 "D1wWxd" = "Trenne von Palette";
 
 /* (No Comment) */
+"DKIuk9" = "Systembefehl ausführen";
+
+/* (No Comment) */
 "doj4NA" = "Temperatur der Düse konfigurieren";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} kann nicht negativ sein.";
+"Eb3aa5" = "Einstellen der Temperatur der Kammer fehlgeschlagen (${statusCode})";
 
 /* (No Comment) */
-"Eb3aa5" = "Einstellen der Temperatur der Kammer fehlgeschlagen (${statusCode})";
+"Eeyifr" = "Angefordert";
+
+/* (No Comment) */
+"eKSaMC" = "Einschalten ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Drucker abkühlen";
@@ -137,7 +173,16 @@
 "g52Ub0" = "${printer}";
 
 /* (No Comment) */
+"Ge6TbJ" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
+
+/* (No Comment) */
 "gx0D0e" = "Auftrag abgebrochen";
+
+/* (No Comment) */
+"H21bkX" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
+
+/* (No Comment) */
+"hE6yXX" = "Angefordert";
 
 /* (No Comment) */
 "hPlRC4" = "Stelle Druckbetttemperatur auf ${temperature}";
@@ -149,6 +194,9 @@
 "ihLqc7" = "Laufenden Druckauftrag aussetzen";
 
 /* (No Comment) */
+"IXiy0v" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
+
+/* (No Comment) */
 "jasUIn" = "Trenne von Palette";
 
 /* (No Comment) */
@@ -158,13 +206,13 @@
 "JmhfgL" = "Laufenden Druckauftrag neu starten";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} kann nicht niedriger sein als ${minimumValue}.";
-
-/* (No Comment) */
 "JV2xQz" = "Verbinde zu Palette";
 
 /* (No Comment) */
 "Kf7e4Y" = "Laufenden Druckauftrag fortsetzen";
+
+/* (No Comment) */
+"kHMMRT" = "${printer}";
 
 /* (No Comment) */
 "KHvUZD" = "Bitte Palette zu schneiden";
@@ -173,7 +221,19 @@
 "kSWyyv" = "${printer}";
 
 /* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
+"KulRl5" = "Gehäuseschalter einschalten";
+
+/* (No Comment) */
+"KxJmrF" = "Schnappschuss";
+
+/* (No Comment) */
 "L25OHl" = "Anforderung für Verbindungsaufbau fehlgeschlagen";
+
+/* (No Comment) */
+"lOuQ7B" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
 
 /* (No Comment) */
 "lrRige" = "Laufenden Druckauftrag abbrechen";
@@ -191,12 +251,6 @@
 "M58YA9" = "Drucker";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} kann nicht höher sein als ${maximumValue}.";
-
-/* (No Comment) */
-"mfflxG" = "${displayName} kann nicht niedriger sein als ${minimumValue}.";
-
-/* (No Comment) */
 "N0vzJv" = "Bitte Palette zu leeren";
 
 /* (No Comment) */
@@ -209,10 +263,28 @@
 "NL98zi" = "Kühlt Druckbett und Düse ab";
 
 /* (No Comment) */
+"Oaidbo" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
+
+/* (No Comment) */
+"oe3uiM" = "Systembefehl ausführen ${commandName}";
+
+/* (No Comment) */
+"OOldQi" = "Command Name";
+
+/* (No Comment) */
 "ovQf6Z" = "Auftrag pausiert";
 
 /* (No Comment) */
+"P6usJW" = "Schnappschuss machen";
+
+/* (No Comment) */
+"p9Vevg" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
+
+/* (No Comment) */
 "P89qJr" = "Verbleibende Zeit ist ${time}";
+
+/* (No Comment) */
+"pfroH1" = "Netzteil ausschalten";
 
 /* (No Comment) */
 "Pj7mEV" = "Düse abkühlen";
@@ -221,16 +293,19 @@
 "PppyPP" = "Temperatur des Druckbetts konfiguriert";
 
 /* (No Comment) */
+"q1Oynq" = "Netzteil Steuerung aus";
+
+/* (No Comment) */
 "qLzk1S" = "Druckbett abkühlen";
 
 /* (No Comment) */
 "QSxXHq" = "Druckauftrag pausieren";
 
 /* (No Comment) */
-"R5AlTe" = "Trenne von Palette";
+"qwH2oF" = "Gehäuseschalter ausschalten";
 
 /* (No Comment) */
-"RbyC9o" = "${displayName} kann nicht höher sein als ${maximumValue}.";
+"R5AlTe" = "Trenne von Palette";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -257,7 +332,7 @@
 "RYurC5" = "Kammer abkühlen";
 
 /* (No Comment) */
-"SK8bYR" = "${displayName} kann nicht negativ sein.";
+"sDV9Jm" = "Angefordert";
 
 /* (No Comment) */
 "SP4rN6" = "Düsentemperatur konnte nicht eingestellt werden";
@@ -269,10 +344,19 @@
 "sRkyIL" = "Auftrag konnte nicht neu gestartet werden (${statusCode})";
 
 /* (No Comment) */
+"SZLVG3" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
+
+/* (No Comment) */
+"TcPGnq" = "Gehäuseschalter ausschalten";
+
+/* (No Comment) */
 "tKDODp" = "Verbleibende Druckzeit";
 
 /* (No Comment) */
 "UC9Zrq" = "Temperatur des Druckbetts wurde auf ${temperature} gestellt";
+
+/* (No Comment) */
+"ukcwkW" = "Systembefehl ausführen";
 
 /* (No Comment) */
 "uoT27A" = "Temperatur des Druckbetts konnte nicht eingestellt werden (${statusCode})";
@@ -287,6 +371,12 @@
 "VItjhS" = "Getrennt";
 
 /* (No Comment) */
+"Vix5SL" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
+
+/* (No Comment) */
+"VKupAQ" = "Angefordert";
+
+/* (No Comment) */
 "vL7cy4" = "${printer}";
 
 /* (No Comment) */
@@ -296,28 +386,49 @@
 "vmbpr4" = "Verbinde zu Palette";
 
 /* (No Comment) */
+"wabqoy" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
+
+/* (No Comment) */
 "WI2oQf" = "Verbleibende Druckzeit";
 
 /* (No Comment) */
 "WLkRl0" = "Auftrag kann nicht fortgesetzt werden (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Angefordert";
+
+/* (No Comment) */
 "wYzz4m" = "Drucker kühlt ab";
+
+/* (No Comment) */
+"x8aCII" = "Angefordert";
 
 /* (No Comment) */
 "XfWmGt" = "Laufenden Druckauftrag fortsetzen";
 
 /* (No Comment) */
+"Xk9F6S" = "Netzteil einschalten";
+
+/* (No Comment) */
 "xSARU0" = "Auftrag konnte nicht pausiert werden (${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "Netzteil Steuerung ein";
+
+/* (No Comment) */
+"YfmWYd" = "Angefordert";
 
 /* (No Comment) */
 "YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yZeSdz" = "${printer}";
+"yMvnaP" = "Drucker";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} kann nicht niedriger sein als ${minimumValue}.";
+"YQLomX" = "Angefordert";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";

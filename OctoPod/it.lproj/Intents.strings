@@ -1,7 +1,4 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} non può essere maggiore di ${maximumValue}.";
-
-/* (No Comment) */
 "0vck5K" = "Impossibile richiedere di tagliare";
 
 /* (No Comment) */
@@ -9,6 +6,12 @@
 
 /* (No Comment) */
 "1lbZOa" = "Impossibile richiedere di disconnettersi";
+
+/* (No Comment) */
+"1qMmy1" = "Richiesto";
+
+/* (No Comment) */
+"2O3S2V" = "Scatta istantanea";
 
 /* (No Comment) */
 "2TreiD" = "Imposta la temperatura dell'estrusore su ${temperature}";
@@ -29,13 +32,22 @@
 "3JiZye" = "Richiesto";
 
 /* (No Comment) */
+"4B08aG" = "Spegni ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"4Tu0Kl" = "Impossibile richiedere di eseguire il comando";
 
 /* (No Comment) */
 "5btOXI" = "Ultima variazione";
 
 /* (No Comment) */
 "5i5htv" = "Connesso";
+
+/* (No Comment) */
+"5iTPOd" = "${printer}";
 
 /* (No Comment) */
 "6b7Yce" = "Chiedi a Palette di tagliare";
@@ -45,6 +57,9 @@
 
 /* (No Comment) */
 "6vtMLs" = "Stampa riavviata";
+
+/* (No Comment) */
+"7c0KRL" = "Command Source";
 
 /* (No Comment) */
 "7eJPkN" = "Configura la temperatura della camera";
@@ -57,6 +72,9 @@
 
 /* (No Comment) */
 "8tTCjD" = "Errore nell'annullamento della stampa (${statusCode})";
+
+/* (No Comment) */
+"8uLpUQ" = "Spegni PSU";
 
 /* (No Comment) */
 "8xHCbl" = "${printer}";
@@ -74,22 +92,31 @@
 "662LyZ" = "Riavvia la stampa";
 
 /* (No Comment) */
-"817z4k" = "${displayName} non può essere minore di ${minimumValue}.";
+"9107Xn" = "Scatta istantanea";
 
 /* (No Comment) */
-"ADfGbr" = "${displayName} non può essere negativa";
-
-/* (No Comment) */
-"AdooVp" = "${displayName} non può essere negativa";
+"a1UDyY" = "Richiesto";
 
 /* (No Comment) */
 "ajupCt" = "Nessuna informazione disponibile";
 
 /* (No Comment) */
+"aTDQUI" = "Accendi interruttore Enclosure";
+
+/* (No Comment) */
 "AU4oMs" = "Chiedi le statistiche di ping di Palette";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Richiesto";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Accendi PSU";
 
 /* (No Comment) */
 "BUexSx" = "Massima variazione";
@@ -98,7 +125,10 @@
 "bXGQKe" = "Raffredda stampante";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} non può essere maggiore di ${maximumValue}.";
+"bXrJk0" = "Command Action";
+
+/* (No Comment) */
+"C1mTOm" = "${printer}";
 
 /* (No Comment) */
 "D0kBGr" = "Riavvia la stampa in corso";
@@ -107,13 +137,19 @@
 "D1wWxd" = "Disconnetti da Palette";
 
 /* (No Comment) */
+"DKIuk9" = "Esegui il comando di sistema";
+
+/* (No Comment) */
 "doj4NA" = "Configura la temperatura dell'estrusore";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} non può essere negativa";
+"Eb3aa5" = "Impossibile impostare la temperatura (${statusCode})";
 
 /* (No Comment) */
-"Eb3aa5" = "Impossibile impostare la temperatura (${statusCode})";
+"Eeyifr" = "Richiesto";
+
+/* (No Comment) */
+"eKSaMC" = "Accendi ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Raffredda stampante";
@@ -137,7 +173,16 @@
 "g52Ub0" = "${printer}";
 
 /* (No Comment) */
+"Ge6TbJ" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
 "gx0D0e" = "Stampa annullata";
+
+/* (No Comment) */
+"H21bkX" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
+"hE6yXX" = "Richiesto";
 
 /* (No Comment) */
 "hPlRC4" = "Imposta la temperatura del piatto su ${temperature}";
@@ -149,6 +194,9 @@
 "ihLqc7" = "Sospendi la stampa in corso";
 
 /* (No Comment) */
+"IXiy0v" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
 "jasUIn" = "Disconnetti da Palette";
 
 /* (No Comment) */
@@ -158,13 +206,13 @@
 "JmhfgL" = "Riavvia la stampa in corso";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} non può essere minore di ${minimumValue}.";
-
-/* (No Comment) */
 "JV2xQz" = "Connetti a Palette";
 
 /* (No Comment) */
 "Kf7e4Y" = "Riprendi la stampa in corso";
+
+/* (No Comment) */
+"kHMMRT" = "${printer}";
 
 /* (No Comment) */
 "KHvUZD" = "Chiedi a Palette di tagliare";
@@ -173,7 +221,19 @@
 "kSWyyv" = "${printer}";
 
 /* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
+"KulRl5" = "Accendi interruttore Enclosure";
+
+/* (No Comment) */
+"KxJmrF" = "Istantanea";
+
+/* (No Comment) */
 "L25OHl" = "Impossibile richiedere di connettersi";
+
+/* (No Comment) */
+"lOuQ7B" = "Impossibile richiedere di eseguire il comando";
 
 /* (No Comment) */
 "lrRige" = "Annulla la stampa in corso";
@@ -191,12 +251,6 @@
 "M58YA9" = "Stampante";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} non può essere maggiore di ${maximumValue}.";
-
-/* (No Comment) */
-"mfflxG" = "${displayName} non può essere minore di ${minimumValue}.";
-
-/* (No Comment) */
 "N0vzJv" = "Chiedi a Palette di spurgare";
 
 /* (No Comment) */
@@ -209,10 +263,28 @@
 "NL98zi" = "Raffredda piatto ed estrusore";
 
 /* (No Comment) */
+"Oaidbo" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
+"oe3uiM" = "Esegui il comando di sistema ${commandName}";
+
+/* (No Comment) */
+"OOldQi" = "Command Name";
+
+/* (No Comment) */
 "ovQf6Z" = "Stampa sospesa";
 
 /* (No Comment) */
+"P6usJW" = "Scatta istantanea";
+
+/* (No Comment) */
+"p9Vevg" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
 "P89qJr" = "Il tempo rimanente è ${time}";
+
+/* (No Comment) */
+"pfroH1" = "Spegni PSU";
 
 /* (No Comment) */
 "Pj7mEV" = "Raffredda l'estrusore";
@@ -221,16 +293,19 @@
 "PppyPP" = "Configura la temperatura del piatto";
 
 /* (No Comment) */
+"q1Oynq" = "Controllo PSU disattivato";
+
+/* (No Comment) */
 "qLzk1S" = "Raffredda il piatto";
 
 /* (No Comment) */
 "QSxXHq" = "Sospendi la stampa in corso";
 
 /* (No Comment) */
-"R5AlTe" = "Disconnetti da Palette";
+"qwH2oF" = "Spegni interruttore Enclosure";
 
 /* (No Comment) */
-"RbyC9o" = "${displayName} non può essere maggiore di ${maximumValue}.";
+"R5AlTe" = "Disconnetti da Palette";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -257,7 +332,7 @@
 "RYurC5" = "Raffredda box";
 
 /* (No Comment) */
-"SK8bYR" = "${displayName} non può essere negativa";
+"sDV9Jm" = "Richiesto";
 
 /* (No Comment) */
 "SP4rN6" = "Imposta la temperatura dell'estrusore";
@@ -269,10 +344,19 @@
 "sRkyIL" = "Errore nel riavviare la stampa (${statusCode})";
 
 /* (No Comment) */
+"SZLVG3" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
+"TcPGnq" = "Spegni interruttore Enclosure";
+
+/* (No Comment) */
 "tKDODp" = "Tempo di stampa rimanente";
 
 /* (No Comment) */
 "UC9Zrq" = "La temperatura del piatto è stata impostata su ${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "Esegui il comando di sistema";
 
 /* (No Comment) */
 "uoT27A" = "Errore nell'impostazione della temperatura del piatto (${statusCode})";
@@ -287,6 +371,12 @@
 "VItjhS" = "Disconnesso";
 
 /* (No Comment) */
+"Vix5SL" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
+"VKupAQ" = "Richiesto";
+
+/* (No Comment) */
 "vL7cy4" = "${printer}";
 
 /* (No Comment) */
@@ -296,28 +386,49 @@
 "vmbpr4" = "Connetti a Palette";
 
 /* (No Comment) */
+"wabqoy" = "Impossibile richiedere di eseguire il comando";
+
+/* (No Comment) */
 "WI2oQf" = "Restituisci il tempo di stampa rimasto";
 
 /* (No Comment) */
 "WLkRl0" = "Errore nel riprendere la stampa (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Richiesto";
+
+/* (No Comment) */
 "wYzz4m" = "La stampante si sta raffreddando";
+
+/* (No Comment) */
+"x8aCII" = "Richiesto";
 
 /* (No Comment) */
 "XfWmGt" = "Riprendi la stampa in corso";
 
 /* (No Comment) */
+"Xk9F6S" = "Accendi PSU";
+
+/* (No Comment) */
 "xSARU0" = "Errore nel sospendere la stampa (${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "Controllo PSU attivato";
+
+/* (No Comment) */
+"YfmWYd" = "Richiesto";
 
 /* (No Comment) */
 "YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yZeSdz" = "${printer}";
+"yMvnaP" = "Stampante";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} non può essere minore di ${minimumValue}.";
+"YQLomX" = "Richiesto";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BLTouch" representedClassName=".BLTouch" syncable="YES">
+        <attribute name="cmdProbeBed" attributeType="String"/>
+        <attribute name="cmdProbeDown" attributeType="String"/>
+        <attribute name="cmdProbeUp" attributeType="String"/>
+        <attribute name="cmdReleaseAlarm" attributeType="String"/>
+        <attribute name="cmdSaveSettings" attributeType="String"/>
+        <attribute name="cmdSelfTest" attributeType="String"/>
+        <relationship name="printer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Printer" inverseName="blTouch" inverseEntity="Printer"/>
+    </entity>
+    <entity name="EnclosureInput" representedClassName=".EnclosureInput" syncable="YES">
+        <attribute name="index_id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="label" attributeType="String"/>
+        <attribute name="type" attributeType="String"/>
+        <attribute name="use_fahrenheit" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <relationship name="printer" maxCount="1" deletionRule="Nullify" destinationEntity="Printer" inverseName="enclosureInputs" inverseEntity="Printer"/>
+    </entity>
+    <entity name="EnclosureOutput" representedClassName=".EnclosureOutput" syncable="YES">
+        <attribute name="index_id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="label" attributeType="String"/>
+        <attribute name="type" attributeType="String"/>
+        <relationship name="printer" maxCount="1" deletionRule="Nullify" destinationEntity="Printer" inverseName="enclosureOutputs" inverseEntity="Printer"/>
+    </entity>
+    <entity name="MultiCamera" representedClassName=".MultiCamera" syncable="YES">
+        <attribute name="cameraOrientation" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="cameraURL" attributeType="String"/>
+        <attribute name="index_id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="streamRatio" attributeType="String" defaultValueString="16:9"/>
+        <relationship name="printer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Printer" inverseName="multiCameras" inverseEntity="Printer"/>
+    </entity>
+    <entity name="Printer" representedClassName=".Printer" syncable="YES">
+        <attribute name="apiKey" optional="YES" attributeType="String"/>
+        <attribute name="bedTemps" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int]"/>
+        <attribute name="cameraOrientation" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="cancelObjectIgnored" optional="YES" attributeType="String"/>
+        <attribute name="cancelObjectInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="connectionType" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="defaultPrinter" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="domoticzplugs" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[[String]]"/>
+        <attribute name="extruderTemps" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int]"/>
+        <attribute name="filamentManagerInstalled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="firstCameraAspectRatio16_9" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="hideCamera" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="hostname" optional="YES" attributeType="String"/>
+        <attribute name="iCloudUpdate" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="includeInDashboard" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="invertX" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="invertY" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="invertZ" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="notificationToken" optional="YES" attributeType="String"/>
+        <attribute name="octopodPluginInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="octopodPluginLanguage" optional="YES" attributeType="String"/>
+        <attribute name="octopodPluginPrinterName" optional="YES" attributeType="String"/>
+        <attribute name="palette2AutoConnect" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="palette2CanvasInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="palette2Installed" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="password" optional="YES" attributeType="String"/>
+        <attribute name="pluginsUpdateNextCheck" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="pluginsUpdateSnooze" optional="YES" attributeType="String"/>
+        <attribute name="position" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="psuControlInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="recordData" optional="YES" attributeType="Binary"/>
+        <attribute name="recordName" optional="YES" attributeType="String"/>
+        <attribute name="sdSupport" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="sharedNozzle" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="streamUrl" optional="YES" attributeType="String"/>
+        <attribute name="tasmotaplugs" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[[String]]"/>
+        <attribute name="toolsNumber" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="tpLinkSmartplugs" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[[String]]"/>
+        <attribute name="userModified" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="username" optional="YES" attributeType="String"/>
+        <attribute name="wemoplugs" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[[String]]"/>
+        <relationship name="blTouch" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BLTouch" inverseName="printer" inverseEntity="BLTouch"/>
+        <relationship name="enclosureInputs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EnclosureInput" inverseName="printer" inverseEntity="EnclosureInput"/>
+        <relationship name="enclosureOutputs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EnclosureOutput" inverseName="printer" inverseEntity="EnclosureOutput"/>
+        <relationship name="multiCameras" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MultiCamera" inverseName="printer" inverseEntity="MultiCamera"/>
+    </entity>
+    <elements>
+        <element name="BLTouch" positionX="-54" positionY="144" width="128" height="134"/>
+        <element name="EnclosureInput" positionX="-63" positionY="135" width="128" height="118"/>
+        <element name="EnclosureOutput" positionX="-54" positionY="135" width="128" height="103"/>
+        <element name="MultiCamera" positionX="-54" positionY="135" width="128" height="133"/>
+        <element name="Printer" positionX="-63" positionY="-18" width="128" height="734"/>
+    </elements>
+</model>

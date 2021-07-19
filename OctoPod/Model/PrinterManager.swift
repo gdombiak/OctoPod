@@ -5,24 +5,25 @@ import CoreData
 // Manager of persistent printer information (OctoPrint servers) that are stored in the iPhone
 // Printer information (OctoPrint server info) is used for connecting to the server
 class PrinterManager {
-    var managedObjectContext: NSManagedObjectContext? // Main Queue. Should only be used by Main thread
-    
-    init() { }
+    let managedObjectContext: NSManagedObjectContext // Main Queue. Should only be used by Main thread
+    let persistentContainer: NSPersistentContainer // Persistent Container for the entire app
+
+    init(managedObjectContext: NSManagedObjectContext, persistentContainer: NSPersistentContainer) {
+        self.managedObjectContext = managedObjectContext
+        self.persistentContainer = persistentContainer
+    }
 
     // MARK: Private context operations
     
     // Context to use when not running in main thread and using Core Data
     func newPrivateContext() -> NSManagedObjectContext {
-        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        context.parent = managedObjectContext!
-        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        return context
+        return persistentContainer.newBackgroundContext()
     }
 
     // MARK: Reading operations
 
     func getDefaultPrinter() -> Printer? {
-        return getDefaultPrinter(context: managedObjectContext!)
+        return getDefaultPrinter(context: managedObjectContext)
     }
 
     func getDefaultPrinter(context: NSManagedObjectContext) -> Printer? {
@@ -44,7 +45,7 @@ class PrinterManager {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "recordName = %@", recordName)
         
-        if let fetchResults = (try? managedObjectContext!.fetch(fetchRequest)) as? [Printer] {
+        if let fetchResults = (try? managedObjectContext.fetch(fetchRequest)) as? [Printer] {
             if fetchResults.count == 0 {
                 return nil
             }
@@ -57,7 +58,7 @@ class PrinterManager {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name = %@", name)
         
-        if let fetchResults = (try? managedObjectContext!.fetch(fetchRequest)) as? [Printer] {
+        if let fetchResults = (try? managedObjectContext.fetch(fetchRequest)) as? [Printer] {
             if fetchResults.count == 0 {
                 return nil
             }
@@ -67,8 +68,8 @@ class PrinterManager {
     }
 
     func getPrinterByObjectURL(url: URL) -> Printer? {
-        if let objectID = managedObjectContext?.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: url) {
-            if let printer = managedObjectContext?.object(with: objectID) as? Printer {
+        if let objectID = managedObjectContext.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: url) {
+            if let printer = managedObjectContext.object(with: objectID) as? Printer {
                 return printer
             }
         }
@@ -86,15 +87,16 @@ class PrinterManager {
     }
     
     func getPrinters() -> [Printer] {
-        return getPrinters(context: managedObjectContext!)
+        return getPrinters(context: managedObjectContext)
     }
     
     // MARK: Writing operations
     
-    func addPrinter(name: String, hostname: String, apiKey: String, username: String?, password: String?, position: Int16, iCloudUpdate: Bool, modified: Date = Date()) -> Bool {
+    func addPrinter(connectionType: PrinterConnectionType, name: String, hostname: String, apiKey: String, username: String?, password: String?, position: Int16, iCloudUpdate: Bool, modified: Date = Date()) -> Bool {
         let context = newPrivateContext()
         let printer = NSEntityDescription.insertNewObject(forEntityName: "Printer", into: context) as! Printer
         
+        printer.setPrinterConnectionType(connectionType: connectionType)
         printer.name = name
         printer.hostname = hostname
         printer.apiKey = apiKey
@@ -134,7 +136,7 @@ class PrinterManager {
         enclosureInput.label = label
         enclosureInput.use_fahrenheit = useFahrenheit
         enclosureInput.printer = printer
-        // Persist updated EnclosureInput
+        // Persist created EnclosureInput
         return saveObject(enclosureInput, context: context)
     }
     
@@ -144,16 +146,41 @@ class PrinterManager {
         enclosureOutput.type = type
         enclosureOutput.label = label
         enclosureOutput.printer = printer
-        // Persist updated EnclosureOutput
+        // Persist created EnclosureOutput
         return saveObject(enclosureOutput, context: context)
+    }
+    
+    func addMultiCamera(index: Int16, name: String, cameraURL: String, cameraOrientation: Int16, streamRatio: String, context: NSManagedObjectContext, printer: Printer) -> Bool {
+        let multiCamera = NSEntityDescription.insertNewObject(forEntityName: "MultiCamera", into: context) as! MultiCamera
+        multiCamera.index_id = index
+        multiCamera.name = name
+        multiCamera.cameraURL = cameraURL
+        multiCamera.cameraOrientation = cameraOrientation
+        multiCamera.streamRatio = streamRatio
+        multiCamera.printer = printer
+        // Persist created MultiCamera
+        return saveObject(multiCamera, context: context)
+    }
+    
+    func addBLTouch(cmdProbeUp: String, cmdProbeDown: String, cmdSelfTest: String, cmdReleaseAlarm: String, cmdProbeBed: String, cmdSaveSettings: String, context: NSManagedObjectContext, printer: Printer) -> Bool {
+        let blTouch = NSEntityDescription.insertNewObject(forEntityName: "BLTouch", into: context) as! BLTouch
+        blTouch.cmdProbeUp = cmdProbeUp
+        blTouch.cmdProbeDown = cmdProbeDown
+        blTouch.cmdSelfTest = cmdSelfTest
+        blTouch.cmdReleaseAlarm = cmdReleaseAlarm
+        blTouch.cmdProbeBed = cmdProbeBed
+        blTouch.cmdSaveSettings = cmdSaveSettings
+        blTouch.printer = printer
+        // Persist created BLTouch
+        return saveObject(blTouch, context: context)
     }
     
     /// Make sure to call this only from main thread
     func changeToDefaultPrinter(_ printer: Printer) {
-        changeToDefaultPrinter(printer, context: managedObjectContext!)
+        changeToDefaultPrinter(printer, context: managedObjectContext)
     }
     
-    func changeToDefaultPrinter(_ printer: Printer, context: NSManagedObjectContext) {
+    fileprivate func changeToDefaultPrinter(_ printer: Printer, context: NSManagedObjectContext) {
         // Check if there is already a default Printer
         if let currentDefaultPrinter: Printer = getDefaultPrinter(context: context) {
             // Current default printer is no longer the default one
@@ -166,7 +193,7 @@ class PrinterManager {
     }
     
     func updatePrinter(_ printer: Printer) {
-        updatePrinter(printer, context: managedObjectContext!)
+        updatePrinter(printer, context: managedObjectContext)
     }
     
     func updatePrinter(_ printer: Printer, context: NSManagedObjectContext) {
@@ -174,24 +201,29 @@ class PrinterManager {
         case .mainQueueConcurrencyType:
             // If context runs in main thread then just run this code
             do {
-                try managedObjectContext!.save()
+                try managedObjectContext.save()
             } catch let error as NSError {
                 NSLog("Error updating printer \(printer.hostname). Error: \(error)")
             }
         case .privateQueueConcurrencyType, .confinementConcurrencyType:
             // If context runs in a non-main thread then just run this code
             // .confinementConcurrencyType is not used. Delete once removed from Swift
-            do {
-                try context.save()
-                managedObjectContext!.performAndWait {
-                    do {
-                        try managedObjectContext!.save()
-                    } catch {
-                        NSLog("Error updating printer \(error)")
-                    }
+            context.performAndWait {
+                do {
+                    try context.save()
+                } catch {
+                    NSLog("Error updating printer \(error)")
                 }
-            } catch {
-                NSLog("Error updating printer \(error)")
+            }
+            managedObjectContext.performAndWait {
+                do {
+                    try managedObjectContext.save()
+                    // Refresh object in main context
+                    let toRefresh = try managedObjectContext.existingObject(with: printer.objectID)
+                    managedObjectContext.refresh(toRefresh, mergeChanges: false)
+                } catch {
+                    NSLog("Error updating printer \(error)")
+                }
             }
         }
     }
@@ -204,7 +236,7 @@ class PrinterManager {
         case .mainQueueConcurrencyType:
             // If context runs in main thread then just run this code
             do {
-                try managedObjectContext!.save()
+                try managedObjectContext.save()
                 saved = true
             } catch let error as NSError {
                 NSLog("Error saving object \(object). Error: \(error)")
@@ -212,20 +244,25 @@ class PrinterManager {
         case .privateQueueConcurrencyType, .confinementConcurrencyType:
             // If context runs in a non-main thread then just run this code
             // .confinementConcurrencyType is not used. Delete once removed from Swift
-            do {
-                try context.save()
-                managedObjectContext!.performAndWait {
-                    do {
-                        try managedObjectContext!.save()
-                        saved = true
-                    } catch {
-                        NSLog("Error saving object \(error)")
-                    }
+            context.performAndWait {
+                do {
+                    try context.save()
+                } catch {
+                    NSLog("Error saving object \(error)")
                 }
-            } catch {
-                NSLog("Error saving object \(error)")
             }
-        }
+            managedObjectContext.performAndWait {
+                do {
+                    try managedObjectContext.save()
+                    saved = true
+                    // Refresh object in main context
+                    let toRefresh = try managedObjectContext.existingObject(with: object.objectID)
+                    managedObjectContext.refresh(toRefresh, mergeChanges: false)
+                } catch {
+                    NSLog("Error saving object \(error)")
+                }
+            }
+    }
         return saved
     }
     
@@ -237,7 +274,7 @@ class PrinterManager {
         case .mainQueueConcurrencyType:
             // If context runs in main thread then just run this code
             do {
-                try managedObjectContext!.save()
+                try managedObjectContext.save()
             } catch let error as NSError {
                 NSLog("Error deleting object \(object). Error: \(error)")
             }
@@ -246,9 +283,9 @@ class PrinterManager {
             // .confinementConcurrencyType is not used. Delete once removed from Swift
             do {
                 try context.save()
-                managedObjectContext!.performAndWait {
+                managedObjectContext.performAndWait {
                     do {
-                        try managedObjectContext!.save()
+                        try managedObjectContext.save()
                     } catch {
                         NSLog("Error deleting object \(error)")
                     }
@@ -283,7 +320,7 @@ class PrinterManager {
             try context.execute(deleteRequest)
             // Reset the Managed Object Context
             context.reset()
-            managedObjectContext?.reset()
+            managedObjectContext.reset()
         }
         catch let error as NSError {
             NSLog("Error deleting all printers. Error:\(error)")
@@ -302,7 +339,7 @@ class PrinterManager {
                     printer.recordData = nil
                     printer.iCloudUpdate = true
                 }
-                try managedObjectContext!.save()
+                try managedObjectContext.save()
             } catch let error as NSError {
                 NSLog("Error updating printer \(error)")
             }
@@ -318,9 +355,9 @@ class PrinterManager {
                 
                 do {
                     try context.save()
-                    managedObjectContext!.performAndWait {
+                    managedObjectContext.performAndWait {
                         do {
-                            try managedObjectContext!.save()
+                            try managedObjectContext.save()
                         } catch {
                             NSLog("Error updating printer \(error)")
                         }

@@ -176,6 +176,13 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         subpanelsVCDelegate?.toolLabelVisibilityChanged()
     }
     
+    /// Notification that temperature history has changed
+    func tempHistoryChanged() {
+        for case let subpanel as SubpanelViewController in orderedViewControllers {
+            subpanel.tempHistoryChanged()
+        }
+    }
+    
     // MARK: - UIPageViewControllerDataSource
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {

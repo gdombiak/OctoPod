@@ -1,7 +1,4 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} ne peut pas être plus grand que ${maximumValue}.";
-
-/* (No Comment) */
 "0vck5K" = "Échec de la demande de coupe";
 
 /* (No Comment) */
@@ -9,6 +6,12 @@
 
 /* (No Comment) */
 "1lbZOa" = "Échec de la demande de déconnexion";
+
+/* (No Comment) */
+"1qMmy1" = "Demande en cours";
+
+/* (No Comment) */
+"2O3S2V" = "Prendre une photo";
 
 /* (No Comment) */
 "2TreiD" = "Régler la température d’extrusion à ${temperature}";
@@ -29,13 +32,22 @@
 "3JiZye" = "Demande en cours";
 
 /* (No Comment) */
+"4B08aG" = "Éteindre ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"4Tu0Kl" = "La demande d’exécution de la commande a échouée";
 
 /* (No Comment) */
 "5btOXI" = "Dernière Variation";
 
 /* (No Comment) */
 "5i5htv" = "Connecté";
+
+/* (No Comment) */
+"5iTPOd" = "${printer}";
 
 /* (No Comment) */
 "6b7Yce" = "Demander à Palette de couper";
@@ -45,6 +57,9 @@
 
 /* (No Comment) */
 "6vtMLs" = "Impression reprise";
+
+/* (No Comment) */
+"7c0KRL" = "Command Source";
 
 /* (No Comment) */
 "7eJPkN" = "Configurer la température du caisson";
@@ -57,6 +72,9 @@
 
 /* (No Comment) */
 "8tTCjD" = "Échec de l’annulation (${statusCode})";
+
+/* (No Comment) */
+"8uLpUQ" = "Désactiver l'alimentation";
 
 /* (No Comment) */
 "8xHCbl" = "${printer}";
@@ -74,22 +92,31 @@
 "662LyZ" = "Recommencer";
 
 /* (No Comment) */
-"817z4k" = "${displayName} ne peut pas être plus petit que ${minimumValue}.";
+"9107Xn" = "Prendre une photo";
 
 /* (No Comment) */
-"ADfGbr" = "${displayName} ne peut pas être négatif.";
-
-/* (No Comment) */
-"AdooVp" = "${displayName} ne peut pas être négatif.";
+"a1UDyY" = "Demande en cours";
 
 /* (No Comment) */
 "ajupCt" = "Aucune information disponible";
 
 /* (No Comment) */
+"aTDQUI" = "Allumer l’interrupteur Enclosure";
+
+/* (No Comment) */
 "AU4oMs" = "Demander les statistiques de ping à Palette";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Demande en cours";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Activer l'alimentation";
 
 /* (No Comment) */
 "BUexSx" = "Variation Max";
@@ -98,7 +125,10 @@
 "bXGQKe" = "Refroidir l’imprimante";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} ne peut pas être plus grand que ${maximumValue}.";
+"bXrJk0" = "Command Action";
+
+/* (No Comment) */
+"C1mTOm" = "${printer}";
 
 /* (No Comment) */
 "D0kBGr" = "Reprendre l’impression";
@@ -107,13 +137,19 @@
 "D1wWxd" = "Se déconnecter de Palette";
 
 /* (No Comment) */
+"DKIuk9" = "Exécute la commande";
+
+/* (No Comment) */
 "doj4NA" = "Configurer la température d’extrusion";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} ne peut pas être négatif.";
+"Eb3aa5" = "Échec du réglage de la température du caisson (${statusCode})";
 
 /* (No Comment) */
-"Eb3aa5" = "Échec du réglage de la température du caisson (${statusCode})";
+"Eeyifr" = "Demande en cours";
+
+/* (No Comment) */
+"eKSaMC" = "Allumer ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Refroidir l’imprimante";
@@ -137,7 +173,16 @@
 "g52Ub0" = "${printer}";
 
 /* (No Comment) */
+"Ge6TbJ" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
 "gx0D0e" = "Impression annulée";
+
+/* (No Comment) */
+"H21bkX" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
+"hE6yXX" = "Demande en cours";
 
 /* (No Comment) */
 "hPlRC4" = "Régler la température du plateau à ${temperature}";
@@ -149,6 +194,9 @@
 "ihLqc7" = "Mettre en pause";
 
 /* (No Comment) */
+"IXiy0v" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
 "jasUIn" = "Se déconnecter de Palette";
 
 /* (No Comment) */
@@ -158,13 +206,13 @@
 "JmhfgL" = "Reprendre l’impression";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} ne peut pas être plus petit que ${minimumValue}.";
-
-/* (No Comment) */
 "JV2xQz" = "Se connecter à Palette";
 
 /* (No Comment) */
 "Kf7e4Y" = "Reprendre l’impression";
+
+/* (No Comment) */
+"kHMMRT" = "${printer}";
 
 /* (No Comment) */
 "KHvUZD" = "Demander à Palette de couper";
@@ -173,7 +221,19 @@
 "kSWyyv" = "${printer}";
 
 /* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
+"KulRl5" = "Allumer l’interrupteur Enclosure";
+
+/* (No Comment) */
+"KxJmrF" = "Photo";
+
+/* (No Comment) */
 "L25OHl" = "Échec de la demande de connexion";
+
+/* (No Comment) */
+"lOuQ7B" = "La demande d’exécution de la commande a échouée";
 
 /* (No Comment) */
 "lrRige" = "Annuler";
@@ -191,12 +251,6 @@
 "M58YA9" = "Imprimante";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} ne peut pas être plus grand que ${maximumValue}.";
-
-/* (No Comment) */
-"mfflxG" = "${displayName} ne peut pas être plus petit que ${minimumValue}.";
-
-/* (No Comment) */
 "N0vzJv" = "Demander à Palette d’évacuer";
 
 /* (No Comment) */
@@ -209,10 +263,28 @@
 "NL98zi" = "Refroidit le plateau et l’extrudeur";
 
 /* (No Comment) */
+"Oaidbo" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
+"oe3uiM" = "Exécute la commande ${commandName}";
+
+/* (No Comment) */
+"OOldQi" = "Command Name";
+
+/* (No Comment) */
 "ovQf6Z" = "Impression en pause";
 
 /* (No Comment) */
+"P6usJW" = "Prendre une photo";
+
+/* (No Comment) */
+"p9Vevg" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
 "P89qJr" = "Temps restant : ${time}";
+
+/* (No Comment) */
+"pfroH1" = "Désactiver l'alimentation";
 
 /* (No Comment) */
 "Pj7mEV" = "Refroidir l’extrudeur";
@@ -221,16 +293,19 @@
 "PppyPP" = "Configurer la température du plateau";
 
 /* (No Comment) */
+"q1Oynq" = "Contrôle de l'alimentation désactivé";
+
+/* (No Comment) */
 "qLzk1S" = "Refroidir le plateau";
 
 /* (No Comment) */
 "QSxXHq" = "Mettre en pause";
 
 /* (No Comment) */
-"R5AlTe" = "Se déconnecter de Palette";
+"qwH2oF" = "Éteindre l’interrupteur Enclosure";
 
 /* (No Comment) */
-"RbyC9o" = "${displayName} ne peut pas être plus grand que ${maximumValue}.";
+"R5AlTe" = "Se déconnecter de Palette";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -257,7 +332,7 @@
 "RYurC5" = "Refroidir le caisson";
 
 /* (No Comment) */
-"SK8bYR" = "${displayName} ne peut pas être négatif.";
+"sDV9Jm" = "Demande en cours";
 
 /* (No Comment) */
 "SP4rN6" = "Régler la température d’extrusion";
@@ -269,10 +344,19 @@
 "sRkyIL" = "Échec de la reprise (${statusCode})";
 
 /* (No Comment) */
+"SZLVG3" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
+"TcPGnq" = "Éteindre l’interrupteur Enclosure";
+
+/* (No Comment) */
 "tKDODp" = "Temps restant";
 
 /* (No Comment) */
 "UC9Zrq" = "La température du plateau est réglée à ${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "Exécute la commande";
 
 /* (No Comment) */
 "uoT27A" = "Échec du réglage de la température du plateau (${statusCode})";
@@ -287,6 +371,12 @@
 "VItjhS" = "Déconnecté";
 
 /* (No Comment) */
+"Vix5SL" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
+"VKupAQ" = "Demande en cours";
+
+/* (No Comment) */
 "vL7cy4" = "${printer}";
 
 /* (No Comment) */
@@ -296,28 +386,49 @@
 "vmbpr4" = "Se connecter à Palette";
 
 /* (No Comment) */
+"wabqoy" = "La demande d’exécution de la commande a échouée";
+
+/* (No Comment) */
 "WI2oQf" = "Retourner temps d’impression restant";
 
 /* (No Comment) */
 "WLkRl0" = "Échec de la reprise d’impression (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Demande en cours";
+
+/* (No Comment) */
 "wYzz4m" = "Imprimante en cours de refroidissement";
+
+/* (No Comment) */
+"x8aCII" = "Demande en cours";
 
 /* (No Comment) */
 "XfWmGt" = "Reprendre l’impression";
 
 /* (No Comment) */
+"Xk9F6S" = "Activer l'alimentation";
+
+/* (No Comment) */
 "xSARU0" = "Échec de la mise en pause (${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "Contrôle de l'alimentation activé";
+
+/* (No Comment) */
+"YfmWYd" = "Demande en cours";
 
 /* (No Comment) */
 "YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yZeSdz" = "${printer}";
+"yMvnaP" = "Imprimante";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} ne peut pas être plus petit que ${minimumValue}.";
+"YQLomX" = "Demande en cours";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";

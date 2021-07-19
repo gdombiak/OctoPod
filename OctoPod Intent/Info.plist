@@ -33,6 +33,8 @@
 			<array>
 				<string>CancelJobIntent</string>
 				<string>CoolDownPrinterIntent</string>
+				<string>EnclosureTurnOffIntent</string>
+				<string>EnclosureTurnOnIntent</string>
 				<string>PaletteClearIntent</string>
 				<string>PaletteConnectIntent</string>
 				<string>PaletteCutIntent</string>
@@ -50,6 +52,11 @@
 			<array>
 				<string>CancelJobIntent</string>
 				<string>CoolDownPrinterIntent</string>
+				<string>DashboardWidgetConfigurationIntent</string>
+				<string>EnclosureTurnOffIntent</string>
+				<string>EnclosureTurnOnIntent</string>
+				<string>PSUControlOffIntent</string>
+				<string>PSUControlOnIntent</string>
 				<string>PaletteClearIntent</string>
 				<string>PaletteConnectIntent</string>
 				<string>PaletteCutIntent</string>
@@ -62,6 +69,9 @@
 				<string>SetBedTempIntent</string>
 				<string>SetChamberTempIntent</string>
 				<string>SetToolTempIntent</string>
+				<string>SystemCommandIntent</string>
+				<string>TakeSnapshotIntent</string>
+				<string>WidgetConfigurationIntent</string>
 			</array>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>

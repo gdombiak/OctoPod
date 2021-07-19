@@ -160,6 +160,9 @@
 /* (No Comment) */
 "days ago" = "%d dager siden";
 
+/* Delete action */
+"Delete" = "Slett";
+
 /* Disconnect */
 "Disconnect" = "koble fra";
 
@@ -173,10 +176,22 @@
 "Do you want to cancel job?" = "Ønsker du å avbryte jobben?";
 
 /* No comment provided by engineer. */
+"Do you want to delete this file?" = "Vil du å slette denne filen?";
+
+/* No comment provided by engineer. */
 "Do you want to pause job?" = "Ønsker du å pause jobben?";
 
 /* No comment provided by engineer. */
+"Do you want to pause print?" = "Vil du å pause utskriften?";
+
+/* No comment provided by engineer. */
+"Do you want to print this file?" = "Vil du å skrive ut denne filen?";
+
+/* No comment provided by engineer. */
 "Do you want to restart print job from the beginning?" = "Vil du starte utskriftsjobben på nytt fra begynnelsen?";
+
+/* No comment provided by engineer. */
+"Do you want to resume printing?" = "Vil du å fortsette utskriften?";
 
 /* (No Comment) */
 "Domoticz Plugs" = "Domoticz Plugs";
@@ -186,6 +201,12 @@
 
 /* gcode name */
 "Endstop States" = "Endstop tilstander";
+
+/* Siri suggested phrase */
+"Execute System Command" = "Utfør systemkommando";
+
+/* No comment provided by engineer. */
+"Expand" = "Maksimer";
 
 /* (No Comment) */
 "Extruder" = "Ekstruder";
@@ -331,6 +352,9 @@
 /* File Type is a Folder */
 "Folder" = "Mappe";
 
+/* No comment provided by engineer. */
+"Hostname (e.g. http://octopi.local)" = "Vertsnavn (f.eks. http://octopi.local)";
+
 /* (No Comment) */
 "hours ago" = "%d timer siden";
 
@@ -427,6 +451,12 @@
 /* Printer is Offline */
 "Offline" = "Frakoblet";
 
+/* No comment provided by engineer. */
+"Password" = "Passord";
+
+/* No comment provided by engineer. */
+"Pause" = "Pause";
+
 /* Siri suggested phrase */
 "Pause current print job" = "Pause nåværende utskrift på %@";
 
@@ -451,6 +481,9 @@
 /* No comment provided by engineer. */
 "Print" = "Skriv ut";
 
+/* No comment provided by engineer. */
+"Print Again" = "Skriv ut igjen";
+
 /* (No Comment) */
 "Print complete" = "Utskrift ferdig";
 
@@ -468,6 +501,9 @@
 
 /* No comment provided by engineer. */
 "Printer" = "Skriver";
+
+/* No comment provided by engineer. */
+"Printer Name (e.g. MK3)" = "Skrivernavn (f.eks. MK3)";
 
 /* (No Comment) */
 "Printer not operational" = "Skriveren er ikke operativ";
@@ -498,6 +534,9 @@
 
 /* (No Comment) */
 "Restart Job" = "Restart";
+
+/* No comment provided by engineer. */
+"Restore" = "Restaurere";
 
 /* gcode name */
 "Restore Settings" = "Gjenopprett innstillinger";
@@ -538,11 +577,20 @@
 /* gcode name */
 "Set Hotend PID" = "Still inn PID for Hotend";
 
+/* Share action */
+"Share" = "Del";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Snooze 1 time";
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "snooze 8";
+
+/* SoC */
+"SoC" = "SoC";
+
+/* SoC Temperature */
+"SoC Temperature" = "SoC Temperatur";
 
 /* No comment provided by engineer. */
 "State" = "Tilstander";
@@ -604,8 +652,20 @@
 /* (No Comment) */
 "Turn Off" = "Slå av";
 
+/* Siri suggested phrase */
+"Turn off Enclosure switch" = "Slå av bryteren via Enclosure";
+
+/* Siri suggested phrase */
+"Turn off PSU" = "Slå av PSU";
+
 /* (No Comment) */
 "Turn On" = "Slå på";
+
+/* Siri suggested phrase */
+"Turn on Enclosure switch" = "Slå på bryteren via Enclosure";
+
+/* Siri suggested phrase */
+"Turn on PSU" = "Slå på PSU";
 
 /* ETA is Unknown
    File Type is Unknown
@@ -623,6 +683,9 @@
 
 /* (No Comment) */
 "Upload failed" = "Opplasting feilet";
+
+/* No comment provided by engineer. */
+"Username" = "Brukernavn";
 
 /* Siri suggested phrase */
 "Warm up heated chamber" = "Varm opp oppvarmet kammer";

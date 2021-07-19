@@ -25,6 +25,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
                 NSLog("Background task running. Refreshing current job info")
+                // Make sure we have an OctoPrintClient
+                OctoPrintClient.instance.configure()
+                // Refresh information
                 PanelManager.instance.refresh(forceRefresh: false) { (refreshed: Bool) in
                     // Be sure to complete the background task once you’re done.
                     backgroundTask.setTaskCompletedWithSnapshot(false)

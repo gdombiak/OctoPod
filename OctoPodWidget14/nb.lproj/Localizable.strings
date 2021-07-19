@@ -1,0 +1,69 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"1 day ago" = "1 dag siden";
+
+/* No comment provided by engineer. */
+"1 hour ago" = "1 time siden";
+
+/* No comment provided by engineer. */
+"1 minute ago" = "1 minutt siden";
+
+/* No comment provided by engineer. */
+"1 week ago" = "1 uke siden";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Godkjenning mislyktes";
+
+/* No comment provided by engineer. */
+"Configure widget" = "Konfigurer widget";
+
+/* No comment provided by engineer. */
+"Confirm" = "Bekreft";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Dashboard";
+
+/* No comment provided by engineer. */
+"Dashboard for multiple printers" = "Dashbord for flere skrivere";
+
+/* No comment provided by engineer. */
+"days ago" = "%d dager siden";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Avvis";
+
+/* No comment provided by engineer. */
+"hours ago" = "%d timer siden";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Forespørselfeil. HTTP-respons: %d";
+
+/* No comment provided by engineer. */
+"minutes ago" = "%d minutter siden";
+
+/* No comment provided by engineer. */
+"Missed" = "Feilet";
+
+/* No comment provided by engineer. */
+"Monitor and control your 3d printer via OctoPod" = "Overvåke og kontrollere 3d-skriveren din via OctoPod";
+
+/* No comment provided by engineer. */
+"No" = "Nei";
+
+/* No camera was configured */
+"No camera" = "Ingen kamera";
+
+/* No comment provided by engineer. */
+"seconds ago" = "%d sekunder siden";
+
+/* ETA is Unknown */
+"Unknown" = "Ukjent";
+
+/* No comment provided by engineer. */
+"weeks ago" = "%d uker siden";
+
+/* No comment provided by engineer. */
+"Yes" = "Ja";
+

@@ -334,7 +334,7 @@ class CloudKitPrinterManager {
         db.add(operation)
     }
 
-    // CloudKit informed us that a record has been created or updated
+    /// CloudKit informed us that a record has been created or updated
     fileprivate func recordChanged(record: CKRecord) {
         let recordName = record.recordID.recordName
         if let printer = printerManager.getPrinterByRecordName(recordName: recordName) {
@@ -359,7 +359,8 @@ class CloudKitPrinterManager {
                 let parsed = parseRecord(record: record)
                 if let name = parsed.name, let hostname = parsed.hostname, let apiKey = parsed.apiKey {
                     let position = Int16(printerManager.getPrinters().count)  // Not transfering position information via iCloud (reducing work scope) so add new printers to bottom of list
-                    if printerManager.addPrinter(name: name, hostname: hostname, apiKey: apiKey, username: parsed.username, password: parsed.password, position: position, iCloudUpdate: false, modified: (parsed.modified == nil ? Date() : parsed.modified!)) {
+                    let connectionType = PrinterConnectionType(rawValue: parsed.connectionType)!
+                    if printerManager.addPrinter(connectionType: connectionType, name: name, hostname: hostname, apiKey: apiKey, username: parsed.username, password: parsed.password, position: position, iCloudUpdate: false, modified: (parsed.modified == nil ? Date() : parsed.modified!)) {
                         if let printer = printerManager.getPrinterByName(name: name) {
                             // Update again to assign recordName and store encoded record
                             updateAndSave(printer: printer, serverRecord: record)
@@ -900,6 +901,7 @@ class CloudKitPrinterManager {
         if let date = parsed.modified {
             printer.userModified = date
         }
+        printer.connectionType = parsed.connectionType
         printer.username = parsed.username
         printer.password = parsed.password
         // Updated from iCloud so reset this flag since there is no need to push this data to iCloud (until modified)
@@ -919,6 +921,7 @@ class CloudKitPrinterManager {
         if let date = printer.userModified {
             record["modified"] = date as NSDate
         }
+        record["connectionType"] = NSNumber(value: printer.connectionType)
     }
     
     fileprivate func updateAndSave(printer: Printer, serverRecord: CKRecord) {
@@ -930,14 +933,16 @@ class CloudKitPrinterManager {
         self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
     }
     
-    fileprivate func parseRecord(record: CKRecord) -> (name: String?, hostname: String?, apiKey: String?, username: String?, password: String?, modified: Date?) {
+    fileprivate func parseRecord(record: CKRecord) -> (name: String?, hostname: String?, apiKey: String?, username: String?, password: String?, modified: Date?, connectionType: Int16) {
         let name = record["name"] as? String
         let hostname = record["hostname"] as? String
         let apiKey = record["apiKey"] as? String
         let username = record["username"] as? String
         let password = record["password"] as? String
         let modified = record["modified"] as? Date
-        return (name, hostname, apiKey, username, password, modified)
+        let connectionTypeOptional = record["connectionType"] as? NSNumber
+        let connectionType: Int16! = (connectionTypeOptional != nil) ? connectionTypeOptional!.int16Value : PrinterConnectionType.apiKey.rawValue
+        return (name, hostname, apiKey, username, password, modified, connectionType)
     }
     
     fileprivate func updateRecord(source: CKRecord, target: CKRecord) {

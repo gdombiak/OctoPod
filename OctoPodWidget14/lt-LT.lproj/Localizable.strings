@@ -1,0 +1,72 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"1 day ago" = "prieš dieną";
+
+/* No comment provided by engineer. */
+"1 hour ago" = "prieš valandą";
+
+/* No comment provided by engineer. */
+"1 minute ago" = "prieš minutę";
+
+/* No comment provided by engineer. */
+"1 week ago" = "prieš savaitę";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Autentifikacija nepavyko";
+
+/* No comment provided by engineer. */
+"Configure widget" = "Konfigūruoti valdiklį";
+
+/* No comment provided by engineer. */
+"Confirm" = "Patvirtinti";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Skydelis";
+
+/* No comment provided by engineer. */
+"Dashboard for multiple printers" = "Spausdintuvų skydelis";
+
+/* No comment provided by engineer. */
+"days ago" = "prieš %d dienas";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Atšaukti";
+
+/* No comment provided by engineer. */
+"hours ago" = "prieš %d valandas";
+
+/* HTTP Request error info */
+"HTTP Request error" = "HTTP atsakymas: %d";
+
+/* No comment provided by engineer. */
+"minutes ago" = "prieš %d minučių";
+
+/* No comment provided by engineer. */
+"Missed" = "Nepataikė";
+
+/* No comment provided by engineer. */
+"Monitor and control your 3d printer via OctoPod" = "Stebėk ir valdyk savo 3D spausdintuvą su OctoPod";
+
+/* No comment provided by engineer. */
+"No" = "Ne";
+
+/* No camera was configured */
+"No camera" = "Nėra kameros";
+
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: viršytas kamerų limitas";
+
+/* No comment provided by engineer. */
+"seconds ago" = "prieš %d sekundžių";
+
+/* ETA is Unknown */
+"Unknown" = "nežinomas";
+
+/* No comment provided by engineer. */
+"weeks ago" = "prieš %d savaičių";
+
+/* No comment provided by engineer. */
+"Yes" = "Taip";
+

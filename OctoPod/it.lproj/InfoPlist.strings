@@ -1,8 +1,20 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "OctoPod";
+
+/* Bundle name */
+"CFBundleName" = "OctoPod";
+
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Abbiamo bisogno di accedere alla fotocamera per la scansione del codice QR";
 
 /* Privacy - Face ID Usage Description */
 "NSFaceIDUsageDescription" = "Dobbiamo usare FaceID per sbloccare l'app";
+
+/* Privacy - Local Network Usage Description */
+"NSLocalNetworkUsageDescription" = "OctoPod usa la tua rete locale per scoprire e comunicare con OctoPrint";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "OctoPod ha bisogno dell'autorizzazione per salvare i video sul tuo dispositivo";
 
 /* Privacy - Siri Usage Description */
 "NSSiriUsageDescription" = "Controlla la stampante usando Siri";

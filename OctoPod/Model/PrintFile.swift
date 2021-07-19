@@ -1,6 +1,6 @@
 import Foundation
 
-class PrintFile {
+class PrintFile: NSObject {
     private static let SORT_BY_PREFERENCE = "filesSortBy"
     
     enum SortBy: Int {
@@ -26,6 +26,8 @@ class PrintFile {
     var children: Array<PrintFile>?  // This is used by folders to track files in the folder and subfolders
     
     var thumbnail: String? // relative URL to the thumbnail of this gcode. Requires PrusaSlicerThumbnails plugin
+    
+    var lastSuccessfulPrint: Bool? // True if last print was successful, False if cancelled or error or nil if not printed
     
     // Returns true if file can be sent to be printed
     func canBePrinted() -> Bool {
@@ -66,7 +68,7 @@ class PrintFile {
         if let currentSize = size {
             let bcf = ByteCountFormatter()
             bcf.allowedUnits = [.useKB, .useMB]
-            bcf.countStyle = .file
+            bcf.countStyle = .binary
             return bcf.string(fromByteCount: Int64(currentSize))
         }
         return ""
@@ -337,6 +339,9 @@ class PrintFile {
             if let last = prints["last"] as? NSDictionary {
                 if let newDate = last["date"] as? Double {
                     lastPrintDate = Date(timeIntervalSince1970: newDate)
+                }
+                if let success = last["success"] as? Bool {
+                    lastSuccessfulPrint = success
                 }
             }
         }

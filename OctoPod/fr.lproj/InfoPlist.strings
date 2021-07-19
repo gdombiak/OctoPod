@@ -10,6 +10,12 @@
 /* Privacy - Face ID Usage Description */
 "NSFaceIDUsageDescription" = "Merci d'autoriser l'accès à FaceID pour déverrouiller l’App";
 
+/* Privacy - Local Network Usage Description */
+"NSLocalNetworkUsageDescription" = "OctoPod utilise votre réseau local pour découvrir et communiquer avec OctoPrint";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "OctoPod a besoin de votre autorisation pour enregistrer des vidéos sur votre appareil";
+
 /* Privacy - Siri Usage Description */
 "NSSiriUsageDescription" = "Contrôler l’imprimante avec Siri";
 

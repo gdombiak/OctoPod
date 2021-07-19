@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import CoreData
 
 /// OctoPrint client that exposes the REST API described
 /// here: http://docs.octoprint.org/en/master/api/index.html
@@ -16,7 +17,8 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     let terminal = Terminal()
     let tempHistory = TempHistory()
-    
+    let socTempHistory = SoCTempHistory()
+
     var delegates: Array<OctoPrintClientDelegate> = Array()
     var octoPrintSettingsDelegates: Array<OctoPrintSettingsDelegate> = Array()
     var printerProfilesDelegates: Array<PrinterProfilesDelegate> = Array()
@@ -35,6 +37,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     // Remember last CurrentStateEvent that was reported from OctoPrint (via websockets)
     var lastKnownState: CurrentStateEvent?
     var octoPrintVersion: String?
+    private var printerID: NSManagedObjectID?
     
     init(printerManager: PrinterManager) {
         self.printerManager = printerManager
@@ -59,8 +62,11 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         // Clean up any known printer state
         lastKnownState = nil
         
+        // Remember printer we are connected to
+        printerID = printer.objectID
+        
         // Create and keep httpClient while default printer does not change
-        octoPrintRESTClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+        octoPrintRESTClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuthentication())
         
         if webSocketClient?.isConnected(printer: printer) == true {
             // Do nothing since we are already connected to the default printer
@@ -73,6 +79,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         
         // Clean up any temp history
         tempHistory.clear()
+        socTempHistory.clear()
         
         // We need to rediscover the version of OctoPrint so clean up old values
         octoPrintVersion = nil
@@ -106,9 +113,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                     event!.closedOrError = true
                     event!.state = "Offline"
                 }
-                if let _ = event {
+                if let event = event {
+                    self.lastKnownState = event
                     // Notify that we received new status information from OctoPrint
-                    self.currentStateUpdated(event: event!)
+                    self.currentStateUpdated(event: event)
                 }
             } else {
                 // Notify of connection error
@@ -129,6 +137,18 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                 }
             }
         }
+        
+        // Retrieve history of System on a chip (SoC) temperatures from OctoPod plugin (if installed)
+        // We can now track RPi temperatures
+        octoPrintRESTClient.getSoCTemperatures { (result: Array<SoCTempHistory.Temp>?, error: Error?, response: HTTPURLResponse) in
+            if let history = result {
+                self.socTempHistory.addHistory(history: history)
+                // Notify other listeners that history of temperature state has changed
+                for delegate in self.delegates {
+                    delegate.tempHistoryChanged()
+                }
+            }
+        }
     }
     
     /// Disconnect from OctoPrint server
@@ -142,6 +162,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         if let _ = error as NSError? {
             return true
         } else if response.statusCode == 403 {
+            return true
+        } else if response.statusCode >= 600 &&  response.statusCode <= 605 {
+            // These are OctoEverywhere special error codes
+            // See https://octoeverywhere.stoplight.io/docs/octoeverywhere-api-docs/docs/App-Connection-Usage.md
             return true
         } else {
             // Return that there were no errors
@@ -170,23 +194,35 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     func historyTemp(history: Array<TempHistory.Temp>) {
         tempHistory.addHistory(history: history)
+        // Notify other listeners that history of temperature state has changed
+        for delegate in self.delegates {
+            delegate.tempHistoryChanged()
+        }
     }
     
     func octoPrintSettingsUpdated() {
-        if let printer = printerManager.getDefaultPrinter() {
+        if let id = printerID, let idURL = URL(string: id.uriRepresentation().absoluteString), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
             // Verify that last known settings are still current
             reviewOctoPrintSettings(printer: printer)
         }
     }
     
     func printerProfileUpdated() {
-        if let printer = printerManager.getDefaultPrinter() {
+        if let id = printerID, let idURL = URL(string: id.uriRepresentation().absoluteString), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
             // Update Printer from /api/printerprofiles information
             reviewPrinterProfile(printer: printer)
         }
     }
     
     func pluginMessage(plugin: String, data: NSDictionary) {
+        // Special case for tracking SoC temperatures reported by OctoPod plugin
+        if plugin == Plugins.OCTOPOD {
+            if let _ = data["temp"] as? Double, let _ = data["time"] as? Int {
+                var temp = SoCTempHistory.Temp()
+                temp.parseTemps(data: data)
+                socTempHistory.addTemp(temp: temp)
+            }
+        }
         // Notify other listeners that we connected to OctoPrint
         for delegate in octoPrintPluginsDelegates {
             delegate.pluginMessage(plugin: plugin, data: data)
@@ -228,7 +264,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         // Recreate websocket connection since SSL cert validation has changed
         // HTTP connection relies on NSAllowsArbitraryLoads so will ignore this change/setting
         disconnectFromServer()
-        if let printer = printerManager.getDefaultPrinter() {
+        if let id = printerID, let idURL = URL(string: id.uriRepresentation().absoluteString), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
             connectToServer(printer: printer)
         }
     }
@@ -274,6 +310,40 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     /// allow websockets to work when Forcelogin Plugin is active (the default)
     func passiveLogin(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.passiveLogin(callback: callback)
+    }
+
+    /// Probes for application key workflow support
+    /// - parameters:
+    ///     - callback: success; error; http response
+    ///     - success: true if application key is supported/enabled
+    ///     - error: any error that happened making the HTTP request
+    ///     - response: HTTP response
+    func appkeyProbe(callback: @escaping (_ success: Bool, _ error: Error?, _ response: HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.appkeyProbe(callback: callback)
+    }
+
+    /// Starts the authorization process to obtain an application key. Callback will receive the Location URL
+    /// to poll or nil if process failed to start.
+    /// - parameters:
+    ///     - app: application identifier to use for the request, case insensitive
+    ///     - callback: location; error; http response
+    ///     - location: URL for polling
+    ///     - error: any error that happened making the HTTP request
+    ///     - response: HTTP response
+    func appkeyRequest(app: String, callback: @escaping (_ location: String?, _ error: Error?, _ response: HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.appkeyRequest(app: app, callback: callback)
+    }
+
+    /// Poll for decision on existing application key request.
+    /// - parameters:
+    ///     - location: URL to poll. URL was returned as an HTTP header when #appkeyRequest was executed
+    ///     - callback: api_key;  keep polling; error; http response
+    ///     - api_key: API key generated for the application
+    ///     - retry: true if we need to keep polling for a decision
+    ///     - error: any error that happened making the HTTP request
+    ///     - response: HTTP response
+    func appkeyPoll(location: String, callback: @escaping (_ api_key: String?, _ retry: Bool, _ error: Error?, _ response: HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.appkeyPoll(location: location, callback: callback)
     }
 
     // MARK: - Connection operations
@@ -463,6 +533,30 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.executeSystemCommand(command: command, callback: callback)
     }
 
+    // MARK: - Timelapse operations
+    
+    /// Retrieve a list of timelapses
+    func timelapses(callback: @escaping (Array<Timelapse>?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.timelapses(callback: callback)
+    }
+
+    /// Delete the specified timelapse
+    /// - Parameters:
+    ///     - timelapse: Timelapse to delete
+    ///     - callback: callback to execute after HTTP request is done
+    func deleteTimelapse(timelapse: Timelapse, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.deleteTimelapse(timelapse: timelapse, callback: callback)
+    }
+    
+    /// Download specified timelapse file
+    /// - Parameters:
+    ///     - timelapse: Timelapse to delete
+    ///     - progress: callback to execute while download is in progress
+    ///     - completion: callback to execute after download is done
+    func downloadTimelapse(timelapse: Timelapse, progress: @escaping (Int64, Int64) -> Void, completion: @escaping (Data?, Error?) -> Void) {
+        octoPrintRESTClient.downloadTimelapse(timelapse: timelapse, progress: progress, completion: completion)
+    }
+    
     // MARK: - Custom Controls operations
 
     func customControls(callback: @escaping (Array<Container>?, Error?, HTTPURLResponse) -> Void) {
@@ -529,7 +623,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     /// Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
     func getCancelObjects(callback: @escaping (Array<CancelObject>?, Error?, HTTPURLResponse) -> Void) {
-        if let printer = printerManager.getDefaultPrinter() {
+        if let id = printerID, let idURL = URL(string: id.uriRepresentation().absoluteString), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
             let ignore = CancelObject.parseCancelObjectIgnore(ignored: printer.cancelObjectIgnored)
             octoPrintRESTClient.getCancelObjects(ignore: ignore, callback: callback)
         }
@@ -671,6 +765,13 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.changeFilamentSelection(toolNumber: toolNumber, spoolId: spoolId, callback: callback)
     }
     
+    // MARK: - DisplayLayerProgress Plugin
+    
+    /// Ask DisplayLayerProgress to send latest status via websockets
+    func refreshDisplayLayerProgress(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.refreshDisplayLayerProgress(callback: callback)
+    }
+    
     // MARK: - Delegates operations
     
     func remove(octoPrintClientDelegate toRemove: OctoPrintClientDelegate) {
@@ -706,6 +807,17 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             if response.statusCode == 200 {
                 if let json = result as? NSDictionary {
                     self.updatePrinterFromSettings(printer: printer, json: json)
+                    // if DisplayLayerProgress plugin is installed then request latest info
+                    // (Otherwise info is not sent until there is a layer/height change)
+                    if let plugins = json["plugins"] as? NSDictionary, let _ = plugins["DisplayLayerProgress"] as? NSDictionary {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.refreshDisplayLayerProgress { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                                if !requested && response.statusCode != 404 {
+                                    NSLog("Error refreshing DisplayLayerProgress status. Error: \(response). Response: \(response)")
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -760,7 +872,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         if let webcam = json["webcam"] as? NSDictionary {
             if let flipH = webcam["flipH"] as? Bool, let flipV = webcam["flipV"] as? Bool, let rotate90 = webcam["rotate90"] as? Bool {
                 let newOrientation = calculateImageOrientation(flipH: flipH, flipV: flipV, rotate90: rotate90)
-                if printer.cameraOrientation != newOrientation.rawValue {
+                if printer.cameraOrientation != Int16(newOrientation.rawValue) {
                     // Update camera orientation
                     printerToUpdate.cameraOrientation = Int16(newOrientation.rawValue)
                     // Persist updated printer
@@ -821,37 +933,69 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         updatePrinterFromPalette2CanvasPlugin(printer: printer, plugins: plugins)
         updatePrinterFromEnclosurePlugin(printer: printer, plugins: plugins)
         updatePrinterFromFilamentManagerPlugin(printer: printer, plugins: plugins)
+        updatePrinterFromBLTouchPlugin(printer: printer, plugins: plugins)
     }
     
     fileprivate func updatePrinterFromMultiCamPlugin(printer: Printer, plugins: NSDictionary) {
-        // Check if MultiCam plugin is installed. If so then copy URL to cameras so there is
-        // no need to reenter this information
+        // Check if MultiCam plugin is installed. If so then copy cameras information
         var camerasURLs: Array<String> = Array()
+        var count: Int16 = 0
+        var camerasChanged = false
         if let multicam = plugins[Plugins.MULTICAM] as? NSDictionary {
             if let profiles = multicam["multicam_profiles"] as? NSArray {
                 for case let profile as NSDictionary in profiles {
-                    if let url = profile["URL"] as? String {
+                    count += 1
+                    if let url = profile["URL"] as? String, let flipH = profile["flipH"] as? Bool, let flipV = profile["flipV"] as? Bool, let rotate90 = profile["rotate90"] as? Bool, let name = profile["name"] as? String, let streamRatio = profile["streamRatio"] as? String {
+                        let newOrientation = calculateImageOrientation(flipH: flipH, flipV: flipV, rotate90: rotate90)
+                        var found = false
+                        if let existingCameras = printer.multiCameras {
+                            for existingCamera in existingCameras {
+                                if existingCamera.index_id == count {
+                                    found = true
+                                    // Check that values are current
+                                    if existingCamera.name != name || existingCamera.cameraURL != url || existingCamera.cameraOrientation != Int16(newOrientation.rawValue) || existingCamera.streamRatio != streamRatio {
+                                        // Update existing input
+                                        let newObjectContext = printerManager.newPrivateContext()
+                                        let cameraToUpdate = newObjectContext.object(with: existingCamera.objectID) as! MultiCamera
+                                        cameraToUpdate.name = name
+                                        cameraToUpdate.cameraURL = url
+                                        cameraToUpdate.cameraOrientation = Int16(newOrientation.rawValue)
+                                        cameraToUpdate.streamRatio = streamRatio
+                                        // Persist updated MultiCamera
+                                        printerManager.saveObject(cameraToUpdate, context: newObjectContext)
+                                        
+                                        camerasChanged = true
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                        if !found {
+                            // Add new camera
+                            let newObjectContext = printerManager.newPrivateContext()
+                            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                            printerManager.addMultiCamera(index: count, name: name, cameraURL: url, cameraOrientation: Int16(newOrientation.rawValue), streamRatio: streamRatio, context: newObjectContext, printer: printerToUpdate)
+                            camerasChanged = true
+                        }
                         camerasURLs.append(url)
                     }
                 }
             }
         }
-        // Check if url to cameras has changed
-        var update = false
-        if let existing = printer.cameras {
-            update = !existing.elementsEqual(camerasURLs)
-        } else {
-            update = true
+        // Delete existing cameras that no longer exist
+        if let existingCameras = printer.multiCameras {
+            for existingCamera in existingCameras {
+                if existingCamera.index_id > count {
+                    // Delete camera that no longer exists on the server
+                    let newObjectContext = printerManager.newPrivateContext()
+                    let cameraToDelete = newObjectContext.object(with: existingCamera.objectID) as! MultiCamera
+                    printerManager.deleteObject(cameraToDelete, context: newObjectContext)
+                    camerasChanged = true
+                }
+            }
         }
-        
-        if update {
-            let newObjectContext = printerManager.newPrivateContext()
-            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-            // Update array
-            printerToUpdate.cameras = camerasURLs
-            // Persist updated printer
-            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-            
+
+        if camerasChanged {
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
                 delegate.camerasChanged(camerasURLs: camerasURLs)
@@ -1238,6 +1382,67 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
                 delegate.filamentManagerAvailabilityChanged(installed: installed)
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromBLTouchPlugin(printer: Printer, plugins: NSDictionary) {
+        if let pluginSettings = plugins[Plugins.BL_TOUCH] as? NSDictionary {
+            // BLTouch plugin is installed
+            var changed = false
+            if let probeUp = pluginSettings["cmdProbeUp"] as? String, let probeDown = pluginSettings["cmdProbeDown"] as? String, let selfTest = pluginSettings["cmdSelfTest"] as? String, let releaseAlarm = pluginSettings["cmdReleaseAlarm"] as? String, let probeBed = pluginSettings["cmdProbeBed"] as? String, let saveSettings = pluginSettings["cmdSaveSettings"] as? String {
+                
+                if let blTouch = printer.blTouch {
+                    if blTouch.cmdProbeUp != probeUp || blTouch.cmdProbeDown != probeDown || blTouch.cmdSelfTest != selfTest || blTouch.cmdReleaseAlarm != releaseAlarm || blTouch.cmdProbeBed != probeBed || blTouch.cmdSaveSettings != saveSettings {
+                        // Update BLTouch instance with settings of plugin
+                        let newObjectContext = printerManager.newPrivateContext()
+                        let blTouchToUpdate = newObjectContext.object(with: blTouch.objectID) as! BLTouch
+                        // Update BLTouch plugin settings
+                        blTouchToUpdate.cmdProbeUp = probeUp
+                        blTouchToUpdate.cmdProbeDown = probeDown
+                        blTouchToUpdate.cmdSelfTest = selfTest
+                        blTouchToUpdate.cmdReleaseAlarm = releaseAlarm
+                        blTouchToUpdate.cmdProbeBed = probeBed
+                        blTouchToUpdate.cmdSaveSettings = saveSettings
+
+                        // Persist updated printer
+                        if printerManager.saveObject(blTouchToUpdate, context: newObjectContext) {
+                            changed = true
+                        } else {
+                            NSLog("Failed to update BLTouch settings in core data")
+                        }
+                    }
+                } else {
+                    // Create new BLTouch instance with settings of plugin
+                    let newObjectContext = printerManager.newPrivateContext()
+                    let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                    // Update BLTouch plugin settings
+                    if printerManager.addBLTouch(cmdProbeUp: probeUp, cmdProbeDown: probeDown, cmdSelfTest: selfTest, cmdReleaseAlarm: releaseAlarm, cmdProbeBed: probeBed, cmdSaveSettings: saveSettings, context: newObjectContext, printer: printerToUpdate) {
+                        changed = true
+                    } else {
+                        NSLog("Failed to create BLTouch settings in core data")
+                    }
+                }
+                if changed {
+                    // Notify listeners of change
+                    for delegate in octoPrintSettingsDelegates {
+                        delegate.blTouchSettingsChanged(installed: true)
+                    }
+                }
+            }
+        } else {
+            // BLTouch not installed
+            if let _ = printer.blTouch {
+                // Delete existing blTouch settings
+                let newObjectContext = printerManager.newPrivateContext()
+                let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                printerToUpdate.blTouch = nil
+                printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+
+                // Notify listeners of change
+                for delegate in octoPrintSettingsDelegates {
+                    delegate.blTouchSettingsChanged(installed: false)
+                }
             }
         }
     }

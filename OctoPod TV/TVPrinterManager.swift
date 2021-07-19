@@ -128,6 +128,34 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
         }
     }
     
+    // MARK: - Notifications
+    
+    func cameraChanged(printerName: String) {
+        DispatchQueue.main.async {
+            // Fetch updated printer
+            if let updatedPrinter = self.printerManager.getPrinterByName(name: printerName) {
+                // Look for old printer
+                var exist: Printer?
+                for printer in self.printers {
+                    if self.samePrinter(printer, updatedPrinter) {
+                        // Found same printer
+                        exist = printer
+                        break
+                    }
+                }
+                if let oldPrinter = exist {
+                    // Retrieve existing cameraService that is rendering old camera info
+                    if let cameraService = self.connections[oldPrinter]?.cameraService {
+                        // Stop rendering old data
+                        cameraService.disconnectFromServer()
+                        // Update camera service to use newest camera info and render new camera
+                        cameraService.connectToServer(printer: updatedPrinter)
+                    }
+                }
+            }
+        }
+    }
+
     // MARK: - Private functions
 
     fileprivate func samePrinter(_ printer: Printer, _ newPrinter: Printer) -> Bool {
@@ -153,7 +181,7 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
                 newConnections[newPrinter] = self.connections[existingPrinter]
             } else {
                 // Setup new connections for new printer
-                newConnections[newPrinter] = (ViewService(), CameraService())
+                newConnections[newPrinter] = (ViewService(tvPrinterManager: self), CameraService())
             }
         }
         // Close no longer needed connections

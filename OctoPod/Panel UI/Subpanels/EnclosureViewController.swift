@@ -1,6 +1,6 @@
 import UIKit
 
-class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelViewController, OctoPrintSettingsDelegate {
+class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelViewController, OctoPrintSettingsDelegate, OctoPrintPluginsDelegate {
     
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -21,6 +21,8 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
         // Fetch and render Enclosure outputs
         refreshOutputs(done: nil)
 
+        // Listen to changes to OctoPrint Plugin messages
+        octoprintClient.octoPrintPluginsDelegates.append(self)
         // Listen to changes to OctoPrint Settings
         octoprintClient.octoPrintSettingsDelegates.append(self)
     }
@@ -28,6 +30,8 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        // Stop listening to changes to OctoPrint Plugin messages
+        octoprintClient.remove(octoPrintPluginsDelegate: self)
         // Stop listening to changes to OctoPrint Settings
         octoprintClient.remove(octoPrintSettingsDelegate: self)
     }
@@ -116,18 +120,38 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
         }
     }
 
+    // MARK: - OctoPrintPluginsDelegate
+    
+    func pluginMessage(plugin: String, data: NSDictionary) {
+        if plugin == Plugins.ENCLOSURE {
+            if let _ = data["rpi_output_regular"] {
+                // Refresh status of outputs. Doing a new fetch is not the most
+                // efficient way to do this but this is an infrequent operation
+                // so it is good enough and we can reuse some code
+                refreshOutputsStatus(done: nil)
+            }
+        }
+    }
+
     // MARK: - Notifications from Cells
     
     func powerPressed(cell: EnclosureGPIOViewCell) {
-        if let on = cell.isPowerOn {
+        if let on = cell.isPowerOn, let printer = printerManager.getDefaultPrinter() {
             if let indexPath = self.tableView.indexPath(for: cell) {
                 let output = self.outputs[indexPath.row]
+
+                // Donate Siri Intentions
+                IntentsDonations.donateEnclosureTurnOn(printer: printer, switchLabel: output.label)
+                IntentsDonations.donateEnclosureTurnOff(printer: printer, switchLabel: output.label)
+
                 let changePower = {
                     let generator = UINotificationFeedbackGenerator()
                     generator.prepare()
                     self.octoprintClient.changeEnclosureGPIO(index_id: output.index, status: !on) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                         if requested {
-                            generator.notificationOccurred(.success)
+                           DispatchQueue.main.async {
+                                generator.notificationOccurred(.success)
+                            }
                             // Update in memory status
                             output.status = !on
                             // Refresh row
@@ -162,8 +186,8 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
                 generator.prepare()
                 self.octoprintClient.changeEnclosurePWM(index_id: output.index, dutyCycle: dutyCycle) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        generator.notificationOccurred(.success)
                         DispatchQueue.main.async {
+                            generator.notificationOccurred(.success)
                             // Clean up value of cell
                             cell.pwmField.text = nil
                             // Refresh row
@@ -229,14 +253,17 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
         // Fetch current status for GPIO outputs
         for output in self.outputs {
             if output.type == "regular" {
+                let outputIndex = output.index
                 self.octoprintClient.getEnclosureGPIOStatus(index_id: output.index) { (value: Bool?, error: Error?, response: HTTPURLResponse) in
                     if let value = value {
-                        for (index, output) in self.outputs.enumerated() {
-                            // Update status in wrapper
-                            output.status = value
-                            // Refresh only row of updated status
-                            DispatchQueue.main.async {
-                                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+                        for (index, outputToUpdate) in self.outputs.enumerated() {
+                            if outputIndex == outputToUpdate.index {
+                                // Update status in wrapper
+                                outputToUpdate.status = value
+                                // Refresh only row of updated status
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+                                }
                             }
                         }
                     }

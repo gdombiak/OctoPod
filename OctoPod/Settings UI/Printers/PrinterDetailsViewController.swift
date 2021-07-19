@@ -1,17 +1,9 @@
 import UIKit
 
-class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitPrinterDelegate, UIPopoverPresentationControllerDelegate {
+class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPrinterDelegate, UIPopoverPresentationControllerDelegate {
     
-    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
-    let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
-    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
-    let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
-    let notificationsManager: NotificationsManager = { return (UIApplication.shared.delegate as! AppDelegate).notificationsManager }()
-
     var updatePrinter: Printer? = nil
     var scannedKey: String?
-    var newPrinterPosition: Int16!  // Will have a value only when adding a new printer
 
     @IBOutlet weak var printerNameField: UITextField!
     @IBOutlet weak var hostnameField: UITextField!
@@ -26,6 +18,11 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     
     @IBOutlet weak var includeDashboardLabel: UILabel!
     @IBOutlet weak var includeDashboardSwitch: UISwitch!
+    @IBOutlet weak var showCameraLabel: UILabel!
+    @IBOutlet weak var showCameraSwitch: UISwitch!
+
+    @IBOutlet weak var printerURLLabel: UILabel!
+    @IBOutlet weak var shareQRCodeButton: UIButton!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
@@ -36,22 +33,25 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        // Theme labels
-        let theme = Theme.currentTheme()
-        let tintColor = theme.tintColor()
-        scanAPIKeyButton.tintColor = tintColor
-        scanInstallationsButton.tintColor = tintColor
-        includeDashboardLabel.textColor = theme.textColor()
+        themeLabels()
 
         if let selectedPrinter = updatePrinter {
             updateFieldsForPrinter(printer: selectedPrinter)
             // Disable scanning for OctoPrint instances
             scanInstallationsButton.isEnabled = false
+            if selectedPrinter.getPrinterConnectionType() == .octoEverywhere {
+                // Disable editing hostname, username and password
+                hostnameField.isEnabled = false
+                usernameField.isEnabled = false
+                passwordField.isEnabled = false
+            }
         } else {
             // Hide URL error message
             urlErrorMessageLabel.isHidden = true
             // Enable scanning for OctoPrint instances
             scanInstallationsButton.isEnabled = true
+            // Calculate printer URL and enable/disable share QR Code button
+            updatePrinterURL()
         }
 
         // Register for keyboard notifications
@@ -81,60 +81,11 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
     
     @IBAction func saveChanges(_ sender: Any) {
         if let printer = updatePrinter {
-            let nameChanged = printer.name != printerNameField.text!
-            // Update existing printer
-            printer.name = printerNameField.text!
-            printer.hostname = hostnameField.text!
-            printer.apiKey = apiKeyField.text!
-            printer.userModified = Date() // Track when settings were modified
-            
-            printer.username = usernameField.text
-            printer.password = passwordField.text
-            
-            printer.includeInDashboard = includeDashboardSwitch.isOn
-            
-            // Mark that iCloud needs to be updated
-            printer.iCloudUpdate = true
-            
-            printerManager.updatePrinter(printer)
-            
-            // If default printer was edited then we need to update connections to use new settings
-            if printer.defaultPrinter {
-                octoprintClient.connectToServer(printer: printer)
-            }
-            // Recreate Siri suggestions (user will need to manually delete recorded Shortcuts)
-            IntentsDonations.deletePrinterIntents(printer: printer)
-            IntentsDonations.donatePrinterIntents(printer: printer)
-            
-            if nameChanged {
-                notificationsManager.printerNameChanged(printer: printer)
-            }
+            updatePrinter(printer: printer, name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
         } else {
             // Add new printer (that will become default if it's the first one)
-            if printerManager.addPrinter(name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, iCloudUpdate: true) {
-                if let printer = printerManager.getPrinterByName(name: printerNameField.text!) {
-                    // Only update printer if dashboard configuration needs update
-                    if printer.includeInDashboard != includeDashboardSwitch.isOn {
-                        let newObjectContext = printerManager.newPrivateContext()
-                        let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-                        // Update flag that tracks if Cancel Object plugin is installed
-                        printerToUpdate.includeInDashboard = includeDashboardSwitch.isOn
-                        // Persist updated printer
-                        printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-                    }
-                    // Create Siri suggestions (user will need to manually delete recorded Shortcuts)
-                    IntentsDonations.donatePrinterIntents(printer: printer)
-                    } else {
-                        NSLog("Missing newly added printer: \(printerNameField.text!)")
-                    }
-            }
+            createPrinter(connectionType: .apiKey, name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
         }
-        
-        // Push changes to iCloud so other devices of the user get updated (only if iCloud enabled and user is logged in)
-        cloudKitPrinterManager.pushChanges(completion: nil)
-        // Push changes to Apple Watch
-        watchSessionManager.pushPrinters()
-        
         goBack()
     }
     
@@ -143,6 +94,10 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
             // Add http protocol to URL if no protocol was specified
             if !inputURL.lowercased().starts(with: "http") {
                 hostnameField.text = "http://" + inputURL
+            }
+            // Remove trailing / if present
+            if inputURL.hasSuffix("/") {
+                hostnameField.text = String(hostnameField.text!.dropLast())
             }
         }
         // Hide or show URL error message
@@ -153,8 +108,17 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         updateSaveButton()
     }
     
+    @IBAction func sharePrinterURLQRCode(_ sender: Any) {
+        if let printerURL = printerURLLabel.text, let image = generateQRCode(from: printerURL) {
+            let items = [image]
+            let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            present(ac, animated: true)
+        }
+    }
+    
     @IBAction func fieldChanged(_ sender: Any) {
         updateSaveButton()
+        updatePrinterURL()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -175,9 +139,18 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
             self.printerNameField.text = selectedService.name
             // Update hostname based on discovered information
             self.hostnameField.text = selectedService.hostname
+            self.updatePrinterURL()
         }
     }
     
+    @IBAction func unwindScanQRCode(_ sender: UIStoryboardSegue) {
+        if let scanner = sender.source as? ScannerViewController {
+            self.apiKeyField.text = scanner.scannedQRCode
+            scannedKey = scanner.scannedQRCode
+            self.updateSaveButton()
+        }
+    }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -191,14 +164,6 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         }
     }
  
-    @IBAction func unwindScanQRCode(_ sender: UIStoryboardSegue) {
-        if let scanner = sender.source as? ScannerViewController {
-            self.apiKeyField.text = scanner.scannedQRCode
-            scannedKey = scanner.scannedQRCode
-            self.updateSaveButton()
-        }
-    }
-
     // MARK: - CloudKitPrinterDelegate
     
     func printersUpdated() {
@@ -252,6 +217,8 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         usernameField.text = printer.username
         passwordField.text = printer.password
         includeDashboardSwitch.isOn = printer.includeInDashboard
+        showCameraSwitch.isOn = !printer.hideCamera
+        updatePrinterURL()
     }
     
     fileprivate func updateSaveButton() {
@@ -267,40 +234,63 @@ class PrinterDetailsViewController: ThemedStaticUITableViewController, CloudKitP
         }
     }
     
-    fileprivate func goBack() {
-        // Go back to previous page and execute the unwinsScanQRCode IBAction
-        performSegue(withIdentifier: "unwindPrintersUpdated", sender: self)
+    fileprivate func updatePrinterURL() {
+        if let printerName = printerNameField.text, !printerName.isEmpty {
+            printerURLLabel.text = "octopod://\(printerName)"
+            shareQRCodeButton.isEnabled = true
+        } else {
+            printerURLLabel.text = "octopod://"
+            shareQRCodeButton.isEnabled = false
+        }
+    }
+    
+    fileprivate func generateQRCode(from string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+
+        if let filter = CIFilter(name: "CIQRCodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+
+            if let output = filter.outputImage?.transformed(by: transform) {
+                return UIImage(ciImage: output)
+            }
+        }
+        return nil
     }
     
     fileprivate func isValidURL() -> Bool {
         if let inputURL = hostnameField.text {
-            let urlRegEx = "(http|https)://((\\w)*|([0-9]*)|([-|_]|[\\.|/])*)+(:[0-9]+)?"
-            let urlTest = NSPredicate(format: "SELF MATCHES %@", urlRegEx)
-            var result = urlTest.evaluate(with: inputURL)
-            if !result {
-                let ipv6RegEx = "(http|https)://(\\[)?(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))(])?(:[0-9]+)?"
-                let ipv6Test = NSPredicate(format: "SELF MATCHES %@", ipv6RegEx)
-                result = ipv6Test.evaluate(with: inputURL)
-            }
-            return result
+            return PrinterUtils.isValidURL(inputURL: inputURL)
         }
         return false
     }
 
-    fileprivate func adjustingHeight(show: Bool, notification: Notification) {
-        let userInfo = notification.userInfo!
-        let keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-        //        let animationDurarion = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
-        let changeInHeight = (keyboardFrame.height + 40) * (show ? 1 : -1)
-        // Set the table content inset to the keyboard height
-        tableView.contentInset.bottom = changeInHeight
-    }
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        adjustingHeight(show: true, notification: notification)
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        adjustingHeight(show: false, notification: notification)
+    fileprivate func themeLabels() {
+        // Theme labels
+        let theme = Theme.currentTheme()
+        let tintColor = theme.tintColor()
+        let textColor = theme.textColor()
+        let backgroundColor = theme.backgroundColor()
+        let placeHolderAttributes: [ NSAttributedString.Key : Any ] = [.foregroundColor: theme.placeholderColor()]
+        scanAPIKeyButton.tintColor = tintColor
+        scanInstallationsButton.tintColor = tintColor
+        includeDashboardLabel.textColor = textColor
+        showCameraLabel.textColor = textColor
+        printerNameField.backgroundColor = backgroundColor
+        printerNameField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Printer Name (e.g. MK3)", comment: ""), attributes: placeHolderAttributes)
+        printerNameField.textColor = textColor
+        hostnameField.backgroundColor = backgroundColor
+        hostnameField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Hostname (e.g. http://octopi.local)", comment: ""), attributes: placeHolderAttributes)
+        hostnameField.textColor = textColor
+        apiKeyField.backgroundColor = backgroundColor
+        apiKeyField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("API Key", comment: ""), attributes: placeHolderAttributes)
+        apiKeyField.textColor = textColor
+        usernameField.backgroundColor = backgroundColor
+        usernameField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Username", comment: ""), attributes: placeHolderAttributes)
+        usernameField.textColor = textColor
+        passwordField.backgroundColor = backgroundColor
+        passwordField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""), attributes: placeHolderAttributes)
+        passwordField.textColor = textColor
+        printerURLLabel.textColor = textColor
     }    
 }

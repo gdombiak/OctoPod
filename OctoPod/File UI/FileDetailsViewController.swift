@@ -72,11 +72,23 @@ class FileDetailsViewController: ThemedStaticUITableViewController {
     // MARK: - Button operations
 
     @IBAction func printClicked(_ sender: Any) {
-        performSegue(withIdentifier: "backFromPrint", sender: self)
+        if appConfiguration.confirmationStartPrint() {
+            showConfirm(message: NSLocalizedString("Do you want to print this file?", comment: "")) { (UIAlertAction) in
+                self.performSegue(withIdentifier: "backFromPrint", sender: self)
+            } no: { (UIAlertAction) in
+                // Do nothoing
+            }
+        } else {
+            performSegue(withIdentifier: "backFromPrint", sender: self)
+        }
     }
     
-    @IBAction func deleteClicked(_ sender: Any) {        
-        performSegue(withIdentifier: "backFromDelete", sender: self)
+    @IBAction func deleteClicked(_ sender: Any) {
+        showConfirm(message: NSLocalizedString("Do you want to delete this file?", comment: "")) { (UIAlertAction) in
+            self.performSegue(withIdentifier: "backFromDelete", sender: self)
+        } no: { (UIAlertAction) in
+            // Do nothoing
+        }
     }
     
     // MARK: - Private functions
@@ -99,5 +111,9 @@ class FileDetailsViewController: ThemedStaticUITableViewController {
         estimatedPrintTimeLabel.textColor = textColor
         uploadedDateLabel.textColor = textColor
         printedDateLabel.textColor = textColor
+    }
+
+    fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
+        UIUtils.showConfirm(presenter: self, message: message, yes: yes, no: no)
     }
 }

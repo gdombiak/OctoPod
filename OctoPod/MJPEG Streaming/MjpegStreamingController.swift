@@ -24,6 +24,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     fileprivate var session: Foundation.URLSession!
     fileprivate var status: Status = .stopped
     
+    open var authorizationHeader: String? // Only used when doing HTTP Basic preemptive
     open var authenticationHandler: ((URLAuthenticationChallenge) -> (Foundation.URLSession.AuthChallengeDisposition, URLCredential?))?
     open var authenticationFailedHandler: (()->Void)?
     open var didStartLoading: (()->Void)?
@@ -35,6 +36,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     open var contentURL: URL?
     open var imageView: UIImageView?
     open var imageOrientation: UIImage.Orientation?
+    open var timeoutInterval: TimeInterval = 60.0
 
     public override init() {
         super.init()
@@ -46,10 +48,10 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
         self.imageView = imageView
     }
     
-    public convenience init(imageView: UIImageView, contentURL: URL) {
-        self.init(imageView: imageView)
-        self.contentURL = contentURL
-    }
+//    public convenience init(imageView: UIImageView, contentURL: URL) {
+//        self.init(imageView: imageView)
+//        self.contentURL = contentURL
+//    }
     
     deinit {
         dataTask?.cancel()
@@ -72,7 +74,10 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
         executeBlock { self.didStartLoading?() }
         
         receivedData = NSMutableData()
-        let request = URLRequest(url: url)
+        var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeoutInterval)
+        if let auth = authorizationHeader {
+            request.addValue(auth, forHTTPHeaderField: "Authorization")
+        }
         dataTask = session.dataTask(with: request)
         dataTask?.resume()
     }

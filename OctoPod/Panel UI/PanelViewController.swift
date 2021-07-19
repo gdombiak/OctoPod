@@ -1,6 +1,6 @@
 import UIKit
 
-class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate, WatchSessionManagerDelegate, UITabBarControllerDelegate, SubpanelsVCDelegate {
+class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate, DefaultPrinterManagerDelegate, UITabBarControllerDelegate, SubpanelsVCDelegate {
     
     private static let CONNECT_CONFIRMATION = "PANEL_CONNECT_CONFIRMATION"
     private static let REMINDERS_SHOWN = "PANEL_REMINDERS_SHOWN_3_2"  // Key that stores if we should show reminders about important new things to users. Key might change per version
@@ -9,13 +9,14 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
+    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
     let pluginUpdatesManager: PluginUpdatesManager = { return (UIApplication.shared.delegate as! AppDelegate).pluginUpdatesManager }()
 
     var printerConnected: Bool?
 
     @IBOutlet weak var printerSelectButton: UIBarButtonItem!
     @IBOutlet weak var connectButton: UIBarButtonItem!
+    @IBOutlet weak var cameraGridButton: UIButton!
     
     @IBOutlet weak var notRefreshingButton: UIButton!
     var notRefreshingReason: String?
@@ -45,6 +46,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     var swipeRightGestureRecognizer : UISwipeGestureRecognizer!
     var swipeDownGestureRecognizer : UISwipeGestureRecognizer!
     var tapGestureRecognizer : UITapGestureRecognizer!
+    
+    /// Remember if screen turns off when app is idle. This is used when coming back from full screen camera
+    var previousIdleTimer = UIApplication.shared.isIdleTimerDisabled
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,10 +68,14 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         // Messages will not be visible after user used these features
         camerasViewController?.infoGesturesAvailable = true
         
+        // Only offer PIP (if supported by device) from main panel window
+        camerasViewController?.offerPIP = true
+        
         // Listen to event when user swiped and changed active subpanel
         subpanelsViewController?.subpanelsVCDelegate = self
 
-        // Listen to events when app comes back from background
+        // Listen to events when app goes to background and comes back from background
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         // Listen to events coming from OctoPrintClient
@@ -86,8 +94,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         octoprintClient.octoPrintSettingsDelegates.append(self)
         // Listen to changes when app is locked or unlocked
         appConfiguration.delegates.append(self)
-        // Listen to changes coming from Apple Watch
-        watchSessionManager.delegates.append(self)
+        // Listen to changes to default printer
+        defaultPrinterManager.delegates.append(self)
         // Listen to tab controller events
         if let tabController = self.tabBarController {
             tabController.delegate = self  // Not ideal solution since we might be overriding other delegates. Good for now
@@ -112,8 +120,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         octoprintClient.remove(octoPrintSettingsDelegate: self)
         // Stop listening to changes when app is locked or unlocked
         appConfiguration.remove(appConfigurationDelegate: self)
-        // Stop listening to changes coming from Apple Watch
-        watchSessionManager.remove(watchSessionManagerDelegate: self)
+        // Stop listening to changes to default printer
+        defaultPrinterManager.remove(defaultPrinterManagerDelegate: self)
         // Stop listening to tab controller events
         if let tabController = self.tabBarController {
             tabController.delegate = nil
@@ -139,6 +147,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     // MARK: - Connect / Disconnect
 
     @IBAction func toggleConnection(_ sender: Any) {
+        if printerConnected == nil {
+            // Do nothing if we do not know the connection status of the printer
+            return
+        }
         if printerConnected! {
             // Define connect logic that will be reused in 2 places. Variable to prevent copy/paste
             let disconnect = {
@@ -194,9 +206,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     func changeDefaultPrinter(printer: Printer) {
         // Update printer to be the new selected one (i.e. new default)
-        printerManager.changeToDefaultPrinter(printer)
-        // Update Apple Watch with new selected printer
-        watchSessionManager.pushPrinters()
+        defaultPrinterManager.changeToDefaultPrinter(printer: printer, updateWatch: true, connect: false)
         // Refresh UI
         refreshNewSelectedPrinter()
     }
@@ -250,9 +260,13 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             case SetTargetTempViewController.TargetScope.bed:
                 octoprintClient.bedTargetTemperature(newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        generator.notificationOccurred(.success)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.success)
+                        }
                     } else {
-                        generator.notificationOccurred(.error)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.error)
+                        }
                         NSLog("Failed to request setting bed's temperature. Response: \(response)")
                     }
                 }
@@ -263,9 +277,13 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             case SetTargetTempViewController.TargetScope.tool0:
                 octoprintClient.toolTargetTemperature(toolNumber: 0, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        generator.notificationOccurred(.success)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.success)
+                        }
                     } else {
-                        generator.notificationOccurred(.error)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.error)
+                        }
                         NSLog("Failed to request setting tool0's temperature. Response: \(response)")
                     }
                 }
@@ -276,9 +294,13 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             case SetTargetTempViewController.TargetScope.tool1:
                 octoprintClient.toolTargetTemperature(toolNumber: 1, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        generator.notificationOccurred(.success)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.success)
+                        }
                     } else {
-                        generator.notificationOccurred(.error)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.error)
+                        }
                         NSLog("Failed to request setting tool1's temperature. Response: \(response)")
                     }
                 }
@@ -289,9 +311,13 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             case SetTargetTempViewController.TargetScope.tool2:
                 octoprintClient.toolTargetTemperature(toolNumber: 2, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        generator.notificationOccurred(.success)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.success)
+                        }
                     } else {
-                        generator.notificationOccurred(.error)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.error)
+                        }
                         NSLog("Failed to request setting tool2's temperature. Response: \(response)")
                     }
                 }
@@ -302,9 +328,13 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             case SetTargetTempViewController.TargetScope.tool3:
                 octoprintClient.toolTargetTemperature(toolNumber: 3, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        generator.notificationOccurred(.success)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.success)
+                        }
                     } else {
-                        generator.notificationOccurred(.error)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.error)
+                        }
                         NSLog("Failed to request setting tool3's temperature. Response: \(response)")
                     }
                 }
@@ -315,9 +345,13 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             case SetTargetTempViewController.TargetScope.tool4:
                 octoprintClient.toolTargetTemperature(toolNumber: 4, newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        generator.notificationOccurred(.success)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.success)
+                        }
                     } else {
-                        generator.notificationOccurred(.error)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.error)
+                        }
                         NSLog("Failed to request setting tool4's temperature. Response: \(response)")
                     }
                 }
@@ -328,9 +362,13 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             case SetTargetTempViewController.TargetScope.chamber:
                 octoprintClient.chamberTargetTemperature(newTarget: newTarget) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
-                        generator.notificationOccurred(.success)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.success)
+                        }
                     } else {
-                        generator.notificationOccurred(.error)
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.error)
+                        }
                         NSLog("Failed to request setting chamber's temperature. Response: \(response)")
                     }
                 }
@@ -411,7 +449,21 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             }
         } else if response.statusCode == 403 {
             self.showAlert(NSLocalizedString("Authentication failed", comment: ""), message: NSLocalizedString("Incorrect API Key", comment: ""))
+        } else if response.statusCode == 600 {
+            self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Internal OctoEverywhere error", comment: ""))
+        } else if response.statusCode == 601 {
+            self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Printer is not connected to OctoEverywhere", comment: ""))
+        } else if response.statusCode == 602 {
+            self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("OctoEverywhere's connection to OctoPrint timed out", comment: ""))
+        } else if response.statusCode == 603 || response.statusCode == 604 {
+            self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Recreate printer in OctoEverywhere and OctoPod", comment: ""))
+        } else if response.statusCode == 605 {
+            self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Account is no longer an OctoEverywhere supporter", comment: ""))
         }
+    }
+    
+    func tempHistoryChanged() {
+        subpanelsViewController?.tempHistoryChanged()
     }
     
     // MARK: - OctoPrintSettingsDelegate
@@ -430,6 +482,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         camerasViewController?.camerasChanged(camerasURLs: camerasURLs)
     }
 
+    // MARK: - Orientation change
+
     // React when device orientation changes
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -440,6 +494,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         if let printer = printerManager.getDefaultPrinter() {
             // Update layout depending on camera orientation
             updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!, devicePortrait: size.height == screenHeight)
+            // Hide/show camera grid button based on orientation
+            self.cameraGridButton.isHidden = !self.showCameraGridButton()
             // Add some delay before calculating if we should render temp info
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.checkDisplayPrintStatusOverCamera()
@@ -512,9 +568,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         checkDisplayPrintStatusOverCamera()
     }
     
-    // MARK: - WatchSessionManagerDelegate
+    // MARK: - DefaultPrinterManagerDelegate
     
-    // Notification that a new default printer has been selected from the Apple Watch app
     func defaultPrinterChanged() {
         self.refreshNewSelectedPrinter()
     }
@@ -573,44 +628,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
 
     @objc fileprivate func navigationBarSwiped(_ gesture: UIGestureRecognizer) {
-        if let printer = printerManager.getDefaultPrinter() {
-            // Swipe to change between printers
-            let printers = printerManager.getPrinters()
-            if printers.count < 2 {
-                // Nothing to do since there is only one OctoPrint instance (aka printer)
-                return
-            }
-            
-            var newPrinter: Printer!
-            if let index = printers.firstIndex(of: printer) {
-                if gesture == swipeLeftGestureRecognizer {
-                    // Right to left so move to the next printer
-                    if index == printers.count - 1 {
-                        // Go to the first printer in the array
-                        newPrinter = printers[0]
-                    } else {
-                        // Go to the next printer in the array
-                        newPrinter = printers[index + 1]
-                    }
-                } else {
-                    // Left to right so move to the previous printer
-                    if index == 0 {
-                        // Go to the last printer in the array
-                        newPrinter = printers.last
-                    } else {
-                        // Go to the previous printer in the array
-                        newPrinter = printers[index - 1]
-                    }
-                }
-
-                // Update stored printers
-                printerManager.changeToDefaultPrinter(newPrinter)
-                // Update Apple Watch with new selected printer
-                watchSessionManager.pushPrinters()
-                // Refresh UI to newly selected printer
-                self.refreshNewSelectedPrinter()
-            }
-        }
+        // Change default printer
+        let direction: DefaultPrinterManager.SwipeDirection = gesture == swipeLeftGestureRecognizer ? .left : .right
+        defaultPrinterManager.navigationBarSwiped(direction: direction)
     }
     
     @objc fileprivate func navigationBarSwipedDown(_ gesture: UIGestureRecognizer) {
@@ -637,6 +657,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     /// Runs on **main thread**. Enables or disables display of print status overlaid on top of camera view
     fileprivate func checkDisplayPrintStatusOverCamera() {
+        if subpanelsView == nil {
+            // Do nothing if for whatever reason subpanelsView is nil.
+            return
+        }
         let printerSubpanelViewController = subpanelsViewController?.currentSubpanelViewController() as? PrinterSubpanelViewController
         camerasViewController?.displayPrintStatus(enabled: subpanelsView.isHidden || printerSubpanelViewController == nil || !printerSubpanelViewController!.tempLabelVisible())
     }
@@ -673,6 +697,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 if let navigationController = self.navigationController as? NavigationController {
                     navigationController.refreshForPrinterColors(color: printer.color)
                 }
+                // Show camera grid button only if printer has many cameras
+                self.cameraGridButton.isHidden = !self.showCameraGridButton()
             }
             
             // Use last known aspect ratio of first camera of this printer
@@ -691,12 +717,22 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             DispatchQueue.main.async {
                 self.notRefreshingReason = nil
                 self.notRefreshingButton.isHidden = true
+                self.cameraGridButton.isHidden = true
             }
             // Assume printer is not connected
             updateConnectButton(printerConnected: false, assumption: true)
             // Ask octoprintClient to disconnect from OctoPrint server
             octoprintClient.disconnectFromServer()
         }
+    }
+    
+    fileprivate func showCameraGridButton() -> Bool {
+        // Show camera grid button only if printer has many cameras
+        if let printer = printerManager.getDefaultPrinter(), let cameras = printer.getMultiCameras(), cameras.count > 1 {
+            // Hide button when in landscape. Always show when using iPad
+            return !UIDevice.current.orientation.isLandscape || UIDevice.current.userInterfaceIdiom == .pad
+        }
+        return false
     }
     
     fileprivate func refreshNewSelectedPrinter() {
@@ -717,13 +753,18 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 self.connectButton.title = NSLocalizedString("Disconnect", comment: "")
             }
             // Only enable button if we are sure about connection state
-            self.connectButton.isEnabled = !assumption
+            self.connectButton.isEnabled = !assumption && !self.appConfiguration.appLocked()
         }
     }
     
     fileprivate func updateForCameraOrientation(orientation: UIImage.Orientation, devicePortrait: Bool = UIApplication.shared.statusBarOrientation.isPortrait) {
         if cameraHeightConstraint == nil {
             // Do nothing if for some reason the weak var cameraHeightConstraint is no longer there. Will fix a reported crash but not sure if it will crash later
+            return
+        }
+        // Check if user decided to hide camera subpanel for this printer 
+        if let printer = printerManager.getDefaultPrinter(), printer.hideCamera {
+            cameraHeightConstraint.constant = 0
             return
         }
         if orientation == UIImage.Orientation.left || orientation == UIImage.Orientation.leftMirrored || orientation == UIImage.Orientation.rightMirrored || orientation == UIImage.Orientation.right {
@@ -745,6 +786,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             self.tabBarController?.tabBar.isHidden = true
             // Hide bottom panel
             subpanelsView.isHidden = true
+            // Hide camera grid button
+            cameraGridButton.isHidden = true
             // Switch constraints priority. Height does not matter now. Bottom constraint matters with 0 to safe view
             cameraHeightConstraint.priority = UILayoutPriority(rawValue: 998)       // Ignore height of camera view
             cameraToSubpanelConstraint.priority = UILayoutPriority(rawValue: 998)   // Ignore relationship to subpanel
@@ -760,6 +803,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             } else {
                 uiOrientationBeforeFullScreen = nil
             }
+            // Turn off idle timer that turns off display when app is idle. Full screen camera will prevent device from turning screen off
+            previousIdleTimer = UIApplication.shared.isIdleTimerDisabled
+            UIApplication.shared.isIdleTimerDisabled = true
         } else {
             // Show the navigation bar on this view controller
             self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -767,6 +813,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             self.tabBarController?.tabBar.isHidden = false
             // Show bottom panel
             subpanelsView.isHidden = false
+            // Show camera grid button only if printer has many cameras
+            cameraGridButton.isHidden = !showCameraGridButton()
             // Switch constraints priority. Height matters again. Bottom constraint no longer matters
             cameraHeightConstraint.priority = UILayoutPriority(rawValue: 999)      // Activate height of camera view
             cameraToSubpanelConstraint.priority = UILayoutPriority(rawValue: 999)  // Activate relationship to subpanel
@@ -777,6 +825,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 UIDevice.current.setValue(Int(orientation.rawValue), forKey: "orientation")
                 uiOrientationBeforeFullScreen = nil
             }
+            // Restore idle timer to previous value before going full screen
+            UIApplication.shared.isIdleTimerDisabled = previousIdleTimer
         }
         // Add some delay before calculating if we should render temp info
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -787,6 +837,11 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     @objc func appWillEnterForeground() {
         // Show default printer
         showDefaultPrinter()
+    }
+    
+    @objc func appDidEnterBackground() {
+        // Close websocket connection to stop network traffic
+        octoprintClient.disconnectFromServer()
     }
     
     // We are using Container Views so this is how we keep a reference to the contained view controllers

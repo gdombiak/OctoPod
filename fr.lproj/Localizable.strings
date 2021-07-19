@@ -13,6 +13,9 @@
 /* (No Comment) */
 "1 week ago" = "Il y a 1 semaine";
 
+/* No comment provided by engineer. */
+"Account is no longer an OctoEverywhere supporter" = "Le compte ne supporte plus OctoEverywhere";
+
 /* (No Comment) */
 "Actual Bed" = "Plateau actuel";
 
@@ -33,6 +36,18 @@
 
 /* No comment provided by engineer. */
 "Actual Extruder 5" = "Extrudeur actuel 5";
+
+/* No comment provided by engineer. */
+"API Key" = "Clé API";
+
+/* No comment provided by engineer. */
+"API Key or Application Key" = "Clé API ou Clé d'Application";
+
+/* No comment provided by engineer. */
+"Application Key not enabled in OctoPrint." = "Clé d'Application non activée dans OctoPrint";
+
+/* No comment provided by engineer. */
+"Application Key obtained. Click save to finish." = "Clé d'Application obtenue. Sauvegarder pour terminer.";
 
 /* (No Comment) */
 "Apply" = "Appliquer";
@@ -88,6 +103,9 @@
 /* (No Comment) */
 "Command not executed. Script not found" = "Commande non exécutée. Script introuvable.";
 
+/* No comment provided by engineer. */
+"Complete information and click save to finish." = "Compléter les informations et sauvegarder pour terminer.";
+
 /* (No Comment) */
 "Confirm" = "Attention";
 
@@ -136,6 +154,9 @@
 /* (No Comment) */
 "Connection failed" = "La connexion a échoué";
 
+/* No comment provided by engineer. */
+"Contacting OctoPrint." = "Contact d'Octoprint...";
+
 /* Siri suggested phrase */
 "Cool down heated chamber" = "Refroidir le caisson";
 
@@ -160,6 +181,9 @@
 /* (No Comment) */
 "days ago" = "Il y a %d jours";
 
+/* Delete action */
+"Delete" = "Effacer";
+
 /* Disconnect */
 "Disconnect" = "Déconnecter";
 
@@ -173,10 +197,22 @@
 "Do you want to cancel job?" = "Souhaitez-vous annuler l’impression ?";
 
 /* No comment provided by engineer. */
+"Do you want to delete this file?" = "Supprimer ce fichier ?";
+
+/* No comment provided by engineer. */
 "Do you want to pause job?" = "Souhaitez-vous mettre en pause?";
 
 /* No comment provided by engineer. */
+"Do you want to pause print?" = "Mettre en pause l'impression ?";
+
+/* No comment provided by engineer. */
+"Do you want to print this file?" = "Imprimer ce fichier ?";
+
+/* No comment provided by engineer. */
 "Do you want to restart print job from the beginning?" = "Souhaitez-vous recommencer l’impression depuis le début ?";
+
+/* No comment provided by engineer. */
+"Do you want to resume printing?" = "Reprendre l'impression ?";
 
 /* (No Comment) */
 "Domoticz Plugs" = "Prises Domoticz";
@@ -186,6 +222,15 @@
 
 /* gcode name */
 "Endstop States" = "États des fins de course";
+
+/* No comment provided by engineer. */
+"Error obtaining Application Key." = "Erreur de récupération de la Clé d'Application.";
+
+/* Siri suggested phrase */
+"Execute System Command" = "Exécute la commande";
+
+/* No comment provided by engineer. */
+"Expand" = "Agrandir";
 
 /* (No Comment) */
 "Extruder" = "Extrudeur";
@@ -331,6 +376,9 @@
 /* File Type is a Folder */
 "Folder" = "Dossier";
 
+/* No comment provided by engineer. */
+"Hostname (e.g. http://octopi.local)" = "Hostname (ex. : http://octopi.local)";
+
 /* (No Comment) */
 "hours ago" = "Il y a %d heures";
 
@@ -352,6 +400,9 @@
 /* (No Comment) */
 "Incorrect authentication credentials" = "Informations d'authentification érronées";
 
+/* No comment provided by engineer. */
+"Internal OctoEverywhere error" = "Erreur interne OctoEverywhere";
+
 /* URL of camera is invalid */
 "Invalid camera URL" = "URL de la caméra invalide";
 
@@ -372,6 +423,9 @@
 
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Emplacement introuvable. Rafraîchir.";
+
+/* No comment provided by engineer. */
+"Log into OctoPrint to approve access request." = "Se connecter à OctoPrint pour valider la demande d'accès.";
 
 /* (No Comment) */
 "minutes ago" = "Il y a %d minutes";
@@ -421,11 +475,23 @@
 /* (No Comment) */
 "Notify failed resume job" = "Échec de la demande de reprise";
 
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoevErywhere: limite de webcam dépassée";
+
+/* No comment provided by engineer. */
+"OctoEverywhere's connection to OctoPrint timed out" = "La connexion OctoEverywhere à OctoPrint a expiré";
+
 /* English translation for words in Swift files */
 "OctoPrint" = "OctoPrint";
 
 /* Printer is Offline */
 "Offline" = "Hors-ligne";
+
+/* No comment provided by engineer. */
+"Password" = "Mot de passe";
+
+/* No comment provided by engineer. */
+"Pause" = "Pause";
 
 /* Siri suggested phrase */
 "Pause current print job" = "Pause sur %@";
@@ -451,6 +517,9 @@
 /* No comment provided by engineer. */
 "Print" = "Imprimer";
 
+/* No comment provided by engineer. */
+"Print Again" = "Imprimer à nouveau";
+
 /* (No Comment) */
 "Print complete" = "Impression terminée";
 
@@ -469,6 +538,12 @@
 /* No comment provided by engineer. */
 "Printer" = "Imprimante";
 
+/* No comment provided by engineer. */
+"Printer is not connected to OctoEverywhere" = "L'imprimante n'est pas connectée à OctoEverywhere";
+
+/* No comment provided by engineer. */
+"Printer Name (e.g. MK3)" = "Nom de l’imprimante (ex. : MK3)";
+
 /* (No Comment) */
 "Printer not operational" = "Imprimante non-opérationnelle";
 
@@ -484,6 +559,9 @@
 /* (No Comment) */
 "Pull down to refresh" = "Glisser pour rafraîchir";
 
+/* No comment provided by engineer. */
+"Recreate printer in OctoEverywhere and OctoPod" = "Recréer l'imprimante dans OctoEverywhere et OctoPod";
+
 /* Siri suggested phrase */
 "Remaining time current print job" = "Temps restant sur %@";
 
@@ -498,6 +576,9 @@
 
 /* (No Comment) */
 "Restart Job" = "Recommencer";
+
+/* No comment provided by engineer. */
+"Restore" = "Restaurer";
 
 /* gcode name */
 "Restore Settings" = "Restaurer les réglages";
@@ -526,6 +607,9 @@
 /* (No Comment) */
 "seconds ago" = "Il y a %d secondes";
 
+/* No comment provided by engineer. */
+"Select printer from OctoEverywhere." = "Sélectionner l'imprimante depuis OctoEverywhere.";
+
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Serveur introuvable";
 
@@ -538,11 +622,20 @@
 /* gcode name */
 "Set Hotend PID" = "Définir PID de l’extrudeur";
 
+/* Share action */
+"Share" = "Partager";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Repousser de 1 heure";
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Repousser de 8 heures";
+
+/* SoC */
+"SoC" = "SoC";
+
+/* SoC Temperature */
+"SoC Temperature" = "Température SoC";
 
 /* No comment provided by engineer. */
 "State" = "État";
@@ -558,6 +651,9 @@
 
 /* http://docs.octoprint.org/en/master/api/system.html */
 "System Commands" = "Commandes système";
+
+/* Siri suggested phrase */
+"Take snapshot" = "Prendre une photo";
 
 /* (No Comment) */
 "Target Bed" = "Cible Plateau";
@@ -604,8 +700,20 @@
 /* (No Comment) */
 "Turn Off" = "Éteindre";
 
+/* Siri suggested phrase */
+"Turn off Enclosure switch" = "Éteindre l’interrupteur Enclosure";
+
+/* Siri suggested phrase */
+"Turn off PSU" = "Désactiver l'alimentation";
+
 /* (No Comment) */
 "Turn On" = "Allumer";
+
+/* Siri suggested phrase */
+"Turn on Enclosure switch" = "Allumer l’interrupteur Enclosure";
+
+/* Siri suggested phrase */
+"Turn on PSU" = "Activer l'alimentation";
 
 /* ETA is Unknown
    File Type is Unknown
@@ -623,6 +731,12 @@
 
 /* (No Comment) */
 "Upload failed" = "Erreur de chargement";
+
+/* No comment provided by engineer. */
+"User declined or request timed out." = "L'utilisateur a refusé ou la demande a expiré.";
+
+/* No comment provided by engineer. */
+"Username" = "Utilisateur";
 
 /* Siri suggested phrase */
 "Warm up heated chamber" = "Chauffage du caisson";

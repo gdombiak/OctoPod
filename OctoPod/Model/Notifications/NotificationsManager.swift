@@ -8,17 +8,20 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
     private let mmuSnooze1Identifier = "mmuSnooze1"
     private let mmuSnooze8Identifier = "mmuSnooze8"
 
+    static let printCompleteCategory = "printComplete"
+    private let printAgainIdentifier = "printAgain"
+
     private let printerManager: PrinterManager!
     private let octoprintClient: OctoPrintClient!
-    private let watchSessionManager: WatchSessionManager!
+    private let defaultPrinterManager: DefaultPrinterManager!
     private let mmuNotificationsHandler: MMUNotificationsHandler!
     
     private var currentToken: String?
 
-    init(printerManager: PrinterManager, octoprintClient: OctoPrintClient, watchSessionManager: WatchSessionManager, mmuNotificationsHandler: MMUNotificationsHandler) {
+    init(printerManager: PrinterManager, octoprintClient: OctoPrintClient, defaultPrinterManager: DefaultPrinterManager, mmuNotificationsHandler: MMUNotificationsHandler) {
         self.printerManager = printerManager
         self.octoprintClient = octoprintClient
-        self.watchSessionManager = watchSessionManager
+        self.defaultPrinterManager = defaultPrinterManager
         self.mmuNotificationsHandler = mmuNotificationsHandler
         
         super.init()
@@ -33,8 +36,15 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
         let snooze8Action = UNNotificationAction(identifier: mmuSnooze8Identifier, title: NSLocalizedString("Snooze 8 hours", comment: "Snooze notifications for 8 hours"),options:[])
         
         // Create category that will include snooze action
-        let category = UNNotificationCategory(identifier: NotificationsManager.mmuSnoozeCategory, actions: [snooze1Action, snooze8Action], intentIdentifiers: [], options: [])
-        UNUserNotificationCenter.current().setNotificationCategories([category])
+        let mmuCategory = UNNotificationCategory(identifier: NotificationsManager.mmuSnoozeCategory, actions: [snooze1Action, snooze8Action], intentIdentifiers: [], options: [])
+
+        // Create action for print again button
+        let printAgainAction = UNNotificationAction(identifier: printAgainIdentifier, title: NSLocalizedString("Print Again", comment: ""),options:[])
+        
+        // Create category that will include print again
+        let printCompletedCategory = UNNotificationCategory(identifier: NotificationsManager.printCompleteCategory, actions: [printAgainAction], intentIdentifiers: [], options: [])
+
+        UNUserNotificationCenter.current().setNotificationCategories([mmuCategory, printCompletedCategory])
     }
 
     // Register the specified token with all OctoPrints that have the OctoPod Plugin installed
@@ -103,17 +113,16 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
                 // User selected to snooze MMU notifications for this printer
                 if let printer = printerManager.getPrinterByName(name: printerName), let _ = printer.octopodPluginPrinterName {
                     // OctoPod plugin handles non-silent notifications so snooze is done in OctoPrint's server
-                    // Let's switch to the selected printer
-                    printerManager.changeToDefaultPrinter(printer)
-                    // Ask octoprintClient to connect to new OctoPrint server
-                    octoprintClient.connectToServer(printer: printer)
+                    defaultPrinterManager.changeToDefaultPrinter(printer: printer, updateWatch: false, connect: true)
                     // Request OctoPod plugin to snooze MMU events
                     octoprintClient.snoozeAPNSEvents(eventCode: "mmu-event", minutes: response.actionIdentifier == mmuSnooze1Identifier ? 60 : 480) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                         if !requested {
                             NSLog("Failed to request snooze of MMU events. Response: \(response)")
                         }
-                        // Execute completion handler
-                        completionHandler()
+                        // Execute completion handler in main thread
+                        DispatchQueue.main.async {
+                            completionHandler()
+                        }
                     }
 
                 } else {
@@ -122,19 +131,28 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
                     // Execute completion handler
                     completionHandler()
                 }
+            } else if response.actionIdentifier == printAgainIdentifier {
+                // Request OctoPrint to print again last completed print
+                if let printer = printerManager.getPrinterByName(name: printerName), let fileOrigin = response.notification.request.content.userInfo["file-origin"] as? String, let filePath = response.notification.request.content.userInfo["file-path"] as? String {
+                    // Let's switch to the selected printer
+                    defaultPrinterManager.changeToDefaultPrinter(printer: printer, updateWatch: false, connect: true)
+                    // Request OctoPrint to print again last printed file
+                    octoprintClient.printFile(origin: fileOrigin, path: filePath) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                        if !requested {
+                            NSLog("Failed to request to print again selected file. Response: \(response)")
+                        }
+                        // Execute completion handler in main thread
+                        DispatchQueue.main.async {
+                            completionHandler()
+                        }
+                    }
+                } else {
+                    // Execute completion handler
+                    completionHandler()
+                }
             } else if let printer = printerManager.getPrinterByName(name: printerName) {
                 // User clicked on notification. Let's switch to the selected printer
-                printerManager.changeToDefaultPrinter(printer)
-
-                // Ask octoprintClient to connect to new OctoPrint server
-                octoprintClient.connectToServer(printer: printer)
-                // Notify listeners of this change
-                for delegate in watchSessionManager.delegates {
-                    delegate.defaultPrinterChanged()
-                }
-
-                // Update Apple Watch with new selected printer
-                watchSessionManager.pushPrinters()
+                defaultPrinterManager.changeToDefaultPrinter(printer: printer)
                 // Execute completion handler
                 completionHandler()
             }
@@ -157,7 +175,7 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
             let id = printer.objectID.uriRepresentation().absoluteString
             let languageCode = appLanguageCode()
             let restClient = OctoPrintRESTClient()
-            restClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+            restClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuthentication())
             restClient.registerAPNSToken(oldToken: printer.notificationToken, newToken: newToken, deviceName: deviceName, printerID: id, printerName: printer.name, languageCode: languageCode) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
                     let newObjectContext = self.printerManager.newPrivateContext()

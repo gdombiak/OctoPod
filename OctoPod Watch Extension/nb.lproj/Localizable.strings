@@ -16,6 +16,9 @@
 /* No comment provided by engineer. */
 "Do you want to pause the job?" = "Ønsker du å pause jobben?";
 
+/* Apple Watch cannot render HTTP Live Streaming feeds */
+"HLS not supported" = "HLS ikke støttet";
+
 /* HTTP Request error info */
 "HTTP Request error" = "Forespørselfeil. HTTP-respons: %d";
 

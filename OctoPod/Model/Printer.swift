@@ -11,6 +11,8 @@ class Printer: NSManagedObject {
     /// Flag that indicates if this record needs to be created/updated in CloudKit
     @NSManaged var iCloudUpdate: Bool
     
+    /// Raw value of PrinterConnectionType enum
+    @NSManaged var connectionType: Int16
     /// Zero-index position of this printer in the list of printers
     @NSManaged var position: Int16
     @NSManaged var name: String
@@ -27,6 +29,8 @@ class Printer: NSManagedObject {
     
     /// Show this printer in dashboard of printers. Defauilt is true
     @NSManaged var includeInDashboard: Bool
+    /// Some users do not have a camera installed so offer the option to hide camera subpanel
+    @NSManaged var hideCamera: Bool
 
     /// Information configured in OctoPrint -> Appearance to control color of UI
     @NSManaged var color: String?
@@ -47,7 +51,7 @@ class Printer: NSManagedObject {
     /// Raw value of UIImageOrientation enum
     @NSManaged var cameraOrientation: Int16
     /// Array that holds URLs to cameras. OctoPrint needs to use MultiCam plugin
-    @NSManaged var cameras: [String]?
+    @NSManaged public var multiCameras: Set<MultiCamera>?
 
     @NSManaged var invertX: Bool  // Control of X is inverted
     @NSManaged var invertY: Bool  // Control of Y is inverted
@@ -88,6 +92,10 @@ class Printer: NSManagedObject {
     @NSManaged public var enclosureInputs: Set<EnclosureInput>?
     @NSManaged public var enclosureOutputs: Set<EnclosureOutput>?
 
+    @NSManaged public var blTouch: BLTouch?
+
+    // MARK: - Properties
+
     func getStreamPath() -> String {
         if let path = streamUrl {
             return path
@@ -98,6 +106,16 @@ class Printer: NSManagedObject {
     /// Returns true if returned getStreamPath() is coming from what OctoPrint reported via /api/settings. False means that it is assumed one
     func isStreamPathFromSettings() -> Bool {
         return streamUrl != nil
+    }
+    
+    /// Returns sorted array of cameras by their position as they were defined in OctoPrint
+    func getMultiCameras() -> Array<MultiCamera>? {
+        if let cameras = multiCameras {
+            return cameras.sorted { (l: MultiCamera, r: MultiCamera) -> Bool in
+                return l.index_id < r.index_id
+            }
+        }
+        return nil
     }
 
     func setTPLinkSmartplugs(plugs: [IPPlug]?) {
@@ -207,6 +225,39 @@ class Printer: NSManagedObject {
         return result
     }
     
+    /// Returns "regular" outputs defined in the enclosure plugin. These are switches
+    /// that can be turned off or on
+    func getEnclosureRegularOutputs() -> Array<EnclosureOutput> {
+        var result: Array<EnclosureOutput> = []
+        if let outputs = self.enclosureOutputs {
+            for output in outputs {
+                // Only add regular type of outputs
+                if output.type == "regular" {
+                    result.append(output)
+                }
+            }
+        }
+        return result
+    }
+    
+    /// Return type of connection being used to talk to OctoPrint
+    func getPrinterConnectionType() -> PrinterConnectionType {
+        return PrinterConnectionType(rawValue: connectionType)!
+    }
+    
+    /// Set type of connection being used to talk to OctoPrint
+    func setPrinterConnectionType(connectionType: PrinterConnectionType) {
+        self.connectionType = connectionType.rawValue
+    }
+    
+    /// Returns true if HTTP Basic authentication should be preemptive or wait for challenge response header
+    func preemptiveAuthentication() -> Bool {
+        // Only OctoEverywhere uses preemptive authentication
+        return getPrinterConnectionType() == .octoEverywhere
+    }
+    
+    // MARK: - Private functions
+
     fileprivate func encodeIPPlug(_ newPlug: IPPlug) -> [String] {
         var result = [newPlug.ip, newPlug.label]
         if let idx = newPlug.idx {

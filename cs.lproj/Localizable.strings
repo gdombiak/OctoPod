@@ -13,6 +13,9 @@
 /* (No Comment) */
 "1 week ago" = "před 1 týdnem";
 
+/* No comment provided by engineer. */
+"Account is no longer an OctoEverywhere supporter" = "Účet již nepodporuje OctoEverywhere";
+
 /* (No Comment) */
 "Actual Bed" = "Aktuální podložka";
 
@@ -33,6 +36,18 @@
 
 /* No comment provided by engineer. */
 "Actual Extruder 5" = "Aktuální tryska 5";
+
+/* No comment provided by engineer. */
+"API Key" = "API klíč";
+
+/* No comment provided by engineer. */
+"API Key or Application Key" = "API klíč nebo klíč aplikace";
+
+/* No comment provided by engineer. */
+"Application Key not enabled in OctoPrint." = "Klíč aplikace není povolený v OctoPrintu";
+
+/* No comment provided by engineer. */
+"Application Key obtained. Click save to finish." = "Klíč aplikace byl získám. Klikněte pro uložení.";
 
 /* (No Comment) */
 "Apply" = "Použít";
@@ -88,6 +103,9 @@
 /* (No Comment) */
 "Command not executed. Script not found" = "Příkaz nebyl vykonán. Skript nenalezen.";
 
+/* No comment provided by engineer. */
+"Complete information and click save to finish." = "Doplňte informace a klepněte pro uložení.";
+
 /* (No Comment) */
 "Confirm" = "Potvrdit";
 
@@ -136,6 +154,9 @@
 /* (No Comment) */
 "Connection failed" = "Připojení se nezdařilo";
 
+/* No comment provided by engineer. */
+"Contacting OctoPrint." = "Kontaktování OctoPrintu";
+
 /* Siri suggested phrase */
 "Cool down heated chamber" = "Zchladit vyhřívanou komoru";
 
@@ -160,6 +181,9 @@
 /* (No Comment) */
 "days ago" = "před %d dny";
 
+/* Delete action */
+"Delete" = "Smazat";
+
 /* Disconnect */
 "Disconnect" = "Odpojit";
 
@@ -173,10 +197,22 @@
 "Do you want to cancel job?" = "Chcete zrušit tisk?";
 
 /* No comment provided by engineer. */
+"Do you want to delete this file?" = "Chcete smazat tento soubor?";
+
+/* No comment provided by engineer. */
 "Do you want to pause job?" = "Chcete pozastavit tisk?";
 
 /* No comment provided by engineer. */
+"Do you want to pause print?" = "Chcete pozastavit tisk?";
+
+/* No comment provided by engineer. */
+"Do you want to print this file?" = "Chcete tisknout tento soubor?";
+
+/* No comment provided by engineer. */
 "Do you want to restart print job from the beginning?" = "Chcete restartovat tisk a začít znovu?";
+
+/* No comment provided by engineer. */
+"Do you want to resume printing?" = "Chcete pokračovat v tisku?";
 
 /* (No Comment) */
 "Domoticz Plugs" = "Zásuvky Domoticz";
@@ -186,6 +222,15 @@
 
 /* gcode name */
 "Endstop States" = "Stav koncových spínačů";
+
+/* No comment provided by engineer. */
+"Error obtaining Application Key." = "Chyba získávání klíče aplikace.";
+
+/* Siri suggested phrase */
+"Execute System Command" = "Spustit systémový příkaz";
+
+/* No comment provided by engineer. */
+"Expand" = "Maximalizovat";
 
 /* (No Comment) */
 "Extruder" = "Tryska";
@@ -331,6 +376,9 @@
 /* File Type is a Folder */
 "Folder" = "Složka";
 
+/* No comment provided by engineer. */
+"Hostname (e.g. http://octopi.local)" = "Název hostitele (např. http://octopi.local)";
+
 /* (No Comment) */
 "hours ago" = "před %d hodinami";
 
@@ -352,6 +400,9 @@
 /* (No Comment) */
 "Incorrect authentication credentials" = "Špatné přihlašovací údaje";
 
+/* No comment provided by engineer. */
+"Internal OctoEverywhere error" = "Interní chyba OctoEverywhere";
+
 /* URL of camera is invalid */
 "Invalid camera URL" = "Špatné URL kamery";
 
@@ -372,6 +423,9 @@
 
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "Umístění již není platné. Obnovte soubory";
+
+/* No comment provided by engineer. */
+"Log into OctoPrint to approve access request." = "Přihlaste se do OctoPrintu pro schválení žádosti o přístup.";
 
 /* (No Comment) */
 "minutes ago" = "před %d minutami";
@@ -421,11 +475,23 @@
 /* (No Comment) */
 "Notify failed resume job" = "Nezdařil se požadavek k pokračování v tisku";
 
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Překročen limit webkamery";
+
+/* No comment provided by engineer. */
+"OctoEverywhere's connection to OctoPrint timed out" = "Vypršela relace OctoEverywhere s OctoPodem";
+
 /* English translation for words in Swift files */
 "OctoPrint" = "OctoPrint";
 
 /* Printer is Offline */
 "Offline" = "Vypnutá";
+
+/* No comment provided by engineer. */
+"Password" = "Heslo";
+
+/* No comment provided by engineer. */
+"Pause" = "Pozastavit";
 
 /* Siri suggested phrase */
 "Pause current print job" = "Pause current print job on %@";
@@ -451,6 +517,9 @@
 /* No comment provided by engineer. */
 "Print" = "Tisknout";
 
+/* No comment provided by engineer. */
+"Print Again" = "Tisknout znovu";
+
 /* (No Comment) */
 "Print complete" = "Tisk dokončen";
 
@@ -469,6 +538,12 @@
 /* No comment provided by engineer. */
 "Printer" = "Tiskárna";
 
+/* No comment provided by engineer. */
+"Printer is not connected to OctoEverywhere" = "Tiskárna není připojena k OctoEverywhere";
+
+/* No comment provided by engineer. */
+"Printer Name (e.g. MK3)" = "Název tiskárny (např. MK3)";
+
 /* (No Comment) */
 "Printer not operational" = "Tiskárna není funkční";
 
@@ -484,6 +559,9 @@
 /* (No Comment) */
 "Pull down to refresh" = "Táhněte dolů pro obnovení";
 
+/* No comment provided by engineer. */
+"Recreate printer in OctoEverywhere and OctoPod" = "Znovu vytvořit tiskárnu v OctoEverywhere a OctoPodu";
+
 /* Siri suggested phrase */
 "Remaining time current print job" = "Time left on %@";
 
@@ -498,6 +576,9 @@
 
 /* (No Comment) */
 "Restart Job" = "Restartovat";
+
+/* No comment provided by engineer. */
+"Restore" = "Obnovit";
 
 /* gcode name */
 "Restore Settings" = "Obnovit nastavení";
@@ -526,6 +607,9 @@
 /* (No Comment) */
 "seconds ago" = "před %d vteřinami";
 
+/* No comment provided by engineer. */
+"Select printer from OctoEverywhere." = "Vybrat tiskárnu v OctoEverywhere";
+
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Server nenalezen";
 
@@ -538,11 +622,20 @@
 /* gcode name */
 "Set Hotend PID" = "Nastavit PID trysky";
 
+/* Share action */
+"Share" = "Sdílet";
+
 /* Snooze notifications for 1 hour */
 "Snooze 1 hour" = "Odložit na 1 hodinu";
 
 /* Snooze notifications for 8 hours */
 "Snooze 8 hours" = "Odložit na 8 hodin";
+
+/* SoC */
+"SoC" = "SoC";
+
+/* SoC Temperature */
+"SoC Temperature" = "Teplota SoC";
 
 /* No comment provided by engineer. */
 "State" = "Stav";
@@ -558,6 +651,9 @@
 
 /* http://docs.octoprint.org/en/master/api/system.html */
 "System Commands" = "Systémové příkazy";
+
+/* Siri suggested phrase */
+"Take snapshot" = "Vytvořit snímek";
 
 /* (No Comment) */
 "Target Bed" = "Zvolená podložka";
@@ -604,8 +700,20 @@
 /* (No Comment) */
 "Turn Off" = "Vypnout";
 
+/* Siri suggested phrase */
+"Turn off Enclosure switch" = "Vypnout spínač Enclosure";
+
+/* Siri suggested phrase */
+"Turn off PSU" = "Vypnout zdroj napětí";
+
 /* (No Comment) */
 "Turn On" = "Zapnout";
+
+/* Siri suggested phrase */
+"Turn on Enclosure switch" = "Zapnout spínač Enclosure";
+
+/* Siri suggested phrase */
+"Turn on PSU" = "Zapnout zdroj napětí";
 
 /* ETA is Unknown
    File Type is Unknown
@@ -623,6 +731,12 @@
 
 /* (No Comment) */
 "Upload failed" = "Nahrávání selhalo";
+
+/* No comment provided by engineer. */
+"User declined or request timed out." = "Žádost vypršela nebo ji uživatel zamítl.";
+
+/* No comment provided by engineer. */
+"Username" = "Uživatelské jméno";
 
 /* Siri suggested phrase */
 "Warm up heated chamber" = "Nahřát vyhřívanou komoru";

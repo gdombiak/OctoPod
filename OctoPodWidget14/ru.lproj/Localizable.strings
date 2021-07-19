@@ -1,0 +1,72 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"1 day ago" = "день назад";
+
+/* No comment provided by engineer. */
+"1 hour ago" = "час назад";
+
+/* No comment provided by engineer. */
+"1 minute ago" = "минуту назад";
+
+/* No comment provided by engineer. */
+"1 week ago" = "неделю назад";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Ошибка аутентификации";
+
+/* No comment provided by engineer. */
+"Configure widget" = "Настроить виджет";
+
+/* No comment provided by engineer. */
+"Confirm" = "Подтвердить";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Контрольная панель";
+
+/* No comment provided by engineer. */
+"Dashboard for multiple printers" = "Контрольная панель для нескольких принтеров";
+
+/* No comment provided by engineer. */
+"days ago" = "%d дн. назад";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Отклонить";
+
+/* No comment provided by engineer. */
+"hours ago" = "%d ч. назад";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Ошибка запроса. HTTP-ответ: %d";
+
+/* No comment provided by engineer. */
+"minutes ago" = "%d мин. назад";
+
+/* No comment provided by engineer. */
+"Missed" = "Отсутсвует";
+
+/* No comment provided by engineer. */
+"Monitor and control your 3d printer via OctoPod" = "Контролируйте и управляйте своим 3D-принтером с помощью OctoPod";
+
+/* No comment provided by engineer. */
+"No" = "Нет";
+
+/* No camera was configured */
+"No camera" = "Камера не найдена";
+
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: превышен лимит веб-камеры";
+
+/* No comment provided by engineer. */
+"seconds ago" = "%d сек. назад";
+
+/* ETA is Unknown */
+"Unknown" = "Неизвестно";
+
+/* No comment provided by engineer. */
+"weeks ago" = "%d нед. назад";
+
+/* No comment provided by engineer. */
+"Yes" = "Да";
+

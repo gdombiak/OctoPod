@@ -59,4 +59,12 @@ class FilamentSelection {
         }
         return NSLocalizedString("Unknown", comment: "")
     }
+
+    func displayRemaining() -> String {
+        if let used = spoolUsed, let weight = spoolWeight {
+            let remaining = weight - used
+            return "\(Int(remaining))g / \(Int(weight))g (\(Int(remaining/weight*100))%)"
+        }
+        return NSLocalizedString("Unknown", comment: "")
+    }
 }

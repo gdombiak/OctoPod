@@ -1,0 +1,137 @@
+import UIKit
+
+private let reuseIdentifier = "cameraGridCell"
+
+class CamerasGridViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+
+    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
+
+    var cameraEmbeddedViewControllers: Array<CameraEmbeddedViewController> = Array()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Add embedded VCs
+        self.addEmbeddedCameraViewControllers()
+        // Theme background color
+        self.collectionView.backgroundColor = Theme.currentTheme().backgroundColor()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        // First call super so children receive events
+        super.viewDidDisappear(animated)
+        // Then remove embedded VCs
+        self.deleteEmbeddedCameraViewControllers()
+    }
+
+    // MARK: UICollectionViewDataSource
+
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return cameraEmbeddedViewControllers.count
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CameraGridViewCell
+    
+        // Add embedded VC as a child view and use the view of the embedded VC as the view of the cell
+        let embeddedVC = cameraEmbeddedViewControllers[indexPath.row]
+        self.addChild(embeddedVC)
+        cell.hostedView = embeddedVC.view
+    
+        return cell
+    }
+    
+    /// MARK: UICollectionViewDelegateFlowLayout
+    
+    /// Calculate height based on width that changes per orientation and device. This method is also called when rotating device
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {        
+        if let printer = printerManager.getDefaultPrinter() {
+            let ratio: CGFloat
+            if let camera = printer.getMultiCameras()?[safeIndex: indexPath.row] {
+                ratio = camera.streamRatio == "16:9" ? CGFloat(0.5625) : CGFloat(0.75)
+            } else {
+                ratio = printer.firstCameraAspectRatio16_9 ? CGFloat(0.5625) : CGFloat(0.75)
+            }
+            let width: CGFloat
+            if UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown {
+                // iPhone in vertical position
+                width = collectionView.frame.width
+            } else {
+                // iPhone in horizontal position
+                width = collectionView.frame.width / 2 - 10 // Substract for spacing
+            }
+            return CGSize(width: width, height: width * ratio)
+        }
+        return UICollectionViewFlowLayout.automaticSize
+    }
+    
+    /// MARK: Private functions
+    
+    fileprivate func addEmbeddedCameraViewControllers() {
+        if let printer = printerManager.getDefaultPrinter() {
+            if let cameras = printer.getMultiCameras() {
+                // MultiCam plugin is installed so show all cameras
+                var index = 0
+                for multiCamera in cameras {
+                    var cameraOrientation: UIImage.Orientation
+                    var cameraURL: String
+                    let url = multiCamera.cameraURL
+
+                    if url == printer.getStreamPath() {
+                        // This is camera hosted by OctoPrint so respect orientation
+                        cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
+                        cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
+                    } else {
+                        if url.starts(with: "/") {
+                            // Another camera hosted by OctoPrint so build absolute URL
+                            cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
+                        } else {
+                            // Use absolute URL to render camera
+                            cameraURL = url
+                        }
+                        // Respect orientation defined by MultiCamera plugin
+                        cameraOrientation = UIImage.Orientation(rawValue: Int(multiCamera.cameraOrientation))!
+                    }
+                    
+                    cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(index: index, url: cameraURL, cameraOrientation: cameraOrientation))
+                    index = index + 1
+                }
+            }
+            if cameraEmbeddedViewControllers.isEmpty && !printer.hideCamera {
+                // MultiCam plugin is not installed so just show default camera
+                let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
+                let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
+                cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(index: 0, url: cameraURL, cameraOrientation: cameraOrientation))
+            }
+        }
+    }
+    
+    fileprivate func deleteEmbeddedCameraViewControllers() {
+        for cameraEmbeddedViewController in cameraEmbeddedViewControllers {
+            cameraEmbeddedViewController.removeFromParent()
+        }
+        cameraEmbeddedViewControllers.removeAll()
+    }
+    
+    fileprivate func newEmbeddedCameraViewController(index: Int, url: String, cameraOrientation: UIImage.Orientation) -> CameraEmbeddedViewController {
+        var controller: CameraEmbeddedViewController
+        let useHLS = CameraUtils.shared.isHLS(url: url)
+        // Let's create a new one. Use one for HLS and another one for MJPEG
+        controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: useHLS ? "CameraHLSEmbeddedViewController" : "CameraMJPEGEmbeddedViewController") as! CameraEmbeddedViewController
+        controller.cameraURL = url
+        controller.cameraOrientation = cameraOrientation
+        controller.infoGesturesAvailable = false
+        controller.cameraTappedCallback = nil // Tap will be handled as cell selected
+        controller.cameraViewDelegate = nil
+        controller.cameraIndex = index
+        controller.camerasViewController = nil
+        return controller
+    }
+}

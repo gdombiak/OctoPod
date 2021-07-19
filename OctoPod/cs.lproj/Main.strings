@@ -4,8 +4,23 @@
 /* Class = "UIViewController"; title = "Printers"; ObjectID = "0Ma-Ce-Fmq"; */
 "0Ma-Ce-Fmq.title" = "Tiskárny";
 
+/* Class = "UILabel"; text = "Title"; ObjectID = "0RF-vn-WtE"; */
+"0RF-vn-WtE.text" = "Title";
+
+/* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "1dd-tF-khE"; */
+"1dd-tF-khE.text" = "Zahrnout v přehledu";
+
+/* Class = "UIButton"; normalTitle = "Request"; ObjectID = "1gP-AF-De1"; */
+"1gP-AF-De1.normalTitle" = "Požádat";
+
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "1pO-wB-zKj"; */
 "1pO-wB-zKj.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "1uD-mu-LKh"; */
+"1uD-mu-LKh.placeholder" = "Heslo";
+
+/* Class = "UIBarButtonItem"; title = "Timelapse"; ObjectID = "1wa-fM-oTk"; */
+"1wa-fM-oTk.title" = "Timelapse";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "1wf-TL-br5"; */
 "1wf-TL-br5.text" = "Label";
@@ -25,11 +40,17 @@
 /* Class = "UILabel"; text = "Auto-lock while printing"; ObjectID = "3eo-D0-hAF"; */
 "3eo-D0-hAF.text" = "Uzamknout během tisku";
 
+/* Class = "UILabel"; text = "Error message"; ObjectID = "3hn-5x-4xy"; */
+"3hn-5x-4xy.text" = "Zpráva chyby";
+
 /* Class = "UILabel"; text = "Flow rate"; ObjectID = "3IG-Y9-Ofi"; */
 "3IG-Y9-Ofi.text" = "Průtok";
 
 /* Class = "UITableViewSection"; headerTitle = "Language"; ObjectID = "3JO-XH-cf3"; */
 "3JO-XH-cf3.headerTitle" = "Jazyk";
+
+/* Class = "UILabel"; text = "Show Camera"; ObjectID = "3lh-11-wC7"; */
+"3lh-11-wC7.text" = "Ukázat kameru";
 
 /* Class = "UILabel"; text = "Printed"; ObjectID = "3mU-gE-iQQ"; */
 "3mU-gE-iQQ.text" = "Vytištěno";
@@ -46,17 +67,29 @@
 /* Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[2] = "Printed"; ObjectID = "4bm-la-U47"; */
 "4bm-la-U47.segmentTitles[2]" = "Tisk";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "4iR-7v-jJp"; */
+"4iR-7v-jJp.text" = "Label";
+
 /* Class = "UILabel"; text = "Certificate validation"; ObjectID = "4Kd-tY-8l3"; */
 "4Kd-tY-8l3.text" = "Ověření certifikátu";
 
 /* Class = "UITextField"; placeholder = "Speed value"; ObjectID = "4Lh-Q8-wxW"; */
 "4Lh-Q8-wxW.placeholder" = "Hodnota rychlosti";
 
+/* Class = "UITableViewSection"; headerTitle = "BLTouch"; ObjectID = "4LI-ea-uZQ"; */
+"4LI-ea-uZQ.headerTitle" = "BLTouch";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "4ls-BU-eMv"; */
 "4ls-BU-eMv.text" = "Label";
 
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Vzhled";
+
+/* Class = "UILabel"; text = "Connect directly by requesting an application key"; ObjectID = "4yc-YH-f8v"; */
+"4yc-YH-f8v.text" = "Připojte se přímo pomocí vyžádaného klíče aplikace";
+
+/* Class = "UILabel"; text = "Show Camera"; ObjectID = "5BW-iP-ejE"; */
+"5BW-iP-ejE.text" = "Ukázat kameru";
 
 /* Class = "UILabel"; text = "Splice"; ObjectID = "5GO-ai-ldL"; */
 "5GO-ai-ldL.text" = "Spojit";
@@ -82,6 +115,9 @@
 /* Class = "UILabel"; text = "Disable Motor"; ObjectID = "6TZ-hb-gdQ"; */
 "6TZ-hb-gdQ.text" = "Vyřadit motor";
 
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7HM-7E-tgN"; */
+"7HM-7E-tgN.normalTitle" = "Button";
+
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "7Je-mU-81r"; */
 "7Je-mU-81r.text" = "250.0 C";
 
@@ -90,6 +126,9 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Manual Control"; ObjectID = "7pE-fx-Ibe"; */
 "7pE-fx-Ibe.headerTitle" = "Ruční ovládání";
+
+/* Class = "UITableViewSection"; headerTitle = "Settings"; ObjectID = "7tc-5o-KVQ"; */
+"7tc-5o-KVQ.headerTitle" = "Nastavení";
 
 /* Class = "UILabel"; text = "#"; ObjectID = "8aU-tf-jF4"; */
 "8aU-tf-jF4.text" = "#";
@@ -163,8 +202,14 @@
 /* Class = "UILabel"; text = "Cancel Object plugin requires update"; ObjectID = "Aka-Ud-zQ7"; */
 "Aka-Ud-zQ7.text" = "Rozšíření Zrušit Objekty potřebuje updatovat";
 
+/* Class = "UITextField"; placeholder = "Hostname (e.g. http://octopi.local)"; ObjectID = "ATt-Oy-pFY"; */
+"ATt-Oy-pFY.placeholder" = "Název hostitele (např. http://octopi.local)";
+
 /* Class = "UILabel"; text = "OctoPrint"; ObjectID = "AU8-zV-v3w"; */
 "AU8-zV-v3w.text" = "OctoPrint";
+
+/* Class = "UIButton"; normalTitle = "Scan QR Code Key"; ObjectID = "azq-J2-MuJ"; */
+"azq-J2-MuJ.normalTitle" = "Naskenovat QR kód klíče";
 
 /* Class = "UIButton"; normalTitle = "Not refreshing"; ObjectID = "b0b-3X-MUJ"; */
 "b0b-3X-MUJ.normalTitle" = "Neobnovuje se";
@@ -184,8 +229,14 @@
 /* Class = "UILabel"; text = "Print Completion"; ObjectID = "blG-5R-gJE"; */
 "blG-5R-gJE.text" = "Odhad dokončení";
 
+/* Class = "UINavigationItem"; title = "Timelapse"; ObjectID = "blh-CP-v5H"; */
+"blh-CP-v5H.title" = "Timelapse";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
 "bNj-cj-oty.text" = "Label";
+
+/* Class = "UILabel"; text = "Print Time"; ObjectID = "BrM-2D-Rbd"; */
+"BrM-2D-Rbd.text" = "Čas tisku";
 
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "bsz-rk-3Em"; */
 "bsz-rk-3Em.text" = "0.0 C";
@@ -217,6 +268,15 @@
 /* Class = "UIButton"; normalTitle = "Print"; ObjectID = "Crn-wa-FLw"; */
 "Crn-wa-FLw.normalTitle" = "Tisknout";
 
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "cXP-Jq-eBP"; */
+"cXP-Jq-eBP.placeholder" = "Uživatelské jméno";
+
+/* Class = "UITableViewSection"; headerTitle = "HTTP Authentication"; ObjectID = "cYc-2L-RG7"; */
+"cYc-2L-RG7.headerTitle" = "Ověření HTTP";
+
+/* Class = "UINavigationItem"; title = "Cameras"; ObjectID = "cYo-7v-8Bn"; */
+"cYo-7v-8Bn.title" = "Kamery";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "daK-38-bWh"; */
 "daK-38-bWh.text" = "Label";
 
@@ -231,6 +291,12 @@
 
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "du3-LR-AIz"; */
 "du3-LR-AIz.text" = "0.0%";
+
+/* Class = "UIBarButtonItem"; title = "Files"; ObjectID = "DUc-ra-F2o"; */
+"DUc-ra-F2o.title" = "Soubory";
+
+/* Class = "UITableViewController"; title = "Application Key"; ObjectID = "dY2-wB-5s1"; */
+"dY2-wB-5s1.title" = "Klíč aplikace";
 
 /* Class = "UILabel"; text = "Max"; ObjectID = "dZG-uJ-BYF"; */
 "dZG-uJ-BYF.text" = "Max";
@@ -304,6 +370,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
 "fNE-Hh-S8R.text" = "Label";
 
+/* Class = "UITextField"; placeholder = "API Key or Application Key"; ObjectID = "foG-IV-lL7"; */
+"foG-IV-lL7.placeholder" = "API klíč nebo klíč aplikace";
+
 /* Class = "UINavigationItem"; title = "Printers"; ObjectID = "FqW-ud-y7C"; */
 "FqW-ud-y7C.title" = "Tiskárny";
 
@@ -345,6 +414,9 @@
 
 /* Class = "UILabel"; text = "Extruder"; ObjectID = "H0f-on-KjQ"; */
 "H0f-on-KjQ.text" = "Tryska";
+
+/* Class = "UIButton"; normalTitle = "URL Button"; ObjectID = "h4l-mV-gFf"; */
+"h4l-mV-gFf.normalTitle" = "Tlačítko URL";
 
 /* Class = "UILabel"; text = "Support"; ObjectID = "HbJ-Bb-EXQ"; */
 "HbJ-Bb-EXQ.text" = "Podpora";
@@ -424,6 +496,9 @@
 /* Class = "UIButton"; normalTitle = "Cut"; ObjectID = "i3l-7C-iJB"; */
 "i3l-7C-iJB.normalTitle" = "Řezat";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "ieu-aB-md8"; */
+"ieu-aB-md8.text" = "Label";
+
 /* Class = "UIButton"; normalTitle = "Popular GCode Commands"; ObjectID = "Iuu-Fk-Mu7"; */
 "Iuu-Fk-Mu7.normalTitle" = "Oblíbené příkazy GCode";
 
@@ -445,6 +520,12 @@
 /* Class = "UILabel"; text = "Kill and restart app to take effect"; ObjectID = "jxG-8a-4b3"; */
 "jxG-8a-4b3.text" = "Zavřete a restartujte aplikaci pro aktualizaci";
 
+/* Class = "UILabel"; text = "OctoPrint - Global API Key"; ObjectID = "jxN-GW-tlu"; */
+"jxN-GW-tlu.text" = "OctoPrint: Hlavní API klíč";
+
+/* Class = "UITableViewController"; title = "OctoEverywhere"; ObjectID = "JXO-le-4sU"; */
+"JXO-le-4sU.title" = "OctoEverywhere";
+
 /* Class = "UILabel"; text = "Confirm to disconnect"; ObjectID = "JYC-5g-kqS"; */
 "JYC-5g-kqS.text" = "Potvrdit odpojení";
 
@@ -463,14 +544,26 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "KAE-HV-Z5Q"; */
 "KAE-HV-Z5Q.text" = "Title";
 
+/* Class = "UILabel"; text = "Show Camera"; ObjectID = "Kan-Ak-roI"; */
+"Kan-Ak-roI.text" = "Ukázat kameru";
+
 /* Class = "UILabel"; text = "Palette 2 - Last Ping"; ObjectID = "kaq-fI-VzN"; */
 "kaq-fI-VzN.text" = "Palette 2 - Poslední ping";
+
+/* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "KC4-pP-rEh"; */
+"KC4-pP-rEh.text" = "Zahrnout v přehledu";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "kdJ-8e-1mO"; */
+"kdJ-8e-1mO.text" = "Detail";
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "kGY-Bn-Qcb"; */
 "kGY-Bn-Qcb.text" = "100 C";
 
 /* Class = "UILabel"; text = "Status"; ObjectID = "kPW-if-FGO"; */
 "kPW-if-FGO.text" = "Stav";
+
+/* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "kWs-55-35e"; */
+"kWs-55-35e.placeholder" = "Název tiskárny (např. MK3)";
 
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "Soubor";
@@ -517,6 +610,9 @@
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "n9p-tg-bxl"; */
 "n9p-tg-bxl.text" = "Podnadpis";
 
+/* Class = "UILabel"; text = "Confirm to resume"; ObjectID = "nAj-Qp-lbZ"; */
+"nAj-Qp-lbZ.text" = "Potvrdit obnovení";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb"; */
 "ncZ-xn-WCb.text" = "Nadpis";
 
@@ -542,7 +638,7 @@
 "nMR-mk-HWC.text" = "100";
 
 /* Class = "UILabel"; text = "About 10m"; ObjectID = "NQ5-25-ww1"; */
-"NQ5-25-ww1.text" = "About 10m";
+"NQ5-25-ww1.text" = "Přibližně 10m";
 
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "NsL-9T-upI"; */
 "NsL-9T-upI.text" = "0.0 C";
@@ -553,11 +649,17 @@
 /* Class = "UIButton"; normalTitle = "Set"; ObjectID = "o8a-yF-u6j"; */
 "o8a-yF-u6j.normalTitle" = "Nastavit";
 
+/* Class = "UILabel"; text = "60.0 C"; ObjectID = "oGo-K9-9oo"; */
+"oGo-K9-9oo.text" = "60.0 C";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "oiL-nC-j2P"; */
 "oiL-nC-j2P.text" = "Label";
 
 /* Class = "UILabel"; text = "100"; ObjectID = "OJS-Cg-u9x"; */
 "OJS-Cg-u9x.text" = "100";
+
+/* Class = "UITableViewSection"; headerTitle = "Printer Connection (REQUIRED)"; ObjectID = "OPd-TD-yfb"; */
+"OPd-TD-yfb.headerTitle" = "Připojení tiskárny (POŽADOVÁNO)";
 
 /* Class = "UILabel"; text = "New Apple TV app is now available"; ObjectID = "oQM-8Y-Acc"; */
 "oQM-8Y-Acc.text" = "Nová aplikace pro Apple TV je nyní dostupná";
@@ -580,6 +682,12 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "OTX-dw-fk4"; */
 "OTX-dw-fk4.normalTitle" = "Button";
 
+/* Class = "UITableViewSection"; headerTitle = "Print"; ObjectID = "Ow4-Mf-iWF"; */
+"Ow4-Mf-iWF.headerTitle" = "Tisknout";
+
+/* Class = "UILabel"; text = "Tap = Full Screen"; ObjectID = "owv-oi-R6e"; */
+"owv-oi-R6e.text" = "Klepnout = Celá obrazovka";
+
 /* Class = "UIButton"; normalTitle = "Delete shortcuts"; ObjectID = "oZE-yh-Myr"; */
 "oZE-yh-Myr.normalTitle" = "Smazat zkratky Siri";
 
@@ -591,6 +699,9 @@
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "PAD-Rg-10Y"; */
 "PAD-Rg-10Y.text" = "0 C";
+
+/* Class = "UILabel"; text = "250.0 C"; ObjectID = "PD3-li-xER"; */
+"PD3-li-xER.text" = "250.0 C";
 
 /* Class = "UITabBarItem"; title = "Move"; ObjectID = "Peq-4x-xQj"; */
 "Peq-4x-xQj.title" = "Posunout";
@@ -628,8 +739,14 @@
 /* Class = "UIViewController"; title = "QR Code"; ObjectID = "QCe-zo-Ncw"; */
 "QCe-zo-Ncw.title" = "QR kód";
 
+/* Class = "UILabel"; text = "OctoPrint - Application Key"; ObjectID = "qdv-m8-Jgb"; */
+"qdv-m8-Jgb.text" = "OctoPrint: Klíč aplikace";
+
 /* Class = "UILabel"; text = "Print Time"; ObjectID = "Qfz-1j-Keo"; */
 "Qfz-1j-Keo.text" = "Čas tisku";
+
+/* Class = "UILabel"; text = "OctoEverywhere"; ObjectID = "QgE-Ch-Ggw"; */
+"QgE-Ch-Ggw.text" = "OctoEverywhere";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Qgg-OP-PZ0"; */
 "Qgg-OP-PZ0.text" = "Label";
@@ -658,11 +775,23 @@
 /* Class = "UILabel"; text = "Siri"; ObjectID = "R2d-Mv-REP"; */
 "R2d-Mv-REP.text" = "Siri";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "r08-sj-cCD"; */
+"r08-sj-cCD.text" = "Label";
+
+/* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "R8W-HN-Cgb"; */
+"R8W-HN-Cgb.text" = "Zahrnout v přehledu";
+
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87"; */
 "REX-gh-p87.normalTitle" = "Tlačítko";
 
+/* Class = "UILabel"; text = "Enter a valid URL"; ObjectID = "RFe-LZ-cRa"; */
+"RFe-LZ-cRa.text" = "Zadejte platnou URL adresu";
+
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "RFS-Os-AC5"; */
 "RFS-Os-AC5.text" = "0.0%";
+
+/* Class = "UITableViewSection"; headerTitle = "QR Code"; ObjectID = "RIJ-UL-fxM"; */
+"RIJ-UL-fxM.headerTitle" = "QR kód";
 
 /* Class = "UILabel"; text = "Security"; ObjectID = "RJI-A7-98M"; */
 "RJI-A7-98M.text" = "Bezpečnost";
@@ -673,8 +802,17 @@
 /* Class = "UILabel"; text = "100"; ObjectID = "Rml-IA-ght"; */
 "Rml-IA-ght.text" = "100";
 
+/* Class = "UILabel"; text = "Connect easily from remote locations (over the internet)"; ObjectID = "rNP-Sb-Zba"; */
+"rNP-Sb-Zba.text" = "Snadno se připojte ze vzdálených míst (přes internet)";
+
+/* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "rob-ry-eO0"; */
+"rob-ry-eO0.placeholder" = "Název tiskárny (např. MK3)";
+
 /* Class = "UITableViewController"; title = "Printer Details"; ObjectID = "RQs-UQ-7OZ"; */
 "RQs-UQ-7OZ.title" = "Detaily tiskárny";
+
+/* Class = "UILabel"; text = "About 10m"; ObjectID = "rU9-EM-Hqq"; */
+"rU9-EM-Hqq.text" = "Přibližně 10m";
 
 /* Class = "UILabel"; text = "1hr 25m 13sec"; ObjectID = "rwm-QC-qD1"; */
 "rwm-QC-qD1.text" = "1h 25m 13s";
@@ -691,6 +829,9 @@
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
 "S2I-HR-qgE.text" = "/";
 
+/* Class = "UINavigationItem"; title = "Application Key"; ObjectID = "saA-I3-RLW"; */
+"saA-I3-RLW.title" = "Klíč aplikace";
+
 /* Class = "UILabel"; text = "/"; ObjectID = "SAw-xr-VmY"; */
 "SAw-xr-VmY.text" = "/";
 
@@ -702,6 +843,9 @@
 
 /* Class = "UIButton"; normalTitle = "Suppress SD"; ObjectID = "sgi-wT-ubY"; */
 "sgi-wT-ubY.normalTitle" = "Neukazovat SD";
+
+/* Class = "UILabel"; text = "Confirm to print"; ObjectID = "SJQ-Kb-Ggy"; */
+"SJQ-Kb-Ggy.text" = "Potvrdit tisk";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H"; */
 "sLc-Jv-G0H.placeholder" = "Uživatelské jméno";
@@ -739,11 +883,20 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
 "tFf-Rs-mOx.text" = "Nadpis";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "tfv-OO-TXd"; */
+"tfv-OO-TXd.text" = "Label";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "tgj-tb-vD5"; */
 "tgj-tb-vD5.text" = "Label";
 
+/* Class = "UIButton"; normalTitle = "Scan"; ObjectID = "tif-GP-Mj3"; */
+"tif-GP-Mj3.normalTitle" = "Hledat";
+
 /* Class = "UITextField"; placeholder = "Hostname (e.g. http://octopi.local)"; ObjectID = "tMP-2W-Iam"; */
 "tMP-2W-Iam.placeholder" = "Název hostitele (např. http://octopi.local)";
+
+/* Class = "UITableViewSection"; headerTitle = "Select Connection Type"; ObjectID = "toN-uy-OtV"; */
+"toN-uy-OtV.headerTitle" = "Zvolte typ připojení";
 
 /* Class = "UITableViewSection"; headerTitle = "Palette 2"; ObjectID = "Tqi-wZ-CN5"; */
 "Tqi-wZ-CN5.headerTitle" = "Palette 2";
@@ -826,6 +979,9 @@
 /* Class = "UIButton"; normalTitle = "Reset printers from iCloud data"; ObjectID = "vyb-aH-wc9"; */
 "vyb-aH-wc9.normalTitle" = "Resetovat tiskárny z dat iCloud";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "W0K-Js-tt5"; */
+"W0K-Js-tt5.text" = "Label";
+
 /* Class = "UISegmentedControl"; W0X-ef-NWv.segmentTitles[0] = "Default"; ObjectID = "W0X-ef-NWv"; */
 "W0X-ef-NWv.segmentTitles[0]" = "Výchozí";
 
@@ -837,6 +993,12 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Wcu-9D-QXt"; */
 "Wcu-9D-QXt.text" = "Label";
+
+/* Class = "UILabel"; text = "Print Completion"; ObjectID = "weI-5t-9zz"; */
+"weI-5t-9zz.text" = "Odhad dokončení";
+
+/* Class = "UILabel"; text = "Confirm to pause"; ObjectID = "wff-HF-WSb"; */
+"wff-HF-WSb.text" = "Potvrdit pozastavení";
 
 /* Class = "UILabel"; text = "Dark"; ObjectID = "wHn-Dc-bWb"; */
 "wHn-Dc-bWb.text" = "Tmavé";
@@ -916,6 +1078,9 @@
 /* Class = "UIButton"; normalTitle = "Send"; ObjectID = "z4Q-Gf-Y5G"; */
 "z4Q-Gf-Y5G.normalTitle" = "Poslat";
 
+/* Class = "UINavigationItem"; title = "OctoEverywhere"; ObjectID = "Z6o-ra-euk"; */
+"Z6o-ra-euk.title" = "OctoEverywhere";
+
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "zbP-eJ-7Gk"; */
 "zbP-eJ-7Gk.text" = "0.0%";
 
@@ -937,8 +1102,14 @@
 /* Class = "UILabel"; text = "Detail"; ObjectID = "ZF8-G0-f5Y"; */
 "ZF8-G0-f5Y.text" = "Detail";
 
+/* Class = "UILabel"; text = "Connect directly using registered Global API key (deprecated)"; ObjectID = "Zgx-Ee-m6r"; */
+"Zgx-Ee-m6r.text" = "Připojte se přímo pomocí vyžádaného hlavního klíče (zastaralé)";
+
 /* Class = "UILabel"; text = "Prompt Extrude Speed"; ObjectID = "zH4-HC-We7"; */
 "zH4-HC-We7.text" = "Nabídnout rychlost vytlačení";
+
+/* Class = "UILabel"; text = "Pinch = Zoom in"; ObjectID = "zhG-D6-Cgg"; */
+"zhG-D6-Cgg.text" = "Štípnutí = Přiblížení";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Zhk-cN-7C9"; */
 "Zhk-cN-7C9.text" = "Label";

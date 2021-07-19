@@ -153,6 +153,10 @@ class PrinterManager {
     func password(printer: [String: Any]) -> String? {
         return printer["password"] as? String
     }
+    
+    func preemptive(printer: [String: Any]) -> Bool {
+        return printer["preemptive"] as? Bool ?? false // File saved locally may not have this new field so assume false when this happens
+    }
 
     func cameras(printer: [String: Any]) -> [(url: String, orientation: Int)]? {
         if let cameras = printer["cameras"] as? Array<Dictionary<String, Any>> {

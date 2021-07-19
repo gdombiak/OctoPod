@@ -1,5 +1,6 @@
 import Foundation
 import Starscream
+import UIKit
 
 // Classic websocket client that connects to "<octoprint>/sockjs/websocket"
 // To receive socket events and received messages, create a WebSocketClientDelegate
@@ -42,6 +43,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     init(printer: Printer) {
         super.init()
         serverURL = printer.hostname
+        serverURL = serverURL.hasSuffix("/") ? String(serverURL.dropLast()) : serverURL // Fix in case stored printer has invalid URL due to a bug that is now fixed
         apiKey = printer.apiKey
         username = printer.username
         password = printer.password
@@ -390,7 +392,9 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     
     fileprivate func recreateSocket() {
         // Remove self as a delegate from old socket
-        socket!.advancedDelegate = nil
+        if let socket = socket {
+            socket.advancedDelegate = nil
+        }
         
         createWebSocket()
         

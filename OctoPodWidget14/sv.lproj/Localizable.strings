@@ -1,0 +1,72 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"1 day ago" = "1 dag sedan";
+
+/* No comment provided by engineer. */
+"1 hour ago" = "1 timme sedan";
+
+/* No comment provided by engineer. */
+"1 minute ago" = "1 minut sedan";
+
+/* No comment provided by engineer. */
+"1 week ago" = "1 vecka sedan";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Autentisering misslyckades";
+
+/* No comment provided by engineer. */
+"Configure widget" = "Konfigurera widget";
+
+/* No comment provided by engineer. */
+"Confirm" = "Bekräfta";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Kontrollpanel";
+
+/* No comment provided by engineer. */
+"Dashboard for multiple printers" = "Instrumentbräda för flera skrivare";
+
+/* No comment provided by engineer. */
+"days ago" = "%d dagar sedan";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Avfärda";
+
+/* No comment provided by engineer. */
+"hours ago" = "%d timmar sedan";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Fel vid begäran. HTTP-svar: %d";
+
+/* No comment provided by engineer. */
+"minutes ago" = "%d minuter sedan";
+
+/* No comment provided by engineer. */
+"Missed" = "Saknas";
+
+/* No comment provided by engineer. */
+"Monitor and control your 3d printer via OctoPod" = "Bevaka och styr din 3D-skrivare via OctoPod";
+
+/* No comment provided by engineer. */
+"No" = "Nej";
+
+/* No camera was configured */
+"No camera" = "Ingen kamera";
+
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Gräns för webbkameran överskriden";
+
+/* No comment provided by engineer. */
+"seconds ago" = "%d sekunder sedan";
+
+/* ETA is Unknown */
+"Unknown" = "Okänd";
+
+/* No comment provided by engineer. */
+"weeks ago" = "%d veckor sedan";
+
+/* No comment provided by engineer. */
+"Yes" = "Ja";
+

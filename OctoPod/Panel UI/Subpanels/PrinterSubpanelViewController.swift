@@ -112,6 +112,10 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         progressView.layer.sublayers![1].cornerRadius = 8
         progressView.subviews[1].clipsToBounds = true
         
+        // Change color of Cancel button when enabled or disabled
+        cancelButton.setTitleColor(UIColor.red, for: .normal)
+        cancelButton.setTitleColor(UIColor(red: 167/255, green: 88/255, blue: 88/255, alpha: 1.0), for: .disabled)
+
         clearValues()
     }
     
@@ -158,11 +162,19 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SensorDataCell", for: indexPath) as! EnclosureTempViewCell
-            let input = enclosureInputs[indexPath.row]
-            let tempUnit = input.celsius ? "C" : "F"
-            cell.sensorLabel.text = input.label
-            cell.temperatureLabel.text = input.temperature >= 0 ? "\(String(format: "%.1f", input.temperature)) \(tempUnit)" : "-- \(tempUnit)"
-            cell.humidityLabel.text = input.humidity >= 0 ? "\(String(format: "%.1f", input.humidity)) %" : "-- %"
+            // Check for weird case when enclosureInputs is still empty
+            if enclosureInputs.count > indexPath.row {
+                let input = enclosureInputs[indexPath.row]
+                let tempUnit = input.celsius ? "C" : "F"
+                cell.sensorLabel.text = input.label
+                cell.temperatureLabel.text = input.temperature >= 0 ? "\(String(format: "%.1f", input.temperature)) \(tempUnit)" : "-- \(tempUnit)"
+                cell.humidityLabel.text = input.humidity >= 0 ? "\(String(format: "%.1f", input.humidity)) %" : "-- %"
+
+            } else {
+                cell.sensorLabel.text = ""
+                cell.temperatureLabel.text = ""
+                cell.humidityLabel.text = ""
+            }
             return cell
         }
         return super.tableView(tableView, cellForRowAt: indexPath)
@@ -221,6 +233,16 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             cell.temperatureLabel.textColor = textColor
             cell.humidityLabel.textColor = textColor
         }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        // If no enclosure inputs then hide the Enclosures section
+        if (section == 2) {
+            if (enclosureInputs.count == 0) {
+                return nil
+            }
+        }
+        return super.tableView(tableView, titleForHeaderInSection: section)
     }
 
     // MARK: - UIScrollViewDelegate
@@ -359,7 +381,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             }
             
             if let seconds = event.progressPrintTime {
-                self.printTimeLabel.text = self.secondsToPrintTime(seconds: seconds)
+                self.printTimeLabel.text = UIUtils.secondsToPrintTime(seconds: seconds)
             }
 
             if let seconds = event.progressPrintTimeLeft {
@@ -513,7 +535,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             generator.prepare()
             self.octoprintClient.restartCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
-                    generator.notificationOccurred(.success)
+                    DispatchQueue.main.async {
+                        generator.notificationOccurred(.success)
+                    }
                 } else {
                     NSLog("Error requesting to restart current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                     self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed restart job", comment: ""))
@@ -528,18 +552,31 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     }
     
     @IBAction func pauseJob(_ sender: Any) {
-        let generator = UINotificationFeedbackGenerator()
-        generator.prepare()
-        self.octoprintClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if requested {
-                generator.notificationOccurred(.success)
-            } else {
-                NSLog("Error requesting to pause current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
-                self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed pause job", comment: ""))
+        let action = {
+            let generator = UINotificationFeedbackGenerator()
+            generator.prepare()
+            self.octoprintClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                if requested {
+                    DispatchQueue.main.async {
+                        generator.notificationOccurred(.success)
+                    }
+                } else {
+                    NSLog("Error requesting to pause current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                    self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed pause job", comment: ""))
+                }
+            }
+            if let printer = self.printerManager.getDefaultPrinter() {
+                IntentsDonations.donatePauseJob(printer: printer)
             }
         }
-        if let printer = printerManager.getDefaultPrinter() {
-            IntentsDonations.donatePauseJob(printer: printer)
+        if appConfiguration.confirmationPausePrint() {
+            showConfirm(message: NSLocalizedString("Do you want to pause print?", comment: "")) { (UIAlertAction) in
+                action()
+            } no: { (UIAlertAction) in
+                // Do nothing
+            }
+        } else {
+            action()
         }
     }
     
@@ -549,7 +586,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             generator.prepare()
             self.octoprintClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if requested {
-                    generator.notificationOccurred(.success)
+                    DispatchQueue.main.async {
+                        generator.notificationOccurred(.success)
+                    }
                 } else {
                     NSLog("Error requesting to cancel current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
                     self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed cancel job", comment: ""))
@@ -565,43 +604,69 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     @IBAction func printJob(_ sender: Any) {
         if let lastFile = lastKnownPrintFile {
-            let generator = UINotificationFeedbackGenerator()
-            generator.prepare()
-            self.octoprintClient.printFile(origin: lastFile.origin!, path: lastFile.path!) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if requested {
-                    generator.notificationOccurred(.success)
-                } else {
-                    NSLog("Error requesting to reprint file: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
-                    self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed print job again", comment: ""))
+            let action = {
+                let generator = UINotificationFeedbackGenerator()
+                generator.prepare()
+                self.octoprintClient.printFile(origin: lastFile.origin!, path: lastFile.path!) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    if requested {
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.success)
+                        }
+                    } else {
+                        NSLog("Error requesting to reprint file: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                        self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed print job again", comment: ""))
+                    }
                 }
+            }
+            if appConfiguration.confirmationStartPrint() {
+                showConfirm(message: NSLocalizedString("Do you want to print this file?", comment: "")) { (UIAlertAction) in
+                    action()
+                } no: { (UIAlertAction) in
+                    // Do nothing
+                }
+            } else {
+                action()
             }
         }
     }
     
     @IBAction func resumeJob(_ sender: Any) {
-        let generator = UINotificationFeedbackGenerator()
-        generator.prepare()
-        self.octoprintClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if requested {
-                generator.notificationOccurred(.success)
-            } else {
-                NSLog("Error requesting to resume current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
-                self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed resume job", comment: ""))
+        let action = {
+            let generator = UINotificationFeedbackGenerator()
+            generator.prepare()
+            self.octoprintClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                if requested {
+                    DispatchQueue.main.async {
+                        generator.notificationOccurred(.success)
+                    }
+                } else {
+                    NSLog("Error requesting to resume current job: \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                    self.showAlert(NSLocalizedString("Job", comment: ""), message: NSLocalizedString("Notify failed resume job", comment: ""))
+                }
+            }
+            if let printer = self.printerManager.getDefaultPrinter() {
+                IntentsDonations.donateResumeJob(printer: printer)
             }
         }
-        if let printer = printerManager.getDefaultPrinter() {
-            IntentsDonations.donateResumeJob(printer: printer)
+        if appConfiguration.confirmationResumePrint() {
+            showConfirm(message: NSLocalizedString("Do you want to resume printing?", comment: "")) { (UIAlertAction) in
+                action()
+            } no: { (UIAlertAction) in
+                // Do nothing
+            }
+        } else {
+            action()
         }
     }
 
     // MARK: - Rate app - Private functions
 
     // Ask user to rate app. We will ask a maximum of 3 times and only after a job is 100% done.
-    // We will ask when job #3, #10 or #30 are done. Only for iOS 10.3 or newer installations
+    // We will ask when job #2, #7 or #13 are done. Only for iOS 10.3 or newer installations
     fileprivate func checkRateApp(event: CurrentStateEvent) {
-        let firstAsk = 2
-        let secondAsk = 9
-        let thirdAsk = 29
+        let firstAsk = 1
+        let secondAsk = 6
+        let thirdAsk = 12
         if let progress = event.progressCompletion {
             // Ask users to rate the app only when print job was completed (and after X number of jobs were done)
             if progress == 100 && progressView.progress < 1 {
@@ -747,16 +812,6 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         } else {
             enclosureInputs = []
         }
-    }
-    
-    /// Converts number of seconds into a string that represents time (e.g. 23h 10m)
-    func secondsToPrintTime(seconds: Int) -> String {
-        let duration = TimeInterval(seconds)
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .brief
-        formatter.allowedUnits = [ .day, .hour, .minute, .second ]
-        formatter.zeroFormattingBehavior = [ .default ]
-        return formatter.string(from: duration)!
     }
     
     fileprivate func presentToolTip(tooltipKey: String, segueIdentifier: String, button: UIButton) {

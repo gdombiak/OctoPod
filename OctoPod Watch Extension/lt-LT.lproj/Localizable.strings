@@ -16,6 +16,9 @@
 /* No comment provided by engineer. */
 "Do you want to pause the job?" = "Ar norite padaryti pauzę?";
 
+/* Apple Watch cannot render HTTP Live Streaming feeds */
+"HLS not supported" = "HLS nepalaikomas";
+
 /* HTTP Request error info */
 "HTTP Request error" = "Klaida. HTTP atsakymas: %d";
 

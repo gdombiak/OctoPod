@@ -1,7 +1,4 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} negali būti didesnis nei ${maximumValue}.";
-
-/* (No Comment) */
 "0vck5K" = "Nepavyko pabandyti nukirpti";
 
 /* (No Comment) */
@@ -9,6 +6,12 @@
 
 /* (No Comment) */
 "1lbZOa" = "Nepavyko pabandyti atsijungti";
+
+/* (No Comment) */
+"1qMmy1" = "Paprašyta";
+
+/* (No Comment) */
+"2O3S2V" = "Fotografuoti";
 
 /* (No Comment) */
 "2TreiD" = "Nustatyti ekstruderio temperatūra į ${temperature}";
@@ -29,13 +32,22 @@
 "3JiZye" = "Paprašyta";
 
 /* (No Comment) */
+"4B08aG" = "Išjungti ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"4Tu0Kl" = "Nepavyko įvykdyti sisteminės komandos";
 
 /* (No Comment) */
 "5btOXI" = "Paskutinė variacija";
 
 /* (No Comment) */
 "5i5htv" = "Prisijungęs";
+
+/* (No Comment) */
+"5iTPOd" = "${printer}";
 
 /* (No Comment) */
 "6b7Yce" = "Praprašyti Pallete nukirpti";
@@ -45,6 +57,9 @@
 
 /* (No Comment) */
 "6vtMLs" = "Pradėta iš naujo";
+
+/* (No Comment) */
+"7c0KRL" = "Command Source";
 
 /* (No Comment) */
 "7eJPkN" = "Konfigūruoti dėžės temperatūrą";
@@ -57,6 +72,9 @@
 
 /* (No Comment) */
 "8tTCjD" = "Nepavyko atšaukti (${statusCode})";
+
+/* (No Comment) */
+"8uLpUQ" = "Išjungti maitblokį";
 
 /* (No Comment) */
 "8xHCbl" = "${printer}";
@@ -74,22 +92,31 @@
 "662LyZ" = "Paleisti iš naujo";
 
 /* (No Comment) */
-"817z4k" = "${displayName} negali būti mažesnis nei ${minimumValue}.";
+"9107Xn" = "Fotografuoti";
 
 /* (No Comment) */
-"ADfGbr" = "${displayName} negali būti neigiamas.";
-
-/* (No Comment) */
-"AdooVp" = "${displayName} negali būti neigiamas.";
+"a1UDyY" = "Paprašyta";
 
 /* (No Comment) */
 "ajupCt" = "Nėra informacijos";
 
 /* (No Comment) */
+"aTDQUI" = "Įjungti dežės jungiklį";
+
+/* (No Comment) */
 "AU4oMs" = "Paprašyti Pallete ping statistikos";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Paprašyta";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Įjungti maitblokį";
 
 /* (No Comment) */
 "BUexSx" = "Didžiausia variacija";
@@ -98,7 +125,10 @@
 "bXGQKe" = "Atšaldyti spausdintuvą";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} negali būti didesnis nei ${maximumValue}.";
+"bXrJk0" = "Command Action";
+
+/* (No Comment) */
+"C1mTOm" = "${printer}";
 
 /* (No Comment) */
 "D0kBGr" = "Paleisti iš naujo dabartinę užduotį";
@@ -107,13 +137,19 @@
 "D1wWxd" = "Atsijungti nuo Pallete";
 
 /* (No Comment) */
+"DKIuk9" = "Vykdyti sisteminę komandą";
+
+/* (No Comment) */
 "doj4NA" = "Nustatyti ekstruderio temperatūrą";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} negali būti neigiamas.";
+"Eb3aa5" = "Nepavyko nustatyti dėžės temperatūros (${statusCode})";
 
 /* (No Comment) */
-"Eb3aa5" = "Nepavyko nustatyti dėžės temperatūros (${statusCode})";
+"Eeyifr" = "Paprašyta";
+
+/* (No Comment) */
+"eKSaMC" = "Įjungti ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Atšaldyti spausdintuvą";
@@ -137,7 +173,16 @@
 "g52Ub0" = "${printer}";
 
 /* (No Comment) */
+"Ge6TbJ" = "Nepavyko įvykdyti sisteminės komandos";
+
+/* (No Comment) */
 "gx0D0e" = "Užduotis atšaukta";
+
+/* (No Comment) */
+"H21bkX" = "Nepavyko įvykdyti sisteminės komandos";
+
+/* (No Comment) */
+"hE6yXX" = "Paprašyta";
 
 /* (No Comment) */
 "hPlRC4" = "Nustatyti paviršiaus temperatūrą į ${temperature}";
@@ -149,6 +194,9 @@
 "ihLqc7" = "Užpauzinti dabartinę užduotį";
 
 /* (No Comment) */
+"IXiy0v" = "Nepavyko įvykdyti sisteminės komandos";
+
+/* (No Comment) */
 "jasUIn" = "Atsijungti nuo Pallete";
 
 /* (No Comment) */
@@ -158,13 +206,13 @@
 "JmhfgL" = "Paleisti iš naujo dabartinę užduotį";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} negali būti mažesnis nei ${minimumValue}.";
-
-/* (No Comment) */
 "JV2xQz" = "Prisijungti prie Pallete";
 
 /* (No Comment) */
 "Kf7e4Y" = "Paleisti iš naujo dabartinę užduotį";
+
+/* (No Comment) */
+"kHMMRT" = "${printer}";
 
 /* (No Comment) */
 "KHvUZD" = "Praprašyti Pallete nukirpti";
@@ -173,7 +221,19 @@
 "kSWyyv" = "${printer}";
 
 /* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
+"KulRl5" = "Įjungti dežės jungiklį";
+
+/* (No Comment) */
+"KxJmrF" = "Nuotrauka";
+
+/* (No Comment) */
 "L25OHl" = "Nepavyko pabandyti prisijungti";
+
+/* (No Comment) */
+"lOuQ7B" = "Nepavyko įvykdyti sisteminės komandos";
 
 /* (No Comment) */
 "lrRige" = "Atšaukti dabartinę užduotį";
@@ -191,12 +251,6 @@
 "M58YA9" = "Spausdintuvas";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} negali būti didesnis nei ${maximumValue}.";
-
-/* (No Comment) */
-"mfflxG" = "${displayName} negali būti mažesnis nei ${minimumValue}.";
-
-/* (No Comment) */
 "N0vzJv" = "Ask Palette to clear";
 
 /* (No Comment) */
@@ -209,10 +263,28 @@
 "NL98zi" = "Atšaldo paviršių ir ekstruderį";
 
 /* (No Comment) */
+"Oaidbo" = "Nepavyko įvykdyti sisteminės komandos";
+
+/* (No Comment) */
+"oe3uiM" = "Vykdyti sisteminę komandą ${commandName}";
+
+/* (No Comment) */
+"OOldQi" = "Command Name";
+
+/* (No Comment) */
 "ovQf6Z" = "Darbas užpauzintas";
 
 /* (No Comment) */
+"P6usJW" = "Fotografuoti";
+
+/* (No Comment) */
+"p9Vevg" = "Nepavyko įvykdyti sisteminės komandos";
+
+/* (No Comment) */
 "P89qJr" = "Likęs laikas yra ${time}";
+
+/* (No Comment) */
+"pfroH1" = "Išjungti maitblokį";
 
 /* (No Comment) */
 "Pj7mEV" = "Atvėsinti ekstruderį";
@@ -221,16 +293,19 @@
 "PppyPP" = "Nustatyti paviršiaus temperatūrą";
 
 /* (No Comment) */
+"q1Oynq" = "Maitblokio kontrolė išjungta";
+
+/* (No Comment) */
 "qLzk1S" = "Atšaldyti paviršių";
 
 /* (No Comment) */
 "QSxXHq" = "Užpauzinti dabartinę užduotį";
 
 /* (No Comment) */
-"R5AlTe" = "Atsijungti nuo Pallete";
+"qwH2oF" = "Išjungti dežės jungiklį";
 
 /* (No Comment) */
-"RbyC9o" = "${displayName} negali būti didesnis nei ${maximumValue}.";
+"R5AlTe" = "Atsijungti nuo Pallete";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -257,7 +332,7 @@
 "RYurC5" = "Atvėsinti dėžę";
 
 /* (No Comment) */
-"SK8bYR" = "${displayName} negali būti neigiamas.";
+"sDV9Jm" = "Paprašyta";
 
 /* (No Comment) */
 "SP4rN6" = "Nustatyti ekstruderio temperatūrą";
@@ -269,10 +344,19 @@
 "sRkyIL" = "Nepavyko paleisti iš naujo (${statusCode})";
 
 /* (No Comment) */
+"SZLVG3" = "Nepavyko įvykdyti sisteminės komandos";
+
+/* (No Comment) */
+"TcPGnq" = "Išjungti dežės jungiklį";
+
+/* (No Comment) */
 "tKDODp" = "Likęs spausdinimo laikas";
 
 /* (No Comment) */
 "UC9Zrq" = "Paviršiaus temperatūra buvo nustatyta į ${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "Vykdyti sisteminę komandą";
 
 /* (No Comment) */
 "uoT27A" = "Nepavyko nustatyti paviršiaus temperatūros (${statusCode})";
@@ -287,6 +371,12 @@
 "VItjhS" = "Atsijungęs";
 
 /* (No Comment) */
+"Vix5SL" = "Nepavyko įvykdyti sisteminės komandos";
+
+/* (No Comment) */
+"VKupAQ" = "Paprašyta";
+
+/* (No Comment) */
 "vL7cy4" = "${printer}";
 
 /* (No Comment) */
@@ -296,28 +386,49 @@
 "vmbpr4" = "Prisijungti prie Pallete";
 
 /* (No Comment) */
+"wabqoy" = "Nepavyko įvykdyti sisteminės komandos";
+
+/* (No Comment) */
 "WI2oQf" = "Return Print Time Left";
 
 /* (No Comment) */
 "WLkRl0" = "Nepavyko tęsti darbo (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Paprašyta";
+
+/* (No Comment) */
 "wYzz4m" = "Spausdintuvas vėsta";
+
+/* (No Comment) */
+"x8aCII" = "Paprašyta";
 
 /* (No Comment) */
 "XfWmGt" = "Tęsti dabartinę užduotį";
 
 /* (No Comment) */
+"Xk9F6S" = "Įjungti maitblokį";
+
+/* (No Comment) */
 "xSARU0" = "Nepavyko užpauzinti (${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "Maitblokio kontrolė įjungta";
+
+/* (No Comment) */
+"YfmWYd" = "Paprašyta";
 
 /* (No Comment) */
 "YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yZeSdz" = "${printer}";
+"yMvnaP" = "Spausdintuvas";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} negali būti mažesnis nei ${minimumValue}.";
+"YQLomX" = "Paprašyta";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";

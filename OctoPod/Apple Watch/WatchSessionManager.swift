@@ -6,13 +6,12 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
 
     var printerManager: PrinterManager
     var octoprintClient: OctoPrintClient
+    var defaultPrinterManager: DefaultPrinterManager!
     var session: WCSession?
-    
-    var delegates: Array<WatchSessionManagerDelegate> = []
     
     private var lastPushComplicationUpdate: Date?
     private var lastPushedCompletion: Double?
-
+    
     init(printerManager: PrinterManager, cloudKitPrinterManager: CloudKitPrinterManager, octoprintClient: OctoPrintClient) {
         self.printerManager = printerManager
         self.octoprintClient = octoprintClient
@@ -239,23 +238,18 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         pushPrinters()
     }
 
-    // MARK: - Delegates operations
-    
-    func remove(watchSessionManagerDelegate toRemove: WatchSessionManagerDelegate) {
-        delegates.removeAll(where: { $0 === toRemove })
-    }
-
     // MARK: - Commands private functions
     
     fileprivate func changeDefaultPrinter(printerName: String) {
         if let printer = printerManager.getPrinterByName(name: printerName) {
-            // Update stored printers
-            printerManager.changeToDefaultPrinter(printer)
-            // Ask octoprintClient to connect to new OctoPrint server
-            octoprintClient.connectToServer(printer: printer)
-            // Notify listeners of this change
-            for delegate in delegates {
-                delegate.defaultPrinterChanged()
+            defaultPrinterManager.changeToDefaultPrinter(printer: printer, updateWatch: false, connect: true)
+            // If not running in foreground then disconnect websocket
+            // For some reason even if app is in background websocket remains open
+            // and received data which potentially consumes cellular data
+            DispatchQueue.main.async {
+                if UIApplication.shared.applicationState != .active {
+                    self.octoprintClient.disconnectFromServer()
+                }
             }
         }
     }
@@ -372,77 +366,59 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     
     fileprivate func camera_take(_ replyHandler: @escaping ([String : Any]) -> Void, camera: Dictionary<String, Any>) {
         if let url = camera["url"] as? String, let cameraId = camera["cameraId"] as? String {
-            let streamingController = MjpegStreamingController()
-            let screenWidth = camera["width"] as! Int
-
-            if let username = camera["username"] as? String, let password = camera["password"] as? String {
-                // User authentication credentials if configured for the printer
-                streamingController.authenticationHandler = { challenge in
-                    let credential = URLCredential(user: username, password: password, persistence: .forSession)
-                    return (.useCredential, credential)
+            if let cameraURL = URL(string: url) {
+                let screenWidth = camera["width"] as! Int
+                let username = camera["username"] as? String
+                let password = camera["password"] as? String
+                let preemptive = camera["preemptive"] as! Bool
+                var imageOrientation = UIImage.Orientation.up
+                if let orientation = camera["orientation"] as? Int {
+                    imageOrientation = UIImage.Orientation(rawValue: orientation)!
                 }
-            }
-            
-            streamingController.authenticationFailedHandler = {
-                let message = NSLocalizedString("Authentication failed", comment: "HTTP authentication failed")
-                replyHandler(["error": message])
-            }
 
-            streamingController.didFinishWithErrors = { error in
-                replyHandler(["error": error.localizedDescription])
-            }
-            
-            streamingController.didFinishWithHTTPErrors = { httpResponse in
-                // We got a 404 or some 5XX error
-                let message = String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode)
-                replyHandler(["error": message])
-            }
-
-            streamingController.didRenderImage = { (image: UIImage) in
-                // Stop loading next jpeg image (MJPEG is a stream of jpegs)
-                streamingController.stop()
-                var newImage: UIImage = image
-                DispatchQueue.main.async {
-                    // Resize image to save space
-                    if let resizedImage = image.resizeWithWidth(width: CGFloat(screenWidth - 10)) {
-                        newImage = resizedImage
-                    } else {
-                        NSLog("Failed to reduce image size")
-                    }
-                    // Save image to file with quality 80% to further reduce size. (Eg: 300KB -> 48K)
-                    if let data = newImage.jpegData(compressionQuality: 0.80) {
-                        if let fileURL = self.session?.watchDirectoryURL?.appendingPathComponent(UUID().uuidString) {
-                            do {
-                                try data.write(to: fileURL)
-                                // Send file to Apple Watch
-                                self.session?.transferFile(fileURL, metadata: ["cameraId": cameraId])
-                                // Send back confirmation that image file was created (DO WE NEED THIS)
-                                replyHandler(["done": ""])
+                let completion = { (image: UIImage?, errorMessage: String?) in
+                    if let image = image {
+                        var newImage: UIImage = image
+                        DispatchQueue.main.async {
+                            // Resize image to save space
+                            if let resizedImage = image.resizeWithWidth(width: CGFloat(screenWidth - 10)) {
+                                newImage = resizedImage
+                            } else {
+                                NSLog("Failed to reduce image size")
                             }
-                            catch {
-                                NSLog("Failed to save JPEG file. Error: \(error)")
+                            // Save image to file with quality 80% to further reduce size. (Eg: 300KB -> 48K)
+                            if let data = newImage.jpegData(compressionQuality: 0.80) {
+                                if let fileURL = self.session?.watchDirectoryURL?.appendingPathComponent(UUID().uuidString) {
+                                    do {
+                                        try data.write(to: fileURL)
+                                        // Send file to Apple Watch
+                                        self.session?.transferFile(fileURL, metadata: ["cameraId": cameraId])
+                                        // Send back confirmation that image file was created (DO WE NEED THIS)
+                                        replyHandler(["done": ""])
+                                    }
+                                    catch {
+                                        NSLog("Failed to save JPEG file. Error: \(error)")
+                                        let message = NSLocalizedString("Failed to save JPEG file", comment: "")
+                                        replyHandler(["error": message, "retry": true])
+                                    }
+                                    
+                                } else {
+                                    NSLog("WARNING - watchDirectoryURL seems to be NIL")
+                                    let message = NSLocalizedString("Failed to save JPEG file", comment: "")
+                                    replyHandler(["error": message, "retry": true])
+                                }
+                            } else {
                                 let message = NSLocalizedString("Failed to save JPEG file", comment: "")
                                 replyHandler(["error": message, "retry": true])
                             }
-                            
-                        } else {
-                            NSLog("WARNING - watchDirectoryURL seems to be NIL")
-                            let message = NSLocalizedString("Failed to save JPEG file", comment: "")
-                            replyHandler(["error": message, "retry": true])
                         }
-                    } else {
-                        let message = NSLocalizedString("Failed to save JPEG file", comment: "")
-                        replyHandler(["error": message, "retry": true])
+                    } else if let errorMessage = errorMessage {
+                        // No image so reply is an error
+                        replyHandler(["error": errorMessage])
                     }
                 }
-            }
-
-            if let cameraURL = URL(string: url) {
-                if let orientation = camera["orientation"] as? Int {
-                    streamingController.imageOrientation = UIImage.Orientation(rawValue: orientation)!
-                }
-                // Get first image and then stop streaming next images
-                streamingController.play(url: cameraURL)
+                
+                CameraUtils.shared.renderImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, preemptive: preemptive, timeoutInterval: nil, completion: completion)
             } else {
                 NSLog("Invalid camera URL: \(url)")
                 let message = NSLocalizedString("Invalid camera URL", comment: "")
@@ -511,7 +487,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         var sharedNozzle = false
         var palette2PluginInstalled = false
         if let printer = printerManager.getDefaultPrinter() {
-            if printer.name == printerName {
+            if printer.name == printerName && octoprintClient.octoPrintRESTClient.isConfigured() {
                 restClient = octoprintClient.octoPrintRESTClient
                 sharedNozzle = printer.sharedNozzle
                 palette2PluginInstalled = printer.palette2Installed
@@ -520,7 +496,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         if restClient == nil {
             if let printer = printerManager.getPrinterByName(name: printerName) {
                 restClient = OctoPrintRESTClient()
-                restClient?.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password)
+                restClient?.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuthentication())
                 sharedNozzle = printer.sharedNozzle
                 palette2PluginInstalled = printer.palette2Installed
             }
@@ -541,32 +517,33 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     fileprivate func encodePrinters() -> [String: [[String : Any]]] {
         var printers: [[String : Any]] = []
         for printer in printerManager.getPrinters() {
-            var printerDic = ["position": printer.position, "name": printer.name, "hostname": printer.hostname, "apiKey": printer.apiKey, "isDefault": printer.defaultPrinter] as [String : Any]
+            var printerDic = ["position": printer.position, "name": printer.name, "hostname": printer.hostname, "apiKey": printer.apiKey, "isDefault": printer.defaultPrinter, "preemptive": printer.preemptiveAuthentication()] as [String : Any]
             if let username = printer.username {
                 printerDic["username"] = username
             }
             if let password = printer.password {
                 printerDic["password"] = password
             }
-            if let cameras = printer.cameras, !cameras.isEmpty {
+            if let cameras = printer.getMultiCameras(), !cameras.isEmpty {
                 // MultiCam plugin is installed so show all cameras
                 var camerasArray: Array<Dictionary<String, Any>> = []
-                for url in cameras {
+                for multiCamera in cameras {
                     var cameraURL: String
                     var cameraOrientation: Int
+                    let url = multiCamera.cameraURL
                     if url == printer.getStreamPath() {
                         // This is camera hosted by OctoPrint so respect orientation
-                        cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+                        cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
                         cameraOrientation = Int(printer.cameraOrientation)
                     } else {
                         if url.starts(with: "/") {
                             // Another camera hosted by OctoPrint so build absolute URL
-                            cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: url)
+                            cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
                         } else {
                             // Use absolute URL to render camera
                             cameraURL = url
                         }
-                        cameraOrientation = UIImage.Orientation.up.rawValue // MultiCam has no information about orientation of extra cameras so assume "normal" position - no flips
+                        cameraOrientation = Int(multiCamera.cameraOrientation) // Respect orientation defined by MultiCamera plugin
                     }
                     let cameraDic = ["url" : cameraURL, "orientation": cameraOrientation] as [String : Any]                    
                     camerasArray.append(cameraDic)
@@ -574,7 +551,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                 printerDic["cameras"] = camerasArray
             } else {
                 // MultiCam plugin is not installed so just show default camera
-                let cameraURL = octoPrintCameraAbsoluteUrl(hostname: printer.hostname, streamUrl: printer.getStreamPath())
+                let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
                 let cameraOrientation = Int(printer.cameraOrientation)
                 let cameraDic = ["url" : cameraURL, "orientation": cameraOrientation] as [String : Any]
                 printerDic["cameras"] = [cameraDic]
@@ -584,18 +561,5 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
 //        NSLog("Encoded printers: \(["printers" : printers])")
         
         return ["printers" : printers]
-    }
-    
-    fileprivate func octoPrintCameraAbsoluteUrl(hostname: String, streamUrl: String) -> String {
-        if streamUrl.isEmpty {
-            // Should never happen but let's be cautious
-            return hostname
-        }
-        if streamUrl.starts(with: "/") {
-            // Build absolute URL from relative URL
-            return hostname + streamUrl
-        }
-        // streamURL is an absolute URL so return it
-        return streamUrl
-    }
+    }    
 }

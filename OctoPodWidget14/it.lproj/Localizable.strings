@@ -1,0 +1,72 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"1 day ago" = "1 giorno fa";
+
+/* No comment provided by engineer. */
+"1 hour ago" = "1 ora fa";
+
+/* No comment provided by engineer. */
+"1 minute ago" = "1 minuto fa";
+
+/* No comment provided by engineer. */
+"1 week ago" = "1 settimana fa";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Autenticazione fallita";
+
+/* No comment provided by engineer. */
+"Configure widget" = "Configura widget";
+
+/* No comment provided by engineer. */
+"Confirm" = "Conferma";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Pannello di controllo";
+
+/* No comment provided by engineer. */
+"Dashboard for multiple printers" = "Dashboard per stampanti multiple";
+
+/* No comment provided by engineer. */
+"days ago" = "%d giorni fa";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Chiudi";
+
+/* No comment provided by engineer. */
+"hours ago" = "%d ore fa";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Errore nella richiesta. Risposta HTTP: %d";
+
+/* No comment provided by engineer. */
+"minutes ago" = "%d minuti fa";
+
+/* No comment provided by engineer. */
+"Missed" = "Mancato";
+
+/* No comment provided by engineer. */
+"Monitor and control your 3d printer via OctoPod" = "Monìtora e controlla la tua stampante 3D tramite OctoPod";
+
+/* No comment provided by engineer. */
+"No" = "No";
+
+/* No camera was configured */
+"No camera" = "Nessuna videocamera";
+
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Superato il limite delle webcam";
+
+/* No comment provided by engineer. */
+"seconds ago" = "%d secondi fa";
+
+/* ETA is Unknown */
+"Unknown" = "Sconosciuto";
+
+/* No comment provided by engineer. */
+"weeks ago" = "%d settimane fa";
+
+/* No comment provided by engineer. */
+"Yes" = "Sì";
+

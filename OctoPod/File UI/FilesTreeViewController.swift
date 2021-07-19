@@ -1,21 +1,28 @@
 import UIKit
 
-class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate, WatchSessionManagerDelegate {
+class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate, DefaultPrinterManagerDelegate, UISearchBarDelegate {
     
     private var currentTheme: Theme.ThemeChoice!
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
+    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var sortByTextLabel: UILabel!
     @IBOutlet weak var sortByControl: UISegmentedControl!
     @IBOutlet weak var refreshSDButton: UIButton!
     var refreshControl: UIRefreshControl?
 
+    // Gestures to switch between printers
+    var swipeLeftGestureRecognizer : UISwipeGestureRecognizer!
+    var swipeRightGestureRecognizer : UISwipeGestureRecognizer!
+
     var files: Array<PrintFile> = Array()
+    var searching: Bool = false
+    var searchedFiles: Array<PrintFile> = Array()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +36,9 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.addSubview(refreshControl!)
         tableView.alwaysBounceVertical = true
         self.refreshControl?.addTarget(self, action: #selector(refreshFiles), for: UIControl.Event.valueChanged)
+        
+        // Listen to search bar events
+        self.searchBar.delegate = self
         
         // Update sort control based on user preferences for sorting
         var selectIndex = 0
@@ -54,8 +64,8 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        // Listen to changes coming from Apple Watch
-        watchSessionManager.delegates.append(self)
+        // Listen to changes to default printer
+        defaultPrinterManager.delegates.append(self)
 
         if currentTheme != Theme.currentTheme() {
             // Theme changed so repaint table now (to prevent quick flash in the UI with the old theme)
@@ -67,12 +77,17 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         
         ThemeUIUtils.applyTheme(table: tableView, staticCells: false)
         applyTheme()
+
+        // Add gestures to capture swipes and taps on navigation bar
+        addNavBarGestures()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // Stop listening to changes coming from Apple Watch
-        watchSessionManager.remove(watchSessionManagerDelegate: self)
+        // Stop listening to changes to default printer
+        defaultPrinterManager.remove(defaultPrinterManagerDelegate: self)
+        // Remove gestures that capture swipes and taps on navigation bar
+        removeNavBarGestures()
     }
     
     override func didReceiveMemoryWarning() {
@@ -88,13 +103,14 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return files.count
+        return searching ? searchedFiles.count : files.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let theme = Theme.currentTheme()
         let textColor = theme.textColor()
         
+        let files = searching ? searchedFiles : self.files
         let file = files[indexPath.row]
         
         if file.isFolder() {
@@ -110,7 +126,12 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "file_cell", for: indexPath)
         if let fileLabel = cell.viewWithTag(100) as? UILabel {
             fileLabel.text = file.display
-            fileLabel.textColor = textColor
+            if let success = file.lastSuccessfulPrint {
+                fileLabel.textColor = success ? UIColor(red: 70/255, green: 136/255, blue: 71/255, alpha: 1.0) : UIColor(red: 185/255, green: 74/255, blue: 72/255, alpha: 1.0)
+            } else {
+                // Use theme color since there is no info about last successful print
+                fileLabel.textColor = textColor
+            }
         }
         if let originLabel = cell.viewWithTag(200) as? UILabel {
             originLabel.text = file.displayOrigin()
@@ -148,6 +169,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let files = searching ? searchedFiles : self.files
         if indexPath.row < files.count {
             return !files[indexPath.row].isFolder() && !appConfiguration.appLocked()
         }
@@ -156,9 +178,13 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete selected file
-            self.deleteRow(forRowAt: indexPath)
-            self.tableView.reloadData()
+            showConfirm(message: NSLocalizedString("Do you want to delete this file?", comment: "")) { (UIAlertAction) in
+                // Delete selected file
+                self.deleteRow(forRowAt: indexPath)
+                self.tableView.reloadData()
+            } no: { (UIAlertAction) in
+                // Do nothing
+            }
         }
     }
     
@@ -170,6 +196,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
 
     @IBAction func backFromPrint(_ sender: UIStoryboardSegue) {
         if let row = tableView.indexPathForSelectedRow?.row {
+            let files = searching ? searchedFiles : self.files
             let printFile = files[row]
             // Request to print file
             octoprintClient.printFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
@@ -220,6 +247,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let files = searching ? searchedFiles : self.files
         if segue.identifier == "gotoFileDetails" {
             if let controller = segue.destination as? FileDetailsViewController {
                 controller.printFile = files[(tableView.indexPathForSelectedRow?.row)!]
@@ -248,13 +276,33 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         return UIModalPresentationStyle.none
     }
     
-    // MARK: - WatchSessionManagerDelegate
+    // MARK: - DefaultPrinterManagerDelegate
     
-    // Notification that a new default printer has been selected from the Apple Watch app
     func defaultPrinterChanged() {
         DispatchQueue.main.async {
             self.refreshNewSelectedPrinter()
         }
+    }
+    
+    // MARK: - UISearchBarDelegate
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searching = !searchText.isEmpty
+        updatedSearchedFiles(searchText)
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Hide keyboard but leave cancel button enabled (if there is search text)
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        updatedSearchedFiles("")
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        tableView.reloadData()
     }
     
     // MARK: - Button actions
@@ -284,10 +332,13 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         // Sort by new criteria
         if sortByControl.selectedSegmentIndex == 0 {
             files = PrintFile.resort(rootFiles: files, sortBy: PrintFile.SortBy.alphabetical)
+            searchedFiles = PrintFile.resort(rootFiles: searchedFiles, sortBy: PrintFile.SortBy.alphabetical)
         } else if sortByControl.selectedSegmentIndex == 1 {
             files = PrintFile.resort(rootFiles: files, sortBy: PrintFile.SortBy.uploadDate)
+            searchedFiles = PrintFile.resort(rootFiles: searchedFiles, sortBy: PrintFile.SortBy.uploadDate)
         } else {
             files = PrintFile.resort(rootFiles: files, sortBy: PrintFile.SortBy.lastPrintDate)
+            searchedFiles = PrintFile.resort(rootFiles: searchedFiles, sortBy: PrintFile.SortBy.lastPrintDate)
         }
         // Refresh UI
         tableView.reloadData()
@@ -317,15 +368,68 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     
     fileprivate func applyTheme() {
         let theme = Theme.currentTheme()
+        let textLabelColor = theme.labelColor()
         let tintColor = theme.tintColor()
-        
+        let textColor = theme.textColor()
+
         // Set background color to the view
         view.backgroundColor = theme.backgroundColor()
         // Set background color to the refresh SD button
         refreshSDButton.setTitleColor(tintColor, for: .normal)
         // Set background color to the sort control
-        sortByTextLabel.textColor = theme.labelColor()
+        sortByTextLabel.textColor = textLabelColor
         sortByControl.tintColor = tintColor
+        // Theme search bar
+        searchBar.barTintColor = theme.backgroundColor()
+        let disabledColor = tintColor.withAlphaComponent(0.35)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.foregroundColor: tintColor], for: .normal)
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.foregroundColor: disabledColor], for: .disabled)
+        if #available(iOS 13.0, *) {
+            let searchTextField = self.searchBar.searchTextField
+            searchTextField.textColor = textColor
+            if let iconView = searchTextField.leftView {
+                iconView.tintColor = textLabelColor
+            }
+        } else {
+            // Fallback on earlier versions
+            if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+                textField.textColor = textColor
+                if let iconView = textField.leftView as? UIImageView {
+                    //Magnifying glass
+                    iconView.tintColor = textLabelColor
+                }
+            }
+        }
+    }
+
+    // MARK: - Private - Navigation Bar Gestures
+
+    fileprivate func addNavBarGestures() {
+        // Add gesture when we swipe from right to left
+        swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
+        swipeLeftGestureRecognizer.direction = .left
+        navigationController?.navigationBar.addGestureRecognizer(swipeLeftGestureRecognizer)
+        swipeLeftGestureRecognizer.cancelsTouchesInView = false
+        
+        // Add gesture when we swipe from left to right
+        swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
+        swipeRightGestureRecognizer.direction = .right
+        navigationController?.navigationBar.addGestureRecognizer(swipeRightGestureRecognizer)
+        swipeRightGestureRecognizer.cancelsTouchesInView = false
+    }
+
+    fileprivate func removeNavBarGestures() {
+        // Remove gesture when we swipe from right to left
+        navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
+        
+        // Remove gesture when we swipe from left to right
+        navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
+    }
+
+    @objc fileprivate func navigationBarSwiped(_ gesture: UIGestureRecognizer) {
+        // Change default printer
+        let direction: DefaultPrinterManager.SwipeDirection = gesture == swipeLeftGestureRecognizer ? .left : .right
+        defaultPrinterManager.navigationBarSwiped(direction: direction)
     }
 
     // MARK: - Private functions
@@ -383,6 +487,9 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             }
             // Refresh table (even if there was an error so it is empty)
             DispatchQueue.main.async {
+                // Refresh searched files
+                self.updatedSearchedFiles(self.searchBar.text ?? "")
+                // Close refresh control
                 self.refreshControl?.endRefreshing()
                 self.tableView.reloadData()
             }
@@ -392,9 +499,20 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     fileprivate func deleteRow(forRowAt indexPath: IndexPath) {
-        let printFile = files[indexPath.row]
-        // Remove file from UI
-        files.remove(at: indexPath.row)
+        let printFile: PrintFile!
+        if searching {
+            printFile = searchedFiles[indexPath.row]
+            // Remove file from UI
+            searchedFiles.remove(at: indexPath.row)
+            files.removeAll { (someFile: PrintFile) -> Bool in
+                return someFile == printFile
+            }
+        } else {
+            printFile = files[indexPath.row]
+            // Remove file from UI
+            files.remove(at: indexPath.row)
+        }
+        
         // Delete from server (if failed then show error message and reload)
         octoprintClient.deleteFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
             if !success {
@@ -418,7 +536,21 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+    fileprivate func updatedSearchedFiles(_ searchText: String) {
+        if searchText.isEmpty {
+            searchBar.setShowsCancelButton(false, animated: false)
+            searchedFiles = Array()
+        } else {
+            searchBar.setShowsCancelButton(true, animated: false)
+            searchedFiles = files.filter { $0.display.lowercased().contains(searchText.lowercased()) }
+        }
+    }
+    
     fileprivate func showAlert(_ title: String, message: String, done: (() -> Void)?) {
         UIUtils.showAlert(presenter: self, title: title, message: message, done: done)
+    }
+
+    fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
+        UIUtils.showConfirm(presenter: self, message: message, yes: yes, no: no)
     }
 }

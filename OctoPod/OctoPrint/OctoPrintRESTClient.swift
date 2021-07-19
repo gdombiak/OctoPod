@@ -47,8 +47,8 @@ class OctoPrintRESTClient {
 
     // MARK: - OctoPrint connection
 
-    func connectToServer(serverURL: String, apiKey: String, username: String?, password: String?) {
-        httpClient = HTTPClient(serverURL: serverURL, apiKey: apiKey, username: username, password: password)
+    func connectToServer(serverURL: String, apiKey: String, username: String?, password: String?, preemptive: Bool) {
+        httpClient = HTTPClient(serverURL: serverURL, apiKey: apiKey, username: username, password: password, preemptive: preemptive)
     }
     
     func disconnectFromServer() {
@@ -75,6 +75,87 @@ class OctoPrintRESTClient {
                     NSLog("Error doing passive login. Error: \(error!.localizedDescription)")
                 }
                 callback(result, error, response)
+            }
+        }
+    }
+    
+    /// Probes for application key workflow support
+    /// - parameters:
+    ///     - callback: success; error; http response
+    ///     - success: true if application key is supported/enabled
+    ///     - error: any error that happened making the HTTP request
+    ///     - response: HTTP response
+    func appkeyProbe(callback: @escaping (_ success: Bool, _ error: Error?, _ response: HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/plugin/appkeys/probe") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error probing for workflow support. Error: \(error!.localizedDescription)")
+                }
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+
+    /// Starts the authorization process to obtain an application key. Callback will receive the Location URL
+    /// to poll or nil if process failed to start.
+    /// - parameters:
+    ///     - app: application identifier to use for the request, case insensitive
+    ///     - callback: location; error; http response
+    ///     - location: URL for polling
+    ///     - error: any error that happened making the HTTP request
+    ///     - response: HTTP response
+    func appkeyRequest(app: String, callback: @escaping (_ location: String?, _ error: Error?, _ response: HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["app"] = app
+            
+            client.post("/plugin/appkeys/request", json: json, expected: 201) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                if response.statusCode == 201 {
+                    if #available(iOS 13.0, watchOSApplicationExtension 6.0, *) {
+                        callback(response.value(forHTTPHeaderField: "Location"), error, response)
+                    } else {
+                        // Fallback on earlier versions
+                        let location = response.allHeaderFields["Location"] as? String
+                        callback(location, error, response)
+                    }
+                } else {
+                    callback(nil, error, response)
+                }
+            }
+        }
+    }
+
+    /// Poll for decision on existing application key request.
+    /// - parameters:
+    ///     - location: URL to poll. URL was returned as an HTTP header when #appkeyRequest was executed
+    ///     - callback: api_key;  keep polling; error; http response
+    ///     - api_key: API key generated for the application
+    ///     - retry: true if we need to keep polling for a decision
+    ///     - error: any error that happened making the HTTP request
+    ///     - response: HTTP response
+    func appkeyPoll(location: String, callback: @escaping (_ api_key: String?, _ retry: Bool, _ error: Error?, _ response: HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get(location) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error polling for application key. Error: \(error!.localizedDescription)")
+                }
+                if response.statusCode == 202 {
+                    // User did not decide yet. Keep polling
+                    callback(nil, true, error, response)
+                } else if response.statusCode == 200 {
+                    // User accepted so return app key
+                    if let json = result as? NSDictionary, let api_key = json["api_key"] as? String {
+                        callback(api_key, false, error, response)
+                    }
+                } else if response.statusCode == 404 {
+                    // request has been denied or timed out
+                    callback(nil, false, error, response)
+                } else {
+                    // Some unknown error so keep polling
+                    callback(nil, true, error, response)
+                }
             }
         }
     }
@@ -508,6 +589,51 @@ class OctoPrintRESTClient {
         }
     }
 
+    // MARK: - Timelapse operations
+    
+    /// Retrieve a list of timelapses
+    func timelapses(callback: @escaping (Array<Timelapse>?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/api/timelapse") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting timelapses. Error: \(error!.localizedDescription)")
+                }
+                callback(self.parseTimelapses(json: result), error, response)
+            }
+        }
+    }
+
+    /// Delete the specified timelapse
+    /// - Parameters:
+    ///     - timelapse: Timelapse to delete
+    ///     - callback: callback to execute after HTTP request is done
+    func deleteTimelapse(timelapse: Timelapse, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient, let filename = timelapse.name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+            client.delete("/api/timelapse/\(filename)") { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                callback(requested, error, response)
+            }
+        }
+    }
+    
+    /// Download specified timelapse file
+    /// - Parameters:
+    ///     - timelapse: Timelapse to delete
+    ///     - progress: callback to execute while download is in progress
+    ///     - completion: callback to execute after download is done
+    func downloadTimelapse(timelapse: Timelapse, progress: @escaping (Int64, Int64) -> Void, completion: @escaping (Data?, Error?) -> Void) {
+        if let client = httpClient, let filename = timelapse.name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+            client.download("/api/timelapse/\(filename)", progress: progress) { (data: Data?, error: Error?) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error dowloading timelapse: \(filename). Error: \(error!.localizedDescription)")
+                }
+                completion(data, error)
+            }
+        }
+    }
+
+
     // MARK: - Custom Controls operations
     
     func customControls(callback: @escaping (Array<Container>?, Error?, HTTPURLResponse) -> Void) {
@@ -784,6 +910,34 @@ class OctoPrintRESTClient {
         }
     }
 
+    /// Returns history of System on a chip (SoC) temperatures from OctoPod plugin (if installed)
+    ///
+    /// - parameters:
+    ///     - callback: callback to execute when HTTP request is done
+    func getSoCTemperatures(callback: @escaping (Array<SoCTempHistory.Temp>?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "getSoCTemps"
+            client.post("/api/plugin/octopod", json: json, expected: 200) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting history of SoC temps from OctoPod plugin. Error: \(error!.localizedDescription)")
+                }
+                if let jsonArray = result as? NSArray {
+                    var retrieved: Array<SoCTempHistory.Temp> = Array()
+                    for case let item as NSDictionary in jsonArray {
+                        var temp = SoCTempHistory.Temp()
+                        temp.parseTemps(data: item)
+                        retrieved.append(temp)
+                    }
+                    callback(retrieved, error, response)
+                    return
+                }
+                callback(nil, error, response)
+            }
+        }
+    }
+
     // MARK: - Palette 2 Plugin
     
     /// Request Palette 2 plugin to send its status via websockets. If request was successful we get back a 200
@@ -1000,6 +1154,17 @@ class OctoPrintRESTClient {
         }
     }
 
+    // MARK: - DisplayLayerProgress Plugin
+    
+    /// Ask DisplayLayerProgress to send latest status via websockets
+    func refreshDisplayLayerProgress(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/api/plugin/DisplayLayerProgress") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+
     // MARK: - Low level operations
     
     fileprivate func connectionPost(httpClient: HTTPClient, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
@@ -1079,6 +1244,29 @@ class OctoPrintRESTClient {
                 return nil
             }
             return SystemCommand(name: name, action: action, source: source)
+        }
+        return nil
+    }
+    
+    // MARK: - Private - Timelapses functions
+    fileprivate func parseTimelapses(json: NSObject?)  -> Array<Timelapse>? {
+        if let jsonDict = json as? NSDictionary {
+            var timelapses: Array<Timelapse> = Array()
+            if let jsonArray = jsonDict["files"] as? NSArray {
+                for case let item as NSDictionary in jsonArray {
+                    if let timelapse = parseTimelapse(json: item) {
+                        timelapses.append(timelapse)
+                    }
+                }
+            }
+            return timelapses
+        }
+        return nil
+    }
+    
+    fileprivate func parseTimelapse(json: NSDictionary) -> Timelapse? {
+        if let name = json["name"] as? String, let size = json["size"] as? String, let bytes = json["bytes"] as? Int, let date = json["date"] as? String, let url = json["url"] as? String {
+            return Timelapse(name: name, size: size, bytes: bytes, date: date, url: url)
         }
         return nil
     }

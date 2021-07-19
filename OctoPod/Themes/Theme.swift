@@ -17,7 +17,7 @@ class Theme {
         func navigationTopColor(octoPrintColor: String?) -> UIColor {
             switch self {
             case .Light:
-                return UIColor(red: 247/255, green: 247/255, blue: 248/255, alpha: 1.0)
+                return UIColor(red: 218/255, green: 218/255, blue: 219/255, alpha: 1.0)
             case .Dark:
                 return UIColor(red: 53/255, green: 57/255, blue: 62/255, alpha: 1.0)
             case .Orange:
@@ -32,7 +32,7 @@ class Theme {
                     }
                 } else {
                     /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor(red: 247/255, green: 247/255, blue: 248/255, alpha: 1.0)
+                    return UIColor(red: 218/255, green: 218/255, blue: 219/255, alpha: 1.0)
                 }
             }
         }
@@ -274,6 +274,32 @@ class Theme {
             }
         }
 
+        func placeholderColor() -> UIColor {
+            switch self {
+            case .Light, .OctoPrint:
+                return UIColor(red: 61.2/255, green: 61.2/255, blue: 66.3/255, alpha: 0.3)
+            case .Dark:
+                return UIColor(red: 128/255, green: 128/255, blue: 128/255, alpha: 0.4)
+            case .Orange:
+                return UIColor(red: 128/255, green: 128/255, blue: 128/255, alpha: 0.4)
+            case .System:
+                if #available(iOS 13, *) {
+                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                        if UITraitCollection.userInterfaceStyle == .dark {
+                            /// Return the color for Dark Mode. Same as Dark color
+                            return UIColor(red: 128/255, green: 128/255, blue: 128/255, alpha: 0.4)
+                        } else {
+                            /// Return the color for Light Mode. Same as OctoPrint color
+                            return UIColor(red: 61.2/255, green: 61.2/255, blue: 66.3/255, alpha: 0.3)
+                        }
+                    }
+                } else {
+                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
+                    return UIColor(red: 61.2/255, green: 61.2/255, blue: 66.3/255, alpha: 0.3)
+                }
+            }
+        }
+
         func currentPageIndicatorTintColor() -> UIColor {
             switch self {
             case .Light, .OctoPrint:
@@ -346,11 +372,11 @@ class Theme {
                     return UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1.0)
                 } else {
                     // Unknown color so use default color
-                    return UIColor(red: 247/255, green: 247/255, blue: 248/255, alpha: 1.0)
+                    return UIColor(red: 218/255, green: 218/255, blue: 219/255, alpha: 1.0)
                 }
             } else {
                 // No printer defined so use default color
-                return UIColor(red: 247/255, green: 247/255, blue: 248/255, alpha: 1.0)
+                return UIColor(red: 218/255, green: 218/255, blue: 219/255, alpha: 1.0)
             }
         }
         
@@ -365,7 +391,7 @@ class Theme {
                 }
             } else {
                 // No printer defined so use default color
-                return UIColor(red: 247/255, green: 247/255, blue: 248/255, alpha: 1.0)
+                return UIColor.black
             }
         }
         

@@ -1,7 +1,4 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} nesmí být vyšší než ${maximumValue}";
-
-/* (No Comment) */
 "0vck5K" = "Nezdařila se žádost o řezání";
 
 /* (No Comment) */
@@ -9,6 +6,12 @@
 
 /* (No Comment) */
 "1lbZOa" = "Nezdařila se žádost pro odpojení";
+
+/* (No Comment) */
+"1qMmy1" = "Požádáno";
+
+/* (No Comment) */
+"2O3S2V" = "Vytvořit snímek";
 
 /* (No Comment) */
 "2TreiD" = "Nastavit teplotu trysky na ${temperature}";
@@ -29,13 +32,22 @@
 "3JiZye" = "Požádáno";
 
 /* (No Comment) */
+"4B08aG" = "Vypnout ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"4Tu0Kl" = "Nezdařila se žádost o spuštění příkazu";
 
 /* (No Comment) */
 "5btOXI" = "Poslední variace";
 
 /* (No Comment) */
 "5i5htv" = "Připojený";
+
+/* (No Comment) */
+"5iTPOd" = "${printer}";
 
 /* (No Comment) */
 "6b7Yce" = "Požádat Palette o řezání";
@@ -45,6 +57,9 @@
 
 /* (No Comment) */
 "6vtMLs" = "Tisk restartován";
+
+/* (No Comment) */
+"7c0KRL" = "Command Source";
 
 /* (No Comment) */
 "7eJPkN" = "Změnit teplotu komory";
@@ -57,6 +72,9 @@
 
 /* (No Comment) */
 "8tTCjD" = "Nezdařilo se zrušit tisk (${statusCode})";
+
+/* (No Comment) */
+"8uLpUQ" = "Vypnout zdroj napětí";
 
 /* (No Comment) */
 "8xHCbl" = "${printer}";
@@ -74,22 +92,31 @@
 "662LyZ" = "Restartovat tisk";
 
 /* (No Comment) */
-"817z4k" = "${displayName} nesmí být nižší než ${minimumValue}";
+"9107Xn" = "Vytvořit snímek";
 
 /* (No Comment) */
-"ADfGbr" = "${displayName} nesmí být záporné.";
-
-/* (No Comment) */
-"AdooVp" = "${displayName} nesmí být záporné.";
+"a1UDyY" = "Požádáno";
 
 /* (No Comment) */
 "ajupCt" = "Žádné dostupné informace";
 
 /* (No Comment) */
+"aTDQUI" = "Zapnout spínač Enclosure";
+
+/* (No Comment) */
 "AU4oMs" = "Požádat Palette o ping data";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Požádáno";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Zapnout zdroj napětí";
 
 /* (No Comment) */
 "BUexSx" = "Maximální variace";
@@ -98,7 +125,10 @@
 "bXGQKe" = "Zchladit tiskárnu";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} nesmí být vyšší než ${maximumValue}";
+"bXrJk0" = "Command Action";
+
+/* (No Comment) */
+"C1mTOm" = "${printer}";
 
 /* (No Comment) */
 "D0kBGr" = "Restartovat probíhající tisk";
@@ -107,13 +137,19 @@
 "D1wWxd" = "Odpojit se od Palette";
 
 /* (No Comment) */
+"DKIuk9" = "Spustit systémový příkaz";
+
+/* (No Comment) */
 "doj4NA" = "Nastavit teplotu trysky";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} nesmí být záporné.";
+"Eb3aa5" = "Nezdařilo se nastavit teplotu komory (${statusCode})";
 
 /* (No Comment) */
-"Eb3aa5" = "Nezdařilo se nastavit teplotu komory (${statusCode})";
+"Eeyifr" = "Požádáno";
+
+/* (No Comment) */
+"eKSaMC" = "Zapnout ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Zchladit tiskárnu";
@@ -137,7 +173,16 @@
 "g52Ub0" = "${printer}";
 
 /* (No Comment) */
+"Ge6TbJ" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
 "gx0D0e" = "Tisk zrušen";
+
+/* (No Comment) */
+"H21bkX" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
+"hE6yXX" = "Požádáno";
 
 /* (No Comment) */
 "hPlRC4" = "Nastavit teplotu podložky na ${temperature}";
@@ -149,6 +194,9 @@
 "ihLqc7" = "Přerušit tisk";
 
 /* (No Comment) */
+"IXiy0v" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
 "jasUIn" = "Odpojit se od Palette";
 
 /* (No Comment) */
@@ -158,13 +206,13 @@
 "JmhfgL" = "Restartovat probíhající tisk";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} nesmí být nižší než ${minimumValue}";
-
-/* (No Comment) */
 "JV2xQz" = "Připojit se k Palette";
 
 /* (No Comment) */
 "Kf7e4Y" = "Pokračovat v tisku";
+
+/* (No Comment) */
+"kHMMRT" = "${printer}";
 
 /* (No Comment) */
 "KHvUZD" = "Požádat Palette o řezání";
@@ -173,7 +221,19 @@
 "kSWyyv" = "${printer}";
 
 /* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
+"KulRl5" = "Zapnout spínač Enclosure";
+
+/* (No Comment) */
+"KxJmrF" = "Snímek";
+
+/* (No Comment) */
 "L25OHl" = "Nezdařila se žádost o připojení";
+
+/* (No Comment) */
+"lOuQ7B" = "Nezdařila se žádost o spuštění příkazu";
 
 /* (No Comment) */
 "lrRige" = "Zrušit probíhající tisk";
@@ -191,12 +251,6 @@
 "M58YA9" = "Tiskárna";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} nesmí být vyšší než ${maximumValue}";
-
-/* (No Comment) */
-"mfflxG" = "${displayName} nesmí být nižší než ${minimumValue}";
-
-/* (No Comment) */
 "N0vzJv" = "Požádat Palette o vyčištění";
 
 /* (No Comment) */
@@ -209,10 +263,28 @@
 "NL98zi" = "Zchladí podložku a trysku";
 
 /* (No Comment) */
+"Oaidbo" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
+"oe3uiM" = "Spustit systémový příkaz ${commandName}";
+
+/* (No Comment) */
+"OOldQi" = "Command Name";
+
+/* (No Comment) */
 "ovQf6Z" = "Tisk pozastaven";
 
 /* (No Comment) */
+"P6usJW" = "Vytvořit snímek";
+
+/* (No Comment) */
+"p9Vevg" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
 "P89qJr" = "Zbývající čas je ${time}";
+
+/* (No Comment) */
+"pfroH1" = "Vypnout zdroj napětí";
 
 /* (No Comment) */
 "Pj7mEV" = "Zchladit trysku";
@@ -221,16 +293,19 @@
 "PppyPP" = "Nastavit teplotu podložky";
 
 /* (No Comment) */
+"q1Oynq" = "Vypnout ovládání zdroje napětí";
+
+/* (No Comment) */
 "qLzk1S" = "Zchladit podložku";
 
 /* (No Comment) */
 "QSxXHq" = "Pozastavit probíhající tisk";
 
 /* (No Comment) */
-"R5AlTe" = "Odpojit se od Palette";
+"qwH2oF" = "Vypnout spínač Enclosure";
 
 /* (No Comment) */
-"RbyC9o" = "${displayName} nesmí být vyšší než ${maximumValue}";
+"R5AlTe" = "Odpojit se od Palette";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -257,7 +332,7 @@
 "RYurC5" = "Zchladit komoru";
 
 /* (No Comment) */
-"SK8bYR" = "${displayName} nesmí být záporné.";
+"sDV9Jm" = "Požádáno";
 
 /* (No Comment) */
 "SP4rN6" = "Nastavit teplotu trysky";
@@ -269,10 +344,19 @@
 "sRkyIL" = "Nezdařilo se restartovat tisk (${statusCode})";
 
 /* (No Comment) */
+"SZLVG3" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
+"TcPGnq" = "Vypnout spínač Enclosure";
+
+/* (No Comment) */
 "tKDODp" = "Zbývající čas tisku";
 
 /* (No Comment) */
 "UC9Zrq" = "Teplota podložky byla nastavena na ${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "Spustit systémový příkaz";
 
 /* (No Comment) */
 "uoT27A" = "Nezdařilo se nastavit teplotu podložky (${statusCode})";
@@ -287,6 +371,12 @@
 "VItjhS" = "Odpojený";
 
 /* (No Comment) */
+"Vix5SL" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
+"VKupAQ" = "Požádáno";
+
+/* (No Comment) */
 "vL7cy4" = "${printer}";
 
 /* (No Comment) */
@@ -296,28 +386,49 @@
 "vmbpr4" = "Připojit se k Palette";
 
 /* (No Comment) */
+"wabqoy" = "Nezdařila se žádost o spuštění příkazu";
+
+/* (No Comment) */
 "WI2oQf" = "Zaslat Zbývající čas";
 
 /* (No Comment) */
 "WLkRl0" = "Nezdařilo se pokračovat v tisku (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Požádáno";
+
+/* (No Comment) */
 "wYzz4m" = "Tiskárna se chladí";
+
+/* (No Comment) */
+"x8aCII" = "Požádáno";
 
 /* (No Comment) */
 "XfWmGt" = "Pokračovat v tisku";
 
 /* (No Comment) */
+"Xk9F6S" = "Zapnout zdroj napětí";
+
+/* (No Comment) */
 "xSARU0" = "Nezdařilo se pozastavit tisk (${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "Zapnout ovládání zdroje napětí";
+
+/* (No Comment) */
+"YfmWYd" = "Požádáno";
 
 /* (No Comment) */
 "YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yZeSdz" = "${printer}";
+"yMvnaP" = "Tiskárna";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} nesmí být nižší než ${minimumValue}";
+"YQLomX" = "Požádáno";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";

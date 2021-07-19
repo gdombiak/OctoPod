@@ -1,7 +1,4 @@
 /* (No Comment) */
-"0jkA5V" = "${displayName} kan ikke være høyere enn ${maximumValue}.";
-
-/* (No Comment) */
 "0vck5K" = "Kunne ikke be om å kutte";
 
 /* (No Comment) */
@@ -9,6 +6,12 @@
 
 /* (No Comment) */
 "1lbZOa" = "Kunne ikke be om å koble fra";
+
+/* (No Comment) */
+"1qMmy1" = "Forespurt";
+
+/* (No Comment) */
+"2O3S2V" = "Ta et øyeblikksbilde";
 
 /* (No Comment) */
 "2TreiD" = "Sett ekstruderens temperatur til ${temperature}";
@@ -29,13 +32,22 @@
 "3JiZye" = "Forespurt";
 
 /* (No Comment) */
+"4B08aG" = "Skru av ${label}";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"4Tu0Kl" = "Kunne ikke be om å utføre kommandoen";
 
 /* (No Comment) */
 "5btOXI" = "Siste variasjon";
 
 /* (No Comment) */
 "5i5htv" = "Tilkoblet";
+
+/* (No Comment) */
+"5iTPOd" = "${printer}";
 
 /* (No Comment) */
 "6b7Yce" = "Be Palette kutte";
@@ -45,6 +57,9 @@
 
 /* (No Comment) */
 "6vtMLs" = "Restartet";
+
+/* (No Comment) */
+"7c0KRL" = "Command Source";
 
 /* (No Comment) */
 "7eJPkN" = "Konfigurer kammerets temperatur";
@@ -57,6 +72,9 @@
 
 /* (No Comment) */
 "8tTCjD" = "Kunne ikke avbryte jobben (${statusCode})";
+
+/* (No Comment) */
+"8uLpUQ" = "Slå av PSU";
 
 /* (No Comment) */
 "8xHCbl" = "${printer}";
@@ -74,22 +92,31 @@
 "662LyZ" = "Restart jobb";
 
 /* (No Comment) */
-"817z4k" = "${displayName} kan ikke være lavere enn ${minimumValue}.";
+"9107Xn" = "Ta et øyeblikksbilde";
 
 /* (No Comment) */
-"ADfGbr" = "${displayName} kan ikke være negativ.";
-
-/* (No Comment) */
-"AdooVp" = "${displayName} kan ikke være negativ.";
+"a1UDyY" = "Forespurt";
 
 /* (No Comment) */
 "ajupCt" = "Ingen informasjon tilgjengelig";
 
 /* (No Comment) */
+"aTDQUI" = "Slå på bryteren via Enclosure";
+
+/* (No Comment) */
 "AU4oMs" = "Spør Palette pingstatistikk";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Forespurt";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Slå på PSU";
 
 /* (No Comment) */
 "BUexSx" = "Maks variasjon";
@@ -98,7 +125,10 @@
 "bXGQKe" = "Kjøl ned skriver";
 
 /* (No Comment) */
-"cp3Rvj" = "${displayName} kan ikke være høyere enn ${maximumValue}.";
+"bXrJk0" = "Command Action";
+
+/* (No Comment) */
+"C1mTOm" = "${printer}";
 
 /* (No Comment) */
 "D0kBGr" = "Restart startet utskrift";
@@ -107,13 +137,19 @@
 "D1wWxd" = "Koble fra Palette";
 
 /* (No Comment) */
+"DKIuk9" = "Utfør systemkommando";
+
+/* (No Comment) */
 "doj4NA" = "Konfigurer ekstruderens temperatur";
 
 /* (No Comment) */
-"E1iFYG" = "${displayName} kan ikke være negativ.";
+"Eb3aa5" = "Kunne ikke angi kammerets temperatur (${statusCode})";
 
 /* (No Comment) */
-"Eb3aa5" = "Kunne ikke angi kammerets temperatur (${statusCode})";
+"Eeyifr" = "Forespurt";
+
+/* (No Comment) */
+"eKSaMC" = "Slå på ${label}";
 
 /* (No Comment) */
 "f8xirF" = "Kjøl ned skriver";
@@ -137,7 +173,16 @@
 "g52Ub0" = "${printer}";
 
 /* (No Comment) */
+"Ge6TbJ" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
 "gx0D0e" = "Jobb avbrutt";
+
+/* (No Comment) */
+"H21bkX" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
+"hE6yXX" = "Forespurt";
 
 /* (No Comment) */
 "hPlRC4" = "Sett skriveflatetemperaturen til ${temperature}";
@@ -149,6 +194,9 @@
 "ihLqc7" = "Pause jobb";
 
 /* (No Comment) */
+"IXiy0v" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
 "jasUIn" = "Koble fra Palette";
 
 /* (No Comment) */
@@ -158,13 +206,13 @@
 "JmhfgL" = "Restart startet utskrift";
 
 /* (No Comment) */
-"jPI5sH" = "${displayName} kan ikke være lavere enn ${minimumValue}.";
-
-/* (No Comment) */
 "JV2xQz" = "Koble til Palette";
 
 /* (No Comment) */
 "Kf7e4Y" = "Restart startet utskrift";
+
+/* (No Comment) */
+"kHMMRT" = "${printer}";
 
 /* (No Comment) */
 "KHvUZD" = "Be Palette kutte";
@@ -173,7 +221,19 @@
 "kSWyyv" = "${printer}";
 
 /* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
+"KulRl5" = "Slå på bryteren via Enclosure";
+
+/* (No Comment) */
+"KxJmrF" = "Stillbilde";
+
+/* (No Comment) */
 "L25OHl" = "Kunne ikke be om å få forbindelse";
+
+/* (No Comment) */
+"lOuQ7B" = "Kunne ikke be om å utføre kommandoen";
 
 /* (No Comment) */
 "lrRige" = "Avbryt utskriftsjobb";
@@ -191,12 +251,6 @@
 "M58YA9" = "Skriver";
 
 /* (No Comment) */
-"MbAvWs" = "${displayName} kan ikke være høyere enn ${maximumValue}.";
-
-/* (No Comment) */
-"mfflxG" = "${displayName} kan ikke være lavere enn ${minimumValue}.";
-
-/* (No Comment) */
 "N0vzJv" = "Be Palette tømme";
 
 /* (No Comment) */
@@ -209,10 +263,28 @@
 "NL98zi" = "Kjøler ned skriveflate og ekstruder";
 
 /* (No Comment) */
+"Oaidbo" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
+"oe3uiM" = "Utfør systemkommando ${commandName}";
+
+/* (No Comment) */
+"OOldQi" = "Command Name";
+
+/* (No Comment) */
 "ovQf6Z" = "Utskrift pause";
 
 /* (No Comment) */
+"P6usJW" = "Ta et øyeblikksbilde";
+
+/* (No Comment) */
+"p9Vevg" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
 "P89qJr" = "Tid igjen ${time}";
+
+/* (No Comment) */
+"pfroH1" = "Slå av PSU";
 
 /* (No Comment) */
 "Pj7mEV" = "Kjøl ned ekstruder";
@@ -221,16 +293,19 @@
 "PppyPP" = "Konfigurer skriveflatens temperatur";
 
 /* (No Comment) */
+"q1Oynq" = "PSU kontroll Av";
+
+/* (No Comment) */
 "qLzk1S" = "Kjøl ned skriveflate";
 
 /* (No Comment) */
 "QSxXHq" = "Pause utskrift";
 
 /* (No Comment) */
-"R5AlTe" = "Koble fra Palette";
+"qwH2oF" = "Slå av bryteren via Enclosure";
 
 /* (No Comment) */
-"RbyC9o" = "${displayName} kan ikke være høyere enn ${maximumValue}.";
+"R5AlTe" = "Koble fra Palette";
 
 /* (No Comment) */
 "rFHPr4" = "${printer}";
@@ -257,7 +332,7 @@
 "RYurC5" = "Avkjøl kammeret";
 
 /* (No Comment) */
-"SK8bYR" = "${displayName} kan ikke være negativ.";
+"sDV9Jm" = "Forespurt";
 
 /* (No Comment) */
 "SP4rN6" = "Sett ekstruders temperatur";
@@ -269,10 +344,19 @@
 "sRkyIL" = "Kunne ikke starte jobben igjen (${statusCode})";
 
 /* (No Comment) */
+"SZLVG3" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
+"TcPGnq" = "Slå av bryteren via Enclosure";
+
+/* (No Comment) */
 "tKDODp" = "Resterende utskriftstid";
 
 /* (No Comment) */
 "UC9Zrq" = "Skriveflatens temperatur var satt til ${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "Utfør systemkommando";
 
 /* (No Comment) */
 "uoT27A" = "Kunne ikke sette skriveflatens temperatur (${statusCode})";
@@ -287,6 +371,12 @@
 "VItjhS" = "Frakoblet";
 
 /* (No Comment) */
+"Vix5SL" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
+"VKupAQ" = "Forespurt";
+
+/* (No Comment) */
 "vL7cy4" = "${printer}";
 
 /* (No Comment) */
@@ -296,28 +386,49 @@
 "vmbpr4" = "Koble til Palette";
 
 /* (No Comment) */
+"wabqoy" = "Kunne ikke be om å utføre kommandoen";
+
+/* (No Comment) */
 "WI2oQf" = "Returnerer utskriftstid igjen";
 
 /* (No Comment) */
 "WLkRl0" = "Kunne ikke fortsette utskrift (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Forespurt";
+
+/* (No Comment) */
 "wYzz4m" = "Skriver kjøler ned";
+
+/* (No Comment) */
+"x8aCII" = "Forespurt";
 
 /* (No Comment) */
 "XfWmGt" = "Restart startet utskrift";
 
 /* (No Comment) */
+"Xk9F6S" = "Slå på PSU";
+
+/* (No Comment) */
 "xSARU0" = "Kunne ikke pause jobben (${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "PSU kontroll På";
+
+/* (No Comment) */
+"YfmWYd" = "Forespurt";
 
 /* (No Comment) */
 "YGxUII" = "${printer}";
 
 /* (No Comment) */
-"yZeSdz" = "${printer}";
+"yMvnaP" = "Skriver";
 
 /* (No Comment) */
-"ZfIsqj" = "${displayName} kan ikke være lavere enn ${minimumValue}.";
+"YQLomX" = "Forespurt";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
 
 /* (No Comment) */
 "ZFUAR8" = "${printer}";

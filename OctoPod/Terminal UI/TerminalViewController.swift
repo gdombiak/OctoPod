@@ -1,12 +1,15 @@
 import UIKit
 import SafariServices  // Used for opening browser in-app
 
-class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConfigurationDelegate, WatchSessionManagerDelegate, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
+class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConfigurationDelegate, DefaultPrinterManagerDelegate, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate {
+
+    private static let TERMINAL_SUPPRESS_TEMP = "TERMINAL_SUPPRESS_TEMP"
+    private static let TERMINAL_SUPPRESS_SD = "TERMINAL_SUPPRESS_SD"
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-    let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
+    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
 
     @IBOutlet weak var refreshEnabledTextLabel: UILabel!
     @IBOutlet weak var gcodeTextLabel: UILabel!
@@ -22,6 +25,10 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     @IBOutlet weak var tempFilterButton: UIButton!
     @IBOutlet weak var sdFilterButton: UIButton!
     
+    // Gestures to switch between printers
+    var swipeLeftGestureRecognizer : UISwipeGestureRecognizer!
+    var swipeRightGestureRecognizer : UISwipeGestureRecognizer!
+
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -47,9 +54,23 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         bar.items = [b1, flexSpace, b2, flexSpace, b3, flexSpace, b4, flexSpace, b5, flexSpace, b6, flexSpace, b7, flexSpace, b8, flexSpace, b9, flexSpace, b0]
         bar.sizeToFit()
         gcodeField.inputAccessoryView = bar
+        
+        // Restore last saved settings
+        if UserDefaults.standard.bool(forKey: TerminalViewController.TERMINAL_SUPPRESS_TEMP) {
+            toggleTemperatureFilter(self)
+        }
+        if UserDefaults.standard.bool(forKey: TerminalViewController.TERMINAL_SUPPRESS_SD) {
+            toggleSDFilter(self)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if #available(iOS 13.0, *) {
+            // Use monospace font so that tables (eg M122) look better (still not perfect but better)
+            // Use whatever point size of callout so we can respect Accessibility configuration
+            terminalTextView.font = UIFont.monospacedDigitSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .callout).pointSize, weight: .regular)
+        }
+
         terminalTextView.layer.borderWidth = 1
         terminalTextView.layer.borderColor = UIColor.black.cgColor
         themeLabels()
@@ -63,13 +84,15 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         octoprintClient.delegates.append(self)
         // Listen to changes when app is locked or unlocked
         appConfiguration.delegates.append(self)
-        // Listen to changes coming from Apple Watch
-        watchSessionManager.delegates.append(self)
-        
+        // Listen to changes to default printer
+        defaultPrinterManager.delegates.append(self)
+
         // Hide commands history table
         showCommandsHistory(show: false)
         // Apply theme to commands history table
         ThemeUIUtils.applyTheme(table: commandsHistoryTable, staticCells: false)
+        // Add gestures to capture swipes and taps on navigation bar
+        addNavBarGestures()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -77,8 +100,10 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         octoprintClient.remove(octoPrintClientDelegate: self)
         // Stop listening to changes when app is locked or unlocked
         appConfiguration.remove(appConfigurationDelegate: self)
-        // Stop listening to changes coming from Apple Watch
-        watchSessionManager.remove(watchSessionManagerDelegate: self)
+        // Stop listening to changes to default printer
+        defaultPrinterManager.remove(defaultPrinterManagerDelegate: self)
+        // Remove gestures that capture swipes and taps on navigation bar
+        removeNavBarGestures()
     }
 
     override func didReceiveMemoryWarning() {
@@ -111,8 +136,22 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             gcodeField.endEditing(true)
             // Hide history of sent commands
             showCommandsHistory(show: false)
+
+            // Format the command by uppercasing the tokens except possible label values
+            let commandTokens = text.split(separator: " ")
+
+            // Convert to uppercase any words without = or the key part before = and leave the rest as is
+            let commandAry : [String] = commandTokens.map {
+                if $0.contains("=") {
+                    var tokens = $0.components(separatedBy: "=")
+                    tokens[0] = tokens[0].uppercased()
+                    return tokens.joined(separator: "=")
+                } else {
+                    return $0.uppercased()
+                }
+            }
             // Send command to OctoPrint
-            let command = text.uppercased()
+            let command = commandAry.joined(separator: " ")
             octoprintClient.sendCommand(gcode: command) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 if !requested {
                     // Handle error
@@ -142,11 +181,15 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             octoprintClient.terminal.filters.remove(at: index)
             // Update button label
             tempFilterButton.setTitle(NSLocalizedString("Suppress temp", comment: "Suppress temp messages in the terminal"), for: .normal)
+            // Remember setting in case app gets killed or phone restarted
+            UserDefaults.standard.set(false, forKey: TerminalViewController.TERMINAL_SUPPRESS_TEMP)
         } else {
             // Add temperature filter
             octoprintClient.terminal.filters.append(Terminal.Filter.temperature)
             // Update button label
             tempFilterButton.setTitle(NSLocalizedString("Include temp", comment: "Include temp messages in the terminal"), for: .normal)
+            // Remember setting in case app gets killed or phone restarted
+            UserDefaults.standard.set(true, forKey: TerminalViewController.TERMINAL_SUPPRESS_TEMP)
         }
         self.updateTerminalLogs()
     }
@@ -157,11 +200,15 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             octoprintClient.terminal.filters.remove(at: index)
             // Update button label
             sdFilterButton.setTitle(NSLocalizedString("Suppress SD", comment: "Suppress SD messages in the terminal"), for: .normal)
+            // Remember setting in case app gets killed or phone restarted
+            UserDefaults.standard.set(false, forKey: TerminalViewController.TERMINAL_SUPPRESS_SD)
         } else {
             // Add temperature filter
             octoprintClient.terminal.filters.append(Terminal.Filter.sd)
             // Update button label
             sdFilterButton.setTitle(NSLocalizedString("Include SD", comment: "Include SD messages in the terminal"), for: .normal)
+            // Remember setting in case app gets killed or phone restarted
+            UserDefaults.standard.set(true, forKey: TerminalViewController.TERMINAL_SUPPRESS_SD)
         }
         self.updateTerminalLogs()
     }
@@ -284,18 +331,6 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
             }
         }
     }
-    
-    func websocketConnected() {
-    }
-    
-    func websocketConnectionFailed(error: Error) {
-    }
-    
-    func notificationAboutToConnectToServer() {
-    }
-    
-    func handleConnectionError(error: Error?, response: HTTPURLResponse) {
-    }
 
     // MARK: - AppConfigurationDelegate
     
@@ -305,9 +340,8 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         }
     }
     
-    // MARK: - WatchSessionManagerDelegate
+    // MARK: - DefaultPrinterManagerDelegate
     
-    // Notification that a new default printer has been selected from the Apple Watch app
     func defaultPrinterChanged() {
         DispatchQueue.main.async {
             self.refreshNewSelectedPrinter()
@@ -320,6 +354,36 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         sendGCode(sender)
     }
     
+    // MARK: - Private - Navigation Bar Gestures
+
+    fileprivate func addNavBarGestures() {
+        // Add gesture when we swipe from right to left
+        swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
+        swipeLeftGestureRecognizer.direction = .left
+        navigationController?.navigationBar.addGestureRecognizer(swipeLeftGestureRecognizer)
+        swipeLeftGestureRecognizer.cancelsTouchesInView = false
+        
+        // Add gesture when we swipe from left to right
+        swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
+        swipeRightGestureRecognizer.direction = .right
+        navigationController?.navigationBar.addGestureRecognizer(swipeRightGestureRecognizer)
+        swipeRightGestureRecognizer.cancelsTouchesInView = false
+    }
+
+    fileprivate func removeNavBarGestures() {
+        // Remove gesture when we swipe from right to left
+        navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
+        
+        // Remove gesture when we swipe from left to right
+        navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
+    }
+
+    @objc fileprivate func navigationBarSwiped(_ gesture: UIGestureRecognizer) {
+        // Change default printer
+        let direction: DefaultPrinterManager.SwipeDirection = gesture == swipeLeftGestureRecognizer ? .left : .right
+        defaultPrinterManager.navigationBarSwiped(direction: direction)
+    }
+
     // MARK: - Private functions
 
     fileprivate func configureBasedOnAppLockedState() {
@@ -369,6 +433,7 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         
         refreshEnabledTextLabel.textColor = textLabelColor
         gcodeTextLabel.textColor = textLabelColor
+        gcodeField.textColor = textColor
         popularGCodeButton.tintColor = tintColor
         
         terminalTextView.backgroundColor = theme.cellBackgroundColor()

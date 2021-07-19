@@ -13,22 +13,12 @@ OctoPod is a free open source iPhone/iPad app for OctoPrint.
 
 ### Download Xcode
 
-You will need to install Swift 4.0 and Xcode 9.3 or newer.
-
-#### CocoaPods
-
-OctoPod uses [CocoaPods](http://cocoapods.org/) to manage third party libraries.
-
-Trying to build the project by itself (_OctoPod.xcodeproj_) after launching will result in
-an error, as the resources managed by CocoaPods are not included. To install and configure the
-third party libraries just run the following in the command line:
-
-`pod install`
+You will need to install Swift 5.0 and Xcode 11.5 or newer.
 
 ### Open Xcode
 
-You can open the project by double clicking on _OctoPod.xcworkspace_ file, or launching Xcode and
-choose File > Open and browse to _OctoPod.xcworkspace_.
+You can open the project by double clicking on _OctoPod.xcodeproj_ file, or launching Xcode and
+choose File > Open and browse to _OctoPod.xcodeproj_.
 
 ## License
 

@@ -132,6 +132,33 @@ class IntentsDonations {
         }
     }
     
+    static func donateTakeSnapshot(printer: Printer) {
+        // Intent only available on iOS 14 or newer
+        if #available(iOS 14.0, *) {
+            let intent = TakeSnapshotIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Take snapshot", comment: "Siri suggested phrase") + " " + printer.name, printer.name)
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "Snapshot")
+        }
+    }
+    
+    static func donateSystemCommand(printer: Printer, action: String, source: String, name: String) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = SystemCommandIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            intent.commandAction = action
+            intent.commandSource = source
+            intent.commandName = name
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Execute System Command", comment: "Siri suggested phrase"), printer.name)
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "SystemCommand")
+        }
+    }
+    
     /// Suggest Siri shortcuts for the printer. These are intents created when a Printer is added or modified
     /// The other donations are done based on user interaction with the app
     static func donatePrinterIntents(printer: Printer) {
@@ -146,6 +173,7 @@ class IntentsDonations {
         donateRestartJob(printer: printer)
         // Remaining print time
         donateRemainingTime(printer: printer)
+        donateTakeSnapshot(printer: printer)
     }
 
     // Do a one time initialization for existing printers. This means that intents will
@@ -163,6 +191,60 @@ class IntentsDonations {
             donatePrinterIntents(printer: printer)
         }
         defaults.set(true, forKey: DONATIONS_INITIALIZED)
+    }
+    
+    // MARK: - Donate Enclosure Plugin Intents
+    
+    static func donateEnclosureTurnOn(printer: Printer, switchLabel: String) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = EnclosureTurnOnIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            intent.label = switchLabel
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn on Enclosure switch", comment: "Siri suggested phrase"), printer.name)
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "EnclosureTurnOn")
+        }
+    }
+    
+    static func donateEnclosureTurnOff(printer: Printer, switchLabel: String) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = EnclosureTurnOffIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            intent.label = switchLabel
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn off Enclosure switch", comment: "Siri suggested phrase"), printer.name)
+
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "EnclosureTurnOff")
+        }
+    }
+    
+    // MARK: - Donate PSU Control Plugin Intents
+    
+    static func donatePSUControlTurnOn(printer: Printer) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = PSUControlOnIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn on PSU", comment: "Siri suggested phrase"), printer.name)
+            
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "PSUControlTurnOn")
+        }
+    }
+    
+    static func donatePSUControlTurnOff(printer: Printer) {
+        // Intent only available on iOS 12 or newer
+        if #available(iOS 12.0, *) {
+            let intent = PSUControlOffIntent()
+            intent.printer = printer.name
+            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn off PSU", comment: "Siri suggested phrase"), printer.name)
+
+            donateIntent(intent: intent, printer: printer, identifierSuffix: "PSUControlTurnOff")
+        }
     }
     
     // MARK: - Delete Intents

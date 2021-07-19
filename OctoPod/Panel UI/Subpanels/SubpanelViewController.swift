@@ -11,4 +11,13 @@ protocol SubpanelViewController {
     /// Returns the position where this VC should appear in SubpanelsViewController's UIPageViewController
     /// SubpanelsViewController's will sort subpanels by this number when being displayed
     func position() -> Int
+    
+    /// Notification that temperature history has changed
+    func tempHistoryChanged()
+}
+
+// Make everything optional so implementors of this protocol are not forced to implement everything
+extension SubpanelViewController {
+    
+    func tempHistoryChanged() {}
 }

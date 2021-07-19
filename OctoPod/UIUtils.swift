@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import AVKit
 
 class UIUtils {
 
@@ -42,24 +43,33 @@ class UIUtils {
         } else if screenHeight == 812 {
             // iPhone X, Xs
             return (281, 0, 211, 0)
+        } else if screenHeight == 844 {
+            // iPhone 12 and 12 Pro
+            return (292, 0, 219, 0)
         } else if screenHeight == 896 {
             // iPhone Xr, Xs Max
             return (311, 0, 233, 0)
+        } else if screenHeight == 926 {
+            // iPhone 12 Pro Max
+            return (321, 0, 241, 0)
         } else if screenHeight == 1024 {
             // iPad (9.7-inch)
-            return (571, 348, 432, 348)
+            return (575, 348, 432, 348)
         } else if screenHeight == 1080 {
             // iPad (7th generation) (2019)
-            return (608, 414, 457, 414)
+            return (607, 414, 457, 414)
         } else if screenHeight == 1112 {
             // iPad (10.5-inch)
             return (619, 414, 469, 414)
+        } else if screenHeight == 1180 {
+            // iPad Air (4th Gen) (2020)
+            return (615, 414, 461, 414)
         } else if screenHeight == 1194 {
             // iPad Pro (11 inch)
             return (626, 414, 469, 414)
         } else if screenHeight >= 1366 {
             // iPad (12.9-inch)
-            return (763, 604, 576, 604)
+            return (768, 604, 576, 604)
         } else {
             // Unknown device so use default value
             return (281, 0, 211, 0)
@@ -73,7 +83,7 @@ class UIUtils {
         return ""
     }
     
-    // Converts number of seconds into a string that represents aproximate time (e.g. About 23h 10m)
+    /// Converts number of seconds into a string that represents aproximate time (e.g. About 23h 10m)
     static func secondsToEstimatedPrintTime(seconds: Double?) -> String {
         if seconds == nil || seconds == 0 {
             return ""
@@ -83,6 +93,17 @@ class UIUtils {
         formatter.unitsStyle = .brief
         formatter.includesApproximationPhrase = true
         formatter.allowedUnits = [ .day, .hour, .minute ]
+        return formatter.string(from: duration)!
+    }
+    
+    /// Converts number of seconds into a string that represents time (e.g. 23h 10m)
+    /// - parameter seconds: seconds since print started
+    static func secondsToPrintTime(seconds: Int) -> String {
+        let duration = TimeInterval(seconds)
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .brief
+        formatter.allowedUnits = [ .day, .hour, .minute, .second ]
+        formatter.zeroFormattingBehavior = [ .default ]
         return formatter.string(from: duration)!
     }
     
@@ -134,6 +155,14 @@ class UIUtils {
             return ""
         }
     }
+    
+    static func isHLS(url: String) -> Bool {
+        return url.hasSuffix(".m3u8")
+    }
+    
+    static func getAVAssetResourceLoaderDelegate(username: String, password: String) -> AVAssetResourceLoaderDelegate {
+        return ResourceLoadingDelegate(username: username, password: password)
+    }    
 }
 
 extension UIImage {
@@ -176,4 +205,82 @@ extension Date {
         let weeks = secondsAgo / week
         return weeks == 1 ? NSLocalizedString("1 week ago", comment: "") :  String(format: NSLocalizedString("weeks ago", comment: ""), weeks)
     }
+}
+
+extension Array {
+    public subscript(safeIndex index: Int) -> Element? {
+        guard index >= 0, index < endIndex else {
+            return nil
+        }
+
+        return self[index]
+    }
+}
+
+/// Custom AVAssetResourceLoaderDelegate for handing authentication
+class ResourceLoadingDelegate:NSObject, AVAssetResourceLoaderDelegate {
+    let username: String
+    let password: String
+    
+    init(username: String, password: String) {
+        self.username = username
+        self.password = password
+    }
+    
+    func resourceLoader(_ resourceLoader: AVAssetResourceLoader, shouldWaitForResponseTo authenticationChallenge: URLAuthenticationChallenge) -> Bool {
+        if let sender = authenticationChallenge.sender {
+            if authenticationChallenge.previousFailureCount > 0 {
+                sender.cancel(authenticationChallenge)
+                return false
+            } else {
+                let credential = URLCredential(user: username, password: password, persistence: .forSession)
+                sender.use(credential, for: authenticationChallenge)
+                return true
+            }
+        }
+        return false
+    }
+}
+
+extension Data {
+
+    /// Get the current directory
+    ///
+    /// - Returns: the Current directory in NSURL
+    func getDocumentsDirectory() -> NSString {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory as NSString
+    }
+
+    /// Data into file
+    ///
+    /// - Parameters:
+    ///   - fileName: the Name of the file you want to write
+    /// - Returns: Returns the URL where the new file is located in NSURL
+    func dataToFile(fileName: String) -> NSURL? {
+
+        // Make a constant from the data
+        let data = self
+
+        // Make the file path (with the filename) where the file will be loacated after it is created
+        let filePath = getDocumentsDirectory().appendingPathComponent(fileName)
+
+        do {
+            // Write the file from data into the filepath (if there will be an error, the code jumps to the catch block below)
+            try data.write(to: URL(fileURLWithPath: filePath))
+
+            // Returns the URL where the new file is located in NSURL
+            return NSURL(fileURLWithPath: filePath)
+
+        } catch {
+            // Prints the localized description of the error from the do block
+            print("Error writing the file: \(error.localizedDescription)")
+        }
+
+        // Returns nil if there was an error in the do-catch -block
+        return nil
+
+    }
+
 }

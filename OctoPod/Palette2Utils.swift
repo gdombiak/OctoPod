@@ -27,7 +27,8 @@ class Palette2Utils {
     }
 
     static func pingPongVarianceStats(history: Array<Dictionary<String,Any>>, reversed: Bool) -> (max: String, average: String, min: String)? {
-        var maxVariance = 0.0, totalVariance = 0.0, countVariance = 0.0, minVariance = 0.0
+        var maxVariance = 0.0, totalVariance = 0.0, countVariance = 0.0
+        var minVariance: Double?
         for (index, entry) in history.enumerated() {
             var variance: Double?
             if let percent = entry["percent"] as? Double {
@@ -46,13 +47,16 @@ class Palette2Utils {
                     if maxVariance < variance {
                         maxVariance = variance
                     }
-                    if minVariance == 0 || minVariance > variance {
+                    if minVariance == nil || minVariance! > variance {
                         minVariance = variance
                     }
                 }
             }
         }
+        if minVariance == nil {
+            minVariance = 0.0
+        }
         let averageVariance = countVariance > 0 ? totalVariance / countVariance : 0.0
-        return ("\(String(format: "%.2f", maxVariance))%", "\(String(format: "%.2f", averageVariance))%", "\(String(format: "%.2f", minVariance))%")
+        return ("\(String(format: "%.2f", maxVariance))%", "\(String(format: "%.2f", averageVariance))%", "\(String(format: "%.2f", minVariance!))%")
     }
 }

@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDelegate {
+class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDelegate, OctoPrintSettingsDelegate {
     @Published var printerStatus: String = "--"
     @Published var printingFile: String = "--"
     @Published var progress: String = "--%"
@@ -21,9 +21,12 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     @Published var cancelling: Bool?
     @Published var lastKnownPrintFile: PrintFile?
 
+    let tvPrinterManager: TVPrinterManager
     var octoPrintClient: OctoPrintClient!
+    var printerName: String?
     
-    init() {
+    init(tvPrinterManager: TVPrinterManager) {
+        self.tvPrinterManager = tvPrinterManager
         let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
 
         self.octoPrintClient = OctoPrintClient(printerManager: printerManager)
@@ -34,6 +37,9 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
 
         // Listen to changes to OctoPrint Plugin messages
         octoPrintClient.octoPrintPluginsDelegates.append(self)
+
+        // Listen to changes to OctoPrint Settings (for camera events)
+        octoPrintClient.octoPrintSettingsDelegates.append(self)
     }
     
     func clearValues() {
@@ -60,6 +66,7 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     // MARK: - Connection handling
 
     func connectToServer(printer: Printer) {
+        printerName = printer.name
         octoPrintClient.connectToServer(printer: printer)        
     }
 
@@ -176,6 +183,26 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
                     self.layer = "\(currentLayer) / \(totalLayer)"
                 }
             }
+        }
+    }
+
+    // MARK: - OctoPrintSettingsDelegate
+    
+    func cameraOrientationChanged(newOrientation: UIImage.Orientation) {
+        if let printerName = printerName {
+            tvPrinterManager.cameraChanged(printerName: printerName)
+        }
+    }
+    
+    func cameraPathChanged(streamUrl: String) {
+        if let printerName = printerName {
+            tvPrinterManager.cameraChanged(printerName: printerName)
+        }
+    }
+    
+    func camerasChanged(camerasURLs: Array<String>) {
+        if let printerName = printerName {
+            tvPrinterManager.cameraChanged(printerName: printerName)
         }
     }
 
