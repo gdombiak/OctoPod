@@ -2,7 +2,7 @@ import UIKit
 
 private let reuseIdentifier = "PrinterCell"
 
-class PrintersDashboardViewController: UICollectionViewController {
+class PrintersDashboardViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     var printers: Array<PrinterObserver> = []
@@ -72,7 +72,19 @@ class PrintersDashboardViewController: UICollectionViewController {
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
+    // MARK: UICollectionViewDelegateFlowLayout
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
+        let portraitWidth = devicePortrait ? UIScreen.main.bounds.width : UIScreen.main.bounds.height
+        if portraitWidth <= 320 {
+            // Set cell width to fit in SE screen
+            return CGSize(width: 265, height: 205)
+        } else {
+            // Set cell width to fit in any screen other than SE screen
+            return CGSize(width: 300, height: 205)
+        }
+    }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let printer = printerManager.getPrinterByName(name: printers[indexPath.row].printerName) {

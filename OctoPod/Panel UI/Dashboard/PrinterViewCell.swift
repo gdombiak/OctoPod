@@ -24,17 +24,4 @@ class PrinterViewCell: UICollectionViewCell {
  
     @IBOutlet weak var printerLabelWidthConstraint: NSLayoutConstraint!
 
-    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
-        super.apply(layoutAttributes)
-
-        let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
-        let portraitWidth = devicePortrait ? UIScreen.main.bounds.width : UIScreen.main.bounds.height
-        if portraitWidth <= 320 {
-            // Set cell width (based on this field) to fit in SE screen
-            printerLabelWidthConstraint.constant = 265
-        } else {
-            // Set cell width (based on this field) to fit in any screen other than SE screen
-            printerLabelWidthConstraint.constant = 300
-        }
-    }
 }

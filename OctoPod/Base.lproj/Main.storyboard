@@ -435,7 +435,6 @@
                                     <outlet property="printTimeTextLabel" destination="BrM-2D-Rbd" id="SAD-gm-AEz"/>
                                     <outlet property="printedTextLabel" destination="ESw-zm-5bN" id="zLu-60-oix"/>
                                     <outlet property="printerLabel" destination="Hbt-Tj-ZZJ" id="SOJ-BF-2HC"/>
-                                    <outlet property="printerLabelWidthConstraint" destination="6CT-Gp-Jso" id="nsI-o0-xHw"/>
                                     <outlet property="printerStatusLabel" destination="taf-JE-egr" id="U7M-O3-UAI"/>
                                     <outlet property="printerStatusTextLabel" destination="Uop-QL-yoT" id="9hk-zj-5Vj"/>
                                     <outlet property="progressLabel" destination="4ls-BU-eMv" id="H6F-Hp-GeY"/>
