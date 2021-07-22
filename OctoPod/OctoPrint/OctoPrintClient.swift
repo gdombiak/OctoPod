@@ -725,6 +725,11 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     // MARK: - Enclosure Plugin
     
+    /// Request enclosure plugin to refresh UI. This will cause plugin to send values for input and output elements
+    func refreshEnclosureStatus(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.refreshEnclosureStatus(callback: callback)
+    }
+    
     /// Returns the queried GPIO value for the specified GPIO output
     func getEnclosureGPIOStatus(index_id: Int16, callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.getEnclosureGPIOStatus(index_id: index_id, callback: callback)
@@ -738,6 +743,11 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     /// Change PWM value via Enclosure plugin
     func changeEnclosurePWM(index_id: Int16, dutyCycle: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         octoPrintRESTClient.changeEnclosurePWM(index_id: index_id, dutyCycle: dutyCycle, callback: callback)
+    }
+    
+    /// Change temperature or humidity control value via Enclosure plugin
+    func changeEnclosureTempControl(index_id: Int16, temp: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.changeEnclosureTempControl(index_id: index_id, temp: temp, callback: callback)
     }
 
     // MARK: - PrusaSlicer Thumbnails & Ultimaker Format Package Plugins

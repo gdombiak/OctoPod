@@ -217,7 +217,7 @@ class Printer: NSManagedObject {
         if let outputs = self.enclosureOutputs {
             for output in outputs {
                 // Only add supported types of outputs
-                if output.type == "regular" || output.type == "pwm" {
+                if output.type == "regular" || output.type == "pwm" || output.type == "temp_hum_control" {
                     result.append(output)
                 }
             }

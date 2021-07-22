@@ -126,6 +126,8 @@
 		3D6350F121082E07001C10F7 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F021082E07001C10F7 /* AppearanceViewController.swift */; };
 		3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F221083BE0001C10F7 /* TabBarController.swift */; };
 		3D6350F721084334001C10F7 /* ThemedDynamicUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F621084334001C10F7 /* ThemedDynamicUITableViewController.swift */; };
+		3D65D11226A92CE500A9F7C1 /* LabelAndFieldViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65D11126A92CE500A9F7C1 /* LabelAndFieldViewCell.swift */; };
+		3D65D11426A92F0300A9F7C1 /* EnclosureTempControlViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65D11326A92F0300A9F7C1 /* EnclosureTempControlViewCell.swift */; };
 		3D660C0325461E58003B7C9C /* DashboardJobDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D660BF825461E52003B7C9C /* DashboardJobDetailsView.swift */; };
 		3D669E1322FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D669E1222FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift */; };
 		3D669E1422FBB734002C68C1 /* Plugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE3FE6C2154B9CE000D7D2A /* Plugins.swift */; };
@@ -660,6 +662,8 @@
 		3D6570DD218510DB00BD3A7B /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Interface.strings; sourceTree = "<group>"; };
 		3D6570DF218510DD00BD3A7B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Interface.strings; sourceTree = "<group>"; };
 		3D6570E1218510DE00BD3A7B /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Interface.strings; sourceTree = "<group>"; };
+		3D65D11126A92CE500A9F7C1 /* LabelAndFieldViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAndFieldViewCell.swift; sourceTree = "<group>"; };
+		3D65D11326A92F0300A9F7C1 /* EnclosureTempControlViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnclosureTempControlViewCell.swift; sourceTree = "<group>"; };
 		3D660BF825461E52003B7C9C /* DashboardJobDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DashboardJobDetailsView.swift; path = OctoPodWidget14/DashboardJobDetailsView.swift; sourceTree = SOURCE_ROOT; };
 		3D669E1222FBB4F2002C68C1 /* PaletteConnectIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteConnectIntentHandler.swift; sourceTree = "<group>"; };
 		3D669E1522FBB7F5002C68C1 /* PaletteDisconnectIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteDisconnectIntentHandler.swift; sourceTree = "<group>"; };
@@ -1281,6 +1285,8 @@
 				3DB932D02447FADB00A154FF /* EnclosureGPIOViewCell.swift */,
 				3DB932D22448101A00A154FF /* EnclosurePWMViewCell.swift */,
 				3DC6DB3624555A380091E548 /* FilamentSelectionViewCell.swift */,
+				3D65D11126A92CE500A9F7C1 /* LabelAndFieldViewCell.swift */,
+				3D65D11326A92F0300A9F7C1 /* EnclosureTempControlViewCell.swift */,
 			);
 			path = "UI Components";
 			sourceTree = "<group>";
@@ -2267,6 +2273,7 @@
 				3DAD2DDC21816D62004A4223 /* OctoPrintRESTClient.swift in Sources */,
 				3D071A14212682C1005301B4 /* OctoPrintPluginsDelegate.swift in Sources */,
 				3D36DD7A210300C500884BD6 /* TerminalViewController.swift in Sources */,
+				3D65D11426A92F0300A9F7C1 /* EnclosureTempControlViewCell.swift in Sources */,
 				3D88C3E72193F17800BC84DD /* CancelObjectViewController.swift in Sources */,
 				3DDB5FCB22D0F45E005F8A9F /* PluginUpdatesManager.swift in Sources */,
 				3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */,
@@ -2335,6 +2342,7 @@
 				3DF6D59B23006EE800E0AFEE /* ScanInstallationsViewController.swift in Sources */,
 				3D693C5F214CEC0600823903 /* CloudKitPrinterManager.swift in Sources */,
 				3D6F74522443FB8A006847B6 /* EnclosureInput.swift in Sources */,
+				3D65D11226A92CE500A9F7C1 /* LabelAndFieldViewCell.swift in Sources */,
 				3D92E6C821213B2400F58BA5 /* TempHistory.swift in Sources */,
 				3DFA8074210E30C100B5BFAA /* CloudFilesManager.swift in Sources */,
 				3D7C884421524426009FECEF /* DevicesSyncViewController.swift in Sources */,
