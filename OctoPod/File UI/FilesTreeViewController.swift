@@ -168,24 +168,26 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let files = searching ? searchedFiles : self.files
-        if indexPath.row < files.count {
-            return !files[indexPath.row].isFolder() && !appConfiguration.appLocked()
-        }
-        return false
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            showConfirm(message: NSLocalizedString("Do you want to delete this file?", comment: "")) { (UIAlertAction) in
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Delete action"), handler: { (action, view, completionHandler) in
+            self.showConfirm(message: NSLocalizedString("Do you want to delete this file?", comment: "")) { (UIAlertAction) in
                 // Delete selected file
                 self.deleteRow(forRowAt: indexPath)
                 self.tableView.reloadData()
+                completionHandler(true)
             } no: { (UIAlertAction) in
-                // Do nothing
+                completionHandler(false)
             }
+          })
+        if #available(iOS 13.0, *) {
+            deleteAction.image = UIImage(systemName: "trash")
+        } else {
+            // Fallback on earlier versions
         }
+
+        let files = searching ? searchedFiles : self.files
+        let canDelete = indexPath.row < files.count && !files[indexPath.row].isFolder() && !appConfiguration.appLocked()
+        return UISwipeActionsConfiguration(actions: !canDelete ? [] : [deleteAction])
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

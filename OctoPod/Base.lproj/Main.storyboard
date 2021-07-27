@@ -435,7 +435,6 @@
                                     <outlet property="printTimeTextLabel" destination="BrM-2D-Rbd" id="SAD-gm-AEz"/>
                                     <outlet property="printedTextLabel" destination="ESw-zm-5bN" id="zLu-60-oix"/>
                                     <outlet property="printerLabel" destination="Hbt-Tj-ZZJ" id="SOJ-BF-2HC"/>
-                                    <outlet property="printerLabelWidthConstraint" destination="6CT-Gp-Jso" id="nsI-o0-xHw"/>
                                     <outlet property="printerStatusLabel" destination="taf-JE-egr" id="U7M-O3-UAI"/>
                                     <outlet property="printerStatusTextLabel" destination="Uop-QL-yoT" id="9hk-zj-5Vj"/>
                                     <outlet property="progressLabel" destination="4ls-BU-eMv" id="H6F-Hp-GeY"/>
@@ -7155,7 +7154,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YRM-Qp-1Ho">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YRM-Qp-1Ho">
                                             <rect key="frame" x="279" y="4" width="80" height="34.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="Gcz-0K-cRi"/>
@@ -7180,6 +7179,46 @@
                                 <connections>
                                     <outlet property="pwmField" destination="YRM-Qp-1Ho" id="YKy-Es-hXT"/>
                                     <outlet property="titleLabel" destination="Qgg-OP-PZ0" id="ecw-WA-D0C"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="temp_hum_control_cell" id="Zaf-A2-yjE" customClass="EnclosureTempControlViewCell" customModule="OctoPod" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="138.5" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zaf-A2-yjE" id="FA7-9s-OQn">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5zR-aR-j4c">
+                                            <rect key="frame" x="279" y="5" width="80" height="34.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="5gv-82-aWX"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" returnKeyType="go" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                            <connections>
+                                                <action selector="pwmKeyboardChanged:" destination="Zaf-A2-yjE" eventType="editingChanged" id="5at-jd-fMp"/>
+                                            </connections>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBw-xB-Lgd">
+                                            <rect key="frame" x="16" y="11" width="255" height="22"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="5zR-aR-j4c" firstAttribute="leading" secondItem="JBw-xB-Lgd" secondAttribute="trailing" constant="8" id="5Yu-W5-z2o"/>
+                                        <constraint firstItem="5zR-aR-j4c" firstAttribute="top" secondItem="FA7-9s-OQn" secondAttribute="top" constant="5" id="bl6-DS-UXY"/>
+                                        <constraint firstAttribute="trailing" secondItem="5zR-aR-j4c" secondAttribute="trailing" constant="16" id="e5W-Qr-60q"/>
+                                        <constraint firstAttribute="bottom" secondItem="5zR-aR-j4c" secondAttribute="bottom" constant="4" id="ixC-f9-h3w"/>
+                                        <constraint firstItem="JBw-xB-Lgd" firstAttribute="top" secondItem="FA7-9s-OQn" secondAttribute="top" constant="11" id="pCY-zE-aGz"/>
+                                        <constraint firstItem="JBw-xB-Lgd" firstAttribute="leading" secondItem="FA7-9s-OQn" secondAttribute="leading" constant="16" id="wCH-wf-CQk"/>
+                                        <constraint firstAttribute="bottom" secondItem="JBw-xB-Lgd" secondAttribute="bottom" constant="10.5" id="zxH-QZ-AOW"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="pwmField" destination="5zR-aR-j4c" id="B96-Iu-HGH"/>
+                                    <outlet property="titleLabel" destination="JBw-xB-Lgd" id="lfA-m4-fS8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

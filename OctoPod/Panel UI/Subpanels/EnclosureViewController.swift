@@ -62,7 +62,7 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
             cell.setPowerState(isPowerOn: output.status)
 
             return cell
-        } else {
+        } else if output.type == "pwm" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "pwm_cell", for: indexPath) as! EnclosurePWMViewCell
 
             // Configure the cell
@@ -74,8 +74,28 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
             cell.pwmField.backgroundColor = theme.backgroundColor()
             cell.pwmField.textColor = textColor
             cell.pwmField.isEnabled = !appConfiguration.appLocked() // Enable field only if app is not locked
+            cell.pwmField.text = "\(output.intValue ?? 0)"
 
             return cell
+        } else if output.type == "temp_hum_control" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "temp_hum_control_cell", for: indexPath) as! EnclosureTempControlViewCell
+
+            // Configure the cell
+            cell.parentVC = self
+            cell.titleLabel.text = output.label
+            let theme = Theme.currentTheme()
+            let textColor = theme.textColor()
+            cell.titleLabel.textColor = textColor
+            cell.pwmField.backgroundColor = theme.backgroundColor()
+            cell.pwmField.textColor = textColor
+            cell.pwmField.isEnabled = !appConfiguration.appLocked() // Enable field only if app is not locked
+            cell.pwmField.text = "\(output.intValue ?? 0)"
+
+            return cell
+        } else {
+            NSLog("Unsupported Output Control: \(output.type)")
+            // Return dummy cell. Should never happen this case
+            return tableView.dequeueReusableCell(withIdentifier: "gpio_cell", for: indexPath) as! EnclosureGPIOViewCell
         }
     }
     
@@ -124,11 +144,29 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
     
     func pluginMessage(plugin: String, data: NSDictionary) {
         if plugin == Plugins.ENCLOSURE {
-            if let _ = data["rpi_output_regular"] {
-                // Refresh status of outputs. Doing a new fetch is not the most
-                // efficient way to do this but this is an infrequent operation
-                // so it is good enough and we can reuse some code
-                refreshOutputsStatus(done: nil)
+            if let regularOutputs = data["rpi_output_regular"] as? NSArray {
+                // Refresh value of regular outputs (e.g. switches)
+                for case let regularOutput as NSDictionary in regularOutputs {
+                    if let index = regularOutput["index_id"] as? Int16, let value = regularOutput["status"] as? Bool {
+                        self.refreshOutput(index: index, value: value)
+                    }
+                }
+            }
+            if let pwmOutputs = data["rpi_output_pwm"] as? NSArray {
+                // Refresh value of outputs of type PWM
+                for case let pwmOutput as NSDictionary in pwmOutputs {
+                    if let index = pwmOutput["index_id"] as? Int16, let value = pwmOutput["pwm_value"] as? Int16 {
+                        self.refreshOutput(index: index, value: value)
+                    }
+                }
+            }
+            if let newTemps = data["set_temperature"] as? NSArray {
+                // Refresh temp/humidity value of outputs of type temp_hum_control
+                for case let newTemp as NSDictionary in newTemps {
+                    if let index = newTemp["index_id"] as? Int16, let value = newTemp["set_temperature"] as? Int16 {
+                        self.refreshOutput(index: index, value: value)
+                    }
+                }
             }
         }
     }
@@ -188,8 +226,8 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
                     if requested {
                         DispatchQueue.main.async {
                             generator.notificationOccurred(.success)
-                            // Clean up value of cell
-                            cell.pwmField.text = nil
+                            // Set new value to field
+                            cell.pwmField.text = "\(dutyCycle)"
                             // Refresh row
                             self.tableView.reloadRows(at: [indexPath], with: .automatic)
                         }
@@ -208,6 +246,41 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
                 })
             } else {
                 changePower()
+            }
+        }
+    }
+    
+    func tempControlChanged(cell: EnclosureTempControlViewCell, temp: Int) {
+        if let indexPath = self.tableView.indexPath(for: cell) {
+            let output = self.outputs[indexPath.row]
+            let changeTempHumidityControl = {
+                let generator = UINotificationFeedbackGenerator()
+                generator.prepare()
+                self.octoprintClient.changeEnclosureTempControl(index_id: output.index, temp: temp) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    if requested {
+                        DispatchQueue.main.async {
+                            generator.notificationOccurred(.success)
+                            // Set new value to field
+                            cell.pwmField.text = "\(temp)"
+                            // Refresh row
+                            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                        }
+                    } else {
+                        // Handle error
+                        // TODO: - Change error message
+                        let message = temp > 0 ? NSLocalizedString("Failed to request to turn power on", comment: "") : NSLocalizedString("Failed to request to turn power off", comment: "")
+                        self.showAlert(NSLocalizedString("Warning", comment: ""), message: message)
+                    }
+                }
+            }
+            if temp <= 0 {
+                showConfirm(message: String(format: NSLocalizedString("Confirm turn off", comment: ""), output.label), yes: { (UIAlertAction) -> Void in
+                    changeTempHumidityControl()
+                }, no: { (UIAlertAction) -> Void in
+                    // Do nothing
+                })
+            } else {
+                changeTempHumidityControl()
             }
         }
     }
@@ -250,28 +323,35 @@ class EnclosureViewController : ThemedDynamicUITableViewController, SubpanelView
     }
 
     fileprivate func refreshOutputsStatus(done: (() -> Void)?) {
-        // Fetch current status for GPIO outputs
-        for output in self.outputs {
-            if output.type == "regular" {
-                let outputIndex = output.index
-                self.octoprintClient.getEnclosureGPIOStatus(index_id: output.index) { (value: Bool?, error: Error?, response: HTTPURLResponse) in
-                    if let value = value {
-                        for (index, outputToUpdate) in self.outputs.enumerated() {
-                            if outputIndex == outputToUpdate.index {
-                                // Update status in wrapper
-                                outputToUpdate.status = value
-                                // Refresh only row of updated status
-                                DispatchQueue.main.async {
-                                    self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-                                }
-                            }
-                        }
-                    }
+        octoprintClient.refreshEnclosureStatus { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+            done?()
+        }
+    }
+    
+    fileprivate func refreshOutput(index: Int16, value: Bool) {
+        for (enumIndex, outputToUpdate) in self.outputs.enumerated() {
+            if index == outputToUpdate.index {
+                // Update status in wrapper
+                outputToUpdate.status = value
+                // Refresh only row of updated status
+                DispatchQueue.main.async {
+                    self.tableView.reloadRows(at: [IndexPath(row: enumIndex, section: 0)], with: .automatic)
                 }
             }
         }
-        // Execute done block when done
-        done?()
+    }
+    
+    fileprivate func refreshOutput(index: Int16, value: Int16) {
+        for (enumIndex, outputToUpdate) in self.outputs.enumerated() {
+            if index == outputToUpdate.index {
+                // Update status in wrapper
+                outputToUpdate.intValue = value
+                // Refresh only row of updated status
+                DispatchQueue.main.async {
+                    self.tableView.reloadRows(at: [IndexPath(row: enumIndex, section: 0)], with: .automatic)
+                }
+            }
+        }
     }
     
     fileprivate func showAlert(_ title: String, message: String) {
@@ -288,6 +368,8 @@ private class EnclosureOutputData {
     var index: Int16
     var label: String
     var status: Bool
+    /// Int value only used for outputs that control temp/humid
+    var intValue: Int16?
     
     init(output: EnclosureOutput) {
         self.type = output.type

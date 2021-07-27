@@ -98,13 +98,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         if let printerName = url.host?.removingPercentEncoding {
-            // Switch to printer user clicked on when using Today's widget
+            // Switch to printer user clicked on when using Today's widget or notification or iOS 14 widget
             if let printer = printerManager?.getPrinterByName(name: printerName) {
-                defaultPrinterManager.changeToDefaultPrinter(printer: printer)
+                // Add some delay so app transitions to Active (camera will render only when app is active)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    self.defaultPrinterManager.changeToDefaultPrinter(printer: printer)
 
-                // Go to main Panel window
-                if let tabBarController = self.window!.rootViewController as? UITabBarController {
-                    tabBarController.selectedIndex = 0
+                    // Go to main Panel window
+                    if let tabBarController = self.window!.rootViewController as? UITabBarController {
+                        tabBarController.selectedIndex = 0
+                    }
                 }
                 return true
             }

@@ -1057,6 +1057,15 @@ class OctoPrintRESTClient {
     
     // MARK: - Enclosure Plugin
     
+    /// Request enclosure plugin to refresh UI. This will cause plugin to send values for input and output elements
+    func refreshEnclosureStatus(callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.post("/plugin/enclosure/update") { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                callback(requested, error, response)
+            }
+        }
+    }
+    
     /// Returns the queried GPIO value for the specified GPIO output
     func getEnclosureGPIOStatus(index_id: Int16, callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
@@ -1099,6 +1108,17 @@ class OctoPrintRESTClient {
             let json : NSMutableDictionary = NSMutableDictionary()
             json["duty_cycle"] = dutyCycle
             client.patch("/plugin/enclosure/pwm/\(index_id)", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+    
+    /// Change temperature or humidity control value via Enclosure plugin
+    func changeEnclosureTempControl(index_id: Int16, temp: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["temperature"] = temp
+            client.patch("/plugin/enclosure/temperature/\(index_id)", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                 callback(response.statusCode == 204, error, response)
             }
         }
