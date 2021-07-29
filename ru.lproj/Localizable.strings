@@ -401,7 +401,7 @@
 "Incorrect authentication credentials" = "Неверные учетные данные";
 
 /* No comment provided by engineer. */
-"Internal OctoEverywhere error" = "Внутренняя ошибка Octoveryewhere.";
+"Internal OctoEverywhere error" = "Внутренняя ошибка OctoEverywhere";
 
 /* URL of camera is invalid */
 "Invalid camera URL" = "Неверный URL камеры";
@@ -539,7 +539,7 @@
 "Printer" = "Принтер";
 
 /* No comment provided by engineer. */
-"Printer is not connected to OctoEverywhere" = "Принтер не подключен к Octoverywhere";
+"Printer is not connected to OctoEverywhere" = "Принтер не подключен к OctoEverywhere";
 
 /* No comment provided by engineer. */
 "Printer Name (e.g. MK3)" = "Название принтера (например MK3)";
