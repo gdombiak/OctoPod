@@ -5,6 +5,7 @@ class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController, 
     
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var webView: WKWebView!
+    var newWebviewPopupWindow: WKWebView?
 
     @IBOutlet weak var printerNameField: UITextField!
     @IBOutlet weak var apiKeyField: UITextField!
@@ -65,22 +66,39 @@ class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController, 
 
     // MARK: WKUIDelegate
     
-//    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-//        if navigationAction.targetFrame == nil {
-////            webView.load(navigationAction.request)
-//            NSLog("UIApplication OPEN: \(navigationAction.request.url!.absoluteString)")
-//            UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
-//        }
-//        return nil
-//    }
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if navigationAction.targetFrame == nil {
+//            NSLog("createWebViewWith: \(navigationAction.request.url!.absoluteString)")
+
+            newWebviewPopupWindow = WKWebView(frame: view.bounds, configuration: configuration)
+            newWebviewPopupWindow!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            newWebviewPopupWindow!.navigationDelegate = self
+            newWebviewPopupWindow!.uiDelegate = self
+            view.addSubview(newWebviewPopupWindow!)
+            return newWebviewPopupWindow!
+        }
+        return nil
+    }
+    
+    func webViewDidClose(_ webView: WKWebView) {
+        webView.removeFromSuperview()
+        newWebviewPopupWindow = nil
+    }
         
     // MARK: WKNavigationDelegate
     
-    
-//    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-//        NSLog("ALLOW URL: \(webView.url?.absoluteString)")
+//    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+////        NSLog("ALLOW RESPONSE: \(webView.url?.absoluteString)")
 //        decisionHandler(.allow)
 //    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+
+        guard let requestURL = navigationAction.request.url?.absoluteString else { return }
+
+        NSLog("ALLOW ACTION: \(requestURL)")
+        decisionHandler(.allow)
+    }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         NSLog("webView url \(webView.url!.absoluteString)")
