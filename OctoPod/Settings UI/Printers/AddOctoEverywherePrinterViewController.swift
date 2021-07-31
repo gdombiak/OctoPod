@@ -93,15 +93,13 @@ class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController, 
 //    }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-
-        guard let requestURL = navigationAction.request.url?.absoluteString else { return }
-
-        NSLog("ALLOW ACTION: \(requestURL)")
+//        guard let requestURL = navigationAction.request.url?.absoluteString else { return }
+//        NSLog("ALLOW ACTION: \(requestURL)")
         decisionHandler(.allow)
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        NSLog("webView url \(webView.url!.absoluteString)")
+//        NSLog("webView url \(webView.url!.absoluteString)")
         
         if let url = webView.url {
             if url.host == "octoeverywhere.com" && url.path == "/appportal/v1/complete", let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {

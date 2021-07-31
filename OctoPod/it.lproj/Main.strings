@@ -151,9 +151,6 @@
 /* Class = "UILabel"; text = "Uploaded"; ObjectID = "26j-Xb-FzE"; */
 "26j-Xb-FzE.text" = "Caricato";
 
-/* Class = "UILabel"; text = "Update OctoPod plugin for OctoPrint to receive notifications at specified layers"; ObjectID = "27z-uP-BTs"; */
-"27z-uP-BTs.text" = "Aggiorna il plugin OctoPod per OctoPrint per ricevere le notifiche sui layer specificati";
-
 /* Class = "UILabel"; text = "Appearance"; ObjectID = "35a-ap-aeB"; */
 "35a-ap-aeB.text" = "Aspetto";
 
@@ -283,9 +280,6 @@
 /* Class = "UIButton"; normalTitle = "Pause"; ObjectID = "DI6-KC-pSc"; */
 "DI6-KC-pSc.normalTitle" = "Pausa";
 
-/* Class = "UITableViewSection"; headerTitle = "Reminders"; ObjectID = "dIa-e3-jnv"; */
-"dIa-e3-jnv.headerTitle" = "Promemoria";
-
 /* Class = "UILabel"; text = "Frequently Asked Questions"; ObjectID = "dlU-c7-kpY"; */
 "dlU-c7-kpY.text" = "Domande frequenti (FAQ)";
 
@@ -412,6 +406,9 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "gvk-np-5oX"; */
 "gvk-np-5oX.text" = "Titolo";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "gWU-nJ-SdK"; */
+"gWU-nJ-SdK.text" = "Label";
+
 /* Class = "UILabel"; text = "Extruder"; ObjectID = "H0f-on-KjQ"; */
 "H0f-on-KjQ.text" = "Estrusore";
 
@@ -510,6 +507,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "J17-Xa-0dv"; */
 "J17-Xa-0dv.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "JBw-xB-Lgd"; */
+"JBw-xB-Lgd.text" = "Label";
 
 /* Class = "UILabel"; text = "m"; ObjectID = "JgS-9W-IR2"; */
 "JgS-9W-IR2.text" = "m";
@@ -660,9 +660,6 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection (REQUIRED)"; ObjectID = "OPd-TD-yfb"; */
 "OPd-TD-yfb.headerTitle" = "Connessione stampante (OBBLIGATORIA)";
-
-/* Class = "UILabel"; text = "New Apple TV app is now available"; ObjectID = "oQM-8Y-Acc"; */
-"oQM-8Y-Acc.text" = "La nuova app per Apple TV è ora disponibile";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Or4-Wf-fDK"; */
 "Or4-Wf-fDK.text" = "Label";
@@ -823,6 +820,9 @@
 /* Class = "UITextField"; placeholder = "Command"; ObjectID = "RZc-hr-pTu"; */
 "RZc-hr-pTu.placeholder" = "Comando";
 
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "S0f-uX-rYI"; */
+"S0f-uX-rYI.normalTitle" = "Chiudi";
+
 /* Class = "UITableViewSection"; headerTitle = "Complications Content"; ObjectID = "S1e-nz-awE"; */
 "S1e-nz-awE.headerTitle" = "Contenuto complicazione";
 
@@ -912,9 +912,6 @@
 
 /* Class = "UILabel"; text = "Default Text"; ObjectID = "u5z-wR-iO9"; */
 "u5z-wR-iO9.text" = "Testo di default";
-
-/* Class = "UILabel"; text = "Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots"; ObjectID = "u6S-b1-CTI"; */
-"u6S-b1-CTI.text" = "Installa il plugin di OctoPod per ricevere notifiche push immediate con anteprime della fotocamera";
 
 /* Class = "UITextField"; placeholder = "Layer"; ObjectID = "Uc6-ok-eNN"; */
 "Uc6-ok-eNN.placeholder" = "Layer";
@@ -1068,9 +1065,6 @@
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "ywI-EB-V2L"; */
 "ywI-EB-V2L.text" = "0 C";
-
-/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "yxh-PV-og3"; */
-"yxh-PV-og3.normalTitle" = "Chiudi";
 
 /* Class = "UILabel"; text = "Extruder 4"; ObjectID = "z2y-Yi-bgx"; */
 "z2y-Yi-bgx.text" = "Estrusore 4";

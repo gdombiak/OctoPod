@@ -401,6 +401,9 @@
 "Incorrect authentication credentials" = "Felaktiga autentiseringsuppgifter";
 
 /* No comment provided by engineer. */
+"Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots" = "Installera OctoPod-tillägget för OctoPrint för att få omedelbara pushnotiser med kameraskärmdumpar";
+
+/* No comment provided by engineer. */
 "Internal OctoEverywhere error" = "Internt OctoEverywhere-fel";
 
 /* URL of camera is invalid */
@@ -444,6 +447,9 @@
 
 /* (No Comment) */
 "Move" = "Flytta";
+
+/* No comment provided by engineer. */
+"New Apple TV app is now available" = "Ny Apple TV-app finns nu tillgänglig";
 
 /* No comment provided by engineer. */
 "Next" = "Nästa";
@@ -564,6 +570,12 @@
 
 /* Siri suggested phrase */
 "Remaining time current print job" = "Kvarvarande tid på %@";
+
+/* No comment provided by engineer. */
+"Reminders" = "Påminnelser";
+
+/* No comment provided by engineer. */
+"Remove old OctoPod app from Apple Watch" = "Ta bort den gamla OctoPod -appen från Apple Watch";
 
 /* gcode name */
 "Report Settings" = "Rapportera inställningar";
@@ -728,6 +740,9 @@
 
 /* Title for window that alerts user that updates for plugins are available */
 "Update Available" = "Uppdatering tillgänglig";
+
+/* No comment provided by engineer. */
+"Update OctoPod plugin for OctoPrint to receive notifications at specified layers" = "Uppdatera OctoPod-pluginet för OctoPrint för att ta emot aviseringar vid specifika lager";
 
 /* (No Comment) */
 "Upload failed" = "Uppladdning misslyckades";

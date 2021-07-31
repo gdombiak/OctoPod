@@ -3,7 +3,7 @@ import UIKit
 class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate, DefaultPrinterManagerDelegate, UITabBarControllerDelegate, SubpanelsVCDelegate {
     
     private static let CONNECT_CONFIRMATION = "PANEL_CONNECT_CONFIRMATION"
-    private static let REMINDERS_SHOWN = "PANEL_REMINDERS_SHOWN_3_2"  // Key that stores if we should show reminders about important new things to users. Key might change per version
+    private static let REMINDERS_SHOWN = "PANEL_REMINDERS_SHOWN_3_12"  // Key that stores if we should show reminders about important new things to users. Key might change per version
     private static let TOOLTIP_SWIPE_PRINTERS = "PANEL_TOOLTIP_SWIPE_PRINTERS"
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
@@ -131,12 +131,15 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if !UserDefaults.standard.bool(forKey: PanelViewController.REMINDERS_SHOWN) {
-            self.performSegue(withIdentifier: "show_reminders", sender: self)
-        } else {
-            presentToolTip(tooltipKey: PanelViewController.TOOLTIP_SWIPE_PRINTERS, segueIdentifier: "swipe_printers_tooltip")
+        // Only display reminders and tooltips if at least a printer was configured
+        if let _ = printerManager.getDefaultPrinter() {
+            if !UserDefaults.standard.bool(forKey: PanelViewController.REMINDERS_SHOWN) {
+                self.performSegue(withIdentifier: "show_reminders", sender: self)
+            } else {
+                presentToolTip(tooltipKey: PanelViewController.TOOLTIP_SWIPE_PRINTERS, segueIdentifier: "swipe_printers_tooltip")
+            }
+            checkDisplayPrintStatusOverCamera()
         }
-        checkDisplayPrintStatusOverCamera()
     }
     
     override func didReceiveMemoryWarning() {

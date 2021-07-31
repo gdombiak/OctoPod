@@ -401,6 +401,9 @@
 "Incorrect authentication credentials" = "Špatné přihlašovací údaje";
 
 /* No comment provided by engineer. */
+"Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots" = "Nainstalujte plug-in OctoPod pro OctoPrint, abyste dostávali okamžité oznámení s fotkami";
+
+/* No comment provided by engineer. */
 "Internal OctoEverywhere error" = "Interní chyba OctoEverywhere";
 
 /* URL of camera is invalid */
@@ -444,6 +447,9 @@
 
 /* (No Comment) */
 "Move" = "Posunout";
+
+/* No comment provided by engineer. */
+"New Apple TV app is now available" = "Nová aplikace pro Apple TV je nyní dostupná";
 
 /* No comment provided by engineer. */
 "Next" = "Další";
@@ -564,6 +570,12 @@
 
 /* Siri suggested phrase */
 "Remaining time current print job" = "Time left on %@";
+
+/* No comment provided by engineer. */
+"Reminders" = "Připomínky";
+
+/* No comment provided by engineer. */
+"Remove old OctoPod app from Apple Watch" = "Odeberte starou aplikaci OctoPod z Apple Watch";
 
 /* gcode name */
 "Report Settings" = "Nahlásit nastavení";
@@ -728,6 +740,9 @@
 
 /* Title for window that alerts user that updates for plugins are available */
 "Update Available" = "Aktualizace je k dispozici";
+
+/* No comment provided by engineer. */
+"Update OctoPod plugin for OctoPrint to receive notifications at specified layers" = "Aktualizujte plugin OctoPod pro OctoPrint, abyste mohli obdržet oznámení na specifikované vrstvě";
 
 /* (No Comment) */
 "Upload failed" = "Nahrávání selhalo";

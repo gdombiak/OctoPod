@@ -401,6 +401,9 @@
 "Incorrect authentication credentials" = "Neteisingi prisijungimo duomenys";
 
 /* No comment provided by engineer. */
+"Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots" = "Įrašykite 'OctoPod' įskiepį į OctoPrint, jei norite gauti pranešimus su nuotraukomis";
+
+/* No comment provided by engineer. */
 "Internal OctoEverywhere error" = "Vidinė OctoEverywhere klaida";
 
 /* URL of camera is invalid */
@@ -444,6 +447,9 @@
 
 /* (No Comment) */
 "Move" = "Judėti";
+
+/* No comment provided by engineer. */
+"New Apple TV app is now available" = "Nauja Apple TV programėlė jau prieinama";
 
 /* No comment provided by engineer. */
 "Next" = "Kitas";
@@ -564,6 +570,12 @@
 
 /* Siri suggested phrase */
 "Remaining time current print job" = "Liko %@";
+
+/* No comment provided by engineer. */
+"Reminders" = "Priminimai";
+
+/* No comment provided by engineer. */
+"Remove old OctoPod app from Apple Watch" = "Pašalinkite seną „OctoPod“ programą iš „Apple Watch“";
 
 /* gcode name */
 "Report Settings" = "Pranešti nustatymus";
@@ -728,6 +740,9 @@
 
 /* Title for window that alerts user that updates for plugins are available */
 "Update Available" = "Yra atnaujinimų";
+
+/* No comment provided by engineer. */
+"Update OctoPod plugin for OctoPrint to receive notifications at specified layers" = "Atnaujink OctoPod įskiepį skirtą OctoPrint kad gautum pranešimus apie specifinius sluoksnius";
 
 /* (No Comment) */
 "Upload failed" = "Nepavyko įkelti";

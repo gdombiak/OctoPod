@@ -58,7 +58,7 @@ class LayerNotificationsViewController: UIViewController, UITableViewDataSource,
         return cell
     }
     
-    // MARL: - UITableViewDelegate
+    // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         ThemeUIUtils.themeCell(cell: cell)
