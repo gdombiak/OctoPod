@@ -1,0 +1,291 @@
+/* (No Comment) */
+"0vck5K" = "Knippen mislukt";
+
+/* (No Comment) */
+"0xUDAM" = "${printer}";
+
+/* (No Comment) */
+"1lbZOa" = "Verzoek om verbinding te verbreken mislukt";
+
+/* (No Comment) */
+"2TreiD" = "Stel extruder temperatuur in op ${temperature}";
+
+/* (No Comment) */
+"2zYNqY" = "Vraag Palette ping statestieken aan";
+
+/* (No Comment) */
+"3Butzw" = "Kamers temperatuur ingesteld op ${temperature}";
+
+/* (No Comment) */
+"3cyBw6" = "Verzoek Palette om te legen";
+
+/* (No Comment) */
+"3eH6cZ" = "Resterende tijd ophalen mislukt (${statusCode})";
+
+/* (No Comment) */
+"3JiZye" = "Verzocht";
+
+/* (No Comment) */
+"4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"5btOXI" = "Laatste Variatie";
+
+/* (No Comment) */
+"5i5htv" = "Verbonden";
+
+/* (No Comment) */
+"6b7Yce" = "Verzoek Palette om te knippen";
+
+/* (No Comment) */
+"6k5AFm" = "Hervat opdracht";
+
+/* (No Comment) */
+"6vtMLs" = "Opdracht is opnieuw gestart";
+
+/* (No Comment) */
+"7eJPkN" = "Stel kamers temperatuur in";
+
+/* (No Comment) */
+"8cfoSa" = "Leegverzoek mislukt";
+
+/* (No Comment) */
+"8rFt1u" = "Verzoek Palette om te legen";
+
+/* (No Comment) */
+"8tTCjD" = "Printopdracht annuleren mislukt (${statusCode})";
+
+/* (No Comment) */
+"8xHCbl" = "${printer}";
+
+/* (No Comment) */
+"9eejxB" = "Verzoek Palette om ping statestieken";
+
+/* (No Comment) */
+"9iz6yx" = "${printer}";
+
+/* (No Comment) */
+"9PozHf" = "${printer}";
+
+/* (No Comment) */
+"662LyZ" = "Herstart opdracht";
+
+/* (No Comment) */
+"ajupCt" = "Geen informatie beschikbaar";
+
+/* (No Comment) */
+"AU4oMs" = "Verzoek Palette om ping statestieken";
+
+/* (No Comment) */
+"AzqFAh" = "Verzocht";
+
+/* (No Comment) */
+"BUexSx" = "Max. Variatie";
+
+/* (No Comment) */
+"bXGQKe" = "Printer afkoelen";
+
+/* (No Comment) */
+"D0kBGr" = "Print opdracht hervatten";
+
+/* (No Comment) */
+"D1wWxd" = "Verbinding met Palette verbroken";
+
+/* (No Comment) */
+"doj4NA" = "Stel extruder's temperatuur in";
+
+/* (No Comment) */
+"Eb3aa5" = "Instellen kamertemperatuur mislukt (${statusCode})";
+
+/* (No Comment) */
+"f8xirF" = "Printer afkoelen";
+
+/* (No Comment) */
+"FkSYZt" = "${printer}";
+
+/* (No Comment) */
+"fL3sow" = "Lopende afdruktaak onderbreken";
+
+/* (No Comment) */
+"FOlLOy" = "Informatie opvragen mislukt";
+
+/* (No Comment) */
+"FZ3z7Z" = "Instellen bedtemperatuur";
+
+/* (No Comment) */
+"G3JE6a" = "${printer}";
+
+/* (No Comment) */
+"g52Ub0" = "${printer}";
+
+/* (No Comment) */
+"gx0D0e" = "Opdracht geannuleerd";
+
+/* (No Comment) */
+"hPlRC4" = "Stel de bed temperatuur in op ${temperature}";
+
+/* (No Comment) */
+"hUstyz" = "Laatste variatie is ${lastVariation} and maximum variatie is ${maxVariation}";
+
+/* (No Comment) */
+"ihLqc7" = "Pauzeer opdracht";
+
+/* (No Comment) */
+"jasUIn" = "Verbinding met Palette verbroken";
+
+/* (No Comment) */
+"Jioukn" = "Instellen kamertemperatuur";
+
+/* (No Comment) */
+"JmhfgL" = "Herstart huidige printopdracht";
+
+/* (No Comment) */
+"JV2xQz" = "Verbind met Palette";
+
+/* (No Comment) */
+"Kf7e4Y" = "Hervat huidige printopdracht";
+
+/* (No Comment) */
+"KHvUZD" = "Verzoek Palette om te knippen";
+
+/* (No Comment) */
+"kSWyyv" = "${printer}";
+
+/* (No Comment) */
+"L25OHl" = "Verzoek tot verbinden mislukt";
+
+/* (No Comment) */
+"lrRige" = "Huidige opdracht annuleren";
+
+/* (No Comment) */
+"LVlPuT" = "Annuleer huidige print opdracht";
+
+/* (No Comment) */
+"m6XJpy" = "Bed afkoelen mislukt (${statusCode})";
+
+/* (No Comment) */
+"m9Jgmg" = "Opdracht hervat";
+
+/* (No Comment) */
+"M58YA9" = "Printer";
+
+/* (No Comment) */
+"N0vzJv" = "Verzoek Palette om te legen";
+
+/* (No Comment) */
+"N84M0s" = "Verzoek Palette om te knippen";
+
+/* (No Comment) */
+"NG7rBh" = "Tijd resterend";
+
+/* (No Comment) */
+"NL98zi" = "Aan het afkoelen";
+
+/* (No Comment) */
+"ovQf6Z" = "Opdracht gepauzeerd";
+
+/* (No Comment) */
+"P89qJr" = "Tijd resterend: ${time}";
+
+/* (No Comment) */
+"Pj7mEV" = "Extruder afkoelen";
+
+/* (No Comment) */
+"PppyPP" = "Stel bedtemperatuur in";
+
+/* (No Comment) */
+"qLzk1S" = "Bed afkoelen";
+
+/* (No Comment) */
+"QSxXHq" = "Huidige printopdracht pauzeren";
+
+/* (No Comment) */
+"R5AlTe" = "Verbinding met Palette verbroken";
+
+/* (No Comment) */
+"rFHPr4" = "${printer}";
+
+/* (No Comment) */
+"RgRXpP" = "${printer}";
+
+/* (No Comment) */
+"Rjw5oo" = "${printer}";
+
+/* (No Comment) */
+"rmKSv6" = "Instellen extruder temperatuur mislukt (${statusCode})";
+
+/* (No Comment) */
+"RrOrgy" = "Annuleer opdracht";
+
+/* (No Comment) */
+"RxEUj3" = "temperatuur";
+
+/* (No Comment) */
+"RyGRDF" = "Verbind met Palette";
+
+/* (No Comment) */
+"RYurC5" = "Kamer af laten koelen";
+
+/* (No Comment) */
+"SP4rN6" = "Stel de extrudertemperatuur in";
+
+/* (No Comment) */
+"SRDf6Q" = "Extruder temperatuur was ingesteld op ${temperature}";
+
+/* (No Comment) */
+"sRkyIL" = "Printopdracht herstarten mislukt (${statusCode})";
+
+/* (No Comment) */
+"tKDODp" = "Resterende print tijd";
+
+/* (No Comment) */
+"UC9Zrq" = "Bed temperatuur was ingesteld op ${temperature}";
+
+/* (No Comment) */
+"uoT27A" = "Instellen van bed temperatuur mislukt (${statusCode})";
+
+/* (No Comment) */
+"Vc7DVt" = "Stel extruder ${tool} temperatuur in op ${temperature}";
+
+/* (No Comment) */
+"VDz0Q1" = "${printer}";
+
+/* (No Comment) */
+"VItjhS" = "Niet verdonden";
+
+/* (No Comment) */
+"vL7cy4" = "${printer}";
+
+/* (No Comment) */
+"VlxGJX" = "${printer}";
+
+/* (No Comment) */
+"vmbpr4" = "Verbind met Palette";
+
+/* (No Comment) */
+"WI2oQf" = "Resterende printtijd terugsturen";
+
+/* (No Comment) */
+"WLkRl0" = "Hervatten printopdracht mislukt (${statusCode})";
+
+/* (No Comment) */
+"wYzz4m" = "Printer is aan het afkoelen";
+
+/* (No Comment) */
+"XfWmGt" = "Hervat huidige printopdracht";
+
+/* (No Comment) */
+"xSARU0" = "Opdracht pauzeren mislukt (${statusCode})";
+
+/* (No Comment) */
+"YGxUII" = "${printer}";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
+
+/* (No Comment) */
+"ZFUAR8" = "${printer}";
+
+/* (No Comment) */
+"zj1Vd9" = "Kamer wordt verwarmt tot ${temperature}";
+

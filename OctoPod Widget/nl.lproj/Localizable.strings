@@ -1,0 +1,10 @@
+/* No comment provided by engineer. */
+"Missed" = "Gemist";
+
+/* Print time is being calculated */
+"Still stabilizing" = "Aan het berekenen.";
+
+/* ETA is Unknown
+   Priner state is Unknown */
+"Unknown" = "Onbekend";
+

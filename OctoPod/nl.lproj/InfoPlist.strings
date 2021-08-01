@@ -1,0 +1,15 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "OctoPod";
+
+/* Bundle name */
+"CFBundleName" = "OctoPod";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Toestemming voor de camera is nodig om de QR code te scannen";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "Face ID is nodig om de app te ontgrendelen";
+
+/* Privacy - Siri Usage Description */
+"NSSiriUsageDescription" = "Bestuur de printer met Siri";
+

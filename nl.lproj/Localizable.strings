@@ -1,178 +1,650 @@
-/*
-  Dutch translation for words in Swift files
-*/
+/* No comment provided by engineer. */
+"%@ / %@" = "%1$@ / %2$@";
 
-"OctoPrint" = "OctoPrint";
-"SD Card" = "SD kaart";
-"Unknown" = "Onbekend";
-"Model" = "Model";
-"Code" = "Code";
-"Folder" = "Map";
+/* (No Comment) */
+"1 day ago" = "1 dag geleden";
 
-"Authentication failed" = "Authentificatie Mislukt";
-"Connection failed" = "Verbinding Mislukt";
-"No camera" = "Geen camera";
-"HTTP Request error" = "Verzoek fout. HTTP response: %d";
-"Invalid camera URL" = "Ongeldige camera URL";
+/* (No Comment) */
+"1 hour ago" = "1 uur geleden";
 
-"Still stabilizing" = "nog aan het stabilizeren...";
-"Offline" = "Offline";
+/* (No Comment) */
+"1 minute ago" = "1 minuut geleden";
 
-"Temperature" = "Temperatuur";
-"No temperature history" = "Geen Temperatuur verleden beschikbaar";
+/* (No Comment) */
+"1 week ago" = "1 week geleden";
 
-"Actual Bed" = "Huidige waarde Bed"; 
-"Target Bed" = "Doel Bed";
-"Actual Extruder" = "Huidige waarde Extruder";
-"Target Extruder" = "Doel Extruder";
-"Actual Extruder 2" = "Huidige waarde Extruder 2";
-"Target Extruder 2" = "Doel Extruder 2";
+/* (No Comment) */
+"Actual Bed" = "Werkelijke waarde Bed";
 
-"Custom Controls" = "Eigen Controls";
-"Failed to get controls" = "Controls ophalen mislukt. HTTP response: %d";
-"Unknown Control" = "Onbekende Control";
-"Command not executed. Printer not operational" = "Commando niet uitgevoerd. Printer niet operationeel";
-"Command not executed. Script not found" = "Commando niet uitgevoerd. Script niet gevonden";
-"Failed to request to execute command" = "Aanvraag voor het uitvoeren van het commando mislukt";
+/* No comment provided by engineer. */
+"Actual Chamber" = "Werkelijke waarde kamer";
 
-"Warning" = "Waarschuwing";
-"Cancel" = "Annuleer";
-"Run" = "Uitvoeren";
+/* (No Comment) */
+"Actual Extruder" = "Werkelijke waarde Extruder";
+
+/* (No Comment) */
+"Actual Extruder 2" = "Werkelijke waarde Extruder 2";
+
+/* No comment provided by engineer. */
+"Actual Extruder 3" = "Werkelijke waarde Extruder 3";
+
+/* No comment provided by engineer. */
+"Actual Extruder 4" = "Werkelijke waarde Extruder 4";
+
+/* No comment provided by engineer. */
+"Actual Extruder 5" = "Werkelijke waarde Extruder 5";
+
+/* (No Comment) */
 "Apply" = "Toepassen";
 
-"Failed turn power on" = "Verzoek tot aanzetten is mislukt";
-"Failed turn power off" = "Verzoek tot uitzetten is mislukt";
-"Confirm turn off PSU" = "Weet je zeker dat je de voeding wilt uitzetten?";
-"Turn On" = "Zet aan";
-"Turn Off" = "Zet uit";
+/* HTTP authentication failed */
+"Authentication failed" = "Authentificatie mislukt";
 
-"TPLink Smartplugs" = "TPLink Slimme Schakelaar";
-"Wemo Switches" = "Wemo Schakelaar";
-"Domoticz Plugs" = "Domoticz Stekkers";
-"Tasmota Plugs" = "Tasmota Stekkers";
-"Confirm turn off plug" = "Weet je zeker dat je de stekker wilt uitzetten?";
-"Failed to request to turn power on" = "Verzoek tot aanzetten is mislukt";
-"Failed to request to turn power off" = "Verzoek tot uitzetten is mislukt";
+/* No comment provided by engineer. */
+"Back" = "Terug";
 
-"Job" = "Opdracht";
-"Confirm disconnect" = "Weet je zeker dat je de verbinding met de printer wilt verbreken?";
-"Confirm connect" = "Weet je zeker dat je wilt verbinden met de printer?";
-"Notify failed cancel job" = "Verzoek tot het stoppen van de printopdracht mislukt";
-"Notify failed pause job" = "Verzoek tot het pauzeren van de printopdracht mislukt";
-"Notify failed resume job" = "Verzoek tot het hervatten van de printopdracht mislukt";
-"Notify failed restart job" = "Verzoek tot het herstarten van de printopdracht mislukt";
-"Notify failed print job again" = "Verzoek tot opnieuw printen mislukt";
-"Cannot reach 'octopi.local' over mobile network or service is down" = "Kan 'octopi.local' niet benaderen over het mobiele netwerk of server is Offline";
-"Service is down or incorrect port" = "Server staat uit of incorrecte poort";
-"Incorrect authentication credentials" = "Incorrecte Authentificatie gegevens";
-"Incorrect API Key" = "Incorrecte API sleutel";
+/* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
+"Bad Certificate or SSL Problem" = "Ongeldige Certificaat of overig SSL probleem";
 
-"Connect" = "Verbinden";
-"Disconnect" = "Verbinding verbreken";
+/* No comment provided by engineer. */
+"Bed" = "Bed";
 
+/* (No Comment) */
+"Bed cooled" = "Printerbed onder opgegeven temperatuurdrempel";
+
+/* No comment provided by engineer. */
+"Bed Variance" = "Afwijking van bed";
+
+/* (No Comment) */
+"Bed warmed" = "Printerbed opgewarmd tot opgegeven temperatuur en duur";
+
+/* No comment provided by engineer. */
+"Camera" = "Camera";
+
+/* (No Comment) */
+"Cancel" = "Annuleer";
+
+/* Siri suggested phrase */
+"Cancel current print job" = "Annuleer huidige printopdracht op %@";
+
+/* https://github.com/paukstelis/Octoprint-Cancelobject */
+"Cancel Objects" = "Objecten annuleren";
+
+/* (No Comment) */
+"Cannot print this file type" = "Kan dit type bestand niet printen";
+
+/* (No Comment) */
+"Cannot reach 'octopi.local' over mobile network or service is down" = "Kan 'octopi.local' niet bereiken via mobiel netwerk of service is uitgevallen";
+
+/* (No Comment) */
+"Cannot replace file that is being printed or printer is busy" = "Kan bestand dat wordt afgedrukt of dat de printer bezet niet vervangen";
+
+/* File Type is GCode */
+"Code" = "Code";
+
+/* (No Comment) */
+"Command not executed. Printer not operational" = "Commando niet uitgevoerd. Printer niet operationeel";
+
+/* (No Comment) */
+"Command not executed. Script not found" = "Commando niet uitgevoerd. Script niet gevonden";
+
+/* (No Comment) */
 "Confirm" = "Bevestig";
-"Yes" = "Ja";
-"No" = "Nee";
-"Dismiss" = "Afwijzen";
 
-"Pause Job" = "pauzeer Opdracht";
-"Resume Job" = "Ga Verder Met Opdracht";
-"Do you want to cancel job?" = "Wilt u de opdracht Annuleren?";
-"Print File" = "Print Bestand";
-"Restart Job" = "Herstart Print";
+/* (No Comment) */
+"Confirm cancel object" = "Je staat op het punt om de opdracht te annuleren, doorgaan?";
 
-"Failed to request moving back" = "Verzoek om naar achteren te bewegen is mislukt";
-"Failed to request moving front" = "Verzoek om naar voren te bewegen is mislukt";
-"Failed to request moving left" = "Verzoek om naar links te bewegen is mislukt";
-"Failed to request moving right" = "Verzoek om naar rechts te bewegen is mislukt";
-"Failed to request moving up" = "Verzoek om naar boven te bewegen is mislukt";
-"Failed to request moving down" = "Verzoek om naar beneden te bewegen is mislukt";
-"Failed to request to go home" = "Homen mislukt";
-"Failed to request to retract" = "Terugtrekken mislukt";
-"Failed to request to extrude" = "Extruderen mislukt";
-"Failed to set new flow rate" = "Nieuwe flow rate niet ingesteld";
-"Failed to set new fan speed" = "Niuewe ventilator snelheid niet ingesteld";
-"Failed to set new feed rate" = "Nieuwe feed rate niet ingesteld";
-"Failed to disable motor" = "uitschakelen van motor %@ mislukt";
+/* (No Comment) */
+"Confirm command" = "Commando  '%@' uitvoeren?";
 
-"Move" = "Verplaats";
-"Pull down to refresh" = "Veeg naar beneden om te verniewen";
+/* (No Comment) */
+"Confirm connect" = "De printer kan opnieuw opstarten tijdens het verbinden, doorgaan?";
 
-"Failed to request to print file" = "Bestand printen mislukt";
-"Printer not operational" = "Printer niet operationeel";
-"Cannot print this file type" = "Kan dit bestandsformaat niet printen";
-"File is being copied to SD Card" = "Bestand wordt gekopierd naar de SD kaart";
-"Failed to initialize SD card" = "SD kaart initialisatie mislukt";
-"Failed to refresh SD card" = "SD kaart verniewen mislukt";
-"File currently being printed" = "Bestand wordt op dit moment geprint";
-"Failed to delete file" = "Bestand verwijderen mislukt";
+/* (No Comment) */
+"Confirm disconnect" = "Verbinding met de printer verbreken?";
 
-"Failed to read file from iCloud" = "Bestand via iCloud inladen mislukt";
-"Upload failed" = "Uploaden mislukt";
-"Invalid file type" = "Ongeldige bestandsformaat";
-"Location no longer valid. Refresh files" = "Locatie ongeldig, verniew dit venster";
-"Cannot replace file that is being printed or printer is busy" = "Kan dit bestand niet verplaatsen omdat het geprint wordt, printer is bezig";
-"Failed to upload file" = "Bestand uploa mislukt";
-"Enable iCloud under iOS Settings to use this feature" = "Zet iCloud aan in de iOS instellingen om deze functie te gebruiken";
+/* (No Comment) */
+"Confirm disconnect palette2" = "Verbinding met Palette 2 verbreken?";
 
-"Terminal" = "Terminal";
-"Failed to send GCode command" = "GCode commando versturen mislukt";
+/* (No Comment) */
+"Confirm intentions deletion" = "Je staat op het punt om alle Siri shortcuts van de app te verwijderen, doorgaan?";
 
-"iOS Language" = "iOS taal";
+/* (No Comment) */
+"Confirm intentions regeneration" = "Je staat op het punt om alle Siri shortcuts van de app te verwijderen en opnieuw in te stellen, doorgaan?";
 
-"Bad Certificate or SSL Problem" = "Certificaat error of SSL error";
-"Server cannot be found" = "Kan server niet vinden";
-"Could not connect to the server" = "Kan niet verbinden met de server";
-
-"Print complete" = "Print voltooid";
-"MK3" = "MK3";
-"No printer" = "Geen printer";
-"Paused" = "Gepauzeerd";
-"Printing" = "Aan het printen";
-
-"Failed to get list of cancel objects" = "Ophalen van lijst met geannuleerde objecten mislukt. HTTP response: %d";
-"Failed to request to cancel object" = "Verzoek tot annuleren mislukt. HTTP response: %d";
-
-"Confirm cancel object" = "Je staat op het punt om dit opject te annuleren, doorgaan?";
-
-"System Commands" = "Systeem commando's";
-"Confirm command" = "Voer commando '%@' uit?";
-"Failed to get system commands" = "Systeem commando's ophalen mislukt";
-
-"Confirm intentions deletion" = "Weet je zeker dat je alle Siri shortcuts wilt verwijderen??";
-"Confirm intentions regeneration" = "Weet je zeker dat je alle Siri shortcuts wilt verwijderen en opnieuw wilt instellen?";
-"Warm up printer bed" = "Verwarm printer bed %@";
-"Cool down printer bed" = "Koel printer bed %@";
-"Warm up printer extruder" = "Verwarm printer extruder %@";
-"Cool down printer extruder" = "Koel printer extruder %@";
-"Pause current print job" = "pauzeer deze print opdracht op %@";
-"Resume current print job" = "hervat deze print opdracht op %@";
-"Cancel current print job" = "Annuleer deze print opdracht op %@";
-"Restart current print job" = "Herstart deze print opdracht op %@";
-"Remaining time current print job" = "%@ resterend";
-
-"seconds ago" = "%d seconden geleden";
-"1 minute ago" = "1 minuut geleden";
-"minutes ago" = "%d minuten geleden";
-"1 hour ago" = "1 uur geleden";
-"hours ago" = "%d uren geleden";
-"1 day ago" = "1 dag geleden";
-"days ago" = "%d dagen geleden";
-"1 week ago" = "1 week geleden";
-"weeks ago" = "%d weken geleden";
-
-"Bed cooled" = "Printer bed onder de minimale grenswaarde";
-"Bed warmed" = "Printer bed verwarmt en warm gebleven";
-
-"MMU Requires User" = "MMU Vereist Gebruiker Assistentie";
-"Snooze 1 hour" = "Snooze 1 uur";
-"Snooze 8 hours" = "Snooze 8 uur";
-
-"Confirm disconnect palette2" = "Weet je zeker dat je de verbinding met Palette 2 wilt verbreken?";
-
-"Restart" = "Herstart";
-"Resume" = "hervatten";
-
+/* (No Comment) */
 "Confirm turn off" = "Bevestig uitzetten %@";
 
+/* (No Comment) */
+"Confirm turn off plug" = "Je staat op het punt het stopcontact uit te schakelen, doorgaan?";
+
+/* (No Comment) */
+"Confirm turn off PSU" = "Je staat op het punt de PSU uit te schakelen, doorgaan?";
+
+/* Connect */
+"Connect" = "Verbind";
+
+/* No comment provided by engineer. */
+"Connect to iCloud to retrieve list of printers from your iPad/iPhone" = "Verbind met iCloud om de lijst met printers op te halen";
+
+/* Connected */
+"Connected" = "Verbonden";
+
+/* Connecting */
+"Connecting" = "Verbinden";
+
+/* (No Comment) */
+"Connection failed" = "Verbinding mislukt";
+
+/* Siri suggested phrase */
+"Cool down heated chamber" = "Kamer afkoelen";
+
+/* Siri suggested phrase */
+"Cool down printer" = "Printer afkoelen";
+
+/* Siri suggested phrase */
+"Cool down printer bed" = "Printer bed afkoelen %@";
+
+/* Siri suggested phrase */
+"Cool down printer extruder" = "Printer extruder afkoelen %@";
+
+/* Connection to server failed */
+"Could not connect to the server" = "Kan niet verbinden met de server";
+
+/* No comment provided by engineer. */
+"Current Height" = "Actuele hoogte";
+
+/* http://docs.octoprint.org/en/master/features/custom_controls.html */
+"Custom Controls" = "Eigen opdrachten";
+
+/* (No Comment) */
+"days ago" = "%d dagen geleden";
+
+/* Disconnect */
+"Disconnect" = "Verbinding met de printer verbreken";
+
+/* Disconnected */
+"Disconnected" = "Niet verdonden";
+
+/* (No Comment) */
+"Dismiss" = "Afwijzen";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Wil je de opdracht annuleren?";
+
+/* No comment provided by engineer. */
+"Do you want to pause job?" = "Wil je de opdracht pauzeren?";
+
+/* No comment provided by engineer. */
+"Do you want to restart print job from the beginning?" = "Wil je de opdracht herstarten?";
+
+/* (No Comment) */
+"Domoticz Plugs" = "Domoticz Stekkers";
+
+/* (No Comment) */
+"Enable iCloud under iOS Settings to use this feature" = "Zet i/Cloud aan in de iOS instellingen om gebruik te kunnen maken van deze functie";
+
+/* gcode name */
+"Endstop States" = "Stopschakelaars status";
+
+/* (No Comment) */
 "Extruder" = "Extruder";
+
+/* No comment provided by engineer. */
+"Extruder Variance" = "Afwijking van extruder";
+
+/* No comment provided by engineer. */
+"Failed to add new layer notification" = "Toevoegen van nieuwe laag mislukt notificatie";
+
+/* No comment provided by engineer. */
+"Failed to connect" = "Verbinden mislukt";
+
+/* (No Comment) */
+"Failed to delete file" = "Verwijderen van bestand mislukt";
+
+/* No comment provided by engineer. */
+"Failed to delete layer notification" = "Verwijderen van nieuwe laag mislukt notificatie";
+
+/* (No Comment) */
+"Failed to disable motor" = "Motor %@ uitschakelen mislukt";
+
+/* Failed to get controls with HTTP Request error info */
+"Failed to get controls" = "Bedieningselementen ophalen mislukt! HTTP response: %d";
+
+/* (No Comment) */
+"Failed to get list of cancel objects" = "Lijst van geannuleerde objecten ophalen mislukt! HTTP response: %d";
+
+/* No comment provided by engineer. */
+"Failed to get list of layer notifications" = "Ophalen van laaglijst is mislukt";
+
+/* Failed to get system commands with HTTP Request error info */
+"Failed to get system commands" = "Ophalen van systeemcommando's mislukt";
+
+/* (No Comment) */
+"Failed to initialize SD card" = "Initialiseren van de SD kaart is mislukt";
+
+/* (No Comment) */
+"Failed to read file from iCloud" = "Bestand van iCloud lezen is mislukt";
+
+/* (No Comment) */
+"Failed to refresh SD card" = "SD kaart verversen mislukt";
+
+/* (No Comment) */
+"Failed to request moving back" = "Verzoek tot verplaatsen naar achteren mislukt";
+
+/* (No Comment) */
+"Failed to request moving down" = "Verzoek tot verplaatsen naar beneden mislukt";
+
+/* (No Comment) */
+"Failed to request moving front" = "Verzoek tot verplaatsen naar voren mislukt";
+
+/* (No Comment) */
+"Failed to request moving left" = "Verzoek tot verplaatsen naar links mislukt";
+
+/* (No Comment) */
+"Failed to request moving right" = "Verzoek tot verplaatsen naar rechts mislukt";
+
+/* (No Comment) */
+"Failed to request moving up" = "Verzoek tot verplaatsen naar boven mislukt";
+
+/* No comment provided by engineer. */
+"Failed to request status" = "Opvragen van status mislukt";
+
+/* (No Comment) */
+"Failed to request to cancel object" = "Object annuleren is mislukt. HTTP antwoord: %d";
+
+/* No comment provided by engineer. */
+"Failed to request to clear" = "Verzoek tot verschonen mislukt";
+
+/* No comment provided by engineer. */
+"Failed to request to connect" = "Verzoek tot verbinden mislukt";
+
+/* No comment provided by engineer. */
+"Failed to request to cut" = "Verzoek tot knippen mislukt";
+
+/* No comment provided by engineer. */
+"Failed to request to disconnect" = "Verzoek tot verbreken verbinding mislukt";
+
+/* (No Comment) */
+"Failed to request to execute command" = "Verzoek tot commando excecutie mislukt";
+
+/* (No Comment) */
+"Failed to request to extrude" = "Verzoek tot extruderen mislukt";
+
+/* (No Comment) */
+"Failed to request to go home" = "Verzoek tot homen mislukt";
+
+/* No comment provided by engineer. */
+"Failed to request to go home X" = "Verzoek tot homen X mislukt";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Y" = "Verzoek tot homen Y mislukt";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Z" = "Verzoek tot homen Z mislukt";
+
+/* (No Comment) */
+"Failed to request to print file" = "Verzoek tot printen van bestand mislukt";
+
+/* (No Comment) */
+"Failed to request to retract" = "Verzoek tot terugtrekken mislukt";
+
+/* (No Comment) */
+"Failed to request to turn power off" = "Verzoek tot uitzetten van de printer mislukt";
+
+/* (No Comment) */
+"Failed to request to turn power on" = "Verzoek tot aanzetten van de printer mislukt";
+
+/* No comment provided by engineer. */
+"Failed to save JPEG file" = "Opslaan van JPEG bestand mislukt";
+
+/* (No Comment) */
+"Failed to send GCode command" = "Gcode commando versturen mislukt";
+
+/* (No Comment) */
+"Failed to set new fan speed" = "Nieuwe ventilatorsnelheid instellen mislukt";
+
+/* (No Comment) */
+"Failed to set new feed rate" = "Nieuwe toevoersnelheid instellen mislukt";
+
+/* (No Comment) */
+"Failed to set new flow rate" = "Nieuwe toevoersnelheid instellen mislukt";
+
+/* (No Comment) */
+"Failed to upload file" = "Uploaden van bestand mislukt";
+
+/* (No Comment) */
+"Failed turn power off" = "Verzoek tot uitzetten van de printer mislukt";
+
+/* (No Comment) */
+"Failed turn power on" = "Verzoek tot aanzetten van de printer mislukt";
+
+/* No comment provided by engineer. */
+"File" = "Bestand";
+
+/* (No Comment) */
+"File currently being printed" = "Bestand word afgedrukt";
+
+/* (No Comment) */
+"File is being copied to SD Card" = "Bestand word gekopieerd naar de SD kaart";
+
+/* File Type is a Folder */
+"Folder" = "Map";
+
+/* (No Comment) */
+"hours ago" = "%d uren geleden";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Verzoekfout. HTTP antwoord:: %d";
+
+/* Idle */
+"Idle" = "Inactief";
+
+/* Include SD messages in the terminal */
+"Include SD" = "SD Weergeven";
+
+/* Include temp messages in the terminal */
+"Include temp" = "Temperatuur weergeven";
+
+/* (No Comment) */
+"Incorrect API Key" = "Ongeldige API sleutel";
+
+/* (No Comment) */
+"Incorrect authentication credentials" = "Incorrecte authentificatie gegevens";
+
+/* URL of camera is invalid */
+"Invalid camera URL" = "Ongeldige camera URL";
+
+/* (No Comment) */
+"Invalid file type" = "Ongeldige bestandstype";
+
+/* (No Comment) */
+"iOS Language" = "iOS Taal";
+
+/* (No Comment) */
+"Job" = "Opdracht";
+
+/* No comment provided by engineer. */
+"Layer" = "Laag";
+
+/* gcode name */
+"Load filament" = "Laad fillament";
+
+/* (No Comment) */
+"Location no longer valid. Refresh files" = "Locatie ongeldig. Vernieuw bestanden";
+
+/* (No Comment) */
+"minutes ago" = "%d minuten geleden";
+
+/* No comment provided by engineer. */
+"Missed" = "Gemist";
+
+/* (No Comment) */
+"MK3" = "MK3";
+
+/* (No Comment) */
+"MMU Requires User" = "MMU heeft Gebruikers hulp nodig";
+
+/* File Type is a Model */
+"Model" = "Model";
+
+/* (No Comment) */
+"Move" = "Verplaats";
+
+/* No comment provided by engineer. */
+"Next" = "Volgende";
+
+/* (No Comment) */
+"No" = "Nee";
+
+/* No camera was found */
+"No camera" = "Geen camera gevonden";
+
+/* (No Comment) */
+"No printer" = "Geen Printer gevonden";
+
+/* No temperature history */
+"No temperature history" = "Geen temperatuurgeschiedenis bekend";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Verzoek tot annuleren van printopdracht mislukt";
+
+/* (No Comment) */
+"Notify failed pause job" = "Verzoek tot pauzeren van printopdracht mislukt";
+
+/* (No Comment) */
+"Notify failed print job again" = "Verzoek tot opnieuw printen van printopdracht mislukt";
+
+/* (No Comment) */
+"Notify failed restart job" = "Verzoek tot herstarten van printopdracht mislukt";
+
+/* (No Comment) */
+"Notify failed resume job" = "Verzoek tot hervatten van printopdracht mislukt";
+
+/* English translation for words in Swift files */
+"OctoPrint" = "OctoPrint";
+
+/* Printer is Offline */
+"Offline" = "Offline";
+
+/* No comment provided by engineer. */
+"Pause" = "Pauzeer";
+
+/* Siri suggested phrase */
+"Pause current print job" = "Pauzeer huidige print opdracht op %@";
+
+/* (No Comment) */
+"Pause Job" = "Pauzeer opdracht";
+
+/* (No Comment) */
+"Paused" = "Gepauzeerd";
+
+/* gcode name */
+"PID Bed autotune" = "PID Bed Calibratie";
+
+/* gcode name */
+"PID Hotend autotune" = "PID Extruder Calibratie";
+
+/* No comment provided by engineer. */
+"Ping History" = "Ping Geschiedenis";
+
+/* No comment provided by engineer. */
+"Pong History" = "Pong Geschiedenis";
+
+/* No comment provided by engineer. */
+"Print" = "Print";
+
+/* (No Comment) */
+"Print complete" = "Printen voltooid";
+
+/* No comment provided by engineer. */
+"Print Completion" = "Print Voltooid";
+
+/* (No Comment) */
+"Print File" = "Print Bestand";
+
+/* No comment provided by engineer. */
+"Print Time" = "Print Tijd";
+
+/* No comment provided by engineer. */
+"Print Time Left" = "Resterende Print Tijd";
+
+/* No comment provided by engineer. */
+"Printer" = "Printer";
+
+/* (No Comment) */
+"Printer not operational" = "Printer niet operationeel";
+
+/* No comment provided by engineer. */
+"Printers" = "Printers";
+
+/* (No Comment) */
+"Printing" = "Aan het printen";
+
+/* No comment provided by engineer. */
+"Progress" = "Voortgang";
+
+/* (No Comment) */
+"Pull down to refresh" = "Veeg naar beneden om te vernieuwen";
+
+/* Siri suggested phrase */
+"Remaining time current print job" = "Tijd resterend: %@";
+
+/* gcode name */
+"Report Settings" = "Rapporteer instellingen";
+
+/* (No Comment) */
+"Restart" = "Herstart";
+
+/* Siri suggested phrase */
+"Restart current print job" = "Herstart huidige printopdracht op %@";
+
+/* (No Comment) */
+"Restart Job" = "Opdracht herstarten";
+
+/* gcode name */
+"Restore Settings" = "Instellingen herstellen";
+
+/* (No Comment) */
+"Resume" = "Hervatten";
+
+/* Siri suggested phrase */
+"Resume current print job" = "Hervat huidige printopdracht op %@";
+
+/* (No Comment) */
+"Resume Job" = "Opdracht hervatten";
+
+/* No comment provided by engineer. */
+"Retrieving printers information" = "Ophalen van printer informatie";
+
+/* Execute Command */
+"Run" = "Voer uit";
+
+/* gcode name */
+"Save Settings" = "Sla instellingen op";
+
+/* Origin is SD Card */
+"SD Card" = "SD kaart";
+
+/* (No Comment) */
+"seconds ago" = "%d seconden geleden";
+
+/* DNS resolution failed. Cannot resolve hostname */
+"Server cannot be found" = "Kan de server niet vinden";
+
+/* (No Comment) */
+"Service is down or incorrect port" = "Server lijkt offline te zijn";
+
+/* gcode name */
+"Set Bed PID" = "Stel Bed PID in";
+
+/* gcode name */
+"Set Hotend PID" = "Stel Extruder PID in";
+
+/* Snooze notifications for 1 hour */
+"Snooze 1 hour" = "Stil voor 1 uur";
+
+/* Snooze notifications for 8 hours */
+"Snooze 8 hours" = "Stil voor 8 uur";
+
+/* No comment provided by engineer. */
+"State" = "Status";
+
+/* Print time is being calculated */
+"Still stabilizing" = "Nog steeds berekenen...";
+
+/* Suppress SD messages in the terminal */
+"Suppress SD" = "SD verbergen";
+
+/* Suppress temp messages in the terminal */
+"Suppress temp" = "Temperatuur verbergen";
+
+/* http://docs.octoprint.org/en/master/api/system.html */
+"System Commands" = "Systeem commando's";
+
+/* (No Comment) */
+"Target Bed" = "Doel Bed";
+
+/* No comment provided by engineer. */
+"Target Chamber" = "Doel kamer";
+
+/* (No Comment) */
+"Target Extruder" = "Doel Extruder";
+
+/* (No Comment) */
+"Target Extruder 2" = "Doel Extruder 2";
+
+/* No comment provided by engineer. */
+"Target Extruder 3" = "Doel Extruder 3";
+
+/* No comment provided by engineer. */
+"Target Extruder 4" = "Doel Extruder 4";
+
+/* No comment provided by engineer. */
+"Target Extruder 5" = "Doel Extruder 5";
+
+/* (No Comment) */
+"Tasmota Plugs" = "Tasmota stekkers";
+
+/* Temperature */
+"Temperature" = "Temperatuur";
+
+/* (No Comment) */
+"Terminal" = "Terminal";
+
+/* gcode name */
+"TMC Bump Sensitivity" = "20 / 5000\nVertaalresultaten\nTMC-stootgevoeligheid";
+
+/* gcode name */
+"TMC Debugging" = "TMC Debugging";
+
+/* gcode name */
+"TMC Motor Current" = "TMC Motor Stroomsterkte";
+
+/* (No Comment) */
+"TPLink Smartplugs" = "TPLink Slimme Stekkers";
+
+/* (No Comment) */
+"Turn Off" = "Zet uit";
+
+/* (No Comment) */
+"Turn On" = "Zet aan";
+
+/* ETA is Unknown
+   File Type is Unknown
+   Origin is Unknown */
+"Unknown" = "Onbekend";
+
+/* Unknown Custom Control */
+"Unknown Control" = "Enbekende bediening";
+
+/* gcode name */
+"Unload filament" = "Fillament legen";
+
+/* Title for window that alerts user that updates for plugins are available */
+"Update Available" = "Update beschikbaar";
+
+/* (No Comment) */
+"Upload failed" = "Uploaden gefaald";
+
+/* Siri suggested phrase */
+"Warm up heated chamber" = "Verwarm kamer";
+
+/* Siri suggested phrase */
+"Warm up printer bed" = "Verwarm bed %@";
+
+/* Siri suggested phrase */
+"Warm up printer extruder" = "Verwarm extruder %@";
+
+/* (No Comment) */
+"Warning" = "Waarschuwing";
+
+/* (No Comment) */
+"weeks ago" = "%d weken geleden";
+
+/* (No Comment) */
+"Wemo Switches" = "Wemo Schakelaars";
+
+/* (No Comment) */
+"Yes" = "Ja";
+

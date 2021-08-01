@@ -1,0 +1,54 @@
+/* HTTP authentication failed */
+"Authentication failed" = "Authentificatie mislukt";
+
+/* (No Comment) */
+"Confirm" = "Bevestig";
+
+/* (No Comment) */
+"Connection failed" = "Verbinding mislukt";
+
+/* (No Comment) */
+"Dismiss" = "Afwijzen";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "Wil je de opdracht annuleren?";
+
+/* No comment provided by engineer. */
+"Do you want to pause the job?" = "Wil je de opdracht pauzeren?";
+
+/* HTTP Request error info */
+"HTTP Request error" = "Verzoek fout. HTTP antwoord: %d";
+
+/* (No Comment) */
+"Job" = "Opdracht";
+
+/* No comment provided by engineer. */
+"Missed" = "Gemist";
+
+/* No comment provided by engineer. */
+"MK3" = "MK3";
+
+/* (No Comment) */
+"No" = "Nee";
+
+/* No printer has been selected */
+"No printer" = "Geen printer geselecteerd";
+
+/* (No Comment) */
+"Notify failed cancel job" = "Verzoek tot annuleren van de opdracht mislukt";
+
+/* (No Comment) */
+"Notify failed pause job" = "Verzoek tot pauzeren van de opdracht mislukt";
+
+/* (No Comment) */
+"Notify failed resume job" = "Verzoek tot hervatten van de opdracht mislukt";
+
+/* No comment provided by engineer. */
+"Printing" = "Aan het Printen";
+
+/* ETA is Unknown */
+"Unknown" = "Onbekend";
+
+/* (No Comment) */
+"Yes" = "Ja";
+
