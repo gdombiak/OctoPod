@@ -112,6 +112,14 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
         if let printerURL = printerURLLabel.text, let image = generateQRCode(from: printerURL) {
             let items = [image]
             let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+
+            // iPad needs the code below or otherwise it crashes. VC implemented as popover. Use button as source
+            if let popoverController = ac.popoverPresentationController {
+                popoverController.sourceView = shareQRCodeButton
+                popoverController.sourceRect = shareQRCodeButton.bounds
+                popoverController.permittedArrowDirections = .any
+            }
+
             present(ac, animated: true)
         }
     }
