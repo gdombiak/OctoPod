@@ -95,7 +95,7 @@ class RemindersViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1
+        return 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -104,6 +104,8 @@ class RemindersViewController: UIViewController, UITableViewDataSource, UITableV
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
+        // Deselect since we just wanted to handle the click
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 
     // MARK: - UITableViewDelegate

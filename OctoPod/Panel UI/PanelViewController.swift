@@ -133,7 +133,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     override func viewDidAppear(_ animated: Bool) {
         // Only display reminders and tooltips if at least a printer was configured
         if let _ = printerManager.getDefaultPrinter() {
-            if !UserDefaults.standard.bool(forKey: PanelViewController.REMINDERS_SHOWN) {
+            let test = false
+            if test || !UserDefaults.standard.bool(forKey: PanelViewController.REMINDERS_SHOWN) {
                 self.performSegue(withIdentifier: "show_reminders", sender: self)
             } else {
                 presentToolTip(tooltipKey: PanelViewController.TOOLTIP_SWIPE_PRINTERS, segueIdentifier: "swipe_printers_tooltip")
@@ -234,6 +235,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             }
         } else if segue.identifier == "show_reminders" {
             segue.destination.popoverPresentationController!.delegate = self
+            let width = UIDevice.current.userInterfaceIdiom == .phone ? 320 : 375
+            let height = 350
+            segue.destination.preferredContentSize = CGSize(width: width, height: height)
             // Center the popover
             segue.destination.popoverPresentationController!.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY,width: 0,height: 0)
         } else if segue.identifier == "updates_available", let controller = segue.destination as? PluginUpdatesViewController {
