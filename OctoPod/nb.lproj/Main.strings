@@ -10,6 +10,9 @@
 /* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "1dd-tF-khE"; */
 "1dd-tF-khE.text" = "Inkluder i oversikt";
 
+/* Class = "UIButton"; normalTitle = "Request"; ObjectID = "1gP-AF-De1"; */
+"1gP-AF-De1.normalTitle" = "užklausimas";
+
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "1pO-wB-zKj"; */
 "1pO-wB-zKj.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
@@ -82,6 +85,9 @@
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Utseende";
 
+/* Class = "UILabel"; text = "Connect directly by requesting an application key"; ObjectID = "4yc-YH-f8v"; */
+"4yc-YH-f8v.text" = "Prisijunkite tiesiogiai prašydami programos rakto";
+
 /* Class = "UILabel"; text = "Show Camera"; ObjectID = "5BW-iP-ejE"; */
 "5BW-iP-ejE.text" = "Vis kamera";
 
@@ -145,9 +151,6 @@
 /* Class = "UILabel"; text = "Uploaded"; ObjectID = "26j-Xb-FzE"; */
 "26j-Xb-FzE.text" = "Opplastet";
 
-/* Class = "UILabel"; text = "Update OctoPod plugin for OctoPrint to receive notifications at specified layers"; ObjectID = "27z-uP-BTs"; */
-"27z-uP-BTs.text" = "Oppdater OctoPod-plugin for OctoPrint for å motta varsler på spesifiserte lag";
-
 /* Class = "UILabel"; text = "Appearance"; ObjectID = "35a-ap-aeB"; */
 "35a-ap-aeB.text" = "Utseende";
 
@@ -201,6 +204,9 @@
 
 /* Class = "UILabel"; text = "OctoPrint"; ObjectID = "AU8-zV-v3w"; */
 "AU8-zV-v3w.text" = "OctoPrint";
+
+/* Class = "UIButton"; normalTitle = "Scan QR Code Key"; ObjectID = "azq-J2-MuJ"; */
+"azq-J2-MuJ.normalTitle" = "Nuskaitykite QR kodo raktą";
 
 /* Class = "UIButton"; normalTitle = "Not refreshing"; ObjectID = "b0b-3X-MUJ"; */
 "b0b-3X-MUJ.normalTitle" = "Ikke oppfriskende";
@@ -274,9 +280,6 @@
 /* Class = "UIButton"; normalTitle = "Pause"; ObjectID = "DI6-KC-pSc"; */
 "DI6-KC-pSc.normalTitle" = "Pause";
 
-/* Class = "UITableViewSection"; headerTitle = "Reminders"; ObjectID = "dIa-e3-jnv"; */
-"dIa-e3-jnv.headerTitle" = "Påminnelser";
-
 /* Class = "UILabel"; text = "Frequently Asked Questions"; ObjectID = "dlU-c7-kpY"; */
 "dlU-c7-kpY.text" = "Ofte stilte spørsmål";
 
@@ -285,6 +288,9 @@
 
 /* Class = "UIBarButtonItem"; title = "Files"; ObjectID = "DUc-ra-F2o"; */
 "DUc-ra-F2o.title" = "Filer";
+
+/* Class = "UITableViewController"; title = "Application Key"; ObjectID = "dY2-wB-5s1"; */
+"dY2-wB-5s1.title" = "Programos raktas";
 
 /* Class = "UILabel"; text = "Max"; ObjectID = "dZG-uJ-BYF"; */
 "dZG-uJ-BYF.text" = "Max";
@@ -358,6 +364,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
 "fNE-Hh-S8R.text" = "Lbael";
 
+/* Class = "UITextField"; placeholder = "API Key or Application Key"; ObjectID = "foG-IV-lL7"; */
+"foG-IV-lL7.placeholder" = "API raktas arba programos raktas";
+
 /* Class = "UINavigationItem"; title = "Printers"; ObjectID = "FqW-ud-y7C"; */
 "FqW-ud-y7C.title" = "Skrivere";
 
@@ -396,6 +405,9 @@
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "gvk-np-5oX"; */
 "gvk-np-5oX.text" = "Tittel";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "gWU-nJ-SdK"; */
+"gWU-nJ-SdK.text" = "Label";
 
 /* Class = "UILabel"; text = "Extruder"; ObjectID = "H0f-on-KjQ"; */
 "H0f-on-KjQ.text" = "Ekstruder";
@@ -496,6 +508,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "J17-Xa-0dv"; */
 "J17-Xa-0dv.text" = "Label";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "JBw-xB-Lgd"; */
+"JBw-xB-Lgd.text" = "Label";
+
 /* Class = "UILabel"; text = "m"; ObjectID = "JgS-9W-IR2"; */
 "JgS-9W-IR2.text" = "m";
 
@@ -504,6 +519,9 @@
 
 /* Class = "UILabel"; text = "Kill and restart app to take effect"; ObjectID = "jxG-8a-4b3"; */
 "jxG-8a-4b3.text" = "Avslutt og restart app for å ta i bruk";
+
+/* Class = "UILabel"; text = "OctoPrint - Global API Key"; ObjectID = "jxN-GW-tlu"; */
+"jxN-GW-tlu.text" = "„OctoPrint“ - visuotinis API raktas";
 
 /* Class = "UITableViewController"; title = "OctoEverywhere"; ObjectID = "JXO-le-4sU"; */
 "JXO-le-4sU.title" = "OctoEverywhere";
@@ -643,9 +661,6 @@
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection (REQUIRED)"; ObjectID = "OPd-TD-yfb"; */
 "OPd-TD-yfb.headerTitle" = "Skriverforbindelse (PÅKREVD)";
 
-/* Class = "UILabel"; text = "New Apple TV app is now available"; ObjectID = "oQM-8Y-Acc"; */
-"oQM-8Y-Acc.text" = "Ny Apple TV-app er nå tilgjengelig";
-
 /* Class = "UILabel"; text = "Label"; ObjectID = "Or4-Wf-fDK"; */
 "Or4-Wf-fDK.text" = "Label";
 
@@ -721,6 +736,9 @@
 /* Class = "UIViewController"; title = "QR Code"; ObjectID = "QCe-zo-Ncw"; */
 "QCe-zo-Ncw.title" = "QR Code";
 
+/* Class = "UILabel"; text = "OctoPrint - Application Key"; ObjectID = "qdv-m8-Jgb"; */
+"qdv-m8-Jgb.text" = "„OctoPrint“ - programos raktas";
+
 /* Class = "UILabel"; text = "Print Time"; ObjectID = "Qfz-1j-Keo"; */
 "Qfz-1j-Keo.text" = "Utskriftstid";
 
@@ -781,6 +799,9 @@
 /* Class = "UILabel"; text = "100"; ObjectID = "Rml-IA-ght"; */
 "Rml-IA-ght.text" = "100";
 
+/* Class = "UILabel"; text = "Connect easily from remote locations (over the internet)"; ObjectID = "rNP-Sb-Zba"; */
+"rNP-Sb-Zba.text" = "Lengvai prisijunkite iš atokių vietų (internetu)";
+
 /* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "rob-ry-eO0"; */
 "rob-ry-eO0.placeholder" = "Skrivernavn (f.eks. MK3)";
 
@@ -799,11 +820,17 @@
 /* Class = "UITextField"; placeholder = "Command"; ObjectID = "RZc-hr-pTu"; */
 "RZc-hr-pTu.placeholder" = "Kommando";
 
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "S0f-uX-rYI"; */
+"S0f-uX-rYI.normalTitle" = "Avvis";
+
 /* Class = "UITableViewSection"; headerTitle = "Complications Content"; ObjectID = "S1e-nz-awE"; */
 "S1e-nz-awE.headerTitle" = "Komplikasjoner";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
 "S2I-HR-qgE.text" = "/";
+
+/* Class = "UINavigationItem"; title = "Application Key"; ObjectID = "saA-I3-RLW"; */
+"saA-I3-RLW.title" = "Programos raktas";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "SAw-xr-VmY"; */
 "SAw-xr-VmY.text" = "/";
@@ -868,6 +895,9 @@
 /* Class = "UITextField"; placeholder = "Hostname (e.g. http://octopi.local)"; ObjectID = "tMP-2W-Iam"; */
 "tMP-2W-Iam.placeholder" = "Vertsnavn (f.eks. http://octopi.local)";
 
+/* Class = "UITableViewSection"; headerTitle = "Select Connection Type"; ObjectID = "toN-uy-OtV"; */
+"toN-uy-OtV.headerTitle" = "Pasirinkite Ryšio tipas";
+
 /* Class = "UITableViewSection"; headerTitle = "Palette 2"; ObjectID = "Tqi-wZ-CN5"; */
 "Tqi-wZ-CN5.headerTitle" = "Palette 2";
 
@@ -882,9 +912,6 @@
 
 /* Class = "UILabel"; text = "Default Text"; ObjectID = "u5z-wR-iO9"; */
 "u5z-wR-iO9.text" = "Standard tekst";
-
-/* Class = "UILabel"; text = "Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots"; ObjectID = "u6S-b1-CTI"; */
-"u6S-b1-CTI.text" = "nstaller OctoPod-plugin for OctoPrint for å motta øyeblikkelige varslinger med øyeblikksbilder";
 
 /* Class = "UITextField"; placeholder = "Layer"; ObjectID = "Uc6-ok-eNN"; */
 "Uc6-ok-eNN.placeholder" = "Lag";
@@ -1039,9 +1066,6 @@
 /* Class = "UILabel"; text = "0 C"; ObjectID = "ywI-EB-V2L"; */
 "ywI-EB-V2L.text" = "0 C";
 
-/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "yxh-PV-og3"; */
-"yxh-PV-og3.normalTitle" = "Avvis";
-
 /* Class = "UILabel"; text = "Extruder 4"; ObjectID = "z2y-Yi-bgx"; */
 "z2y-Yi-bgx.text" = "Ekstruder 4";
 
@@ -1071,6 +1095,9 @@
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "ZF8-G0-f5Y"; */
 "ZF8-G0-f5Y.text" = "Detalj";
+
+/* Class = "UILabel"; text = "Connect directly using registered Global API key (deprecated)"; ObjectID = "Zgx-Ee-m6r"; */
+"Zgx-Ee-m6r.text" = "Prisijunkite tiesiogiai naudodami registruotą visuotinį API raktą (nebenaudojama)";
 
 /* Class = "UILabel"; text = "Prompt Extrude Speed"; ObjectID = "zH4-HC-We7"; */
 "zH4-HC-We7.text" = "Be om ekstruderhastighet";

@@ -100,9 +100,6 @@
                         <outlet property="notRefreshingButton" destination="b0b-3X-MUJ" id="Knb-qg-lHe"/>
                         <outlet property="printerSelectButton" destination="PyK-FO-APL" id="wK4-vf-paq"/>
                         <outlet property="subpanelsView" destination="n53-As-HXW" id="EgU-Vy-f2c"/>
-                        <segue destination="14W-Wh-GnO" kind="popoverPresentation" identifier="show_reminders" popoverAnchorView="qbu-bG-uS0" id="JAK-GR-djn">
-                            <popoverArrowDirection key="popoverArrowDirection"/>
-                        </segue>
                         <segue destination="1eA-yA-HPM" kind="popoverPresentation" identifier="updates_available" popoverAnchorView="qbu-bG-uS0" id="57v-Dx-Reh">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
@@ -110,151 +107,88 @@
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
                         <segue destination="J3n-cu-nv7" kind="show" identifier="printers_dashboard" id="SzD-sH-OI7"/>
+                        <segue destination="Sef-DX-8Pt" kind="popoverPresentation" identifier="show_reminders" popoverAnchorView="qbu-bG-uS0" id="tYp-5R-lZa">
+                            <popoverArrowDirection key="popoverArrowDirection"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RPn-sw-RO1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1581.5999999999999" y="-343.17841079460271"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="SSM-0E-mdO">
+        <!--Reminders View Controller-->
+        <scene sceneID="HbR-Wi-Z09">
             <objects>
-                <viewController id="14W-Wh-GnO" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SI7-NR-DuQ">
-                        <rect key="frame" x="0.0" y="0.0" width="335" height="200"/>
+                <viewController id="Sef-DX-8Pt" customClass="RemindersViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bYA-Zr-GBo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxh-PV-og3">
-                                <rect key="frame" x="0.0" y="167" width="335" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0f-uX-rYI">
+                                <rect key="frame" x="0.0" y="614" width="375" height="33"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="okl-67-457"/>
+                                    <constraint firstAttribute="height" constant="33" id="8Jv-Mx-ATx"/>
                                 </constraints>
                                 <state key="normal" title="Dismiss"/>
                                 <connections>
-                                    <segue destination="IBc-Nj-8Zc" kind="unwind" unwindAction="backFromShowReminders:" id="cWw-kE-W7x"/>
+                                    <segue destination="uXe-Vp-itg" kind="unwind" unwindAction="backFromShowReminders:" id="Q7R-bD-Mu9"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ga-iE-0I4">
-                                <rect key="frame" x="0.0" y="0.0" width="335" height="167"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wUP-bF-fHT">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="610"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reminder_cell" id="ssf-rJ-LXs">
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="40"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ssf-rJ-LXs" id="b2U-Rm-xrO">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.65000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="gWU-nJ-SdK">
+                                                    <rect key="frame" x="23" y="11" width="329" height="17.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gWU-nJ-SdK" firstAttribute="leading" secondItem="b2U-Rm-xrO" secondAttribute="leadingMargin" constant="7" id="0k8-tX-J09"/>
+                                                <constraint firstItem="gWU-nJ-SdK" firstAttribute="top" secondItem="b2U-Rm-xrO" secondAttribute="topMargin" id="32R-xq-TUZ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="gWU-nJ-SdK" secondAttribute="trailing" constant="7" id="o5Y-uq-hmo"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="gWU-nJ-SdK" secondAttribute="bottom" constant="0.5" id="paS-7o-EWe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <segue destination="kSH-Fl-ABK" kind="embed" id="SYl-Nt-azn"/>
+                                    <outlet property="dataSource" destination="Sef-DX-8Pt" id="gp2-XY-PWE"/>
+                                    <outlet property="delegate" destination="Sef-DX-8Pt" id="2DW-Sk-dyi"/>
                                 </connections>
-                            </containerView>
+                            </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="gPu-kC-qK3"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="mf8-Qq-xN9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="1Ga-iE-0I4" firstAttribute="top" secondItem="SI7-NR-DuQ" secondAttribute="top" id="9vU-Rf-5jG"/>
-                            <constraint firstItem="yxh-PV-og3" firstAttribute="top" secondItem="1Ga-iE-0I4" secondAttribute="bottom" id="CQw-es-Cme"/>
-                            <constraint firstItem="yxh-PV-og3" firstAttribute="leading" secondItem="gPu-kC-qK3" secondAttribute="leading" id="Ked-sB-V1v"/>
-                            <constraint firstItem="1Ga-iE-0I4" firstAttribute="trailing" secondItem="gPu-kC-qK3" secondAttribute="trailing" id="U0v-vJ-rhP"/>
-                            <constraint firstItem="gPu-kC-qK3" firstAttribute="trailing" secondItem="yxh-PV-og3" secondAttribute="trailing" id="WSb-Je-fo6"/>
-                            <constraint firstItem="1Ga-iE-0I4" firstAttribute="leading" secondItem="gPu-kC-qK3" secondAttribute="leading" id="oPW-m9-OJF"/>
-                            <constraint firstItem="yxh-PV-og3" firstAttribute="bottom" secondItem="gPu-kC-qK3" secondAttribute="bottom" id="yup-ro-1sH"/>
+                            <constraint firstItem="wUP-bF-fHT" firstAttribute="leading" secondItem="mf8-Qq-xN9" secondAttribute="leading" id="1B3-eQ-VQj"/>
+                            <constraint firstItem="wUP-bF-fHT" firstAttribute="top" secondItem="mf8-Qq-xN9" secondAttribute="top" id="7nV-yN-okO"/>
+                            <constraint firstItem="S0f-uX-rYI" firstAttribute="leading" secondItem="mf8-Qq-xN9" secondAttribute="leading" id="7pf-S4-OQA"/>
+                            <constraint firstItem="S0f-uX-rYI" firstAttribute="bottom" secondItem="mf8-Qq-xN9" secondAttribute="bottom" id="d32-Fg-5L7"/>
+                            <constraint firstItem="wUP-bF-fHT" firstAttribute="trailing" secondItem="mf8-Qq-xN9" secondAttribute="trailing" id="dkH-fE-MNm"/>
+                            <constraint firstItem="S0f-uX-rYI" firstAttribute="trailing" secondItem="mf8-Qq-xN9" secondAttribute="trailing" id="fBq-w1-CHz"/>
+                            <constraint firstItem="S0f-uX-rYI" firstAttribute="top" secondItem="wUP-bF-fHT" secondAttribute="bottom" constant="4" id="ffE-zI-zZ4"/>
                         </constraints>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="335" height="200"/>
-                    <size key="freeformSize" width="335" height="200"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bSv-aC-cRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="IBc-Nj-8Zc" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1582" y="-968"/>
-        </scene>
-        <!--Reminders View Controller-->
-        <scene sceneID="3DG-X6-NhE">
-            <objects>
-                <tableViewController id="kSH-Fl-ABK" customClass="RemindersViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="ZCl-qC-PoN">
-                        <rect key="frame" x="0.0" y="0.0" width="335" height="167"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
-                        <sections>
-                            <tableViewSection headerTitle="Reminders" id="dIa-e3-jnv">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="1w0-LS-Weo">
-                                        <rect key="frame" x="0.0" y="49.5" width="335" height="65"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1w0-LS-Weo" id="cwS-Vb-gD1">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="65"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="u6S-b1-CTI">
-                                                    <rect key="frame" x="7" y="0.0" width="321" height="54"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" name="selectedContentBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="u6S-b1-CTI" secondAttribute="bottom" constant="11" id="E1D-EV-4TQ"/>
-                                                <constraint firstItem="u6S-b1-CTI" firstAttribute="top" relation="lessThanOrEqual" secondItem="cwS-Vb-gD1" secondAttribute="top" constant="11" id="MKl-7y-mqg"/>
-                                                <constraint firstItem="u6S-b1-CTI" firstAttribute="leading" secondItem="cwS-Vb-gD1" secondAttribute="leading" constant="7" id="QlV-6j-OJT"/>
-                                                <constraint firstAttribute="trailing" secondItem="u6S-b1-CTI" secondAttribute="trailing" constant="7" id="fC1-9a-w3f"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="55" id="Hv5-k1-Fec">
-                                        <rect key="frame" x="0.0" y="114.5" width="335" height="55"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hv5-k1-Fec" id="Mm4-qP-qtV">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="55"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update OctoPod plugin for OctoPrint to receive notifications at specified layers" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999998807907104" translatesAutoresizingMaskIntoConstraints="NO" id="27z-uP-BTs">
-                                                    <rect key="frame" x="7" y="8" width="321" height="36"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" name="selectedContentBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="27z-uP-BTs" firstAttribute="leading" secondItem="Mm4-qP-qtV" secondAttribute="leading" constant="7" id="GcX-V3-jGx"/>
-                                                <constraint firstAttribute="trailing" secondItem="27z-uP-BTs" secondAttribute="trailing" constant="7" id="hhd-LH-tiN"/>
-                                                <constraint firstItem="27z-uP-BTs" firstAttribute="top" relation="lessThanOrEqual" secondItem="Mm4-qP-qtV" secondAttribute="top" constant="11" id="tkP-Eh-y4g"/>
-                                                <constraint firstAttribute="bottom" secondItem="27z-uP-BTs" secondAttribute="bottom" constant="11" id="whu-OW-h0h"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="40" id="f9m-tK-uIB">
-                                        <rect key="frame" x="0.0" y="169.5" width="335" height="40"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f9m-tK-uIB" id="rs3-Cu-wVM">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Apple TV app is now available" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999998807907104" translatesAutoresizingMaskIntoConstraints="NO" id="oQM-8Y-Acc">
-                                                    <rect key="frame" x="7" y="11" width="321" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" name="selectedContentBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="oQM-8Y-Acc" secondAttribute="bottom" constant="11" id="E2K-Ow-aib"/>
-                                                <constraint firstItem="oQM-8Y-Acc" firstAttribute="top" secondItem="rs3-Cu-wVM" secondAttribute="top" constant="11" id="ED2-Qa-pg7"/>
-                                                <constraint firstItem="oQM-8Y-Acc" firstAttribute="leading" secondItem="rs3-Cu-wVM" secondAttribute="leading" constant="7" id="iKg-s0-WUd"/>
-                                                <constraint firstAttribute="trailing" secondItem="oQM-8Y-Acc" secondAttribute="trailing" constant="7" id="mOa-F5-bwW"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="kSH-Fl-ABK" id="AA4-KU-mda"/>
-                            <outlet property="delegate" destination="kSH-Fl-ABK" id="00t-Lz-FKk"/>
-                        </connections>
-                    </tableView>
+                    <navigationItem key="navigationItem" id="uYD-hw-bY2"/>
                     <connections>
-                        <outlet property="newAppleTVLabel" destination="oQM-8Y-Acc" id="HjN-xI-JZi"/>
-                        <outlet property="octopodPluginLabel" destination="u6S-b1-CTI" id="zmd-AK-c5a"/>
-                        <outlet property="updatedOctopodPluginLabel" destination="27z-uP-BTs" id="RU2-vF-Kce"/>
+                        <outlet property="dismissButton" destination="S0f-uX-rYI" id="QvR-b9-jWk"/>
+                        <outlet property="tableView" destination="wUP-bF-fHT" id="NJf-zz-rZV"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fMj-P8-9jP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o7Z-jQ-myq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="uXe-Vp-itg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2302" y="-982"/>
+            <point key="canvasLocation" x="1692" y="-1073"/>
         </scene>
         <!--Cameras View Controller-->
         <scene sceneID="buj-rn-YqY">

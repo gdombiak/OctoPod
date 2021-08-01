@@ -1,4 +1,5 @@
 import UIKit
+import SafariServices
 
 class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentationControllerDelegate {
 
@@ -23,19 +24,26 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
     @IBOutlet weak var requestKeyButton: UIButton!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    var navigatedToOctoPrintWeb = false
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         themeLabels()
 
-        // Hide URL error message
-        urlErrorMessageLabel.isHidden = true
-        requestStatusLabel.text = nil
-        // Enable scanning for OctoPrint instances
-        scanInstallationsButton.isEnabled = true
-        
-        updateNextButton()
+        if !navigatedToOctoPrintWeb {
+            // Hide URL error message
+            urlErrorMessageLabel.isHidden = true
+            requestStatusLabel.text = nil
+            // Enable scanning for OctoPrint instances
+            scanInstallationsButton.isEnabled = true
+            
+            updateNextButton()
+        } else {
+            // Reset flag that says that this VC just opened safari and took user to OctoPrint
+            navigatedToOctoPrintWeb = false
+        }
 
         // Register for keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -119,6 +127,9 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
                 restClient.appkeyRequest(app: appIdentifier) { (location: String?, error: Error?, response: HTTPURLResponse) in
                     if let location = location {
                         self.displayRequestProgress(message: NSLocalizedString("Log into OctoPrint to approve access request.", comment: ""), action: nil)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            self.openSafariOnOctoPrint()
+                        }
                         self.pollForDecision(restClient: restClient, location: location)
                     } else {
                         // Display that there was an error requesting app key
@@ -158,6 +169,8 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
             self.printerNameField.text = selectedService.name
             // Update hostname based on discovered information
             self.hostnameField.text = selectedService.hostname
+            // Enable Request button
+            updateNextButton()
         }
     }
     
@@ -197,6 +210,14 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
                 // We are done. Display that user declined or request timed out
                 self.displayRequestError(message: NSLocalizedString("User declined or request timed out.", comment: ""))
             }
+        }
+    }
+    
+    fileprivate func openSafariOnOctoPrint() {
+        if let urlString = hostnameField.text {
+            let svc = SFSafariViewController(url: URL(string: urlString)!)
+            navigatedToOctoPrintWeb = true
+            self.present(svc, animated: true, completion: nil)
         }
     }
     

@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Switch to printer user clicked on when using Today's widget or notification or iOS 14 widget
             if let printer = printerManager?.getPrinterByName(name: printerName) {
                 // Add some delay so app transitions to Active (camera will render only when app is active)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.defaultPrinterManager.changeToDefaultPrinter(printer: printer)
 
                     // Go to main Panel window
