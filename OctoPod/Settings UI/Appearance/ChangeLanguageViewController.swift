@@ -18,7 +18,7 @@ class ChangeLanguageViewController: ThemedDynamicUITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 12
+        return 13
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,6 +77,10 @@ class ChangeLanguageViewController: ThemedDynamicUITableViewController {
             // Russian
             cell.textLabel?.text = "Русский"
             cell.accessoryType = languageOverride == "ru" ? .checkmark : .none
+        case 12:
+            // Nederlands
+            cell.textLabel?.text = "Nederlands"
+            cell.accessoryType = languageOverride == "nl" ? .checkmark : .none
         default:
             fatalError("ChangeLanguageViewController has more rows than languages")
         }
@@ -130,9 +134,13 @@ class ChangeLanguageViewController: ThemedDynamicUITableViewController {
             defaults.set(["fr"], forKey: ChangeLanguageViewController.LANGUAGE_KEY)
             defaults.set("fr", forKey: ChangeLanguageViewController.CHANGE_LANGUAGE_OVERRIDE)
         case 11:
-            // French
+            // Russian
             defaults.set(["ru"], forKey: ChangeLanguageViewController.LANGUAGE_KEY)
             defaults.set("ru", forKey: ChangeLanguageViewController.CHANGE_LANGUAGE_OVERRIDE)
+        case 12:
+            // Nederlands
+            defaults.set(["nl"], forKey: ChangeLanguageViewController.LANGUAGE_KEY)
+            defaults.set("nl", forKey: ChangeLanguageViewController.CHANGE_LANGUAGE_OVERRIDE)
         default:
             fatalError("ChangeLanguageViewController has more rows than languages")
         }
