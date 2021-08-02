@@ -16,6 +16,9 @@
 /* No comment provided by engineer. */
 "Do you want to pause the job?" = "Wil je de opdracht pauzeren?";
 
+/* Apple Watch cannot render HTTP Live Streaming feeds */
+"HLS not supported" = "HLS niet ondersteund";
+
 /* HTTP Request error info */
 "HTTP Request error" = "Verzoek fout. HTTP antwoord: %d";
 

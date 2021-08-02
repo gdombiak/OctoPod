@@ -8,6 +8,12 @@
 "1lbZOa" = "Verzoek om verbinding te verbreken mislukt";
 
 /* (No Comment) */
+"1qMmy1" = "Verzocht";
+
+/* (No Comment) */
+"2O3S2V" = "Maak Momentopname";
+
+/* (No Comment) */
 "2TreiD" = "Stel extruder temperatuur in op ${temperature}";
 
 /* (No Comment) */
@@ -26,13 +32,22 @@
 "3JiZye" = "Verzocht";
 
 /* (No Comment) */
+"4B08aG" = "Zet ${label} Uit";
+
+/* (No Comment) */
 "4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"4Tu0Kl" = "Verzoek tot uitvoerencommando mislukt";
 
 /* (No Comment) */
 "5btOXI" = "Laatste Variatie";
 
 /* (No Comment) */
 "5i5htv" = "Verbonden";
+
+/* (No Comment) */
+"5iTPOd" = "${printer}";
 
 /* (No Comment) */
 "6b7Yce" = "Verzoek Palette om te knippen";
@@ -42,6 +57,9 @@
 
 /* (No Comment) */
 "6vtMLs" = "Opdracht is opnieuw gestart";
+
+/* (No Comment) */
+"7c0KRL" = "Commandobron";
 
 /* (No Comment) */
 "7eJPkN" = "Stel kamers temperatuur in";
@@ -54,6 +72,9 @@
 
 /* (No Comment) */
 "8tTCjD" = "Printopdracht annuleren mislukt (${statusCode})";
+
+/* (No Comment) */
+"8uLpUQ" = "Zet PSU uit";
 
 /* (No Comment) */
 "8xHCbl" = "${printer}";
@@ -71,13 +92,31 @@
 "662LyZ" = "Herstart opdracht";
 
 /* (No Comment) */
+"9107Xn" = "Maak Momentopname";
+
+/* (No Comment) */
+"a1UDyY" = "Verzocht";
+
+/* (No Comment) */
 "ajupCt" = "Geen informatie beschikbaar";
+
+/* (No Comment) */
+"aTDQUI" = "Zet Behuizingschakelaar Aan";
 
 /* (No Comment) */
 "AU4oMs" = "Verzoek Palette om ping statestieken";
 
 /* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
 "AzqFAh" = "Verzocht";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "Zet PSU aan";
 
 /* (No Comment) */
 "BUexSx" = "Max. Variatie";
@@ -86,16 +125,31 @@
 "bXGQKe" = "Printer afkoelen";
 
 /* (No Comment) */
+"bXrJk0" = "Commando Actie";
+
+/* (No Comment) */
+"C1mTOm" = "${printer}";
+
+/* (No Comment) */
 "D0kBGr" = "Print opdracht hervatten";
 
 /* (No Comment) */
 "D1wWxd" = "Verbinding met Palette verbroken";
 
 /* (No Comment) */
+"DKIuk9" = "Voer System Command Uit";
+
+/* (No Comment) */
 "doj4NA" = "Stel extruder's temperatuur in";
 
 /* (No Comment) */
 "Eb3aa5" = "Instellen kamertemperatuur mislukt (${statusCode})";
+
+/* (No Comment) */
+"Eeyifr" = "Verzocht";
+
+/* (No Comment) */
+"eKSaMC" = "Zet ${label} Aan";
 
 /* (No Comment) */
 "f8xirF" = "Printer afkoelen";
@@ -119,7 +173,16 @@
 "g52Ub0" = "${printer}";
 
 /* (No Comment) */
+"Ge6TbJ" = "Verzoek tot uitvoerencommando mislukt";
+
+/* (No Comment) */
 "gx0D0e" = "Opdracht geannuleerd";
+
+/* (No Comment) */
+"H21bkX" = "Verzoek tot uitvoerencommando mislukt";
+
+/* (No Comment) */
+"hE6yXX" = "Verzocht";
 
 /* (No Comment) */
 "hPlRC4" = "Stel de bed temperatuur in op ${temperature}";
@@ -129,6 +192,9 @@
 
 /* (No Comment) */
 "ihLqc7" = "Pauzeer opdracht";
+
+/* (No Comment) */
+"IXiy0v" = "Verzoek tot uitvoerencommando mislukt";
 
 /* (No Comment) */
 "jasUIn" = "Verbinding met Palette verbroken";
@@ -146,13 +212,28 @@
 "Kf7e4Y" = "Hervat huidige printopdracht";
 
 /* (No Comment) */
+"kHMMRT" = "${printer}";
+
+/* (No Comment) */
 "KHvUZD" = "Verzoek Palette om te knippen";
 
 /* (No Comment) */
 "kSWyyv" = "${printer}";
 
 /* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
+"KulRl5" = "Zet Behuizingschakelaar Aan";
+
+/* (No Comment) */
+"KxJmrF" = "Momentopname";
+
+/* (No Comment) */
 "L25OHl" = "Verzoek tot verbinden mislukt";
+
+/* (No Comment) */
+"lOuQ7B" = "Verzoek tot uitvoerencommando mislukt";
 
 /* (No Comment) */
 "lrRige" = "Huidige opdracht annuleren";
@@ -182,10 +263,28 @@
 "NL98zi" = "Aan het afkoelen";
 
 /* (No Comment) */
+"Oaidbo" = "Verzoek tot uitvoerencommando mislukt";
+
+/* (No Comment) */
+"oe3uiM" = "System Command ${commandName} Uitvoeren";
+
+/* (No Comment) */
+"OOldQi" = "Commando Naam";
+
+/* (No Comment) */
 "ovQf6Z" = "Opdracht gepauzeerd";
 
 /* (No Comment) */
+"P6usJW" = "Maak Momentopname";
+
+/* (No Comment) */
+"p9Vevg" = "Verzoek tot uitvoerencommando mislukt";
+
+/* (No Comment) */
 "P89qJr" = "Tijd resterend: ${time}";
+
+/* (No Comment) */
+"pfroH1" = "Zet PSU uit";
 
 /* (No Comment) */
 "Pj7mEV" = "Extruder afkoelen";
@@ -194,10 +293,16 @@
 "PppyPP" = "Stel bedtemperatuur in";
 
 /* (No Comment) */
+"q1Oynq" = "PSUU Control uit";
+
+/* (No Comment) */
 "qLzk1S" = "Bed afkoelen";
 
 /* (No Comment) */
 "QSxXHq" = "Huidige printopdracht pauzeren";
+
+/* (No Comment) */
+"qwH2oF" = "Zet Behuizingschakelaar Uit";
 
 /* (No Comment) */
 "R5AlTe" = "Verbinding met Palette verbroken";
@@ -227,6 +332,9 @@
 "RYurC5" = "Kamer af laten koelen";
 
 /* (No Comment) */
+"sDV9Jm" = "Verzocht";
+
+/* (No Comment) */
 "SP4rN6" = "Stel de extrudertemperatuur in";
 
 /* (No Comment) */
@@ -236,10 +344,19 @@
 "sRkyIL" = "Printopdracht herstarten mislukt (${statusCode})";
 
 /* (No Comment) */
+"SZLVG3" = "Verzoek tot uitvoerencommando mislukt";
+
+/* (No Comment) */
+"TcPGnq" = "Zet Behuizingschakelaar Uit";
+
+/* (No Comment) */
 "tKDODp" = "Resterende print tijd";
 
 /* (No Comment) */
 "UC9Zrq" = "Bed temperatuur was ingesteld op ${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "System Command Uitvoeren";
 
 /* (No Comment) */
 "uoT27A" = "Instellen van bed temperatuur mislukt (${statusCode})";
@@ -254,6 +371,12 @@
 "VItjhS" = "Niet verdonden";
 
 /* (No Comment) */
+"Vix5SL" = "Verzoek tot uitvoerencommando mislukt";
+
+/* (No Comment) */
+"VKupAQ" = "Verzocht";
+
+/* (No Comment) */
 "vL7cy4" = "${printer}";
 
 /* (No Comment) */
@@ -263,22 +386,46 @@
 "vmbpr4" = "Verbind met Palette";
 
 /* (No Comment) */
+"wabqoy" = "Verzoek tot uitvoerencommando mislukt";
+
+/* (No Comment) */
 "WI2oQf" = "Resterende printtijd terugsturen";
 
 /* (No Comment) */
 "WLkRl0" = "Hervatten printopdracht mislukt (${statusCode})";
 
 /* (No Comment) */
+"wp8czt" = "Verzocht";
+
+/* (No Comment) */
 "wYzz4m" = "Printer is aan het afkoelen";
+
+/* (No Comment) */
+"x8aCII" = "Verzocht";
 
 /* (No Comment) */
 "XfWmGt" = "Hervat huidige printopdracht";
 
 /* (No Comment) */
+"Xk9F6S" = "Zet PSU aan";
+
+/* (No Comment) */
 "xSARU0" = "Opdracht pauzeren mislukt (${statusCode})";
 
 /* (No Comment) */
+"XUSWIb" = "PSUU Control aan";
+
+/* (No Comment) */
+"YfmWYd" = "Verzocht";
+
+/* (No Comment) */
 "YGxUII" = "${printer}";
+
+/* (No Comment) */
+"yMvnaP" = "Printer";
+
+/* (No Comment) */
+"YQLomX" = "Verzocht";
 
 /* (No Comment) */
 "yZeSdz" = "${printer}";

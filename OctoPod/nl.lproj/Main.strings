@@ -4,8 +4,23 @@
 /* Class = "UIViewController"; title = "Printers"; ObjectID = "0Ma-Ce-Fmq"; */
 "0Ma-Ce-Fmq.title" = "Printers";
 
+/* Class = "UILabel"; text = "Title"; ObjectID = "0RF-vn-WtE"; */
+"0RF-vn-WtE.text" = "Titel";
+
+/* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "1dd-tF-khE"; */
+"1dd-tF-khE.text" = "Toevoegen aan dashboard";
+
+/* Class = "UIButton"; normalTitle = "Request"; ObjectID = "1gP-AF-De1"; */
+"1gP-AF-De1.normalTitle" = "Verzoek";
+
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "1pO-wB-zKj"; */
 "1pO-wB-zKj.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "1uD-mu-LKh"; */
+"1uD-mu-LKh.placeholder" = "Wachtwoord";
+
+/* Class = "UIBarButtonItem"; title = "Timelapse"; ObjectID = "1wa-fM-oTk"; */
+"1wa-fM-oTk.title" = "Timelapse";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "1wf-TL-br5"; */
 "1wf-TL-br5.text" = "Label";
@@ -25,11 +40,17 @@
 /* Class = "UILabel"; text = "Auto-lock while printing"; ObjectID = "3eo-D0-hAF"; */
 "3eo-D0-hAF.text" = "Automatisch vergrendelen tijdens printen";
 
+/* Class = "UILabel"; text = "Error message"; ObjectID = "3hn-5x-4xy"; */
+"3hn-5x-4xy.text" = "Foutmelding";
+
 /* Class = "UILabel"; text = "Flow rate"; ObjectID = "3IG-Y9-Ofi"; */
 "3IG-Y9-Ofi.text" = "Flow rate";
 
 /* Class = "UITableViewSection"; headerTitle = "Language"; ObjectID = "3JO-XH-cf3"; */
 "3JO-XH-cf3.headerTitle" = "Taal";
+
+/* Class = "UILabel"; text = "Show Camera"; ObjectID = "3lh-11-wC7"; */
+"3lh-11-wC7.text" = "Camera Weergeven";
 
 /* Class = "UILabel"; text = "Printed"; ObjectID = "3mU-gE-iQQ"; */
 "3mU-gE-iQQ.text" = "Geprint";
@@ -46,17 +67,29 @@
 /* Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[2] = "Printed"; ObjectID = "4bm-la-U47"; */
 "4bm-la-U47.segmentTitles[2]" = "Geprint";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "4iR-7v-jJp"; */
+"4iR-7v-jJp.text" = "Label";
+
 /* Class = "UILabel"; text = "Certificate validation"; ObjectID = "4Kd-tY-8l3"; */
 "4Kd-tY-8l3.text" = "Certificaat validatie";
 
 /* Class = "UITextField"; placeholder = "Speed value"; ObjectID = "4Lh-Q8-wxW"; */
 "4Lh-Q8-wxW.placeholder" = "Snelheid";
 
+/* Class = "UITableViewSection"; headerTitle = "BLTouch"; ObjectID = "4LI-ea-uZQ"; */
+"4LI-ea-uZQ.headerTitle" = "BLTouch";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "4ls-BU-eMv"; */
 "4ls-BU-eMv.text" = "Label";
 
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Uiterlijk";
+
+/* Class = "UILabel"; text = "Connect directly by requesting an application key"; ObjectID = "4yc-YH-f8v"; */
+"4yc-YH-f8v.text" = "Verbind direct door een applicatiesleutel te verzoeken";
+
+/* Class = "UILabel"; text = "Show Camera"; ObjectID = "5BW-iP-ejE"; */
+"5BW-iP-ejE.text" = "Camera Weergeven";
 
 /* Class = "UILabel"; text = "Splice"; ObjectID = "5GO-ai-ldL"; */
 "5GO-ai-ldL.text" = "Splitsen";
@@ -82,6 +115,9 @@
 /* Class = "UILabel"; text = "Disable Motor"; ObjectID = "6TZ-hb-gdQ"; */
 "6TZ-hb-gdQ.text" = "Schakel motoren uit";
 
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7HM-7E-tgN"; */
+"7HM-7E-tgN.normalTitle" = "Knop";
+
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "7Je-mU-81r"; */
 "7Je-mU-81r.text" = "0.0 C";
 
@@ -90,6 +126,9 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Manual Control"; ObjectID = "7pE-fx-Ibe"; */
 "7pE-fx-Ibe.headerTitle" = "Handmatige Bedienieng";
+
+/* Class = "UITableViewSection"; headerTitle = "Settings"; ObjectID = "7tc-5o-KVQ"; */
+"7tc-5o-KVQ.headerTitle" = "Instellingen";
 
 /* Class = "UILabel"; text = "#"; ObjectID = "8aU-tf-jF4"; */
 "8aU-tf-jF4.text" = "#";
@@ -160,8 +199,14 @@
 /* Class = "UILabel"; text = "Cancel Object plugin requires update"; ObjectID = "Aka-Ud-zQ7"; */
 "Aka-Ud-zQ7.text" = "Update vereist voor Cancel Object plugin";
 
+/* Class = "UITextField"; placeholder = "Hostname (e.g. http://octopi.local)"; ObjectID = "ATt-Oy-pFY"; */
+"ATt-Oy-pFY.placeholder" = "Hostnaam (b.v. http://octopi.local)";
+
 /* Class = "UILabel"; text = "OctoPrint"; ObjectID = "AU8-zV-v3w"; */
 "AU8-zV-v3w.text" = "OctoPrint";
+
+/* Class = "UIButton"; normalTitle = "Scan QR Code Key"; ObjectID = "azq-J2-MuJ"; */
+"azq-J2-MuJ.normalTitle" = "Scan QR Code Sleutel";
 
 /* Class = "UIButton"; normalTitle = "Not refreshing"; ObjectID = "b0b-3X-MUJ"; */
 "b0b-3X-MUJ.normalTitle" = "Niet vernieuwen";
@@ -181,8 +226,14 @@
 /* Class = "UILabel"; text = "Print Completion"; ObjectID = "blG-5R-gJE"; */
 "blG-5R-gJE.text" = "Print Compleet op";
 
+/* Class = "UINavigationItem"; title = "Timelapse"; ObjectID = "blh-CP-v5H"; */
+"blh-CP-v5H.title" = "Timelapse";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
 "bNj-cj-oty.text" = "Label";
+
+/* Class = "UILabel"; text = "Print Time"; ObjectID = "BrM-2D-Rbd"; */
+"BrM-2D-Rbd.text" = "Print Tijd";
 
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "bsz-rk-3Em"; */
 "bsz-rk-3Em.text" = "0.0 C";
@@ -214,6 +265,15 @@
 /* Class = "UIButton"; normalTitle = "Print"; ObjectID = "Crn-wa-FLw"; */
 "Crn-wa-FLw.normalTitle" = "Print";
 
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "cXP-Jq-eBP"; */
+"cXP-Jq-eBP.placeholder" = "Gebruikersnaam";
+
+/* Class = "UITableViewSection"; headerTitle = "HTTP Authentication"; ObjectID = "cYc-2L-RG7"; */
+"cYc-2L-RG7.headerTitle" = "HTTP Authentificatie";
+
+/* Class = "UINavigationItem"; title = "Cameras"; ObjectID = "cYo-7v-8Bn"; */
+"cYo-7v-8Bn.title" = "Cameras";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "daK-38-bWh"; */
 "daK-38-bWh.text" = "Label";
 
@@ -225,6 +285,12 @@
 
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "du3-LR-AIz"; */
 "du3-LR-AIz.text" = "0.0%";
+
+/* Class = "UIBarButtonItem"; title = "Files"; ObjectID = "DUc-ra-F2o"; */
+"DUc-ra-F2o.title" = "Bestanden";
+
+/* Class = "UITableViewController"; title = "Application Key"; ObjectID = "dY2-wB-5s1"; */
+"dY2-wB-5s1.title" = "Applicatie Sleutel";
 
 /* Class = "UILabel"; text = "Max"; ObjectID = "dZG-uJ-BYF"; */
 "dZG-uJ-BYF.text" = "Max";
@@ -298,6 +364,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R"; */
 "fNE-Hh-S8R.text" = "Label";
 
+/* Class = "UITextField"; placeholder = "API Key or Application Key"; ObjectID = "foG-IV-lL7"; */
+"foG-IV-lL7.placeholder" = "API Sleutel of Applicatie Sleutel";
+
 /* Class = "UINavigationItem"; title = "Printers"; ObjectID = "FqW-ud-y7C"; */
 "FqW-ud-y7C.title" = "Printers";
 
@@ -337,8 +406,14 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "gvk-np-5oX"; */
 "gvk-np-5oX.text" = "Title";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "gWU-nJ-SdK"; */
+"gWU-nJ-SdK.text" = "Label";
+
 /* Class = "UILabel"; text = "Extruder"; ObjectID = "H0f-on-KjQ"; */
 "H0f-on-KjQ.text" = "Extruder";
+
+/* Class = "UIButton"; normalTitle = "URL Button"; ObjectID = "h4l-mV-gFf"; */
+"h4l-mV-gFf.normalTitle" = "URL Knop";
 
 /* Class = "UILabel"; text = "Support"; ObjectID = "HbJ-Bb-EXQ"; */
 "HbJ-Bb-EXQ.text" = "Ondersteuning";
@@ -415,6 +490,9 @@
 /* Class = "UIButton"; normalTitle = "Cut"; ObjectID = "i3l-7C-iJB"; */
 "i3l-7C-iJB.normalTitle" = "Knip";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "ieu-aB-md8"; */
+"ieu-aB-md8.text" = "Label";
+
 /* Class = "UIButton"; normalTitle = "Popular GCode Commands"; ObjectID = "Iuu-Fk-Mu7"; */
 "Iuu-Fk-Mu7.normalTitle" = "Populaire GCode commando's";
 
@@ -427,6 +505,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "J17-Xa-0dv"; */
 "J17-Xa-0dv.text" = "Label";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "JBw-xB-Lgd"; */
+"JBw-xB-Lgd.text" = "Label";
+
 /* Class = "UILabel"; text = "m"; ObjectID = "JgS-9W-IR2"; */
 "JgS-9W-IR2.text" = "m";
 
@@ -435,6 +516,12 @@
 
 /* Class = "UILabel"; text = "Kill and restart app to take effect"; ObjectID = "jxG-8a-4b3"; */
 "jxG-8a-4b3.text" = "Stop en herstart de app om de nieuwe instellingen toe te passen";
+
+/* Class = "UILabel"; text = "OctoPrint - Global API Key"; ObjectID = "jxN-GW-tlu"; */
+"jxN-GW-tlu.text" = "OctoPrint - Globale API Sleutel";
+
+/* Class = "UITableViewController"; title = "OctoEverywhere"; ObjectID = "JXO-le-4sU"; */
+"JXO-le-4sU.title" = "OctoEverywhere";
 
 /* Class = "UILabel"; text = "Confirm to disconnect"; ObjectID = "JYC-5g-kqS"; */
 "JYC-5g-kqS.text" = "Bevestig om verbinding te verbreken";
@@ -460,11 +547,20 @@
 /* Class = "UILabel"; text = "Palette 2 - Last Ping"; ObjectID = "kaq-fI-VzN"; */
 "kaq-fI-VzN.text" = "Palette 2 - Laatste Ping";
 
+/* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "KC4-pP-rEh"; */
+"KC4-pP-rEh.text" = "Toevoegen aan dashboard";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "kdJ-8e-1mO"; */
+"kdJ-8e-1mO.text" = "Detail";
+
 /* Class = "UILabel"; text = "0 C"; ObjectID = "kGY-Bn-Qcb"; */
 "kGY-Bn-Qcb.text" = "0 C";
 
 /* Class = "UILabel"; text = "Status"; ObjectID = "kPW-if-FGO"; */
 "kPW-if-FGO.text" = "Status";
+
+/* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "kWs-55-35e"; */
+"kWs-55-35e.placeholder" = "Printer Naam (b.v. MK3)";
 
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "Bestand";
@@ -508,6 +604,9 @@
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "n9p-tg-bxl"; */
 "n9p-tg-bxl.text" = "Subtitle";
 
+/* Class = "UILabel"; text = "Confirm to resume"; ObjectID = "nAj-Qp-lbZ"; */
+"nAj-Qp-lbZ.text" = "Bevestig verdergaan";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb"; */
 "ncZ-xn-WCb.text" = "Title";
 
@@ -544,11 +643,17 @@
 /* Class = "UIButton"; normalTitle = "Set"; ObjectID = "o8a-yF-u6j"; */
 "o8a-yF-u6j.normalTitle" = "Stel in";
 
+/* Class = "UILabel"; text = "60.0 C"; ObjectID = "oGo-K9-9oo"; */
+"oGo-K9-9oo.text" = "60.0 C";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "oiL-nC-j2P"; */
 "oiL-nC-j2P.text" = "Label";
 
 /* Class = "UILabel"; text = "100"; ObjectID = "OJS-Cg-u9x"; */
 "OJS-Cg-u9x.text" = "100";
+
+/* Class = "UITableViewSection"; headerTitle = "Printer Connection (REQUIRED)"; ObjectID = "OPd-TD-yfb"; */
+"OPd-TD-yfb.headerTitle" = "Printer Connectie (VERPLICHT)";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Or4-Wf-fDK"; */
 "Or4-Wf-fDK.text" = "Label";
@@ -568,6 +673,12 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "OTX-dw-fk4"; */
 "OTX-dw-fk4.normalTitle" = "Button";
 
+/* Class = "UITableViewSection"; headerTitle = "Print"; ObjectID = "Ow4-Mf-iWF"; */
+"Ow4-Mf-iWF.headerTitle" = "Print";
+
+/* Class = "UILabel"; text = "Tap = Full Screen"; ObjectID = "owv-oi-R6e"; */
+"owv-oi-R6e.text" = "Tik = Volledige scherm";
+
 /* Class = "UIButton"; normalTitle = "Delete shortcuts"; ObjectID = "oZE-yh-Myr"; */
 "oZE-yh-Myr.normalTitle" = "Verwijder opdrachten";
 
@@ -579,6 +690,9 @@
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "PAD-Rg-10Y"; */
 "PAD-Rg-10Y.text" = "0 C";
+
+/* Class = "UILabel"; text = "250.0 C"; ObjectID = "PD3-li-xER"; */
+"PD3-li-xER.text" = "250.0 C";
 
 /* Class = "UITabBarItem"; title = "Move"; ObjectID = "Peq-4x-xQj"; */
 "Peq-4x-xQj.title" = "Beweeg";
@@ -616,8 +730,14 @@
 /* Class = "UIViewController"; title = "QR Code"; ObjectID = "QCe-zo-Ncw"; */
 "QCe-zo-Ncw.title" = "QR code";
 
+/* Class = "UILabel"; text = "OctoPrint - Application Key"; ObjectID = "qdv-m8-Jgb"; */
+"qdv-m8-Jgb.text" = "OctoPrint - Applicatie Sleutel";
+
 /* Class = "UILabel"; text = "Print Time"; ObjectID = "Qfz-1j-Keo"; */
 "Qfz-1j-Keo.text" = "Print Tijd";
+
+/* Class = "UILabel"; text = "OctoEverywhere"; ObjectID = "QgE-Ch-Ggw"; */
+"QgE-Ch-Ggw.text" = "OctoEverywhere";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Qgg-OP-PZ0"; */
 "Qgg-OP-PZ0.text" = "Label";
@@ -646,11 +766,23 @@
 /* Class = "UILabel"; text = "Siri"; ObjectID = "R2d-Mv-REP"; */
 "R2d-Mv-REP.text" = "Siri";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "r08-sj-cCD"; */
+"r08-sj-cCD.text" = "Label";
+
+/* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "R8W-HN-Cgb"; */
+"R8W-HN-Cgb.text" = "Toevoegen aan dashboard";
+
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87"; */
 "REX-gh-p87.normalTitle" = "Button";
 
+/* Class = "UILabel"; text = "Enter a valid URL"; ObjectID = "RFe-LZ-cRa"; */
+"RFe-LZ-cRa.text" = "Voer een geldig URL in";
+
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "RFS-Os-AC5"; */
 "RFS-Os-AC5.text" = "0.0%";
+
+/* Class = "UITableViewSection"; headerTitle = "QR Code"; ObjectID = "RIJ-UL-fxM"; */
+"RIJ-UL-fxM.headerTitle" = "QR Code";
 
 /* Class = "UILabel"; text = "Security"; ObjectID = "RJI-A7-98M"; */
 "RJI-A7-98M.text" = "Veiligheid";
@@ -661,8 +793,17 @@
 /* Class = "UILabel"; text = "100"; ObjectID = "Rml-IA-ght"; */
 "Rml-IA-ght.text" = "100";
 
+/* Class = "UILabel"; text = "Connect easily from remote locations (over the internet)"; ObjectID = "rNP-Sb-Zba"; */
+"rNP-Sb-Zba.text" = "Verbind gemakkelijk op afstand (via het internet)";
+
+/* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "rob-ry-eO0"; */
+"rob-ry-eO0.placeholder" = "Printer Naam (b.v. MK3)";
+
 /* Class = "UITableViewController"; title = "Printer Details"; ObjectID = "RQs-UQ-7OZ"; */
 "RQs-UQ-7OZ.title" = "Printer Details";
+
+/* Class = "UILabel"; text = "About 10m"; ObjectID = "rU9-EM-Hqq"; */
+"rU9-EM-Hqq.text" = "ongeveer 10m";
 
 /* Class = "UILabel"; text = "1hr 25m 13sec"; ObjectID = "rwm-QC-qD1"; */
 "rwm-QC-qD1.text" = "1hr 25m 13sec";
@@ -673,11 +814,17 @@
 /* Class = "UITextField"; placeholder = "Command"; ObjectID = "RZc-hr-pTu"; */
 "RZc-hr-pTu.placeholder" = "Commando";
 
+/* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "S0f-uX-rYI"; */
+"S0f-uX-rYI.normalTitle" = "Negeer";
+
 /* Class = "UITableViewSection"; headerTitle = "Complications Content"; ObjectID = "S1e-nz-awE"; */
 "S1e-nz-awE.headerTitle" = "Complicaties Inhoud";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
 "S2I-HR-qgE.text" = "/";
+
+/* Class = "UINavigationItem"; title = "Application Key"; ObjectID = "saA-I3-RLW"; */
+"saA-I3-RLW.title" = "Applicatie Sleutel";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "SAw-xr-VmY"; */
 "SAw-xr-VmY.text" = "/";
@@ -690,6 +837,9 @@
 
 /* Class = "UIButton"; normalTitle = "Suppress SD"; ObjectID = "sgi-wT-ubY"; */
 "sgi-wT-ubY.normalTitle" = "Onderdruk SD";
+
+/* Class = "UILabel"; text = "Confirm to print"; ObjectID = "SJQ-Kb-Ggy"; */
+"SJQ-Kb-Ggy.text" = "Bevestig printen";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H"; */
 "sLc-Jv-G0H.placeholder" = "Gebruikersnaam";
@@ -724,11 +874,20 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
 "tFf-Rs-mOx.text" = "Title";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "tfv-OO-TXd"; */
+"tfv-OO-TXd.text" = "Label";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "tgj-tb-vD5"; */
 "tgj-tb-vD5.text" = "Label";
 
+/* Class = "UIButton"; normalTitle = "Scan"; ObjectID = "tif-GP-Mj3"; */
+"tif-GP-Mj3.normalTitle" = "Scan";
+
 /* Class = "UITextField"; placeholder = "Hostname (e.g. http://octopi.local)"; ObjectID = "tMP-2W-Iam"; */
 "tMP-2W-Iam.placeholder" = "Hostname (bijv. http://octopi.local)";
+
+/* Class = "UITableViewSection"; headerTitle = "Select Connection Type"; ObjectID = "toN-uy-OtV"; */
+"toN-uy-OtV.headerTitle" = "Selecteer connectietype";
 
 /* Class = "UITableViewSection"; headerTitle = "Palette 2"; ObjectID = "Tqi-wZ-CN5"; */
 "Tqi-wZ-CN5.headerTitle" = "Palette 2";
@@ -808,6 +967,9 @@
 /* Class = "UIButton"; normalTitle = "Reset printers from iCloud data"; ObjectID = "vyb-aH-wc9"; */
 "vyb-aH-wc9.normalTitle" = "Printers opnieuw instellen vanuit iCloud-gegevens";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "W0K-Js-tt5"; */
+"W0K-Js-tt5.text" = "Label";
+
 /* Class = "UISegmentedControl"; W0X-ef-NWv.segmentTitles[0] = "Default"; ObjectID = "W0X-ef-NWv"; */
 "W0X-ef-NWv.segmentTitles[0]" = "Standaard";
 
@@ -819,6 +981,12 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Wcu-9D-QXt"; */
 "Wcu-9D-QXt.text" = "Label";
+
+/* Class = "UILabel"; text = "Print Completion"; ObjectID = "weI-5t-9zz"; */
+"weI-5t-9zz.text" = "Print Voltooid";
+
+/* Class = "UILabel"; text = "Confirm to pause"; ObjectID = "wff-HF-WSb"; */
+"wff-HF-WSb.text" = "Pauzeren bevestigen";
 
 /* Class = "UILabel"; text = "Dark"; ObjectID = "wHn-Dc-bWb"; */
 "wHn-Dc-bWb.text" = "Donker";
@@ -895,6 +1063,9 @@
 /* Class = "UIButton"; normalTitle = "Send"; ObjectID = "z4Q-Gf-Y5G"; */
 "z4Q-Gf-Y5G.normalTitle" = "Verstuur";
 
+/* Class = "UINavigationItem"; title = "OctoEverywhere"; ObjectID = "Z6o-ra-euk"; */
+"Z6o-ra-euk.title" = "OctoEverywhere";
+
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "zbP-eJ-7Gk"; */
 "zbP-eJ-7Gk.text" = "0.0%";
 
@@ -916,8 +1087,14 @@
 /* Class = "UILabel"; text = "Detail"; ObjectID = "ZF8-G0-f5Y"; */
 "ZF8-G0-f5Y.text" = "Detail";
 
+/* Class = "UILabel"; text = "Connect directly using registered Global API key (deprecated)"; ObjectID = "Zgx-Ee-m6r"; */
+"Zgx-Ee-m6r.text" = "Verbind direct door een geregistreeder API sleutel te gebruiken (afgeschreven)";
+
 /* Class = "UILabel"; text = "Prompt Extrude Speed"; ObjectID = "zH4-HC-We7"; */
 "zH4-HC-We7.text" = "Prompt Extrude Snelheid";
+
+/* Class = "UILabel"; text = "Pinch = Zoom in"; ObjectID = "zhG-D6-Cgg"; */
+"zhG-D6-Cgg.text" = "Knijpen = Inzoomen";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Zhk-cN-7C9"; */
 "Zhk-cN-7C9.text" = "Label";

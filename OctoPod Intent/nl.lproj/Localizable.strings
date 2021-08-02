@@ -1,6 +1,57 @@
 /* No comment provided by engineer. */
+"1 day ago" = "1 dag geleden";
+
+/* No comment provided by engineer. */
+"1 hour ago" = "1 uur geleden";
+
+/* No comment provided by engineer. */
+"1 minute ago" = "1 minuut geleden";
+
+/* No comment provided by engineer. */
+"1 week ago" = "1 week geleden";
+
+/* HTTP authentication failed */
+"Authentication failed" = "Authentificatie mislukt";
+
+/* No comment provided by engineer. */
+"Confirm" = "Bevestig";
+
+/* No comment provided by engineer. */
+"days ago" = "dagen geleden";
+
+/* No comment provided by engineer. */
+"Default" = "Standaard";
+
+/* No comment provided by engineer. */
+"Dismiss" = "Afwijzen";
+
+/* No comment provided by engineer. */
+"hours ago" = "uren geleden";
+
+/* HTTP Request error info */
+"HTTP Request error" = "HTTP Verzoekfout";
+
+/* No comment provided by engineer. */
+"minutes ago" = "minuten geleden";
+
+/* No comment provided by engineer. */
 "Missed" = "Gemist";
+
+/* No comment provided by engineer. */
+"No" = "Nee";
+
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Webcam Limiet Overschreden";
+
+/* No comment provided by engineer. */
+"seconds ago" = "seconden geleden";
 
 /* ETA is Unknown */
 "Unknown" = "Onbekend";
+
+/* No comment provided by engineer. */
+"weeks ago" = "weken geleden";
+
+/* No comment provided by engineer. */
+"Yes" = "Ja";
 

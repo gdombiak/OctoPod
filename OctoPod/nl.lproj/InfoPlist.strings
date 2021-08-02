@@ -10,6 +10,12 @@
 /* Privacy - Face ID Usage Description */
 "NSFaceIDUsageDescription" = "Face ID is nodig om de app te ontgrendelen";
 
+/* Privacy - Local Network Usage Description */
+"NSLocalNetworkUsageDescription" = "OctoPod gebruikt jouw lokale netwerk om OctoPrint te vinden en ermee te verbinden";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "OctoPod heeft toestemming nodig om video's op jouw apparaat op te slaan";
+
 /* Privacy - Siri Usage Description */
 "NSSiriUsageDescription" = "Bestuur de printer met Siri";
 
