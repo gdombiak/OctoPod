@@ -1,0 +1,2950 @@
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file source-language="en" target-language="nl" datatype="plaintext" original="en.lproj/Localizable.strings">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="%@ / %@" xml:space="preserve"><source>%1$@ / %2$@</source>
+<target>%1$@ / %2$@</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="1 day ago" xml:space="preserve"><source>1 day ago</source>
+<target>1 dag geleden</target>
+<note/></trans-unit>
+      <trans-unit id="1 hour ago" xml:space="preserve"><source>1 hour ago</source>
+<target>1 uur geleden</target>
+<note/></trans-unit>
+      <trans-unit id="1 minute ago" xml:space="preserve"><source>1 minute ago</source>
+<target>1 minuut geleden</target>
+<note/></trans-unit>
+      <trans-unit id="1 week ago" xml:space="preserve"><source>1 week ago</source>
+<target>1 week geleden</target>
+<note/></trans-unit>
+      <trans-unit id="API Key" xml:space="preserve"><source>API Key</source>
+<target>API Sleutel</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="API Key or Application Key" xml:space="preserve"><source>API Key or Application Key</source>
+<target>API Sleutel of Applicatie sleutel</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Account is no longer an OctoEverywhere supporter" xml:space="preserve"><source>Account is no longer an OctoEverywhere supporter</source>
+<target>Account ondersteund geen OctoEverywhere meer</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Actual Bed" xml:space="preserve"><source>Actual Bed</source>
+<target>Werkelijke waarde Bed</target>
+<note/></trans-unit>
+      <trans-unit id="Actual Chamber" xml:space="preserve"><source>Actual Chamber</source>
+<target>Werkelijke waarde kamer</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Actual Extruder" xml:space="preserve"><source>Actual Extruder</source>
+<target>Werkelijke waarde Extruder</target>
+<note/></trans-unit>
+      <trans-unit id="Actual Extruder 2" xml:space="preserve"><source>Actual Extruder 2</source>
+<target>Werkelijke waarde Extruder 2</target>
+<note/></trans-unit>
+      <trans-unit id="Actual Extruder 3" xml:space="preserve"><source>Actual Extruder 3</source>
+<target>Werkelijke waarde Extruder 3</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Actual Extruder 4" xml:space="preserve"><source>Actual Extruder 4</source>
+<target>Werkelijke waarde Extruder 4</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Actual Extruder 5" xml:space="preserve"><source>Actual Extruder 5</source>
+<target>Werkelijke waarde Extruder 5</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Application Key not enabled in OctoPrint." xml:space="preserve"><source>Application Key not enabled in OctoPrint.</source>
+<target>Applicatie Sleutel niet geactiveerd in OctoPrint</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Application Key obtained. Click save to finish." xml:space="preserve"><source>Application Key obtained. Click save to finish.</source>
+<target>Applicatie Sleutel opgehaald. Sla op om af te ronden</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Apply" xml:space="preserve"><source>Apply</source>
+<target>Toepassen</target>
+<note/></trans-unit>
+      <trans-unit id="Authentication failed" xml:space="preserve"><source>Authentication Failed</source>
+<target>Authentificatie mislukt</target>
+<note>HTTP authentication failed</note></trans-unit>
+      <trans-unit id="Back" xml:space="preserve"><source>Back</source>
+<target>Terug</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Bad Certificate or SSL Problem" xml:space="preserve"><source>Bad Certificate or SSL Problem</source>
+<target>Ongeldige Certificaat of overig SSL probleem</target>
+<note>HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc.</note></trans-unit>
+      <trans-unit id="Bed" xml:space="preserve"><source>Bed</source>
+<target>Bed</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Bed Variance" xml:space="preserve"><source>Bed Variance</source>
+<target>Afwijking van bed</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Bed cooled" xml:space="preserve"><source>Printer bed below specified temperature threshold</source>
+<target>Printerbed onder opgegeven temperatuurdrempel</target>
+<note/></trans-unit>
+      <trans-unit id="Bed warmed" xml:space="preserve"><source>Printer bed warmed to specified temperature and duration</source>
+<target>Printerbed opgewarmd tot opgegeven temperatuur en duur</target>
+<note/></trans-unit>
+      <trans-unit id="Camera" xml:space="preserve"><source>Camera</source>
+<target>Camera</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Cancel" xml:space="preserve"><source>Cancel</source>
+<target>Annuleer</target>
+<note/></trans-unit>
+      <trans-unit id="Cancel Objects" xml:space="preserve"><source>Cancel Objects</source>
+<target>Objecten annuleren</target>
+<note>https://github.com/paukstelis/Octoprint-Cancelobject</note></trans-unit>
+      <trans-unit id="Cancel current print job" xml:space="preserve"><source>Cancel current print job on %@</source>
+<target>Annuleer huidige printopdracht op %@</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Cannot print this file type" xml:space="preserve"><source>Cannot print this file type</source>
+<target>Kan dit type bestand niet printen</target>
+<note/></trans-unit>
+      <trans-unit id="Cannot reach 'octopi.local' over mobile network or service is down" xml:space="preserve"><source>Cannot reach 'octopi.local' over mobile network or service is down</source>
+<target>Kan 'octopi.local' niet bereiken via mobiel netwerk of service is uitgevallen</target>
+<note/></trans-unit>
+      <trans-unit id="Cannot replace file that is being printed or printer is busy" xml:space="preserve"><source>Cannot replace file that is being printed or printer is busy</source>
+<target>Kan bestand dat wordt afgedrukt of dat de printer bezet niet vervangen</target>
+<note/></trans-unit>
+      <trans-unit id="Code" xml:space="preserve"><source>Code</source>
+<target>Code</target>
+<note>File Type is GCode</note></trans-unit>
+      <trans-unit id="Command not executed. Printer not operational" xml:space="preserve"><source>Command not executed. Printer not operational</source>
+<target>Commando niet uitgevoerd. Printer niet operationeel</target>
+<note/></trans-unit>
+      <trans-unit id="Command not executed. Script not found" xml:space="preserve"><source>Command not executed. Script not found</source>
+<target>Commando niet uitgevoerd. Script niet gevonden</target>
+<note/></trans-unit>
+      <trans-unit id="Complete information and click save to finish." xml:space="preserve"><source>Complete information and click save to finish.</source>
+<target>Vul de informatie volledig aan en sla het op</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Confirm" xml:space="preserve"><source>Confirm</source>
+<target>Bevestig</target>
+<note/></trans-unit>
+      <trans-unit id="Confirm cancel object" xml:space="preserve"><source>You are about to cancel printing object. Proceed?</source>
+<target>Je staat op het punt om de opdracht te annuleren, doorgaan?</target>
+<note/></trans-unit>
+      <trans-unit id="Confirm command" xml:space="preserve"><source>Execute command '%@'?</source>
+<target>Commando  '%@' uitvoeren?</target>
+<note/></trans-unit>
+      <trans-unit id="Confirm connect" xml:space="preserve"><source>Some printers might reboot when connecting. Proceed?</source>
+<target>De printer kan opnieuw opstarten tijdens het verbinden, doorgaan?</target>
+<note/></trans-unit>
+      <trans-unit id="Confirm disconnect" xml:space="preserve"><source>Do you want to disconnect from the printer?</source>
+<target>Verbinding met de printer verbreken?</target>
+<note/></trans-unit>
+      <trans-unit id="Confirm disconnect palette2" xml:space="preserve"><source>Do you want to disconnect from Palette 2?</source>
+<target>Verbinding met Palette 2 verbreken?</target>
+<note/></trans-unit>
+      <trans-unit id="Confirm intentions deletion" xml:space="preserve"><source>You are about to delete all Siri shortcuts of the app. Proceed?</source>
+<target>Je staat op het punt om alle Siri shortcuts van de app te verwijderen, doorgaan?</target>
+<note/></trans-unit>
+      <trans-unit id="Confirm intentions regeneration" xml:space="preserve"><source>You are about to delete and regenerate all Siri shortcuts of the app. Proceed?</source>
+<target>Je staat op het punt om alle Siri shortcuts van de app te verwijderen en opnieuw in te stellen, doorgaan?</target>
+<note/></trans-unit>
+      <trans-unit id="Confirm turn off" xml:space="preserve"><source>Confirm turn off %@</source>
+<target>Bevestig uitzetten %@</target>
+<note/></trans-unit>
+      <trans-unit id="Confirm turn off PSU" xml:space="preserve"><source>You are about to turn off the PSU. Proceed?</source>
+<target>Je staat op het punt de PSU uit te schakelen, doorgaan?</target>
+<note/></trans-unit>
+      <trans-unit id="Confirm turn off plug" xml:space="preserve"><source>You are about to turn off the plug. Proceed?</source>
+<target>Je staat op het punt het stopcontact uit te schakelen, doorgaan?</target>
+<note/></trans-unit>
+      <trans-unit id="Connect" xml:space="preserve"><source>Connect</source>
+<target>Verbind</target>
+<note>Connect</note></trans-unit>
+      <trans-unit id="Connect to iCloud to retrieve list of printers from your iPad/iPhone" xml:space="preserve"><source>Connect to iCloud to retrieve list of printers from your iPad/iPhone</source>
+<target>Verbind met iCloud om de lijst met printers op te halen</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Connected" xml:space="preserve"><source>Connected</source>
+<target>Verbonden</target>
+<note>Connected</note></trans-unit>
+      <trans-unit id="Connecting" xml:space="preserve"><source>Connecting</source>
+<target>Verbinden</target>
+<note>Connecting</note></trans-unit>
+      <trans-unit id="Connection failed" xml:space="preserve"><source>Connection Failed</source>
+<target>Verbinding mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Contacting OctoPrint." xml:space="preserve"><source>Contacting OctoPrint.</source>
+<target>OctoPrint Bereiken</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Cool down heated chamber" xml:space="preserve"><source>Cool down heated chamber</source>
+<target>Kamer afkoelen</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Cool down printer" xml:space="preserve"><source>Cool down printer</source>
+<target>Printer afkoelen</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Cool down printer bed" xml:space="preserve"><source>Cool down printer bed %@</source>
+<target>Printer bed afkoelen %@</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Cool down printer extruder" xml:space="preserve"><source>Cool down printer extruder %@</source>
+<target>Printer extruder afkoelen %@</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Could not connect to the server" xml:space="preserve"><source>Could not connect to the server</source>
+<target>Kan niet verbinden met de server</target>
+<note>Connection to server failed</note></trans-unit>
+      <trans-unit id="Current Height" xml:space="preserve"><source>Current Height</source>
+<target>Actuele hoogte</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Custom Controls" xml:space="preserve"><source>Custom Controls</source>
+<target>Eigen opdrachten</target>
+<note>http://docs.octoprint.org/en/master/features/custom_controls.html</note></trans-unit>
+      <trans-unit id="Delete" xml:space="preserve"><source>Delete</source>
+<target>Verwijder</target>
+<note>Delete action</note></trans-unit>
+      <trans-unit id="Disconnect" xml:space="preserve"><source>Disconnect</source>
+<target>Verbinding met de printer verbreken</target>
+<note>Disconnect</note></trans-unit>
+      <trans-unit id="Disconnected" xml:space="preserve"><source>Disconnected</source>
+<target>Niet verdonden</target>
+<note>Disconnected</note></trans-unit>
+      <trans-unit id="Dismiss" xml:space="preserve"><source>Dismiss</source>
+<target>Afwijzen</target>
+<note/></trans-unit>
+      <trans-unit id="Do you want to cancel job?" xml:space="preserve"><source>Do you want to cancel the job?</source>
+<target>Wil je de opdracht annuleren?</target>
+<note/></trans-unit>
+      <trans-unit id="Do you want to delete this file?" xml:space="preserve"><source>Do you want to delete this file?</source>
+<target>Wil je dit bestand verwijderen?</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Do you want to pause job?" xml:space="preserve"><source>Do you want to pause job?</source>
+<target>Wil je de opdracht pauzeren?</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Do you want to pause print?" xml:space="preserve"><source>Do you want to pause print?</source>
+<target>Wil je de huidige print pauzeren?</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Do you want to print this file?" xml:space="preserve"><source>Do you want to print this file?</source>
+<target>Wil je dit bestand printen?</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Do you want to restart print job from the beginning?" xml:space="preserve"><source>Do you want to restart print job from the beginning?</source>
+<target>Wil je de opdracht herstarten?</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Do you want to resume printing?" xml:space="preserve"><source>Do you want to resume printing?</source>
+<target>Wil je de huidige print hervatten</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Domoticz Plugs" xml:space="preserve"><source>Domoticz Plugs</source>
+<target>Domoticz Stekkers</target>
+<note/></trans-unit>
+      <trans-unit id="Enable iCloud under iOS Settings to use this feature" xml:space="preserve"><source>Enable iCloud under iOS Settings to use this feature</source>
+<target>Zet i/Cloud aan in de iOS instellingen om gebruik te kunnen maken van deze functie</target>
+<note/></trans-unit>
+      <trans-unit id="Endstop States" xml:space="preserve"><source>Endstop States</source>
+<target>Stopschakelaars status</target>
+<note>gcode name</note></trans-unit>
+      <trans-unit id="Error obtaining Application Key." xml:space="preserve"><source>Error obtaining Application Key.</source>
+<target>Fout bij ophalen Applicatie Sleutel</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Execute System Command" xml:space="preserve"><source>Execute System Command</source>
+<target>Voer Systeemcommando Uit</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Expand" xml:space="preserve"><source>Expand</source>
+<target>Uitbreiden</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Extruder" xml:space="preserve"><source>Extruder</source>
+<target>Extruder</target>
+<note/></trans-unit>
+      <trans-unit id="Extruder Variance" xml:space="preserve"><source>Extruder Variance</source>
+<target>Afwijking van extruder</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to add new layer notification" xml:space="preserve"><source>Failed to add new layer notification</source>
+<target>Toevoegen van nieuwe laag mislukt notificatie</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to connect" xml:space="preserve"><source>Failed to connect</source>
+<target>Verbinden mislukt</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to delete file" xml:space="preserve"><source>Failed to delete file</source>
+<target>Verwijderen van bestand mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to delete layer notification" xml:space="preserve"><source>Failed to delete layer notification</source>
+<target>Verwijderen van nieuwe laag mislukt notificatie</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to disable motor" xml:space="preserve"><source>Failed to disable %@ motor</source>
+<target>Motor %@ uitschakelen mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to get controls" xml:space="preserve"><source>Failed to get controls. HTTP response: %d</source>
+<target>Bedieningselementen ophalen mislukt! HTTP response: %d</target>
+<note>Failed to get controls with HTTP Request error info</note></trans-unit>
+      <trans-unit id="Failed to get list of cancel objects" xml:space="preserve"><source>Failed to get list of cancel objects. HTTP response: %d</source>
+<target>Lijst van geannuleerde objecten ophalen mislukt! HTTP response: %d</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to get list of layer notifications" xml:space="preserve"><source>Failed to get list of layer notifications</source>
+<target>Ophalen van laaglijst is mislukt</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to get system commands" xml:space="preserve"><source>Failed to get system commands</source>
+<target>Ophalen van systeemcommando's mislukt</target>
+<note>Failed to get system commands with HTTP Request error info</note></trans-unit>
+      <trans-unit id="Failed to initialize SD card" xml:space="preserve"><source>Failed to initialize SD card</source>
+<target>Initialiseren van de SD kaart is mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to read file from iCloud" xml:space="preserve"><source>Failed to read file from iCloud</source>
+<target>Bestand van iCloud lezen is mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to refresh SD card" xml:space="preserve"><source>Failed to refresh SD card</source>
+<target>SD kaart verversen mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request moving back" xml:space="preserve"><source>Failed to request moving back</source>
+<target>Verzoek tot verplaatsen naar achteren mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request moving down" xml:space="preserve"><source>Failed to request moving down</source>
+<target>Verzoek tot verplaatsen naar beneden mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request moving front" xml:space="preserve"><source>Failed to request moving front</source>
+<target>Verzoek tot verplaatsen naar voren mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request moving left" xml:space="preserve"><source>Failed to request moving left</source>
+<target>Verzoek tot verplaatsen naar links mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request moving right" xml:space="preserve"><source>Failed to request moving right</source>
+<target>Verzoek tot verplaatsen naar rechts mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request moving up" xml:space="preserve"><source>Failed to request moving up</source>
+<target>Verzoek tot verplaatsen naar boven mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request status" xml:space="preserve"><source>Failed to request status</source>
+<target>Opvragen van status mislukt</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to request to cancel object" xml:space="preserve"><source>Failed to request to cancel object. HTTP response: %d</source>
+<target>Object annuleren is mislukt. HTTP antwoord: %d</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request to clear" xml:space="preserve"><source>Failed to request to clear</source>
+<target>Verzoek tot verschonen mislukt</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to request to connect" xml:space="preserve"><source>Failed to request to connect</source>
+<target>Verzoek tot verbinden mislukt</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to request to cut" xml:space="preserve"><source>Failed to request to cut</source>
+<target>Verzoek tot knippen mislukt</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to request to disconnect" xml:space="preserve"><source>Failed to request to disconnect</source>
+<target>Verzoek tot verbreken verbinding mislukt</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to request to execute command" xml:space="preserve"><source>Failed to request to execute command</source>
+<target>Verzoek tot commando excecutie mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request to extrude" xml:space="preserve"><source>Failed to request to extrude</source>
+<target>Verzoek tot extruderen mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request to go home" xml:space="preserve"><source>Failed to request to go home</source>
+<target>Verzoek tot homen mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request to go home X" xml:space="preserve"><source>Failed to request to go home X</source>
+<target>Verzoek tot homen X mislukt</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to request to go home Y" xml:space="preserve"><source>Failed to request to go home Y</source>
+<target>Verzoek tot homen Y mislukt</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to request to go home Z" xml:space="preserve"><source>Failed to request to go home Z</source>
+<target>Verzoek tot homen Z mislukt</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to request to print file" xml:space="preserve"><source>Failed to request to print file</source>
+<target>Verzoek tot printen van bestand mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request to retract" xml:space="preserve"><source>Failed to request to retract</source>
+<target>Verzoek tot terugtrekken mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request to turn power off" xml:space="preserve"><source>Failed to request to turn power off</source>
+<target>Verzoek tot uitzetten van de printer mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to request to turn power on" xml:space="preserve"><source>Failed to request to turn power on</source>
+<target>Verzoek tot aanzetten van de printer mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to save JPEG file" xml:space="preserve"><source>Failed to save JPEG file</source>
+<target>Opslaan van JPEG bestand mislukt</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Failed to send GCode command" xml:space="preserve"><source>Failed to send GCode command</source>
+<target>Gcode commando versturen mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to set new fan speed" xml:space="preserve"><source>Failed to set new fan speed</source>
+<target>Nieuwe ventilatorsnelheid instellen mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to set new feed rate" xml:space="preserve"><source>Failed to set new feed rate</source>
+<target>Nieuwe toevoersnelheid instellen mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to set new flow rate" xml:space="preserve"><source>Failed to set new flow rate</source>
+<target>Nieuwe toevoersnelheid instellen mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed to upload file" xml:space="preserve"><source>Failed to upload file</source>
+<target>Uploaden van bestand mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed turn power off" xml:space="preserve"><source>Failed to request to turn power off</source>
+<target>Verzoek tot uitzetten van de printer mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Failed turn power on" xml:space="preserve"><source>Failed to request to turn power on</source>
+<target>Verzoek tot aanzetten van de printer mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="File" xml:space="preserve"><source>File</source>
+<target>Bestand</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="File currently being printed" xml:space="preserve"><source>File currently being printed</source>
+<target>Bestand word afgedrukt</target>
+<note/></trans-unit>
+      <trans-unit id="File is being copied to SD Card" xml:space="preserve"><source>File is being copied to SD Card</source>
+<target>Bestand word gekopieerd naar de SD kaart</target>
+<note/></trans-unit>
+      <trans-unit id="Folder" xml:space="preserve"><source>Folder</source>
+<target>Map</target>
+<note>File Type is a Folder</note></trans-unit>
+      <trans-unit id="HTTP Request error" xml:space="preserve"><source>Request error. HTTP response: %d</source>
+<target>Verzoekfout. HTTP antwoord:: %d</target>
+<note>HTTP Request error info</note></trans-unit>
+      <trans-unit id="Hostname (e.g. http://octopi.local)" xml:space="preserve"><source>Hostname (e.g. http://octopi.local)</source>
+<target>Hostnaam (b.v. http://octopi.local)</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Idle" xml:space="preserve"><source>Idle</source>
+<target>Inactief</target>
+<note>Idle</note></trans-unit>
+      <trans-unit id="Include SD" xml:space="preserve"><source>Include SD</source>
+<target>SD Weergeven</target>
+<note>Include SD messages in the terminal</note></trans-unit>
+      <trans-unit id="Include temp" xml:space="preserve"><source>Include temp</source>
+<target>Temperatuur weergeven</target>
+<note>Include temp messages in the terminal</note></trans-unit>
+      <trans-unit id="Incorrect API Key" xml:space="preserve"><source>Incorrect API Key</source>
+<target>Ongeldige API sleutel</target>
+<note/></trans-unit>
+      <trans-unit id="Incorrect authentication credentials" xml:space="preserve"><source>Incorrect authentication credentials</source>
+<target>Incorrecte authentificatie gegevens</target>
+<note/></trans-unit>
+      <trans-unit id="Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots" xml:space="preserve"><source>Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots</source>
+<target>Installeer de OctoPod plugin om Notificaties van OctoPrint te ontvangen met camerabeelden</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Internal OctoEverywhere error" xml:space="preserve"><source>Internal OctoEverywhere error</source>
+<target>Interne OctoEverywherefout</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Invalid camera URL" xml:space="preserve"><source>Invalid camera URL</source>
+<target>Ongeldige camera URL</target>
+<note>URL of camera is invalid</note></trans-unit>
+      <trans-unit id="Invalid file type" xml:space="preserve"><source>Invalid file type</source>
+<target>Ongeldige bestandstype</target>
+<note/></trans-unit>
+      <trans-unit id="Job" xml:space="preserve"><source>Job</source>
+<target>Opdracht</target>
+<note/></trans-unit>
+      <trans-unit id="Layer" xml:space="preserve"><source>Layer</source>
+<target>Laag</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Load filament" xml:space="preserve"><source>Load filament</source>
+<target>Laad fillament</target>
+<note>gcode name</note></trans-unit>
+      <trans-unit id="Location no longer valid. Refresh files" xml:space="preserve"><source>Location no longer valid. Refresh files</source>
+<target>Locatie ongeldig. Vernieuw bestanden</target>
+<note/></trans-unit>
+      <trans-unit id="Log into OctoPrint to approve access request." xml:space="preserve"><source>Log into OctoPrint to approve access request.</source>
+<target>Log in op OctoPrint om toegang te verlenen</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="MK3" xml:space="preserve"><source>MK3</source>
+<target>MK3</target>
+<note/></trans-unit>
+      <trans-unit id="MMU Requires User" xml:space="preserve"><source>MMU Requires User Assistance</source>
+<target>MMU heeft Gebruikers hulp nodig</target>
+<note/></trans-unit>
+      <trans-unit id="Missed" xml:space="preserve"><source>Missed</source>
+<target>Gemist</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Model" xml:space="preserve"><source>Model</source>
+<target>Model</target>
+<note>File Type is a Model</note></trans-unit>
+      <trans-unit id="Move" xml:space="preserve"><source>Move</source>
+<target>Verplaats</target>
+<note/></trans-unit>
+      <trans-unit id="New Apple TV app is now available" xml:space="preserve"><source>New Apple TV app is now available</source>
+<target>Nieuwe Apple TV app is nu beschikbaar</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Next" xml:space="preserve"><source>Next</source>
+<target>Volgende</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="No" xml:space="preserve"><source>No</source>
+<target>Nee</target>
+<note/></trans-unit>
+      <trans-unit id="No camera" xml:space="preserve"><source>No camera</source>
+<target>Geen camera gevonden</target>
+<note>No camera was found</note></trans-unit>
+      <trans-unit id="No printer" xml:space="preserve"><source>No printer</source>
+<target>Geen Printer gevonden</target>
+<note/></trans-unit>
+      <trans-unit id="No temperature history" xml:space="preserve"><source>No temperature history available</source>
+<target>Geen temperatuurgeschiedenis bekend</target>
+<note>No temperature history</note></trans-unit>
+      <trans-unit id="Notify failed cancel job" xml:space="preserve"><source>Failed to request to cancel job</source>
+<target>Verzoek tot annuleren van printopdracht mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Notify failed pause job" xml:space="preserve"><source>Failed to request to pause job</source>
+<target>Verzoek tot pauzeren van printopdracht mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Notify failed print job again" xml:space="preserve"><source>Failed to request to print job again</source>
+<target>Verzoek tot opnieuw printen van printopdracht mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Notify failed restart job" xml:space="preserve"><source>Failed to request to restart job</source>
+<target>Verzoek tot herstarten van printopdracht mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Notify failed resume job" xml:space="preserve"><source>Failed to request to resume job</source>
+<target>Verzoek tot hervatten van printopdracht mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="OctoEverywhere's connection to OctoPrint timed out" xml:space="preserve"><source>OctoEverywhere's connection to OctoPrint timed out</source>
+<target>OctoEverywhere's verbinding naar OctoPrint verlopen</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="OctoEverywhere: Webcam Limit Exceeded" xml:space="preserve"><source>OctoEverywhere: Webcam Limit Exceeded</source>
+<target>OctoEverywhere: Webcam Limiet Overschreden</target>
+<note>Error message from OctoEverywhere</note></trans-unit>
+      <trans-unit id="OctoPrint" xml:space="preserve"><source>OctoPrint</source>
+<target>OctoPrint</target>
+<note>English translation for words in Swift files</note></trans-unit>
+      <trans-unit id="Offline" xml:space="preserve"><source>Offline</source>
+<target>Offline</target>
+<note>Printer is Offline</note></trans-unit>
+      <trans-unit id="PID Bed autotune" xml:space="preserve"><source>PID Bed autotune</source>
+<target>PID Bed Calibratie</target>
+<note>gcode name</note></trans-unit>
+      <trans-unit id="PID Hotend autotune" xml:space="preserve"><source>PID Hotend autotune</source>
+<target>PID Extruder Calibratie</target>
+<note>gcode name</note></trans-unit>
+      <trans-unit id="Password" xml:space="preserve"><source>Password</source>
+<target>Wachtwoord</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Pause" xml:space="preserve"><source>Pause</source>
+<target>Pauzeer</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Pause Job" xml:space="preserve"><source>Pause Job</source>
+<target>Pauzeer opdracht</target>
+<note/></trans-unit>
+      <trans-unit id="Pause current print job" xml:space="preserve"><source>Pause current print job on %@</source>
+<target>Pauzeer huidige print opdracht op %@</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Paused" xml:space="preserve"><source>Paused</source>
+<target>Gepauzeerd</target>
+<note/></trans-unit>
+      <trans-unit id="Ping History" xml:space="preserve"><source>Ping History</source>
+<target>Ping Geschiedenis</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Pong History" xml:space="preserve"><source>Pong History</source>
+<target>Pong Geschiedenis</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Print" xml:space="preserve"><source>Print</source>
+<target>Print</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Print Again" xml:space="preserve"><source>Print Again</source>
+<target>Opnieuw Printen</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Print Completion" xml:space="preserve"><source>Print Completion</source>
+<target>Print Voltooid</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Print File" xml:space="preserve"><source>Print File</source>
+<target>Print Bestand</target>
+<note/></trans-unit>
+      <trans-unit id="Print Time" xml:space="preserve"><source>Print Time</source>
+<target>Print Tijd</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Print Time Left" xml:space="preserve"><source>Print Time Left</source>
+<target>Resterende Print Tijd</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Print complete" xml:space="preserve"><source>Print complete</source>
+<target>Printen voltooid</target>
+<note/></trans-unit>
+      <trans-unit id="Printer" xml:space="preserve"><source>Printer</source>
+<target>Printer</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Printer Name (e.g. MK3)" xml:space="preserve"><source>Printer Name (e.g. MK3)</source>
+<target>Printer Naam (b.v. MK3)</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Printer is not connected to OctoEverywhere" xml:space="preserve"><source>Printer is not connected to OctoEverywhere</source>
+<target>Printer is niet verbonden met OctoEverywhere</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Printer not operational" xml:space="preserve"><source>Printer not operational</source>
+<target>Printer niet operationeel</target>
+<note/></trans-unit>
+      <trans-unit id="Printers" xml:space="preserve"><source>Printers</source>
+<target>Printers</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Printing" xml:space="preserve"><source>Printing</source>
+<target>Aan het printen</target>
+<note/></trans-unit>
+      <trans-unit id="Progress" xml:space="preserve"><source>Progress</source>
+<target>Voortgang</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Pull down to refresh" xml:space="preserve"><source>Pull down to refresh</source>
+<target>Veeg naar beneden om te vernieuwen</target>
+<note/></trans-unit>
+      <trans-unit id="Recreate printer in OctoEverywhere and OctoPod" xml:space="preserve"><source>Recreate printer in OctoEverywhere and OctoPod</source>
+<target>Hercréeer printer in OctoEverywhere en OctoPod</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Remaining time current print job" xml:space="preserve"><source>Time left on %@</source>
+<target>Tijd resterend: %@</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Reminders" xml:space="preserve"><source>Reminders</source>
+<target>Herinneringen</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Remove old OctoPod app from Apple Watch" xml:space="preserve"><source>Remove old OctoPod app from Apple Watch</source>
+<target>Verwijder oude OctoPod app van de Apple Watch</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Report Settings" xml:space="preserve"><source>Report Settings</source>
+<target>Rapporteer instellingen</target>
+<note>gcode name</note></trans-unit>
+      <trans-unit id="Restart" xml:space="preserve"><source>Restart</source>
+<target>Herstart</target>
+<note/></trans-unit>
+      <trans-unit id="Restart Job" xml:space="preserve"><source>Restart Job</source>
+<target>Opdracht herstarten</target>
+<note/></trans-unit>
+      <trans-unit id="Restart current print job" xml:space="preserve"><source>Restart current print job on %@</source>
+<target>Herstart huidige printopdracht op %@</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Restore" xml:space="preserve"><source>Restore</source>
+<target>Herstel</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Restore Settings" xml:space="preserve"><source>Restore Settings</source>
+<target>Instellingen herstellen</target>
+<note>gcode name</note></trans-unit>
+      <trans-unit id="Resume" xml:space="preserve"><source>Resume</source>
+<target>Hervatten</target>
+<note/></trans-unit>
+      <trans-unit id="Resume Job" xml:space="preserve"><source>Resume Job</source>
+<target>Opdracht hervatten</target>
+<note/></trans-unit>
+      <trans-unit id="Resume current print job" xml:space="preserve"><source>Resume current print job on %@</source>
+<target>Hervat huidige printopdracht op %@</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Retrieving printers information" xml:space="preserve"><source>Retrieving printers information</source>
+<target>Ophalen van printer informatie</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Run" xml:space="preserve"><source>Run</source>
+<target>Voer uit</target>
+<note>Execute Command</note></trans-unit>
+      <trans-unit id="SD Card" xml:space="preserve"><source>SD Card</source>
+<target>SD kaart</target>
+<note>Origin is SD Card</note></trans-unit>
+      <trans-unit id="Save Settings" xml:space="preserve"><source>Save Settings</source>
+<target>Sla instellingen op</target>
+<note>gcode name</note></trans-unit>
+      <trans-unit id="Select printer from OctoEverywhere." xml:space="preserve"><source>Select printer from OctoEverywhere.</source>
+<target>Selecteer printer van OctoEverywhere.</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Server cannot be found" xml:space="preserve"><source>Server cannot be found</source>
+<target>Kan de server niet vinden</target>
+<note>DNS resolution failed. Cannot resolve hostname</note></trans-unit>
+      <trans-unit id="Service is down or incorrect port" xml:space="preserve"><source>Service is down or incorrect port</source>
+<target>Server lijkt offline te zijn</target>
+<note/></trans-unit>
+      <trans-unit id="Set Bed PID" xml:space="preserve"><source>Set Bed PID</source>
+<target>Stel Bed PID in</target>
+<note>gcode name</note></trans-unit>
+      <trans-unit id="Set Hotend PID" xml:space="preserve"><source>Set Hotend PID</source>
+<target>Stel Extruder PID in</target>
+<note>gcode name</note></trans-unit>
+      <trans-unit id="Share" xml:space="preserve"><source>Share</source>
+<target>Deel</target>
+<note>Share action</note></trans-unit>
+      <trans-unit id="Snooze 1 hour" xml:space="preserve"><source>Snooze 1 hour</source>
+<target>Stil voor 1 uur</target>
+<note>Snooze notifications for 1 hour</note></trans-unit>
+      <trans-unit id="Snooze 8 hours" xml:space="preserve"><source>Snooze 8 hours</source>
+<target>Stil voor 8 uur</target>
+<note>Snooze notifications for 8 hours</note></trans-unit>
+      <trans-unit id="SoC" xml:space="preserve"><source>SoC</source>
+<target>SoC</target>
+<note>SoC</note></trans-unit>
+      <trans-unit id="SoC Temperature" xml:space="preserve"><source>SoC Temperature</source>
+<target>SoC Temperatuur</target>
+<note>SoC Temperature</note></trans-unit>
+      <trans-unit id="State" xml:space="preserve"><source>State</source>
+<target>Status</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Still stabilizing" xml:space="preserve"><source>Still stabilizing...</source>
+<target>Nog steeds berekenen...</target>
+<note>Print time is being calculated</note></trans-unit>
+      <trans-unit id="Suppress SD" xml:space="preserve"><source>Suppress SD</source>
+<target>SD verbergen</target>
+<note>Suppress SD messages in the terminal</note></trans-unit>
+      <trans-unit id="Suppress temp" xml:space="preserve"><source>Suppress temp</source>
+<target>Temperatuur verbergen</target>
+<note>Suppress temp messages in the terminal</note></trans-unit>
+      <trans-unit id="System Commands" xml:space="preserve"><source>System Commands</source>
+<target>Systeem commando's</target>
+<note>http://docs.octoprint.org/en/master/api/system.html</note></trans-unit>
+      <trans-unit id="TMC Bump Sensitivity" xml:space="preserve"><source>TMC Bump Sensitivity</source>
+<target>20 / 5000
+Vertaalresultaten
+TMC-stootgevoeligheid</target>
+<note>gcode name</note></trans-unit>
+      <trans-unit id="TMC Debugging" xml:space="preserve"><source>TMC Debugging</source>
+<target>TMC Debugging</target>
+<note>gcode name</note></trans-unit>
+      <trans-unit id="TMC Motor Current" xml:space="preserve"><source>TMC Motor Current</source>
+<target>TMC Motor Stroomsterkte</target>
+<note>gcode name</note></trans-unit>
+      <trans-unit id="TPLink Smartplugs" xml:space="preserve"><source>TPLink Smartplugs</source>
+<target>TPLink Slimme Stekkers</target>
+<note/></trans-unit>
+      <trans-unit id="Take snapshot" xml:space="preserve"><source>Take snapshot</source>
+<target>Maak momentopname</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Target Bed" xml:space="preserve"><source>Target Bed</source>
+<target>Doel Bed</target>
+<note/></trans-unit>
+      <trans-unit id="Target Chamber" xml:space="preserve"><source>Target Chamber</source>
+<target>Doel kamer</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Target Extruder" xml:space="preserve"><source>Target Extruder</source>
+<target>Doel Extruder</target>
+<note/></trans-unit>
+      <trans-unit id="Target Extruder 2" xml:space="preserve"><source>Target Extruder 2</source>
+<target>Doel Extruder 2</target>
+<note/></trans-unit>
+      <trans-unit id="Target Extruder 3" xml:space="preserve"><source>Target Extruder 3</source>
+<target>Doel Extruder 3</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Target Extruder 4" xml:space="preserve"><source>Target Extruder 4</source>
+<target>Doel Extruder 4</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Target Extruder 5" xml:space="preserve"><source>Target Extruder 5</source>
+<target>Doel Extruder 5</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Tasmota Plugs" xml:space="preserve"><source>Tasmota Plugs</source>
+<target>Tasmota stekkers</target>
+<note/></trans-unit>
+      <trans-unit id="Temperature" xml:space="preserve"><source>Temperature</source>
+<target>Temperatuur</target>
+<note>Temperature</note></trans-unit>
+      <trans-unit id="Terminal" xml:space="preserve"><source>Terminal</source>
+<target>Terminal</target>
+<note/></trans-unit>
+      <trans-unit id="Turn Off" xml:space="preserve"><source>Turn Off</source>
+<target>Zet uit</target>
+<note/></trans-unit>
+      <trans-unit id="Turn On" xml:space="preserve"><source>Turn On</source>
+<target>Zet aan</target>
+<note/></trans-unit>
+      <trans-unit id="Turn off Enclosure switch" xml:space="preserve"><source>Turn off Enclosure switch</source>
+<target>Zet Behuizingschakelaar uit</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Turn off PSU" xml:space="preserve"><source>Turn off PSU</source>
+<target>Zet PSU uit</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Turn on Enclosure switch" xml:space="preserve"><source>Turn on Enclosure switch</source>
+<target>Zet Behuizingschakelaar aan</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Turn on PSU" xml:space="preserve"><source>Turn on PSU</source>
+<target>Zet PSU aan</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Unknown" xml:space="preserve"><source>Unknown</source>
+<target>Onbekend</target>
+<note>ETA is Unknown
+   File Type is Unknown
+   Origin is Unknown</note></trans-unit>
+      <trans-unit id="Unknown Control" xml:space="preserve"><source>Unknown Control</source>
+<target>Enbekende bediening</target>
+<note>Unknown Custom Control</note></trans-unit>
+      <trans-unit id="Unload filament" xml:space="preserve"><source>Unload filament</source>
+<target>Fillament legen</target>
+<note>gcode name</note></trans-unit>
+      <trans-unit id="Update Available" xml:space="preserve"><source>Update Available</source>
+<target>Update beschikbaar</target>
+<note>Title for window that alerts user that updates for plugins are available</note></trans-unit>
+      <trans-unit id="Update OctoPod plugin for OctoPrint to receive notifications at specified layers" xml:space="preserve"><source>Update OctoPod plugin for OctoPrint to receive notifications at specified layers</source>
+<target>Update de OctoPod plugin om Notificaties van OctoPrint te ontvangen op gespecificeerde lagen</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Upload failed" xml:space="preserve"><source>Upload failed</source>
+<target>Uploaden gefaald</target>
+<note/></trans-unit>
+      <trans-unit id="User declined or request timed out." xml:space="preserve"><source>User declined or request timed out.</source>
+<target>Gebruiken heeft afgewezen of verzoek verlopen.</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Username" xml:space="preserve"><source>Username</source>
+<target>Gebruikersnaam</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Warm up heated chamber" xml:space="preserve"><source>Warm up heated chamber</source>
+<target>Verwarm kamer</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Warm up printer bed" xml:space="preserve"><source>Warm up printer bed %@</source>
+<target>Verwarm bed %@</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Warm up printer extruder" xml:space="preserve"><source>Warm up printer extruder %@</source>
+<target>Verwarm extruder %@</target>
+<note>Siri suggested phrase</note></trans-unit>
+      <trans-unit id="Warning" xml:space="preserve"><source>Warning</source>
+<target>Waarschuwing</target>
+<note/></trans-unit>
+      <trans-unit id="Wemo Switches" xml:space="preserve"><source>Wemo Switches</source>
+<target>Wemo Schakelaars</target>
+<note/></trans-unit>
+      <trans-unit id="Yes" xml:space="preserve"><source>Yes</source>
+<target>Ja</target>
+<note/></trans-unit>
+      <trans-unit id="days ago" xml:space="preserve"><source>%d days ago</source>
+<target>%d dagen geleden</target>
+<note/></trans-unit>
+      <trans-unit id="hours ago" xml:space="preserve"><source>%d hours ago</source>
+<target>%d uren geleden</target>
+<note/></trans-unit>
+      <trans-unit id="iOS Language" xml:space="preserve"><source>iOS Language</source>
+<target>iOS Taal</target>
+<note/></trans-unit>
+      <trans-unit id="minutes ago" xml:space="preserve"><source>%d minutes ago</source>
+<target>%d minuten geleden</target>
+<note/></trans-unit>
+      <trans-unit id="seconds ago" xml:space="preserve"><source>%d seconds ago</source>
+<target>%d seconden geleden</target>
+<note/></trans-unit>
+      <trans-unit id="weeks ago" xml:space="preserve"><source>%d weeks ago</source>
+<target>%d weken geleden</target>
+<note/></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod Intent UI - Take Snapshot/Base.lproj/MainInterface.storyboard">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="m1A-AS-SuL.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "m1A-AS-SuL";</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod Intent UI - Take Snapshot/en.lproj/InfoPlist.strings">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve"><source>OctoPod Intent UI - Take Snapshot</source>
+<target>OctoPod Intent UI - Take Snapshot</target>
+<note>Bundle display name</note></trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve"><source>OctoPod Intent UI - Take Snapshot</source>
+<target>OctoPod Intent UI - Take Snapshot</target>
+<note>Bundle name</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod Intent/en.lproj/InfoPlist.strings">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve"><source>OctoPod Intent</source>
+<target>OctoPod Intent</target>
+<note>Bundle display name</note></trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve"><source>OctoPod Intent</source>
+<target>OctoPod Intent</target>
+<note>Bundle name</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod Intent/en.lproj/Localizable.strings">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="1 day ago" xml:space="preserve"><source>1 day ago</source>
+<target>1 dag geleden</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="1 hour ago" xml:space="preserve"><source>1 hour ago</source>
+<target>1 uur geleden</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="1 minute ago" xml:space="preserve"><source>1 minute ago</source>
+<target>1 minuut geleden</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="1 week ago" xml:space="preserve"><source>1 week ago</source>
+<target>1 week geleden</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Authentication failed" xml:space="preserve"><source>Authentication failed</source>
+<target>Authentificatie mislukt</target>
+<note>HTTP authentication failed</note></trans-unit>
+      <trans-unit id="Confirm" xml:space="preserve"><source>Confirm</source>
+<target>Bevestig</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Default" xml:space="preserve"><source>Default</source>
+<target>Standaard</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Dismiss" xml:space="preserve"><source>Dismiss</source>
+<target>Afwijzen</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="HTTP Request error" xml:space="preserve"><source>HTTP Request error</source>
+<target>HTTP Verzoekfout</target>
+<note>HTTP Request error info</note></trans-unit>
+      <trans-unit id="Missed" xml:space="preserve"><source>Missed</source>
+<target>Gemist</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="No" xml:space="preserve"><source>No</source>
+<target>Nee</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="OctoEverywhere: Webcam Limit Exceeded" xml:space="preserve"><source>OctoEverywhere: Webcam Limit Exceeded</source>
+<target>OctoEverywhere: Webcam Limiet Overschreden</target>
+<note>Error message from OctoEverywhere</note></trans-unit>
+      <trans-unit id="Unknown" xml:space="preserve"><source>Unknown</source>
+<target>Onbekend</target>
+<note>ETA is Unknown</note></trans-unit>
+      <trans-unit id="Yes" xml:space="preserve"><source>Yes</source>
+<target>Ja</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="days ago" xml:space="preserve"><source>days ago</source>
+<target>dagen geleden</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="hours ago" xml:space="preserve"><source>hours ago</source>
+<target>uren geleden</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="minutes ago" xml:space="preserve"><source>minutes ago</source>
+<target>minuten geleden</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="seconds ago" xml:space="preserve"><source>seconds ago</source>
+<target>seconden geleden</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="weeks ago" xml:space="preserve"><source>weeks ago</source>
+<target>weken geleden</target>
+<note>No comment provided by engineer.</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod Notification Extension/en.lproj/InfoPlist.strings">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve"><source>OctoPod Notification Extension</source>
+<target>OctoPod Notification Extension</target>
+<note>Bundle display name</note></trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve"><source>OctoPod Notification Extension</source>
+<target>OctoPod Notification Extension</target>
+<note>Bundle name</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod TV/en.lproj/InfoPlist.strings">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve"><source>OctoPod TV</source>
+<target>OctoPod TV</target>
+<note>Bundle name</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod Watch Extension/en.lproj/InfoPlist.strings">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve"><source>OctoPod Watch Extension</source>
+<target>OctoPod Horloge Extentie</target>
+<note>Bundle display name</note></trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve"><source>OctoPod Watch Extension</source>
+<target>OctoPod Horloge Extentie</target>
+<note>Bundle name</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod Watch Extension/en.lproj/Localizable.strings">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="Authentication failed" xml:space="preserve"><source>Authentication Failed</source>
+<target>Authentificatie mislukt</target>
+<note>HTTP authentication failed</note></trans-unit>
+      <trans-unit id="Confirm" xml:space="preserve"><source>Confirm</source>
+<target>Bevestig</target>
+<note/></trans-unit>
+      <trans-unit id="Connection failed" xml:space="preserve"><source>Connection Failed</source>
+<target>Verbinding mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Dismiss" xml:space="preserve"><source>Dismiss</source>
+<target>Afwijzen</target>
+<note/></trans-unit>
+      <trans-unit id="Do you want to cancel job?" xml:space="preserve"><source>Do you want to cancel the job?</source>
+<target>Wil je de opdracht annuleren?</target>
+<note/></trans-unit>
+      <trans-unit id="Do you want to pause the job?" xml:space="preserve"><source>Do you want to pause the job?</source>
+<target>Wil je de opdracht pauzeren?</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="HLS not supported" xml:space="preserve"><source>HLS not supported</source>
+<target>HLS niet ondersteund</target>
+<note>Apple Watch cannot render HTTP Live Streaming feeds</note></trans-unit>
+      <trans-unit id="HTTP Request error" xml:space="preserve"><source>Request error. HTTP response: %d</source>
+<target>Verzoek fout. HTTP antwoord: %d</target>
+<note>HTTP Request error info</note></trans-unit>
+      <trans-unit id="Job" xml:space="preserve"><source>Job</source>
+<target>Opdracht</target>
+<note/></trans-unit>
+      <trans-unit id="MK3" xml:space="preserve"><source>MK3</source>
+<target>MK3</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Missed" xml:space="preserve"><source>Missed</source>
+<target>Gemist</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="No" xml:space="preserve"><source>No</source>
+<target>Nee</target>
+<note/></trans-unit>
+      <trans-unit id="No printer" xml:space="preserve"><source>No printer</source>
+<target>Geen printer geselecteerd</target>
+<note>No printer has been selected</note></trans-unit>
+      <trans-unit id="Notify failed cancel job" xml:space="preserve"><source>Failed to request to cancel job</source>
+<target>Verzoek tot annuleren van de opdracht mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Notify failed pause job" xml:space="preserve"><source>Failed to request to pause job</source>
+<target>Verzoek tot pauzeren van de opdracht mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Notify failed resume job" xml:space="preserve"><source>Failed to request to resume job</source>
+<target>Verzoek tot hervatten van de opdracht mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="Printing" xml:space="preserve"><source>Printing</source>
+<target>Aan het Printen</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Unknown" xml:space="preserve"><source>Unknown</source>
+<target>Onbekend</target>
+<note>ETA is Unknown</note></trans-unit>
+      <trans-unit id="Yes" xml:space="preserve"><source>Yes</source>
+<target>Ja</target>
+<note/></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod Watch/Base.lproj/Interface.storyboard">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="AgC-eL-Hgc.title" xml:space="preserve"><source>Printers</source>
+<target>Printers</target>
+<note>Class = "WKInterfaceController"; title = "Printers"; ObjectID = "AgC-eL-Hgc";</note></trans-unit>
+      <trans-unit id="DQ6-B5-o6I.title" xml:space="preserve"><source>Panel</source>
+<target>Paneel</target>
+<note>Class = "WKInterfaceController"; title = "Panel"; ObjectID = "DQ6-B5-o6I";</note></trans-unit>
+      <trans-unit id="Dtq-ww-SzR.text" xml:space="preserve"><source/>
+<note>Class = "WKInterfaceLabel"; text = "    "; ObjectID = "Dtq-ww-SzR";</note></trans-unit>
+      <trans-unit id="HUy-Lk-z5k.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "HUy-Lk-z5k";</note></trans-unit>
+      <trans-unit id="IdU-wH-bcW.text" xml:space="preserve"><source>Alert Label</source>
+<target>Alert label</target>
+<note>Class = "WKInterfaceLabel"; text = "Alert Label"; ObjectID = "IdU-wH-bcW";</note></trans-unit>
+      <trans-unit id="MUA-6M-Ncu.text" xml:space="preserve"><source/>
+<note>Class = "WKInterfaceLabel"; text = "     "; ObjectID = "MUA-6M-Ncu";</note></trans-unit>
+      <trans-unit id="R3c-gI-59i.text" xml:space="preserve"><source/>
+<note>Class = "WKInterfaceLabel"; text = "     "; ObjectID = "R3c-gI-59i";</note></trans-unit>
+      <trans-unit id="S0T-q4-2KQ.text" xml:space="preserve"><source>Open the iPhone app, it will share printer data with the watch</source>
+<target>Open de iPhone app om printerdata te synchroniseren met de horloge</target>
+<note>Class = "WKInterfaceLabel"; text = "Open the iPhone app, it will share printer data with the watch"; ObjectID = "S0T-q4-2KQ";</note></trans-unit>
+      <trans-unit id="SvA-Pt-I7G.title" xml:space="preserve"><source>Cameras</source>
+<target>Camera's</target>
+<note>Class = "WKInterfaceController"; title = "Cameras"; ObjectID = "SvA-Pt-I7G";</note></trans-unit>
+      <trans-unit id="fSR-FG-mh8.text" xml:space="preserve"><source/>
+<note>Class = "WKInterfaceLabel"; text = "     "; ObjectID = "fSR-FG-mh8";</note></trans-unit>
+      <trans-unit id="mc4-7a-frz.text" xml:space="preserve"><source/>
+<note>Class = "WKInterfaceLabel"; text = "     "; ObjectID = "mc4-7a-frz";</note></trans-unit>
+      <trans-unit id="sYn-tD-yHY.text" xml:space="preserve"><source/>
+<note>Class = "WKInterfaceLabel"; text = "     "; ObjectID = "sYn-tD-yHY";</note></trans-unit>
+      <trans-unit id="vgs-ar-wlO.text" xml:space="preserve"><source/>
+<note>Class = "WKInterfaceLabel"; text = "     "; ObjectID = "vgs-ar-wlO";</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod Widget/Base.lproj/MainInterface.storyboard">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="6kL-zs-13Y.text" xml:space="preserve"><source>Printing</source>
+<target>Aan het printen</target>
+<note>Class = "UILabel"; text = "Printing"; ObjectID = "6kL-zs-13Y";</note></trans-unit>
+      <trans-unit id="eAO-5h-sKJ.text" xml:space="preserve"><source>About 5 min</source>
+<target>Ongeveer 5 minuten resterend</target>
+<note>Class = "UILabel"; text = "About 5 min"; ObjectID = "eAO-5h-sKJ";</note></trans-unit>
+      <trans-unit id="ku3-R6-aBy.text" xml:space="preserve"><source>80%</source>
+<target>80%</target>
+<note>Class = "UILabel"; text = "80%"; ObjectID = "ku3-R6-aBy";</note></trans-unit>
+      <trans-unit id="leE-mt-pIE.text" xml:space="preserve"><source>MK3</source>
+<target>MK3</target>
+<note>Class = "UILabel"; text = "MK3"; ObjectID = "leE-mt-pIE";</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod Widget/en.lproj/InfoPlist.strings">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve"><source>OctoPod</source>
+<target>OctoPod</target>
+<note>Bundle display name</note></trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve"><source>OctoPod Widget</source>
+<target>OctoPod Widget</target>
+<note>Bundle name</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod Widget/en.lproj/Localizable.strings">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="Missed" xml:space="preserve"><source>Missed</source>
+<target>Gemist</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Still stabilizing" xml:space="preserve"><source>Still stabilizing...</source>
+<target>Aan het berekenen.</target>
+<note>Print time is being calculated</note></trans-unit>
+      <trans-unit id="Unknown" xml:space="preserve"><source>Unknown</source>
+<target>Onbekend</target>
+<note>ETA is Unknown
+   Priner state is Unknown</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod/Base.lproj/Intents.intentdefinition">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="0vck5K" xml:space="preserve"><source>Failed to request to cut</source>
+<target>Knippen mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="0xUDAM" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="1lbZOa" xml:space="preserve"><source>Failed to request to disconnect</source>
+<target>Verzoek om verbinding te verbreken mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="1qMmy1" xml:space="preserve"><source>Requested</source>
+<target>Verzocht</target>
+<note/></trans-unit>
+      <trans-unit id="2O3S2V" xml:space="preserve"><source>Take Snapshot</source>
+<target>Maak Momentopname</target>
+<note/></trans-unit>
+      <trans-unit id="2TreiD" xml:space="preserve"><source>Set extruder temperature to ${temperature}</source>
+<target>Stel extruder temperatuur in op ${temperature}</target>
+<note/></trans-unit>
+      <trans-unit id="2zYNqY" xml:space="preserve"><source>Ask Palette ping statistics</source>
+<target>Vraag Palette ping statestieken aan</target>
+<note/></trans-unit>
+      <trans-unit id="3Butzw" xml:space="preserve"><source>Chamber's temperature was set to ${temperature}</source>
+<target>Kamers temperatuur ingesteld op ${temperature}</target>
+<note/></trans-unit>
+      <trans-unit id="3JiZye" xml:space="preserve"><source>Requested</source>
+<target>Verzocht</target>
+<note/></trans-unit>
+      <trans-unit id="3cyBw6" xml:space="preserve"><source>Ask Palette to clear</source>
+<target>Verzoek Palette om te legen</target>
+<note/></trans-unit>
+      <trans-unit id="3eH6cZ" xml:space="preserve"><source>Failed to get remaing time information (${statusCode})</source>
+<target>Resterende tijd ophalen mislukt (${statusCode})</target>
+<note/></trans-unit>
+      <trans-unit id="4B08aG" xml:space="preserve"><source>Turn Off ${label}</source>
+<target>Zet ${label} Uit</target>
+<note/></trans-unit>
+      <trans-unit id="4OM8IX" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="4Tu0Kl" xml:space="preserve"><source>Failed to request to execute command</source>
+<target>Verzoek tot uitvoerencommando mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="5btOXI" xml:space="preserve"><source>Last Variation</source>
+<target>Laatste Variatie</target>
+<note/></trans-unit>
+      <trans-unit id="5i5htv" xml:space="preserve"><source>Connected</source>
+<target>Verbonden</target>
+<note/></trans-unit>
+      <trans-unit id="5iTPOd" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="6b7Yce" xml:space="preserve"><source>Ask Palette to cut</source>
+<target>Verzoek Palette om te knippen</target>
+<note/></trans-unit>
+      <trans-unit id="6k5AFm" xml:space="preserve"><source>Resume job</source>
+<target>Hervat opdracht</target>
+<note/></trans-unit>
+      <trans-unit id="6vtMLs" xml:space="preserve"><source>Job Restarted</source>
+<target>Opdracht is opnieuw gestart</target>
+<note/></trans-unit>
+      <trans-unit id="7c0KRL" xml:space="preserve"><source>Command Source</source>
+<target>Commandobron</target>
+<note/></trans-unit>
+      <trans-unit id="7eJPkN" xml:space="preserve"><source>Configure chamber's temperature</source>
+<target>Stel kamers temperatuur in</target>
+<note/></trans-unit>
+      <trans-unit id="8cfoSa" xml:space="preserve"><source>Failed to request to clear</source>
+<target>Leegverzoek mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="8rFt1u" xml:space="preserve"><source>Ask Palette to clear</source>
+<target>Verzoek Palette om te legen</target>
+<note/></trans-unit>
+      <trans-unit id="8tTCjD" xml:space="preserve"><source>Failed to cancel job (${statusCode})</source>
+<target>Printopdracht annuleren mislukt (${statusCode})</target>
+<note/></trans-unit>
+      <trans-unit id="8uLpUQ" xml:space="preserve"><source>Turn off PSU</source>
+<target>Zet PSU uit</target>
+<note/></trans-unit>
+      <trans-unit id="8xHCbl" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="9PozHf" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="9eejxB" xml:space="preserve"><source>Ask Palette ping statistics</source>
+<target>Verzoek Palette om ping statestieken</target>
+<note/></trans-unit>
+      <trans-unit id="9iz6yx" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="662LyZ" xml:space="preserve"><source>Restart job</source>
+<target>Herstart opdracht</target>
+<note/></trans-unit>
+      <trans-unit id="9107Xn" xml:space="preserve"><source>Take Snapshot</source>
+<target>Maak Momentopname</target>
+<note/></trans-unit>
+      <trans-unit id="AU4oMs" xml:space="preserve"><source>Ask Palette ping statistics</source>
+<target>Verzoek Palette om ping statestieken</target>
+<note/></trans-unit>
+      <trans-unit id="AXm8go" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="AzqFAh" xml:space="preserve"><source>Requested</source>
+<target>Verzocht</target>
+<note/></trans-unit>
+      <trans-unit id="BUexSx" xml:space="preserve"><source>Max Variation</source>
+<target>Max. Variatie</target>
+<note/></trans-unit>
+      <trans-unit id="Big0yU" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="C1mTOm" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="D0kBGr" xml:space="preserve"><source>Restart running print job</source>
+<target>Print opdracht hervatten</target>
+<note/></trans-unit>
+      <trans-unit id="D1wWxd" xml:space="preserve"><source>Disconnect from Palette</source>
+<target>Verbinding met Palette verbroken</target>
+<note/></trans-unit>
+      <trans-unit id="DKIuk9" xml:space="preserve"><source>Execute System Command</source>
+<target>Voer System Command Uit</target>
+<note/></trans-unit>
+      <trans-unit id="Eb3aa5" xml:space="preserve"><source>Failed to set chamber's temperature (${statusCode})</source>
+<target>Instellen kamertemperatuur mislukt (${statusCode})</target>
+<note/></trans-unit>
+      <trans-unit id="Eeyifr" xml:space="preserve"><source>Requested</source>
+<target>Verzocht</target>
+<note/></trans-unit>
+      <trans-unit id="FOlLOy" xml:space="preserve"><source>Failed to request information</source>
+<target>Informatie opvragen mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="FZ3z7Z" xml:space="preserve"><source>Set Bed's Temperature</source>
+<target>Instellen bedtemperatuur</target>
+<note/></trans-unit>
+      <trans-unit id="FkSYZt" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="G3JE6a" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="Ge6TbJ" xml:space="preserve"><source>Failed to request to execute command</source>
+<target>Verzoek tot uitvoerencommando mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="H21bkX" xml:space="preserve"><source>Failed to request to execute command</source>
+<target>Verzoek tot uitvoerencommando mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="IXiy0v" xml:space="preserve"><source>Failed to request to execute command</source>
+<target>Verzoek tot uitvoerencommando mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="JV2xQz" xml:space="preserve"><source>Connect to Palette</source>
+<target>Verbind met Palette</target>
+<note/></trans-unit>
+      <trans-unit id="Jioukn" xml:space="preserve"><source>Set Chamber's Temperature</source>
+<target>Instellen kamertemperatuur</target>
+<note/></trans-unit>
+      <trans-unit id="JmhfgL" xml:space="preserve"><source>Restart running print job</source>
+<target>Herstart huidige printopdracht</target>
+<note/></trans-unit>
+      <trans-unit id="KHvUZD" xml:space="preserve"><source>Ask Palette to cut</source>
+<target>Verzoek Palette om te knippen</target>
+<note/></trans-unit>
+      <trans-unit id="KUFtih" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="Kf7e4Y" xml:space="preserve"><source>Resume running print job</source>
+<target>Hervat huidige printopdracht</target>
+<note/></trans-unit>
+      <trans-unit id="KulRl5" xml:space="preserve"><source>Turn on Enclosure switch</source>
+<target>Zet Behuizingschakelaar Aan</target>
+<note/></trans-unit>
+      <trans-unit id="KxJmrF" xml:space="preserve"><source>Snapshot</source>
+<target>Momentopname</target>
+<note/></trans-unit>
+      <trans-unit id="L25OHl" xml:space="preserve"><source>Failed to request to connect</source>
+<target>Verzoek tot verbinden mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="LVlPuT" xml:space="preserve"><source>Cancel running print job</source>
+<target>Annuleer huidige print opdracht</target>
+<note/></trans-unit>
+      <trans-unit id="M58YA9" xml:space="preserve"><source>Printer</source>
+<target>Printer</target>
+<note/></trans-unit>
+      <trans-unit id="N0vzJv" xml:space="preserve"><source>Ask Palette to clear</source>
+<target>Verzoek Palette om te legen</target>
+<note/></trans-unit>
+      <trans-unit id="N84M0s" xml:space="preserve"><source>Ask Palette to cut</source>
+<target>Verzoek Palette om te knippen</target>
+<note/></trans-unit>
+      <trans-unit id="NG7rBh" xml:space="preserve"><source>Time left</source>
+<target>Tijd resterend</target>
+<note/></trans-unit>
+      <trans-unit id="NL98zi" xml:space="preserve"><source>Cools down bed and extruder</source>
+<target>Aan het afkoelen</target>
+<note/></trans-unit>
+      <trans-unit id="OOldQi" xml:space="preserve"><source>Command Name</source>
+<target>Commando Naam</target>
+<note/></trans-unit>
+      <trans-unit id="Oaidbo" xml:space="preserve"><source>Failed to request to execute command</source>
+<target>Verzoek tot uitvoerencommando mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="P6usJW" xml:space="preserve"><source>Take Snapshot</source>
+<target>Maak Momentopname</target>
+<note/></trans-unit>
+      <trans-unit id="P89qJr" xml:space="preserve"><source>Time left is ${time}</source>
+<target>Tijd resterend: ${time}</target>
+<note/></trans-unit>
+      <trans-unit id="Pj7mEV" xml:space="preserve"><source>Cool down extruder</source>
+<target>Extruder afkoelen</target>
+<note/></trans-unit>
+      <trans-unit id="PppyPP" xml:space="preserve"><source>Configure bed's temperature</source>
+<target>Stel bedtemperatuur in</target>
+<note/></trans-unit>
+      <trans-unit id="QSxXHq" xml:space="preserve"><source>Pause running print job</source>
+<target>Huidige printopdracht pauzeren</target>
+<note/></trans-unit>
+      <trans-unit id="R5AlTe" xml:space="preserve"><source>Disconnect from Palette</source>
+<target>Verbinding met Palette verbroken</target>
+<note/></trans-unit>
+      <trans-unit id="RYurC5" xml:space="preserve"><source>Cool down chamber</source>
+<target>Kamer af laten koelen</target>
+<note/></trans-unit>
+      <trans-unit id="RgRXpP" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="Rjw5oo" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="RrOrgy" xml:space="preserve"><source>Cancel job</source>
+<target>Annuleer opdracht</target>
+<note/></trans-unit>
+      <trans-unit id="RxEUj3" xml:space="preserve"><source>temperature</source>
+<target>temperatuur</target>
+<note/></trans-unit>
+      <trans-unit id="RyGRDF" xml:space="preserve"><source>Connect to Palette</source>
+<target>Verbind met Palette</target>
+<note/></trans-unit>
+      <trans-unit id="SP4rN6" xml:space="preserve"><source>Set Extruder's Temperature</source>
+<target>Stel de extrudertemperatuur in</target>
+<note/></trans-unit>
+      <trans-unit id="SRDf6Q" xml:space="preserve"><source>Extruder's temperature was set to ${temperature}</source>
+<target>Extruder temperatuur was ingesteld op ${temperature}</target>
+<note/></trans-unit>
+      <trans-unit id="SZLVG3" xml:space="preserve"><source>Failed to request to execute command</source>
+<target>Verzoek tot uitvoerencommando mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="TcPGnq" xml:space="preserve"><source>Turn off Enclosure switch</source>
+<target>Zet Behuizingschakelaar Uit</target>
+<note/></trans-unit>
+      <trans-unit id="UC9Zrq" xml:space="preserve"><source>Bed's temperature was set to ${temperature}</source>
+<target>Bed temperatuur was ingesteld op ${temperature}</target>
+<note/></trans-unit>
+      <trans-unit id="VDz0Q1" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="VItjhS" xml:space="preserve"><source>Disconnected</source>
+<target>Niet verdonden</target>
+<note/></trans-unit>
+      <trans-unit id="VKupAQ" xml:space="preserve"><source>Requested</source>
+<target>Verzocht</target>
+<note/></trans-unit>
+      <trans-unit id="Vc7DVt" xml:space="preserve"><source>Set extruder ${tool} temperature to ${temperature}</source>
+<target>Stel extruder ${tool} temperatuur in op ${temperature}</target>
+<note/></trans-unit>
+      <trans-unit id="Vix5SL" xml:space="preserve"><source>Failed to request to execute command</source>
+<target>Verzoek tot uitvoerencommando mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="VlxGJX" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="WI2oQf" xml:space="preserve"><source>Return Print Time Left</source>
+<target>Resterende printtijd terugsturen</target>
+<note/></trans-unit>
+      <trans-unit id="WLkRl0" xml:space="preserve"><source>Failed to resume job (${statusCode})</source>
+<target>Hervatten printopdracht mislukt (${statusCode})</target>
+<note/></trans-unit>
+      <trans-unit id="XUSWIb" xml:space="preserve"><source>PSU Control On</source>
+<target>PSUU Control aan</target>
+<note/></trans-unit>
+      <trans-unit id="XfWmGt" xml:space="preserve"><source>Resume running print job</source>
+<target>Hervat huidige printopdracht</target>
+<note/></trans-unit>
+      <trans-unit id="Xk9F6S" xml:space="preserve"><source>Turn on PSU</source>
+<target>Zet PSU aan</target>
+<note/></trans-unit>
+      <trans-unit id="YGxUII" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="YQLomX" xml:space="preserve"><source>Requested</source>
+<target>Verzocht</target>
+<note/></trans-unit>
+      <trans-unit id="YfmWYd" xml:space="preserve"><source>Requested</source>
+<target>Verzocht</target>
+<note/></trans-unit>
+      <trans-unit id="ZFUAR8" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="a1UDyY" xml:space="preserve"><source>Requested</source>
+<target>Verzocht</target>
+<note/></trans-unit>
+      <trans-unit id="aTDQUI" xml:space="preserve"><source>Turn on Enclosure switch</source>
+<target>Zet Behuizingschakelaar Aan</target>
+<note/></trans-unit>
+      <trans-unit id="ajupCt" xml:space="preserve"><source>No information available</source>
+<target>Geen informatie beschikbaar</target>
+<note/></trans-unit>
+      <trans-unit id="bKwkw6" xml:space="preserve"><source>Turn on PSU</source>
+<target>Zet PSU aan</target>
+<note/></trans-unit>
+      <trans-unit id="bXGQKe" xml:space="preserve"><source>Cool down printer</source>
+<target>Printer afkoelen</target>
+<note/></trans-unit>
+      <trans-unit id="bXrJk0" xml:space="preserve"><source>Command Action</source>
+<target>Commando Actie</target>
+<note/></trans-unit>
+      <trans-unit id="doj4NA" xml:space="preserve"><source>Configure extruder's temperature</source>
+<target>Stel extruder's temperatuur in</target>
+<note/></trans-unit>
+      <trans-unit id="eKSaMC" xml:space="preserve"><source>Turn On ${label}</source>
+<target>Zet ${label} Aan</target>
+<note/></trans-unit>
+      <trans-unit id="f8xirF" xml:space="preserve"><source>Cool down printer</source>
+<target>Printer afkoelen</target>
+<note/></trans-unit>
+      <trans-unit id="fL3sow" xml:space="preserve"><source>Suspend running print job</source>
+<target>Lopende afdruktaak onderbreken</target>
+<note/></trans-unit>
+      <trans-unit id="g52Ub0" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="gx0D0e" xml:space="preserve"><source>Job canceled</source>
+<target>Opdracht geannuleerd</target>
+<note/></trans-unit>
+      <trans-unit id="hE6yXX" xml:space="preserve"><source>Requested</source>
+<target>Verzocht</target>
+<note/></trans-unit>
+      <trans-unit id="hPlRC4" xml:space="preserve"><source>Set bed temperature to ${temperature}</source>
+<target>Stel de bed temperatuur in op ${temperature}</target>
+<note/></trans-unit>
+      <trans-unit id="hUstyz" xml:space="preserve"><source>Last variation is ${lastVariation} and maximum variation is ${maxVariation}</source>
+<target>Laatste variatie is ${lastVariation} and maximum variatie is ${maxVariation}</target>
+<note/></trans-unit>
+      <trans-unit id="ihLqc7" xml:space="preserve"><source>Pause job</source>
+<target>Pauzeer opdracht</target>
+<note/></trans-unit>
+      <trans-unit id="jasUIn" xml:space="preserve"><source>Disconnect from Palette</source>
+<target>Verbinding met Palette verbroken</target>
+<note/></trans-unit>
+      <trans-unit id="kHMMRT" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="kSWyyv" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="lOuQ7B" xml:space="preserve"><source>Failed to request to execute command</source>
+<target>Verzoek tot uitvoerencommando mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="lrRige" xml:space="preserve"><source>Cancel running print job</source>
+<target>Huidige opdracht annuleren</target>
+<note/></trans-unit>
+      <trans-unit id="m6XJpy" xml:space="preserve"><source>Failed to cool down printer (${statusCode})</source>
+<target>Bed afkoelen mislukt (${statusCode})</target>
+<note/></trans-unit>
+      <trans-unit id="m9Jgmg" xml:space="preserve"><source>Job resumed</source>
+<target>Opdracht hervat</target>
+<note/></trans-unit>
+      <trans-unit id="oe3uiM" xml:space="preserve"><source>Execute System Command ${commandName}</source>
+<target>System Command ${commandName} Uitvoeren</target>
+<note/></trans-unit>
+      <trans-unit id="ovQf6Z" xml:space="preserve"><source>Job paused</source>
+<target>Opdracht gepauzeerd</target>
+<note/></trans-unit>
+      <trans-unit id="p9Vevg" xml:space="preserve"><source>Failed to request to execute command</source>
+<target>Verzoek tot uitvoerencommando mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="pfroH1" xml:space="preserve"><source>Turn off PSU</source>
+<target>Zet PSU uit</target>
+<note/></trans-unit>
+      <trans-unit id="q1Oynq" xml:space="preserve"><source>PSU Control Off</source>
+<target>PSUU Control uit</target>
+<note/></trans-unit>
+      <trans-unit id="qLzk1S" xml:space="preserve"><source>Cool down bed</source>
+<target>Bed afkoelen</target>
+<note/></trans-unit>
+      <trans-unit id="qwH2oF" xml:space="preserve"><source>Turn off Enclosure switch</source>
+<target>Zet Behuizingschakelaar Uit</target>
+<note/></trans-unit>
+      <trans-unit id="rFHPr4" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="rmKSv6" xml:space="preserve"><source>Failed to set extruder's temperature (${statusCode})</source>
+<target>Instellen extruder temperatuur mislukt (${statusCode})</target>
+<note/></trans-unit>
+      <trans-unit id="sDV9Jm" xml:space="preserve"><source>Requested</source>
+<target>Verzocht</target>
+<note/></trans-unit>
+      <trans-unit id="sRkyIL" xml:space="preserve"><source>Failed to restart job (${statusCode})</source>
+<target>Printopdracht herstarten mislukt (${statusCode})</target>
+<note/></trans-unit>
+      <trans-unit id="tKDODp" xml:space="preserve"><source>Remaining print time</source>
+<target>Resterende print tijd</target>
+<note/></trans-unit>
+      <trans-unit id="ukcwkW" xml:space="preserve"><source>Execute System Command</source>
+<target>System Command Uitvoeren</target>
+<note/></trans-unit>
+      <trans-unit id="uoT27A" xml:space="preserve"><source>Failed to set bed's temperature (${statusCode})</source>
+<target>Instellen van bed temperatuur mislukt (${statusCode})</target>
+<note/></trans-unit>
+      <trans-unit id="vL7cy4" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="vmbpr4" xml:space="preserve"><source>Connect to Palette</source>
+<target>Verbind met Palette</target>
+<note/></trans-unit>
+      <trans-unit id="wYzz4m" xml:space="preserve"><source>Printer is cooling down</source>
+<target>Printer is aan het afkoelen</target>
+<note/></trans-unit>
+      <trans-unit id="wabqoy" xml:space="preserve"><source>Failed to request to execute command</source>
+<target>Verzoek tot uitvoerencommando mislukt</target>
+<note/></trans-unit>
+      <trans-unit id="wp8czt" xml:space="preserve"><source>Requested</source>
+<target>Verzocht</target>
+<note/></trans-unit>
+      <trans-unit id="x8aCII" xml:space="preserve"><source>Requested</source>
+<target>Verzocht</target>
+<note/></trans-unit>
+      <trans-unit id="xSARU0" xml:space="preserve"><source>Failed to pause job (${statusCode})</source>
+<target>Opdracht pauzeren mislukt (${statusCode})</target>
+<note/></trans-unit>
+      <trans-unit id="yMvnaP" xml:space="preserve"><source>Printer</source>
+<target>Printer</target>
+<note/></trans-unit>
+      <trans-unit id="yZeSdz" xml:space="preserve"><source>${printer}</source>
+<target>${printer}</target>
+<note/></trans-unit>
+      <trans-unit id="zj1Vd9" xml:space="preserve"><source>Set chamber temperature to ${temperature}</source>
+<target>Kamer wordt verwarmt tot ${temperature}</target>
+<note/></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod/Base.lproj/Main.storyboard">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="0JQ-HI-Pcy.text" xml:space="preserve"><source>Time Left</source>
+<target>Tijd resterend</target>
+<note>Class = "UILabel"; text = "Time Left"; ObjectID = "0JQ-HI-Pcy";</note></trans-unit>
+      <trans-unit id="0Ma-Ce-Fmq.title" xml:space="preserve"><source>Printers</source>
+<target>Printers</target>
+<note>Class = "UIViewController"; title = "Printers"; ObjectID = "0Ma-Ce-Fmq";</note></trans-unit>
+      <trans-unit id="0RF-vn-WtE.text" xml:space="preserve"><source>Title</source>
+<target>Titel</target>
+<note>Class = "UILabel"; text = "Title"; ObjectID = "0RF-vn-WtE";</note></trans-unit>
+      <trans-unit id="1dd-tF-khE.text" xml:space="preserve"><source>Include in Dashboard</source>
+<target>Toevoegen aan dashboard</target>
+<note>Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "1dd-tF-khE";</note></trans-unit>
+      <trans-unit id="1gP-AF-De1.normalTitle" xml:space="preserve"><source>Request</source>
+<target>Verzoek</target>
+<note>Class = "UIButton"; normalTitle = "Request"; ObjectID = "1gP-AF-De1";</note></trans-unit>
+      <trans-unit id="1pO-wB-zKj.text" xml:space="preserve"><source>Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</source>
+<target>Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</target>
+<note>Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "1pO-wB-zKj";</note></trans-unit>
+      <trans-unit id="1uD-mu-LKh.placeholder" xml:space="preserve"><source>Password</source>
+<target>Wachtwoord</target>
+<note>Class = "UITextField"; placeholder = "Password"; ObjectID = "1uD-mu-LKh";</note></trans-unit>
+      <trans-unit id="1wa-fM-oTk.title" xml:space="preserve"><source>Timelapse</source>
+<target>Timelapse</target>
+<note>Class = "UIBarButtonItem"; title = "Timelapse"; ObjectID = "1wa-fM-oTk";</note></trans-unit>
+      <trans-unit id="1wf-TL-br5.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "1wf-TL-br5";</note></trans-unit>
+      <trans-unit id="2VN-EJ-YhR.text" xml:space="preserve"><source>250.0 C</source>
+<target>250.0 C</target>
+<note>Class = "UILabel"; text = "250.0 C"; ObjectID = "2VN-EJ-YhR";</note></trans-unit>
+      <trans-unit id="2qA-O2-3VZ.normalTitle" xml:space="preserve"><source>Remind Later</source>
+<target>Herinner mij later</target>
+<note>Class = "UIButton"; normalTitle = "Remind Later"; ObjectID = "2qA-O2-3VZ";</note></trans-unit>
+      <trans-unit id="2wA-7u-KgW.normalTitle" xml:space="preserve"><source>Change language</source>
+<target>Verander taal</target>
+<note>Class = "UIButton"; normalTitle = "Change language"; ObjectID = "2wA-7u-KgW";</note></trans-unit>
+      <trans-unit id="3IG-Y9-Ofi.text" xml:space="preserve"><source>Flow rate</source>
+<target>Flow rate</target>
+<note>Class = "UILabel"; text = "Flow rate"; ObjectID = "3IG-Y9-Ofi";</note></trans-unit>
+      <trans-unit id="3JO-XH-cf3.headerTitle" xml:space="preserve"><source>Language</source>
+<target>Taal</target>
+<note>Class = "UITableViewSection"; headerTitle = "Language"; ObjectID = "3JO-XH-cf3";</note></trans-unit>
+      <trans-unit id="3c8-06-MDo.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "3c8-06-MDo";</note></trans-unit>
+      <trans-unit id="3eo-D0-hAF.text" xml:space="preserve"><source>Auto-lock while printing</source>
+<target>Automatisch vergrendelen tijdens printen</target>
+<note>Class = "UILabel"; text = "Auto-lock while printing"; ObjectID = "3eo-D0-hAF";</note></trans-unit>
+      <trans-unit id="3hn-5x-4xy.text" xml:space="preserve"><source>Error message</source>
+<target>Foutmelding</target>
+<note>Class = "UILabel"; text = "Error message"; ObjectID = "3hn-5x-4xy";</note></trans-unit>
+      <trans-unit id="3lh-11-wC7.text" xml:space="preserve"><source>Show Camera</source>
+<target>Camera Weergeven</target>
+<note>Class = "UILabel"; text = "Show Camera"; ObjectID = "3lh-11-wC7";</note></trans-unit>
+      <trans-unit id="3mU-gE-iQQ.text" xml:space="preserve"><source>Printed</source>
+<target>Geprint</target>
+<note>Class = "UILabel"; text = "Printed"; ObjectID = "3mU-gE-iQQ";</note></trans-unit>
+      <trans-unit id="3tm-V0-9Gl.headerTitle" xml:space="preserve"><source>Speed</source>
+<target>Snelheid</target>
+<note>Class = "UITableViewSection"; headerTitle = "Speed"; ObjectID = "3tm-V0-9Gl";</note></trans-unit>
+      <trans-unit id="4Kd-tY-8l3.text" xml:space="preserve"><source>Certificate validation</source>
+<target>Certificaat validatie</target>
+<note>Class = "UILabel"; text = "Certificate validation"; ObjectID = "4Kd-tY-8l3";</note></trans-unit>
+      <trans-unit id="4LI-ea-uZQ.headerTitle" xml:space="preserve"><source>BLTouch</source>
+<target>BLTouch</target>
+<note>Class = "UITableViewSection"; headerTitle = "BLTouch"; ObjectID = "4LI-ea-uZQ";</note></trans-unit>
+      <trans-unit id="4Lh-Q8-wxW.placeholder" xml:space="preserve"><source>Speed value</source>
+<target>Snelheid</target>
+<note>Class = "UITextField"; placeholder = "Speed value"; ObjectID = "4Lh-Q8-wxW";</note></trans-unit>
+      <trans-unit id="4bm-la-U47.segmentTitles[0]" xml:space="preserve"><source>ABC</source>
+<target>ABC</target>
+<note>Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[0] = "ABC"; ObjectID = "4bm-la-U47";</note></trans-unit>
+      <trans-unit id="4bm-la-U47.segmentTitles[1]" xml:space="preserve"><source>Date</source>
+<target>Datum</target>
+<note>Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[1] = "Date"; ObjectID = "4bm-la-U47";</note></trans-unit>
+      <trans-unit id="4bm-la-U47.segmentTitles[2]" xml:space="preserve"><source>Printed</source>
+<target>Geprint</target>
+<note>Class = "UISegmentedControl"; 4bm-la-U47.segmentTitles[2] = "Printed"; ObjectID = "4bm-la-U47";</note></trans-unit>
+      <trans-unit id="4iR-7v-jJp.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "4iR-7v-jJp";</note></trans-unit>
+      <trans-unit id="4ls-BU-eMv.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "4ls-BU-eMv";</note></trans-unit>
+      <trans-unit id="4sv-CS-fGo.title" xml:space="preserve"><source>Appearance</source>
+<target>Uiterlijk</target>
+<note>Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo";</note></trans-unit>
+      <trans-unit id="4yc-YH-f8v.text" xml:space="preserve"><source>Connect directly by requesting an application key</source>
+<target>Verbind direct door een applicatiesleutel te verzoeken</target>
+<note>Class = "UILabel"; text = "Connect directly by requesting an application key"; ObjectID = "4yc-YH-f8v";</note></trans-unit>
+      <trans-unit id="5BW-iP-ejE.text" xml:space="preserve"><source>Show Camera</source>
+<target>Camera Weergeven</target>
+<note>Class = "UILabel"; text = "Show Camera"; ObjectID = "5BW-iP-ejE";</note></trans-unit>
+      <trans-unit id="5GO-ai-ldL.text" xml:space="preserve"><source>Splice</source>
+<target>Splitsen</target>
+<note>Class = "UILabel"; text = "Splice"; ObjectID = "5GO-ai-ldL";</note></trans-unit>
+      <trans-unit id="5hR-SK-V2r.text" xml:space="preserve"><source>Print Time Left</source>
+<target>Resterende printtijd</target>
+<note>Class = "UILabel"; text = "Print Time Left"; ObjectID = "5hR-SK-V2r";</note></trans-unit>
+      <trans-unit id="5ry-aI-ZKw.text" xml:space="preserve"><source>250 C</source>
+<target>250 C</target>
+<note>Class = "UILabel"; text = "250 C"; ObjectID = "5ry-aI-ZKw";</note></trans-unit>
+      <trans-unit id="6OW-hI-hem.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "6OW-hI-hem";</note></trans-unit>
+      <trans-unit id="6TZ-hb-gdQ.text" xml:space="preserve"><source>Disable Motor</source>
+<target>Schakel motoren uit</target>
+<note>Class = "UILabel"; text = "Disable Motor"; ObjectID = "6TZ-hb-gdQ";</note></trans-unit>
+      <trans-unit id="6mR-Ai-VTr.title" xml:space="preserve"><source>Printers</source>
+<target>Printers</target>
+<note>Class = "UINavigationItem"; title = "Printers"; ObjectID = "6mR-Ai-VTr";</note></trans-unit>
+      <trans-unit id="6ox-ce-GOS.text" xml:space="preserve"><source>Size</source>
+<target>Grootte</target>
+<note>Class = "UILabel"; text = "Size"; ObjectID = "6ox-ce-GOS";</note></trans-unit>
+      <trans-unit id="6tl-IB-smM.text" xml:space="preserve"><source>%</source>
+<target>%</target>
+<note>Class = "UILabel"; text = "%"; ObjectID = "6tl-IB-smM";</note></trans-unit>
+      <trans-unit id="7HM-7E-tgN.normalTitle" xml:space="preserve"><source>Button</source>
+<target>Knop</target>
+<note>Class = "UIButton"; normalTitle = "Button"; ObjectID = "7HM-7E-tgN";</note></trans-unit>
+      <trans-unit id="7Je-mU-81r.text" xml:space="preserve"><source>0.0 C</source>
+<target>0.0 C</target>
+<note>Class = "UILabel"; text = "0.0 C"; ObjectID = "7Je-mU-81r";</note></trans-unit>
+      <trans-unit id="7Mb-MK-CG7.normalTitle" xml:space="preserve"><source>Z</source>
+<target>Z</target>
+<note>Class = "UIButton"; normalTitle = "Z"; ObjectID = "7Mb-MK-CG7";</note></trans-unit>
+      <trans-unit id="7pE-fx-Ibe.headerTitle" xml:space="preserve"><source>Manual Control</source>
+<target>Handmatige Bedienieng</target>
+<note>Class = "UITableViewSection"; headerTitle = "Manual Control"; ObjectID = "7pE-fx-Ibe";</note></trans-unit>
+      <trans-unit id="7tc-5o-KVQ.headerTitle" xml:space="preserve"><source>Settings</source>
+<target>Instellingen</target>
+<note>Class = "UITableViewSection"; headerTitle = "Settings"; ObjectID = "7tc-5o-KVQ";</note></trans-unit>
+      <trans-unit id="8TL-hx-EDz.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "8TL-hx-EDz";</note></trans-unit>
+      <trans-unit id="8U9-mV-fYc.text" xml:space="preserve"><source>Bed</source>
+<target>Bed</target>
+<note>Class = "UILabel"; text = "Bed"; ObjectID = "8U9-mV-fYc";</note></trans-unit>
+      <trans-unit id="8aU-tf-jF4.text" xml:space="preserve"><source>#</source>
+<target>#</target>
+<note>Class = "UILabel"; text = "#"; ObjectID = "8aU-tf-jF4";</note></trans-unit>
+      <trans-unit id="8d7-Fp-V0A.headerTitle" xml:space="preserve"><source>Z</source>
+<target>Z</target>
+<note>Class = "UITableViewSection"; headerTitle = "Z"; ObjectID = "8d7-Fp-V0A";</note></trans-unit>
+      <trans-unit id="8qc-7f-G5G.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "8qc-7f-G5G";</note></trans-unit>
+      <trans-unit id="9dR-Sn-lbP.placeholder" xml:space="preserve"><source>Password</source>
+<target>Wachtwoord</target>
+<note>Class = "UITextField"; placeholder = "Password"; ObjectID = "9dR-Sn-lbP";</note></trans-unit>
+      <trans-unit id="26j-Xb-FzE.text" xml:space="preserve"><source>Uploaded</source>
+<target>Geüpload</target>
+<note>Class = "UILabel"; text = "Uploaded"; ObjectID = "26j-Xb-FzE";</note></trans-unit>
+      <trans-unit id="35a-ap-aeB.text" xml:space="preserve"><source>Appearance</source>
+<target>Uiterlijk</target>
+<note>Class = "UILabel"; text = "Appearance"; ObjectID = "35a-ap-aeB";</note></trans-unit>
+      <trans-unit id="48m-gj-F14.normalTitle" xml:space="preserve"><source>E</source>
+<target>E</target>
+<note>Class = "UIButton"; normalTitle = "E"; ObjectID = "48m-gj-F14";</note></trans-unit>
+      <trans-unit id="53i-ST-HFr.text" xml:space="preserve"><source>Refresh enabled</source>
+<target>Vernieuwen staat aan</target>
+<note>Class = "UILabel"; text = "Refresh enabled"; ObjectID = "53i-ST-HFr";</note></trans-unit>
+      <trans-unit id="61C-mr-JBS.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "61C-mr-JBS";</note></trans-unit>
+      <trans-unit id="88V-gh-sQd.text" xml:space="preserve"><source>About 10m</source>
+<target>Ongeveer 10 minuten resterend</target>
+<note>Class = "UILabel"; text = "About 10m"; ObjectID = "88V-gh-sQd";</note></trans-unit>
+      <trans-unit id="512-pk-AIB.text" xml:space="preserve"><source>Devices</source>
+<target>Apparaten</target>
+<note>Class = "UILabel"; text = "Devices"; ObjectID = "512-pk-AIB";</note></trans-unit>
+      <trans-unit id="A7g-Yw-Ucf.text" xml:space="preserve"><source>0 C</source>
+<target>0 C</target>
+<note>Class = "UILabel"; text = "0 C"; ObjectID = "A7g-Yw-Ucf";</note></trans-unit>
+      <trans-unit id="ATt-Oy-pFY.placeholder" xml:space="preserve"><source>Hostname (e.g. http://octopi.local)</source>
+<target>Hostnaam (b.v. http://octopi.local)</target>
+<note>Class = "UITextField"; placeholder = "Hostname (e.g. http://octopi.local)"; ObjectID = "ATt-Oy-pFY";</note></trans-unit>
+      <trans-unit id="AU8-zV-v3w.text" xml:space="preserve"><source>OctoPrint</source>
+<target>OctoPrint</target>
+<note>Class = "UILabel"; text = "OctoPrint"; ObjectID = "AU8-zV-v3w";</note></trans-unit>
+      <trans-unit id="AcH-TF-NmP.normalTitle" xml:space="preserve"><source>Clear Palette 2</source>
+<target>Leeg Palette 2</target>
+<note>Class = "UIButton"; normalTitle = "Clear Palette 2"; ObjectID = "AcH-TF-NmP";</note></trans-unit>
+      <trans-unit id="AfS-HP-WTR.normalTitle" xml:space="preserve"><source>Suppress temp</source>
+<target>Onderdruk temperatuur</target>
+<note>Class = "UIButton"; normalTitle = "Suppress temp"; ObjectID = "AfS-HP-WTR";</note></trans-unit>
+      <trans-unit id="Aka-Ud-zQ7.text" xml:space="preserve"><source>Cancel Object plugin requires update</source>
+<target>Update vereist voor Cancel Object plugin</target>
+<note>Class = "UILabel"; text = "Cancel Object plugin requires update"; ObjectID = "Aka-Ud-zQ7";</note></trans-unit>
+      <trans-unit id="B7j-Fj-W6p.normalTitle" xml:space="preserve"><source>X</source>
+<target>X</target>
+<note>Class = "UIButton"; normalTitle = "X"; ObjectID = "B7j-Fj-W6p";</note></trans-unit>
+      <trans-unit id="BXr-d8-f7x.text" xml:space="preserve"><source>Error message</source>
+<target>Foutmelding</target>
+<note>Class = "UILabel"; text = "Error message"; ObjectID = "BXr-d8-f7x";</note></trans-unit>
+      <trans-unit id="Bjc-sA-egR.normalTitle" xml:space="preserve"><source>+</source>
+<target>+</target>
+<note>Class = "UIButton"; normalTitle = "+"; ObjectID = "Bjc-sA-egR";</note></trans-unit>
+      <trans-unit id="Bld-AB-rzW.text" xml:space="preserve"><source>Subtitle</source>
+<target>Subtitle</target>
+<note>Class = "UILabel"; text = "Subtitle"; ObjectID = "Bld-AB-rzW";</note></trans-unit>
+      <trans-unit id="BrM-2D-Rbd.text" xml:space="preserve"><source>Print Time</source>
+<target>Print Tijd</target>
+<note>Class = "UILabel"; text = "Print Time"; ObjectID = "BrM-2D-Rbd";</note></trans-unit>
+      <trans-unit id="BxC-fi-O75.text" xml:space="preserve"><source>/</source>
+<target>/</target>
+<note>Class = "UILabel"; text = "/"; ObjectID = "BxC-fi-O75";</note></trans-unit>
+      <trans-unit id="CNq-uw-hM5.text" xml:space="preserve"><source>Subtitle</source>
+<target>Subtitle</target>
+<note>Class = "UILabel"; text = "Subtitle"; ObjectID = "CNq-uw-hM5";</note></trans-unit>
+      <trans-unit id="Cdc-H8-bPm.text" xml:space="preserve"><source>Sort by</source>
+<target>Sorteren op</target>
+<note>Class = "UILabel"; text = "Sort by"; ObjectID = "Cdc-H8-bPm";</note></trans-unit>
+      <trans-unit id="CiW-up-Ju4.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "CiW-up-Ju4";</note></trans-unit>
+      <trans-unit id="Cjs-F4-ynC.title" xml:space="preserve"><source>Terminal</source>
+<target>Terminal</target>
+<note>Class = "UITabBarItem"; title = "Terminal"; ObjectID = "Cjs-F4-ynC";</note></trans-unit>
+      <trans-unit id="Ckk-gg-bxA.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "Ckk-gg-bxA";</note></trans-unit>
+      <trans-unit id="Crn-wa-FLw.normalTitle" xml:space="preserve"><source>Print</source>
+<target>Print</target>
+<note>Class = "UIButton"; normalTitle = "Print"; ObjectID = "Crn-wa-FLw";</note></trans-unit>
+      <trans-unit id="DI6-KC-pSc.normalTitle" xml:space="preserve"><source>Pause</source>
+<target>Pauzeer</target>
+<note>Class = "UIButton"; normalTitle = "Pause"; ObjectID = "DI6-KC-pSc";</note></trans-unit>
+      <trans-unit id="DUc-ra-F2o.title" xml:space="preserve"><source>Files</source>
+<target>Bestanden</target>
+<note>Class = "UIBarButtonItem"; title = "Files"; ObjectID = "DUc-ra-F2o";</note></trans-unit>
+      <trans-unit id="EKB-JK-mIs.text" xml:space="preserve"><source>1000</source>
+<target>1000</target>
+<note>Class = "UILabel"; text = "1000"; ObjectID = "EKB-JK-mIs";</note></trans-unit>
+      <trans-unit id="ESw-zm-5bN.text" xml:space="preserve"><source>Progress</source>
+<target>Voortgang</target>
+<note>Class = "UILabel"; text = "Progress"; ObjectID = "ESw-zm-5bN";</note></trans-unit>
+      <trans-unit id="EVr-c6-T8p.text" xml:space="preserve"><source>Manually delete recorded Siri shortcuts after delete</source>
+<target>Verwijdel Siri opdrachten handmatig naa het verwijderen van de app</target>
+<note>Class = "UILabel"; text = "Manually delete recorded Siri shortcuts after delete"; ObjectID = "EVr-c6-T8p";</note></trans-unit>
+      <trans-unit id="FGy-9V-djf.normalTitle" xml:space="preserve"><source>Cancel</source>
+<target>Annuleer</target>
+<note>Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "FGy-9V-djf";</note></trans-unit>
+      <trans-unit id="FJA-XK-nll.normalTitle" xml:space="preserve"><source>Dismiss</source>
+<target>Afwijzen</target>
+<note>Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "FJA-XK-nll";</note></trans-unit>
+      <trans-unit id="Fbe-op-Ixc.text" xml:space="preserve"><source>Detail</source>
+<target>Detail</target>
+<note>Class = "UILabel"; text = "Detail"; ObjectID = "Fbe-op-Ixc";</note></trans-unit>
+      <trans-unit id="FdM-r0-spe.headerTitle" xml:space="preserve"><source>Print job</source>
+<target>Print opdracht</target>
+<note>Class = "UITableViewSection"; headerTitle = "Print job"; ObjectID = "FdM-r0-spe";</note></trans-unit>
+      <trans-unit id="Fj0-uz-fxi.text" xml:space="preserve"><source>Extruder 2</source>
+<target>Extruder 2</target>
+<note>Class = "UILabel"; text = "Extruder 2"; ObjectID = "Fj0-uz-fxi";</note></trans-unit>
+      <trans-unit id="FqW-ud-y7C.title" xml:space="preserve"><source>Printers</source>
+<target>Printers</target>
+<note>Class = "UINavigationItem"; title = "Printers"; ObjectID = "FqW-ud-y7C";</note></trans-unit>
+      <trans-unit id="GAt-su-C1i.headerTitle" xml:space="preserve"><source>Temp Chart</source>
+<target>Temperatuur grafiek</target>
+<note>Class = "UITableViewSection"; headerTitle = "Temp Chart"; ObjectID = "GAt-su-C1i";</note></trans-unit>
+      <trans-unit id="GJo-uu-Qmb.title" xml:space="preserve"><source>File Details</source>
+<target>Bestandsinformatie</target>
+<note>Class = "UITableViewController"; title = "File Details"; ObjectID = "GJo-uu-Qmb";</note></trans-unit>
+      <trans-unit id="GRh-JJ-DpF.segmentTitles[0]" xml:space="preserve"><source>1</source>
+<target>1</target>
+<note>Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[0] = "1"; ObjectID = "GRh-JJ-DpF";</note></trans-unit>
+      <trans-unit id="GRh-JJ-DpF.segmentTitles[1]" xml:space="preserve"><source>5</source>
+<target>5</target>
+<note>Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[1] = "5"; ObjectID = "GRh-JJ-DpF";</note></trans-unit>
+      <trans-unit id="GRh-JJ-DpF.segmentTitles[2]" xml:space="preserve"><source>10</source>
+<target>10</target>
+<note>Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[2] = "10"; ObjectID = "GRh-JJ-DpF";</note></trans-unit>
+      <trans-unit id="GRh-JJ-DpF.segmentTitles[3]" xml:space="preserve"><source>50</source>
+<target>50</target>
+<note>Class = "UISegmentedControl"; GRh-JJ-DpF.segmentTitles[3] = "50"; ObjectID = "GRh-JJ-DpF";</note></trans-unit>
+      <trans-unit id="Ghq-m2-F0u.text" xml:space="preserve"><source>Record Siri phrase to use shortcuts</source>
+<target>Zin opnemen voor Siri opdrachten</target>
+<note>Class = "UILabel"; text = "Record Siri phrase to use shortcuts"; ObjectID = "Ghq-m2-F0u";</note></trans-unit>
+      <trans-unit id="GmR-1U-jvf.title" xml:space="preserve"><source>Devices</source>
+<target>Apparaten</target>
+<note>Class = "UITableViewController"; title = "Devices"; ObjectID = "GmR-1U-jvf";</note></trans-unit>
+      <trans-unit id="H0f-on-KjQ.text" xml:space="preserve"><source>Extruder</source>
+<target>Extruder</target>
+<note>Class = "UILabel"; text = "Extruder"; ObjectID = "H0f-on-KjQ";</note></trans-unit>
+      <trans-unit id="HDH-G9-A8F.text" xml:space="preserve"><source/>
+<note>Class = "UILabel"; text = " "; ObjectID = "HDH-G9-A8F";</note></trans-unit>
+      <trans-unit id="HHI-TR-3jC.segmentTitles[0]" xml:space="preserve"><source>1</source>
+<target>1</target>
+<note>Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[0] = "1"; ObjectID = "HHI-TR-3jC";</note></trans-unit>
+      <trans-unit id="HHI-TR-3jC.segmentTitles[1]" xml:space="preserve"><source>2</source>
+<target>2</target>
+<note>Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[1] = "2"; ObjectID = "HHI-TR-3jC";</note></trans-unit>
+      <trans-unit id="HHI-TR-3jC.segmentTitles[2]" xml:space="preserve"><source>3</source>
+<target>3</target>
+<note>Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[2] = "3"; ObjectID = "HHI-TR-3jC";</note></trans-unit>
+      <trans-unit id="HHI-TR-3jC.segmentTitles[3]" xml:space="preserve"><source>4</source>
+<target>4</target>
+<note>Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[3] = "4"; ObjectID = "HHI-TR-3jC";</note></trans-unit>
+      <trans-unit id="HHI-TR-3jC.segmentTitles[4]" xml:space="preserve"><source>5</source>
+<target>5</target>
+<note>Class = "UISegmentedControl"; HHI-TR-3jC.segmentTitles[4] = "5"; ObjectID = "HHI-TR-3jC";</note></trans-unit>
+      <trans-unit id="HJ0-c2-UaT.text" xml:space="preserve"><source>Palette 2 - Max Variation</source>
+<target>Palette 2 - Max Variatie</target>
+<note>Class = "UILabel"; text = "Palette 2 - Max Variation"; ObjectID = "HJ0-c2-UaT";</note></trans-unit>
+      <trans-unit id="HUF-Dw-M7F.text" xml:space="preserve"><source>Tip: Click to set temperature</source>
+<target>Tip: Klik hier om de temperatuur in te stellen</target>
+<note>Class = "UILabel"; text = "Tip: Click to set temperature"; ObjectID = "HUF-Dw-M7F";</note></trans-unit>
+      <trans-unit id="HbJ-Bb-EXQ.text" xml:space="preserve"><source>Support</source>
+<target>Ondersteuning</target>
+<note>Class = "UILabel"; text = "Support"; ObjectID = "HbJ-Bb-EXQ";</note></trans-unit>
+      <trans-unit id="Hbt-Tj-ZZJ.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "Hbt-Tj-ZZJ";</note></trans-unit>
+      <trans-unit id="Hcl-jl-BEb.normalTitle" xml:space="preserve"><source>Button</source>
+<target>Button</target>
+<note>Class = "UIButton"; normalTitle = "Button"; ObjectID = "Hcl-jl-BEb";</note></trans-unit>
+      <trans-unit id="Hdi-Ra-Fgd.title" xml:space="preserve"><source>OctoPrint Web</source>
+<target>OctoPrint Webpagina</target>
+<note>Class = "UIBarButtonItem"; title = "OctoPrint Web"; ObjectID = "Hdi-Ra-Fgd";</note></trans-unit>
+      <trans-unit id="I3c-tI-kJ0.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "I3c-tI-kJ0";</note></trans-unit>
+      <trans-unit id="Iuu-Fk-Mu7.normalTitle" xml:space="preserve"><source>Popular GCode Commands</source>
+<target>Populaire GCode commando's</target>
+<note>Class = "UIButton"; normalTitle = "Popular GCode Commands"; ObjectID = "Iuu-Fk-Mu7";</note></trans-unit>
+      <trans-unit id="J17-Xa-0dv.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "J17-Xa-0dv";</note></trans-unit>
+      <trans-unit id="JBw-xB-Lgd.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "JBw-xB-Lgd";</note></trans-unit>
+      <trans-unit id="JXO-le-4sU.title" xml:space="preserve"><source>OctoEverywhere</source>
+<target>OctoEverywhere</target>
+<note>Class = "UITableViewController"; title = "OctoEverywhere"; ObjectID = "JXO-le-4sU";</note></trans-unit>
+      <trans-unit id="JYC-5g-kqS.text" xml:space="preserve"><source>Confirm to disconnect</source>
+<target>Bevestig om verbinding te verbreken</target>
+<note>Class = "UILabel"; text = "Confirm to disconnect"; ObjectID = "JYC-5g-kqS";</note></trans-unit>
+      <trans-unit id="JgS-9W-IR2.text" xml:space="preserve"><source>m</source>
+<target>m</target>
+<note>Class = "UILabel"; text = "m"; ObjectID = "JgS-9W-IR2";</note></trans-unit>
+      <trans-unit id="JwP-eK-xNk.text" xml:space="preserve"><source>250.0 C</source>
+<target>250.0 C</target>
+<note>Class = "UILabel"; text = "250.0 C"; ObjectID = "JwP-eK-xNk";</note></trans-unit>
+      <trans-unit id="K4f-Fs-KaY.title" xml:space="preserve"><source>Move</source>
+<target>Verplaats</target>
+<note>Class = "UINavigationItem"; title = "Move"; ObjectID = "K4f-Fs-KaY";</note></trans-unit>
+      <trans-unit id="K5o-xJ-EiZ.normalTitle" xml:space="preserve"><source>Learn more about Custom Controls</source>
+<target>Lees meer over Custom Controls</target>
+<note>Class = "UIButton"; normalTitle = "Learn more about Custom Controls"; ObjectID = "K5o-xJ-EiZ";</note></trans-unit>
+      <trans-unit id="K6d-lk-BaS.text" xml:space="preserve"><source>Enter a valid URL</source>
+<target>Voer een geldige URL in</target>
+<note>Class = "UILabel"; text = "Enter a valid URL"; ObjectID = "K6d-lk-BaS";</note></trans-unit>
+      <trans-unit id="KAE-HV-Z5Q.text" xml:space="preserve"><source>Title</source>
+<target>Title</target>
+<note>Class = "UILabel"; text = "Title"; ObjectID = "KAE-HV-Z5Q";</note></trans-unit>
+      <trans-unit id="KC4-pP-rEh.text" xml:space="preserve"><source>Include in Dashboard</source>
+<target>Toevoegen aan dashboard</target>
+<note>Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "KC4-pP-rEh";</note></trans-unit>
+      <trans-unit id="Kan-Ak-roI.text" xml:space="preserve"><source>Show Camera</source>
+<target>Camera Weergeven</target>
+<note>Class = "UILabel"; text = "Show Camera"; ObjectID = "Kan-Ak-roI";</note></trans-unit>
+      <trans-unit id="L1Q-WE-63g.text" xml:space="preserve"><source>File</source>
+<target>Bestand</target>
+<note>Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g";</note></trans-unit>
+      <trans-unit id="L7b-hh-BO8.text" xml:space="preserve"><source/>
+<note>Class = "UILabel"; text = " "; ObjectID = "L7b-hh-BO8";</note></trans-unit>
+      <trans-unit id="LBx-lc-96t.text" xml:space="preserve"><source>Siri Integration</source>
+<target>Siri Intergratie</target>
+<note>Class = "UILabel"; text = "Siri Integration"; ObjectID = "LBx-lc-96t";</note></trans-unit>
+      <trans-unit id="LJV-z6-SX8.text" xml:space="preserve"><source>Title</source>
+<target>Title</target>
+<note>Class = "UILabel"; text = "Title"; ObjectID = "LJV-z6-SX8";</note></trans-unit>
+      <trans-unit id="MA6-Ay-j7Q.text" xml:space="preserve"><source>Light</source>
+<target>Licht</target>
+<note>Class = "UILabel"; text = "Light"; ObjectID = "MA6-Ay-j7Q";</note></trans-unit>
+      <trans-unit id="MI6-uy-Cea.text" xml:space="preserve"><source>Print time</source>
+<target>Print Tijd</target>
+<note>Class = "UILabel"; text = "Print time"; ObjectID = "MI6-uy-Cea";</note></trans-unit>
+      <trans-unit id="MT2-fR-HJD.text" xml:space="preserve"><source>Tap = Full Screen</source>
+<target>Klikken = Volledige scherm</target>
+<note>Class = "UILabel"; text = "Tap = Full Screen"; ObjectID = "MT2-fR-HJD";</note></trans-unit>
+      <trans-unit id="Mab-7E-AEG.text" xml:space="preserve"><source>Title</source>
+<target>Title</target>
+<note>Class = "UILabel"; text = "Title"; ObjectID = "Mab-7E-AEG";</note></trans-unit>
+      <trans-unit id="N5P-gn-chq.normalTitle" xml:space="preserve"><source>SD</source>
+<target>SD</target>
+<note>Class = "UIButton"; normalTitle = "SD"; ObjectID = "N5P-gn-chq";</note></trans-unit>
+      <trans-unit id="NDf-j6-3Gw.normalTitle" xml:space="preserve"><source>Change Port</source>
+<target>Verander Poort</target>
+<note>Class = "UIButton"; normalTitle = "Change Port"; ObjectID = "NDf-j6-3Gw";</note></trans-unit>
+      <trans-unit id="NKo-dw-3Mg.segmentTitles[0]" xml:space="preserve"><source>0.1</source>
+<target>0.1</target>
+<note>Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[0] = "0.1"; ObjectID = "NKo-dw-3Mg";</note></trans-unit>
+      <trans-unit id="NKo-dw-3Mg.segmentTitles[1]" xml:space="preserve"><source>1</source>
+<target>1</target>
+<note>Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[1] = "1"; ObjectID = "NKo-dw-3Mg";</note></trans-unit>
+      <trans-unit id="NKo-dw-3Mg.segmentTitles[2]" xml:space="preserve"><source>10</source>
+<target>10</target>
+<note>Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[2] = "10"; ObjectID = "NKo-dw-3Mg";</note></trans-unit>
+      <trans-unit id="NKo-dw-3Mg.segmentTitles[3]" xml:space="preserve"><source>100</source>
+<target>100</target>
+<note>Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[3] = "100"; ObjectID = "NKo-dw-3Mg";</note></trans-unit>
+      <trans-unit id="NQ5-25-ww1.text" xml:space="preserve"><source>About 10m</source>
+<target>Ongeveer 10m</target>
+<note>Class = "UILabel"; text = "About 10m"; ObjectID = "NQ5-25-ww1";</note></trans-unit>
+      <trans-unit id="Ndq-Hl-4qe.text" xml:space="preserve"><source>Layer</source>
+<target>Laag</target>
+<note>Class = "UILabel"; text = "Layer"; ObjectID = "Ndq-Hl-4qe";</note></trans-unit>
+      <trans-unit id="NsL-9T-upI.text" xml:space="preserve"><source>0.0 C</source>
+<target>0.0 C</target>
+<note>Class = "UILabel"; text = "0.0 C"; ObjectID = "NsL-9T-upI";</note></trans-unit>
+      <trans-unit id="OJS-Cg-u9x.text" xml:space="preserve"><source>100</source>
+<target>100</target>
+<note>Class = "UILabel"; text = "100"; ObjectID = "OJS-Cg-u9x";</note></trans-unit>
+      <trans-unit id="OPd-TD-yfb.headerTitle" xml:space="preserve"><source>Printer Connection (REQUIRED)</source>
+<target>Printer Connectie (VERPLICHT)</target>
+<note>Class = "UITableViewSection"; headerTitle = "Printer Connection (REQUIRED)"; ObjectID = "OPd-TD-yfb";</note></trans-unit>
+      <trans-unit id="OTX-dw-fk4.normalTitle" xml:space="preserve"><source>Button</source>
+<target>Button</target>
+<note>Class = "UIButton"; normalTitle = "Button"; ObjectID = "OTX-dw-fk4";</note></trans-unit>
+      <trans-unit id="Or4-Wf-fDK.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "Or4-Wf-fDK";</note></trans-unit>
+      <trans-unit id="Orn-Uy-jOO.text" xml:space="preserve"><source>Extruder 5</source>
+<target>Extruder 5</target>
+<note>Class = "UILabel"; text = "Extruder 5"; ObjectID = "Orn-Uy-jOO";</note></trans-unit>
+      <trans-unit id="Orp-dU-Wpa.title" xml:space="preserve"><source>Siri</source>
+<target>Siri</target>
+<note>Class = "UITableViewController"; title = "Siri"; ObjectID = "Orp-dU-Wpa";</note></trans-unit>
+      <trans-unit id="Otl-oh-byl.text" xml:space="preserve"><source>of</source>
+<target>van</target>
+<note>Class = "UILabel"; text = "of"; ObjectID = "Otl-oh-byl";</note></trans-unit>
+      <trans-unit id="Ow4-Mf-iWF.headerTitle" xml:space="preserve"><source>Print</source>
+<target>Print</target>
+<note>Class = "UITableViewSection"; headerTitle = "Print"; ObjectID = "Ow4-Mf-iWF";</note></trans-unit>
+      <trans-unit id="P28-Dm-1BA.text" xml:space="preserve"><source>Apple Watch</source>
+<target>Apple Watch</target>
+<note>Class = "UILabel"; text = "Apple Watch"; ObjectID = "P28-Dm-1BA";</note></trans-unit>
+      <trans-unit id="PAD-Rg-10Y.text" xml:space="preserve"><source>0 C</source>
+<target>0 C</target>
+<note>Class = "UILabel"; text = "0 C"; ObjectID = "PAD-Rg-10Y";</note></trans-unit>
+      <trans-unit id="PD3-li-xER.text" xml:space="preserve"><source>250.0 C</source>
+<target>250.0 C</target>
+<note>Class = "UILabel"; text = "250.0 C"; ObjectID = "PD3-li-xER";</note></trans-unit>
+      <trans-unit id="PXd-ZY-vbz.text" xml:space="preserve"><source>Orange</source>
+<target>Oranje</target>
+<note>Class = "UILabel"; text = "Orange"; ObjectID = "PXd-ZY-vbz";</note></trans-unit>
+      <trans-unit id="Peq-4x-xQj.title" xml:space="preserve"><source>Move</source>
+<target>Beweeg</target>
+<note>Class = "UITabBarItem"; title = "Move"; ObjectID = "Peq-4x-xQj";</note></trans-unit>
+      <trans-unit id="Po0-HZ-vzU.text" xml:space="preserve"><source>Log in to iCloud to synchronize between devices</source>
+<target>Log in op iCloud om tussen apparaten te synchroniseren</target>
+<note>Class = "UILabel"; text = "Log in to iCloud to synchronize between devices"; ObjectID = "Po0-HZ-vzU";</note></trans-unit>
+      <trans-unit id="PyK-FO-APL.title" xml:space="preserve"><source>Printers</source>
+<target>Printers</target>
+<note>Class = "UIBarButtonItem"; title = "Printers"; ObjectID = "PyK-FO-APL";</note></trans-unit>
+      <trans-unit id="Q2b-xf-a3O.normalTitle" xml:space="preserve"><source>Retract</source>
+<target>Terugtrekken</target>
+<note>Class = "UIButton"; normalTitle = "Retract"; ObjectID = "Q2b-xf-a3O";</note></trans-unit>
+      <trans-unit id="QCe-zo-Ncw.title" xml:space="preserve"><source>QR Code</source>
+<target>QR code</target>
+<note>Class = "UIViewController"; title = "QR Code"; ObjectID = "QCe-zo-Ncw";</note></trans-unit>
+      <trans-unit id="QJp-Yj-1AF.text" xml:space="preserve"><source>Issues</source>
+<target>Problemen</target>
+<note>Class = "UILabel"; text = "Issues"; ObjectID = "QJp-Yj-1AF";</note></trans-unit>
+      <trans-unit id="QaJ-LN-zeT.text" xml:space="preserve"><source>60.0 C</source>
+<target>60.0 C</target>
+<note>Class = "UILabel"; text = "60.0 C"; ObjectID = "QaJ-LN-zeT";</note></trans-unit>
+      <trans-unit id="Qfz-1j-Keo.text" xml:space="preserve"><source>Print Time</source>
+<target>Print Tijd</target>
+<note>Class = "UILabel"; text = "Print Time"; ObjectID = "Qfz-1j-Keo";</note></trans-unit>
+      <trans-unit id="QgE-Ch-Ggw.text" xml:space="preserve"><source>OctoEverywhere</source>
+<target>OctoEverywhere</target>
+<note>Class = "UILabel"; text = "OctoEverywhere"; ObjectID = "QgE-Ch-Ggw";</note></trans-unit>
+      <trans-unit id="Qgg-OP-PZ0.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "Qgg-OP-PZ0";</note></trans-unit>
+      <trans-unit id="QpW-7Y-LpA.text" xml:space="preserve"><source>Title</source>
+<target>Title</target>
+<note>Class = "UILabel"; text = "Title"; ObjectID = "QpW-7Y-LpA";</note></trans-unit>
+      <trans-unit id="Qps-RG-QAh.text" xml:space="preserve"><source>Fan</source>
+<target>Ventilator</target>
+<note>Class = "UILabel"; text = "Fan"; ObjectID = "Qps-RG-QAh";</note></trans-unit>
+      <trans-unit id="QwZ-7J-MwJ.normalTitle" xml:space="preserve"><source>Off</source>
+<target>Uit</target>
+<note>Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ";</note></trans-unit>
+      <trans-unit id="R2d-Mv-REP.text" xml:space="preserve"><source>Siri</source>
+<target>Siri</target>
+<note>Class = "UILabel"; text = "Siri"; ObjectID = "R2d-Mv-REP";</note></trans-unit>
+      <trans-unit id="R8W-HN-Cgb.text" xml:space="preserve"><source>Include in Dashboard</source>
+<target>Toevoegen aan dashboard</target>
+<note>Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "R8W-HN-Cgb";</note></trans-unit>
+      <trans-unit id="REX-gh-p87.normalTitle" xml:space="preserve"><source>Button</source>
+<target>Button</target>
+<note>Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87";</note></trans-unit>
+      <trans-unit id="RFS-Os-AC5.text" xml:space="preserve"><source>0.0%</source>
+<target>0.0%</target>
+<note>Class = "UILabel"; text = "0.0%"; ObjectID = "RFS-Os-AC5";</note></trans-unit>
+      <trans-unit id="RFe-LZ-cRa.text" xml:space="preserve"><source>Enter a valid URL</source>
+<target>Voer een geldig URL in</target>
+<note>Class = "UILabel"; text = "Enter a valid URL"; ObjectID = "RFe-LZ-cRa";</note></trans-unit>
+      <trans-unit id="RIJ-UL-fxM.headerTitle" xml:space="preserve"><source>QR Code</source>
+<target>QR Code</target>
+<note>Class = "UITableViewSection"; headerTitle = "QR Code"; ObjectID = "RIJ-UL-fxM";</note></trans-unit>
+      <trans-unit id="RJI-A7-98M.text" xml:space="preserve"><source>Security</source>
+<target>Veiligheid</target>
+<note>Class = "UILabel"; text = "Security"; ObjectID = "RJI-A7-98M";</note></trans-unit>
+      <trans-unit id="RQs-UQ-7OZ.title" xml:space="preserve"><source>Printer Details</source>
+<target>Printer Details</target>
+<note>Class = "UITableViewController"; title = "Printer Details"; ObjectID = "RQs-UQ-7OZ";</note></trans-unit>
+      <trans-unit id="RZc-hr-pTu.placeholder" xml:space="preserve"><source>Command</source>
+<target>Commando</target>
+<note>Class = "UITextField"; placeholder = "Command"; ObjectID = "RZc-hr-pTu";</note></trans-unit>
+      <trans-unit id="RlM-dP-k5T.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "RlM-dP-k5T";</note></trans-unit>
+      <trans-unit id="Rml-IA-ght.text" xml:space="preserve"><source>100</source>
+<target>100</target>
+<note>Class = "UILabel"; text = "100"; ObjectID = "Rml-IA-ght";</note></trans-unit>
+      <trans-unit id="S0f-uX-rYI.normalTitle" xml:space="preserve"><source>Dismiss</source>
+<target>Negeer</target>
+<note>Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "S0f-uX-rYI";</note></trans-unit>
+      <trans-unit id="S1e-nz-awE.headerTitle" xml:space="preserve"><source>Complications Content</source>
+<target>Complicaties Inhoud</target>
+<note>Class = "UITableViewSection"; headerTitle = "Complications Content"; ObjectID = "S1e-nz-awE";</note></trans-unit>
+      <trans-unit id="S2I-HR-qgE.text" xml:space="preserve"><source>/</source>
+<target>/</target>
+<note>Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE";</note></trans-unit>
+      <trans-unit id="SAw-xr-VmY.text" xml:space="preserve"><source>/</source>
+<target>/</target>
+<note>Class = "UILabel"; text = "/"; ObjectID = "SAw-xr-VmY";</note></trans-unit>
+      <trans-unit id="SJQ-Kb-Ggy.text" xml:space="preserve"><source>Confirm to print</source>
+<target>Bevestig printen</target>
+<note>Class = "UILabel"; text = "Confirm to print"; ObjectID = "SJQ-Kb-Ggy";</note></trans-unit>
+      <trans-unit id="SMa-NG-XzV.normalTitle" xml:space="preserve"><source>Cancel</source>
+<target>Annuleer</target>
+<note>Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "SMa-NG-XzV";</note></trans-unit>
+      <trans-unit id="SQ9-ls-Hf3.title" xml:space="preserve"><source>Settings</source>
+<target>Instellingen</target>
+<note>Class = "UINavigationItem"; title = "Settings"; ObjectID = "SQ9-ls-Hf3";</note></trans-unit>
+      <trans-unit id="Sm9-eX-ACf.text" xml:space="preserve"><source/>
+<note>Class = "UILabel"; text = " "; ObjectID = "Sm9-eX-ACf";</note></trans-unit>
+      <trans-unit id="SwZ-jq-tKf.headerTitle" xml:space="preserve"><source>Fan &amp; Motors</source>
+<target>Ventilatoren en Motoren</target>
+<note>Class = "UITableViewSection"; headerTitle = "Fan &amp; Motors"; ObjectID = "SwZ-jq-tKf";</note></trans-unit>
+      <trans-unit id="Tqi-wZ-CN5.headerTitle" xml:space="preserve"><source>Palette 2</source>
+<target>Palette 2</target>
+<note>Class = "UITableViewSection"; headerTitle = "Palette 2"; ObjectID = "Tqi-wZ-CN5";</note></trans-unit>
+      <trans-unit id="Tys-oi-RME.normalTitle" xml:space="preserve"><source>Run</source>
+<target>Voer uit</target>
+<note>Class = "UIButton"; normalTitle = "Run"; ObjectID = "Tys-oi-RME";</note></trans-unit>
+      <trans-unit id="Uc6-ok-eNN.placeholder" xml:space="preserve"><source>Layer</source>
+<target>Laag</target>
+<note>Class = "UITextField"; placeholder = "Layer"; ObjectID = "Uc6-ok-eNN";</note></trans-unit>
+      <trans-unit id="UcJ-hU-xU2.text" xml:space="preserve"><source>Layer</source>
+<target>Laag</target>
+<note>Class = "UILabel"; text = "Layer"; ObjectID = "UcJ-hU-xU2";</note></trans-unit>
+      <trans-unit id="UiU-6m-I6P.text" xml:space="preserve"><source>60.0 C</source>
+<target>60.0 C</target>
+<note>Class = "UILabel"; text = "60.0 C"; ObjectID = "UiU-6m-I6P";</note></trans-unit>
+      <trans-unit id="Uop-QL-yoT.text" xml:space="preserve"><source>State</source>
+<target>Staat</target>
+<note>Class = "UILabel"; text = "State"; ObjectID = "Uop-QL-yoT";</note></trans-unit>
+      <trans-unit id="VFi-SV-DAZ.text" xml:space="preserve"><source>Auto-Lock when idle</source>
+<target>Automatisch vergrendelen tijdens inactieviteit</target>
+<note>Class = "UILabel"; text = "Auto-Lock when idle"; ObjectID = "VFi-SV-DAZ";</note></trans-unit>
+      <trans-unit id="VIg-Mm-BM3.text" xml:space="preserve"><source>Include in Dashboard</source>
+<target>In Dashboard Weergeven</target>
+<note>Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "VIg-Mm-BM3";</note></trans-unit>
+      <trans-unit id="VgY-ne-x6t.text" xml:space="preserve"><source>Status</source>
+<target>Status</target>
+<note>Class = "UILabel"; text = "Status"; ObjectID = "VgY-ne-x6t";</note></trans-unit>
+      <trans-unit id="VkX-1W-xBG.text" xml:space="preserve"><source>%</source>
+<target>%</target>
+<note>Class = "UILabel"; text = "%"; ObjectID = "VkX-1W-xBG";</note></trans-unit>
+      <trans-unit id="VnD-Rc-TYw.text" xml:space="preserve"><source>Printer status</source>
+<target>Printer status</target>
+<note>Class = "UILabel"; text = "Printer status"; ObjectID = "VnD-Rc-TYw";</note></trans-unit>
+      <trans-unit id="Vny-ch-OgO.text" xml:space="preserve"><source>Zoom in/out</source>
+<target>Zoem In/Uit</target>
+<note>Class = "UILabel"; text = "Zoom in/out"; ObjectID = "Vny-ch-OgO";</note></trans-unit>
+      <trans-unit id="Vr9-x7-66H.headerTitle" xml:space="preserve"><source>Printer Connection</source>
+<target>Printer Verbinding</target>
+<note>Class = "UITableViewSection"; headerTitle = "Printer Connection"; ObjectID = "Vr9-x7-66H";</note></trans-unit>
+      <trans-unit id="W0K-Js-tt5.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "W0K-Js-tt5";</note></trans-unit>
+      <trans-unit id="W0X-ef-NWv.segmentTitles[0]" xml:space="preserve"><source>Default</source>
+<target>Standaard</target>
+<note>Class = "UISegmentedControl"; W0X-ef-NWv.segmentTitles[0] = "Default"; ObjectID = "W0X-ef-NWv";</note></trans-unit>
+      <trans-unit id="W0X-ef-NWv.segmentTitles[1]" xml:space="preserve"><source>Custom</source>
+<target>Aangepast</target>
+<note>Class = "UISegmentedControl"; W0X-ef-NWv.segmentTitles[1] = "Custom"; ObjectID = "W0X-ef-NWv";</note></trans-unit>
+      <trans-unit id="WKG-83-bZQ.headerTitle" xml:space="preserve"><source>HTTP Authentication</source>
+<target>HTTP Authentificatie</target>
+<note>Class = "UITableViewSection"; headerTitle = "HTTP Authentication"; ObjectID = "WKG-83-bZQ";</note></trans-unit>
+      <trans-unit id="WKI-cg-0j7.text" xml:space="preserve"><source>MISSED</source>
+<target>GEMIST</target>
+<note>Class = "UILabel"; text = "MISSED"; ObjectID = "WKI-cg-0j7";</note></trans-unit>
+      <trans-unit id="Wcu-9D-QXt.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "Wcu-9D-QXt";</note></trans-unit>
+      <trans-unit id="XCh-oS-weO.headerTitle" xml:space="preserve"><source>Printer status</source>
+<target>Printer Status</target>
+<note>Class = "UITableViewSection"; headerTitle = "Printer status"; ObjectID = "XCh-oS-weO";</note></trans-unit>
+      <trans-unit id="XOG-eU-T7f.text" xml:space="preserve"><source>Confirm to connect</source>
+<target>Bevestig om te verbinden</target>
+<note>Class = "UILabel"; text = "Confirm to connect"; ObjectID = "XOG-eU-T7f";</note></trans-unit>
+      <trans-unit id="XYJ-kw-HRu.normalTitle" xml:space="preserve"><source>Print</source>
+<target>Print</target>
+<note>Class = "UIButton"; normalTitle = "Print"; ObjectID = "XYJ-kw-HRu";</note></trans-unit>
+      <trans-unit id="Xhq-hp-2kd.headerTitle" xml:space="preserve"><source>Synchronization</source>
+<target>Synchronisatie</target>
+<note>Class = "UITableViewSection"; headerTitle = "Synchronization"; ObjectID = "Xhq-hp-2kd";</note></trans-unit>
+      <trans-unit id="XnW-dU-oxg.text" xml:space="preserve"><source>Avg</source>
+<target>Ong</target>
+<note>Class = "UILabel"; text = "Avg"; ObjectID = "XnW-dU-oxg";</note></trans-unit>
+      <trans-unit id="Xs4-QQ-rLn.text" xml:space="preserve"><source>Feed rate</source>
+<target>Voedingssnelheid</target>
+<note>Class = "UILabel"; text = "Feed rate"; ObjectID = "Xs4-QQ-rLn";</note></trans-unit>
+      <trans-unit id="Xzl-Xc-Ng0.text" xml:space="preserve"><source>#</source>
+<target>#</target>
+<note>Class = "UILabel"; text = "#"; ObjectID = "Xzl-Xc-Ng0";</note></trans-unit>
+      <trans-unit id="YdD-gF-Ajm.text" xml:space="preserve"><source>Title</source>
+<target>Title</target>
+<note>Class = "UILabel"; text = "Title"; ObjectID = "YdD-gF-Ajm";</note></trans-unit>
+      <trans-unit id="Ysy-LO-1dL.text" xml:space="preserve"><source>Control ATX/AUX power supply via PSU Control</source>
+<target>Besturingssysteem ATX/AUX via PSU Control</target>
+<note>Class = "UILabel"; text = "Control ATX/AUX power supply via PSU Control"; ObjectID = "Ysy-LO-1dL";</note></trans-unit>
+      <trans-unit id="Z6o-ra-euk.title" xml:space="preserve"><source>OctoEverywhere</source>
+<target>OctoEverywhere</target>
+<note>Class = "UINavigationItem"; title = "OctoEverywhere"; ObjectID = "Z6o-ra-euk";</note></trans-unit>
+      <trans-unit id="ZCe-kf-ukt.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "ZCe-kf-ukt";</note></trans-unit>
+      <trans-unit id="ZF8-G0-f5Y.text" xml:space="preserve"><source>Detail</source>
+<target>Detail</target>
+<note>Class = "UILabel"; text = "Detail"; ObjectID = "ZF8-G0-f5Y";</note></trans-unit>
+      <trans-unit id="ZSM-KR-Ovn.title" xml:space="preserve"><source>Log</source>
+<target>Log</target>
+<note>Class = "UITableViewController"; title = "Log"; ObjectID = "ZSM-KR-Ovn";</note></trans-unit>
+      <trans-unit id="ZdA-nV-gwD.headerTitle" xml:space="preserve"><source>Battery Impact</source>
+<target>Gevolgen op de batterij</target>
+<note>Class = "UITableViewSection"; headerTitle = "Battery Impact"; ObjectID = "ZdA-nV-gwD";</note></trans-unit>
+      <trans-unit id="ZeS-hE-vC8.headerTitle" xml:space="preserve"><source>Extruder</source>
+<target>Extruder</target>
+<note>Class = "UITableViewSection"; headerTitle = "Extruder"; ObjectID = "ZeS-hE-vC8";</note></trans-unit>
+      <trans-unit id="Zgx-Ee-m6r.text" xml:space="preserve"><source>Connect directly using registered Global API key (deprecated)</source>
+<target>Verbind direct door een geregistreeder API sleutel te gebruiken (afgeschreven)</target>
+<note>Class = "UILabel"; text = "Connect directly using registered Global API key (deprecated)"; ObjectID = "Zgx-Ee-m6r";</note></trans-unit>
+      <trans-unit id="Zhk-cN-7C9.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "Zhk-cN-7C9";</note></trans-unit>
+      <trans-unit id="Ziq-bR-QIe.text" xml:space="preserve"><source>Upload to OctoPrint</source>
+<target>Uploaden naar OctoPrint</target>
+<note>Class = "UILabel"; text = "Upload to OctoPrint"; ObjectID = "Ziq-bR-QIe";</note></trans-unit>
+      <trans-unit id="a0P-GP-CQD.normalTitle" xml:space="preserve"><source>Scan API Key</source>
+<target>API Sleutel Scannen</target>
+<note>Class = "UIButton"; normalTitle = "Scan API Key"; ObjectID = "a0P-GP-CQD";</note></trans-unit>
+      <trans-unit id="a12-vD-JUc.text" xml:space="preserve"><source>/</source>
+<target>/</target>
+<note>Class = "UILabel"; text = "/"; ObjectID = "a12-vD-JUc";</note></trans-unit>
+      <trans-unit id="aFa-Qd-yIr.placeholder" xml:space="preserve"><source>Printer Name (e.g. MK3)</source>
+<target>Printer Naam (b.v. MK3)</target>
+<note>Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "aFa-Qd-yIr";</note></trans-unit>
+      <trans-unit id="aJp-RM-Tuf.normalTitle" xml:space="preserve"><source>View activity log</source>
+<target>Bekijk activiteitenlog</target>
+<note>Class = "UIButton"; normalTitle = "View activity log"; ObjectID = "aJp-RM-Tuf";</note></trans-unit>
+      <trans-unit id="aaG-XM-gnj.normalTitle" xml:space="preserve"><source>Regenerate default shortcuts</source>
+<target>Stel standaardopdrachten opnieuw in</target>
+<note>Class = "UIButton"; normalTitle = "Regenerate default shortcuts"; ObjectID = "aaG-XM-gnj";</note></trans-unit>
+      <trans-unit id="ahs-Hn-dAX.text" xml:space="preserve"><source>Extruder</source>
+<target>Extruder</target>
+<note>Class = "UILabel"; text = "Extruder"; ObjectID = "ahs-Hn-dAX";</note></trans-unit>
+      <trans-unit id="azq-J2-MuJ.normalTitle" xml:space="preserve"><source>Scan QR Code Key</source>
+<target>Scan QR Code Sleutel</target>
+<note>Class = "UIButton"; normalTitle = "Scan QR Code Key"; ObjectID = "azq-J2-MuJ";</note></trans-unit>
+      <trans-unit id="b0b-3X-MUJ.normalTitle" xml:space="preserve"><source>Not refreshing</source>
+<target>Niet vernieuwen</target>
+<note>Class = "UIButton"; normalTitle = "Not refreshing"; ObjectID = "b0b-3X-MUJ";</note></trans-unit>
+      <trans-unit id="bNj-cj-oty.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty";</note></trans-unit>
+      <trans-unit id="bep-Im-uzf.text" xml:space="preserve"><source>Printed</source>
+<target>Geprint</target>
+<note>Class = "UILabel"; text = "Printed"; ObjectID = "bep-Im-uzf";</note></trans-unit>
+      <trans-unit id="blG-5R-gJE.text" xml:space="preserve"><source>Print Completion</source>
+<target>Print Compleet op</target>
+<note>Class = "UILabel"; text = "Print Completion"; ObjectID = "blG-5R-gJE";</note></trans-unit>
+      <trans-unit id="blh-CP-v5H.title" xml:space="preserve"><source>Timelapse</source>
+<target>Timelapse</target>
+<note>Class = "UINavigationItem"; title = "Timelapse"; ObjectID = "blh-CP-v5H";</note></trans-unit>
+      <trans-unit id="bsz-rk-3Em.text" xml:space="preserve"><source>0.0 C</source>
+<target>0.0 C</target>
+<note>Class = "UILabel"; text = "0.0 C"; ObjectID = "bsz-rk-3Em";</note></trans-unit>
+      <trans-unit id="cQd-kb-e8D.placeholder" xml:space="preserve"><source>API Key</source>
+<target>API Sleutel</target>
+<note>Class = "UITextField"; placeholder = "API Key"; ObjectID = "cQd-kb-e8D";</note></trans-unit>
+      <trans-unit id="cXP-Jq-eBP.placeholder" xml:space="preserve"><source>Username</source>
+<target>Gebruikersnaam</target>
+<note>Class = "UITextField"; placeholder = "Username"; ObjectID = "cXP-Jq-eBP";</note></trans-unit>
+      <trans-unit id="cYc-2L-RG7.headerTitle" xml:space="preserve"><source>HTTP Authentication</source>
+<target>HTTP Authentificatie</target>
+<note>Class = "UITableViewSection"; headerTitle = "HTTP Authentication"; ObjectID = "cYc-2L-RG7";</note></trans-unit>
+      <trans-unit id="cYo-7v-8Bn.title" xml:space="preserve"><source>Cameras</source>
+<target>Cameras</target>
+<note>Class = "UINavigationItem"; title = "Cameras"; ObjectID = "cYo-7v-8Bn";</note></trans-unit>
+      <trans-unit id="dY2-wB-5s1.title" xml:space="preserve"><source>Application Key</source>
+<target>Applicatie Sleutel</target>
+<note>Class = "UITableViewController"; title = "Application Key"; ObjectID = "dY2-wB-5s1";</note></trans-unit>
+      <trans-unit id="dZG-uJ-BYF.text" xml:space="preserve"><source>Max</source>
+<target>Max</target>
+<note>Class = "UILabel"; text = "Max"; ObjectID = "dZG-uJ-BYF";</note></trans-unit>
+      <trans-unit id="dZz-iV-loq.text" xml:space="preserve"><source>Title</source>
+<target>Title</target>
+<note>Class = "UILabel"; text = "Title"; ObjectID = "dZz-iV-loq";</note></trans-unit>
+      <trans-unit id="daK-38-bWh.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "daK-38-bWh";</note></trans-unit>
+      <trans-unit id="dlU-c7-kpY.text" xml:space="preserve"><source>Frequently Asked Questions</source>
+<target>Veelgestelde Vragen</target>
+<note>Class = "UILabel"; text = "Frequently Asked Questions"; ObjectID = "dlU-c7-kpY";</note></trans-unit>
+      <trans-unit id="du3-LR-AIz.text" xml:space="preserve"><source>0.0%</source>
+<target>0.0%</target>
+<note>Class = "UILabel"; text = "0.0%"; ObjectID = "du3-LR-AIz";</note></trans-unit>
+      <trans-unit id="e5p-Y4-n8X.normalTitle" xml:space="preserve"><source>Reset iCloud data from printers</source>
+<target>Reset Icloud data van printers</target>
+<note>Class = "UIButton"; normalTitle = "Reset iCloud data from printers"; ObjectID = "e5p-Y4-n8X";</note></trans-unit>
+      <trans-unit id="e75-bh-dxQ.title" xml:space="preserve"><source>Files</source>
+<target>Bestanden</target>
+<note>Class = "UITabBarItem"; title = "Files"; ObjectID = "e75-bh-dxQ";</note></trans-unit>
+      <trans-unit id="eD3-xa-2Ah.text" xml:space="preserve"><source>Chamber</source>
+<target>Kamer</target>
+<note>Class = "UILabel"; text = "Chamber"; ObjectID = "eD3-xa-2Ah";</note></trans-unit>
+      <trans-unit id="eGI-qU-q22.normalTitle" xml:space="preserve"><source>Restart</source>
+<target>Herstart</target>
+<note>Class = "UIButton"; normalTitle = "Restart"; ObjectID = "eGI-qU-q22";</note></trans-unit>
+      <trans-unit id="eLm-a6-WEc.text" xml:space="preserve"><source>#</source>
+<target>#</target>
+<note>Class = "UILabel"; text = "#"; ObjectID = "eLm-a6-WEc";</note></trans-unit>
+      <trans-unit id="eTh-LM-JEX.text" xml:space="preserve"><source>Pong</source>
+<target>Pong</target>
+<note>Class = "UILabel"; text = "Pong"; ObjectID = "eTh-LM-JEX";</note></trans-unit>
+      <trans-unit id="eVf-xw-qan.normalTitle" xml:space="preserve"><source>Scan</source>
+<target>Scannen</target>
+<note>Class = "UIButton"; normalTitle = "Scan"; ObjectID = "eVf-xw-qan";</note></trans-unit>
+      <trans-unit id="eXf-GR-uL9.headerTitle" xml:space="preserve"><source>Lock Mode</source>
+<target>Vergrendelings Modus</target>
+<note>Class = "UITableViewSection"; headerTitle = "Lock Mode"; ObjectID = "eXf-GR-uL9";</note></trans-unit>
+      <trans-unit id="ec8-jM-jJs.title" xml:space="preserve"><source>Support</source>
+<target>Ondersteuning</target>
+<note>Class = "UITableViewController"; title = "Support"; ObjectID = "ec8-jM-jJs";</note></trans-unit>
+      <trans-unit id="erX-tJ-GVo.normalTitle" xml:space="preserve"><source>Proceed</source>
+<target>Ga door</target>
+<note>Class = "UIButton"; normalTitle = "Proceed"; ObjectID = "erX-tJ-GVo";</note></trans-unit>
+      <trans-unit id="fJ6-6T-dHU.title" xml:space="preserve"><source>Settings</source>
+<target>Instellingen</target>
+<note>Class = "UITabBarItem"; title = "Settings"; ObjectID = "fJ6-6T-dHU";</note></trans-unit>
+      <trans-unit id="fMc-lm-k5V.text" xml:space="preserve"><source>Palette 2 - Last Variation</source>
+<target>Palette 2 - Laatste Variatie</target>
+<note>Class = "UILabel"; text = "Palette 2 - Last Variation"; ObjectID = "fMc-lm-k5V";</note></trans-unit>
+      <trans-unit id="fNE-Hh-S8R.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "fNE-Hh-S8R";</note></trans-unit>
+      <trans-unit id="ffd-HI-A62.text" xml:space="preserve"><source>%</source>
+<target>%</target>
+<note>Class = "UILabel"; text = "%"; ObjectID = "ffd-HI-A62";</note></trans-unit>
+      <trans-unit id="foG-IV-lL7.placeholder" xml:space="preserve"><source>API Key or Application Key</source>
+<target>API Sleutel of Applicatie Sleutel</target>
+<note>Class = "UITextField"; placeholder = "API Key or Application Key"; ObjectID = "foG-IV-lL7";</note></trans-unit>
+      <trans-unit id="gCt-Vk-Fgt.headerTitle" xml:space="preserve"><source>Connection</source>
+<target>Verbinding</target>
+<note>Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt";</note></trans-unit>
+      <trans-unit id="gHQ-Lu-mQ0.headerTitle" xml:space="preserve"><source>Home</source>
+<target>Basispositie</target>
+<note>Class = "UITableViewSection"; headerTitle = "Home"; ObjectID = "gHQ-Lu-mQ0";</note></trans-unit>
+      <trans-unit id="gJx-aQ-4FM.text" xml:space="preserve"><source>Printing from SD</source>
+<target>Printen vanaf SD</target>
+<note>Class = "UILabel"; text = "Printing from SD"; ObjectID = "gJx-aQ-4FM";</note></trans-unit>
+      <trans-unit id="gWU-nJ-SdK.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "gWU-nJ-SdK";</note></trans-unit>
+      <trans-unit id="gvk-np-5oX.text" xml:space="preserve"><source>Title</source>
+<target>Title</target>
+<note>Class = "UILabel"; text = "Title"; ObjectID = "gvk-np-5oX";</note></trans-unit>
+      <trans-unit id="h4l-mV-gFf.normalTitle" xml:space="preserve"><source>URL Button</source>
+<target>URL Knop</target>
+<note>Class = "UIButton"; normalTitle = "URL Button"; ObjectID = "h4l-mV-gFf";</note></trans-unit>
+      <trans-unit id="hCQ-Pd-Tf0.text" xml:space="preserve"><source>MISSED</source>
+<target>GEMIST</target>
+<note>Class = "UILabel"; text = "MISSED"; ObjectID = "hCQ-Pd-Tf0";</note></trans-unit>
+      <trans-unit id="hUL-Ws-ypB.normalTitle" xml:space="preserve"><source>Ignore</source>
+<target>Negeer</target>
+<note>Class = "UIButton"; normalTitle = "Ignore"; ObjectID = "hUL-Ws-ypB";</note></trans-unit>
+      <trans-unit id="hWI-gF-onz.headerTitle" xml:space="preserve"><source>X Y</source>
+<target>X Y</target>
+<note>Class = "UITableViewSection"; headerTitle = "X Y"; ObjectID = "hWI-gF-onz";</note></trans-unit>
+      <trans-unit id="hcE-dV-0vo.headerTitle" xml:space="preserve"><source>Theme</source>
+<target>Thema</target>
+<note>Class = "UITableViewSection"; headerTitle = "Theme"; ObjectID = "hcE-dV-0vo";</note></trans-unit>
+      <trans-unit id="heO-9b-ZeO.normalTitle" xml:space="preserve"><source>Y</source>
+<target>Y</target>
+<note>Class = "UIButton"; normalTitle = "Y"; ObjectID = "heO-9b-ZeO";</note></trans-unit>
+      <trans-unit id="hg7-6b-q0o.title" xml:space="preserve"><source>Security</source>
+<target>Beveiliging</target>
+<note>Class = "UITableViewController"; title = "Security"; ObjectID = "hg7-6b-q0o";</note></trans-unit>
+      <trans-unit id="hrr-SZ-62l.text" xml:space="preserve"><source>Upload to SD Card (root)</source>
+<target>Naar SD Kaart uploaden (root)</target>
+<note>Class = "UILabel"; text = "Upload to SD Card (root)"; ObjectID = "hrr-SZ-62l";</note></trans-unit>
+      <trans-unit id="ht4-c2-fkC.text" xml:space="preserve"><source>Min</source>
+<target>Min</target>
+<note>Class = "UILabel"; text = "Min"; ObjectID = "ht4-c2-fkC";</note></trans-unit>
+      <trans-unit id="hzK-Nf-sCi.segmentTitles[0]" xml:space="preserve"><source>0.1</source>
+<target>0.1</target>
+<note>Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[0] = "0.1"; ObjectID = "hzK-Nf-sCi";</note></trans-unit>
+      <trans-unit id="hzK-Nf-sCi.segmentTitles[1]" xml:space="preserve"><source>1</source>
+<target>1</target>
+<note>Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[1] = "1"; ObjectID = "hzK-Nf-sCi";</note></trans-unit>
+      <trans-unit id="hzK-Nf-sCi.segmentTitles[2]" xml:space="preserve"><source>10</source>
+<target>10</target>
+<note>Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[2] = "10"; ObjectID = "hzK-Nf-sCi";</note></trans-unit>
+      <trans-unit id="hzK-Nf-sCi.segmentTitles[3]" xml:space="preserve"><source>100</source>
+<target>100</target>
+<note>Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[3] = "100"; ObjectID = "hzK-Nf-sCi";</note></trans-unit>
+      <trans-unit id="i3l-7C-iJB.normalTitle" xml:space="preserve"><source>Cut</source>
+<target>Knip</target>
+<note>Class = "UIButton"; normalTitle = "Cut"; ObjectID = "i3l-7C-iJB";</note></trans-unit>
+      <trans-unit id="iY8-Rh-TKn.headerTitle" xml:space="preserve"><source>Move</source>
+<target>Beweeg</target>
+<note>Class = "UITableViewSection"; headerTitle = "Move"; ObjectID = "iY8-Rh-TKn";</note></trans-unit>
+      <trans-unit id="ieu-aB-md8.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "ieu-aB-md8";</note></trans-unit>
+      <trans-unit id="j09-72-h0o.text" xml:space="preserve"><source>Control Power</source>
+<target>Stroom bediening</target>
+<note>Class = "UILabel"; text = "Control Power"; ObjectID = "j09-72-h0o";</note></trans-unit>
+      <trans-unit id="jxG-8a-4b3.text" xml:space="preserve"><source>Kill and restart app to take effect</source>
+<target>Stop en herstart de app om de nieuwe instellingen toe te passen</target>
+<note>Class = "UILabel"; text = "Kill and restart app to take effect"; ObjectID = "jxG-8a-4b3";</note></trans-unit>
+      <trans-unit id="jxN-GW-tlu.text" xml:space="preserve"><source>OctoPrint - Global API Key</source>
+<target>OctoPrint - Globale API Sleutel</target>
+<note>Class = "UILabel"; text = "OctoPrint - Global API Key"; ObjectID = "jxN-GW-tlu";</note></trans-unit>
+      <trans-unit id="k9w-2c-c6t.text" xml:space="preserve"><source>0.0 C</source>
+<target>0.0 C</target>
+<note>Class = "UILabel"; text = "0.0 C"; ObjectID = "k9w-2c-c6t";</note></trans-unit>
+      <trans-unit id="kGY-Bn-Qcb.text" xml:space="preserve"><source>0 C</source>
+<target>0 C</target>
+<note>Class = "UILabel"; text = "0 C"; ObjectID = "kGY-Bn-Qcb";</note></trans-unit>
+      <trans-unit id="kPW-if-FGO.text" xml:space="preserve"><source>Status</source>
+<target>Status</target>
+<note>Class = "UILabel"; text = "Status"; ObjectID = "kPW-if-FGO";</note></trans-unit>
+      <trans-unit id="kWs-55-35e.placeholder" xml:space="preserve"><source>Printer Name (e.g. MK3)</source>
+<target>Printer Naam (b.v. MK3)</target>
+<note>Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "kWs-55-35e";</note></trans-unit>
+      <trans-unit id="kaq-fI-VzN.text" xml:space="preserve"><source>Palette 2 - Last Ping</source>
+<target>Palette 2 - Laatste Ping</target>
+<note>Class = "UILabel"; text = "Palette 2 - Last Ping"; ObjectID = "kaq-fI-VzN";</note></trans-unit>
+      <trans-unit id="kdJ-8e-1mO.text" xml:space="preserve"><source>Detail</source>
+<target>Detail</target>
+<note>Class = "UILabel"; text = "Detail"; ObjectID = "kdJ-8e-1mO";</note></trans-unit>
+      <trans-unit id="lAO-Qe-VtX.text" xml:space="preserve"><source>Subtitle</source>
+<target>Subtitle</target>
+<note>Class = "UILabel"; text = "Subtitle"; ObjectID = "lAO-Qe-VtX";</note></trans-unit>
+      <trans-unit id="lfT-wn-CXk.text" xml:space="preserve"><source>Origin</source>
+<target>Origine</target>
+<note>Class = "UILabel"; text = "Origin"; ObjectID = "lfT-wn-CXk";</note></trans-unit>
+      <trans-unit id="lyc-MY-uT5.text" xml:space="preserve"><source>Tip: Swipe to switch between printers</source>
+<target>Tip: Veeg om tussen printers te wisselen</target>
+<note>Class = "UILabel"; text = "Tip: Swipe to switch between printers"; ObjectID = "lyc-MY-uT5";</note></trans-unit>
+      <trans-unit id="mCP-AC-cQg.text" xml:space="preserve"><source>Title</source>
+<target>Title</target>
+<note>Class = "UILabel"; text = "Title"; ObjectID = "mCP-AC-cQg";</note></trans-unit>
+      <trans-unit id="mqw-ve-Eec.text" xml:space="preserve"><source>Lock read-only mode</source>
+<target>Vergrendel alleen-lezen modus</target>
+<note>Class = "UILabel"; text = "Lock read-only mode"; ObjectID = "mqw-ve-Eec";</note></trans-unit>
+      <trans-unit id="n9p-tg-bxl.text" xml:space="preserve"><source>Subtitle</source>
+<target>Subtitle</target>
+<note>Class = "UILabel"; text = "Subtitle"; ObjectID = "n9p-tg-bxl";</note></trans-unit>
+      <trans-unit id="nAj-Qp-lbZ.text" xml:space="preserve"><source>Confirm to resume</source>
+<target>Bevestig verdergaan</target>
+<note>Class = "UILabel"; text = "Confirm to resume"; ObjectID = "nAj-Qp-lbZ";</note></trans-unit>
+      <trans-unit id="nMR-mk-HWC.text" xml:space="preserve"><source>100</source>
+<target>100</target>
+<note>Class = "UILabel"; text = "100"; ObjectID = "nMR-mk-HWC";</note></trans-unit>
+      <trans-unit id="ncZ-xn-WCb.text" xml:space="preserve"><source>Title</source>
+<target>Title</target>
+<note>Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb";</note></trans-unit>
+      <trans-unit id="ntu-wc-YX0.text" xml:space="preserve"><source>Filament Used</source>
+<target>Fillament Gebruikt</target>
+<note>Class = "UILabel"; text = "Filament Used"; ObjectID = "ntu-wc-YX0";</note></trans-unit>
+      <trans-unit id="o8a-yF-u6j.normalTitle" xml:space="preserve"><source>Set</source>
+<target>Stel in</target>
+<note>Class = "UIButton"; normalTitle = "Set"; ObjectID = "o8a-yF-u6j";</note></trans-unit>
+      <trans-unit id="oGo-K9-9oo.text" xml:space="preserve"><source>60.0 C</source>
+<target>60.0 C</target>
+<note>Class = "UILabel"; text = "60.0 C"; ObjectID = "oGo-K9-9oo";</note></trans-unit>
+      <trans-unit id="oZE-yh-Myr.normalTitle" xml:space="preserve"><source>Delete shortcuts</source>
+<target>Verwijder opdrachten</target>
+<note>Class = "UIButton"; normalTitle = "Delete shortcuts"; ObjectID = "oZE-yh-Myr";</note></trans-unit>
+      <trans-unit id="oZw-P5-oVG.title" xml:space="preserve"><source>Prompts</source>
+<target>Gevraagd</target>
+<note>Class = "UITableViewController"; title = "Prompts"; ObjectID = "oZw-P5-oVG";</note></trans-unit>
+      <trans-unit id="oiL-nC-j2P.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "oiL-nC-j2P";</note></trans-unit>
+      <trans-unit id="or6-Pr-Z6f.normalTitle" xml:space="preserve"><source>Configure controls using Custom Control Plugin</source>
+<target>Configureer controls via de Custom Control Plugin</target>
+<note>Class = "UIButton"; normalTitle = "Configure controls using Custom Control Plugin"; ObjectID = "or6-Pr-Z6f";</note></trans-unit>
+      <trans-unit id="owv-oi-R6e.text" xml:space="preserve"><source>Tap = Full Screen</source>
+<target>Tik = Volledige scherm</target>
+<note>Class = "UILabel"; text = "Tap = Full Screen"; ObjectID = "owv-oi-R6e";</note></trans-unit>
+      <trans-unit id="pWC-OR-Tvp.text" xml:space="preserve"><source>100</source>
+<target>100</target>
+<note>Class = "UILabel"; text = "100"; ObjectID = "pWC-OR-Tvp";</note></trans-unit>
+      <trans-unit id="pgl-mI-9eB.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "pgl-mI-9eB";</note></trans-unit>
+      <trans-unit id="prd-VS-kgg.headerTitle" xml:space="preserve"><source>Enclosure</source>
+<target>Behuizing</target>
+<note>Class = "UITableViewSection"; headerTitle = "Enclosure"; ObjectID = "prd-VS-kgg";</note></trans-unit>
+      <trans-unit id="pzg-aD-Irm.text" xml:space="preserve"><source>Offset</source>
+<target>Offset</target>
+<note>Class = "UILabel"; text = "Offset"; ObjectID = "pzg-aD-Irm";</note></trans-unit>
+      <trans-unit id="q4H-Sg-7Zd.text" xml:space="preserve"><source>Pinch = Zoom in</source>
+<target>Knijpen = Inzoomen</target>
+<note>Class = "UILabel"; text = "Pinch = Zoom in"; ObjectID = "q4H-Sg-7Zd";</note></trans-unit>
+      <trans-unit id="qI9-wv-wTe.title" xml:space="preserve"><source>Title</source>
+<target>Title</target>
+<note>Class = "UINavigationItem"; title = "Title"; ObjectID = "qI9-wv-wTe";</note></trans-unit>
+      <trans-unit id="qUK-6N-G11.headerTitle" xml:space="preserve"><source>Palette 2 Connection</source>
+<target>Palette 2 Verbinding</target>
+<note>Class = "UITableViewSection"; headerTitle = "Palette 2 Connection"; ObjectID = "qUK-6N-G11";</note></trans-unit>
+      <trans-unit id="qdv-m8-Jgb.text" xml:space="preserve"><source>OctoPrint - Application Key</source>
+<target>OctoPrint - Applicatie Sleutel</target>
+<note>Class = "UILabel"; text = "OctoPrint - Application Key"; ObjectID = "qdv-m8-Jgb";</note></trans-unit>
+      <trans-unit id="qio-ne-TXN.text" xml:space="preserve"><source>Prompts</source>
+<target>Gevraagd</target>
+<note>Class = "UILabel"; text = "Prompts"; ObjectID = "qio-ne-TXN";</note></trans-unit>
+      <trans-unit id="r08-sj-cCD.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "r08-sj-cCD";</note></trans-unit>
+      <trans-unit id="rNP-Sb-Zba.text" xml:space="preserve"><source>Connect easily from remote locations (over the internet)</source>
+<target>Verbind gemakkelijk op afstand (via het internet)</target>
+<note>Class = "UILabel"; text = "Connect easily from remote locations (over the internet)"; ObjectID = "rNP-Sb-Zba";</note></trans-unit>
+      <trans-unit id="rU9-EM-Hqq.text" xml:space="preserve"><source>About 10m</source>
+<target>ongeveer 10m</target>
+<note>Class = "UILabel"; text = "About 10m"; ObjectID = "rU9-EM-Hqq";</note></trans-unit>
+      <trans-unit id="rZ6-EP-93w.title" xml:space="preserve"><source>Apple Watch</source>
+<target>Apple Watch</target>
+<note>Class = "UITableViewController"; title = "Apple Watch"; ObjectID = "rZ6-EP-93w";</note></trans-unit>
+      <trans-unit id="rob-ry-eO0.placeholder" xml:space="preserve"><source>Printer Name (e.g. MK3)</source>
+<target>Printer Naam (b.v. MK3)</target>
+<note>Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "rob-ry-eO0";</note></trans-unit>
+      <trans-unit id="rwm-QC-qD1.text" xml:space="preserve"><source>1hr 25m 13sec</source>
+<target>1hr 25m 13sec</target>
+<note>Class = "UILabel"; text = "1hr 25m 13sec"; ObjectID = "rwm-QC-qD1";</note></trans-unit>
+      <trans-unit id="sCj-mw-VaE.normalTitle" xml:space="preserve"><source>Resume</source>
+<target>Ga verder</target>
+<note>Class = "UIButton"; normalTitle = "Resume"; ObjectID = "sCj-mw-VaE";</note></trans-unit>
+      <trans-unit id="sF0-zd-MZR.text" xml:space="preserve"><source>/</source>
+<target>/</target>
+<note>Class = "UILabel"; text = "/"; ObjectID = "sF0-zd-MZR";</note></trans-unit>
+      <trans-unit id="sLc-Jv-G0H.placeholder" xml:space="preserve"><source>Username</source>
+<target>Gebruikersnaam</target>
+<note>Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H";</note></trans-unit>
+      <trans-unit id="sOY-kO-6qH.text" xml:space="preserve"><source>Title</source>
+<target>Title</target>
+<note>Class = "UILabel"; text = "Title"; ObjectID = "sOY-kO-6qH";</note></trans-unit>
+      <trans-unit id="saA-I3-RLW.title" xml:space="preserve"><source>Application Key</source>
+<target>Applicatie Sleutel</target>
+<note>Class = "UINavigationItem"; title = "Application Key"; ObjectID = "saA-I3-RLW";</note></trans-unit>
+      <trans-unit id="sgi-wT-ubY.normalTitle" xml:space="preserve"><source>Suppress SD</source>
+<target>Onderdruk SD</target>
+<note>Class = "UIButton"; normalTitle = "Suppress SD"; ObjectID = "sgi-wT-ubY";</note></trans-unit>
+      <trans-unit id="suF-7z-jeI.text" xml:space="preserve"><source>Current Height</source>
+<target>Huidige hoogte</target>
+<note>Class = "UILabel"; text = "Current Height"; ObjectID = "suF-7z-jeI";</note></trans-unit>
+      <trans-unit id="sym-Tb-zFM.headerTitle" xml:space="preserve"><source>Settings</source>
+<target>Instellingen</target>
+<note>Class = "UITableViewSection"; headerTitle = "Settings"; ObjectID = "sym-Tb-zFM";</note></trans-unit>
+      <trans-unit id="syx-MO-ExG.text" xml:space="preserve"><source>0 C</source>
+<target>0 C</target>
+<note>Class = "UILabel"; text = "0 C"; ObjectID = "syx-MO-ExG";</note></trans-unit>
+      <trans-unit id="t6e-82-YMx.text" xml:space="preserve"><source>0.0%</source>
+<target>0.0%</target>
+<note>Class = "UILabel"; text = "0.0%"; ObjectID = "t6e-82-YMx";</note></trans-unit>
+      <trans-unit id="tFf-Rs-mOx.text" xml:space="preserve"><source>Title</source>
+<target>Title</target>
+<note>Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx";</note></trans-unit>
+      <trans-unit id="tMP-2W-Iam.placeholder" xml:space="preserve"><source>Hostname (e.g. http://octopi.local)</source>
+<target>Hostname (bijv. http://octopi.local)</target>
+<note>Class = "UITextField"; placeholder = "Hostname (e.g. http://octopi.local)"; ObjectID = "tMP-2W-Iam";</note></trans-unit>
+      <trans-unit id="tTe-Q5-kkc.text" xml:space="preserve"><source>/</source>
+<target>/</target>
+<note>Class = "UILabel"; text = "/"; ObjectID = "tTe-Q5-kkc";</note></trans-unit>
+      <trans-unit id="taf-JE-egr.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "taf-JE-egr";</note></trans-unit>
+      <trans-unit id="tfv-OO-TXd.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "tfv-OO-TXd";</note></trans-unit>
+      <trans-unit id="tgj-tb-vD5.text" xml:space="preserve"><source>Label</source>
+<target>Label</target>
+<note>Class = "UILabel"; text = "Label"; ObjectID = "tgj-tb-vD5";</note></trans-unit>
+      <trans-unit id="tif-GP-Mj3.normalTitle" xml:space="preserve"><source>Scan</source>
+<target>Scan</target>
+<note>Class = "UIButton"; normalTitle = "Scan"; ObjectID = "tif-GP-Mj3";</note></trans-unit>
+      <trans-unit id="toN-uy-OtV.headerTitle" xml:space="preserve"><source>Select Connection Type</source>
+<target>Selecteer connectietype</target>
+<note>Class = "UITableViewSection"; headerTitle = "Select Connection Type"; ObjectID = "toN-uy-OtV";</note></trans-unit>
+      <trans-unit id="tzE-Y5-rVZ.text" xml:space="preserve"><source>Printers</source>
+<target>Printers</target>
+<note>Class = "UILabel"; text = "Printers"; ObjectID = "tzE-Y5-rVZ";</note></trans-unit>
+      <trans-unit id="u5z-wR-iO9.text" xml:space="preserve"><source>Default Text</source>
+<target>Standaard Tekst</target>
+<note>Class = "UILabel"; text = "Default Text"; ObjectID = "u5z-wR-iO9";</note></trans-unit>
+      <trans-unit id="uR6-pA-Rdj.headerTitle" xml:space="preserve"><source>Connection error details</source>
+<target>Details van verbindingsfout</target>
+<note>Class = "UITableViewSection"; headerTitle = "Connection error details"; ObjectID = "uR6-pA-Rdj";</note></trans-unit>
+      <trans-unit id="uRd-RD-eAS.headerTitle" xml:space="preserve"><source>Printer Connection (REQUIRED)</source>
+<target>Printerverbinding (VEREIST)</target>
+<note>Class = "UITableViewSection"; headerTitle = "Printer Connection (REQUIRED)"; ObjectID = "uRd-RD-eAS";</note></trans-unit>
+      <trans-unit id="uRz-Gy-YAf.title" xml:space="preserve"><source>Connect</source>
+<target>Verbinden</target>
+<note>Class = "UIBarButtonItem"; title = "Connect"; ObjectID = "uRz-Gy-YAf";</note></trans-unit>
+      <trans-unit id="ug1-TR-XyB.text" xml:space="preserve"><source>Title</source>
+<target>Title</target>
+<note>Class = "UILabel"; text = "Title"; ObjectID = "ug1-TR-XyB";</note></trans-unit>
+      <trans-unit id="uge-6J-pcC.text" xml:space="preserve"><source>GCode</source>
+<target>GCode</target>
+<note>Class = "UILabel"; text = "GCode"; ObjectID = "uge-6J-pcC";</note></trans-unit>
+      <trans-unit id="uqf-BP-Wtn.text" xml:space="preserve"><source>Require passcode to unlock</source>
+<target>Toegangscode nodig om te ontgrendelen</target>
+<note>Class = "UILabel"; text = "Require passcode to unlock"; ObjectID = "uqf-BP-Wtn";</note></trans-unit>
+      <trans-unit id="uzd-Ys-rmS.text" xml:space="preserve"><source>Extruder 3</source>
+<target>Extruder 3</target>
+<note>Class = "UILabel"; text = "Extruder 3"; ObjectID = "uzd-Ys-rmS";</note></trans-unit>
+      <trans-unit id="vnu-ZQ-mJO.text" xml:space="preserve"><source>100.0%</source>
+<target>100.0%</target>
+<note>Class = "UILabel"; text = "100.0%"; ObjectID = "vnu-ZQ-mJO";</note></trans-unit>
+      <trans-unit id="vpX-he-2FU.text" xml:space="preserve"><source>0.0 C</source>
+<target>0.0 C</target>
+<note>Class = "UILabel"; text = "0.0 C"; ObjectID = "vpX-he-2FU";</note></trans-unit>
+      <trans-unit id="vyb-aH-wc9.normalTitle" xml:space="preserve"><source>Reset printers from iCloud data</source>
+<target>Printers opnieuw instellen vanuit iCloud-gegevens</target>
+<note>Class = "UIButton"; normalTitle = "Reset printers from iCloud data"; ObjectID = "vyb-aH-wc9";</note></trans-unit>
+      <trans-unit id="w4s-Ud-7Zm.normalTitle" xml:space="preserve"><source>Button</source>
+<target>Button</target>
+<note>Class = "UIButton"; normalTitle = "Button"; ObjectID = "w4s-Ud-7Zm";</note></trans-unit>
+      <trans-unit id="wHn-Dc-bWb.text" xml:space="preserve"><source>Dark</source>
+<target>Donker</target>
+<note>Class = "UILabel"; text = "Dark"; ObjectID = "wHn-Dc-bWb";</note></trans-unit>
+      <trans-unit id="weI-5t-9zz.text" xml:space="preserve"><source>Print Completion</source>
+<target>Print Voltooid</target>
+<note>Class = "UILabel"; text = "Print Completion"; ObjectID = "weI-5t-9zz";</note></trans-unit>
+      <trans-unit id="wff-HF-WSb.text" xml:space="preserve"><source>Confirm to pause</source>
+<target>Pauzeren bevestigen</target>
+<note>Class = "UILabel"; text = "Confirm to pause"; ObjectID = "wff-HF-WSb";</note></trans-unit>
+      <trans-unit id="wnO-2K-s2I.normalTitle" xml:space="preserve"><source>Extrude</source>
+<target>Extruderen</target>
+<note>Class = "UIButton"; normalTitle = "Extrude"; ObjectID = "wnO-2K-s2I";</note></trans-unit>
+      <trans-unit id="x8L-G5-sTU.normalTitle" xml:space="preserve"><source>URL Button</source>
+<target>URL Knop</target>
+<note>Class = "UIButton"; normalTitle = "URL Button"; ObjectID = "x8L-G5-sTU";</note></trans-unit>
+      <trans-unit id="xC4-gH-ALO.text" xml:space="preserve"><source>0.0%</source>
+<target>0.0%</target>
+<note>Class = "UILabel"; text = "0.0%"; ObjectID = "xC4-gH-ALO";</note></trans-unit>
+      <trans-unit id="xE0-gE-Kuq.normalTitle" xml:space="preserve"><source>Delete</source>
+<target>Verwijderen</target>
+<note>Class = "UIButton"; normalTitle = "Delete"; ObjectID = "xE0-gE-Kuq";</note></trans-unit>
+      <trans-unit id="xMr-Bq-gSB.normalTitle" xml:space="preserve"><source>Dashboard</source>
+<target>Dashboard</target>
+<note>Class = "UIButton"; normalTitle = "Dashboard"; ObjectID = "xMr-Bq-gSB";</note></trans-unit>
+      <trans-unit id="xkQ-uy-Aw1.text" xml:space="preserve"><source>System</source>
+<target>Systeem</target>
+<note>Class = "UILabel"; text = "System"; ObjectID = "xkQ-uy-Aw1";</note></trans-unit>
+      <trans-unit id="xsQ-V9-zzo.text" xml:space="preserve"><source>Ping</source>
+<target>Ping</target>
+<note>Class = "UILabel"; text = "Ping"; ObjectID = "xsQ-V9-zzo";</note></trans-unit>
+      <trans-unit id="xvl-wE-Mht.title" xml:space="preserve"><source>Printer Details</source>
+<target>Printer Details</target>
+<note>Class = "UINavigationItem"; title = "Printer Details"; ObjectID = "xvl-wE-Mht";</note></trans-unit>
+      <trans-unit id="yPh-Gc-fNd.text" xml:space="preserve"><source>Variance</source>
+<target>Afwijking</target>
+<note>Class = "UILabel"; text = "Variance"; ObjectID = "yPh-Gc-fNd";</note></trans-unit>
+      <trans-unit id="yci-j8-y4w.text" xml:space="preserve"><source>Contributing</source>
+<target>Contribuerend</target>
+<note>Class = "UILabel"; text = "Contributing"; ObjectID = "yci-j8-y4w";</note></trans-unit>
+      <trans-unit id="ywI-EB-V2L.text" xml:space="preserve"><source>0 C</source>
+<target>0 C</target>
+<note>Class = "UILabel"; text = "0 C"; ObjectID = "ywI-EB-V2L";</note></trans-unit>
+      <trans-unit id="z2y-Yi-bgx.text" xml:space="preserve"><source>Extruder 4</source>
+<target>Extruder 4</target>
+<note>Class = "UILabel"; text = "Extruder 4"; ObjectID = "z2y-Yi-bgx";</note></trans-unit>
+      <trans-unit id="z4Q-Gf-Y5G.normalTitle" xml:space="preserve"><source>Send</source>
+<target>Verstuur</target>
+<note>Class = "UIButton"; normalTitle = "Send"; ObjectID = "z4Q-Gf-Y5G";</note></trans-unit>
+      <trans-unit id="zDs-gi-KIJ.text" xml:space="preserve"><source>New temperature</source>
+<target>Nieuwe temperatuur</target>
+<note>Class = "UILabel"; text = "New temperature"; ObjectID = "zDs-gi-KIJ";</note></trans-unit>
+      <trans-unit id="zH4-HC-We7.text" xml:space="preserve"><source>Prompt Extrude Speed</source>
+<target>Prompt Extrude Snelheid</target>
+<note>Class = "UILabel"; text = "Prompt Extrude Speed"; ObjectID = "zH4-HC-We7";</note></trans-unit>
+      <trans-unit id="zRw-xu-lEf.normalTitle" xml:space="preserve"><source>Siri Integration</source>
+<target>Siri intergratie</target>
+<note>Class = "UIButton"; normalTitle = "Siri Integration"; ObjectID = "zRw-xu-lEf";</note></trans-unit>
+      <trans-unit id="zVf-Zx-3g4.text" xml:space="preserve"><source>Sync printers between iOS devices</source>
+<target>Synchroniseer printers tussen iOS apparaten</target>
+<note>Class = "UILabel"; text = "Sync printers between iOS devices"; ObjectID = "zVf-Zx-3g4";</note></trans-unit>
+      <trans-unit id="zbP-eJ-7Gk.text" xml:space="preserve"><source>0.0%</source>
+<target>0.0%</target>
+<note>Class = "UILabel"; text = "0.0%"; ObjectID = "zbP-eJ-7Gk";</note></trans-unit>
+      <trans-unit id="zf7-Un-ytQ.text" xml:space="preserve"><source>100 C</source>
+<target>100 C</target>
+<note>Class = "UILabel"; text = "100 C"; ObjectID = "zf7-Un-ytQ";</note></trans-unit>
+      <trans-unit id="zhG-D6-Cgg.text" xml:space="preserve"><source>Pinch = Zoom in</source>
+<target>Knijpen = Inzoomen</target>
+<note>Class = "UILabel"; text = "Pinch = Zoom in"; ObjectID = "zhG-D6-Cgg";</note></trans-unit>
+      <trans-unit id="zij-F2-lS7.text" xml:space="preserve"><source>/</source>
+<target>/</target>
+<note>Class = "UILabel"; text = "/"; ObjectID = "zij-F2-lS7";</note></trans-unit>
+      <trans-unit id="zqn-zS-suB.title" xml:space="preserve"><source>Panel</source>
+<target>Paneel</target>
+<note>Class = "UITabBarItem"; title = "Panel"; ObjectID = "zqn-zS-suB";</note></trans-unit>
+      <trans-unit id="zws-KA-eU1.text" xml:space="preserve"><source>Offset</source>
+<target>Offset</target>
+<note>Class = "UILabel"; text = "Offset"; ObjectID = "zws-KA-eU1";</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPod/en.lproj/InfoPlist.strings">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve"><source>OctoPod</source>
+<target>OctoPod</target>
+<note>Bundle display name</note></trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve"><source>OctoPod</source>
+<target>OctoPod</target>
+<note>Bundle name</note></trans-unit>
+      <trans-unit id="NSCameraUsageDescription" xml:space="preserve"><source>We need to access your camera for scanning QR code</source>
+<target>Toestemming voor de camera is nodig om de QR code te scannen</target>
+<note>Privacy - Camera Usage Description</note></trans-unit>
+      <trans-unit id="NSFaceIDUsageDescription" xml:space="preserve"><source>We need to use FaceID to unlock app</source>
+<target>Face ID is nodig om de app te ontgrendelen</target>
+<note>Privacy - Face ID Usage Description</note></trans-unit>
+      <trans-unit id="NSLocalNetworkUsageDescription" xml:space="preserve"><source>OctoPod uses your local network to discover and communicate to OctoPrint</source>
+<target>OctoPod gebruikt jouw lokale netwerk om OctoPrint te vinden en ermee te verbinden</target>
+<note>Privacy - Local Network Usage Description</note></trans-unit>
+      <trans-unit id="NSPhotoLibraryUsageDescription" xml:space="preserve"><source>OctoPod needs permission to save videos on your device</source>
+<target>OctoPod heeft toestemming nodig om video's op jouw apparaat op te slaan</target>
+<note>Privacy - Photo Library Usage Description</note></trans-unit>
+      <trans-unit id="NSSiriUsageDescription" xml:space="preserve"><source>Control printer using Siri</source>
+<target>Bestuur de printer met Siri</target>
+<note>Privacy - Siri Usage Description</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPodWidget14/Base.lproj/OctoPodWidget14.intentdefinition">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="0S62mn" xml:space="preserve"><source>Printer Name</source>
+<target>Printer Name</target>
+<note/></trans-unit>
+      <trans-unit id="9eyZ4N" xml:space="preserve"><source>false</source>
+<target>false</target>
+<note/></trans-unit>
+      <trans-unit id="58usLm" xml:space="preserve"><source>Printer 1</source>
+<target>Printer 1</target>
+<note/></trans-unit>
+      <trans-unit id="AIJcYW" xml:space="preserve"><source>Camera</source>
+<target>Camera</target>
+<note/></trans-unit>
+      <trans-unit id="B1OXyb" xml:space="preserve"><source>Printer Name</source>
+<target>Printer Name</target>
+<note/></trans-unit>
+      <trans-unit id="CpDQAE" xml:space="preserve"><source>System</source>
+<target>System</target>
+<note/></trans-unit>
+      <trans-unit id="E6nibW" xml:space="preserve"><source>Widget Configuration</source>
+<target>Widget Configuration</target>
+<note/></trans-unit>
+      <trans-unit id="GioA53" xml:space="preserve"><source>Api Key</source>
+<target>Api Key</target>
+<note/></trans-unit>
+      <trans-unit id="Gs9ttO" xml:space="preserve"><source>Light</source>
+<target>Light</target>
+<note/></trans-unit>
+      <trans-unit id="IHvqBt" xml:space="preserve"><source>Printer 3</source>
+<target>Printer 3</target>
+<note/></trans-unit>
+      <trans-unit id="IWWISx" xml:space="preserve"><source>Widget Printer</source>
+<target>Widget Printer</target>
+<note/></trans-unit>
+      <trans-unit id="JrlfVP" xml:space="preserve"><source>Printer</source>
+<target>Printer</target>
+<note/></trans-unit>
+      <trans-unit id="KRElKI" xml:space="preserve"><source>Camera URL</source>
+<target>Camera URL</target>
+<note/></trans-unit>
+      <trans-unit id="Mgaxsj" xml:space="preserve"><source>Theme</source>
+<target>Theme</target>
+<note/></trans-unit>
+      <trans-unit id="O3EQKr" xml:space="preserve"><source>Url</source>
+<target>Url</target>
+<note/></trans-unit>
+      <trans-unit id="RAswNt" xml:space="preserve"><source>Unknown</source>
+<target>Unknown</target>
+<note/></trans-unit>
+      <trans-unit id="RZDKSJ" xml:space="preserve"><source>Camera</source>
+<target>Camera</target>
+<note/></trans-unit>
+      <trans-unit id="S2nCmZ-CpDQAE" xml:space="preserve"><source>Just to confirm, you wanted ‘System’?</source>
+<target>Just to confirm, you wanted ‘System’?</target>
+<note/></trans-unit>
+      <trans-unit id="S2nCmZ-Gs9ttO" xml:space="preserve"><source>Just to confirm, you wanted ‘Light’?</source>
+<target>Just to confirm, you wanted ‘Light’?</target>
+<note/></trans-unit>
+      <trans-unit id="S2nCmZ-RAswNt" xml:space="preserve"><source>Just to confirm, you wanted ‘Unknown’?</source>
+<target>Just to confirm, you wanted ‘Unknown’?</target>
+<note/></trans-unit>
+      <trans-unit id="S2nCmZ-ah6f7u" xml:space="preserve"><source>Just to confirm, you wanted ‘Dark’?</source>
+<target>Just to confirm, you wanted ‘Dark’?</target>
+<note/></trans-unit>
+      <trans-unit id="S2nCmZ-yymMQg" xml:space="preserve"><source>Just to confirm, you wanted ‘Default’?</source>
+<target>Just to confirm, you wanted ‘Default’?</target>
+<note/></trans-unit>
+      <trans-unit id="SHDh7z" xml:space="preserve"><source>Password</source>
+<target>Password</target>
+<note/></trans-unit>
+      <trans-unit id="YJQXqa" xml:space="preserve"><source>Printer Name</source>
+<target>Printer Name</target>
+<note/></trans-unit>
+      <trans-unit id="a8igcM" xml:space="preserve"><source>Select Printer</source>
+<target>Select Printer</target>
+<note/></trans-unit>
+      <trans-unit id="aV41ZJ" xml:space="preserve"><source>Printer 4</source>
+<target>Printer 4</target>
+<note/></trans-unit>
+      <trans-unit id="ah6f7u" xml:space="preserve"><source>Dark</source>
+<target>Dark</target>
+<note/></trans-unit>
+      <trans-unit id="c53Z1c" xml:space="preserve"><source>Theme</source>
+<target>Theme</target>
+<note/></trans-unit>
+      <trans-unit id="cQFZl2" xml:space="preserve"><source>Printer 2</source>
+<target>Printer 2</target>
+<note/></trans-unit>
+      <trans-unit id="errkUp" xml:space="preserve"><source>Username</source>
+<target>Username</target>
+<note/></trans-unit>
+      <trans-unit id="gpCwrM" xml:space="preserve"><source>Widget Configuration</source>
+<target>Widget Configuration</target>
+<note/></trans-unit>
+      <trans-unit id="grfLTZ" xml:space="preserve"><source>Camera Orientation</source>
+<target>Camera Orientation</target>
+<note/></trans-unit>
+      <trans-unit id="jORyUD" xml:space="preserve"><source>Widget Camera</source>
+<target>Widget Camera</target>
+<note/></trans-unit>
+      <trans-unit id="k5QFXb" xml:space="preserve"><source>Name</source>
+<target>Name</target>
+<note/></trans-unit>
+      <trans-unit id="lZYSm5" xml:space="preserve"><source>Name</source>
+<target>Name</target>
+<note/></trans-unit>
+      <trans-unit id="o1NVDF" xml:space="preserve"><source>Theme</source>
+<target>Theme</target>
+<note/></trans-unit>
+      <trans-unit id="owVY6J" xml:space="preserve"><source>Hostname</source>
+<target>Hostname</target>
+<note/></trans-unit>
+      <trans-unit id="rgdtBN-CpDQAE" xml:space="preserve"><source>There are ${count} options matching ‘System’.</source>
+<target>There are ${count} options matching ‘System’.</target>
+<note/></trans-unit>
+      <trans-unit id="rgdtBN-Gs9ttO" xml:space="preserve"><source>There are ${count} options matching ‘Light’.</source>
+<target>There are ${count} options matching ‘Light’.</target>
+<note/></trans-unit>
+      <trans-unit id="rgdtBN-RAswNt" xml:space="preserve"><source>There are ${count} options matching ‘Unknown’.</source>
+<target>There are ${count} options matching ‘Unknown’.</target>
+<note/></trans-unit>
+      <trans-unit id="rgdtBN-ah6f7u" xml:space="preserve"><source>There are ${count} options matching ‘Dark’.</source>
+<target>There are ${count} options matching ‘Dark’.</target>
+<note/></trans-unit>
+      <trans-unit id="rgdtBN-yymMQg" xml:space="preserve"><source>There are ${count} options matching ‘Default’.</source>
+<target>There are ${count} options matching ‘Default’.</target>
+<note/></trans-unit>
+      <trans-unit id="tQN4nr" xml:space="preserve"><source>Printer Name</source>
+<target>Printer Name</target>
+<note/></trans-unit>
+      <trans-unit id="trmH9n-CpDQAE" xml:space="preserve"><source>There are ${count} options matching ‘System’.</source>
+<target>There are ${count} options matching ‘System’.</target>
+<note/></trans-unit>
+      <trans-unit id="trmH9n-Gs9ttO" xml:space="preserve"><source>There are ${count} options matching ‘Light’.</source>
+<target>There are ${count} options matching ‘Light’.</target>
+<note/></trans-unit>
+      <trans-unit id="trmH9n-RAswNt" xml:space="preserve"><source>There are ${count} options matching ‘Unknown’.</source>
+<target>There are ${count} options matching ‘Unknown’.</target>
+<note/></trans-unit>
+      <trans-unit id="trmH9n-ah6f7u" xml:space="preserve"><source>There are ${count} options matching ‘Dark’.</source>
+<target>There are ${count} options matching ‘Dark’.</target>
+<note/></trans-unit>
+      <trans-unit id="trmH9n-yymMQg" xml:space="preserve"><source>There are ${count} options matching ‘Default’.</source>
+<target>There are ${count} options matching ‘Default’.</target>
+<note/></trans-unit>
+      <trans-unit id="vCz6ng-CpDQAE" xml:space="preserve"><source>Just to confirm, you wanted ‘System’?</source>
+<target>Just to confirm, you wanted ‘System’?</target>
+<note/></trans-unit>
+      <trans-unit id="vCz6ng-Gs9ttO" xml:space="preserve"><source>Just to confirm, you wanted ‘Light’?</source>
+<target>Just to confirm, you wanted ‘Light’?</target>
+<note/></trans-unit>
+      <trans-unit id="vCz6ng-RAswNt" xml:space="preserve"><source>Just to confirm, you wanted ‘Unknown’?</source>
+<target>Just to confirm, you wanted ‘Unknown’?</target>
+<note/></trans-unit>
+      <trans-unit id="vCz6ng-ah6f7u" xml:space="preserve"><source>Just to confirm, you wanted ‘Dark’?</source>
+<target>Just to confirm, you wanted ‘Dark’?</target>
+<note/></trans-unit>
+      <trans-unit id="vCz6ng-yymMQg" xml:space="preserve"><source>Just to confirm, you wanted ‘Default’?</source>
+<target>Just to confirm, you wanted ‘Default’?</target>
+<note/></trans-unit>
+      <trans-unit id="xaNGuB" xml:space="preserve"><source>Printer Name</source>
+<target>Printer Name</target>
+<note/></trans-unit>
+      <trans-unit id="xmeFlp" xml:space="preserve"><source>true</source>
+<target>true</target>
+<note/></trans-unit>
+      <trans-unit id="yymMQg" xml:space="preserve"><source>Default</source>
+<target>Default</target>
+<note/></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPodWidget14/en.lproj/InfoPlist.strings">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve"><source>OctoPod</source>
+<target>OctoPod</target>
+<note>Bundle display name</note></trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve"><source>OctoPodWidget14Extension</source>
+<target>OctoPodWidget14Uitbreiding</target>
+<note>Bundle name</note></trans-unit>
+    </body>
+  </file>
+  <file source-language="en" target-language="nl" datatype="plaintext" original="OctoPodWidget14/en.lproj/Localizable.strings">
+    <header>
+      <tool build-num="12E507" tool-version="12.5.1" tool-id="com.apple.dt.xcode" tool-name="Xcode"/>
+    </header>
+    <body>
+      <trans-unit id="%@" xml:space="preserve"><source>%@</source>
+<target>%@</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="1 day ago" xml:space="preserve"><source>1 day ago</source>
+<target>Hace 1 día</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="1 hour ago" xml:space="preserve"><source>1 hour ago</source>
+<target>Hace 1 hora</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="1 minute ago" xml:space="preserve"><source>1 minute ago</source>
+<target>Hace 1 minuto</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="1 week ago" xml:space="preserve"><source>1 week ago</source>
+<target>Hace 1 semana</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Authentication failed" xml:space="preserve"><source>Authentication failed</source>
+<target>Error de autenticación</target>
+<note>HTTP authentication failed</note></trans-unit>
+      <trans-unit id="Configure widget" xml:space="preserve"><source>Configure widget</source>
+<target>Configurar widget</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Confirm" xml:space="preserve"><source>Confirm</source>
+<target>Confirmar</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Dashboard" xml:space="preserve"><source>Dashboard</source>
+<target>Tablero</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Dashboard for multiple printers" xml:space="preserve"><source>Dashboard for multiple printers</source>
+<target>Panel de control para varias impresoras</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Dismiss" xml:space="preserve"><source>Dismiss</source>
+<target>Cerrar</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="HTTP Request error" xml:space="preserve"><source>HTTP Request error</source>
+<target>Error con el pedido. Respuesta HTTP: %d</target>
+<note>HTTP Request error info</note></trans-unit>
+      <trans-unit id="Missed" xml:space="preserve"><source>Missed</source>
+<target>Perdido</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="Monitor and control your 3d printer via OctoPod" xml:space="preserve"><source>Monitor and control your 3d printer via OctoPod</source>
+<target>Supervise y controle su impresora 3d a través de OctoPod</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="No" xml:space="preserve"><source>No</source>
+<target>No</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="No camera" xml:space="preserve"><source>No camera</source>
+<target>Sin cámara</target>
+<note>No camera was configured</note></trans-unit>
+      <trans-unit id="OctoEverywhere: Webcam Limit Exceeded" xml:space="preserve"><source>OctoEverywhere: Webcam Limit Exceeded</source>
+<target>OctoEverywhere: Límite de cámara excedido</target>
+<note>Error message from OctoEverywhere</note></trans-unit>
+      <trans-unit id="Unknown" xml:space="preserve"><source>Unknown</source>
+<target>Desconocido</target>
+<note>ETA is Unknown</note></trans-unit>
+      <trans-unit id="Yes" xml:space="preserve"><source>Yes</source>
+<target>Si</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="days ago" xml:space="preserve"><source>days ago</source>
+<target>Hace %d dias</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="hours ago" xml:space="preserve"><source>hours ago</source>
+<target>Hace %d horas</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="minutes ago" xml:space="preserve"><source>minutes ago</source>
+<target>Hace %d minutos</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="seconds ago" xml:space="preserve"><source>seconds ago</source>
+<target>Hace %d segundos</target>
+<note>No comment provided by engineer.</note></trans-unit>
+      <trans-unit id="weeks ago" xml:space="preserve"><source>weeks ago</source>
+<target>Hace %d semanas</target>
+<note>No comment provided by engineer.</note></trans-unit>
+    </body>
+  </file>
+</xliff>
