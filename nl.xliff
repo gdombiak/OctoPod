@@ -188,7 +188,7 @@
 <target>Verwijder</target>
 <note>Delete action</note></trans-unit>
       <trans-unit id="Disconnect" xml:space="preserve"><source>Disconnect</source>
-<target>Verbinding met de printer verbreken</target>
+<target>Verbreek</target>
 <note>Disconnect</note></trans-unit>
       <trans-unit id="Disconnected" xml:space="preserve"><source>Disconnected</source>
 <target>Niet verdonden</target>
