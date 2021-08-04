@@ -840,6 +840,16 @@ class CloudKitPrinterManager {
                     self.iCloudAvailable = false
                     self.notifyiCloudStatusChanged(connected: false)
                     completion?()
+                case .temporarilyUnavailable:
+                    // iCloud is temporarily unavailable
+                    self.iCloudAvailable = false
+                    self.notifyiCloudStatusChanged(connected: false)
+                    completion?()
+                @unknown default:
+                    // exception handling
+                    self.iCloudAvailable = false
+                    self.notifyiCloudStatusChanged(connected: false)
+                    completion?()
                 }
             }
         }
