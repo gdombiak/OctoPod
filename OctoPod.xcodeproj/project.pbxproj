@@ -383,6 +383,9 @@
 		3DFF0B232690C196009151DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3DFF0B212690C196009151DA /* InfoPlist.strings */; };
 		3DFF0B292690DE99009151DA /* CamerasGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF0B282690DE99009151DA /* CamerasGridViewController.swift */; };
 		3DFF0B2C2690FAC4009151DA /* CameraGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF0B2B2690FAC4009151DA /* CameraGridViewCell.swift */; };
+		3DFFF60926BF6C6500AAA518 /* cheerful-2-528.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 3DFFF60826BF6C6500AAA518 /* cheerful-2-528.m4r */; };
+		3DFFF60B26BF6E1200AAA518 /* serious-strike-533.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 3DFFF60A26BF6E1200AAA518 /* serious-strike-533.m4r */; };
+		3DFFF60D26BF6F7400AAA518 /* soft-bells-495.m4r in Resources */ = {isa = PBXBuildFile; fileRef = 3DFFF60C26BF6F7400AAA518 /* soft-bells-495.m4r */; };
 		583827DE22E36B9100784706 /* Palette2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583827DD22E36B9100784706 /* Palette2ViewController.swift */; };
 		583827E122E62D8700784706 /* Palette2PortsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583827E022E62D8700784706 /* Palette2PortsViewController.swift */; };
 		5843B64A22E9FA1D001EDBAC /* PingPongHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5843B64922E9FA1D001EDBAC /* PingPongHistoryViewController.swift */; };
@@ -973,6 +976,9 @@
 		3DFF0B3126912041009151DA /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3DFF0B3226912050009151DA /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3DFF0B33269120F4009151DA /* lt-LT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "lt-LT"; path = "lt-LT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		3DFFF60826BF6C6500AAA518 /* cheerful-2-528.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = "cheerful-2-528.m4r"; sourceTree = "<group>"; };
+		3DFFF60A26BF6E1200AAA518 /* serious-strike-533.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = "serious-strike-533.m4r"; sourceTree = "<group>"; };
+		3DFFF60C26BF6F7400AAA518 /* soft-bells-495.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = "soft-bells-495.m4r"; sourceTree = "<group>"; };
 		583827DD22E36B9100784706 /* Palette2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette2ViewController.swift; sourceTree = "<group>"; };
 		583827E022E62D8700784706 /* Palette2PortsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette2PortsViewController.swift; sourceTree = "<group>"; };
 		5843B64922E9FA1D001EDBAC /* PingPongHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingPongHistoryViewController.swift; sourceTree = "<group>"; };
@@ -1259,6 +1265,9 @@
 		3D45280020E15A370094CCB7 /* OctoPod */ = {
 			isa = PBXGroup;
 			children = (
+				3DFFF60C26BF6F7400AAA518 /* soft-bells-495.m4r */,
+				3DFFF60A26BF6E1200AAA518 /* serious-strike-533.m4r */,
+				3DFFF60826BF6C6500AAA518 /* cheerful-2-528.m4r */,
 				3DFA8071210E2EF100B5BFAA /* OctoPod.entitlements */,
 				3D82873E20E421480035AE0B /* MJPEG Streaming */,
 				3DB5107A217C16C4006CF8C3 /* Apple Watch */,
@@ -2103,9 +2112,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D718776215F367700A29D02 /* Localizable.strings in Resources */,
+				3DFFF60B26BF6E1200AAA518 /* serious-strike-533.m4r in Resources */,
 				3D0192FF2443692800970A06 /* EnclosureInputTempCellView.xib in Resources */,
+				3DFFF60D26BF6F7400AAA518 /* soft-bells-495.m4r in Resources */,
 				3D9E087E2160455400F11CD4 /* InfoPlist.strings in Resources */,
 				3D45280F20E15A380094CCB7 /* LaunchScreen.storyboard in Resources */,
+				3DFFF60926BF6C6500AAA518 /* cheerful-2-528.m4r in Resources */,
 				3D968DDB20E336F5006774A5 /* Default-568h@2x.png in Resources */,
 				3D45280C20E15A380094CCB7 /* Assets.xcassets in Resources */,
 				3D45280720E15A370094CCB7 /* Main.storyboard in Resources */,
