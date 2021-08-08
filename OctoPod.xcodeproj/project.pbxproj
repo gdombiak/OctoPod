@@ -3058,7 +3058,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Widget/OctoPod Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -3083,7 +3083,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Widget/OctoPod Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -3107,7 +3107,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent/OctoPod Intent.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Intent/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -3132,7 +3132,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent/OctoPod Intent.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Intent/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -3278,7 +3278,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OctoPod/OctoPod.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = OctoPod/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -3301,7 +3301,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OctoPod/OctoPod.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = OctoPod/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -3424,7 +3424,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				IBSC_MODULE = OctoPod_Watch_Extension;
 				INFOPLIST_FILE = "OctoPod Watch/Info.plist";
@@ -3449,7 +3449,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				IBSC_MODULE = OctoPod_Watch_Extension;
 				INFOPLIST_FILE = "OctoPod Watch/Info.plist";
@@ -3471,7 +3471,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3497,7 +3497,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3522,7 +3522,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Notification Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -3548,7 +3548,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Notification Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -3573,7 +3573,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent UI - Take Snapshot/OctoPod Intent UI - Take Snapshot.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Intent UI - Take Snapshot/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -3598,7 +3598,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent UI - Take Snapshot/OctoPod Intent UI - Take Snapshot.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Intent UI - Take Snapshot/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -3625,7 +3625,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = OctoPodWidget14Extension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = OctoPodWidget14/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -3653,7 +3653,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = OctoPodWidget14Extension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = OctoPodWidget14/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
