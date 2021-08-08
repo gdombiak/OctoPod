@@ -611,7 +611,7 @@
 "n9p-tg-bxl.text" = "Subtitle";
 
 /* Class = "UILabel"; text = "Confirm to resume"; ObjectID = "nAj-Qp-lbZ"; */
-"nAj-Qp-lbZ.text" = "Подтвердите, чтобы возобновить";
+"nAj-Qp-lbZ.text" = "Подтверждать возобновление печати";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "ncZ-xn-WCb"; */
 "ncZ-xn-WCb.text" = "Title";
@@ -845,7 +845,7 @@
 "sgi-wT-ubY.normalTitle" = "Исключая SD";
 
 /* Class = "UILabel"; text = "Confirm to print"; ObjectID = "SJQ-Kb-Ggy"; */
-"SJQ-Kb-Ggy.text" = "Подтвердите печать";
+"SJQ-Kb-Ggy.text" = "Подтверждать запуск печати";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H"; */
 "sLc-Jv-G0H.placeholder" = "Имя пользователя";
@@ -995,7 +995,7 @@
 "weI-5t-9zz.text" = "Окончание";
 
 /* Class = "UILabel"; text = "Confirm to pause"; ObjectID = "wff-HF-WSb"; */
-"wff-HF-WSb.text" = "Подтвердите, чтобы приостановить";
+"wff-HF-WSb.text" = "Подтверждать приостановку печати";
 
 /* Class = "UILabel"; text = "Dark"; ObjectID = "wHn-Dc-bWb"; */
 "wHn-Dc-bWb.text" = "Темная";
