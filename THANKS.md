@@ -9,6 +9,7 @@ OctoPod wouldn't be where it is without the help of the following people. Thank 
 * Christoph Stahl (features and testing)
 * Daniele Nicolucci (features and translations)
 * Heiko Schultz (translations)
+* Ihsan Topcu (translations)
 * Jan Pichrt (features)
 * Jonas Bohdén (translations)
 * Luis F. Fernández (features)
