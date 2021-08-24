@@ -44,10 +44,10 @@ class RemindersViewController: UIViewController, UITableViewDataSource, UITableV
                 messages.append(ReminderMessage(message: NSLocalizedString("New Apple TV app is now available", comment: ""), url: nil))
             }
             // Only tell user to uninstall old copy of Apple Watch app when updating to 3.12
-            let upgradeTo3_12 = (UserDefaults.standard.bool(forKey: RemindersViewController.REMINDER_2_3) || UserDefaults.standard.bool(forKey: RemindersViewController.REMINDER_3_0) || UserDefaults.standard.bool(forKey: RemindersViewController.REMINDER_3_2)) && !UserDefaults.standard.bool(forKey: RemindersViewController.REMINDER_3_12)
-            if test || upgradeTo3_12 {
-                messages.append(ReminderMessage(message: NSLocalizedString("Remove old OctoPod app from Apple Watch", comment: ""), url: nil))
-            }
+//            let upgradeTo3_12 = (UserDefaults.standard.bool(forKey: RemindersViewController.REMINDER_2_3) || UserDefaults.standard.bool(forKey: RemindersViewController.REMINDER_3_0) || UserDefaults.standard.bool(forKey: RemindersViewController.REMINDER_3_2)) && !UserDefaults.standard.bool(forKey: RemindersViewController.REMINDER_3_12)
+//            if test || upgradeTo3_12 {
+//                messages.append(ReminderMessage(message: NSLocalizedString("Remove old OctoPod app from Apple Watch", comment: ""), url: nil))
+//            }
         }
 
         ThemeUIUtils.applyTheme(table: tableView, staticCells: false)
