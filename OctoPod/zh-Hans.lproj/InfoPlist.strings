@@ -1,0 +1,21 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "OctoPod";
+
+/* Bundle name */
+"CFBundleName" = "OctoPod";
+
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "我们需要访问你的相机来扫描QR码";
+
+/* Privacy - Face ID Usage Description */
+"NSFaceIDUsageDescription" = "我们需要使用FaceID来解锁应用程序";
+
+/* Privacy - Local Network Usage Description */
+"NSLocalNetworkUsageDescription" = "OctoPod使用您的本地网络来发现并与OctoPrint通信";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "OctoPod需要权限来保存您设备上的视频";
+
+/* Privacy - Siri Usage Description */
+"NSSiriUsageDescription" = "使用Siri控制打印机";
+

@@ -1,0 +1,776 @@
+/* No comment provided by engineer. */
+"%@ / %@" = "%1$@/%2$@";
+
+/* (No Comment) */
+"1 day ago" = "1天之前";
+
+/* (No Comment) */
+"1 hour ago" = "1小时前";
+
+/* (No Comment) */
+"1 minute ago" = "1分钟前";
+
+/* (No Comment) */
+"1 week ago" = "1周前";
+
+/* No comment provided by engineer. */
+"Account is no longer an OctoEverywhere supporter" = "账户不再是OctoEverywhere的支持者";
+
+/* (No Comment) */
+"Actual Bed" = "热床";
+
+/* No comment provided by engineer. */
+"Actual Chamber" = "会议厅";
+
+/* (No Comment) */
+"Actual Extruder" = "挤出机";
+
+/* (No Comment) */
+"Actual Extruder 2" = "挤出机2";
+
+/* No comment provided by engineer. */
+"Actual Extruder 3" = "挤出机3";
+
+/* No comment provided by engineer. */
+"Actual Extruder 4" = "挤出机4";
+
+/* No comment provided by engineer. */
+"Actual Extruder 5" = "挤出机5";
+
+/* No comment provided by engineer. */
+"API Key" = "API密钥";
+
+/* No comment provided by engineer. */
+"API Key or Application Key" = "API密钥或应用程序密钥";
+
+/* No comment provided by engineer. */
+"Application Key not enabled in OctoPrint." = "未在OctoPrint中启用应用程序密钥。";
+
+/* No comment provided by engineer. */
+"Application Key obtained. Click save to finish." = "获得的申请密钥。点击保存即可完成。";
+
+/* (No Comment) */
+"Apply" = "申请";
+
+/* HTTP authentication failed */
+"Authentication failed" = "认证失败";
+
+/* No comment provided by engineer. */
+"Back" = "溯源";
+
+/* HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc. */
+"Bad Certificate or SSL Problem" = "坏证书或SSL问题";
+
+/* No comment provided by engineer. */
+"Bed" = "热床位";
+
+/* (No Comment) */
+"Bed cooled" = "打印机热床低于规定的温度阈值";
+
+/* No comment provided by engineer. */
+"Bed Variance" = "热床位差异";
+
+/* (No Comment) */
+"Bed warmed" = "打印机热床被加热到指定的温度和时间";
+
+/* No comment provided by engineer. */
+"Camera" = "摄像机";
+
+/* (No Comment) */
+"Cancel" = "取消";
+
+/* Siri suggested phrase */
+"Cancel current print job" = "在%@上取消当前的打印作业";
+
+/* https://github.com/paukstelis/Octoprint-Cancelobject */
+"Cancel Objects" = "取消对象";
+
+/* (No Comment) */
+"Cannot print this file type" = "无法打印此文件类型";
+
+/* (No Comment) */
+"Cannot reach 'octopi.local' over mobile network or service is down" = "无法通过移动网络到达'octopi.local'或服务已关闭";
+
+/* (No Comment) */
+"Cannot replace file that is being printed or printer is busy" = "无法替换正在打印的文件或打印机繁忙";
+
+/* File Type is GCode */
+"Code" = "编码";
+
+/* (No Comment) */
+"Command not executed. Printer not operational" = "命令未执行。打印机无法运行";
+
+/* (No Comment) */
+"Command not executed. Script not found" = "命令未执行。未找到脚本";
+
+/* No comment provided by engineer. */
+"Complete information and click save to finish." = "完成信息，并点击保存以完成。";
+
+/* (No Comment) */
+"Confirm" = "确认";
+
+/* (No Comment) */
+"Confirm cancel object" = "你即将取消打印对象。继续吗？";
+
+/* (No Comment) */
+"Confirm command" = "执行命令'%@'？";
+
+/* (No Comment) */
+"Confirm connect" = "有些打印机在连接时可能会重新启动。继续吗？";
+
+/* (No Comment) */
+"Confirm disconnect" = "你想断开与打印机的连接吗？";
+
+/* (No Comment) */
+"Confirm disconnect palette2" = "你想断开与Palette2的连接吗？";
+
+/* (No Comment) */
+"Confirm intentions deletion" = "你即将删除该应用程序的所有Siri快捷方式。继续吗？";
+
+/* (No Comment) */
+"Confirm intentions regeneration" = "你即将删除并重新生成该应用程序的所有Siri快捷方式。继续吗？";
+
+/* (No Comment) */
+"Confirm turn off" = "确认关闭%@";
+
+/* (No Comment) */
+"Confirm turn off plug" = "你即将关闭插头。继续？";
+
+/* (No Comment) */
+"Confirm turn off PSU" = "你即将关闭PSU。继续吗？";
+
+/* Connect */
+"Connect" = "连接";
+
+/* No comment provided by engineer. */
+"Connect to iCloud to retrieve list of printers from your iPad/iPhone" = "连接到iCloud，从你的iPad/iPhone上检索打印机的列表";
+
+/* Connected */
+"Connected" = "已连接";
+
+/* Connecting */
+"Connecting" = "连接";
+
+/* (No Comment) */
+"Connection failed" = "连接失败";
+
+/* No comment provided by engineer. */
+"Contacting OctoPrint." = "联系OctoPrint。";
+
+/* Siri suggested phrase */
+"Cool down heated chamber" = "冷却受热室";
+
+/* Siri suggested phrase */
+"Cool down printer" = "降温打印机";
+
+/* Siri suggested phrase */
+"Cool down printer bed" = "冷却打印机热床%@";
+
+/* Siri suggested phrase */
+"Cool down printer extruder" = "冷却打印机挤出机%@";
+
+/* Connection to server failed */
+"Could not connect to the server" = "无法连接到服务器";
+
+/* No comment provided by engineer. */
+"Current Height" = "当前高度";
+
+/* http://docs.octoprint.org/en/master/features/custom_controls.html */
+"Custom Controls" = "自定义控制";
+
+/* (No Comment) */
+"days ago" = "%d天前";
+
+/* Delete action */
+"Delete" = "删除";
+
+/* Disconnect */
+"Disconnect" = "断开连接";
+
+/* Disconnected */
+"Disconnected" = "断线";
+
+/* (No Comment) */
+"Dismiss" = "解散";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "你想取消这项工作吗？";
+
+/* No comment provided by engineer. */
+"Do you want to delete this file?" = "你想删除这个文件吗？";
+
+/* No comment provided by engineer. */
+"Do you want to pause job?" = "你想暂停工作吗？";
+
+/* No comment provided by engineer. */
+"Do you want to pause print?" = "你想暂停打印吗？";
+
+/* No comment provided by engineer. */
+"Do you want to print this file?" = "你想打印这个文件吗？";
+
+/* No comment provided by engineer. */
+"Do you want to restart print job from the beginning?" = "你想从头开始重新启动打印工作吗？";
+
+/* No comment provided by engineer. */
+"Do you want to resume printing?" = "你想恢复印刷吗？";
+
+/* (No Comment) */
+"Domoticz Plugs" = "多莫特兹插头";
+
+/* (No Comment) */
+"Enable iCloud under iOS Settings to use this feature" = "在iOS设置下启用iCloud以使用该功能";
+
+/* gcode name */
+"Endstop States" = "终止状态";
+
+/* No comment provided by engineer. */
+"Error obtaining Application Key." = "获取应用程序密钥的错误。";
+
+/* Siri suggested phrase */
+"Execute System Command" = "执行系统命令";
+
+/* No comment provided by engineer. */
+"Expand" = "拓展";
+
+/* (No Comment) */
+"Extruder" = "挤出机";
+
+/* No comment provided by engineer. */
+"Extruder Variance" = "挤出机差异";
+
+/* No comment provided by engineer. */
+"Failed to add new layer notification" = "添加新层通知失败";
+
+/* No comment provided by engineer. */
+"Failed to connect" = "连接失败";
+
+/* (No Comment) */
+"Failed to delete file" = "删除文件失败";
+
+/* No comment provided by engineer. */
+"Failed to delete layer notification" = "删除层通知失败";
+
+/* (No Comment) */
+"Failed to disable motor" = "禁用%@电机失败";
+
+/* Failed to get controls with HTTP Request error info */
+"Failed to get controls" = "获取控件失败。HTTP响应。%d";
+
+/* (No Comment) */
+"Failed to get list of cancel objects" = "获取取消对象的列表失败。HTTP响应。%d";
+
+/* No comment provided by engineer. */
+"Failed to get list of layer notifications" = "获取图层通知列表失败";
+
+/* Failed to get system commands with HTTP Request error info */
+"Failed to get system commands" = "获取系统命令失败";
+
+/* (No Comment) */
+"Failed to initialize SD card" = "初始化SD卡失败";
+
+/* (No Comment) */
+"Failed to read file from iCloud" = "从iCloud读取文件失败";
+
+/* (No Comment) */
+"Failed to refresh SD card" = "刷新SD卡失败";
+
+/* (No Comment) */
+"Failed to request moving back" = "未能要求回迁";
+
+/* (No Comment) */
+"Failed to request moving down" = "未能要求下移";
+
+/* (No Comment) */
+"Failed to request moving front" = "未能请求移动前线";
+
+/* (No Comment) */
+"Failed to request moving left" = "未能请求向左移动";
+
+/* (No Comment) */
+"Failed to request moving right" = "未能申请移动权利";
+
+/* (No Comment) */
+"Failed to request moving up" = "未能请求上调";
+
+/* No comment provided by engineer. */
+"Failed to request status" = "申请状态失败";
+
+/* (No Comment) */
+"Failed to request to cancel object" = "请求取消对象失败。HTTP响应。%d";
+
+/* No comment provided by engineer. */
+"Failed to request to clear" = "请求清除失败";
+
+/* No comment provided by engineer. */
+"Failed to request to connect" = "请求连接失败";
+
+/* No comment provided by engineer. */
+"Failed to request to cut" = "未能请求削减";
+
+/* No comment provided by engineer. */
+"Failed to request to disconnect" = "请求断开连接失败";
+
+/* (No Comment) */
+"Failed to request to execute command" = "请求执行命令失败";
+
+/* (No Comment) */
+"Failed to request to extrude" = "请求挤压失败";
+
+/* (No Comment) */
+"Failed to request to go home" = "未能按照要求回零";
+
+/* No comment provided by engineer. */
+"Failed to request to go home X" = "未能按照要求回零X";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Y" = "未要按照要求回零Y";
+
+/* No comment provided by engineer. */
+"Failed to request to go home Z" = "未能按照要求回零Z";
+
+/* (No Comment) */
+"Failed to request to print file" = "请求打印文件失败";
+
+/* (No Comment) */
+"Failed to request to retract" = "未能请求撤回";
+
+/* (No Comment) */
+"Failed to request to turn power off" = "请求关闭电源失败";
+
+/* (No Comment) */
+"Failed to request to turn power on" = "未能请求打开电源";
+
+/* No comment provided by engineer. */
+"Failed to save JPEG file" = "保存JPEG文件失败";
+
+/* (No Comment) */
+"Failed to send GCode command" = "发送GCode命令失败";
+
+/* (No Comment) */
+"Failed to set new fan speed" = "设置新的风扇速度失败";
+
+/* (No Comment) */
+"Failed to set new feed rate" = "未能设置新的进给率";
+
+/* (No Comment) */
+"Failed to set new flow rate" = "未能设置新的进给率";
+
+/* (No Comment) */
+"Failed to upload file" = "上传文件失败";
+
+/* (No Comment) */
+"Failed turn power off" = "请求关闭电源失败";
+
+/* (No Comment) */
+"Failed turn power on" = "未能请求打开电源";
+
+/* No comment provided by engineer. */
+"File" = "文件";
+
+/* (No Comment) */
+"File currently being printed" = "目前正在打印的文件";
+
+/* (No Comment) */
+"File is being copied to SD Card" = "文件正在被复制到SD卡上";
+
+/* File Type is a Folder */
+"Folder" = "文件夹";
+
+/* No comment provided by engineer. */
+"Hostname (e.g. http://octopi.local)" = "主机名（例如：http://octopi.local）";
+
+/* (No Comment) */
+"hours ago" = "%d小时前";
+
+/* HTTP Request error info */
+"HTTP Request error" = "请求错误。HTTP响应。%d";
+
+/* Idle */
+"Idle" = "闲置";
+
+/* Include SD messages in the terminal */
+"Include SD" = "包括SD";
+
+/* Include temp messages in the terminal */
+"Include temp" = "包括临时性的";
+
+/* (No Comment) */
+"Incorrect API Key" = "不正确的API密钥";
+
+/* (No Comment) */
+"Incorrect authentication credentials" = "不正确的认证凭证";
+
+/* No comment provided by engineer. */
+"Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots" = "为OctoPrint安装OctoPod插件，以便立即接收带有相机快照的推送通知";
+
+/* No comment provided by engineer. */
+"Internal OctoEverywhere error" = "内部OctoEverywhere错误";
+
+/* URL of camera is invalid */
+"Invalid camera URL" = "无效的相机URL";
+
+/* (No Comment) */
+"Invalid file type" = "无效的文件类型";
+
+/* (No Comment) */
+"iOS Language" = "iOS语言";
+
+/* (No Comment) */
+"Job" = "工作";
+
+/* No comment provided by engineer. */
+"Layer" = "层数";
+
+/* gcode name */
+"Load filament" = "加载灯丝";
+
+/* (No Comment) */
+"Location no longer valid. Refresh files" = "位置不再有效。刷新文件";
+
+/* No comment provided by engineer. */
+"Log into OctoPrint to approve access request." = "登录OctoPrint以批准访问请求。";
+
+/* (No Comment) */
+"minutes ago" = "%d分钟前";
+
+/* No comment provided by engineer. */
+"Missed" = "错过了";
+
+/* (No Comment) */
+"MK3" = "MK3";
+
+/* (No Comment) */
+"MMU Requires User" = "MMU需要用户协助";
+
+/* File Type is a Model */
+"Model" = "模型";
+
+/* (No Comment) */
+"Move" = "移动";
+
+/* No comment provided by engineer. */
+"New Apple TV app is now available" = "新的苹果电视应用程序现已推出";
+
+/* No comment provided by engineer. */
+"Next" = "下一页";
+
+/* (No Comment) */
+"No" = "没有";
+
+/* No camera was found */
+"No camera" = "没有摄像头";
+
+/* (No Comment) */
+"No printer" = "没有打印机";
+
+/* No temperature history */
+"No temperature history" = "没有温度历史记录";
+
+/* (No Comment) */
+"Notify failed cancel job" = "请求取消工作失败";
+
+/* (No Comment) */
+"Notify failed pause job" = "请求暂停工作失败";
+
+/* (No Comment) */
+"Notify failed print job again" = "请求再次打印作业失败";
+
+/* (No Comment) */
+"Notify failed restart job" = "请求重新启动工作失败";
+
+/* (No Comment) */
+"Notify failed resume job" = "未能请求恢复工作";
+
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere:超过了网络摄像头的限制";
+
+/* No comment provided by engineer. */
+"OctoEverywhere's connection to OctoPrint timed out" = "OctoEverywhere与OctoPrint的连接超时了";
+
+/* English translation for words in Swift files */
+"OctoPrint" = "OctoPrint";
+
+/* Printer is Offline */
+"Offline" = "离线";
+
+/* No comment provided by engineer. */
+"Password" = "密码";
+
+/* No comment provided by engineer. */
+"Pause" = "暂停";
+
+/* Siri suggested phrase */
+"Pause current print job" = "暂停当前的打印工作在%@";
+
+/* (No Comment) */
+"Pause Job" = "暂停工作";
+
+/* (No Comment) */
+"Paused" = "暂停使用";
+
+/* gcode name */
+"PID Bed autotune" = "PID热床自动调整";
+
+/* gcode name */
+"PID Hotend autotune" = "PID热端自动调整";
+
+/* No comment provided by engineer. */
+"Ping History" = "平的历史";
+
+/* No comment provided by engineer. */
+"Pong History" = "乒乓历史";
+
+/* No comment provided by engineer. */
+"Print" = "打印";
+
+/* No comment provided by engineer. */
+"Print Again" = "再次打印";
+
+/* (No Comment) */
+"Print complete" = "打印完毕";
+
+/* No comment provided by engineer. */
+"Print Completion" = "打印完成";
+
+/* (No Comment) */
+"Print File" = "打印文件";
+
+/* No comment provided by engineer. */
+"Print Time" = "打印时间";
+
+/* No comment provided by engineer. */
+"Print Time Left" = "打印剩余时间";
+
+/* No comment provided by engineer. */
+"Printer" = "打印机";
+
+/* No comment provided by engineer. */
+"Printer is not connected to OctoEverywhere" = "打印机没有连接到OctoEverywhere";
+
+/* No comment provided by engineer. */
+"Printer Name (e.g. MK3)" = "打印机名称（例如：MK3";
+
+/* (No Comment) */
+"Printer not operational" = "打印机无法运行";
+
+/* No comment provided by engineer. */
+"Printers" = "打印机";
+
+/* (No Comment) */
+"Printing" = "印刷业";
+
+/* No comment provided by engineer. */
+"Progress" = "进展";
+
+/* (No Comment) */
+"Pull down to refresh" = "下拉刷新";
+
+/* No comment provided by engineer. */
+"Recreate printer in OctoEverywhere and OctoPod" = "在OctoEverywhere和OctoPod中重新创建打印机";
+
+/* Siri suggested phrase */
+"Remaining time current print job" = "剩余时间为%@";
+
+/* No comment provided by engineer. */
+"Reminders" = "提醒事项";
+
+/* No comment provided by engineer. */
+"Remove old OctoPod app from Apple Watch" = "从AppleWatch上删除旧的OctoPod应用程序";
+
+/* gcode name */
+"Report Settings" = "报告设置";
+
+/* (No Comment) */
+"Restart" = "重新启动";
+
+/* Siri suggested phrase */
+"Restart current print job" = "在%@上重新启动当前的打印作业";
+
+/* (No Comment) */
+"Restart Job" = "重新启动工作";
+
+/* No comment provided by engineer. */
+"Restore" = "恢复";
+
+/* gcode name */
+"Restore Settings" = "恢复设置";
+
+/* (No Comment) */
+"Resume" = "简历";
+
+/* Siri suggested phrase */
+"Resume current print job" = "在%@上恢复当前的打印作业";
+
+/* (No Comment) */
+"Resume Job" = "简历工作";
+
+/* No comment provided by engineer. */
+"Retrieving printers information" = "检索打印机信息";
+
+/* Execute Command */
+"Run" = "运转";
+
+/* gcode name */
+"Save Settings" = "保存设置";
+
+/* Origin is SD Card */
+"SD Card" = "SD卡";
+
+/* (No Comment) */
+"seconds ago" = "%d秒前";
+
+/* No comment provided by engineer. */
+"Select printer from OctoEverywhere." = "从OctoEverywhere选择打印机。";
+
+/* DNS resolution failed. Cannot resolve hostname */
+"Server cannot be found" = "找不到服务器";
+
+/* (No Comment) */
+"Service is down or incorrect port" = "服务中断或端口不正确";
+
+/* gcode name */
+"Set Bed PID" = "设置热床位PID";
+
+/* gcode name */
+"Set Hotend PID" = "设置热端PID";
+
+/* Share action */
+"Share" = "分享";
+
+/* Snooze notifications for 1 hour */
+"Snooze 1 hour" = "贪睡1小时";
+
+/* Snooze notifications for 8 hours */
+"Snooze 8 hours" = "贪睡8小时";
+
+/* SoC */
+"SoC" = "系统集成";
+
+/* SoC Temperature */
+"SoC Temperature" = "SoC温度";
+
+/* No comment provided by engineer. */
+"State" = "国家";
+
+/* Print time is being calculated */
+"Still stabilizing" = "仍在稳定中...";
+
+/* Suppress SD messages in the terminal */
+"Suppress SD" = "抑制SD";
+
+/* Suppress temp messages in the terminal */
+"Suppress temp" = "抑制温度";
+
+/* http://docs.octoprint.org/en/master/api/system.html */
+"System Commands" = "系统命令";
+
+/* Siri suggested phrase */
+"Take snapshot" = "拍摄快照";
+
+/* (No Comment) */
+"Target Bed" = "目标热床";
+
+/* No comment provided by engineer. */
+"Target Chamber" = "目标室";
+
+/* (No Comment) */
+"Target Extruder" = "靶材挤出机";
+
+/* (No Comment) */
+"Target Extruder 2" = "目标挤出机2";
+
+/* No comment provided by engineer. */
+"Target Extruder 3" = "目标挤出机3";
+
+/* No comment provided by engineer. */
+"Target Extruder 4" = "目标挤出机4";
+
+/* No comment provided by engineer. */
+"Target Extruder 5" = "目标挤出机5";
+
+/* (No Comment) */
+"Tasmota Plugs" = "Tasmota 插件";
+
+/* Temperature */
+"Temperature" = "温度";
+
+/* (No Comment) */
+"Terminal" = "终端";
+
+/* gcode name */
+"TMC Bump Sensitivity" = "TMC凹凸灵敏度";
+
+/* gcode name */
+"TMC Debugging" = "TMC调试";
+
+/* gcode name */
+"TMC Motor Current" = "TMC电机电流";
+
+/* (No Comment) */
+"TPLink Smartplugs" = "TPLink智能插头";
+
+/* (No Comment) */
+"Turn Off" = "关掉";
+
+/* Siri suggested phrase */
+"Turn off Enclosure switch" = "关闭外壳开关";
+
+/* Siri suggested phrase */
+"Turn off PSU" = "关掉PSU";
+
+/* (No Comment) */
+"Turn On" = "开启";
+
+/* Siri suggested phrase */
+"Turn on Enclosure switch" = "打开外壳开关";
+
+/* Siri suggested phrase */
+"Turn on PSU" = "开启PSU";
+
+/* ETA is Unknown
+   File Type is Unknown
+   Origin is Unknown */
+"Unknown" = "不详";
+
+/* Unknown Custom Control */
+"Unknown Control" = "未知控制";
+
+/* gcode name */
+"Unload filament" = "卸下耗材";
+
+/* Title for window that alerts user that updates for plugins are available */
+"Update Available" = "可更新";
+
+/* No comment provided by engineer. */
+"Update OctoPod plugin for OctoPrint to receive notifications at specified layers" = "更新OctoPrint的OctoPod插件，以便在指定层接收通知";
+
+/* (No Comment) */
+"Upload failed" = "上传失败";
+
+/* No comment provided by engineer. */
+"User declined or request timed out." = "用户拒绝或请求超时。";
+
+/* No comment provided by engineer. */
+"Username" = "帐号";
+
+/* Siri suggested phrase */
+"Warm up heated chamber" = "预热加热室";
+
+/* Siri suggested phrase */
+"Warm up printer bed" = "预热打印机床%@";
+
+/* Siri suggested phrase */
+"Warm up printer extruder" = "预热打印机挤出机%@";
+
+/* (No Comment) */
+"Warning" = "警告";
+
+/* (No Comment) */
+"weeks ago" = "%d周前";
+
+/* (No Comment) */
+"Wemo Switches" = "Wemo开关";
+
+/* (No Comment) */
+"Yes" = "是";
+

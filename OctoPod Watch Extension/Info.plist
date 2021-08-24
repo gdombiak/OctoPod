@@ -43,7 +43,7 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>WKAppBundleIdentifier</key>
-			<string>org.OctoPod.OctoPod.watchkitapp2</string>
+			<string>org.OctoPod.OctoPod.watchkitapp</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>

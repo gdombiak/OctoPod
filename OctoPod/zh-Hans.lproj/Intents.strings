@@ -1,0 +1,438 @@
+/* (No Comment) */
+"0vck5K" = "未能请求削减";
+
+/* (No Comment) */
+"0xUDAM" = "${printer}";
+
+/* (No Comment) */
+"1lbZOa" = "请求断开连接失败";
+
+/* (No Comment) */
+"1qMmy1" = "请求";
+
+/* (No Comment) */
+"2O3S2V" = "拍摄快照";
+
+/* (No Comment) */
+"2TreiD" = "设置挤出机温度为${temperature}。";
+
+/* (No Comment) */
+"2zYNqY" = "询问Paletteping的统计数据";
+
+/* (No Comment) */
+"3Butzw" = "获取剩余时间信息失败${temperature}";
+
+/* (No Comment) */
+"3cyBw6" = "要求Palette清除";
+
+/* (No Comment) */
+"3eH6cZ" = "获取剩余时间信息失败(${statusCode})";
+
+/* (No Comment) */
+"3JiZye" = "请求";
+
+/* (No Comment) */
+"4B08aG" = "关掉${label}";
+
+/* (No Comment) */
+"4OM8IX" = "${printer}";
+
+/* (No Comment) */
+"4Tu0Kl" = "请求执行命令失败";
+
+/* (No Comment) */
+"5btOXI" = "最后的变化";
+
+/* (No Comment) */
+"5i5htv" = "已连接";
+
+/* (No Comment) */
+"5iTPOd" = "${printer}";
+
+/* (No Comment) */
+"6b7Yce" = "要求Palette切割";
+
+/* (No Comment) */
+"6k5AFm" = "简历工作";
+
+/* (No Comment) */
+"6vtMLs" = "重新启动的工作";
+
+/* (No Comment) */
+"7c0KRL" = "命令来源";
+
+/* (No Comment) */
+"7eJPkN" = "配置试验室的温度";
+
+/* (No Comment) */
+"8cfoSa" = "请求清除失败";
+
+/* (No Comment) */
+"8rFt1u" = "要求Palette清除";
+
+/* (No Comment) */
+"8tTCjD" = "取消作业失败(${statusCode})";
+
+/* (No Comment) */
+"8uLpUQ" = "关掉PSU";
+
+/* (No Comment) */
+"8xHCbl" = "${printer}";
+
+/* (No Comment) */
+"9eejxB" = "询问Paletteping的统计数据";
+
+/* (No Comment) */
+"9iz6yx" = "${printer}";
+
+/* (No Comment) */
+"9PozHf" = "${printer}";
+
+/* (No Comment) */
+"662LyZ" = "重新启动工作";
+
+/* (No Comment) */
+"9107Xn" = "拍摄快照";
+
+/* (No Comment) */
+"a1UDyY" = "请求";
+
+/* (No Comment) */
+"ajupCt" = "相关信息";
+
+/* (No Comment) */
+"aTDQUI" = "打开外壳开关";
+
+/* (No Comment) */
+"AU4oMs" = "询问Paletteping的统计数据";
+
+/* (No Comment) */
+"AXm8go" = "${printer}";
+
+/* (No Comment) */
+"AzqFAh" = "请求";
+
+/* (No Comment) */
+"Big0yU" = "${printer}";
+
+/* (No Comment) */
+"bKwkw6" = "开启PSU";
+
+/* (No Comment) */
+"BUexSx" = "MaxVariation";
+
+/* (No Comment) */
+"bXGQKe" = "降温打印机";
+
+/* (No Comment) */
+"bXrJk0" = "命令行动";
+
+/* (No Comment) */
+"C1mTOm" = "${printer}";
+
+/* (No Comment) */
+"D0kBGr" = "重启运行中的打印作业";
+
+/* (No Comment) */
+"D1wWxd" = "断开Palette的连接";
+
+/* (No Comment) */
+"DKIuk9" = "执行系统命令";
+
+/* (No Comment) */
+"doj4NA" = "配置挤出机的温度";
+
+/* (No Comment) */
+"Eb3aa5" = "设置试验室温度失败(${statusCode})";
+
+/* (No Comment) */
+"Eeyifr" = "请求";
+
+/* (No Comment) */
+"eKSaMC" = "TurnOn${label}";
+
+/* (No Comment) */
+"f8xirF" = "降温打印机";
+
+/* (No Comment) */
+"FkSYZt" = "${printer}";
+
+/* (No Comment) */
+"fL3sow" = "暂停运行中的打印作业";
+
+/* (No Comment) */
+"FOlLOy" = "未要求提供信息";
+
+/* (No Comment) */
+"FZ3z7Z" = "设置热床的温度";
+
+/* (No Comment) */
+"G3JE6a" = "${printer}";
+
+/* (No Comment) */
+"g52Ub0" = "${printer}";
+
+/* (No Comment) */
+"Ge6TbJ" = "请求执行命令失败";
+
+/* (No Comment) */
+"gx0D0e" = "取消的工作";
+
+/* (No Comment) */
+"H21bkX" = "请求执行命令失败";
+
+/* (No Comment) */
+"hE6yXX" = "请求";
+
+/* (No Comment) */
+"hPlRC4" = "设置热床面温度为${temperature}";
+
+/* (No Comment) */
+"hUstyz" = "最后的变化是${lastVariation}，最大的变化是${maxVariation}";
+
+/* (No Comment) */
+"ihLqc7" = "暂停工作";
+
+/* (No Comment) */
+"IXiy0v" = "请求执行命令失败";
+
+/* (No Comment) */
+"jasUIn" = "与Palette断开连接";
+
+/* (No Comment) */
+"Jioukn" = "设置室内的温度";
+
+/* (No Comment) */
+"JmhfgL" = "重新启动正在运行的打印作业";
+
+/* (No Comment) */
+"JV2xQz" = "连接到Palette";
+
+/* (No Comment) */
+"Kf7e4Y" = "恢复运行的打印作业";
+
+/* (No Comment) */
+"kHMMRT" = "${printer}";
+
+/* (No Comment) */
+"KHvUZD" = "要求Palette切割";
+
+/* (No Comment) */
+"kSWyyv" = "${printer}";
+
+/* (No Comment) */
+"KUFtih" = "${printer}";
+
+/* (No Comment) */
+"KulRl5" = "打开外壳开关";
+
+/* (No Comment) */
+"KxJmrF" = "快照";
+
+/* (No Comment) */
+"L25OHl" = "请求连接失败";
+
+/* (No Comment) */
+"lOuQ7B" = "请求执行命令失败";
+
+/* (No Comment) */
+"lrRige" = "取消正在运行的打印作业";
+
+/* (No Comment) */
+"LVlPuT" = "取消正在运行的打印作业";
+
+/* (No Comment) */
+"m6XJpy" = "冷却打印机失败(${statusCode})";
+
+/* (No Comment) */
+"m9Jgmg" = "工作恢复";
+
+/* (No Comment) */
+"M58YA9" = "打印机";
+
+/* (No Comment) */
+"N0vzJv" = "要求Palette清除";
+
+/* (No Comment) */
+"N84M0s" = "要求Palette切割";
+
+/* (No Comment) */
+"NG7rBh" = "剩余时间";
+
+/* (No Comment) */
+"NL98zi" = "冷却热床身和挤出机";
+
+/* (No Comment) */
+"Oaidbo" = "请求执行命令失败";
+
+/* (No Comment) */
+"oe3uiM" = "执行系统命令${commandName}";
+
+/* (No Comment) */
+"OOldQi" = "命令名称";
+
+/* (No Comment) */
+"ovQf6Z" = "工作暂停了";
+
+/* (No Comment) */
+"P6usJW" = "拍摄快照";
+
+/* (No Comment) */
+"p9Vevg" = "请求执行命令失败";
+
+/* (No Comment) */
+"P89qJr" = "剩余时间为${time}";
+
+/* (No Comment) */
+"pfroH1" = "关掉PSU";
+
+/* (No Comment) */
+"Pj7mEV" = "冷却挤压机";
+
+/* (No Comment) */
+"PppyPP" = "配置热床的温度";
+
+/* (No Comment) */
+"q1Oynq" = "关闭PSU控制";
+
+/* (No Comment) */
+"qLzk1S" = "降温热床";
+
+/* (No Comment) */
+"QSxXHq" = "暂停运行中的打印作业";
+
+/* (No Comment) */
+"qwH2oF" = "关闭外壳开关";
+
+/* (No Comment) */
+"R5AlTe" = "与Palette断开连接";
+
+/* (No Comment) */
+"rFHPr4" = "${printer}";
+
+/* (No Comment) */
+"RgRXpP" = "${printer}";
+
+/* (No Comment) */
+"Rjw5oo" = "${printer}";
+
+/* (No Comment) */
+"rmKSv6" = "设置挤出机温度失败(${statusCode})";
+
+/* (No Comment) */
+"RrOrgy" = "取消作业";
+
+/* (No Comment) */
+"RxEUj3" = "温度";
+
+/* (No Comment) */
+"RyGRDF" = "连接到Palette";
+
+/* (No Comment) */
+"RYurC5" = "降温室";
+
+/* (No Comment) */
+"sDV9Jm" = "请求";
+
+/* (No Comment) */
+"SP4rN6" = "设置挤出机温度";
+
+/* (No Comment) */
+"SRDf6Q" = "挤出机的温度被设定为${temperature}";
+
+/* (No Comment) */
+"sRkyIL" = "重新启动作业失败(${statusCode})";
+
+/* (No Comment) */
+"SZLVG3" = "请求执行命令失败";
+
+/* (No Comment) */
+"TcPGnq" = "关闭外壳开关";
+
+/* (No Comment) */
+"tKDODp" = "剩余的打印时间";
+
+/* (No Comment) */
+"UC9Zrq" = "热床的温度被设定为${temperature}";
+
+/* (No Comment) */
+"ukcwkW" = "执行系统命令";
+
+/* (No Comment) */
+"uoT27A" = "设置热床温度失败(${statusCode})";
+
+/* (No Comment) */
+"Vc7DVt" = "设置挤出机${tool}温度为${temperature}";
+
+/* (No Comment) */
+"VDz0Q1" = "${printer}";
+
+/* (No Comment) */
+"VItjhS" = "断线";
+
+/* (No Comment) */
+"Vix5SL" = "请求执行命令失败";
+
+/* (No Comment) */
+"VKupAQ" = "请求";
+
+/* (No Comment) */
+"vL7cy4" = "${printer}";
+
+/* (No Comment) */
+"VlxGJX" = "${printer}";
+
+/* (No Comment) */
+"vmbpr4" = "连接到Palette";
+
+/* (No Comment) */
+"wabqoy" = "请求执行命令失败";
+
+/* (No Comment) */
+"WI2oQf" = "返回打印剩余时间";
+
+/* (No Comment) */
+"WLkRl0" = "恢复工作失败(${statusCode})";
+
+/* (No Comment) */
+"wp8czt" = "请求";
+
+/* (No Comment) */
+"wYzz4m" = "打印机正在降温";
+
+/* (No Comment) */
+"x8aCII" = "请求";
+
+/* (No Comment) */
+"XfWmGt" = "恢复运行的打印作业";
+
+/* (No Comment) */
+"Xk9F6S" = "开启PSU";
+
+/* (No Comment) */
+"xSARU0" = "暂停工作失败(${statusCode})";
+
+/* (No Comment) */
+"XUSWIb" = "PSU控制开启";
+
+/* (No Comment) */
+"YfmWYd" = "请求";
+
+/* (No Comment) */
+"YGxUII" = "${printer}";
+
+/* (No Comment) */
+"yMvnaP" = "打印机";
+
+/* (No Comment) */
+"YQLomX" = "请求";
+
+/* (No Comment) */
+"yZeSdz" = "${printer}";
+
+/* (No Comment) */
+"ZFUAR8" = "${printer}";
+
+/* (No Comment) */
+"zj1Vd9" = "设置室温为${temperature}";
+

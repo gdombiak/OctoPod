@@ -1,0 +1,57 @@
+/* HTTP authentication failed */
+"Authentication failed" = "认证失败";
+
+/* (No Comment) */
+"Confirm" = "确认";
+
+/* (No Comment) */
+"Connection failed" = "连接失败";
+
+/* (No Comment) */
+"Dismiss" = "解散";
+
+/* (No Comment) */
+"Do you want to cancel job?" = "你想取消这项工作吗？";
+
+/* No comment provided by engineer. */
+"Do you want to pause the job?" = "你想暂停工作吗？";
+
+/* Apple Watch cannot render HTTP Live Streaming feeds */
+"HLS not supported" = "不支持HLS";
+
+/* HTTP Request error info */
+"HTTP Request error" = "请求错误。HTTP响应。%d";
+
+/* (No Comment) */
+"Job" = "工作";
+
+/* No comment provided by engineer. */
+"Missed" = "错过了";
+
+/* No comment provided by engineer. */
+"MK3" = "MK3";
+
+/* (No Comment) */
+"No" = "没有";
+
+/* No printer has been selected */
+"No printer" = "没有打印机";
+
+/* (No Comment) */
+"Notify failed cancel job" = "请求取消工作失败";
+
+/* (No Comment) */
+"Notify failed pause job" = "请求暂停工作失败";
+
+/* (No Comment) */
+"Notify failed resume job" = "未能请求恢复工作";
+
+/* No comment provided by engineer. */
+"Printing" = "印刷业";
+
+/* ETA is Unknown */
+"Unknown" = "不详";
+
+/* (No Comment) */
+"Yes" = "是";
+

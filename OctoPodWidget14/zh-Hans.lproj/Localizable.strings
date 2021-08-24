@@ -1,0 +1,72 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"1 day ago" = "1天之前";
+
+/* No comment provided by engineer. */
+"1 hour ago" = "1小时前";
+
+/* No comment provided by engineer. */
+"1 minute ago" = "1分钟前";
+
+/* No comment provided by engineer. */
+"1 week ago" = "1周前";
+
+/* HTTP authentication failed */
+"Authentication failed" = "认证失败";
+
+/* No comment provided by engineer. */
+"Configure widget" = "配置小部件";
+
+/* No comment provided by engineer. */
+"Confirm" = "确认";
+
+/* No comment provided by engineer. */
+"Dashboard" = "仪表板";
+
+/* No comment provided by engineer. */
+"Dashboard for multiple printers" = "多台打印机的仪表板";
+
+/* No comment provided by engineer. */
+"days ago" = "天前";
+
+/* No comment provided by engineer. */
+"Dismiss" = "解散";
+
+/* No comment provided by engineer. */
+"hours ago" = "小时前";
+
+/* HTTP Request error info */
+"HTTP Request error" = "HTTP请求错误";
+
+/* No comment provided by engineer. */
+"minutes ago" = "分钟前";
+
+/* No comment provided by engineer. */
+"Missed" = "错过了";
+
+/* No comment provided by engineer. */
+"Monitor and control your 3d printer via OctoPod" = "通过OctoPod监控和控制你的3D打印机";
+
+/* No comment provided by engineer. */
+"No" = "无";
+
+/* No camera was configured */
+"No camera" = "没有摄像头";
+
+/* Error message from OctoEverywhere */
+"OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere:超过了网络摄像头的限制";
+
+/* No comment provided by engineer. */
+"seconds ago" = "秒前";
+
+/* ETA is Unknown */
+"Unknown" = "不详";
+
+/* No comment provided by engineer. */
+"weeks ago" = "周前";
+
+/* No comment provided by engineer. */
+"Yes" = "是";
+
