@@ -7,6 +7,7 @@ OctoPod wouldn't be where it is without the help of the following people. Thank 
 * Brett Delia (features and wiki)
 * Chris Warkocki (features and testing)
 * Christoph Stahl (features and testing)
+* clementatt / 零更酱 (translations)
 * Daniele Nicolucci (features and translations)
 * Heiko Schultz (translations)
 * Ihsan Topcu (translations)
