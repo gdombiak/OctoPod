@@ -143,7 +143,7 @@
 "8TL-hx-EDz.text" = "标签";
 
 /* Class = "UILabel"; text = "Bed"; ObjectID = "8U9-mV-fYc"; */
-"8U9-mV-fYc.text" = "床位";
+"8U9-mV-fYc.text" = "热床";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "9dR-Sn-lbP"; */
 "9dR-Sn-lbP.placeholder" = "密码";
@@ -158,7 +158,7 @@
 "48m-gj-F14.normalTitle" = "E";
 
 /* Class = "UILabel"; text = "Refresh enabled"; ObjectID = "53i-ST-HFr"; */
-"53i-ST-HFr.text" = "启用刷新功能";
+"53i-ST-HFr.text" = "启用终端自动滚屏功能";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "61C-mr-JBS"; */
 "61C-mr-JBS.text" = "标签";
@@ -305,7 +305,7 @@
 "e75-bh-dxQ.title" = "文件";
 
 /* Class = "UITableViewController"; title = "Support"; ObjectID = "ec8-jM-jJs"; */
-"ec8-jM-jJs.title" = "支撑";
+"ec8-jM-jJs.title" = "支持";
 
 /* Class = "UILabel"; text = "Chamber"; ObjectID = "eD3-xa-2Ah"; */
 "eD3-xa-2Ah.text" = "腔体";
@@ -416,7 +416,7 @@
 "h4l-mV-gFf.normalTitle" = "URL按钮";
 
 /* Class = "UILabel"; text = "Support"; ObjectID = "HbJ-Bb-EXQ"; */
-"HbJ-Bb-EXQ.text" = "支撑";
+"HbJ-Bb-EXQ.text" = "支持";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Hbt-Tj-ZZJ"; */
 "Hbt-Tj-ZZJ.text" = "标签";
@@ -497,7 +497,7 @@
 "ieu-aB-md8.text" = "标签";
 
 /* Class = "UIButton"; normalTitle = "Popular GCode Commands"; ObjectID = "Iuu-Fk-Mu7"; */
-"Iuu-Fk-Mu7.normalTitle" = "PopularGCode命令";
+"Iuu-Fk-Mu7.normalTitle" = "常用GCode命令";
 
 /* Class = "UITableViewSection"; headerTitle = "Move"; ObjectID = "iY8-Rh-TKn"; */
 "iY8-Rh-TKn.headerTitle" = "移动";
@@ -578,7 +578,7 @@
 "LBx-lc-96t.text" = "Siri集成";
 
 /* Class = "UILabel"; text = "Origin"; ObjectID = "lfT-wn-CXk"; */
-"lfT-wn-CXk.text" = "原点";
+"lfT-wn-CXk.text" = "来源";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "LJV-z6-SX8"; */
 "LJV-z6-SX8.text" = "标题";
@@ -1109,13 +1109,13 @@
 "Zhk-cN-7C9.text" = "标签";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "zij-F2-lS7"; */
-"zij-F2-lS7.text" = "";
+"zij-F2-lS7.text" = "/";
 
 /* Class = "UILabel"; text = "Upload to OctoPrint"; ObjectID = "Ziq-bR-QIe"; */
 "Ziq-bR-QIe.text" = "上传至OctoPrint";
 
 /* Class = "UITabBarItem"; title = "Panel"; ObjectID = "zqn-zS-suB"; */
-"zqn-zS-suB.title" = "小组";
+"zqn-zS-suB.title" = "面板";
 
 /* Class = "UIButton"; normalTitle = "Siri Integration"; ObjectID = "zRw-xu-lEf"; */
 "zRw-xu-lEf.normalTitle" = "Siri集成";
@@ -1127,5 +1127,5 @@
 "zVf-Zx-3g4.text" = "在iOS设备之间同步打印机";
 
 /* Class = "UILabel"; text = "Offset"; ObjectID = "zws-KA-eU1"; */
-"zws-KA-eU1.text" = "Offset";
+"zws-KA-eU1.text" = "偏移";
 

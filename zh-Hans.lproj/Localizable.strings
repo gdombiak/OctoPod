@@ -62,13 +62,13 @@
 "Bad Certificate or SSL Problem" = "坏证书或SSL问题";
 
 /* No comment provided by engineer. */
-"Bed" = "热床位";
+"Bed" = "热床";
 
 /* (No Comment) */
 "Bed cooled" = "打印机热床低于规定的温度阈值";
 
 /* No comment provided by engineer. */
-"Bed Variance" = "热床位差异";
+"Bed Variance" = "热床温度差";
 
 /* (No Comment) */
 "Bed warmed" = "打印机热床被加热到指定的温度和时间";
@@ -236,7 +236,7 @@
 "Extruder" = "挤出机";
 
 /* No comment provided by engineer. */
-"Extruder Variance" = "挤出机差异";
+"Extruder Variance" = "挤出机温度差";
 
 /* No comment provided by engineer. */
 "Failed to add new layer notification" = "添加新层通知失败";
@@ -389,10 +389,10 @@
 "Idle" = "闲置";
 
 /* Include SD messages in the terminal */
-"Include SD" = "包括SD";
+"Include SD" = "显示SD卡消息";
 
 /* Include temp messages in the terminal */
-"Include temp" = "包括临时性的";
+"Include temp" = "显示温度消息";
 
 /* (No Comment) */
 "Incorrect API Key" = "不正确的API密钥";
@@ -509,10 +509,10 @@
 "Paused" = "暂停使用";
 
 /* gcode name */
-"PID Bed autotune" = "PID热床自动调整";
+"PID Bed autotune" = "热床PID自动调整";
 
 /* gcode name */
-"PID Hotend autotune" = "PID热端自动调整";
+"PID Hotend autotune" = "喷头PID自动调整";
 
 /* No comment provided by engineer. */
 "Ping History" = "平的历史";
@@ -629,10 +629,10 @@
 "Service is down or incorrect port" = "服务中断或端口不正确";
 
 /* gcode name */
-"Set Bed PID" = "设置热床位PID";
+"Set Bed PID" = "设置热床PID";
 
 /* gcode name */
-"Set Hotend PID" = "设置热端PID";
+"Set Hotend PID" = "设置喷头PID";
 
 /* Share action */
 "Share" = "分享";
@@ -656,10 +656,10 @@
 "Still stabilizing" = "仍在稳定中...";
 
 /* Suppress SD messages in the terminal */
-"Suppress SD" = "抑制SD";
+"Suppress SD" = "不显示SD卡状态消息";
 
 /* Suppress temp messages in the terminal */
-"Suppress temp" = "抑制温度";
+"Suppress temp" = "不显示温度状态消息";
 
 /* http://docs.octoprint.org/en/master/api/system.html */
 "System Commands" = "系统命令";
@@ -671,22 +671,22 @@
 "Target Bed" = "目标热床";
 
 /* No comment provided by engineer. */
-"Target Chamber" = "目标室";
+"Target Chamber" = "目标加热腔";
 
 /* (No Comment) */
-"Target Extruder" = "靶材挤出机";
+"Target Extruder" = "挤出机目标温度";
 
 /* (No Comment) */
-"Target Extruder 2" = "目标挤出机2";
+"Target Extruder 2" = "挤出机目标温度2";
 
 /* No comment provided by engineer. */
-"Target Extruder 3" = "目标挤出机3";
+"Target Extruder 3" = "挤出机目标温度3";
 
 /* No comment provided by engineer. */
-"Target Extruder 4" = "目标挤出机4";
+"Target Extruder 4" = "挤出机目标温度4";
 
 /* No comment provided by engineer. */
-"Target Extruder 5" = "目标挤出机5";
+"Target Extruder 5" = "挤出机目标温度5";
 
 /* (No Comment) */
 "Tasmota Plugs" = "Tasmota 插件";
@@ -701,7 +701,7 @@
 "TMC Bump Sensitivity" = "TMC凹凸灵敏度";
 
 /* gcode name */
-"TMC Debugging" = "TMC调试";
+"TMC Debugging" = "TMC设置";
 
 /* gcode name */
 "TMC Motor Current" = "TMC电机电流";
