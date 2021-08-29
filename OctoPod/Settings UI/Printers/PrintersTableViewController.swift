@@ -12,6 +12,8 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var reorderButton: UIButton!
     
+    private var lockedAddButton: UIBarButtonItem!
+
     var printers: [Printer]!
 
     private var myReorderImage: UIImage? = nil
@@ -21,6 +23,9 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
 
         // Remember current theme so we know when to repaint
         currentTheme = Theme.currentTheme()
+
+        lockedAddButton = UIBarButtonItem(image: UIImage(named: "AppLocked"), style: .plain, target: nil, action: nil)
+        lockedAddButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +51,11 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
         tableView.isEditing = false
         
         reorderButton.isEnabled = !appConfiguration.appLocked()
+
+        if appConfiguration.appLocked() {
+            // Cannot save printer info if app is locked(read-only mode)
+            navigationItem.rightBarButtonItem = lockedAddButton
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

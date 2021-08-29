@@ -25,9 +25,13 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
     @IBOutlet weak var shareQRCodeButton: UIButton!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    private var lockedSaveButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        lockedSaveButton = UIBarButtonItem(image: UIImage(named: "AppLocked"), style: .plain, target: nil, action: nil)
+        lockedSaveButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +64,13 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
 
         // Listen to events when printers get updated from iCloud information
         cloudKitPrinterManager.delegates.append(self)
+        
+        if appConfiguration.appLocked() {
+            // Cannot save printer info if app is locked(read-only mode)
+            navigationItem.rightBarButtonItem = lockedSaveButton
+        } else {
+            navigationItem.rightBarButtonItem = saveButton
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -231,8 +242,6 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
     
     fileprivate func updateSaveButton() {
         if appConfiguration.appLocked() {
-            // Cannot save printer info if app is locked(read-only mode)
-            saveButton.isEnabled = false
             return
         }
         if !(printerNameField.text?.isEmpty)! && !(hostnameField.text?.isEmpty)! && !(apiKeyField.text?.isEmpty)! {
