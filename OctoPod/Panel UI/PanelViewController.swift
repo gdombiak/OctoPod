@@ -735,7 +735,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     fileprivate func showCameraGridButton() -> Bool {
         // Show camera grid button only if printer has many cameras
-        if let printer = printerManager.getDefaultPrinter(), let cameras = printer.getMultiCameras(), cameras.count > 1 {
+        if let printer = printerManager.getDefaultPrinter(), let cameras = printer.getMultiCameras(), cameras.count > 1 && !printer.hideCamera {
             // Hide button when in landscape. Always show when using iPad
             return !UIDevice.current.orientation.isLandscape || UIDevice.current.userInterfaceIdiom == .pad
         }
