@@ -8,6 +8,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
+    @IBOutlet weak var topCameraLabel: UILabel!
     @IBOutlet weak var printTimeLeftLabel: UILabel!
     @IBOutlet weak var tool0ActualLabel: UILabel!
     @IBOutlet weak var bedActualLabel: UILabel!
@@ -18,12 +19,16 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     @IBOutlet weak var tapMessageLabel: UILabel!
     @IBOutlet weak var pinchMessageLabel: UILabel!
     
+    var printerURL: String? // URL to core data printer object. Only when not displaying default printer
+    var cameraLabel: String?
     var cameraURL: String!
     var cameraOrientation: UIImage.Orientation!
     
-    var cameraTappedCallback: (() -> Void)?
+    var cameraTappedCallback: ((CameraEmbeddedViewController) -> Void)?
     var cameraViewDelegate: CameraViewDelegate?
     var cameraIndex: Int!
+    var cameraRatio: CGFloat?
+    var muteVideo = false
 
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
     
@@ -143,7 +148,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         userUsedGestures()
         
         if let callback = cameraTappedCallback {
-            callback()
+            callback(self)
         }
     }
 
@@ -181,7 +186,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         errorMessageLabel.isHidden = true
         errorURLButton.isHidden = true
         
-        if let printer = printerManager.getDefaultPrinter() {
+        if let printer = targetPrinter() {
             
             setCameraOrientation(newOrientation: cameraOrientation)
 
@@ -209,6 +214,16 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     fileprivate func userUsedGestures() {
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: CameraEmbeddedViewController.CAMERA_INFO_GESTURES)
+    }
+    
+    fileprivate func targetPrinter() -> Printer? {
+        // If there is a target printer then display this printer
+        if let url = self.printerURL, let idURL = URL(string: url) {
+            return printerManager.getPrinterByObjectURL(url: idURL)
+        } else {
+            // Use default printer if not
+            return printerManager.getDefaultPrinter()
+        }
     }
 
     @objc func appWillEnterForeground() {

@@ -57,7 +57,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         trackChildrenControllers()
         
         // Add a gesture recognizer to camera view so we can handle taps
-        camerasViewController?.embeddedCameraTappedCallback = {() in
+        camerasViewController?.embeddedCameraTappedCallback = {(CameraEmbeddedViewController) in
             self.handleEmbeddedCameraTap()
         }
         

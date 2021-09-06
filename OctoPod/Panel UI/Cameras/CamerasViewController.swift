@@ -8,7 +8,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
 
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
-    var embeddedCameraTappedCallback: (() -> Void)?
+    var embeddedCameraTappedCallback: ((CameraEmbeddedViewController) -> Void)?
     var embeddedCameraDelegate: CameraViewDelegate?
     
     private var displayPrintStatus: Bool?

@@ -110,6 +110,9 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
         // Create AVPlayer object
         player = AVPlayer(playerItem: playerItem)
         
+        // Mute video if requested
+        player?.isMuted = muteVideo
+        
         // Add player to AVPlayerLayer
         let castedLayer = playerView.layer as! AVPlayerLayer
         castedLayer.player = player
