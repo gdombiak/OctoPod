@@ -52,24 +52,16 @@ class CamerasGridViewController: UICollectionViewController, UICollectionViewDel
     
     /// Calculate height based on width that changes per orientation and device. This method is also called when rotating device
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {        
-        if let printer = printerManager.getDefaultPrinter() {
-            let ratio: CGFloat
-            if let camera = printer.getMultiCameras()?[safeIndex: indexPath.row] {
-                ratio = camera.streamRatio == "16:9" ? CGFloat(0.5625) : CGFloat(0.75)
-            } else {
-                ratio = printer.firstCameraAspectRatio16_9 ? CGFloat(0.5625) : CGFloat(0.75)
-            }
-            let width: CGFloat
-            if UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown {
-                // iPhone in vertical position
-                width = collectionView.frame.width
-            } else {
-                // iPhone in horizontal position
-                width = collectionView.frame.width / 2 - 10 // Substract for spacing
-            }
-            return CGSize(width: width, height: width * ratio)
+        let ratio = cameraEmbeddedViewControllers[indexPath.row].cameraRatio!
+        let width: CGFloat
+        if UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown {
+            // iPhone in vertical position
+            width = collectionView.frame.width
+        } else {
+            // iPhone in horizontal position
+            width = collectionView.frame.width / 2 - 10 // Substract for spacing
         }
-        return UICollectionViewFlowLayout.automaticSize
+        return CGSize(width: width, height: width * ratio)
     }
     
     /// MARK: Private functions
@@ -83,6 +75,7 @@ class CamerasGridViewController: UICollectionViewController, UICollectionViewDel
                     var cameraOrientation: UIImage.Orientation
                     var cameraURL: String
                     let url = multiCamera.cameraURL
+                    let ratio = multiCamera.streamRatio == "16:9" ? CGFloat(0.5625) : CGFloat(0.75)
 
                     if url == printer.getStreamPath() {
                         // This is camera hosted by OctoPrint so respect orientation
@@ -100,7 +93,7 @@ class CamerasGridViewController: UICollectionViewController, UICollectionViewDel
                         cameraOrientation = UIImage.Orientation(rawValue: Int(multiCamera.cameraOrientation))!
                     }
                     
-                    cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(index: index, url: cameraURL, cameraOrientation: cameraOrientation))
+                    cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(index: index, cameraRatio: ratio, url: cameraURL, cameraOrientation: cameraOrientation))
                     index = index + 1
                 }
             }
@@ -108,7 +101,8 @@ class CamerasGridViewController: UICollectionViewController, UICollectionViewDel
                 // MultiCam plugin is not installed so just show default camera
                 let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
                 let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
-                cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(index: 0, url: cameraURL, cameraOrientation: cameraOrientation))
+                let ratio = printer.firstCameraAspectRatio16_9 ? CGFloat(0.5625) : CGFloat(0.75)
+                cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(index: 0, cameraRatio: ratio, url: cameraURL, cameraOrientation: cameraOrientation))
             }
         }
     }
@@ -120,7 +114,7 @@ class CamerasGridViewController: UICollectionViewController, UICollectionViewDel
         cameraEmbeddedViewControllers.removeAll()
     }
     
-    fileprivate func newEmbeddedCameraViewController(index: Int, url: String, cameraOrientation: UIImage.Orientation) -> CameraEmbeddedViewController {
+    fileprivate func newEmbeddedCameraViewController(index: Int, cameraRatio: CGFloat, url: String, cameraOrientation: UIImage.Orientation) -> CameraEmbeddedViewController {
         var controller: CameraEmbeddedViewController
         let useHLS = CameraUtils.shared.isHLS(url: url)
         // Let's create a new one. Use one for HLS and another one for MJPEG
@@ -131,7 +125,9 @@ class CamerasGridViewController: UICollectionViewController, UICollectionViewDel
         controller.cameraTappedCallback = nil // Tap will be handled as cell selected
         controller.cameraViewDelegate = nil
         controller.cameraIndex = index
+        controller.cameraRatio = cameraRatio
         controller.camerasViewController = nil
+        controller.muteVideo = true
         return controller
     }
 }
