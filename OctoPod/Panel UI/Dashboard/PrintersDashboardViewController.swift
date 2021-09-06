@@ -60,8 +60,9 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
     
     @IBAction func toggleCameraOrPanel(_ sender: Any) {
         displayCameras = !displayCameras
-        self.collectionView.reloadData()
         self.updateButtonIcon()
+        // Refresh table using reloadSections since reloadData() sometimes does not work due to an iOS bug?
+        self.collectionView.reloadSections(IndexSet(integer: 0))
     }
     
     // MARK: UICollectionViewDataSource
@@ -116,12 +117,17 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         if displayCameras {
             let ratio = cameraEmbeddedViewControllers[indexPath.row].cameraRatio!
             let width: CGFloat
-            if UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown {
-                // iPhone in vertical position
-                width = collectionView.frame.width - 20
-            } else {
-                // iPhone in horizontal position
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                // iPad has a lot of space so always fit 2 cameras per row
                 width = collectionView.frame.width / 2 - 15 // Substract for spacing
+            } else {
+                if UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown {
+                    // iPhone in vertical position
+                    width = collectionView.frame.width - 20
+                } else {
+                    // iPhone in horizontal position
+                    width = collectionView.frame.width / 2 - 15 // Substract for spacing
+                }
             }
             return CGSize(width: width, height: width * ratio)
         } else {
@@ -200,34 +206,6 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
     
     fileprivate func addEmbeddedCameraViewControllers() {
         for printer in printerManager.getPrinters() {
-//            if let cameras = printer.getMultiCameras(), cameras.count > 1 {
-//                // MultiCam plugin is installed so show all cameras
-//                let multiCamera = cameras[1]
-//                var cameraOrientation: UIImage.Orientation
-//                var cameraURL: String
-//                let url = multiCamera.cameraURL
-//                let ratio = multiCamera.streamRatio == "16:9" ? CGFloat(0.5625) : CGFloat(0.75)
-//
-//                if url == printer.getStreamPath() {
-//                    // This is camera hosted by OctoPrint so respect orientation
-//                    cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
-//                    cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
-//                } else {
-//                    if url.starts(with: "/") {
-//                        // Another camera hosted by OctoPrint so build absolute URL
-//                        cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
-//                    } else {
-//                        // Use absolute URL to render camera
-//                        cameraURL = url
-//                    }
-//                    // Respect orientation defined by MultiCamera plugin
-//                    cameraOrientation = UIImage.Orientation(rawValue: Int(multiCamera.cameraOrientation))!
-//                }
-//
-//                cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(index: 0, label: printer.name, cameraRatio: ratio, url: cameraURL, cameraOrientation: cameraOrientation))
-//            }
-
-
             if printer.includeInDashboard && !printer.hideCamera {
                 // MultiCam plugin is not installed so just show default camera
                 let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
