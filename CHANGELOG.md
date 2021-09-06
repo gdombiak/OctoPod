@@ -1,23 +1,81 @@
 # Change Log
 
+## [3.13](https://github.com/gdombiak/OctoPod/tree/3.13) (2021-09-06)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.12...3.13)
+
+
+**Implemented enhancements:**
+
+- Mute HLS video when display printer cameras in grid [\#512](https://github.com/gdombiak/OctoPod/issues/512)
+- Cant add or update printer - save button greyed out and disabled - Display icon/text when app is locked [\#357](https://github.com/gdombiak/OctoPod/issues/357)
+- iOS app - Show camera in dashboard of printers [\#303](https://github.com/gdombiak/OctoPod/issues/303)
+
+**Fixed bugs:**
+
+- Hide camera grid button when printer wants to hide camera [\#511](https://github.com/gdombiak/OctoPod/issues/511)
+
+**Closed issues:**
+
+- Connection Failed: Service is down or incorrect port [\#487](https://github.com/gdombiak/OctoPod/issues/487)
+- I am not able to delete printers from the app. Can not add printers from outside local sources. [\#482](https://github.com/gdombiak/OctoPod/issues/482)
+- not able to delete printers or add printers from outside local sources [\#510](https://github.com/gdombiak/OctoPod/issues/510)
+- Bug, dashboard [\#424](https://github.com/gdombiak/OctoPod/issues/424)
+
+## [3.12](https://github.com/gdombiak/OctoPod/tree/3.12) (2021-08-25)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.11...3.12)
+
+**Implemented enhancements:**
+
+- Add "Print Finished" to shortcuts [\#464](https://github.com/gdombiak/OctoPod/issues/464)
+- Chinese simplified（简体中文）Translation [\#508](https://github.com/gdombiak/OctoPod/issues/508)
+- Allow for QR code or NFC tag to select current printer [\#501](https://github.com/gdombiak/OctoPod/issues/501)
+- Add support for OctoEverywhere [\#498](https://github.com/gdombiak/OctoPod/issues/498)
+- Add support for Application Keys [\#496](https://github.com/gdombiak/OctoPod/issues/496)
+- Feature Request - Grid View of Cameras [\#495](https://github.com/gdombiak/OctoPod/issues/495)
+- Enclosure Temp Control - Enclosure Plugin [\#491](https://github.com/gdombiak/OctoPod/issues/491)
+- Feature request - Receive image from camera with shortcut [\#489](https://github.com/gdombiak/OctoPod/issues/489)
+- Allow printer selection by swiping from ALL pages [\#443](https://github.com/gdombiak/OctoPod/issues/443)
+
+**Fixed bugs:**
+
+- LabelAndFieldViewCell class missing from files, but referenced in code. [\#504](https://github.com/gdombiak/OctoPod/issues/504)
+- Can‘t Connect; Invalid URL [\#502](https://github.com/gdombiak/OctoPod/issues/502)
+- Placeholder text in entry fields not visible when using dark themes [\#497](https://github.com/gdombiak/OctoPod/issues/497)
+- Printer dashboard scroll bug [\#481](https://github.com/gdombiak/OctoPod/issues/481)
+- Camera feed fails to update live when launching app from widget [\#474](https://github.com/gdombiak/OctoPod/issues/474)
+- Preset temperatures not refreshed from OctoPrint when there is only 1 preset [\#470](https://github.com/gdombiak/OctoPod/issues/470)
+
+**Closed issues:**
+
+- Display Orange Pi temperature [\#505](https://github.com/gdombiak/OctoPod/issues/505)
+- Enclosure temperature/humidity not showing [\#503](https://github.com/gdombiak/OctoPod/issues/503)
+- Camera feed frozen when app is opened by clicking the widget [\#494](https://github.com/gdombiak/OctoPod/issues/494)
+- Layer height is missing [\#479](https://github.com/gdombiak/OctoPod/issues/479)
+- No camera feed on widget and Watch App [\#417](https://github.com/gdombiak/OctoPod/issues/417)
+
+**Merged pull requests:**
+
+- Now compiles and runs on Xcode 13 and iOS 15. [\#507](https://github.com/gdombiak/OctoPod/pull/507) ([00ihsan](https://github.com/00ihsan))
+- added nl language pack, inplemented in app. [\#326](https://github.com/gdombiak/OctoPod/pull/326) ([00ihsan](https://github.com/00ihsan))
+
 ## [3.11](https://github.com/gdombiak/OctoPod/tree/3.11) (2021-02-11)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.10...3.11)
 
 **Implemented enhancements:**
 
+- Confirmation dialogs for pause, print and resume follows iOS configuration [\#455](https://github.com/gdombiak/OctoPod/issues/455)
+- Add confirmation dialog to pause and resume [\#454](https://github.com/gdombiak/OctoPod/issues/454)
+- Auto-lock job buttons based on iOS configuration [\#420](https://github.com/gdombiak/OctoPod/issues/420)
 - Buttons in Move Panel should only be enabled when not printing [\#462](https://github.com/gdombiak/OctoPod/issues/462)
 - Save the "Suppress temp/SD" state between sessions [\#460](https://github.com/gdombiak/OctoPod/issues/460)
 - Enhancement: Search in file list [\#459](https://github.com/gdombiak/OctoPod/issues/459)
 - Settings are now shared between iOS and Apple TV devices [\#456](https://github.com/gdombiak/OctoPod/issues/456)
-- Confirmation dialogs for pause, print and resume follows iOS configuration [\#455](https://github.com/gdombiak/OctoPod/issues/455)
-- Add confirmation dialog to pause and resume [\#454](https://github.com/gdombiak/OctoPod/issues/454)
 - Prompt confirmation to start, pause or resume printing [\#452](https://github.com/gdombiak/OctoPod/issues/452)
 - BL Touch Commands in Octopod [\#451](https://github.com/gdombiak/OctoPod/issues/451)
 - Display RPi temperature [\#442](https://github.com/gdombiak/OctoPod/issues/442)
 - Add social sharing from the app [\#436](https://github.com/gdombiak/OctoPod/issues/436)
 - PSUControl with sirishortcut ? [\#432](https://github.com/gdombiak/OctoPod/issues/432)
 - Confirmation in file delete [\#428](https://github.com/gdombiak/OctoPod/issues/428)
-- Auto-lock job buttons based on iOS configuration [\#420](https://github.com/gdombiak/OctoPod/issues/420)
 - Manage Timelapses Feature Request [\#323](https://github.com/gdombiak/OctoPod/issues/323)
 
 **Fixed bugs:**
@@ -75,10 +133,6 @@
 - iOS 14 Widgets Open to Last State [\#402](https://github.com/gdombiak/OctoPod/issues/402)
 - Add Widget Url to medium Widget \#402 [\#403](https://github.com/gdombiak/OctoPod/pull/403) ([Willmac16](https://github.com/Willmac16))
 
-**Closed issues:**
-
-- iPad iOS 14 Can’t add new printer on latest build [\#390](https://github.com/gdombiak/OctoPod/issues/390)
-
 ## [3.8](https://github.com/gdombiak/OctoPod/tree/3.8) (2020-11-01)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.7...3.8)
 
@@ -99,6 +153,7 @@
 **Closed issues:**
 
 - Layer Notifications [\#399](https://github.com/gdombiak/OctoPod/issues/399)
+- iPad iOS 14 Can’t add new printer on latest build [\#390](https://github.com/gdombiak/OctoPod/issues/390)
 - Siri suggestions not showing up in settings [\#384](https://github.com/gdombiak/OctoPod/issues/384)
 
 ## [3.7](https://github.com/gdombiak/OctoPod/tree/3.7) (2020-10-12)
