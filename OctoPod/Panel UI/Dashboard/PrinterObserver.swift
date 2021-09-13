@@ -15,6 +15,7 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
     var printTime: String = "--"
     var printTimeLeft: String = "--"
     var printCompletion: String = "--"
+    var jobFile: String?
     var layer: String?
     
     init(printersDashboardViewController: PrintersDashboardViewController, row: Int) {
@@ -83,7 +84,7 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
         }
 
         if let seconds = event.progressPrintTimeLeft {
-            let newTimeLeft = UIUtils.secondsToTimeLeft(seconds: seconds, includesApproximationPhrase: false, ifZero: "")
+            let newTimeLeft = UIUtils.secondsToTimeLeft(seconds: seconds, includesApproximationPhrase: false, ifZero: "--")
             if newTimeLeft != printTimeLeft {
                 self.printTimeLeft = newTimeLeft
                 changed = true
@@ -102,8 +103,15 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
             }
         }
         
+        if let file = event.printFile, let fileName = file.name {
+            if fileName != self.jobFile {
+                self.jobFile = fileName
+                changed = true
+            }
+        }
+        
         if changed {
-            printersDashboardViewController.refreshItem(row: row)
+            printersDashboardViewController.refreshItem(row: row, printerObserver: self)
         }
     }
        
@@ -115,7 +123,7 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
                 let newLayer = "\(currentLayer) / \(totalLayer)"
                 if newLayer != layer {
                     self.layer = newLayer
-                    printersDashboardViewController.refreshItem(row: row)
+                    printersDashboardViewController.refreshItem(row: row, printerObserver: self)
                 }
             }
         }

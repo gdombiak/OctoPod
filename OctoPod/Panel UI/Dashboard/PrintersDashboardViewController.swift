@@ -77,8 +77,13 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if displayCameras {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cameraReuseIdentifier, for: indexPath) as! CameraGridViewCell
-        
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cameraReuseIdentifier, for: indexPath) as! PrintersCameraGridViewCell
+
+            // Set constraints for video view before adding video. This will let cell have correct size
+            let size = videoViewSize(indexPath.row, collectionView)
+            cell.cameraPlaceholderViewWidthAnchor.constant = size.width
+            cell.cameraPlaceholderViewHeightAnchor.constant = size.height
+
             // Add embedded VC as a child view and use the view of the embedded VC as the view of the cell
             let embeddedVC = cameraEmbeddedViewControllers[indexPath.row]
             self.addChild(embeddedVC)
@@ -90,7 +95,10 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
             } else {
                 embeddedVC.topCameraLabel.isHidden = true
             }
-
+            if let printerObserver = printers[safeIndex: embeddedVC.cameraIndex] {
+                updateVideoCellInfo(cell, printerObserver)
+            }
+            
             return cell
 
         } else {
@@ -115,21 +123,7 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if displayCameras {
-            let ratio = cameraEmbeddedViewControllers[indexPath.row].cameraRatio!
-            let width: CGFloat
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                // iPad has a lot of space so always fit 2 cameras per row
-                width = collectionView.frame.width / 2 - 15 // Substract for spacing
-            } else {
-                if UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown {
-                    // iPhone in vertical position
-                    width = collectionView.frame.width - 20
-                } else {
-                    // iPhone in horizontal position
-                    width = collectionView.frame.width / 2 - 15 // Substract for spacing
-                }
-            }
-            return CGSize(width: width, height: width * ratio)
+            return videoCellSize(indexPath.row, collectionView)
         } else {
             let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
             let portraitWidth = devicePortrait ? UIScreen.main.bounds.width : UIScreen.main.bounds.height
@@ -152,12 +146,19 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if !displayCameras {
-            let theme = Theme.currentTheme()
-            let textColor = theme.textColor()
-            let labelColor = theme.labelColor()
-            
-            cell.backgroundColor = theme.cellBackgroundColor()
+        let theme = Theme.currentTheme()
+        let textColor = theme.textColor()
+        let labelColor = theme.labelColor()
+        cell.backgroundColor = theme.cellBackgroundColor()
+
+        if displayCameras {
+            if let cell = cell as? PrintersCameraGridViewCell {
+                cell.cameraPlaceholderView.backgroundColor = theme.cellBackgroundColor()
+                cell.filenameLabel.textColor = textColor
+                cell.progressLabel.textColor = textColor
+                cell.etaLabel.textColor = textColor
+            }
+        } else {
             if let cell = cell as? PrinterViewCell {
                 cell.printerLabel?.textColor = textColor
                 cell.printedTextLabel?.textColor = labelColor
@@ -179,12 +180,20 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         
     // MARK: Connection notifications
     
-    func refreshItem(row: Int) {
-        if !displayCameras {
+    func refreshItem(row: Int, printerObserver: PrinterObserver) {
+        let indexPath: IndexPath = IndexPath(row: row, section: 0)
+        if displayCameras {
+            DispatchQueue.main.async {
+                // Check that list of printers is still in sync with what is being displayed
+                if let cell = self.collectionView.cellForItem(at: indexPath) as? PrintersCameraGridViewCell {
+                    self.updateVideoCellInfo(cell, printerObserver)
+                }
+            }
+        } else {
             DispatchQueue.main.async {
                 // Check that list of printers is still in sync with what is being displayed
                 if self.printers.count > row {
-                    self.collectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
+                    self.collectionView.reloadItems(at: [indexPath])
                 }
             }
         }
@@ -204,15 +213,54 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         self.toggleDisplayButton.setImage(image, for: .normal)
     }
     
+    fileprivate func videoCellSize(_ row: Int, _ collectionView: UICollectionView) -> CGSize {
+        let videoSize = videoViewSize(row, collectionView)
+        let cellHeight = videoSize.height + 14.5 + 2 + 24
+        return CGSize(width: videoSize.width, height: cellHeight)
+    }
+    
+    fileprivate func videoViewSize(_ row: Int, _ collectionView: UICollectionView) -> CGSize {
+        let ratio = cameraEmbeddedViewControllers[row].cameraRatio!
+        let width: CGFloat
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            // iPad has a lot of space so always fit 2 cameras per row
+            width = collectionView.frame.width / 2 - 15 // Substract for spacing
+        } else {
+            if UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown {
+                // iPhone in vertical position
+                width = collectionView.frame.width - 20
+            } else {
+                // iPhone in horizontal position
+                width = collectionView.frame.width / 2 - 15 // Substract for spacing
+            }
+        }
+        let videoHeight = width * ratio
+        return CGSize(width: width, height: videoHeight)
+    }
+    
+    fileprivate func updateVideoCellInfo(_ cell: PrintersCameraGridViewCell, _ printerObserver: PrinterObserver) {
+        cell.progressLabel.text = printerObserver.progress
+        cell.etaLabel.text = printerObserver.printTimeLeft
+        if let filename = printerObserver.jobFile {
+            cell.filenameLabel.text = filename
+        } else {
+            cell.filenameLabel.text = ""
+        }
+    }
+    
     fileprivate func addEmbeddedCameraViewControllers() {
+        var printerIndex = 0
         for printer in printerManager.getPrinters() {
-            if printer.includeInDashboard && !printer.hideCamera {
-                // MultiCam plugin is not installed so just show default camera
-                let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
-                let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
-                let ratio = printer.firstCameraAspectRatio16_9 ? CGFloat(0.5625) : CGFloat(0.75)
-                let printerURL = printer.objectID.uriRepresentation().absoluteString
-                cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(printerURL: printerURL, index: 0, label: printer.name, cameraRatio: ratio, url: cameraURL, cameraOrientation: cameraOrientation))
+            if printer.includeInDashboard {
+                if !printer.hideCamera {
+                    // MultiCam plugin is not installed so just show default camera
+                    let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
+                    let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
+                    let ratio = printer.firstCameraAspectRatio16_9 ? CGFloat(0.5625) : CGFloat(0.75)
+                    let printerURL = printer.objectID.uriRepresentation().absoluteString
+                    cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(printerURL: printerURL, index: printerIndex, label: printer.name, cameraRatio: ratio, url: cameraURL, cameraOrientation: cameraOrientation))
+                }
+                printerIndex += 1
             }
         }
     }

@@ -229,7 +229,7 @@
                                 <rect key="frame" x="0.0" y="71" width="375" height="547"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MtG-GT-SyW">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="300" height="200"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -377,13 +377,81 @@
                                             <outlet property="progressLabel" destination="4ls-BU-eMv" id="H6F-Hp-GeY"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cameraGridCell" id="EmS-2k-2qs" customClass="CameraGridViewCell" customModule="OctoPod" customModuleProvider="target">
-                                        <rect key="frame" x="123.5" y="215.5" width="128" height="128"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cameraGridCell" id="EmS-2k-2qs" customClass="PrintersCameraGridViewCell" customModule="OctoPod" customModuleProvider="target">
+                                        <rect key="frame" x="27.5" y="215.5" width="320" height="282.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="55e-P8-10z">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9C2-RU-oV1">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="282.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Progress" translatesAutoresizingMaskIntoConstraints="NO" id="cUy-sZ-RVX">
+                                                    <rect key="frame" x="2" y="258.5" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="JP2-7D-Pfa"/>
+                                                        <constraint firstAttribute="width" constant="24" id="PGR-tl-ZAp"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ETA" translatesAutoresizingMaskIntoConstraints="NO" id="WjO-ya-wcE">
+                                                    <rect key="frame" x="234" y="258.5" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="TUY-o0-H85"/>
+                                                        <constraint firstAttribute="height" constant="24" id="hkX-fa-4ap"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vl-d5-NHu">
+                                                    <rect key="frame" x="32" y="263" width="32" height="15"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyu-r4-ylQ">
+                                                    <rect key="frame" x="264" y="263" width="54" height="15"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="4O2-7Y-a0u">
+                                                    <rect key="frame" x="2" y="242" width="316" height="14.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f8K-Fa-GTe">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" priority="750" constant="320" id="aCW-DB-91g"/>
+                                                        <constraint firstAttribute="height" priority="750" constant="240" id="h30-pk-AbS"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cUy-sZ-RVX" firstAttribute="leading" secondItem="9C2-RU-oV1" secondAttribute="leading" constant="2" id="1l4-DG-kDm"/>
+                                                <constraint firstItem="f8K-Fa-GTe" firstAttribute="top" secondItem="9C2-RU-oV1" secondAttribute="top" id="2na-Bh-cdp"/>
+                                                <constraint firstAttribute="trailing" secondItem="4O2-7Y-a0u" secondAttribute="trailing" constant="2" id="Bky-xC-fVW"/>
+                                                <constraint firstItem="cUy-sZ-RVX" firstAttribute="top" secondItem="4O2-7Y-a0u" secondAttribute="bottom" constant="2" id="JRt-K9-EwL"/>
+                                                <constraint firstAttribute="trailing" secondItem="f8K-Fa-GTe" secondAttribute="trailing" id="Ts7-02-IAe"/>
+                                                <constraint firstItem="Zyu-r4-ylQ" firstAttribute="centerY" secondItem="WjO-ya-wcE" secondAttribute="centerY" id="UGr-CJ-i8g"/>
+                                                <constraint firstItem="WjO-ya-wcE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1vl-d5-NHu" secondAttribute="trailing" constant="10" id="YO1-rT-VkH"/>
+                                                <constraint firstItem="f8K-Fa-GTe" firstAttribute="leading" secondItem="9C2-RU-oV1" secondAttribute="leading" id="YQY-zK-Hoh"/>
+                                                <constraint firstAttribute="trailing" secondItem="Zyu-r4-ylQ" secondAttribute="trailing" constant="2" id="bL5-dA-aLA"/>
+                                                <constraint firstAttribute="bottom" secondItem="cUy-sZ-RVX" secondAttribute="bottom" id="cMg-th-Qov"/>
+                                                <constraint firstItem="4O2-7Y-a0u" firstAttribute="top" secondItem="f8K-Fa-GTe" secondAttribute="bottom" constant="2" id="d7R-7w-7xj"/>
+                                                <constraint firstItem="1vl-d5-NHu" firstAttribute="leading" secondItem="cUy-sZ-RVX" secondAttribute="trailing" constant="6" id="myy-4P-3on"/>
+                                                <constraint firstItem="Zyu-r4-ylQ" firstAttribute="leading" secondItem="WjO-ya-wcE" secondAttribute="trailing" constant="6" id="tkq-Xi-o37"/>
+                                                <constraint firstAttribute="bottom" secondItem="WjO-ya-wcE" secondAttribute="bottom" id="uZL-8p-9qH"/>
+                                                <constraint firstItem="4O2-7Y-a0u" firstAttribute="leading" secondItem="9C2-RU-oV1" secondAttribute="leading" constant="2" id="xt8-FU-Vqx"/>
+                                                <constraint firstItem="1vl-d5-NHu" firstAttribute="centerY" secondItem="cUy-sZ-RVX" secondAttribute="centerY" id="xzc-jT-ajb"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="cameraPlaceholderView" destination="f8K-Fa-GTe" id="nBQ-NK-jbO"/>
+                                            <outlet property="cameraPlaceholderViewHeightAnchor" destination="h30-pk-AbS" id="9ux-6O-mU7"/>
+                                            <outlet property="cameraPlaceholderViewWidthAnchor" destination="aCW-DB-91g" id="PId-Nf-aXQ"/>
+                                            <outlet property="etaLabel" destination="Zyu-r4-ylQ" id="QE3-GZ-W0l"/>
+                                            <outlet property="filenameLabel" destination="4O2-7Y-a0u" id="9It-NS-OXj"/>
+                                            <outlet property="progressLabel" destination="1vl-d5-NHu" id="W0f-6N-kfg"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -5295,14 +5363,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="OctoPrint - Application Key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qdv-m8-Jgb">
-                                                    <rect key="frame" x="16" y="15" width="206.5" height="20.5"/>
+                                                    <rect key="frame" x="16" y="17.5" width="176" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Connect directly by requesting an application key" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4yc-YH-f8v">
-                                                    <rect key="frame" x="16" y="38.5" width="299" height="16"/>
+                                                    <rect key="frame" x="16" y="37" width="279.5" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <nil key="textColor"/>
@@ -5319,14 +5387,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="OctoEverywhere" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QgE-Ch-Ggw">
-                                                    <rect key="frame" x="16" y="9" width="126.5" height="20.5"/>
+                                                    <rect key="frame" x="16" y="11.5" width="107" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Connect easily from remote locations (over the internet)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rNP-Sb-Zba">
-                                                    <rect key="frame" x="16" y="32.5" width="339" height="16"/>
+                                                    <rect key="frame" x="16" y="31" width="317" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <nil key="textColor"/>
@@ -5343,14 +5411,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="OctoPrint - Global API Key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jxN-GW-tlu">
-                                                    <rect key="frame" x="16" y="6" width="200" height="20.5"/>
+                                                    <rect key="frame" x="16" y="9.5" width="170" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Connect directly using registered Global API key (deprecated)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zgx-Ee-m6r">
-                                                    <rect key="frame" x="16" y="29.5" width="296" height="34"/>
+                                                    <rect key="frame" x="16" y="29" width="276.5" height="30.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <nil key="textColor"/>
@@ -6590,14 +6658,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ug1-TR-XyB">
-                                            <rect key="frame" x="16" y="8" width="33" height="20.5"/>
+                                            <rect key="frame" x="16" y="7.5" width="28.5" height="17"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bld-AB-rzW">
-                                            <rect key="frame" x="16" y="28.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="16" y="27" width="40.5" height="13.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <nil key="textColor"/>
@@ -8269,6 +8337,7 @@
         <image name="Dashboard" width="24" height="24"/>
         <image name="Devices" width="32" height="32"/>
         <image name="Dialogs" width="32" height="32"/>
+        <image name="ETA" width="64" height="64"/>
         <image name="Edit" width="24" height="24"/>
         <image name="Facebook" width="300" height="85"/>
         <image name="Files" width="24" height="24"/>
@@ -8290,6 +8359,7 @@
         <image name="ProbeSave" width="24" height="24"/>
         <image name="ProbeTest" width="24" height="24"/>
         <image name="ProbeUp" width="24" height="24"/>
+        <image name="Progress" width="64" height="64"/>
         <image name="Refresh SD" width="24" height="24"/>
         <image name="Reorder" width="32" height="32"/>
         <image name="Security" width="32" height="32"/>
