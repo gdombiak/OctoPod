@@ -49,7 +49,9 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
     
     func getData(_ service: String, callback: @escaping (Data?, Error?, HTTPURLResponse) -> Void) {
-        let url: URL = service.starts(with: serverURL) ? URL(string: service)! : URL(string: serverURL + service)!
+        // Encode path and query param for escaping spaces. urlQueryAllowed does the job even though it's not 100% technically correct
+        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
+        let url: URL = service.starts(with: serverURL) ? URL(string: encodedService)! : URL(string: serverURL + encodedService)!
         
         // Get session with the provided configuration
         let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
@@ -80,7 +82,8 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
     
     func download(_ service: String, progress: @escaping (Int64, Int64) -> Void, completion: @escaping (Data?, Error?) -> Void) {
-        let url: URL = URL(string: serverURL + service)!
+        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
+        let url: URL = URL(string: serverURL + encodedService)!
         
         // Get session with the provided configuration
         let delegate = WrappedDownloadTaskDelegate(httpClient: self, progress: progress, completion: completion)
@@ -100,7 +103,8 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
     
     func delete(_ service: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
-        let url: URL = URL(string: serverURL + service)!
+        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
+        let url: URL = URL(string: serverURL + encodedService)!
         
         // Get session with the provided configuration
         let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
@@ -124,7 +128,8 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
 
     func post(_ service: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
-        if let url: URL = URL(string: serverURL! + service) {            
+        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
+        if let url: URL = URL(string: serverURL! + encodedService) {
             // Get session with the provided configuration
             let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
             
@@ -155,7 +160,8 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
     
     func post(_ service: String, json: NSObject, expected: Int, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
-        if let url: URL = URL(string: serverURL! + service) {
+        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
+        if let url: URL = URL(string: serverURL! + encodedService) {
             requestWithBody(url, verb: "POST", expected: expected, json: json, callback: callback)
         } else {
             NSLog("POST not possible. Invalid URL found. Server: \(serverURL!). Service: \(service)")
@@ -168,7 +174,8 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
     
     func patch(_ service: String, json: NSObject, expected: Int, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
-        if let url: URL = URL(string: serverURL! + service) {
+        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
+        if let url: URL = URL(string: serverURL! + encodedService) {
             requestWithBody(url, verb: "PATCH", expected: expected, json: json, callback: callback)
         } else {
             NSLog("PATCH not possible. Invalid URL found. Server: \(serverURL!). Service: \(service)")
@@ -181,7 +188,8 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
     
     func upload(_ service: String, parameters: [String: String]?, filename: String, fileContent: Data, expected: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
-        let url: URL = URL(string: serverURL! + service)!
+        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
+        let url: URL = URL(string: serverURL! + encodedService)!
 
         // Get session with the provided configuration
         let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
