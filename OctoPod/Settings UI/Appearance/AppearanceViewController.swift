@@ -81,7 +81,15 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         // Update navigation bar
         let theme = Theme.currentTheme()
         let printer = printerManager.getDefaultPrinter()
-        navigationController?.navigationBar.barTintColor = theme.navigationTopColor(octoPrintColor: printer?.color)
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundColor = theme.navigationTopColor(octoPrintColor: printer?.color)
+            navigationController?.navigationBar.standardAppearance = appearance;
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        } else {
+            // Fallback on earlier versions
+            navigationController?.navigationBar.barTintColor = theme.navigationTopColor(octoPrintColor: printer?.color)
+        }
         navigationController?.navigationBar.tintColor = theme.navigationTintColor(octoPrintColor: printer?.color)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.navigationTitleColor(octoPrintColor: printer?.color)]
         tabBarController?.tabBar.barTintColor = theme.tabBarColor()
