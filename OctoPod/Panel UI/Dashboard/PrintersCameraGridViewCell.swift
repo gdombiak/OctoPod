@@ -9,6 +9,8 @@ class PrintersCameraGridViewCell: UICollectionViewCell {
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var etaLabel: UILabel!
     
+    var delegate: PrintersCameraGridViewCellDelegate?
+    
     /// Private variable to handle adding and removing from super view
     private weak var _hostedView: UIView? {
         didSet {
@@ -40,5 +42,9 @@ class PrintersCameraGridViewCell: UICollectionViewCell {
         set {
             _hostedView = newValue
         }
+    }
+
+    @IBAction func expandButtonClicked(_ sender: Any) {
+        delegate?.expandCameraClicked(cell: self)
     }
 }

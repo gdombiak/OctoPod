@@ -518,7 +518,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
-    // MARK: - EmbeddedCameraDelegate
+    // MARK: - CameraViewDelegate
     
     func imageAspectRatio(cameraIndex: Int, ratio: CGFloat) {
         let newRatio = ratio < 0.60

@@ -3,9 +3,11 @@ import UIKit
 private let reuseIdentifier = "PrinterCell"
 private let cameraReuseIdentifier = "cameraGridCell"
 
-class PrintersDashboardViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class PrintersDashboardViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PrintersCameraGridViewCellDelegate, PrinterObserverDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+
     var printers: Array<PrinterObserver> = []
     var panelViewController: PanelViewController?
     var cameraEmbeddedViewControllers: Array<CameraEmbeddedViewController> = Array()
@@ -27,6 +29,8 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        displayCameras = appConfiguration.dashboardCameraDefault()
+
         // Theme background color
         let currentTheme = Theme.currentTheme()
         collectionView.backgroundColor = currentTheme.backgroundColor()
@@ -37,7 +41,7 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         for printer in printerManager.getPrinters() {
             // Only add printers that want to be displayed in dashboard
             if printer.includeInDashboard {
-                let printerObserver = PrinterObserver(printersDashboardViewController: self, row: printers.count)
+                let printerObserver = PrinterObserver(delegate: self, row: printers.count)
                 printerObserver.connectToServer(printer: printer)
                 printers.append(printerObserver)
             }
@@ -45,6 +49,8 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         // Create embedded VCs (but will not be rendered yet)
         self.addEmbeddedCameraViewControllers()
         self.updateButtonIcon()
+        // Request to reload in case list of printers has changed
+        self.collectionView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -65,7 +71,7 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         self.collectionView.reloadSections(IndexSet(integer: 0))
     }
     
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -78,6 +84,9 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if displayCameras {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cameraReuseIdentifier, for: indexPath) as! PrintersCameraGridViewCell
+            
+            // Listen to click event when user wants to see camera full screen
+            cell.delegate = self
 
             // Set constraints for video view before adding video. This will let cell have correct size
             let size = videoViewSize(indexPath.row, collectionView)
@@ -119,7 +128,7 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         }
     }
 
-    // MARK: UICollectionViewDelegateFlowLayout
+    // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if displayCameras {
@@ -137,9 +146,10 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         }
     }
     
-    // MARK: UICollectionViewDelegate
+    // MARK: - UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // This method is only used when not displaying cameras and user selected a printer
         if let printer = printerManager.getPrinterByName(name: printers[indexPath.row].printerName) {
             selectNewDefaultPrinter(printer: printer)
         }
@@ -177,8 +187,40 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
             }
         }
     }
-        
-    // MARK: Connection notifications
+    
+    // MARK: - Unwind segues
+
+    @IBAction func selectedPrinterFromFullScreen(unwindSegue: UIStoryboardSegue) {
+        if let controller = unwindSegue.source as? PrinterFullScreenCameraViewController {
+            if let idURL = URL(string: controller.printerURL), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
+                // Close full screen window
+                navigationController?.popViewController(animated: true)
+                // Select new printer and close dashboard window
+                selectNewDefaultPrinter(printer: printer)
+            }            
+        }
+    }
+    
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "go_to_fullscreen_printer_camera", let controller = segue.destination as? PrinterFullScreenCameraViewController, let cell = sender as? PrintersCameraGridViewCell {
+            if let indexPath = self.collectionView.indexPath(for: cell), let printerURL = cameraEmbeddedViewControllers[indexPath.row].printerURL {
+                controller.printerURL = printerURL
+            }
+        }
+    }
+
+    // MARK: - PrintersCameraGridViewCellDelegate
+    
+    func expandCameraClicked(cell: PrintersCameraGridViewCell) {
+        if let indexPath = self.collectionView.indexPath(for: cell), let printerURL = cameraEmbeddedViewControllers[indexPath.row].printerURL, let _ = URL(string: printerURL)  {
+            self.performSegue(withIdentifier: "go_to_fullscreen_printer_camera", sender: cell)
+        }
+    }
+    
+    // MARK: - PrinterObserverDelegate
     
     func refreshItem(row: Int, printerObserver: PrinterObserver) {
         let indexPath: IndexPath = IndexPath(row: row, section: 0)
@@ -199,7 +241,7 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         }
     }
 
-    // MARK: Private functions
+    // MARK: - Private functions
     
     fileprivate func selectNewDefaultPrinter(printer: Printer) {
         // Notify of newly selected printer
@@ -249,11 +291,14 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
     }
     
     fileprivate func addEmbeddedCameraViewControllers() {
+        // Remove existing cameras and start all over again
+        cameraEmbeddedViewControllers.removeAll()
+        
         var printerIndex = 0
         for printer in printerManager.getPrinters() {
             if printer.includeInDashboard {
                 if !printer.hideCamera {
-                    // MultiCam plugin is not installed so just show default camera
+                    // We only support showing default camera when in dashboard
                     let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
                     let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
                     let ratio = printer.firstCameraAspectRatio16_9 ? CGFloat(0.5625) : CGFloat(0.75)

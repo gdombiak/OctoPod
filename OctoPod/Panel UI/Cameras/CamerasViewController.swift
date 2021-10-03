@@ -28,6 +28,9 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     private var pipClosedCallback: (() -> Void)?
     
     private var lastPrinterID: String?
+    
+    /// PrinterURL of pritner to show. If empty then show default printer
+    var showPrinter: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +51,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         // Start listening to events when app will resign active state
         NotificationCenter.default.addObserver(self, selector: #selector(appwillResignActive), name: UIApplication.willResignActiveNotification, object: nil)
         
-        if let printer = printerManager.getDefaultPrinter() {
+        if let printer = printerToShow() {
             let newPrinterID = printer.objectID.uriRepresentation().absoluteString
             let cameraChanged = newPrinterID != lastPrinterID
             lastPrinterID = newPrinterID
@@ -96,6 +99,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     // MARK: - Notifications
 
     func printerSelectedChanged() {
+        self.displayPrintStatus = nil
         DispatchQueue.main.async {
             self.updateViewControllersForPrinter(cameraChanged: true)
         }
@@ -202,7 +206,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         }
         // Create corresponding VCs according to the printer's cameras
         var newViewControllers: Array<CameraEmbeddedViewController> = Array()
-        if let printer = printerManager.getDefaultPrinter() {
+        if let printer = printerToShow() {
             if let cameras = printer.getMultiCameras() {
                 // MultiCam plugin is installed so show all cameras
                 var index = 0
@@ -297,6 +301,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         controller.cameraViewDelegate = embeddedCameraDelegate
         controller.cameraIndex = index
         controller.camerasViewController = self
+        controller.printerURL = showPrinter
         return controller
     }
     
@@ -309,6 +314,13 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             index = index + 1
         }
         return nil
+    }
+    
+    fileprivate func printerToShow() -> Printer? {
+        if let printerURL = showPrinter, let idURL = URL(string: printerURL), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
+            return printer
+        }
+        return printerManager.getDefaultPrinter()
     }
     
     // MARK: - PIP support

@@ -13,3 +13,12 @@ protocol CameraViewDelegate : class {
     func finishedTransitionNewPage()
 
 }
+
+extension CameraViewDelegate {
+
+    func imageAspectRatio(cameraIndex: Int, ratio: CGFloat) {}
+
+    func startTransitionNewPage() {}
+    
+    func finishedTransitionNewPage() {}
+}

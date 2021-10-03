@@ -18,6 +18,7 @@ class AppConfiguration: OctoPrintClientDelegate {
     private static let PLUGIN_UPDATES_CHECK_FREQUENCY = "APP_CONFIGURATION_PLUGIN_UPDATES_CHECK_FREQUENCY"
     private static let COMPLICATION_CONTENT_TYPE_KEY = "APP_CONFIGURATION_COMPLICATION_CONTENT_TYPE"
     private static let FILES_ONLY_GCODE = "APP_CONFIGURATION_FILES_ONLY_GCODE"
+    private static let DASHBOARD_CAMERA_DEFAULT = "APP_CONFIGURATION_DASHBOARD_CAMERA_DEFAULT"
 
     private static let UBIQUITOUS_CONFIGURED = "APP_CONFIGURATION_UBIQUITOUS_CONFIGURED"
 
@@ -349,6 +350,30 @@ class AppConfiguration: OctoPrintClientDelegate {
         defaults.set(contentType.rawValue, forKey: AppConfiguration.COMPLICATION_CONTENT_TYPE_KEY)
     }
 
+    // MARK: - Dashboard configuration
+    
+    /// Returns true if dashboard of printers should show cameras when opened. If false then
+    /// print job information is displayed
+    /// Enabled by default
+    func dashboardCameraDefault() -> Bool {
+        let defaults = UserDefaults.standard
+        if let result = defaults.object(forKey: AppConfiguration.DASHBOARD_CAMERA_DEFAULT) as? Bool {
+            return result
+        }
+        return true
+    }
+    
+    /// Sets whether dashboard of printers should show cameras when opened or print job information instead
+    /// Enabled by default
+    func dashboardCameraDefault(on: Bool) {
+        // Save setting in iCloud-based
+        keyValStore.set(on, forKey: AppConfiguration.DASHBOARD_CAMERA_DEFAULT)
+        keyValStore.synchronize()
+        // Save locally as well
+        let defaults = UserDefaults.standard
+        defaults.set(on, forKey: AppConfiguration.DASHBOARD_CAMERA_DEFAULT)
+    }
+    
     // MARK: - Plugin updates
 
     /// Frequency the app will check for plugin updates
@@ -398,7 +423,8 @@ class AppConfiguration: OctoPrintClientDelegate {
         self.certValidationDisabled(disable: self.certValidationDisabled())
         self.turnOffIdleDisabled(disable: self.turnOffIdleDisabled())
         self.tempChartZoomDisabled(disable: self.tempChartZoomDisabled())
-        
+        self.dashboardCameraDefault(on: self.dashboardCameraDefault())
+
         // Mark that iCloud key-value has been configured from local configuration
         keyValStore.set(true, forKey: AppConfiguration.UBIQUITOUS_CONFIGURED)
     }
@@ -416,5 +442,6 @@ class AppConfiguration: OctoPrintClientDelegate {
         defaults.set(keyValStore.bool(forKey: AppConfiguration.DISABLE_CERT_VALIDATION), forKey: AppConfiguration.DISABLE_CERT_VALIDATION)
         defaults.set(keyValStore.bool(forKey: AppConfiguration.DISABLE_TURNOFF_IDLE), forKey: AppConfiguration.DISABLE_TURNOFF_IDLE)
         defaults.set(keyValStore.bool(forKey: AppConfiguration.DISABLE_TEMP_CHART_ZOOM), forKey: AppConfiguration.DISABLE_TEMP_CHART_ZOOM)
+        defaults.set(keyValStore.bool(forKey: AppConfiguration.DASHBOARD_CAMERA_DEFAULT), forKey: AppConfiguration.DASHBOARD_CAMERA_DEFAULT)
     }
 }

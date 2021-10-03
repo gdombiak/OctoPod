@@ -3,8 +3,8 @@ import UIKit
 
 class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
     
-    private let printersDashboardViewController: PrintersDashboardViewController
-    private var octoPrintClient: OctoPrintClient!
+    private let delegate: PrinterObserverDelegate
+    private var octoPrintClient: OctoPrintClient?
     private let row: Int
     
     private var isDefaultPrinter: Bool = false
@@ -18,8 +18,8 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
     var jobFile: String?
     var layer: String?
     
-    init(printersDashboardViewController: PrintersDashboardViewController, row: Int) {
-        self.printersDashboardViewController = printersDashboardViewController
+    init(delegate: PrinterObserverDelegate, row: Int) {
+        self.delegate = delegate
         self.row = row
     }
     
@@ -36,24 +36,24 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
             self.octoPrintClient = OctoPrintClient(printerManager: printerManager)
         }
         // Listen to events coming from OctoPrintClient
-        octoPrintClient.delegates.append(self)
+        octoPrintClient?.delegates.append(self)
         // Listen to changes to OctoPrint Plugin messages
-        octoPrintClient.octoPrintPluginsDelegates.append(self)
+        octoPrintClient?.octoPrintPluginsDelegates.append(self)
 
         
         if !isDefaultPrinter {
-            octoPrintClient.connectToServer(printer: printer)
+            octoPrintClient?.connectToServer(printer: printer)
         }
     }
 
     func disconnectFromServer() {
         if isDefaultPrinter {
             // Stop listening to changes from OctoPrintClient
-            octoPrintClient.remove(octoPrintClientDelegate: self)
+            octoPrintClient?.remove(octoPrintClientDelegate: self)
             // Stop listening to changes to OctoPrint Plugin messages
-            octoPrintClient.remove(octoPrintPluginsDelegate: self)
+            octoPrintClient?.remove(octoPrintPluginsDelegate: self)
         } else {
-            octoPrintClient.disconnectFromServer()
+            octoPrintClient?.disconnectFromServer()
         }
     }
 
@@ -111,8 +111,9 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
         }
         
         if changed {
-            printersDashboardViewController.refreshItem(row: row, printerObserver: self)
+            delegate.refreshItem(row: row, printerObserver: self)
         }
+        delegate.currentStateUpdated(row: row, event: event)
     }
        
     // MARK: - OctoPrintPluginsDelegate
@@ -123,7 +124,7 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
                 let newLayer = "\(currentLayer) / \(totalLayer)"
                 if newLayer != layer {
                     self.layer = newLayer
-                    printersDashboardViewController.refreshItem(row: row, printerObserver: self)
+                    delegate.refreshItem(row: row, printerObserver: self)
                 }
             }
         }
