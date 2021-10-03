@@ -6674,14 +6674,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ug1-TR-XyB">
-                                            <rect key="frame" x="16" y="8" width="33" height="20.5"/>
+                                            <rect key="frame" x="16" y="7.5" width="28.5" height="17"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bld-AB-rzW">
-                                            <rect key="frame" x="16" y="28.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="16" y="27" width="40.5" height="13.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <nil key="textColor"/>
@@ -8340,10 +8340,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wur-UU-824">
-                                <rect key="frame" x="8" y="586" width="24" height="24"/>
+                                <rect key="frame" x="8" y="582" width="32" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="2Wm-JV-VbZ"/>
-                                    <constraint firstAttribute="width" constant="24" id="DuR-JE-ctl"/>
+                                    <constraint firstAttribute="height" constant="32" id="2Wm-JV-VbZ"/>
+                                    <constraint firstAttribute="width" constant="32" id="DuR-JE-ctl"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="CameraPrinterPrevious"/>
@@ -8352,10 +8352,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zwA-H2-ocr">
-                                <rect key="frame" x="343" y="586" width="24" height="24"/>
+                                <rect key="frame" x="335" y="582" width="32" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="XSv-LS-K8p"/>
-                                    <constraint firstAttribute="height" constant="24" id="qm9-Q3-Xeh"/>
+                                    <constraint firstAttribute="width" constant="32" id="XSv-LS-K8p"/>
+                                    <constraint firstAttribute="height" constant="32" id="qm9-Q3-Xeh"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="CameraPrinterNext"/>
@@ -8373,12 +8373,12 @@
                         <viewLayoutGuide key="safeArea" id="SzH-xW-9rg"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="zwA-H2-ocr" firstAttribute="top" secondItem="af4-Qw-GVr" secondAttribute="bottom" constant="8" id="LLx-dm-uHw"/>
+                            <constraint firstItem="zwA-H2-ocr" firstAttribute="top" secondItem="af4-Qw-GVr" secondAttribute="bottom" constant="4" id="LLx-dm-uHw"/>
                             <constraint firstItem="Wur-UU-824" firstAttribute="leading" secondItem="SzH-xW-9rg" secondAttribute="leading" constant="8" id="LXo-YL-Zq3"/>
                             <constraint firstItem="SzH-xW-9rg" firstAttribute="trailing" secondItem="zwA-H2-ocr" secondAttribute="trailing" constant="8" id="N6d-IU-lSd"/>
-                            <constraint firstItem="Wur-UU-824" firstAttribute="top" secondItem="af4-Qw-GVr" secondAttribute="bottom" constant="8" id="Swa-8v-mnS"/>
-                            <constraint firstItem="SzH-xW-9rg" firstAttribute="bottom" secondItem="Wur-UU-824" secondAttribute="bottom" constant="8" id="YR4-DU-PQM"/>
-                            <constraint firstItem="SzH-xW-9rg" firstAttribute="bottom" secondItem="zwA-H2-ocr" secondAttribute="bottom" constant="8" id="bF4-fO-k0i"/>
+                            <constraint firstItem="Wur-UU-824" firstAttribute="top" secondItem="af4-Qw-GVr" secondAttribute="bottom" constant="4" id="Swa-8v-mnS"/>
+                            <constraint firstItem="SzH-xW-9rg" firstAttribute="bottom" secondItem="Wur-UU-824" secondAttribute="bottom" constant="4" id="YR4-DU-PQM"/>
+                            <constraint firstItem="SzH-xW-9rg" firstAttribute="bottom" secondItem="zwA-H2-ocr" secondAttribute="bottom" constant="4" id="bF4-fO-k0i"/>
                             <constraint firstItem="af4-Qw-GVr" firstAttribute="trailing" secondItem="SzH-xW-9rg" secondAttribute="trailing" id="c0J-2H-mn3"/>
                             <constraint firstItem="af4-Qw-GVr" firstAttribute="top" secondItem="SzH-xW-9rg" secondAttribute="top" id="dan-qg-BXf"/>
                             <constraint firstItem="af4-Qw-GVr" firstAttribute="leading" secondItem="SzH-xW-9rg" secondAttribute="leading" id="o0h-LK-nCl"/>
@@ -8403,6 +8403,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ah2-8e-fYy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="7E4-Ju-ldC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
@@ -8430,8 +8431,8 @@
         <image name="Camera" width="24" height="24"/>
         <image name="CameraExpand" width="16" height="16"/>
         <image name="CameraGrid" width="24" height="24"/>
-        <image name="CameraPrinterNext" width="16" height="16"/>
-        <image name="CameraPrinterPrevious" width="16" height="16"/>
+        <image name="CameraPrinterNext" width="32" height="32"/>
+        <image name="CameraPrinterPrevious" width="32" height="32"/>
         <image name="Dashboard" width="24" height="24"/>
         <image name="Devices" width="32" height="32"/>
         <image name="Dialogs" width="32" height="32"/>
