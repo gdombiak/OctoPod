@@ -10,7 +10,8 @@ class SettingsViewController: ThemedStaticUITableViewController {
     @IBOutlet weak var devicesLabel: UILabel!
     @IBOutlet weak var siriLabel: UILabel!
     @IBOutlet weak var supportLabel: UILabel!
-    
+    @IBOutlet weak var sponsorLabel: UILabel!
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let theme = Theme.currentTheme()
@@ -22,6 +23,7 @@ class SettingsViewController: ThemedStaticUITableViewController {
         devicesLabel.textColor = theme.textColor()
         siriLabel.textColor = theme.textColor()
         supportLabel.textColor = theme.textColor()
+        sponsorLabel.textColor = theme.textColor()
     }
     
     override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {

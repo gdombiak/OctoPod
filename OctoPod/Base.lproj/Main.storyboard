@@ -3188,6 +3188,95 @@
             </objects>
             <point key="canvasLocation" x="2470" y="5186"/>
         </scene>
+        <!--Sponsors-->
+        <scene sceneID="mqh-i2-n54">
+            <objects>
+                <viewController title="Sponsors" id="IVP-j6-h7G" customClass="SponsorsViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vuK-b7-Kes">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yGm-Uq-Ojn">
+                                <rect key="frame" x="0.0" y="44" width="375" height="539"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="sponsorCell" id="FZh-tb-84x" customClass="SponsorTableViewCell" customModule="OctoPod" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="40.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FZh-tb-84x" id="8i6-TT-rsX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="40.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mvk-WM-JiO">
+                                                    <rect key="frame" x="335" y="8.5" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="29k-wQ-lnb"/>
+                                                        <constraint firstAttribute="width" constant="24" id="zE8-yt-6dq"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" image="Link"/>
+                                                    <connections>
+                                                        <action selector="sponsorLinkClicked:" destination="FZh-tb-84x" eventType="touchUpInside" id="2Pv-Za-rJJ"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNo-SB-aOv">
+                                                    <rect key="frame" x="16" y="10" width="315" height="17.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BNo-SB-aOv" firstAttribute="leading" secondItem="8i6-TT-rsX" secondAttribute="leading" constant="16" id="0d5-hL-D19"/>
+                                                <constraint firstItem="Mvk-WM-JiO" firstAttribute="centerY" secondItem="8i6-TT-rsX" secondAttribute="centerY" id="EQx-e3-QTf"/>
+                                                <constraint firstAttribute="trailing" secondItem="Mvk-WM-JiO" secondAttribute="trailing" constant="16" id="H3A-Uo-eG8"/>
+                                                <constraint firstItem="BNo-SB-aOv" firstAttribute="top" secondItem="8i6-TT-rsX" secondAttribute="top" constant="10" id="UJc-UO-aZE"/>
+                                                <constraint firstAttribute="bottom" secondItem="BNo-SB-aOv" secondAttribute="bottom" constant="13" id="pjB-fj-bFs"/>
+                                                <constraint firstItem="Mvk-WM-JiO" firstAttribute="leading" secondItem="BNo-SB-aOv" secondAttribute="trailing" constant="4" id="taj-2O-ZIB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="sponsorLinkButton" destination="Mvk-WM-JiO" id="XaZ-3c-NY3"/>
+                                            <outlet property="sponsorNameLabel" destination="BNo-SB-aOv" id="Ixw-pG-OKu"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="IVP-j6-h7G" id="FLB-Ji-0zm"/>
+                                    <outlet property="delegate" destination="IVP-j6-h7G" id="tX4-Fe-mSv"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXd-FZ-M0G">
+                                <rect key="frame" x="0.0" y="587" width="375" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Become a sponsor"/>
+                                <connections>
+                                    <action selector="becomeSponsorClicked:" destination="IVP-j6-h7G" eventType="touchUpInside" id="L8Y-UX-tpe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="n90-jA-W8A"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="n90-jA-W8A" firstAttribute="trailing" secondItem="LXd-FZ-M0G" secondAttribute="trailing" id="3wa-Ct-xNm"/>
+                            <constraint firstItem="yGm-Uq-Ojn" firstAttribute="leading" secondItem="n90-jA-W8A" secondAttribute="leading" id="IjY-Vz-Z68"/>
+                            <constraint firstItem="LXd-FZ-M0G" firstAttribute="leading" secondItem="n90-jA-W8A" secondAttribute="leading" id="SsR-pM-Kpf"/>
+                            <constraint firstItem="LXd-FZ-M0G" firstAttribute="top" secondItem="yGm-Uq-Ojn" secondAttribute="bottom" constant="4" id="StN-sN-yf3"/>
+                            <constraint firstItem="n90-jA-W8A" firstAttribute="bottom" secondItem="LXd-FZ-M0G" secondAttribute="bottom" id="cUU-Tq-sZ8"/>
+                            <constraint firstItem="yGm-Uq-Ojn" firstAttribute="top" secondItem="n90-jA-W8A" secondAttribute="top" id="dhk-iD-tF6"/>
+                            <constraint firstItem="yGm-Uq-Ojn" firstAttribute="trailing" secondItem="n90-jA-W8A" secondAttribute="trailing" id="epa-YH-wy3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Sponsors" id="6vB-dQ-Kij"/>
+                    <connections>
+                        <outlet property="becomeSponsorButton" destination="LXd-FZ-M0G" id="vu0-u8-Fgn"/>
+                        <outlet property="sponsorsTable" destination="yGm-Uq-Ojn" id="xaF-Ey-4wg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V77-Im-ghh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="672.79999999999995" y="6247.826086956522"/>
+        </scene>
         <!--Devices-->
         <scene sceneID="87Y-66-VEH">
             <objects>
@@ -4361,6 +4450,35 @@
                                             <segue destination="ec8-jM-jJs" kind="show" id="XXf-KT-4od"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="cTx-1j-89Q">
+                                        <rect key="frame" x="0.0" y="370" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cTx-1j-89Q" id="JOL-Zy-WbC">
+                                            <rect key="frame" x="0.0" y="0.0" width="349.5" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sponsors" translatesAutoresizingMaskIntoConstraints="NO" id="vSg-qU-Qau">
+                                                    <rect key="frame" x="16" y="6" width="32" height="32"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Sponsors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjI-yV-FmX">
+                                                    <rect key="frame" x="56" y="13.5" width="277.5" height="17"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="IjI-yV-FmX" secondAttribute="trailing" constant="8" id="Gfp-P6-6u4"/>
+                                                <constraint firstItem="IjI-yV-FmX" firstAttribute="leading" secondItem="vSg-qU-Qau" secondAttribute="trailing" constant="8" id="NbX-bF-4Cp"/>
+                                                <constraint firstItem="IjI-yV-FmX" firstAttribute="centerY" secondItem="JOL-Zy-WbC" secondAttribute="centerY" id="ZLt-6d-POz"/>
+                                                <constraint firstItem="vSg-qU-Qau" firstAttribute="leading" secondItem="JOL-Zy-WbC" secondAttribute="leading" constant="16" id="gJ9-BD-4yq"/>
+                                                <constraint firstItem="vSg-qU-Qau" firstAttribute="centerY" secondItem="JOL-Zy-WbC" secondAttribute="centerY" id="s8U-rM-zV2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="IVP-j6-h7G" kind="show" id="jem-Ns-ic5"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -4378,6 +4496,7 @@
                         <outlet property="printersLabel" destination="tzE-Y5-rVZ" id="Bae-dO-RZs"/>
                         <outlet property="securityLabel" destination="RJI-A7-98M" id="mKq-vq-vP8"/>
                         <outlet property="siriLabel" destination="R2d-Mv-REP" id="QqX-Le-Huq"/>
+                        <outlet property="sponsorLabel" destination="IjI-yV-FmX" id="dOI-gR-pLB"/>
                         <outlet property="supportLabel" destination="HbJ-Bb-EXQ" id="pAF-HF-yRa"/>
                     </connections>
                 </tableViewController>
@@ -4880,20 +4999,20 @@
                             <tableViewSection id="pXk-Fd-euv">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="it0-U8-NeS">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="41"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="41.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="it0-U8-NeS" id="mIZ-ck-1ak">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload to OctoPrint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ziq-bR-QIe">
-                                                    <rect key="frame" x="16" y="13" width="308" height="15"/>
+                                                    <rect key="frame" x="16" y="13" width="308" height="15.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Uploading" translatesAutoresizingMaskIntoConstraints="NO" id="0wG-QH-XSI">
-                                                    <rect key="frame" x="327" y="4.5" width="32" height="32"/>
+                                                    <rect key="frame" x="327" y="5" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="mbN-C8-hN6"/>
                                                         <constraint firstAttribute="width" constant="32" id="vah-tF-J7c"/>
@@ -4911,20 +5030,20 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Hhf-cQ-hcy">
-                                        <rect key="frame" x="0.0" y="85.5" width="375" height="41"/>
+                                        <rect key="frame" x="0.0" y="86" width="375" height="41.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hhf-cQ-hcy" id="IFq-mD-0YP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload to SD Card (root)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrr-SZ-62l">
-                                                    <rect key="frame" x="16" y="13" width="308" height="15"/>
+                                                    <rect key="frame" x="16" y="13" width="308" height="15.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <color key="textColor" systemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Uploading" translatesAutoresizingMaskIntoConstraints="NO" id="qvF-6S-gC3">
-                                                    <rect key="frame" x="327" y="4.5" width="32" height="32"/>
+                                                    <rect key="frame" x="327" y="5" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="32" id="vqx-iJ-T2j"/>
                                                         <constraint firstAttribute="height" constant="32" id="z78-fg-BWS"/>
@@ -8457,6 +8576,7 @@
         <image name="Home Y" width="24" height="24"/>
         <image name="Home Z" width="24" height="24"/>
         <image name="Info" width="24" height="24"/>
+        <image name="Link" width="24" height="24"/>
         <image name="Move" width="24" height="24"/>
         <image name="Notification" width="24" height="24"/>
         <image name="PSUPowerOn" width="128" height="128"/>
@@ -8475,6 +8595,7 @@
         <image name="Settings" width="24" height="24"/>
         <image name="Share" width="32" height="32"/>
         <image name="Siri" width="32" height="32"/>
+        <image name="Sponsors" width="32" height="32"/>
         <image name="Support" width="32" height="32"/>
         <image name="TPPowerOn" width="32" height="32"/>
         <image name="Terminal" width="24" height="24"/>
