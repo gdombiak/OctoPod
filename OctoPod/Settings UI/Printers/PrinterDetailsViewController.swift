@@ -158,6 +158,8 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
             self.printerNameField.text = selectedService.name
             // Update hostname based on discovered information
             self.hostnameField.text = selectedService.hostname
+            // URL changed from scanning (instead of typing). This will clean up any invalid URL message
+            self.urlChanged(self)
             self.updatePrinterURL()
         }
     }

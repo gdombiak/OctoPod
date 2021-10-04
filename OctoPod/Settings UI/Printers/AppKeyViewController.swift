@@ -169,8 +169,8 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
             self.printerNameField.text = selectedService.name
             // Update hostname based on discovered information
             self.hostnameField.text = selectedService.hostname
-            // Enable Request button
-            updateNextButton()
+            // URL changed from scanning (instead of typing). This will clean up any invalid URL message
+            self.urlChanged(self)
         }
     }
     
