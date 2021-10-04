@@ -6,6 +6,7 @@ class PrinterFullScreenCameraViewController: UIViewController, PrinterObserverDe
 
     @IBOutlet weak var nextPrinterButton: UIButton!
     @IBOutlet weak var previousPrinterButton: UIButton!
+    @IBOutlet weak var printerPositionLabel: UILabel!
     var camerasViewController: CamerasViewController?
 
     var printerURL: String!
@@ -42,6 +43,7 @@ class PrinterFullScreenCameraViewController: UIViewController, PrinterObserverDe
         // Theme background color
         let currentTheme = Theme.currentTheme()
         view.backgroundColor = currentTheme.backgroundColor()
+        printerPositionLabel.textColor = currentTheme.textColor()
 
         // Hide tab bar (located at the bottom)
         self.tabBarController?.tabBar.isHidden = true
@@ -53,6 +55,10 @@ class PrinterFullScreenCameraViewController: UIViewController, PrinterObserverDe
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
+        // Stop listening to OctoPrint events
+        printerObserver.disconnectFromServer()
+
         // Show tab bar (located at the bottom)
         self.tabBarController?.tabBar.isHidden = false
     }
@@ -133,9 +139,11 @@ class PrinterFullScreenCameraViewController: UIViewController, PrinterObserverDe
         if let printerIndex = printerIndex {
             previousPrinterButton.isHidden = printerIndex == 0 // hide if first printer
             nextPrinterButton.isHidden = printerIndex == (printersToShow.count - 1) // hide if last printer
+            printerPositionLabel.text = "\(printerIndex+1) / \(printersToShow.count)"
         } else {
             previousPrinterButton.isHidden = true
             nextPrinterButton.isHidden = true
+            printerPositionLabel.text = ""
         }
 
         // Display cameras for this printer

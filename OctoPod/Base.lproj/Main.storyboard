@@ -8369,18 +8369,27 @@
                                     <segue destination="1GM-lb-iPS" kind="embed" id="txd-xM-caz"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBL-Zw-LBl">
+                                <rect key="frame" x="187.5" y="588" width="0.0" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SzH-xW-9rg"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="LBL-Zw-LBl" firstAttribute="top" secondItem="af4-Qw-GVr" secondAttribute="bottom" constant="10" id="6fN-zX-zwp"/>
                             <constraint firstItem="zwA-H2-ocr" firstAttribute="top" secondItem="af4-Qw-GVr" secondAttribute="bottom" constant="4" id="LLx-dm-uHw"/>
                             <constraint firstItem="Wur-UU-824" firstAttribute="leading" secondItem="SzH-xW-9rg" secondAttribute="leading" constant="8" id="LXo-YL-Zq3"/>
                             <constraint firstItem="SzH-xW-9rg" firstAttribute="trailing" secondItem="zwA-H2-ocr" secondAttribute="trailing" constant="8" id="N6d-IU-lSd"/>
+                            <constraint firstItem="SzH-xW-9rg" firstAttribute="bottom" secondItem="LBL-Zw-LBl" secondAttribute="bottom" constant="9" id="PjA-94-ena"/>
                             <constraint firstItem="Wur-UU-824" firstAttribute="top" secondItem="af4-Qw-GVr" secondAttribute="bottom" constant="4" id="Swa-8v-mnS"/>
                             <constraint firstItem="SzH-xW-9rg" firstAttribute="bottom" secondItem="Wur-UU-824" secondAttribute="bottom" constant="4" id="YR4-DU-PQM"/>
                             <constraint firstItem="SzH-xW-9rg" firstAttribute="bottom" secondItem="zwA-H2-ocr" secondAttribute="bottom" constant="4" id="bF4-fO-k0i"/>
                             <constraint firstItem="af4-Qw-GVr" firstAttribute="trailing" secondItem="SzH-xW-9rg" secondAttribute="trailing" id="c0J-2H-mn3"/>
                             <constraint firstItem="af4-Qw-GVr" firstAttribute="top" secondItem="SzH-xW-9rg" secondAttribute="top" id="dan-qg-BXf"/>
+                            <constraint firstItem="LBL-Zw-LBl" firstAttribute="centerX" secondItem="7P7-kb-ifU" secondAttribute="centerX" id="eG9-sf-f3e"/>
                             <constraint firstItem="af4-Qw-GVr" firstAttribute="leading" secondItem="SzH-xW-9rg" secondAttribute="leading" id="o0h-LK-nCl"/>
                         </constraints>
                     </view>
@@ -8388,6 +8397,7 @@
                     <connections>
                         <outlet property="nextPrinterButton" destination="zwA-H2-ocr" id="nDr-mh-Ewt"/>
                         <outlet property="previousPrinterButton" destination="Wur-UU-824" id="YiO-WX-O6B"/>
+                        <outlet property="printerPositionLabel" destination="LBL-Zw-LBl" id="3g3-jR-cMj"/>
                         <segue destination="UEM-fV-jaw" kind="unwind" identifier="selectedPrinterFromFullScreenWithUnwindSegue" unwindAction="selectedPrinterFromFullScreenWithUnwindSegue:" id="XR2-PW-IOP"/>
                     </connections>
                 </viewController>
