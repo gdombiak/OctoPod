@@ -335,6 +335,20 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         }
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "layer_notifications" {
+            if let printer = self.printerManager.getDefaultPrinter() {
+                let allowSegue = printer.octopodPluginInstalled
+                if !allowSegue {
+                    self.showAlert(NSLocalizedString("Alert", comment: ""), message: NSLocalizedString("Install OctoPod plugin for OctoPrint to receive layer notifications", comment: ""))
+                }
+                return allowSegue
+            }
+        }
+        // Allow any other segue to execute
+        return true
+    }
+    
     // MARK: - SubpanelViewController
 
     func printerSelectedChanged() {
@@ -393,9 +407,7 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             }
             
             if let printing = event.printing, let paused = event.paused, let pausing = event.pausing {
-                if let printer = self.printerManager.getDefaultPrinter() {
-                    self.layerNotificationsButton.isEnabled = (printing || paused || pausing) && printer.octopodPluginInstalled  // Cell will be hidden unless DisplayLayerProgress plugin is installed
-                }
+                self.layerNotificationsButton.isEnabled = (printing || paused || pausing)  // Cell will be hidden unless DisplayLayerProgress plugin is installed
             }
 
             if let tool0Actual = event.tool0TempActual {
