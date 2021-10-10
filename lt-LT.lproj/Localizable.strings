@@ -38,6 +38,9 @@
 "Actual Extruder 5" = "Tikrasis ekstruderis 5";
 
 /* No comment provided by engineer. */
+"Alert" = "Pranešimas";
+
+/* No comment provided by engineer. */
 "API Key" = "API raktas";
 
 /* No comment provided by engineer. */
@@ -402,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots" = "Įrašykite 'OctoPod' įskiepį į OctoPrint, jei norite gauti pranešimus su nuotraukomis";
+
+/* No comment provided by engineer. */
+"Install OctoPod plugin for OctoPrint to receive layer notifications" = "Įdiekite OctoPod įskiepį, kad gautumėte pranešimus apie sluoksnius";
 
 /* No comment provided by engineer. */
 "Internal OctoEverywhere error" = "Vidinė OctoEverywhere klaida";
