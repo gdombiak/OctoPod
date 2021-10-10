@@ -19,6 +19,9 @@
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "1uD-mu-LKh"; */
 "1uD-mu-LKh.placeholder" = "Wachtwoord";
 
+/* Class = "UILabel"; text = "100%"; ObjectID = "1vl-d5-NHu"; */
+"1vl-d5-NHu.text" = "100%";
+
 /* Class = "UIBarButtonItem"; title = "Timelapse"; ObjectID = "1wa-fM-oTk"; */
 "1wa-fM-oTk.title" = "Timelapse";
 
@@ -81,6 +84,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "4ls-BU-eMv"; */
 "4ls-BU-eMv.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4O2-7Y-a0u"; */
+"4O2-7Y-a0u.text" = "Label";
 
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "Uiterlijk";
@@ -232,6 +238,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
 "bNj-cj-oty.text" = "Label";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "BNo-SB-aOv"; */
+"BNo-SB-aOv.text" = "Label";
+
 /* Class = "UILabel"; text = "Print Time"; ObjectID = "BrM-2D-Rbd"; */
 "BrM-2D-Rbd.text" = "Print Tijd";
 
@@ -367,9 +376,6 @@
 /* Class = "UITextField"; placeholder = "API Key or Application Key"; ObjectID = "foG-IV-lL7"; */
 "foG-IV-lL7.placeholder" = "API Sleutel of Applicatie Sleutel";
 
-/* Class = "UINavigationItem"; title = "Printers"; ObjectID = "FqW-ud-y7C"; */
-"FqW-ud-y7C.title" = "Printers";
-
 /* Class = "UITableViewSection"; headerTitle = "Temp Chart"; ObjectID = "GAt-su-C1i"; */
 "GAt-su-C1i.headerTitle" = "Temperatuur grafiek";
 
@@ -429,6 +435,9 @@
 
 /* Class = "UILabel"; text = "MISSED"; ObjectID = "hCQ-Pd-Tf0"; */
 "hCQ-Pd-Tf0.text" = "GEMIST";
+
+/* Class = "UILabel"; text = " "; ObjectID = "HDH-G9-A8F"; */
+"HDH-G9-A8F.text" = " ";
 
 /* Class = "UIBarButtonItem"; title = "OctoPrint Web"; ObjectID = "Hdi-Ra-Fgd"; */
 "Hdi-Ra-Fgd.title" = "OctoPrint Webpagina";
@@ -565,6 +574,9 @@
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "Bestand";
 
+/* Class = "UILabel"; text = " "; ObjectID = "L7b-hh-BO8"; */
+"L7b-hh-BO8.text" = " ";
+
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "lAO-Qe-VtX"; */
 "lAO-Qe-VtX.text" = "Subtitle";
 
@@ -576,6 +588,9 @@
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "LJV-z6-SX8"; */
 "LJV-z6-SX8.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "LXd-FZ-M0G"; */
+"LXd-FZ-M0G.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Tip: Swipe to switch between printers"; ObjectID = "lyc-MY-uT5"; */
 "lyc-MY-uT5.text" = "Tip: Veeg om tussen printers te wisselen";
@@ -597,6 +612,9 @@
 
 /* Class = "UILabel"; text = "Tap = Full Screen"; ObjectID = "MT2-fR-HJD"; */
 "MT2-fR-HJD.text" = "Klikken = Volledige scherm";
+
+/* Class = "UINavigationItem"; title = "Printers"; ObjectID = "MtO-Hr-2b2"; */
+"MtO-Hr-2b2.title" = "Printers";
 
 /* Class = "UIButton"; normalTitle = "SD"; ObjectID = "N5P-gn-chq"; */
 "N5P-gn-chq.normalTitle" = "SD";
@@ -844,6 +862,9 @@
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "sLc-Jv-G0H"; */
 "sLc-Jv-G0H.placeholder" = "Gebruikersnaam";
 
+/* Class = "UILabel"; text = " "; ObjectID = "Sm9-eX-ACf"; */
+"Sm9-eX-ACf.text" = " ";
+
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "SMa-NG-XzV"; */
 "SMa-NG-XzV.normalTitle" = "Annuleer";
 
@@ -864,6 +885,9 @@
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "syx-MO-ExG"; */
 "syx-MO-ExG.text" = "0 C";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "t4a-XJ-gjd"; */
+"t4a-XJ-gjd.text" = "Label";
 
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "t6e-82-YMx"; */
 "t6e-82-YMx.text" = "0.0%";
@@ -966,6 +990,9 @@
 
 /* Class = "UIButton"; normalTitle = "Reset printers from iCloud data"; ObjectID = "vyb-aH-wc9"; */
 "vyb-aH-wc9.normalTitle" = "Printers opnieuw instellen vanuit iCloud-gegevens";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "vYF-Qu-77d"; */
+"vYF-Qu-77d.text" = "Label";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "W0K-Js-tt5"; */
 "W0K-Js-tt5.text" = "Label";
@@ -1119,4 +1146,7 @@
 
 /* Class = "UILabel"; text = "Offset"; ObjectID = "zws-KA-eU1"; */
 "zws-KA-eU1.text" = "Offset";
+
+/* Class = "UILabel"; text = "2000 min"; ObjectID = "Zyu-r4-ylQ"; */
+"Zyu-r4-ylQ.text" = "2000 min";
 

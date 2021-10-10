@@ -4,15 +4,36 @@
 /* Class = "WKInterfaceController"; title = "Panel"; ObjectID = "DQ6-B5-o6I"; */
 "DQ6-B5-o6I.title" = "Paneel";
 
+/* Class = "WKInterfaceLabel"; text = "    "; ObjectID = "Dtq-ww-SzR"; */
+"Dtq-ww-SzR.text" = "    ";
+
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "fSR-FG-mh8"; */
+"fSR-FG-mh8.text" = "     ";
+
 /* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "HUy-Lk-z5k"; */
 "HUy-Lk-z5k.text" = "Label";
 
 /* Class = "WKInterfaceLabel"; text = "Alert Label"; ObjectID = "IdU-wH-bcW"; */
 "IdU-wH-bcW.text" = "Alert label";
 
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "mc4-7a-frz"; */
+"mc4-7a-frz.text" = "     ";
+
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "MUA-6M-Ncu"; */
+"MUA-6M-Ncu.text" = "     ";
+
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "R3c-gI-59i"; */
+"R3c-gI-59i.text" = "     ";
+
 /* Class = "WKInterfaceLabel"; text = "Open the iPhone app, it will share printer data with the watch"; ObjectID = "S0T-q4-2KQ"; */
 "S0T-q4-2KQ.text" = "Open de iPhone app om printerdata te synchroniseren met de horloge";
 
 /* Class = "WKInterfaceController"; title = "Cameras"; ObjectID = "SvA-Pt-I7G"; */
 "SvA-Pt-I7G.title" = "Camera's";
+
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "sYn-tD-yHY"; */
+"sYn-tD-yHY.text" = "     ";
+
+/* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "vgs-ar-wlO"; */
+"vgs-ar-wlO.text" = "     ";
 

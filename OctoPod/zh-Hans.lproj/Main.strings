@@ -19,6 +19,9 @@
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "1uD-mu-LKh"; */
 "1uD-mu-LKh.placeholder" = "密码";
 
+/* Class = "UILabel"; text = "100%"; ObjectID = "1vl-d5-NHu"; */
+"1vl-d5-NHu.text" = "100%";
+
 /* Class = "UIBarButtonItem"; title = "Timelapse"; ObjectID = "1wa-fM-oTk"; */
 "1wa-fM-oTk.title" = "延时摄影";
 
@@ -81,6 +84,9 @@
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "4ls-BU-eMv"; */
 "4ls-BU-eMv.text" = "标签";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "4O2-7Y-a0u"; */
+"4O2-7Y-a0u.text" = "Label";
 
 /* Class = "UITableViewController"; title = "Appearance"; ObjectID = "4sv-CS-fGo"; */
 "4sv-CS-fGo.title" = "外观";
@@ -232,6 +238,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
 "bNj-cj-oty.text" = "标签";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "BNo-SB-aOv"; */
+"BNo-SB-aOv.text" = "Label";
+
 /* Class = "UILabel"; text = "Print Time"; ObjectID = "BrM-2D-Rbd"; */
 "BrM-2D-Rbd.text" = "打印时间";
 
@@ -367,9 +376,6 @@
 /* Class = "UITextField"; placeholder = "API Key or Application Key"; ObjectID = "foG-IV-lL7"; */
 "foG-IV-lL7.placeholder" = "API密钥或应用程序密钥";
 
-/* Class = "UINavigationItem"; title = "Printers"; ObjectID = "FqW-ud-y7C"; */
-"FqW-ud-y7C.title" = "打印机";
-
 /* Class = "UITableViewSection"; headerTitle = "Temp Chart"; ObjectID = "GAt-su-C1i"; */
 "GAt-su-C1i.headerTitle" = "温度图";
 
@@ -431,7 +437,7 @@
 "hCQ-Pd-Tf0.text" = "失败";
 
 /* Class = "UILabel"; text = " "; ObjectID = "HDH-G9-A8F"; */
-"HDH-G9-A8F.text" = "";
+"HDH-G9-A8F.text" = " ";
 
 /* Class = "UIBarButtonItem"; title = "OctoPrint Web"; ObjectID = "Hdi-Ra-Fgd"; */
 "Hdi-Ra-Fgd.title" = "OctoPrintWeb页面";
@@ -569,7 +575,7 @@
 "L1Q-WE-63g.text" = "文件";
 
 /* Class = "UILabel"; text = " "; ObjectID = "L7b-hh-BO8"; */
-"L7b-hh-BO8.text" = "";
+"L7b-hh-BO8.text" = " ";
 
 /* Class = "UILabel"; text = "Subtitle"; ObjectID = "lAO-Qe-VtX"; */
 "lAO-Qe-VtX.text" = "副标题";
@@ -582,6 +588,9 @@
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "LJV-z6-SX8"; */
 "LJV-z6-SX8.text" = "标题";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "LXd-FZ-M0G"; */
+"LXd-FZ-M0G.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "Tip: Swipe to switch between printers"; ObjectID = "lyc-MY-uT5"; */
 "lyc-MY-uT5.text" = "Tip:扫一扫，在打印机之间切换";
@@ -603,6 +612,9 @@
 
 /* Class = "UILabel"; text = "Tap = Full Screen"; ObjectID = "MT2-fR-HJD"; */
 "MT2-fR-HJD.text" = "点击=全屏";
+
+/* Class = "UINavigationItem"; title = "Printers"; ObjectID = "MtO-Hr-2b2"; */
+"MtO-Hr-2b2.title" = "打印机";
 
 /* Class = "UIButton"; normalTitle = "SD"; ObjectID = "N5P-gn-chq"; */
 "N5P-gn-chq.normalTitle" = "SD卡";
@@ -827,13 +839,13 @@
 "S1e-nz-awE.headerTitle" = "并发症内容";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
-"S2I-HR-qgE.text" = "";
+"S2I-HR-qgE.text" = "/";
 
 /* Class = "UINavigationItem"; title = "Application Key"; ObjectID = "saA-I3-RLW"; */
 "saA-I3-RLW.title" = "应用Key";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "SAw-xr-VmY"; */
-"SAw-xr-VmY.text" = "";
+"SAw-xr-VmY.text" = "/";
 
 /* Class = "UIButton"; normalTitle = "Resume"; ObjectID = "sCj-mw-VaE"; */
 "sCj-mw-VaE.normalTitle" = "继续";
@@ -851,7 +863,7 @@
 "sLc-Jv-G0H.placeholder" = "帐号";
 
 /* Class = "UILabel"; text = " "; ObjectID = "Sm9-eX-ACf"; */
-"Sm9-eX-ACf.text" = "";
+"Sm9-eX-ACf.text" = " ";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "SMa-NG-XzV"; */
 "SMa-NG-XzV.normalTitle" = "取消";
@@ -873,6 +885,9 @@
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "syx-MO-ExG"; */
 "syx-MO-ExG.text" = "0C";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "t4a-XJ-gjd"; */
+"t4a-XJ-gjd.text" = "Label";
 
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "t6e-82-YMx"; */
 "t6e-82-YMx.text" = "0.0%";
@@ -902,7 +917,7 @@
 "Tqi-wZ-CN5.headerTitle" = "Palette2";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "tTe-Q5-kkc"; */
-"tTe-Q5-kkc.text" = "";
+"tTe-Q5-kkc.text" = "/";
 
 /* Class = "UIButton"; normalTitle = "Run"; ObjectID = "Tys-oi-RME"; */
 "Tys-oi-RME.normalTitle" = "运转";
@@ -975,6 +990,9 @@
 
 /* Class = "UIButton"; normalTitle = "Reset printers from iCloud data"; ObjectID = "vyb-aH-wc9"; */
 "vyb-aH-wc9.normalTitle" = "从iCloud数据重置打印机";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "vYF-Qu-77d"; */
+"vYF-Qu-77d.text" = "Label";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "W0K-Js-tt5"; */
 "W0K-Js-tt5.text" = "标签";
@@ -1128,4 +1146,7 @@
 
 /* Class = "UILabel"; text = "Offset"; ObjectID = "zws-KA-eU1"; */
 "zws-KA-eU1.text" = "偏移";
+
+/* Class = "UILabel"; text = "2000 min"; ObjectID = "Zyu-r4-ylQ"; */
+"Zyu-r4-ylQ.text" = "2000 min";
 

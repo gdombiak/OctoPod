@@ -5,10 +5,10 @@
 "DQ6-B5-o6I.title" = "面板";
 
 /* Class = "WKInterfaceLabel"; text = "    "; ObjectID = "Dtq-ww-SzR"; */
-"Dtq-ww-SzR.text" = "";
+"Dtq-ww-SzR.text" = "    ";
 
 /* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "fSR-FG-mh8"; */
-"fSR-FG-mh8.text" = "";
+"fSR-FG-mh8.text" = "     ";
 
 /* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "HUy-Lk-z5k"; */
 "HUy-Lk-z5k.text" = "标签";
@@ -17,13 +17,13 @@
 "IdU-wH-bcW.text" = "警示标签";
 
 /* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "mc4-7a-frz"; */
-"mc4-7a-frz.text" = "";
+"mc4-7a-frz.text" = "     ";
 
 /* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "MUA-6M-Ncu"; */
-"MUA-6M-Ncu.text" = "";
+"MUA-6M-Ncu.text" = "     ";
 
 /* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "R3c-gI-59i"; */
-"R3c-gI-59i.text" = "";
+"R3c-gI-59i.text" = "     ";
 
 /* Class = "WKInterfaceLabel"; text = "Open the iPhone app, it will share printer data with the watch"; ObjectID = "S0T-q4-2KQ"; */
 "S0T-q4-2KQ.text" = "打开iPhone应用程序，它将与手表共享打印机数据";
@@ -32,8 +32,8 @@
 "SvA-Pt-I7G.title" = "摄像机";
 
 /* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "sYn-tD-yHY"; */
-"sYn-tD-yHY.text" = "";
+"sYn-tD-yHY.text" = "     ";
 
 /* Class = "WKInterfaceLabel"; text = "     "; ObjectID = "vgs-ar-wlO"; */
-"vgs-ar-wlO.text" = "";
+"vgs-ar-wlO.text" = "     ";
 
