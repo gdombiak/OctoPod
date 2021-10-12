@@ -38,6 +38,9 @@
 "Actual Extruder 5" = "Aktuell extruder 5";
 
 /* No comment provided by engineer. */
+"Alert" = "Varna";
+
+/* No comment provided by engineer. */
 "API Key" = "API-nyckel";
 
 /* No comment provided by engineer. */
@@ -404,6 +407,9 @@
 "Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots" = "Installera OctoPod-tillägget för OctoPrint för att få omedelbara pushnotiser med kameraskärmdumpar";
 
 /* No comment provided by engineer. */
+"Install OctoPod plugin for OctoPrint to receive layer notifications" = "Installera OctoPod-plugin för OctoPrint för att ta emot lageraviseringar";
+
+/* No comment provided by engineer. */
 "Internal OctoEverywhere error" = "Internt OctoEverywhere-fel";
 
 /* URL of camera is invalid */
@@ -575,7 +581,7 @@
 "Reminders" = "Påminnelser";
 
 /* No comment provided by engineer. */
-"Remove old OctoPod app from Apple Watch" = "Ta bort den gamla OctoPod -appen från Apple Watch";
+"Remove old OctoPod app from Apple Watch" = "Ta bort gammal OctoPod-app från Apple Watch";
 
 /* gcode name */
 "Report Settings" = "Rapportera inställningar";
