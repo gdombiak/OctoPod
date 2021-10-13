@@ -38,6 +38,9 @@
 "Actual Extruder 5" = "Extrudeur actuel 5";
 
 /* No comment provided by engineer. */
+"Alert" = "Alerte";
+
+/* No comment provided by engineer. */
 "API Key" = "Clé API";
 
 /* No comment provided by engineer. */
@@ -402,6 +405,9 @@
 
 /* No comment provided by engineer. */
 "Install OctoPod plugin for OctoPrint to receive immediate push notifications with camera snapshots" = "Installez le plugin OctoPod pour recevoir des notifications instantanées avec la dernière image prise";
+
+/* No comment provided by engineer. */
+"Install OctoPod plugin for OctoPrint to receive layer notifications" = "Installez le plug-in OctoPod pour OctoPrint pour recevoir des notifications de layer";
 
 /* No comment provided by engineer. */
 "Internal OctoEverywhere error" = "Erreur interne OctoEverywhere";
