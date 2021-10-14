@@ -121,6 +121,9 @@
 /* Class = "UILabel"; text = "Disable Motor"; ObjectID = "6TZ-hb-gdQ"; */
 "6TZ-hb-gdQ.text" = "禁用电机";
 
+/* Class = "UINavigationItem"; title = "Sponsors"; ObjectID = "6vB-dQ-Kij"; */
+"6vB-dQ-Kij.title" = "赞助者";
+
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7HM-7E-tgN"; */
 "7HM-7E-tgN.normalTitle" = "按键";
 
@@ -502,8 +505,14 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "ieu-aB-md8"; */
 "ieu-aB-md8.text" = "标签";
 
+/* Class = "UILabel"; text = "Sponsors"; ObjectID = "IjI-yV-FmX"; */
+"IjI-yV-FmX.text" = "赞助者";
+
 /* Class = "UIButton"; normalTitle = "Popular GCode Commands"; ObjectID = "Iuu-Fk-Mu7"; */
 "Iuu-Fk-Mu7.normalTitle" = "常用GCode命令";
+
+/* Class = "UIViewController"; title = "Sponsors"; ObjectID = "IVP-j6-h7G"; */
+"IVP-j6-h7G.title" = "赞助者";
 
 /* Class = "UITableViewSection"; headerTitle = "Move"; ObjectID = "iY8-Rh-TKn"; */
 "iY8-Rh-TKn.headerTitle" = "移动";
@@ -588,6 +597,9 @@
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "LJV-z6-SX8"; */
 "LJV-z6-SX8.text" = "标题";
+
+/* Class = "UIButton"; configuration.title = "Become a sponsor"; ObjectID = "LXd-FZ-M0G"; */
+"LXd-FZ-M0G.configuration.title" = "成为赞助者";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "LXd-FZ-M0G"; */
 "LXd-FZ-M0G.normalTitle" = "Button";
