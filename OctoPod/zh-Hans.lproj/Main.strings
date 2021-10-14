@@ -8,7 +8,7 @@
 "0RF-vn-WtE.text" = "标题";
 
 /* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "1dd-tF-khE"; */
-"1dd-tF-khE.text" = "包括在仪表板中";
+"1dd-tF-khE.text" = "包括在面板中";
 
 /* Class = "UIButton"; normalTitle = "Request"; ObjectID = "1gP-AF-De1"; */
 "1gP-AF-De1.normalTitle" = "请求";
@@ -47,7 +47,7 @@
 "3hn-5x-4xy.text" = "错误信息";
 
 /* Class = "UILabel"; text = "Flow rate"; ObjectID = "3IG-Y9-Ofi"; */
-"3IG-Y9-Ofi.text" = "流速";
+"3IG-Y9-Ofi.text" = "流量";
 
 /* Class = "UITableViewSection"; headerTitle = "Language"; ObjectID = "3JO-XH-cf3"; */
 "3JO-XH-cf3.headerTitle" = "语言";
@@ -131,7 +131,7 @@
 "7Mb-MK-CG7.normalTitle" = "Z";
 
 /* Class = "UITableViewSection"; headerTitle = "Manual Control"; ObjectID = "7pE-fx-Ibe"; */
-"7pE-fx-Ibe.headerTitle" = "手工控制";
+"7pE-fx-Ibe.headerTitle" = "手动控制";
 
 /* Class = "UITableViewSection"; headerTitle = "Settings"; ObjectID = "7tc-5o-KVQ"; */
 "7tc-5o-KVQ.headerTitle" = "设置";
@@ -194,7 +194,7 @@
 "aFa-Qd-yIr.placeholder" = "打印机名称（例如：MK3）";
 
 /* Class = "UIButton"; normalTitle = "Suppress temp"; ObjectID = "AfS-HP-WTR"; */
-"AfS-HP-WTR.normalTitle" = "抑制温度";
+"AfS-HP-WTR.normalTitle" = "降温";
 
 /* Class = "UILabel"; text = "Extruder"; ObjectID = "ahs-Hn-dAX"; */
 "ahs-Hn-dAX.text" = "挤出机";
@@ -308,7 +308,7 @@
 "dZz-iV-loq.text" = "标题";
 
 /* Class = "UIButton"; normalTitle = "Reset iCloud data from printers"; ObjectID = "e5p-Y4-n8X"; */
-"e5p-Y4-n8X.normalTitle" = "重置打印机上的iCloud数据";
+"e5p-Y4-n8X.normalTitle" = "重置iCloud上的打印机数据";
 
 /* Class = "UITabBarItem"; title = "Files"; ObjectID = "e75-bh-dxQ"; */
 "e75-bh-dxQ.title" = "文件";
@@ -479,7 +479,7 @@
 "hUL-Ws-ypB.normalTitle" = "忽略";
 
 /* Class = "UITableViewSection"; headerTitle = "X Y"; ObjectID = "hWI-gF-onz"; */
-"hWI-gF-onz.headerTitle" = "XY";
+"hWI-gF-onz.headerTitle" = "X Y";
 
 /* Class = "UISegmentedControl"; hzK-Nf-sCi.segmentTitles[0] = "0.1"; ObjectID = "hzK-Nf-sCi"; */
 "hzK-Nf-sCi.segmentTitles[0]" = "0.1";
@@ -557,7 +557,7 @@
 "kaq-fI-VzN.text" = "Palette2-最后Ping";
 
 /* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "KC4-pP-rEh"; */
-"KC4-pP-rEh.text" = "包括在仪表板中";
+"KC4-pP-rEh.text" = "包括在面板中";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "kdJ-8e-1mO"; */
 "kdJ-8e-1mO.text" = "详情";
@@ -656,7 +656,7 @@
 "NsL-9T-upI.text" = "0.0C";
 
 /* Class = "UILabel"; text = "Filament Used"; ObjectID = "ntu-wc-YX0"; */
-"ntu-wc-YX0.text" = "使用的灯丝";
+"ntu-wc-YX0.text" = "使用的耗材";
 
 /* Class = "UIButton"; normalTitle = "Set"; ObjectID = "o8a-yF-u6j"; */
 "o8a-yF-u6j.normalTitle" = "设置";
@@ -788,7 +788,7 @@
 "r08-sj-cCD.text" = "标签";
 
 /* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "R8W-HN-Cgb"; */
-"R8W-HN-Cgb.text" = "包括在仪表板中";
+"R8W-HN-Cgb.text" = "包括在面板中";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87"; */
 "REX-gh-p87.normalTitle" = "按键";
@@ -833,10 +833,10 @@
 "RZc-hr-pTu.placeholder" = "命令";
 
 /* Class = "UIButton"; normalTitle = "Dismiss"; ObjectID = "S0f-uX-rYI"; */
-"S0f-uX-rYI.normalTitle" = "撤销";
+"S0f-uX-rYI.normalTitle" = "好的";
 
 /* Class = "UITableViewSection"; headerTitle = "Complications Content"; ObjectID = "S1e-nz-awE"; */
-"S1e-nz-awE.headerTitle" = "并发症内容";
+"S1e-nz-awE.headerTitle" = "紧凑模块内容";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
 "S2I-HR-qgE.text" = "/";
@@ -944,7 +944,7 @@
 "UiU-6m-I6P.text" = "60.0C";
 
 /* Class = "UILabel"; text = "State"; ObjectID = "Uop-QL-yoT"; */
-"Uop-QL-yoT.text" = "国家";
+"Uop-QL-yoT.text" = "状态";
 
 /* Class = "UILabel"; text = "Require passcode to unlock"; ObjectID = "uqf-BP-Wtn"; */
 "uqf-BP-Wtn.text" = "需要密码才能解锁";
@@ -968,7 +968,7 @@
 "VgY-ne-x6t.text" = "状况";
 
 /* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "VIg-Mm-BM3"; */
-"VIg-Mm-BM3.text" = "包括在仪表板中";
+"VIg-Mm-BM3.text" = "包括在面板中";
 
 /* Class = "UILabel"; text = "%"; ObjectID = "VkX-1W-xBG"; */
 "VkX-1W-xBG.text" = "%";

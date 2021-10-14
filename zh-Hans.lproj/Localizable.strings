@@ -95,7 +95,7 @@
 "Cannot replace file that is being printed or printer is busy" = "无法替换正在打印的文件或打印机繁忙";
 
 /* File Type is GCode */
-"Code" = "编码";
+"Code" = "代码";
 
 /* (No Comment) */
 "Command not executed. Printer not operational" = "命令未执行。打印机无法运行";
@@ -158,7 +158,7 @@
 "Contacting OctoPrint." = "联系OctoPrint。";
 
 /* Siri suggested phrase */
-"Cool down heated chamber" = "冷却受热室";
+"Cool down heated chamber" = "冷却加热腔体";
 
 /* Siri suggested phrase */
 "Cool down printer" = "降温打印机";
@@ -215,7 +215,7 @@
 "Do you want to resume printing?" = "你想恢复印刷吗？";
 
 /* (No Comment) */
-"Domoticz Plugs" = "多莫特兹插头";
+"Domoticz Plugs" = "Domoticz 插件";
 
 /* (No Comment) */
 "Enable iCloud under iOS Settings to use this feature" = "在iOS设置下启用iCloud以使用该功能";
@@ -422,7 +422,7 @@
 "Layer" = "层数";
 
 /* gcode name */
-"Load filament" = "加载灯丝";
+"Load filament" = "加载耗材";
 
 /* (No Comment) */
 "Location no longer valid. Refresh files" = "位置不再有效。刷新文件";
@@ -434,7 +434,7 @@
 "minutes ago" = "%d分钟前";
 
 /* No comment provided by engineer. */
-"Missed" = "错过了";
+"Missed" = "失败";
 
 /* (No Comment) */
 "MK3" = "MK3";
@@ -515,10 +515,10 @@
 "PID Hotend autotune" = "喷头PID自动调整";
 
 /* No comment provided by engineer. */
-"Ping History" = "平的历史";
+"Ping History" = "历史 Ping";
 
 /* No comment provided by engineer. */
-"Pong History" = "乒乓历史";
+"Pong History" = "历史 Pong";
 
 /* No comment provided by engineer. */
 "Print" = "打印";
@@ -557,7 +557,7 @@
 "Printers" = "打印机";
 
 /* (No Comment) */
-"Printing" = "印刷业";
+"Printing" = "打印中";
 
 /* No comment provided by engineer. */
 "Progress" = "进展";
@@ -596,13 +596,13 @@
 "Restore Settings" = "恢复设置";
 
 /* (No Comment) */
-"Resume" = "简历";
+"Resume" = "恢复";
 
 /* Siri suggested phrase */
 "Resume current print job" = "在%@上恢复当前的打印作业";
 
 /* (No Comment) */
-"Resume Job" = "简历工作";
+"Resume Job" = "恢复工作";
 
 /* No comment provided by engineer. */
 "Retrieving printers information" = "检索打印机信息";
@@ -650,7 +650,7 @@
 "SoC Temperature" = "SoC温度";
 
 /* No comment provided by engineer. */
-"State" = "国家";
+"State" = "状态";
 
 /* Print time is being calculated */
 "Still stabilizing" = "仍在稳定中...";

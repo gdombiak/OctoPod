@@ -47,7 +47,7 @@
 "Notify failed resume job" = "未能请求恢复工作";
 
 /* No comment provided by engineer. */
-"Printing" = "印刷业";
+"Printing" = "打印中";
 
 /* ETA is Unknown */
 "Unknown" = "不详";
