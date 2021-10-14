@@ -47,89 +47,93 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
             }
         }
     }
-    
+
     func getData(_ service: String, callback: @escaping (Data?, Error?, HTTPURLResponse) -> Void) {
-        // Encode path and query param for escaping spaces. urlQueryAllowed does the job even though it's not 100% technically correct
-        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
-        let url: URL = service.starts(with: serverURL) ? URL(string: encodedService)! : URL(string: serverURL + encodedService)!
-        
-        // Get session with the provided configuration
-        let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
-        
-        // Create background task that will perform the HTTP request
-        var request = URLRequest(url: url)
-        // Add API Key header
-        addApiKey(&request)
-        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-            self.postRequest?()
-            if let httpRes = response as? HTTPURLResponse {
-                if error != nil {
-                    callback(nil, error, httpRes)
-                } else {
-                    if httpRes.statusCode == 200 {
-                        callback( data!, nil, httpRes)
+        if let url: URL = buildURL(service) {
+            // Get session with the provided configuration
+            let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
+
+            // Create background task that will perform the HTTP request
+            var request = URLRequest(url: url)
+            // Add API Key header
+            addApiKey(&request)
+            let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+                self.postRequest?()
+                if let httpRes = response as? HTTPURLResponse {
+                    if error != nil {
+                        callback(nil, error, httpRes)
                     } else {
-                        callback(nil, nil, httpRes)
+                        if httpRes.statusCode == 200 {
+                            callback( data!, nil, httpRes)
+                        } else {
+                            callback(nil, nil, httpRes)
+                        }
                     }
+                } else {
+                    callback(nil, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
                 }
-            } else {
-                callback(nil, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
-            }
-        })
-        self.preRequest?()
-        task.resume()
-        session.finishTasksAndInvalidate()
+            })
+            self.preRequest?()
+            task.resume()
+            session.finishTasksAndInvalidate()
+        } else {
+            NSLog("GET ignored. Invalid URL found. Server: \(serverURL!). Service: \(service)")
+            callback(nil, NSError(domain: "", code: 400, userInfo: nil), HTTPURLResponse(url: URL(string: "/")!, statusCode: 400, httpVersion: nil, headerFields: nil)!)
+        }
     }
     
     func download(_ service: String, progress: @escaping (Int64, Int64) -> Void, completion: @escaping (Data?, Error?) -> Void) {
-        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
-        let url: URL = URL(string: serverURL + encodedService)!
-        
-        // Get session with the provided configuration
-        let delegate = WrappedDownloadTaskDelegate(httpClient: self, progress: progress, completion: completion)
-        let configuration = getConfiguration()
-        // Increate timeouts
-        configuration.timeoutIntervalForResource = 90
-        let session = Foundation.URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
-        
-        // Create background task that will perform the HTTP request
-        var request = URLRequest(url: url)
-        // Add API Key header
-        addApiKey(&request)
-        let task = session.downloadTask(with: request)
-        self.preRequest?()
-        task.resume()
-        session.finishTasksAndInvalidate()
+        if let url: URL = buildURL(service) {
+            // Get session with the provided configuration
+            let delegate = WrappedDownloadTaskDelegate(httpClient: self, progress: progress, completion: completion)
+            let configuration = getConfiguration()
+            // Increate timeouts
+            configuration.timeoutIntervalForResource = 90
+            let session = Foundation.URLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
+            
+            // Create background task that will perform the HTTP request
+            var request = URLRequest(url: url)
+            // Add API Key header
+            addApiKey(&request)
+            let task = session.downloadTask(with: request)
+            self.preRequest?()
+            task.resume()
+            session.finishTasksAndInvalidate()
+        } else {
+            NSLog("GET ignored. Invalid URL found. Server: \(serverURL!). Service: \(service)")
+            completion(nil, NSError(domain: "", code: 400, userInfo: nil))
+        }
     }
     
     func delete(_ service: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
-        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
-        let url: URL = URL(string: serverURL + encodedService)!
-        
-        // Get session with the provided configuration
-        let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
-        
-        // Create background task that will perform the HTTP request
-        var request = URLRequest(url: url)
-        request.httpMethod = "DELETE"
-        // Add API Key header
-        addApiKey(&request)
-        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-            self.postRequest?()
-            if let httpRes = response as? HTTPURLResponse {
-                callback(httpRes.statusCode == 204, error, httpRes)
-            } else {
-                callback(false, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
-            }
-        })
-        self.preRequest?()
-        task.resume()
-        session.finishTasksAndInvalidate()
+        if let url: URL = buildURL(service) {
+            // Get session with the provided configuration
+            let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
+            
+            // Create background task that will perform the HTTP request
+            var request = URLRequest(url: url)
+            request.httpMethod = "DELETE"
+            // Add API Key header
+            addApiKey(&request)
+            let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+                self.postRequest?()
+                if let httpRes = response as? HTTPURLResponse {
+                    callback(httpRes.statusCode == 204, error, httpRes)
+                } else {
+                    callback(false, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
+                }
+            })
+            self.preRequest?()
+            task.resume()
+            session.finishTasksAndInvalidate()
+        } else {
+            NSLog("DELETE ignored. Invalid URL found. Server: \(serverURL!). Service: \(service)")
+            callback(false, NSError(domain: "", code: 400, userInfo: nil), HTTPURLResponse(url: URL(string: "/")!, statusCode: 400, httpVersion: nil, headerFields: nil)!)
+        }
     }
 
     func post(_ service: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
-        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
-        if let url: URL = URL(string: serverURL! + encodedService) {
+        if let url: URL = buildURL(service) {
             // Get session with the provided configuration
             let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
             
@@ -160,8 +164,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
     
     func post(_ service: String, json: NSObject, expected: Int, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
-        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
-        if let url: URL = URL(string: serverURL! + encodedService) {
+        if let url: URL = buildURL(service) {
             requestWithBody(url, verb: "POST", expected: expected, json: json, callback: callback)
         } else {
             NSLog("POST not possible. Invalid URL found. Server: \(serverURL!). Service: \(service)")
@@ -174,8 +177,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
     
     func patch(_ service: String, json: NSObject, expected: Int, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
-        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
-        if let url: URL = URL(string: serverURL! + encodedService) {
+        if let url: URL = buildURL(service) {
             requestWithBody(url, verb: "PATCH", expected: expected, json: json, callback: callback)
         } else {
             NSLog("PATCH not possible. Invalid URL found. Server: \(serverURL!). Service: \(service)")
@@ -188,34 +190,36 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
     
     func upload(_ service: String, parameters: [String: String]?, filename: String, fileContent: Data, expected: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
-        let encodedService: String = service.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? service
-        let url: URL = URL(string: serverURL! + encodedService)!
-
-        // Get session with the provided configuration
-        let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
-        
-        // Create background task that will perform the HTTP request
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        // Set multipart boundary
-        let boundary = "Boundary-\(UUID().uuidString)"
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        // Add API Key header
-        addApiKey(&request)
-        // Create multipart that includes file
-        request.httpBody = createMultiPartBody(parameters: parameters, boundary: boundary, data: fileContent, mimeType: "application/octet-stream", filename: filename)
-        // Send request
-        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-            self.postRequest?()
-            if let httpRes = response as? HTTPURLResponse {
-                callback(httpRes.statusCode == 201, error, httpRes)
-            } else {
-                callback(false, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
-            }
-        })
-        self.preRequest?()
-        task.resume()
-        session.finishTasksAndInvalidate()
+        if let url: URL = buildURL(service) {
+            // Get session with the provided configuration
+            let session = Foundation.URLSession(configuration: getConfiguration(), delegate: self, delegateQueue: nil)
+            
+            // Create background task that will perform the HTTP request
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            // Set multipart boundary
+            let boundary = "Boundary-\(UUID().uuidString)"
+            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+            // Add API Key header
+            addApiKey(&request)
+            // Create multipart that includes file
+            request.httpBody = createMultiPartBody(parameters: parameters, boundary: boundary, data: fileContent, mimeType: "application/octet-stream", filename: filename)
+            // Send request
+            let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+                self.postRequest?()
+                if let httpRes = response as? HTTPURLResponse {
+                    callback(httpRes.statusCode == 201, error, httpRes)
+                } else {
+                    callback(false, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
+                }
+            })
+            self.preRequest?()
+            task.resume()
+            session.finishTasksAndInvalidate()
+        } else {
+            NSLog("POST ignored. Invalid URL found. Server: \(serverURL!). Service: \(service)")
+            callback(false, NSError(domain: "", code: 400, userInfo: nil), HTTPURLResponse(url: URL(string: "/")!, statusCode: 400, httpVersion: nil, headerFields: nil)!)
+        }
     }
     
     // MARK: Private functions
@@ -332,6 +336,22 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         }
     }
     
+    func buildURL(_ service: String) -> URL? {
+        let urlFragment: String
+        // Split into path and query params
+        let parts = service.split(separator: "?", maxSplits: 1, omittingEmptySubsequences: true).map(String.init)
+        // Escape path and query params
+        let path = parts[0].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? parts[0]
+        if parts.count > 1 {
+            // We have query params
+            let queryString = parts[1].addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? parts[1]
+            urlFragment = "\(path)?\(queryString)"
+        } else {
+            urlFragment = path
+        }
+        return service.starts(with: serverURL) ? URL(string: urlFragment) : URL(string: serverURL + urlFragment)
+    }
+
     // MARK: URLSessionDelegate
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {

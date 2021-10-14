@@ -42,6 +42,28 @@ class OctoPodTests: XCTestCase {
         XCTAssertFalse(PrinterUtils.isValidURL(inputURL: "http://http://www.google.com"))
         XCTAssertFalse(PrinterUtils.isValidURL(inputURL: "http://www.goo gle.com"))
     }
+    
+    func testHTTClientURLs() throws {
+        let httpClient = HTTPClient(serverURL: "http://octopi.local", apiKey: "asd", username: nil, password: nil)
+        
+        XCTAssertNotNil(httpClient.buildURL("/plugin/asd"))
+        XCTAssertNotNil(httpClient.buildURL("/plugin/prusaslicerthumbnails/thumbnail/E_PLA affe-c.png?20210812223724"))
+        XCTAssertNotNil(httpClient.buildURL("/plugin/prusaslicerthumbnails/thumbnail/E_PLA hundepaar.png?20210812220714"))
+        XCTAssertNotNil(httpClient.buildURL("/plugin/prusaslicerthumbnails/thumbnail/CE5_cube (1).gcode?20210812220714"))
+        XCTAssertNotNil(httpClient.buildURL("/plugin/prusaslicerthumbnails/thumbnail/CE5_cube >(1).gcode?20210812220714"))
+        XCTAssertNotNil(httpClient.buildURL("/plugin/prusaslicerthumbnails/thumbnail/CE5_cube #(1).gcode?20210812220714"))
+        XCTAssertNotNil(httpClient.buildURL("/plugin/prusaslicerthumbnails/thumbnail/CE5_cube $(1).gcode?20210812220714"))
+        XCTAssertNotNil(httpClient.buildURL("/plugin/prusaslicerthumbnails/thumbnail/CE5_cube ?(1).gcode?20210812220714"))
+        
+        var url = httpClient.buildURL("/plugin/prusaslicerthumbnails/thumbnail/CE5_cube >(1).gcode?20210812220714")
+        XCTAssertEqual(url?.path, "/plugin/prusaslicerthumbnails/thumbnail/CE5_cube >(1).gcode")
+        XCTAssertEqual(url?.query, "20210812220714")
+
+        // Filenames with ? are trouble. It will generate some URL but will not work
+        url = httpClient.buildURL("/plugin/prusaslicerthumbnails/thumbnail/CE5_cube ?(1).gcode?20210812220714")
+        XCTAssertEqual(url?.path, "/plugin/prusaslicerthumbnails/thumbnail/CE5_cube ")
+        XCTAssertEqual(url?.query, "(1).gcode?20210812220714")
+    }
 
 //    func testPerformanceExample() throws {
 //        // This is an example of a performance test case.
