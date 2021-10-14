@@ -3,7 +3,7 @@ import UIKit
 
 class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
     
-    private let delegate: PrinterObserverDelegate
+    private var delegate: PrinterObserverDelegate?
     private var octoPrintClient: OctoPrintClient?
     private let row: Int
     
@@ -55,6 +55,15 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
         } else {
             octoPrintClient?.disconnectFromServer()
         }
+    }
+    
+    /// Discard this observer. This means that the observer will no longer be used. We can now
+    /// close the connection and stop sending notification to the deleage
+    func discard() {
+        // Stop sending notification to delegate
+        delegate = nil
+        // Close connection
+        disconnectFromServer()
     }
 
     // MARK: - OctoPrintClientDelegate
@@ -111,9 +120,9 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
         }
         
         if changed {
-            delegate.refreshItem(row: row, printerObserver: self)
+            delegate?.refreshItem(row: row, printerObserver: self)
         }
-        delegate.currentStateUpdated(row: row, event: event)
+        delegate?.currentStateUpdated(row: row, event: event)
     }
        
     // MARK: - OctoPrintPluginsDelegate
@@ -124,7 +133,7 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
                 let newLayer = "\(currentLayer) / \(totalLayer)"
                 if newLayer != layer {
                     self.layer = newLayer
-                    delegate.refreshItem(row: row, printerObserver: self)
+                    delegate?.refreshItem(row: row, printerObserver: self)
                 }
             }
         }

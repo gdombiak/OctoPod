@@ -57,7 +57,7 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         super.viewWillDisappear(animated)
         
         for printerObserver in printers {
-            printerObserver.disconnectFromServer()
+            printerObserver.discard()
         }
         // Remove embedded VCs
         self.deleteEmbeddedCameraViewControllers()
