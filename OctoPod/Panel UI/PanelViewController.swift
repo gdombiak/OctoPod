@@ -502,7 +502,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             // Update layout depending on camera orientation
             updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!, devicePortrait: size.height == screenHeight)
             // Hide/show camera grid button based on orientation
-            self.cameraGridButton.isHidden = !self.showCameraGridButton()
+            if self.cameraGridButton != nil {
+                self.cameraGridButton.isHidden = !self.showCameraGridButton()
+            }
             // Add some delay before calculating if we should render temp info
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.checkDisplayPrintStatusOverCamera()
