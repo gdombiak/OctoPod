@@ -354,8 +354,8 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     
     // Refresh files from OctoPrint and call me back with the refreshed file/folder that was specified
     func refreshFolderFiles(folder: PrintFile, callback: @escaping ((PrintFile?) -> Void)) {
-        loadFiles(done: {
-            for file in self.files {
+        loadFiles(done: { newFiles in
+            for file in newFiles {
                 if let found = file.locate(file: folder) {
                     callback(found)
                     return
@@ -443,7 +443,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    fileprivate func loadFiles(done: (() -> Void)?) {
+    fileprivate func loadFiles(done: ((Array<PrintFile>) -> Void)?) {
         // Refreshing files could take some time so show spinner of refreshing
         DispatchQueue.main.async {
             if let refreshControl = self.refreshControl {
@@ -453,7 +453,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         }
         // Load all files and folders (recursive)
         octoprintClient.files { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
-            self.files = Array()
+            var newFiles: Array<PrintFile> = Array()
             // Handle connection errors
             if let error = error {
                 self.showAlert(NSLocalizedString("Warning", comment: ""), message: error.localizedDescription, done: nil)
@@ -480,15 +480,16 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
                         }
                         
                         // Keep track of files and folders
-                        self.files.append(printFile)
+                        newFiles.append(printFile)
                     }
                     
                     // Sort files by user prefered sort criteria
-                    self.files = PrintFile.sort(files: self.files, sortBy: nil)
+                    newFiles = PrintFile.sort(files: newFiles, sortBy: nil)
                 }
             }
             // Refresh table (even if there was an error so it is empty)
             DispatchQueue.main.async {
+                self.files = newFiles
                 // Refresh searched files
                 self.updatedSearchedFiles(self.searchBar.text ?? "")
                 // Close refresh control
@@ -496,7 +497,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
                 self.tableView.reloadData()
             }
             // Execute done block when done
-            done?()
+            done?(newFiles)
         }
     }
     

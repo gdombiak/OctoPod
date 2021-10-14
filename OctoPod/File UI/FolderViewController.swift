@@ -358,12 +358,12 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
             if !success {
                 let message = response.statusCode == 409 ? NSLocalizedString("File currently being printed", comment: "") : NSLocalizedString("Failed to delete file", comment: "")
                 self.showAlert(NSLocalizedString("Warning", comment: ""), message: message, done: {
-                    // Add back file to UI
-                    self.files.append(printFile)
-                    // Add back to model in memory
-                    self.folder.children!.append(printFile)
                     // Refresh UI
                     DispatchQueue.main.async {
+                        // Add back file to UI
+                        self.files.append(printFile)
+                        // Add back to model in memory
+                        self.folder.children!.append(printFile)
                         // Refresh searched files
                         self.updatedSearchedFiles(self.searchBar.text ?? "")
                         self.tableView.reloadData()
@@ -376,9 +376,9 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
     fileprivate func refreshFiles(refreshControl: UIRefreshControl?) {
         filesTreeVC.refreshFolderFiles(folder: folder) { (updatedFile: PrintFile?) in
             if let updated = updatedFile {
-                self.folder = updated
-                self.files = updated.children!
                 DispatchQueue.main.async {
+                    self.folder = updated
+                    self.files = updated.children!
                     // Refresh searched files
                     self.updatedSearchedFiles(self.searchBar.text ?? "")
                     self.tableView.reloadData()
