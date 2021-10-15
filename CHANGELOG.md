@@ -1,8 +1,36 @@
 # Change Log
 
+## [3.14](https://github.com/gdombiak/OctoPod/tree/3.14) (2021-10-15)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.13...3.14)
+
+
+**Implemented enhancements:**
+
+- Display alert when trying to receive layer notifications and OctoPod plugin is not installed [\#524](https://github.com/gdombiak/OctoPod/issues/524)
+- Add Sponsors page under Settings [\#523](https://github.com/gdombiak/OctoPod/issues/523)
+- Allow to expand camera when watching dashboard of printers [\#522](https://github.com/gdombiak/OctoPod/issues/522)
+- Add print job stats to printers dashboard [\#514](https://github.com/gdombiak/OctoPod/issues/514)
+
+**Fixed bugs:**
+
+- Files view crashes [\#530](https://github.com/gdombiak/OctoPod/issues/530)
+- When refreshing the file list in the Octoprint theme, the spinning wheel is not visible [\#529](https://github.com/gdombiak/OctoPod/issues/529)
+- Fix app crash in main window when rotating device [\#528](https://github.com/gdombiak/OctoPod/issues/528)
+- Fix app crash when using Files window [\#527](https://github.com/gdombiak/OctoPod/issues/527)
+- Cant print with app with New octoprint 1.7.0 [\#526](https://github.com/gdombiak/OctoPod/issues/526)
+- App crashes [\#525](https://github.com/gdombiak/OctoPod/issues/525)
+- System appearance no longer paints OctoPrint's color in navigationBar [\#521](https://github.com/gdombiak/OctoPod/issues/521)
+- Unable to save printer detalis [\#517](https://github.com/gdombiak/OctoPod/issues/517)
+- Fix crash when gcode file has spaces in the name [\#515](https://github.com/gdombiak/OctoPod/issues/515)
+
+**Closed issues:**
+
+- Tasmota-MQTT plugs not visible [\#520](https://github.com/gdombiak/OctoPod/issues/520)
+- Application key field does not show up [\#519](https://github.com/gdombiak/OctoPod/issues/519)
+- No longer connects to printer after iOS 15 update [\#518](https://github.com/gdombiak/OctoPod/issues/518)
+
 ## [3.13](https://github.com/gdombiak/OctoPod/tree/3.13) (2021-09-06)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.12...3.13)
-
 
 **Implemented enhancements:**
 
@@ -109,6 +137,7 @@
 
 **Fixed bugs:**
 
+- Files Not Shown [\#284](https://github.com/gdombiak/OctoPod/issues/284)
 - Text color in Light Theme and Dark Mode [\#426](https://github.com/gdombiak/OctoPod/issues/426)
 - Fix app crash in dashboard [\#422](https://github.com/gdombiak/OctoPod/issues/422)
 - Fix random crash with cameras - index out of bounds [\#413](https://github.com/gdombiak/OctoPod/issues/413)
@@ -230,7 +259,6 @@
 
 **Fixed bugs:**
 
-- Files Not Shown [\#284](https://github.com/gdombiak/OctoPod/issues/284)
 - Fix app crash when overlaying info over camera [\#342](https://github.com/gdombiak/OctoPod/issues/342)
 - Prompt Extrude settings not saved [\#337](https://github.com/gdombiak/OctoPod/issues/337)
 - OctoPod shows different file sizes [\#335](https://github.com/gdombiak/OctoPod/issues/335)
