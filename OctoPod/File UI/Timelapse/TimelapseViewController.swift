@@ -28,7 +28,6 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
 
         // Create, configure and add UIRefreshControl to table view
         refreshControl = UIRefreshControl()
-        refreshControl!.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull down to refresh", comment: ""))
         tableView.addSubview(refreshControl!)
         tableView.alwaysBounceVertical = true
         self.refreshControl?.addTarget(self, action: #selector(refreshFiles), for: UIControl.Event.valueChanged)
@@ -277,6 +276,11 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
         // Set background color to the view
         view.backgroundColor = theme.backgroundColor()
         
+        // Set color (and text) to refresh control
+        if let refreshControl = refreshControl {
+            ThemeUIUtils.applyTheme(refreshControl: refreshControl)
+        }
+
         progressLabel.textColor = theme.labelColor()
 
         ThemeUIUtils.applyTheme(table: tableView, staticCells: false)

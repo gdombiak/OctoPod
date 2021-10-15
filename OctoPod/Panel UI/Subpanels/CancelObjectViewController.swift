@@ -11,13 +11,6 @@ class CancelObjectViewController: ThemedDynamicUITableViewController, SubpanelVi
     
     var cancelObjects: [CancelObject] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    
-        // Some bug in XCode Storyboards is not translating text of refresh control so let's do it manually
-        self.refreshControl?.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull down to refresh", comment: ""))
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -25,7 +18,11 @@ class CancelObjectViewController: ThemedDynamicUITableViewController, SubpanelVi
         let theme = Theme.currentTheme()
         footerView.backgroundColor = theme.cellBackgroundColor()
         footerLabel.textColor = theme.labelColor()
-        
+        // Set color (and text) to refresh control
+        if let refreshControl = refreshControl {
+            ThemeUIUtils.applyTheme(refreshControl: refreshControl)
+        }
+
         // Hide footer. Will appear only if old plugin version is detected
         footerView.isHidden = true
 

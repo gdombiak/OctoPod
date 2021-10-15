@@ -10,15 +10,13 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
     
     private var isPrinting = false
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    
-        // Some bug in XCode Storyboards is not translating text of refresh control so let's do it manually
-        self.refreshControl?.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull down to refresh", comment: ""))
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        // Set color (and text) to refresh control
+        if let refreshControl = refreshControl {
+            ThemeUIUtils.applyTheme(refreshControl: refreshControl)
+        }
 
         // Fetch and render current filament selections
         refreshSelections(done: nil)

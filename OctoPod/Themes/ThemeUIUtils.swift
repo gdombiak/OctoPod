@@ -19,4 +19,11 @@ class ThemeUIUtils {
         table.backgroundColor = staticCells ? theme.backgroundColor() : theme.cellBackgroundColor()
     }
     
+    class func applyTheme(refreshControl: UIRefreshControl) {
+        let theme = Theme.currentTheme()
+        let textLabelColor = theme.labelColor()
+
+        refreshControl.tintColor = textLabelColor
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull down to refresh", comment: ""), attributes: [.foregroundColor : textLabelColor])
+    }
 }

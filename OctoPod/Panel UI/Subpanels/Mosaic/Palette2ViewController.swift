@@ -44,9 +44,6 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
         // Register custom section view we use for showing an image
         tableView.register(SectionHeaderView.self, forHeaderFooterViewReuseIdentifier: SectionHeaderView.reuseIdentifier)
 
-        // Some bug in XCode Storyboards is not translating text of refresh control so let's do it manually
-        self.refreshControl?.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull down to refresh", comment: ""))
-        
         // Set 'Connect' as default value for connect button
         self.connectButton.setTitle(NSLocalizedString("Connect", comment: "Connect"), for: .normal)
         
@@ -376,6 +373,10 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
         let textLabelColor = theme.labelColor()
         let textColor = theme.textColor()
         let tintColor = theme.tintColor()
+        // Set color (and text) to refresh control
+        if let refreshControl = refreshControl {
+            ThemeUIUtils.applyTheme(refreshControl: refreshControl)
+        }
         connectionStatusLabel.textColor = textLabelColor
         connectionStatusValueLabel.textColor = textColor
         paletteStatusLabel.textColor = textLabelColor

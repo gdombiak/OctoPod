@@ -22,8 +22,6 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
 
     override func viewDidLoad() {
         super.viewDidLoad()        
-        // Some bug in XCode Storyboards is not translating text of refresh control so let's do it manually
-        self.refreshControl?.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull down to refresh", comment: ""))
         // Listen to search bar events
         self.searchBar.delegate = self
     }
@@ -300,6 +298,10 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
                     iconView.tintColor = textLabelColor
                 }
             }
+        }
+        // Set color (and text) to refresh control
+        if let refreshControl = refreshControl {
+            ThemeUIUtils.applyTheme(refreshControl: refreshControl)
         }
     }
 

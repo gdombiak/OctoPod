@@ -32,7 +32,6 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
 
         // Create, configure and add UIRefreshControl to table view
         refreshControl = UIRefreshControl()
-        refreshControl!.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull down to refresh", comment: ""))
         tableView.addSubview(refreshControl!)
         tableView.alwaysBounceVertical = true
         self.refreshControl?.addTarget(self, action: #selector(refreshFiles), for: UIControl.Event.valueChanged)
@@ -378,6 +377,10 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         view.backgroundColor = theme.backgroundColor()
         // Set background color to the refresh SD button
         refreshSDButton.setTitleColor(tintColor, for: .normal)
+        // Set color (and text) to refresh control
+        if let refreshControl = refreshControl {
+            ThemeUIUtils.applyTheme(refreshControl: refreshControl)
+        }
         // Set background color to the sort control
         sortByTextLabel.textColor = textLabelColor
         sortByControl.tintColor = tintColor
