@@ -582,8 +582,8 @@ class OctoPrintRESTClient {
     }
     
     func executeSystemCommand(command: SystemCommand, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
-        if let client = httpClient, let action = command.action.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
-            client.post("/api/system/commands/\(command.source)/\(action)") { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+        if let client = httpClient {
+            client.post("/api/system/commands/\(command.source)/\(command.action)") { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                 callback(requested, error, response)
             }
         }
