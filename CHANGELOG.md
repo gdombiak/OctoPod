@@ -1,8 +1,15 @@
 # Change Log
 
+## [3.14](https://github.com/gdombiak/OctoPod/tree/3.15) (2021-10-17)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.14...3.15)
+
+**Fixed bugs:**
+
+- Executing system commands results in error [\#532](https://github.com/gdombiak/OctoPod/issues/532)
+- Can’t authorize and add printer because of redirect to octoprint [\#531](https://github.com/gdombiak/OctoPod/issues/531)
+
 ## [3.14](https://github.com/gdombiak/OctoPod/tree/3.14) (2021-10-15)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.13...3.14)
-
 
 **Implemented enhancements:**
 
@@ -137,7 +144,6 @@
 
 **Fixed bugs:**
 
-- Files Not Shown [\#284](https://github.com/gdombiak/OctoPod/issues/284)
 - Text color in Light Theme and Dark Mode [\#426](https://github.com/gdombiak/OctoPod/issues/426)
 - Fix app crash in dashboard [\#422](https://github.com/gdombiak/OctoPod/issues/422)
 - Fix random crash with cameras - index out of bounds [\#413](https://github.com/gdombiak/OctoPod/issues/413)
@@ -259,6 +265,7 @@
 
 **Fixed bugs:**
 
+- Files Not Shown [\#284](https://github.com/gdombiak/OctoPod/issues/284)
 - Fix app crash when overlaying info over camera [\#342](https://github.com/gdombiak/OctoPod/issues/342)
 - Prompt Extrude settings not saved [\#337](https://github.com/gdombiak/OctoPod/issues/337)
 - OctoPod shows different file sizes [\#335](https://github.com/gdombiak/OctoPod/issues/335)
