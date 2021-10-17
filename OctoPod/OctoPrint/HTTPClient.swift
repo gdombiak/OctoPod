@@ -337,9 +337,14 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     }
     
     func buildURL(_ service: String) -> URL? {
+        var serviceToAnalyze = service
         let urlFragment: String
+        // No need to encode serverURL
+        if service.starts(with: serverURL) {
+            serviceToAnalyze = String(service.dropFirst(serverURL.count))
+        }
         // Split into path and query params
-        let parts = service.split(separator: "?", maxSplits: 1, omittingEmptySubsequences: true).map(String.init)
+        let parts = serviceToAnalyze.split(separator: "?", maxSplits: 1, omittingEmptySubsequences: true).map(String.init)
         // Escape path and query params
         let path = parts[0].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? parts[0]
         if parts.count > 1 {
@@ -349,7 +354,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         } else {
             urlFragment = path
         }
-        return service.starts(with: serverURL) ? URL(string: urlFragment) : URL(string: serverURL + urlFragment)
+        return URL(string: serverURL + urlFragment)
     }
 
     // MARK: URLSessionDelegate

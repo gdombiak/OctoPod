@@ -56,13 +56,21 @@ class OctoPodTests: XCTestCase {
         XCTAssertNotNil(httpClient.buildURL("/plugin/prusaslicerthumbnails/thumbnail/CE5_cube ?(1).gcode?20210812220714"))
         
         var url = httpClient.buildURL("/plugin/prusaslicerthumbnails/thumbnail/CE5_cube >(1).gcode?20210812220714")
+        XCTAssertEqual(url?.absoluteString, "http://octopi.local/plugin/prusaslicerthumbnails/thumbnail/CE5_cube%20%3E(1).gcode?20210812220714")
         XCTAssertEqual(url?.path, "/plugin/prusaslicerthumbnails/thumbnail/CE5_cube >(1).gcode")
         XCTAssertEqual(url?.query, "20210812220714")
 
         // Filenames with ? are trouble. It will generate some URL but will not work
         url = httpClient.buildURL("/plugin/prusaslicerthumbnails/thumbnail/CE5_cube ?(1).gcode?20210812220714")
+        XCTAssertEqual(url?.absoluteString, "http://octopi.local/plugin/prusaslicerthumbnails/thumbnail/CE5_cube%20?(1).gcode?20210812220714")
         XCTAssertEqual(url?.path, "/plugin/prusaslicerthumbnails/thumbnail/CE5_cube ")
         XCTAssertEqual(url?.query, "(1).gcode?20210812220714")
+
+        // Test that absolute path still works. Protocol is not encoded but path and query params do
+        url = httpClient.buildURL("http://octopi.local/plugin/prusaslicerthumbnails/thumbnail/CE5_cube >(1).gcode?20210812220714")
+        XCTAssertEqual(url?.absoluteString, "http://octopi.local/plugin/prusaslicerthumbnails/thumbnail/CE5_cube%20%3E(1).gcode?20210812220714")
+        XCTAssertEqual(url?.path, "/plugin/prusaslicerthumbnails/thumbnail/CE5_cube >(1).gcode")
+        XCTAssertEqual(url?.query, "20210812220714")
     }
 
 //    func testPerformanceExample() throws {
