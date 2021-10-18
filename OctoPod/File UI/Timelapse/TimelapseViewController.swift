@@ -107,9 +107,8 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let file = files[indexPath.row]
-        
-        
-        if let printer = printerManager.getDefaultPrinter(), let url = URL(string: printer.hostname + file.url) {
+                
+        if let printer = printerManager.getDefaultPrinter(), let path = file.url.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed), let url = URL(string: printer.hostname + path) {
             // Create AVPlayerItem object
             let headers = ["X-Api-Key": printer.apiKey]
             let asset = AVURLAsset(url: url, options: ["AVURLAssetHTTPHeaderFieldsKey" : headers])
