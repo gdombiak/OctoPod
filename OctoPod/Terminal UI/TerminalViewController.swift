@@ -26,8 +26,8 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     @IBOutlet weak var sdFilterButton: UIButton!
     
     // Gestures to switch between printers
-    var swipeLeftGestureRecognizer : UISwipeGestureRecognizer!
-    var swipeRightGestureRecognizer : UISwipeGestureRecognizer!
+    var swipeLeftGestureRecognizer : UISwipeGestureRecognizer?
+    var swipeRightGestureRecognizer : UISwipeGestureRecognizer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +65,8 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         if #available(iOS 13.0, *) {
             // Use monospace font so that tables (eg M122) look better (still not perfect but better)
             // Use whatever point size of callout so we can respect Accessibility configuration
@@ -96,6 +98,8 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         // Stop listening to events coming from OctoPrintClient
         octoprintClient.remove(octoPrintClientDelegate: self)
         // Stop listening to changes when app is locked or unlocked
@@ -359,23 +363,27 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
     fileprivate func addNavBarGestures() {
         // Add gesture when we swipe from right to left
         swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
-        swipeLeftGestureRecognizer.direction = .left
-        navigationController?.navigationBar.addGestureRecognizer(swipeLeftGestureRecognizer)
-        swipeLeftGestureRecognizer.cancelsTouchesInView = false
+        swipeLeftGestureRecognizer!.direction = .left
+        navigationController?.navigationBar.addGestureRecognizer(swipeLeftGestureRecognizer!)
+        swipeLeftGestureRecognizer!.cancelsTouchesInView = false
         
         // Add gesture when we swipe from left to right
         swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
-        swipeRightGestureRecognizer.direction = .right
-        navigationController?.navigationBar.addGestureRecognizer(swipeRightGestureRecognizer)
-        swipeRightGestureRecognizer.cancelsTouchesInView = false
+        swipeRightGestureRecognizer!.direction = .right
+        navigationController?.navigationBar.addGestureRecognizer(swipeRightGestureRecognizer!)
+        swipeRightGestureRecognizer!.cancelsTouchesInView = false
     }
 
     fileprivate func removeNavBarGestures() {
-        // Remove gesture when we swipe from right to left
-        navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
+        if let swipeLeftGestureRecognizer = swipeLeftGestureRecognizer {
+            // Remove gesture when we swipe from right to left
+            navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
+        }
         
-        // Remove gesture when we swipe from left to right
-        navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
+        if let swipeRightGestureRecognizer = swipeRightGestureRecognizer {
+            // Remove gesture when we swipe from left to right
+            navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
+        }
     }
 
     @objc fileprivate func navigationBarSwiped(_ gesture: UIGestureRecognizer) {
