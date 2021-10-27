@@ -137,8 +137,10 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     // MARK: - Button actions
 
     @IBAction func errorURLClicked(_ sender: Any) {
-        let svc = SFSafariViewController(url: URL(string: cameraURL)!)
-        UIApplication.shared.keyWindow?.rootViewController?.present(svc, animated: true, completion: nil)
+        if let url = URL(string: cameraURL), UIApplication.shared.canOpenURL(url) {
+            let svc = SFSafariViewController(url: url)
+            UIApplication.shared.keyWindow?.rootViewController?.present(svc, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Navigation

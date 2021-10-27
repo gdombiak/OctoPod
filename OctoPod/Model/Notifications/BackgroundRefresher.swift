@@ -165,8 +165,8 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
             // Ignore event with Printing and no completion
             if pushState != "Printing" || completion != nil {
                 // Update last known state
-                // Dictionary is not thread safe. Use async for write operations
-                self.accessQueue.async {
+                // Dictionary is not thread safe. Use async for write operations and a barrier to not let other tasks execute while we write
+                self.accessQueue.async(flags: .barrier) {
                     self.lastKnownState[printerName] = (state, completion)
                 }
                 if pushState == "Offline" || pushState == "Operational" || pushState == "Printing" || pushState == "Paused" {

@@ -19,6 +19,7 @@ class SponsorsViewController: UIViewController, UITableViewDataSource, UITableVi
         sponsors.append(Sponsor(name: "Juha Kuusama", link: nil))
         sponsors.append(Sponsor(name: "Jesse Armstrong", link: "https://github.com/jessearmstrong"))
         sponsors.append(Sponsor(name: "Josh Wright (tideline3d)", link: "https://github.com/tideline3d"))
+        sponsors.append(Sponsor(name: "Manojav Sridhar", link: "https://github.com/vajonam"))
         sponsors.append(Sponsor(name: "Chris Kuipers", link: "https://github.com/chriskuipers"))
         sponsors.append(Sponsor(name: "Brad McGonigle", link: "https://github.com/BradMcGonigle"))
         sponsors.append(Sponsor(name: "Manuel McLure", link: "https://github.com/ManuelMcLure"))
