@@ -29,6 +29,10 @@ protocol OctoPrintSettingsDelegate: class {
     /// - parameter installed: True if plugin is installed in OctoPrint
     func cancelObjectAvailabilityChanged(installed: Bool)
     
+    /// Notification that availability of Octorelay plugin has changed
+    /// - parameter installed: True if plugin is installed in OctoPrint
+    func octorelayAvailabilityChanged(installed: Bool)
+    
     /// Notification that OctoPrint's appearance has changed. A new color or its transparency has changed
     func octoPrintColorChanged(color: String)
 
@@ -82,6 +86,9 @@ extension OctoPrintSettingsDelegate {
     }
     
     func cancelObjectAvailabilityChanged(installed: Bool) {
+    }
+    
+    func octorelayAvailabilityChanged(installed: Bool) {
     }
 
     func octoPrintColorChanged(color: String) {

@@ -828,6 +828,45 @@ class OctoPrintRESTClient {
             }
         }
     }
+    
+    // MARK: - Octorelay Plugin operations
+    
+    /// Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
+    func getOctorelay(callback: @escaping (Array<Octorelay>?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "listAllStatus"
+            client.post("/api/plugin/octorelay", json: json, expected: 200) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting list of relays. Error: \(error!.localizedDescription)")
+                }
+                if let json = result as? NSArray {
+                    var octorelays: Array<Octorelay> = Array()
+                    for case let item as NSDictionary in json {
+                        if let octorelay = Octorelay.parse(json: item) {
+                            octorelays.append(octorelay)
+                        }
+                    }
+                    callback(octorelays, error, response)
+                    return
+                }
+                callback(nil, error, response)
+            }
+        }
+    }
+
+    /// Cancel the requested object id.
+    func switchRelay(id: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "update"
+            json["pin"] = id
+            client.post("/api/plugin/octorelay", json: json, expected: 200) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 200, error, response)
+            }
+        }
+    }
 
     // MARK: - OctoPod Plugin operations
     

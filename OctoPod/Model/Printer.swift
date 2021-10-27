@@ -67,6 +67,7 @@ class Printer: NSManagedObject {
     @NSManaged var domoticzplugs: [[String]]?
     /// Array of an Array with 2 strings (IP Address, Label)
     @NSManaged var tasmotaplugs: [[String]]?
+    @NSManaged var octorelayInstalled: Bool
     /// Track if CancelObjects plugin is installed
     @NSManaged var cancelObjectInstalled: Bool
     /// Comma delimited list of objects that should be ignored (cannot be cancelled)

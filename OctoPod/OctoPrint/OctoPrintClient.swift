@@ -634,6 +634,20 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.cancelObject(id: id, callback: callback)
     }
     
+    // MARK: - Octorelay Plugin operations
+    
+    /// Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
+    func getOctorelays(callback: @escaping (Array<Octorelay>?, Error?, HTTPURLResponse) -> Void) {
+        if let id = printerID, let idURL = URL(string: id.uriRepresentation().absoluteString), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
+            octoPrintRESTClient.getOctorelay(callback: callback)
+        }
+    }
+    
+    /// Cancel the requested object id.
+    func switchRelay(id: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.switchRelay(id: id, callback: callback)
+    }
+    
     // MARK: - OctoPod Plugin operations
     
     /**
@@ -936,6 +950,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         updatePrinterFromTPLinkSmartplugPlugin(printer: printer, plugins: plugins)
         updatePrinterFromWemoPlugin(printer: printer, plugins: plugins)
         updatePrinterFromDomoticzPlugin(printer: printer, plugins: plugins)
+        updatePrinterFromOctorelayPlugin(printer: printer, plugins: plugins)
         updatePrinterFromTasmotaPlugin(printer: printer, plugins: plugins)
         updatePrinterFromCancelObjectPlugin(printer: printer, plugins: plugins)
         updatePrinterFromOctoPodPlugin(printer: printer, plugins: plugins)
@@ -1138,6 +1153,27 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             // Notify listeners of change
             for delegate in octoPrintSettingsDelegates {
                 delegate.cancelObjectAvailabilityChanged(installed: installed)
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromOctorelayPlugin(printer: Printer, plugins: NSDictionary) {
+        var installed = false
+        if let _ = plugins[Plugins.OCTO_RELAY] as? NSDictionary {
+            // Cancel Object plugin is installed
+            installed = true
+        }
+        if printer.octorelayInstalled != installed {
+            let newObjectContext = printerManager.newPrivateContext()
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+            // Update flag that tracks if Octorelay plugin is installed
+            printerToUpdate.octorelayInstalled = installed
+            // Persist updated printer
+            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+            
+            // Notify listeners of change
+            for delegate in octoPrintSettingsDelegates {
+                delegate.octorelayAvailabilityChanged(installed: installed)
             }
         }
     }
