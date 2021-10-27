@@ -54,7 +54,8 @@ class CamerasGridViewController: UICollectionViewController, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {        
         let ratio = cameraEmbeddedViewControllers[indexPath.row].cameraRatio!
         let width: CGFloat
-        if UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown {
+        let inSplitView = collectionView.frame.width < UIScreen.main.bounds.width
+        if UIDevice.current.orientation == .portrait || UIDevice.current.orientation == .portraitUpsideDown  || inSplitView {
             // iPhone in vertical position
             width = collectionView.frame.width
         } else {
