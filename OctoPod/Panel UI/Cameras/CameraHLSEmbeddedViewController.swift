@@ -3,8 +3,11 @@ import AVFoundation
 import AVKit
 
 class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
+    private static let SAVED_MUTE_SETTING = "HLS_SAVED_MUTE_SETTING"
+
     @IBOutlet weak var playerView: MyAVPlayerView!
     @IBOutlet weak var pipButton: UIButton!
+    @IBOutlet weak var muteButton: UIButton!
     
     var player: AVPlayer?
     var itemDelegate: AVAssetResourceLoaderDelegate?
@@ -17,6 +20,27 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
         let startImage = AVPictureInPictureController.pictureInPictureButtonStartImage(compatibleWith: nil)
         pipButton.setImage(startImage, for: .normal)
         pipButton.isHidden = true
+        
+        muteButton.backgroundColor = UIColor(red: 97/255, green: 97/255, blue: 97/255, alpha: 0.5)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Hide mute/unmute button if action is not available
+        muteButton.isHidden = !muteAvailable
+        // Restore last mute configuration
+        player?.isMuted = UserDefaults.standard.bool(forKey: CameraHLSEmbeddedViewController.SAVED_MUTE_SETTING)
+        // Refresh icon based on mute state
+        updateMuteButtonIcon()
+    }
+    
+    @IBAction func toggleMuteClicked(_ sender: Any) {
+        if let player = player {
+            player.isMuted = !player.isMuted
+            // Save last configuration
+            UserDefaults.standard.set(player.isMuted, forKey: CameraHLSEmbeddedViewController.SAVED_MUTE_SETTING)
+        }
+        updateMuteButtonIcon()
     }
     
     @IBAction func togglePictureInPictureMode(_ sender: UIButton) {
@@ -87,6 +111,13 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
         } else {
             // PiP isn't supported by the current device. Disable the PiP button.
             pipButton.isHidden = true
+        }
+    }
+    
+    fileprivate func updateMuteButtonIcon() {
+        if let player = player {
+            let imageName = player.isMuted ? "Mute" : "Unmute"
+            muteButton.setImage(UIImage(named: imageName), for: .normal)
         }
     }
 

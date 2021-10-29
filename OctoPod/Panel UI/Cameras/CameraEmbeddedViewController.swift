@@ -29,6 +29,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     var cameraIndex: Int!
     var cameraRatio: CGFloat?
     var muteVideo = false
+    var muteAvailable = false
 
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
     

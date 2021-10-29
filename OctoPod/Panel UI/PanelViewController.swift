@@ -71,6 +71,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         // Only offer PIP (if supported by device) from main panel window
         camerasViewController?.offerPIP = true
         
+        // Allow user to control volume (for HLS only)
+        camerasViewController?.muteAvailable = true
+        
         // Listen to event when user swiped and changed active subpanel
         subpanelsViewController?.subpanelsVCDelegate = self
 
