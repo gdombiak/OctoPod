@@ -220,7 +220,9 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     @IBAction func backFromDelete(_ sender: UIStoryboardSegue) {
-        deleteRow(forRowAt: tableView.indexPathForSelectedRow!)
+        if let row = tableView.indexPathForSelectedRow {
+            deleteRow(forRowAt: row)
+        }
     }
     
     @IBAction func gobackToRootFolder(_ sender: UIStoryboardSegue) {
