@@ -27,6 +27,9 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     private var pipCameraIndex = 0
     private var pipClosedCallback: (() -> Void)?
     
+    /// Only available for HLS view controller
+    var muteAvailable = false
+
     private var lastPrinterID: String?
     
     /// PrinterURL of pritner to show. If empty then show default printer
@@ -302,6 +305,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         controller.cameraIndex = index
         controller.camerasViewController = self
         controller.printerURL = showPrinter
+        controller.muteAvailable = muteAvailable
         return controller
     }
     

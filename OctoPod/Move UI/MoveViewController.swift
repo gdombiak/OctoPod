@@ -31,6 +31,9 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
         // Listen to event when first image gets loaded so we can adjust UI based on aspect ratio of image
         camerasViewController?.embeddedCameraDelegate = self
         
+        // Allow user to control volume (for HLS only)
+        camerasViewController?.muteAvailable = true
+        
         // Calculate constraint for subpanel
         calculateCameraHeightConstraints()
     }

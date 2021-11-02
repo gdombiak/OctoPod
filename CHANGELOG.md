@@ -1,6 +1,23 @@
 # Change Log
 
-## [3.14](https://github.com/gdombiak/OctoPod/tree/3.15) (2021-10-17)
+## [3.16](https://github.com/gdombiak/OctoPod/tree/3.15) (2021-10-30)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.15...3.16)
+
+**Implemented enhancements:**
+
+- Allow to mute sound for HLS feed [\#541](https://github.com/gdombiak/OctoPod/issues/541)
+- Enhancement - Split View MultiCam Layout [\#539](https://github.com/gdombiak/OctoPod/issues/539)
+
+**Fixed bugs:**
+
+- Fix Apple Watch crash when app runs in background [\#542](https://github.com/gdombiak/OctoPod/issues/542)
+- TPLink plugs not appearing at all in app [\#538](https://github.com/gdombiak/OctoPod/issues/538)
+- Fix app crash when clicking on camera URL that failed to render [\#537](https://github.com/gdombiak/OctoPod/issues/537)
+- Fix app crash when closing terminal window [\#536](https://github.com/gdombiak/OctoPod/issues/536)
+- Fix app crash when updating watch complication [\#535](https://github.com/gdombiak/OctoPod/issues/535)
+- Timelapse does not play when filename has spaces or special characters [\#534](https://github.com/gdombiak/OctoPod/issues/534)
+
+## [3.15](https://github.com/gdombiak/OctoPod/tree/3.15) (2021-10-17)
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.14...3.15)
 
 **Fixed bugs:**

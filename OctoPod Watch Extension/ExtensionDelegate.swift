@@ -25,10 +25,24 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
                 NSLog("Background task running. Refreshing current job info")
+                var oldRequestTimeout = 0.0, oldResourceTimeout = 0.0
                 // Make sure we have an OctoPrintClient
                 OctoPrintClient.instance.configure()
+                // Reduce timeouts since backgound task has 15 seconds limit before it's killed/crashes.
+                // This is only used for http traffic (when phone is not around)
+                if let restClient = OctoPrintClient.instance.octoPrintRESTClient {
+                    // Store old timeouts
+                    oldRequestTimeout = restClient.timeoutIntervalForRequest
+                    oldResourceTimeout = restClient.timeoutIntervalForResource
+                    // Set new timeouts
+                    restClient.timeoutIntervalForRequest = 3
+                    restClient.timeoutIntervalForResource = 5
+                }
                 // Refresh information
                 PanelManager.instance.refresh(forceRefresh: false) { (refreshed: Bool) in
+                    // Restore previous timeout values
+                    OctoPrintClient.instance.octoPrintRESTClient?.timeoutIntervalForRequest = oldRequestTimeout
+                    OctoPrintClient.instance.octoPrintRESTClient?.timeoutIntervalForResource = oldResourceTimeout
                     // Be sure to complete the background task once you’re done.
                     backgroundTask.setTaskCompletedWithSnapshot(false)
                 }
