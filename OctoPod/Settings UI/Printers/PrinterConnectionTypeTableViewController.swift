@@ -8,7 +8,9 @@ class PrinterConnectionTypeTableViewController: ThemedStaticUITableViewControlle
     @IBOutlet weak var globalKeyDetailsLabel: UILabel!
     @IBOutlet weak var octoeverywhereLabel: UILabel!
     @IBOutlet weak var octoeverywhereDetailsLabel: UILabel!
-    
+    @IBOutlet weak var tsdLabel: UILabel!
+    @IBOutlet weak var tsdDetailsLabel: UILabel!
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let theme = Theme.currentTheme()
@@ -18,6 +20,8 @@ class PrinterConnectionTypeTableViewController: ThemedStaticUITableViewControlle
         globalKeyDetailsLabel.textColor = theme.textColor()
         octoeverywhereLabel.textColor = theme.textColor()
         octoeverywhereDetailsLabel.textColor = theme.textColor()
+        tsdLabel.textColor = theme.textColor()
+        tsdDetailsLabel.textColor = theme.textColor()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -25,6 +29,8 @@ class PrinterConnectionTypeTableViewController: ThemedStaticUITableViewControlle
             performSegue(withIdentifier: "selectedAppKey", sender: self)
         } else if indexPath.row == 1 {
             performSegue(withIdentifier: "selectedOctoEverywhere", sender: self)
+        } else if indexPath.row == 2 {
+            performSegue(withIdentifier: "selectedTSD", sender: self)
         } else {
             performSegue(withIdentifier: "selectedGlobalAPI", sender: self)
         }

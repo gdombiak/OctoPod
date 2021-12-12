@@ -127,6 +127,7 @@
 		3D5D613621209F52000B66E7 /* CamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D613521209F52000B66E7 /* CamerasViewController.swift */; };
 		3D5D614623D5776200D988A2 /* AppleWatchSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D614523D5776200D988A2 /* AppleWatchSettingsViewController.swift */; };
 		3D5D614823D57C2000D988A2 /* ComplicationContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D614723D57C2000D988A2 /* ComplicationContentType.swift */; };
+		3D62E9EC2751B3DE0042A86F /* AddTSDPrinterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D62E9EB2751B3DE0042A86F /* AddTSDPrinterViewController.swift */; };
 		3D6350EA21080AD3001C10F7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350E921080AD3001C10F7 /* Theme.swift */; };
 		3D6350F121082E07001C10F7 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F021082E07001C10F7 /* AppearanceViewController.swift */; };
 		3D6350F321083BE0001C10F7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6350F221083BE0001C10F7 /* TabBarController.swift */; };
@@ -679,6 +680,7 @@
 		3D5D613521209F52000B66E7 /* CamerasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasViewController.swift; sourceTree = "<group>"; };
 		3D5D614523D5776200D988A2 /* AppleWatchSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleWatchSettingsViewController.swift; sourceTree = "<group>"; };
 		3D5D614723D57C2000D988A2 /* ComplicationContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationContentType.swift; sourceTree = "<group>"; };
+		3D62E9EB2751B3DE0042A86F /* AddTSDPrinterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTSDPrinterViewController.swift; sourceTree = "<group>"; };
 		3D6350E921080AD3001C10F7 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		3D6350F021082E07001C10F7 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
 		3D6350F221083BE0001C10F7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -1765,6 +1767,7 @@
 				3DF6D59A23006EE800E0AFEE /* ScanInstallationsViewController.swift */,
 				3D968DDC20E337C7006774A5 /* ScannerViewController.swift */,
 				3D7E5025267EA517007DBB5B /* BasePrinterDetailsViewController.swift */,
+				3D62E9EB2751B3DE0042A86F /* AddTSDPrinterViewController.swift */,
 			);
 			path = Printers;
 			sourceTree = "<group>";
@@ -2424,6 +2427,7 @@
 				3DD3F26C243A754800EA3F84 /* PrinterObserver.swift in Sources */,
 				3D8DA01E2144EDCE00F5FD07 /* SupportViewController.swift in Sources */,
 				3DFBB8E42569D2FF00A7BD46 /* CameraMJPEGEmbeddedViewController.swift in Sources */,
+				3D62E9EC2751B3DE0042A86F /* AddTSDPrinterViewController.swift in Sources */,
 				3DC6DB3B245605F40091E548 /* FilamentChangeSelectionViewController.swift in Sources */,
 				3D45280A20E15A370094CCB7 /* OctoPod.xcdatamodeld in Sources */,
 				3DB60529267D54A800BBC047 /* AppKeyViewController.swift in Sources */,

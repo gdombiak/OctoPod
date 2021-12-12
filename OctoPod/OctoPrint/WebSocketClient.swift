@@ -54,7 +54,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
         let socketURL = URL(string: urlString)!
         self.socketRequest = URLRequest(url: socketURL)
         self.socketRequest!.timeoutInterval = 5
-        if username != nil && password != nil {
+        if username != nil && password != nil && !username!.isEmpty && !password!.isEmpty{
             // Add authorization header
             let plainData = (username! + ":" + password!).data(using: String.Encoding.utf8)
             let base64String = plainData!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
