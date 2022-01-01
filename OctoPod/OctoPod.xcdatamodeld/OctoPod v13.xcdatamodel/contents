@@ -55,7 +55,7 @@
         <attribute name="octopodPluginInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="octopodPluginLanguage" optional="YES" attributeType="String"/>
         <attribute name="octopodPluginPrinterName" optional="YES" attributeType="String"/>
-        <attribute name="octorelayInstalled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="octorelayInstalled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="palette2AutoConnect" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="palette2CanvasInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="palette2Installed" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
