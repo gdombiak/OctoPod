@@ -110,7 +110,7 @@ class OctorelayViewController: ThemedDynamicUITableViewController, SubpanelViewC
             } else if let _ = error {
                 self.showAlert(NSLocalizedString("Warning", comment: ""), message: error!.localizedDescription)
             } else if response.statusCode != 200 {
-                self.showAlert(NSLocalizedString("Warning", comment: ""), message: String(format: NSLocalizedString("Failed to request relay switch", comment: ""), response.statusCode))
+                self.showAlert(NSLocalizedString("Warning", comment: ""), message: String(format: NSLocalizedString("Failed to request to switch relay", comment: ""), response.statusCode))
             }
         }
     }
