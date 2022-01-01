@@ -27,6 +27,7 @@ class SettingsViewController: ThemedStaticUITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        super.tableView(tableView, willDisplayFooterView: view, forSection: section)
         let footer: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         footer.textLabel?.textAlignment = .center
     }

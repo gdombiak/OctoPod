@@ -26,6 +26,18 @@ class ThemedUITableViewController: UITableViewController {
         ThemeUIUtils.themeCell(cell: cell)
     }
     
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let view = view as? UITableViewHeaderFooterView {
+            view.textLabel?.textColor = Theme.currentTheme().tableHeaderFooterTextColor()
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        if let view = view as? UITableViewHeaderFooterView {
+            view.textLabel?.textColor = Theme.currentTheme().tableHeaderFooterTextColor()
+        }
+    }
+    
     // MARK: - Abstract methods
     
     func staticCells() -> Bool {
