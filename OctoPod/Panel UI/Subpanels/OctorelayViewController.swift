@@ -1,7 +1,7 @@
 import UIKit
 import AVFoundation
 
-class OctorelayViewController: ThemedDynamicUITableViewController, SubpanelViewController {
+class OctorelayViewController: ThemedDynamicUITableViewController, SubpanelViewController, OctoPrintPluginsDelegate {
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
@@ -19,6 +19,16 @@ class OctorelayViewController: ThemedDynamicUITableViewController, SubpanelViewC
 
         // Fetch and render custom controls
         refreshRelays(done: nil)
+
+        // Listen to changes to OctoPrint Plugin messages
+        octoprintClient.octoPrintPluginsDelegates.append(self)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Stop listening to changes to OctoPrint Plugin messages
+        octoprintClient.remove(octoPrintPluginsDelegate: self)
     }
 
     // MARK: - Table view data source
@@ -47,14 +57,14 @@ class OctorelayViewController: ThemedDynamicUITableViewController, SubpanelViewC
         let cell = tableView.dequeueReusableCell(withIdentifier: "octorelay_cell", for: indexPath) as! OctorelayViewCell
         
         // Configure the cell
-        var relay = octorelay[indexPath.row]
+        let relay = octorelay[indexPath.row]
         cell.id =  relay.id
         cell.parentVC = self
         
         cell.titleLabel?.text = octorelay[indexPath.row].name
         cell.titleLabel?.textColor = Theme.currentTheme().labelColor()
         
-        var state = relay.active
+        let state = relay.active
         cell.setPowerState(isPowerOn: state)
         cell.powerButton.isEnabled = !appConfiguration.appLocked()
         
@@ -105,6 +115,17 @@ class OctorelayViewController: ThemedDynamicUITableViewController, SubpanelViewC
         }
     }
     
+    // MARK: - OctoPrintPluginsDelegate
+    
+    func pluginMessage(plugin: String, data: NSDictionary) {
+        if plugin == Plugins.OCTO_RELAY {
+            // We cannot use provided data since it is not the same data returned
+            // from API that is needed for switching relays on/off
+            // Fetch and render custom controls
+            refreshRelays(done: nil)
+        }
+    }
+
     // MARK: - Refresh
     
     @IBAction func refreshControls(_ sender: UIRefreshControl) {
@@ -120,12 +141,12 @@ class OctorelayViewController: ThemedDynamicUITableViewController, SubpanelViewC
     
     fileprivate func refreshRelays(done: (() -> Void)?) {
         octoprintClient.getOctorelays { (relays: Array<Octorelay>?, error: Error?, response: HTTPURLResponse) in
-            if let objects = relays {
-                self.octorelay = objects
-            } else {
-                self.octorelay = []
-            }
             DispatchQueue.main.async {
+                if let objects = relays {
+                    self.octorelay = objects
+                } else {
+                    self.octorelay = []
+                }
                 self.tableView.reloadData()
             }
             if let _ = error {

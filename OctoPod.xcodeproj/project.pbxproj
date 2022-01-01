@@ -1733,13 +1733,13 @@
 				3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */,
 				583827DF22E62D4D00784706 /* Mosaic */,
 				3D88C3E62193F17800BC84DD /* CancelObjectViewController.swift */,
+				0B1C6FD1271E14D6007F3AC9 /* OctorelayViewController.swift */,
 				3DC6DB3C245606030091E548 /* FilamentManager */,
 				3D74FA2621251BCF00DA2CB3 /* PSUControlViewController.swift */,
 				3D74FA2821251BE600DA2CB3 /* IPPlugViewController.swift */,
 				3DB932CE24475E8600A154FF /* EnclosureViewController.swift */,
 				3D1A93662132F5A50050ED9A /* Custom Controls */,
 				3D8AB6A521A73D3700E81CE5 /* SystemCommandsViewController.swift */,
-				0B1C6FD1271E14D6007F3AC9 /* OctorelayViewController.swift */,
 			);
 			path = Subpanels;
 			sourceTree = "<group>";
