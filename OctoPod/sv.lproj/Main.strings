@@ -646,6 +646,9 @@
 /* Class = "UILabel"; text = "Layer"; ObjectID = "Ndq-Hl-4qe"; */
 "Ndq-Hl-4qe.text" = "Lager";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "NjN-EQ-atg"; */
+"NjN-EQ-atg.text" = "Label";
+
 /* Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[0] = "0.1"; ObjectID = "NKo-dw-3Mg"; */
 "NKo-dw-3Mg.segmentTitles[0]" = "0.1";
 

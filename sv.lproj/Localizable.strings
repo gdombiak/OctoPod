@@ -496,6 +496,9 @@
 /* English translation for words in Swift files */
 "OctoPrint" = "OctoPrint";
 
+/* https://github.com/bastienstefani/OctoRelay */
+"Octorelay" = "Octorelay";
+
 /* Printer is Offline */
 "Offline" = "Offline";
 
