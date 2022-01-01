@@ -265,6 +265,9 @@
 /* No comment provided by engineer. */
 "Failed to get list of layer notifications" = "Nepavyko gauti sluoksnių pranešimų sąrašo";
 
+/* No comment provided by engineer. */
+"Failed to get list of relays" = "Nepavyko gauti rėlių sąrašo";
+
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Nepavyko gauti sistemos komandų";
 
@@ -336,6 +339,9 @@
 
 /* (No Comment) */
 "Failed to request to retract" = "Nepavyko ištraukti";
+
+/* No comment provided by engineer. */
+"Failed to request to switch relay" = "Nepavyko perjungti relės";
 
 /* (No Comment) */
 "Failed to request to turn power off" = "Nepavyko išjungti";
@@ -495,6 +501,9 @@
 
 /* English translation for words in Swift files */
 "OctoPrint" = "OctoPrint";
+
+/* https://github.com/bastienstefani/OctoRelay */
+"Octorelay" = "Octorelay";
 
 /* Printer is Offline */
 "Offline" = "Išjungta";
