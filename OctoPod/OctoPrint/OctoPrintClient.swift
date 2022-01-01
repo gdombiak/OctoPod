@@ -638,9 +638,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     /// Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
     func getOctorelays(callback: @escaping (Array<Octorelay>?, Error?, HTTPURLResponse) -> Void) {
-        if let id = printerID, let idURL = URL(string: id.uriRepresentation().absoluteString), let printer = printerManager.getPrinterByObjectURL(url: idURL) {
-            octoPrintRESTClient.getOctorelay(callback: callback)
-        }
+        octoPrintRESTClient.getOctorelay(callback: callback)
     }
     
     /// Cancel the requested object id.
@@ -1160,7 +1158,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     fileprivate func updatePrinterFromOctorelayPlugin(printer: Printer, plugins: NSDictionary) {
         var installed = false
         if let _ = plugins[Plugins.OCTO_RELAY] as? NSDictionary {
-            // Cancel Object plugin is installed
+            // Octorelay plugin is installed
             installed = true
         }
         if printer.octorelayInstalled != installed {
