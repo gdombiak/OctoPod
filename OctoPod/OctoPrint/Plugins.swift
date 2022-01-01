@@ -19,4 +19,5 @@ struct Plugins {
     static let ENCLOSURE = "enclosure"
     static let FILAMENT_MANAGER = "filamentmanager"
     static let BL_TOUCH = "BLTouch"
+    static let OCTO_RELAY = "octorelay"
 }
