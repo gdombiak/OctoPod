@@ -831,7 +831,7 @@ class OctoPrintRESTClient {
     
     // MARK: - Octorelay Plugin operations
     
-    /// Get list of objects that are part of the current gcode being printed. Objects already cancelled will be part of the response
+    /// Get list of relays including their names and active status
     func getOctorelay(callback: @escaping (Array<Octorelay>?, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
@@ -856,7 +856,7 @@ class OctoPrintRESTClient {
         }
     }
 
-    /// Cancel the requested object id.
+    /// Switch (i.e. flip) relay status
     func switchRelay(id: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
