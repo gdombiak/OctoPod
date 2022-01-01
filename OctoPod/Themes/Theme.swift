@@ -73,7 +73,8 @@ class Theme {
                     return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
                         if UITraitCollection.userInterfaceStyle == .dark {
                             /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor(red: 0/255, green: 122.4/255, blue: 255/255, alpha: 1.0)
+                            /// Use title color when in dark mode and using system theme
+                            return self.octoprintNavTitleColor(octoPrintColor)
                         } else {
                             /// Return the color for Light Mode. Same as OctoPrint color
                             return self.octoprintNavTintColor(octoPrintColor)
