@@ -254,7 +254,7 @@
 "Failed to delete layer notification" = "删除层通知失败";
 
 /* (No Comment) */
-"Failed to disable motor" = "禁用%@电机失败";
+"Failed to disable motor" = "关闭%@电机失败";
 
 /* Failed to get controls with HTTP Request error info */
 "Failed to get controls" = "获取控件失败。HTTP响应。%d";
@@ -683,10 +683,10 @@
 "Take snapshot" = "拍摄快照";
 
 /* (No Comment) */
-"Target Bed" = "目标热床";
+"Target Bed" = "热床设置温度";
 
 /* No comment provided by engineer. */
-"Target Chamber" = "目标加热腔";
+"Target Chamber" = "加热腔设置温度";
 
 /* (No Comment) */
 "Target Extruder" = "挤出机目标温度";
