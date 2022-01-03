@@ -265,6 +265,9 @@
 /* No comment provided by engineer. */
 "Failed to get list of layer notifications" = "Nezdařilo se získat seznam oznámení o vrstvě";
 
+/* No comment provided by engineer. */
+"Failed to get list of relays" = "Nezdařilo se získat seznam relé";
+
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Nezdařilo se získat systémové příkazy";
 
@@ -336,6 +339,9 @@
 
 /* (No Comment) */
 "Failed to request to retract" = "Nezdařila se žádost o odvolání";
+
+/* No comment provided by engineer. */
+"Failed to request to switch relay" = "Nezdařil se požadavek na přepnutí relé";
 
 /* (No Comment) */
 "Failed to request to turn power off" = "Nezdařila se žádost o vypnutí";

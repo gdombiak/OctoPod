@@ -265,6 +265,9 @@
 /* No comment provided by engineer. */
 "Failed to get list of layer notifications" = "Kunde inte hämta lista över lageraviseringar";
 
+/* No comment provided by engineer. */
+"Failed to get list of relays" = "Misslyckades med hämta lista över reläer";
+
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Kunde inte hämta systemkommandon";
 
@@ -336,6 +339,9 @@
 
 /* (No Comment) */
 "Failed to request to retract" = "Kunde inte begära att retract";
+
+/* No comment provided by engineer. */
+"Failed to request to switch relay" = "Misslyckades med begäran om att växla relä";
 
 /* (No Comment) */
 "Failed to request to turn power off" = "Kunde inte begära att stänga av strömmen";
