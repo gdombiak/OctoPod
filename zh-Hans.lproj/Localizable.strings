@@ -265,6 +265,9 @@
 /* No comment provided by engineer. */
 "Failed to get list of layer notifications" = "获取图层通知列表失败";
 
+/* No comment provided by engineer. */
+"Failed to get list of relays" = "无法获取中继列表";
+
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "获取系统命令失败";
 
@@ -336,6 +339,9 @@
 
 /* (No Comment) */
 "Failed to request to retract" = "未能请求撤回";
+
+/* No comment provided by engineer. */
+"Failed to request to switch relay" = "请求切换中继失败";
 
 /* (No Comment) */
 "Failed to request to turn power off" = "请求关闭电源失败";
