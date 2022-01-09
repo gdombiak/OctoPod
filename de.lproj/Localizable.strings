@@ -265,6 +265,9 @@
 /* No comment provided by engineer. */
 "Failed to get list of layer notifications" = "Fehler bei der Auflistung von Schicht- Mitteilungen";
 
+/* No comment provided by engineer. */
+"Failed to get list of relays" = "Fehler beim Erhalten der Liste der Relais";
+
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Keine Systembefehle erhalten";
 
@@ -336,6 +339,9 @@
 
 /* (No Comment) */
 "Failed to request to retract" = "Anfrage einziehen gescheitert";
+
+/* No comment provided by engineer. */
+"Failed to request to switch relay" = "Fehler beim Schalten des Relais";
 
 /* (No Comment) */
 "Failed to request to turn power off" = "Anfrage Spannung ausschalten gescheitert";
