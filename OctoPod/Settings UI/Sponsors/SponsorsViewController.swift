@@ -24,6 +24,7 @@ class SponsorsViewController: UIViewController, UITableViewDataSource, UITableVi
         sponsors.append(Sponsor(name: "Brad McGonigle", link: "https://github.com/BradMcGonigle"))
         sponsors.append(Sponsor(name: "Manuel McLure", link: "https://github.com/ManuelMcLure"))
         sponsors.append(Sponsor(name: "mjwilbur", link: "https://github.com/mjwilbur"))
+        sponsors.append(Sponsor(name: "Alexander Sparkowsky", link: "https://github.com/roamingthings"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
