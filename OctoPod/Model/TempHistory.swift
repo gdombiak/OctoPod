@@ -103,27 +103,33 @@ class TempHistory {
         }
     }
     
-    // Variable can be read but cannot be modified
+    /// Variable can be read but cannot be modified
     public private(set) var temps: Array<Temp> = Array()
+    /// Arrays in Swift are not thread-safe so use a queue for mutual exclusion (serial mode)
+    private let queue = DispatchQueue(label: "tempUpdateQueue")
     
     func addHistory(history: Array<Temp>) {
-        // History is sent when websocket gets initially connected so drop previous history
-        temps = Array()
-        temps.append(contentsOf: history)
+        queue.sync {
+            // History is sent when websocket gets initially connected so drop previous history
+            temps = Array()
+            temps.append(contentsOf: history)
 
-        // Make sure that we do not go over the limit of history we keep in memory
-        if history.count > MAX_HISTORY_SIZE {
-            let toDeleteCount = history.count - MAX_HISTORY_SIZE
-            temps.removeFirst(toDeleteCount)
+            // Make sure that we do not go over the limit of history we keep in memory
+            if history.count > MAX_HISTORY_SIZE {
+                let toDeleteCount = history.count - MAX_HISTORY_SIZE
+                temps.removeFirst(toDeleteCount)
+            }
         }
     }
     
     func addTemp(temp: Temp) {
-        // Make sure that we do not go over the limit of history we keep in memory
-        if temps.count > MAX_HISTORY_SIZE {
-            temps.removeFirst(1)
+        queue.sync {
+            // Make sure that we do not go over the limit of history we keep in memory
+            if temps.count > MAX_HISTORY_SIZE {
+                temps.removeFirst(1)
+            }
+            temps.append(temp)
         }
-        temps.append(temp)
     }
     
     func clear() {
