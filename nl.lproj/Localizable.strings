@@ -265,6 +265,9 @@
 /* No comment provided by engineer. */
 "Failed to get list of layer notifications" = "Ophalen van laaglijst is mislukt";
 
+/* No comment provided by engineer. */
+"Failed to get list of relays" = "Mislukt om lijst met relais te krijgen";
+
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Ophalen van systeemcommando's mislukt";
 
@@ -336,6 +339,9 @@
 
 /* (No Comment) */
 "Failed to request to retract" = "Verzoek tot terugtrekken mislukt";
+
+/* No comment provided by engineer. */
+"Failed to request to switch relay" = "Kan niet aanvragen om relais te schakelen";
 
 /* (No Comment) */
 "Failed to request to turn power off" = "Verzoek tot uitzetten van de printer mislukt";

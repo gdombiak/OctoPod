@@ -265,6 +265,9 @@
 /* No comment provided by engineer. */
 "Failed to get list of layer notifications" = "Kunne ikke få en liste over lagvarsler";
 
+/* No comment provided by engineer. */
+"Failed to get list of relays" = "Kunne ikke få liste over reléer";
+
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Mislyktes å få systemkommandoer";
 
@@ -336,6 +339,9 @@
 
 /* (No Comment) */
 "Failed to request to retract" = "Kunne ikke be om å trekke tilbake";
+
+/* No comment provided by engineer. */
+"Failed to request to switch relay" = "Kunne ikke be om å bytte relé";
 
 /* (No Comment) */
 "Failed to request to turn power off" = "Kunne ikke be om å slå av";
