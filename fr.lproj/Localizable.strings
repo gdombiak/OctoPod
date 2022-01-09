@@ -265,6 +265,9 @@
 /* No comment provided by engineer. */
 "Failed to get list of layer notifications" = "Erreur de récupération de la liste de notifications";
 
+/* No comment provided by engineer. */
+"Failed to get list of relays" = "Échec de l'obtention de la liste de relais";
+
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Échec de la récupération des commandes système";
 
@@ -336,6 +339,9 @@
 
 /* (No Comment) */
 "Failed to request to retract" = "Échec de la demande de rétraction";
+
+/* No comment provided by engineer. */
+"Failed to request to switch relay" = "Échec de la demande de changement de relais";
 
 /* (No Comment) */
 "Failed to request to turn power off" = "Échec de la demande d’extinction";
