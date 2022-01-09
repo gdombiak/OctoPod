@@ -308,6 +308,16 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
             // Nothing to do
             return
         }
+        if socketRequest?.url?.scheme == nil {
+            NSLog("socketRequest has no url or url has no schema. URL: \(socketRequest?.url?.absoluteString ?? "no url")")
+            if let listener = delegate {
+                // Invent some error to represent this case
+                let error = NSError(domain: "NSPOSIXErrorDomain", code: 61, userInfo: nil)
+                listener.websocketConnectionFailed(error: error)
+            }
+            // Do not establish connection since URL is not valid and Starscream will crash
+            return
+        }
         connectionAborted = false
         connecting = true
         // Increment number of times we are trying to establish a websockets connection
