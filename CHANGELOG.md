@@ -1,6 +1,29 @@
-# Change Log
+# Changelog
 
-## [3.16](https://github.com/gdombiak/OctoPod/tree/3.15) (2021-10-30)
+## [3.16](https://github.com/gdombiak/OctoPod/tree/3.17) (2022-01-10)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.16...3.17)
+
+
+**Implemented enhancements:**
+
+- Improve theme colors for navigation buttons [\#548](https://github.com/gdombiak/OctoPod/issues/548)
+- Implement OctoRelay Settings [\#476](https://github.com/gdombiak/OctoPod/issues/476)
+
+**Fixed bugs:**
+
+- Fix app crash when URL has no scheme [\#550](https://github.com/gdombiak/OctoPod/issues/550)
+- Fix app crash when updating temp chart [\#549](https://github.com/gdombiak/OctoPod/issues/549)
+- Table headers are not visible when using Dark theme or Dark Mode [\#547](https://github.com/gdombiak/OctoPod/issues/547)
+- Thermal runaway warning when print paused [\#544](https://github.com/gdombiak/OctoPod/issues/544)
+- Fix app crash when deleting file from Files window [\#543](https://github.com/gdombiak/OctoPod/issues/543)
+
+**Merged pull requests:**
+
+- Octorelay support implementation [\#540](https://github.com/gdombiak/OctoPod/pull/540) ([bastienstefani](https://github.com/bastienstefani))
+
+## [3.16](https://github.com/gdombiak/OctoPod/tree/3.16) (2021-10-31)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.15...3.16)
 
 **Implemented enhancements:**
@@ -10,14 +33,15 @@
 
 **Fixed bugs:**
 
-- Fix Apple Watch crash when app runs in background [\#542](https://github.com/gdombiak/OctoPod/issues/542)
 - TPLink plugs not appearing at all in app [\#538](https://github.com/gdombiak/OctoPod/issues/538)
+- Fix Apple Watch crash when app runs in background [\#542](https://github.com/gdombiak/OctoPod/issues/542)
 - Fix app crash when clicking on camera URL that failed to render [\#537](https://github.com/gdombiak/OctoPod/issues/537)
 - Fix app crash when closing terminal window [\#536](https://github.com/gdombiak/OctoPod/issues/536)
 - Fix app crash when updating watch complication [\#535](https://github.com/gdombiak/OctoPod/issues/535)
 - Timelapse does not play when filename has spaces or special characters [\#534](https://github.com/gdombiak/OctoPod/issues/534)
 
 ## [3.15](https://github.com/gdombiak/OctoPod/tree/3.15) (2021-10-17)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.14...3.15)
 
 **Fixed bugs:**
@@ -26,6 +50,7 @@
 - Can’t authorize and add printer because of redirect to octoprint [\#531](https://github.com/gdombiak/OctoPod/issues/531)
 
 ## [3.14](https://github.com/gdombiak/OctoPod/tree/3.14) (2021-10-15)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.13...3.14)
 
 **Implemented enhancements:**
@@ -54,6 +79,7 @@
 - No longer connects to printer after iOS 15 update [\#518](https://github.com/gdombiak/OctoPod/issues/518)
 
 ## [3.13](https://github.com/gdombiak/OctoPod/tree/3.13) (2021-09-06)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.12...3.13)
 
 **Implemented enhancements:**
@@ -74,6 +100,7 @@
 - Bug, dashboard [\#424](https://github.com/gdombiak/OctoPod/issues/424)
 
 ## [3.12](https://github.com/gdombiak/OctoPod/tree/3.12) (2021-08-25)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.11...3.12)
 
 **Implemented enhancements:**
@@ -111,6 +138,7 @@
 - added nl language pack, inplemented in app. [\#326](https://github.com/gdombiak/OctoPod/pull/326) ([00ihsan](https://github.com/00ihsan))
 
 ## [3.11](https://github.com/gdombiak/OctoPod/tree/3.11) (2021-02-11)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.10...3.11)
 
 **Implemented enhancements:**
@@ -147,6 +175,7 @@
 - Please i need PSU Plugin into the app [\#430](https://github.com/gdombiak/OctoPod/issues/430)
 
 ## [3.10](https://github.com/gdombiak/OctoPod/tree/3.10) (2020-12-11)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.9...3.10)
 
 **Implemented enhancements:**
@@ -177,6 +206,7 @@
 - iOS app not available on AppleSilicon Macs? [\#411](https://github.com/gdombiak/OctoPod/issues/411)
 
 ## [3.9](https://github.com/gdombiak/OctoPod/tree/3.9) (2020-11-16)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.8...3.9)
 
 **Fixed bugs:**
@@ -186,6 +216,7 @@
 - Add Widget Url to medium Widget \#402 [\#403](https://github.com/gdombiak/OctoPod/pull/403) ([Willmac16](https://github.com/Willmac16))
 
 ## [3.8](https://github.com/gdombiak/OctoPod/tree/3.8) (2020-11-01)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.7...3.8)
 
 **Implemented enhancements:**
@@ -209,6 +240,7 @@
 - Siri suggestions not showing up in settings [\#384](https://github.com/gdombiak/OctoPod/issues/384)
 
 ## [3.7](https://github.com/gdombiak/OctoPod/tree/3.7) (2020-10-12)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.6...3.7)
 
 **Implemented enhancements:**
@@ -243,6 +275,7 @@
 - Add support for iPad PiP  [\#168](https://github.com/gdombiak/OctoPod/issues/168)
 
 ## [3.6](https://github.com/gdombiak/OctoPod/tree/3.6) (2020-09-17)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.5...3.6)
 
 **Implemented enhancements:**
@@ -270,6 +303,7 @@
 - Klipper—Disable automatic command formatting [\#327](https://github.com/gdombiak/OctoPod/issues/327)
 
 ## [3.5](https://github.com/gdombiak/OctoPod/tree/3.5) (2020-06-08)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.4...3.5)
 
 **Implemented enhancements:**
@@ -303,6 +337,7 @@
 - Update charts library to 3.5.0 [\#338](https://github.com/gdombiak/OctoPod/issues/338)
 
 ## [3.4](https://github.com/gdombiak/OctoPod/tree/3.4) (2020-04-29)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.3...3.4)
 
 **Implemented enhancements:**
@@ -328,6 +363,7 @@
 - Webcam not functioning / url broken [\#305](https://github.com/gdombiak/OctoPod/issues/305)
 
 ## [3.3](https://github.com/gdombiak/OctoPod/tree/3.3) (2020-04-18)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.2...3.3)
 
 **Implemented enhancements:**
@@ -359,6 +395,7 @@
 - I am loving the AppleTV app! [\#285](https://github.com/gdombiak/OctoPod/issues/285)
 
 ## [3.2](https://github.com/gdombiak/OctoPod/tree/3.2) (2020-03-25)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.1...3.2)
 
 **Implemented enhancements:**
@@ -377,6 +414,7 @@
 - Add info on number of Palette splices [\#264](https://github.com/gdombiak/OctoPod/issues/264)
 
 ## [3.1](https://github.com/gdombiak/OctoPod/tree/3.1) (2020-02-15)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.0...3.1)
 
 **Implemented enhancements:**
@@ -396,6 +434,7 @@
 - Webcam stream and Reverse Proxy [\#260](https://github.com/gdombiak/OctoPod/issues/260)
 
 ## [3.0](https://github.com/gdombiak/OctoPod/tree/3.0) (2020-01-30)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.11...3.0)
 
 **Implemented enhancements:**
@@ -429,6 +468,7 @@
 - Printer is restarting on Connect [\#248](https://github.com/gdombiak/OctoPod/issues/248)
 
 ## [2.11](https://github.com/gdombiak/OctoPod/tree/2.11) (2020-01-08)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.10...2.11)
 
 **Fixed bugs:**
@@ -437,6 +477,7 @@
 - The Files view shows only source "SD card" or "Octoprint", but no file names. [\#237](https://github.com/gdombiak/OctoPod/issues/237)
 
 ## [2.10](https://github.com/gdombiak/OctoPod/tree/2.10) (2019-12-16)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.9...2.10)
 
 **Fixed bugs:**
@@ -445,6 +486,7 @@
 - iPad & iOS 13.2.3 Seems to induce weird Portrait/Landscape behaviour on Video Stream [\#233](https://github.com/gdombiak/OctoPod/issues/233)
 
 ## [2.9](https://github.com/gdombiak/OctoPod/tree/2.9) (2019-12-05)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.8...2.9)
 
 **Implemented enhancements:**
@@ -461,6 +503,7 @@
 - Notifications: Unknot code [\#229](https://github.com/gdombiak/OctoPod/issues/229)
 
 ## [2.8](https://github.com/gdombiak/OctoPod/tree/2.8) (2019-10-15)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.7...2.8)
 
 **Implemented enhancements:**
@@ -480,6 +523,7 @@
 - Custom System Commands Execute Error [\#227](https://github.com/gdombiak/OctoPod/issues/227)
 
 ## [2.7](https://github.com/gdombiak/OctoPod/tree/2.7) (2019-08-24)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.6...2.7)
 
 **Implemented enhancements:**
@@ -509,6 +553,7 @@
 - Octopod Generates Tornado.access Errors when connecting to octoprint. [\#188](https://github.com/gdombiak/OctoPod/issues/188)
 
 ## [2.6](https://github.com/gdombiak/OctoPod/tree/2.6) (2019-07-16)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.5...2.6)
 
 **Implemented enhancements:**
@@ -526,6 +571,7 @@
 - Websockets seem to be crashing for some users [\#202](https://github.com/gdombiak/OctoPod/issues/202)
 
 ## [2.5](https://github.com/gdombiak/OctoPod/tree/2.5) (2019-06-30)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.4...2.5)
 
 **Implemented enhancements:**
@@ -533,6 +579,7 @@
 - Display local notifications only if OctoPod plugin is not installed [\#196](https://github.com/gdombiak/OctoPod/issues/196)
 
 ## [2.4](https://github.com/gdombiak/OctoPod/tree/2.4) (2019-06-17)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.3...2.4)
 
 **Implemented enhancements:**
@@ -548,6 +595,7 @@
 - Include port number in Host header [\#189](https://github.com/gdombiak/OctoPod/issues/189)
 
 ## [2.3](https://github.com/gdombiak/OctoPod/tree/2.3) (2019-05-26)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.2...2.3)
 
 **Implemented enhancements:**
@@ -561,6 +609,7 @@
 - Tplink plug-in error [\#173](https://github.com/gdombiak/OctoPod/issues/173)
 
 ## [2.2](https://github.com/gdombiak/OctoPod/tree/2.2) (2019-05-19)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.1.1...2.2)
 
 **Implemented enhancements:**
@@ -592,6 +641,7 @@
 - Video /camera not showing up [\#165](https://github.com/gdombiak/OctoPod/issues/165)
 
 ## [2.1.1](https://github.com/gdombiak/OctoPod/tree/2.1.1) (2018-12-16)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.1...2.1.1)
 
 **Fixed bugs:**
@@ -600,6 +650,7 @@
 - \[German\] Siri Command Responses do not replace variables [\#155](https://github.com/gdombiak/OctoPod/issues/155)
 
 ## [2.1](https://github.com/gdombiak/OctoPod/tree/2.1) (2018-12-16)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/2.0...2.1)
 
 **Implemented enhancements:**
@@ -626,6 +677,7 @@
 - Ask the user to authorize Siri [\#148](https://github.com/gdombiak/OctoPod/pull/148) ([chrisy](https://github.com/chrisy))
 
 ## [2.0](https://github.com/gdombiak/OctoPod/tree/2.0) (2018-11-11)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.12...2.0)
 
 **Implemented enhancements:**
@@ -649,6 +701,7 @@
 - Changes to API key or URL of selected printer do not take immediate effect [\#123](https://github.com/gdombiak/OctoPod/issues/123)
 
 ## [1.12](https://github.com/gdombiak/OctoPod/tree/1.12) (2018-10-20)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.11...1.12)
 
 **Implemented enhancements:**
@@ -669,6 +722,7 @@
 - Print job doesn’t show status [\#113](https://github.com/gdombiak/OctoPod/issues/113)
 
 ## [1.11](https://github.com/gdombiak/OctoPod/tree/1.11) (2018-10-15)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.10...1.11)
 
 **Implemented enhancements:**
@@ -689,6 +743,7 @@
 - 'Not refreshing' alert stays on after connection was re-established [\#100](https://github.com/gdombiak/OctoPod/issues/100)
 
 ## [1.10](https://github.com/gdombiak/OctoPod/tree/1.10) (2018-10-08)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.9...1.10)
 
 **Implemented enhancements:**
@@ -717,6 +772,7 @@
 - Add spanish translation from Spain [\#90](https://github.com/gdombiak/OctoPod/pull/90) ([ArtCC](https://github.com/ArtCC))
 
 ## [1.9](https://github.com/gdombiak/OctoPod/tree/1.9) (2018-09-26)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.8...1.9)
 
 **Fixed bugs:**
@@ -724,6 +780,7 @@
 - Crash when switching printer [\#85](https://github.com/gdombiak/OctoPod/issues/85)
 
 ## [1.8](https://github.com/gdombiak/OctoPod/tree/1.8) (2018-09-24)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.7...1.8)
 
 **Implemented enhancements:**
@@ -747,6 +804,7 @@
 - Update pod Charts to 3.2.0 [\#78](https://github.com/gdombiak/OctoPod/issues/78)
 
 ## [1.7](https://github.com/gdombiak/OctoPod/tree/1.7) (2018-09-10)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.6...1.7)
 
 **Implemented enhancements:**
@@ -770,6 +828,7 @@
 - Multicam [\#55](https://github.com/gdombiak/OctoPod/issues/55)
 
 ## [1.6](https://github.com/gdombiak/OctoPod/tree/1.6) (2018-08-28)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.5...1.6)
 
 **Implemented enhancements:**
@@ -789,6 +848,7 @@
 - Add Cancel/Reset/Resume buttons. [\#56](https://github.com/gdombiak/OctoPod/issues/56)
 
 ## [1.5](https://github.com/gdombiak/OctoPod/tree/1.5) (2018-08-19)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.4...1.5)
 
 **Implemented enhancements:**
@@ -809,6 +869,7 @@
 - Not very clear that wrench icons indicate that temps can be set [\#18](https://github.com/gdombiak/OctoPod/issues/18)
 
 ## [1.4](https://github.com/gdombiak/OctoPod/tree/1.4) (2018-08-05)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.3...1.4)
 
 **Implemented enhancements:**
@@ -822,6 +883,7 @@
 - Allow to upload files from iCloud [\#2](https://github.com/gdombiak/OctoPod/issues/2)
 
 ## [1.3](https://github.com/gdombiak/OctoPod/tree/1.3) (2018-07-29)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.2...1.3)
 
 **Implemented enhancements:**
@@ -838,6 +900,7 @@
 - Print not starting from iPhone X IOS 12 beta 3 [\#37](https://github.com/gdombiak/OctoPod/issues/37)
 
 ## [1.2](https://github.com/gdombiak/OctoPod/tree/1.2) (2018-07-26)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.1...1.2)
 
 **Implemented enhancements:**
@@ -870,6 +933,7 @@
 - Adding a link in the README.md file to a wiki page with build and dep… [\#32](https://github.com/gdombiak/OctoPod/pull/32) ([bdelia](https://github.com/bdelia))
 
 ## [1.1](https://github.com/gdombiak/OctoPod/tree/1.1) (2018-07-18)
+
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/1.0...1.1)
 
 **Implemented enhancements:**
@@ -892,5 +956,8 @@
 
 ## [1.0](https://github.com/gdombiak/OctoPod/tree/1.0) (2018-07-15)
 
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/896fb2b5813c81c799d5f27f7e5b70ba68cc7d35...1.0)
 
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
+
+
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
