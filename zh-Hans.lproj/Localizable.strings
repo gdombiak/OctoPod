@@ -254,7 +254,7 @@
 "Failed to delete layer notification" = "删除层通知失败";
 
 /* (No Comment) */
-"Failed to disable motor" = "禁用%@电机失败";
+"Failed to disable motor" = "关闭%@电机失败";
 
 /* Failed to get controls with HTTP Request error info */
 "Failed to get controls" = "获取控件失败。HTTP响应。%d";
@@ -264,6 +264,9 @@
 
 /* No comment provided by engineer. */
 "Failed to get list of layer notifications" = "获取图层通知列表失败";
+
+/* No comment provided by engineer. */
+"Failed to get list of relays" = "无法获取中继列表";
 
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "获取系统命令失败";
@@ -336,6 +339,9 @@
 
 /* (No Comment) */
 "Failed to request to retract" = "未能请求撤回";
+
+/* No comment provided by engineer. */
+"Failed to request to switch relay" = "请求切换中继失败";
 
 /* (No Comment) */
 "Failed to request to turn power off" = "请求关闭电源失败";
@@ -495,6 +501,9 @@
 
 /* English translation for words in Swift files */
 "OctoPrint" = "OctoPrint";
+
+/* https://github.com/bastienstefani/OctoRelay */
+"Octorelay" = "Octorelay";
 
 /* Printer is Offline */
 "Offline" = "离线";
@@ -674,10 +683,10 @@
 "Take snapshot" = "拍摄快照";
 
 /* (No Comment) */
-"Target Bed" = "目标热床";
+"Target Bed" = "热床设置温度";
 
 /* No comment provided by engineer. */
-"Target Chamber" = "目标加热腔";
+"Target Chamber" = "加热腔设置温度";
 
 /* (No Comment) */
 "Target Extruder" = "挤出机目标温度";

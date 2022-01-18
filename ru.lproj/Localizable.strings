@@ -265,6 +265,9 @@
 /* No comment provided by engineer. */
 "Failed to get list of layer notifications" = "Не удалось получить список уведомлений о слоях";
 
+/* No comment provided by engineer. */
+"Failed to get list of relays" = "Не удалось получить список реле";
+
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Не удалось получить системные команды";
 
@@ -336,6 +339,9 @@
 
 /* (No Comment) */
 "Failed to request to retract" = "Не удалось выполнить запрос на изменение отката";
+
+/* No comment provided by engineer. */
+"Failed to request to switch relay" = "Не удалось запросить переключение реле";
 
 /* (No Comment) */
 "Failed to request to turn power off" = "Не удалось выполнить запрос на выключение питания";
@@ -495,6 +501,9 @@
 
 /* English translation for words in Swift files */
 "OctoPrint" = "OctoPrint";
+
+/* https://github.com/bastienstefani/OctoRelay */
+"Octorelay" = "Octorelay";
 
 /* Printer is Offline */
 "Offline" = "Не в сети";

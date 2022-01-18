@@ -68,6 +68,9 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             if printer.cancelObjectInstalled {
                 orderedViewControllers.append(createCancelObjectVC(mainboard))
             }
+            if printer.octorelayInstalled {
+                orderedViewControllers.append(createOctorelayVC(mainboard))
+            }
             if printer.palette2Installed {
                 orderedViewControllers.append(createPalette2VC(mainboard))
             }
@@ -152,6 +155,8 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             addRemoveIPPlugPluginVC(plugin: Plugins.TASMOTA, add: addVC)
             
             addRemoveVC(add: printer.cancelObjectInstalled, vcIdentifier: { $0.isMember(of: CancelObjectViewController.self) }, createVC: createCancelObjectVC)
+            
+            addRemoveVC(add: printer.octorelayInstalled, vcIdentifier: { $0.isMember(of: OctorelayViewController.self) }, createVC: createOctorelayVC)
 
             addRemoveVC(add: printer.palette2Installed, vcIdentifier: { $0.isMember(of: Palette2ViewController.self) }, createVC: createPalette2VC)
 
@@ -256,6 +261,10 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         addRemoveVC(add: installed, vcIdentifier: { $0.isMember(of: CancelObjectViewController.self) }, createVC: createCancelObjectVC)
     }
     
+    func octorelayAvailabilityChanged(installed: Bool) {
+        addRemoveVC(add: installed, vcIdentifier: { $0.isMember(of: OctorelayViewController.self) }, createVC: createOctorelayVC)
+    }
+    
     func palette2Changed(installed: Bool) {
         addRemoveVC(add: installed, vcIdentifier: { $0.isMember(of: Palette2ViewController.self) }, createVC: createPalette2VC)
     }
@@ -352,6 +361,10 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
 
     fileprivate func createCancelObjectVC(_ mainboard: UIStoryboard) -> UIViewController {
         return mainboard.instantiateViewController(withIdentifier: "CancelObjectViewController")
+    }
+    
+    fileprivate func createOctorelayVC(_ mainboard: UIStoryboard) -> UIViewController {
+        return mainboard.instantiateViewController(withIdentifier: "OctorelayViewController")
     }
 
     fileprivate func createEnclosureVC(_ mainboard: UIStoryboard) -> UIViewController {

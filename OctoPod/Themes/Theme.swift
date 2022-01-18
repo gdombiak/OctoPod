@@ -73,7 +73,8 @@ class Theme {
                     return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
                         if UITraitCollection.userInterfaceStyle == .dark {
                             /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor(red: 0/255, green: 122.4/255, blue: 255/255, alpha: 1.0)
+                            /// Use title color when in dark mode and using system theme
+                            return self.octoprintNavTitleColor(octoPrintColor)
                         } else {
                             /// Return the color for Light Mode. Same as OctoPrint color
                             return self.octoprintNavTintColor(octoPrintColor)
@@ -344,6 +345,30 @@ class Theme {
                 } else {
                     /// Return a fallback color for iOS 12 and lower. Fall back to Light color
                     return UIColor(red: 182/255, green: 182/255, blue: 182/255, alpha: 1.0)
+                }
+            }
+        }
+
+        func tableHeaderFooterTextColor() -> UIColor {
+            switch self {
+            case .Light, .OctoPrint:
+                return UIColor(red: 61.2/255, green: 61.2/255, blue: 66.3/255, alpha: 0.6)
+            case .Dark, .Orange:
+                return UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 0.6)
+            case .System:
+                if #available(iOS 13, *) {
+                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                        if UITraitCollection.userInterfaceStyle == .dark {
+                            /// Return the color for Dark Mode. Same as Dark color
+                            return UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 0.6)
+                        } else {
+                            /// Return the color for Light Mode. Same as OctoPrint color
+                            return UIColor(red: 61.2/255, green: 61.2/255, blue: 66.3/255, alpha: 0.6)
+                        }
+                    }
+                } else {
+                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
+                    return UIColor(red: 61.2/255, green: 61.2/255, blue: 66.3/255, alpha: 0.6)
                 }
             }
         }

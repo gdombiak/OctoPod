@@ -119,7 +119,7 @@
 "6tl-IB-smM.text" = "%";
 
 /* Class = "UILabel"; text = "Disable Motor"; ObjectID = "6TZ-hb-gdQ"; */
-"6TZ-hb-gdQ.text" = "禁用电机";
+"6TZ-hb-gdQ.text" = "关闭电机";
 
 /* Class = "UINavigationItem"; title = "Sponsors"; ObjectID = "6vB-dQ-Kij"; */
 "6vB-dQ-Kij.title" = "赞助者";
@@ -353,7 +353,7 @@
 "Fbe-op-Ixc.text" = "详情";
 
 /* Class = "UITableViewSection"; headerTitle = "Print job"; ObjectID = "FdM-r0-spe"; */
-"FdM-r0-spe.headerTitle" = "打印工作Printjob";
+"FdM-r0-spe.headerTitle" = "打印工作";
 
 /* Class = "UILabel"; text = "%"; ObjectID = "ffd-HI-A62"; */
 "ffd-HI-A62.text" = "%";
@@ -566,7 +566,7 @@
 "kaq-fI-VzN.text" = "Palette2-最后Ping";
 
 /* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "KC4-pP-rEh"; */
-"KC4-pP-rEh.text" = "包括在面板中";
+"KC4-pP-rEh.text" = "包括在仪表板中";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "kdJ-8e-1mO"; */
 "kdJ-8e-1mO.text" = "详情";
@@ -645,6 +645,9 @@
 
 /* Class = "UILabel"; text = "Layer"; ObjectID = "Ndq-Hl-4qe"; */
 "Ndq-Hl-4qe.text" = "层";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "NjN-EQ-atg"; */
+"NjN-EQ-atg.text" = "Label";
 
 /* Class = "UISegmentedControl"; NKo-dw-3Mg.segmentTitles[0] = "0.1"; ObjectID = "NKo-dw-3Mg"; */
 "NKo-dw-3Mg.segmentTitles[0]" = "0.1";
@@ -800,7 +803,7 @@
 "r08-sj-cCD.text" = "标签";
 
 /* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "R8W-HN-Cgb"; */
-"R8W-HN-Cgb.text" = "包括在面板中";
+"R8W-HN-Cgb.text" = "包括在仪表板中";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "REX-gh-p87"; */
 "REX-gh-p87.normalTitle" = "按键";
@@ -980,7 +983,7 @@
 "VgY-ne-x6t.text" = "状况";
 
 /* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "VIg-Mm-BM3"; */
-"VIg-Mm-BM3.text" = "包括在面板中";
+"VIg-Mm-BM3.text" = "包括在仪表板中";
 
 /* Class = "UILabel"; text = "%"; ObjectID = "VkX-1W-xBG"; */
 "VkX-1W-xBG.text" = "%";
@@ -1118,7 +1121,7 @@
 "zDs-gi-KIJ.text" = "新的温度";
 
 /* Class = "UITableViewSection"; headerTitle = "Extruder"; ObjectID = "ZeS-hE-vC8"; */
-"ZeS-hE-vC8.headerTitle" = "挤出机";
+"ZeS-hE-vC8.headerTitle" = "挤出";
 
 /* Class = "UILabel"; text = "100 C"; ObjectID = "zf7-Un-ytQ"; */
 "zf7-Un-ytQ.text" = "100C";

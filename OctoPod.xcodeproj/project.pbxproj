@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B1C6FD2271E14D6007F3AC9 /* OctorelayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C6FD1271E14D6007F3AC9 /* OctorelayViewController.swift */; };
+		0B1C6FD6271E1B34007F3AC9 /* OctorelayViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C6FD5271E1B34007F3AC9 /* OctorelayViewCell.swift */; };
+		0B1C6FD8271F728B007F3AC9 /* Octorelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C6FD7271F728B007F3AC9 /* Octorelay.swift */; };
+		0B1C6FD9271F72A4007F3AC9 /* Octorelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C6FD7271F728B007F3AC9 /* Octorelay.swift */; };
+		0B1C6FDA271F72A4007F3AC9 /* Octorelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C6FD7271F728B007F3AC9 /* Octorelay.swift */; };
+		0B1C6FDB271F72A5007F3AC9 /* Octorelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C6FD7271F728B007F3AC9 /* Octorelay.swift */; };
+		0B1C6FDC271F72AD007F3AC9 /* Octorelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C6FD7271F728B007F3AC9 /* Octorelay.swift */; };
 		3D0192FF2443692800970A06 /* EnclosureInputTempCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D0192FE2443692800970A06 /* EnclosureInputTempCellView.xib */; };
 		3D01FB3426EE6B1D00728300 /* PrintersCameraGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D01FB3326EE6B1D00728300 /* PrintersCameraGridViewCell.swift */; };
 		3D02D19A229A6AC8004788B6 /* RemindersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D02D199229A6AC8004788B6 /* RemindersViewController.swift */; };
@@ -506,6 +513,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B1C6FD1271E14D6007F3AC9 /* OctorelayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctorelayViewController.swift; sourceTree = "<group>"; };
+		0B1C6FD5271E1B34007F3AC9 /* OctorelayViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctorelayViewCell.swift; sourceTree = "<group>"; };
+		0B1C6FD7271F728B007F3AC9 /* Octorelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Octorelay.swift; sourceTree = "<group>"; };
 		3D0192FE2443692800970A06 /* EnclosureInputTempCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnclosureInputTempCellView.xib; sourceTree = "<group>"; };
 		3D01FB3326EE6B1D00728300 /* PrintersCameraGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintersCameraGridViewCell.swift; sourceTree = "<group>"; };
 		3D02D199229A6AC8004788B6 /* RemindersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewController.swift; sourceTree = "<group>"; };
@@ -1360,6 +1370,7 @@
 				3D8D51A621333D170006BBB1 /* CustomControlInputViewCell.swift */,
 				3D8D51A821333D310006BBB1 /* CustomControlInputSlideViewCell.swift */,
 				3D88C3EB2194004800BC84DD /* CancelObjectViewCell.swift */,
+				0B1C6FD5271E1B34007F3AC9 /* OctorelayViewCell.swift */,
 				3D8BBEA02442C35900E73FD8 /* EnclosureTempViewCell.swift */,
 				3D0192FE2443692800970A06 /* EnclosureInputTempCellView.xib */,
 				3DB932D02447FADB00A154FF /* EnclosureGPIOViewCell.swift */,
@@ -1512,6 +1523,7 @@
 				3DDB5FCA22D0F45E005F8A9F /* PluginUpdatesManager.swift */,
 				3DB377D92596CF03008220EE /* SoCTempHistory.swift */,
 				3D67AA9425B51A3600302A2B /* Timelapse.swift */,
+				0B1C6FD7271F728B007F3AC9 /* Octorelay.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1723,6 +1735,7 @@
 				3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */,
 				583827DF22E62D4D00784706 /* Mosaic */,
 				3D88C3E62193F17800BC84DD /* CancelObjectViewController.swift */,
+				0B1C6FD1271E14D6007F3AC9 /* OctorelayViewController.swift */,
 				3DC6DB3C245606030091E548 /* FilamentManager */,
 				3D74FA2621251BCF00DA2CB3 /* PSUControlViewController.swift */,
 				3D74FA2821251BE600DA2CB3 /* IPPlugViewController.swift */,
@@ -2263,6 +2276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D3D79A923D4DB7C00E5B6CA /* Palette2Utils.swift in Sources */,
+				0B1C6FDB271F72A5007F3AC9 /* Octorelay.swift in Sources */,
 				3D4497F721B2628500736F0F /* CancelObject.swift in Sources */,
 				3D4497F221B2627300736F0F /* ControlInput.swift in Sources */,
 				3DA7785925CFAFCC0048405A /* BLTouch.swift in Sources */,
@@ -2314,6 +2328,7 @@
 				3DE04926257B767400C7E55F /* EnclosureTurnOffIntentHandler.swift in Sources */,
 				3D4497D121B2241D00736F0F /* PrinterManager.swift in Sources */,
 				3DB378202596D4C4008220EE /* SoCTempHistory.swift in Sources */,
+				0B1C6FDA271F72A4007F3AC9 /* Octorelay.swift in Sources */,
 				3DA0490B2687ED1C00C98379 /* TakeSnapshotIntentHandler.swift in Sources */,
 				3D4064AB21AB7563000B05F9 /* PauseJobIntentHandler.swift in Sources */,
 				3D4497D021B2240700736F0F /* OctoPod.xcdatamodeld in Sources */,
@@ -2453,6 +2468,7 @@
 				3D88C3EC2194004800BC84DD /* CancelObjectViewCell.swift in Sources */,
 				3D6350F721084334001C10F7 /* ThemedDynamicUITableViewController.swift in Sources */,
 				3D450EC521AB50AF0049FBC0 /* SiriViewController.swift in Sources */,
+				0B1C6FD8271F728B007F3AC9 /* Octorelay.swift in Sources */,
 				3D7C884A2152BB18009FECEF /* DevicesSyncLogViewController.swift in Sources */,
 				3D5879FA2176D2D20058A4DC /* NotRefreshingReasonViewController.swift in Sources */,
 				3D4497D421B230BE00736F0F /* SharedPersistentContainer.swift in Sources */,
@@ -2484,6 +2500,7 @@
 				3DE3FE6D2154B9CE000D7D2A /* Plugins.swift in Sources */,
 				3D1A935921326B3C0050ED9A /* Command.swift in Sources */,
 				583827E122E62D8700784706 /* Palette2PortsViewController.swift in Sources */,
+				0B1C6FD2271E14D6007F3AC9 /* OctorelayViewController.swift in Sources */,
 				3DFA8070210E1A8C00B5BFAA /* PrinterProfilesDelegate.swift in Sources */,
 				3DC6DB33245553C30091E548 /* FilamentSelection.swift in Sources */,
 				3DA0490D2687EE5500C98379 /* CameraUtils.swift in Sources */,
@@ -2496,6 +2513,7 @@
 				3D9B407027093E2600FDF2F0 /* PrintersCameraGridViewCellDelegate.swift in Sources */,
 				3D8AB6A621A73D3700E81CE5 /* SystemCommandsViewController.swift in Sources */,
 				3D1A935F213271680050ED9A /* Script.swift in Sources */,
+				0B1C6FD6271E1B34007F3AC9 /* OctorelayViewCell.swift in Sources */,
 				3D8B292A20E54F7300296D9D /* PanelViewController.swift in Sources */,
 				3D7E5026267EA517007DBB5B /* BasePrinterDetailsViewController.swift in Sources */,
 				3D450E5E21AB1C040049FBC0 /* Intents.intentdefinition in Sources */,
@@ -2595,6 +2613,7 @@
 				3D6EB0BE217B0D270093EC79 /* NotificationController.swift in Sources */,
 				3D6EB0C0217B0D270093EC79 /* ComplicationController.swift in Sources */,
 				3DFB777123D4D50F00ADF315 /* Palette2Utils.swift in Sources */,
+				0B1C6FD9271F72A4007F3AC9 /* Octorelay.swift in Sources */,
 				3D6EB0BC217B0D270093EC79 /* ExtensionDelegate.swift in Sources */,
 				3D680FA8218E12BC006C9A79 /* PanelManager.swift in Sources */,
 				3D67AA9F25B51DF000302A2B /* Timelapse.swift in Sources */,
@@ -2632,6 +2651,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B1C6FDC271F72AD007F3AC9 /* Octorelay.swift in Sources */,
 				3DF383622505F84D003C803D /* CancelObject.swift in Sources */,
 				3D97074F2506E0B90076C959 /* CameraService.swift in Sources */,
 				3D91E923250D7F3A008A59CD /* OctoPodWidget14.intentdefinition in Sources */,
@@ -3157,7 +3177,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Widget/OctoPod Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -3166,7 +3186,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.OctoPod.OctoPod.OctoPod-Widget";
@@ -3182,7 +3202,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Widget/OctoPod Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Widget/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -3191,7 +3211,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.OctoPod.OctoPod.OctoPod-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3206,7 +3226,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent/OctoPod Intent.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Intent/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -3215,7 +3235,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.OctoPod.OctoPod.OctoPod-Intent";
@@ -3231,7 +3251,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent/OctoPod Intent.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Intent/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -3240,7 +3260,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.OctoPod.OctoPod.OctoPod-Intent";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3377,7 +3397,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OctoPod/OctoPod.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = OctoPod/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -3385,7 +3405,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				PRODUCT_BUNDLE_IDENTIFIER = org.OctoPod.OctoPod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3400,7 +3420,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OctoPod/OctoPod.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = OctoPod/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -3408,7 +3428,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				PRODUCT_BUNDLE_IDENTIFIER = org.OctoPod.OctoPod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3523,11 +3543,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				IBSC_MODULE = OctoPod_Watch_Extension;
 				INFOPLIST_FILE = "OctoPod Watch/Info.plist";
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.OctoPod.OctoPod.watchkitapp;
@@ -3549,11 +3569,11 @@
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Watch/OctoPod WatchRelease.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				IBSC_MODULE = OctoPod_Watch_Extension;
 				INFOPLIST_FILE = "OctoPod Watch/Info.plist";
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.OctoPod.OctoPod.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3571,7 +3591,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3579,7 +3599,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.OctoPod.OctoPod.watchkitapp.watchkitextension;
@@ -3597,7 +3617,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3605,7 +3625,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.OctoPod.OctoPod.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
@@ -3622,7 +3642,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Notification Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -3631,7 +3651,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.OctoPod.OctoPod.OctoPod-Notification-Extension";
@@ -3649,7 +3669,7 @@
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Notification Extension/OctoPod Notification ExtensionRelease.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Notification Extension/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
@@ -3658,7 +3678,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.OctoPod.OctoPod.OctoPod-Notification-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3674,7 +3694,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent UI - Take Snapshot/OctoPod Intent UI - Take Snapshot.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Intent UI - Take Snapshot/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -3683,7 +3703,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.OctoPod.OctoPod.OctoPod-Intent-UI-Take-Snapshot";
@@ -3699,7 +3719,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "OctoPod Intent UI - Take Snapshot/OctoPod Intent UI - Take Snapshot.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = "OctoPod Intent UI - Take Snapshot/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -3708,7 +3728,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.OctoPod.OctoPod.OctoPod-Intent-UI-Take-Snapshot";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3726,7 +3746,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = OctoPodWidget14Extension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = OctoPodWidget14/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -3735,7 +3755,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.OctoPod.OctoPod.OctoPodWidget14;
@@ -3754,7 +3774,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = OctoPodWidget14Extension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = OctoPodWidget14/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -3763,7 +3783,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.16;
+				MARKETING_VERSION = 3.17;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.OctoPod.OctoPod.OctoPodWidget14;
 				PRODUCT_NAME = "$(TARGET_NAME)";
