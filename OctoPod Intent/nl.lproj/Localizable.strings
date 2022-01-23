@@ -40,11 +40,17 @@
 /* No comment provided by engineer. */
 "No" = "Nee";
 
+/* No comment provided by engineer. */
+"No image is available" = "Er is geen afbeelding beschikbaar";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Webcam Limiet Overschreden";
 
 /* No comment provided by engineer. */
 "seconds ago" = "seconden geleden";
+
+/* The Spaghetti Detective Is Not Watching */
+"The Detective Is Not Watching" = "De Detective let niet op";
 
 /* ETA is Unknown */
 "Unknown" = "Onbekend";
