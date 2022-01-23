@@ -33,10 +33,13 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     open var didFinishWithHTTPErrors: ((HTTPURLResponse)->Void)?
     open var didFetchImage: ((UIImage)->Void)?
     open var didRenderImage: ((UIImage)->Void)?
+    open var didReceiveJSON: ((NSDictionary)->Void)?
     open var contentURL: URL?
     open var imageView: UIImageView?
     open var imageOrientation: UIImage.Orientation?
     open var timeoutInterval: TimeInterval = 60.0
+    
+    private var parsingJson = false
 
     public override init() {
         super.init()
@@ -70,6 +73,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
             return
         }
         
+        parsingJson = false
         status = .loading
         executeBlock { self.didStartLoading?() }
         
@@ -119,6 +123,8 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
             if firstTimeImage {
                 executeBlock { self.didRenderImage?(receivedImage) }
             }
+        } else if let httpResponse = response as? HTTPURLResponse, let contentType = httpResponse.allHeaderFields["Content-Type"] as? String {
+            parsingJson = "application/json" == contentType && httpResponse.statusCode == 200
         }
         
         receivedData = NSMutableData()
@@ -126,7 +132,19 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     }
     
     open func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        receivedData?.append(data)
+        if parsingJson {
+            // Parse returned JSON
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: [.mutableLeaves, .mutableContainers]) as? NSDictionary {
+                        didReceiveJSON?(json)
+                    }
+                }
+                catch let err as NSError {
+                    NSLog("Error parsing JSON rendering camera. Error: \(err)")
+                }
+        } else {
+            receivedData?.append(data)
+        }
     }
     
     // MARK: - NSURLSessionTaskDelegate

@@ -8,14 +8,22 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
     var newWebviewPopupWindow: WKWebView?
 
     @IBOutlet weak var printerNameField: UITextField!
+    @IBOutlet weak var apiKeyField: UITextField!
+    @IBOutlet weak var scanAPIKeyButton: UIButton!
 
     @IBOutlet weak var includeDashboardLabel: UILabel!
     @IBOutlet weak var includeDashboardSwitch: UISwitch!
+    @IBOutlet weak var showCameraLabel: UILabel!
+    @IBOutlet weak var showCameraSwitch: UISwitch!
 
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    /// Hostname provided by OctoEverywhere
+    /// Hostname provided by TSD
     var hostname: String?
+    /// Username provided by TSD
+    var username: String?
+    /// Password provided by TSD
+    var password: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,8 +103,14 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
         
         if let url = webView.url {
             if url.host == "app.thespaghettidetective.com" && url.path == "/tunnels/succeeded", let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
-                if let printerURL = urlComponents.queryItems?.first(where: { $0.name == "tunnel_endpoint" })?.value {
-                    hostname = printerURL
+                if let tunnerEndpoint = urlComponents.queryItems?.first(where: { $0.name == "tunnel_endpoint" })?.value, let printerURL = URL(string: tunnerEndpoint) {
+                    var tunnelURLComponents = URLComponents(url: printerURL, resolvingAgainstBaseURL: false)
+                    username = tunnelURLComponents?.user
+                    password = tunnelURLComponents?.password
+                    // Clear user and password to generate clean URL
+                    tunnelURLComponents?.user = nil
+                    tunnelURLComponents?.password = nil
+                    hostname = tunnelURLComponents?.url?.absoluteString
                     DispatchQueue.main.async {
                         self.updateSaveButton()
                         // Change status message
@@ -122,10 +136,19 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
     
     @IBAction func saveChanges(_ sender: Any) {
         // Add new printer (that will become default if it's the first one)
-        createPrinter(connectionType: .theSpaghettiDetective, name: printerNameField.text!, hostname: hostname!, apiKey: "", username: nil, password: nil, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: false)
+        createPrinter(connectionType: .theSpaghettiDetective, name: printerNameField.text!, hostname: hostname!, apiKey: apiKeyField.text!, username: username, password: password, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
         goBack()
     }
     
+    // MARK: - Unwind operations
+    
+    @IBAction func unwindScanQRCode(_ sender: UIStoryboardSegue) {
+        if let scanner = sender.source as? ScannerViewController {
+            self.apiKeyField.text = scanner.scannedQRCode
+            self.updateSaveButton()
+        }
+    }
+
     // MARK: - Private functions
 
     fileprivate func updateSaveButton() {
@@ -134,7 +157,7 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
             saveButton.isEnabled = false
             return
         }
-        if !(printerNameField.text?.isEmpty)! {
+        if !(printerNameField.text?.isEmpty)! && !(apiKeyField.text?.isEmpty)! {
             saveButton.isEnabled = true
         } else {
             saveButton.isEnabled = false
@@ -144,8 +167,14 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
     fileprivate func themeLabels() {
         // Theme labels
         let theme = Theme.currentTheme()
+        let tintColor = theme.tintColor()
         let placeHolderAttributes: [ NSAttributedString.Key : Any ] = [.foregroundColor: theme.placeholderColor()]
+        scanAPIKeyButton.tintColor = tintColor
+        apiKeyField.backgroundColor = theme.backgroundColor()
+        apiKeyField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("API Key or Application Key", comment: ""), attributes: placeHolderAttributes)
+        apiKeyField.textColor = theme.textColor()
         includeDashboardLabel.textColor = theme.textColor()
+        showCameraLabel.textColor = theme.textColor()
         printerNameField.backgroundColor = theme.backgroundColor()
         printerNameField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Printer Name (e.g. MK3)", comment: ""), attributes: placeHolderAttributes)
         printerNameField.textColor = theme.textColor()
