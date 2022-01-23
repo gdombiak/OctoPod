@@ -7,6 +7,8 @@ import UIKit
 // and add it as a delegate of this WebSocketClient
 class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     
+    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+
     /// Create a serial queue for thread-safety when closing sockets. Serial is ok
     /// since we do not have concurrent read threads
     static private let closingQueue = DispatchQueue(label: "WebSocketClosingQueue")
@@ -388,10 +390,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     fileprivate func createWebSocket() {
         self.socket = WebSocket(request: self.socketRequest!)
         // Configure if SSL certificate validation is disabled or not
-        DispatchQueue.main.async {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            self.socket?.disableSSLCertValidation = appDelegate.appConfiguration.certValidationDisabled()
-        }
+        self.socket?.disableSSLCertValidation = appConfiguration.certValidationDisabled()
     }
     
     fileprivate func socketWrite(text: String) {
