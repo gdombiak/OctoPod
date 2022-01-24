@@ -38,7 +38,30 @@ class CameraTSDEmbeddedViewController: CameraEmbeddedViewController {
         timer = Timer(fire: Date(), interval: 1, repeats: true, block: { (timer: Timer) in
             if self.countdown == 0 {
                 // We need to make call Webcam snapshot API to then fetch Image from returned URL
-                self.fetchSnapshotURLAndImage()
+                if let url = URL(string: self.cameraURL) {
+                    CameraUtils.shared.renderImage(cameraURL: url, imageOrientation: self.cameraOrientation, username: self.username, password: self.password, preemptive: printer.preemptiveAuthentication(), timeoutInterval: 5.0) { (image: UIImage?, error: String?) in
+                        if let receivedImage = image {
+                            DispatchQueue.main.async {
+                                // Hide error messages since an image will be rendered (so that means that it worked!)
+                                self.errorMessageLabel.isHidden = true
+                                self.errorURLButton.isHidden = true
+                                // Update image
+                                self.imageView.image = receivedImage
+                            }
+                            // Notify that we got our first image and we know its ratio
+                            self.cameraViewDelegate?.imageAspectRatio(cameraIndex: self.cameraIndex, ratio: receivedImage.size.height / receivedImage.size.width)
+                        } else if let message = error {
+                            DispatchQueue.main.async {
+                                self.imageView.image = nil
+                                // Display error messages
+                                self.errorMessageLabel.text = message
+                                self.errorMessageLabel.numberOfLines = 2
+                                self.errorMessageLabel.isHidden = false
+                                self.errorURLButton.isHidden = true
+                            }
+                        }
+                    }
+                }
                 // Reset counter to 10 seconds since image changes every 10 seconds
                 self.countdown = 10
             } else {
@@ -72,78 +95,4 @@ class CameraTSDEmbeddedViewController: CameraEmbeddedViewController {
     override func gestureView() -> UIView {
         return imageView
     }
-    
-    // MARK: - Private functions
-    
-    fileprivate func fetchImage(_ imageURL: URL) {
-        let imageURLRequest = URLRequest(url: imageURL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 5.0)
-        URLSession.shared.dataTask(with: imageURLRequest) { (data: Data?, response: URLResponse?, error: Error?) in
-            if let imageData = data , imageData.count > 0, var receivedImage = UIImage(data: imageData) {
-                if let cgImage = receivedImage.cgImage, self.cameraOrientation != UIImage.Orientation.up {
-                    // Rotate image based on requested orientation
-                    receivedImage = UIImage(cgImage: cgImage, scale: CGFloat(1.0), orientation: self.cameraOrientation)
-                }
-                DispatchQueue.main.async {
-                    // Hide error messages since an image will be rendered (so that means that it worked!)
-                    self.errorMessageLabel.isHidden = true
-                    self.errorURLButton.isHidden = true
-                    // Update image
-                    self.imageView.image = receivedImage
-                }
-                // Notify that we got our first image and we know its ratio
-                self.cameraViewDelegate?.imageAspectRatio(cameraIndex: self.cameraIndex, ratio: receivedImage.size.height / receivedImage.size.width)
-            } else if let error = error {
-                DispatchQueue.main.async {
-                    self.imageView.image = nil
-                    // Display error messages
-                    self.errorMessageLabel.text = error.localizedDescription
-                    self.errorMessageLabel.numberOfLines = 2
-                    self.errorURLButton.setTitle(self.cameraURL, for: .normal)
-                    self.errorMessageLabel.isHidden = false
-                    self.errorURLButton.isHidden = false
-                }
-            }
-        }.resume()
-    }
-    
-    fileprivate func fetchSnapshotURLAndImage() {
-        if let url = URL(string: cameraURL), let username = username, let password = password {
-            var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 5.0)
-            urlRequest.setValue(HTTPClient.authBasicHeader(username: username, password: password), forHTTPHeaderField: "Authorization")
-            URLSession.shared.dataTask(with: urlRequest) { (data: Data?, response: URLResponse?, error: Error?) in
-                if let data = data {
-                    do {
-                        let snapshotResponse = try JSONDecoder().decode(TSDSnapshotResponse.self, from: data)
-                        if let snapshotURL = snapshotResponse.snapshot, let imageURL = URL(string: snapshotURL) {
-                            // Fetch and display Image from returned URL
-                            self.fetchImage(imageURL)
-                        } else {
-                            DispatchQueue.main.async {
-                                self.imageView.image = nil
-                                self.errorMessageLabel.text = NSLocalizedString("The Detective Is Not Watching", comment: "The Spaghetti Detective Is Not Watching")
-                                self.errorMessageLabel.numberOfLines = 2
-                                self.errorMessageLabel.isHidden = false
-                                self.errorURLButton.isHidden = true
-                            }
-                        }
-                    } catch let error {
-                        DispatchQueue.main.async {
-                            self.imageView.image = nil
-                            // Display error messages
-                            self.errorMessageLabel.text = error.localizedDescription
-                            self.errorMessageLabel.numberOfLines = 2
-                            self.errorURLButton.setTitle(self.cameraURL, for: .normal)
-                            self.errorMessageLabel.isHidden = false
-                            self.errorURLButton.isHidden = false
-                        }
-                    }
-                }
-            }.resume()
-        }
-    }
-
-}
-
-struct TSDSnapshotResponse: Codable {
-    let snapshot: String?
 }
