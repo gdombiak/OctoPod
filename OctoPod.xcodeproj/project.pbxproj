@@ -269,6 +269,7 @@
 		3DAD2DE621817B65004A4223 /* IPPlug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DE421817B23004A4223 /* IPPlug.swift */; };
 		3DADB59C217D35940028B06B /* MjpegStreaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DADB59B217D35940028B06B /* MjpegStreaming.swift */; };
 		3DADB59E217D38E90028B06B /* CamerasInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DADB59D217D38E90028B06B /* CamerasInterfaceController.swift */; };
+		3DB15675279E6726006C945B /* Octorelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C6FD7271F728B007F3AC9 /* Octorelay.swift */; };
 		3DB377DA2596CF03008220EE /* SoCTempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB377D92596CF03008220EE /* SoCTempHistory.swift */; };
 		3DB377F92596D49E008220EE /* SoCTempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB377D92596CF03008220EE /* SoCTempHistory.swift */; };
 		3DB378162596D4C3008220EE /* SoCTempHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB377D92596CF03008220EE /* SoCTempHistory.swift */; };
@@ -2583,6 +2584,7 @@
 				3DC236552401139100D9EF28 /* HTTPClient.swift in Sources */,
 				3D778F832402F82F00B68942 /* OctoPrintClientDelegate.swift in Sources */,
 				3D537144240100FC00B28067 /* ContentView.swift in Sources */,
+				3DB15675279E6726006C945B /* Octorelay.swift in Sources */,
 				3D778F822402F81800B68942 /* OctoPrintClient.swift in Sources */,
 				3DC23649240103F900D9EF28 /* WebSocketClientDelegate.swift in Sources */,
 				3DC23647240103E500D9EF28 /* CurrentStateEvent.swift in Sources */,
