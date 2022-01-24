@@ -87,18 +87,6 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
             }
         }
         
-        streamingController?.didReceiveJSON = { (json: NSDictionary) in
-            DispatchQueue.main.async {
-                if printer.getPrinterConnectionType() == .theSpaghettiDetective {
-                    self.imageView.image = nil
-                    self.errorMessageLabel.text = NSLocalizedString("The Detective Is Not Watching", comment: "The Spaghetti Detective Is Not Watching")
-                    self.errorMessageLabel.numberOfLines = 2
-                    self.errorMessageLabel.isHidden = false
-                    self.errorURLButton.isHidden = true
-                }
-            }
-        }
-
         streamingController?.didRenderImage = { (image: UIImage) in
             // Notify that we got our first image and we know its ratio
             self.cameraViewDelegate?.imageAspectRatio(cameraIndex: self.cameraIndex, ratio: image.size.height / image.size.width)

@@ -84,17 +84,6 @@ class CameraUtils {
             completion(nil, message)
         }
 
-        streamingController.didReceiveJSON = { (json: NSDictionary) in
-            NSLog("No image received. Received JSON: \(json)")
-            let message: String
-            if let host = cameraURL.host, host.hasSuffix("thespaghettidetective.com") {
-                message = NSLocalizedString("The Detective Is Not Watching", comment: "The Spaghetti Detective Is Not Watching")
-            } else {
-                message = NSLocalizedString("No image is available", comment: "")
-            }
-            completion(nil, message)
-        }
-
         streamingController.didRenderImage = { (image: UIImage) in
             // Stop loading next jpeg image (MJPEG is a stream of jpegs)
             streamingController.stop()
