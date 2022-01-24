@@ -59,7 +59,11 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         for printerObserver in printers {
             printerObserver.discard()
         }
-        // Remove embedded VCs
+        for cameraEmbeddedViewController in cameraEmbeddedViewControllers {
+            // First stop rendering printer
+            cameraEmbeddedViewController.viewWillDisappear(animated)
+        }
+        // Now Remove embedded VCs
         self.deleteEmbeddedCameraViewControllers()
         printers = []
     }
@@ -303,7 +307,7 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
                     let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
                     let ratio = printer.firstCameraAspectRatio16_9 ? CGFloat(0.5625) : CGFloat(0.75)
                     let printerURL = printer.objectID.uriRepresentation().absoluteString
-                    cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(printerURL: printerURL, index: printerIndex, label: printer.name, cameraRatio: ratio, url: cameraURL, cameraOrientation: cameraOrientation))
+                    cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(printer: printer, printerURL: printerURL, index: printerIndex, label: printer.name, cameraRatio: ratio, url: cameraURL, cameraOrientation: cameraOrientation))
                 }
                 printerIndex += 1
             }
@@ -312,16 +316,19 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
     
     fileprivate func deleteEmbeddedCameraViewControllers() {
         for cameraEmbeddedViewController in cameraEmbeddedViewControllers {
+            // Now remove from parent (to avoid app crash since we may reference an object that has been deallocated)
             cameraEmbeddedViewController.removeFromParent()
         }
         cameraEmbeddedViewControllers.removeAll()
     }
     
-    fileprivate func newEmbeddedCameraViewController(printerURL: String, index: Int, label: String, cameraRatio: CGFloat, url: String, cameraOrientation: UIImage.Orientation) -> CameraEmbeddedViewController {
+    fileprivate func newEmbeddedCameraViewController(printer: Printer, printerURL: String, index: Int, label: String, cameraRatio: CGFloat, url: String, cameraOrientation: UIImage.Orientation) -> CameraEmbeddedViewController {
         var controller: CameraEmbeddedViewController
         let useHLS = CameraUtils.shared.isHLS(url: url)
+        // See if this is a printer controlled via The Spaghetti Detective
+        let tsdPrinter = printer.getPrinterConnectionType() == .theSpaghettiDetective
         // Let's create a new one. Use one for HLS and another one for MJPEG
-        controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: useHLS ? "CameraHLSEmbeddedViewController" : "CameraMJPEGEmbeddedViewController") as! CameraEmbeddedViewController
+        controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: useHLS ? "CameraHLSEmbeddedViewController" : tsdPrinter ? "CameraTSDEmbeddedViewController" : "CameraMJPEGEmbeddedViewController") as! CameraEmbeddedViewController
         controller.printerURL = printerURL
         controller.cameraLabel = label
         controller.cameraURL = url

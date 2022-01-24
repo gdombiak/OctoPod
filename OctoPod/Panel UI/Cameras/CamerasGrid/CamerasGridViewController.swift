@@ -94,7 +94,7 @@ class CamerasGridViewController: UICollectionViewController, UICollectionViewDel
                         cameraOrientation = UIImage.Orientation(rawValue: Int(multiCamera.cameraOrientation))!
                     }
                     
-                    cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(index: index, cameraRatio: ratio, url: cameraURL, cameraOrientation: cameraOrientation))
+                    cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(printer: printer, index: index, cameraRatio: ratio, url: cameraURL, cameraOrientation: cameraOrientation))
                     index = index + 1
                 }
             }
@@ -103,7 +103,7 @@ class CamerasGridViewController: UICollectionViewController, UICollectionViewDel
                 let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
                 let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
                 let ratio = printer.firstCameraAspectRatio16_9 ? CGFloat(0.5625) : CGFloat(0.75)
-                cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(index: 0, cameraRatio: ratio, url: cameraURL, cameraOrientation: cameraOrientation))
+                cameraEmbeddedViewControllers.append(newEmbeddedCameraViewController(printer: printer, index: 0, cameraRatio: ratio, url: cameraURL, cameraOrientation: cameraOrientation))
             }
         }
     }
@@ -115,11 +115,13 @@ class CamerasGridViewController: UICollectionViewController, UICollectionViewDel
         cameraEmbeddedViewControllers.removeAll()
     }
     
-    fileprivate func newEmbeddedCameraViewController(index: Int, cameraRatio: CGFloat, url: String, cameraOrientation: UIImage.Orientation) -> CameraEmbeddedViewController {
+    fileprivate func newEmbeddedCameraViewController(printer: Printer, index: Int, cameraRatio: CGFloat, url: String, cameraOrientation: UIImage.Orientation) -> CameraEmbeddedViewController {
         var controller: CameraEmbeddedViewController
         let useHLS = CameraUtils.shared.isHLS(url: url)
+        // See if this is a printer controlled via The Spaghetti Detective
+        let tsdPrinter = printer.getPrinterConnectionType() == .theSpaghettiDetective
         // Let's create a new one. Use one for HLS and another one for MJPEG
-        controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: useHLS ? "CameraHLSEmbeddedViewController" : "CameraMJPEGEmbeddedViewController") as! CameraEmbeddedViewController
+        controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: useHLS ? "CameraHLSEmbeddedViewController" : tsdPrinter ? "CameraTSDEmbeddedViewController" : "CameraMJPEGEmbeddedViewController") as! CameraEmbeddedViewController
         controller.cameraURL = url
         controller.cameraOrientation = cameraOrientation
         controller.infoGesturesAvailable = false
