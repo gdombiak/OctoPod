@@ -184,11 +184,17 @@
 /* Class = "UILabel"; text = "0 C"; ObjectID = "A7g-Yw-Ucf"; */
 "A7g-Yw-Ucf.text" = "250 C";
 
+/* Class = "UITableViewController"; title = "The Spaghetti Detective"; ObjectID = "A9g-sp-S6T"; */
+"A9g-sp-S6T.title" = "El Spaghetti Detective";
+
 /* Class = "UILabel"; text = "/"; ObjectID = "a12-vD-JUc"; */
 "a12-vD-JUc.text" = "/";
 
 /* Class = "UIButton"; normalTitle = "Regenerate default shortcuts"; ObjectID = "aaG-XM-gnj"; */
 "aaG-XM-gnj.normalTitle" = "Regenerar accesos directos predeterminados";
+
+/* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "ABP-C8-pwj"; */
+"ABP-C8-pwj.placeholder" = "Nombre impresora (e.g. MK3)";
 
 /* Class = "UIButton"; normalTitle = "Clear Palette 2"; ObjectID = "AcH-TF-NmP"; */
 "AcH-TF-NmP.normalTitle" = "Limpiar Palette 2";
@@ -237,6 +243,9 @@
 
 /* Class = "UINavigationItem"; title = "Timelapse"; ObjectID = "blh-CP-v5H"; */
 "blh-CP-v5H.title" = "Timelapse";
+
+/* Class = "UIButton"; normalTitle = "Scan QR Code Key"; ObjectID = "Bmx-Qj-DZg"; */
+"Bmx-Qj-DZg.normalTitle" = "Escanear clave del código QR";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
 "bNj-cj-oty.text" = "Label";
@@ -341,7 +350,7 @@
 "eTh-LM-JEX.text" = "Pong";
 
 /* Class = "UIButton"; normalTitle = "Scan"; ObjectID = "eVf-xw-qan"; */
-"eVf-xw-qan.normalTitle" = "Buscar";
+"eVf-xw-qan.normalTitle" = "Escanear";
 
 /* Class = "UILabel"; text = "Manually delete recorded Siri shortcuts after delete"; ObjectID = "EVr-c6-T8p"; */
 "EVr-c6-T8p.text" = "Eliminar manualmente los accesos directos de Siri después de borrar";
@@ -381,6 +390,9 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Temp Chart"; ObjectID = "GAt-su-C1i"; */
 "GAt-su-C1i.headerTitle" = "Gráfico Temperatura";
+
+/* Class = "UITextField"; placeholder = "API Key or Application Key"; ObjectID = "gBx-FC-XkE"; */
+"gBx-FC-XkE.placeholder" = "Clave API o Clave de Aplicación";
 
 /* Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt"; */
 "gCt-Vk-Fgt.headerTitle" = "Conexión";
@@ -796,6 +808,9 @@
 /* Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ"; */
 "QwZ-7J-MwJ.normalTitle" = "Apagar";
 
+/* Class = "UINavigationItem"; title = "The Spaghetti Detective"; ObjectID = "R0b-VP-E1V"; */
+"R0b-VP-E1V.title" = "El Spaghetti Detective";
+
 /* Class = "UILabel"; text = "Siri"; ObjectID = "R2d-Mv-REP"; */
 "R2d-Mv-REP.text" = "Siri";
 
@@ -814,6 +829,9 @@
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "RFS-Os-AC5"; */
 "RFS-Os-AC5.text" = "0.0%";
 
+/* Class = "UILabel"; text = "Connect easily from remote locations (over the internet)"; ObjectID = "rfV-rg-NxY"; */
+"rfV-rg-NxY.text" = "Conéctese fácilmente desde ubicaciones remotas (a través de Internet)";
+
 /* Class = "UITableViewSection"; headerTitle = "QR Code"; ObjectID = "RIJ-UL-fxM"; */
 "RIJ-UL-fxM.headerTitle" = "Código QR";
 
@@ -828,6 +846,9 @@
 
 /* Class = "UILabel"; text = "Connect easily from remote locations (over the internet)"; ObjectID = "rNP-Sb-Zba"; */
 "rNP-Sb-Zba.text" = "Conéctese fácilmente desde ubicaciones remotas (a través de Internet)";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "rNU-J7-i3n"; */
+"rNU-J7-i3n.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "rob-ry-eO0"; */
 "rob-ry-eO0.placeholder" = "Nombre Impresora (e.g. MK3)";
@@ -910,6 +931,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "taf-JE-egr"; */
 "taf-JE-egr.text" = "Label";
 
+/* Class = "UILabel"; text = "The Spaghetti Detective"; ObjectID = "tbX-9q-HS1"; */
+"tbX-9q-HS1.text" = "El Spaghetti Detective";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
 "tFf-Rs-mOx.text" = "Título";
 
@@ -958,6 +982,9 @@
 /* Class = "UILabel"; text = "60.0 C"; ObjectID = "UiU-6m-I6P"; */
 "UiU-6m-I6P.text" = "60.0 C";
 
+/* Class = "UILabel"; text = "Show Camera"; ObjectID = "Ulp-HV-RgV"; */
+"Ulp-HV-RgV.text" = "Mostrar Cámara";
+
 /* Class = "UILabel"; text = "State"; ObjectID = "Uop-QL-yoT"; */
 "Uop-QL-yoT.text" = "Estado";
 
@@ -1002,6 +1029,9 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection"; ObjectID = "Vr9-x7-66H"; */
 "Vr9-x7-66H.headerTitle" = "Conexión Impresora";
+
+/* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "vVp-aC-lcv"; */
+"vVp-aC-lcv.text" = "Incluir en Tablero";
 
 /* Class = "UIButton"; normalTitle = "Reset printers from iCloud data"; ObjectID = "vyb-aH-wc9"; */
 "vyb-aH-wc9.normalTitle" = "Resetear impresoras con datos iCloud";

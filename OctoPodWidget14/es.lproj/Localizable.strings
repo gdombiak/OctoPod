@@ -55,11 +55,17 @@
 /* No camera was configured */
 "No camera" = "Sin cámara";
 
+/* No comment provided by engineer. */
+"No image is available" = "No hay imagen disponible";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Límite de cámara excedido";
 
 /* No comment provided by engineer. */
 "seconds ago" = "Hace %d segundos";
+
+/* The Spaghetti Detective Is Not Watching */
+"The Detective Is Not Watching" = "El detective no está mirando";
 
 /* ETA is Unknown */
 "Unknown" = "Desconocido";

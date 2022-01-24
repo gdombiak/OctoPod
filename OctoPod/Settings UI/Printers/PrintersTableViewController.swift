@@ -211,6 +211,10 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
             if let printerDetailsController = segue.destination as? AddOctoEverywherePrinterViewController {
                 printerDetailsController.newPrinterPosition = Int16(printers.count)
             }
+        } else if segue.identifier == "addNewPrinterTSD" {
+            if let printerDetailsController = segue.destination as? AddTSDPrinterViewController {
+                printerDetailsController.newPrinterPosition = Int16(printers.count)
+            }
         } else if segue.identifier == "selectConnectivityType" {
             if let controller = segue.destination as? PrinterConnectionTypeTableViewController {
                 controller.popoverPresentationController!.delegate = self
@@ -240,6 +244,12 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
     @IBAction func addNewPrinterOctoEverywhere(_ sender: UIStoryboardSegue) {
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "addNewPrinterOctoEverywhere", sender: self)
+        }
+    }
+    
+    @IBAction func addNewPrinterTSD(_ sender: UIStoryboardSegue) {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "addNewPrinterTSD", sender: self)
         }
     }
     

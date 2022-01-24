@@ -889,7 +889,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         if let nsError = error as NSError? {
             if nsError.code >= -9851 && nsError.code <= -9800 {
                 // Some problem with SSL or the certificate
-                return NSLocalizedString("Bad Certificate or SSL Problem", comment: "HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc.")
+                return NSLocalizedString("Bad Certificate or SSL Problem", comment: "HTTPS failed for some reason. Could be bad certs, hostname does not match, cert expired, etc.") + " (\(nsError.code))"
             } else if nsError.domain == "kCFErrorDomainCFNetwork" && nsError.code == 2 {
                 return NSLocalizedString("Server cannot be found", comment: "DNS resolution failed. Cannot resolve hostname")
             } else if nsError.domain == "NSPOSIXErrorDomain" && nsError.code == 61 {

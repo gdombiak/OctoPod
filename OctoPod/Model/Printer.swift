@@ -98,6 +98,9 @@ class Printer: NSManagedObject {
     // MARK: - Properties
 
     func getStreamPath() -> String {
+        if getPrinterConnectionType() == .theSpaghettiDetective {
+            return "/_tsd_/webcam/0/"
+        }
         if let path = streamUrl {
             return path
         }
@@ -111,6 +114,10 @@ class Printer: NSManagedObject {
     
     /// Returns sorted array of cameras by their position as they were defined in OctoPrint
     func getMultiCameras() -> Array<MultiCamera>? {
+        if getPrinterConnectionType() == .theSpaghettiDetective {
+            // There is only one camera (if any) when using TSD tunneling
+            return nil
+        }
         if let cameras = multiCameras {
             return cameras.sorted { (l: MultiCamera, r: MultiCamera) -> Bool in
                 return l.index_id < r.index_id
@@ -254,7 +261,7 @@ class Printer: NSManagedObject {
     /// Returns true if HTTP Basic authentication should be preemptive or wait for challenge response header
     func preemptiveAuthentication() -> Bool {
         // Only OctoEverywhere uses preemptive authentication
-        return getPrinterConnectionType() == .octoEverywhere
+        return getPrinterConnectionType() == .octoEverywhere || getPrinterConnectionType() == .theSpaghettiDetective
     }
     
     // MARK: - Private functions

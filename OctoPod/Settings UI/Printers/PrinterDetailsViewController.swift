@@ -43,7 +43,7 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
             updateFieldsForPrinter(printer: selectedPrinter)
             // Disable scanning for OctoPrint instances
             scanInstallationsButton.isEnabled = false
-            if selectedPrinter.getPrinterConnectionType() == .octoEverywhere {
+            if selectedPrinter.getPrinterConnectionType() == .octoEverywhere ||  selectedPrinter.getPrinterConnectionType() == .theSpaghettiDetective {
                 // Disable editing hostname, username and password
                 hostnameField.isEnabled = false
                 usernameField.isEnabled = false
