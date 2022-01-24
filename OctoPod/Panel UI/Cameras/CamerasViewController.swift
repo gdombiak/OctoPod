@@ -234,7 +234,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
                         cameraOrientation = UIImage.Orientation(rawValue: Int(multiCamera.cameraOrientation))!
                     }
                     
-                    newViewControllers.append(newEmbeddedCameraViewController(index: index, url: cameraURL, cameraOrientation: cameraOrientation))
+                    newViewControllers.append(newEmbeddedCameraViewController(printer: printer, index: index, url: cameraURL, cameraOrientation: cameraOrientation))
                     index = index + 1
                 }
             }
@@ -242,7 +242,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
                 // MultiCam plugin is not installed so just show default camera
                 let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
                 let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
-                newViewControllers.append(newEmbeddedCameraViewController(index: 0, url: cameraURL, cameraOrientation: cameraOrientation))
+                newViewControllers.append(newEmbeddedCameraViewController(printer: printer, index: 0, url: cameraURL, cameraOrientation: cameraOrientation))
             }
             orderedViewControllers = newViewControllers
         } else {
@@ -284,18 +284,22 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         }
     }
     
-    fileprivate func newEmbeddedCameraViewController(index: Int, url: String, cameraOrientation: UIImage.Orientation) -> CameraEmbeddedViewController {
+    fileprivate func newEmbeddedCameraViewController(printer: Printer, index: Int, url: String, cameraOrientation: UIImage.Orientation) -> CameraEmbeddedViewController {
         var controller: CameraEmbeddedViewController
         // See if we can reuse existing controller
         let existing: CameraEmbeddedViewController? = orderedViewControllers.count > index ? orderedViewControllers[index] : nil
         let useHLS = CameraUtils.shared.isHLS(url: url)
+        // See if this is a printer controlled via The Spaghetti Detective
+        let tsdPrinter = printer.getPrinterConnectionType() == .theSpaghettiDetective
         if useHLS, let _ = existing as? CameraHLSEmbeddedViewController {
             controller = existing!
-        } else if !useHLS, let _ = existing as? CameraMJPEGEmbeddedViewController{
+        } else if !useHLS, let _ = existing as? CameraMJPEGEmbeddedViewController, !tsdPrinter {
+            controller = existing!
+        } else if !useHLS, let _ = existing as? CameraTSDEmbeddedViewController, tsdPrinter {
             controller = existing!
         } else {
             // Let's create a new one. Use one for HLS and another one for MJPEG
-            controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: useHLS ? "CameraHLSEmbeddedViewController" : "CameraMJPEGEmbeddedViewController") as! CameraEmbeddedViewController
+            controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: useHLS ? "CameraHLSEmbeddedViewController" : tsdPrinter ? "CameraTSDEmbeddedViewController" : "CameraMJPEGEmbeddedViewController") as! CameraEmbeddedViewController
         }
         controller.cameraURL = url
         controller.cameraOrientation = cameraOrientation
