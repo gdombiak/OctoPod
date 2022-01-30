@@ -3,7 +3,7 @@ import Foundation
 
 class CameraTSDEmbeddedViewController: CameraEmbeddedViewController {
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var countdownLabel: UILabel!
+    @IBOutlet weak var countdownProgressView: CircularProgressBarView!
     
     private var username: String?
     private var password: String?
@@ -14,8 +14,8 @@ class CameraTSDEmbeddedViewController: CameraEmbeddedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        countdownLabel.layer.cornerRadius = 6
-        countdownLabel.layer.masksToBounds = true
+        countdownProgressView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+        countdownProgressView.layer.cornerRadius = 6
     }
     
     // MARK: - UIScrollViewDelegate
@@ -68,8 +68,7 @@ class CameraTSDEmbeddedViewController: CameraEmbeddedViewController {
                 self.countdown -= 1
             }
             DispatchQueue.main.async {
-                self.countdownLabel.text = "\(self.countdown)"
-                self.countdownLabel.isHidden = self.countdown == 0
+                self.countdownProgressView.showProgress(percent: Float(self.countdown * 10))
             }
         })
         RunLoop.main.add(timer!, forMode: .common)
