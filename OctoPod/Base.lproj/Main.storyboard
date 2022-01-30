@@ -5196,20 +5196,20 @@
                             <tableViewSection id="pXk-Fd-euv">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="it0-U8-NeS">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="41"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="41.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="it0-U8-NeS" id="mIZ-ck-1ak">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload to OctoPrint" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ziq-bR-QIe">
-                                                    <rect key="frame" x="16" y="13" width="308" height="15"/>
+                                                    <rect key="frame" x="16" y="13" width="308" height="15.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Uploading" translatesAutoresizingMaskIntoConstraints="NO" id="0wG-QH-XSI">
-                                                    <rect key="frame" x="327" y="4.5" width="32" height="32"/>
+                                                    <rect key="frame" x="327" y="5" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="mbN-C8-hN6"/>
                                                         <constraint firstAttribute="width" constant="32" id="vah-tF-J7c"/>
@@ -5227,20 +5227,20 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Hhf-cQ-hcy">
-                                        <rect key="frame" x="0.0" y="85.5" width="375" height="41"/>
+                                        <rect key="frame" x="0.0" y="86" width="375" height="41.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hhf-cQ-hcy" id="IFq-mD-0YP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload to SD Card (root)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrr-SZ-62l">
-                                                    <rect key="frame" x="16" y="13" width="308" height="15"/>
+                                                    <rect key="frame" x="16" y="13" width="308" height="15.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <color key="textColor" systemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Uploading" translatesAutoresizingMaskIntoConstraints="NO" id="qvF-6S-gC3">
-                                                    <rect key="frame" x="327" y="4.5" width="32" height="32"/>
+                                                    <rect key="frame" x="327" y="5" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="32" id="vqx-iJ-T2j"/>
                                                         <constraint firstAttribute="height" constant="32" id="z78-fg-BWS"/>
