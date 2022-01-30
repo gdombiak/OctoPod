@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import AVKit
+import SafariServices
 
 class UIUtils {
 
@@ -12,6 +13,25 @@ class UIUtils {
             alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default, handler: { (UIAlertAction) -> Void in
                 // Execute done block on dismiss
                 done?()
+            }))
+            presenter.present(alert, animated: true) { () -> Void in
+                // Nothing to do here
+            }
+        }
+    }
+    
+    /// Caller may not be running in Main thread
+    static func showAlertLinkMore(presenter: UIViewController, title: String, message: String, moreURL: URL, done: (() -> Void)?) {
+        // We are not always on the main thread so present dialog on main thread to prevent crashes
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Dismiss", comment: ""), style: .default, handler: { (UIAlertAction) -> Void in
+                // Execute done block on dismiss
+                done?()
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Learn More", comment: ""), style: .default, handler: { (UIAlertAction) -> Void in
+                let vc = SFSafariViewController(url: moreURL)
+                presenter.present(vc, animated: false, completion: done)
             }))
             presenter.present(alert, animated: true) { () -> Void in
                 // Nothing to do here

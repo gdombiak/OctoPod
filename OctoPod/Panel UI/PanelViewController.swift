@@ -468,7 +468,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         } else if response.statusCode == 603 || response.statusCode == 604 {
             self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Recreate printer in OctoEverywhere and OctoPod", comment: ""))
         } else if response.statusCode == 605 {
-            self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Account is no longer an OctoEverywhere supporter", comment: ""))
+            let moreURL = URL(string: "https://octoeverywhere.com/AppPortal/V1/NoSupporterPerks")!
+            self.showAlertMore(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Account is no longer an OctoEverywhere supporter", comment: ""), moreURL: moreURL)
         }
     }
     
@@ -910,6 +911,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     
     fileprivate func showAlert(_ title: String, message: String) {
         UIUtils.showAlert(presenter: self, title: title, message: message, done: nil)
+    }
+    
+    fileprivate func showAlertMore(_ title: String, message: String, moreURL: URL) {
+        UIUtils.showAlertLinkMore(presenter: self, title: title, message: message, moreURL: moreURL, done: nil)
     }
     
     fileprivate func showConfirm(message: String, yes: @escaping (UIAlertAction) -> Void, no: @escaping (UIAlertAction) -> Void) {
