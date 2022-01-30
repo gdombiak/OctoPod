@@ -190,6 +190,9 @@
 /* Class = "UIButton"; normalTitle = "Regenerate default shortcuts"; ObjectID = "aaG-XM-gnj"; */
 "aaG-XM-gnj.normalTitle" = "Восстановить команды по умолчанию";
 
+/* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "ABP-C8-pwj"; */
+"ABP-C8-pwj.placeholder" = "Название принтера (например MK3)";
+
 /* Class = "UIButton"; normalTitle = "Clear Palette 2"; ObjectID = "AcH-TF-NmP"; */
 "AcH-TF-NmP.normalTitle" = "Очистить Palette 2";
 
@@ -207,6 +210,9 @@
 
 /* Class = "UILabel"; text = "Cancel Object plugin requires update"; ObjectID = "Aka-Ud-zQ7"; */
 "Aka-Ud-zQ7.text" = "Плагин Cancel Object требует обновления";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "aOW-Zy-H8C"; */
+"aOW-Zy-H8C.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "Hostname (e.g. http://octopi.local)"; ObjectID = "ATt-Oy-pFY"; */
 "ATt-Oy-pFY.placeholder" = "Имя хоста (например http://octopi.local)";
@@ -237,6 +243,9 @@
 
 /* Class = "UINavigationItem"; title = "Timelapse"; ObjectID = "blh-CP-v5H"; */
 "blh-CP-v5H.title" = "Таймлапс";
+
+/* Class = "UIButton"; normalTitle = "Scan QR Code Key"; ObjectID = "Bmx-Qj-DZg"; */
+"Bmx-Qj-DZg.normalTitle" = "Сканировать QR код ключа";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "bNj-cj-oty"; */
 "bNj-cj-oty.text" = "Label";
@@ -349,6 +358,9 @@
 /* Class = "UITableViewSection"; headerTitle = "Lock Mode"; ObjectID = "eXf-GR-uL9"; */
 "eXf-GR-uL9.headerTitle" = "Режим блокировки";
 
+/* Class = "UILabel"; text = "Pinch = Zoom in"; ObjectID = "F9k-aC-isg"; */
+"F9k-aC-isg.text" = "Стягивание (Pinch) = Увеличение";
+
 /* Class = "UILabel"; text = "Detail"; ObjectID = "Fbe-op-Ixc"; */
 "Fbe-op-Ixc.text" = "Описание";
 
@@ -381,6 +393,9 @@
 
 /* Class = "UITableViewSection"; headerTitle = "Temp Chart"; ObjectID = "GAt-su-C1i"; */
 "GAt-su-C1i.headerTitle" = "График температуры";
+
+/* Class = "UITextField"; placeholder = "API Key or Application Key"; ObjectID = "gBx-FC-XkE"; */
+"gBx-FC-XkE.placeholder" = "Ключ API или ключ приложения";
 
 /* Class = "UITableViewSection"; headerTitle = "Connection"; ObjectID = "gCt-Vk-Fgt"; */
 "gCt-Vk-Fgt.headerTitle" = "Соединение";
@@ -583,6 +598,9 @@
 /* Class = "UILabel"; text = "File"; ObjectID = "L1Q-WE-63g"; */
 "L1Q-WE-63g.text" = "Файл";
 
+/* Class = "UILabel"; text = "About 10m"; ObjectID = "l5I-fI-OCn"; */
+"l5I-fI-OCn.text" = "Около 10м";
+
 /* Class = "UILabel"; text = " "; ObjectID = "L7b-hh-BO8"; */
 "L7b-hh-BO8.text" = " ";
 
@@ -700,6 +718,9 @@
 /* Class = "UITableViewController"; title = "Siri"; ObjectID = "Orp-dU-Wpa"; */
 "Orp-dU-Wpa.title" = "Siri";
 
+/* Class = "UILabel"; text = "Error message"; ObjectID = "OTg-a2-ToQ"; */
+"OTg-a2-ToQ.text" = "Сообщение об ошибке";
+
 /* Class = "UILabel"; text = "of"; ObjectID = "Otl-oh-byl"; */
 "Otl-oh-byl.text" = "из";
 
@@ -814,6 +835,9 @@
 /* Class = "UILabel"; text = "0.0%"; ObjectID = "RFS-Os-AC5"; */
 "RFS-Os-AC5.text" = "0.0%";
 
+/* Class = "UILabel"; text = "Connect easily from remote locations (over the internet)"; ObjectID = "rfV-rg-NxY"; */
+"rfV-rg-NxY.text" = "Легко подключайтесь из удаленных мест (через Интернет)";
+
 /* Class = "UITableViewSection"; headerTitle = "QR Code"; ObjectID = "RIJ-UL-fxM"; */
 "RIJ-UL-fxM.headerTitle" = "QR код";
 
@@ -828,6 +852,9 @@
 
 /* Class = "UILabel"; text = "Connect easily from remote locations (over the internet)"; ObjectID = "rNP-Sb-Zba"; */
 "rNP-Sb-Zba.text" = "Легко подключайтесь из удаленных мест (через Интернет)";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "rNU-J7-i3n"; */
+"rNU-J7-i3n.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "Printer Name (e.g. MK3)"; ObjectID = "rob-ry-eO0"; */
 "rob-ry-eO0.placeholder" = "Название принтера (например MK3)";
@@ -922,6 +949,9 @@
 /* Class = "UIButton"; normalTitle = "Scan"; ObjectID = "tif-GP-Mj3"; */
 "tif-GP-Mj3.normalTitle" = "Сканировать";
 
+/* Class = "UILabel"; text = "60.0 C"; ObjectID = "TJK-lR-D1v"; */
+"TJK-lR-D1v.text" = "60.0 C";
+
 /* Class = "UITextField"; placeholder = "Hostname (e.g. http://octopi.local)"; ObjectID = "tMP-2W-Iam"; */
 "tMP-2W-Iam.placeholder" = "Имя хоста (например http://octopi.local)";
 
@@ -955,8 +985,14 @@
 /* Class = "UILabel"; text = "GCode"; ObjectID = "uge-6J-pcC"; */
 "uge-6J-pcC.text" = "GCode";
 
+/* Class = "UILabel"; text = "10"; ObjectID = "uHJ-e2-aOo"; */
+"uHJ-e2-aOo.text" = "10";
+
 /* Class = "UILabel"; text = "60.0 C"; ObjectID = "UiU-6m-I6P"; */
 "UiU-6m-I6P.text" = "60.0 C";
+
+/* Class = "UILabel"; text = "Show Camera"; ObjectID = "Ulp-HV-RgV"; */
+"Ulp-HV-RgV.text" = "Показать камеру";
 
 /* Class = "UILabel"; text = "State"; ObjectID = "Uop-QL-yoT"; */
 "Uop-QL-yoT.text" = "Состояние";
@@ -1003,11 +1039,17 @@
 /* Class = "UITableViewSection"; headerTitle = "Printer Connection"; ObjectID = "Vr9-x7-66H"; */
 "Vr9-x7-66H.headerTitle" = "Подключение принтера";
 
+/* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "vVp-aC-lcv"; */
+"vVp-aC-lcv.text" = "Добавить в контрольную панель";
+
 /* Class = "UIButton"; normalTitle = "Reset printers from iCloud data"; ObjectID = "vyb-aH-wc9"; */
 "vyb-aH-wc9.normalTitle" = "Выгрузить данные о принтерах в iCloud";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "vYF-Qu-77d"; */
 "vYF-Qu-77d.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "URL Button"; ObjectID = "Vzt-hH-j3r"; */
+"Vzt-hH-j3r.normalTitle" = "Кнопка URL";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "W0K-Js-tt5"; */
 "W0K-Js-tt5.text" = "Label";
@@ -1090,6 +1132,9 @@
 /* Class = "UILabel"; text = "Title"; ObjectID = "YdD-gF-Ajm"; */
 "YdD-gF-Ajm.text" = "Title";
 
+/* Class = "UILabel"; text = "250.0 C"; ObjectID = "yOG-Yr-4xg"; */
+"yOG-Yr-4xg.text" = "250.0 C";
+
 /* Class = "UILabel"; text = "Variance"; ObjectID = "yPh-Gc-fNd"; */
 "yPh-Gc-fNd.text" = "Вариация";
 
@@ -1098,6 +1143,9 @@
 
 /* Class = "UILabel"; text = "0 C"; ObjectID = "ywI-EB-V2L"; */
 "ywI-EB-V2L.text" = "0 C";
+
+/* Class = "UILabel"; text = "Tap = Full Screen"; ObjectID = "Z0q-nd-Sbc"; */
+"Z0q-nd-Sbc.text" = "Тап (Tap) = Полноэкранный режим";
 
 /* Class = "UILabel"; text = "Extruder 4"; ObjectID = "z2y-Yi-bgx"; */
 "z2y-Yi-bgx.text" = "Экструдер 4";
