@@ -55,9 +55,6 @@
 /* No camera was configured */
 "No camera" = "Sin cámara";
 
-/* No comment provided by engineer. */
-"No image is available" = "Er is geen afbeelding beschikbaar";
-
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Límite de cámara excedido";
 
