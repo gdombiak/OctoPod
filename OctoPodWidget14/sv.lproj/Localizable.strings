@@ -41,6 +41,9 @@
 "HTTP Request error" = "Fel vid begäran. HTTP-svar: %d";
 
 /* No comment provided by engineer. */
+"Learn More" = "Läs mer";
+
+/* No comment provided by engineer. */
 "minutes ago" = "%d minuter sedan";
 
 /* No comment provided by engineer. */
@@ -60,6 +63,9 @@
 
 /* No comment provided by engineer. */
 "seconds ago" = "%d sekunder sedan";
+
+/* The Spaghetti Detective Is Not Watching */
+"The Detective Is Not Watching" = "The Detective tittar inte";
 
 /* ETA is Unknown */
 "Unknown" = "Okänd";
