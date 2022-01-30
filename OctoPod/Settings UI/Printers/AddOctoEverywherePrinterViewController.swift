@@ -1,11 +1,10 @@
 import UIKit
 import WebKit
+import SafariServices
 
-class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController, WKUIDelegate, WKNavigationDelegate {
+class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController {
     
     @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var webView: WKWebView!
-    var newWebviewPopupWindow: WKWebView?
 
     @IBOutlet weak var printerNameField: UITextField!
     @IBOutlet weak var apiKeyField: UITextField!
@@ -25,91 +24,37 @@ class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController, 
     /// Password provided by OctoEverywhere
     var password: String?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        webView.navigationDelegate = self
-        webView.uiDelegate = self
-    }
+    var authSession: SFAuthenticationSession?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         themeLabels()
 
-        let url = URL(string: "https://octoeverywhere.com/appportal/v1/?appid=octopod&authType=enhanced&appLogoUrl=http%3A%2F%2Foctopodprint.com%2Foctopod.png")!
-        webView.load(URLRequest(url: url))
+        let apiKeyName = "OctoPod-OctoEverywhere-\(Int.random(in: 1..<1000))"
         
-        displayProgressMessage(message: NSLocalizedString("Select printer from OctoEverywhere.", comment: ""))
-    }
-    
-    // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 1 {
-            if let _ = hostname {
-                // Hide webview row since we user selected printer from OctoEverywhere
-                return 0
+        let url = URL(string: "https://octoeverywhere.com/appportal/v1/?appid=octopod&authType=enhanced&appLogoUrl=http%3A%2F%2Foctopodprint.com%2Foctopod.png&returnUrl=octopod://octoeverywhere&OctoPrintApiKeyAppName=\(apiKeyName)")!
+        
+        let handler:SFAuthenticationSession.CompletionHandler = { (callBack:URL?, error:Error? ) in
+            guard error == nil, let successURL = callBack else {
+                DispatchQueue.main.async {
+                    // Close VC since user canceled operation from OctoEverywhere window
+                    self.navigationController?.popViewController(animated: true)
+                }
+                return
             }
-            // Show webView row until user selects printer from OctoEverywhere
-            return tableView.frame.height * 0.7
-        } else if indexPath.row > 1 {
-            if let _ = hostname {
-                // Show row once user selected printer from OctoEverywhere
-                return UITableView.automaticDimension
-            }
-            // Hide row until user selects printer from OctoEverywhere
-            return 0
-        }
-        return super.tableView(tableView, heightForRowAt: indexPath)
-    }
-
-    // MARK: WKUIDelegate
-    
-    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        if navigationAction.targetFrame == nil {
-//            NSLog("createWebViewWith: \(navigationAction.request.url!.absoluteString)")
-
-            newWebviewPopupWindow = WKWebView(frame: view.bounds, configuration: configuration)
-            newWebviewPopupWindow!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            newWebviewPopupWindow!.navigationDelegate = self
-            newWebviewPopupWindow!.uiDelegate = self
-            view.addSubview(newWebviewPopupWindow!)
-            return newWebviewPopupWindow!
-        }
-        return nil
-    }
-    
-    func webViewDidClose(_ webView: WKWebView) {
-        webView.removeFromSuperview()
-        newWebviewPopupWindow = nil
-    }
-        
-    // MARK: WKNavigationDelegate
-    
-//    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-////        NSLog("ALLOW RESPONSE: \(webView.url?.absoluteString)")
-//        decisionHandler(.allow)
-//    }
-    
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-//        guard let requestURL = navigationAction.request.url?.absoluteString else { return }
-//        NSLog("ALLOW ACTION: \(requestURL)")
-        decisionHandler(.allow)
-    }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//        NSLog("webView url \(webView.url!.absoluteString)")
-        
-        if let url = webView.url {
-            if url.host == "octoeverywhere.com" && url.path == "/appportal/v1/complete", let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+            
+            if let urlComponents = URLComponents(url: successURL, resolvingAgainstBaseURL: false) {
                 if let success = urlComponents.queryItems?.first(where: { $0.name == "success" })?.value, success == "true" {
                     if let printerURL = urlComponents.queryItems?.first(where: { $0.name == "url" })?.value, let printername = urlComponents.queryItems?.first(where: { $0.name == "printername" })?.value, let authbasichttpuser = urlComponents.queryItems?.first(where: { $0.name == "authbasichttpuser" })?.value, let authbasichttppassword = urlComponents.queryItems?.first(where: { $0.name == "authbasichttppassword" })?.value {
-                        hostname = printerURL
-                        username = authbasichttpuser
-                        password = authbasichttppassword
+                        self.hostname = printerURL
+                        self.username = authbasichttpuser
+                        self.password = authbasichttppassword
                         DispatchQueue.main.async {
                             self.printerNameField.text = printername
+                            if let apiKey = urlComponents.queryItems?.first(where: { $0.name == "octoPrintApiKey" })?.value {
+                                self.apiKeyField.text = apiKey
+                            }
                             self.updateSaveButton()
                             // Change status message
                             self.statusLabel.text = NSLocalizedString("Complete information and click save to finish.", comment: "")
@@ -121,8 +66,26 @@ class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController, 
                 }
             }
         }
+        authSession = SFAuthenticationSession(url: url, callbackURLScheme: "octopod", completionHandler: handler)
+        authSession?.start()
+        
+        displayProgressMessage(message: NSLocalizedString("Select printer from OctoEverywhere.", comment: ""))
     }
     
+    // MARK: - Table view data source
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row > 0 {
+            if let _ = hostname {
+                // Show row once user selected printer from OctoEverywhere
+                return UITableView.automaticDimension
+            }
+            // Hide row until user selects printer from OctoEverywhere
+            return 0
+        }
+        return super.tableView(tableView, heightForRowAt: indexPath)
+    }
+
     // MARK: - IB Events
 
     @IBAction func fieldChanged(_ sender: Any) {
