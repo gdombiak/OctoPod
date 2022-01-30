@@ -32,6 +32,9 @@
 "HTTP Request error" = "HTTP请求错误";
 
 /* No comment provided by engineer. */
+"Learn More" = "了解更多";
+
+/* No comment provided by engineer. */
 "minutes ago" = "分钟前";
 
 /* No comment provided by engineer. */
@@ -45,6 +48,9 @@
 
 /* No comment provided by engineer. */
 "seconds ago" = "秒前";
+
+/* The Spaghetti Detective Is Not Watching */
+"The Detective Is Not Watching" = "侦探没有在监测打印";
 
 /* ETA is Unknown */
 "Unknown" = "不详";

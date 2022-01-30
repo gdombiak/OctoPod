@@ -184,6 +184,9 @@
 /* Class = "UILabel"; text = "0 C"; ObjectID = "A7g-Yw-Ucf"; */
 "A7g-Yw-Ucf.text" = "0 C";
 
+/* Class = "UITableViewController"; title = "The Spaghetti Detective"; ObjectID = "A9g-sp-S6T"; */
+"A9g-sp-S6T.title" = "意大利面侦探";
+
 /* Class = "UILabel"; text = "/"; ObjectID = "a12-vD-JUc"; */
 "a12-vD-JUc.text" = "/";
 
@@ -817,6 +820,9 @@
 /* Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ"; */
 "QwZ-7J-MwJ.normalTitle" = "关";
 
+/* Class = "UINavigationItem"; title = "The Spaghetti Detective"; ObjectID = "R0b-VP-E1V"; */
+"R0b-VP-E1V.title" = "意大利面侦探";
+
 /* Class = "UILabel"; text = "Siri"; ObjectID = "R2d-Mv-REP"; */
 "R2d-Mv-REP.text" = "Siri";
 
@@ -878,7 +884,7 @@
 "S0f-uX-rYI.normalTitle" = "好的";
 
 /* Class = "UITableViewSection"; headerTitle = "Complications Content"; ObjectID = "S1e-nz-awE"; */
-"S1e-nz-awE.headerTitle" = "紧凑模块内容";
+"S1e-nz-awE.headerTitle" = "复杂功能内容";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "S2I-HR-qgE"; */
 "S2I-HR-qgE.text" = "/";
@@ -937,6 +943,9 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "taf-JE-egr"; */
 "taf-JE-egr.text" = "标签";
 
+/* Class = "UILabel"; text = "The Spaghetti Detective"; ObjectID = "tbX-9q-HS1"; */
+"tbX-9q-HS1.text" = "意大利面侦探";
+
 /* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
 "tFf-Rs-mOx.text" = "标题";
 
@@ -984,9 +993,6 @@
 
 /* Class = "UILabel"; text = "GCode"; ObjectID = "uge-6J-pcC"; */
 "uge-6J-pcC.text" = "GCode";
-
-/* Class = "UILabel"; text = "10"; ObjectID = "uHJ-e2-aOo"; */
-"uHJ-e2-aOo.text" = "10";
 
 /* Class = "UILabel"; text = "60.0 C"; ObjectID = "UiU-6m-I6P"; */
 "UiU-6m-I6P.text" = "60.0C";
