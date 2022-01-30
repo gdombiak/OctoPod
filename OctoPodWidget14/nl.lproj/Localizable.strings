@@ -41,6 +41,9 @@
 "HTTP Request error" = "Error con el pedido. Respuesta HTTP: %d";
 
 /* No comment provided by engineer. */
+"Learn More" = "Lees meer";
+
+/* No comment provided by engineer. */
 "minutes ago" = "Hace %d minutos";
 
 /* No comment provided by engineer. */

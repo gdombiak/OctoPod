@@ -433,6 +433,9 @@
 /* No comment provided by engineer. */
 "Layer" = "Laag";
 
+/* No comment provided by engineer. */
+"Learn More" = "Lees meer";
+
 /* gcode name */
 "Load filament" = "Laad fillament";
 

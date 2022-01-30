@@ -994,9 +994,6 @@
 /* Class = "UILabel"; text = "GCode"; ObjectID = "uge-6J-pcC"; */
 "uge-6J-pcC.text" = "GCode";
 
-/* Class = "UILabel"; text = "10"; ObjectID = "uHJ-e2-aOo"; */
-"uHJ-e2-aOo.text" = "10";
-
 /* Class = "UILabel"; text = "60.0 C"; ObjectID = "UiU-6m-I6P"; */
 "UiU-6m-I6P.text" = "60.0 C";
 
