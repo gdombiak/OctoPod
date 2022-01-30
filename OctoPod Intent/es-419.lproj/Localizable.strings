@@ -32,6 +32,9 @@
 "HTTP Request error" = "Error con el pedido. Respuesta HTTP: %d";
 
 /* No comment provided by engineer. */
+"Learn More" = "Aprende más";
+
+/* No comment provided by engineer. */
 "minutes ago" = "Hace %d minuto";
 
 /* No comment provided by engineer. */
@@ -39,9 +42,6 @@
 
 /* No comment provided by engineer. */
 "No" = "No";
-
-/* No comment provided by engineer. */
-"No image is available" = "No hay imagen disponible";
 
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Límite de cámara excedido";

@@ -433,6 +433,9 @@
 /* No comment provided by engineer. */
 "Layer" = "Capa";
 
+/* No comment provided by engineer. */
+"Learn More" = "Aprende más";
+
 /* gcode name */
 "Load filament" = "Cargar filamento";
 
@@ -471,9 +474,6 @@
 
 /* No camera was found */
 "No camera" = "Sin cámara";
-
-/* No comment provided by engineer. */
-"No image is available" = "No hay imagen disponible";
 
 /* (No Comment) */
 "No printer" = "Sin impresora";
