@@ -41,6 +41,9 @@
 "HTTP Request error" = "Ошибка запроса. HTTP-ответ: %d";
 
 /* No comment provided by engineer. */
+"Learn More" = "Выучить больше";
+
+/* No comment provided by engineer. */
 "minutes ago" = "%d мин. назад";
 
 /* No comment provided by engineer. */
@@ -60,6 +63,9 @@
 
 /* No comment provided by engineer. */
 "seconds ago" = "%d сек. назад";
+
+/* The Spaghetti Detective Is Not Watching */
+"The Detective Is Not Watching" = "Детектив не смотрит";
 
 /* ETA is Unknown */
 "Unknown" = "Неизвестно";

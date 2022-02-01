@@ -41,6 +41,9 @@
 "HTTP Request error" = "Forespørselfeil. HTTP-respons: %d";
 
 /* No comment provided by engineer. */
+"Learn More" = "Lære mer";
+
+/* No comment provided by engineer. */
 "minutes ago" = "%d minutter siden";
 
 /* No comment provided by engineer. */
@@ -60,6 +63,9 @@
 
 /* No comment provided by engineer. */
 "seconds ago" = "%d sekunder siden";
+
+/* The Spaghetti Detective Is Not Watching */
+"The Detective Is Not Watching" = "Detektivet ser ikke på";
 
 /* ETA is Unknown */
 "Unknown" = "Ukjent";

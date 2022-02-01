@@ -433,6 +433,9 @@
 /* No comment provided by engineer. */
 "Layer" = "Lag";
 
+/* No comment provided by engineer. */
+"Learn More" = "Lære mer";
+
 /* gcode name */
 "Load filament" = "Last inn filament";
 
@@ -637,6 +640,9 @@
 /* No comment provided by engineer. */
 "Select printer from OctoEverywhere." = "Pasirinkite spausdintuvą iš „OctoEverywhere“.";
 
+/* No comment provided by engineer. */
+"Select printer from The Spaghetti Detective." = "Velg Skriver fra Spaghetti Detective.";
+
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Server kunne ikke bli funnet";
 
@@ -711,6 +717,9 @@
 
 /* (No Comment) */
 "Terminal" = "Terminal";
+
+/* The Spaghetti Detective Is Not Watching */
+"The Detective Is Not Watching" = "Detektivet ser ikke på";
 
 /* gcode name */
 "TMC Bump Sensitivity" = "TMC-støtfølsomhet";
