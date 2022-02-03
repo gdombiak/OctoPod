@@ -41,6 +41,9 @@
 "HTTP Request error" = "Anfrage fehlerhaft. HTTP Antwort: %d";
 
 /* No comment provided by engineer. */
+"Learn More" = "Lerne mehr";
+
+/* No comment provided by engineer. */
 "minutes ago" = "Vor %d Minuten";
 
 /* No comment provided by engineer. */
@@ -60,6 +63,9 @@
 
 /* No comment provided by engineer. */
 "seconds ago" = "Vor %d Sekunden";
+
+/* The Spaghetti Detective Is Not Watching */
+"The Detective Is Not Watching" = "Der Detectiv beobachtet nicht";
 
 /* ETA is Unknown */
 "Unknown" = "Unbekannt";

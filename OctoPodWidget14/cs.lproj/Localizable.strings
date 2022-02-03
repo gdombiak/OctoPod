@@ -41,6 +41,9 @@
 "HTTP Request error" = "Chyba požadavku. HTTP odpověď: %d";
 
 /* No comment provided by engineer. */
+"Learn More" = "Další informace";
+
+/* No comment provided by engineer. */
 "minutes ago" = "před %d minutami";
 
 /* No comment provided by engineer. */
@@ -60,6 +63,9 @@
 
 /* No comment provided by engineer. */
 "seconds ago" = "před %d vteřinami";
+
+/* The Spaghetti Detective Is Not Watching */
+"The Detective Is Not Watching" = "The Detective není aktivní";
 
 /* ETA is Unknown */
 "Unknown" = "neznámý";
