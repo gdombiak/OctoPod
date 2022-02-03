@@ -33,7 +33,7 @@ class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController {
 
         let apiKeyName = "OctoPod-OctoEverywhere-\(Int.random(in: 1..<1000))"
         
-        let url = URL(string: "https://octoeverywhere.com/appportal/v1/?appid=octopod&authType=enhanced&appLogoUrl=http%3A%2F%2Foctopodprint.com%2Foctopod.png&returnUrl=octopod://octoeverywhere&OctoPrintApiKeyAppName=\(apiKeyName)")!
+        let url = URL(string: "https://octoeverywhere.com/appportal/v1/?appid=octopod&authType=enhanced&appLogoUrl=https%3A%2F%2Foctoeverywhere.com%2Fimg%2Fthirdparty%2Foctopod.png&returnUrl=octopod://octoeverywhere&OctoPrintApiKeyAppName=\(apiKeyName)")!
         
         let handler:SFAuthenticationSession.CompletionHandler = { (callBack:URL?, error:Error? ) in
             guard error == nil, let successURL = callBack else {
