@@ -1,9 +1,34 @@
 # Changelog
 
-## [3.16](https://github.com/gdombiak/OctoPod/tree/3.17) (2022-01-10)
+## [3.17](https://github.com/gdombiak/OctoPod/tree/3.18) (2022-02-04)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.17...3.18)
+
+**Implemented enhancements:**
+
+- Add "Learn More" button when OctoEverywhere reports that account is no longer a supporter [\#559](https://github.com/gdombiak/OctoPod/issues/559)
+- Automatically generate API key when adding printer via OctoEverywhere [\#558](https://github.com/gdombiak/OctoPod/issues/558)
+- Expose error code when dealing with incorrect TLS setup on the server [\#555](https://github.com/gdombiak/OctoPod/issues/555)
+- Add support for tunneling via The Spaghetti Detective [\#551](https://github.com/gdombiak/OctoPod/issues/551)
+
+**Fixed bugs:**
+
+- Sometimes websocket connect is not respecting setting to ignore certificate validation [\#556](https://github.com/gdombiak/OctoPod/issues/556)
+- Unable to login to OctoEverywhere via Google [\#545](https://github.com/gdombiak/OctoPod/issues/545)
+
+**Closed issues:**
+
+- iOS - Unable to connect to OctoEverywhere with Google authentication [\#561](https://github.com/gdombiak/OctoPod/issues/561)
+- Synology reverse proxy [\#554](https://github.com/gdombiak/OctoPod/issues/554)
+- Disconnecting App stops running print. [\#553](https://github.com/gdombiak/OctoPod/issues/553)
+
+**Merged pull requests:**
+
+- Merge the spaghetti detective integration and some minor other changes [\#557](https://github.com/gdombiak/OctoPod/pull/557) ([gdombiak](https://github.com/gdombiak))
+
+## [3.17](https://github.com/gdombiak/OctoPod/tree/3.17) (2022-01-11)
 
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.16...3.17)
-
 
 **Implemented enhancements:**
 
@@ -12,10 +37,10 @@
 
 **Fixed bugs:**
 
+- Thermal runaway warning when print paused [\#544](https://github.com/gdombiak/OctoPod/issues/544)
 - Fix app crash when URL has no scheme [\#550](https://github.com/gdombiak/OctoPod/issues/550)
 - Fix app crash when updating temp chart [\#549](https://github.com/gdombiak/OctoPod/issues/549)
 - Table headers are not visible when using Dark theme or Dark Mode [\#547](https://github.com/gdombiak/OctoPod/issues/547)
-- Thermal runaway warning when print paused [\#544](https://github.com/gdombiak/OctoPod/issues/544)
 - Fix app crash when deleting file from Files window [\#543](https://github.com/gdombiak/OctoPod/issues/543)
 
 **Merged pull requests:**
