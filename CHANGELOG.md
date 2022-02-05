@@ -1,6 +1,6 @@
 # Changelog
 
-## [3.17](https://github.com/gdombiak/OctoPod/tree/3.18) (2022-02-04)
+## [3.18](https://github.com/gdombiak/OctoPod/tree/3.18) (2022-02-04)
 
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.17...3.18)
 
