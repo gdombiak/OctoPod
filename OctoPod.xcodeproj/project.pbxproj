@@ -1353,6 +1353,9 @@
 				3D42AC1021731494004D9FD0 /* AppConfigurationDelegate.swift */,
 				3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */,
 				3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */,
+				3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */,
+				3D276C4525D05C7400B75EB3 /* PrinterUtils.swift */,
+				3DA0490C2687EE5500C98379 /* CameraUtils.swift */,
 				3D45280520E15A370094CCB7 /* Main.storyboard */,
 				3D45280B20E15A380094CCB7 /* Assets.xcassets */,
 				3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */,
@@ -1360,9 +1363,6 @@
 				3D45280D20E15A380094CCB7 /* LaunchScreen.storyboard */,
 				3D45281020E15A380094CCB7 /* Info.plist */,
 				3D9E087C2160455400F11CD4 /* InfoPlist.strings */,
-				3DFB776F23D4D46100ADF315 /* Palette2Utils.swift */,
-				3D276C4525D05C7400B75EB3 /* PrinterUtils.swift */,
-				3DA0490C2687EE5500C98379 /* CameraUtils.swift */,
 			);
 			path = OctoPod;
 			sourceTree = "<group>";
