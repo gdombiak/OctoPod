@@ -35,6 +35,10 @@ class CameraService: ObservableObject {
     private var preemptiveAuthentication: Bool = false
     private var isStreamPathFromSettings: Bool = true
     
+    /// Timer to fetch new image when using The Spaghetti Detective
+    private var tsdTimer: Timer?
+    private var tsdCountdown = 0
+
     /// Render next camera
     func renderNext() {
         renderCamera(index: cameraIndex + 1)
@@ -64,6 +68,7 @@ class CameraService: ObservableObject {
     
     func disconnectFromServer() {
         streamingController?.stop()
+        tsdTimer?.invalidate()
         player?.pause()
         detailedPlayer?.pause()
         playing = false
@@ -180,6 +185,24 @@ class CameraService: ObservableObject {
         // Disable volume by default
         detailedPlayer?.isMuted = true
     }
+    
+    fileprivate func renderTSDImage(image: UIImage?, error: String?) {
+        if let receivedImage = image {
+            DispatchQueue.main.async {
+                // Hide error messages since an image will be rendered (so that means that it worked!)
+                self.errorMessage = nil
+                // Render image
+                self.image = receivedImage
+                self.imageRatio = receivedImage.size.height / receivedImage.size.width
+            }
+        } else if let message = error {
+            DispatchQueue.main.async {
+                self.image = nil
+                // Display error messages
+                self.errorMessage = message
+            }
+        }
+    }
 
     /// Stops rendering any previous URL and starts rendering the requested camera
     /// Needs to be called from main thread
@@ -193,6 +216,7 @@ class CameraService: ObservableObject {
 
             // Stop any video since it will be replaced with a new one
             streamingController?.stop()
+            tsdTimer?.invalidate()
             player?.pause()
             detailedPlayer?.pause()
 
@@ -211,8 +235,26 @@ class CameraService: ObservableObject {
                     player!.play()
                 }
 
+            } else if CameraUtils.shared.isTLS(cameraURL: url) {
+                tsdTimer = Timer(fire: Date(), interval: 1, repeats: true, block: { (timer: Timer) in
+                    if self.tsdCountdown == 0 {
+                        // We need to make call Webcam snapshot API to then fetch Image from returned URL
+                        CameraUtils.shared.renderImage(cameraURL: url, imageOrientation: imageOrientation, username: self.username, password: self.password, preemptive: true, timeoutInterval: 5.0) { (image: UIImage?, error: String?) in
+                            self.renderTSDImage(image: image, error: error)
+                        }
+                        // Reset counter to 10 seconds since image changes every 10 seconds
+                        self.tsdCountdown = 10
+                    } else {
+                        self.tsdCountdown -= 1
+                    }
+//                    DispatchQueue.main.async {
+//                        self.countdownProgressView.showProgress(percent: Float(self.tsdCountdown * 10))
+//                    }
+                })
+                RunLoop.main.add(tsdTimer!, forMode: .common)
             } else {
                 // Clean up any previous HLS config
+                tsdTimer?.invalidate()
                 player = nil
                 detailedPlayer = nil
                 prepareForMJPEGRendering()

@@ -1,7 +1,9 @@
 import Foundation
 import UIKit
 import AVKit
-import SafariServices
+#if !os(tvOS)
+    import SafariServices
+#endif
 
 class UIUtils {
 
@@ -29,10 +31,12 @@ class UIUtils {
                 // Execute done block on dismiss
                 done?()
             }))
+            #if !os(tvOS)
             alert.addAction(UIAlertAction(title: NSLocalizedString("Learn More", comment: ""), style: .default, handler: { (UIAlertAction) -> Void in
                 let vc = SFSafariViewController(url: moreURL)
                 presenter.present(vc, animated: false, completion: done)
             }))
+            #endif
             presenter.present(alert, animated: true) { () -> Void in
                 // Nothing to do here
             }
