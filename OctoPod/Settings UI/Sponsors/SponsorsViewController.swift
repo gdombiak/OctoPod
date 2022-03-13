@@ -14,18 +14,6 @@ class SponsorsViewController: UIViewController, UITableViewDataSource, UITableVi
 
         // Remember current theme so we know when to repaint
         currentTheme = Theme.currentTheme()
-
-        // Populate list of active sponsors
-        sponsors.append(Sponsor(name: "Juha Kuusama", link: nil))
-        sponsors.append(Sponsor(name: "Jesse Armstrong", link: "https://github.com/jessearmstrong"))
-        sponsors.append(Sponsor(name: "Josh Wright (tideline3d)", link: "https://github.com/tideline3d"))
-        sponsors.append(Sponsor(name: "Manojav Sridhar", link: "https://github.com/vajonam"))
-        sponsors.append(Sponsor(name: "Chris Kuipers", link: "https://github.com/chriskuipers"))
-        sponsors.append(Sponsor(name: "Brad McGonigle", link: "https://github.com/BradMcGonigle"))
-        sponsors.append(Sponsor(name: "Manuel McLure", link: "https://github.com/ManuelMcLure"))
-        sponsors.append(Sponsor(name: "mjwilbur", link: "https://github.com/mjwilbur"))
-        sponsors.append(Sponsor(name: "Alexander Sparkowsky", link: "https://github.com/roamingthings"))
-        sponsors.append(Sponsor(name: "cmegalodon", link: "https://github.com/cmegalodon"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +23,18 @@ class SponsorsViewController: UIViewController, UITableViewDataSource, UITableVi
             // Theme changed so repaint table now (to prevent quick flash in the UI with the old theme)
             sponsorsTable.reloadData()
             currentTheme = Theme.currentTheme()
+        }
+        // Fetch list of active sponsors
+        OctoPodPrintUtils.getSponsors(timeoutInterval: 3) { (sponsors: Array<Sponsor>?, error: Error?, response: HTTPURLResponse) in
+            if let sponsors = sponsors {
+                DispatchQueue.main.async {
+                    self.sponsors = sponsors
+                    self.sponsorsTable.reloadData()
+                }
+            } else {
+                NSLog("Failed to fetch list of sponsors. Error: \(error). Response: \(response)")
+                UIUtils.showAlert(presenter: self, title: NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Failed to fetch sponsors list", comment: ""), done: nil)
+            }
         }
         // Paint UI based on theme
         ThemeUIUtils.applyTheme(table: sponsorsTable, staticCells: false)
@@ -89,7 +89,4 @@ class SponsorsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 }
 
-struct Sponsor {
-    var name: String
-    var link: String?
-}
+
