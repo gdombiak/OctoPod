@@ -1,6 +1,18 @@
 # Changelog
 
-## [3.18](https://github.com/gdombiak/OctoPod/tree/3.18) (2022-02-04)
+## [3.19](https://github.com/gdombiak/OctoPod/tree/3.18) (2022-03-14)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.18...3.19)
+
+**Implemented enhancements:**
+
+- Sponsor [\#571](https://github.com/gdombiak/OctoPod/issues/571)
+
+**Fixed bugs:**
+
+- Fix app crash when HLS video stops playing [\#563](https://github.com/gdombiak/OctoPod/issues/563)
+
+## [3.18](https://github.com/gdombiak/OctoPod/tree/3.18) (2022-02-05)
 
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.17...3.18)
 
