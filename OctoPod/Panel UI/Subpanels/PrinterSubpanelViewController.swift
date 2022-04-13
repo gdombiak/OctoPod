@@ -193,8 +193,10 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            if (indexPath.row == 0 || indexPath.row == 1) && currentPrintDetailsRow.isHidden {
-                return 0
+            if indexPath.row == 0 || indexPath.row == 1 {
+                if printingFileLabel.text == nil || printingFileLabel.text!.isEmpty {
+                    return 0
+                }
             } else if indexPath.row == 6 && currentHeightRow.isHidden {
                 return 0
             } else if indexPath.row == 7 && layerInfoRow.isHidden {
@@ -373,7 +375,6 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             if let printFile = event.printFile {
                 if self.printingFileLabel.text != printFile.name {
                     self.printingFileLabel.text = printFile.name
-                    self.currentPrintDetailsRow.isHidden = false
                     reloadTable = true
                 }
             } else {
@@ -381,7 +382,6 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 // Printing and no info available may happen when receiving PrinterStateChanged events
                 if self.printingFileLabel.text != "" && event.printing != true {
                     self.printingFileLabel.text = ""
-                    self.currentPrintDetailsRow.isHidden = true
                     reloadTable = true
                 }
             }
@@ -839,7 +839,6 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         DispatchQueue.main.async {
             self.printerStatusLabel.text = NSLocalizedString("Offline", comment: "Printer is Offline")
             
-            self.currentPrintDetailsRow.isHidden = true
             self.printingFileLabel.text = ""
 
             self.printButton.isHidden = false
