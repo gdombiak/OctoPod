@@ -196,6 +196,7 @@ struct DashboardWidget14EntryView : View {
                         Text("\(entry.date, formatter: Self.dateFormatter)")
                             .font(.caption2)
                     }.padding(10)
+                        .widgetURL(URL(string: "octopod://goToDashboard")!)
                 } else {
                     // No printers have been selected so ask to configure widget
                     Text("Configure widget")

@@ -110,6 +110,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
                 return true
+            } else if printerName == "goToDashboard" {
+                // User clicked on iOS14 widget that shows multiple printers. Go to dashboard when user
+                // clicks on this widget
+                // Add some delay so app transitions to Active (camera will render only when app is active)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    if let tabBarController = self.window!.rootViewController as? UITabBarController {
+                        // Select main Panel window
+                        tabBarController.selectedIndex = 0
+                        if let navigationVC = tabBarController.selectedViewController as? NavigationController, let panelVC = navigationVC.topViewController as? PanelViewController {
+                            // Go to dashboard of printers
+                            panelVC.performSegue(withIdentifier: "printers_dashboard", sender: self)
+                        }
+                    }
+                }
+                return true
             }
         }
         return false
