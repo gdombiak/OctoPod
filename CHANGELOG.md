@@ -1,6 +1,22 @@
 # Changelog
 
-## [3.19](https://github.com/gdombiak/OctoPod/tree/3.18) (2022-03-14)
+## [3.20](https://github.com/gdombiak/OctoPod/tree/3.20) (2022-04-14)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.19...3.20)
+
+**Implemented enhancements:**
+
+- Open printers dashboard when clicking on multi-printer widget [\#578](https://github.com/gdombiak/OctoPod/issues/578)
+
+**Fixed bugs:**
+
+- Missing pause/cancel print buttons [\#562](https://github.com/gdombiak/OctoPod/issues/562)
+
+**Closed issues:**
+
+- False Positives For Possible Thermal Runaway [\#575](https://github.com/gdombiak/OctoPod/issues/575)
+
+## [3.19](https://github.com/gdombiak/OctoPod/tree/3.19) (2022-03-19)
 
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.18...3.19)
 
