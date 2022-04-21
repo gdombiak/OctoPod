@@ -204,7 +204,7 @@ class CameraHLSEmbeddedViewController: CameraEmbeddedViewController {
             // Stop listening to events since player is going away. App will crash if KVO notification goes to a zombie object
             player?.currentItem?.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status ))
 
-            if let castedLayer = self.playerView.layer as? AVPlayerLayer {
+            if self.playerView != nil, let castedLayer = self.playerView.layer as? AVPlayerLayer {
                 castedLayer.player = nil
             }
             self.player = nil
