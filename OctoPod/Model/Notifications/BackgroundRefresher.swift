@@ -55,6 +55,8 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
 
     /// iOS app has been woken up to execute its background task for fetching new content. If OctoPod plugin for OctoPrint
     /// is installed then do nothing. This is a fallback for users that haven't installed the plugin yet for real time notifications
+    /// 
+    /// Assumption: Runs in main thread
     func refresh(completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let printer = printerManager.getDefaultPrinter() {
             // Check if OctoPrint instance has OctoPod plugin installed
@@ -115,7 +117,7 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
     func printerStateUpdated(event: CurrentStateEvent) {
         /// This notification is sent when iOS app is being used by user. This class listens to each event and if state has changed (or completion) then
         /// a push notification to Apple Watch app will be sent to update its complications (if daily budget allows)
-        if let printer = printerManager.getDefaultPrinter(), let state = event.state {
+        if let printer = printerManager.getDefaultPrinter(context: printerManager.newPrivateContext()), let state = event.state {
             pushComplicationUpdate(printerName: printer.name, octopodPluginInstalled: printer.octopodPluginInstalled, state: state, mediaURL: nil, completion: event.progressCompletion, forceUpdate: false)
         }
     }

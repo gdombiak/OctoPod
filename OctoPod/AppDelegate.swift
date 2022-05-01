@@ -296,7 +296,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
 
     lazy var octoprintClient: OctoPrintClient = {
-        return OctoPrintClient(printerManager: self.printerManager!)
+        return OctoPrintClient(printerManager: self.printerManager!, appConfiguration: appConfiguration)
     }()
 
     lazy var cloudFilesManager: CloudFilesManager = {
@@ -304,7 +304,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }()
     
     lazy var appConfiguration: AppConfiguration = {
-        return AppConfiguration(octoprintClient: self.octoprintClient)
+        return AppConfiguration()
     }()
     
     lazy var watchSessionManager: WatchSessionManager = {

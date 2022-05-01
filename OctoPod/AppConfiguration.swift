@@ -26,11 +26,7 @@ class AppConfiguration: OctoPrintClientDelegate {
     
     private let keyValStore = NSUbiquitousKeyValueStore()
 
-    init(octoprintClient: OctoPrintClient) {
-        octoprintClient.appConfiguration = self
-        // Listen to events coming from OctoPrintClient
-        octoprintClient.delegates.append(self)
-        
+    init() {
         if keyValStore.bool(forKey: AppConfiguration.UBIQUITOUS_CONFIGURED) {
             // iCloud key-value has beeb configured so copy configuration from iCloud
             self.updateConfigurationFromiCloud()

@@ -253,4 +253,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         // Dummy return that will never execute
         return view
     }
+
+    func destroy() {
+    }
 }

@@ -24,24 +24,23 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     var printerProfilesDelegates: Array<PrinterProfilesDelegate> = Array()
     var octoPrintPluginsDelegates: Array<OctoPrintPluginsDelegate> = Array()
     
-    var appConfiguration: AppConfiguration {
-        get {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            return appDelegate.appConfiguration
-        }
-        set(configuration) {
-            configuration.delegates.append(self)
-        }
-    }
+    var appConfiguration: AppConfiguration?
 
     // Remember last CurrentStateEvent that was reported from OctoPrint (via websockets)
     var lastKnownState: CurrentStateEvent?
     var octoPrintVersion: String?
     private var printerID: NSManagedObjectID?
     
-    init(printerManager: PrinterManager) {
+    init(printerManager: PrinterManager, appConfiguration: AppConfiguration) {
         self.printerManager = printerManager
         self.octoPrintRESTClient = OctoPrintRESTClient()
+
+        self.appConfiguration = appConfiguration
+        // Listen to configuration changes
+        self.appConfiguration?.delegates.append(self)
+        // Add AppConfiguration as a listener of this OctoPrintClient
+        delegates.append(appConfiguration)
+
         #if os(iOS)
             // Configure REST client to show network activity in iOS app when making requests
             self.octoPrintRESTClient.preRequest = {
@@ -90,7 +89,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         // Notify the terminal that we are about to connect to OctoPrint
         terminal.websocketNewConnection()
         // Create websocket connection and connect
-        webSocketClient = WebSocketClient(printer: printer)
+        webSocketClient = WebSocketClient(appConfiguration: appConfiguration!, printer: printer)
         // Subscribe to events so we can update the UI as events get pushed
         webSocketClient?.delegate = self
 
@@ -1144,7 +1143,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
             // Update flag that tracks if Cancel Object plugin is installed
             printerToUpdate.cancelObjectInstalled = installed
-            printer.cancelObjectIgnored = ignored
+            printerToUpdate.cancelObjectIgnored = ignored
             // Persist updated printer
             printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
             

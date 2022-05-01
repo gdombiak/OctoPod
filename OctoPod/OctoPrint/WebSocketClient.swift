@@ -7,7 +7,7 @@ import UIKit
 // and add it as a delegate of this WebSocketClient
 class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     
-    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+    var appConfiguration: AppConfiguration!
 
     /// Create a serial queue for thread-safety when closing sockets. Serial is ok
     /// since we do not have concurrent read threads
@@ -42,7 +42,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     
     var delegate: WebSocketClientDelegate?
 
-    init(printer: Printer) {
+    init(appConfiguration: AppConfiguration, printer: Printer) {
         super.init()
         serverURL = printer.hostname
         serverURL = serverURL.hasSuffix("/") ? String(serverURL.dropLast()) : serverURL // Fix in case stored printer has invalid URL due to a bug that is now fixed
@@ -50,6 +50,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
         username = printer.username
         password = printer.password
         sharedNozzle = printer.sharedNozzle
+        self.appConfiguration = appConfiguration
         
         let urlString: String = "\(serverURL!)/sockjs/websocket"
         

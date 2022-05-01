@@ -23,6 +23,9 @@ class PrinterManager {
     // MARK: Reading operations
 
     func getDefaultPrinter() -> Printer? {
+        if !Thread.current.isMainThread {
+            NSLog("**** POTENTIAL APP CRASH: Using CoreData from non-main thread using objectContext for main")
+        }
         return getDefaultPrinter(context: managedObjectContext)
     }
 
@@ -55,10 +58,14 @@ class PrinterManager {
     }
 
     func getPrinterByName(name: String) -> Printer? {
+        return getPrinterByName(context: managedObjectContext, name: name)
+    }
+
+    func getPrinterByName(context: NSManagedObjectContext, name: String) -> Printer? {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "name = %@", name)
         
-        if let fetchResults = (try? managedObjectContext.fetch(fetchRequest)) as? [Printer] {
+        if let fetchResults = (try? context.fetch(fetchRequest)) as? [Printer] {
             if fetchResults.count == 0 {
                 return nil
             }
@@ -68,8 +75,12 @@ class PrinterManager {
     }
 
     func getPrinterByObjectURL(url: URL) -> Printer? {
-        if let objectID = managedObjectContext.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: url) {
-            if let printer = managedObjectContext.object(with: objectID) as? Printer {
+        return getPrinterByObjectURL(context: managedObjectContext, url: url)
+    }
+    
+    func getPrinterByObjectURL(context: NSManagedObjectContext, url: URL) -> Printer? {
+        if let objectID = context.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: url) {
+            if let printer = context.object(with: objectID) as? Printer {
                 return printer
             }
         }

@@ -33,7 +33,8 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
             self.octoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
         } else {
             let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
-            self.octoPrintClient = OctoPrintClient(printerManager: printerManager)
+            let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+            self.octoPrintClient = OctoPrintClient(printerManager: printerManager, appConfiguration: appConfiguration)
         }
         // Listen to events coming from OctoPrintClient
         octoPrintClient?.delegates.append(self)
@@ -54,6 +55,11 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
             octoPrintClient?.remove(octoPrintPluginsDelegate: self)
         } else {
             octoPrintClient?.disconnectFromServer()
+            // AppConfiguration got added as a listener so remove it so octoPrintClient is released from memory
+            if let appConfig = octoPrintClient?.appConfiguration, let octoPrintClient = octoPrintClient {
+                octoPrintClient.remove(octoPrintClientDelegate: appConfig)
+                appConfig.remove(appConfigurationDelegate: octoPrintClient)
+            }
         }
     }
     
@@ -64,6 +70,8 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
         delegate = nil
         // Close connection
         disconnectFromServer()
+        // Release reference so object is removed from memory
+        octoPrintClient = nil
     }
 
     // MARK: - OctoPrintClientDelegate

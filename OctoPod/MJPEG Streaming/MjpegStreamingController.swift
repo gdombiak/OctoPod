@@ -91,6 +91,28 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
         dataTask?.cancel()
     }
     
+    open func destroy() {
+        dataTask?.cancel()
+        // Cancel session so URL session and other objects get released
+        session.invalidateAndCancel()
+        
+        receivedData = nil
+        dataTask = nil
+        session = nil
+        
+        // Basic cleanup. Probably wouldn't cause any issues
+        authenticationHandler = nil
+        authenticationFailedHandler = nil
+        didStartLoading = nil
+        didFinishLoading = nil
+        didFinishWithErrors = nil
+        didFinishWithHTTPErrors = nil
+        didFetchImage = nil
+        didRenderImage = nil
+        didReceiveJSON = nil
+        imageView = nil
+    }
+    
     // MARK: - NSURLSessionDataDelegate
     
     open func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {

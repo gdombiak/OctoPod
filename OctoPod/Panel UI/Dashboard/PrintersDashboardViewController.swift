@@ -66,6 +66,9 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         // Now Remove embedded VCs
         self.deleteEmbeddedCameraViewControllers()
         printers = []
+        
+        // Clean up references so there are no cyclical references and this object is removed from memory
+        panelViewController = nil
     }
     
     @IBAction func toggleCameraOrPanel(_ sender: Any) {
@@ -318,6 +321,8 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         for cameraEmbeddedViewController in cameraEmbeddedViewControllers {
             // Now remove from parent (to avoid app crash since we may reference an object that has been deallocated)
             cameraEmbeddedViewController.removeFromParent()
+            // Ask object to destroy itself to break any cyclic reference that would cause a memory leak. We won't use this object again
+            cameraEmbeddedViewController.destroy()
         }
         cameraEmbeddedViewControllers.removeAll()
     }

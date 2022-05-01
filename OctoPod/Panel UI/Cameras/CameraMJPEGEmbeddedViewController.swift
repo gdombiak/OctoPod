@@ -122,4 +122,9 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
     override func gestureView() -> UIView {
         return imageView
     }
+    
+    override func destroy() {
+        streamingController?.destroy()
+        streamingController = nil
+    }
 }
