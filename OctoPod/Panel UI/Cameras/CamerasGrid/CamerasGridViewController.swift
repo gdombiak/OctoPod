@@ -111,6 +111,8 @@ class CamerasGridViewController: UICollectionViewController, UICollectionViewDel
     fileprivate func deleteEmbeddedCameraViewControllers() {
         for cameraEmbeddedViewController in cameraEmbeddedViewControllers {
             cameraEmbeddedViewController.removeFromParent()
+            // Ask object to destroy itself to break any cyclic reference that would cause a memory leak. We won't use this object again
+            cameraEmbeddedViewController.destroy()
         }
         cameraEmbeddedViewControllers.removeAll()
     }

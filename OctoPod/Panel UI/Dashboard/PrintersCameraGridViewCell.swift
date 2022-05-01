@@ -9,7 +9,7 @@ class PrintersCameraGridViewCell: UICollectionViewCell {
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var etaLabel: UILabel!
     
-    var delegate: PrintersCameraGridViewCellDelegate?
+    weak var delegate: PrintersCameraGridViewCellDelegate?
     
     /// Private variable to handle adding and removing from super view
     private weak var _hostedView: UIView? {

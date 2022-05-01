@@ -1,6 +1,6 @@
 import Foundation
 
-protocol PrintersCameraGridViewCellDelegate {
+protocol PrintersCameraGridViewCellDelegate: AnyObject {
 
     func expandCameraClicked(cell: PrintersCameraGridViewCell)
 }
