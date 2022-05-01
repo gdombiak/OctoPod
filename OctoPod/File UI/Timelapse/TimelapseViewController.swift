@@ -147,9 +147,9 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
                             completionHandler(false)
                         }
                     } else {
-                        // Remove timelapse from files and refresh table
-                        self.files.remove(at: indexPath.row)
                         DispatchQueue.main.async {
+                            // Remove timelapse from files and refresh table
+                            self.files.remove(at: indexPath.row)
                             tableView.deleteRows(at: [indexPath], with: .fade)
                         }
                         completionHandler(true)
@@ -312,23 +312,24 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
         }
         // Load all files and folders (recursive)
         octoprintClient.timelapses { (result: Array<Timelapse>?, error: Error?, response: HTTPURLResponse) in
-            self.files = Array()
-            // Handle connection errors
-            if let error = error {
-                self.showAlert(NSLocalizedString("Warning", comment: ""), message: error.localizedDescription, done: nil)
-            } else if let newFiles = result {
-                // Sort files by date (newest at the top)
-                self.files = newFiles.sorted { (left: Timelapse, right: Timelapse) -> Bool in
-                    return left.date > right.date
-                }
-            }
-            // Refresh table (even if there was an error so it is empty)
+            // Update 'files' field inside of main thread to prevent app crash
             DispatchQueue.main.async {
+                self.files = Array()
+                // Handle connection errors
+                if let error = error {
+                    self.showAlert(NSLocalizedString("Warning", comment: ""), message: error.localizedDescription, done: nil)
+                } else if let newFiles = result {
+                    // Sort files by date (newest at the top)
+                    self.files = newFiles.sorted { (left: Timelapse, right: Timelapse) -> Bool in
+                        return left.date > right.date
+                    }
+                }
+                // Refresh table (even if there was an error so it is empty)
                 self.refreshControl?.endRefreshing()
                 self.tableView.reloadData()
+                // Execute done block when done
+                done?()
             }
-            // Execute done block when done
-            done?()
         }
     }
 
