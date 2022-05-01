@@ -35,24 +35,26 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
         // Add Progress View
         progressView = UIProgressView(progressViewStyle: .bar)
         self.progressView.setProgress(0.5, animated: false)
+        self.progressView.backgroundColor = UIColor.lightGray
         progressView.isHidden = true
+        progressView.frame = CGRect(x: 40, y: view.frame.size.height / 2, width: view.frame.size.width - 80, height: 40)
         tableView.addSubview(progressView)
         NSLayoutConstraint.activate([
             progressView.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor),
             progressView.centerYAnchor.constraint(equalTo: self.tableView.centerYAnchor),
-            progressView.heightAnchor.constraint(equalToConstant: 5),
+            progressView.heightAnchor.constraint(equalToConstant: 45),
             progressView.widthAnchor.constraint(equalToConstant: 200)
         ])
         progressView.translatesAutoresizingMaskIntoConstraints = false
 
-        // Add a progress label under Progress View
+        // Add a progress label inside of Progress View (has enough height to show text)
         progressLabel = UILabel()
         progressLabel.font = UIFont.preferredFont(forTextStyle: .callout)
         progressLabel.isHidden = true
-        tableView.addSubview(progressLabel)
+        progressView.addSubview(progressLabel)
         NSLayoutConstraint.activate([
-            progressLabel.centerXAnchor.constraint(equalTo: self.tableView.centerXAnchor),
-            progressLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 8)
+            progressLabel.centerXAnchor.constraint(equalTo: self.progressView.centerXAnchor),
+            progressLabel.centerYAnchor.constraint(equalTo: self.progressView.centerYAnchor),
         ])
         progressLabel.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -196,8 +198,14 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
                     // Write downloaded file into a filepath and return the filepath in NSURL
                     let fileURL = data.dataToFile(fileName: file.name)
                     let filesToShare = [fileURL]
-                    let activityViewController = UIActivityViewController(activityItems: filesToShare as [Any], applicationActivities: nil)
                     DispatchQueue.main.async {
+                        // Call from main thread so it does not crash on iPad
+                        let activityViewController = UIActivityViewController(activityItems: filesToShare as [Any], applicationActivities: nil)
+                        // Set sourceView so it does not crash on iPad
+                        if UIDevice.current.userInterfaceIdiom == .pad {
+                            activityViewController.popoverPresentationController?.sourceView = view
+                            activityViewController.popoverPresentationController?.permittedArrowDirections = .any
+                        }
                         self.present(activityViewController, animated: true) {
                             completionHandler(true)
                         }
