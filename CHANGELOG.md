@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.21](https://github.com/gdombiak/OctoPod/tree/3.21) (2022-05-05)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.20...3.21)
+
+**Fixed bugs:**
+
+- Fix multiple memory leaks [\#586](https://github.com/gdombiak/OctoPod/issues/586)
+- Fix app crash due to core data concurrency issues [\#585](https://github.com/gdombiak/OctoPod/issues/585)
+- Fix app crash when displaying Timelapse files [\#584](https://github.com/gdombiak/OctoPod/issues/584)
+- Sometimes closing HLS streaming video crashes app [\#582](https://github.com/gdombiak/OctoPod/issues/582)
+- Sharing Timelapse causes Octopod to crash [\#580](https://github.com/gdombiak/OctoPod/issues/580)
+
 ## [3.20](https://github.com/gdombiak/OctoPod/tree/3.20) (2022-04-14)
 
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.19...3.20)
