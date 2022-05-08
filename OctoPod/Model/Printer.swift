@@ -102,7 +102,7 @@ class Printer: NSManagedObject {
             return "/_tsd_/webcam/0/"
         }
         if let path = streamUrl {
-            return path
+            return path.trimmingCharacters(in: .whitespaces)
         }
         return "/webcam/?action=stream"
     }
