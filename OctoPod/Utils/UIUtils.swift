@@ -85,6 +85,9 @@ class UIUtils {
         } else if screenHeight == 1112 {
             // iPad (10.5-inch)
             return (619, 414, 469, 414)
+        } else if screenHeight == 1133 {
+            // iPad Mini (6yh generation)
+            return (558, 348, 419, 348)
         } else if screenHeight == 1180 {
             // iPad Air (4th Gen) (2020)
             return (615, 414, 461, 414)
