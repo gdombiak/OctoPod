@@ -15,9 +15,14 @@ class PrinterManager {
 
     // MARK: Private context operations
     
-    // Context to use when not running in main thread and using Core Data
+    /// Context to use when not running in main thread and using Core Data
     func newPrivateContext() -> NSManagedObjectContext {
         return persistentContainer.newBackgroundContext()
+    }
+
+    /// Context to use for Core Data depending on thread being used
+    func safePrivateContext() -> NSManagedObjectContext {
+        return Thread.current.isMainThread ? managedObjectContext : newPrivateContext()
     }
 
     // MARK: Reading operations

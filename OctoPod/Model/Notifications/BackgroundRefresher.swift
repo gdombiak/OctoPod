@@ -117,7 +117,7 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
     func printerStateUpdated(event: CurrentStateEvent) {
         /// This notification is sent when iOS app is being used by user. This class listens to each event and if state has changed (or completion) then
         /// a push notification to Apple Watch app will be sent to update its complications (if daily budget allows)
-        if let printer = printerManager.getDefaultPrinter(context: printerManager.newPrivateContext()), let state = event.state {
+        if let printer = printerManager.getDefaultPrinter(context: printerManager.safePrivateContext()), let state = event.state {
             pushComplicationUpdate(printerName: printer.name, octopodPluginInstalled: printer.octopodPluginInstalled, state: state, mediaURL: nil, completion: event.progressCompletion, forceUpdate: false)
         }
     }
