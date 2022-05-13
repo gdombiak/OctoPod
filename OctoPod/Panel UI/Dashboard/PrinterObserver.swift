@@ -2,6 +2,13 @@ import Foundation
 import UIKit
 
 class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
+    private static let SORT_BY_PREFERENCE = "PrinterObserverSortBy"
+
+    enum SortBy: Int {
+        case position = 1
+        case alphabetical = 2
+        case timeLeft = 3
+    }
     
     private var delegate: PrinterObserverDelegate?
     private var octoPrintClient: OctoPrintClient?
@@ -14,6 +21,7 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
     var progress: String = "--%"
     var printTime: String = "--"
     var printTimeLeft: String = "--"
+    var timeLeft: Int = Int.max
     var printCompletion: String = "--"
     var jobFile: String?
     var layer: String?
@@ -74,6 +82,65 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
         octoPrintClient = nil
     }
 
+    // MARK: - Sort operations
+    
+    /// Sort PrinterObservers by user prefered sort criteria
+    class func sort(printers: Array<PrinterObserver>, by sortBy: SortBy?) -> Array<PrinterObserver> {
+        var useSort: SortBy
+        if let newSortBy = sortBy {
+            useSort = newSortBy
+            // Store sort by as user preference
+            let defaults = UserDefaults.standard
+            defaults.set(newSortBy.rawValue, forKey: SORT_BY_PREFERENCE)
+        } else {
+            // Use default sort criteria based on user preferences
+            useSort = defaultSortCriteria()
+        }
+
+        switch useSort {
+        case .position:
+            return sortByPosition(printers: printers)
+        case SortBy.alphabetical:
+            return sortByAlphabeticalOrder(printers: printers)
+        case SortBy.timeLeft:
+            return sortByTimeLeft(printers: printers)
+        }
+    }
+    
+    /// Returns default sort criteria to use (based on user preferences)
+    class func defaultSortCriteria() -> SortBy {
+        let defaults = UserDefaults.standard
+        if let storedValue = defaults.object(forKey: SORT_BY_PREFERENCE) as? Int {
+            return SortBy(rawValue: storedValue)!
+        }
+        return SortBy.position
+    }
+    
+    /// Sorts printers by position
+    fileprivate class func sortByPosition(printers: Array<PrinterObserver>) -> Array<PrinterObserver> {
+        return printers.sorted { (printer1: PrinterObserver, printer2: PrinterObserver) -> Bool in
+            return printer1.row < printer2.row
+        }
+    }
+    
+    /// Sorts printers by alphabetical order
+    fileprivate class func sortByAlphabeticalOrder(printers: Array<PrinterObserver>) -> Array<PrinterObserver> {
+        return printers.sorted { (printer1: PrinterObserver, printer2: PrinterObserver) -> Bool in
+            return printer1.printerName < printer2.printerName
+        }
+    }
+    
+    /// Sorts printers by time left
+    fileprivate class func sortByTimeLeft(printers: Array<PrinterObserver>) -> Array<PrinterObserver> {
+        return printers.sorted { (printer1: PrinterObserver, printer2: PrinterObserver) -> Bool in
+            if printer1.timeLeft == printer2.timeLeft {
+                // For printers with exact same time left we need to sort by name
+                return printer1.printerName < printer2.printerName
+            }
+            return printer1.timeLeft < printer2.timeLeft
+        }
+    }
+
     // MARK: - OctoPrintClientDelegate
     
     func printerStateUpdated(event: CurrentStateEvent) {
@@ -104,6 +171,7 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
             let newTimeLeft = UIUtils.secondsToTimeLeft(seconds: seconds, includesApproximationPhrase: false, ifZero: "--")
             if newTimeLeft != printTimeLeft {
                 self.printTimeLeft = newTimeLeft
+                self.timeLeft = seconds
                 changed = true
             }
             let newPrintEstimatedCompletion = UIUtils.secondsToETA(seconds: seconds)
@@ -115,6 +183,7 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
             let newTimeLeft = NSLocalizedString("Still stabilizing", comment: "Print time is being calculated")
             if newTimeLeft != printTimeLeft {
                 self.printTimeLeft = newTimeLeft
+                self.timeLeft = Int.max - 1 // When sorted by time left, this one will appear before inactive printers
                 self.printCompletion = ""
                 changed = true
             }

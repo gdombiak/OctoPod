@@ -103,7 +103,7 @@ class PrintFile: NSObject {
 
     // MARK: - Sort operations
 
-    // Returns default sort criteria to use (based on user preferences)
+    /// Returns default sort criteria to use (based on user preferences)
     class func defaultSortCriteria() -> SortBy {
         let defaults = UserDefaults.standard
         if let storedValue = defaults.object(forKey: SORT_BY_PREFERENCE) as? Int {
@@ -112,8 +112,8 @@ class PrintFile: NSObject {
         return SortBy.alphabetical
     }
     
-    // Sort all (including nested) files with specified sort criteria.
-    // Returns provided files sorted
+    /// Sort all (including nested) files with specified sort criteria.
+    /// Returns provided files sorted
     class func resort(rootFiles: Array<PrintFile>, sortBy: SortBy) -> Array<PrintFile> {
         // Sort root files
         let sortedRootFiles = sort(files: rootFiles, sortBy: sortBy)
@@ -126,7 +126,7 @@ class PrintFile: NSObject {
         return sortedRootFiles
     }
     
-    // Sort files by user prefered sort criteria (does not sort in nested elements)
+    /// Sort files by user prefered sort criteria (does not sort in nested elements)
     class func sort(files: Array<PrintFile>, sortBy: SortBy?) -> Array<PrintFile> {
         var useSort: SortBy
         if let newSortBy = sortBy {
@@ -149,8 +149,8 @@ class PrintFile: NSObject {
         }
     }
 
-    // Sorts specified list of files by alphabetical order
-    // Folders first and files second
+    /// Sorts specified list of files by alphabetical order
+    /// Folders first and files second
     fileprivate class func sortByAlphabeticalOrder(files: Array<PrintFile>) -> Array<PrintFile> {
         return files.sorted { (file1: PrintFile, file2: PrintFile) -> Bool in
             if file1.isFolder() && file2.isFolder() {
@@ -185,8 +185,8 @@ class PrintFile: NSObject {
         }
     }
     
-    // Sorts specified list of files by upload date. Files from SD Card have no date so put them at the bottom sorted by 'display'
-    // Folders first and files second
+    /// Sorts specified list of files by upload date. Files from SD Card have no date so put them at the bottom sorted by 'display'
+    /// Folders first and files second
     fileprivate class func sortByUploadDate(files: Array<PrintFile>) -> Array<PrintFile> {
         return files.sorted { (file1: PrintFile, file2: PrintFile) -> Bool in
             if file1.isFolder() && file2.isFolder() {
@@ -205,8 +205,8 @@ class PrintFile: NSObject {
         }
     }
     
-    // Sorts specified list of files by last print date. Files from SD Card have no date so put them at the bottom sorted by 'display'
-    // Folders first and files second
+    /// Sorts specified list of files by last print date. Files from SD Card have no date so put them at the bottom sorted by 'display'
+    /// Folders first and files second
     fileprivate class func sortByLastPrintDate(files: Array<PrintFile>) -> Array<PrintFile> {
         return files.sorted { (file1: PrintFile, file2: PrintFile) -> Bool in
             if file1.isFolder() && file2.isFolder() {

@@ -16,6 +16,9 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var toggleDisplayButton: UIButton!
     
+    @IBOutlet weak var sortByTextLabel: UILabel!
+    @IBOutlet weak var sortByControl: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +39,21 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         collectionView.backgroundColor = currentTheme.backgroundColor()
         self.view.backgroundColor = currentTheme.backgroundColor()
         self.toggleDisplayButton.backgroundColor = currentTheme.backgroundColor()
+        // Set background color to the sort control
+        sortByTextLabel.textColor = currentTheme.textColor()
+        sortByControl.tintColor = currentTheme.tintColor()
+
+        // Update sort control based on user preferences for sorting
+        var selectIndex = 0
+        switch PrinterObserver.defaultSortCriteria() {
+        case PrinterObserver.SortBy.position:
+            selectIndex = 0
+        case PrinterObserver.SortBy.alphabetical:
+            selectIndex = 1
+        case PrinterObserver.SortBy.timeLeft:
+            selectIndex = 2
+        }
+        sortByControl.selectedSegmentIndex = selectIndex
 
         printers = []
         for printer in printerManager.getPrinters() {
@@ -49,8 +67,13 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         // Create embedded VCs (but will not be rendered yet)
         self.addEmbeddedCameraViewControllers()
         self.updateButtonIcon()
+        // Sort printers by user prefered sort criteria
+        printers = PrinterObserver.sort(printers: printers, by: nil)
         // Request to reload in case list of printers has changed
         self.collectionView.reloadData()
+        
+        // Sort printer by user prefered sort criteria
+        sortByChanged(self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -219,6 +242,66 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         }
     }
 
+    // MARK: - Button actions
+
+    @IBAction func sortByChanged(_ sender: Any) {
+        // Sort by new criteria
+        var sortedPrinters: Array<PrinterObserver>
+        var sortedCameraEmbeddedVCs: Array<CameraEmbeddedViewController> = Array()
+        // Sort PrinterObserver first
+        if sortByControl.selectedSegmentIndex == 0 {
+            sortedPrinters = PrinterObserver.sort(printers: printers, by: PrinterObserver.SortBy.position)
+        } else if sortByControl.selectedSegmentIndex == 1 {
+            sortedPrinters = PrinterObserver.sort(printers: printers, by: PrinterObserver.SortBy.alphabetical)
+        } else {
+            sortedPrinters = PrinterObserver.sort(printers: printers, by: PrinterObserver.SortBy.timeLeft)
+        }
+        // Sort CameraEmbeddedViewController next
+        for (index, printer) in sortedPrinters.enumerated() {
+            if let cameraEmbeddedVC = cameraEmbeddedViewControllers.first(where: { (aCameraEmbeddedVC: CameraEmbeddedViewController) in
+                return aCameraEmbeddedVC.cameraLabel == printer.printerName
+            }) {
+                cameraEmbeddedVC.cameraIndex = index
+                sortedCameraEmbeddedVCs.append(cameraEmbeddedVC)
+            }
+        }
+
+        collectionView.performBatchUpdates {
+            if displayCameras {
+                for (newIndex, cameraEmbeddedVC) in sortedCameraEmbeddedVCs.enumerated() {
+                    let oldIndex = self.cameraEmbeddedViewControllers.firstIndex { (aCameraEmbeddedVC: CameraEmbeddedViewController) in
+                        return cameraEmbeddedVC.printerURL == aCameraEmbeddedVC.printerURL
+                    }
+                    let fromIndexPath = IndexPath(row: oldIndex!, section: 0)
+                    let toIndexPath = IndexPath(row: newIndex, section: 0)
+                    
+                    NSLog("*!*!*!*! Moving VC \(cameraEmbeddedVC.cameraLabel!) from \(oldIndex!) to \(newIndex)")
+                    
+                    self.collectionView.moveItem(at: fromIndexPath, to: toIndexPath)
+                }
+            } else {
+                for (newIndex, printer) in sortedPrinters.enumerated() {
+                    let oldIndex = self.printers.firstIndex { (somePrinter: PrinterObserver) in
+                        return printer.printerName == somePrinter.printerName
+                    }
+                    let fromIndexPath = IndexPath(row: oldIndex!, section: 0)
+                    let toIndexPath = IndexPath(row: newIndex, section: 0)
+                    
+                    NSLog("*!*!*!*! Moving PRINTER \(printer.printerName) from \(oldIndex!) to \(newIndex)")
+                    
+                    self.collectionView.moveItem(at: fromIndexPath, to: toIndexPath)
+                }
+            }
+        } completion: { (finished: Bool) in
+            self.printers = sortedPrinters
+            self.cameraEmbeddedViewControllers = sortedCameraEmbeddedVCs
+        }
+
+        
+        // Refresh UI
+//        collectionView.reloadData()
+    }
+    
     // MARK: - PrintersCameraGridViewCellDelegate
     
     func expandCameraClicked(cell: PrintersCameraGridViewCell) {
