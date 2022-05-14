@@ -256,6 +256,9 @@
 /* (No Comment) */
 "Failed to disable motor" = "Не удалось отключить %@ двигатель";
 
+/* No comment provided by engineer. */
+"Failed to fetch sponsors list" = "Не удалось получить список спонсоров.";
+
 /* Failed to get controls with HTTP Request error info */
 "Failed to get controls" = "Не удалось получить контроль. HTTP-ответ: %d";
 

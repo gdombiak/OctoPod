@@ -256,6 +256,9 @@
 /* (No Comment) */
 "Failed to disable motor" = "Nepavyko išjungti %@ motoro";
 
+/* No comment provided by engineer. */
+"Failed to fetch sponsors list" = "Nepavyko gauti rėmėjų sąrašo";
+
 /* Failed to get controls with HTTP Request error info */
 "Failed to get controls" = "Nepavyko gauti kontrolsų. HTTP atsakymas: %d";
 

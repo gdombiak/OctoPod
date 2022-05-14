@@ -256,6 +256,9 @@
 /* (No Comment) */
 "Failed to disable motor" = "Nezdařilo se vypnout %@ motor";
 
+/* No comment provided by engineer. */
+"Failed to fetch sponsors list" = "Nepodařilo se načíst seznam sponzorů";
+
 /* Failed to get controls with HTTP Request error info */
 "Failed to get controls" = "Nezdařilo se získat ovládání. HTTP odpověď: %d";
 

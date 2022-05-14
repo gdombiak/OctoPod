@@ -256,6 +256,9 @@
 /* (No Comment) */
 "Failed to disable motor" = "%@ Motor ausschalten fehlgeschlagen";
 
+/* No comment provided by engineer. */
+"Failed to fetch sponsors list" = "Sponsorenliste konnte nicht abgerufen werden";
+
 /* Failed to get controls with HTTP Request error info */
 "Failed to get controls" = "Keine Steuerungselemente übertragen. HTTP Antwort: %d";
 

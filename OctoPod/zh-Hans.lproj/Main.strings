@@ -157,6 +157,15 @@
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "9dR-Sn-lbP"; */
 "9dR-Sn-lbP.placeholder" = "密码";
 
+/* Class = "UISegmentedControl"; 9Nh-tG-stN.segmentTitles[0] = "#"; ObjectID = "9Nh-tG-stN"; */
+"9Nh-tG-stN.segmentTitles[0]" = "#";
+
+/* Class = "UISegmentedControl"; 9Nh-tG-stN.segmentTitles[1] = "ABC"; ObjectID = "9Nh-tG-stN"; */
+"9Nh-tG-stN.segmentTitles[1]" = "ABC";
+
+/* Class = "UISegmentedControl"; 9Nh-tG-stN.segmentTitles[2] = "Time Left"; ObjectID = "9Nh-tG-stN"; */
+"9Nh-tG-stN.segmentTitles[2]" = "剩余时间";
+
 /* Class = "UILabel"; text = "Uploaded"; ObjectID = "26j-Xb-FzE"; */
 "26j-Xb-FzE.text" = "已上传";
 
@@ -687,6 +696,9 @@
 
 /* Class = "UILabel"; text = "About 10m"; ObjectID = "NQ5-25-ww1"; */
 "NQ5-25-ww1.text" = "约10米";
+
+/* Class = "UILabel"; text = "Sort By"; ObjectID = "Nsg-5W-CuZ"; */
+"Nsg-5W-CuZ.text" = "排序方式";
 
 /* Class = "UILabel"; text = "0.0 C"; ObjectID = "NsL-9T-upI"; */
 "NsL-9T-upI.text" = "0.0C";

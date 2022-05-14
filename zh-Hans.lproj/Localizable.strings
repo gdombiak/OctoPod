@@ -256,6 +256,9 @@
 /* (No Comment) */
 "Failed to disable motor" = "关闭%@电机失败";
 
+/* No comment provided by engineer. */
+"Failed to fetch sponsors list" = "获取赞助商列表失败";
+
 /* Failed to get controls with HTTP Request error info */
 "Failed to get controls" = "获取控件失败。HTTP响应。%d";
 

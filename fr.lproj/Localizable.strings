@@ -256,6 +256,9 @@
 /* (No Comment) */
 "Failed to disable motor" = "Échec de la désactivation du moteur %@";
 
+/* No comment provided by engineer. */
+"Failed to fetch sponsors list" = "Échec de la récupération de la liste des sponsors";
+
 /* Failed to get controls with HTTP Request error info */
 "Failed to get controls" = "Échec de la récupération des contrôles. Réponse HTTP : %d";
 

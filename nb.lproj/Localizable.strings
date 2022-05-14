@@ -256,6 +256,9 @@
 /* (No Comment) */
 "Failed to disable motor" = "Kunne ikke deaktivere %@ motor";
 
+/* No comment provided by engineer. */
+"Failed to fetch sponsors list" = "Kunne ikke hente sponsorlisten";
+
 /* Failed to get controls with HTTP Request error info */
 "Failed to get controls" = "Kunne ikke få kontroller. HTTP respons: %d";
 

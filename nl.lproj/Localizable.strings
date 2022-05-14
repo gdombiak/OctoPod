@@ -256,6 +256,9 @@
 /* (No Comment) */
 "Failed to disable motor" = "Motor %@ uitschakelen mislukt";
 
+/* No comment provided by engineer. */
+"Failed to fetch sponsors list" = "Kan sponsorlijst niet ophalen";
+
 /* Failed to get controls with HTTP Request error info */
 "Failed to get controls" = "Bedieningselementen ophalen mislukt! HTTP response: %d";
 
