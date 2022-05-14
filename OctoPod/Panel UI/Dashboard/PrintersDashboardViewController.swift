@@ -67,13 +67,10 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         // Create embedded VCs (but will not be rendered yet)
         self.addEmbeddedCameraViewControllers()
         self.updateButtonIcon()
-        // Sort printers by user prefered sort criteria
-        printers = PrinterObserver.sort(printers: printers, by: nil)
+        // Sort printer by user prefered sort criteria (sort by 'time left' will not work yet since we have not loaded this info)
+        (self.printers, self.cameraEmbeddedViewControllers)  = self.getSortedPrinters()
         // Request to reload in case list of printers has changed
         self.collectionView.reloadData()
-        
-        // Sort printer by user prefered sort criteria
-        sortByChanged(self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -246,25 +243,7 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
 
     @IBAction func sortByChanged(_ sender: Any) {
         // Sort by new criteria
-        var sortedPrinters: Array<PrinterObserver>
-        var sortedCameraEmbeddedVCs: Array<CameraEmbeddedViewController> = Array()
-        // Sort PrinterObserver first
-        if sortByControl.selectedSegmentIndex == 0 {
-            sortedPrinters = PrinterObserver.sort(printers: printers, by: PrinterObserver.SortBy.position)
-        } else if sortByControl.selectedSegmentIndex == 1 {
-            sortedPrinters = PrinterObserver.sort(printers: printers, by: PrinterObserver.SortBy.alphabetical)
-        } else {
-            sortedPrinters = PrinterObserver.sort(printers: printers, by: PrinterObserver.SortBy.timeLeft)
-        }
-        // Sort CameraEmbeddedViewController next
-        for (index, printer) in sortedPrinters.enumerated() {
-            if let cameraEmbeddedVC = cameraEmbeddedViewControllers.first(where: { (aCameraEmbeddedVC: CameraEmbeddedViewController) in
-                return aCameraEmbeddedVC.cameraLabel == printer.printerName
-            }) {
-                cameraEmbeddedVC.cameraIndex = index
-                sortedCameraEmbeddedVCs.append(cameraEmbeddedVC)
-            }
-        }
+        let (sortedPrinters, sortedCameraEmbeddedVCs)  = getSortedPrinters()
 
         collectionView.performBatchUpdates {
             if displayCameras {
@@ -275,7 +254,7 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
                     let fromIndexPath = IndexPath(row: oldIndex!, section: 0)
                     let toIndexPath = IndexPath(row: newIndex, section: 0)
                     
-                    NSLog("*!*!*!*! Moving VC \(cameraEmbeddedVC.cameraLabel!) from \(oldIndex!) to \(newIndex)")
+//                    NSLog("*!*!*!*! Moving VC \(cameraEmbeddedVC.cameraLabel!) from \(oldIndex!) to \(newIndex)")
                     
                     self.collectionView.moveItem(at: fromIndexPath, to: toIndexPath)
                 }
@@ -287,7 +266,7 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
                     let fromIndexPath = IndexPath(row: oldIndex!, section: 0)
                     let toIndexPath = IndexPath(row: newIndex, section: 0)
                     
-                    NSLog("*!*!*!*! Moving PRINTER \(printer.printerName) from \(oldIndex!) to \(newIndex)")
+//                    NSLog("*!*!*!*! Moving PRINTER \(printer.printerName) from \(oldIndex!) to \(newIndex)")
                     
                     self.collectionView.moveItem(at: fromIndexPath, to: toIndexPath)
                 }
@@ -297,9 +276,6 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
             self.cameraEmbeddedViewControllers = sortedCameraEmbeddedVCs
         }
 
-        
-        // Refresh UI
-//        collectionView.reloadData()
     }
     
     // MARK: - PrintersCameraGridViewCellDelegate
@@ -327,6 +303,15 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
                 if self.printers.count > row {
                     self.collectionView.reloadItems(at: [indexPath])
                 }
+            }
+        }
+    }
+    
+    func currentStateUpdated(row: Int, event: CurrentStateEvent) {
+            // If sorted by Time Left then resort and refresh UI as this information changes frequently
+        DispatchQueue.main.async {
+            if self.sortByControl.selectedSegmentIndex == 2 {
+                self.sortByChanged(self)
             }
         }
     }
@@ -378,6 +363,29 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         } else {
             cell.filenameLabel.text = ""
         }
+    }
+    
+    fileprivate func getSortedPrinters() -> (sortedPrinters: Array<PrinterObserver>, sortedCameraEmbeddedVCs: Array<CameraEmbeddedViewController>) {
+        var sortedPrinters: Array<PrinterObserver>
+        var sortedCameraEmbeddedVCs: Array<CameraEmbeddedViewController> = Array()
+        // Sort PrinterObserver first
+        if sortByControl.selectedSegmentIndex == 0 {
+            sortedPrinters = PrinterObserver.sort(printers: printers, by: PrinterObserver.SortBy.position)
+        } else if sortByControl.selectedSegmentIndex == 1 {
+            sortedPrinters = PrinterObserver.sort(printers: printers, by: PrinterObserver.SortBy.alphabetical)
+        } else {
+            sortedPrinters = PrinterObserver.sort(printers: printers, by: PrinterObserver.SortBy.timeLeft)
+        }
+        // Sort CameraEmbeddedViewController next
+        for (index, printer) in sortedPrinters.enumerated() {
+            if let cameraEmbeddedVC = cameraEmbeddedViewControllers.first(where: { (aCameraEmbeddedVC: CameraEmbeddedViewController) in
+                return aCameraEmbeddedVC.cameraLabel == printer.printerName
+            }) {
+                cameraEmbeddedVC.cameraIndex = index
+                sortedCameraEmbeddedVCs.append(cameraEmbeddedVC)
+            }
+        }
+        return (sortedPrinters, sortedCameraEmbeddedVCs)
     }
     
     fileprivate func addEmbeddedCameraViewControllers() {
