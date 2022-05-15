@@ -37,7 +37,7 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
         
         themeLabels()
 
-        let url = URL(string: "https://app.thespaghettidetective.com/tunnels/new/?app=OctoPod")!
+        let url = URL(string: "https://app.obico.io/tunnels/new/?app=OctoPod")!
         webView.load(URLRequest(url: url))
         
         displayProgressMessage(message: NSLocalizedString("Select printer from The Spaghetti Detective.", comment: ""))
@@ -102,7 +102,7 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
 //        NSLog("webView url \(webView.url!.absoluteString)")
         
         if let url = webView.url {
-            if url.host == "app.thespaghettidetective.com" && url.path == "/tunnels/succeeded", let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+            if url.host == "app.obico.io" && url.path == "/tunnels/succeeded", let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
                 if let tunnerEndpoint = urlComponents.queryItems?.first(where: { $0.name == "tunnel_endpoint" })?.value, let printerURL = URL(string: tunnerEndpoint) {
                     var tunnelURLComponents = URLComponents(url: printerURL, resolvingAgainstBaseURL: false)
                     username = tunnelURLComponents?.user

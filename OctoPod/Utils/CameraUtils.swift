@@ -17,7 +17,7 @@ class CameraUtils {
         if isHLS(url: cameraURL.absoluteString) {
             // Render image from HLS camera
             renderHLSImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, completion: completion)
-        } else if isTLS(cameraURL: cameraURL) {
+        } else if isTSD(cameraURL: cameraURL) {
             // The Spaghetti Detective has its own special logic
             renderTLSImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, preemptive: preemptive, timeoutInterval: timeoutInterval, completion: completion)
         } else {
@@ -32,8 +32,8 @@ class CameraUtils {
     }
     
     /// Returns true if camera URL is hosted via The Spaghetti Detective
-    func isTLS(cameraURL: URL) -> Bool {
-        if let host = cameraURL.host, host.hasSuffix("thespaghettidetective.com") {
+    func isTSD(cameraURL: URL) -> Bool {
+        if let host = cameraURL.host, host.hasSuffix("thespaghettidetective.com") ||  host.hasSuffix("obico.io") {
             return true
         }
         return false

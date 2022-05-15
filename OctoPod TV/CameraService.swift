@@ -235,7 +235,7 @@ class CameraService: ObservableObject {
                     player!.play()
                 }
 
-            } else if CameraUtils.shared.isTLS(cameraURL: url) {
+            } else if CameraUtils.shared.isTSD(cameraURL: url) {
                 tsdTimer = Timer(fire: Date(), interval: 1, repeats: true, block: { (timer: Timer) in
                     if self.tsdCountdown == 0 {
                         // We need to make call Webcam snapshot API to then fetch Image from returned URL
