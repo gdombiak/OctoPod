@@ -1,6 +1,21 @@
 # Changelog
 
-## [3.21](https://github.com/gdombiak/OctoPod/tree/3.21) (2022-05-05)
+## [3.21](https://github.com/gdombiak/OctoPod/tree/3.22) (2022-05-16)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.21...3.22)
+
+**Implemented enhancements:**
+
+- Landscape view does not show camera feed on iPad Mini 6 [\#583](https://github.com/gdombiak/OctoPod/issues/583)
+- Sort remaining time [\#572](https://github.com/gdombiak/OctoPod/issues/572)
+
+**Fixed bugs:**
+
+- Fix most popular app crash [\#589](https://github.com/gdombiak/OctoPod/issues/589)
+- Spaghetti Detective doesn’t work with name change to Obcio [\#587](https://github.com/gdombiak/OctoPod/issues/587)
+- No camera feed when there is an extra space at the beginning [\#577](https://github.com/gdombiak/OctoPod/issues/577)
+
+## [3.21](https://github.com/gdombiak/OctoPod/tree/3.21) (2022-05-06)
 
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.20...3.21)
 
