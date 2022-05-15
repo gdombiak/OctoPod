@@ -22,10 +22,9 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Disable estimated size for iOS 10 since it crashes on iPad and iPhone Plus
-        let os = ProcessInfo().operatingSystemVersion
+        // Disable estimated size so cells do not change size (go too small and then big and then small)
         if let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.estimatedItemSize = os.majorVersion == 10 ? CGSize(width: 0, height: 0) : UICollectionViewFlowLayout.automaticSize
+            layout.estimatedItemSize = .zero
         }
     }
     
@@ -59,7 +58,7 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         for printer in printerManager.getPrinters() {
             // Only add printers that want to be displayed in dashboard
             if printer.includeInDashboard {
-                let printerObserver = PrinterObserver(delegate: self, row: printers.count)
+                let printerObserver = PrinterObserver(delegate: self, row: printers.count, printerIndex: printers.count)
                 printerObserver.connectToServer(printer: printer)
                 printers.append(printerObserver)
             }

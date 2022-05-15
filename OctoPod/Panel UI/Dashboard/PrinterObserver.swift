@@ -12,10 +12,11 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
     
     private var delegate: PrinterObserverDelegate?
     private var octoPrintClient: OctoPrintClient?
-    private let row: Int
+    private var row: Int // Position in the UICollectionView. Position changes as sort changes
     
     private var isDefaultPrinter: Bool = false
     
+    private let printerIndex: Int // Position of printer in list of printers as defined by user (in Settings)
     var printerName: String = ""
     var printerStatus: String = "--"
     var progress: String = "--%"
@@ -26,9 +27,10 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
     var jobFile: String?
     var layer: String?
     
-    init(delegate: PrinterObserverDelegate, row: Int) {
+    init(delegate: PrinterObserverDelegate, row: Int, printerIndex: Int) {
         self.delegate = delegate
         self.row = row
+        self.printerIndex = printerIndex
     }
     
     // MARK: - Connection operations
@@ -97,14 +99,20 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
             useSort = defaultSortCriteria()
         }
 
+        let sortedPrinters: Array<PrinterObserver>
         switch useSort {
         case .position:
-            return sortByPosition(printers: printers)
+            sortedPrinters = sortByPosition(printers: printers)
         case SortBy.alphabetical:
-            return sortByAlphabeticalOrder(printers: printers)
+            sortedPrinters = sortByAlphabeticalOrder(printers: printers)
         case SortBy.timeLeft:
-            return sortByTimeLeft(printers: printers)
+            sortedPrinters = sortByTimeLeft(printers: printers)
         }
+        // Update position of printer in PrintersDashboardViewController
+        for (index, printer) in sortedPrinters.enumerated() {
+            printer.row = index
+        }
+        return sortedPrinters
     }
     
     /// Returns default sort criteria to use (based on user preferences)
@@ -119,7 +127,7 @@ class PrinterObserver: OctoPrintClientDelegate, OctoPrintPluginsDelegate {
     /// Sorts printers by position
     fileprivate class func sortByPosition(printers: Array<PrinterObserver>) -> Array<PrinterObserver> {
         return printers.sorted { (printer1: PrinterObserver, printer2: PrinterObserver) -> Bool in
-            return printer1.row < printer2.row
+            return printer1.printerIndex < printer2.printerIndex
         }
     }
     

@@ -21,7 +21,7 @@ class PrinterFullScreenCameraViewController: UIViewController, PrinterObserverDe
         camerasViewController = camerasChild
         
         // Create printer observer that will listen to OctoPrint events
-        printerObserver = PrinterObserver(delegate: self, row: 0)
+        printerObserver = PrinterObserver(delegate: self, row: 0, printerIndex: 0)
         
         // Add a gesture recognizer to camera view so we can handle taps
         camerasViewController?.embeddedCameraTappedCallback = {(CameraEmbeddedViewController) in
