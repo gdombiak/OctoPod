@@ -10,6 +10,7 @@ class Timelapse {
     /// Formatted timestamp of the timelapse creation date
     private(set) var date: String
     /// URL for downloading the timelapse
+    /// **URL is already URL encoded** by OctoPrint so do not encode again when using it
     private(set) var url: String
 
     init(name: String, size: String, bytes: Int, date: String, url: String) {
