@@ -129,9 +129,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         else if url.pathExtension == "gcode" {
             // User has shared a gcode-file with Octopod. The only useful operation is to upload to octoprint.
-            // Add some delay so app transitions to Active (camera will render only when app is active)
+            // Add some delay so app transitions to Active
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                //self.defaultPrinterManager.changeToDefaultPrinter(printer: printer)
 
                 // Go to main Panel window
                 if let tabBarController = self.window!.rootViewController as? UITabBarController {
@@ -143,10 +142,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             }
-
-            // As the gcode-file is not necessarily in octopod directories, this fancy AccessingSecurityScopedResource is necessary.
-            _ = url.startAccessingSecurityScopedResource()
-            url.stopAccessingSecurityScopedResource()
         }
         return false
     }
