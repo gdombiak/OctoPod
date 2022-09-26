@@ -45,11 +45,11 @@ class TempHistoryViewController: UIViewController, SubpanelViewController, OctoP
         lineChartView.xAxis.labelTextColor = labelColor
         lineChartView.leftAxis.labelTextColor = labelColor
         lineChartView.rightAxis.drawLabelsEnabled = false
-        lineChartView.chartDescription?.textColor = labelColor
+        lineChartView.chartDescription.textColor = labelColor
         lineChartView.legend.textColor = labelColor
         lineChartView.noDataTextColor = labelColor
 
-        lineChartView.chartDescription?.font = .systemFont(ofSize: 10.0)
+        lineChartView.chartDescription.font = .systemFont(ofSize: 10.0)
         updateChartDescription()
         lineChartView.noDataText = NSLocalizedString("No temperature history", comment: "No temperature history")
         
@@ -150,9 +150,9 @@ class TempHistoryViewController: UIViewController, SubpanelViewController, OctoP
     
     fileprivate func updateChartDescription() {
         if chartTemp == ChartTemps.printer {
-            lineChartView.chartDescription?.text = NSLocalizedString("Temperature", comment: "Temperature")
+            lineChartView.chartDescription.text = NSLocalizedString("Temperature", comment: "Temperature")
         } else {
-            lineChartView.chartDescription?.text = NSLocalizedString("SoC Temperature", comment: "SoC Temperature")
+            lineChartView.chartDescription.text = NSLocalizedString("SoC Temperature", comment: "SoC Temperature")
         }
     }
     fileprivate func paintChart() {
@@ -259,78 +259,78 @@ class TempHistoryViewController: UIViewController, SubpanelViewController, OctoP
         if !bedActualEntries.isEmpty {
             let lineColor = UIColor(red: 0/255, green: 24/255, blue: 250/255, alpha: 1.0)
             let line = createLine(values: bedActualEntries, label: NSLocalizedString("Actual Bed", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
         if !bedTargetEntries.isEmpty {
             let lineColor = UIColor(red: 121/255, green: 130/255, blue: 251/255, alpha: 1.0)
             let line = createLine(values: bedTargetEntries, label: NSLocalizedString("Target Bed", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
         
         if !tool0ActualEntries.isEmpty {
             let lineColor = UIColor(red: 255/255, green: 0/255, blue: 20/255, alpha: 1.0)
             let line = createLine(values: tool0ActualEntries, label: NSLocalizedString("Actual Extruder", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
         if !tool0TargetEntries.isEmpty {
             let lineColor = UIColor(red: 255/255, green: 125/255, blue: 130/255, alpha: 1.0)
             let line = createLine(values: tool0TargetEntries, label: NSLocalizedString("Target Extruder", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
         
         if !tool1ActualEntries.isEmpty {
             let lineColor = UIColor(red: 9/255, green: 102/255, blue: 26/255, alpha: 1.0)
             let line = createLine(values: tool1ActualEntries, label: NSLocalizedString("Actual Extruder 2", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
         if !tool1TargetEntries.isEmpty {
             let lineColor = UIColor(red: 82/255, green: 170/255, blue: 90/255, alpha: 1.0)
             let line = createLine(values: tool1TargetEntries, label: NSLocalizedString("Target Extruder 2", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
         
         if !tool2ActualEntries.isEmpty {
             let lineColor = UIColor(red: 225/255, green: 158/255, blue: 100/255, alpha: 1.0)
             let line = createLine(values: tool2ActualEntries, label: NSLocalizedString("Actual Extruder 3", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
         if !tool2TargetEntries.isEmpty {
             let lineColor = UIColor(red: 226/255, green: 177/255, blue: 133/255, alpha: 1.0)
             let line = createLine(values: tool2TargetEntries, label: NSLocalizedString("Target Extruder 3", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
         
         if !tool3ActualEntries.isEmpty {
             let lineColor = UIColor(red: 255/255, green: 102/255, blue: 178/255, alpha: 1.0)
             let line = createLine(values: tool3ActualEntries, label: NSLocalizedString("Actual Extruder 4", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
         if !tool3TargetEntries.isEmpty {
             let lineColor = UIColor(red: 255/255, green: 153/255, blue: 255/255, alpha: 1.0)
             let line = createLine(values: tool3TargetEntries, label: NSLocalizedString("Target Extruder 4", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
         
         if !tool4ActualEntries.isEmpty {
             let lineColor = UIColor(red: 153/255, green: 0/255, blue: 76/255, alpha: 1.0)
             let line = createLine(values: tool4ActualEntries, label: NSLocalizedString("Actual Extruder 5", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
         if !tool4TargetEntries.isEmpty {
             let lineColor = UIColor(red: 204/255, green: 0/255, blue: 204/255, alpha: 1.0)
             let line = createLine(values: tool4TargetEntries, label: NSLocalizedString("Target Extruder 5", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
         
         if !chamberActualEntries.isEmpty {
             let lineColor = UIColor(red: 204/255, green: 153/255, blue: 0/255, alpha: 1.0)
             let line = createLine(values: chamberActualEntries, label: NSLocalizedString("Actual Chamber", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
         if !chamberTargetEntries.isEmpty {
             let lineColor = UIColor(red: 204/255, green: 204/255, blue: 0/255, alpha: 1.0)
             let line = createLine(values: chamberTargetEntries, label: NSLocalizedString("Target Chamber", comment: ""), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
 
         if !lineChartData.dataSets.isEmpty {
@@ -338,7 +338,7 @@ class TempHistoryViewController: UIViewController, SubpanelViewController, OctoP
             lineChartView.data = lineChartData
            
             // Display temp variance
-            lineChartView.chartDescription?.text = NSLocalizedString("Extruder Variance", comment: "") + ": \(String(format: "%0.*f", 1, (maxTool0Actual - minTool0Actual))) - " + NSLocalizedString("Bed Variance", comment: "") + ": \(String(format: "%0.*f", 1, (maxBedActual - minBedActual)))"
+            lineChartView.chartDescription.text = NSLocalizedString("Extruder Variance", comment: "") + ": \(String(format: "%0.*f", 1, (maxTool0Actual - minTool0Actual))) - " + NSLocalizedString("Bed Variance", comment: "") + ": \(String(format: "%0.*f", 1, (maxBedActual - minBedActual)))"
         } else {
             lineChartView.data = nil
             updateChartDescription()
@@ -362,7 +362,7 @@ class TempHistoryViewController: UIViewController, SubpanelViewController, OctoP
         if !socEntries.isEmpty {
             let lineColor = UIColor(red: 255/255, green: 125/255, blue: 130/255, alpha: 1.0)
             let line = createLine(values: socEntries, label: NSLocalizedString("SoC", comment: "SoC"), lineColor: lineColor)
-            lineChartData.addDataSet(line)
+            lineChartData.append(line)
         }
 
         if !lineChartData.dataSets.isEmpty {
