@@ -812,7 +812,12 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 // We are not in landscape mode so change it to landscape
                 uiOrientationBeforeFullScreen = uiOrientation  // Set previous value so we can go back to what it was
                 // Rotate UI now
-                UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeRight.rawValue), forKey: "orientation")
+                if #available(iOS 16.0, *) {
+                    let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                    windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
+                } else {
+                    UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeRight.rawValue), forKey: "orientation")
+                }
             } else {
                 uiOrientationBeforeFullScreen = nil
             }
@@ -835,7 +840,12 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             // Flip orientation if needed
             if let orientation = uiOrientationBeforeFullScreen {
                 // When running full screen we are forcing landscape so we go back to portrait when leaving
-                UIDevice.current.setValue(Int(orientation.rawValue), forKey: "orientation")
+                if #available(iOS 16.0, *) {
+                    let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                    windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: orientation.isPortrait ? .portrait : .landscape))
+                } else {
+                    UIDevice.current.setValue(Int(orientation.rawValue), forKey: "orientation")
+                }
                 uiOrientationBeforeFullScreen = nil
             }
             // Restore idle timer to previous value before going full screen
