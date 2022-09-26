@@ -152,9 +152,11 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
                 }
             } else if let printer = printerManager.getPrinterByName(name: printerName) {
                 // User clicked on notification. Let's switch to the selected printer
-                defaultPrinterManager.changeToDefaultPrinter(printer: printer)
-                // Execute completion handler
-                completionHandler()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                    self.defaultPrinterManager.changeToDefaultPrinter(printer: printer)
+                    // Execute completion handler
+                    completionHandler()
+                }
             }
         } else {
             // Execute completion handler
