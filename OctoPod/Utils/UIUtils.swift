@@ -59,7 +59,7 @@ class UIUtils {
             // iPhone 5, 5s, 5c, SE (and older models)
             return (183, 0, 183, 0)
         } else if screenHeight == 667 {
-            // iPhone 6, 6s, 7, 8
+            // iPhone 6, 6s, 7, 8 , SE 3rd gen
             return (281, 0, 211, 0)
         } else if screenHeight == 736 {
             // iPhone 7/8 Plus
@@ -68,14 +68,20 @@ class UIUtils {
             // iPhone X, Xs
             return (281, 0, 211, 0)
         } else if screenHeight == 844 {
-            // iPhone 12 and 12 Pro
+            // iPhone 12, 12 Pro and 14
             return (292, 0, 219, 0)
+        } else if screenHeight == 852 {
+            // iPhone 14 Pro
+            return (295, 0, 222, 0)
         } else if screenHeight == 896 {
             // iPhone Xr, Xs Max
             return (311, 0, 233, 0)
         } else if screenHeight == 926 {
-            // iPhone 12 Pro Max
+            // iPhone 12 Pro Max, 14 Plus
             return (321, 0, 241, 0)
+        } else if screenHeight == 932 {
+            // iPhone 14 Pro Max
+            return (322, 0, 242, 0)
         } else if screenHeight == 1024 {
             // iPad (9.7-inch)
             return (575, 348, 432, 348)
@@ -86,7 +92,7 @@ class UIUtils {
             // iPad (10.5-inch)
             return (619, 414, 469, 414)
         } else if screenHeight == 1133 {
-            // iPad Mini (6yh generation)
+            // iPad Mini (6th generation)
             return (558, 348, 419, 348)
         } else if screenHeight == 1180 {
             // iPad Air (4th Gen) (2020)
