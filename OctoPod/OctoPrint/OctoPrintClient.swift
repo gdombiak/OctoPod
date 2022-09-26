@@ -239,6 +239,20 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                     // OctoPrint requires authentication of websocket.
                     self.webSocketClient?.authenticate(user: name, session: session)
                 }
+            } else if (response.statusCode >= 400 && response.statusCode <= 500) {
+                // OctoPrint is have issues with this authentication
+                
+                var authError: Error
+                if let error = error {
+                    authError = error
+                } else {
+                    authError = NSError(domain: "PassiveAuthenticationError", code: response.statusCode, userInfo: nil)
+                }
+                // Notify other listeners that there was an authentication error connecting to OctoPrint
+                for delegate in self.delegates {
+                    delegate.websocketConnectionFailed(error: authError)
+                }
+                return
             }
             
             // Notify the terminal that we connected to OctoPrint

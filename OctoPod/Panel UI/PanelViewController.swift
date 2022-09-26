@@ -426,6 +426,15 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         DispatchQueue.main.async {
             self.notRefreshingReason = self.obtainConnectionErrorReason(error: error)
             self.notRefreshingButton.isHidden = false
+            
+            // Handle special case for Passive Auth Error when using Global API Keys that are being deprecated
+            let nsError = error as NSError
+            if nsError.domain == "PassiveAuthenticationError" {
+                if let printer = self.printerManager.getDefaultPrinter(), printer.getPrinterConnectionType() == .apiKey || nsError.code == 500 {
+                    let errorMessage = NSLocalizedString("OctoPrint had an error using Global API Key. Remove and add printer again using 'Application Key' as a workaround", comment: "")
+                    self.showAlert(NSLocalizedString("Authentication failed", comment: ""), message: errorMessage)
+                }
+            }
         }
     }
     
