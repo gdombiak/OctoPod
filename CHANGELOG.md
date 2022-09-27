@@ -1,6 +1,34 @@
 # Changelog
 
-## [3.22](https://github.com/gdombiak/OctoPod/tree/3.22) (2022-05-16)
+## [3.24](https://github.com/gdombiak/OctoPod/tree/3.24) (2022-09-16)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.23...3.24)
+
+
+**Implemented enhancements:**
+
+- Update to latest version of Charts library [\#613](https://github.com/gdombiak/OctoPod/issues/613)
+- Display error when passive login to OctoPrint fails [\#610](https://github.com/gdombiak/OctoPod/issues/610)
+- Add support for iPhone 14 Pro and 14 Pro Max [\#609](https://github.com/gdombiak/OctoPod/issues/609)
+
+**Fixed bugs:**
+
+- Camera does not refresh after tapping on push notification [\#614](https://github.com/gdombiak/OctoPod/issues/614)
+- Screen rotation does not work in iOS 16 [\#611](https://github.com/gdombiak/OctoPod/issues/611)
+- Needs updating for OctoPrint 1.8.3 [\#607](https://github.com/gdombiak/OctoPod/issues/607)
+- Print - Pause - Cancel missing [\#606](https://github.com/gdombiak/OctoPod/issues/606)
+- Time to finish printing and name of model not showing up after Octoprint update  [\#605](https://github.com/gdombiak/OctoPod/issues/605)
+- Timelapses with brackets in file name won’t play  [\#591](https://github.com/gdombiak/OctoPod/issues/591)
+
+**Closed issues:**
+
+- iOS 11 is no longer supported [\#612](https://github.com/gdombiak/OctoPod/issues/612)
+- Multiple layer notification issue IOS [\#599](https://github.com/gdombiak/OctoPod/issues/599)
+- Feature Request: gcode-Upload from another application via Share [\#597](https://github.com/gdombiak/OctoPod/issues/597)
+- Not able to install from the Slovak region App store [\#596](https://github.com/gdombiak/OctoPod/issues/596)
+- Octopod initiated print job by self [\#592](https://github.com/gdombiak/OctoPod/issues/592)
+
+## [3.22](https://github.com/gdombiak/OctoPod/tree/3.22) (2022-05-15)
 
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.21...3.22)
 
