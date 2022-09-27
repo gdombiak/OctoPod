@@ -508,6 +508,9 @@
 /* English translation for words in Swift files */
 "OctoPrint" = "OctoPrint";
 
+/* No comment provided by engineer. */
+"OctoPrint had an error using Global API Key. Remove and add printer again using 'Application Key' as a workaround" = "OctoPrint a rencontré une erreur lors de l'utilisation de la Clé API Globale.  Supprimez et ajoutez à nouveau l'imprimante en utilisant \"Clé d'Application\" comme solution alternative";
+
 /* https://github.com/bastienstefani/OctoRelay */
 "Octorelay" = "Octorelay";
 
