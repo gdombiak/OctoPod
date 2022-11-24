@@ -325,7 +325,7 @@ class PrintFile: NSObject {
             size = newSize
         }
         if let newThumbnail = json["thumbnail"] as? String {
-            thumbnail = newThumbnail
+            thumbnail = newThumbnail.removingPercentEncoding
         }
         if let gcodeAnalysis = json["gcodeAnalysis"] as? NSDictionary {
             if let newPrintTime = gcodeAnalysis["estimatedPrintTime"] as? Double {
