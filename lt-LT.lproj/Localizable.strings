@@ -647,7 +647,7 @@
 "Select printer from OctoEverywhere." = "Pasirinkti spausdintuvą iš OctoEverywhere";
 
 /* No comment provided by engineer. */
-"Select printer from The Spaghetti Detective." = "Pasirinkite spausdintuvą iš Makaronų Detektyvo";
+"Select printer from Obico." = "Pasirinkite spausdintuvą iš Makaronų Detektyvo";
 
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Serveris nerastas";
@@ -724,8 +724,8 @@
 /* (No Comment) */
 "Terminal" = "Terminalas";
 
-/* The Spaghetti Detective Is Not Watching */
-"The Detective Is Not Watching" = "Makaronų Detektyvas nestebi";
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Makaronų Detektyvas nestebi";
 
 /* gcode name */
 "TMC Bump Sensitivity" = "TMC Jautrumas";

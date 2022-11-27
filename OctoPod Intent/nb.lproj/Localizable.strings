@@ -49,8 +49,8 @@
 /* No comment provided by engineer. */
 "seconds ago" = "%d sekunder siden";
 
-/* The Spaghetti Detective Is Not Watching */
-"The Detective Is Not Watching" = "Detektivet ser ikke på";
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Detektivet ser ikke på";
 
 /* ETA is Unknown */
 "Unknown" = "Ukjent";

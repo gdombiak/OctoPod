@@ -40,7 +40,7 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
         let url = URL(string: "https://app.obico.io/tunnels/new/?app=OctoPod")!
         webView.load(URLRequest(url: url))
         
-        displayProgressMessage(message: NSLocalizedString("Select printer from The Spaghetti Detective.", comment: ""))
+        displayProgressMessage(message: NSLocalizedString("Select printer from Obico.", comment: ""))
     }
     
     // MARK: - Table view data source
@@ -48,17 +48,17 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 1 {
             if let _ = hostname {
-                // Hide webview row since user selected printer from The Spaghetti Detective
+                // Hide webview row since user selected printer from Obico
                 return 0
             }
-            // Show webView row until user selects printer from The Spaghetti Detective
+            // Show webView row until user selects printer from Obico
             return tableView.frame.height * 0.7
         } else if indexPath.row > 1 {
             if let _ = hostname {
-                // Show row once user selected printer from The Spaghetti Detective
+                // Show row once user selected printer from Obico
                 return UITableView.automaticDimension
             }
-            // Hide row until user selects printer from The Spaghetti Detective
+            // Hide row until user selects printer from Obico
             return 0
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
@@ -136,7 +136,7 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
     
     @IBAction func saveChanges(_ sender: Any) {
         // Add new printer (that will become default if it's the first one)
-        createPrinter(connectionType: .theSpaghettiDetective, name: printerNameField.text!, hostname: hostname!, apiKey: apiKeyField.text!, username: username, password: password, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
+        createPrinter(connectionType: .obico, name: printerNameField.text!, hostname: hostname!, apiKey: apiKeyField.text!, username: username, password: password, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
         goBack()
     }
     

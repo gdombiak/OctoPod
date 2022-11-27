@@ -64,8 +64,8 @@
 /* No comment provided by engineer. */
 "seconds ago" = "%d сек. назад";
 
-/* The Spaghetti Detective Is Not Watching */
-"The Detective Is Not Watching" = "Детектив не смотрит";
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Детектив не смотрит";
 
 /* ETA is Unknown */
 "Unknown" = "Неизвестно";

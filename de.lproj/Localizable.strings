@@ -647,7 +647,7 @@
 "Select printer from OctoEverywhere." = "Wählen Sie den Drucker von OctoEverywhere aus.";
 
 /* No comment provided by engineer. */
-"Select printer from The Spaghetti Detective." = "Wählen Sie den Drucker vom Spaghetti Detective aus";
+"Select printer from Obico." = "Wählen Sie den Drucker vom Obico aus";
 
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Server kann nicht gefunden werden";
@@ -724,8 +724,8 @@
 /* (No Comment) */
 "Terminal" = "Konsole";
 
-/* The Spaghetti Detective Is Not Watching */
-"The Detective Is Not Watching" = "Der Detectiv beobachtet nicht";
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Der Detectiv beobachtet nicht";
 
 /* gcode name */
 "TMC Bump Sensitivity" = "TMC Stoßempfindlichkeit";

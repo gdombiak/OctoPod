@@ -35,7 +35,7 @@ class CameraService: ObservableObject {
     private var preemptiveAuthentication: Bool = false
     private var isStreamPathFromSettings: Bool = true
     
-    /// Timer to fetch new image when using The Spaghetti Detective
+    /// Timer to fetch new image when using Obico
     private var tsdTimer: Timer?
     private var tsdCountdown = 0
 

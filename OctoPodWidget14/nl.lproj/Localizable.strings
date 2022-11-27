@@ -64,8 +64,8 @@
 /* No comment provided by engineer. */
 "seconds ago" = "Hace %d segundos";
 
-/* The Spaghetti Detective Is Not Watching */
-"The Detective Is Not Watching" = "De Detective let niet op";
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Obico let niet op";
 
 /* ETA is Unknown */
 "Unknown" = "Desconocido";

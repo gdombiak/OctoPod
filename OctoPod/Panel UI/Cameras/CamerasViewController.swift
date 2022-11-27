@@ -289,8 +289,8 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         // See if we can reuse existing controller
         let existing: CameraEmbeddedViewController? = orderedViewControllers.count > index ? orderedViewControllers[index] : nil
         let useHLS = CameraUtils.shared.isHLS(url: url)
-        // See if this is a printer controlled via The Spaghetti Detective
-        let tsdPrinter = printer.getPrinterConnectionType() == .theSpaghettiDetective
+        // See if this is a printer controlled via Obico
+        let tsdPrinter = printer.getPrinterConnectionType() == .obico
         if useHLS, let _ = existing as? CameraHLSEmbeddedViewController {
             controller = existing!
         } else if !useHLS, let _ = existing as? CameraMJPEGEmbeddedViewController, !tsdPrinter {

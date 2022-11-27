@@ -1,6 +1,6 @@
 import Foundation
 
-protocol AppConfigurationDelegate: class {
+protocol AppConfigurationDelegate: AnyObject {
     
     // Notification that app lock state (i.e. app is in read-only mode) has changed 
     func appLockChanged(locked: Bool)

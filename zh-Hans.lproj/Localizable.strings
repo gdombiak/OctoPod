@@ -647,7 +647,7 @@
 "Select printer from OctoEverywhere." = "从OctoEverywhere选择打印机。";
 
 /* No comment provided by engineer. */
-"Select printer from The Spaghetti Detective." = "从 The Spaghetti Detective 中选择打印机。";
+"Select printer from Obico." = "从 Obico 中选择打印机。";
 
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "找不到服务器";
@@ -724,8 +724,8 @@
 /* (No Comment) */
 "Terminal" = "终端";
 
-/* The Spaghetti Detective Is Not Watching */
-"The Detective Is Not Watching" = "侦探没有在监测打印";
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "侦探没有在监测打印";
 
 /* gcode name */
 "TMC Bump Sensitivity" = "TMC凹凸灵敏度";

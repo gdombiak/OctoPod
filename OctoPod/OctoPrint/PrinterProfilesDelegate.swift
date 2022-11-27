@@ -2,7 +2,7 @@ import Foundation
 
 /// Listener that reacts to changes in Print Profile (/api/printerprofiles)
 /// This is done via the OctoPrint admin console
-protocol PrinterProfilesDelegate: class {
+protocol PrinterProfilesDelegate: AnyObject {
 
     /// Notification that axis direction has changed
     func axisDirectionChanged(axis: axis, inverted: Bool)

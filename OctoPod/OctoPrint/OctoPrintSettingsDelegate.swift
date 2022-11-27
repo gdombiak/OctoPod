@@ -3,7 +3,7 @@ import UIKit
 
 /// Listener that reacts to changes in OctoPrint Settings (/api/settings)
 /// This is done via the OctoPrint admin console
-protocol OctoPrintSettingsDelegate: class {
+protocol OctoPrintSettingsDelegate: AnyObject {
     
     /// Notification that orientation of the camera hosted by OctoPrint has changed
     func cameraOrientationChanged(newOrientation: UIImage.Orientation)

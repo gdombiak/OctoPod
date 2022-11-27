@@ -193,8 +193,8 @@
 /* Class = "UILabel"; text = "0 C"; ObjectID = "A7g-Yw-Ucf"; */
 "A7g-Yw-Ucf.text" = "0 C";
 
-/* Class = "UITableViewController"; title = "The Spaghetti Detective"; ObjectID = "A9g-sp-S6T"; */
-"A9g-sp-S6T.title" = "The Spaghetti Detective";
+/* Class = "UITableViewController"; title = "Obico"; ObjectID = "A9g-sp-S6T"; */
+"A9g-sp-S6T.title" = "Obico";
 
 /* Class = "UILabel"; text = "/"; ObjectID = "a12-vD-JUc"; */
 "a12-vD-JUc.text" = "/";
@@ -832,8 +832,8 @@
 /* Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ"; */
 "QwZ-7J-MwJ.normalTitle" = "Выкл.";
 
-/* Class = "UINavigationItem"; title = "The Spaghetti Detective"; ObjectID = "R0b-VP-E1V"; */
-"R0b-VP-E1V.title" = "The Spaghetti Detective";
+/* Class = "UINavigationItem"; title = "Obico"; ObjectID = "R0b-VP-E1V"; */
+"R0b-VP-E1V.title" = "Obico";
 
 /* Class = "UILabel"; text = "Siri"; ObjectID = "R2d-Mv-REP"; */
 "R2d-Mv-REP.text" = "Siri";
@@ -955,8 +955,8 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "taf-JE-egr"; */
 "taf-JE-egr.text" = "Label";
 
-/* Class = "UILabel"; text = "The Spaghetti Detective"; ObjectID = "tbX-9q-HS1"; */
-"tbX-9q-HS1.text" = "The Spaghetti Detective";
+/* Class = "UILabel"; text = "Obico"; ObjectID = "tbX-9q-HS1"; */
+"tbX-9q-HS1.text" = "Obico";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "tFf-Rs-mOx"; */
 "tFf-Rs-mOx.text" = "Title";

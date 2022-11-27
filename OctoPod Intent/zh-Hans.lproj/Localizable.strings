@@ -49,8 +49,8 @@
 /* No comment provided by engineer. */
 "seconds ago" = "秒前";
 
-/* The Spaghetti Detective Is Not Watching */
-"The Detective Is Not Watching" = "侦探没有在监测打印";
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "侦探没有在监测打印";
 
 /* ETA is Unknown */
 "Unknown" = "不详";

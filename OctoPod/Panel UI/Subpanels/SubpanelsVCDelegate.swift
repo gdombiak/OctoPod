@@ -1,6 +1,6 @@
 import Foundation
 
-protocol SubpanelsVCDelegate : class {
+protocol SubpanelsVCDelegate : AnyObject {
     
     /// Notification when user swiped to another subpanel and transition finished
     /// - parameter index: zero-index of the new SubpanelViewController that is now visible

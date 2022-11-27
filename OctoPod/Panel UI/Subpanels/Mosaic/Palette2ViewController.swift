@@ -419,7 +419,7 @@ class Palette2ViewController: ThemedStaticUITableViewController, SubpanelViewCon
 }
 
 final class SectionHeaderView: UITableViewHeaderFooterView {
-    static let reuseIdentifier: String = String(describing: self)
+    static let reuseIdentifier: String = String(describing: SectionHeaderView.self)
     
     var imageView: UIImageView
     

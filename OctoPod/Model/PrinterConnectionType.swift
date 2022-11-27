@@ -7,6 +7,6 @@ enum PrinterConnectionType: Int16 {
     case applicationKey = 1
     /// Connect to OctoPrint via OctoEverywhere
     case octoEverywhere = 2
-    /// Connect to OctoPrint via The Spaghetti Detective tunneling
-    case theSpaghettiDetective = 3
+    /// Connect to OctoPrint via Obico tunneling
+    case obico = 3
 }

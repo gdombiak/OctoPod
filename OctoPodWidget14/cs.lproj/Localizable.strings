@@ -64,8 +64,8 @@
 /* No comment provided by engineer. */
 "seconds ago" = "před %d vteřinami";
 
-/* The Spaghetti Detective Is Not Watching */
-"The Detective Is Not Watching" = "The Detective není aktivní";
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Obico není aktivní";
 
 /* ETA is Unknown */
 "Unknown" = "neznámý";

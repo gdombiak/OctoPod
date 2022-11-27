@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-protocol CameraViewDelegate : class {
+protocol CameraViewDelegate : AnyObject {
     
     /// Notification when an aspect ratio of image has been detected
     func imageAspectRatio(cameraIndex: Int, ratio: CGFloat)

@@ -647,7 +647,7 @@
 "Select printer from OctoEverywhere." = "Vybrat tiskárnu v OctoEverywhere";
 
 /* No comment provided by engineer. */
-"Select printer from The Spaghetti Detective." = "Vyberte tiskárnu z The Spaghetti Detective";
+"Select printer from Obico." = "Vyberte tiskárnu z Obico";
 
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Server nenalezen";
@@ -724,8 +724,8 @@
 /* (No Comment) */
 "Terminal" = "Terminál";
 
-/* The Spaghetti Detective Is Not Watching */
-"The Detective Is Not Watching" = "The Detective není aktivní";
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Obico není aktivní";
 
 /* gcode name */
 "TMC Bump Sensitivity" = "Citlivost nárazů TMC";

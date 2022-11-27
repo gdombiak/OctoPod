@@ -49,8 +49,8 @@
 /* No comment provided by engineer. */
 "seconds ago" = "prieš %d sekundžių";
 
-/* The Spaghetti Detective Is Not Watching */
-"The Detective Is Not Watching" = "Makaronų Detektyvas nestebi";
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Makaronų Detektyvas nestebi";
 
 /* ETA is Unknown */
 "Unknown" = "Nežinomas";

@@ -443,8 +443,8 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
     fileprivate func newEmbeddedCameraViewController(printer: Printer, printerURL: String, index: Int, label: String, cameraRatio: CGFloat, url: String, cameraOrientation: UIImage.Orientation) -> CameraEmbeddedViewController {
         var controller: CameraEmbeddedViewController
         let useHLS = CameraUtils.shared.isHLS(url: url)
-        // See if this is a printer controlled via The Spaghetti Detective
-        let tsdPrinter = printer.getPrinterConnectionType() == .theSpaghettiDetective
+        // See if this is a printer controlled via Obico
+        let tsdPrinter = printer.getPrinterConnectionType() == .obico
         // Let's create a new one. Use one for HLS and another one for MJPEG
         controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: useHLS ? "CameraHLSEmbeddedViewController" : tsdPrinter ? "CameraTSDEmbeddedViewController" : "CameraMJPEGEmbeddedViewController") as! CameraEmbeddedViewController
         controller.printerURL = printerURL

@@ -1,7 +1,7 @@
 import Foundation
 
 /// Delegate that will be notified of changes to printers based on iCloud activity
-protocol CloudKitPrinterDelegate: class {
+protocol CloudKitPrinterDelegate: AnyObject {
     
     /// Notification that printer information has been updated from iCloud
     /// This could include new printers, updates or deletes

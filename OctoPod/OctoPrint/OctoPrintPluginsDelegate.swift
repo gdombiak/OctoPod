@@ -1,6 +1,6 @@
 import Foundation
 
-protocol OctoPrintPluginsDelegate: class {
+protocol OctoPrintPluginsDelegate: AnyObject {
     
     /// Notification sent by plugin via websockets
     /// - parameter plugin: identifier of the OctoPrint plugin

@@ -18,7 +18,7 @@ class CameraUtils {
             // Render image from HLS camera
             renderHLSImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, completion: completion)
         } else if isTSD(cameraURL: cameraURL) {
-            // The Spaghetti Detective has its own special logic
+            // Obico has its own special logic
             renderTLSImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, preemptive: preemptive, timeoutInterval: timeoutInterval, completion: completion)
         } else {
             // Render image from classic MJPEG camera
@@ -31,7 +31,7 @@ class CameraUtils {
         return url.hasSuffix(".m3u8")
     }
     
-    /// Returns true if camera URL is hosted via The Spaghetti Detective
+    /// Returns true if camera URL is hosted via Obico
     func isTSD(cameraURL: URL) -> Bool {
         if let host = cameraURL.host, host.hasSuffix("thespaghettidetective.com") ||  host.hasSuffix("obico.io") {
             return true
@@ -135,7 +135,7 @@ class CameraUtils {
                                 // Fetch and display Image from returned URL
                                 self.fetchTLSImage(imageURL: imageURL, imageOrientation: imageOrientation, timeoutInterval: timeoutInterval, completion: completion)
                             } else {
-                                completion(nil, NSLocalizedString("The Detective Is Not Watching", comment: "The Spaghetti Detective Is Not Watching"))
+                                completion(nil, NSLocalizedString("Obico Is Not Watching", comment: "Obico Is Not Watching"))
                             }
                         } catch let error {
                             completion(nil, error.localizedDescription)
