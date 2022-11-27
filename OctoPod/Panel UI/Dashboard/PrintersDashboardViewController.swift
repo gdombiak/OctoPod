@@ -12,6 +12,9 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
     var panelViewController: PanelViewController?
     var cameraEmbeddedViewControllers: Array<CameraEmbeddedViewController> = Array()
     var displayCameras = false
+    
+    private var lastRefreshTimestamp = Date()
+    private var cellsToRefresh: Set<Int> = Set()
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var toggleDisplayButton: UIButton!
@@ -24,7 +27,7 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         
         // Disable estimated size so cells do not change size (go too small and then big and then small)
         if let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.estimatedItemSize = .zero
+            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
     }
     
@@ -167,7 +170,14 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
                 return CGSize(width: 265, height: 205)
             } else {
                 // Set cell width to fit in any screen other than SE screen
-                return CGSize(width: 300, height: 205)
+                let sectionInset = (collectionViewLayout as! UICollectionViewFlowLayout).sectionInset
+                 let referenceHeight: CGFloat = 205 // Approximate height of your cell
+                 let referenceWidth = (collectionView.safeAreaLayoutGuide.layoutFrame.width
+                     - sectionInset.left
+                     - sectionInset.right
+                     - collectionView.contentInset.left
+                                       - collectionView.contentInset.right) / (devicePortrait ? 1 : 2.1)
+                 return CGSize(width: referenceWidth, height: referenceHeight)
             }
         }
     }
@@ -298,9 +308,22 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
             }
         } else {
             DispatchQueue.main.async {
-                // Check that list of printers is still in sync with what is being displayed
-                if self.printers.count > row {
-                    self.collectionView.reloadItems(at: [indexPath])
+                // Track cells to refresh. We will update all at once
+                self.cellsToRefresh.insert(row)
+                // Only refresh UI once a second (to prevent unresponsive UI)
+                let secondsSinceLastRefresh = self.lastRefreshTimestamp.timeIntervalSinceNow
+                if secondsSinceLastRefresh < -1 {
+                    var itemsToReload: Array<IndexPath> = []
+                    self.cellsToRefresh.forEach { row in
+                        // Check that list of printers is still in sync with what is being displayed
+                        if self.printers.count > row {
+                            itemsToReload.append(indexPath)
+                        }
+                    }
+                    self.collectionView.reloadItems(at: itemsToReload)
+//                    self.collectionView.reloadItems(at:  self.collectionView.indexPathsForVisibleItems)
+                    // Track last time we updated cells
+                    self.lastRefreshTimestamp = Date()
                 }
             }
         }

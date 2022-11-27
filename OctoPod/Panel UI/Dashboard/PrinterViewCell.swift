@@ -24,4 +24,8 @@ class PrinterViewCell: UICollectionViewCell {
  
     @IBOutlet weak var printerLabelWidthConstraint: NSLayoutConstraint!
 
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        layoutAttributes.bounds.size.height = systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        return layoutAttributes
+    }
 }
