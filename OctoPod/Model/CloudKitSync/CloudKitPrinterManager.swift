@@ -358,7 +358,12 @@ class CloudKitPrinterManager {
                 // Nothing was found in Core Data so create new printer and add to Core Data
                 let parsed = parseRecord(record: record)
                 if let name = parsed.name, let hostname = parsed.hostname, let apiKey = parsed.apiKey {
-                    let position = Int16(printerManager.getPrinters().count)  // Not transfering position information via iCloud (reducing work scope) so add new printers to bottom of list
+                    let position: Int16
+                    if let parsedPosition = parsed.position {
+                        position = parsedPosition
+                    } else {
+                        position = Int16(printerManager.getPrinters().count)  // Not yet stored in iCloud so add new printers to bottom of list
+                    }
                     let connectionType = PrinterConnectionType(rawValue: parsed.connectionType)!
                     if printerManager.addPrinter(connectionType: connectionType, name: name, hostname: hostname, apiKey: apiKey, username: parsed.username, password: parsed.password, position: position, iCloudUpdate: false, modified: (parsed.modified == nil ? Date() : parsed.modified!)) {
                         if let printer = printerManager.getPrinterByName(name: name) {
@@ -916,6 +921,9 @@ class CloudKitPrinterManager {
         printer.recordName = record.recordID.recordName
         // Encode record and store it in printer
         printer.recordData = encodeRecord(record: record)
+        if let parsedPosition = parsed.position {
+            printer.position = parsedPosition
+        }
     }
     
     fileprivate func updateRecordFields(record: CKRecord, from printer: Printer) {
@@ -928,6 +936,7 @@ class CloudKitPrinterManager {
             record["modified"] = date as NSDate
         }
         record["connectionType"] = NSNumber(value: printer.connectionType)
+        record["position"] = NSNumber(value: printer.position)
     }
     
     fileprivate func updateAndSave(printer: Printer, serverRecord: CKRecord) {
@@ -939,7 +948,7 @@ class CloudKitPrinterManager {
         self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
     }
     
-    fileprivate func parseRecord(record: CKRecord) -> (name: String?, hostname: String?, apiKey: String?, username: String?, password: String?, modified: Date?, connectionType: Int16) {
+    fileprivate func parseRecord(record: CKRecord) -> (name: String?, hostname: String?, apiKey: String?, username: String?, password: String?, modified: Date?, connectionType: Int16, position: Int16?) {
         let name = record["name"] as? String
         let hostname = record["hostname"] as? String
         let apiKey = record["apiKey"] as? String
@@ -948,7 +957,8 @@ class CloudKitPrinterManager {
         let modified = record["modified"] as? Date
         let connectionTypeOptional = record["connectionType"] as? NSNumber
         let connectionType: Int16! = (connectionTypeOptional != nil) ? connectionTypeOptional!.int16Value : PrinterConnectionType.apiKey.rawValue
-        return (name, hostname, apiKey, username, password, modified, connectionType)
+        let position = record["position"] as? Int16
+        return (name, hostname, apiKey, username, password, modified, connectionType, position)
     }
     
     fileprivate func updateRecord(source: CKRecord, target: CKRecord) {
@@ -957,6 +967,7 @@ class CloudKitPrinterManager {
         target["apiKey"] = source["apiKey"]
         target["username"] = source["username"]
         target["password"] = source["password"]
+        target["position"] = source["position"]
     }
     
     fileprivate func encodeRecord(record: CKRecord) -> Data {

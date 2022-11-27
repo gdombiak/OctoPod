@@ -171,9 +171,14 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
             let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
             // Update printer position
             printerToUpdate.position = Int16(index)
+            // Mark that printer needs to be updated in iCloud (we now track position so we need to update this data in iCloud)
+            printerToUpdate.iCloudUpdate = true
             // Persist updated printer
             printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+            // Update other devices via CloudKit
         }
+        // Push changes to iCloud so other devices of the user get updated (only if iCloud enabled and user is logged in)
+        self.cloudKitPrinterManager.pushChanges(completion: nil)
         // Push changes to Apple Watch
         self.watchSessionManager.pushPrinters()
     }
