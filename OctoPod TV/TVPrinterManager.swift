@@ -194,10 +194,10 @@ class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
         // Store new valid conections for new printers
         self.connections = newConnections
         
-        // Sort printers by name (in the future could be by status so printing appear first)
-        sortedPrinters.sort { (left, right) -> Bool in
-            return left.name < right.name
-        }
+//        // Sort printers by name (in the future could be by status so printing appear first)
+//        sortedPrinters.sort { (left, right) -> Bool in
+//            return left.name < right.name
+//        }
         
         // Store sorted new printers
         self.printers = sortedPrinters

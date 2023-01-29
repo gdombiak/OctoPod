@@ -28,8 +28,9 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     init(tvPrinterManager: TVPrinterManager) {
         self.tvPrinterManager = tvPrinterManager
         let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
+        let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
-        self.octoPrintClient = OctoPrintClient(printerManager: printerManager)
+        self.octoPrintClient = OctoPrintClient(printerManager: printerManager, appConfiguration: appConfiguration)
         self.clearValues()
 
         // Listen to events coming from OctoPrintClient

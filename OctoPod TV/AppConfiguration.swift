@@ -1,6 +1,6 @@
 import Foundation
 
-class AppConfiguration: ObservableObject {
+class AppConfiguration: ObservableObject, OctoPrintClientDelegate {
     
     private static let APP_LOCKED = "APP_CONFIGURATION_LOCKED"
     private static let APP_AUTO_LOCK = "APP_CONFIGURATION_AUTO_LOCKED"
@@ -53,6 +53,12 @@ class AppConfiguration: ObservableObject {
         return keyValStore.bool(forKey: AppConfiguration.CONFIRMATION_RESUME)
     }
     
+    // MARK: - OctoPrintClientDelegate
+    
+    func printerStateUpdated(event: CurrentStateEvent) {
+        // DO NOTHING
+    }
+
     // MARK: - SSL Certificate Validation
     
     /// Returns true if SSL Certification validation is disabled. Not recommended
