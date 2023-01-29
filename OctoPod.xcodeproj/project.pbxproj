@@ -3426,6 +3426,8 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = OctoPod/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "OctoPod for OctoPrint";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3449,6 +3451,8 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = ALV53VY374;
 				INFOPLIST_FILE = OctoPod/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "OctoPod for OctoPrint";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3473,6 +3477,8 @@
 				DEVELOPMENT_TEAM = ALV53VY374;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "OctoPod TV/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "OctoPod for OctoPrint";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3500,6 +3506,8 @@
 				DEVELOPMENT_TEAM = ALV53VY374;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "OctoPod TV/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "OctoPod for OctoPrint";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
