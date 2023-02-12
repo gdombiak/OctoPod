@@ -2,22 +2,22 @@ import UIKit
 
 // Ask user if they want to upload file to SD card of current folder
 class FileUploadViewController: ThemedStaticUITableViewController, UIDocumentPickerDelegate {
-    
-    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
-    let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
-    let cloudFilesManager: CloudFilesManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudFilesManager }()
+    let printerManager: PrinterManager = (UIApplication.shared.delegate as! AppDelegate).printerManager!
+    let octoprintClient: OctoPrintClient = (UIApplication.shared.delegate as! AppDelegate).octoprintClient
+    let cloudFilesManager: CloudFilesManager = (UIApplication.shared.delegate as! AppDelegate).cloudFilesManager
 
-    @IBOutlet weak var uploadOctoPrintLabel: UILabel!
-    
-    @IBOutlet weak var sdCardCell: UITableViewCell!
-    @IBOutlet weak var sdCardLabel: UILabel!
-    
-    @IBOutlet weak var uploadingOctoPrintImage: UIImageView!
-    @IBOutlet weak var uploadingSDCardImage: UIImageView!
-    
+    @IBOutlet var uploadOctoPrintLabel: UILabel!
+
+    @IBOutlet var sdCardCell: UITableViewCell!
+    @IBOutlet var sdCardLabel: UILabel!
+
+    @IBOutlet var uploadingOctoPrintImage: UIImageView!
+    @IBOutlet var uploadingSDCardImage: UIImageView!
+
     var currentFolder: PrintFile? // Folder that user is browsing. If nil then this is root folder. This folder is used only when uploading to OctoPrint (not SD Card)
     var selectedLocation: CloudFilesManager.Location? // Track where user selected to upload file (OctoPrint or SD Card)
-    var uploaded: Bool = false  // Track if file was successfully uploaded (to OctoPrint or SD Card)
+    var uploaded: Bool = false // Track if file was successfully uploaded (to OctoPrint or SD Card)
+    var uploadURL: URL?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class FileUploadViewController: ThemedStaticUITableViewController, UIDocumentPic
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Hide uploading labels
@@ -39,11 +39,11 @@ class FileUploadViewController: ThemedStaticUITableViewController, UIDocumentPic
         uploadOctoPrintLabel.textColor = theme.labelColor()
         sdCardLabel.textColor = theme.labelColor()
         // Set background color of popover and its arrow
-        self.popoverPresentationController?.backgroundColor = theme.backgroundColor()
+        popoverPresentationController?.backgroundColor = theme.backgroundColor()
 
         // Clean up any previous selection
         uploaded = false
-        
+
         // Disable upload to SD Card by default
         sdCardLabel.isEnabled = false
         sdCardCell.selectionStyle = .none
@@ -54,13 +54,13 @@ class FileUploadViewController: ThemedStaticUITableViewController, UIDocumentPic
             sdCardCell.selectionStyle = sdUsable ? .default : .none
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // Adjust popover size to table size
-        self.preferredContentSize.height = tableView.contentSize.height
+        preferredContentSize.height = tableView.contentSize.height
     }
-    
+
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if let cell = tableView.cellForRow(at: indexPath) {
             if cell.selectionStyle != .none {
@@ -78,35 +78,41 @@ class FileUploadViewController: ThemedStaticUITableViewController, UIDocumentPic
             // User selected to upload to SD Card
             selectedLocation = CloudFilesManager.Location.SDCard
         }
-        // Present window with iCloud files so user can select
-        selectFileToUpload()
+        // Is already an uploadURL selected via openURL ?
+        if let uploadURL = uploadURL {
+            // Yes, so use that
+            processFile(url: uploadURL)
+        } else {
+            // Present window with iCloud files so user can select
+            selectFileToUpload()
+        }
     }
 
     // MARK: - UIDocumentPickerDelegate
-    
+
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         for url in urls {
             processFile(url: url)
         }
     }
-    
+
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
         processFile(url: url)
     }
-    
+
     // MARK: - Private functions
-    
+
     fileprivate func processFile(url: URL) {
         let isSecured = url.startAccessingSecurityScopedResource() == true
         guard let fileData = try? Data(contentsOf: url) else {
             showAlert(NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Failed to read file from iCloud", comment: ""), done: nil)
             return
         }
-        
+
         if isSecured {
             url.stopAccessingSecurityScopedResource()
         }
-        
+
         let callback = { (uploaded: Bool, error: Error?, response: HTTPURLResponse) in
             // Update whether file was successfully uploaded or not
             self.uploaded = uploaded
@@ -139,7 +145,7 @@ class FileUploadViewController: ThemedStaticUITableViewController, UIDocumentPic
                 })
             }
         }
-        
+
         if selectedLocation == CloudFilesManager.Location.OctoPrint {
             DispatchQueue.main.async {
                 self.animateUploading(image: self.uploadingOctoPrintImage)
@@ -152,18 +158,18 @@ class FileUploadViewController: ThemedStaticUITableViewController, UIDocumentPic
             octoprintClient.uploadFileToSDCard(filename: url.lastPathComponent, fileContent: fileData, callback: callback)
         }
     }
-    
+
     fileprivate func selectFileToUpload() {
         if let _ = cloudFilesManager.containerUrl {
             let picker = UIDocumentPickerViewController(documentTypes: ["public.item"], in: .open)
             picker.delegate = self
             picker.modalPresentationStyle = .fullScreen
-            self.present(picker, animated: false, completion: nil)
+            present(picker, animated: false, completion: nil)
         } else {
             showAlert(NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Enable iCloud under iOS Settings to use this feature", comment: ""), done: nil)
         }
     }
-    
+
     fileprivate func animateUploading(image: UIImageView) {
         // Make label visible
         image.isHidden = false
@@ -172,9 +178,8 @@ class FileUploadViewController: ThemedStaticUITableViewController, UIDocumentPic
             image.alpha = 0
         }, completion: nil)
     }
-    
+
     fileprivate func showAlert(_ title: String, message: String, done: (() -> Void)?) {
         UIUtils.showAlert(presenter: self, title: title, message: message, done: done)
     }
-
 }

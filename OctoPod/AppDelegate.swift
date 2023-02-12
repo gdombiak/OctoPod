@@ -127,6 +127,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return true
             }
         }
+        else if url.pathExtension == "gcode" {
+            // User has shared a gcode-file with Octopod. The only useful operation is to upload to octoprint.
+            // Add some delay so app transitions to Active
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+
+                // Go to main Panel window
+                if let tabBarController = self.window!.rootViewController as? UITabBarController {
+                    tabBarController.selectedIndex = 3
+                    if let navigationVC = tabBarController.selectedViewController as? NavigationController, let panelVC = navigationVC.topViewController as? FilesTreeViewController {
+                        // To avoid Storyboard modification, just reuse existing segue
+                        panelVC.uploadURL = url
+                        panelVC.performSegue(withIdentifier: "gotoUploadLocation", sender: self)
+                    }
+                }
+            }
+        }
         return false
     }
 

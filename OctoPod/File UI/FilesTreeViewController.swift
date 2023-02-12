@@ -1,32 +1,33 @@
 import UIKit
 
 class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate, DefaultPrinterManagerDelegate, UISearchBarDelegate {
-    
     private var currentTheme: Theme.ThemeChoice!
 
-    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
-    let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
-    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
+    let printerManager: PrinterManager = (UIApplication.shared.delegate as! AppDelegate).printerManager!
+    let octoprintClient: OctoPrintClient = (UIApplication.shared.delegate as! AppDelegate).octoprintClient
+    let appConfiguration: AppConfiguration = (UIApplication.shared.delegate as! AppDelegate).appConfiguration
+    let defaultPrinterManager: DefaultPrinterManager = (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager
 
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var sortByTextLabel: UILabel!
-    @IBOutlet weak var sortByControl: UISegmentedControl!
-    @IBOutlet weak var refreshSDButton: UIButton!
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var sortByTextLabel: UILabel!
+    @IBOutlet var sortByControl: UISegmentedControl!
+    @IBOutlet var refreshSDButton: UIButton!
     var refreshControl: UIRefreshControl?
 
     // Gestures to switch between printers
-    var swipeLeftGestureRecognizer : UISwipeGestureRecognizer!
-    var swipeRightGestureRecognizer : UISwipeGestureRecognizer!
+    var swipeLeftGestureRecognizer: UISwipeGestureRecognizer!
+    var swipeRightGestureRecognizer: UISwipeGestureRecognizer!
 
-    var files: Array<PrintFile> = Array()
+    var files: [PrintFile] = Array()
     var searching: Bool = false
-    var searchedFiles: Array<PrintFile> = Array()
+    var searchedFiles: [PrintFile] = Array()
+
+    var uploadURL: URL?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Remember current theme so we know when to repaint
         currentTheme = Theme.currentTheme()
 
@@ -34,11 +35,11 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         refreshControl = UIRefreshControl()
         tableView.addSubview(refreshControl!)
         tableView.alwaysBounceVertical = true
-        self.refreshControl?.addTarget(self, action: #selector(refreshFiles), for: UIControl.Event.valueChanged)
-        
+        refreshControl?.addTarget(self, action: #selector(refreshFiles), for: UIControl.Event.valueChanged)
+
         // Listen to search bar events
-        self.searchBar.delegate = self
-        
+        searchBar.delegate = self
+
         // Update sort control based on user preferences for sorting
         var selectIndex = 0
         switch PrintFile.defaultSortCriteria() {
@@ -50,7 +51,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             selectIndex = 2
         }
         sortByControl.selectedSegmentIndex = selectIndex
-        
+
         // Check if we should hide sortByTextLabel due to small screen
         let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
         let screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
@@ -73,14 +74,14 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         }
 
         refreshNewSelectedPrinter()
-        
+
         ThemeUIUtils.applyTheme(table: tableView, staticCells: false)
         applyTheme()
 
         // Add gestures to capture swipes and taps on navigation bar
         addNavBarGestures()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // Stop listening to changes to default printer
@@ -88,40 +89,39 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         // Remove gestures that capture swipes and taps on navigation bar
         removeNavBarGestures()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     // MARK: - Table view data source
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searching ? searchedFiles.count : files.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let theme = Theme.currentTheme()
         let textColor = theme.textColor()
-        
+
         let files = searching ? searchedFiles : self.files
         let file = files[indexPath.row]
-        
+
         if file.isFolder() {
             let cell = tableView.dequeueReusableCell(withIdentifier: "folder_cell", for: indexPath)
             if let fileLabel = cell.viewWithTag(100) as? UILabel {
                 fileLabel.text = file.display
                 fileLabel.textColor = textColor
             }
-            
+
             return cell
         }
-        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "file_cell", for: indexPath)
         if let fileLabel = cell.viewWithTag(100) as? UILabel {
             fileLabel.text = file.display
@@ -152,7 +152,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         if let imageView = cell.viewWithTag(50) as? UIImageView {
             imageView.image = UIImage(named: file.isModel() ? "Model_48" : "GCode_48")
             if let thumbnailURL = file.thumbnail {
-                octoprintClient.getThumbnailImage(path: thumbnailURL) { (data: Data?, error: Error?, response: HTTPURLResponse) in
+                octoprintClient.getThumbnailImage(path: thumbnailURL) { (data: Data?, _: Error?, _: HTTPURLResponse) in
                     if let data = data, let image = UIImage(data: data) {
                         DispatchQueue.main.async {
                             if let resizedImaged = image.resizeWithWidth(width: 48) {
@@ -163,21 +163,21 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         }
-        
+
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Delete action"), handler: { (action, view, completionHandler) in
-            self.showConfirm(message: NSLocalizedString("Do you want to delete this file?", comment: "")) { (UIAlertAction) in
+        let deleteAction = UIContextualAction(style: .destructive, title: NSLocalizedString("Delete", comment: "Delete action"), handler: { _, _, completionHandler in
+            self.showConfirm(message: NSLocalizedString("Do you want to delete this file?", comment: "")) { _ in
                 // Delete selected file
                 self.deleteRow(forRowAt: indexPath)
                 self.tableView.reloadData()
                 completionHandler(true)
-            } no: { (UIAlertAction) in
+            } no: { _ in
                 completionHandler(false)
             }
-          })
+        })
         if #available(iOS 13.0, *) {
             deleteAction.image = UIImage(systemName: "trash")
         } else {
@@ -188,11 +188,11 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         let canDelete = indexPath.row < files.count && !files[indexPath.row].isFolder() && !appConfiguration.appLocked()
         return UISwipeActionsConfiguration(actions: !canDelete ? [] : [deleteAction])
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         ThemeUIUtils.themeCell(cell: cell)
     }
-    
+
     // MARK: - Unwind operations
 
     @IBAction func backFromPrint(_ sender: UIStoryboardSegue) {
@@ -200,7 +200,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             let files = searching ? searchedFiles : self.files
             let printFile = files[row]
             // Request to print file
-            octoprintClient.printFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
+            octoprintClient.printFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, _: Error?, response: HTTPURLResponse) in
                 if !success {
                     var message = NSLocalizedString("Failed to request to print file", comment: "")
                     if response.statusCode == 409 {
@@ -224,28 +224,28 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             deleteRow(forRowAt: row)
         }
     }
-    
+
     @IBAction func gobackToRootFolder(_ sender: UIStoryboardSegue) {
         // Files have been refreshed so just update UI
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
-    
+
     @IBAction func backFromUploadFile(_ sender: UIStoryboardSegue) {
         if let controller = sender.source as? FileUploadViewController {
             if controller.uploaded {
                 if controller.selectedLocation == CloudFilesManager.Location.SDCard {
                     // File is in OctoPrint and is being copied to SD Card so send user to main page
-                    self.showAlert(NSLocalizedString("SD Card", comment: ""), message: NSLocalizedString("File is being copied to SD Card", comment: ""), done: {
+                    showAlert(NSLocalizedString("SD Card", comment: ""), message: NSLocalizedString("File is being copied to SD Card", comment: ""), done: {
                         self.tabBarController?.selectedIndex = 0
                     })
                 } else {
                     // Refresh files since file was uploaded
-                    self.loadFiles(done: nil)
+                    loadFiles(done: nil)
                 }
             }
         }
     }
-    
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -262,6 +262,13 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             }
         } else if segue.identifier == "gotoUploadLocation" {
             if let controller = segue.destination as? FileUploadViewController {
+                // Is already an uploadURL selected via openURL ?
+                if let uploadURL = uploadURL {
+                    // Yes, then forward the url to the upload controller
+                    controller.uploadURL = uploadURL
+                }
+                // in any case, clear uploadURL
+                uploadURL = nil
                 controller.popoverPresentationController!.delegate = self
                 controller.currentFolder = nil // Indicate that it is being called from root folder
             }
@@ -269,37 +276,37 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     // MARK: - UIPopoverPresentationControllerDelegate
-    
+
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
-    
+
     // We need to add this so it works on iPhone plus in landscape mode
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
-    
+
     // MARK: - DefaultPrinterManagerDelegate
-    
+
     func defaultPrinterChanged() {
         DispatchQueue.main.async {
             self.refreshNewSelectedPrinter()
         }
     }
-    
+
     // MARK: - UISearchBarDelegate
-    
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searching = !searchText.isEmpty
         updatedSearchedFiles(searchText)
         tableView.reloadData()
     }
-    
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // Hide keyboard but leave cancel button enabled (if there is search text)
         searchBar.endEditing(true)
     }
-    
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searching = false
         updatedSearchedFiles("")
@@ -307,18 +314,18 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         searchBar.endEditing(true)
         tableView.reloadData()
     }
-    
+
     // MARK: - Button actions
 
     // Initialize SD card if needed and refresh files from SD card
     @IBAction func refreshSDCard(_ sender: Any) {
-        octoprintClient.refreshSD { (success: Bool, error: Error?, response: HTTPURLResponse) in
+        octoprintClient.refreshSD { (success: Bool, _: Error?, response: HTTPURLResponse) in
             if success {
                 // SD Card refreshed so now fetch files
                 self.loadFiles(delay: 1)
             } else if response.statusCode == 409 {
                 // SD Card is not initialized so initialize it now
-                self.octoprintClient.initSD(callback: { (success: Bool, error: Error?, response: HTTPURLResponse) in
+                self.octoprintClient.initSD(callback: { (success: Bool, _: Error?, _: HTTPURLResponse) in
                     if success {
                         self.loadFiles(delay: 1)
                     } else {
@@ -330,7 +337,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
     }
-    
+
     @IBAction func sortByChanged(_ sender: Any) {
         // Sort by new criteria
         if sortByControl.selectedSegmentIndex == 0 {
@@ -346,13 +353,13 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         // Refresh UI
         tableView.reloadData()
     }
-    
+
     // MARK: - Refresh functions
 
     @objc func refreshFiles() {
         loadFiles(done: nil)
     }
-    
+
     // Refresh files from OctoPrint and call me back with the refreshed file/folder that was specified
     func refreshFolderFiles(folder: PrintFile, callback: @escaping ((PrintFile?) -> Void)) {
         loadFiles(done: { newFiles in
@@ -366,9 +373,9 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             callback(nil)
         })
     }
-    
+
     // MARK: - Theme functions
-    
+
     fileprivate func applyTheme() {
         let theme = Theme.currentTheme()
         let textLabelColor = theme.labelColor()
@@ -402,7 +409,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             if let textField = searchBar.value(forKey: "searchField") as? UITextField {
                 textField.textColor = textColor
                 if let iconView = textField.leftView as? UIImageView {
-                    //Magnifying glass
+                    // Magnifying glass
                     iconView.tintColor = textLabelColor
                 }
             }
@@ -417,7 +424,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         swipeLeftGestureRecognizer.direction = .left
         navigationController?.navigationBar.addGestureRecognizer(swipeLeftGestureRecognizer)
         swipeLeftGestureRecognizer.cancelsTouchesInView = false
-        
+
         // Add gesture when we swipe from left to right
         swipeRightGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
         swipeRightGestureRecognizer.direction = .right
@@ -428,7 +435,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     fileprivate func removeNavBarGestures() {
         // Remove gesture when we swipe from right to left
         navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
-        
+
         // Remove gesture when we swipe from left to right
         navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
     }
@@ -447,8 +454,8 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             self.loadFiles(done: nil)
         }
     }
-    
-    fileprivate func loadFiles(done: ((Array<PrintFile>) -> Void)?) {
+
+    fileprivate func loadFiles(done: (([PrintFile]) -> Void)?) {
         // Refreshing files could take some time so show spinner of refreshing
         DispatchQueue.main.async {
             if let refreshControl = self.refreshControl {
@@ -457,8 +464,8 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
         // Load all files and folders (recursive)
-        octoprintClient.files { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
-            var newFiles: Array<PrintFile> = Array()
+        octoprintClient.files { (result: NSObject?, error: Error?, _: HTTPURLResponse) in
+            var newFiles: [PrintFile] = Array()
             // Handle connection errors
             if let error = error {
                 self.showAlert(NSLocalizedString("Warning", comment: ""), message: error.localizedDescription, done: nil)
@@ -467,27 +474,27 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
                 if let files = json["files"] as? NSArray {
                     let trashRegEx = "^trash[-\\w]+~1\\/.+"
                     let trashTest = NSPredicate(format: "SELF MATCHES %@", trashRegEx)
-                    
+
                     for case let file as NSDictionary in files {
                         let printFile = PrintFile()
                         printFile.parse(json: file)
-                        
+
                         // Ignore files that are in the trash
                         if let path = printFile.path {
                             if trashTest.evaluate(with: path) {
                                 continue
                             }
                         }
-                        
+
                         // Check if we should ignore files that are not gcodes
-                        if self.appConfiguration.filesOnlyGCode() && printFile.isModel() {
+                        if self.appConfiguration.filesOnlyGCode(), printFile.isModel() {
                             continue
                         }
-                        
+
                         // Keep track of files and folders
                         newFiles.append(printFile)
                     }
-                    
+
                     // Sort files by user prefered sort criteria
                     newFiles = PrintFile.sort(files: newFiles, sortBy: nil)
                 }
@@ -505,7 +512,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             done?(newFiles)
         }
     }
-    
+
     fileprivate func deleteRow(forRowAt indexPath: IndexPath) {
         let printFile: PrintFile!
         if searching {
@@ -513,16 +520,16 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             // Remove file from UI
             searchedFiles.remove(at: indexPath.row)
             files.removeAll { (someFile: PrintFile) -> Bool in
-                return someFile == printFile
+                someFile == printFile
             }
         } else {
             printFile = files[indexPath.row]
             // Remove file from UI
             files.remove(at: indexPath.row)
         }
-        
+
         // Delete from server (if failed then show error message and reload)
-        octoprintClient.deleteFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, error: Error?, response: HTTPURLResponse) in
+        octoprintClient.deleteFile(origin: printFile.origin!, path: printFile.path!) { (success: Bool, _: Error?, response: HTTPURLResponse) in
             if !success {
                 let message = response.statusCode == 409 ? NSLocalizedString("File currently being printed", comment: "") : NSLocalizedString("Failed to delete file", comment: "")
                 self.showAlert(NSLocalizedString("Warning", comment: ""), message: message, done: {
@@ -531,19 +538,19 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
     }
-    
+
     fileprivate func refreshNewSelectedPrinter() {
         if let printer = printerManager.getDefaultPrinter() {
             // Update window title to Camera name
             navigationItem.title = printer.name
-            
+
             // Only enable refresh SD buttom if printer has an SD card
             refreshSDButton.isEnabled = printer.sdSupport && !appConfiguration.appLocked()
-            
+
             loadFiles(done: nil)
         }
     }
-    
+
     fileprivate func updatedSearchedFiles(_ searchText: String) {
         if searchText.isEmpty {
             searchBar.setShowsCancelButton(false, animated: false)
@@ -553,7 +560,7 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             searchedFiles = files.filter { $0.display.lowercased().contains(searchText.lowercased()) }
         }
     }
-    
+
     fileprivate func showAlert(_ title: String, message: String, done: (() -> Void)?) {
         UIUtils.showAlert(presenter: self, title: title, message: message, done: done)
     }
