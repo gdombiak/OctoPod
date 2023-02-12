@@ -53,7 +53,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         // Start synchronizing with iCloud (if available)
-        self.cloudKitPrinterManager.start()
+        self.cloudKitPrinterManager.start { () in
+            // If Apple TV cache was deleted then CoreData is lost and app may end up displaying "Retrieving printers information" forever
+            // We can force a refresh from iCloud when this happens
+            if let printManager = self.printerManager, printManager.getPrinters().isEmpty {
+                self.cloudKitPrinterManager.resetLocalPrinters {
+                    // Do nothing
+                } errorHandler: {
+                    // Do nothing
+                }
+
+            }
+        }
         // Resume websocket and camera connections
         tvPrinterManager.resumeConnections()
     }

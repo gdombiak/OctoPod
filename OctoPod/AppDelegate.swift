@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
 
         // Start synchronizing with iCloud (if available)
-        self.cloudKitPrinterManager.start()
+        self.cloudKitPrinterManager.start(nil)
         
         self.backgroundRefresher.start()
         
@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
 
         // Start synchronizing with iCloud (if available)
-        self.cloudKitPrinterManager.start()
+        self.cloudKitPrinterManager.start(nil)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

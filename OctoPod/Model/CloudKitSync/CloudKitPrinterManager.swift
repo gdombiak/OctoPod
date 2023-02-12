@@ -36,7 +36,7 @@ class CloudKitPrinterManager {
     // MARK: - Start
     
     // Start synchronizing with iCloud (if available)
-    @objc func start() {
+    @objc func start(_ onceStarted: (() -> Void)?) {
         if starting {
             // Do nothing since we are already starting
             return
@@ -54,6 +54,7 @@ class CloudKitPrinterManager {
                         if let error = error {
                             self.appendLog("Error making sure app has its own CKRecordZone. \(error.localizedDescription)")
                             self.starting = false
+                            onceStarted?()
                         } else {
                             // Pull printer updates from iCloud and then push local printer changes to iCloud
                             // If existing printers were never pushed to iCloud then pulling will update
@@ -63,9 +64,11 @@ class CloudKitPrinterManager {
                             self.pullChanges(completionHandler: {
                                 self.pushChanges(completion: {
                                     self.starting = false
+                                    onceStarted?()
                                 })
                             }, errorHandler: {
                                 self.starting = false
+                                onceStarted?()
                                 // Do nothing
                             })
                         }
@@ -73,6 +76,7 @@ class CloudKitPrinterManager {
                 }
             } else {
                 self.starting = false
+                onceStarted?()
             }
         }
     }
