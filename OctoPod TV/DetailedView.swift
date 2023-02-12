@@ -169,43 +169,40 @@ struct NormalCameraView: View {
                 self.cancel(enabled: false)
             }
             Spacer()
-            if self.cameraService.hasPrevious || self.cameraService.hasNext {
-                if self.cameraService.hasPrevious {
-                    Button(action: {
-                        self.cameraService.renderPrevious()
-                    }) {
-                        HStack {
-                            Image("Back")
-                            Text("Camera")
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.70)
+            ZStack(alignment: .topLeading) {
+                Image("Camera")
+                    .offset(x: 10, y: -12)
+                HStack() {
+                    if self.cameraService.hasPrevious || self.cameraService.hasNext {
+                        if self.cameraService.hasPrevious {
+                            Button(action: {
+                                self.cameraService.renderPrevious()
+                            }) {
+                                Image("Back")
+                            }
+                        }
+                        if self.cameraService.hasNext {
+                            Button(action: {
+                                self.cameraService.renderNext()
+                            }) {
+                                Image("Next")
+                            }
                         }
                     }
-                }
-                if self.cameraService.hasNext {
                     Button(action: {
-                        self.cameraService.renderNext()
+                        cameraMaximized = true
                     }) {
-                        HStack {
-                            Text("Camera")
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.70)
-                            Image("Next")
-                        }
+                        Image("Expand")
                     }
+                    .prefersDefaultFocus(true, in: self.namespace)
                 }
+                .padding(.horizontal, 30)
+                .padding(.vertical, 25)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(.white.opacity(0.5), lineWidth: 4)
+                )
             }
-            Button(action: {
-                cameraMaximized = true
-            }) {
-                HStack {
-                    Image("Expand")
-                    Text("Expand")
-                        .minimumScaleFactor(0.70)
-                        .lineLimit(1)
-                }
-            }
-            .prefersDefaultFocus(true, in: self.namespace)
         }
     }
     
@@ -323,16 +320,15 @@ struct MaximizedCameraView: View {
                     }
                     .background(Color.gray.opacity(0.80))
                     .frame(maxWidth: geometry.size.width / 4)
+                    .offset(x: -50)
                     Spacer()
                     Button(action: {
                         cameraMaximized = false
                     }) {
-                        HStack {
-                            Image("Restore")
-                            Text("Restore")
-                        }
+                        Image("Restore")
                     }
                     .prefersDefaultFocus(true, in: self.namespace)
+                    .offset(x: 40)
                 }
                 Spacer()
             }
