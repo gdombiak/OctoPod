@@ -162,6 +162,10 @@ struct OctoPodWidgets: WidgetBundle {
     var body: some Widget {
         OctoPodWidget14()
         DashboardWidget()
+        
+        if #available(iOS 16.1, *) {
+            LiveActivityWidget()
+        }
     }
 }
 

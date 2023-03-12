@@ -890,6 +890,36 @@ class OctoPrintRESTClient {
     }
 
     /**
+     Register new APNS token for updating a Live Activity via push notifications from OctoPod plugin. Tokens may rotate for security reasons.
+     */
+    func registerLiveActivityAPNSToken(activityID: String, token: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "updateLAToken"
+            json["activityID"] = activityID
+            json["token"] = token
+            client.post("/api/plugin/octopod", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+
+    /**
+     Ask to stop updating Live Activity via push notifications.
+     */
+    func unregisterLiveActivityAPNSToken(activityID: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = NSMutableDictionary()
+            json["command"] = "updateLAToken"
+            json["activityID"] = activityID
+            json["token"] = NSNull()
+            client.post("/api/plugin/octopod", json: json, expected: 204) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 204, error, response)
+            }
+        }
+    }
+
+    /**
      Register new APNS token so app can receive push notifications from OctoPod plugin
      - Parameter eventCode: code that identifies event that we want to snooze (eg. mmu-event)
      - Parameter minutes: number of minutes to snooze

@@ -253,6 +253,9 @@
 		3DA049142687F59900C98379 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
 		3DA0BD562506DB9B008233DE /* JobDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0BD552506DB9B008233DE /* JobDetailsView.swift */; };
 		3DA252442105028300B60E31 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA252432105028300B60E31 /* FolderViewController.swift */; };
+		3DA366EC29B3D86A00269C5C /* LiveActivitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA366EB29B3D86A00269C5C /* LiveActivitiesManager.swift */; };
+		3DA366EE29B3E0CE00269C5C /* PrintJobAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA366ED29B3E0CE00269C5C /* PrintJobAttributes.swift */; };
+		3DA366EF29B3E0DF00269C5C /* PrintJobAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA366ED29B3E0CE00269C5C /* PrintJobAttributes.swift */; };
 		3DA7783C25CFAFBB0048405A /* BLTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA7783B25CFAFBB0048405A /* BLTouch.swift */; };
 		3DA7784F25CFAFCB0048405A /* BLTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA7783B25CFAFBB0048405A /* BLTouch.swift */; };
 		3DA7785925CFAFCC0048405A /* BLTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA7783B25CFAFBB0048405A /* BLTouch.swift */; };
@@ -300,6 +303,7 @@
 		3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */; };
 		3DBAE4A320E6A02A00D2137D /* WebSocketClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */; };
 		3DBFB2E8256E1B2300DC43E8 /* HLSThumbnailUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */; };
+		3DBFF5E929A2E12F005F2102 /* LiveActivityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBFF5E829A2E12F005F2102 /* LiveActivityWidget.swift */; };
 		3DC0AD802406320200E0B461 /* BriefView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC0AD7F2406320200E0B461 /* BriefView.swift */; };
 		3DC11E6525C68D600099BFE9 /* PSUControlOnIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC11E6425C68D600099BFE9 /* PSUControlOnIntentHandler.swift */; };
 		3DC11E7025C68EC30099BFE9 /* PSUControlOffIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC11E6F25C68EC30099BFE9 /* PSUControlOffIntentHandler.swift */; };
@@ -872,6 +876,8 @@
 		3DA0490C2687EE5500C98379 /* CameraUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraUtils.swift; sourceTree = "<group>"; };
 		3DA0BD552506DB9B008233DE /* JobDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobDetailsView.swift; sourceTree = "<group>"; };
 		3DA252432105028300B60E31 /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
+		3DA366EB29B3D86A00269C5C /* LiveActivitiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesManager.swift; sourceTree = "<group>"; };
+		3DA366ED29B3E0CE00269C5C /* PrintJobAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintJobAttributes.swift; sourceTree = "<group>"; };
 		3DA44F162314D75D00EB9763 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DA44F172314D7B500EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		3DA44F182314D7B600EB9763 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Intents.strings; sourceTree = "<group>"; };
@@ -921,6 +927,7 @@
 		3DBB692322F12DD600C21430 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DBCE84721B4925F00ABB42D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLSThumbnailUtil.swift; sourceTree = "<group>"; };
+		3DBFF5E829A2E12F005F2102 /* LiveActivityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityWidget.swift; sourceTree = "<group>"; };
 		3DC0AD7F2406320200E0B461 /* BriefView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefView.swift; sourceTree = "<group>"; };
 		3DC11E6425C68D600099BFE9 /* PSUControlOnIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSUControlOnIntentHandler.swift; sourceTree = "<group>"; };
 		3DC11E6F25C68EC30099BFE9 /* PSUControlOffIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSUControlOffIntentHandler.swift; sourceTree = "<group>"; };
@@ -1534,6 +1541,7 @@
 				3DAD2DE421817B23004A4223 /* IPPlug.swift */,
 				3DC6DB31245553970091E548 /* FilamentManager */,
 				3D9D9763214D735D0032443A /* CloudKitSync */,
+				3DA366EA29B3D83700269C5C /* LiveActivities */,
 				3D8873F720F534C400DCE987 /* PrintFile.swift */,
 				3D78BA9E21039D770090D79A /* Terminal.swift */,
 				3D92E6C721213B2400F58BA5 /* TempHistory.swift */,
@@ -1595,6 +1603,15 @@
 				3D7C88472152B25D009FECEF /* CloudKitPrinterLogEntry.swift */,
 			);
 			path = CloudKitSync;
+			sourceTree = "<group>";
+		};
+		3DA366EA29B3D83700269C5C /* LiveActivities */ = {
+			isa = PBXGroup;
+			children = (
+				3DA366EB29B3D86A00269C5C /* LiveActivitiesManager.swift */,
+				3DA366ED29B3E0CE00269C5C /* PrintJobAttributes.swift */,
+			);
+			path = LiveActivities;
 			sourceTree = "<group>";
 		};
 		3DABB21E22C0044D00F32731 /* OctoPod Notification Extension */ = {
@@ -1734,6 +1751,7 @@
 				3D1AC8B225059AEB00529F24 /* ProgressBarView.swift */,
 				3D4208582506AA65001C3DE2 /* PrintJobDataService.swift */,
 				3D97074E2506E0B90076C959 /* CameraService.swift */,
+				3DBFF5E829A2E12F005F2102 /* LiveActivityWidget.swift */,
 				3D91E925250D7F3A008A59CD /* OctoPodWidget14.intentdefinition */,
 				3DE5F53E24FC600300BFDAD3 /* Assets.xcassets */,
 				3DE5F54024FC600300BFDAD3 /* Info.plist */,
@@ -2415,6 +2433,7 @@
 				3D74FA2721251BCF00DA2CB3 /* PSUControlViewController.swift in Sources */,
 				3DD3F26A2439994300EA3F84 /* PrinterViewCell.swift in Sources */,
 				3D5D614823D57C2000D988A2 /* ComplicationContentType.swift in Sources */,
+				3DA366EE29B3E0CE00269C5C /* PrintJobAttributes.swift in Sources */,
 				3DB932CF24475E8600A154FF /* EnclosureViewController.swift in Sources */,
 				3DBAE49F20E6821900D2137D /* SelectDefaultPrinterViewController.swift in Sources */,
 				3D037161270A934000395B6F /* SponsorsViewController.swift in Sources */,
@@ -2540,6 +2559,7 @@
 				3D1A935F213271680050ED9A /* Script.swift in Sources */,
 				0B1C6FD6271E1B34007F3AC9 /* OctorelayViewCell.swift in Sources */,
 				3D8B292A20E54F7300296D9D /* PanelViewController.swift in Sources */,
+				3DA366EC29B3D86A00269C5C /* LiveActivitiesManager.swift in Sources */,
 				3D7E5026267EA517007DBB5B /* BasePrinterDetailsViewController.swift in Sources */,
 				3D450E5E21AB1C040049FBC0 /* Intents.intentdefinition in Sources */,
 				3DA8F980240B530700CC6AAD /* PopularGCodeViewController.swift in Sources */,
@@ -2682,8 +2702,10 @@
 				3D97074F2506E0B90076C959 /* CameraService.swift in Sources */,
 				3D34B9E627DE6B750079F39C /* UIUtils.swift in Sources */,
 				3D91E923250D7F3A008A59CD /* OctoPodWidget14.intentdefinition in Sources */,
+				3DBFF5E929A2E12F005F2102 /* LiveActivityWidget.swift in Sources */,
 				3DF383592505F7F4003C803D /* HTTPClient.swift in Sources */,
 				3DA0BD562506DB9B008233DE /* JobDetailsView.swift in Sources */,
+				3DA366EF29B3E0DF00269C5C /* PrintJobAttributes.swift in Sources */,
 				3DF3835C2505F823003C803D /* SystemCommand.swift in Sources */,
 				3D1AC8B42505A0EA00529F24 /* ProgressBarView.swift in Sources */,
 				3D588CB52545DAD700D96B86 /* DashboardWidget.swift in Sources */,

@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.backgroundRefresher.start()
         
+        self.liveActivitiesManager.start()
+        
         // Enable background refresh and set minimum interval between fetches
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
 
@@ -333,5 +335,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var defaultPrinterManager: DefaultPrinterManager = {
         return DefaultPrinterManager(printerManager: self.printerManager!, octoprintClient: self.octoprintClient, watchSessionManager: self.watchSessionManager)
+    }()
+    
+    lazy var liveActivitiesManager: LiveActivitiesManager = {
+        return LiveActivitiesManager(printerManager: self.printerManager!, octoprintClient: self.octoprintClient)
     }()
 }

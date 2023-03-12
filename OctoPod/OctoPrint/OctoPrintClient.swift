@@ -669,6 +669,20 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     }
 
     /**
+     Register new APNS token for updating a Live Activity via push notifications from OctoPod plugin. Tokens may rotate for security reasons.
+     */
+    func registerLiveActivityAPNSToken(activityID: String, token: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.registerLiveActivityAPNSToken(activityID: activityID, token: token, callback: callback)
+    }
+
+    /**
+     Ask to stop updating Live Activity via push notifications.
+     */
+    func unregisterLiveActivityAPNSToken(activityID: String, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.unregisterLiveActivityAPNSToken(activityID: activityID, callback: callback)
+    }
+
+    /**
      Register new APNS token so app can receive push notifications from OctoPod plugin
      - Parameter eventCode: code that identifies event that we want to snooze (eg. mmu-event)
      - Parameter minutes: number of minutes to snooze
