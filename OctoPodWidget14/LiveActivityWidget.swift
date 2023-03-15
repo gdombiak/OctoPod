@@ -91,8 +91,15 @@ struct LockScreenLiveActivityView: View {
                 Spacer()
                 Text("\(context.attributes.printerName)")
                     .font(.headline)
-                Text("\(context.state.printerStatus)")
-                    .font(.subheadline)
+                if context.state.completion == 100 {
+                    // Display printer name
+                    Text("\(context.attributes.printFileName)")
+                        .font(.subheadline)
+                } else {
+                    // Display printer statu since we are still printing
+                    Text("\(context.state.printerStatus)")
+                        .font(.subheadline)
+                }
                 Spacer()
                 HStack {
                     Spacer()
@@ -107,17 +114,19 @@ struct LockScreenLiveActivityView: View {
                     }
                     .font(.title2)
                     Spacer()
-                    Label {
-                        Text("\(UIUtils.secondsToETA(seconds: context.state.printTimeLeft))")
-                            .font(.body)
-                    } icon: {
-                        Image("ETA")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 32, height: 32)
+                    if context.state.completion < 100 {
+                        Label {
+                            Text("\(UIUtils.secondsToETA(seconds: context.state.printTimeLeft))")
+                                .font(.body)
+                        } icon: {
+                            Image("ETA")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 32, height: 32)
+                        }
+                        .font(.title2)
+                        Spacer()
                     }
-                    .font(.title2)
-                    Spacer()
                 }
                 Spacer()
                 if !context.attributes.pluginInstalled {
@@ -141,7 +150,7 @@ struct LockScreenLiveActivityView: View {
 @available(iOSApplicationExtension 16.2, *)
 struct LockScreenLiveActivityView_Previews: PreviewProvider {
     static var initialContentState = PrintJobAttributes.ContentState(printerStatus: "Printing", completion: 45, printTimeLeft: 15000)
-    static var activityAttributes = PrintJobAttributes(urlSafePrinter: "targetURLSafePrinter", printerName: "MBP 16", pluginInstalled: true)
+    static var activityAttributes = PrintJobAttributes(urlSafePrinter: "targetURLSafePrinter", printerName: "MBP 16", printFileName: "File Name Being Printed.gcode", pluginInstalled: true)
     static var activityContent = ActivityContent(state: initialContentState, staleDate: Calendar.current.date(byAdding: .minute, value: 30, to: Date())!)
     
     static var previews: some View {

@@ -75,9 +75,17 @@ class LiveActivitiesManager: OctoPrintClientDelegate {
                     if let seconds = event.progressPrintTimeLeft {
                         printTimeLeft = seconds
                     }
+                    var printFileName = ""
+                    if let fileName = event.printFile?.name {
+                        printFileName = fileName
+                    } else {
+                        // Ignore events with no file name. Next event will include file name so we can create proper Live Activity
+                        // Filename is displayed at the end of the print
+                        return
+                    }
                     
                     let initialContentState = PrintJobAttributes.ContentState(printerStatus: printerStatus, completion: completion, printTimeLeft: printTimeLeft)
-                    let activityAttributes = PrintJobAttributes(urlSafePrinter: targetURLSafePrinter, printerName: printer.name, pluginInstalled: printer.octopodPluginInstalled)
+                    let activityAttributes = PrintJobAttributes(urlSafePrinter: targetURLSafePrinter, printerName: printer.name, printFileName: printFileName, pluginInstalled: printer.octopodPluginInstalled)
                     
                     let activityContent = ActivityContent(state: initialContentState, staleDate: Calendar.current.date(byAdding: .minute, value: 30, to: Date())!)
                     

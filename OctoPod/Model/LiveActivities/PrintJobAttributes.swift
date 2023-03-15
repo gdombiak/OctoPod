@@ -15,6 +15,6 @@ struct PrintJobAttributes: ActivityAttributes {
     // Information that is static (i.e. does not change)
     var urlSafePrinter: String
     var printerName: String
-//    var printFileName: String
+    var printFileName: String
     var pluginInstalled: Bool
 }
