@@ -35,7 +35,7 @@ class LiveActivitiesManager: OctoPrintClientDelegate {
                             if activity.activityState == .active {
                                 if let state = event.state, let progress = event.progressCompletion, let seconds = event.progressPrintTimeLeft {
                                     // Update Live Activity while printer is printing
-                                    let intProgress = Int(progress)
+                                    let intProgress = Int(progress.rounded())
                                     if activity.content.state.printerStatus != state || activity.content.state.completion != intProgress || activity.content.state.printTimeLeft != seconds {
                                         Task {
                                             let updatedContentState = PrintJobAttributes.ContentState(printerStatus: state, completion: intProgress, printTimeLeft: seconds)
@@ -69,7 +69,7 @@ class LiveActivitiesManager: OctoPrintClientDelegate {
                     }
                     var completion = 0
                     if let progress = event.progressCompletion {
-                        completion = Int(progress)
+                        completion = Int(progress.rounded())
                     }
                     var printTimeLeft = 0
                     if let seconds = event.progressPrintTimeLeft {
