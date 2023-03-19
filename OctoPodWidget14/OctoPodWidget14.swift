@@ -53,6 +53,7 @@ struct Provider: IntentTimelineProvider {
 
         if lockScreenWidget {
             // Lock Screen widget shows print job information of DEFAULT printer
+            // Do not use configuration printer since it points to what was the default when widget was added
             if let widgetPrinter = printerManager.getDefaultPrinter() {
                 let service = PrintJobDataService(name: widgetPrinter.name, hostname: widgetPrinter.hostname, apiKey: widgetPrinter.apiKey, username: widgetPrinter.username, password: widgetPrinter.password, preemptive: widgetPrinter.preemptiveAuthentication())
 
@@ -134,11 +135,17 @@ struct OctoPodWidget14EntryView : View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.widgetFamily) var family
     
-    func backgroundColor() -> Color {
+    func isLockScreenWidget() -> Bool {
         if #available(iOSApplicationExtension 16.0, *) {
-            if family == .accessoryRectangular || family == .accessoryCircular {
-                return Color.black
-            }
+            return family == .accessoryRectangular || family == .accessoryCircular
+        } else {
+            return false
+        }
+    }
+    
+    func backgroundColor() -> Color {
+        if isLockScreenWidget() {
+            return Color.black
         }
         switch self.entry.configuration.theme {
         case Theme.light:
@@ -162,40 +169,12 @@ struct OctoPodWidget14EntryView : View {
             backgroundColor()
                 .edgesIgnoringSafeArea(.all)
 
-            if let printerName = entry.configuration.printer?.name, let urlSafePrinter = printerName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
-
+            if isLockScreenWidget() {
+                // Lock Screen Widgets do not use configuration so render based on print job status of default printer
                 switch family {
-                case .systemSmall:
-                    
-                    JobDetailsView(printerName: printerName, entry: entry)
-                        .widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
-                    
-                case .systemMedium:
-                    HStack() {
-                        JobDetailsView(printerName: printerName, entry: entry)
-                            .widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
-                        if let cameraService = entry.cameraService {
-                            if let image = cameraService.image {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .scaledToFit()
-                            } else {
-                                // Failed to fetch image so display placeholder
-                                // In the future we could add a text with the reason of the failure
-                                Image("Image")
-                                    .resizable()
-                            }
-                        } else {
-                            // No camera was configured in the widget
-                            VStack {
-                                Image("Image")
-                                    .resizable()
-                                Text("Configure widget")
-                            }
-                        }
-                    }
-                    .padding(10.0)
-                case .accessoryCircular:
+                case .accessoryRectangular:
+                    LockedRectangularView(entry: entry)
+                default:
                     if let progress = entry.printJobDataService?.progress {
                         ProgressBarView(progress: .constant(progress), color: .constant(.white))
                             .frame(width: 60.0, height: 60.0)
@@ -204,16 +183,48 @@ struct OctoPodWidget14EntryView : View {
                             .resizable()
                             .scaledToFit()
                     }
-                case .accessoryRectangular:
-                    LockedRectangularView(entry: entry)
-                default:
-                    LargetDetailsView(printerName: printerName, entry: entry)
-                        .padding(10.0)
-                        .widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
                 }
             } else {
-                // No printer has been selected so ask to configure widget
-                Text("Configure widget")
+                // Regular iOS 14 widgets rely on their configuration to know what to render
+                if let printerName = entry.configuration.printer?.name, let urlSafePrinter = printerName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+                    switch family {
+                    case .systemSmall:
+                        JobDetailsView(printerName: printerName, entry: entry)
+                            .widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
+                    case .systemMedium:
+                        HStack() {
+                            JobDetailsView(printerName: printerName, entry: entry)
+                                .widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
+                            if let cameraService = entry.cameraService {
+                                if let image = cameraService.image {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFit()
+                                } else {
+                                    // Failed to fetch image so display placeholder
+                                    // In the future we could add a text with the reason of the failure
+                                    Image("Image")
+                                        .resizable()
+                                }
+                            } else {
+                                // No camera was configured in the widget
+                                VStack {
+                                    Image("Image")
+                                        .resizable()
+                                    Text("Configure widget")
+                                }
+                            }
+                        }
+                        .padding(10.0)
+                    default:
+                        LargetDetailsView(printerName: printerName, entry: entry)
+                            .padding(10.0)
+                            .widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
+                    }
+                } else {
+                    // No printer has been selected so ask to configure widget
+                    Text("Configure widget")
+                }
             }
         }
     }
