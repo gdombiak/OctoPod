@@ -54,24 +54,27 @@ struct DashboardJobDetailsView_Previews: PreviewProvider {
         return configuration
     }()
 
-    //    static let jobService: PrintJobDataService = {
-    //        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil)
-    //        service.printerStatus = "Printing"
-    //        service.progress = 28.0
-    //        service.printEstimatedCompletion = "9:30 PM"
-    //        return service
-    //    }()
-    
     static let jobService: PrintJobDataService = {
+        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        service.printerStatus = "Printing"
+        service.progress = 28.0
+        service.printEstimatedCompletion = "9:30 PM"
+        return service
+    }()
+
+    static let operationalJobService: PrintJobDataService = {
         let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
         service.printerStatus = "Operational"
         return service
     }()
     
-    static let jobServices = [jobService]
-    
     static var previews: some View {
-        DashboardJobDetailsView(entry: DashboardEntry(date: Date(), configuration: configuration, printJobDataServices: jobServices), index: 0)
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
+        Group {
+            DashboardJobDetailsView(entry: DashboardEntry(date: Date(), configuration: configuration, printJobDataServices: [jobService]), index: 0)
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+
+            DashboardJobDetailsView(entry: DashboardEntry(date: Date(), configuration: configuration, printJobDataServices: [operationalJobService]), index: 0)
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+        }
     }
 }

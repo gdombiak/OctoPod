@@ -49,8 +49,24 @@ struct JobDetailsView: View {
 }
 
 struct JobDetailsView_Previews: PreviewProvider {
+    static var intent: WidgetConfigurationIntent = {
+        let configuration = WidgetConfigurationIntent()
+        configuration.printer = WidgetPrinter(identifier: "MK3", display: "MK3")
+        configuration.printer?.name = "MK3"
+        return configuration
+    }()
+
+    static var jobService: PrintJobDataService = {
+        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        jobService.printerStatus = "Printing"
+        jobService.progress = 28.0
+        jobService.printEstimatedCompletion = "9:30 PM"
+        return jobService
+    }()
+
     static var previews: some View {
-        JobDetailsView(printerName: "MK3", entry: SimpleEntry(date: Date(), configuration: WidgetConfigurationIntent(), printJobDataService: nil, cameraService: nil))
+        JobDetailsView(printerName: "MK3", entry: SimpleEntry(date: Date(), configuration: intent, printJobDataService: jobService, cameraService: nil))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }
+

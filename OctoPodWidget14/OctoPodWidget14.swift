@@ -1,8 +1,33 @@
 import WidgetKit
 import SwiftUI
 import Intents
+import CoreData
 
 struct Provider: IntentTimelineProvider {
+    
+    let persistentContainer: SharedPersistentContainer
+    let printerManager: PrinterManager
+    
+    init() {
+        persistentContainer = SharedPersistentContainer(name: "OctoPod")
+        persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                /*
+                 Typical reasons for an error here include:
+                 * The parent directory does not exist, cannot be created, or disallows writing.
+                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
+                 * The device is out of space.
+                 * The store could not be migrated to the current model version.
+                 Check the error message to determine what the actual problem was.
+                 */
+                NSLog("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+
+        printerManager = PrinterManager(managedObjectContext: persistentContainer.viewContext, persistentContainer: persistentContainer)
+    }
+    
+    
     func placeholder(in context: Context) -> SimpleEntry {
         let configuration = WidgetConfigurationIntent()
         configuration.printer = WidgetPrinter(identifier: "MK3", display: "MK3")
@@ -20,32 +45,56 @@ struct Provider: IntentTimelineProvider {
     }
     
     func getSnapshot(for configuration: WidgetConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        if let widgetPrinter = configuration.printer, let printerName = widgetPrinter.name, let hostname = widgetPrinter.hostname, let apiKey = widgetPrinter.apiKey {
-            var preemptive: Bool = false
-            if let preemptiveAuth = widgetPrinter.preemptiveAuth {
-                preemptive = preemptiveAuth == 1
-            }
-            let service = PrintJobDataService(name: printerName, hostname: hostname, apiKey: apiKey, username: widgetPrinter.username, password: widgetPrinter.password, preemptive: preemptive)
-            var cameraService: CameraService?
-            if let widgetCamera = configuration.camera, let cameraURL = widgetCamera.cameraURL, let cameraOrientation = widgetCamera.cameraOrientation {
-                cameraService = CameraService(cameraURL: cameraURL, cameraOrientation: Int(truncating: cameraOrientation), username: widgetPrinter.username, password: widgetPrinter.password, preemptiveAuth: preemptive)
-            }
-            let entry = SimpleEntry(date: Date(), configuration: configuration, printJobDataService: service, cameraService: cameraService)
-            // Fetch update data and once data execute completion block
-            service.updateData {
-                if cameraService != nil && context.family != .systemSmall {
-                    // Fetch image only if widget is medium and has been configured properly
-                    cameraService?.renderImage(completion: {
-                        completion(entry)
-                    })
-                } else {
+        var lockScreenWidget = false
+        if #available(iOSApplicationExtension 16.0, *) {
+            lockScreenWidget = context.family == .accessoryRectangular || context.family == .accessoryCircular
+        }
+
+        if lockScreenWidget {
+            // Lock Screen widget shows print job information of DEFAULT printer
+            if let widgetPrinter = printerManager.getDefaultPrinter() {
+                let service = PrintJobDataService(name: widgetPrinter.name, hostname: widgetPrinter.hostname, apiKey: widgetPrinter.apiKey, username: widgetPrinter.username, password: widgetPrinter.password, preemptive: widgetPrinter.preemptiveAuthentication())
+
+                let entry = SimpleEntry(date: Date(), configuration: configuration, printJobDataService: service, cameraService: nil)
+                // Fetch update data and once data execute completion block
+                service.updateData {
                     completion(entry)
                 }
+            } else {
+                // No default printer was found so return empty print job data
+                let entry = SimpleEntry(date: Date(), configuration: configuration, printJobDataService: nil, cameraService: nil)
+                completion(entry)
             }
         } else {
-            // Intent has not been configured so return empty print job data
-            let entry = SimpleEntry(date: Date(), configuration: configuration, printJobDataService: nil, cameraService: nil)
-            completion(entry)
+            // Regular widgets need to be configured by user to specify which printer to render
+            if let widgetPrinter = configuration.printer, let printerName = widgetPrinter.name, let hostname = widgetPrinter.hostname, let apiKey = widgetPrinter.apiKey {
+                var preemptive: Bool = false
+                if let preemptiveAuth = widgetPrinter.preemptiveAuth {
+                    preemptive = preemptiveAuth == 1
+                }
+                let service = PrintJobDataService(name: printerName, hostname: hostname, apiKey: apiKey, username: widgetPrinter.username, password: widgetPrinter.password, preemptive: preemptive)
+                var cameraService: CameraService?
+                if let widgetCamera = configuration.camera, let cameraURL = widgetCamera.cameraURL, let cameraOrientation = widgetCamera.cameraOrientation {
+                    cameraService = CameraService(cameraURL: cameraURL, cameraOrientation: Int(truncating: cameraOrientation), username: widgetPrinter.username, password: widgetPrinter.password, preemptiveAuth: preemptive)
+                }
+                let entry = SimpleEntry(date: Date(), configuration: configuration, printJobDataService: service, cameraService: cameraService)
+                // Fetch update data and once data execute completion block
+                service.updateData {
+                    if cameraService != nil && context.family != .systemSmall {
+                        // Fetch image only if widget is medium and has been configured properly
+                        cameraService?.renderImage(completion: {
+                            completion(entry)
+                        })
+                    } else {
+                        completion(entry)
+                    }
+                }
+            } else {
+                // Intent has not been configured so return empty print job data
+                let entry = SimpleEntry(date: Date(), configuration: configuration, printJobDataService: nil, cameraService: nil)
+                completion(entry)
+            }
+
         }
     }
     
@@ -142,6 +191,17 @@ struct OctoPodWidget14EntryView : View {
                         }
                     }
                     .padding(10.0)
+                case .accessoryCircular:
+                    if let progress = entry.printJobDataService?.progress {
+                        ProgressBarView(progress: .constant(progress), color: .constant(.white))
+                            .frame(width: 60.0, height: 60.0)
+                    } else {
+                        Image("OctoPod")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                case .accessoryRectangular:
+                    LockedRectangularView(entry: entry)
                 default:
                     LargetDetailsView(printerName: printerName, entry: entry)
                         .padding(10.0)
@@ -172,13 +232,21 @@ struct OctoPodWidgets: WidgetBundle {
 struct OctoPodWidget14: Widget {
     let kind: String = "OctoPodWidget14"
     
+    func families() -> Array<WidgetFamily> {
+        if #available(iOSApplicationExtension 16.0, *) {
+            return [.systemSmall, .systemMedium, .systemLarge, .accessoryRectangular, .accessoryCircular]
+        } else {
+            return [.systemSmall, .systemMedium, .systemLarge]
+        }
+    }
+    
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: WidgetConfigurationIntent.self, provider: Provider()) { entry in
             OctoPodWidget14EntryView(entry: entry)
         }
         .configurationDisplayName("OctoPod")
         .description(NSLocalizedString("Monitor and control your 3d printer via OctoPod", comment: ""))
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .supportedFamilies(families())
     }
 }
 
@@ -206,7 +274,23 @@ struct OctoPodWidget14_Previews: PreviewProvider {
     }()
 
     static var previews: some View {
-        OctoPodWidget14EntryView(entry: SimpleEntry(date: Date(), configuration: intent, printJobDataService: jobService, cameraService: cameraService))
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
+        Group {
+            OctoPodWidget14EntryView(entry: SimpleEntry(date: Date(), configuration: intent, printJobDataService: jobService, cameraService: cameraService))
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+
+            OctoPodWidget14EntryView(entry: SimpleEntry(date: Date(), configuration: intent, printJobDataService: jobService, cameraService: cameraService))
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+
+            OctoPodWidget14EntryView(entry: SimpleEntry(date: Date(), configuration: intent, printJobDataService: jobService, cameraService: cameraService))
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+
+            if #available(iOSApplicationExtension 16.0, *) {
+                OctoPodWidget14EntryView(entry: SimpleEntry(date: Date(), configuration: intent, printJobDataService: jobService, cameraService: cameraService))
+                    .previewContext(WidgetPreviewContext(family: .accessoryCircular))
+
+                OctoPodWidget14EntryView(entry: SimpleEntry(date: Date(), configuration: intent, printJobDataService: jobService, cameraService: cameraService))
+                    .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
+            }
+        }
     }
 }
