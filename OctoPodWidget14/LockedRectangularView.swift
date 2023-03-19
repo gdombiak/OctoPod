@@ -12,7 +12,7 @@ struct LockedRectangularView: View {
                 HStack {
                     Text("\(printJob.printerStatus)")
                         .font(.callout)
-                    Text(String(format: "%.0f %%", min(progress, 1.0)*100.0))
+                    Text(String(format: "%.0f%%", min(progress, 1.0)*100.0))
                         .font(.callout)
                 }
                 HStack(spacing: 5) {

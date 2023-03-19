@@ -133,29 +133,34 @@ struct OctoPodWidget14EntryView : View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.widgetFamily) var family
     
+    func backgroundColor() -> Color {
+        if #available(iOSApplicationExtension 16.0, *) {
+            if family == .accessoryRectangular || family == .accessoryCircular {
+                return Color.black
+            }
+        }
+        switch self.entry.configuration.theme {
+        case Theme.light:
+            return Color(.sRGB, red: 230 / 255, green: 230 / 255, blue: 230 / 255, opacity: 0.75)
+        case Theme.dark:
+            return Color(.sRGB, red: 89 / 255, green: 89 / 255, blue: 89 / 255, opacity: 0.75)
+        case Theme.system:
+            if colorScheme == .dark {
+                return Color(.sRGB, red: 89 / 255, green: 89 / 255, blue: 89 / 255, opacity: 0.75)
+            } else {
+                return Color(.sRGB, red: 230 / 255, green: 230 / 255, blue: 230 / 255, opacity: 0.75)
+            }
+        default:
+            return Color(.sRGB, red: 154 / 255, green: 211 / 255, blue: 110 / 255, opacity: 0.75)
+        }
+    }
+    
     @ViewBuilder
     var body: some View {
         ZStack {
-            switch self.entry.configuration.theme {
-            case Theme.light:
-                Color(.sRGB, red: 230 / 255, green: 230 / 255, blue: 230 / 255, opacity: 0.75)
-                    .edgesIgnoringSafeArea(.all)
-            case Theme.dark:
-                Color(.sRGB, red: 89 / 255, green: 89 / 255, blue: 89 / 255, opacity: 0.75)
-                    .edgesIgnoringSafeArea(.all)
-            case Theme.system:
-                if colorScheme == .dark {
-                    Color(.sRGB, red: 89 / 255, green: 89 / 255, blue: 89 / 255, opacity: 0.75)
-                        .edgesIgnoringSafeArea(.all)
-                } else {
-                    Color(.sRGB, red: 230 / 255, green: 230 / 255, blue: 230 / 255, opacity: 0.75)
-                        .edgesIgnoringSafeArea(.all)
-                }
-            default:
-                Color(.sRGB, red: 154 / 255, green: 211 / 255, blue: 110 / 255, opacity: 0.75)
-                    .edgesIgnoringSafeArea(.all)
-            }
-            
+            backgroundColor()
+                .edgesIgnoringSafeArea(.all)
+
             if let printerName = entry.configuration.printer?.name, let urlSafePrinter = printerName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
 
                 switch family {
