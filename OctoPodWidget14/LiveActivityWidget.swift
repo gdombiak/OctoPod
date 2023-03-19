@@ -137,6 +137,7 @@ struct LockScreenLiveActivityView: View {
                             .frame(width: 16, height: 16)
                         Text("Install OctoPod plugin for updates")
                             .font(.caption2)
+                            .minimumScaleFactor(0.7)
                     }
                     Spacer()
                 }
