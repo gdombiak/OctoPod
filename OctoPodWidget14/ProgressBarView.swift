@@ -24,7 +24,7 @@ struct ProgressBarView: View {
                 .foregroundColor(color)
                 .rotationEffect(Angle(degrees: 270.0))
                 .animation(.linear)
-            Text(String(format: "%.0f %%", min(self.progress, 1.0)*100.0))
+            Text(String(format: "%.0f%%", min(self.progress, 1.0)*100.0))
                 .font(.callout)
                 .bold()
         }

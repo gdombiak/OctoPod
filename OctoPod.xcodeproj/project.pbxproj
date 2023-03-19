@@ -1760,16 +1760,16 @@
 				3D660BF825461E52003B7C9C /* DashboardJobDetailsView.swift */,
 				3DA0BD552506DB9B008233DE /* JobDetailsView.swift */,
 				3D1AC8B225059AEB00529F24 /* ProgressBarView.swift */,
-				3D4208582506AA65001C3DE2 /* PrintJobDataService.swift */,
-				3D97074E2506E0B90076C959 /* CameraService.swift */,
 				3D21CE0C254A8E720051449A /* LargetDetailsView.swift */,
 				3DBFF5E829A2E12F005F2102 /* LiveActivityWidget.swift */,
+				3D245ABA29C6C10F00B97339 /* LockedRectangularView.swift */,
+				3D4208582506AA65001C3DE2 /* PrintJobDataService.swift */,
+				3D97074E2506E0B90076C959 /* CameraService.swift */,
 				3D91E925250D7F3A008A59CD /* OctoPodWidget14.intentdefinition */,
 				3DE5F53E24FC600300BFDAD3 /* Assets.xcassets */,
 				3DE5F54024FC600300BFDAD3 /* Info.plist */,
 				3D1265B8268FF751007F3ED4 /* InfoPlist.strings */,
 				3D91E916250D75C3008A59CD /* Localizable.strings */,
-				3D245ABA29C6C10F00B97339 /* LockedRectangularView.swift */,
 			);
 			path = OctoPodWidget14;
 			sourceTree = "<group>";

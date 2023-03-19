@@ -23,7 +23,7 @@ struct LargetDetailsView: View {
                     Spacer()
                     if let progress = entry.printJobDataService?.progress, let eta = entry.printJobDataService?.printEstimatedCompletion, let printerStatus = entry.printJobDataService?.printerStatus {
                         
-                        Text(String(format: "%.0f %%", min(progress, 1.0)*100.0))
+                        Text(String(format: "%.0f%%", min(progress, 1.0)*100.0))
                             .font(.caption)
                         
                         Spacer()
@@ -65,7 +65,29 @@ struct LargetDetailsView: View {
 }
 
 struct LargetDetailsView_Previews: PreviewProvider {
+    static var intent: WidgetConfigurationIntent = {
+        let configuration = WidgetConfigurationIntent()
+        configuration.printer = WidgetPrinter(identifier: "MK3", display: "MK3")
+        configuration.printer?.name = "MK3"
+        return configuration
+    }()
+
+    static var jobService: PrintJobDataService = {
+        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        jobService.printerStatus = "Printing"
+        jobService.progress = 28.0
+        jobService.printEstimatedCompletion = "9:30 PM"
+        return jobService
+    }()
+    
+    static var cameraService: CameraService = {
+        let cameraService = CameraService(cameraURL: "", cameraOrientation: 1, username: nil, password: nil, preemptiveAuth: false)
+        cameraService.image = UIImage(named: "Image")
+        return cameraService
+    }()
+
     static var previews: some View {
-        LargetDetailsView(printerName: "MK3", entry: SimpleEntry(date: Date(), configuration: WidgetConfigurationIntent(), printJobDataService: nil, cameraService: nil))
+        LargetDetailsView(printerName: "MK3", entry: SimpleEntry(date: Date(), configuration: intent, printJobDataService: jobService, cameraService: cameraService))
+            .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

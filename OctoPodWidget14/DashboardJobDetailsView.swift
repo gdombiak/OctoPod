@@ -71,10 +71,10 @@ struct DashboardJobDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             DashboardJobDetailsView(entry: DashboardEntry(date: Date(), configuration: configuration, printJobDataServices: [jobService]), index: 0)
-                .previewContext(WidgetPreviewContext(family: .systemLarge))
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
 
             DashboardJobDetailsView(entry: DashboardEntry(date: Date(), configuration: configuration, printJobDataServices: [operationalJobService]), index: 0)
-                .previewContext(WidgetPreviewContext(family: .systemLarge))
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
         }
     }
 }

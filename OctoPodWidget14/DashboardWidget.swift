@@ -233,16 +233,16 @@ struct DashboardWidget14EntryView_Previews: PreviewProvider {
     static let jobService1: PrintJobDataService = {
         let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
         service.printerStatus = "Printing"
-        service.progress = 28.0
-        service.printEstimatedCompletion = "9:30 PM"
+        service.progress = 38.0
+        service.printEstimatedCompletion = "7:30 PM"
         return service
     }()
     
     static let jobService2: PrintJobDataService = {
-        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        let service = PrintJobDataService(name: "Ender 3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
         service.printerStatus = "Paused"
         service.progress = 28.0
-        service.printEstimatedCompletion = "9:30 PM"
+        service.printEstimatedCompletion = "2:30 PM"
         return service
     }()
     

@@ -52,7 +52,7 @@ struct LockedRectangularView_Previews: PreviewProvider {
     static var operationalJobService: PrintJobDataService = {
         let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
         jobService.printerStatus = "Operational"
-        jobService.progress = 0
+        jobService.progress = nil
         jobService.printEstimatedCompletion = ""
         return jobService
     }()

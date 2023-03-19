@@ -9,6 +9,7 @@ struct Provider: IntentTimelineProvider {
     let printerManager: PrinterManager
     
     init() {
+        // Use core data shared from iOS app to access to printers
         persistentContainer = SharedPersistentContainer(name: "OctoPod")
         persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -166,15 +167,13 @@ struct OctoPodWidget14EntryView : View {
                 switch family {
                 case .systemSmall:
                     
-                    VStack(spacing: 10) {
-                        JobDetailsView(printerName: printerName, entry: entry)
-                    }.widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
+                    JobDetailsView(printerName: printerName, entry: entry)
+                        .widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
                     
                 case .systemMedium:
                     HStack() {
-                        VStack(spacing: 10) {
-                            JobDetailsView(printerName: printerName, entry: entry)
-                        }.widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
+                        JobDetailsView(printerName: printerName, entry: entry)
+                            .widgetURL(URL(string: "octopod://\(urlSafePrinter)")!)
                         if let cameraService = entry.cameraService {
                             if let image = cameraService.image {
                                 Image(uiImage: image)
