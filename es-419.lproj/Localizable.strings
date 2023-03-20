@@ -76,9 +76,6 @@
 /* (No Comment) */
 "Bed warmed" = "Cama de la impresora calentada a la temperatura y duración especificadas";
 
-/* No comment provided by engineer. */
-"Camera" = "Cámara";
-
 /* (No Comment) */
 "Cancel" = "Cancelar";
 
@@ -231,9 +228,6 @@
 
 /* Siri suggested phrase */
 "Execute System Command" = "Ejecutar comando";
-
-/* No comment provided by engineer. */
-"Expand" = "Expandir";
 
 /* (No Comment) */
 "Extruder" = "Extrusor";
@@ -499,6 +493,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "Falla al pedir reanudar el trabajo";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Obico no está mirando";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Límite de cámara excedido";
 
@@ -613,9 +610,6 @@
 /* (No Comment) */
 "Restart Job" = "Reiniciar";
 
-/* No comment provided by engineer. */
-"Restore" = "Restaurar";
-
 /* gcode name */
 "Restore Settings" = "Restaurar configuración";
 
@@ -644,10 +638,10 @@
 "seconds ago" = "Hace %d segundos";
 
 /* No comment provided by engineer. */
-"Select printer from OctoEverywhere." = "Seleccione la impresora desde OctoEverywhere.";
+"Select printer from Obico." = "Seleccione la impresora desde Obico.";
 
 /* No comment provided by engineer. */
-"Select printer from Obico." = "Seleccione la impresora desde Obico.";
+"Select printer from OctoEverywhere." = "Seleccione la impresora desde OctoEverywhere.";
 
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "No se puede encontrar el servidor";
@@ -723,9 +717,6 @@
 
 /* (No Comment) */
 "Terminal" = "Terminal";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "Obico no está mirando";
 
 /* gcode name */
 "TMC Bump Sensitivity" = "TMC Sensibilidad al golpe";

@@ -32,7 +32,7 @@
 "HTTP Request error" = "Errore nella richiesta. Risposta HTTP: %d";
 
 /* No comment provided by engineer. */
-"Learn More" = "Per saperne di più";
+"Learn More" = "Altre informazioni";
 
 /* No comment provided by engineer. */
 "minutes ago" = "%d minuti fa";
@@ -43,14 +43,14 @@
 /* No comment provided by engineer. */
 "No" = "No";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Obico non sta guardando";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Superato il limite delle webcam";
 
 /* No comment provided by engineer. */
 "seconds ago" = "%d secondi fa";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "Obico non sta guardando";
 
 /* ETA is Unknown */
 "Unknown" = "Sconosciuto";

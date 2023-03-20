@@ -76,9 +76,6 @@
 /* (No Comment) */
 "Bed warmed" = "Piatto della stampante riscaldato alla temperatura e per la durata specificate";
 
-/* No comment provided by engineer. */
-"Camera" = "Videocamera";
-
 /* (No Comment) */
 "Cancel" = "Annulla";
 
@@ -232,9 +229,6 @@
 /* Siri suggested phrase */
 "Execute System Command" = "Esegui il comando di sistema";
 
-/* No comment provided by engineer. */
-"Expand" = "Espandi";
-
 /* (No Comment) */
 "Extruder" = "Estrusore";
 
@@ -269,7 +263,7 @@
 "Failed to get list of layer notifications" = "Impossibile ottenere la lista delle notifiche sui layer";
 
 /* No comment provided by engineer. */
-"Failed to get list of relays" = "Impossibile ottenere l'elenco dei relè";
+"Failed to get list of relays" = "Impossibile ottenere una lista dei relè";
 
 /* Failed to get system commands with HTTP Request error info */
 "Failed to get system commands" = "Errore nel caricamento dei comandi di sistema";
@@ -344,7 +338,7 @@
 "Failed to request to retract" = "Errore nella richiesta di ritrarre";
 
 /* No comment provided by engineer. */
-"Failed to request to switch relay" = "Impossibile richiedere di cambiare relè";
+"Failed to request to switch relay" = "Impossibile richiedere il cambio di stato del relè";
 
 /* (No Comment) */
 "Failed to request to turn power off" = "Errore nella richiesta di spegnimento";
@@ -437,7 +431,7 @@
 "Layer" = "Layer";
 
 /* No comment provided by engineer. */
-"Learn More" = "Per saperne di più";
+"Learn More" = "Altre informazioni";
 
 /* gcode name */
 "Load filament" = "Carica filamento";
@@ -499,6 +493,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "Errore nella richiesta di riprendere la stampa";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Obico non sta guardando";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Superato il limite delle webcam";
 
@@ -509,7 +506,7 @@
 "OctoPrint" = "OctoPrint";
 
 /* No comment provided by engineer. */
-"OctoPrint had an error using Global API Key. Remove and add printer again using 'Application Key' as a workaround" = "OctoPrint ha riscontrato un errore durante l'utilizzo della chiave API globale. Rimuovere e aggiungere nuovamente la stampante utilizzando \"Chiave applicazione\" come soluzione alternativa";
+"OctoPrint had an error using Global API Key. Remove and add printer again using 'Application Key' as a workaround" = "OctoPrint ha avuto un problema usando la Chiave API Globale. Per risolvere, rimuovi e aggiungi di nuovo la stampante usando 'Chiave Applicazione'";
 
 /* https://github.com/bastienstefani/OctoRelay */
 "Octorelay" = "Octorelay";
@@ -613,9 +610,6 @@
 /* (No Comment) */
 "Restart Job" = "Ricomincia";
 
-/* No comment provided by engineer. */
-"Restore" = "Ripristina";
-
 /* gcode name */
 "Restore Settings" = "Ripristina impostazioni";
 
@@ -644,10 +638,10 @@
 "seconds ago" = "%d secondi fa";
 
 /* No comment provided by engineer. */
-"Select printer from OctoEverywhere." = "Seleziona la stampante da OctoEverywhere.";
+"Select printer from Obico." = "Seleziona la Stampante da Obico.";
 
 /* No comment provided by engineer. */
-"Select printer from Obico." = "Seleziona la Stampante da Obico.";
+"Select printer from OctoEverywhere." = "Seleziona la stampante da OctoEverywhere.";
 
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Impossibile trovare il server";
@@ -723,9 +717,6 @@
 
 /* (No Comment) */
 "Terminal" = "Terminale";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "Obico non sta guardando";
 
 /* gcode name */
 "TMC Bump Sensitivity" = "Sensitività bump TMC";

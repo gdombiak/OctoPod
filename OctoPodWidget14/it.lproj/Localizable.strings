@@ -41,7 +41,10 @@
 "HTTP Request error" = "Errore nella richiesta. Risposta HTTP: %d";
 
 /* No comment provided by engineer. */
-"Learn More" = "Per saperne di più";
+"Install OctoPod plugin for updates" = "Installa il plugin di OctoPod per gli aggiornamenti";
+
+/* No comment provided by engineer. */
+"Learn More" = "Altre informazioni";
 
 /* No comment provided by engineer. */
 "minutes ago" = "%d minuti fa";
@@ -58,14 +61,14 @@
 /* No camera was configured */
 "No camera" = "Nessuna videocamera";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Obico non sta guardando";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Superato il limite delle webcam";
 
 /* No comment provided by engineer. */
 "seconds ago" = "%d secondi fa";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "Obico non sta guardando";
 
 /* ETA is Unknown */
 "Unknown" = "Sconosciuto";
