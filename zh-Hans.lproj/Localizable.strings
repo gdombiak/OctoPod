@@ -76,9 +76,6 @@
 /* (No Comment) */
 "Bed warmed" = "打印机热床被加热到指定的温度和时间";
 
-/* No comment provided by engineer. */
-"Camera" = "摄像机";
-
 /* (No Comment) */
 "Cancel" = "取消";
 
@@ -231,9 +228,6 @@
 
 /* Siri suggested phrase */
 "Execute System Command" = "执行系统命令";
-
-/* No comment provided by engineer. */
-"Expand" = "拓展";
 
 /* (No Comment) */
 "Extruder" = "挤出机";
@@ -499,6 +493,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "未能请求恢复工作";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "侦探没有在监测打印";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere:超过了网络摄像头的限制";
 
@@ -613,9 +610,6 @@
 /* (No Comment) */
 "Restart Job" = "重新启动工作";
 
-/* No comment provided by engineer. */
-"Restore" = "恢复";
-
 /* gcode name */
 "Restore Settings" = "恢复设置";
 
@@ -644,10 +638,10 @@
 "seconds ago" = "%d秒前";
 
 /* No comment provided by engineer. */
-"Select printer from OctoEverywhere." = "从OctoEverywhere选择打印机。";
+"Select printer from Obico." = "从 Obico 中选择打印机。";
 
 /* No comment provided by engineer. */
-"Select printer from Obico." = "从 Obico 中选择打印机。";
+"Select printer from OctoEverywhere." = "从OctoEverywhere选择打印机。";
 
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "找不到服务器";
@@ -723,9 +717,6 @@
 
 /* (No Comment) */
 "Terminal" = "终端";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "侦探没有在监测打印";
 
 /* gcode name */
 "TMC Bump Sensitivity" = "TMC凹凸灵敏度";

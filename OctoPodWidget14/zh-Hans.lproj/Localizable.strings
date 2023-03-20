@@ -41,6 +41,9 @@
 "HTTP Request error" = "HTTP请求错误";
 
 /* No comment provided by engineer. */
+"Install OctoPod plugin for updates" = "安装OctoPod插件进行更新";
+
+/* No comment provided by engineer. */
 "Learn More" = "了解更多";
 
 /* No comment provided by engineer. */
@@ -58,14 +61,14 @@
 /* No camera was configured */
 "No camera" = "没有摄像头";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "侦探没有在监测打印";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere:超过了网络摄像头的限制";
 
 /* No comment provided by engineer. */
 "seconds ago" = "秒前";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "侦探没有在监测打印";
 
 /* ETA is Unknown */
 "Unknown" = "不详";

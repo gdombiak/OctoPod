@@ -43,14 +43,14 @@
 /* No comment provided by engineer. */
 "No" = "没有";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "侦探没有在监测打印";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere:超过了网络摄像头的限制";
 
 /* No comment provided by engineer. */
 "seconds ago" = "秒前";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "侦探没有在监测打印";
 
 /* ETA is Unknown */
 "Unknown" = "不详";
