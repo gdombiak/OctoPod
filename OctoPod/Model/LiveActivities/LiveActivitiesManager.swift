@@ -85,7 +85,7 @@ class LiveActivitiesManager: OctoPrintClientDelegate {
                     }
                     
                     let initialContentState = PrintJobAttributes.ContentState(printerStatus: printerStatus, completion: completion, printTimeLeft: printTimeLeft)
-                    let activityAttributes = PrintJobAttributes(urlSafePrinter: targetURLSafePrinter, printerName: printer.name, printFileName: printFileName, pluginInstalled: false)
+                    let activityAttributes = PrintJobAttributes(urlSafePrinter: targetURLSafePrinter, printerName: printer.name, printFileName: printFileName, pluginInstalled: printer.octopodPluginInstalled)
                     
                     let activityContent = ActivityContent(state: initialContentState, staleDate: Calendar.current.date(byAdding: .minute, value: 30, to: Date())!)
                     
