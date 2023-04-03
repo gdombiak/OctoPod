@@ -41,6 +41,9 @@
 "HTTP Request error" = "HTTP atsakymas: %d";
 
 /* No comment provided by engineer. */
+"Install OctoPod plugin for updates" = "Norėdami atnaujinti, įdiekite „OctoPod“ papildinį";
+
+/* No comment provided by engineer. */
 "Learn More" = "Sužinokite daugiau";
 
 /* No comment provided by engineer. */
@@ -58,14 +61,14 @@
 /* No camera was configured */
 "No camera" = "Nėra kameros";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Makaronų Detektyvas nestebi";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: viršytas kamerų limitas";
 
 /* No comment provided by engineer. */
 "seconds ago" = "prieš %d sekundžių";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "Makaronų Detektyvas nestebi";
 
 /* ETA is Unknown */
 "Unknown" = "nežinomas";

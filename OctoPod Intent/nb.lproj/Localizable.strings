@@ -43,14 +43,14 @@
 /* No comment provided by engineer. */
 "No" = "Nei";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Detektivet ser ikke på";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Webkamera grense overskredet";
 
 /* No comment provided by engineer. */
 "seconds ago" = "%d sekunder siden";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "Detektivet ser ikke på";
 
 /* ETA is Unknown */
 "Unknown" = "Ukjent";

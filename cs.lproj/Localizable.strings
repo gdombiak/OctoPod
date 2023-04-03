@@ -76,9 +76,6 @@
 /* (No Comment) */
 "Bed warmed" = "Podložka nahřáta na nastavenou teplotu a dobu";
 
-/* No comment provided by engineer. */
-"Camera" = "Kamera";
-
 /* (No Comment) */
 "Cancel" = "Zrušit";
 
@@ -231,9 +228,6 @@
 
 /* Siri suggested phrase */
 "Execute System Command" = "Spustit systémový příkaz";
-
-/* No comment provided by engineer. */
-"Expand" = "Maximalizovat";
 
 /* (No Comment) */
 "Extruder" = "Tryska";
@@ -499,6 +493,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "Nezdařil se požadavek k pokračování v tisku";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Obico není aktivní";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Překročen limit webkamery";
 
@@ -613,9 +610,6 @@
 /* (No Comment) */
 "Restart Job" = "Restartovat";
 
-/* No comment provided by engineer. */
-"Restore" = "Obnovit";
-
 /* gcode name */
 "Restore Settings" = "Obnovit nastavení";
 
@@ -644,10 +638,10 @@
 "seconds ago" = "před %d vteřinami";
 
 /* No comment provided by engineer. */
-"Select printer from OctoEverywhere." = "Vybrat tiskárnu v OctoEverywhere";
+"Select printer from Obico." = "Vyberte tiskárnu z Obico";
 
 /* No comment provided by engineer. */
-"Select printer from Obico." = "Vyberte tiskárnu z Obico";
+"Select printer from OctoEverywhere." = "Vybrat tiskárnu v OctoEverywhere";
 
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Server nenalezen";
@@ -723,9 +717,6 @@
 
 /* (No Comment) */
 "Terminal" = "Terminál";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "Obico není aktivní";
 
 /* gcode name */
 "TMC Bump Sensitivity" = "Citlivost nárazů TMC";

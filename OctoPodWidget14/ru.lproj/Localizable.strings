@@ -41,6 +41,9 @@
 "HTTP Request error" = "Ошибка запроса. HTTP-ответ: %d";
 
 /* No comment provided by engineer. */
+"Install OctoPod plugin for updates" = "Установите плагин OctoPod для обновлений";
+
+/* No comment provided by engineer. */
 "Learn More" = "Выучить больше";
 
 /* No comment provided by engineer. */
@@ -58,14 +61,14 @@
 /* No camera was configured */
 "No camera" = "Камера не найдена";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Детектив не смотрит";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: превышен лимит веб-камеры";
 
 /* No comment provided by engineer. */
 "seconds ago" = "%d сек. назад";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "Детектив не смотрит";
 
 /* ETA is Unknown */
 "Unknown" = "Неизвестно";

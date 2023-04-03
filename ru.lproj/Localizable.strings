@@ -76,9 +76,6 @@
 /* (No Comment) */
 "Bed warmed" = "Стол принтера нагревается до заданной температуры";
 
-/* No comment provided by engineer. */
-"Camera" = "Камера";
-
 /* (No Comment) */
 "Cancel" = "Отмена";
 
@@ -231,9 +228,6 @@
 
 /* Siri suggested phrase */
 "Execute System Command" = "Выполнить системную команду";
-
-/* No comment provided by engineer. */
-"Expand" = "Развернуть";
 
 /* (No Comment) */
 "Extruder" = "Экструдер";
@@ -499,6 +493,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "Не удалось выполнить запрос на возобновление задания";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Детектив не смотрит";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: превышен лимит веб-камеры";
 
@@ -613,9 +610,6 @@
 /* (No Comment) */
 "Restart Job" = "Перезапустить задание";
 
-/* No comment provided by engineer. */
-"Restore" = "Восстановить";
-
 /* gcode name */
 "Restore Settings" = "Восстановить настройки";
 
@@ -644,10 +638,10 @@
 "seconds ago" = "%d сек. назад";
 
 /* No comment provided by engineer. */
-"Select printer from OctoEverywhere." = "Выберите принтер OctoEverywhere.";
+"Select printer from Obico." = "Выберите принтер из детектива спагетти.";
 
 /* No comment provided by engineer. */
-"Select printer from Obico." = "Выберите принтер из детектива спагетти.";
+"Select printer from OctoEverywhere." = "Выберите принтер OctoEverywhere.";
 
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Сервер не найден";
@@ -723,9 +717,6 @@
 
 /* (No Comment) */
 "Terminal" = "Терминал";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "Детектив не смотрит";
 
 /* gcode name */
 "TMC Bump Sensitivity" = "TMC: Чувствительность удара";

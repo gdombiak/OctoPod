@@ -41,6 +41,9 @@
 "HTTP Request error" = "Fel vid begäran. HTTP-svar: %d";
 
 /* No comment provided by engineer. */
+"Install OctoPod plugin for updates" = "Installera OctoPod-plugin för uppdateringar";
+
+/* No comment provided by engineer. */
 "Learn More" = "Läs mer";
 
 /* No comment provided by engineer. */
@@ -58,14 +61,14 @@
 /* No camera was configured */
 "No camera" = "Ingen kamera";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Obico tittar inte";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoEverywhere: Gräns för webbkameran överskriden";
 
 /* No comment provided by engineer. */
 "seconds ago" = "%d sekunder sedan";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "Obico tittar inte";
 
 /* ETA is Unknown */
 "Unknown" = "Okänd";

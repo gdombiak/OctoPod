@@ -76,9 +76,6 @@
 /* (No Comment) */
 "Bed warmed" = "Skriveflate varmet til spesifisert temperatur og varighet";
 
-/* No comment provided by engineer. */
-"Camera" = "Kamera";
-
 /* (No Comment) */
 "Cancel" = "Avbryt";
 
@@ -231,9 +228,6 @@
 
 /* Siri suggested phrase */
 "Execute System Command" = "Utfør systemkommando";
-
-/* No comment provided by engineer. */
-"Expand" = "Maksimer";
 
 /* (No Comment) */
 "Extruder" = "Ekstruder";
@@ -499,6 +493,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "Kunne ikke be om å fortsette jobben";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Detektivet ser ikke på";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "„OctoEverywhere“: viršytas žiniatinklio kameros limitas";
 
@@ -613,9 +610,6 @@
 /* (No Comment) */
 "Restart Job" = "Restart";
 
-/* No comment provided by engineer. */
-"Restore" = "Restaurere";
-
 /* gcode name */
 "Restore Settings" = "Gjenopprett innstillinger";
 
@@ -644,10 +638,10 @@
 "seconds ago" = "%d sekunder siden";
 
 /* No comment provided by engineer. */
-"Select printer from OctoEverywhere." = "Pasirinkite spausdintuvą iš „OctoEverywhere“.";
+"Select printer from Obico." = "Velg Skriver fra Obico.";
 
 /* No comment provided by engineer. */
-"Select printer from Obico." = "Velg Skriver fra Obico.";
+"Select printer from OctoEverywhere." = "Pasirinkite spausdintuvą iš „OctoEverywhere“.";
 
 /* DNS resolution failed. Cannot resolve hostname */
 "Server cannot be found" = "Server kunne ikke bli funnet";
@@ -723,9 +717,6 @@
 
 /* (No Comment) */
 "Terminal" = "Terminal";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "Detektivet ser ikke på";
 
 /* gcode name */
 "TMC Bump Sensitivity" = "TMC-støtfølsomhet";

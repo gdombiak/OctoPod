@@ -43,14 +43,14 @@
 /* No comment provided by engineer. */
 "No" = "Non";
 
+/* Obico Is Not Watching */
+"Obico Is Not Watching" = "Le détective n’est pas en surveillance";
+
 /* Error message from OctoEverywhere */
 "OctoEverywhere: Webcam Limit Exceeded" = "OctoevErywhere: limite de webcam dépassée";
 
 /* No comment provided by engineer. */
 "seconds ago" = "Il y a %d secondes";
-
-/* Obico Is Not Watching */
-"Obico Is Not Watching" = "Le détective n’est pas en surveillance";
 
 /* ETA is Unknown */
 "Unknown" = "Inconnu";
