@@ -1,9 +1,44 @@
 # Changelog
 
-## [3.24](https://github.com/gdombiak/OctoPod/tree/3.24) (2022-09-16)
+## [3.26](https://github.com/gdombiak/OctoPod/tree/3.25) (2023-04-05)
 
-[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.23...3.24)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.25...3.26)
 
+**Implemented enhancements:**
+
+- Add support for Live Activities [\#635](https://github.com/gdombiak/OctoPod/issues/635)
+- Feature Request: IOS 16 Widgets [\#608](https://github.com/gdombiak/OctoPod/issues/608)
+
+## [ATV_3.8](https://github.com/gdombiak/OctoPod/tree/ATV_3.8) (2023-02-12)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.25...ATV_3.8)
+
+**Implemented enhancements:**
+
+- Improve buttons layout when more than 1 camera is present [\#633](https://github.com/gdombiak/OctoPod/issues/633)
+- AppleTV - Display printers as sorted in the iOS app [\#630](https://github.com/gdombiak/OctoPod/issues/630)
+
+**Fixed bugs:**
+
+- Apple TV hangs while displaying "Retrieving printers information" [\#632](https://github.com/gdombiak/OctoPod/issues/632)
+
+## [3.25](https://github.com/gdombiak/OctoPod/tree/3.25) (2022-11-28)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.24...3.25)
+
+**Implemented enhancements:**
+
+- Improve rendering of printers in dashboard when using larger text [\#622](https://github.com/gdombiak/OctoPod/issues/622)
+- Maintain printer list sort order when restoring on new device from iCloud [\#617](https://github.com/gdombiak/OctoPod/issues/617)
+- Rename The Spaghetti Detective to Obico [\#588](https://github.com/gdombiak/OctoPod/issues/588)
+
+**Fixed bugs:**
+
+- Octopod not showing thumbnail [\#620](https://github.com/gdombiak/OctoPod/issues/620)
+
+## [3.24](https://github.com/gdombiak/OctoPod/tree/3.24) (2022-09-27)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.22...3.24)
 
 **Implemented enhancements:**
 
@@ -13,20 +48,20 @@
 
 **Fixed bugs:**
 
+- Timelapses with brackets in file name won’t play  [\#591](https://github.com/gdombiak/OctoPod/issues/591)
 - Camera does not refresh after tapping on push notification [\#614](https://github.com/gdombiak/OctoPod/issues/614)
 - Screen rotation does not work in iOS 16 [\#611](https://github.com/gdombiak/OctoPod/issues/611)
 - Needs updating for OctoPrint 1.8.3 [\#607](https://github.com/gdombiak/OctoPod/issues/607)
 - Print - Pause - Cancel missing [\#606](https://github.com/gdombiak/OctoPod/issues/606)
 - Time to finish printing and name of model not showing up after Octoprint update  [\#605](https://github.com/gdombiak/OctoPod/issues/605)
-- Timelapses with brackets in file name won’t play  [\#591](https://github.com/gdombiak/OctoPod/issues/591)
 
 **Closed issues:**
 
-- iOS 11 is no longer supported [\#612](https://github.com/gdombiak/OctoPod/issues/612)
 - Multiple layer notification issue IOS [\#599](https://github.com/gdombiak/OctoPod/issues/599)
 - Feature Request: gcode-Upload from another application via Share [\#597](https://github.com/gdombiak/OctoPod/issues/597)
 - Not able to install from the Slovak region App store [\#596](https://github.com/gdombiak/OctoPod/issues/596)
 - Octopod initiated print job by self [\#592](https://github.com/gdombiak/OctoPod/issues/592)
+- iOS 11 is no longer supported [\#612](https://github.com/gdombiak/OctoPod/issues/612)
 
 ## [3.22](https://github.com/gdombiak/OctoPod/tree/3.22) (2022-05-15)
 
@@ -273,7 +308,7 @@
 - Current layer and height are sometimes not shown [\#447](https://github.com/gdombiak/OctoPod/issues/447)
 - Min variance ignores when variance is 0 [\#446](https://github.com/gdombiak/OctoPod/issues/446)
 - Fix app crash when connecting to OctoPrint [\#431](https://github.com/gdombiak/OctoPod/issues/431)
-- Update Localizable.strings [\#434](https://github.com/gdombiak/OctoPod/pull/434) ([Shaewen-Chronicles](https://github.com/Shaewen-Chronicles))
+- Update Localizable.strings [\#434](https://github.com/gdombiak/OctoPod/pull/434) ([aSilentSniper](https://github.com/aSilentSniper))
 
 **Closed issues:**
 
