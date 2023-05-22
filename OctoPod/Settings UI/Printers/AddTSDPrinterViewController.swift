@@ -7,6 +7,7 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
     @IBOutlet weak var webView: WKWebView!
     var newWebviewPopupWindow: WKWebView?
 
+    @IBOutlet weak var obicoServerURLField: UITextField!
     @IBOutlet weak var printerNameField: UITextField!
     @IBOutlet weak var apiKeyField: UITextField!
     @IBOutlet weak var scanAPIKeyButton: UIButton!
@@ -18,6 +19,8 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
 
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
+    /// Obico server hostname. Some users have their own local Obico server so allow to specify server URL. Tack hostname
+    var obicoHostname: String!
     /// Hostname provided by TSD
     var hostname: String?
     /// Username provided by TSD
@@ -30,6 +33,8 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
 
         webView.navigationDelegate = self
         webView.uiDelegate = self
+     
+        resetObicoServerURL()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,8 +42,7 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
         
         themeLabels()
 
-        let url = URL(string: "https://app.obico.io/tunnels/new/?app=OctoPod")!
-        webView.load(URLRequest(url: url))
+        webView.load(URLRequest(url: generateObicoOctoPodURL()))
         
         displayProgressMessage(message: NSLocalizedString("Select printer from Obico.", comment: ""))
     }
@@ -102,7 +106,7 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
 //        NSLog("webView url \(webView.url!.absoluteString)")
         
         if let url = webView.url {
-            if url.host == "app.obico.io" && url.path == "/tunnels/succeeded", let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+            if url.host == obicoHostname && url.path == "/tunnels/succeeded", let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
                 if let tunnerEndpoint = urlComponents.queryItems?.first(where: { $0.name == "tunnel_endpoint" })?.value, let printerURL = URL(string: tunnerEndpoint) {
                     var tunnelURLComponents = URLComponents(url: printerURL, resolvingAgainstBaseURL: false)
                     username = tunnelURLComponents?.user
@@ -124,8 +128,28 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
         }
     }
     
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        self.showAlert(NSLocalizedString("Warning", comment: ""), message: error.localizedDescription)
+    }
+    
     // MARK: - IB Events
 
+    @IBAction func obicoServerChanged(_ sender: Any) {
+        if obicoServerURLField.text?.last == "/" {
+            // Remove trailing / from URL
+            obicoServerURLField.text?.removeLast()
+        }
+        if let serverUrl = obicoServerURLField.text, let url = URL(string: serverUrl), let hostname = url.host {
+            let obicoOctoPodURL = generateObicoOctoPodURL()
+            // Do nothing if URL has not changed
+            if webView.url == obicoOctoPodURL {
+                return
+            }
+            obicoHostname = hostname
+            webView.load(URLRequest(url: obicoOctoPodURL))
+        }
+    }
+    
     @IBAction func fieldChanged(_ sender: Any) {
         updateSaveButton()
     }
@@ -192,5 +216,23 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
             self.statusLabel.text = message
             self.statusLabel.textColor = UIColor.red
        }
+    }
+
+    fileprivate func resetObicoServerURL() {
+        obicoHostname = "app.obico.io"
+        obicoServerURLField.text = "https://\(obicoHostname!)"
+    }
+    
+    fileprivate func generateObicoOctoPodURL() -> URL {
+        if let serverURL = obicoServerURLField.text, let url = URL(string: "\(serverURL)/tunnels/new/?app=OctoPod") {
+            return url
+        } else {
+            resetObicoServerURL()
+            return URL(string: "\(obicoServerURLField.text!)/tunnels/new/?app=OctoPod")!
+        }
+    }
+    
+    fileprivate func showAlert(_ title: String, message: String) {
+        UIUtils.showAlert(presenter: self, title: title, message: message, done: nil)
     }
 }
