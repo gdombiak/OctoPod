@@ -450,7 +450,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
 
     func handleConnectionError(error: Error?, response: HTTPURLResponse) {
         if let nsError = error as NSError?, let url = response.url {
-            if let printerHostname = printerManager.getDefaultPrinter()?.hostname, let printerURL = URL(string: printerHostname) {
+            if let printerHostname = printerManager.getDefaultPrinter(context: printerManager.newPrivateContext())?.hostname, let printerURL = URL(string: printerHostname) {
                 if printerURL.host != url.host || printerURL.port != url.port {
                     // Do not show connection error alers of other printers. This might happen when quickly switching between printers
                     return
@@ -543,12 +543,14 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 if let printer = printerManager.getDefaultPrinter() {
                     // Check if we need to update printer to remember aspect ratio of first camera
                     if cameraIndex == 0 && imageAspectRatio16_9 != printer.firstCameraAspectRatio16_9 {
-                        let newObjectContext = printerManager.newPrivateContext()
-                        let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-                        // Update aspect ratio of first camera
-                        printerToUpdate.firstCameraAspectRatio16_9 = imageAspectRatio16_9
-                        // Persist updated printer
-                        printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                        DispatchQueue.global().async {
+                            let newObjectContext = self.printerManager.newPrivateContext()
+                            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                            // Update aspect ratio of first camera
+                            printerToUpdate.firstCameraAspectRatio16_9 = self.imageAspectRatio16_9
+                            // Persist updated printer
+                            self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                        }
                     }
                     let orientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
                     // Add a tiny delay so the UI does not go crazy

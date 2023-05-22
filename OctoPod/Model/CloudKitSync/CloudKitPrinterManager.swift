@@ -1,5 +1,6 @@
 import Foundation
 import CloudKit
+import CoreData
 
 class CloudKitPrinterManager {
 
@@ -15,6 +16,7 @@ class CloudKitPrinterManager {
 
     private let printerManager: PrinterManager!
     private var starting = false
+    private let privateContext: NSManagedObjectContext!
     
     var delegates: Array<CloudKitPrinterDelegate> = Array()
     var logDelegates: Array<CloudKitPrinterLogDelegate> = Array()
@@ -25,6 +27,7 @@ class CloudKitPrinterManager {
 
     init(printerManager: PrinterManager) {
         self.printerManager = printerManager
+        self.privateContext = printerManager.newPrivateContext()
 
         // Register for changes to iCloud Account status when the app is running
         NotificationCenter.default.addObserver(self,
@@ -158,7 +161,7 @@ class CloudKitPrinterManager {
                             } else {
                                 // Zone created
                                 // Mark all printers as need to be updated in iCloud
-                                self.printerManager.resetPrintersForiCloud(context: self.printerManager.newPrivateContext())
+                                self.printerManager.resetPrintersForiCloud(context: self.privateContext)
                                 // Reset change token since it is no longer valid
                                 UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
                                 // We can now execute completion block
@@ -283,7 +286,7 @@ class CloudKitPrinterManager {
                             } else {
                                 // Zone created
                                 // Mark all printers as need to be updated in iCloud
-                                self.printerManager.resetPrintersForiCloud(context: self.printerManager.newPrivateContext())
+                                self.printerManager.resetPrintersForiCloud(context: self.privateContext)
                                 // Reset change token since it is no longer valid
                                 UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
                                 // Cancel this operation
@@ -295,7 +298,7 @@ class CloudKitPrinterManager {
                     } else if ckerror.isChangeTokenExpired() {
                         // Token for incremental reads is no longer good. We need start from scratch
                         // Mark all printers as need to be updated in iCloud
-                        self.printerManager.resetPrintersForiCloud(context: self.printerManager.newPrivateContext())
+                        self.printerManager.resetPrintersForiCloud(context: self.privateContext)
                         // Reset change token since it is no longer valid
                         UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
                         // Cancel this operation
@@ -341,7 +344,7 @@ class CloudKitPrinterManager {
     /// CloudKit informed us that a record has been created or updated
     fileprivate func recordChanged(record: CKRecord) {
         let recordName = record.recordID.recordName
-        if let printer = printerManager.getPrinterByRecordName(recordName: recordName) {
+        if let printer = printerManager.getPrinterByRecordName(context: privateContext, recordName: recordName) {
             // A printer exists for this PK so update it
             updateAndSave(printer: printer, serverRecord: record)
             // Alert delegates that printer has been updated from iCloud info
@@ -393,14 +396,13 @@ class CloudKitPrinterManager {
     // CloudKit informed us that a record has been deleted
     fileprivate func recordDeleted(recordID: CKRecord.ID) {
         let recordName = recordID.recordName
-        if let printer = printerManager.getPrinterByRecordName(recordName: recordName) {
-            appendLog("Deleted printer: \(printer.hostname)")
+        let newObjectContext = privateContext
+        if let printerToDelete = printerManager.getPrinterByRecordName(context: privateContext, recordName: recordName) {
+            appendLog("Deleted printer: \(printerToDelete.hostname)")
             // A printer exists for this PK so delete it
-            let newObjectContext = printerManager.newPrivateContext()
-            let printerToDelete = newObjectContext.object(with: printer.objectID) as! Printer
-            printerManager.deletePrinter(printerToDelete, context: newObjectContext)
+            printerManager.deletePrinter(printerToDelete, context: privateContext)
             // Alert delegates that printer has been deleted from iCloud info
-            notifyPrinterDeleted(printer: printer)
+            notifyPrinterDeleted(printer: printerToDelete)
         }
     }
 
@@ -420,7 +422,7 @@ class CloudKitPrinterManager {
             return
         }
         var toRemove: Array<Printer> = Array()
-        for printer in printerManager.getPrinters() {
+        for printer in printerManager.getPrinters(context: privateContext) {
             if printer.iCloudUpdate {
                 toRemove.append(printer)
             }
@@ -536,14 +538,14 @@ class CloudKitPrinterManager {
                     } else {
                         // iCloud has similar info to this printer
                         // Check if we have a printer (stored in Core Data) for the records we found
+                        let newObjectContext = self.privateContext
                         for record in records {
-                            if let _ = self.printerManager.getPrinterByRecordName(recordName: record.recordID.recordName) {
+                            if let _ = self.printerManager.getPrinterByRecordName(context: self.privateContext, recordName: record.recordID.recordName) {
                                 // We have at least 2 printers in Core Data for the same OctoPrint instance. Let's reduce duplication
                                 // Keep the duplicate printer since it is already linked to iCloud and delete the printer we
                                 // were requested to save to iCloud
-                                let newObjectContext = self.printerManager.newPrivateContext()
-                                let printerToDelete = newObjectContext.object(with: printer.objectID) as! Printer
-                                self.printerManager.deletePrinter(printerToDelete, context: newObjectContext)
+                                let printerToDelete = self.privateContext.object(with: printer.objectID) as! Printer
+                                self.printerManager.deletePrinter(printerToDelete, context: self.privateContext)
                                 // Alert delegates that we had to delete this printer
                                 self.notifyPrinterDeleted(printer: printer)
                                 // Execute callback
@@ -765,8 +767,8 @@ class CloudKitPrinterManager {
     /// Delete local stored data and recreate from CloudKit records
     func resetLocalPrinters(completionHandler: (() -> Void)?, errorHandler: (() -> Void)?) {
         // Delete local printers
-        let newObjectContext = printerManager.newPrivateContext()
-        printerManager.deleteAllPrinters(context: newObjectContext)
+        let newObjectContext = privateContext
+        printerManager.deleteAllPrinters(context: privateContext)
         // Delete CHANGE_TOKEN so all changes are fetched and processed
         UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
         // Pull changes
@@ -944,12 +946,12 @@ class CloudKitPrinterManager {
     }
     
     fileprivate func updateAndSave(printer: Printer, serverRecord: CKRecord) {
-        let newObjectContext = printerManager.newPrivateContext()
-        let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+        let newObjectContext = privateContext
+        let printerToUpdate = privateContext.object(with: printer.objectID) as! Printer
         // This will encode new record data and also update last modified date (for future merges)
         self.updatePrinterFields(printer: printerToUpdate, from: serverRecord)
         // Update printer in Core Data
-        self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+        self.printerManager.updatePrinter(printerToUpdate, context: privateContext)
     }
     
     fileprivate func parseRecord(record: CKRecord) -> (name: String?, hostname: String?, apiKey: String?, username: String?, password: String?, modified: Date?, connectionType: Int16, position: Int16?) {

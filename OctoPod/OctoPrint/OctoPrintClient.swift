@@ -874,6 +874,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         reviewPrinterProfile(printer: printer)
     }
     
+    // Does not run in main thread
     fileprivate func updatePrinterFromSettings(printer: Printer, json: NSDictionary) {
         let newObjectContext = printerManager.newPrivateContext()
         let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer

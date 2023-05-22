@@ -2,8 +2,8 @@ import Foundation
 import UIKit
 import CoreData
 
-// Manager of persistent printer information (OctoPrint servers) that are stored in the iPhone
-// Printer information (OctoPrint server info) is used for connecting to the server
+/// Manager of persistent printer information (OctoPrint servers) that are stored in the iPhone
+/// Printer information (OctoPrint server info) is used for connecting to the server
 class PrinterManager {
     let managedObjectContext: NSManagedObjectContext // Main Queue. Should only be used by Main thread
     let persistentContainer: NSPersistentContainer // Persistent Container for the entire app
@@ -42,21 +42,35 @@ class PrinterManager {
             if fetchResults.count == 0 {
                 return nil
             }
+//            NSLog("** Fetched default printer: \(fetchResults[0].hash) with context: \(context) (\(context == managedObjectContext)) in thread: \(Thread.current)")
+//            if (context == managedObjectContext && !Thread.isMainThread) || (context != managedObjectContext && Thread.isMainThread) {
+//                NSLog("* DEBUG ")
+//            }
             return fetchResults[0]
         }
         return nil
     }
 
-    // Get a printer by its record name. A record name is the PK
-    // used by CloudKit for each record
+    /// Get a printer by its record name. A record name is the PK
+    /// used by CloudKit for each record
     func getPrinterByRecordName(recordName: String) -> Printer? {
+        return getPrinterByName(context: managedObjectContext, name: recordName)
+    }
+
+    /// Get a printer by its record name. A record name is the PK
+    /// used by CloudKit for each record
+    func getPrinterByRecordName(context: NSManagedObjectContext, recordName: String) -> Printer? {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "recordName = %@", recordName)
         
-        if let fetchResults = (try? managedObjectContext.fetch(fetchRequest)) as? [Printer] {
+        if let fetchResults = (try? context.fetch(fetchRequest)) as? [Printer] {
             if fetchResults.count == 0 {
                 return nil
             }
+//            if context == managedObjectContext && !Thread.isMainThread {
+//                NSLog("* DEBUG ")
+//            }
+//            NSLog("** Fetched by record name printer: \(fetchResults[0].hash) with context: \(context) (\(context == managedObjectContext)) in thread: \(Thread.current)")
             return fetchResults[0]
         }
         return nil
@@ -74,6 +88,7 @@ class PrinterManager {
             if fetchResults.count == 0 {
                 return nil
             }
+//            NSLog("** Fetched by name printer: \(fetchResults[0].hash) with context: \(context) (\(context == managedObjectContext)) in thread: \(Thread.current)")
             return fetchResults[0]
         }
         return nil
@@ -86,6 +101,7 @@ class PrinterManager {
     func getPrinterByObjectURL(context: NSManagedObjectContext, url: URL) -> Printer? {
         if let objectID = context.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: url) {
             if let printer = context.object(with: objectID) as? Printer {
+//                NSLog("** Fetched by url printer: \(printer.hash) with context: \(context) (\(context == managedObjectContext)) in thread: \(Thread.current)")
                 return printer
             }
         }
@@ -97,6 +113,10 @@ class PrinterManager {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "position", ascending: true), NSSortDescriptor(key: "name", ascending: true)]
         
         if let fetchResults = (try? context.fetch(fetchRequest)) as? [Printer] {
+//            if context == managedObjectContext && !Thread.isMainThread {
+//                NSLog("* DEBUG ")
+//            }
+//            NSLog("** Fetched printers: \(fetchResults.map { String($0.hash) }.joined(separator: ", ")) with context: \(context) (\(context == managedObjectContext)) in thread: \(Thread.current)")
             return fetchResults
         }
         return []
@@ -133,7 +153,7 @@ class PrinterManager {
         printer.invertZ = false // Assume control of Z axis is not inverted. Will get updated later with actual value
 
         // Check if there is already a default Printer
-        if let _ = getDefaultPrinter() {
+        if let _ = getDefaultPrinter(context: context) {
             // We found an existing default printer
             printer.defaultPrinter = false
         } else {
@@ -217,6 +237,10 @@ class PrinterManager {
         case .mainQueueConcurrencyType:
             // If context runs in main thread then just run this code
             do {
+//                if !Thread.isMainThread {
+//                    NSLog("* DEBUG ")
+//                }
+//                NSLog("** Updating printer: \(printer.hash) with managed context: \(managedObjectContext) in thread: \(Thread.current)")
                 try managedObjectContext.save()
             } catch let error as NSError {
                 NSLog("Error updating printer \(printer.hostname). Error: \(error)")
@@ -224,6 +248,10 @@ class PrinterManager {
         case .privateQueueConcurrencyType, .confinementConcurrencyType:
             // If context runs in a non-main thread then just run this code
             // .confinementConcurrencyType is not used. Delete once removed from Swift
+//            NSLog("** Updating printer: \(printer.hash) with context: \(context) (\(context == managedObjectContext)) in thread: \(Thread.current)")
+//            if context == managedObjectContext || Thread.isMainThread {
+//                NSLog("* DEBUG ")
+//            }
             context.performAndWait {
                 do {
                     try context.save()
@@ -252,6 +280,7 @@ class PrinterManager {
         case .mainQueueConcurrencyType:
             // If context runs in main thread then just run this code
             do {
+//                NSLog("** Saving object: \(object.hash) with managed context: \(managedObjectContext) in thread: \(Thread.current)")
                 try managedObjectContext.save()
                 saved = true
             } catch let error as NSError {
@@ -260,6 +289,7 @@ class PrinterManager {
         case .privateQueueConcurrencyType, .confinementConcurrencyType:
             // If context runs in a non-main thread then just run this code
             // .confinementConcurrencyType is not used. Delete once removed from Swift
+//            NSLog("** Saving object: \(object.hash) with context: \(context) (\(context == managedObjectContext) in thread: \(Thread.current)")
             context.performAndWait {
                 do {
                     try context.save()

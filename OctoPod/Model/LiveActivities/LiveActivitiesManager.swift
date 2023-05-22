@@ -25,7 +25,7 @@ class LiveActivitiesManager: OctoPrintClientDelegate {
         if #available(iOS 16.2, *) {
             // For Live Activities to work we need: iOS16.2 and user allowed Live Activities for OctoPod
             // If OctoPod plugin is NOT installed then live activity widget will show a warning asking user to install plugin
-            if let printer = printerManager.getDefaultPrinter(), let printing = event.printing, let paused = event.paused, let pausing = event.pausing, ActivityAuthorizationInfo().areActivitiesEnabled {
+            if let printer = printerManager.getDefaultPrinter(context: printerManager.safePrivateContext()), let printing = event.printing, let paused = event.paused, let pausing = event.pausing, ActivityAuthorizationInfo().areActivitiesEnabled {
                 let targetURLSafePrinter = printer.objectID.uriRepresentation().absoluteString
                 let isPrinting = printing || paused || pausing
                 var found = false
