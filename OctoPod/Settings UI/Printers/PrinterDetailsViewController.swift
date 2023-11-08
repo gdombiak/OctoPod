@@ -1,4 +1,5 @@
 import UIKit
+import CoreData
 
 class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPrinterDelegate, UIPopoverPresentationControllerDelegate {
     
@@ -187,33 +188,23 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
  
     // MARK: - CloudKitPrinterDelegate
     
-    func printersUpdated() {
-        // Do nothing. We care about individual printers
-    }
-
-    func printerAdded(printer: Printer) {
-        // Do nothing. We care about the printer we are editing only
-    }
-    
-    func printerUpdated(printer: Printer) {
-        if printer == updatePrinter {
+    func printerUpdated(printerID: NSManagedObjectID) {
+        if printerID == updatePrinter?.objectID {
             // Same printer we are editing so update page with latest info
             DispatchQueue.main.async {
+                let printer = self.printerManager.safePrivateContext().object(with: printerID) as! Printer
                 self.updateFieldsForPrinter(printer: printer)
             }
         }
     }
     
-    func printerDeleted(printer: Printer) {
-        if printer == updatePrinter {
+    func printerDeleted(printerID: NSManagedObjectID) {
+        if printerID == updatePrinter?.objectID {
             // Same printer we are editing so close window
             DispatchQueue.main.async {
                 self.goBack()
             }
         }
-    }
-
-    func iCloudStatusChanged(connected: Bool) {
     }
 
     // MARK: - UIPopoverPresentationControllerDelegate

@@ -356,19 +356,19 @@ class IntentsDonations {
     
     // MARK: - Private functions
     
-    fileprivate class func donateIntent(intent: INIntent, printer: Printer, identifierSuffix: String) {
-        let interaction = INInteraction(intent: intent, response: nil)
-        interaction.identifier = intentIdentifier(printer: printer, identifierSuffix: identifierSuffix)
-        interaction.groupIdentifier = groupIdentifier(printer: printer)
+fileprivate class func donateIntent(intent: INIntent, printer: Printer, identifierSuffix: String) {
+    let interaction = INInteraction(intent: intent, response: nil)
+    interaction.identifier = intentIdentifier(printer: printer, identifierSuffix: identifierSuffix)
+    interaction.groupIdentifier = groupIdentifier(printer: printer)
 
-        interaction.donate { (error) in
-            if let error = error {
-                NSLog("Interaction donation failed: \(error.localizedDescription)")
-            } else {
-                NSLog("Successfully donated interaction for intent: \(intent)")
-            }
+    interaction.donate { (error) in
+        if let error = error {
+            NSLog("Interaction donation failed: \(error.localizedDescription)")
+        } else {
+            NSLog("Successfully donated interaction for intent: \(intent)")
         }
     }
+}
     
     fileprivate class func intentIdentifier(printer: Printer, identifierSuffix: String) -> String {
         return "\(GROUP_IDENTIFIER).\(printer.objectID.uriRepresentation()).\(identifierSuffix))"

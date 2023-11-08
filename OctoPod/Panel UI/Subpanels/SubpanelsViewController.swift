@@ -127,46 +127,49 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
     
     func printerSelectedChanged() {
         // Add or remove subpanels depending on configuration
-        if let printer = printerManager.getDefaultPrinter() {
-            addRemoveVC(add: printer.psuControlInstalled, vcIdentifier: { $0.isMember(of: PSUControlViewController.self) }, createVC: createPSUControlVC)
-            var addVC = false
+        let newObjectContext = printerManager.safePrivateContext()
+        newObjectContext.perform {
+            if let printer = self.printerManager.getDefaultPrinter(context: newObjectContext) {
+                self.addRemoveVC(add: printer.psuControlInstalled, vcIdentifier: { $0.isMember(of: PSUControlViewController.self) }, createVC: self.createPSUControlVC)
+                var addVC = false
 
-            // Add VC for TPLinkSmartplug
-            if let plugs = printer.getTPLinkSmartplugs() {
-                addVC = !plugs.isEmpty
+                // Add VC for TPLinkSmartplug
+                if let plugs = printer.getTPLinkSmartplugs() {
+                    addVC = !plugs.isEmpty
+                }
+                self.addRemoveIPPlugPluginVC(plugin: Plugins.TP_LINK_SMARTPLUG, add: addVC)
+
+                // Add VC for WemoSwitch
+                if let plugs = printer.getWemoPlugs() {
+                    addVC = !plugs.isEmpty
+                }
+                self.addRemoveIPPlugPluginVC(plugin: Plugins.WEMO_SWITCH, add: addVC)
+
+                // Add VC for Domoticz
+                if let plugs = printer.getDomoticzPlugs() {
+                    addVC = !plugs.isEmpty
+                }
+                self.addRemoveIPPlugPluginVC(plugin: Plugins.DOMOTICZ, add: addVC)
+                // Add VC for Tasmota
+                if let plugs = printer.getTasmotaPlugs() {
+                    addVC = !plugs.isEmpty
+                }
+                self.addRemoveIPPlugPluginVC(plugin: Plugins.TASMOTA, add: addVC)
+                
+                self.addRemoveVC(add: printer.cancelObjectInstalled, vcIdentifier: { $0.isMember(of: CancelObjectViewController.self) }, createVC: self.createCancelObjectVC)
+                
+                self.addRemoveVC(add: printer.octorelayInstalled, vcIdentifier: { $0.isMember(of: OctorelayViewController.self) }, createVC: self.createOctorelayVC)
+
+                self.addRemoveVC(add: printer.palette2Installed, vcIdentifier: { $0.isMember(of: Palette2ViewController.self) }, createVC: self.createPalette2VC)
+
+                self.addRemoveVC(add: !printer.getEnclosureOutputs().isEmpty, vcIdentifier: { $0.isMember(of: EnclosureViewController.self) }, createVC: self.createEnclosureVC)
+                
+                self.addRemoveVC(add: printer.filamentManagerInstalled, vcIdentifier: { $0.isMember(of: FilamentManagerViewController.self) }, createVC: self.createFilamentManagerVC)
             }
-            addRemoveIPPlugPluginVC(plugin: Plugins.TP_LINK_SMARTPLUG, add: addVC)
-
-            // Add VC for WemoSwitch
-            if let plugs = printer.getWemoPlugs() {
-                addVC = !plugs.isEmpty
+            // Notify subpanels of change of printer (OctoPrint)
+            for case let subpanel as SubpanelViewController in self.orderedViewControllers {
+                subpanel.printerSelectedChanged()
             }
-            addRemoveIPPlugPluginVC(plugin: Plugins.WEMO_SWITCH, add: addVC)
-
-            // Add VC for Domoticz
-            if let plugs = printer.getDomoticzPlugs() {
-                addVC = !plugs.isEmpty
-            }
-            addRemoveIPPlugPluginVC(plugin: Plugins.DOMOTICZ, add: addVC)
-            // Add VC for Tasmota
-            if let plugs = printer.getTasmotaPlugs() {
-                addVC = !plugs.isEmpty
-            }
-            addRemoveIPPlugPluginVC(plugin: Plugins.TASMOTA, add: addVC)
-            
-            addRemoveVC(add: printer.cancelObjectInstalled, vcIdentifier: { $0.isMember(of: CancelObjectViewController.self) }, createVC: createCancelObjectVC)
-            
-            addRemoveVC(add: printer.octorelayInstalled, vcIdentifier: { $0.isMember(of: OctorelayViewController.self) }, createVC: createOctorelayVC)
-
-            addRemoveVC(add: printer.palette2Installed, vcIdentifier: { $0.isMember(of: Palette2ViewController.self) }, createVC: createPalette2VC)
-
-            addRemoveVC(add: !printer.getEnclosureOutputs().isEmpty, vcIdentifier: { $0.isMember(of: EnclosureViewController.self) }, createVC: createEnclosureVC)
-            
-            addRemoveVC(add: printer.filamentManagerInstalled, vcIdentifier: { $0.isMember(of: FilamentManagerViewController.self) }, createVC: createFilamentManagerVC)
-        }
-        // Notify subpanels of change of printer (OctoPrint)
-        for case let subpanel as SubpanelViewController in orderedViewControllers {
-            subpanel.printerSelectedChanged()
         }
     }
     

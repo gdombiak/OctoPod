@@ -64,10 +64,22 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         // Remember printer we are connected to
         printerID = printer.objectID
         
+        var serverURL: String!, apiKey: String!, username: String?, password: String?, preemptive: Bool!, sharedNozzle: Bool!
+        let newObjectContext = self.printerManager.safePrivateContext()
+        newObjectContext.performAndWait {
+            let printerToRead = newObjectContext.object(with: printer.objectID) as! Printer
+            serverURL = printerToRead.hostname
+            apiKey = printerToRead.apiKey
+            username = printerToRead.username
+            password = printerToRead.password
+            preemptive = printerToRead.preemptiveAuthentication()
+            sharedNozzle = printerToRead.sharedNozzle
+        }
+
         // Create and keep httpClient while default printer does not change
-        octoPrintRESTClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuthentication())
+        octoPrintRESTClient.connectToServer(serverURL: serverURL, apiKey: apiKey, username: username, password: password, preemptive: preemptive)
         
-        if webSocketClient?.isConnected(printer: printer) == true {
+        if webSocketClient?.isConnected(hostname: serverURL) == true {
             // Do nothing since we are already connected to the default printer
             return
         }
@@ -89,7 +101,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         // Notify the terminal that we are about to connect to OctoPrint
         terminal.websocketNewConnection()
         // Create websocket connection and connect
-        webSocketClient = WebSocketClient(appConfiguration: appConfiguration!, printer: printer)
+        webSocketClient = WebSocketClient(appConfiguration: appConfiguration!, hostname: serverURL, apiKey: apiKey, username: username, password: password, sharedNozzle: sharedNozzle)
         // Subscribe to events so we can update the UI as events get pushed
         webSocketClient?.delegate = self
 
@@ -101,7 +113,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                 if let json = result as? NSDictionary {
                     event = CurrentStateEvent()
                     if let temp = json["temperature"] as? NSDictionary {
-                        event!.parseTemps(temp: temp, sharedNozzle: printer.sharedNozzle)
+                        event!.parseTemps(temp: temp, sharedNozzle: sharedNozzle)
                     }
                     if let state = json["state"] as? NSDictionary {
                         event!.parseState(state: state)
@@ -877,220 +889,225 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     // Does not run in main thread
     fileprivate func updatePrinterFromSettings(printer: Printer, json: NSDictionary) {
         let newObjectContext = printerManager.newPrivateContext()
-        let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+        let printerID = printer.objectID
+        newObjectContext.performAndWait {
+            let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
 
-        if let feature = json["feature"] as? NSDictionary {
-            if let sdSupport = feature["sdSupport"] as? Bool {
-                if printer.sdSupport != sdSupport {
-                    // Update sd support
-                    printerToUpdate.sdSupport = sdSupport
-                    // Persist updated printer
-                    printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+            if let feature = json["feature"] as? NSDictionary {
+                if let sdSupport = feature["sdSupport"] as? Bool {
+                    if printerToUpdate.sdSupport != sdSupport {
+                        // Update sd support
+                        printerToUpdate.sdSupport = sdSupport
+                        // Persist updated printer
+                        self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
 
-                    // Notify listeners of change
-                    for delegate in octoPrintSettingsDelegates {
-                        delegate.sdSupportChanged(sdSupport: sdSupport)
+                        // Notify listeners of change
+                        for delegate in self.octoPrintSettingsDelegates {
+                            delegate.sdSupportChanged(sdSupport: sdSupport)
+                        }
+                    }
+                }
+            }
+
+            if let temperature = json["temperature"] as? NSDictionary {
+                if let profiles = temperature["profiles"] as? NSArray {
+                    var bedTemps: Array<Int> = []
+                    var extruderTemps: Array<Int> = []
+                    for case let profile as NSDictionary in profiles {
+                        if let bedTemp = profile["bed"] as? Int {
+                            bedTemps.append(bedTemp)
+                        }
+                        if let extruderTemp = profile["extruder"] as? Int {
+                            extruderTemps.append(extruderTemp)
+                        }
+                    }
+                    bedTemps = bedTemps.sorted()
+                    extruderTemps = extruderTemps.sorted()
+                    if printerToUpdate.bedTemps != bedTemps || printerToUpdate.extruderTemps != extruderTemps {
+                        // Update profile temps from settings
+                        printerToUpdate.bedTemps = bedTemps
+                        printerToUpdate.extruderTemps = extruderTemps
+                        // Persist updated printer
+                        self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                    }
+                }
+            }
+
+            if let webcam = json["webcam"] as? NSDictionary {
+                if let flipH = webcam["flipH"] as? Bool, let flipV = webcam["flipV"] as? Bool, let rotate90 = webcam["rotate90"] as? Bool {
+                    let newOrientation = self.calculateImageOrientation(flipH: flipH, flipV: flipV, rotate90: rotate90)
+                    if printerToUpdate.cameraOrientation != Int16(newOrientation.rawValue) {
+                        // Update camera orientation
+                        printerToUpdate.cameraOrientation = Int16(newOrientation.rawValue)
+                        // Persist updated printer
+                        self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+
+                        // Notify listeners of change
+                        for delegate in self.octoPrintSettingsDelegates {
+                            delegate.cameraOrientationChanged(newOrientation: newOrientation)
+                        }
+                    }
+                }
+                if let streamUrl = webcam["streamUrl"] as? String {
+                    let newURL = streamUrl.trimmingCharacters(in: .whitespaces)
+                    if printerToUpdate.streamUrl != newURL {
+                        // Update path to camera hosted by OctoPrint
+                        printerToUpdate.streamUrl = newURL
+                        // Persist updated printer
+                        self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+
+                        // Notify listeners of change
+                        for delegate in self.octoPrintSettingsDelegates {
+                            delegate.cameraPathChanged(streamUrl: newURL)
+                        }
+                    }
+                }
+            }
+
+            if let appearance = json["appearance"] as? NSDictionary {
+                if let color = appearance["color"] as? String {
+                    if printerToUpdate.color != color {
+                        // Update printer with OctoPrint's appearance configuration
+                        printerToUpdate.color = color
+                        // Persist updated printer
+                        self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                        
+                        // Notify listeners of change
+                        for delegate in self.octoPrintSettingsDelegates {
+                            delegate.octoPrintColorChanged(color: color)
+                        }
                     }
                 }
             }
         }
 
-        if let temperature = json["temperature"] as? NSDictionary {
-            if let profiles = temperature["profiles"] as? NSArray {
-                var bedTemps: Array<Int> = []
-                var extruderTemps: Array<Int> = []
-                for case let profile as NSDictionary in profiles {
-                    if let bedTemp = profile["bed"] as? Int {
-                        bedTemps.append(bedTemp)
-                    }
-                    if let extruderTemp = profile["extruder"] as? Int {
-                        extruderTemps.append(extruderTemp)
-                    }
-                }
-                bedTemps = bedTemps.sorted()
-                extruderTemps = extruderTemps.sorted()
-                if printerToUpdate.bedTemps != bedTemps || printerToUpdate.extruderTemps != extruderTemps {
-                    // Update profile temps from settings
-                    printerToUpdate.bedTemps = bedTemps
-                    printerToUpdate.extruderTemps = extruderTemps
-                    // Persist updated printer
-                    printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-                }
-            }
-        }
-        
-        if let webcam = json["webcam"] as? NSDictionary {
-            if let flipH = webcam["flipH"] as? Bool, let flipV = webcam["flipV"] as? Bool, let rotate90 = webcam["rotate90"] as? Bool {
-                let newOrientation = calculateImageOrientation(flipH: flipH, flipV: flipV, rotate90: rotate90)
-                if printer.cameraOrientation != Int16(newOrientation.rawValue) {
-                    // Update camera orientation
-                    printerToUpdate.cameraOrientation = Int16(newOrientation.rawValue)
-                    // Persist updated printer
-                    printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-
-                    // Notify listeners of change
-                    for delegate in octoPrintSettingsDelegates {
-                        delegate.cameraOrientationChanged(newOrientation: newOrientation)
-                    }
-                }
-            }
-            if let streamUrl = webcam["streamUrl"] as? String {
-                let newURL = streamUrl.trimmingCharacters(in: .whitespaces)
-                if printer.streamUrl != newURL {
-                    // Update path to camera hosted by OctoPrint
-                    printerToUpdate.streamUrl = newURL
-                    // Persist updated printer
-                    printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-
-                    // Notify listeners of change
-                    for delegate in octoPrintSettingsDelegates {
-                        delegate.cameraPathChanged(streamUrl: newURL)
-                    }
-                }
-            }
-        }
-        
-        if let appearance = json["appearance"] as? NSDictionary {
-            if let color = appearance["color"] as? String {
-                if printer.color != color {
-                    // Update printer with OctoPrint's appearance configuration
-                    printerToUpdate.color = color
-                    // Persist updated printer
-                    printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-                    
-                    // Notify listeners of change
-                    for delegate in octoPrintSettingsDelegates {
-                        delegate.octoPrintColorChanged(color: color)
-                    }
-                }
-            }
-        }
-        
         if let plugins = json["plugins"] as? NSDictionary {
-            updatePrinterFromPlugins(printer: printer, plugins: plugins)
+            updatePrinterFromPlugins(printerID: printerID, plugins: plugins)
         }
     }
     
-    fileprivate func updatePrinterFromPlugins(printer: Printer, plugins: NSDictionary) {
-        updatePrinterFromMultiCamPlugin(printer: printer, plugins: plugins)
-        updatePrinterFromPSUControlPlugin(printer: printer, plugins: plugins)
-        updatePrinterFromTPLinkSmartplugPlugin(printer: printer, plugins: plugins)
-        updatePrinterFromWemoPlugin(printer: printer, plugins: plugins)
-        updatePrinterFromDomoticzPlugin(printer: printer, plugins: plugins)
-        updatePrinterFromOctorelayPlugin(printer: printer, plugins: plugins)
-        updatePrinterFromTasmotaPlugin(printer: printer, plugins: plugins)
-        updatePrinterFromCancelObjectPlugin(printer: printer, plugins: plugins)
-        updatePrinterFromOctoPodPlugin(printer: printer, plugins: plugins)
-        updatePrinterFromPalette2Plugin(printer: printer, plugins: plugins)
-        updatePrinterFromPalette2CanvasPlugin(printer: printer, plugins: plugins)
-        updatePrinterFromEnclosurePlugin(printer: printer, plugins: plugins)
-        updatePrinterFromFilamentManagerPlugin(printer: printer, plugins: plugins)
-        updatePrinterFromBLTouchPlugin(printer: printer, plugins: plugins)
+    fileprivate func updatePrinterFromPlugins(printerID: NSManagedObjectID, plugins: NSDictionary) {
+        updatePrinterFromMultiCamPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromPSUControlPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromTPLinkSmartplugPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromWemoPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromDomoticzPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromOctorelayPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromTasmotaPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromCancelObjectPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromOctoPodPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromPalette2Plugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromPalette2CanvasPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromEnclosurePlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromFilamentManagerPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromBLTouchPlugin(printerID: printerID, plugins: plugins)
     }
     
-    fileprivate func updatePrinterFromMultiCamPlugin(printer: Printer, plugins: NSDictionary) {
+    fileprivate func updatePrinterFromMultiCamPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         // Check if MultiCam plugin is installed. If so then copy cameras information
         var camerasURLs: Array<String> = Array()
         var count: Int16 = 0
         var camerasChanged = false
-        if let multicam = plugins[Plugins.MULTICAM] as? NSDictionary {
-            if let profiles = multicam["multicam_profiles"] as? NSArray {
-                for case let profile as NSDictionary in profiles {
-                    count += 1
-                    if let url = profile["URL"] as? String, let flipH = profile["flipH"] as? Bool, let flipV = profile["flipV"] as? Bool, let rotate90 = profile["rotate90"] as? Bool, let name = profile["name"] as? String, let streamRatio = profile["streamRatio"] as? String {
-                        let newURL = url.trimmingCharacters(in: .whitespaces)
-                        let newOrientation = calculateImageOrientation(flipH: flipH, flipV: flipV, rotate90: rotate90)
-                        var found = false
-                        if let existingCameras = printer.multiCameras {
-                            for existingCamera in existingCameras {
-                                if existingCamera.index_id == count {
-                                    found = true
-                                    // Check that values are current
-                                    if existingCamera.name != name || existingCamera.cameraURL != newURL || existingCamera.cameraOrientation != Int16(newOrientation.rawValue) || existingCamera.streamRatio != streamRatio {
-                                        // Update existing input
-                                        let newObjectContext = printerManager.newPrivateContext()
-                                        let cameraToUpdate = newObjectContext.object(with: existingCamera.objectID) as! MultiCamera
-                                        cameraToUpdate.name = name
-                                        cameraToUpdate.cameraURL = newURL
-                                        cameraToUpdate.cameraOrientation = Int16(newOrientation.rawValue)
-                                        cameraToUpdate.streamRatio = streamRatio
-                                        // Persist updated MultiCamera
-                                        printerManager.saveObject(cameraToUpdate, context: newObjectContext)
-                                        
-                                        camerasChanged = true
+        let newObjectContext = printerManager.newPrivateContext()
+        newObjectContext.performAndWait{
+            var printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+            if let multicam = plugins[Plugins.MULTICAM] as? NSDictionary {
+                if let profiles = multicam["multicam_profiles"] as? NSArray {
+                    for case let profile as NSDictionary in profiles {
+                        count += 1
+                        if let url = profile["URL"] as? String, let flipH = profile["flipH"] as? Bool, let flipV = profile["flipV"] as? Bool, let rotate90 = profile["rotate90"] as? Bool, let name = profile["name"] as? String, let streamRatio = profile["streamRatio"] as? String {
+                            let newURL = url.trimmingCharacters(in: .whitespaces)
+                            let newOrientation = self.calculateImageOrientation(flipH: flipH, flipV: flipV, rotate90: rotate90)
+                            var found = false
+                            if let existingCameras = printerToUpdate.multiCameras {
+                                for existingCamera in existingCameras {
+                                    if existingCamera.index_id == count {
+                                        found = true
+                                        // Check that values are current
+                                        if existingCamera.name != name || existingCamera.cameraURL != newURL || existingCamera.cameraOrientation != Int16(newOrientation.rawValue) || existingCamera.streamRatio != streamRatio {
+                                            // Update existing input
+                                            let cameraToUpdate = newObjectContext.object(with: existingCamera.objectID) as! MultiCamera
+                                            cameraToUpdate.name = name
+                                            cameraToUpdate.cameraURL = newURL
+                                            cameraToUpdate.cameraOrientation = Int16(newOrientation.rawValue)
+                                            cameraToUpdate.streamRatio = streamRatio
+                                            // Persist updated MultiCamera
+                                            self.printerManager.saveObject(cameraToUpdate, context: newObjectContext)
+                                            
+                                            camerasChanged = true
+                                        }
+                                        break
                                     }
-                                    break
                                 }
+                                if !found {
+                                    // Add new camera
+                                    self.printerManager.addMultiCamera(index: count, name: name, cameraURL: url, cameraOrientation: Int16(newOrientation.rawValue), streamRatio: streamRatio, context: newObjectContext, printer: printerToUpdate)
+                                    camerasChanged = true
+                                }
+                                camerasURLs.append(url)
                             }
                         }
-                        if !found {
-                            // Add new camera
-                            let newObjectContext = printerManager.newPrivateContext()
-                            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-                            printerManager.addMultiCamera(index: count, name: name, cameraURL: url, cameraOrientation: Int16(newOrientation.rawValue), streamRatio: streamRatio, context: newObjectContext, printer: printerToUpdate)
-                            camerasChanged = true
-                        }
-                        camerasURLs.append(url)
                     }
                 }
             }
-        }
-        // Delete existing cameras that no longer exist
-        if let existingCameras = printer.multiCameras {
-            for existingCamera in existingCameras {
-                if existingCamera.index_id > count {
-                    // Delete camera that no longer exists on the server
-                    let newObjectContext = printerManager.newPrivateContext()
-                    let cameraToDelete = newObjectContext.object(with: existingCamera.objectID) as! MultiCamera
-                    printerManager.deleteObject(cameraToDelete, context: newObjectContext)
-                    camerasChanged = true
+            // Delete existing cameras that no longer exist
+            if let existingCameras = printerToUpdate.multiCameras {
+                for existingCamera in existingCameras {
+                    if existingCamera.index_id > count {
+                        // Delete camera that no longer exists on the server
+                        let cameraToDelete = newObjectContext.object(with: existingCamera.objectID) as! MultiCamera
+                        self.printerManager.deleteObject(cameraToDelete, context: newObjectContext)
+                        camerasChanged = true
+                    }
                 }
             }
-        }
-
-        if camerasChanged {
-            // Notify listeners of change
-            for delegate in octoPrintSettingsDelegates {
-                delegate.camerasChanged(camerasURLs: camerasURLs)
+            
+            if camerasChanged {
+                // Notify listeners of change
+                for delegate in self.octoPrintSettingsDelegates {
+                    delegate.camerasChanged(camerasURLs: camerasURLs)
+                }
             }
         }
     }
     
-    fileprivate func updatePrinterFromPSUControlPlugin(printer: Printer, plugins: NSDictionary) {
+    fileprivate func updatePrinterFromPSUControlPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         var installed = false
         if let _ = plugins[Plugins.PSU_CONTROL] as? NSDictionary {
             // PSUControl plugin is installed
             installed = true
         }
-        if printer.psuControlInstalled != installed {
-            let newObjectContext = printerManager.newPrivateContext()
-            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-            // Update flag that tracks if PSU Control plugin is installed
-            printerToUpdate.psuControlInstalled = installed
-            // Persist updated printer
-            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+        let newObjectContext = printerManager.newPrivateContext()
+        newObjectContext.performAndWait {
+            let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+            if printerToUpdate.psuControlInstalled != installed {
+                // Update flag that tracks if PSU Control plugin is installed
+                printerToUpdate.psuControlInstalled = installed
+                // Persist updated printer
+                self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
 
-            // Notify listeners of change
-            for delegate in octoPrintSettingsDelegates {
-                delegate.psuControlAvailabilityChanged(installed: installed)
+                // Notify listeners of change
+                for delegate in self.octoPrintSettingsDelegates {
+                    delegate.psuControlAvailabilityChanged(installed: installed)
+                }
             }
         }
     }
     
-    fileprivate func updatePrinterFromTPLinkSmartplugPlugin(printer: Printer, plugins: NSDictionary) {
+    fileprivate func updatePrinterFromTPLinkSmartplugPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         // Check if TPLinkSmartplug plugin is installed. If so then copy plugs information so there is
         // no need to reenter this information
-        updatePrinterFromIPPlugPlugin(printer: printer, plugins: plugins, plugin: Plugins.TP_LINK_SMARTPLUG, getterPlugs: { (printer: Printer) -> Array<IPPlug>? in
+        updatePrinterFromIPPlugPlugin(printerID: printerID, plugins: plugins, plugin: Plugins.TP_LINK_SMARTPLUG, getterPlugs: { (printer: Printer) -> Array<IPPlug>? in
             return printer.getTPLinkSmartplugs()
         }) { (printer: Printer, plugs: Array<IPPlug>) in
             printer.setTPLinkSmartplugs(plugs: plugs)
         }
     }
     
-    fileprivate func updatePrinterFromWemoPlugin(printer: Printer, plugins: NSDictionary) {
+    fileprivate func updatePrinterFromWemoPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         // Check if Wemo plugin is installed. If so then copy plugs information so there is
         // no need to reenter this information
-        updatePrinterFromIPPlugPlugin(printer: printer, plugins: plugins, plugin: Plugins.WEMO_SWITCH, getterPlugs: { (printer: Printer) -> Array<IPPlug>? in
+        updatePrinterFromIPPlugPlugin(printerID: printerID, plugins: plugins, plugin: Plugins.WEMO_SWITCH, getterPlugs: { (printer: Printer) -> Array<IPPlug>? in
             return printer.getWemoPlugs()
         }) { (printer: Printer, plugs: Array<IPPlug>) in
             printer.setWemoPlugs(plugs: plugs)
@@ -1098,27 +1115,27 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
 
     }
     
-    fileprivate func updatePrinterFromDomoticzPlugin(printer: Printer, plugins: NSDictionary) {
+    fileprivate func updatePrinterFromDomoticzPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         // Check if Domoticz plugin is installed. If so then copy plugs information so there is
         // no need to reenter this information
-        updatePrinterFromIPPlugPlugin(printer: printer, plugins: plugins, plugin: Plugins.DOMOTICZ, getterPlugs: { (printer: Printer) -> Array<IPPlug>? in
+        updatePrinterFromIPPlugPlugin(printerID: printerID, plugins: plugins, plugin: Plugins.DOMOTICZ, getterPlugs: { (printer: Printer) -> Array<IPPlug>? in
             return printer.getDomoticzPlugs()
         }) { (printer: Printer, plugs: Array<IPPlug>) in
             printer.setDomoticzPlugs(plugs: plugs)
         }
     }
     
-    fileprivate func updatePrinterFromTasmotaPlugin(printer: Printer, plugins: NSDictionary) {
+    fileprivate func updatePrinterFromTasmotaPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         // Check if Tasmota plugin is installed. If so then copy plugs information so there is
         // no need to reenter this information
-        updatePrinterFromIPPlugPlugin(printer: printer, plugins: plugins, plugin: Plugins.TASMOTA, getterPlugs: { (printer: Printer) -> Array<IPPlug>? in
+        updatePrinterFromIPPlugPlugin(printerID: printerID, plugins: plugins, plugin: Plugins.TASMOTA, getterPlugs: { (printer: Printer) -> Array<IPPlug>? in
             return printer.getTasmotaPlugs()
         }) { (printer: Printer, plugs: Array<IPPlug>) in
             printer.setTasmotaPlugs(plugs: plugs)
         }
     }
     
-    fileprivate func updatePrinterFromIPPlugPlugin(printer: Printer, plugins: NSDictionary, plugin: String, getterPlugs: ((Printer) ->  Array<IPPlug>?), setterPlugs: ((Printer, Array<IPPlug>) -> Void)) {
+    fileprivate func updatePrinterFromIPPlugPlugin(printerID: NSManagedObjectID, plugins: NSDictionary, plugin: String, getterPlugs: @escaping ((Printer) ->  Array<IPPlug>?), setterPlugs: @escaping ((Printer, Array<IPPlug>) -> Void)) {
         // Check if TPLinkSmartplug plugin is installed. If so then copy plugs information so there is
         // no need to reenter this information
         var plugs: Array<IPPlug> = []
@@ -1139,29 +1156,31 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
         
         // Check if plugs have changed
-        var update = false
-        if let existing = getterPlugs(printer) {
-            update = !existing.elementsEqual(plugs)
-        } else {
-            update = true
-        }
-        
-        if update {
-            let newObjectContext = printerManager.newPrivateContext()
-            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-            // Update array
-            setterPlugs(printerToUpdate, plugs)
-            // Persist updated printer
-            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+        let newObjectContext = printerManager.newPrivateContext()
+        newObjectContext.performAndWait {
+            let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+            var update = false
+            if let existing = getterPlugs(printerToUpdate) {
+                update = !existing.elementsEqual(plugs)
+            } else {
+                update = true
+            }
             
-            // Notify listeners of change
-            for delegate in octoPrintSettingsDelegates {
-                delegate.ipPlugsChanged(plugin: plugin, plugs: plugs)
+            if update {
+                // Update array
+                setterPlugs(printerToUpdate, plugs)
+                // Persist updated printer
+                self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                
+                // Notify listeners of change
+                for delegate in self.octoPrintSettingsDelegates {
+                    delegate.ipPlugsChanged(plugin: plugin, plugs: plugs)
+                }
             }
         }
     }
 
-    fileprivate func updatePrinterFromCancelObjectPlugin(printer: Printer, plugins: NSDictionary) {
+    fileprivate func updatePrinterFromCancelObjectPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         var installed = false
         var ignored: String?
         if let cancelPlugin = plugins[Plugins.CANCEL_OBJECT] as? NSDictionary {
@@ -1169,45 +1188,49 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             installed = true
             ignored = cancelPlugin["ignored"] as? String
         }
-        if printer.cancelObjectInstalled != installed || printer.cancelObjectIgnored != ignored {
-            let newObjectContext = printerManager.newPrivateContext()
-            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-            // Update flag that tracks if Cancel Object plugin is installed
-            printerToUpdate.cancelObjectInstalled = installed
-            printerToUpdate.cancelObjectIgnored = ignored
-            // Persist updated printer
-            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-            
-            // Notify listeners of change
-            for delegate in octoPrintSettingsDelegates {
-                delegate.cancelObjectAvailabilityChanged(installed: installed)
+        let newObjectContext = printerManager.newPrivateContext()
+        newObjectContext.performAndWait {
+            let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+            if printerToUpdate.cancelObjectInstalled != installed || printerToUpdate.cancelObjectIgnored != ignored {
+                // Update flag that tracks if Cancel Object plugin is installed
+                printerToUpdate.cancelObjectInstalled = installed
+                printerToUpdate.cancelObjectIgnored = ignored
+                // Persist updated printer
+                self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                
+                // Notify listeners of change
+                for delegate in self.octoPrintSettingsDelegates {
+                    delegate.cancelObjectAvailabilityChanged(installed: installed)
+                }
             }
         }
     }
     
-    fileprivate func updatePrinterFromOctorelayPlugin(printer: Printer, plugins: NSDictionary) {
+    fileprivate func updatePrinterFromOctorelayPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         var installed = false
         if let _ = plugins[Plugins.OCTO_RELAY] as? NSDictionary {
             // Octorelay plugin is installed
             installed = true
         }
-        if printer.octorelayInstalled != installed {
-            let newObjectContext = printerManager.newPrivateContext()
-            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-            // Update flag that tracks if Octorelay plugin is installed
-            printerToUpdate.octorelayInstalled = installed
-            // Persist updated printer
-            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-            
-            // Notify listeners of change
-            for delegate in octoPrintSettingsDelegates {
-                delegate.octorelayAvailabilityChanged(installed: installed)
+        let newObjectContext = printerManager.newPrivateContext()
+        newObjectContext.performAndWait {
+            let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+            if printerToUpdate.octorelayInstalled != installed {
+                // Update flag that tracks if Octorelay plugin is installed
+                printerToUpdate.octorelayInstalled = installed
+                // Persist updated printer
+                self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                
+                // Notify listeners of change
+                for delegate in self.octoPrintSettingsDelegates {
+                    delegate.octorelayAvailabilityChanged(installed: installed)
+                }
             }
         }
     }
     
-    fileprivate func updatePrinterFromOctoPodPlugin(printer: Printer, plugins: NSDictionary) {
-        let currentPrinterID = printer.objectID.uriRepresentation().absoluteString
+    fileprivate func updatePrinterFromOctoPodPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
+        let currentPrinterID = printerID.uriRepresentation().absoluteString
         var installed = false
         var notificationToken: String?
         var octopodPluginPrinterName: String?
@@ -1229,25 +1252,27 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                 }
             }
         }
-        if printer.octopodPluginInstalled != installed || printer.notificationToken == nil || printer.notificationToken != notificationToken || printer.octopodPluginPrinterName != octopodPluginPrinterName || printer.octopodPluginLanguage != octopodPluginLanguage {
-            let newObjectContext = printerManager.newPrivateContext()
-            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-            // Update flag that tracks if OctoPod plugin is installed
-            printerToUpdate.octopodPluginInstalled = installed
-            printerToUpdate.notificationToken = notificationToken
-            printerToUpdate.octopodPluginPrinterName = octopodPluginPrinterName
-            printerToUpdate.octopodPluginLanguage = octopodPluginLanguage
-            // Persist updated printer
-            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-            
-            // Notify listeners of change
-            for delegate in octoPrintSettingsDelegates {
-                delegate.octoPodPluginChanged(installed: installed)
+        let newObjectContext = printerManager.newPrivateContext()
+        newObjectContext.performAndWait {
+            let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+            if printerToUpdate.octopodPluginInstalled != installed || printerToUpdate.notificationToken == nil || printerToUpdate.notificationToken != notificationToken || printerToUpdate.octopodPluginPrinterName != octopodPluginPrinterName || printerToUpdate.octopodPluginLanguage != octopodPluginLanguage {
+                // Update flag that tracks if OctoPod plugin is installed
+                printerToUpdate.octopodPluginInstalled = installed
+                printerToUpdate.notificationToken = notificationToken
+                printerToUpdate.octopodPluginPrinterName = octopodPluginPrinterName
+                printerToUpdate.octopodPluginLanguage = octopodPluginLanguage
+                // Persist updated printer
+                self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                
+                // Notify listeners of change
+                for delegate in self.octoPrintSettingsDelegates {
+                    delegate.octoPodPluginChanged(installed: installed)
+                }
             }
         }
     }
     
-    fileprivate func updatePrinterFromPalette2Plugin(printer: Printer, plugins: NSDictionary) {
+    fileprivate func updatePrinterFromPalette2Plugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         var installed = false
         var autoConnect = false
         if let palette2Plugin = plugins[Plugins.PALETTE_2] as? NSDictionary {
@@ -1267,255 +1292,256 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             forceDonation = false
         }
 
-        if forceDonation || printer.palette2Installed != installed || printer.palette2AutoConnect != autoConnect {
-            let newObjectContext = printerManager.newPrivateContext()
-            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-            // Update flag that tracks if Palette2 plugin is installed
-            printerToUpdate.palette2Installed = installed
-            printerToUpdate.palette2AutoConnect = autoConnect
-            // Persist updated printer
-            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-            
-            #if os(iOS)
-                // Donate Siri commands to control Palette (or delete donated commands)
-                if installed {
-                    IntentsDonations.donatePaletteIntents(printer: printer)
-                    // Indicate that donations of release 3.0 have been done
-                    defaults.set(true, forKey: donatedUpgradeKey)
-                } else {
-                    IntentsDonations.deletePaletteIntents(printer: printer)
+        let newObjectContext = printerManager.newPrivateContext()
+        newObjectContext.performAndWait {
+            let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+            if forceDonation || printerToUpdate.palette2Installed != installed || printerToUpdate.palette2AutoConnect != autoConnect {
+                // Update flag that tracks if Palette2 plugin is installed
+                printerToUpdate.palette2Installed = installed
+                printerToUpdate.palette2AutoConnect = autoConnect
+                // Persist updated printer
+                self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                
+                #if os(iOS)
+                    // Donate Siri commands to control Palette (or delete donated commands)
+                    if installed {
+                        IntentsDonations.donatePaletteIntents(printer: printerToUpdate)
+                        // Indicate that donations of release 3.0 have been done
+                        defaults.set(true, forKey: donatedUpgradeKey)
+                    } else {
+                        IntentsDonations.deletePaletteIntents(printer: printerToUpdate)
+                    }
+                #endif
+                
+                // Notify listeners of change
+                for delegate in self.octoPrintSettingsDelegates {
+                    delegate.palette2Changed(installed: installed)
                 }
-            #endif
-            
-            // Notify listeners of change
-            for delegate in octoPrintSettingsDelegates {
-                delegate.palette2Changed(installed: installed)
             }
         }
     }
     
-    fileprivate func updatePrinterFromPalette2CanvasPlugin(printer: Printer, plugins: NSDictionary) {
+    fileprivate func updatePrinterFromPalette2CanvasPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         var installed = false
         if let _ = plugins[Plugins.PALETTE_2_CANVAS] as? NSDictionary {
             // Palette2 Canvas plugin is installed
             installed = true
         }
-        if printer.palette2CanvasInstalled != installed {
-            let newObjectContext = printerManager.newPrivateContext()
-            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-            // Update flag that tracks if Palette2 Canvas plugin is installed
-            printerToUpdate.palette2CanvasInstalled = installed
-            // Persist updated printer
-            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-            
-            // Notify listeners of change
-            for delegate in octoPrintSettingsDelegates {
-                delegate.palette2CanvasAvailabilityChanged(installed: installed)
+        let newObjectContext = printerManager.newPrivateContext()
+        newObjectContext.performAndWait {
+            let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+            if printerToUpdate.palette2CanvasInstalled != installed {
+                // Update flag that tracks if Palette2 Canvas plugin is installed
+                printerToUpdate.palette2CanvasInstalled = installed
+                // Persist updated printer
+                self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                
+                // Notify listeners of change
+                for delegate in self.octoPrintSettingsDelegates {
+                    delegate.palette2CanvasAvailabilityChanged(installed: installed)
+                }
             }
         }
     }
     
-    fileprivate func updatePrinterFromEnclosurePlugin(printer: Printer, plugins: NSDictionary) {
+    fileprivate func updatePrinterFromEnclosurePlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         if let enclosurePlugin = plugins[Plugins.ENCLOSURE] as? NSDictionary {
-            if let rpiInputs = enclosurePlugin["rpi_inputs"] as? NSArray {
-                var foundIds: Array<Int16> = Array()
-                var inputsChanged = false
-                for case let rpiInput as NSDictionary in rpiInputs {
-                    if let index_id = rpiInput["index_id"] as? Int16, let inputType = rpiInput["input_type"] as? String, let label = rpiInput["label"] as? String, let useFahrenheit = rpiInput["use_fahrenheit"] as? Bool {
-                        // Remember id that was seen. We will use this to know which ones to delete (if any)
-                        foundIds.append(index_id)
-                        var found = false
-                        if let existingInputs = printer.enclosureInputs {
-                            for enclosureInput in existingInputs {
-                                if enclosureInput.index_id == index_id {
-                                    found = true
-                                    // Check that values are current
-                                    if enclosureInput.type != inputType || enclosureInput.label != label || enclosureInput.use_fahrenheit != useFahrenheit {
-                                        // Update existing input
-                                        let newObjectContext = printerManager.newPrivateContext()
-                                        let enclosureInputToUpdate = newObjectContext.object(with: enclosureInput.objectID) as! EnclosureInput
-                                        enclosureInputToUpdate.type = inputType
-                                        enclosureInputToUpdate.label = label
-                                        enclosureInputToUpdate.use_fahrenheit = useFahrenheit
-                                        // Persist updated EnclosureInput
-                                        printerManager.saveObject(enclosureInputToUpdate, context: newObjectContext)
-                                        
-                                        inputsChanged = true
-                                        break
+            let newObjectContext = printerManager.newPrivateContext()
+            newObjectContext.performAndWait {
+                let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+                if let rpiInputs = enclosurePlugin["rpi_inputs"] as? NSArray {
+                    var foundIds: Array<Int16> = Array()
+                    var inputsChanged = false
+                    for case let rpiInput as NSDictionary in rpiInputs {
+                        if let index_id = rpiInput["index_id"] as? Int16, let inputType = rpiInput["input_type"] as? String, let label = rpiInput["label"] as? String, let useFahrenheit = rpiInput["use_fahrenheit"] as? Bool {
+                            // Remember id that was seen. We will use this to know which ones to delete (if any)
+                            foundIds.append(index_id)
+                            var found = false
+                            if let existingInputs = printerToUpdate.enclosureInputs {
+                                for enclosureInput in existingInputs {
+                                    if enclosureInput.index_id == index_id {
+                                        found = true
+                                        // Check that values are current
+                                        if enclosureInput.type != inputType || enclosureInput.label != label || enclosureInput.use_fahrenheit != useFahrenheit {
+                                            // Update existing input
+                                            let enclosureInputToUpdate = newObjectContext.object(with: enclosureInput.objectID) as! EnclosureInput
+                                            enclosureInputToUpdate.type = inputType
+                                            enclosureInputToUpdate.label = label
+                                            enclosureInputToUpdate.use_fahrenheit = useFahrenheit
+                                            // Persist updated EnclosureInput
+                                            self.printerManager.saveObject(enclosureInputToUpdate, context: newObjectContext)
+                                            
+                                            inputsChanged = true
+                                            break
+                                        }
                                     }
                                 }
                             }
-                        }
-                        if !found {
-                            // Add new input
-                            let newObjectContext = printerManager.newPrivateContext()
-                            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-                            printerManager.addEnclosureInput(index: index_id, type: inputType, label: label, useFahrenheit: useFahrenheit, context: newObjectContext, printer: printerToUpdate)
-                            inputsChanged = true
+                            if !found {
+                                // Add new input
+                                self.printerManager.addEnclosureInput(index: index_id, type: inputType, label: label, useFahrenheit: useFahrenheit, context: newObjectContext, printer: printerToUpdate)
+                                inputsChanged = true
+                            }
                         }
                     }
-                }
-                // Delete existing inputs that no longer exist
-                if let existingInputs = printer.enclosureInputs {
-                    for enclosureInput in existingInputs {
-                        if !foundIds.contains(enclosureInput.index_id) {
-                            // Delete input that no longer exists on the server
-                            let newObjectContext = printerManager.newPrivateContext()
-                            let enclosureInputToDelete = newObjectContext.object(with: enclosureInput.objectID) as! EnclosureInput
-                            printerManager.deleteObject(enclosureInputToDelete, context: newObjectContext)
-                            inputsChanged = true
+                    // Delete existing inputs that no longer exist
+                    if let existingInputs = printerToUpdate.enclosureInputs {
+                        for enclosureInput in existingInputs {
+                            if !foundIds.contains(enclosureInput.index_id) {
+                                // Delete input that no longer exists on the server
+                                let enclosureInputToDelete = newObjectContext.object(with: enclosureInput.objectID) as! EnclosureInput
+                                self.printerManager.deleteObject(enclosureInputToDelete, context: newObjectContext)
+                                inputsChanged = true
+                            }
                         }
                     }
-                }
 
-                if inputsChanged {
-                    // Notify listeners of change
-                    for delegate in octoPrintSettingsDelegates {
-                        delegate.enclosureInputsChanged()
+                    if inputsChanged {
+                        // Notify listeners of change
+                        for delegate in self.octoPrintSettingsDelegates {
+                            delegate.enclosureInputsChanged()
+                        }
                     }
                 }
-            }
-            if let rpiOutputs = enclosurePlugin["rpi_outputs"] as? NSArray {
-                var foundIds: Array<Int16> = Array()
-                var outputsChanged = false
-                for case let rpiOutput as NSDictionary in rpiOutputs {
-                    if let index_id = rpiOutput["index_id"] as? Int16, let outputType = rpiOutput["output_type"] as? String, let label = rpiOutput["label"] as? String, let hidden = rpiOutput["hide_btn_ui"] as? Bool {
-                        if hidden {
-                            // Output that are hidden from ui are treated as if they do not exist
-                            continue
-                        }
-                        // Remember id that was seen. We will use this to know which ones to delete (if any)
-                        foundIds.append(index_id)
-                        var found = false
-                        if let existingOutputs = printer.enclosureOutputs {
-                            for existingOutput in existingOutputs {
-                                if existingOutput.index_id == index_id {
-                                    found = true
-                                    // Check that values are current
-                                    if existingOutput.type != outputType || existingOutput.label != label {
-                                        // Update existing input
-                                        let newObjectContext = printerManager.newPrivateContext()
-                                        let enclosureOutputToUpdate = newObjectContext.object(with: existingOutput.objectID) as! EnclosureOutput
-                                        enclosureOutputToUpdate.type = outputType
-                                        enclosureOutputToUpdate.label = label
-                                        // Persist updated EnclosureOutput
-                                        printerManager.saveObject(enclosureOutputToUpdate, context: newObjectContext)
-                                        
-                                        outputsChanged = true
-                                        break
+                if let rpiOutputs = enclosurePlugin["rpi_outputs"] as? NSArray {
+                    var foundIds: Array<Int16> = Array()
+                    var outputsChanged = false
+                    for case let rpiOutput as NSDictionary in rpiOutputs {
+                        if let index_id = rpiOutput["index_id"] as? Int16, let outputType = rpiOutput["output_type"] as? String, let label = rpiOutput["label"] as? String, let hidden = rpiOutput["hide_btn_ui"] as? Bool {
+                            if hidden {
+                                // Output that are hidden from ui are treated as if they do not exist
+                                continue
+                            }
+                            // Remember id that was seen. We will use this to know which ones to delete (if any)
+                            foundIds.append(index_id)
+                            var found = false
+                            if let existingOutputs = printerToUpdate.enclosureOutputs {
+                                for existingOutput in existingOutputs {
+                                    if existingOutput.index_id == index_id {
+                                        found = true
+                                        // Check that values are current
+                                        if existingOutput.type != outputType || existingOutput.label != label {
+                                            // Update existing input
+                                            let enclosureOutputToUpdate = newObjectContext.object(with: existingOutput.objectID) as! EnclosureOutput
+                                            enclosureOutputToUpdate.type = outputType
+                                            enclosureOutputToUpdate.label = label
+                                            // Persist updated EnclosureOutput
+                                            self.printerManager.saveObject(enclosureOutputToUpdate, context: newObjectContext)
+                                            
+                                            outputsChanged = true
+                                            break
+                                        }
                                     }
                                 }
                             }
-                        }
-                        if !found {
-                            // Add new input
-                            let newObjectContext = printerManager.newPrivateContext()
-                            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-                            printerManager.addEnclosureOutput(index: index_id, type: outputType, label: label, context: newObjectContext, printer: printerToUpdate)
-                            outputsChanged = true
+                            if !found {
+                                // Add new input
+                                self.printerManager.addEnclosureOutput(index: index_id, type: outputType, label: label, context: newObjectContext, printer: printerToUpdate)
+                                outputsChanged = true
+                            }
                         }
                     }
-                }
-                // Delete existing inputs that no longer exist
-                if let existingOutputs = printer.enclosureOutputs {
-                    for existingOutput in existingOutputs {
-                        if !foundIds.contains(existingOutput.index_id) {
-                            // Delete input that no longer exists on the server
-                            let newObjectContext = printerManager.newPrivateContext()
-                            let enclosureOutputToDelete = newObjectContext.object(with: existingOutput.objectID) as! EnclosureOutput
-                            printerManager.deleteObject(enclosureOutputToDelete, context: newObjectContext)
-                            outputsChanged = true
+                    // Delete existing inputs that no longer exist
+                    if let existingOutputs = printerToUpdate.enclosureOutputs {
+                        for existingOutput in existingOutputs {
+                            if !foundIds.contains(existingOutput.index_id) {
+                                // Delete input that no longer exists on the server
+                                let enclosureOutputToDelete = newObjectContext.object(with: existingOutput.objectID) as! EnclosureOutput
+                                self.printerManager.deleteObject(enclosureOutputToDelete, context: newObjectContext)
+                                outputsChanged = true
+                            }
                         }
                     }
-                }
 
-                if outputsChanged {
-                    // Notify listeners of change
-                    for delegate in octoPrintSettingsDelegates {
-                        delegate.enclosureOutputsChanged()
+                    if outputsChanged {
+                        // Notify listeners of change
+                        for delegate in self.octoPrintSettingsDelegates {
+                            delegate.enclosureOutputsChanged()
+                        }
                     }
                 }
             }
         }
     }
     
-    fileprivate func updatePrinterFromFilamentManagerPlugin(printer: Printer, plugins: NSDictionary) {
+    fileprivate func updatePrinterFromFilamentManagerPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         var installed = false
         if let _ = plugins[Plugins.FILAMENT_MANAGER] as? NSDictionary {
             // FilamentManager plugin is installed
             installed = true
         }
-        if printer.filamentManagerInstalled != installed {
-            let newObjectContext = printerManager.newPrivateContext()
-            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-            // Update flag that tracks if FilamentManager plugin is installed
-            printerToUpdate.filamentManagerInstalled = installed
-            // Persist updated printer
-            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-            
-            // Notify listeners of change
-            for delegate in octoPrintSettingsDelegates {
-                delegate.filamentManagerAvailabilityChanged(installed: installed)
+        let newObjectContext = printerManager.newPrivateContext()
+        newObjectContext.performAndWait {
+            let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+            if printerToUpdate.filamentManagerInstalled != installed {
+                // Update flag that tracks if FilamentManager plugin is installed
+                printerToUpdate.filamentManagerInstalled = installed
+                // Persist updated printer
+                self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                
+                // Notify listeners of change
+                for delegate in self.octoPrintSettingsDelegates {
+                    delegate.filamentManagerAvailabilityChanged(installed: installed)
+                }
             }
         }
     }
     
-    fileprivate func updatePrinterFromBLTouchPlugin(printer: Printer, plugins: NSDictionary) {
+    fileprivate func updatePrinterFromBLTouchPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         if let pluginSettings = plugins[Plugins.BL_TOUCH] as? NSDictionary {
             // BLTouch plugin is installed
             var changed = false
-            if let probeUp = pluginSettings["cmdProbeUp"] as? String, let probeDown = pluginSettings["cmdProbeDown"] as? String, let selfTest = pluginSettings["cmdSelfTest"] as? String, let releaseAlarm = pluginSettings["cmdReleaseAlarm"] as? String, let probeBed = pluginSettings["cmdProbeBed"] as? String, let saveSettings = pluginSettings["cmdSaveSettings"] as? String {
+            let newObjectContext = printerManager.newPrivateContext()
+            newObjectContext.performAndWait {
+                let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
                 
-                if let blTouch = printer.blTouch {
-                    if blTouch.cmdProbeUp != probeUp || blTouch.cmdProbeDown != probeDown || blTouch.cmdSelfTest != selfTest || blTouch.cmdReleaseAlarm != releaseAlarm || blTouch.cmdProbeBed != probeBed || blTouch.cmdSaveSettings != saveSettings {
-                        // Update BLTouch instance with settings of plugin
-                        let newObjectContext = printerManager.newPrivateContext()
-                        let blTouchToUpdate = newObjectContext.object(with: blTouch.objectID) as! BLTouch
+                if let probeUp = pluginSettings["cmdProbeUp"] as? String, let probeDown = pluginSettings["cmdProbeDown"] as? String, let selfTest = pluginSettings["cmdSelfTest"] as? String, let releaseAlarm = pluginSettings["cmdReleaseAlarm"] as? String, let probeBed = pluginSettings["cmdProbeBed"] as? String, let saveSettings = pluginSettings["cmdSaveSettings"] as? String {
+                    if let blTouch = printerToUpdate.blTouch {
+                        if blTouch.cmdProbeUp != probeUp || blTouch.cmdProbeDown != probeDown || blTouch.cmdSelfTest != selfTest || blTouch.cmdReleaseAlarm != releaseAlarm || blTouch.cmdProbeBed != probeBed || blTouch.cmdSaveSettings != saveSettings {
+                            // Update BLTouch instance with settings of plugin
+                            let blTouchToUpdate = newObjectContext.object(with: blTouch.objectID) as! BLTouch
+                            // Update BLTouch plugin settings
+                            blTouchToUpdate.cmdProbeUp = probeUp
+                            blTouchToUpdate.cmdProbeDown = probeDown
+                            blTouchToUpdate.cmdSelfTest = selfTest
+                            blTouchToUpdate.cmdReleaseAlarm = releaseAlarm
+                            blTouchToUpdate.cmdProbeBed = probeBed
+                            blTouchToUpdate.cmdSaveSettings = saveSettings
+                            
+                            // Persist updated printer
+                            if self.printerManager.saveObject(blTouchToUpdate, context: newObjectContext) {
+                                changed = true
+                            } else {
+                                NSLog("Failed to update BLTouch settings in core data")
+                            }
+                        }
+                    } else {
+                        // Create new BLTouch instance with settings of plugin
                         // Update BLTouch plugin settings
-                        blTouchToUpdate.cmdProbeUp = probeUp
-                        blTouchToUpdate.cmdProbeDown = probeDown
-                        blTouchToUpdate.cmdSelfTest = selfTest
-                        blTouchToUpdate.cmdReleaseAlarm = releaseAlarm
-                        blTouchToUpdate.cmdProbeBed = probeBed
-                        blTouchToUpdate.cmdSaveSettings = saveSettings
-
-                        // Persist updated printer
-                        if printerManager.saveObject(blTouchToUpdate, context: newObjectContext) {
+                        if self.printerManager.addBLTouch(cmdProbeUp: probeUp, cmdProbeDown: probeDown, cmdSelfTest: selfTest, cmdReleaseAlarm: releaseAlarm, cmdProbeBed: probeBed, cmdSaveSettings: saveSettings, context: newObjectContext, printer: printerToUpdate) {
                             changed = true
                         } else {
-                            NSLog("Failed to update BLTouch settings in core data")
+                            NSLog("Failed to create BLTouch settings in core data")
+                        }
+                    }
+                    if changed {
+                        // Notify listeners of change
+                        for delegate in self.octoPrintSettingsDelegates {
+                            delegate.blTouchSettingsChanged(installed: true)
                         }
                     }
                 } else {
-                    // Create new BLTouch instance with settings of plugin
-                    let newObjectContext = printerManager.newPrivateContext()
-                    let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-                    // Update BLTouch plugin settings
-                    if printerManager.addBLTouch(cmdProbeUp: probeUp, cmdProbeDown: probeDown, cmdSelfTest: selfTest, cmdReleaseAlarm: releaseAlarm, cmdProbeBed: probeBed, cmdSaveSettings: saveSettings, context: newObjectContext, printer: printerToUpdate) {
-                        changed = true
-                    } else {
-                        NSLog("Failed to create BLTouch settings in core data")
+                    // BLTouch not installed
+                    if let _ = printerToUpdate.blTouch {
+                        // Delete existing blTouch settings
+                        printerToUpdate.blTouch = nil
+                        self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                        
+                        // Notify listeners of change
+                        for delegate in self.octoPrintSettingsDelegates {
+                            delegate.blTouchSettingsChanged(installed: false)
+                        }
                     }
-                }
-                if changed {
-                    // Notify listeners of change
-                    for delegate in octoPrintSettingsDelegates {
-                        delegate.blTouchSettingsChanged(installed: true)
-                    }
-                }
-            }
-        } else {
-            // BLTouch not installed
-            if let _ = printer.blTouch {
-                // Delete existing blTouch settings
-                let newObjectContext = printerManager.newPrivateContext()
-                let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-                printerToUpdate.blTouch = nil
-                printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-
-                // Notify listeners of change
-                for delegate in octoPrintSettingsDelegates {
-                    delegate.blTouchSettingsChanged(installed: false)
                 }
             }
         }
@@ -1596,42 +1622,44 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                     }
                     
                     let newObjectContext = printerManager.newPrivateContext()
-                    let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-
-                    var changedX = false
-                    var changedY = false
-                    var changedZ = false
-                    // Update camera orientation
-                    if printer.invertX != invertedX {
-                        printerToUpdate.invertX = invertedX
-                        changedX = true
-                    }
-                    if printer.invertY != invertedY {
-                        printerToUpdate.invertY = invertedY
-                        changedY = true
-                    }
-                    if printer.invertZ != invertedZ {
-                        printerToUpdate.invertZ = invertedZ
-                        changedZ = true
-                    }
-                    // Persist updated printer
-                    if changedX || changedY || changedZ {
-                        printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-                    }
-                    // Notify listeners of change
-                    if changedX {
-                        for delegate in printerProfilesDelegates {
-                            delegate.axisDirectionChanged(axis: .X, inverted: invertedX)
+                    newObjectContext.performAndWait {
+                        let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                        
+                        var changedX = false
+                        var changedY = false
+                        var changedZ = false
+                        // Update camera orientation
+                        if printerToUpdate.invertX != invertedX {
+                            printerToUpdate.invertX = invertedX
+                            changedX = true
                         }
-                    }
-                    if changedY {
-                        for delegate in printerProfilesDelegates {
-                            delegate.axisDirectionChanged(axis: .Y, inverted: invertedY)
+                        if printerToUpdate.invertY != invertedY {
+                            printerToUpdate.invertY = invertedY
+                            changedY = true
                         }
-                    }
-                    if changedZ {
-                        for delegate in printerProfilesDelegates {
-                            delegate.axisDirectionChanged(axis: .Z, inverted: invertedZ)
+                        if printerToUpdate.invertZ != invertedZ {
+                            printerToUpdate.invertZ = invertedZ
+                            changedZ = true
+                        }
+                        // Persist updated printer
+                        if changedX || changedY || changedZ {
+                            self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                        }
+                        // Notify listeners of change
+                        if changedX {
+                            for delegate in self.printerProfilesDelegates {
+                                delegate.axisDirectionChanged(axis: .X, inverted: invertedX)
+                            }
+                        }
+                        if changedY {
+                            for delegate in self.printerProfilesDelegates {
+                                delegate.axisDirectionChanged(axis: .Y, inverted: invertedY)
+                            }
+                        }
+                        if changedZ {
+                            for delegate in self.printerProfilesDelegates {
+                                delegate.axisDirectionChanged(axis: .Z, inverted: invertedZ)
+                            }
                         }
                     }
                 }
@@ -1645,21 +1673,23 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     }
     
     fileprivate func updatePrinterToolsNumber(printer: Printer, toolsNumber: Int16, sharedNozzle: Bool) {
-        if printer.toolsNumber != toolsNumber || printer.sharedNozzle != sharedNozzle {
-            let newObjectContext = printerManager.newPrivateContext()
+        let newObjectContext = printerManager.newPrivateContext()
+        newObjectContext.performAndWait {
             let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-            // Update detected number of tools installed in the printer
-            printerToUpdate.toolsNumber = toolsNumber
-            printerToUpdate.sharedNozzle = sharedNozzle
-            // Persist updated printer
-            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-            
-            if printerToUpdate.defaultPrinter {
-                webSocketClient?.sharedNozzle = sharedNozzle
-            }
+            if printerToUpdate.toolsNumber != toolsNumber || printerToUpdate.sharedNozzle != sharedNozzle {
+                // Update detected number of tools installed in the printer
+                printerToUpdate.toolsNumber = toolsNumber
+                printerToUpdate.sharedNozzle = sharedNozzle
+                // Persist updated printer
+                self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                
+                if printerToUpdate.defaultPrinter {
+                    self.webSocketClient?.sharedNozzle = sharedNozzle
+                }
 
-            for delegate in printerProfilesDelegates {
-                delegate.toolsChanged(toolsNumber: toolsNumber, sharedNozzle: sharedNozzle)
+                for delegate in self.printerProfilesDelegates {
+                    delegate.toolsChanged(toolsNumber: toolsNumber, sharedNozzle: sharedNozzle)
+                }
             }
         }
     }

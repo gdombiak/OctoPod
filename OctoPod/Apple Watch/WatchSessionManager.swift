@@ -212,18 +212,6 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         pushPrinters()
     }
     
-    func printerAdded(printer: Printer) {
-    }
-    
-    func printerUpdated(printer: Printer) {
-    }
-    
-    func printerDeleted(printer: Printer) {
-    }
-    
-    func iCloudStatusChanged(connected: Bool) {
-    }
-    
     // MARK: - OctoPrintSettingsDelegate
     
     func cameraOrientationChanged(newOrientation: UIImage.Orientation) {
@@ -486,78 +474,90 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         var restClient: OctoPrintRESTClient?
         var sharedNozzle = false
         var palette2PluginInstalled = false
-        if let printer = printerManager.getDefaultPrinter() {
-            if printer.name == printerName && octoprintClient.octoPrintRESTClient.isConfigured() {
-                restClient = octoprintClient.octoPrintRESTClient
-                sharedNozzle = printer.sharedNozzle
-                palette2PluginInstalled = printer.palette2Installed
+
+        let newObjectContext = self.printerManager.safePrivateContext()
+        newObjectContext.performAndWait {
+            if let printer = printerManager.getDefaultPrinter(context: newObjectContext) {
+                if printer.name == printerName && octoprintClient.octoPrintRESTClient.isConfigured() {
+                    restClient = octoprintClient.octoPrintRESTClient
+                    sharedNozzle = printer.sharedNozzle
+                    palette2PluginInstalled = printer.palette2Installed
+                }
+            }
+            if restClient == nil {
+                if let printer = printerManager.getPrinterByName(context: newObjectContext, name: printerName) {
+                    restClient = OctoPrintRESTClient()
+                    restClient?.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuthentication())
+                    sharedNozzle = printer.sharedNozzle
+                    palette2PluginInstalled = printer.palette2Installed
+                }
             }
         }
-        if restClient == nil {
-            if let printer = printerManager.getPrinterByName(name: printerName) {
-                restClient = OctoPrintRESTClient()
-                restClient?.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuthentication())
-                sharedNozzle = printer.sharedNozzle
-                palette2PluginInstalled = printer.palette2Installed
-            }
-        }
+
         return (restClient, sharedNozzle, palette2PluginInstalled)
 
     }
     
     fileprivate func ensureDefaultPrinter(printerName: String) {
-        if let printer = printerManager.getDefaultPrinter() {
-            if printer.name != printerName {
-                // Default printer in the iOS app and Apple Watch is out of sync, let's fix it
-                changeDefaultPrinter(printerName: printerName)
+        let newObjectContext = self.printerManager.safePrivateContext()
+        newObjectContext.performAndWait {
+            if let printer = printerManager.getDefaultPrinter(context: newObjectContext) {
+                if printer.name != printerName {
+                    // Default printer in the iOS app and Apple Watch is out of sync, let's fix it
+                    changeDefaultPrinter(printerName: printerName)
+                }
             }
         }
     }
     
     fileprivate func encodePrinters() -> [String: [[String : Any]]] {
         var printers: [[String : Any]] = []
-        for printer in printerManager.getPrinters() {
-            var printerDic = ["position": printer.position, "name": printer.name, "hostname": printer.hostname, "apiKey": printer.apiKey, "isDefault": printer.defaultPrinter, "preemptive": printer.preemptiveAuthentication()] as [String : Any]
-            if let username = printer.username {
-                printerDic["username"] = username
-            }
-            if let password = printer.password {
-                printerDic["password"] = password
-            }
-            if let cameras = printer.getMultiCameras(), !cameras.isEmpty {
-                // MultiCam plugin is installed so show all cameras
-                var camerasArray: Array<Dictionary<String, Any>> = []
-                for multiCamera in cameras {
-                    var cameraURL: String
-                    var cameraOrientation: Int
-                    let url = multiCamera.cameraURL
-                    if url == printer.getStreamPath() {
-                        // This is camera hosted by OctoPrint so respect orientation
-                        cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
-                        cameraOrientation = Int(printer.cameraOrientation)
-                    } else {
-                        if url.starts(with: "/") {
-                            // Another camera hosted by OctoPrint so build absolute URL
-                            cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
-                        } else {
-                            // Use absolute URL to render camera
-                            cameraURL = url
-                        }
-                        cameraOrientation = Int(multiCamera.cameraOrientation) // Respect orientation defined by MultiCamera plugin
-                    }
-                    let cameraDic = ["url" : cameraURL, "orientation": cameraOrientation] as [String : Any]                    
-                    camerasArray.append(cameraDic)
+        let newObjectContext = printerManager.safePrivateContext()
+        newObjectContext.performAndWait {
+            for printer in printerManager.getPrinters(context: newObjectContext) {
+                var printerDic = ["position": printer.position, "name": printer.name, "hostname": printer.hostname, "apiKey": printer.apiKey, "isDefault": printer.defaultPrinter, "preemptive": printer.preemptiveAuthentication()] as [String : Any]
+                if let username = printer.username {
+                    printerDic["username"] = username
                 }
-                printerDic["cameras"] = camerasArray
-            } else {
-                // MultiCam plugin is not installed so just show default camera
-                let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
-                let cameraOrientation = Int(printer.cameraOrientation)
-                let cameraDic = ["url" : cameraURL, "orientation": cameraOrientation] as [String : Any]
-                printerDic["cameras"] = [cameraDic]
+                if let password = printer.password {
+                    printerDic["password"] = password
+                }
+                if let cameras = printer.getMultiCameras(), !cameras.isEmpty {
+                    // MultiCam plugin is installed so show all cameras
+                    var camerasArray: Array<Dictionary<String, Any>> = []
+                    for multiCamera in cameras {
+                        var cameraURL: String
+                        var cameraOrientation: Int
+                        let url = multiCamera.cameraURL
+                        if url == printer.getStreamPath() {
+                            // This is camera hosted by OctoPrint so respect orientation
+                            cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
+                            cameraOrientation = Int(printer.cameraOrientation)
+                        } else {
+                            if url.starts(with: "/") {
+                                // Another camera hosted by OctoPrint so build absolute URL
+                                cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: url)
+                            } else {
+                                // Use absolute URL to render camera
+                                cameraURL = url
+                            }
+                            cameraOrientation = Int(multiCamera.cameraOrientation) // Respect orientation defined by MultiCamera plugin
+                        }
+                        let cameraDic = ["url" : cameraURL, "orientation": cameraOrientation] as [String : Any]
+                        camerasArray.append(cameraDic)
+                    }
+                    printerDic["cameras"] = camerasArray
+                } else {
+                    // MultiCam plugin is not installed so just show default camera
+                    let cameraURL = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
+                    let cameraOrientation = Int(printer.cameraOrientation)
+                    let cameraDic = ["url" : cameraURL, "orientation": cameraOrientation] as [String : Any]
+                    printerDic["cameras"] = [cameraDic]
+                }
+                printers.append(printerDic)
             }
-            printers.append(printerDic)
         }
+
 //        NSLog("Encoded printers: \(["printers" : printers])")
         
         return ["printers" : printers]

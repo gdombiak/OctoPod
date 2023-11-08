@@ -42,14 +42,14 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     
     var delegate: WebSocketClientDelegate?
 
-    init(appConfiguration: AppConfiguration, printer: Printer) {
+    init(appConfiguration: AppConfiguration, hostname: String, apiKey: String, username: String?, password: String?, sharedNozzle: Bool) {
         super.init()
-        serverURL = printer.hostname
+        serverURL = hostname
         serverURL = serverURL.hasSuffix("/") ? String(serverURL.dropLast()) : serverURL // Fix in case stored printer has invalid URL due to a bug that is now fixed
-        apiKey = printer.apiKey
-        username = printer.username
-        password = printer.password
-        sharedNozzle = printer.sharedNozzle
+        self.apiKey = apiKey
+        self.username = username
+        self.password = password
+        self.sharedNozzle = sharedNozzle
         self.appConfiguration = appConfiguration
         
         let urlString: String = "\(serverURL!)/sockjs/websocket"
@@ -381,9 +381,9 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     }
     
     // Return true if websocket is connected to the URL of the specified printer
-    func isConnected(printer: Printer) -> Bool {
+    func isConnected(hostname: String) -> Bool {
         if let currentSocket = socket {
-            return currentSocket.isConnected && serverURL == printer.hostname
+            return currentSocket.isConnected && serverURL == hostname
         }
         return false
     }

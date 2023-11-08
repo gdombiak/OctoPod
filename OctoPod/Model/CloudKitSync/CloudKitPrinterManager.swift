@@ -346,21 +346,25 @@ class CloudKitPrinterManager {
         let recordName = record.recordID.recordName
         if let printer = printerManager.getPrinterByRecordName(context: privateContext, recordName: recordName) {
             // A printer exists for this PK so update it
-            updateAndSave(printer: printer, serverRecord: record)
+            updateAndSave(printerID: printer.objectID, serverRecord: record)
             // Alert delegates that printer has been updated from iCloud info
-            notifyPrinterUpdated(printer: printer)
-            appendLog("Updated printer: \(printer.hostname)")
+            notifyPrinterUpdated(printerID: printer.objectID)
+            privateContext.perform {
+                self.appendLog("Updated printer: \(printer.hostname)")
+            }
         } else {
             // No printer was found for this PK
             // Check if a printer with same data exists and no record name.
-            if let printer = printerManager.getPrinters().first(where: { (printer: Printer) -> Bool in
+            if let printer = printerManager.getPrinters(context: privateContext).first(where: { (printer: Printer) -> Bool in
                 return self.sameOctoPrint(record: record, printer: printer)
             }) {
                 // Update printer with iCloud information and save it
-                updateAndSave(printer: printer, serverRecord: record)
+                updateAndSave(printerID: printer.objectID, serverRecord: record)
                 // Alert delegates that printer has been updated from iCloud info
-                notifyPrinterUpdated(printer: printer)
-                appendLog("Linked existing printer: \(printer.hostname)")
+                notifyPrinterUpdated(printerID: printer.objectID)
+                privateContext.perform {
+                    self.appendLog("Linked existing printer: \(printer.hostname)")
+                }
             } else {
                 // Nothing was found in Core Data so create new printer and add to Core Data
                 let parsed = parseRecord(record: record)
@@ -375,10 +379,10 @@ class CloudKitPrinterManager {
                     if printerManager.addPrinter(connectionType: connectionType, name: name, hostname: hostname, apiKey: apiKey, username: parsed.username, password: parsed.password, position: position, iCloudUpdate: false, modified: (parsed.modified == nil ? Date() : parsed.modified!)) {
                         if let printer = printerManager.getPrinterByName(name: name) {
                             // Update again to assign recordName and store encoded record
-                            updateAndSave(printer: printer, serverRecord: record)
+                            updateAndSave(printerID: printer.objectID, serverRecord: record)
                             // Alert delegates that printer has been added from iCloud info
-                            notifyPrinterAdded(printer: printer)
-                            appendLog("Added new printer: \(printer.hostname)")
+                            notifyPrinterAdded(printerID: printer.objectID)
+                            appendLog("Added new printer: \(hostname)")
                         } else {
                             appendLog("Missing newly added printer: \(hostname)")
                         }
@@ -396,13 +400,16 @@ class CloudKitPrinterManager {
     // CloudKit informed us that a record has been deleted
     fileprivate func recordDeleted(recordID: CKRecord.ID) {
         let recordName = recordID.recordName
-        let newObjectContext = privateContext
-        if let printerToDelete = printerManager.getPrinterByRecordName(context: privateContext, recordName: recordName) {
-            appendLog("Deleted printer: \(printerToDelete.hostname)")
-            // A printer exists for this PK so delete it
-            printerManager.deletePrinter(printerToDelete, context: privateContext)
-            // Alert delegates that printer has been deleted from iCloud info
-            notifyPrinterDeleted(printer: printerToDelete)
+        if let newObjectContext = privateContext {
+            newObjectContext.performAndWait {
+                if let printerToDelete = self.printerManager.getPrinterByRecordName(context: newObjectContext, recordName: recordName) {
+                    self.appendLog("Deleted printer: \(printerToDelete.hostname)")
+                    // A printer exists for this PK so delete it
+                    self.printerManager.deletePrinter(printerToDelete, context: newObjectContext)
+                    // Alert delegates that printer has been deleted from iCloud info
+                    self.notifyPrinterDeleted(printerID: printerToDelete.objectID)
+                }
+            }
         }
     }
 
@@ -421,13 +428,20 @@ class CloudKitPrinterManager {
         if cloudKitSyncStopped() || !iCloudAvailable {
             return
         }
-        var toRemove: Array<Printer> = Array()
-        for printer in printerManager.getPrinters(context: privateContext) {
-            if printer.iCloudUpdate {
-                toRemove.append(printer)
+        privateContext.perform {
+            var toRemove: Array<PrinterData> = Array()
+            for printer in self.printerManager.getPrinters(context: self.privateContext) {
+                if printer.iCloudUpdate {
+                    var printerData = PrinterData(printerID: printer.objectID, name: printer.name, hostname: printer.hostname, apiKey: printer.apiKey, connectionType: printer.connectionType, position: printer.position)
+                    printerData.username = printer.username
+                    printerData.password = printer.password
+                    printerData.userModified = printer.userModified
+                    printerData.recordData = printer.recordData
+                    toRemove.append(printerData)
+                }
             }
+            self.pushChange(index: 0, toRemove: toRemove, completion: completion)
         }
-        pushChange(index: 0, toRemove: toRemove, completion: completion)
     }
     
     // A printer has been deleted from Core Data and we now need to delete from iCloud
@@ -452,14 +466,15 @@ class CloudKitPrinterManager {
     }
     
     // Push one at a time to prevent concurrency issues with Core Data
-    fileprivate func pushChange(index: Int, toRemove: Array<Printer>, completion: (() -> Void)?) {
+    fileprivate func pushChange(index: Int, toRemove: Array<PrinterData>, completion: (() -> Void)?) {
         if index < toRemove.count {
-            let printer = toRemove[index]
-            self.save(printer: printer, completion: { error in
+            let printerData = toRemove[index]
+            let hostname = printerData.hostname
+            self.save(printerData: printerData, completion: { error in
                 if let error = error {
-                    self.appendLog("Failed to push changes for printer: \(printer.hostname). Error: \(error.localizedDescription)")
+                    self.appendLog("Failed to push changes for printer: \(hostname). Error: \(error.localizedDescription)")
                 } else {
-                    self.appendLog("Pushed changes for printer: \(printer.hostname)")
+                    self.appendLog("Pushed changes for printer: \(hostname)")
                 }
                 self.pushChange(index: (index + 1), toRemove: toRemove, completion: completion)
             })
@@ -472,13 +487,13 @@ class CloudKitPrinterManager {
     // If printer was never saved then we will check if a record in iCloud exists with the same information.
     // If not then we create one, otherwise we update printer with record information (ie. link things)
     // If printer was already saved to iCloud then we will update iCloud information with printer information
-    fileprivate func save(printer: Printer, completion: ((Error?) -> Void)?) {
-        if let recordData = printer.recordData {
+    fileprivate func save(printerData: PrinterData, completion: ((Error?) -> Void)?) {
+        if let recordData = printerData.recordData {
             // Printer was once stored in iCloud. Decode encoded CloudKit record stored in the printer
             if let record = decodeRecordData(recordData: recordData) {
                 // Update record with printer information. Record got last updated when stored
                 // in iCloud, this is why we need to update it with new printer data
-                self.updateRecordFields(record: record, from: printer)
+                self.updateRecordFields(record: record, from: printerData)
                 // Save record to iCloud (and do any merge if needed)
                 saveAndMerge(record: record) { serverRecord, originalUpdated, error in
                     if let error = error {
@@ -486,7 +501,7 @@ class CloudKitPrinterManager {
                         completion?(error)
                     } else if let newRecord = serverRecord {
                         // Record has been saved
-                        self.updateAndSave(printer: printer, serverRecord: newRecord)
+                        self.updateAndSave(printerID: printerData.printerID, serverRecord: newRecord)
                         // Execute callback
                         completion?(nil)
 
@@ -495,7 +510,7 @@ class CloudKitPrinterManager {
                             // During the save we found another version on the server side and
                             // the merging logic determined we should update our local data to match
                             // what was in the iCloud database.
-                            self.notifyPrinterUpdated(printer: printer)
+                            self.notifyPrinterUpdated(printerID: printerData.printerID)
                         }
                     } else {
                         // Should not happen
@@ -508,7 +523,7 @@ class CloudKitPrinterManager {
             }
         } else {
             // We don’t already have a record. See if there’s one up on iCloud
-            self.queryRecord(hostname: printer.hostname, apiKey: printer.apiKey) { (records: [CKRecord]?, error: Error?) in
+            self.queryRecord(hostname: printerData.hostname, apiKey: printerData.apiKey) { (records: [CKRecord]?, error: Error?) in
                 if let error = error {
                     // There was an error querying iCloud
                     completion?(error)
@@ -520,14 +535,14 @@ class CloudKitPrinterManager {
                         // brand new record.
                         let recordID = CKRecord.ID(recordName: UUID().uuidString , zoneID: self.zoneID)
                         let record = CKRecord(recordType: self.RECORD_TYPE, recordID: recordID)
-                        self.updateRecordFields(record: record, from: printer)
+                        self.updateRecordFields(record: record, from: printerData)
                         // Save new record
                         self.saveRecord(record: record, completion: { (record: CKRecord?, error: Error?) in
                             if let error = error {
                                 completion?(error)
                             } else if let newRecord = record {
                                 // Record has been saved
-                                self.updateAndSave(printer: printer, serverRecord: newRecord)
+                                self.updateAndSave(printerID: printerData.printerID, serverRecord: newRecord)
                                 // Execute callback
                                 completion?(nil)
                             } else {
@@ -544,10 +559,10 @@ class CloudKitPrinterManager {
                                 // We have at least 2 printers in Core Data for the same OctoPrint instance. Let's reduce duplication
                                 // Keep the duplicate printer since it is already linked to iCloud and delete the printer we
                                 // were requested to save to iCloud
-                                let printerToDelete = self.privateContext.object(with: printer.objectID) as! Printer
+                                let printerToDelete = self.privateContext.object(with: printerData.printerID) as! Printer
                                 self.printerManager.deletePrinter(printerToDelete, context: self.privateContext)
                                 // Alert delegates that we had to delete this printer
-                                self.notifyPrinterDeleted(printer: printer)
+                                self.notifyPrinterDeleted(printerID: printerData.printerID)
                                 // Execute callback
                                 completion?(nil)
                                 // We are done
@@ -556,9 +571,9 @@ class CloudKitPrinterManager {
                         }
                         // Records didn't match to any Core Data. Instead of duplicating
                         // in iCloud, let's update printer and link it to existing iCloud record
-                        self.updateAndSave(printer: printer, serverRecord: records[0])
+                        self.updateAndSave(printerID: printerData.printerID, serverRecord: records[0])
                         // Alert delegates that we had to update this printer
-                        self.notifyPrinterUpdated(printer: printer)
+                        self.notifyPrinterUpdated(printerID: printerData.printerID)
                         // Execute callback
                         completion?(nil)
                     }
@@ -784,21 +799,21 @@ class CloudKitPrinterManager {
         }
     }
     
-    fileprivate func notifyPrinterAdded(printer: Printer) {
+    fileprivate func notifyPrinterAdded(printerID: NSManagedObjectID) {
         for delegate in self.delegates {
-            delegate.printerAdded(printer: printer)
+            delegate.printerAdded(printerID: printerID)
         }
     }
     
-    fileprivate func notifyPrinterUpdated(printer: Printer) {
+    fileprivate func notifyPrinterUpdated(printerID: NSManagedObjectID) {
         for delegate in self.delegates {
-            delegate.printerUpdated(printer: printer)
+            delegate.printerUpdated(printerID: printerID)
         }
     }
     
-    fileprivate func notifyPrinterDeleted(printer: Printer) {
+    fileprivate func notifyPrinterDeleted(printerID: NSManagedObjectID) {
         for delegate in self.delegates {
-            delegate.printerDeleted(printer: printer)
+            delegate.printerDeleted(printerID: printerID)
         }
     }
     
@@ -893,13 +908,17 @@ class CloudKitPrinterManager {
     /// Returns true if CKRecord and Printer represent same OctoPrint server
     fileprivate func sameOctoPrint(record: CKRecord, printer: Printer) -> Bool {
         if let ck_hostname = record["hostname"] as? String {
-            if let recordName = printer.recordName {
-                // Check that we have same PK and same hostname
-                return printer.hostname == ck_hostname && recordName == record.recordID.recordName
-            } else {
-                // Only the same if no PK and same hostname
-                return printer.hostname == ck_hostname && printer.recordName == nil
+            var result = false
+            privateContext.performAndWait {
+                if let recordName = printer.recordName {
+                    // Check that we have same PK and same hostname
+                    result = printer.hostname == ck_hostname && recordName == record.recordID.recordName
+                } else {
+                    // Only the same if no PK and same hostname
+                    result = printer.hostname == ck_hostname && printer.recordName == nil
+                }
             }
+            return result
         }
         return false
     }
@@ -932,26 +951,28 @@ class CloudKitPrinterManager {
         }
     }
     
-    fileprivate func updateRecordFields(record: CKRecord, from printer: Printer) {
-        record["name"] = printer.name as NSString
-        record["hostname"] = printer.hostname as NSString
-        record["apiKey"] = printer.apiKey as NSString
-        record["username"] = printer.username as NSString?
-        record["password"] = printer.password as NSString?
-        if let date = printer.userModified {
+    fileprivate func updateRecordFields(record: CKRecord, from printerData: PrinterData) {
+        record["name"] = printerData.name as NSString
+        record["hostname"] = printerData.hostname as NSString
+        record["apiKey"] = printerData.apiKey as NSString
+        record["username"] = printerData.username as NSString?
+        record["password"] = printerData.password as NSString?
+        if let date = printerData.userModified {
             record["modified"] = date as NSDate
         }
-        record["connectionType"] = NSNumber(value: printer.connectionType)
-        record["position"] = NSNumber(value: printer.position)
+        record["connectionType"] = NSNumber(value: printerData.connectionType)
+        record["position"] = NSNumber(value: printerData.position)
     }
     
-    fileprivate func updateAndSave(printer: Printer, serverRecord: CKRecord) {
+    fileprivate func updateAndSave(printerID: NSManagedObjectID, serverRecord: CKRecord) {
         let newObjectContext = privateContext
-        let printerToUpdate = privateContext.object(with: printer.objectID) as! Printer
-        // This will encode new record data and also update last modified date (for future merges)
-        self.updatePrinterFields(printer: printerToUpdate, from: serverRecord)
-        // Update printer in Core Data
-        self.printerManager.updatePrinter(printerToUpdate, context: privateContext)
+        newObjectContext?.performAndWait {
+            let printerToUpdate = privateContext.object(with: printerID) as! Printer
+            // This will encode new record data and also update last modified date (for future merges)
+            self.updatePrinterFields(printer: printerToUpdate, from: serverRecord)
+            // Update printer in Core Data
+            self.printerManager.updatePrinter(printerToUpdate, context: privateContext)
+        }
     }
     
     fileprivate func parseRecord(record: CKRecord) -> (name: String?, hostname: String?, apiKey: String?, username: String?, password: String?, modified: Date?, connectionType: Int16, position: Int16?) {
@@ -1070,4 +1091,17 @@ extension CKError {
         }
         return (nil, nil)
     }
+}
+
+struct PrinterData {
+    var printerID: NSManagedObjectID
+    var name: String
+    var hostname: String
+    var apiKey: String
+    var connectionType: Int16
+    var position: Int16
+    var username: String?
+    var password: String?
+    var userModified: Date?
+    var recordData: Data?
 }

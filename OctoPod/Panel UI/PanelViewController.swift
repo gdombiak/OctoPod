@@ -450,21 +450,24 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
 
     func handleConnectionError(error: Error?, response: HTTPURLResponse) {
         if let nsError = error as NSError?, let url = response.url {
-            if let printerHostname = printerManager.getDefaultPrinter(context: printerManager.newPrivateContext())?.hostname, let printerURL = URL(string: printerHostname) {
-                if printerURL.host != url.host || printerURL.port != url.port {
-                    // Do not show connection error alers of other printers. This might happen when quickly switching between printers
-                    return
+            let newObjectContext = printerManager.safePrivateContext()
+            newObjectContext.perform {
+                if let printerHostname = self.printerManager.getDefaultPrinter(context: newObjectContext)?.hostname, let printerURL = URL(string: printerHostname) {
+                    if printerURL.host != url.host || printerURL.port != url.port {
+                        // Do not show connection error alers of other printers. This might happen when quickly switching between printers
+                        return
+                    }
                 }
-            }
-            if nsError.code == Int(CFNetworkErrors.cfurlErrorTimedOut.rawValue) && url.host == "octopi.local" {
-                self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Cannot reach 'octopi.local' over mobile network or service is down", comment: ""))
-            } else if nsError.code == Int(CFNetworkErrors.cfurlErrorTimedOut.rawValue) {
-                self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Service is down or incorrect port", comment: ""))
-            } else if nsError.code == Int(CFNetworkErrors.cfurlErrorCancelled.rawValue) {
-                // We ask authentication to be cancelled when when creds are bad
-                self.showAlert(NSLocalizedString("Authentication failed", comment: ""), message: NSLocalizedString("Incorrect authentication credentials", comment: ""))
-            } else {
-                self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: "\(nsError.localizedDescription)")
+                if nsError.code == Int(CFNetworkErrors.cfurlErrorTimedOut.rawValue) && url.host == "octopi.local" {
+                    self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Cannot reach 'octopi.local' over mobile network or service is down", comment: ""))
+                } else if nsError.code == Int(CFNetworkErrors.cfurlErrorTimedOut.rawValue) {
+                    self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: NSLocalizedString("Service is down or incorrect port", comment: ""))
+                } else if nsError.code == Int(CFNetworkErrors.cfurlErrorCancelled.rawValue) {
+                    // We ask authentication to be cancelled when when creds are bad
+                    self.showAlert(NSLocalizedString("Authentication failed", comment: ""), message: NSLocalizedString("Incorrect authentication credentials", comment: ""))
+                } else {
+                    self.showAlert(NSLocalizedString("Connection failed", comment: ""), message: "\(nsError.localizedDescription)")
+                }
             }
         } else if response.statusCode == 403 {
             self.showAlert(NSLocalizedString("Authentication failed", comment: ""), message: NSLocalizedString("Incorrect API Key", comment: ""))
@@ -544,12 +547,14 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                     // Check if we need to update printer to remember aspect ratio of first camera
                     if cameraIndex == 0 && imageAspectRatio16_9 != printer.firstCameraAspectRatio16_9 {
                         DispatchQueue.global().async {
-                            let newObjectContext = self.printerManager.newPrivateContext()
-                            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-                            // Update aspect ratio of first camera
-                            printerToUpdate.firstCameraAspectRatio16_9 = self.imageAspectRatio16_9
-                            // Persist updated printer
-                            self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                            let newObjectContext = self.printerManager.safePrivateContext()
+                            newObjectContext.performAndWait {
+                                let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                                // Update aspect ratio of first camera
+                                printerToUpdate.firstCameraAspectRatio16_9 = self.imageAspectRatio16_9
+                                // Persist updated printer
+                                self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                            }
                         }
                     }
                     let orientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
@@ -714,12 +719,20 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
     
     fileprivate func showDefaultPrinter() {
-        if let printer = printerManager.getDefaultPrinter() {
+        let newObjectContext = self.printerManager.safePrivateContext()
+        if let printer = printerManager.getDefaultPrinter(context: newObjectContext) {
+            var name: String!, color: String?, firstCameraAspectRatio16_9: Bool!, cameraOrientation: Int16!
+            newObjectContext.performAndWait {
+                name = printer.name
+                color = printer.color
+                firstCameraAspectRatio16_9 = printer.firstCameraAspectRatio16_9
+                cameraOrientation = printer.cameraOrientation
+            }
             // Update window title to Camera name
             DispatchQueue.main.async {
-                self.navigationItem.title = printer.name
+                self.navigationItem.title = name
                 if let navigationController = self.navigationController as? NavigationController {
-                    navigationController.refreshForPrinterColors(color: printer.color)
+                    navigationController.refreshForPrinterColors(color: color)
                 }
                 // Show camera grid button only if printer has many cameras
                 self.cameraGridButton.isHidden = !self.showCameraGridButton()
@@ -727,10 +740,10 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             
             // Use last known aspect ratio of first camera of this printer
             // End user will have a better experience with this
-            self.imageAspectRatio16_9 = printer.firstCameraAspectRatio16_9
+            self.imageAspectRatio16_9 = firstCameraAspectRatio16_9
             
             // Update layout depending on camera orientation
-            DispatchQueue.main.async { self.updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!) }
+            DispatchQueue.main.async { self.updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(cameraOrientation))!) }
 
             // Ask octoprintClient to connect to OctoPrint server
             octoprintClient.connectToServer(printer: printer)

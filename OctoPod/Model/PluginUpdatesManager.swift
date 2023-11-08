@@ -23,7 +23,15 @@ class PluginUpdatesManager {
     }
     
     func checkUpdatesFor(printer: Printer, callback: @escaping (_ error: Error?, _ response: HTTPURLResponse, _ updatesAvailable: Array<UpdateAvailable>?) -> Void) {
-        if printer.pluginsUpdateNextCheck == nil || printer.pluginsUpdateNextCheck! <= Date() {
+        var pluginsUpdateNextCheck: Date?, pluginsUpdateSnooze: String?, hostname: String!
+        let newObjectContext = printerManager.safePrivateContext()
+        newObjectContext.performAndWait {
+            let printerToRead = newObjectContext.object(with: printer.objectID) as! Printer
+            pluginsUpdateNextCheck = printerToRead.pluginsUpdateNextCheck
+            pluginsUpdateSnooze = printerToRead.pluginsUpdateSnooze
+            hostname = printerToRead.hostname
+        }
+        if pluginsUpdateNextCheck == nil || pluginsUpdateNextCheck! <= Date() {
             octoprintClient.checkPluginUpdates { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                 if response.statusCode == 200 {
                     // Update next time we should check again for plugin updates
@@ -41,7 +49,7 @@ class PluginUpdatesManager {
                         // Calculate snooze string
                         let snoozeHash = self.snoozeString(updatesAvailable: updatesAvailable)
                         // Check if user requested to snooze previously detected updates
-                        if printer.pluginsUpdateSnooze == snoozeHash {
+                        if pluginsUpdateSnooze == snoozeHash {
                             // User elected to ignore this update. Return 200 response
                             callback(nil, response, nil)
                             return
@@ -56,7 +64,7 @@ class PluginUpdatesManager {
             }
         } else {
             // No HTTP request was made. Return a fake 304 response
-            returnNothingChanged(printer: printer, callback: callback)
+            returnNothingChanged(hostname: hostname, callback: callback)
         }
     }
     
@@ -64,13 +72,15 @@ class PluginUpdatesManager {
         // Calculate snooze string
         let snoozeHash = self.snoozeString(updatesAvailable: updatesAvailable)
 
-        // Update printer with calculated snooze hash
-        let newObjectContext = printerManager.newPrivateContext()
-        let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-        // Update hash that identifies available plugins that user wants to ignore
-        printerToUpdate.pluginsUpdateSnooze = snoozeHash
-        // Persist updated printer
-        printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+        let newObjectContext = printerManager.safePrivateContext()
+        newObjectContext.performAndWait {
+            // Update printer with calculated snooze hash
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+            // Update hash that identifies available plugins that user wants to ignore
+            printerToUpdate.pluginsUpdateSnooze = snoozeHash
+            // Persist updated printer
+            self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+        }
     }
     
     // MARK: - Private functions
@@ -78,12 +88,14 @@ class PluginUpdatesManager {
     fileprivate func saveNextCheck(printer: Printer) {
         let newDate = Calendar.current.date(byAdding: .hour, value: appConfiguration.pluginUpdatesCheckFrequency(), to: Date())
         
-        let newObjectContext = printerManager.newPrivateContext()
-        let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-        // Update date when we need to check for plugin updates for this OctoPrint instance
-        printerToUpdate.pluginsUpdateNextCheck = newDate
-        // Persist updated printer
-        printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+        let newObjectContext = printerManager.safePrivateContext()
+        newObjectContext.performAndWait {
+            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+            // Update date when we need to check for plugin updates for this OctoPrint instance
+            printerToUpdate.pluginsUpdateNextCheck = newDate
+            // Persist updated printer
+            printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+        }
     }
     
     fileprivate func readUpdatesAvailable(json: NSDictionary) -> Array<UpdateAvailable> {
@@ -110,9 +122,9 @@ class PluginUpdatesManager {
         return "\(combined.djb2hash)"
     }
     
-    fileprivate func returnNothingChanged(printer: Printer, callback: @escaping (_ error: Error?, _ response: HTTPURLResponse, _ updatesAvailable: Array<UpdateAvailable>?) -> Void) {
+    fileprivate func returnNothingChanged(hostname: String, callback: @escaping (_ error: Error?, _ response: HTTPURLResponse, _ updatesAvailable: Array<UpdateAvailable>?) -> Void) {
         // Simulate that we made the request and nothing changed
-        if let url = URL(string: printer.hostname + "/plugin/softwareupdate/check"), let response = HTTPURLResponse(url: url, statusCode: 304, httpVersion: nil, headerFields: nil) {
+        if let url = URL(string: hostname + "/plugin/softwareupdate/check"), let response = HTTPURLResponse(url: url, statusCode: 304, httpVersion: nil, headerFields: nil) {
             callback(nil, response, nil)
         }
     }

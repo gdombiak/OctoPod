@@ -177,22 +177,30 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
             let id = printer.objectID.uriRepresentation().absoluteString
             let languageCode = appLanguageCode()
             let restClient = OctoPrintRESTClient()
-            restClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuthentication())
-            restClient.registerAPNSToken(oldToken: printer.notificationToken, newToken: newToken, deviceName: deviceName, printerID: id, printerName: printer.name, languageCode: languageCode) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-                if requested {
-                    let newObjectContext = self.printerManager.newPrivateContext()
-                    let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
-                    // Update flag that tracks if OctoPod plugin is installed
-                    printerToUpdate.notificationToken = newToken
-                    printerToUpdate.octopodPluginPrinterName = printer.name
-                    printerToUpdate.octopodPluginLanguage = languageCode
-                    // Persist updated printer
-                    self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
-                } else {
-                    if let error = error {
-                        NSLog("Failed to register new APNS token with OctoPrint. Error: \(error.localizedDescription). Response: \(response)")
+
+            let newObjectContext = self.printerManager.safePrivateContext()
+            newObjectContext.performAndWait {
+                let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                
+                restClient.connectToServer(serverURL: printerToUpdate.hostname, apiKey: printerToUpdate.apiKey, username: printerToUpdate.username, password: printerToUpdate.password, preemptive: printerToUpdate.preemptiveAuthentication())
+                restClient.registerAPNSToken(oldToken: printerToUpdate.notificationToken, newToken: newToken, deviceName: deviceName, printerID: id, printerName: printerToUpdate.name, languageCode: languageCode) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+                    if requested {
+                        let newObjectContext = self.printerManager.newPrivateContext()
+                        newObjectContext.performAndWait {
+                            let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+                            // Update flag that tracks if OctoPod plugin is installed
+                            printerToUpdate.notificationToken = newToken
+                            printerToUpdate.octopodPluginPrinterName = printerToUpdate.name
+                            printerToUpdate.octopodPluginLanguage = languageCode
+                            // Persist updated printer
+                            self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                        }
                     } else {
-                        NSLog("Failed to register new APNS token with OctoPrint. Response: \(response)")
+                        if let error = error {
+                            NSLog("Failed to register new APNS token with OctoPrint. Error: \(error.localizedDescription). Response: \(response)")
+                        } else {
+                            NSLog("Failed to register new APNS token with OctoPrint. Response: \(response)")
+                        }
                     }
                 }
             }

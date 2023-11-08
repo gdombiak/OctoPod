@@ -288,6 +288,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var printerManager: PrinterManager? = {
         let context = persistentContainer.viewContext
+        context.automaticallyMergesChangesFromParent = true
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         var printerManager = PrinterManager(managedObjectContext: context, persistentContainer: persistentContainer)
         return printerManager

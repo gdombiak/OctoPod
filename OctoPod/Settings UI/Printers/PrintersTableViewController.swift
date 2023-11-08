@@ -167,7 +167,7 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
         // Store new ordered printers
         NSLog("Storing new printers order")
         for (index, printer) in printers.enumerated() {
-            let newObjectContext = printerManager.newPrivateContext()
+            let newObjectContext = printerManager.safePrivateContext()
             let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
             // Update printer position
             printerToUpdate.position = Int16(index)
@@ -278,20 +278,5 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
             // Refresh table of printers
             self.tableView.reloadData()
         }
-    }
-    
-    func printerAdded(printer: Printer) {
-        // Do nothing. We will process things on #printersUpdated
-    }
-    
-    func printerUpdated(printer: Printer) {
-        // Do nothing. We will process things on #printersUpdated
-    }
-    
-    func printerDeleted(printer: Printer) {
-        // Do nothing. We will process things on #printersUpdated
-    }
-
-    func iCloudStatusChanged(connected: Bool) {
-    }
+    }    
 }
