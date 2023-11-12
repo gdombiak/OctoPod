@@ -25,7 +25,7 @@ class LiveActivitiesManager: OctoPrintClientDelegate {
         if #available(iOS 16.2, *) {
             // For Live Activities to work we need: iOS16.2 and user allowed Live Activities for OctoPod
             // If OctoPod plugin is NOT installed then live activity widget will show a warning asking user to install plugin
-            if let printer = printerManager.getDefaultPrinter(context: printerManager.safePrivateContext()), let printing = event.printing, let paused = event.paused, let pausing = event.pausing, ActivityAuthorizationInfo().areActivitiesEnabled {
+            if let idURL = URL(string: event.printerURL), let printer = printerManager.getPrinterByObjectURL(context: printerManager.safePrivateContext(), url: idURL), let printing = event.printing, let paused = event.paused, let pausing = event.pausing, ActivityAuthorizationInfo().areActivitiesEnabled {
                 let targetURLSafePrinter = printer.objectID.uriRepresentation().absoluteString
                 let isPrinting = printing || paused || pausing
                 var found = false
@@ -47,13 +47,13 @@ class LiveActivitiesManager: OctoPrintClientDelegate {
                             } else {
                                 // Live Activity has ended (maybe due to 8 - 12 hours limit) or user dismissed it
                                 // Remove ended Live Actvitity and unregister from OctoPod plugin
-                                removeAndUnregisterActivity(event, printer, activity)
+                                removeAndUnregisterActivity(event, activity)
                                 // since not active then ignore this one so we can find an active one if exists
                                 continue
                             }
                         } else {
                             // Remove Live Actvitity and unregister from OctoPod plugin
-                            removeAndUnregisterActivity(event, printer, activity)
+                            removeAndUnregisterActivity(event, activity)
                         }
                         found = true
                         break
@@ -117,7 +117,7 @@ class LiveActivitiesManager: OctoPrintClientDelegate {
     }
     
     @available(iOS 16.2, *)
-    fileprivate func removeAndUnregisterActivity(_ event: CurrentStateEvent, _ printer: Printer, _ activity: Activity<PrintJobAttributes>) {
+    fileprivate func removeAndUnregisterActivity(_ event: CurrentStateEvent, _ activity: Activity<PrintJobAttributes>) {
         Task {
             var printerStatus = ""
             if let state = event.state {

@@ -92,7 +92,7 @@ class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandl
             return widgetPrinter
         }
         // If not return a new widget printer based on the default printer
-        if let printer = printerManager.getDefaultPrinter() {
+        if let printer = printerManager.getDefaultPrinter(context: printerManager.safePrivateContext()) {
             return createWidgetPrinter(printer: printer)
         }
         return nil

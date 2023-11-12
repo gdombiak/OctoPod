@@ -4,6 +4,9 @@ import Foundation
 /// If websockets is not available then this event is fired with a polling mechanism (future idea)
 class CurrentStateEvent {
     
+    /// URL of the printer that triggered this event. The URL is core data id of the printer.
+    let printerURL: String
+    
     /// Time when temps were measured
     var tempTime: Int?
     
@@ -54,6 +57,10 @@ class CurrentStateEvent {
     var printFile: PrintFile?
     
     var logs: Array<String>?
+    
+    init(printerURL: String) {
+        self.printerURL = printerURL
+    }
     
     // MARK: - Parse operations
 

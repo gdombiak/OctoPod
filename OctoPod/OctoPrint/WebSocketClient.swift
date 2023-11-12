@@ -21,6 +21,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     static private let SOCKET_CLOSING_EXPIRATION = 10 // time in seconds to keep socket in memory
     static private var cleanupTimer: Timer?
 
+    var printerURL: String!
     var serverURL: String!
     var apiKey: String!
     var username: String?
@@ -42,8 +43,9 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     
     var delegate: WebSocketClientDelegate?
 
-    init(appConfiguration: AppConfiguration, hostname: String, apiKey: String, username: String?, password: String?, sharedNozzle: Bool) {
+    init(appConfiguration: AppConfiguration, printerURL: String, hostname: String, apiKey: String, username: String?, password: String?, sharedNozzle: Bool) {
         super.init()
+        self.printerURL = printerURL
         serverURL = hostname
         serverURL = serverURL.hasSuffix("/") ? String(serverURL.dropLast()) : serverURL // Fix in case stored printer has invalid URL due to a bug that is now fixed
         self.apiKey = apiKey
@@ -160,7 +162,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
                     parseFailures = 0
                     if let current = json["current"] as? NSDictionary {
 //                        NSLog("Websocket current state received: \(json)")
-                        let event = CurrentStateEvent()
+                        let event = CurrentStateEvent(printerURL: printerURL)
                         
                         if let state = (current["state"] as? NSDictionary) {
                             event.parseState(state: state)
@@ -198,7 +200,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
                                 listener.printerProfileUpdated()
                             } else if type == "TransferDone" || type == "TransferFailed" {
                                 // Events denoting that upload to SD card is done or was cancelled
-                                let event = CurrentStateEvent()
+                                let event = CurrentStateEvent(printerURL: printerURL)
                                 event.printing = false
                                 event.progressCompletion = 100
                                 event.progressPrintTimeLeft = 0
@@ -210,12 +212,12 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
                                         var event: CurrentStateEvent?
                                         if state_id == "PRINTING" {
                                             // Event indicating that printer is busy. Could be printing or uploading file to SD Card
-                                            event = CurrentStateEvent()
+                                            event = CurrentStateEvent(printerURL: printerURL)
                                             event!.printing = true
                                             event!.state = state_string
                                         } else if state_id == "OPERATIONAL" {
                                             // Event indicating that printer is ready to be used
-                                            event = CurrentStateEvent()
+                                            event = CurrentStateEvent(printerURL: printerURL)
                                             event!.printing = false
                                             event!.state = state_string
                                         }
@@ -227,7 +229,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
                                 }
                             } else if type == "PrintDone" {
                                 // Event denoting that print is done
-                                let event = CurrentStateEvent()
+                                let event = CurrentStateEvent(printerURL: printerURL)
                                 event.printing = false
                                 event.progressCompletion = 100
                                 event.progressPrintTimeLeft = 0
@@ -235,7 +237,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
                                 listener.currentStateUpdated(event: event)
                             } else if type == "PrintCancelled" {
                                 // Event denoting that print has been cancelled
-                                let event = CurrentStateEvent()
+                                let event = CurrentStateEvent(printerURL: printerURL)
                                 event.printing = false
                                 event.progressCompletion = 0
                                 event.progressPrintTime = 0

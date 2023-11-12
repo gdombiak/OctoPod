@@ -64,6 +64,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         // Remember printer we are connected to
         printerID = printer.objectID
         
+        let printerURL = printerID!.uriRepresentation().absoluteString
         var serverURL: String!, apiKey: String!, username: String?, password: String?, preemptive: Bool!, sharedNozzle: Bool!
         let newObjectContext = self.printerManager.safePrivateContext()
         newObjectContext.performAndWait {
@@ -101,7 +102,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         // Notify the terminal that we are about to connect to OctoPrint
         terminal.websocketNewConnection()
         // Create websocket connection and connect
-        webSocketClient = WebSocketClient(appConfiguration: appConfiguration!, hostname: serverURL, apiKey: apiKey, username: username, password: password, sharedNozzle: sharedNozzle)
+        webSocketClient = WebSocketClient(appConfiguration: appConfiguration!, printerURL: printerURL, hostname: serverURL, apiKey: apiKey, username: username, password: password, sharedNozzle: sharedNozzle)
         // Subscribe to events so we can update the UI as events get pushed
         webSocketClient?.delegate = self
 
@@ -111,7 +112,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                 // There were no errors so process
                 var event: CurrentStateEvent?
                 if let json = result as? NSDictionary {
-                    event = CurrentStateEvent()
+                    event = CurrentStateEvent(printerURL: printerURL)
                     if let temp = json["temperature"] as? NSDictionary {
                         event!.parseTemps(temp: temp, sharedNozzle: sharedNozzle)
                     }
@@ -120,7 +121,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                     }
                 } else if response.statusCode == 409 {
                     // Printer is not operational
-                    event = CurrentStateEvent()
+                    event = CurrentStateEvent(printerURL: printerURL)
                     event!.closedOrError = true
                     event!.state = "Offline"
                 }

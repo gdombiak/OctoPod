@@ -96,7 +96,7 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
     // MARK: - OctoPrintSettingsDelegate
 
     func octoPodPluginChanged(installed: Bool) {
-        if let printer = printerManager.getDefaultPrinter() {
+        if let printer = printerManager.getDefaultPrinter(context: printerManager.safePrivateContext()) {
             if installed {
                 // Update APNS token in this OctoPrint instance
                 updateNotificationToken(printer: printer)

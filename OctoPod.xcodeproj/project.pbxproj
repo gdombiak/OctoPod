@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -98,7 +98,7 @@
 		3D4497DC21B2623400736F0F /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4497DB21B2623400736F0F /* NotificationCenter.framework */; };
 		3D4497DF21B2623400736F0F /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4497DE21B2623400736F0F /* TodayViewController.swift */; };
 		3D4497E221B2623400736F0F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D4497E021B2623400736F0F /* MainInterface.storyboard */; };
-		3D4497E621B2623400736F0F /* OctoPod Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3D4497DA21B2623400736F0F /* OctoPod Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3D4497E621B2623400736F0F /* OctoPod Widget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3D4497DA21B2623400736F0F /* OctoPod Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3D4497EB21B2625C00736F0F /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292F20E5549B00296D9D /* HTTPClient.swift */; };
 		3D4497EC21B2625F00736F0F /* OctoPrintRESTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DDB21816D62004A4223 /* OctoPrintRESTClient.swift */; };
 		3D4497ED21B2626600736F0F /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935621326AEF0050ED9A /* CustomControl.swift */; };
@@ -116,7 +116,7 @@
 		3D4497F921B2629800736F0F /* OctoPod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */; };
 		3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */; };
 		3D450E5221AB1B210049FBC0 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D450E5121AB1B210049FBC0 /* IntentHandler.swift */; };
-		3D450E5621AB1B210049FBC0 /* OctoPod Intent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3D450E4F21AB1B210049FBC0 /* OctoPod Intent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3D450E5621AB1B210049FBC0 /* OctoPod Intent.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3D450E4F21AB1B210049FBC0 /* OctoPod Intent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3D450E5E21AB1C040049FBC0 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3D450E6121AB1C040049FBC0 /* Intents.intentdefinition */; };
 		3D450E5F21AB1C040049FBC0 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3D450E6121AB1C040049FBC0 /* Intents.intentdefinition */; settings = {ATTRIBUTES = (codegen, ); }; };
 		3D450EBC21AB236C0049FBC0 /* SetBedTempIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D450EBB21AB236C0049FBC0 /* SetBedTempIntentHandler.swift */; };
@@ -174,7 +174,7 @@
 		3D693C5F214CEC0600823903 /* CloudKitPrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D693C5E214CEC0600823903 /* CloudKitPrinterManager.swift */; };
 		3D6EB0AC217B0D260093EC79 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EB0AA217B0D260093EC79 /* Interface.storyboard */; };
 		3D6EB0AE217B0D270093EC79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EB0AD217B0D270093EC79 /* Assets.xcassets */; };
-		3D6EB0B5217B0D270093EC79 /* OctoPod Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3D6EB0B4217B0D270093EC79 /* OctoPod Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3D6EB0B5217B0D270093EC79 /* OctoPod Watch Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3D6EB0B4217B0D270093EC79 /* OctoPod Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3D6EB0BC217B0D270093EC79 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6EB0BB217B0D270093EC79 /* ExtensionDelegate.swift */; };
 		3D6EB0BE217B0D270093EC79 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6EB0BD217B0D270093EC79 /* NotificationController.swift */; };
 		3D6EB0C0217B0D270093EC79 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6EB0BF217B0D270093EC79 /* ComplicationController.swift */; };
@@ -274,7 +274,7 @@
 		3DA7DD502426A51700F686C8 /* LayerNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA7DD4F2426A51700F686C8 /* LayerNotificationsViewController.swift */; };
 		3DA8F980240B530700CC6AAD /* PopularGCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA8F97F240B530700CC6AAD /* PopularGCodeViewController.swift */; };
 		3DABB22022C0044D00F32731 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DABB21F22C0044D00F32731 /* NotificationService.swift */; };
-		3DABB22422C0044D00F32731 /* OctoPod Notification Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3DABB21D22C0044D00F32731 /* OctoPod Notification Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3DABB22422C0044D00F32731 /* OctoPod Notification Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3DABB21D22C0044D00F32731 /* OctoPod Notification Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3DAD2DDC21816D62004A4223 /* OctoPrintRESTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DDB21816D62004A4223 /* OctoPrintRESTClient.swift */; };
 		3DAD2DDD21817742004A4223 /* OctoPrintRESTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DDB21816D62004A4223 /* OctoPrintRESTClient.swift */; };
 		3DAD2DDE21817973004A4223 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A935621326AEF0050ED9A /* CustomControl.swift */; };
@@ -350,7 +350,7 @@
 		3DC290B02688080C002E246F /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC290AF2688080C002E246F /* IntentsUI.framework */; };
 		3DC290B32688080C002E246F /* TakeSnapshotIntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC290B22688080C002E246F /* TakeSnapshotIntentViewController.swift */; };
 		3DC290B62688080C002E246F /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DC290B42688080C002E246F /* MainInterface.storyboard */; };
-		3DC290BA2688080C002E246F /* OctoPod Intent UI - Take Snapshot.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3DC290AE2688080C002E246F /* OctoPod Intent UI - Take Snapshot.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3DC290BA2688080C002E246F /* OctoPod Intent UI - Take Snapshot.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3DC290AE2688080C002E246F /* OctoPod Intent UI - Take Snapshot.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3DC69BED21804EC000DBE0D5 /* OctoPrintClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC69BEC21804EC000DBE0D5 /* OctoPrintClient.swift */; };
 		3DC69BEE21804F2A00DBE0D5 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8B292F20E5549B00296D9D /* HTTPClient.swift */; };
 		3DC69BF02180531000DBE0D5 /* PanelInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC69BEF2180531000DBE0D5 /* PanelInterfaceController.swift */; };
@@ -382,7 +382,7 @@
 		3DE5F53924FC600200BFDAD3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE5F53824FC600200BFDAD3 /* SwiftUI.framework */; };
 		3DE5F53C24FC600200BFDAD3 /* OctoPodWidget14.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE5F53B24FC600200BFDAD3 /* OctoPodWidget14.swift */; };
 		3DE5F53F24FC600300BFDAD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DE5F53E24FC600300BFDAD3 /* Assets.xcassets */; };
-		3DE5F54524FC600300BFDAD3 /* OctoPodWidget14Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3DE5F53524FC600200BFDAD3 /* OctoPodWidget14Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3DE5F54524FC600300BFDAD3 /* OctoPodWidget14Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3DE5F53524FC600200BFDAD3 /* OctoPodWidget14Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3DF01574212277DF002B4C14 /* SubpanelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */; };
 		3DF0157621227ACB002B4C14 /* TempHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */; };
 		3DF232E020F150CC00550652 /* MoveSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF232DF20F150CC00550652 /* MoveSubViewController.swift */; };
@@ -492,30 +492,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3D450E5A21AB1B210049FBC0 /* Embed App Extensions */ = {
+		3D450E5A21AB1B210049FBC0 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				3DE5F54524FC600300BFDAD3 /* OctoPodWidget14Extension.appex in Embed App Extensions */,
-				3D4497E621B2623400736F0F /* OctoPod Widget.appex in Embed App Extensions */,
-				3D450E5621AB1B210049FBC0 /* OctoPod Intent.appex in Embed App Extensions */,
-				3DABB22422C0044D00F32731 /* OctoPod Notification Extension.appex in Embed App Extensions */,
-				3DC290BA2688080C002E246F /* OctoPod Intent UI - Take Snapshot.appex in Embed App Extensions */,
+				3DE5F54524FC600300BFDAD3 /* OctoPodWidget14Extension.appex in Embed Foundation Extensions */,
+				3D4497E621B2623400736F0F /* OctoPod Widget.appex in Embed Foundation Extensions */,
+				3D450E5621AB1B210049FBC0 /* OctoPod Intent.appex in Embed Foundation Extensions */,
+				3DABB22422C0044D00F32731 /* OctoPod Notification Extension.appex in Embed Foundation Extensions */,
+				3DC290BA2688080C002E246F /* OctoPod Intent UI - Take Snapshot.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D6EB0CD217B0D280093EC79 /* Embed App Extensions */ = {
+		3D6EB0CD217B0D280093EC79 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				3D6EB0B5217B0D270093EC79 /* OctoPod Watch Extension.appex in Embed App Extensions */,
+				3D6EB0B5217B0D270093EC79 /* OctoPod Watch Extension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3D6EB0CF217B0D280093EC79 /* Embed Watch Content */ = {
@@ -1935,7 +1935,7 @@
 				3D4527FB20E15A370094CCB7 /* Frameworks */,
 				3D4527FC20E15A370094CCB7 /* Resources */,
 				3D6EB0CF217B0D280093EC79 /* Embed Watch Content */,
-				3D450E5A21AB1B210049FBC0 /* Embed App Extensions */,
+				3D450E5A21AB1B210049FBC0 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -1999,7 +1999,7 @@
 			buildConfigurationList = 3D6EB0CE217B0D280093EC79 /* Build configuration list for PBXNativeTarget "OctoPod Watch" */;
 			buildPhases = (
 				3D6EB0A6217B0D250093EC79 /* Resources */,
-				3D6EB0CD217B0D280093EC79 /* Embed App Extensions */,
+				3D6EB0CD217B0D280093EC79 /* Embed Foundation Extensions */,
 				93633FB4817BD78509497DA8 /* Frameworks */,
 			);
 			buildRules = (
@@ -2086,8 +2086,9 @@
 		3D4527F620E15A370094CCB7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = "Gaston Dombiak";
 				TargetAttributes = {
 					3D1FDCBC26A20F2E00913754 = {
@@ -3379,6 +3380,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3442,6 +3444,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

@@ -250,6 +250,13 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         // of a no longer selected printer and we do not want to revert it back to the old one. To prevent
         // all this problem we allow out-of-sync-selected printer for this operation only
 
+        let printerURL: String
+        if let printer = printerManager.getPrinterByName(context: printerManager.safePrivateContext(), name: printerName) {
+            printerURL = printer.objectID.uriRepresentation().absoluteString
+        } else {
+            return
+        }
+        
         // If requested printer is selected printer then use existing REST client
         // if not then create a new REST client for this operation
         let tuple = restClientToPrinter(printerName: printerName)
@@ -284,7 +291,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                 // Gather now info about printer (paused/printing/temps)
                 restClient!.printerState { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                     if let json = result as? NSDictionary {
-                        let event = CurrentStateEvent()
+                        let event = CurrentStateEvent(printerURL: printerURL)
                         if let state = json["state"] as? NSDictionary {
                             event.parseState(state: state)
 
