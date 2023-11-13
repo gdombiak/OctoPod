@@ -192,7 +192,7 @@ class PrinterManager {
         do {
             if let filePath = printersFilepath {
                 let data = try Data(contentsOf: URL(fileURLWithPath: filePath))
-                return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [[String : Any]]?
+                return try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, NSDictionary.self], from: data) as! [[String : Any]]?
             }
         }
         catch {
