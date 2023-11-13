@@ -1,8 +1,8 @@
 import UIKit
 import WebKit
-import SafariServices
+import AuthenticationServices
 
-class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController {
+class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController, ASWebAuthenticationPresentationContextProviding {
     
     @IBOutlet weak var statusLabel: UILabel!
 
@@ -24,7 +24,7 @@ class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController {
     /// Password provided by OctoEverywhere
     var password: String?
     
-    var authSession: SFAuthenticationSession?
+    var authSession: ASWebAuthenticationSession?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -35,7 +35,7 @@ class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController {
         
         let url = URL(string: "https://octoeverywhere.com/appportal/v1/?appid=octopod&authType=enhanced&appLogoUrl=https%3A%2F%2Foctoeverywhere.com%2Fimg%2Fthirdparty%2Foctopod.png&returnUrl=octopod://octoeverywhere&OctoPrintApiKeyAppName=\(apiKeyName)")!
         
-        let handler:SFAuthenticationSession.CompletionHandler = { (callBack:URL?, error:Error? ) in
+        let handler:ASWebAuthenticationSession.CompletionHandler = { (callBack:URL?, error:Error? ) in
             guard error == nil, let successURL = callBack else {
                 DispatchQueue.main.async {
                     // Close VC since user canceled operation from OctoEverywhere window
@@ -66,7 +66,13 @@ class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController {
                 }
             }
         }
-        authSession = SFAuthenticationSession(url: url, callbackURLScheme: "octopod", completionHandler: handler)
+        authSession = ASWebAuthenticationSession(url: url, callbackURLScheme: "octopod", completionHandler: handler)
+
+        // New in iOS 13
+        if #available(iOS 13.0, *) {
+            self.authSession?.presentationContextProvider = self
+        }
+
         authSession?.start()
         
         displayProgressMessage(message: NSLocalizedString("Select printer from OctoEverywhere.", comment: ""))
@@ -109,6 +115,12 @@ class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController {
             self.apiKeyField.text = scanner.scannedQRCode
             self.updateSaveButton()
         }
+    }
+    
+    // MARK: ASWebAuthenticationPresentationContextProviding
+    
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return self.view.window ?? ASPresentationAnchor()
     }
 
     // MARK: - Private functions
