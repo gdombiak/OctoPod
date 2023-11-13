@@ -240,15 +240,19 @@ class CloudKitPrinterManager {
         // Used for incremental reading
         if let changeTokenData = defaults.data(forKey: CHANGE_TOKEN) {
             // Parse stored token
-            changeToken = NSKeyedUnarchiver.unarchiveObject(with: changeTokenData) as! CKServerChangeToken?
+            do {
+                changeToken = try NSKeyedUnarchiver.unarchivedObject(ofClass: CKServerChangeToken.self, from: changeTokenData)
+            } catch {
+                self.appendLog("Error unarchivedObject due to: \(error.localizedDescription)")
+            }
         }
         // Include change token in the query to get incremental changes
         // If nil then we will get everything
-        let options = CKFetchRecordZoneChangesOperation.ZoneOptions()
+        let options = CKFetchRecordZoneChangesOperation.ZoneConfiguration()
         options.previousServerChangeToken = changeToken
         // Prepare query to custom zone and ask to get new changes (i.e. iterate through pagination transparently)
         let optionsMap = [zoneID: options]
-        let operation = CKFetchRecordZoneChangesOperation(recordZoneIDs: [zoneID], optionsByRecordZoneID: optionsMap)
+        let operation = CKFetchRecordZoneChangesOperation(recordZoneIDs: [zoneID], configurationsByRecordZoneID: optionsMap)
         operation.fetchAllChanges = true
         // Block to process created or updated records
         operation.recordChangedBlock = { record in
@@ -266,8 +270,12 @@ class CloudKitPrinterManager {
                 return
             }
             
-            let changeTokenData = NSKeyedArchiver.archivedData(withRootObject: serverChangeToken)
-            defaults.set(changeTokenData, forKey: self.CHANGE_TOKEN)
+            do {
+                let changeTokenData = try NSKeyedArchiver.archivedData(withRootObject: serverChangeToken, requiringSecureCoding: false)
+                defaults.set(changeTokenData, forKey: self.CHANGE_TOKEN)
+            } catch {
+                self.appendLog("Error archivedData of CHANGE_TOKEN due to: \(error.localizedDescription)")
+            }
         }
         // Block to execute when the fetch for a zone "page" has completed
         // Works like pagination so more might be coming
@@ -319,9 +327,13 @@ class CloudKitPrinterManager {
             guard let serverChangeToken = serverChangeToken else {
                 return
             }
-            
-            let changeTokenData = NSKeyedArchiver.archivedData(withRootObject: serverChangeToken)
-            defaults.set(changeTokenData, forKey: self.CHANGE_TOKEN)
+                        
+            do {
+                let changeTokenData = try NSKeyedArchiver.archivedData(withRootObject: serverChangeToken, requiringSecureCoding: false)
+                defaults.set(changeTokenData, forKey: self.CHANGE_TOKEN)
+            } catch {
+                self.appendLog("Error archivedData of CHANGE_TOKEN due to: \(error.localizedDescription)")
+            }
         }
         // Done reading all zone changes
         operation.fetchRecordZoneChangesCompletionBlock = { (error) in
@@ -553,7 +565,6 @@ class CloudKitPrinterManager {
                     } else {
                         // iCloud has similar info to this printer
                         // Check if we have a printer (stored in Core Data) for the records we found
-                        let newObjectContext = self.privateContext
                         for record in records {
                             if let _ = self.printerManager.getPrinterByRecordName(context: self.privateContext, recordName: record.recordID.recordName) {
                                 // We have at least 2 printers in Core Data for the same OctoPrint instance. Let's reduce duplication
@@ -782,7 +793,6 @@ class CloudKitPrinterManager {
     /// Delete local stored data and recreate from CloudKit records
     func resetLocalPrinters(completionHandler: (() -> Void)?, errorHandler: (() -> Void)?) {
         // Delete local printers
-        let newObjectContext = privateContext
         printerManager.deleteAllPrinters(context: privateContext)
         // Delete CHANGE_TOKEN so all changes are fetched and processed
         UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
@@ -998,21 +1008,22 @@ class CloudKitPrinterManager {
     }
     
     fileprivate func encodeRecord(record: CKRecord) -> Data {
-        let data = NSMutableData()
-        let coder = NSKeyedArchiver.init(forWritingWith: data)
-        coder.requiresSecureCoding = true
+        let coder = NSKeyedArchiver(requiringSecureCoding: true)
         record.encodeSystemFields(with: coder)
-        coder.finishEncoding()
-        return data as Data
+        return coder.encodedData
     }
 
     fileprivate func decodeRecordData(recordData: Data) -> CKRecord? {
         // set up the CKRecord with its metadata
-        let coder = NSKeyedUnarchiver(forReadingWith: recordData)
-        coder.requiresSecureCoding = true
-        let record = CKRecord(coder: coder)
-        coder.finishDecoding()
-        return record
+        do {
+            let coder = try NSKeyedUnarchiver(forReadingFrom: recordData)
+            let record = CKRecord(coder: coder)
+            coder.finishDecoding()
+            return record
+        } catch {
+            self.appendLog("Error decodeRecordData due to: \(error.localizedDescription)")
+            return nil
+        }
     }
 }
 
