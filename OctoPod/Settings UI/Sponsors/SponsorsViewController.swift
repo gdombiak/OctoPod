@@ -32,7 +32,7 @@ class SponsorsViewController: UIViewController, UITableViewDataSource, UITableVi
                     self.sponsorsTable.reloadData()
                 }
             } else {
-                NSLog("Failed to fetch list of sponsors. Error: \(error). Response: \(response)")
+                NSLog("Failed to fetch list of sponsors. Error: \(String(describing: error)). Response: \(response)")
                 UIUtils.showAlert(presenter: self, title: NSLocalizedString("Warning", comment: ""), message: NSLocalizedString("Failed to fetch sponsors list", comment: ""), done: nil)
             }
         }

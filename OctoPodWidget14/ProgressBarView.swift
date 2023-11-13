@@ -1,7 +1,7 @@
 import SwiftUI
 import WidgetKit
 
-@available(iOSApplicationExtension 14.0, *)
+@available(iOS 14.0, *)
 struct ProgressBarView: View {
     @Binding var progress: Double
     @Binding var color: Color

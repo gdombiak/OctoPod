@@ -1011,7 +1011,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         var camerasChanged = false
         let newObjectContext = printerManager.newPrivateContext()
         newObjectContext.performAndWait{
-            var printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+            let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
             if let multicam = plugins[Plugins.MULTICAM] as? NSDictionary {
                 if let profiles = multicam["multicam_profiles"] as? NSArray {
                     for case let profile as NSDictionary in profiles {

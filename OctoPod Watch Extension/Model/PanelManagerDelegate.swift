@@ -1,6 +1,6 @@
 import Foundation
 
-protocol PanelManagerDelegate: class {
+protocol PanelManagerDelegate: AnyObject {
 
     /// Notification that new panel information has been received
     func panelInfoUpdate(printerName: String, panelInfo: [String : Any])

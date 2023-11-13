@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-protocol PrinterManagerDelegate: class {
+protocol PrinterManagerDelegate: AnyObject {
     
     /// Notification that list of printers has changed. Could be that new
     /// ones were added, or updated or deleted. Change was pushed from iOS app
