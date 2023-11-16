@@ -836,6 +836,7 @@ class OctoPrintRESTClient {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
             json["command"] = "listAllStatus"
+            json["version"] = 2
             client.post("/api/plugin/octorelay", json: json, expected: 200) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                 // Check if there was an error
                 if let _ = error {
@@ -861,7 +862,9 @@ class OctoPrintRESTClient {
         if let client = httpClient {
             let json : NSMutableDictionary = NSMutableDictionary()
             json["command"] = "update"
-            json["pin"] = id
+            json["version"] = 2
+            json["subject"] = id
+            json["pin"] = id // Backward compatibility to API v1
             client.post("/api/plugin/octorelay", json: json, expected: 200) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                 callback(response.statusCode == 200, error, response)
             }
