@@ -118,26 +118,6 @@ struct DashboardWidget14EntryView : View {
     var body: some View {
         GeometryReader { geometryProxy in
             ZStack {
-                switch self.entry.configuration.theme {
-                case Theme.light:
-                    Color(.sRGB, red: 230 / 255, green: 230 / 255, blue: 230 / 255, opacity: 0.75)
-                        .edgesIgnoringSafeArea(.all)
-                case Theme.dark:
-                    Color(.sRGB, red: 89 / 255, green: 89 / 255, blue: 89 / 255, opacity: 0.75)
-                        .edgesIgnoringSafeArea(.all)
-                case Theme.system:
-                    if colorScheme == .dark {
-                        Color(.sRGB, red: 89 / 255, green: 89 / 255, blue: 89 / 255, opacity: 0.75)
-                            .edgesIgnoringSafeArea(.all)
-                    } else {
-                        Color(.sRGB, red: 230 / 255, green: 230 / 255, blue: 230 / 255, opacity: 0.75)
-                            .edgesIgnoringSafeArea(.all)
-                    }
-                default:
-                    Color(.sRGB, red: 154 / 255, green: 211 / 255, blue: 110 / 255, opacity: 0.75)
-                        .edgesIgnoringSafeArea(.all)
-                }
-                
                 if let printJobs = entry.printJobDataServices, !printJobs.isEmpty {
                     VStack() {
                         HStack() {
@@ -202,6 +182,7 @@ struct DashboardWidget14EntryView : View {
                     Text("Configure widget")
                 }            
             }
+            .widgetBackground(backgroundColor())
         }
     }
     
@@ -219,6 +200,23 @@ struct DashboardWidget14EntryView : View {
             }
         default:
             return Color(.sRGB, red: 154 / 255, green: 192 / 255, blue: 110 / 255, opacity: 1)
+        }
+    }
+    
+    func backgroundColor() -> Color {
+        switch self.entry.configuration.theme {
+        case Theme.light:
+            return Color(.sRGB, red: 230 / 255, green: 230 / 255, blue: 230 / 255, opacity: 0.75)
+        case Theme.dark:
+            return Color(.sRGB, red: 89 / 255, green: 89 / 255, blue: 89 / 255, opacity: 0.75)
+        case Theme.system:
+            if colorScheme == .dark {
+                return Color(.sRGB, red: 89 / 255, green: 89 / 255, blue: 89 / 255, opacity: 0.75)
+            } else {
+                return Color(.sRGB, red: 230 / 255, green: 230 / 255, blue: 230 / 255, opacity: 0.75)
+            }
+        default:
+            return Color(.sRGB, red: 154 / 255, green: 211 / 255, blue: 110 / 255, opacity: 0.75)
         }
     }
 }
@@ -274,3 +272,22 @@ struct DashboardWidget: Widget {
     }
 }
 
+// ===== iOS COMPATIBILITY SUPPORT =====
+
+extension View
+{
+    func widgetBackground(_ backgroundView: some View) -> some View {
+        
+        if #available(iOSApplicationExtension 17.0, *)
+        {
+            return containerBackground(for: .widget)
+            {
+                backgroundView
+            }
+        }
+        else
+        {
+            return background(backgroundView)
+        }
+    }
+}

@@ -69,7 +69,7 @@ struct Provider: IntentTimelineProvider {
             }
         } else {
             // Regular widgets need to be configured by user to specify which printer to render
-            if let widgetPrinter = configuration.printer, let printerName = widgetPrinter.name, let hostname = widgetPrinter.hostname, let apiKey = widgetPrinter.apiKey {
+            if let widgetPrinter = configuration.printer, let printerName = widgetPrinter.name, let hostname = widgetPrinter.hostname, let apiKey = widgetPrinter.apiKey, !hostname.isEmpty {
                 var preemptive: Bool = false
                 if let preemptiveAuth = widgetPrinter.preemptiveAuth {
                     preemptive = preemptiveAuth == 1
@@ -166,9 +166,6 @@ struct OctoPodWidget14EntryView : View {
     @ViewBuilder
     var body: some View {
         ZStack {
-            backgroundColor()
-                .edgesIgnoringSafeArea(.all)
-
             if isLockScreenWidget() {
                 // Lock Screen Widgets do not use configuration so render based on print job status of default printer
                 switch family {
@@ -227,6 +224,7 @@ struct OctoPodWidget14EntryView : View {
                 }
             }
         }
+        .widgetBackground(backgroundColor())
     }
 }
 
