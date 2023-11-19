@@ -1,19 +1,20 @@
 import Foundation
 import CloudKit
 import CoreData
+import UIKit
 
 class CloudKitPrinterManager {
-
+    
     private let SYNC_STOPPED = "CK_SYNC_STOPPED"  // Key to track if CloudKit sync is enabled or not in the app. Controlled by user from the app. Do not confuse with 'is user logged into iCloud'
     private var iCloudAvailable = true // Assume default value. Will be updated with real one on start up and based on events
     
     let SUBSCRIPTION_ID = "SUBSCRIPTION_ID"  // ID of one time subcription to receive push notifications
     private let SUBSCRIPTION_CREATED = "CK_SUBSCRIPTION_CREATED"  // Key to track creation of one time subcription to receive push notifications
     private let CHANGE_TOKEN = "CK_CHANGE_TOKEN" // Key to use for storing token that tracks last processed changes from CloudKit server
-
+    
     private let RECORD_TYPE = "OctoPrint"
     private let zoneID = CKRecordZone.ID(zoneName: "MyOctoPod", ownerName: CKCurrentUserDefaultName)
-
+    
     private let printerManager: PrinterManager!
     private var starting = false
     private let privateContext: NSManagedObjectContext!
@@ -24,18 +25,15 @@ class CloudKitPrinterManager {
     // Keep a log of events that happend. Log will only keep a certain number of entries to preserve memory
     private(set) var log: Array<CloudKitPrinterLogEntry> = Array()
     private let LOG_MAX_SIZE = 30
-
+    
     init(printerManager: PrinterManager) {
         self.printerManager = printerManager
         self.privateContext = printerManager.newPrivateContext()
-
-        // Register for changes to iCloud Account status when the app is running
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(start),
-                                               name: Notification.Name.CKAccountChanged,
-                                               object: nil)
+        
+        // Listen when app went to background so we stop listening to CloudKit events
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
-
+    
     // MARK: - Start
     
     // Start synchronizing with iCloud (if available)
@@ -45,6 +43,9 @@ class CloudKitPrinterManager {
             return
         }
         starting = true // Mark that we are starting
+
+        listenToCloudKitEvents()
+
         discoverAccountStatus {
             if self.iCloudAvailable {
                 // Wait 500ms before pushing local changes (of printers) to CloudKit (to sync other devices)
@@ -83,7 +84,12 @@ class CloudKitPrinterManager {
             }
         }
     }
-
+    
+    @objc func appDidEnterBackground() {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.CKAccountChanged, object: nil)
+    }
+    
+    
     // MARK: - Delegates operations
     
     func remove(cloudKitPrinterDelegate toRemove: CloudKitPrinterDelegate) {
@@ -102,7 +108,7 @@ class CloudKitPrinterManager {
         let defaults = UserDefaults.standard
         defaults.set(stop, forKey: SYNC_STOPPED)
     }
-
+    
     // Returns true if user does not allow device synchronizion (via iCloud)
     // User can allow device synchronization but they need to be logged into
     // iCloud for this to work
@@ -138,7 +144,7 @@ class CloudKitPrinterManager {
                 defaults.set(true, forKey: self.SUBSCRIPTION_CREATED)
             }
             operation.qualityOfService = .utility
-                        
+            
             let container = getiCloudContainer()
             let db = container.privateCloudDatabase
             db.add(operation)
@@ -186,7 +192,7 @@ class CloudKitPrinterManager {
         let db = container.privateCloudDatabase
         db.add(operation)
     }
-
+    
     // Create a custom zone where we store our records. We need to use a custom zone
     // and not the default one since we are doing incremental reads which is not supported
     // in default zone
@@ -327,7 +333,7 @@ class CloudKitPrinterManager {
             guard let serverChangeToken = serverChangeToken else {
                 return
             }
-                        
+            
             do {
                 let changeTokenData = try NSKeyedArchiver.archivedData(withRootObject: serverChangeToken, requiringSecureCoding: false)
                 defaults.set(changeTokenData, forKey: self.CHANGE_TOKEN)
@@ -352,7 +358,7 @@ class CloudKitPrinterManager {
         let db = container.privateCloudDatabase
         db.add(operation)
     }
-
+    
     /// CloudKit informed us that a record has been created or updated
     fileprivate func recordChanged(record: CKRecord) {
         let recordName = record.recordID.recordName
@@ -424,9 +430,9 @@ class CloudKitPrinterManager {
             }
         }
     }
-
+    
     // MARK: - Push to iCloud
-
+    
     // Printers with status iCloudUpdate will be pushed to iCloud
     //
     // Deleted printers are not included in here. When deleting a printer we try to
@@ -516,7 +522,7 @@ class CloudKitPrinterManager {
                         self.updateAndSave(printerID: printerData.printerID, serverRecord: newRecord)
                         // Execute callback
                         completion?(nil)
-
+                        
                         if originalUpdated {
                             // Record has been updated with iCloud information
                             // During the save we found another version on the server side and
@@ -542,7 +548,7 @@ class CloudKitPrinterManager {
                 } else if let records = records {
                     if records.isEmpty {
                         // iCloud has no similar info so let's add this printer to iCloud
-
+                        
                         // No record up on iCloud, so we’ll start with a
                         // brand new record.
                         let recordID = CKRecord.ID(recordName: UUID().uuidString , zoneID: self.zoneID)
@@ -766,7 +772,7 @@ class CloudKitPrinterManager {
         let db = container.privateCloudDatabase
         db.add(operation)
     }
-
+    
     // MARK: - Reset operations
     
     // Delete CloudKit records and recreate from local stored data
@@ -799,7 +805,7 @@ class CloudKitPrinterManager {
         // Pull changes
         pullChanges(completionHandler: completionHandler, errorHandler: errorHandler)
     }
-
+    
     // MARK: - Delegate notifications operations
     
     fileprivate func notifyPrintersUpdated() {
@@ -1016,7 +1022,7 @@ class CloudKitPrinterManager {
         record.encodeSystemFields(with: coder)
         return coder.encodedData
     }
-
+    
     fileprivate func decodeRecordData(recordData: Data) -> CKRecord? {
         // set up the CKRecord with its metadata
         do {
@@ -1028,6 +1034,14 @@ class CloudKitPrinterManager {
             self.appendLog("Error decodeRecordData due to: \(error.localizedDescription)")
             return nil
         }
+    }
+    
+    fileprivate func listenToCloudKitEvents() {
+        // Register for changes to iCloud Account status when the app is running
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(start),
+                                               name: Notification.Name.CKAccountChanged,
+                                               object: nil)
     }
 }
 
