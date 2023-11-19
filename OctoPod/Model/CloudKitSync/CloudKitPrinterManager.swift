@@ -44,12 +44,13 @@ class CloudKitPrinterManager {
         }
         starting = true // Mark that we are starting
 
-        listenToCloudKitEvents()
-
         discoverAccountStatus {
             if self.iCloudAvailable {
                 // Wait 500ms before pushing local changes (of printers) to CloudKit (to sync other devices)
                 DispatchQueue.global(qos: .utility).asyncAfter(deadline: .now() + 0.5) {
+                    // Listen to CK change events only if iCloud is available
+                    self.listenToCloudKitEvents()
+
                     // Make sure that we have a subscription to CloudKit changes (so we can listen
                     // when other devices of the same user, that is logged in iCloud, change their printers information)
                     self.checkNotificationsSubscription()
