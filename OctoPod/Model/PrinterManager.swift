@@ -56,6 +56,24 @@ class PrinterManager {
         return result
     }
 
+    /// Fetch default printer using provided core data context and execute provided completion block in the same thread that fetched default printer
+    func getDefaultPrinter(context: NSManagedObjectContext, completion: (Printer?) -> Void)  {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "defaultPrinter = YES")
+        
+        context.performAndWait {
+            if let fetchResults = (try? context.fetch(fetchRequest)) as? [Printer] {
+                if fetchResults.count > 0 {
+                    completion(fetchResults[0])
+                } else {
+                    completion(nil)
+                }
+            } else {
+                completion(nil)
+            }
+        }
+    }
+
     /// Get a printer by its record name. A record name is the PK
     /// used by CloudKit for each record
     func getPrinterByRecordName(recordName: String) -> Printer? {
@@ -116,6 +134,21 @@ class PrinterManager {
         return nil
     }
     
+    /// Fetch requested printer using provided core data context and execute provided completion block in the same thread that fetched requested printer
+    func getPrinterByObjectURL(context: NSManagedObjectContext, url: URL, completion: (Printer?) -> Void)  {
+        if let objectID = context.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: url) {
+            context.performAndWait {
+                if let printer = context.object(with: objectID) as? Printer {
+                    completion(printer)
+                } else {
+                    completion(nil)
+                }
+            }
+        } else {
+            completion(nil)
+        }
+    }
+    
     func getPrinters(context: NSManagedObjectContext) -> [Printer] {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "position", ascending: true), NSSortDescriptor(key: "name", ascending: true)]
@@ -127,6 +160,20 @@ class PrinterManager {
             }
        }
         return results
+    }
+    
+    /// Fetch all printers using provided core data context and execute provided completion block in the same thread that fetched the printers
+    func getPrinters(context: NSManagedObjectContext, completion: ([Printer]) -> Void) {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "position", ascending: true), NSSortDescriptor(key: "name", ascending: true)]
+        
+        context.performAndWait {
+            if let fetchResults = (try? context.fetch(fetchRequest)) as? [Printer] {
+                completion(fetchResults)
+            } else {
+                completion([])
+            }
+       }
     }
     
     func getPrinters() -> [Printer] {

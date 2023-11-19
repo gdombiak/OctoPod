@@ -1,5 +1,6 @@
 import Foundation
 import Intents
+import CoreData
 
 @available(iOSApplicationExtension 14.0, *)
 class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandling {
@@ -12,25 +13,15 @@ class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandl
     
     // MARK: Printer Parameter handling
 
-    func resolvePrinter(for intent: WidgetConfigurationIntent, with completion: @escaping (WidgetPrinterResolutionResult) -> Void) {
-        if let printerURL = intent.printer?.url, let url = URL(string: printerURL), let selectedPrinter = printerManager.getPrinterByObjectURL(url: url) {
-            let widgetPrinter = createWidgetPrinter(printer: selectedPrinter)
-            completion(WidgetPrinterResolutionResult.success(with: widgetPrinter))
-        } else {
-            // This case should not happen
-            completion(WidgetPrinterResolutionResult.needsValue())
-        }
-    }
-    
-    func providePrinterOptionsCollection(for intent: WidgetConfigurationIntent, with completion: @escaping (INObjectCollection<WidgetPrinter>?, Error?) -> Void) {
-        let widgetPrinters: [WidgetPrinter] = printerManager.getPrinters().map { printer in
-            return createWidgetPrinter(printer: printer)
+    func providePrinterOptionsCollection(for intent: WidgetConfigurationIntent) async throws -> INObjectCollection<WidgetPrinter> {
+        var widgetPrinters: [WidgetPrinter] = []
+        printerManager.getPrinters(context: printerManager.safePrivateContext()) { (printers: [Printer]) in
+            for printer in printers {
+                widgetPrinters.append(createWidgetPrinter(printer: printer))
+            }
         }
         // Create a collection with the array of characters.
-        let collection = INObjectCollection(items: widgetPrinters)
-
-        // Call the completion handler, passing the collection.
-        completion(collection, nil)
+        return INObjectCollection(items: widgetPrinters)
     }
     
     // MARK: Camera Parameter handling
@@ -46,42 +37,51 @@ class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandl
     
     func provideCameraOptionsCollection(for intent: WidgetConfigurationIntent, with completion: @escaping (INObjectCollection<WidgetCamera>?, Error?) -> Void) {
         var widgetCameras: [WidgetCamera] = []
-        if let printerURL = intent.printer?.url, let url = URL(string: printerURL), let selectedPrinter = printerManager.getPrinterByObjectURL(url: url) {
-            if let cameras = selectedPrinter.getMultiCameras(), !cameras.isEmpty {
-                // MultiCam plugin is installed so show all cameras
-                for multiCamera in cameras {
-                    var cameraURL: String
-                    var cameraOrientation: Int
-                    let url = multiCamera.cameraURL
-                    if url == selectedPrinter.getStreamPath() {
-                        // This is camera hosted by OctoPrint so respect orientation
-                        cameraURL = CameraUtils.shared.absoluteURL(hostname: selectedPrinter.hostname, streamUrl: url)
-                        cameraOrientation = Int(selectedPrinter.cameraOrientation)
-                    } else {
-                        if url.starts(with: "/") {
-                            // Another camera hosted by OctoPrint so build absolute URL
-                            cameraURL = CameraUtils.shared.absoluteURL(hostname: selectedPrinter.hostname, streamUrl: url)
-                        } else {
-                            // Use absolute URL to render camera
-                            cameraURL = url
+        if let printerURL = intent.printer?.url, let url = URL(string: printerURL) {
+            printerManager.getPrinterByObjectURL(context: printerManager.safePrivateContext(), url: url) { (printer: Printer?) in
+                if let selectedPrinter = printer {
+                    if let cameras = selectedPrinter.getMultiCameras(), !cameras.isEmpty {
+                        // MultiCam plugin is installed so show all cameras
+                        for multiCamera in cameras {
+                            var cameraURL: String
+                            var cameraOrientation: Int
+                            let url = multiCamera.cameraURL
+                            if url == selectedPrinter.getStreamPath() {
+                                // This is camera hosted by OctoPrint so respect orientation
+                                cameraURL = CameraUtils.shared.absoluteURL(hostname: selectedPrinter.hostname, streamUrl: url)
+                                cameraOrientation = Int(selectedPrinter.cameraOrientation)
+                            } else {
+                                if url.starts(with: "/") {
+                                    // Another camera hosted by OctoPrint so build absolute URL
+                                    cameraURL = CameraUtils.shared.absoluteURL(hostname: selectedPrinter.hostname, streamUrl: url)
+                                } else {
+                                    // Use absolute URL to render camera
+                                    cameraURL = url
+                                }
+                                cameraOrientation = Int(multiCamera.cameraOrientation) // Respect orientation defined by MultiCamera plugin
+                            }
+                            widgetCameras.append(createWidgetCamera(name: multiCamera.name, cameraURL: cameraURL, cameraOrientation: cameraOrientation))
                         }
-                        cameraOrientation = Int(multiCamera.cameraOrientation) // Respect orientation defined by MultiCamera plugin
+                    } else {
+                        // MultiCam plugin is not installed so just show default camera
+                        let cameraURL = CameraUtils.shared.absoluteURL(hostname: selectedPrinter.hostname, streamUrl: selectedPrinter.getStreamPath())
+                        let cameraOrientation = Int(selectedPrinter.cameraOrientation)
+                        widgetCameras.append(createWidgetCamera(name: NSLocalizedString("Default", comment: ""), cameraURL: cameraURL, cameraOrientation: cameraOrientation))
                     }
-                    widgetCameras.append(createWidgetCamera(name: multiCamera.name, cameraURL: cameraURL, cameraOrientation: cameraOrientation))
                 }
-            } else {
-                // MultiCam plugin is not installed so just show default camera
-                let cameraURL = CameraUtils.shared.absoluteURL(hostname: selectedPrinter.hostname, streamUrl: selectedPrinter.getStreamPath())
-                let cameraOrientation = Int(selectedPrinter.cameraOrientation)
-                widgetCameras.append(createWidgetCamera(name: NSLocalizedString("Default", comment: ""), cameraURL: cameraURL, cameraOrientation: cameraOrientation))
+                // Create a collection with the array of characters.
+                let collection = INObjectCollection(items: widgetCameras)
+                
+                // Call the completion handler, passing the collection.
+                completion(collection, nil)
             }
+        } else {
+            // Create a collection with the array of characters.
+            let collection = INObjectCollection(items: widgetCameras)
+            
+            // Call the completion handler, passing the collection.
+            completion(collection, nil)
         }
-        
-        // Create a collection with the array of characters.
-        let collection = INObjectCollection(items: widgetCameras)
-
-        // Call the completion handler, passing the collection.
-        completion(collection, nil)
     }
     
     // MARK: Default values
@@ -91,11 +91,14 @@ class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandl
         if let widgetPrinter = intent.printer, let _ = widgetPrinter.url {
             return widgetPrinter
         }
+        var widgetPrinter: WidgetPrinter?
         // If not return a new widget printer based on the default printer
-        if let printer = printerManager.getDefaultPrinter(context: printerManager.safePrivateContext()) {
-            return createWidgetPrinter(printer: printer)
+        printerManager.getDefaultPrinter(context: printerManager.safePrivateContext()) { (printer: Printer?) in
+            if let printer = printer {
+                widgetPrinter = createWidgetPrinter(printer: printer)
+            }
         }
-        return nil
+        return widgetPrinter
     }
     
 //    func defaultCamera(for intent: WidgetConfigurationIntent) -> WidgetCamera? {
