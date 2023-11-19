@@ -75,6 +75,7 @@ struct LiveActivityWidget: Widget {
 @available(iOSApplicationExtension 16.1, *)
 struct LockScreenLiveActivityView: View {
     let context: ActivityViewContext<PrintJobAttributes>
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         HStack {
@@ -144,7 +145,7 @@ struct LockScreenLiveActivityView: View {
             }
         }
         .activitySystemActionForegroundColor(.indigo)
-        .activityBackgroundTint(Color(.sRGB, red: 160 / 255, green: 160 / 255, blue: 160 / 255, opacity: 0.75))
+        .activityBackgroundTint(colorScheme == .dark ? Color(.sRGB, red: 115 / 255, green: 115 / 255, blue: 115 / 255, opacity: 0.75) : Color(.sRGB, red: 204 / 255, green: 204 / 255, blue: 204 / 255, opacity: 0.75))
     }
 }
 
