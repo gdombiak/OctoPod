@@ -144,7 +144,6 @@ struct LockScreenLiveActivityView: View {
                 }
             }
         }
-        .activitySystemActionForegroundColor(.indigo)
         .activityBackgroundTint(colorScheme == .dark ? Color(.sRGB, red: 115 / 255, green: 115 / 255, blue: 115 / 255, opacity: 0.75) : Color(.sRGB, red: 204 / 255, green: 204 / 255, blue: 204 / 255, opacity: 0.75))
     }
 }
