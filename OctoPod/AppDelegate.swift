@@ -99,7 +99,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if let printerName = url.host?.removingPercentEncoding {
+        if url.absoluteString.starts(with: "octopod://x-coredata//") {
+            let newURL = url.absoluteString.replacingOccurrences(of: "octopod://x-coredata//", with: "x-coredata://")
+            // Switch to printer user clicked on when using LiveActivities
+            if let printerURL = URL(string: newURL), let printer = printerManager?.getPrinterByObjectURL(url: printerURL) {
+                // Add some delay so app transitions to Active (camera will render only when app is active)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.defaultPrinterManager.changeToDefaultPrinter(printer: printer)
+                    
+                    // Go to main Panel window
+                    if let tabBarController = self.window!.rootViewController as? UITabBarController {
+                        tabBarController.selectedIndex = 0
+                    }
+                }
+                return true
+            }
+        } else if let printerName = url.host?.removingPercentEncoding {
             // Switch to printer user clicked on when using Today's widget or notification or iOS 14 widget
             if let printer = printerManager?.getPrinterByName(name: printerName) {
                 // Add some delay so app transitions to Active (camera will render only when app is active)
