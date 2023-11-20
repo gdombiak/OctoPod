@@ -99,8 +99,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if url.absoluteString.starts(with: "octopod://x-coredata//") {
-            let newURL = url.absoluteString.replacingOccurrences(of: "octopod://x-coredata//", with: "x-coredata://")
+        if url.absoluteString.starts(with: "octopod://x-coredata") {
+            // iOS 16 sends with : and iOS 17 without. Use Regex to handle both cases
+            let newURL = url.absoluteString.replacingOccurrences(of: "octopod://x-coredata(:)*//", with: "x-coredata://", options: [.regularExpression])
             // Switch to printer user clicked on when using LiveActivities
             if let printerURL = URL(string: newURL), let printer = printerManager?.getPrinterByObjectURL(url: printerURL) {
                 // Add some delay so app transitions to Active (camera will render only when app is active)
