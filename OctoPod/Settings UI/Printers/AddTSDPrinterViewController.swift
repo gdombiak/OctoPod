@@ -160,7 +160,7 @@ class AddTSDPrinterViewController: BasePrinterDetailsViewController, WKUIDelegat
     
     @IBAction func saveChanges(_ sender: Any) {
         // Add new printer (that will become default if it's the first one)
-        createPrinter(connectionType: .obico, name: printerNameField.text!, hostname: hostname!, apiKey: apiKeyField.text!, username: username, password: password, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
+        createPrinter(connectionType: .obico, name: printerNameField.text!, hostname: hostname!, apiKey: apiKeyField.text!, username: username, password: password, headers: nil, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
         goBack()
     }
     

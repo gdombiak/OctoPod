@@ -182,7 +182,7 @@ class NotificationsManager: NSObject, OctoPrintSettingsDelegate, UNUserNotificat
             newObjectContext.performAndWait {
                 let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
                 
-                restClient.connectToServer(serverURL: printerToUpdate.hostname, apiKey: printerToUpdate.apiKey, username: printerToUpdate.username, password: printerToUpdate.password, preemptive: printerToUpdate.preemptiveAuthentication())
+                restClient.connectToServer(serverURL: printerToUpdate.hostname, apiKey: printerToUpdate.apiKey, username: printerToUpdate.username, password: printerToUpdate.password, headers: printerToUpdate.headers, preemptive: printerToUpdate.preemptiveAuthentication())
                 restClient.registerAPNSToken(oldToken: printerToUpdate.notificationToken, newToken: newToken, deviceName: deviceName, printerID: id, printerName: printerToUpdate.name, languageCode: languageCode) { (requested: Bool, error: Error?, response: HTTPURLResponse) in
                     if requested {
                         let newObjectContext = self.printerManager.newPrivateContext()

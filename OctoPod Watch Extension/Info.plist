@@ -43,12 +43,14 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>WKAppBundleIdentifier</key>
-			<string>org.OctoPod.OctoPod.watchkitapp</string>
+			<string>org.kadaan.OctoPod.OctoPod.watchkitapp</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>
 	</dict>
 	<key>WKExtensionDelegateClassName</key>
 	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
+	<key>LSApplicationCategoryType</key>
+	<string>SharedPersistentContainer.defaultDirectoryURL</string>
 </dict>
 </plist>

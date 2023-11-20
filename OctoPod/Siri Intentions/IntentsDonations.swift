@@ -3,7 +3,7 @@ import Intents
 
 class IntentsDonations {
     
-    private static let GROUP_IDENTIFIER = "org.OctoPod.Intentions"  // Unique & Global idenfier for all Intents created by this app
+    private static let GROUP_IDENTIFIER = "org.kadaan.OctoPod.Intentions"  // Unique & Global idenfier for all Intents created by this app
     private static let DONATIONS_INITIALIZED = "IntentsDonations.init"
     
     // MARK: - Donate Printer Intents

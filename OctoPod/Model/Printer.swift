@@ -27,6 +27,8 @@ class Printer: NSManagedObject {
     @NSManaged var username: String?
     @NSManaged var password: String?
     
+    @NSManaged var headers: String?
+    
     /// Show this printer in dashboard of printers. Defauilt is true
     @NSManaged var includeInDashboard: Bool
     /// Some users do not have a camera installed so offer the option to hide camera subpanel

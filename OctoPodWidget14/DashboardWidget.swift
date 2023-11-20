@@ -7,12 +7,12 @@ struct DashboardProvider: IntentTimelineProvider {
         let configuration = DashboardWidgetConfigurationIntent()
         configuration.theme = Theme.system
 
-        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, headers: nil, preemptive: false)
         jobService.printerStatus = "Printing"
         jobService.progress = 28.0
         jobService.printEstimatedCompletion = "9:30 PM"
 
-        let jobService2 = PrintJobDataService(name: "Ender 3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        let jobService2 = PrintJobDataService(name: "Ender 3", hostname: "", apiKey: "", username: nil, password: nil, headers: nil, preemptive: false)
         jobService2.printerStatus = "Operational"
 
         let jobServices = [jobService, jobService2]
@@ -24,25 +24,25 @@ struct DashboardProvider: IntentTimelineProvider {
         var printerJobs: Array<PrintJobDataService> = []
         if let printer = configuration.printer1 {
             if let name = printer.name, let hostname = printer.hostname, let apiKey = printer.apiKey {
-                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuth == 1)
+                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, headers: printer.headers, preemptive: printer.preemptiveAuth == 1)
                 printerJobs.append(service)
             }
         }
         if let printer = configuration.printer2 {
             if let name = printer.name, let hostname = printer.hostname, let apiKey = printer.apiKey {
-                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuth == 1)
+                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, headers: printer.headers, preemptive: printer.preemptiveAuth == 1)
                 printerJobs.append(service)
             }
         }
         if let printer = configuration.printer3 {
             if let name = printer.name, let hostname = printer.hostname, let apiKey = printer.apiKey {
-                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuth == 1)
+                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, headers: printer.headers, preemptive: printer.preemptiveAuth == 1)
                 printerJobs.append(service)
             }
         }
         if let printer = configuration.printer4 {
             if let name = printer.name, let hostname = printer.hostname, let apiKey = printer.apiKey {
-                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuth == 1)
+                let service = PrintJobDataService(name: name, hostname: hostname, apiKey: apiKey, username: printer.username, password: printer.password, headers: printer.headers, preemptive: printer.preemptiveAuth == 1)
                 printerJobs.append(service)
             }
         }
@@ -229,7 +229,7 @@ struct DashboardWidget14EntryView_Previews: PreviewProvider {
     }()
 
     static let jobService1: PrintJobDataService = {
-        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, headers: nil, preemptive: false)
         service.printerStatus = "Printing"
         service.progress = 38.0
         service.printEstimatedCompletion = "7:30 PM"
@@ -237,7 +237,7 @@ struct DashboardWidget14EntryView_Previews: PreviewProvider {
     }()
     
     static let jobService2: PrintJobDataService = {
-        let service = PrintJobDataService(name: "Ender 3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        let service = PrintJobDataService(name: "Ender 3", hostname: "", apiKey: "", username: nil, password: nil, headers: nil, preemptive: false)
         service.printerStatus = "Paused"
         service.progress = 28.0
         service.printEstimatedCompletion = "2:30 PM"
@@ -245,7 +245,7 @@ struct DashboardWidget14EntryView_Previews: PreviewProvider {
     }()
     
     static let jobService3: PrintJobDataService = {
-        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, headers: nil, preemptive: false)
         service.printerStatus = "Operational"
         return service
     }()

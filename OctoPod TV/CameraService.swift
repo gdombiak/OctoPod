@@ -35,6 +35,8 @@ class CameraService: ObservableObject {
     private var preemptiveAuthentication: Bool = false
     private var isStreamPathFromSettings: Bool = true
     
+    private var headers: String?
+    
     /// Timer to fetch new image when using Obico
     private var tsdTimer: Timer?
     private var tsdCountdown = 0
@@ -57,6 +59,7 @@ class CameraService: ObservableObject {
         }
         username = printer.username
         password = printer.password
+        headers = printer.headers
         preemptiveAuthentication = printer.preemptiveAuthentication()
         isStreamPathFromSettings = printer.isStreamPathFromSettings()
         
@@ -106,6 +109,8 @@ class CameraService: ObservableObject {
                 }
             }
         }
+        
+        streamingController?.setHeaders(headers: headers)
         
         streamingController!.authenticationFailedHandler = {
             DispatchQueue.main.async {
@@ -239,7 +244,7 @@ class CameraService: ObservableObject {
                 tsdTimer = Timer(fire: Date(), interval: 1, repeats: true, block: { (timer: Timer) in
                     if self.tsdCountdown == 0 {
                         // We need to make call Webcam snapshot API to then fetch Image from returned URL
-                        CameraUtils.shared.renderImage(cameraURL: url, imageOrientation: imageOrientation, username: self.username, password: self.password, preemptive: true, timeoutInterval: 5.0) { (image: UIImage?, error: String?) in
+                        CameraUtils.shared.renderImage(cameraURL: url, imageOrientation: imageOrientation, username: self.username, password: self.password, headers: nil, preemptive: true, timeoutInterval: 5.0) { (image: UIImage?, error: String?) in
                             self.renderTSDImage(image: image, error: error)
                         }
                         // Reset counter to 10 seconds since image changes every 10 seconds

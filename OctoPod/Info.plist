@@ -22,7 +22,7 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>org.octopod.OctoPod</string>
+			<string>org.kadaan.octopod.OctoPod</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>octopod</string>
@@ -58,6 +58,8 @@
 	<string>$(PRODUCT_NAME) needs permission to save videos on your device</string>
 	<key>NSSiriUsageDescription</key>
 	<string>Control printer using Siri</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 	<key>NSUbiquitousContainers</key>
 	<dict>
 		<key>&gt;iCloud.$(CFBundleIdentifier)</key>
@@ -123,7 +125,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSSupportsLiveActivities</key>
-    <true/>
 </dict>
 </plist>

@@ -18,7 +18,7 @@ class TakeSnapshotIntentHandler: NSObject, TakeSnapshotIntentHandling {
             let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
             if let cameraURL = URL(string: url) {
                 // Take snapshot of default (first) printer's camera
-                CameraUtils.shared.renderImage(cameraURL: cameraURL, imageOrientation: cameraOrientation, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuthentication(), timeoutInterval: nil) { (image: UIImage?, errorMessage: String?) in
+                CameraUtils.shared.renderImage(cameraURL: cameraURL, imageOrientation: cameraOrientation, username: printer.username, password: printer.password, headers: printer.headers, preemptive: printer.preemptiveAuthentication(), timeoutInterval: nil) { (image: UIImage?, errorMessage: String?) in
                     if let image = image {
                         let response = TakeSnapshotIntentResponse(code: .success, userActivity: nil)
                         let data = image.pngData()!

@@ -23,6 +23,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     fileprivate var dataTask: URLSessionDataTask?
     fileprivate var session: Foundation.URLSession!
     fileprivate var status: Status = .stopped
+    fileprivate var headers: [String:String]?
     
     open var authorizationHeader: String? // Only used when doing HTTP Basic preemptive
     open var authenticationHandler: ((URLAuthenticationChallenge) -> (Foundation.URLSession.AuthChallengeDisposition, URLCredential?))?
@@ -81,6 +82,11 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeoutInterval)
         if let auth = authorizationHeader {
             request.addValue(auth, forHTTPHeaderField: "Authorization")
+        }
+        if let headers = self.headers {
+            for (key, value) in headers {
+                request.addValue(value, forHTTPHeaderField: key)
+            }
         }
         dataTask = session.dataTask(with: request)
         dataTask?.resume()
@@ -208,6 +214,14 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
                 }
             }
             onError(error)
+        }
+    }
+    
+    public func setHeaders(headers: String?) {
+        if self.headers == nil {
+            if let headers = URLUtils.parseHeaders(headers: headers) {
+                self.headers = headers
+            }
         }
     }
     
