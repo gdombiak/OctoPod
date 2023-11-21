@@ -6,7 +6,7 @@
 	<string>development</string>
 	<key>com.apple.developer.icloud-container-identifiers</key>
 	<array>
-		<string>iCloud.org.OctoPod.OctoPod</string>
+		<string>iCloud.org.kadaan.OctoPod.OctoPod</string>
 	</array>
 	<key>com.apple.developer.icloud-services</key>
 	<array>

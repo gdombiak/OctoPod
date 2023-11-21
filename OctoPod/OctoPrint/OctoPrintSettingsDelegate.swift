@@ -57,6 +57,10 @@ protocol OctoPrintSettingsDelegate: AnyObject {
     /// Notification that availability of FilamentManager plugin has changed
     /// - parameter installed: True if plugin is installed in OctoPrint
     func filamentManagerAvailabilityChanged(installed: Bool)
+    
+    /// Notification that availability of SpoolManager plugin has changed
+    /// - parameter installed: True if plugin is installed in OctoPrint
+    func spoolManagerAvailabilityChanged(installed: Bool)
 
     /// Notification that BLTouch plugin has been installed or its settings changed
     /// - parameter installed: True if plugin is installed in OctoPrint
@@ -110,6 +114,9 @@ extension OctoPrintSettingsDelegate {
     }
     
     func filamentManagerAvailabilityChanged(installed: Bool) {
+    }
+    
+    func spoolManagerAvailabilityChanged(installed: Bool) {
     }
     
     func blTouchSettingsChanged(installed: Bool) {

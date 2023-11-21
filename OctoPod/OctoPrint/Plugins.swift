@@ -18,6 +18,7 @@ struct Plugins {
     static let DISPLAY_LAYER_PROGRESS = "DisplayLayerProgress-websocket-payload"
     static let ENCLOSURE = "enclosure"
     static let FILAMENT_MANAGER = "filamentmanager"
+    static let SPOOL_MANAGER = "SpoolManager"
     static let BL_TOUCH = "BLTouch"
     static let OCTO_RELAY = "octorelay"
 }

@@ -4,7 +4,7 @@ import CoreData
 class SharedPersistentContainer: NSPersistentContainer {
     
     override class func defaultDirectoryURL() -> URL{
-        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.octopod.SharingData")!
+        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.kadaan.octopod.SharingData")!
     }
     
     override init(name: String, managedObjectModel model: NSManagedObjectModel) {

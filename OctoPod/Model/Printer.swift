@@ -82,7 +82,8 @@ class Printer: NSManagedObject {
     @NSManaged var palette2Installed: Bool
     @NSManaged var palette2AutoConnect: Bool    
     @NSManaged var palette2CanvasInstalled: Bool
-    @NSManaged var filamentManagerInstalled: Bool    
+    @NSManaged var filamentManagerInstalled: Bool
+    @NSManaged var spoolManagerInstalled: Bool
     
     // Plugin updates tracking
     /// Date when we can check again for plugin updates

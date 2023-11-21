@@ -80,6 +80,9 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             if printer.filamentManagerInstalled {
                 orderedViewControllers.append(createFilamentManagerVC(mainboard))
             }
+            if printer.spoolManagerInstalled {
+                orderedViewControllers.append(createSpoolManagerVC(mainboard))
+            }
         }
         orderedViewControllers.append(mainboard.instantiateViewController(withIdentifier: "SystemCommandsViewController"))
 
@@ -165,6 +168,8 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                 self.addRemoveVC(add: !printer.getEnclosureOutputs().isEmpty, vcIdentifier: { $0.isMember(of: EnclosureViewController.self) }, createVC: self.createEnclosureVC)
                 
                 self.addRemoveVC(add: printer.filamentManagerInstalled, vcIdentifier: { $0.isMember(of: FilamentManagerViewController.self) }, createVC: self.createFilamentManagerVC)
+                
+                self.addRemoveVC(add: printer.spoolManagerInstalled, vcIdentifier: { $0.isMember(of: SpoolManagerViewController.self) }, createVC: self.createSpoolManagerVC)
             }
             // Notify subpanels of change of printer (OctoPrint)
             for case let subpanel as SubpanelViewController in self.orderedViewControllers {
@@ -287,6 +292,10 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
     func filamentManagerAvailabilityChanged(installed: Bool) {
         addRemoveVC(add: installed, vcIdentifier: { $0.isMember(of: FilamentManagerViewController.self) }, createVC: createFilamentManagerVC)
     }
+    
+    func spoolManagerAvailabilityChanged(installed: Bool) {
+        addRemoveVC(add: installed, vcIdentifier: { $0.isMember(of: SpoolManagerViewController.self) }, createVC: createSpoolManagerVC)
+    }
 
     // MARK: - Private functions
     
@@ -376,5 +385,9 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
 
     fileprivate func createFilamentManagerVC(_ mainboard: UIStoryboard) -> UIViewController {
         return mainboard.instantiateViewController(withIdentifier: "FilamentManagerViewController")
+    }
+    
+    fileprivate func createSpoolManagerVC(_ mainboard: UIStoryboard) -> UIViewController {
+        return mainboard.instantiateViewController(withIdentifier: "SpoolManagerViewController")
     }
 }
