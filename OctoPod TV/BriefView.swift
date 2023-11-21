@@ -44,6 +44,7 @@ struct BriefView: View {
                             if service.layer != nil {
                                 HStack() {
                                     Text("Layer")
+                                        .font(.subheadline)
                                     Spacer()
                                     value(text: service.layer!)
                                 }
