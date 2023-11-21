@@ -1,8 +1,36 @@
 # Changelog
 
-## [3.26](https://github.com/gdombiak/OctoPod/tree/3.25) (2023-04-05)
+## [3.27](https://github.com/gdombiak/OctoPod/tree/3.27) (2023-11-20)
 
-[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.25...3.26)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.26...3.27)
+
+**Implemented enhancements:**
+
+- Live Activity text is not always readable due to its color [\#670](https://github.com/gdombiak/OctoPod/issues/670)
+- Add support for widgets to be displayed on the desktop \(and iOS17\) [\#668](https://github.com/gdombiak/OctoPod/issues/668)
+- Widget color seems to be non-standard [\#663](https://github.com/gdombiak/OctoPod/issues/663)
+- Allow use of changing Obico server URL to enable use of self-hosted Obico servers [\#647](https://github.com/gdombiak/OctoPod/issues/647)
+
+**Fixed bugs:**
+
+- Tap on LiveActivity is not switching to proper printer [\#669](https://github.com/gdombiak/OctoPod/issues/669)
+- App crashes when user opens iCloud settings in iOS [\#666](https://github.com/gdombiak/OctoPod/issues/666)
+- LiveActivity may show data from other printer when more than 1 printer is printing [\#664](https://github.com/gdombiak/OctoPod/issues/664)
+- Fix app crashes due to Core Data threading [\#649](https://github.com/gdombiak/OctoPod/issues/649)
+
+**Closed issues:**
+
+- Fix deprecated warnings [\#665](https://github.com/gdombiak/OctoPod/issues/665)
+- OctoRelay: API v2 [\#661](https://github.com/gdombiak/OctoPod/issues/661)
+
+**Merged pull requests:**
+
+- Supporting OctoRelay API v2 with backward compatibility [\#662](https://github.com/gdombiak/OctoPod/pull/662) ([RobinTail](https://github.com/RobinTail))
+- Update german translation [\#642](https://github.com/gdombiak/OctoPod/pull/642) ([joachimklug](https://github.com/joachimklug))
+
+## [3.26](https://github.com/gdombiak/OctoPod/tree/3.26) (2023-04-06)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/ATV_3.8...3.26)
 
 **Implemented enhancements:**
 
