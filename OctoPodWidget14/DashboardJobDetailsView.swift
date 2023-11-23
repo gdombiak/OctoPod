@@ -55,7 +55,7 @@ struct DashboardJobDetailsView_Previews: PreviewProvider {
     }()
 
     static let jobService: PrintJobDataService = {
-        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, headers: nil, preemptive: false)
         service.printerStatus = "Printing"
         service.progress = 28.0
         service.printEstimatedCompletion = "9:30 PM"
@@ -63,7 +63,7 @@ struct DashboardJobDetailsView_Previews: PreviewProvider {
     }()
 
     static let operationalJobService: PrintJobDataService = {
-        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        let service = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, headers: nil, preemptive: false)
         service.printerStatus = "Operational"
         return service
     }()

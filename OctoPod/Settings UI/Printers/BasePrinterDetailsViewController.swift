@@ -11,8 +11,8 @@ class BasePrinterDetailsViewController: ThemedStaticUITableViewController {
 
     var newPrinterPosition: Int16!  // Will have a value only when adding a new printer
 
-    func createPrinter(connectionType: PrinterConnectionType, name: String, hostname: String, apiKey: String, username: String?, password: String?, position: Int16, includeInDashboard: Bool, showCamera: Bool) {
-        if printerManager.addPrinter(connectionType: connectionType, name: name, hostname: hostname, apiKey: apiKey, username: username, password: password, position: position, iCloudUpdate: true) {
+    func createPrinter(connectionType: PrinterConnectionType, name: String, hostname: String, apiKey: String, username: String?, password: String?, headers: String?, position: Int16, includeInDashboard: Bool, showCamera: Bool) {
+        if printerManager.addPrinter(connectionType: connectionType, name: name, hostname: hostname, apiKey: apiKey, username: username, password: password, headers: headers, position: position, iCloudUpdate: true) {
             if let printer = printerManager.getPrinterByName(name: name) {
                 // Only update printer if dashboard configuration needs update
                 if printer.includeInDashboard != includeInDashboard || printer.hideCamera == showCamera {
@@ -37,7 +37,7 @@ class BasePrinterDetailsViewController: ThemedStaticUITableViewController {
         }
     }
     
-    func updatePrinter(printer: Printer, name: String, hostname: String, apiKey: String, username: String?, password: String?, includeInDashboard: Bool, showCamera: Bool) {
+    func updatePrinter(printer: Printer, name: String, hostname: String, apiKey: String, username: String?, password: String?, headers: String?, includeInDashboard: Bool, showCamera: Bool) {
         let nameChanged = printer.name != name
         // Update existing printer
         printer.name = name
@@ -47,6 +47,8 @@ class BasePrinterDetailsViewController: ThemedStaticUITableViewController {
         
         printer.username = username
         printer.password = password
+        
+        printer.headers = headers
         
         printer.includeInDashboard = includeInDashboard
         printer.hideCamera = !showCamera

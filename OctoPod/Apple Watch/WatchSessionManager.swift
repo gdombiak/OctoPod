@@ -365,6 +365,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                 let screenWidth = camera["width"] as! Int
                 let username = camera["username"] as? String
                 let password = camera["password"] as? String
+                let headers = camera["headers"] as? String
                 let preemptive = camera["preemptive"] as! Bool
                 var imageOrientation = UIImage.Orientation.up
                 if let orientation = camera["orientation"] as? Int {
@@ -413,7 +414,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                     }
                 }
                 
-                CameraUtils.shared.renderImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, preemptive: preemptive, timeoutInterval: nil, completion: completion)
+                CameraUtils.shared.renderImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, headers: headers, preemptive: preemptive, timeoutInterval: nil, completion: completion)
             } else {
                 NSLog("Invalid camera URL: \(url)")
                 let message = NSLocalizedString("Invalid camera URL", comment: "")
@@ -494,7 +495,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
             if restClient == nil {
                 if let printer = printerManager.getPrinterByName(context: newObjectContext, name: printerName) {
                     restClient = OctoPrintRESTClient()
-                    restClient?.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuthentication())
+                    restClient?.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, headers: printer.headers, preemptive: printer.preemptiveAuthentication())
                     sharedNozzle = printer.sharedNozzle
                     palette2PluginInstalled = printer.palette2Installed
                 }

@@ -43,7 +43,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
     
     var delegate: WebSocketClientDelegate?
 
-    init(appConfiguration: AppConfiguration, printerURL: String, hostname: String, apiKey: String, username: String?, password: String?, sharedNozzle: Bool) {
+    init(appConfiguration: AppConfiguration, printerURL: String, hostname: String, apiKey: String, username: String?, password: String?, headers: String?, sharedNozzle: Bool) {
         super.init()
         self.printerURL = printerURL
         serverURL = hostname
@@ -64,6 +64,11 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
             let plainData = (username! + ":" + password!).data(using: String.Encoding.utf8)
             let base64String = plainData!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
             self.socketRequest!.setValue("Basic " + base64String, forHTTPHeaderField: "Authorization")
+        }
+        if let headers = URLUtils.parseHeaders(headers: headers) {
+            for (key, value) in headers {
+                self.socketRequest!.setValue(value, forHTTPHeaderField: key)
+            }
         }
         // Set Host header to prevent CORS issues
         if let host = socketURL.host {

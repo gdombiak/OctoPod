@@ -65,7 +65,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         printerID = printer.objectID
         
         let printerURL = printerID!.uriRepresentation().absoluteString
-        var serverURL: String!, apiKey: String!, username: String?, password: String?, preemptive: Bool!, sharedNozzle: Bool!
+        var serverURL: String!, apiKey: String!, username: String?, password: String?, headers: String?, preemptive: Bool!, sharedNozzle: Bool!
         let newObjectContext = self.printerManager.safePrivateContext()
         newObjectContext.performAndWait {
             let printerToRead = newObjectContext.object(with: printer.objectID) as! Printer
@@ -73,12 +73,13 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             apiKey = printerToRead.apiKey
             username = printerToRead.username
             password = printerToRead.password
+            headers = printerToRead.headers
             preemptive = printerToRead.preemptiveAuthentication()
             sharedNozzle = printerToRead.sharedNozzle
         }
 
         // Create and keep httpClient while default printer does not change
-        octoPrintRESTClient.connectToServer(serverURL: serverURL, apiKey: apiKey, username: username, password: password, preemptive: preemptive)
+        octoPrintRESTClient.connectToServer(serverURL: serverURL, apiKey: apiKey, username: username, password: password, headers: headers, preemptive: preemptive)
         
         if webSocketClient?.isConnected(hostname: serverURL) == true {
             // Do nothing since we are already connected to the default printer
@@ -102,7 +103,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         // Notify the terminal that we are about to connect to OctoPrint
         terminal.websocketNewConnection()
         // Create websocket connection and connect
-        webSocketClient = WebSocketClient(appConfiguration: appConfiguration!, printerURL: printerURL, hostname: serverURL, apiKey: apiKey, username: username, password: password, sharedNozzle: sharedNozzle)
+        webSocketClient = WebSocketClient(appConfiguration: appConfiguration!, printerURL: printerURL, hostname: serverURL, apiKey: apiKey, username: username, password: password, headers: headers, sharedNozzle: sharedNozzle)
         // Subscribe to events so we can update the UI as events get pushed
         webSocketClient?.delegate = self
 

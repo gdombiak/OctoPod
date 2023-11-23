@@ -182,7 +182,7 @@ class PrinterManager {
     
     // MARK: Writing operations
     
-    func addPrinter(connectionType: PrinterConnectionType, name: String, hostname: String, apiKey: String, username: String?, password: String?, position: Int16, iCloudUpdate: Bool, modified: Date = Date()) -> Bool {
+    func addPrinter(connectionType: PrinterConnectionType, name: String, hostname: String, apiKey: String, username: String?, password: String?, headers: String?, position: Int16, iCloudUpdate: Bool, modified: Date = Date()) -> Bool {
         let context = newPrivateContext()
         var saved = false
         context.performAndWait {
@@ -197,6 +197,8 @@ class PrinterManager {
             
             printer.username = username
             printer.password = password
+            
+            printer.headers = headers
             
             // Mark if printer needs to be updated in iCloud
             printer.iCloudUpdate = iCloudUpdate

@@ -33,6 +33,10 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
             }
         }
         
+        if printer.headers != nil {
+            streamingController?.setHeaders(headers: printer.headers)
+        }
+        
         streamingController?.authenticationFailedHandler = {
             DispatchQueue.main.async {
                 self.imageView.image = nil

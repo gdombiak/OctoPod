@@ -124,6 +124,7 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
             if !cameras.isEmpty {
                 let username: String? = PrinterManager.instance.username(printer: printer)
                 let password: String? = PrinterManager.instance.password(printer: printer)
+                let headers: String? = PrinterManager.instance.headers(printer: printer)
                 let preemptive: Bool = PrinterManager.instance.preemptive(printer: printer)
                 let orientation: Int = cameras[currentCamera].orientation
                 let url: String = cameras[currentCamera].url
@@ -132,7 +133,7 @@ class CamerasInterfaceController: WKInterfaceController, PrinterManagerDelegate 
                 // Disable refresh button to indicate we are "refreshing"
                 refreshButton.setEnabled(false)
                 // Ask iOS App to fetch the image and resize it on the phone so it gets faster to the Apple Watch
-                OctoPrintClient.instance.camera_take(url: url, username: username, password: password, preemptive: preemptive, orientation: orientation, cameraId: cameraId) { (requested: Bool, error: String?) in
+                OctoPrintClient.instance.camera_take(url: url, username: username, password: password, headers: headers, preemptive: preemptive, orientation: orientation, cameraId: cameraId) { (requested: Bool, error: String?) in
                     if requested {
                         if let error = error {
                             // iOS App found an error and we need to display it in Apple Watch

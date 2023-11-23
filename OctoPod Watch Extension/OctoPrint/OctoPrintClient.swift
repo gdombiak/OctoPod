@@ -11,7 +11,7 @@ class OctoPrintClient {
     func configure() {
         if let printer = PrinterManager.instance.defaultPrinter() {
             octoPrintRESTClient = OctoPrintRESTClient()
-            octoPrintRESTClient?.connectToServer(serverURL: PrinterManager.instance.hostname(printer: printer), apiKey: PrinterManager.instance.apiKey(printer: printer), username: PrinterManager.instance.username(printer: printer), password: PrinterManager.instance.password(printer: printer), preemptive: PrinterManager.instance.preemptive(printer: printer))
+            octoPrintRESTClient?.connectToServer(serverURL: PrinterManager.instance.hostname(printer: printer), apiKey: PrinterManager.instance.apiKey(printer: printer), username: PrinterManager.instance.username(printer: printer), password: PrinterManager.instance.password(printer: printer), headers: PrinterManager.instance.headers(printer: printer), preemptive: PrinterManager.instance.preemptive(printer: printer))
         } else {
             octoPrintRESTClient = nil
         }
@@ -166,7 +166,7 @@ class OctoPrintClient {
     
     // MARK: - Camera operations
     
-    func camera_take(url: String, username: String?, password: String?, preemptive: Bool, orientation: Int, cameraId: String, callback: @escaping (Bool, String?) -> Void) {
+    func camera_take(url: String, username: String?, password: String?, headers: String?, preemptive: Bool, orientation: Int, cameraId: String, callback: @escaping (Bool, String?) -> Void) {
         if let session = sessionToiOS() {
             var requestDetail = ["url": url, "orientation" : orientation, "cameraId": cameraId] as [String : Any]
             if let username = username {
@@ -174,6 +174,9 @@ class OctoPrintClient {
             }
             if let password = password {
                 requestDetail["password"] = password
+            }
+            if let headers = headers {
+                requestDetail["headers"] = headers
             }
             requestDetail["preemptive"] = preemptive
             requestDetail["width"] = WKInterfaceDevice.current().screenBounds.size.width
