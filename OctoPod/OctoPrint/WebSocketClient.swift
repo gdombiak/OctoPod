@@ -140,7 +140,11 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
                     recreateSocket()
                     establishConnection()
                 } else {
-                    NSLog("Websocket disconnected. Error: \(String(describing: error?.localizedDescription)) - \(self.hash)")
+                    if let wsError = error as? WSError {
+                        NSLog("Websocket disconnected. Error: \(wsError.message) (\(wsError.code)) - \(self.hash)")
+                    } else {
+                        NSLog("Websocket disconnected. Error: \(String(describing: error?.localizedDescription)) - \(self.hash)")
+                    }
                     if let listener = delegate {
                         listener.websocketConnectionFailed(error: error!)
                     }
