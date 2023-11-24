@@ -454,6 +454,7 @@ class CloudKitPrinterManager {
                     var printerData = PrinterData(printerID: printer.objectID, name: printer.name, hostname: printer.hostname, apiKey: printer.apiKey, connectionType: printer.connectionType, position: printer.position)
                     printerData.username = printer.username
                     printerData.password = printer.password
+                    printerData.headers = printer.headers
                     printerData.userModified = printer.userModified
                     printerData.recordData = printer.recordData
                     toRemove.append(printerData)
