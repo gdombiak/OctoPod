@@ -7,10 +7,12 @@ class URLUtils {
             let headerPairs = headers.components(separatedBy: ",")
             for headerPair in headerPairs {
                 let sanitizedHeaderPair = headerPair.trimmingCharacters(in: .whitespacesAndNewlines)
-                let headerParts = sanitizedHeaderPair.components(separatedBy: "=")
-                let headerKey = headerParts[0].trimmingCharacters(in: .whitespacesAndNewlines)
-                let headerValue = headerParts[1].trimmingCharacters(in: .whitespacesAndNewlines)
-                parsedHeaders[headerKey] = headerValue
+                let headerParts = sanitizedHeaderPair.contains(":") ? sanitizedHeaderPair.components(separatedBy: ":") : sanitizedHeaderPair.components(separatedBy: "=")
+                if headerParts.count > 1 {
+                    let headerKey = headerParts[0].trimmingCharacters(in: .whitespacesAndNewlines)
+                    let headerValue = headerParts[1].trimmingCharacters(in: .whitespacesAndNewlines)
+                    parsedHeaders[headerKey] = headerValue
+                }
             }
             return parsedHeaders
         }
