@@ -11,6 +11,7 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     var apiKey: String!
     var username: String?
     var password: String?
+    var headers: [String:String]?
     var preemptive: Bool! // Use HTTP Basic preemptive authentication or wait for WWW-Authenticate Response Header
     
     var timeoutIntervalForRequest = 10.0
@@ -19,12 +20,13 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
     var preRequest: (() -> Void)?
     var postRequest: (() -> Void)?
 
-    init(serverURL: String, apiKey: String, username: String?, password: String?, preemptive: Bool = false) {
+    init(serverURL: String, apiKey: String, username: String?, password: String?, headers: String?, preemptive: Bool = false) {
         super.init()
         self.serverURL = serverURL.hasSuffix("/") ? String(serverURL.dropLast()) : serverURL // Fix in case stored printer has invalid URL due to a bug that is now fixed
         self.apiKey = apiKey
         self.username = username
         self.password = password
+        self.headers = URLUtils.parseHeaders(headers: headers)
         self.preemptive = preemptive
     }
     
@@ -320,6 +322,13 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         let config = URLSessionConfiguration.default
         if let username = username, let password = password, preemptive {
             config.httpAdditionalHeaders = ["Authorization" : HTTPClient.authBasicHeader(username: username, password: password)]
+        }
+        if let headers = headers {
+            if config.httpAdditionalHeaders == nil {
+                config.httpAdditionalHeaders = headers
+            } else {
+                config.httpAdditionalHeaders = config.httpAdditionalHeaders?.merging(headers, uniquingKeysWith: { (first, _) in first })
+            }
         }
         // Timeout to start transmitting
         config.timeoutIntervalForRequest = timeoutIntervalForRequest

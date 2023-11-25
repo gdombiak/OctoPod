@@ -382,6 +382,9 @@
 /* File Type is a Folder */
 "Folder" = "Carpeta";
 
+/* (No Comment) */
+"Headers" = "Cabeceras (p.ej. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
+
 /* No comment provided by engineer. */
 "Hostname (e.g. http://octopi.local)" = "Nombre de host (e.g. http://octopi.local)";
 

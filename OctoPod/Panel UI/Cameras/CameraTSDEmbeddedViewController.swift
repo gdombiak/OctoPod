@@ -39,7 +39,7 @@ class CameraTSDEmbeddedViewController: CameraEmbeddedViewController {
             if self.countdown == 0 {
                 // We need to make call Webcam snapshot API to then fetch Image from returned URL
                 if let url = URL(string: self.cameraURL) {
-                    CameraUtils.shared.renderImage(cameraURL: url, imageOrientation: self.cameraOrientation, username: self.username, password: self.password, preemptive: printer.preemptiveAuthentication(), timeoutInterval: 5.0) { (image: UIImage?, error: String?) in
+                    CameraUtils.shared.renderImage(cameraURL: url, imageOrientation: self.cameraOrientation, username: self.username, password: self.password, headers: nil, preemptive: printer.preemptiveAuthentication(), timeoutInterval: 5.0) { (image: UIImage?, error: String?) in
                         if let receivedImage = image {
                             DispatchQueue.main.async {
                                 // Hide error messages since an image will be rendered (so that means that it worked!)

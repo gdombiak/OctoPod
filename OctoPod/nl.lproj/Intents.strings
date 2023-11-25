@@ -242,13 +242,13 @@
 "LVlPuT" = "Annuleer huidige print opdracht";
 
 /* (No Comment) */
+"M58YA9" = "Printer";
+
+/* (No Comment) */
 "m6XJpy" = "Bed afkoelen mislukt (${statusCode})";
 
 /* (No Comment) */
 "m9Jgmg" = "Opdracht hervat";
-
-/* (No Comment) */
-"M58YA9" = "Printer";
 
 /* (No Comment) */
 "N0vzJv" = "Verzoek Palette om te legen";
@@ -278,10 +278,10 @@
 "P6usJW" = "Maak Momentopname";
 
 /* (No Comment) */
-"p9Vevg" = "Verzoek tot uitvoerencommando mislukt";
+"P89qJr" = "Tijd resterend: ${time}";
 
 /* (No Comment) */
-"P89qJr" = "Tijd resterend: ${time}";
+"p9Vevg" = "Verzoek tot uitvoerencommando mislukt";
 
 /* (No Comment) */
 "pfroH1" = "Zet PSU uit";

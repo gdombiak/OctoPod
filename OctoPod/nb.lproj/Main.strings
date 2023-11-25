@@ -82,6 +82,9 @@
 /* Class = "UITableViewSection"; headerTitle = "BLTouch"; ObjectID = "4LI-ea-uZQ"; */
 "4LI-ea-uZQ.headerTitle" = "BLTouch";
 
+/* Class = "UITextField"; placeholder = "Headers (e.g. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)"; ObjectID = "4lj-t2-YJY"; */
+"4lj-t2-YJY.placeholder" = "Headere (f.eks. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "4ls-BU-eMv"; */
 "4ls-BU-eMv.text" = "Label";
 
@@ -190,14 +193,14 @@
 /* Class = "UIButton"; normalTitle = "Scan API Key"; ObjectID = "a0P-GP-CQD"; */
 "a0P-GP-CQD.normalTitle" = "Skann API-nøkkel";
 
+/* Class = "UILabel"; text = "/"; ObjectID = "a12-vD-JUc"; */
+"a12-vD-JUc.text" = "/";
+
 /* Class = "UILabel"; text = "0 C"; ObjectID = "A7g-Yw-Ucf"; */
 "A7g-Yw-Ucf.text" = "250 C";
 
 /* Class = "UITableViewController"; title = "Obico"; ObjectID = "A9g-sp-S6T"; */
 "A9g-sp-S6T.title" = "Obico";
-
-/* Class = "UILabel"; text = "/"; ObjectID = "a12-vD-JUc"; */
-"a12-vD-JUc.text" = "/";
 
 /* Class = "UIButton"; normalTitle = "Regenerate default shortcuts"; ObjectID = "aaG-XM-gnj"; */
 "aaG-XM-gnj.normalTitle" = "Regenerere standard snarveier";
@@ -216,6 +219,9 @@
 
 /* Class = "UILabel"; text = "Extruder"; ObjectID = "ahs-Hn-dAX"; */
 "ahs-Hn-dAX.text" = "Ekstruder";
+
+/* Class = "UITextField"; placeholder = "Headers (e.g. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)"; ObjectID = "Ajg-ql-ceK"; */
+"Ajg-ql-ceK.placeholder" = "Headere (f.eks. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
 
 /* Class = "UIButton"; normalTitle = "View activity log"; ObjectID = "aJp-RM-Tuf"; */
 "aJp-RM-Tuf.normalTitle" = "Vis aktivitetslogg";
@@ -541,6 +547,9 @@
 /* Class = "UIViewController"; title = "Sponsors"; ObjectID = "IVP-j6-h7G"; */
 "IVP-j6-h7G.title" = "Sponsorer";
 
+/* Class = "UITableViewSection"; headerTitle = "Additional Headers"; ObjectID = "iXA-Nd-Ijb"; */
+"iXA-Nd-Ijb.headerTitle" = "Tilleggsheadere";
+
 /* Class = "UITableViewSection"; headerTitle = "Move"; ObjectID = "iY8-Rh-TKn"; */
 "iY8-Rh-TKn.headerTitle" = "Flytt";
 
@@ -832,14 +841,14 @@
 /* Class = "UIButton"; normalTitle = "Off"; ObjectID = "QwZ-7J-MwJ"; */
 "QwZ-7J-MwJ.normalTitle" = "Av";
 
+/* Class = "UILabel"; text = "Label"; ObjectID = "r08-sj-cCD"; */
+"r08-sj-cCD.text" = "Label";
+
 /* Class = "UINavigationItem"; title = "Obico"; ObjectID = "R0b-VP-E1V"; */
 "R0b-VP-E1V.title" = "Obico";
 
 /* Class = "UILabel"; text = "Siri"; ObjectID = "R2d-Mv-REP"; */
 "R2d-Mv-REP.text" = "Siri";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "r08-sj-cCD"; */
-"r08-sj-cCD.text" = "Label";
 
 /* Class = "UILabel"; text = "Include in Dashboard"; ObjectID = "R8W-HN-Cgb"; */
 "R8W-HN-Cgb.text" = "Inkluder i oversikt";
@@ -1080,6 +1089,9 @@
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "w4s-Ud-7Zm"; */
 "w4s-Ud-7Zm.normalTitle" = "Knapp";
+
+/* Class = "UITableViewSection"; headerTitle = "Additional Headers"; ObjectID = "w25-Y5-Dne"; */
+"w25-Y5-Dne.headerTitle" = "Tilleggsheadere";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Wcu-9D-QXt"; */
 "Wcu-9D-QXt.text" = "Label";

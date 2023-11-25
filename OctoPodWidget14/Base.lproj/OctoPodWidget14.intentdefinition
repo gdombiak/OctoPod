@@ -73,11 +73,11 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>88xZPY</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>20F71</string>
+	<string>23B81</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>12E507</string>
+	<string>15A507</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>12.5.1</string>
+	<string>15.0.1</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -538,7 +538,7 @@
 			<key>INTypeDisplayNameID</key>
 			<string>IWWISx</string>
 			<key>INTypeLastPropertyTag</key>
-			<integer>110</integer>
+			<integer>111</integer>
 			<key>INTypeName</key>
 			<string>WidgetPrinter</string>
 			<key>INTypeProperties</key>
@@ -580,10 +580,24 @@
 					<string>String</string>
 				</dict>
 				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Name</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>k5QFXb</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>4</integer>
+					<key>INTypePropertyName</key>
+					<string>name</string>
+					<key>INTypePropertyTag</key>
+					<integer>100</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
 					<key>INTypePropertyDefault</key>
 					<true/>
 					<key>INTypePropertyDisplayPriority</key>
-					<integer>4</integer>
+					<integer>5</integer>
 					<key>INTypePropertyName</key>
 					<string>alternativeSpeakableMatches</string>
 					<key>INTypePropertySupportsMultipleValues</key>
@@ -592,20 +606,6 @@
 					<integer>4</integer>
 					<key>INTypePropertyType</key>
 					<string>SpeakableString</string>
-				</dict>
-				<dict>
-					<key>INTypePropertyDisplayName</key>
-					<string>Name</string>
-					<key>INTypePropertyDisplayNameID</key>
-					<string>k5QFXb</string>
-					<key>INTypePropertyDisplayPriority</key>
-					<integer>5</integer>
-					<key>INTypePropertyName</key>
-					<string>name</string>
-					<key>INTypePropertyTag</key>
-					<integer>100</integer>
-					<key>INTypePropertyType</key>
-					<string>String</string>
 				</dict>
 				<dict>
 					<key>INTypePropertyDisplayName</key>
@@ -678,8 +678,22 @@
 					<string>String</string>
 				</dict>
 				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Headers</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>PGiusi</string>
 					<key>INTypePropertyDisplayPriority</key>
 					<integer>11</integer>
+					<key>INTypePropertyName</key>
+					<string>headers</string>
+					<key>INTypePropertyTag</key>
+					<integer>111</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>12</integer>
 					<key>INTypePropertyMetadata</key>
 					<dict>
 						<key>INTypePropertyMetadataFalseDisplayName</key>

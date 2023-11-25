@@ -5,6 +5,7 @@ class HLSThumbnailUtil: NSObject {
     let url: URL
     let username: String?
     let password: String?
+    let headers: [String:String]?
     let imageOrientation: UIImage.Orientation
     let complete: ((UIImage?) -> Void)
     
@@ -12,17 +13,22 @@ class HLSThumbnailUtil: NSObject {
     var itemDelegate: AVAssetResourceLoaderDelegate?
     var videOutput: AVPlayerItemVideoOutput?
     
-    init(url: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, complete: @escaping ((UIImage?) -> Void)) {
+    init(url: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, headers: String?, complete: @escaping ((UIImage?) -> Void)) {
         self.url = url
         self.username = username
         self.password = password
+        self.headers = URLUtils.parseHeaders(headers: headers)
         self.imageOrientation = imageOrientation
         self.complete = complete
     }
     
     func generate()  {
         // Create AVPlayerItem object
-        let asset = AVURLAsset(url: url)
+        var options: [String : Any]? = nil
+        if let headers = headers {
+            options = ["AVURLAssetHTTPHeaderFieldsKey": headers]
+        }
+        let asset = AVURLAsset(url: url, options: options)
 
         if let username = username, let password = password {
             itemDelegate = UIUtils.getAVAssetResourceLoaderDelegate(username: username, password: password)

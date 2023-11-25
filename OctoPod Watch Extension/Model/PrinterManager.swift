@@ -154,6 +154,10 @@ class PrinterManager {
         return printer["password"] as? String
     }
     
+    func headers(printer: [String: Any]) -> String? {
+        return printer["headers"] as? String
+    }
+    
     func preemptive(printer: [String: Any]) -> Bool {
         return printer["preemptive"] as? Bool ?? false // File saved locally may not have this new field so assume false when this happens
     }
@@ -217,7 +221,7 @@ class PrinterManager {
         if self.printers.count == printers.count {
             for (index, printer) in self.printers.enumerated() {
                 let otherPrinter = printers[index]
-                if name(printer: printer) != name(printer: otherPrinter) || hostname(printer: printer) != hostname(printer: otherPrinter) || apiKey(printer: printer) != apiKey(printer: otherPrinter) || isDefault(printer: printer) != isDefault(printer: otherPrinter) || username(printer: printer) != username(printer: otherPrinter) || password(printer: printer) != password(printer: otherPrinter) || !sameCameras(cameras: cameras(printer: printer), otherCameras: cameras(printer: otherPrinter)) {
+                if name(printer: printer) != name(printer: otherPrinter) || hostname(printer: printer) != hostname(printer: otherPrinter) || apiKey(printer: printer) != apiKey(printer: otherPrinter) || isDefault(printer: printer) != isDefault(printer: otherPrinter) || username(printer: printer) != username(printer: otherPrinter) || password(printer: printer) != password(printer: otherPrinter) || headers(printer: printer) != headers(printer: otherPrinter)  || !sameCameras(cameras: cameras(printer: printer), otherCameras: cameras(printer: otherPrinter)) {
                     return false
                 }
             }

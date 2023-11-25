@@ -382,6 +382,9 @@
 /* File Type is a Folder */
 "Folder" = "Mappe";
 
+/* (No Comment) */
+"Headers" = "Headere (f.eks. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
+
 /* No comment provided by engineer. */
 "Hostname (e.g. http://octopi.local)" = "Vertsnavn (f.eks. http://octopi.local)";
 

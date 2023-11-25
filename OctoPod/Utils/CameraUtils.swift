@@ -13,16 +13,16 @@ class CameraUtils {
     private init() {
     }
     
-    func renderImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, preemptive: Bool, timeoutInterval: TimeInterval?, completion: @escaping (UIImage?, String?) -> ()) {
+    func renderImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, headers: String?, preemptive: Bool, timeoutInterval: TimeInterval?, completion: @escaping (UIImage?, String?) -> ()) {
         if isHLS(url: cameraURL.absoluteString) {
             // Render image from HLS camera
-            renderHLSImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, completion: completion)
+            renderHLSImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, headers: headers, completion: completion)
         } else if isTSD(cameraURL: cameraURL) {
             // Obico has its own special logic
             renderTLSImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, preemptive: preemptive, timeoutInterval: timeoutInterval, completion: completion)
         } else {
             // Render image from classic MJPEG camera
-            renderMJPEGImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, preemptive: preemptive, timeoutInterval: timeoutInterval, completion: completion)
+            renderMJPEGImage(cameraURL: cameraURL, imageOrientation: imageOrientation, username: username, password: password, headers: headers, preemptive: preemptive, timeoutInterval: timeoutInterval, completion: completion)
         }
     }
     
@@ -54,7 +54,7 @@ class CameraUtils {
 
     // MARK: - Private functions
     
-    fileprivate func renderMJPEGImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, preemptive: Bool, timeoutInterval: TimeInterval?, completion: @escaping (UIImage?, String?) -> ()) {
+    fileprivate func renderMJPEGImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, headers: String?, preemptive: Bool, timeoutInterval: TimeInterval?, completion: @escaping (UIImage?, String?) -> ()) {
         let streamingController = MjpegStreamingController()
         
         if let timeout = timeoutInterval {
@@ -73,6 +73,8 @@ class CameraUtils {
             }
         }
         
+        streamingController.setHeaders(headers: headers)
+                
         streamingController.authenticationFailedHandler = {
             let message = NSLocalizedString("Authentication failed", comment: "HTTP authentication failed")
             completion(nil, message)
@@ -104,8 +106,8 @@ class CameraUtils {
         streamingController.play(url: cameraURL)
     }
     
-    fileprivate func renderHLSImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, completion: @escaping (UIImage?, String?) -> ()) {
-        hlsThumbnailGenerator = HLSThumbnailUtil(url: cameraURL, imageOrientation: imageOrientation, username: username, password: password) { (image: UIImage?) in
+    fileprivate func renderHLSImage(cameraURL: URL, imageOrientation: UIImage.Orientation, username: String?, password: String?, headers: String?, completion: @escaping (UIImage?, String?) -> ()) {
+        hlsThumbnailGenerator = HLSThumbnailUtil(url: cameraURL, imageOrientation: imageOrientation, username: username, password: password, headers: headers) { (image: UIImage?) in
             if let image = image {
                 // Execute completion block when done
                 completion(image, nil)

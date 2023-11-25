@@ -242,13 +242,13 @@
 "LVlPuT" = "Zrušit probíhající tisk";
 
 /* (No Comment) */
+"M58YA9" = "Tiskárna";
+
+/* (No Comment) */
 "m6XJpy" = "Nezdařilo se zchladit tiskárnu (${statusCode})";
 
 /* (No Comment) */
 "m9Jgmg" = "Tisk pokračuje";
-
-/* (No Comment) */
-"M58YA9" = "Tiskárna";
 
 /* (No Comment) */
 "N0vzJv" = "Požádat Palette o vyčištění";
@@ -278,10 +278,10 @@
 "P6usJW" = "Vytvořit snímek";
 
 /* (No Comment) */
-"p9Vevg" = "Nezdařila se žádost o spuštění příkazu";
+"P89qJr" = "Zbývající čas je ${time}";
 
 /* (No Comment) */
-"P89qJr" = "Zbývající čas je ${time}";
+"p9Vevg" = "Nezdařila se žádost o spuštění příkazu";
 
 /* (No Comment) */
 "pfroH1" = "Vypnout zdroj napětí";

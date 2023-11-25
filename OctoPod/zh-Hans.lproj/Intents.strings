@@ -242,13 +242,13 @@
 "LVlPuT" = "取消正在运行的打印作业";
 
 /* (No Comment) */
+"M58YA9" = "打印机";
+
+/* (No Comment) */
 "m6XJpy" = "冷却打印机失败(${statusCode})";
 
 /* (No Comment) */
 "m9Jgmg" = "工作恢复";
-
-/* (No Comment) */
-"M58YA9" = "打印机";
 
 /* (No Comment) */
 "N0vzJv" = "要求Palette清除";
@@ -278,10 +278,10 @@
 "P6usJW" = "拍摄快照";
 
 /* (No Comment) */
-"p9Vevg" = "请求执行命令失败";
+"P89qJr" = "剩余时间为${time}";
 
 /* (No Comment) */
-"P89qJr" = "剩余时间为${time}";
+"p9Vevg" = "请求执行命令失败";
 
 /* (No Comment) */
 "pfroH1" = "关掉PSU";

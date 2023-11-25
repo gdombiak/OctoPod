@@ -77,7 +77,7 @@ class BackgroundRefresher: OctoPrintClientDelegate, AbstractNotificationsHandler
             } else {
                 // We need to create a new rest client to the default printer
                 restClient = OctoPrintRESTClient()
-                restClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuthentication())
+                restClient.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, headers: printer.headers, preemptive: printer.preemptiveAuthentication())
             }
             
             restClient.currentJobInfo { (result: NSObject?, error: Error?, response :HTTPURLResponse) in

@@ -14,6 +14,8 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var headersField: UITextField!
+    
     @IBOutlet weak var scanInstallationsButton: UIButton!
     @IBOutlet weak var scanAPIKeyButton: UIButton!
     
@@ -49,6 +51,7 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
                 hostnameField.isEnabled = false
                 usernameField.isEnabled = false
                 passwordField.isEnabled = false
+                headersField.isEnabled = false
             }
         } else {
             // Hide URL error message
@@ -93,10 +96,10 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
     
     @IBAction func saveChanges(_ sender: Any) {
         if let printer = updatePrinter {
-            updatePrinter(printer: printer, name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
+            updatePrinter(printer: printer, name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, headers: headersField.text, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
         } else {
             // Add new printer (that will become default if it's the first one)
-            createPrinter(connectionType: .apiKey, name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
+            createPrinter(connectionType: .apiKey, name: printerNameField.text!, hostname: hostnameField.text!, apiKey: apiKeyField.text!, username: usernameField.text, password: passwordField.text, headers: headersField.text, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
         }
         goBack()
     }
@@ -228,6 +231,7 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
         apiKeyField.text = scannedKey == nil ? printer.apiKey : scannedKey
         usernameField.text = printer.username
         passwordField.text = printer.password
+        headersField.text = printer.headers
         includeDashboardSwitch.isOn = printer.includeInDashboard
         showCameraSwitch.isOn = !printer.hideCamera
         updatePrinterURL()
@@ -301,6 +305,9 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
         passwordField.backgroundColor = backgroundColor
         passwordField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""), attributes: placeHolderAttributes)
         passwordField.textColor = textColor
+        headersField.backgroundColor = backgroundColor
+        headersField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Headers", comment: ""), attributes: placeHolderAttributes)
+        headersField.textColor = textColor
         printerURLLabel.textColor = textColor
     }    
 }

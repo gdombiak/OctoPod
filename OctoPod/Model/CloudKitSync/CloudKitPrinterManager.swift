@@ -395,7 +395,7 @@ class CloudKitPrinterManager {
                         position = Int16(printerManager.getPrinters().count)  // Not yet stored in iCloud so add new printers to bottom of list
                     }
                     let connectionType = PrinterConnectionType(rawValue: parsed.connectionType)!
-                    if printerManager.addPrinter(connectionType: connectionType, name: name, hostname: hostname, apiKey: apiKey, username: parsed.username, password: parsed.password, position: position, iCloudUpdate: false, modified: (parsed.modified == nil ? Date() : parsed.modified!)) {
+                    if printerManager.addPrinter(connectionType: connectionType, name: name, hostname: hostname, apiKey: apiKey, username: parsed.username, password: parsed.password, headers: parsed.headers, position: position, iCloudUpdate: false, modified: (parsed.modified == nil ? Date() : parsed.modified!)) {
                         if let printer = printerManager.getPrinterByName(name: name) {
                             // Update again to assign recordName and store encoded record
                             updateAndSave(printerID: printer.objectID, serverRecord: record)
@@ -454,6 +454,7 @@ class CloudKitPrinterManager {
                     var printerData = PrinterData(printerID: printer.objectID, name: printer.name, hostname: printer.hostname, apiKey: printer.apiKey, connectionType: printer.connectionType, position: printer.position)
                     printerData.username = printer.username
                     printerData.password = printer.password
+                    printerData.headers = printer.headers
                     printerData.userModified = printer.userModified
                     printerData.recordData = printer.recordData
                     toRemove.append(printerData)
@@ -961,6 +962,7 @@ class CloudKitPrinterManager {
         printer.connectionType = parsed.connectionType
         printer.username = parsed.username
         printer.password = parsed.password
+        printer.headers = parsed.headers
         // Updated from iCloud so reset this flag since there is no need to push this data to iCloud (until modified)
         printer.iCloudUpdate = false
         // Assign PK to associate with record
@@ -978,6 +980,7 @@ class CloudKitPrinterManager {
         record["apiKey"] = printerData.apiKey as NSString
         record["username"] = printerData.username as NSString?
         record["password"] = printerData.password as NSString?
+        record["headers"] = printerData.headers as NSString?
         if let date = printerData.userModified {
             record["modified"] = date as NSDate
         }
@@ -996,17 +999,18 @@ class CloudKitPrinterManager {
         }
     }
     
-    fileprivate func parseRecord(record: CKRecord) -> (name: String?, hostname: String?, apiKey: String?, username: String?, password: String?, modified: Date?, connectionType: Int16, position: Int16?) {
+    fileprivate func parseRecord(record: CKRecord) -> (name: String?, hostname: String?, apiKey: String?, username: String?, password: String?, headers: String?, modified: Date?, connectionType: Int16, position: Int16?) {
         let name = record["name"] as? String
         let hostname = record["hostname"] as? String
         let apiKey = record["apiKey"] as? String
         let username = record["username"] as? String
         let password = record["password"] as? String
+        let headers = record["headers"] as? String
         let modified = record["modified"] as? Date
         let connectionTypeOptional = record["connectionType"] as? NSNumber
         let connectionType: Int16! = (connectionTypeOptional != nil) ? connectionTypeOptional!.int16Value : PrinterConnectionType.apiKey.rawValue
         let position = record["position"] as? Int16
-        return (name, hostname, apiKey, username, password, modified, connectionType, position)
+        return (name, hostname, apiKey, username, password, headers, modified, connectionType, position)
     }
     
     fileprivate func updateRecord(source: CKRecord, target: CKRecord) {
@@ -1015,6 +1019,7 @@ class CloudKitPrinterManager {
         target["apiKey"] = source["apiKey"]
         target["username"] = source["username"]
         target["password"] = source["password"]
+        target["headers"] = source["headers"]
         target["position"] = source["position"]
     }
     
@@ -1132,6 +1137,7 @@ struct PrinterData {
     var position: Int16
     var username: String?
     var password: String?
+    var headers: String?
     var userModified: Date?
     var recordData: Data?
 }

@@ -242,13 +242,13 @@
 "LVlPuT" = "Cancelar impresión";
 
 /* (No Comment) */
+"M58YA9" = "Impresora";
+
+/* (No Comment) */
 "m6XJpy" = "Error al enfriar la impresora (${statusCode})";
 
 /* (No Comment) */
 "m9Jgmg" = "Trabajo reanudado";
-
-/* (No Comment) */
-"M58YA9" = "Impresora";
 
 /* (No Comment) */
 "N0vzJv" = "Pedirle a Palette que limpie";
@@ -278,10 +278,10 @@
 "P6usJW" = "Sacar Foto";
 
 /* (No Comment) */
-"p9Vevg" = "Error al pedir ejecutar comando";
+"P89qJr" = "Tiempo restante es ${time}";
 
 /* (No Comment) */
-"P89qJr" = "Tiempo restante es ${time}";
+"p9Vevg" = "Error al pedir ejecutar comando";
 
 /* (No Comment) */
 "pfroH1" = "Apagar PSU";

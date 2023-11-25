@@ -34,12 +34,12 @@ struct Provider: IntentTimelineProvider {
         configuration.printer = WidgetPrinter(identifier: "MK3", display: "MK3")
         configuration.printer?.name = "MK3"
 
-        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, headers: nil, preemptive: false)
         jobService.printerStatus = "Printing"
         jobService.progress = 28.0
         jobService.printEstimatedCompletion = "9:30 PM"
         
-        let cameraService = CameraService(cameraURL: "", cameraOrientation: 1, username: nil, password: nil, preemptiveAuth: false)
+        let cameraService = CameraService(cameraURL: "", cameraOrientation: 1, username: nil, password: nil, headers: nil, preemptiveAuth: false)
         cameraService.image = UIImage(named: "Image")
 
         return SimpleEntry(date: Date(), configuration: configuration, printJobDataService: jobService, cameraService: cameraService)
@@ -55,7 +55,7 @@ struct Provider: IntentTimelineProvider {
             // Lock Screen widget shows print job information of DEFAULT printer
             // Do not use configuration printer since it points to what was the default when widget was added
             if let widgetPrinter = printerManager.getDefaultPrinter() {
-                let service = PrintJobDataService(name: widgetPrinter.name, hostname: widgetPrinter.hostname, apiKey: widgetPrinter.apiKey, username: widgetPrinter.username, password: widgetPrinter.password, preemptive: widgetPrinter.preemptiveAuthentication())
+                let service = PrintJobDataService(name: widgetPrinter.name, hostname: widgetPrinter.hostname, apiKey: widgetPrinter.apiKey, username: widgetPrinter.username, password: widgetPrinter.password, headers: widgetPrinter.headers, preemptive: widgetPrinter.preemptiveAuthentication())
 
                 let entry = SimpleEntry(date: Date(), configuration: configuration, printJobDataService: service, cameraService: nil)
                 // Fetch update data and once data execute completion block
@@ -74,10 +74,10 @@ struct Provider: IntentTimelineProvider {
                 if let preemptiveAuth = widgetPrinter.preemptiveAuth {
                     preemptive = preemptiveAuth == 1
                 }
-                let service = PrintJobDataService(name: printerName, hostname: hostname, apiKey: apiKey, username: widgetPrinter.username, password: widgetPrinter.password, preemptive: preemptive)
+                let service = PrintJobDataService(name: printerName, hostname: hostname, apiKey: apiKey, username: widgetPrinter.username, password: widgetPrinter.password, headers: widgetPrinter.headers, preemptive: preemptive)
                 var cameraService: CameraService?
                 if let widgetCamera = configuration.camera, let cameraURL = widgetCamera.cameraURL, let cameraOrientation = widgetCamera.cameraOrientation {
-                    cameraService = CameraService(cameraURL: cameraURL, cameraOrientation: Int(truncating: cameraOrientation), username: widgetPrinter.username, password: widgetPrinter.password, preemptiveAuth: preemptive)
+                    cameraService = CameraService(cameraURL: cameraURL, cameraOrientation: Int(truncating: cameraOrientation), username: widgetPrinter.username, password: widgetPrinter.password, headers: widgetPrinter.headers, preemptiveAuth: preemptive)
                 }
                 let entry = SimpleEntry(date: Date(), configuration: configuration, printJobDataService: service, cameraService: cameraService)
                 // Fetch update data and once data execute completion block
@@ -273,7 +273,7 @@ struct OctoPodWidget14_Previews: PreviewProvider {
     }()
 
     static var jobService: PrintJobDataService = {
-        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, headers: nil, preemptive: false)
         jobService.printerStatus = "Printing"
         jobService.progress = 28.0
         jobService.printEstimatedCompletion = "9:30 PM"
@@ -281,7 +281,7 @@ struct OctoPodWidget14_Previews: PreviewProvider {
     }()
     
     static var cameraService: CameraService = {
-        let cameraService = CameraService(cameraURL: "", cameraOrientation: 1, username: nil, password: nil, preemptiveAuth: false)
+        let cameraService = CameraService(cameraURL: "", cameraOrientation: 1, username: nil, password: nil, headers: nil, preemptiveAuth: false)
         cameraService.image = UIImage(named: "Image")
         return cameraService
     }()

@@ -59,7 +59,7 @@ struct JobDetailsView_Previews: PreviewProvider {
     }()
 
     static var jobService: PrintJobDataService = {
-        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, preemptive: false)
+        let jobService = PrintJobDataService(name: "MK3", hostname: "", apiKey: "", username: nil, password: nil, headers: nil, preemptive: false)
         jobService.printerStatus = "Printing"
         jobService.progress = 28.0
         jobService.printEstimatedCompletion = "9:30 PM"

@@ -13,6 +13,8 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var headersField: UITextField!
+    
     @IBOutlet weak var scanInstallationsButton: UIButton!
     
     @IBOutlet weak var includeDashboardLabel: UILabel!
@@ -114,10 +116,11 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
             self.hostnameField.isEnabled = false
             self.usernameField.isEnabled = false
             self.passwordField.isEnabled = false
+            self.headersField.isEnabled = false
             self.scanInstallationsButton.isEnabled = false
         }
         let restClient = OctoPrintRESTClient()
-        restClient.connectToServer(serverURL: hostnameField.text!, apiKey: "", username: usernameField.text, password: passwordField.text, preemptive: false)
+        restClient.connectToServer(serverURL: hostnameField.text!, apiKey: "", username: usernameField.text, password: passwordField.text, headers: headersField.text, preemptive: false)
         restClient.appkeyProbe { (supported: Bool, error: Error?, response: HTTPURLResponse) in
             if supported {
                 // Start request for obtaining application key for this OctoPod app
@@ -157,7 +160,7 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
     
     @IBAction func saveChanges(_ sender: Any) {
         // Add new printer (that will become default if it's the first one)
-        createPrinter(connectionType: .applicationKey, name: printerNameField.text!, hostname: hostnameField.text!, apiKey: appKey!, username: usernameField.text, password: passwordField.text, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
+        createPrinter(connectionType: .applicationKey, name: printerNameField.text!, hostname: hostnameField.text!, apiKey: appKey!, username: usernameField.text, password: passwordField.text, headers: headersField.text, position: newPrinterPosition, includeInDashboard: includeDashboardSwitch.isOn, showCamera: showCameraSwitch.isOn)
         goBack()
     }
     
@@ -262,6 +265,9 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
         passwordField.backgroundColor = theme.backgroundColor()
         passwordField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Password", comment: ""), attributes: placeHolderAttributes)
         passwordField.textColor = theme.textColor()
+        headersField.backgroundColor = theme.backgroundColor()
+        headersField.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Headers", comment: ""), attributes: placeHolderAttributes)
+        headersField.textColor = theme.textColor()
     }
     
     fileprivate func displayRequestProgress(message: String, action: (() -> Void)?) {
@@ -284,6 +290,7 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
             self.hostnameField.isEnabled = true
             self.usernameField.isEnabled = true
             self.passwordField.isEnabled = true
+            self.headersField.isEnabled = true
             self.scanInstallationsButton.isEnabled = true
        }
     }

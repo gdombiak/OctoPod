@@ -242,13 +242,13 @@
 "LVlPuT" = "Annuler";
 
 /* (No Comment) */
+"M58YA9" = "Imprimante";
+
+/* (No Comment) */
 "m6XJpy" = "Échec du refroidissement (${statusCode})";
 
 /* (No Comment) */
 "m9Jgmg" = "Impression reprise";
-
-/* (No Comment) */
-"M58YA9" = "Imprimante";
 
 /* (No Comment) */
 "N0vzJv" = "Demander à Palette d’évacuer";
@@ -278,10 +278,10 @@
 "P6usJW" = "Prendre une photo";
 
 /* (No Comment) */
-"p9Vevg" = "La demande d’exécution de la commande a échouée";
+"P89qJr" = "Temps restant : ${time}";
 
 /* (No Comment) */
-"P89qJr" = "Temps restant : ${time}";
+"p9Vevg" = "La demande d’exécution de la commande a échouée";
 
 /* (No Comment) */
 "pfroH1" = "Désactiver l'alimentation";

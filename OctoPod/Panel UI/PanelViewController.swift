@@ -1,4 +1,5 @@
 import UIKit
+import Starscream
 
 class PanelViewController: UIViewController, UIPopoverPresentationControllerDelegate, OctoPrintClientDelegate, OctoPrintSettingsDelegate, AppConfigurationDelegate, CameraViewDelegate, DefaultPrinterManagerDelegate, UITabBarControllerDelegate, SubpanelsVCDelegate {
     
@@ -930,6 +931,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             } else if nsError.domain == "NSPOSIXErrorDomain" && nsError.code == 61 {
                 return NSLocalizedString("Could not connect to the server", comment: "Connection to server failed")
             }
+        }
+        if let wsError = error as? WSError {
+            return wsError.message + " (\(wsError.code))"
         }
         return error.localizedDescription
     }

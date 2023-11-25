@@ -34,7 +34,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
         var newItems: [JobInfo] = []
         for printer in printers {
-            let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, preemptive: printer.preemptiveAuthentication())
+            let restClient = getRESTClient(hostname: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, headers: printer.headers, preemptive: printer.preemptiveAuthentication())
             restClient.currentJobInfo { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                 if let result = result as? Dictionary<String, Any> {
                     var printerState: String
@@ -102,9 +102,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
     // MARK: - Private functions
     
-    fileprivate func getRESTClient(hostname: String, apiKey: String, username: String?, password: String?, preemptive: Bool) -> OctoPrintRESTClient {
+    fileprivate func getRESTClient(hostname: String, apiKey: String, username: String?, password: String?, headers: String?, preemptive: Bool) -> OctoPrintRESTClient {
         let restClient = OctoPrintRESTClient()
-        restClient.connectToServer(serverURL: hostname, apiKey: apiKey, username: username, password: password, preemptive: preemptive)
+        restClient.connectToServer(serverURL: hostname, apiKey: apiKey, username: username, password: password, headers: headers, preemptive: preemptive)
         restClient.timeoutIntervalForRequest = 3
         restClient.timeoutIntervalForResource = 5
         return restClient

@@ -382,6 +382,9 @@
 /* File Type is a Folder */
 "Folder" = "Složka";
 
+/* (No Comment) */
+"Headers" = "Hlavičky (např. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
+
 /* No comment provided by engineer. */
 "Hostname (e.g. http://octopi.local)" = "Název hostitele (např. http://octopi.local)";
 
