@@ -382,6 +382,9 @@
 /* File Type is a Folder */
 "Folder" = "Verzeichnis";
 
+/* (No Comment) */
+"Headers" = "Kopfzeilen (z. B. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
+
 /* No comment provided by engineer. */
 "Hostname (e.g. http://octopi.local)" = "Hostname (z.B. http://octopi.local)";
 

@@ -242,13 +242,13 @@
 "LVlPuT" = "Avbryt utskriftsjobb";
 
 /* (No Comment) */
+"M58YA9" = "Skriver";
+
+/* (No Comment) */
 "m6XJpy" = "Kunne ikke kjøle ned skriveren (${statusCode})";
 
 /* (No Comment) */
 "m9Jgmg" = "Utskrift fortsatt";
-
-/* (No Comment) */
-"M58YA9" = "Skriver";
 
 /* (No Comment) */
 "N0vzJv" = "Be Palette tømme";
@@ -278,10 +278,10 @@
 "P6usJW" = "Ta et øyeblikksbilde";
 
 /* (No Comment) */
-"p9Vevg" = "Kunne ikke be om å utføre kommandoen";
+"P89qJr" = "Tid igjen ${time}";
 
 /* (No Comment) */
-"P89qJr" = "Tid igjen ${time}";
+"p9Vevg" = "Kunne ikke be om å utføre kommandoen";
 
 /* (No Comment) */
 "pfroH1" = "Slå av PSU";

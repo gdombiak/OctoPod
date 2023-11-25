@@ -176,3 +176,5 @@
 "Confirm turn off" = "Confirm turn off %@";
 
 "Extruder" = "Extruder";
+
+"Headers" = "Headers (e.g. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";

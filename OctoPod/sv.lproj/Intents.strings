@@ -242,13 +242,13 @@
 "LVlPuT" = "Avbryt pågående utskriftsjobb";
 
 /* (No Comment) */
+"M58YA9" = "Skrivare";
+
+/* (No Comment) */
 "m6XJpy" = "Kunde inte kyla ner skrivare (${statusCode})";
 
 /* (No Comment) */
 "m9Jgmg" = "Jobb återupptaget";
-
-/* (No Comment) */
-"M58YA9" = "Skrivare";
 
 /* (No Comment) */
 "N0vzJv" = "Be Palette att rensa";
@@ -278,10 +278,10 @@
 "P6usJW" = "Ta ögonblicksbild";
 
 /* (No Comment) */
-"p9Vevg" = "Kunde inte begära körning av kommando";
+"P89qJr" = "Tid kvar är ${time}";
 
 /* (No Comment) */
-"P89qJr" = "Tid kvar är ${time}";
+"p9Vevg" = "Kunde inte begära körning av kommando";
 
 /* (No Comment) */
 "pfroH1" = "Stäng av PSU";

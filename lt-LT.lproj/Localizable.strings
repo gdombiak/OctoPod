@@ -382,6 +382,9 @@
 /* File Type is a Folder */
 "Folder" = "Aplankas";
 
+/* (No Comment) */
+"Headers" = "Antraštės (pvz., CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
+
 /* No comment provided by engineer. */
 "Hostname (e.g. http://octopi.local)" = "Hostname (pvz. http://octopi.local)";
 

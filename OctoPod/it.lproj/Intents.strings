@@ -242,13 +242,13 @@
 "LVlPuT" = "Annulla la stampa in corso";
 
 /* (No Comment) */
+"M58YA9" = "Stampante";
+
+/* (No Comment) */
 "m6XJpy" = "Errore nel raffreddamento della stampante (${statusCode})";
 
 /* (No Comment) */
 "m9Jgmg" = "Stampa ripresa";
-
-/* (No Comment) */
-"M58YA9" = "Stampante";
 
 /* (No Comment) */
 "N0vzJv" = "Chiedi a Palette di spurgare";
@@ -278,10 +278,10 @@
 "P6usJW" = "Scatta istantanea";
 
 /* (No Comment) */
-"p9Vevg" = "Impossibile richiedere di eseguire il comando";
+"P89qJr" = "Il tempo rimanente è ${time}";
 
 /* (No Comment) */
-"P89qJr" = "Il tempo rimanente è ${time}";
+"p9Vevg" = "Impossibile richiedere di eseguire il comando";
 
 /* (No Comment) */
 "pfroH1" = "Spegni PSU";

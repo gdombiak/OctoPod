@@ -382,6 +382,9 @@
 /* File Type is a Folder */
 "Folder" = "Mapp";
 
+/* (No Comment) */
+"Headers" = "Huvuden (t.ex. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
+
 /* No comment provided by engineer. */
 "Hostname (e.g. http://octopi.local)" = "Värdnamn (t.ex. http://octopi.local)";
 

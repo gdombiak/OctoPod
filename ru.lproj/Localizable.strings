@@ -382,6 +382,9 @@
 /* File Type is a Folder */
 "Folder" = "Папка";
 
+/* (No Comment) */
+"Headers" = "Заголовки (например, CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
+
 /* No comment provided by engineer. */
 "Hostname (e.g. http://octopi.local)" = "Имя хоста (например http://octopi.local)";
 

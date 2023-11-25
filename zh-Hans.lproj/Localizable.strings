@@ -382,6 +382,9 @@
 /* File Type is a Folder */
 "Folder" = "文件夹";
 
+/* (No Comment) */
+"Headers" = "HTTP报头 (例如 CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
+
 /* No comment provided by engineer. */
 "Hostname (e.g. http://octopi.local)" = "主机名（例如：http://octopi.local）";
 

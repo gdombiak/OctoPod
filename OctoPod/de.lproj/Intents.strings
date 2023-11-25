@@ -242,13 +242,13 @@
 "LVlPuT" = "Laufenden Druckauftrag abbrechen";
 
 /* (No Comment) */
+"M58YA9" = "Drucker";
+
+/* (No Comment) */
 "m6XJpy" = "Drucker abkühlen fehlgeschlagen (${statusCode})";
 
 /* (No Comment) */
 "m9Jgmg" = "Auftrag fortgesetzt";
-
-/* (No Comment) */
-"M58YA9" = "Drucker";
 
 /* (No Comment) */
 "N0vzJv" = "Bitte Palette zu leeren";
@@ -278,10 +278,10 @@
 "P6usJW" = "Schnappschuss machen";
 
 /* (No Comment) */
-"p9Vevg" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
+"P89qJr" = "Verbleibende Zeit ist ${time}";
 
 /* (No Comment) */
-"P89qJr" = "Verbleibende Zeit ist ${time}";
+"p9Vevg" = "Anforderung der Ausführung des Systembefehls fehlgeschlagen";
 
 /* (No Comment) */
 "pfroH1" = "Netzteil ausschalten";

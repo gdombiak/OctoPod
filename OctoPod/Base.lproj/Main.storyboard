@@ -3833,7 +3833,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Headers" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ajg-ql-ceK">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Headers (e.g. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ajg-ql-ceK">
                                                     <rect key="frame" x="16" y="6.5" width="343" height="34.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -6130,7 +6130,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Headers" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4lj-t2-YJY">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Headers (e.g. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4lj-t2-YJY">
                                                     <rect key="frame" x="16" y="6" width="343" height="30.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="username"/>
@@ -9149,7 +9149,7 @@
         <segue reference="zn3-Wa-ymQ"/>
         <segue reference="YxJ-oN-rHm"/>
         <segue reference="56A-kx-eGb"/>
-        <segue reference="gsF-Vf-wsl"/>
+        <segue reference="CCi-yq-5nQ"/>
         <segue reference="pe1-rk-9Hw"/>
         <segue reference="BVW-8A-vSd"/>
         <segue reference="DPY-Lb-zDG"/>

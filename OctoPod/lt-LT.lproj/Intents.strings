@@ -242,13 +242,13 @@
 "LVlPuT" = "Aštaukti dabartinę užduotį";
 
 /* (No Comment) */
+"M58YA9" = "Spausdintuvas";
+
+/* (No Comment) */
 "m6XJpy" = "Nepavyko atvėsinti spausdintuvo (${statusCode})";
 
 /* (No Comment) */
 "m9Jgmg" = "Darbas tęsiamas";
-
-/* (No Comment) */
-"M58YA9" = "Spausdintuvas";
 
 /* (No Comment) */
 "N0vzJv" = "Ask Palette to clear";
@@ -278,10 +278,10 @@
 "P6usJW" = "Fotografuoti";
 
 /* (No Comment) */
-"p9Vevg" = "Nepavyko įvykdyti sisteminės komandos";
+"P89qJr" = "Likęs laikas yra ${time}";
 
 /* (No Comment) */
-"P89qJr" = "Likęs laikas yra ${time}";
+"p9Vevg" = "Nepavyko įvykdyti sisteminės komandos";
 
 /* (No Comment) */
 "pfroH1" = "Išjungti maitblokį";
