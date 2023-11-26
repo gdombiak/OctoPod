@@ -811,6 +811,18 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.getThumbnailImage(path: path, callback: callback)
     }
     
+    // MARK: - SpoolManager Plugin
+    
+    /// Returns current spool information
+    func loadSpools(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.loadSpools(callback: callback)
+    }
+    
+    /// Changes spool selected for specified extruder
+    func changeSpoolSelection(toolNumber: Int, spoolId: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.changeSpoolSelection(toolNumber: toolNumber, spoolId: spoolId, callback: callback)
+    }
+    
     // MARK: - FilamentManager Plugin
     
     /// Returns current filament selection for each extruder
@@ -1002,6 +1014,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         updatePrinterFromPalette2CanvasPlugin(printerID: printerID, plugins: plugins)
         updatePrinterFromEnclosurePlugin(printerID: printerID, plugins: plugins)
         updatePrinterFromFilamentManagerPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromSpoolManagerPlugin(printerID: printerID, plugins: plugins)
         updatePrinterFromBLTouchPlugin(printerID: printerID, plugins: plugins)
     }
     
@@ -1484,6 +1497,29 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                 // Notify listeners of change
                 for delegate in self.octoPrintSettingsDelegates {
                     delegate.filamentManagerAvailabilityChanged(installed: installed)
+                }
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromSpoolManagerPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
+        var installed = false
+        if let _ = plugins[Plugins.SPOOL_MANAGER] as? NSDictionary {
+            // SpoolManager plugin is installed
+            installed = true
+        }
+        let newObjectContext = printerManager.newPrivateContext()
+        newObjectContext.performAndWait {
+            let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+            if printerToUpdate.spoolManagerInstalled != installed {
+                // Update flag that tracks if SpoolManager plugin is installed
+                printerToUpdate.spoolManagerInstalled = installed
+                // Persist updated printer
+                self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                
+                // Notify listeners of change
+                for delegate in self.octoPrintSettingsDelegates {
+                    delegate.spoolManagerAvailabilityChanged(installed: installed)
                 }
             }
         }
