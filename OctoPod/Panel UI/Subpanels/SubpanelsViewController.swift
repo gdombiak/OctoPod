@@ -314,7 +314,7 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             if let _ = orderedViewControllers.first(where: vcIdentifier) {
                 // Do nothing since we already have it installed
             } else {
-                DispatchQueue.main.async {
+                let block = {
                     let mainboard = UIStoryboard(name: "Main", bundle: nil)
                     self.orderedViewControllers.append(createVC(mainboard))
                     // Sort VCs and Render them
@@ -322,13 +322,15 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                     // Update number of pages in page control
                     self.pageControl.numberOfPages = self.orderedViewControllers.count
                 }
+                // Run sync or otherwise code may run a bit delayed and duplicated VCs will appear
+                Thread.isMainThread ? block() : DispatchQueue.main.sync { block() }
             }
         } else {
             // Make sure that we are not rendering PSUControlViewController
             if let found = orderedViewControllers.first(where: vcIdentifier) {
                 if let index = orderedViewControllers.firstIndex(of: found) {
                     orderedViewControllers.remove(at: index)
-                    DispatchQueue.main.async {
+                    let block = {
                         // Force refresh of cached VCs
                         self.renderFirstVC()
                         // Check if we need to go to first page (only if deleted VC was active VC)
@@ -338,6 +340,8 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                         // Update number of pages in page control
                         self.pageControl.numberOfPages = self.orderedViewControllers.count
                     }
+                    // Run sync or otherwise code may run a bit delayed and duplicated VCs will appear
+                    Thread.isMainThread ? block() : DispatchQueue.main.sync { block() }
                 }
             }
         }
