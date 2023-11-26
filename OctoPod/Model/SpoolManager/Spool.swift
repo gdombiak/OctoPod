@@ -6,7 +6,7 @@ class Spool {
     var spoolName: String?
     var spoolWeight: Double?
     var spoolUsed: Double?
-    var profileMaterial: String? = ""
+    var profileMaterial: String? = "" // Add default value since server does not send a value if not set
     var profileVendor: String?
     
     // MARK: - Parse operations
