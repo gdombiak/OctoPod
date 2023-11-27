@@ -546,12 +546,12 @@
 
 /* Begin PBXFileReference section */
 		083D63AC2B0AF77B00730C15 /* URLUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLUtils.swift; sourceTree = "<group>"; };
-		084D8F8E2B0ABC5000071B95 /* OctoPod v14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v14.xcdatamodel"; sourceTree = "<group>"; };
 		084AC3292B0D5BB000D99780 /* SpoolChangeSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpoolChangeSelectionViewController.swift; path = SpoolManager/SpoolChangeSelectionViewController.swift; sourceTree = "<group>"; };
 		084AC32A2B0D5BB000D99780 /* SpoolManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpoolManagerViewController.swift; path = SpoolManager/SpoolManagerViewController.swift; sourceTree = "<group>"; };
 		084AC32E2B0D5BC600D99780 /* Spool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Spool.swift; path = SpoolManager/Spool.swift; sourceTree = "<group>"; };
 		084AC32F2B0D5BC600D99780 /* SpoolSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpoolSelection.swift; path = SpoolManager/SpoolSelection.swift; sourceTree = "<group>"; };
 		084AC3322B0D5C0E00D99780 /* SpoolSelectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoolSelectionViewCell.swift; sourceTree = "<group>"; };
+		084D8F8E2B0ABC5000071B95 /* OctoPod v14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v14.xcdatamodel"; sourceTree = "<group>"; };
 		0B1C6FD1271E14D6007F3AC9 /* OctorelayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctorelayViewController.swift; sourceTree = "<group>"; };
 		0B1C6FD5271E1B34007F3AC9 /* OctorelayViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctorelayViewCell.swift; sourceTree = "<group>"; };
 		0B1C6FD7271F728B007F3AC9 /* Octorelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Octorelay.swift; sourceTree = "<group>"; };
@@ -1867,13 +1867,13 @@
 			children = (
 				3D9C77B7266D3597003E6FD9 /* PrinterConnectionTypeTableViewController.swift */,
 				3D82873A20E407370035AE0B /* PrintersTableViewController.swift */,
+				3D7E5025267EA517007DBB5B /* BasePrinterDetailsViewController.swift */,
 				3DB60528267D54A800BBC047 /* AppKeyViewController.swift */,
 				3D9C77CB266D71BD003E6FD9 /* AddOctoEverywherePrinterViewController.swift */,
+				3D62E9EB2751B3DE0042A86F /* AddTSDPrinterViewController.swift */,
 				3D968DE020E34612006774A5 /* PrinterDetailsViewController.swift */,
 				3DF6D59A23006EE800E0AFEE /* ScanInstallationsViewController.swift */,
 				3D968DDC20E337C7006774A5 /* ScannerViewController.swift */,
-				3D7E5025267EA517007DBB5B /* BasePrinterDetailsViewController.swift */,
-				3D62E9EB2751B3DE0042A86F /* AddTSDPrinterViewController.swift */,
 			);
 			path = Printers;
 			sourceTree = "<group>";
