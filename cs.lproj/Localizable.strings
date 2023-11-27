@@ -478,6 +478,9 @@
 /* (No Comment) */
 "No printer" = "Žádná tiskárna";
 
+/* No comment provided by engineer. */
+"No spool selected" = "Žádný válec vybrán";
+
 /* No temperature history */
 "No temperature history" = "Není dostupný záznam teploty";
 

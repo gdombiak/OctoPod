@@ -478,6 +478,9 @@
 /* (No Comment) */
 "No printer" = "Geen Printer gevonden";
 
+/* No comment provided by engineer. */
+"No spool selected" = "Geen spoel geselecteerd";
+
 /* No temperature history */
 "No temperature history" = "Geen temperatuurgeschiedenis bekend";
 

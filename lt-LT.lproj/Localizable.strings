@@ -478,6 +478,9 @@
 /* (No Comment) */
 "No printer" = "Nėra spausdintuvo";
 
+/* No comment provided by engineer. */
+"No spool selected" = "Nėra pasirinkto ritinio";
+
 /* No temperature history */
 "No temperature history" = "Nėra temperatūros istorijos";
 

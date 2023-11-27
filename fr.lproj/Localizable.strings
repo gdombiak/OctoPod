@@ -478,6 +478,9 @@
 /* (No Comment) */
 "No printer" = "Pas d’imprimante";
 
+/* No comment provided by engineer. */
+"No spool selected" = "Aucune bobine sélectionnée";
+
 /* No temperature history */
 "No temperature history" = "Aucun historique de température disponible";
 

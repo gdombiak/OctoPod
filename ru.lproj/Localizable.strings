@@ -478,6 +478,9 @@
 /* (No Comment) */
 "No printer" = "Принтер не найден";
 
+/* No comment provided by engineer. */
+"No spool selected" = "Нет выбранной катушки";
+
 /* No temperature history */
 "No temperature history" = "История температуры недоступна";
 
