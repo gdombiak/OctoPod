@@ -478,6 +478,9 @@
 /* (No Comment) */
 "No printer" = "没有打印机";
 
+/* No comment provided by engineer. */
+"No spool selected" = "没有选择轴";
+
 /* No temperature history */
 "No temperature history" = "没有温度历史记录";
 

@@ -191,6 +191,19 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         }
     }
     
+    func put(_ service: String, json: NSObject, expected: Int, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        if let url: URL = buildURL(service) {
+            requestWithBody(url, verb: "PUT", expected: expected, json: json, callback: callback)
+        } else {
+            NSLog("PUT not possible. Invalid URL found. Server: \(serverURL!). Service: \(service)")
+            if let serverURL = URL(string: serverURL!) {
+                if let response = HTTPURLResponse(url: serverURL, statusCode: 404, httpVersion: nil, headerFields: nil) {
+                    callback(nil, nil, response)
+                }
+            }
+        }
+    }
+    
     func upload(_ service: String, parameters: [String: String]?, filename: String, fileContent: Data, expected: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
         if let url: URL = buildURL(service) {
             // Get session with the provided configuration

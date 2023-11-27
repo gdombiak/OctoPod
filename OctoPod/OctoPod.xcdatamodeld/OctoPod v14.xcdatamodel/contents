@@ -69,6 +69,7 @@
         <attribute name="recordName" optional="YES" attributeType="String"/>
         <attribute name="sdSupport" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="sharedNozzle" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="spoolManagerInstalled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="streamUrl" optional="YES" attributeType="String"/>
         <attribute name="tasmotaplugs" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[[String]]"/>
         <attribute name="toolsNumber" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>

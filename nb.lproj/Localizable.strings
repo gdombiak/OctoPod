@@ -478,6 +478,9 @@
 /* (No Comment) */
 "No printer" = "Ingen skriver";
 
+/* No comment provided by engineer. */
+"No spool selected" = "Ingen spole valgt";
+
 /* No temperature history */
 "No temperature history" = "Ingen temperaturhistorikk tilgjengelig";
 

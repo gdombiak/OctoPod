@@ -15,6 +15,11 @@
 		083D63B22B0AF7F300730C15 /* URLUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D63AC2B0AF77B00730C15 /* URLUtils.swift */; };
 		083D63B32B0AF80D00730C15 /* URLUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D63AC2B0AF77B00730C15 /* URLUtils.swift */; };
 		083D63B42B0AF81100730C15 /* URLUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D63AC2B0AF77B00730C15 /* URLUtils.swift */; };
+		084AC32B2B0D5BB000D99780 /* SpoolChangeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084AC3292B0D5BB000D99780 /* SpoolChangeSelectionViewController.swift */; };
+		084AC32C2B0D5BB000D99780 /* SpoolManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084AC32A2B0D5BB000D99780 /* SpoolManagerViewController.swift */; };
+		084AC3302B0D5BC600D99780 /* Spool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084AC32E2B0D5BC600D99780 /* Spool.swift */; };
+		084AC3312B0D5BC600D99780 /* SpoolSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084AC32F2B0D5BC600D99780 /* SpoolSelection.swift */; };
+		084AC3332B0D5C0E00D99780 /* SpoolSelectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084AC3322B0D5C0E00D99780 /* SpoolSelectionViewCell.swift */; };
 		0B1C6FD2271E14D6007F3AC9 /* OctorelayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C6FD1271E14D6007F3AC9 /* OctorelayViewController.swift */; };
 		0B1C6FD6271E1B34007F3AC9 /* OctorelayViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C6FD5271E1B34007F3AC9 /* OctorelayViewCell.swift */; };
 		0B1C6FD8271F728B007F3AC9 /* Octorelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1C6FD7271F728B007F3AC9 /* Octorelay.swift */; };
@@ -542,6 +547,11 @@
 /* Begin PBXFileReference section */
 		083D63AC2B0AF77B00730C15 /* URLUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLUtils.swift; sourceTree = "<group>"; };
 		084D8F8E2B0ABC5000071B95 /* OctoPod v14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v14.xcdatamodel"; sourceTree = "<group>"; };
+		084AC3292B0D5BB000D99780 /* SpoolChangeSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpoolChangeSelectionViewController.swift; path = SpoolManager/SpoolChangeSelectionViewController.swift; sourceTree = "<group>"; };
+		084AC32A2B0D5BB000D99780 /* SpoolManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpoolManagerViewController.swift; path = SpoolManager/SpoolManagerViewController.swift; sourceTree = "<group>"; };
+		084AC32E2B0D5BC600D99780 /* Spool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Spool.swift; path = SpoolManager/Spool.swift; sourceTree = "<group>"; };
+		084AC32F2B0D5BC600D99780 /* SpoolSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpoolSelection.swift; path = SpoolManager/SpoolSelection.swift; sourceTree = "<group>"; };
+		084AC3322B0D5C0E00D99780 /* SpoolSelectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoolSelectionViewCell.swift; sourceTree = "<group>"; };
 		0B1C6FD1271E14D6007F3AC9 /* OctorelayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctorelayViewController.swift; sourceTree = "<group>"; };
 		0B1C6FD5271E1B34007F3AC9 /* OctorelayViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctorelayViewCell.swift; sourceTree = "<group>"; };
 		0B1C6FD7271F728B007F3AC9 /* Octorelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Octorelay.swift; sourceTree = "<group>"; };
@@ -1165,6 +1175,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		084AC3282B0D5B9C00D99780 /* SpoolManager */ = {
+			isa = PBXGroup;
+			children = (
+				084AC3292B0D5BB000D99780 /* SpoolChangeSelectionViewController.swift */,
+				084AC32A2B0D5BB000D99780 /* SpoolManagerViewController.swift */,
+			);
+			name = SpoolManager;
+			sourceTree = "<group>";
+		};
+		084AC32D2B0D5BB700D99780 /* SpoolManager */ = {
+			isa = PBXGroup;
+			children = (
+				084AC32E2B0D5BC600D99780 /* Spool.swift */,
+				084AC32F2B0D5BC600D99780 /* SpoolSelection.swift */,
+			);
+			name = SpoolManager;
+			sourceTree = "<group>";
+		};
 		2AF93107507B57283430D6F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1412,6 +1440,7 @@
 		3D47BA3C21278923002420A0 /* UI Components */ = {
 			isa = PBXGroup;
 			children = (
+				084AC3322B0D5C0E00D99780 /* SpoolSelectionViewCell.swift */,
 				3D47BA3D21278956002420A0 /* IPPlugTableViewCell.swift */,
 				3D9DC75A231D867B00AE4DF7 /* CustomControlViewCell.swift */,
 				3D8D51A621333D170006BBB1 /* CustomControlInputViewCell.swift */,
@@ -1549,6 +1578,7 @@
 		3D82873520E3EB730035AE0B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				084AC32D2B0D5BB700D99780 /* SpoolManager */,
 				3DDC80A626859EAE00E9EEC5 /* DefaultPrinter */,
 				3D9AAD4F22B324AB0051BB1B /* Notifications */,
 				3D1A935521326ACC0050ED9A /* Commands */,
@@ -1788,6 +1818,7 @@
 		3DF0157721227C42002B4C14 /* Subpanels */ = {
 			isa = PBXGroup;
 			children = (
+				084AC3282B0D5B9C00D99780 /* SpoolManager */,
 				3D47BA3C21278923002420A0 /* UI Components */,
 				3DF01573212277DF002B4C14 /* SubpanelsViewController.swift */,
 				3D89F88023E6324900E99110 /* SubpanelsVCDelegate.swift */,
@@ -2438,6 +2469,7 @@
 				3D89F88123E6324900E99110 /* SubpanelsVCDelegate.swift in Sources */,
 				3DB932D12447FADB00A154FF /* EnclosureGPIOViewCell.swift in Sources */,
 				3D9D9765214DCC440032443A /* CloudKitPrinterDelegate.swift in Sources */,
+				084AC32C2B0D5BB000D99780 /* SpoolManagerViewController.swift in Sources */,
 				3DF5CD01268009B1002295D2 /* PrinterConnectionType.swift in Sources */,
 				3D5D614623D5776200D988A2 /* AppleWatchSettingsViewController.swift in Sources */,
 				3D450EC821AB56F40049FBC0 /* IntentsController.swift in Sources */,
@@ -2501,6 +2533,7 @@
 				3D5162ED279E090400C3AE6B /* CameraTSDEmbeddedViewController.swift in Sources */,
 				3DD9E95921084BFD00726DFD /* ThemedUITableViewController.swift in Sources */,
 				3D4A2CBC270A12A200DB23B9 /* PrinterObserverDelegate.swift in Sources */,
+				084AC3302B0D5BC600D99780 /* Spool.swift in Sources */,
 				3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */,
 				3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */,
 				583827DE22E36B9100784706 /* Palette2ViewController.swift in Sources */,
@@ -2516,7 +2549,9 @@
 				3D45280A20E15A370094CCB7 /* OctoPod.xcdatamodeld in Sources */,
 				3DB60529267D54A800BBC047 /* AppKeyViewController.swift in Sources */,
 				3D9AAD5322B326250051BB1B /* AbstractNotificationsHandler.swift in Sources */,
+				084AC3312B0D5BC600D99780 /* SpoolSelection.swift in Sources */,
 				3D49A09D21D41FE2005002E7 /* NotificationsManager.swift in Sources */,
+				084AC3332B0D5C0E00D99780 /* SpoolSelectionViewCell.swift in Sources */,
 				3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */,
 				3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */,
 				3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */,
@@ -2563,6 +2598,7 @@
 				3D6350EA21080AD3001C10F7 /* Theme.swift in Sources */,
 				3DAD2DE521817B23004A4223 /* IPPlug.swift in Sources */,
 				3D1A935721326AEF0050ED9A /* CustomControl.swift in Sources */,
+				084AC32B2B0D5BB000D99780 /* SpoolChangeSelectionViewController.swift in Sources */,
 				3D999B2124E9CDB4007AA99F /* MultiCamera.swift in Sources */,
 				3DB5107C217C16EE006CF8C3 /* WatchSessionManager.swift in Sources */,
 				3D1A935D2132709E0050ED9A /* Container.swift in Sources */,

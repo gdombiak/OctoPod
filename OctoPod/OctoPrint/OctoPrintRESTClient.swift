@@ -1207,6 +1207,31 @@ class OctoPrintRESTClient {
         }
     }
 
+    // MARK: - SpoolManager Plugin
+
+    /// Returns spool information
+    func loadSpools(callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/plugin/SpoolManager/loadSpoolsByQuery?filterName=hideInactiveSpools&from=0&to=3000&sortColumn=lastUse&sortOrder=desc") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting spoolmanager info. Error: \(error!.localizedDescription)")
+                }
+                callback(result, error, response)
+            }
+        }
+    }
+    
+    /// Changes spool selected for specified extruder
+    func changeSpoolSelection(toolNumber: Int, spoolId: Int, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            let json : NSMutableDictionary = ["toolIndex": toolNumber, "databaseId": spoolId]
+            client.put("/plugin/SpoolManager/selectSpool", json: json, expected: 200) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                callback(response.statusCode == 200, error, response)
+            }
+        }
+    }
+    
     // MARK: - FilamentManager Plugin
     
     /// Returns current filament selection for each extruder

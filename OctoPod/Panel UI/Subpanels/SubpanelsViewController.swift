@@ -80,6 +80,9 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             if printer.filamentManagerInstalled {
                 orderedViewControllers.append(createFilamentManagerVC(mainboard))
             }
+            if printer.spoolManagerInstalled {
+                orderedViewControllers.append(createSpoolManagerVC(mainboard))
+            }
         }
         orderedViewControllers.append(mainboard.instantiateViewController(withIdentifier: "SystemCommandsViewController"))
 
@@ -165,6 +168,8 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                 self.addRemoveVC(add: !printer.getEnclosureOutputs().isEmpty, vcIdentifier: { $0.isMember(of: EnclosureViewController.self) }, createVC: self.createEnclosureVC)
                 
                 self.addRemoveVC(add: printer.filamentManagerInstalled, vcIdentifier: { $0.isMember(of: FilamentManagerViewController.self) }, createVC: self.createFilamentManagerVC)
+                
+                self.addRemoveVC(add: printer.spoolManagerInstalled, vcIdentifier: { $0.isMember(of: SpoolManagerViewController.self) }, createVC: self.createSpoolManagerVC)
             }
             // Notify subpanels of change of printer (OctoPrint)
             for case let subpanel as SubpanelViewController in self.orderedViewControllers {
@@ -287,6 +292,10 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
     func filamentManagerAvailabilityChanged(installed: Bool) {
         addRemoveVC(add: installed, vcIdentifier: { $0.isMember(of: FilamentManagerViewController.self) }, createVC: createFilamentManagerVC)
     }
+    
+    func spoolManagerAvailabilityChanged(installed: Bool) {
+        addRemoveVC(add: installed, vcIdentifier: { $0.isMember(of: SpoolManagerViewController.self) }, createVC: createSpoolManagerVC)
+    }
 
     // MARK: - Private functions
     
@@ -305,7 +314,7 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
             if let _ = orderedViewControllers.first(where: vcIdentifier) {
                 // Do nothing since we already have it installed
             } else {
-                DispatchQueue.main.async {
+                let block = {
                     let mainboard = UIStoryboard(name: "Main", bundle: nil)
                     self.orderedViewControllers.append(createVC(mainboard))
                     // Sort VCs and Render them
@@ -313,13 +322,15 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                     // Update number of pages in page control
                     self.pageControl.numberOfPages = self.orderedViewControllers.count
                 }
+                // Run sync or otherwise code may run a bit delayed and duplicated VCs will appear
+                Thread.isMainThread ? block() : DispatchQueue.main.sync { block() }
             }
         } else {
             // Make sure that we are not rendering PSUControlViewController
             if let found = orderedViewControllers.first(where: vcIdentifier) {
                 if let index = orderedViewControllers.firstIndex(of: found) {
                     orderedViewControllers.remove(at: index)
-                    DispatchQueue.main.async {
+                    let block = {
                         // Force refresh of cached VCs
                         self.renderFirstVC()
                         // Check if we need to go to first page (only if deleted VC was active VC)
@@ -329,6 +340,8 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
                         // Update number of pages in page control
                         self.pageControl.numberOfPages = self.orderedViewControllers.count
                     }
+                    // Run sync or otherwise code may run a bit delayed and duplicated VCs will appear
+                    Thread.isMainThread ? block() : DispatchQueue.main.sync { block() }
                 }
             }
         }
@@ -376,5 +389,9 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
 
     fileprivate func createFilamentManagerVC(_ mainboard: UIStoryboard) -> UIViewController {
         return mainboard.instantiateViewController(withIdentifier: "FilamentManagerViewController")
+    }
+    
+    fileprivate func createSpoolManagerVC(_ mainboard: UIStoryboard) -> UIViewController {
+        return mainboard.instantiateViewController(withIdentifier: "SpoolManagerViewController")
     }
 }
