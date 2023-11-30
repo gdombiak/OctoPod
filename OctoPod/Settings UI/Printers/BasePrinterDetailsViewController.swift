@@ -1,16 +1,17 @@
 import UIKit
+import SafariServices
 
 class BasePrinterDetailsViewController: ThemedStaticUITableViewController {
-
+    
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
     let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
     let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
     let notificationsManager: NotificationsManager = { return (UIApplication.shared.delegate as! AppDelegate).notificationsManager }()
-
+    
     var newPrinterPosition: Int16!  // Will have a value only when adding a new printer
-
+    
     func createPrinter(connectionType: PrinterConnectionType, name: String, hostname: String, apiKey: String, username: String?, password: String?, headers: String?, position: Int16, includeInDashboard: Bool, showCamera: Bool) {
         if printerManager.addPrinter(connectionType: connectionType, name: name, hostname: hostname, apiKey: apiKey, username: username, password: password, headers: headers, position: position, iCloudUpdate: true) {
             if let printer = printerManager.getPrinterByName(name: name) {
@@ -69,18 +70,18 @@ class BasePrinterDetailsViewController: ThemedStaticUITableViewController {
         if nameChanged {
             notificationsManager.printerNameChanged(printer: printer)
         }
-
+        
         // Push changes to iCloud so other devices of the user get updated (only if iCloud enabled and user is logged in)
         cloudKitPrinterManager.pushChanges(completion: nil)
         // Push changes to Apple Watch
         watchSessionManager.pushPrinters()
     }
-
+    
     func goBack() {
         // Go back to previous page and execute the unwinsScanQRCode IBAction
         performSegue(withIdentifier: "unwindPrintersUpdated", sender: self)
     }
-
+    
     /// Scroll table up when keyboard appears and restore normal position when keyboard is gone
     /// - Parameters:
     ///     - show: true when keyboard will appear
@@ -92,12 +93,18 @@ class BasePrinterDetailsViewController: ThemedStaticUITableViewController {
         // Set the table content inset to the keyboard height
         tableView.contentInset.bottom = changeInHeight
     }
-
+    
     @objc func keyboardWillShow(notification: Notification) {
         adjustingHeight(show: true, notification: notification)
     }
     
     @objc func keyboardWillHide(notification: Notification) {
         adjustingHeight(show: false, notification: notification)
+    }
+    
+    @objc func openSafariOnCloudflareSetup() {
+        // Handle button tap
+        let svc = SFSafariViewController(url: URL(string: "https://github.com/gdombiak/OctoPod/wiki/Safely-connect-to-OctoPrint-from-outside-of-your-home-with-Cloudflare-Zero-Trust")!)
+        self.present(svc, animated: true)
     }
 }

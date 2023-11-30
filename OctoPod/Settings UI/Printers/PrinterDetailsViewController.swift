@@ -176,6 +176,27 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
         }
     }
 
+    // MARK: - UITableViewDelegate
+
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        // Remove old button from re-used header
+        if let lastView = view.subviews.last, lastView.isKind(of: UIButton.self) {
+            lastView.removeFromSuperview()
+        }
+
+        if (section == 2) {
+            let button = UIButton(type: .system)
+            button.setImage(UIImage(named: "Help"), for: .normal)
+            button.addTarget(self, action: #selector(openSafariOnCloudflareSetup), for: .touchUpInside)
+            view.addSubview(button)
+
+            // Place button on far right margin of header
+            button.translatesAutoresizingMaskIntoConstraints = false // use autolayout constraints instead
+            button.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
+            button.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor).isActive = true
+        }
+    }
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

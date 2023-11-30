@@ -58,7 +58,7 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
         NotificationCenter.default.removeObserver(self)
     }
     
-    // MARK: - Table view data source
+    // MARK: - UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 3 && indexPath.row == 0 {
@@ -69,6 +69,25 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
             return 0
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        // Remove old button from re-used header
+        if let lastView = view.subviews.last, lastView.isKind(of: UIButton.self) {
+            lastView.removeFromSuperview()
+        }
+
+        if (section == 2) {
+            let button = UIButton(type: .system)
+            button.setImage(UIImage(named: "Help"), for: .normal)
+            button.addTarget(self, action: #selector(openSafariOnCloudflareSetup), for: .touchUpInside)
+            view.addSubview(button)
+
+            // Place button on far right margin of header
+            button.translatesAutoresizingMaskIntoConstraints = false // use autolayout constraints instead
+            button.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
+            button.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor).isActive = true
+        }
     }
 
     // MARK: - Navigation
