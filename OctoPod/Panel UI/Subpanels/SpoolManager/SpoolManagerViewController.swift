@@ -188,8 +188,8 @@ class SpoolManagerViewController : ThemedDynamicUITableViewController, SubpanelV
     
     fileprivate func refreshSelections(done: (() -> Void)?) {
         octoprintClient.loadSpools { (result: NSObject?, error: Error?, reponse: HTTPURLResponse) in
-            self.selections = []
-            self.spools = []
+            var newSelections: Array<SpoolSelection> = []
+            var newSpools: Array<Spool> = []
             if let error = error {
                 self.showAlert(NSLocalizedString("Warning", comment: ""), message: error.localizedDescription, done: nil)
             } else if let json = result as? NSDictionary {
@@ -198,7 +198,7 @@ class SpoolManagerViewController : ThemedDynamicUITableViewController, SubpanelV
                     if selectionsArray.count > 0, let selection = selectionsArray[0] as? NSDictionary {
                         spoolSelection.parse(json: selection)
                     }
-                    self.selections.append(spoolSelection)
+                    newSelections.append(spoolSelection)
                 }
                 if let spoolsArray = json["allSpools"] as? NSArray {
                     for case let spoolRaw as NSDictionary in spoolsArray {
@@ -206,17 +206,21 @@ class SpoolManagerViewController : ThemedDynamicUITableViewController, SubpanelV
                         spool.parse(json: spoolRaw)
                         // Safety check that selections have specified a tool (no idea how plugin works - just in case)
                         if let _ = spool.spoolId, let _ = spool.profileVendor, let _ = spool.profileMaterial {
-                            self.spools.append(spool)
+                            newSpools.append(spool)
                         }
-                    }
-                    // Sort spools by vendor and material
-                    self.spools.sort { (left: Spool, right: Spool) -> Bool in
-                        return left.profileVendor! + left.profileMaterial! < right.profileVendor! + right.profileMaterial!
                     }
                 }
             }
             // Refresh table with new selections
             DispatchQueue.main.async {
+                self.selections = newSelections
+                self.spools = newSpools
+
+                // Sort spools by vendor and material
+                self.spools.sort { (left: Spool, right: Spool) -> Bool in
+                    return left.profileVendor! + left.profileMaterial! < right.profileVendor! + right.profileMaterial!
+                }
+
                 self.tableView.reloadData()
             }
             // Execute done block when done

@@ -185,7 +185,7 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
     
     fileprivate func refreshSelections(done: (() -> Void)?) {
         octoprintClient.filamentSelections { (result: NSObject?, error: Error?, reponse: HTTPURLResponse) in
-            self.selections = []
+            var newSelections: Array<FilamentSelection> = []
             if let error = error {
                 self.showAlert(NSLocalizedString("Warning", comment: ""), message: error.localizedDescription, done: nil)
             } else if let json = result as? NSDictionary {
@@ -195,17 +195,18 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
                         filamentSelection.parse(json: selection)
                         // Safety check that selections have specified a tool (no idea how plugin works - just in case)
                         if let _ = filamentSelection.toolNumber {
-                            self.selections.append(filamentSelection)
+                            newSelections.append(filamentSelection)
                         }
-                    }
-                    // Sort selections by tool number
-                    self.selections.sort { (left: FilamentSelection, right: FilamentSelection) -> Bool in
-                        return left.toolNumber! < right.toolNumber!
                     }
                 }
             }
             // Refresh table with new selections
             DispatchQueue.main.async {
+                self.selections = newSelections
+                // Sort selections by tool number
+                self.selections.sort { (left: FilamentSelection, right: FilamentSelection) -> Bool in
+                    return left.toolNumber! < right.toolNumber!
+                }
                 self.tableView.reloadData()
             }
             // Execute done block when done
@@ -213,7 +214,7 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
         }
         // Also refresh spools (they are used only when user clicks to change selection)
         octoprintClient.filamentSpools { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
-            self.spools = []
+            var newSpools: Array<FilamentSpool> = []
             if let json = result as? NSDictionary {
                 if let spoolsArray = json["spools"] as? NSArray {
                     for case let spool as NSDictionary in spoolsArray {
@@ -221,13 +222,16 @@ class FilamentManagerViewController : ThemedDynamicUITableViewController, Subpan
                         filamentSpool.parse(json: spool)
                         // Safety check that selections have specified a tool (no idea how plugin works - just in case)
                         if let _ = filamentSpool.spoolId, let _ = filamentSpool.profileVendor, let _ = filamentSpool.profileMaterial {
-                            self.spools.append(filamentSpool)
+                            newSpools.append(filamentSpool)
                         }
                     }
-                    // Sort spools by vendor and material
-                    self.spools.sort { (left: FilamentSpool, right: FilamentSpool) -> Bool in
-                        return left.profileVendor! + left.profileMaterial! < right.profileVendor! + right.profileMaterial!
-                    }
+                }
+            }
+            DispatchQueue.main.async {
+                self.spools = newSpools
+                // Sort spools by vendor and material
+                self.spools.sort { (left: FilamentSpool, right: FilamentSpool) -> Bool in
+                    return left.profileVendor! + left.profileMaterial! < right.profileVendor! + right.profileMaterial!
                 }
             }
         }
