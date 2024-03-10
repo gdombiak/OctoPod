@@ -38,7 +38,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Start listening to events when app comes back from background
-        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
         // Listen when app went to background so we can stop any ongoing HTTP request
         NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
 
