@@ -57,7 +57,7 @@ class CloudKitPrinterManager {
                     
                     self.checkZone(completion: { (error) in
                         if let error = error {
-                            self.appendLog("Error making sure app has its own CKRecordZone. \(error.localizedDescription)")
+                            self.appendLog("Error making sure app has its own CKRecordZone. \(error)")
                             self.starting = false
                             onceStarted?()
                         } else {
@@ -138,7 +138,7 @@ class CloudKitPrinterManager {
             let operation = CKModifySubscriptionsOperation(subscriptionsToSave: [subscription], subscriptionIDsToDelete: [])
             operation.modifySubscriptionsCompletionBlock = { (saved: [CKSubscription]?, deletedIDs: [String]?, error: Error?) -> Void in
                 if let error = error {
-                    self.appendLog("Error saving subcription: \(error.localizedDescription)")
+                    self.appendLog("Error saving subcription: \(error)")
                     return
                 }
                 // Record that (one time) subscription has been created
@@ -250,7 +250,7 @@ class CloudKitPrinterManager {
             do {
                 changeToken = try NSKeyedUnarchiver.unarchivedObject(ofClass: CKServerChangeToken.self, from: changeTokenData)
             } catch {
-                self.appendLog("Error unarchivedObject due to: \(error.localizedDescription)")
+                self.appendLog("Error unarchivedObject due to: \(error)")
             }
         }
         // Include change token in the query to get incremental changes
@@ -281,7 +281,7 @@ class CloudKitPrinterManager {
                 let changeTokenData = try NSKeyedArchiver.archivedData(withRootObject: serverChangeToken, requiringSecureCoding: false)
                 defaults.set(changeTokenData, forKey: self.CHANGE_TOKEN)
             } catch {
-                self.appendLog("Error archivedData of CHANGE_TOKEN due to: \(error.localizedDescription)")
+                self.appendLog("Error archivedData of CHANGE_TOKEN due to: \(error)")
             }
         }
         // Block to execute when the fetch for a zone "page" has completed
@@ -296,7 +296,7 @@ class CloudKitPrinterManager {
                         self.createZone() { error in
                             if let error = error {
                                 // Failed to create zone for some reason
-                                self.appendLog("Error fetching zone changes. Failed to create zone due to: \(error.localizedDescription)")
+                                self.appendLog("Error fetching zone changes. Failed to create zone due to: \(error)")
                                 return
                             } else {
                                 // Zone created
@@ -322,12 +322,12 @@ class CloudKitPrinterManager {
                         self.pullChanges(completionHandler: completionHandler, errorHandler: errorHandler)
                     } else {
                         // Failed with some unknown CKError
-                        self.appendLog("Error fetching zone changes: \(error.localizedDescription)")
+                        self.appendLog("Error fetching zone changes: \(error)")
                         return
                     }
                 } else {
                     // Failed with some unknown Error
-                    self.appendLog("Error fetching zone changes: \(error.localizedDescription)")
+                    self.appendLog("Error fetching zone changes: \(error)")
                     return
                 }
             }
@@ -339,7 +339,7 @@ class CloudKitPrinterManager {
                 let changeTokenData = try NSKeyedArchiver.archivedData(withRootObject: serverChangeToken, requiringSecureCoding: false)
                 defaults.set(changeTokenData, forKey: self.CHANGE_TOKEN)
             } catch {
-                self.appendLog("Error archivedData of CHANGE_TOKEN due to: \(error.localizedDescription)")
+                self.appendLog("Error archivedData of CHANGE_TOKEN due to: \(error)")
             }
         }
         // Done reading all zone changes
@@ -476,7 +476,7 @@ class CloudKitPrinterManager {
                 let hostname = printer.hostname
                 deleteRecord(recordID: record.recordID) { (error) in
                     if let error = error {
-                        self.appendLog("Failed to delete printer: \(hostname). Error: \(error.localizedDescription)")
+                        self.appendLog("Failed to delete printer: \(hostname). Error: \(error)")
                     } else {
                         self.appendLog("Pushed delete for printer: \(hostname)")
                     }
@@ -492,7 +492,7 @@ class CloudKitPrinterManager {
             let hostname = printerData.hostname
             self.save(printerData: printerData, completion: { error in
                 if let error = error {
-                    self.appendLog("Failed to push changes for printer: \(hostname). Error: \(error.localizedDescription)")
+                    self.appendLog("Failed to push changes for printer: \(hostname). Error: \(error)")
                 } else {
                     self.appendLog("Pushed changes for printer: \(hostname)")
                 }
@@ -782,7 +782,7 @@ class CloudKitPrinterManager {
         // Delete zone which will delete all stored records
         deleteZone { (error: Error?) in
             if let error = error {
-                NSLog("Deleting zone failed. Error: \(error.localizedDescription)")
+                NSLog("Deleting zone failed. Error: \(error)")
                 // Delete failed. An error happened when deleting the zone
                 errorHandler?()
             } else {
@@ -851,7 +851,7 @@ class CloudKitPrinterManager {
                     self.discoverAccountStatus(attemptLeft: attemptLeft - 1, completion: completion)
                 } else {
                     // Disable iCloud due to unkonwn error
-                    self.appendLog("Disabling iCloud sync due to error: \(error.localizedDescription)")
+                    self.appendLog("Disabling iCloud sync due to error: \(error)")
                     self.iCloudAvailable = false
                     self.notifyiCloudStatusChanged(connected: false)
                     completion?()
@@ -1037,7 +1037,7 @@ class CloudKitPrinterManager {
             coder.finishDecoding()
             return record
         } catch {
-            self.appendLog("Error decodeRecordData due to: \(error.localizedDescription)")
+            self.appendLog("Error decodeRecordData due to: \(error)")
             return nil
         }
     }
