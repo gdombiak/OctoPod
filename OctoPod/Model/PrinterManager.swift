@@ -416,13 +416,20 @@ class PrinterManager {
     func deleteAllPrinters(context: NSManagedObjectContext) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Printer")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        deleteRequest.resultType = .resultTypeObjectIDs
 
         context.performAndWait {
             do {
-                try context.execute(deleteRequest)
-                // Reset the Managed Object Context
-                context.reset()
-                managedObjectContext.reset()
+                let result = try context.execute(deleteRequest) as! NSBatchDeleteResult
+                
+                let changes: [AnyHashable: Any] = [
+                    NSDeletedObjectsKey: result.result as! [NSManagedObjectID]
+                ]
+                NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [context])
+//
+//                // Reset the Managed Object Context
+//                context.reset()
+//                managedObjectContext.reset()
             }
             catch let error as NSError {
                 NSLog("Error deleting all printers. Error:\(error)")
