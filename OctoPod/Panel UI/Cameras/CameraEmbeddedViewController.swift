@@ -1,7 +1,7 @@
 import UIKit
 import SafariServices  // Used for opening browser in-app
 
-class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate, UIScrollViewDelegate {
+class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate, OctoPrintPluginsDelegate, UIScrollViewDelegate {
 
     private static let CAMERA_INFO_GESTURES = "CAMERA_INFO_GESTURES"
 
@@ -18,6 +18,8 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     @IBOutlet weak var tapMessageLabel: UILabel!
     @IBOutlet weak var pinchMessageLabel: UILabel!
+    
+    @IBOutlet weak var octolightHAButton: UIButton!
     
     var printerURL: String? // URL to core data printer object. Only when not displaying default printer
     var cameraLabel: String?
@@ -60,6 +62,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
 
         renderPrinter(appActive: UIApplication.shared.applicationState != .background)
         
+        // Listen to changes to OctoPrint Plugin messages
+        octoprintClient.octoPrintPluginsDelegates.append(self)
+
         // Listen to changes to OctoPrint Settings in case the camera orientation has changed
         octoprintClient.octoPrintSettingsDelegates.append(self)
     }
@@ -68,6 +73,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         super.viewWillDisappear(animated)
         // Stop listening to events when app comes back from background
         NotificationCenter.default.removeObserver(self)
+
+        // Stop listening to changes to OctoPrint Plugin messages
+        octoprintClient.remove(octoPrintPluginsDelegate: self)
 
         // Stop listening to changes to OctoPrint Settings
         octoprintClient.remove(octoPrintSettingsDelegate: self)
@@ -144,6 +152,26 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         }
     }
     
+    @IBAction func octolightHAClicked(_ sender: Any) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
+
+        octoprintClient.toggleOctoLightHA { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
+            if let error = error {
+                NSLog("Error requesting toggle power of HA light: \(String(describing: error.localizedDescription)). Http response: \(response.statusCode)")
+            }
+            if let isLightOn = on {
+                DispatchQueue.main.async {
+                    self.displayOctoLightHAButton(isLightOn: isLightOn)
+                    generator.notificationOccurred(.success)
+                }
+            } else {
+                NSLog("Error requesting to toggle light \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                self.showAlert(NSLocalizedString("Light", comment: ""), message: NSLocalizedString("Failed to toggle light", comment: ""))
+            }
+        }
+    }
+    
     // MARK: - Navigation
     
     @objc func handleCameraTap() {
@@ -168,7 +196,28 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     func camerasChanged(camerasURLs: Array<String>) {
         // Do nothing. Parent view controller will take care of this
     }
-
+    
+    func octolightHAAvailabilityChanged(installed: Bool) {
+        DispatchQueue.main.async {
+            if let printer = self.targetPrinter() {
+            // Display octoLightHA button if plugin is installed
+            self.octolightHAButton.isHidden = !printer.octolightHAInstalled
+            }
+        }
+    }
+    
+    // MARK: - OctoPrintPluginsDelegate
+    
+    func pluginMessage(plugin: String, data: NSDictionary) {
+        if plugin == Plugins.OCTO_LIGHT_HA {
+            if let isLightOn = data["isLightOn"] as? Bool {
+                DispatchQueue.main.async {
+                    self.displayOctoLightHAButton(isLightOn: isLightOn)
+                }
+            }
+        }
+    }
+    
     // MARK: - UIScrollViewDelegate
     
     func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
@@ -189,6 +238,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         errorMessageLabel.isHidden = true
         errorURLButton.isHidden = true
         
+        // Hide OctoLight HomeAssistant Button until we know this plugin is installed
+        octolightHAButton.isHidden = true
+        
         if let printer = targetPrinter() {
             
             setCameraOrientation(newOrientation: cameraOrientation)
@@ -200,6 +252,21 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                 if appActive {
                     // Only render camera when running in foreground (this will save some battery and network/cell usage)
                     renderPrinter(printer: printer, url: url)
+                    if printer.octolightHAInstalled {
+                        // Display octoLightHA button if plugin is installed
+                        octolightHAButton.isHidden = false
+                        // Fetch status of the HomeAssistant Light
+                        octoprintClient.getOctoLightHAState { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
+                            if let error = error {
+                                NSLog("Error requesting HA light status: \(String(describing: error.localizedDescription)). Http response: \(response.statusCode)")
+                            }
+                            if let isLightOn = on {
+                                DispatchQueue.main.async {
+                                    self.displayOctoLightHAButton(isLightOn: isLightOn)
+                                }
+                            }
+                        }
+                    }
                 }
 
             } else {
@@ -229,6 +296,14 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         }
     }
 
+    fileprivate func displayOctoLightHAButton(isLightOn: Bool) {
+        self.octolightHAButton.setImage(isLightOn ? UIImage(named: "Light_Off") : UIImage(named: "Light_On"), for: .normal)
+    }
+    
+    fileprivate func showAlert(_ title: String, message: String) {
+        UIUtils.showAlert(presenter: self, title: title, message: message, done: nil)
+    }
+    
     @objc func appWillEnterForeground() {
         // Resume rendering printer
         renderPrinter(appActive: true)

@@ -53,6 +53,7 @@
         <attribute name="invertZ" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notificationToken" optional="YES" attributeType="String"/>
+        <attribute name="octolightHAInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="octopodPluginInstalled" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="octopodPluginLanguage" optional="YES" attributeType="String"/>
         <attribute name="octopodPluginPrinterName" optional="YES" attributeType="String"/>

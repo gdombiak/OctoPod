@@ -601,6 +601,7 @@
 		3D1265D326900AF4007F3ED4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		3D1265D426900AF4007F3ED4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D1265D526900AF4007F3ED4 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3D1471F92BA76083003A9CC6 /* OctoPod v15.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OctoPod v15.xcdatamodel"; sourceTree = "<group>"; };
 		3D17273422F2838600C0A341 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D17273622F2838600C0A341 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D17273722F2838600C0A341 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -4083,6 +4084,7 @@
 		3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				3D1471F92BA76083003A9CC6 /* OctoPod v15.xcdatamodel */,
 				084D8F8E2B0ABC5000071B95 /* OctoPod v14.xcdatamodel */,
 				3DF5CD0526800BB0002295D2 /* OctoPod v13.xcdatamodel */,
 				3DA7783A25CFAF230048405A /* OctoPod v12.xcdatamodel */,
@@ -4098,7 +4100,7 @@
 				3D5849E5210CCB560068D87A /* OctoPod v2.xcdatamodel */,
 				3D45280920E15A370094CCB7 /* OctoPod.xcdatamodel */,
 			);
-			currentVersion = 084D8F8E2B0ABC5000071B95 /* OctoPod v14.xcdatamodel */;
+			currentVersion = 3D1471F92BA76083003A9CC6 /* OctoPod v15.xcdatamodel */;
 			path = OctoPod.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

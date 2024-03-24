@@ -600,6 +600,18 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="liK-HY-fST">
+                                        <rect key="frame" x="8" y="212" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="JgH-j9-6Wf"/>
+                                            <constraint firstAttribute="width" constant="24" id="jJV-sN-gOn"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="Light_Off"/>
+                                        <connections>
+                                            <action selector="octolightHAClicked:" destination="htf-Hq-pLO" eventType="touchUpInside" id="vSU-tR-fqA"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="BXr-d8-f7x" secondAttribute="trailing" constant="2" id="0uh-nc-ewd"/>
@@ -609,6 +621,7 @@
                                     <constraint firstAttribute="trailing" secondItem="xgR-KO-IvE" secondAttribute="trailing" id="91p-9b-PNd"/>
                                     <constraint firstAttribute="bottom" secondItem="q4H-Sg-7Zd" secondAttribute="bottom" constant="10" id="9Xa-S7-Niv"/>
                                     <constraint firstItem="xgR-KO-IvE" firstAttribute="top" secondItem="9ix-ve-DAs" secondAttribute="top" id="Af9-uo-CDN"/>
+                                    <constraint firstItem="liK-HY-fST" firstAttribute="leading" secondItem="9ix-ve-DAs" secondAttribute="leading" constant="8" id="BTJ-bx-ldA"/>
                                     <constraint firstItem="2VN-EJ-YhR" firstAttribute="top" secondItem="NQ5-25-ww1" secondAttribute="bottom" constant="3" id="G0c-Fd-FKp"/>
                                     <constraint firstItem="t4a-XJ-gjd" firstAttribute="top" secondItem="9ix-ve-DAs" secondAttribute="top" constant="4" id="IRm-Ve-I6C"/>
                                     <constraint firstAttribute="trailing" secondItem="t4a-XJ-gjd" secondAttribute="trailing" constant="2" id="T0e-NB-KAt"/>
@@ -621,6 +634,7 @@
                                     <constraint firstItem="BXr-d8-f7x" firstAttribute="leading" secondItem="9ix-ve-DAs" secondAttribute="leading" constant="2" id="gDj-VN-oHr"/>
                                     <constraint firstAttribute="bottom" secondItem="xgR-KO-IvE" secondAttribute="bottom" id="gMe-8X-Zh4"/>
                                     <constraint firstItem="BXr-d8-f7x" firstAttribute="top" secondItem="9ix-ve-DAs" secondAttribute="top" constant="55" id="h12-Ic-yZl"/>
+                                    <constraint firstAttribute="bottom" secondItem="liK-HY-fST" secondAttribute="bottom" constant="8" id="k3g-ah-TAc"/>
                                     <constraint firstItem="NQ5-25-ww1" firstAttribute="top" secondItem="9ix-ve-DAs" secondAttribute="top" constant="8" id="lpp-mE-l7Y"/>
                                     <constraint firstItem="t4a-XJ-gjd" firstAttribute="leading" secondItem="9ix-ve-DAs" secondAttribute="leading" constant="2" id="nwi-1L-9aw"/>
                                     <constraint firstAttribute="trailing" secondItem="2VN-EJ-YhR" secondAttribute="trailing" constant="10" id="o8F-bh-qLj"/>
@@ -647,6 +661,7 @@
                         <outlet property="errorMessageLabel" destination="BXr-d8-f7x" id="21Q-uu-fgL"/>
                         <outlet property="errorURLButton" destination="x8L-G5-sTU" id="U8v-72-TMY"/>
                         <outlet property="imageView" destination="xgR-KO-IvE" id="LnF-OF-iU2"/>
+                        <outlet property="octolightHAButton" destination="liK-HY-fST" id="U1j-2a-hEg"/>
                         <outlet property="pinchMessageLabel" destination="q4H-Sg-7Zd" id="ZmK-ZT-6nU"/>
                         <outlet property="printTimeLeftLabel" destination="NQ5-25-ww1" id="sDX-8y-HTN"/>
                         <outlet property="tapMessageLabel" destination="MT2-fR-HJD" id="5w6-TE-ELN"/>
@@ -8676,6 +8691,26 @@
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ynA-Ym-86B" customClass="MyAVPlayerView" customModule="OctoPod" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0W-xw-qTn">
+                                                <rect key="frame" x="8" y="184" width="24" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="If7-w3-CO9"/>
+                                                    <constraint firstAttribute="height" constant="24" id="KYG-dO-NU3"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="hnv-bF-JNV"/>
+                                                    <constraint firstAttribute="width" constant="24" id="lA8-m4-n2G"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="Light_Off"/>
+                                                <connections>
+                                                    <action selector="octolightHAClicked:" destination="0Az-YE-jhV" eventType="touchUpInside" id="rRS-3J-Ghe"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="t0W-xw-qTn" firstAttribute="leading" secondItem="ynA-Ym-86B" secondAttribute="leading" constant="8" id="6qe-u2-GxU"/>
+                                            <constraint firstAttribute="bottom" secondItem="t0W-xw-qTn" secondAttribute="bottom" constant="36" id="a3J-wp-rdL"/>
+                                        </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEb-hJ-iLF">
                                         <rect key="frame" x="8" y="8" width="30" height="34"/>
@@ -8807,6 +8842,7 @@
                         <outlet property="errorMessageLabel" destination="3hn-5x-4xy" id="1TV-Cx-em6"/>
                         <outlet property="errorURLButton" destination="h4l-mV-gFf" id="5lg-DJ-q0d"/>
                         <outlet property="muteButton" destination="OJi-mz-JuP" id="7cP-67-nPZ"/>
+                        <outlet property="octolightHAButton" destination="t0W-xw-qTn" id="WGL-lN-ngI"/>
                         <outlet property="pinchMessageLabel" destination="zhG-D6-Cgg" id="nUx-Ng-kKa"/>
                         <outlet property="pipButton" destination="DEb-hJ-iLF" id="Bae-bV-Gkw"/>
                         <outlet property="playerView" destination="ynA-Ym-86B" id="RXK-QQ-WLG"/>
@@ -8900,6 +8936,22 @@
                                             <constraint firstAttribute="width" constant="15" id="HLS-Gw-8z9"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLF-7d-725">
+                                        <rect key="frame" x="8" y="212" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="7ne-mp-DEu"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="24" id="HLT-Ow-REp"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="24" id="LSP-br-Ooc"/>
+                                            <constraint firstAttribute="width" constant="24" id="OOd-sS-WOb"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="T4E-Qp-VJs"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="nqs-zq-5n3"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="Light_Off"/>
+                                        <connections>
+                                            <action selector="octolightHAClicked:" destination="IhP-VX-pqU" eventType="touchUpInside" id="qP2-WD-e8V"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Z0q-nd-Sbc" secondAttribute="trailing" constant="10" id="1iR-wu-drw"/>
@@ -8908,6 +8960,7 @@
                                     <constraint firstItem="Vzt-hH-j3r" firstAttribute="leading" secondItem="biK-HO-X2X" secondAttribute="leading" constant="2" id="4c4-9w-yt4"/>
                                     <constraint firstAttribute="trailing" secondItem="TJK-lR-D1v" secondAttribute="trailing" constant="10" id="9Aw-di-XOb"/>
                                     <constraint firstItem="OTg-a2-ToQ" firstAttribute="top" secondItem="biK-HO-X2X" secondAttribute="top" constant="55" id="ABZ-7b-ZHb"/>
+                                    <constraint firstItem="ZLF-7d-725" firstAttribute="leading" secondItem="biK-HO-X2X" secondAttribute="leading" constant="8" id="CNX-vw-eLg"/>
                                     <constraint firstAttribute="trailing" secondItem="Vzt-hH-j3r" secondAttribute="trailing" constant="2" id="LMm-ji-REm"/>
                                     <constraint firstAttribute="trailing" secondItem="OTg-a2-ToQ" secondAttribute="trailing" constant="2" id="Lgs-VH-ObR"/>
                                     <constraint firstItem="TJK-lR-D1v" firstAttribute="top" secondItem="yOG-Yr-4xg" secondAttribute="bottom" constant="3" id="MH3-rv-Obp"/>
@@ -8929,6 +8982,7 @@
                                     <constraint firstItem="aOW-Zy-H8C" firstAttribute="leading" secondItem="biK-HO-X2X" secondAttribute="leading" constant="2" id="ptq-oW-1Qm"/>
                                     <constraint firstItem="hil-kb-3e2" firstAttribute="top" secondItem="biK-HO-X2X" secondAttribute="topMargin" id="s8H-Ex-TW3"/>
                                     <constraint firstAttribute="bottom" secondItem="G97-jK-oO9" secondAttribute="bottom" id="sox-Ym-o07"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZLF-7d-725" secondAttribute="bottom" constant="8" id="tN3-md-EEL"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="IhP-VX-pqU" id="FBp-ig-BwN"/>
@@ -8950,6 +9004,7 @@
                         <outlet property="errorMessageLabel" destination="OTg-a2-ToQ" id="SI8-YC-fEZ"/>
                         <outlet property="errorURLButton" destination="Vzt-hH-j3r" id="NVU-1E-vBs"/>
                         <outlet property="imageView" destination="G97-jK-oO9" id="wQX-vm-sAN"/>
+                        <outlet property="octolightHAButton" destination="ZLF-7d-725" id="grs-sH-5Vn"/>
                         <outlet property="pinchMessageLabel" destination="F9k-aC-isg" id="ONO-0i-7pb"/>
                         <outlet property="printTimeLeftLabel" destination="l5I-fI-OCn" id="mhL-QI-zez"/>
                         <outlet property="tapMessageLabel" destination="Z0q-nd-Sbc" id="lHd-H7-oLt"/>
@@ -9305,6 +9360,7 @@
         <image name="Home Y" width="24" height="24"/>
         <image name="Home Z" width="24" height="24"/>
         <image name="Info" width="24" height="24"/>
+        <image name="Light_Off" width="24" height="24"/>
         <image name="Link" width="16" height="16"/>
         <image name="Move" width="24" height="24"/>
         <image name="Mute" width="16" height="16"/>

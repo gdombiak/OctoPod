@@ -1282,6 +1282,48 @@ class OctoPrintRESTClient {
         }
     }
 
+    // MARK: - OctoLight Home Assistant Plugin
+    
+    /// Ask to toggle power of the Home Assistant Light
+    func toggleOctoLightHA(callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/api/plugin/octolightHA?action=toggle") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error switching OctoLightHA. Error: \(error!.localizedDescription)")
+                    callback(nil, error, response)
+                    return
+                }
+                if let json = result as? NSDictionary {
+                    if let isLightOn = json["state"] as? Bool {
+                        callback(isLightOn, error, response)
+                        return
+                    }
+                }
+                callback(nil, error, response)
+            }
+        }
+    }
+
+    /// Returns state of Home Assistant Light
+    func getOctoLightHAState(callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/api/plugin/octolightHA?action=getState") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error getting OctoLightHA State. Error: \(error!.localizedDescription)")
+                }
+                if let json = result as? NSDictionary {
+                    if let isLightOn = json["state"] as? Bool {
+                        callback(isLightOn, error, response)
+                        return
+                    }
+                }
+                callback(nil, error, response)
+            }
+        }
+    }
+    
     // MARK: - Low level operations
     
     fileprivate func connectionPost(httpClient: HTTPClient, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {

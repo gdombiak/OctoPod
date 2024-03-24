@@ -97,6 +97,8 @@ class Printer: NSManagedObject {
     @NSManaged public var enclosureOutputs: Set<EnclosureOutput>?
 
     @NSManaged public var blTouch: BLTouch?
+    
+    @NSManaged var octolightHAInstalled: Bool
 
     // MARK: - Properties
 

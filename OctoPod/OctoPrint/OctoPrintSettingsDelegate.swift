@@ -65,6 +65,10 @@ protocol OctoPrintSettingsDelegate: AnyObject {
     /// Notification that BLTouch plugin has been installed or its settings changed
     /// - parameter installed: True if plugin is installed in OctoPrint
     func blTouchSettingsChanged(installed: Bool)
+    
+    /// Notification that availability of OctoLight Home Assistant plugin has changed
+    /// - parameter installed: True if plugin is installed in OctoPrint
+    func octolightHAAvailabilityChanged(installed: Bool)
 }
 
 
@@ -79,13 +83,13 @@ extension OctoPrintSettingsDelegate {
     
     func camerasChanged(camerasURLs: Array<String>) {
     }
-
+    
     func psuControlAvailabilityChanged(installed: Bool) {
     }
-
+    
     func ipPlugsChanged(plugin: String, plugs: Array<IPPlug>) {
     }
-
+    
     func sdSupportChanged(sdSupport: Bool) {
     }
     
@@ -94,10 +98,10 @@ extension OctoPrintSettingsDelegate {
     
     func octorelayAvailabilityChanged(installed: Bool) {
     }
-
+    
     func octoPrintColorChanged(color: String) {
     }
-
+    
     func octoPodPluginChanged(installed: Bool){
     }
     
@@ -109,7 +113,7 @@ extension OctoPrintSettingsDelegate {
     
     func enclosureInputsChanged() {
     }
-
+    
     func enclosureOutputsChanged() {
     }
     
@@ -120,5 +124,8 @@ extension OctoPrintSettingsDelegate {
     }
     
     func blTouchSettingsChanged(installed: Bool) {
+    }
+    
+    func octolightHAAvailabilityChanged(installed: Bool) {        
     }
 }

@@ -847,6 +847,18 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.refreshDisplayLayerProgress(callback: callback)
     }
     
+    // MARK: - OctoLight Home Assistant Plugin
+    
+    /// Ask to toggle power of the Home Assistant Light
+    func toggleOctoLightHA(callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.toggleOctoLightHA(callback: callback)
+    }
+    
+    /// Returns state of Home Assistant Light
+    func getOctoLightHAState(callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.getOctoLightHAState(callback: callback)
+    }
+    
     // MARK: - Delegates operations
     
     func remove(octoPrintClientDelegate toRemove: OctoPrintClientDelegate) {
@@ -1016,6 +1028,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         updatePrinterFromFilamentManagerPlugin(printerID: printerID, plugins: plugins)
         updatePrinterFromSpoolManagerPlugin(printerID: printerID, plugins: plugins)
         updatePrinterFromBLTouchPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromOctolightHAPlugin(printerID: printerID, plugins: plugins)
     }
     
     fileprivate func updatePrinterFromMultiCamPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
@@ -1580,6 +1593,29 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                             delegate.blTouchSettingsChanged(installed: false)
                         }
                     }
+                }
+            }
+        }
+    }
+    
+    fileprivate func updatePrinterFromOctolightHAPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
+        var installed = false
+        if let _ = plugins[Plugins.OCTO_LIGHT_HA] as? NSDictionary {
+            // OctolightHA plugin is installed
+            installed = true
+        }
+        let newObjectContext = printerManager.newPrivateContext()
+        newObjectContext.performAndWait {
+            let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+            if printerToUpdate.octolightHAInstalled != installed {
+                // Update flag that tracks if OctolightHA plugin is installed
+                printerToUpdate.octolightHAInstalled = installed
+                // Persist updated printer
+                self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                
+                // Notify listeners of change
+                for delegate in self.octoPrintSettingsDelegates {
+                    delegate.octolightHAAvailabilityChanged(installed: installed)
                 }
             }
         }
