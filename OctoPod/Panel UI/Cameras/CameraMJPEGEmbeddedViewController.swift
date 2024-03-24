@@ -94,6 +94,8 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
         streamingController?.didRenderImage = { (image: UIImage) in
             // Notify that we got our first image and we know its ratio
             self.cameraViewDelegate?.imageAspectRatio(cameraIndex: self.cameraIndex, ratio: image.size.height / image.size.width)
+            
+            self.firstImageReceived(image: image)
         }
 
         streamingController?.didFinishLoading = {

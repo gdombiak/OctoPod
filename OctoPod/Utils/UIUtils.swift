@@ -198,7 +198,35 @@ class UIUtils {
     }    
 }
 
+extension CGImage {
+    var averageLuminance: Int? {
+        get {
+            guard let imageData = self.dataProvider?.data else { return nil }
+            guard let ptr = CFDataGetBytePtr(imageData) else { return nil }
+            let length = CFDataGetLength(imageData)
+            var totalPixels = 0
+            var totalLuminance = 0
+            for i in stride(from: 0, to: length, by: 4) {
+                let r = ptr[i]
+                let g = ptr[i + 1]
+                let b = ptr[i + 2]
+                let luminance = (0.299 * Double(r) + 0.587 * Double(g) + 0.114 * Double(b))
+                totalPixels += 1
+                totalLuminance += Int(luminance)
+            }
+            return (totalLuminance / totalPixels)
+        }
+    }
+}
+
 extension UIImage {
+    func luminanceBelow(threshold: Int) -> Bool? {
+        if let avgLuminance = self.cgImage?.averageLuminance {
+            return avgLuminance < threshold
+        }
+        return nil
+    }
+
     func resizeWithWidth(width: CGFloat) -> UIImage? {
         let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))))
         imageView.contentMode = .scaleAspectFit

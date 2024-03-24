@@ -143,6 +143,14 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         }
     }
     
+    /// React when the first image has been received. This notification is sent by the instance itself
+    func firstImageReceived(image: UIImage) {
+        if let isDark = image.luminanceBelow(threshold: 40), !self.octolightHAButton.isHidden && isDark {
+            // Simulate user tapping on button to turn on the light
+            self.octolightHAClicked(self)
+        }
+    }
+    
     // MARK: - Button actions
 
     @IBAction func errorURLClicked(_ sender: Any) {
@@ -154,7 +162,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     @IBAction func octolightHAClicked(_ sender: Any) {
         let generator = UINotificationFeedbackGenerator()
-        generator.prepare()
+        if sender as? CameraEmbeddedViewController != self {
+            generator.prepare()
+        }
 
         octoprintClient.toggleOctoLightHA { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
             if let error = error {
@@ -163,7 +173,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             if let isLightOn = on {
                 DispatchQueue.main.async {
                     self.displayOctoLightHAButton(isLightOn: isLightOn)
-                    generator.notificationOccurred(.success)
+                    if sender as? CameraEmbeddedViewController != self {
+                        generator.notificationOccurred(.success)
+                    }
                 }
             } else {
                 NSLog("Error requesting to toggle light \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
@@ -250,11 +262,11 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                 self.errorURLButton.isUserInteractionEnabled = true
                 
                 if appActive {
+                    // Display octoLightHA button if plugin is installed
+                    octolightHAButton.isHidden = !printer.octolightHAInstalled
                     // Only render camera when running in foreground (this will save some battery and network/cell usage)
                     renderPrinter(printer: printer, url: url)
                     if printer.octolightHAInstalled {
-                        // Display octoLightHA button if plugin is installed
-                        octolightHAButton.isHidden = false
                         // Fetch status of the HomeAssistant Light
                         octoprintClient.getOctoLightHAState { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
                             if let error = error {
