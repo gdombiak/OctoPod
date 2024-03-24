@@ -169,6 +169,17 @@ struct NormalCameraView: View {
                 self.cancel(enabled: false)
             }
             Spacer()
+            if let _ = self.service.octolightHALightOn {
+                Button(action: {
+                    self.service.toggleOctoLightHA { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
+                        NSLog("toggleOctoLightHA result: \(String(describing: on))")
+                    }
+                }, label: {
+                    Image(self.service.octolightHALightOn == true ? "Light_Off" : "Light_On")
+                })
+                
+                Spacer()
+            }
             ZStack(alignment: .topLeading) {
                 Image("Camera")
                     .offset(x: 10, y: -12)

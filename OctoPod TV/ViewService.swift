@@ -21,6 +21,8 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     @Published var cancelling: Bool?
     @Published var lastKnownPrintFile: PrintFile?
 
+    @Published var octolightHALightOn: Bool?
+
     let tvPrinterManager: TVPrinterManager
     var octoPrintClient: OctoPrintClient!
     var printerName: String?
@@ -68,7 +70,21 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
 
     func connectToServer(printer: Printer) {
         printerName = printer.name
-        octoPrintClient.connectToServer(printer: printer)        
+        octoPrintClient.connectToServer(printer: printer)
+        if printer.octolightHAInstalled {
+            octoPrintClient.getOctoLightHAState { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
+                if let error = error {
+                    NSLog("Error fetching status of Home Assistant Light. Error: \(error.localizedDescription)")
+                }
+                if let lightIsOn = on {
+                    DispatchQueue.main.async {
+                        self.octolightHALightOn = lightIsOn
+                        
+                        NSLog("Updated \(self) with light on: \(lightIsOn)")
+                    }
+                }
+            }
+        }
     }
 
     func disconnectFromServer() {
@@ -105,6 +121,21 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
         octoPrintClient.restartCurrentJob(callback: callback)
     }
     
+    // MARK: - Octolight HA Plugin operations
+    
+    func getOctoLightHAState(callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintClient.getOctoLightHAState(callback: callback)
+    }
+    
+    func toggleOctoLightHA(callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintClient.toggleOctoLightHA { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
+            if let lightIsOn = on {
+                self.octolightHALightOn = lightIsOn
+            }
+            callback(on, error, response)
+        }
+    }
+
     // MARK: - OctoPrintClientDelegate
     
     func notificationAboutToConnectToServer() {
