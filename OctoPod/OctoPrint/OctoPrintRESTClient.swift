@@ -1324,6 +1324,25 @@ class OctoPrintRESTClient {
         }
     }
     
+    /// Turn Home Assistant Light on/off
+    func turnOctoLightHA(on: Bool, callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
+        if let client = httpClient {
+            client.get("/api/plugin/octolightHA?action=\(on ? "turnOn" : "turnOff")") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
+                // Check if there was an error
+                if let _ = error {
+                    NSLog("Error turning OctoLightHA \(on ? "on" : "off"). Error: \(error!.localizedDescription)")
+                }
+                if let json = result as? NSDictionary {
+                    if let isLightOn = json["state"] as? Bool {
+                        callback(isLightOn, error, response)
+                        return
+                    }
+                }
+                callback(nil, error, response)
+            }
+        }
+    }
+    
     // MARK: - Low level operations
     
     fileprivate func connectionPost(httpClient: HTTPClient, json: NSDictionary, callback: @escaping (Bool, Error?, HTTPURLResponse) -> Void) {

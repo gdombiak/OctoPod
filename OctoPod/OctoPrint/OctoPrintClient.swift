@@ -859,6 +859,11 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         octoPrintRESTClient.getOctoLightHAState(callback: callback)
     }
     
+    /// Turn Home Assistant Light on/off
+    func turnOctoLightHA(on: Bool, callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
+        octoPrintRESTClient.turnOctoLightHA(on: on, callback: callback)
+    }
+    
     // MARK: - Delegates operations
     
     func remove(octoPrintClientDelegate toRemove: OctoPrintClientDelegate) {

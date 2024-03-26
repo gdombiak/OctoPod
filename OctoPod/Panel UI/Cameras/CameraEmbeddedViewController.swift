@@ -143,11 +143,22 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         }
     }
     
-    /// React when the first image has been received. This notification is sent by the instance itself
-    func firstImageReceived(image: UIImage) {
+    /// Check if there is enough room in the room. If room is dark and HA Light plugin is installed then turn on the light
+    func checkRoomLuminance(image: UIImage) {
         if let isDark = image.luminanceBelow(threshold: 40), !self.octolightHAButton.isHidden && isDark {
-            // Simulate user tapping on button to turn on the light
-            self.octolightHAClicked(self)
+            // Turn on HA light
+            octoprintClient.turnOctoLightHA(on: true) { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
+                if let error = error {
+                    NSLog("Error requesting to power HA light on: \(String(describing: error.localizedDescription)). Http response: \(response.statusCode)")
+                }
+                if let isLightOn = on {
+                    DispatchQueue.main.async {
+                        self.displayOctoLightHAButton(isLightOn: isLightOn)
+                    }
+                } else {
+                    NSLog("Error requesting to power light on \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                }
+            }
         }
     }
     
@@ -162,9 +173,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     @IBAction func octolightHAClicked(_ sender: Any) {
         let generator = UINotificationFeedbackGenerator()
-        if sender as? CameraEmbeddedViewController != self {
-            generator.prepare()
-        }
+        generator.prepare()
 
         octoprintClient.toggleOctoLightHA { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
             if let error = error {
@@ -173,9 +182,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             if let isLightOn = on {
                 DispatchQueue.main.async {
                     self.displayOctoLightHAButton(isLightOn: isLightOn)
-                    if sender as? CameraEmbeddedViewController != self {
-                        generator.notificationOccurred(.success)
-                    }
+                    generator.notificationOccurred(.success)
                 }
             } else {
                 NSLog("Error requesting to toggle light \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")

@@ -20,6 +20,8 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
     // MARK: - Abstract methods
 
     override func renderPrinter(printer: Printer, url: URL) {
+        var imageCount = 0
+        
         // User authentication credentials if configured for the printer
         if let username = printer.username, let password = printer.password {
             if printer.preemptiveAuthentication() {
@@ -94,8 +96,20 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
         streamingController?.didRenderImage = { (image: UIImage) in
             // Notify that we got our first image and we know its ratio
             self.cameraViewDelegate?.imageAspectRatio(cameraIndex: self.cameraIndex, ratio: image.size.height / image.size.width)
+        }
+        
+        streamingController?.didFetchImage = { (image: UIImage) in
+            imageCount += 1
             
-            self.firstImageReceived(image: image)
+//            if (imageCount < 50) {
+//                NSLog("Check luminance of camera. Image: #\(imageCount) isDark: \(String(describing: image.luminanceBelow(threshold: 40)))")
+//            }
+            
+            // Some cameras render a black image on startup for a brief moment
+            // Skip a few images before checking if light is on/off
+            if imageCount == 5 {
+                self.checkRoomLuminance(image: image)
+            }
         }
 
         streamingController?.didFinishLoading = {
