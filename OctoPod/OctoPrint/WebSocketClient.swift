@@ -341,7 +341,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
 //        }
         if openRetries > 0 {
             NSLog("Retrying websocket connection after \(openRetries * 300) milliseconds")
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(openRetries * 300), execute: {
+            DispatchQueue.global(qos: .utility).asyncAfter(deadline: .now() + .milliseconds(openRetries * 300), execute: {
                 // Try establishing the connection
                 self.socket?.connect()
             })
@@ -449,7 +449,7 @@ class WebSocketClient : NSObject, WebSocketAdvancedDelegate {
         if closingSockets.isEmpty {
             // Start background thread that removes expired sockets
             // Timer needs to be started from main thread to be repeatable
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .utility).async {
                 cleanupTimer = Timer.scheduledTimer(timeInterval: TimeInterval(SOCKET_CLOSING_EXPIRATION), target: self, selector: #selector(cleanupClosingSockets), userInfo: nil, repeats: true)
                 cleanupTimer?.fire()
             }
