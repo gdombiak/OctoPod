@@ -3,7 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -612,6 +612,22 @@
                                             <action selector="octolightHAClicked:" destination="htf-Hq-pLO" eventType="touchUpInside" id="vSU-tR-fqA"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5r-oK-xpR">
+                                        <rect key="frame" x="175.5" y="122" width="24" height="24"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES" link="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="rZU-2W-zGI"/>
+                                            <constraint firstAttribute="width" constant="24" id="xxf-JL-J1e"/>
+                                        </constraints>
+                                        <state key="normal" image="Refresh">
+                                            <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="retryClicked:" destination="htf-Hq-pLO" eventType="touchUpInside" id="OIJ-N6-rG5"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="QpD-aN-p8Z"/>
                                 <constraints>
@@ -625,6 +641,8 @@
                                     <constraint firstItem="liK-HY-fST" firstAttribute="leading" secondItem="QpD-aN-p8Z" secondAttribute="leading" constant="5" id="BTJ-bx-ldA"/>
                                     <constraint firstItem="2VN-EJ-YhR" firstAttribute="top" secondItem="NQ5-25-ww1" secondAttribute="bottom" constant="3" id="G0c-Fd-FKp"/>
                                     <constraint firstItem="t4a-XJ-gjd" firstAttribute="top" secondItem="9ix-ve-DAs" secondAttribute="top" constant="4" id="IRm-Ve-I6C"/>
+                                    <constraint firstItem="c5r-oK-xpR" firstAttribute="centerX" secondItem="9ix-ve-DAs" secondAttribute="centerX" id="MVO-wW-ECC"/>
+                                    <constraint firstItem="c5r-oK-xpR" firstAttribute="top" secondItem="x8L-G5-sTU" secondAttribute="bottom" constant="8" id="OBS-iZ-nMO"/>
                                     <constraint firstAttribute="trailing" secondItem="t4a-XJ-gjd" secondAttribute="trailing" constant="2" id="T0e-NB-KAt"/>
                                     <constraint firstItem="QpD-aN-p8Z" firstAttribute="trailing" secondItem="QaJ-LN-zeT" secondAttribute="trailing" constant="10" id="WMV-wb-O5r"/>
                                     <constraint firstItem="q4H-Sg-7Zd" firstAttribute="top" secondItem="MT2-fR-HJD" secondAttribute="bottom" constant="5" id="a3p-kc-Xfp"/>
@@ -665,6 +683,7 @@
                         <outlet property="octolightHAButton" destination="liK-HY-fST" id="U1j-2a-hEg"/>
                         <outlet property="pinchMessageLabel" destination="q4H-Sg-7Zd" id="ZmK-ZT-6nU"/>
                         <outlet property="printTimeLeftLabel" destination="NQ5-25-ww1" id="sDX-8y-HTN"/>
+                        <outlet property="retryButton" destination="c5r-oK-xpR" id="bYU-Po-f17"/>
                         <outlet property="tapMessageLabel" destination="MT2-fR-HJD" id="5w6-TE-ELN"/>
                         <outlet property="tool0ActualLabel" destination="2VN-EJ-YhR" id="ZW5-AU-h51"/>
                         <outlet property="topCameraLabel" destination="t4a-XJ-gjd" id="1mP-e6-ix0"/>
@@ -8756,6 +8775,22 @@
                                             <action selector="errorURLClicked:" destination="0Az-YE-jhV" eventType="touchUpInside" id="R5P-j5-DGS"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xmF-dy-Xv4">
+                                        <rect key="frame" x="175.5" y="122" width="24" height="24"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES" link="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="GJM-9U-AWv"/>
+                                            <constraint firstAttribute="width" constant="24" id="nyD-al-ULi"/>
+                                        </constraints>
+                                        <state key="normal" image="Refresh">
+                                            <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="retryClicked:" destination="htf-Hq-pLO" eventType="touchUpInside" id="o0B-3p-HPb"/>
+                                        </connections>
+                                    </button>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About 10m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rU9-EM-Hqq">
                                         <rect key="frame" x="299.5" y="26" width="65.5" height="14.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -8814,9 +8849,11 @@
                                     <constraint firstItem="ynA-Ym-86B" firstAttribute="height" secondItem="pEi-Og-muD" secondAttribute="height" id="hG7-3g-FAu"/>
                                     <constraint firstItem="3hn-5x-4xy" firstAttribute="leading" secondItem="pEi-Og-muD" secondAttribute="leading" constant="2" id="hnN-WJ-83q"/>
                                     <constraint firstItem="3hn-5x-4xy" firstAttribute="top" secondItem="pEi-Og-muD" secondAttribute="top" constant="55" id="ii6-a2-iq8"/>
+                                    <constraint firstItem="xmF-dy-Xv4" firstAttribute="centerX" secondItem="pEi-Og-muD" secondAttribute="centerX" id="jdA-80-vkc"/>
                                     <constraint firstItem="vYF-Qu-77d" firstAttribute="top" secondItem="pEi-Og-muD" secondAttribute="top" constant="4" id="mVi-Cq-vpS"/>
                                     <constraint firstItem="ynA-Ym-86B" firstAttribute="width" secondItem="pEi-Og-muD" secondAttribute="width" id="q81-oc-AQF"/>
                                     <constraint firstItem="PD3-li-xER" firstAttribute="top" secondItem="rU9-EM-Hqq" secondAttribute="bottom" constant="3" id="uCm-yS-8NS"/>
+                                    <constraint firstItem="xmF-dy-Xv4" firstAttribute="top" secondItem="h4l-mV-gFf" secondAttribute="bottom" constant="8" id="wDE-ri-7yk"/>
                                     <constraint firstItem="h4l-mV-gFf" firstAttribute="leading" secondItem="pEi-Og-muD" secondAttribute="leading" constant="2" id="x3T-By-48u"/>
                                 </constraints>
                                 <connections>
@@ -8843,6 +8880,7 @@
                         <outlet property="pipButton" destination="DEb-hJ-iLF" id="Bae-bV-Gkw"/>
                         <outlet property="playerView" destination="ynA-Ym-86B" id="RXK-QQ-WLG"/>
                         <outlet property="printTimeLeftLabel" destination="rU9-EM-Hqq" id="GIL-x2-xTb"/>
+                        <outlet property="retryButton" destination="xmF-dy-Xv4" id="YJK-Pa-44o"/>
                         <outlet property="tapMessageLabel" destination="owv-oi-R6e" id="ifc-37-E7g"/>
                         <outlet property="tool0ActualLabel" destination="PD3-li-xER" id="L9i-Jh-Baf"/>
                         <outlet property="topCameraLabel" destination="vYF-Qu-77d" id="YKO-6K-vXn"/>
@@ -8894,6 +8932,22 @@
                                         </state>
                                         <connections>
                                             <action selector="errorURLClicked:" destination="IhP-VX-pqU" eventType="touchUpInside" id="eeU-I8-5v2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cHU-Pc-RNB">
+                                        <rect key="frame" x="175.5" y="122" width="24" height="24"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES" link="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="Wjd-RH-tFa"/>
+                                            <constraint firstAttribute="height" constant="24" id="kky-Vi-sTT"/>
+                                        </constraints>
+                                        <state key="normal" image="Refresh">
+                                            <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="retryClicked:" destination="htf-Hq-pLO" eventType="touchUpInside" id="yu8-ee-2eQ"/>
                                         </connections>
                                     </button>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About 10m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5I-fI-OCn">
@@ -8951,6 +9005,7 @@
                                     <constraint firstItem="FZc-na-wiA" firstAttribute="trailing" secondItem="l5I-fI-OCn" secondAttribute="trailing" constant="10" id="1sb-rw-JBo"/>
                                     <constraint firstItem="l5I-fI-OCn" firstAttribute="top" secondItem="FZc-na-wiA" secondAttribute="top" constant="6" id="2hp-Wh-HIi"/>
                                     <constraint firstItem="Vzt-hH-j3r" firstAttribute="leading" secondItem="biK-HO-X2X" secondAttribute="leading" constant="2" id="4c4-9w-yt4"/>
+                                    <constraint firstItem="cHU-Pc-RNB" firstAttribute="centerX" secondItem="biK-HO-X2X" secondAttribute="centerX" id="6c0-Ti-ywi"/>
                                     <constraint firstItem="FZc-na-wiA" firstAttribute="trailing" secondItem="TJK-lR-D1v" secondAttribute="trailing" constant="10" id="9Aw-di-XOb"/>
                                     <constraint firstItem="OTg-a2-ToQ" firstAttribute="top" secondItem="biK-HO-X2X" secondAttribute="top" constant="55" id="ABZ-7b-ZHb"/>
                                     <constraint firstItem="ZLF-7d-725" firstAttribute="leading" secondItem="FZc-na-wiA" secondAttribute="leading" constant="5" id="CNX-vw-eLg"/>
@@ -8959,6 +9014,7 @@
                                     <constraint firstItem="TJK-lR-D1v" firstAttribute="top" secondItem="yOG-Yr-4xg" secondAttribute="bottom" constant="3" id="MH3-rv-Obp"/>
                                     <constraint firstAttribute="bottom" secondItem="F9k-aC-isg" secondAttribute="bottom" constant="10" id="OHb-eh-ndR"/>
                                     <constraint firstItem="Vzt-hH-j3r" firstAttribute="top" secondItem="OTg-a2-ToQ" secondAttribute="bottom" constant="8" id="OTZ-Vz-z1s"/>
+                                    <constraint firstItem="cHU-Pc-RNB" firstAttribute="top" secondItem="Vzt-hH-j3r" secondAttribute="bottom" constant="8" id="Qfr-bZ-m3G"/>
                                     <constraint firstItem="FZc-na-wiA" firstAttribute="trailing" secondItem="yOG-Yr-4xg" secondAttribute="trailing" constant="10" id="RFB-zj-o3I"/>
                                     <constraint firstAttribute="trailing" secondItem="aOW-Zy-H8C" secondAttribute="trailing" constant="2" id="S4R-tB-HA8"/>
                                     <constraint firstItem="F9k-aC-isg" firstAttribute="top" secondItem="Z0q-nd-Sbc" secondAttribute="bottom" constant="5" id="Xzp-ce-vGU"/>
@@ -9000,6 +9056,7 @@
                         <outlet property="octolightHAButton" destination="ZLF-7d-725" id="grs-sH-5Vn"/>
                         <outlet property="pinchMessageLabel" destination="F9k-aC-isg" id="ONO-0i-7pb"/>
                         <outlet property="printTimeLeftLabel" destination="l5I-fI-OCn" id="mhL-QI-zez"/>
+                        <outlet property="retryButton" destination="cHU-Pc-RNB" id="dRn-mU-gD1"/>
                         <outlet property="tapMessageLabel" destination="Z0q-nd-Sbc" id="lHd-H7-oLt"/>
                         <outlet property="tool0ActualLabel" destination="yOG-Yr-4xg" id="gHf-VZ-P2t"/>
                         <outlet property="topCameraLabel" destination="aOW-Zy-H8C" id="xsX-ch-YrS"/>
@@ -9371,6 +9428,7 @@
         <image name="ProbeTest" width="24" height="24"/>
         <image name="ProbeUp" width="24" height="24"/>
         <image name="Progress" width="64" height="64"/>
+        <image name="Refresh" width="64" height="64"/>
         <image name="Refresh SD" width="24" height="24"/>
         <image name="Reorder" width="32" height="32"/>
         <image name="Security" width="32" height="32"/>

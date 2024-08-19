@@ -38,7 +38,7 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
     open var contentURL: URL?
     open var imageView: UIImageView?
     open var imageOrientation: UIImage.Orientation?
-    open var timeoutInterval: TimeInterval = 60.0
+    open var timeoutInterval: TimeInterval = 15.0 // Set timeout to 15 seconds (used to be 60)
     
     private var parsingJson = false
 

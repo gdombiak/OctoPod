@@ -15,7 +15,8 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
 
     @IBOutlet weak var errorMessageLabel: UILabel!
     @IBOutlet weak var errorURLButton: UIButton!
-    
+    @IBOutlet weak var retryButton: UIButton!
+
     @IBOutlet weak var tapMessageLabel: UILabel!
     @IBOutlet weak var pinchMessageLabel: UILabel!
     
@@ -171,6 +172,11 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         }
     }
     
+    @IBAction func retryClicked(_ sender: Any) {
+        // Retry rendering the camera again
+        renderPrinter(appActive: true)
+    }
+    
     @IBAction func octolightHAClicked(_ sender: Any) {
         let generator = UINotificationFeedbackGenerator()
         generator.prepare()
@@ -256,6 +262,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         // Hide error messages
         errorMessageLabel.isHidden = true
         errorURLButton.isHidden = true
+        retryButton.isHidden = true
         
         // Hide OctoLight HomeAssistant Button until we know this plugin is installed
         octolightHAButton.isHidden = true
@@ -265,8 +272,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             setCameraOrientation(newOrientation: cameraOrientation)
 
             if let url = URL(string: cameraURL.trimmingCharacters(in: .whitespaces)) {
-                // Make sure that url button is clickable (visible when not hidden)
+                // Make sure that url buttons are clickable (visible when not hidden)
                 self.errorURLButton.isUserInteractionEnabled = true
+                self.retryButton.isUserInteractionEnabled = true
                 
                 if appActive {
                     // Display octoLightHA button if plugin is installed

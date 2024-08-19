@@ -5,10 +5,24 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
  
     var streamingController: MjpegStreamingController?
     
+    private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         streamingController = MjpegStreamingController(imageView: imageView)
+        
+        // Add a spinner to indicate camera is loading feed
+        if let scrollableView = view.subviews.first {
+            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+            scrollableView.addSubview(activityIndicator)
+            
+            NSLayoutConstraint.activate([
+                activityIndicator.centerXAnchor.constraint(equalTo: scrollableView.centerXAnchor),
+                activityIndicator.centerYAnchor.constraint(equalTo: scrollableView.centerYAnchor)
+
+            ])
+        }
     }
     
     // MARK: - UIScrollViewDelegate
@@ -40,6 +54,7 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
         }
         
         streamingController?.authenticationFailedHandler = {
+            self.hideSpinnerView()
             DispatchQueue.main.async {
                 self.imageView.image = nil
                 // Display error messages
@@ -50,6 +65,7 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
         }
         
         streamingController?.didFinishWithErrors = { error in
+            self.hideSpinnerView()
             DispatchQueue.main.async {
                 self.imageView.image = nil
                 // Display error messages
@@ -58,11 +74,14 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
                 self.errorURLButton.setTitle(self.cameraURL, for: .normal)
                 self.errorMessageLabel.isHidden = false
                 self.errorURLButton.isHidden = false
+                // Offer the option to reload again the camera
+                self.retryButton.isHidden = false
             }
         }
         
         streamingController?.didFinishWithHTTPErrors = { httpResponse in
             // We got a 404 or some 5XX error
+            self.hideSpinnerView()
             DispatchQueue.main.async {
                 self.imageView.image = nil
                 // Display error messages
@@ -73,22 +92,27 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
                     self.errorMessageLabel.numberOfLines = 1
                     self.errorMessageLabel.isHidden = false
                     self.errorURLButton.isHidden = true
+                    self.retryButton.isHidden = true
                 } else if httpResponse.statusCode == 605 {
                     self.errorMessageLabel.text = NSLocalizedString("Account is no longer an OctoEverywhere supporter", comment: "")
                     self.errorMessageLabel.numberOfLines = 2
                     self.errorMessageLabel.isHidden = false
                     self.errorURLButton.isHidden = true
+                    self.retryButton.isHidden = true
                 } else if httpResponse.statusCode == 609 {
                     self.errorMessageLabel.text = NSLocalizedString("OctoEverywhere: Webcam Limit Exceeded", comment: "Error message from OctoEverywhere")
                     self.errorMessageLabel.numberOfLines = 2
                     self.errorMessageLabel.isHidden = false
                     self.errorURLButton.isHidden = true
+                    self.retryButton.isHidden = true
                 } else {
                     self.errorMessageLabel.text = String(format: NSLocalizedString("HTTP Request error", comment: "HTTP Request error info"), httpResponse.statusCode)
                     self.errorMessageLabel.numberOfLines = 1
                     self.errorURLButton.setTitle(self.cameraURL, for: .normal)
                     self.errorMessageLabel.isHidden = false
                     self.errorURLButton.isHidden = false
+                    // Offer the option to reload again the camera
+                    self.retryButton.isHidden = false
                 }
             }
         }
@@ -116,9 +140,13 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
             // Hide error messages since an image will be rendered (so that means that it worked!)
             self.errorMessageLabel.isHidden = true
             self.errorURLButton.isHidden = true
+            self.retryButton.isHidden = true
+
+            self.hideSpinnerView()
         }
         
         // Start rendering the camera
+        showSpinnerView()
         streamingController?.play(url: url)
     }
     
@@ -146,5 +174,19 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
     override func destroy() {
         streamingController?.destroy()
         streamingController = nil
+    }
+    
+    // MARK: - Private function
+
+    fileprivate func showSpinnerView() {
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+    }
+    
+    fileprivate func hideSpinnerView() {
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
+        }
     }
 }

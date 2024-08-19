@@ -261,6 +261,7 @@
 		3D999B2224E9D642007AA99F /* MultiCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D999B2024E9CDB4007AA99F /* MultiCamera.swift */; };
 		3D999B2324E9D642007AA99F /* MultiCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D999B2024E9CDB4007AA99F /* MultiCamera.swift */; };
 		3D999B2424E9D644007AA99F /* MultiCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D999B2024E9CDB4007AA99F /* MultiCamera.swift */; };
+		3D99B6DB2C72AD8000A5935D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EB0AD217B0D270093EC79 /* Assets.xcassets */; };
 		3D9AAD5122B325A00051BB1B /* MMUNotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AAD5022B325A00051BB1B /* MMUNotificationsHandler.swift */; };
 		3D9AAD5322B326250051BB1B /* AbstractNotificationsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9AAD5222B326250051BB1B /* AbstractNotificationsHandler.swift */; };
 		3D9B407027093E2600FDF2F0 /* PrintersCameraGridViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9B406F27093E2600FDF2F0 /* PrintersCameraGridViewCellDelegate.swift */; };
@@ -2279,6 +2280,7 @@
 			files = (
 				3D718776215F367700A29D02 /* Localizable.strings in Resources */,
 				3DFFF60B26BF6E1200AAA518 /* serious-strike-533.m4r in Resources */,
+				3D99B6DB2C72AD8000A5935D /* Assets.xcassets in Resources */,
 				3D0192FF2443692800970A06 /* EnclosureInputTempCellView.xib in Resources */,
 				3DFFF60D26BF6F7400AAA518 /* soft-bells-495.m4r in Resources */,
 				3D9E087E2160455400F11CD4 /* InfoPlist.strings in Resources */,

@@ -45,6 +45,7 @@ class CameraTSDEmbeddedViewController: CameraEmbeddedViewController {
                                 // Hide error messages since an image will be rendered (so that means that it worked!)
                                 self.errorMessageLabel.isHidden = true
                                 self.errorURLButton.isHidden = true
+                                self.retryButton.isHidden = true
                                 // Update image
                                 self.imageView.image = receivedImage
                             }
@@ -58,6 +59,7 @@ class CameraTSDEmbeddedViewController: CameraEmbeddedViewController {
                                 self.errorMessageLabel.numberOfLines = 2
                                 self.errorMessageLabel.isHidden = false
                                 self.errorURLButton.isHidden = true
+                                self.retryButton.isHidden = true
                             }
                         }
                     }
