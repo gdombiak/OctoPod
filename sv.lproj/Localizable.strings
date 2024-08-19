@@ -361,6 +361,9 @@
 /* (No Comment) */
 "Failed to set new flow rate" = "Kunde inte ställa in ny flödeshastighet";
 
+/* No comment provided by engineer. */
+"Failed to toggle light" = "Det gick inte att byta ljus";
+
 /* (No Comment) */
 "Failed to upload file" = "Kunde inte ladda upp fil";
 
@@ -435,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Learn More" = "Läs mer";
+
+/* No comment provided by engineer. */
+"Light" = "Ljus";
 
 /* gcode name */
 "Load filament" = "Ladda filament";

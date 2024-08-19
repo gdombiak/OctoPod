@@ -361,6 +361,9 @@
 /* (No Comment) */
 "Failed to set new flow rate" = "Nepavyko nustatyti naujo tekėjimo greičio";
 
+/* No comment provided by engineer. */
+"Failed to toggle light" = "Nepavyko perjungti šviesos";
+
 /* (No Comment) */
 "Failed to upload file" = "Nepavyko įkelti failo";
 
@@ -435,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Learn More" = "Sužinokite daugiau";
+
+/* No comment provided by engineer. */
+"Light" = "Šviesa";
 
 /* gcode name */
 "Load filament" = "Įdėti plastiką";

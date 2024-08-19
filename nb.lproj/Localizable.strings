@@ -361,6 +361,9 @@
 /* (No Comment) */
 "Failed to set new flow rate" = "Kunne ikke angi ny materialflyt";
 
+/* No comment provided by engineer. */
+"Failed to toggle light" = "Kunne ikke bytte lys";
+
 /* (No Comment) */
 "Failed to upload file" = "Kunne ikke laste opp fil";
 
@@ -435,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Learn More" = "Lære mer";
+
+/* No comment provided by engineer. */
+"Light" = "Lys";
 
 /* gcode name */
 "Load filament" = "Last inn filament";

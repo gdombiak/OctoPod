@@ -2,6 +2,9 @@
 "%@" = "%@";
 
 /* No comment provided by engineer. */
+"%@%" = "%1$@%2$";
+
+/* No comment provided by engineer. */
 "1 day ago" = "Il y a 1 jour";
 
 /* No comment provided by engineer. */

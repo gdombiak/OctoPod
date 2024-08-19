@@ -361,6 +361,9 @@
 /* (No Comment) */
 "Failed to set new flow rate" = "Не удалось установить новую cкорость потока";
 
+/* No comment provided by engineer. */
+"Failed to toggle light" = "Не удалось переключить свет";
+
 /* (No Comment) */
 "Failed to upload file" = "Не удалось загрузить файл";
 
@@ -435,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Learn More" = "Выучить больше";
+
+/* No comment provided by engineer. */
+"Light" = "Свет";
 
 /* gcode name */
 "Load filament" = "Загрузка филамента";

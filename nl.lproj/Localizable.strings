@@ -361,6 +361,9 @@
 /* (No Comment) */
 "Failed to set new flow rate" = "Nieuwe toevoersnelheid instellen mislukt";
 
+/* No comment provided by engineer. */
+"Failed to toggle light" = "Het is niet gelukt om het licht uit te schakelen";
+
 /* (No Comment) */
 "Failed to upload file" = "Uploaden van bestand mislukt";
 
@@ -435,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Learn More" = "Lees meer";
+
+/* No comment provided by engineer. */
+"Light" = "Licht";
 
 /* gcode name */
 "Load filament" = "Laad fillament";

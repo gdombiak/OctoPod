@@ -361,6 +361,9 @@
 /* (No Comment) */
 "Failed to set new flow rate" = "Neue Fließgeschwindigkeit nicht eingestellt";
 
+/* No comment provided by engineer. */
+"Failed to toggle light" = "Das Licht konnte nicht umgeschaltet werden";
+
 /* (No Comment) */
 "Failed to upload file" = "Datei konnte nicht hochgeladen werden";
 
@@ -435,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Learn More" = "Lerne mehr";
+
+/* No comment provided by engineer. */
+"Light" = "Licht";
 
 /* gcode name */
 "Load filament" = "Lade Filament";

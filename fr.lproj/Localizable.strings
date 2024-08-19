@@ -361,6 +361,9 @@
 /* (No Comment) */
 "Failed to set new flow rate" = "Échec du réglage du débit";
 
+/* No comment provided by engineer. */
+"Failed to toggle light" = "Impossible d'allumer la lumière";
+
 /* (No Comment) */
 "Failed to upload file" = "Échec du chargement";
 
@@ -435,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Learn More" = "En savoir plus";
+
+/* No comment provided by engineer. */
+"Light" = "Lumière";
 
 /* gcode name */
 "Load filament" = "Charger filament";

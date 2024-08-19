@@ -361,6 +361,9 @@
 /* (No Comment) */
 "Failed to set new flow rate" = "Nezdařilo se nastavit novou rychlost průtoku";
 
+/* No comment provided by engineer. */
+"Failed to toggle light" = "Nepodařilo se přepnout světlo";
+
 /* (No Comment) */
 "Failed to upload file" = "Nezdařilo se nahrát soubor";
 
@@ -435,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Learn More" = "Další informace";
+
+/* No comment provided by engineer. */
+"Light" = "Světlo";
 
 /* gcode name */
 "Load filament" = "Zavést filament";

@@ -361,6 +361,9 @@
 /* (No Comment) */
 "Failed to set new flow rate" = "未能设置新的进给率";
 
+/* No comment provided by engineer. */
+"Failed to toggle light" = "开关灯失败";
+
 /* (No Comment) */
 "Failed to upload file" = "上传文件失败";
 
@@ -435,6 +438,9 @@
 
 /* No comment provided by engineer. */
 "Learn More" = "了解更多";
+
+/* No comment provided by engineer. */
+"Light" = "光";
 
 /* gcode name */
 "Load filament" = "加载耗材";
