@@ -386,7 +386,7 @@
 "Folder" = "Dossier";
 
 /* (No Comment) */
-"Headers" = "En-têtes (par exemple, CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
+"Headers" = "En-têtes (ex.: CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
 
 /* No comment provided by engineer. */
 "Hostname (e.g. http://octopi.local)" = "Hostname (ex. : http://octopi.local)";

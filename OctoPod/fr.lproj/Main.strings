@@ -86,7 +86,7 @@
 "4LI-ea-uZQ.headerTitle" = "BLTouch";
 
 /* Class = "UITextField"; placeholder = "Headers (e.g. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)"; ObjectID = "4lj-t2-YJY"; */
-"4lj-t2-YJY.placeholder" = "En-têtes (par exemple, CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
+"4lj-t2-YJY.placeholder" = "En-têtes (ex.: CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "4ls-BU-eMv"; */
 "4ls-BU-eMv.text" = "Imprimantes";
@@ -227,7 +227,7 @@
 "ahs-Hn-dAX.text" = "Extrudeur";
 
 /* Class = "UITextField"; placeholder = "Headers (e.g. CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)"; ObjectID = "Ajg-ql-ceK"; */
-"Ajg-ql-ceK.placeholder" = "En-têtes (par exemple, CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
+"Ajg-ql-ceK.placeholder" = "En-têtes (ex.: CF-Access-Client-Id: b.access, CF-Access-Client-Secret: 234)";
 
 /* Class = "UIButton"; normalTitle = "View activity log"; ObjectID = "aJp-RM-Tuf"; */
 "aJp-RM-Tuf.normalTitle" = "Voir les logs d’activité";
