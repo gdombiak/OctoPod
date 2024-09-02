@@ -5,13 +5,20 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
  
     var streamingController: MjpegStreamingController?
     
-    private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    private var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         streamingController = MjpegStreamingController(imageView: imageView)
         
+        if #available(iOS 13, *) {
+            activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+            activityIndicator.color = .white
+        } else {
+            activityIndicator = UIActivityIndicatorView(style: .white)
+        }
+
         // Add a spinner to indicate camera is loading feed
         if let scrollableView = view.subviews.first {
             activityIndicator.translatesAutoresizingMaskIntoConstraints = false
