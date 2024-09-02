@@ -83,6 +83,10 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
                 self.errorURLButton.isHidden = false
                 // Offer the option to reload again the camera
                 self.retryButton.isHidden = false
+                
+                if let urlError = error as? URLError, urlError.code == .timedOut {
+                    self.retryRenderingCamera()
+                }
             }
         }
         

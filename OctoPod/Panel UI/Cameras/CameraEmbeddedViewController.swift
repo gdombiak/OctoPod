@@ -34,6 +34,12 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     var muteVideo = false
     var muteAvailable = false
 
+    // Variables for exponential backoff. Used for retrying reloading camera when dealing with timeout
+    var retryCount = 0
+    var maxRetries = 10
+    var baseRetryDelay: TimeInterval = 1.0
+    var retryWorkItem: DispatchWorkItem?
+
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
     
     var camerasViewController: CamerasViewController?
@@ -60,6 +66,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCameraTap))
         gestureView().isUserInteractionEnabled = true
         gestureView().addGestureRecognizer(tapGesture)
+        
+        // Reset number of retries attempted to render camera
+        retryCount = 0
 
         renderPrinter(appActive: UIApplication.shared.applicationState != .background)
         
@@ -72,6 +81,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        // Cancel the exponential backoff when the view controller is about to disappear
+        cancelRetryingRenderingCamera()
+
         // Stop listening to events when app comes back from background
         NotificationCenter.default.removeObserver(self)
 
@@ -118,10 +130,16 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     // MARK: - Notifications
 
     func printerSelectedChanged() {
+        // Cancel any automatic retry of the camera (it uses exponential backoff) and reset counter of retries
+        cancelRetryingRenderingCamera()
+
         renderPrinter(appActive: UIApplication.shared.applicationState == .active)
     }
     
     func cameraSelectedChanged() {
+        // Cancel any automatic retry of the camera (it uses exponential backoff) and reset counter of retries
+        cancelRetryingRenderingCamera()
+
         renderPrinter(appActive: UIApplication.shared.applicationState == .active)
     }
     
@@ -173,6 +191,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     }
     
     @IBAction func retryClicked(_ sender: Any) {
+        // Cancel any automatic retry of the camera (it uses exponential backoff) and reset counter of retries
+        cancelRetryingRenderingCamera()
+        
         // Retry rendering the camera again
         renderPrinter(appActive: true)
     }
@@ -307,6 +328,36 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
             }
         }
     }
+    
+    func retryRenderingCamera() {
+        // Increase number of times we are retrying to render the camera
+        self.retryCount += 1
+        if self.retryCount > self.maxRetries {
+            // No more retries are left. Give up now
+            return
+        }
+
+        // Create a WorkItem for the retry task with exponential backoff
+        if retryWorkItem == nil {
+            retryWorkItem = DispatchWorkItem { [weak self] in
+                 guard let self = self else { return }
+
+                 // Perform your task here
+                self.renderPrinter(appActive: UIApplication.shared.applicationState != .background)
+             }
+        }
+        let delay = self.baseRetryDelay * pow(2.0, Double(self.retryCount))
+        NSLog("Will retry rendering camera after \(delay) seconds. Attempt #\(retryCount)")
+        
+        // Schedule to retry rendering the camera after the (exponential) delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: self.retryWorkItem!)
+    }
+    
+    fileprivate func cancelRetryingRenderingCamera() {
+        retryWorkItem?.cancel()
+        retryWorkItem = nil
+        retryCount = 0
+    }
 
     fileprivate func userUsedGestures() {
         let defaults = UserDefaults.standard
@@ -337,6 +388,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     }
     
     @objc func appDidEnterBackground() {
+        // Cancel any automatic retry of the camera (it uses exponential backoff)
+        cancelRetryingRenderingCamera()
+        // Stop rendering the camera
         stopPlaying()
     }
     
