@@ -22,6 +22,12 @@ class LiveActivitiesManager: OctoPrintClientDelegate {
     // MARK: - OctoPrintClientDelegate
     
     func printerStateUpdated(event: CurrentStateEvent) {
+        // LiveActivities do not work on Mac (app will crash) so skip if running on mac
+        if #available(iOS 13.0, *) {
+            if ProcessInfo.processInfo.isMacCatalystApp {
+                return
+            }
+        }
         if #available(iOS 16.2, *) {
             // For Live Activities to work we need: iOS16.2 and user allowed Live Activities for OctoPod
             // If OctoPod plugin is NOT installed then live activity widget will show a warning asking user to install plugin
