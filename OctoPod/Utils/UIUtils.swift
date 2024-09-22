@@ -55,6 +55,14 @@ class UIUtils {
     }
     
     static func calculateCameraHeightConstraints(screenHeight: CGFloat) -> (cameraHeight4_3ConstraintPortrait: CGFloat, cameraHeight4_3ConstraintLandscape: CGFloat, camera16_9HeightConstraintPortrait: CGFloat, cameral16_9HeightConstraintLandscape: CGFloat){
+        // LiveActivities do not work on Mac (app will crash) so skip if running on mac
+        if #available(iOS 13.0, *) {
+            if ProcessInfo.processInfo.isMacCatalystApp {
+                // Running on Mac
+                return (624, 624, 624, 624)
+            }
+        }
+
         if screenHeight <= 568 {
             // iPhone 5, 5s, 5c, SE (and older models)
             return (183, 0, 183, 0)
@@ -71,8 +79,11 @@ class UIUtils {
             // iPhone 12, 12 Pro and 14
             return (292, 0, 219, 0)
         } else if screenHeight == 852 {
-            // iPhone 14 Pro
+            // iPhone 14 Pro, 16
             return (295, 0, 222, 0)
+        } else if screenHeight == 874 {
+            // iPhone 16 Pro
+            return (302, 0, 226, 0)
         } else if screenHeight == 896 {
             // iPhone Xr, Xs Max
             return (311, 0, 233, 0)
@@ -80,8 +91,11 @@ class UIUtils {
             // iPhone 12 Pro Max, 14 Plus
             return (321, 0, 241, 0)
         } else if screenHeight == 932 {
-            // iPhone 14 Pro Max
+            // iPhone 14 Pro Max, 16 Plus
             return (322, 0, 242, 0)
+        } else if screenHeight == 956 {
+            // iPhone 16 Pro Max
+            return (330, 0, 247, 0)
         } else if screenHeight == 1024 {
             // iPad (9.7-inch)
             return (575, 348, 432, 348)
