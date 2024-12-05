@@ -1,6 +1,68 @@
 # Changelog
 
-## [3.27](https://github.com/gdombiak/OctoPod/tree/3.27) (2023-11-20)
+## [3.31](https://github.com/gdombiak/OctoPod/tree/3.31) (2024-12-04)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.30...3.31)
+
+**Fixed bugs:**
+
+- iPad Pro m4 camera feed is not working! [\#708](https://github.com/gdombiak/OctoPod/issues/708)
+- Camera Keeps Frezzeing [\#707](https://github.com/gdombiak/OctoPod/issues/707)
+
+## [3.30](https://github.com/gdombiak/OctoPod/tree/3.30) (2024-09-22)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.29...3.30)
+
+**Implemented enhancements:**
+
+- Increase webcam screen size when running on Mac [\#705](https://github.com/gdombiak/OctoPod/issues/705)
+- Add support for iPhone 16 Pro and 16 Pro Max [\#704](https://github.com/gdombiak/OctoPod/issues/704)
+
+**Fixed bugs:**
+
+- App crashes upon opening in Mac Sequoia Beta [\#703](https://github.com/gdombiak/OctoPod/issues/703)
+- Crashing on M1 machines [\#643](https://github.com/gdombiak/OctoPod/issues/643)
+
+## [3.29](https://github.com/gdombiak/OctoPod/tree/3.29) (2024-09-02)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.28...3.29)
+
+**Implemented enhancements:**
+
+- Add support for 'OctoLight Home Assistant' plugin to Apple TV app [\#693](https://github.com/gdombiak/OctoPod/issues/693)
+- Feature request: Option to reload camera stream [\#701](https://github.com/gdombiak/OctoPod/issues/701)
+- Camera status indicator [\#694](https://github.com/gdombiak/OctoPod/issues/694)
+- Add support for 'OctoLight Home Assistant' plugin [\#692](https://github.com/gdombiak/OctoPod/issues/692)
+
+**Fixed bugs:**
+
+- Fix app freeze retrieving printers information [\#690](https://github.com/gdombiak/OctoPod/issues/690)
+- Fix App Crash when synching printers from iCloud [\#689](https://github.com/gdombiak/OctoPod/issues/689)
+- Camera does refresh after clicking on Live Activity [\#688](https://github.com/gdombiak/OctoPod/issues/688)
+- IOS app won't sync to iCloud - "failed to update some records" [\#683](https://github.com/gdombiak/OctoPod/issues/683)
+
+**Closed issues:**
+
+- Error when connecting to OctoEverywhere [\#696](https://github.com/gdombiak/OctoPod/issues/696)
+
+## [3.28](https://github.com/gdombiak/OctoPod/tree/3.28) (2023-12-05)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.27...3.28)
+
+**Implemented enhancements:**
+
+- Display proper error message when websockets failed to connect [\#673](https://github.com/gdombiak/OctoPod/issues/673)
+- Login behind Cloudflare Application [\#637](https://github.com/gdombiak/OctoPod/issues/637)
+- Spool manager integration [\#475](https://github.com/gdombiak/OctoPod/issues/475)
+- Add support for SpoolManager [\#677](https://github.com/gdombiak/OctoPod/pull/677) ([gdombiak](https://github.com/gdombiak))
+- Header support [\#674](https://github.com/gdombiak/OctoPod/pull/674) ([gdombiak](https://github.com/gdombiak))
+
+**Fixed bugs:**
+
+- Negative value in filament manager causes crashes [\#678](https://github.com/gdombiak/OctoPod/issues/678)
+- Duplicated subpanels may appear when switching between printers [\#675](https://github.com/gdombiak/OctoPod/issues/675)
+
+## [3.27](https://github.com/gdombiak/OctoPod/tree/3.27) (2023-11-21)
 
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.26...3.27)
 
@@ -17,16 +79,17 @@
 - App crashes when user opens iCloud settings in iOS [\#666](https://github.com/gdombiak/OctoPod/issues/666)
 - LiveActivity may show data from other printer when more than 1 printer is printing [\#664](https://github.com/gdombiak/OctoPod/issues/664)
 - Fix app crashes due to Core Data threading [\#649](https://github.com/gdombiak/OctoPod/issues/649)
+- iOS app crashes when opened [\#581](https://github.com/gdombiak/OctoPod/issues/581)
 
 **Closed issues:**
 
-- Fix deprecated warnings [\#665](https://github.com/gdombiak/OctoPod/issues/665)
 - OctoRelay: API v2 [\#661](https://github.com/gdombiak/OctoPod/issues/661)
+- Fix deprecated warnings [\#665](https://github.com/gdombiak/OctoPod/issues/665)
 
 **Merged pull requests:**
 
-- Supporting OctoRelay API v2 with backward compatibility [\#662](https://github.com/gdombiak/OctoPod/pull/662) ([RobinTail](https://github.com/RobinTail))
 - Update german translation [\#642](https://github.com/gdombiak/OctoPod/pull/642) ([joachimklug](https://github.com/joachimklug))
+- Supporting OctoRelay API v2 with backward compatibility [\#662](https://github.com/gdombiak/OctoPod/pull/662) ([RobinTail](https://github.com/RobinTail))
 
 ## [3.26](https://github.com/gdombiak/OctoPod/tree/3.26) (2023-04-06)
 
