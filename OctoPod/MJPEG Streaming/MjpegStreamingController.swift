@@ -83,6 +83,8 @@ open class MjpegStreamingController: NSObject, URLSessionDataDelegate {
         if let auth = authorizationHeader {
             request.addValue(auth, forHTTPHeaderField: "Authorization")
         }
+        // In case some reverse proxy is severing the long-lived connections, let's specify that we want to keep the connection alive
+        request.setValue("keep-alive", forHTTPHeaderField: "Connection")
         if let headers = self.headers {
             for (key, value) in headers {
                 request.addValue(value, forHTTPHeaderField: key)
