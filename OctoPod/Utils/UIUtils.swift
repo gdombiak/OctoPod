@@ -106,17 +106,23 @@ class UIUtils {
             // iPad (10.5-inch)
             return (619, 414, 469, 414)
         } else if screenHeight == 1133 {
-            // iPad Mini (6th generation)
+            // iPad Mini (6th generation), iPad Mini A17Pro
             return (558, 348, 419, 348)
         } else if screenHeight == 1180 {
-            // iPad Air (4th Gen) (2020)
+            // iPad Air (4th Gen) (2020), iPad Air 11-inch M2, iPad 10th gen
             return (615, 414, 461, 414)
         } else if screenHeight == 1194 {
             // iPad Pro (11 inch)
             return (626, 414, 469, 414)
-        } else if screenHeight >= 1366 {
-            // iPad (12.9-inch)
+        } else if screenHeight == 1210 {
+            // iPad Pro (11 inch M4)
+            return (626, 414, 468, 414)
+        } else if screenHeight >= 1366 && screenHeight < 1376 {
+            // iPad (12.9-inch), iPad Air 13-inch M2
             return (768, 604, 576, 604)
+        } else if screenHeight >= 1376 {
+            // iPad (13-inch M4)
+            return (774, 604, 580, 604)
         } else {
             // Unknown device so use default value
             return (281, 0, 211, 0)
