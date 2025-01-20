@@ -100,6 +100,8 @@ class Printer: NSManagedObject {
     
     @NSManaged var octolightHAInstalled: Bool
 
+    @NSManaged var printTimeGeniusInstalled: Bool
+
     // MARK: - Properties
 
     func getStreamPath() -> String {

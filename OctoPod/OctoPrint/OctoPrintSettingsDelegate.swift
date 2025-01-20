@@ -69,6 +69,10 @@ protocol OctoPrintSettingsDelegate: AnyObject {
     /// Notification that availability of OctoLight Home Assistant plugin has changed
     /// - parameter installed: True if plugin is installed in OctoPrint
     func octolightHAAvailabilityChanged(installed: Bool)
+    
+    /// Notification that availability of printTimeGenius plugin has changed
+    /// - parameter installed: True if plugin is installed in OctoPrint
+    func printTimeGeniusAvailabilityChanged(installed: Bool)
 }
 
 
@@ -127,5 +131,8 @@ extension OctoPrintSettingsDelegate {
     }
     
     func octolightHAAvailabilityChanged(installed: Bool) {        
+    }
+    
+    func printTimeGeniusAvailabilityChanged(installed: Bool) {
     }
 }

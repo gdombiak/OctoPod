@@ -199,6 +199,13 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             temp.parseTemps(event: event)
             tempHistory.addTemp(temp: temp)
         }
+        // Ugly hack - Intercept event before broadcasting to override 'progress' if PrintTimeGenius plugin is installed
+        if let idURL = URL(string: event.printerURL), let printer = printerManager.getPrinterByObjectURL(context: printerManager.safePrivateContext(), url: idURL), printer.printTimeGeniusInstalled {
+            if let printTime = event.progressPrintTime, let leftTime = event.progressPrintTimeLeft, leftTime > 0 {
+                event.progressCompletion = Double(printTime) / Double(printTime + leftTime) * 100
+            }
+        }
+        
         // Notify other listeners that OctoPrint and/or Printer state has changed
         for delegate in delegates {
             delegate.printerStateUpdated(event: event)
@@ -911,6 +918,8 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                         }
                     }
                 }
+            } else {
+                NSLog("Error GETting /api/settings. Response: \(response)")
             }
         }
         // Update Printer from /api/printerprofiles information
@@ -1034,6 +1043,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         updatePrinterFromSpoolManagerPlugin(printerID: printerID, plugins: plugins)
         updatePrinterFromBLTouchPlugin(printerID: printerID, plugins: plugins)
         updatePrinterFromOctolightHAPlugin(printerID: printerID, plugins: plugins)
+        updatePrinterFromPrintTimeGeniusPlugin(printerID: printerID, plugins: plugins)
     }
     
     fileprivate func updatePrinterFromMultiCamPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
@@ -1626,6 +1636,29 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
     
+    fileprivate func updatePrinterFromPrintTimeGeniusPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
+        var installed = false
+        if let _ = plugins[Plugins.PRINT_TIME_GENIUS] as? NSDictionary {
+            // PrintTimeGenius plugin is installed
+            installed = true
+        }
+        let newObjectContext = printerManager.newPrivateContext()
+        newObjectContext.performAndWait {
+            let printerToUpdate = newObjectContext.object(with: printerID) as! Printer
+            if printerToUpdate.printTimeGeniusInstalled != installed {
+                // Update flag that tracks if PrintTimeGenius plugin is installed
+                printerToUpdate.printTimeGeniusInstalled = installed
+                // Persist updated printer
+                self.printerManager.updatePrinter(printerToUpdate, context: newObjectContext)
+                
+                // Notify listeners of change
+                for delegate in self.octoPrintSettingsDelegates {
+                    delegate.printTimeGeniusAvailabilityChanged(installed: installed)
+                }
+            }
+        }
+    }
+
     fileprivate func calculateImageOrientation(flipH: Bool, flipV: Bool, rotate90: Bool) -> UIImage.Orientation {
         if !flipH && !flipV && !rotate90 {
              // No flips selected

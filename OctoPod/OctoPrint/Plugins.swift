@@ -22,4 +22,5 @@ struct Plugins {
     static let BL_TOUCH = "BLTouch"
     static let OCTO_RELAY = "octorelay"
     static let OCTO_LIGHT_HA = "octolightHA"
+    static let PRINT_TIME_GENIUS = "PrintTimeGenius"
 }
