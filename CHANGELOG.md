@@ -1,6 +1,18 @@
 # Changelog
 
-## [3.31](https://github.com/gdombiak/OctoPod/tree/3.31) (2024-12-04)
+## [Unreleased](https://github.com/gdombiak/OctoPod/tree/HEAD)
+
+## [3.32](https://github.com/gdombiak/OctoPod/tree/3.32) (2025-01-20)
+
+**Implemented enhancements:**
+
+- Progress bar shows wrong percentage when using PrintTimeGenius [\#684](https://github.com/gdombiak/OctoPod/issues/684)
+
+**Closed issues:**
+
+- Live Activity not appearing [\#711](https://github.com/gdombiak/OctoPod/issues/711)
+
+## [3.31](https://github.com/gdombiak/OctoPod/tree/3.31) (2024-12-05)
 
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.30...3.31)
 
