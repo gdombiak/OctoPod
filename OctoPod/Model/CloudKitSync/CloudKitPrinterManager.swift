@@ -16,7 +16,9 @@ class CloudKitPrinterManager {
     private let zoneID = CKRecordZone.ID(zoneName: "MyOctoPod", ownerName: CKCurrentUserDefaultName)
     
     private let printerManager: PrinterManager!
+    private let synchronizationLock = NSLock()
     private var starting = false
+    private var listeningToCloudKitEvents = false
     private let privateContext: NSManagedObjectContext!
     
     var delegates: Array<CloudKitPrinterDelegate> = Array()
@@ -37,12 +39,11 @@ class CloudKitPrinterManager {
     // MARK: - Start
     
     // Start synchronizing with iCloud (if available)
-    @objc func start(_ onceStarted: (() -> Void)?) {
-        if starting {
+    func start(_ onceStarted: (() -> Void)?) {
+        if !beginStarting() {
             // Do nothing since we are already starting
             return
         }
-        starting = true // Mark that we are starting
 
         discoverAccountStatus {
             if self.iCloudAvailable {
@@ -58,7 +59,7 @@ class CloudKitPrinterManager {
                     self.checkZone(completion: { (error) in
                         if let error = error {
                             self.appendLog("Error making sure app has its own CKRecordZone. \(error)")
-                            self.starting = false
+                            self.finishStarting()
                             onceStarted?()
                         } else {
                             // Pull printer updates from iCloud and then push local printer changes to iCloud
@@ -68,11 +69,11 @@ class CloudKitPrinterManager {
                             // or that failed previously
                             self.pullChanges(completionHandler: {
                                 self.pushChanges(completion: {
-                                    self.starting = false
+                                    self.finishStarting()
                                     onceStarted?()
                                 })
                             }, errorHandler: {
-                                self.starting = false
+                                self.finishStarting()
                                 onceStarted?()
                                 // Do nothing
                             })
@@ -80,14 +81,21 @@ class CloudKitPrinterManager {
                     })
                 }
             } else {
-                self.starting = false
+                self.finishStarting()
                 onceStarted?()
             }
         }
     }
+
+    @objc private func accountChanged(_ notification: Notification) {
+        start(nil)
+    }
     
     @objc func appDidEnterBackground() {
+        synchronizationLock.lock()
+        defer { synchronizationLock.unlock() }
         NotificationCenter.default.removeObserver(self, name: Notification.Name.CKAccountChanged, object: nil)
+        listeningToCloudKitEvents = false
     }
     
     
@@ -1044,10 +1052,32 @@ class CloudKitPrinterManager {
     
     fileprivate func listenToCloudKitEvents() {
         // Register for changes to iCloud Account status when the app is running
+        synchronizationLock.lock()
+        defer { synchronizationLock.unlock() }
+        guard !listeningToCloudKitEvents else {
+            return
+        }
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(start),
+                                               selector: #selector(accountChanged(_:)),
                                                name: Notification.Name.CKAccountChanged,
                                                object: nil)
+        listeningToCloudKitEvents = true
+    }
+
+    private func beginStarting() -> Bool {
+        synchronizationLock.lock()
+        defer { synchronizationLock.unlock() }
+        guard !starting else {
+            return false
+        }
+        starting = true
+        return true
+    }
+
+    private func finishStarting() {
+        synchronizationLock.lock()
+        starting = false
+        synchronizationLock.unlock()
     }
 }
 

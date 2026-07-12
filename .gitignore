@@ -2,3 +2,5 @@ Pods
 *.DS_Store
 xcuserdata
 */xcuserdata/*
+
+build/
