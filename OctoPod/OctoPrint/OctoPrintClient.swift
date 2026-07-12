@@ -200,7 +200,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             tempHistory.addTemp(temp: temp)
         }
         // Ugly hack - Intercept event before broadcasting to override 'progress' if PrintTimeGenius plugin is installed
-        if let idURL = URL(string: event.printerURL), let printer = printerManager.getPrinterByObjectURL(context: printerManager.safePrivateContext(), url: idURL), printer.printTimeGeniusInstalled {
+        if let idURL = URL(string: event.printerURL), printerManager.isPrintTimeGeniusInstalled(context: printerManager.safePrivateContext(), objectURL: idURL) {
             if let printTime = event.progressPrintTime, let leftTime = event.progressPrintTimeLeft, leftTime > 0 {
                 event.progressCompletion = Double(printTime) / Double(printTime + leftTime) * 100
             }

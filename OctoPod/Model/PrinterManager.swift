@@ -148,6 +148,19 @@ class PrinterManager {
             completion(nil)
         }
     }
+
+    /// Return whether the printer identified by the object URL has PrintTimeGenius installed.
+    /// The managed object remains confined to the provided context's queue.
+    func isPrintTimeGeniusInstalled(context: NSManagedObjectContext, objectURL: URL) -> Bool {
+        var installed = false
+        context.performAndWait {
+            if let objectID = context.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: objectURL),
+               let printer = context.object(with: objectID) as? Printer {
+                installed = printer.printTimeGeniusInstalled
+            }
+        }
+        return installed
+    }
     
     func getPrinters(context: NSManagedObjectContext) -> [Printer] {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
