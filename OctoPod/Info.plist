@@ -110,6 +110,8 @@
 	</array>
 	<key>UIRequiresFullScreen</key>
 	<false/>
+	<key>UIDesignRequiresCompatibility</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
