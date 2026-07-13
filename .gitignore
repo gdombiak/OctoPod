@@ -2,5 +2,6 @@ Pods
 *.DS_Store
 xcuserdata
 */xcuserdata/*
+*/xcshareddata/*
 
 build/
