@@ -31,6 +31,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     var muteAvailable = false
 
     private var lastPrinterID: String?
+    private weak var lastKnownWindow: UIWindow?
     
     /// PrinterURL of pritner to show. If empty then show default printer
     var showPrinter: String?
@@ -44,7 +45,9 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         pageContainer.dataSource = self
 
         // Add it to the view
+        addChild(pageContainer)
         view.addSubview(pageContainer.view)
+        pageContainer.didMove(toParent: self)
 
         // Configure our custom pageControl
         view.bringSubviewToFront(pageControl)
@@ -60,6 +63,11 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             lastPrinterID = newPrinterID
             updateViewControllersForPrinter(cameraChanged: cameraChanged)
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        lastKnownWindow = view.window
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -382,7 +390,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         pipClosedCallback?()
         if userStartedPIP {
             // User closed PIP rather than doing a pop-in
-            if let tabBarController = (UIApplication.shared.delegate as! AppDelegate).window!.rootViewController as? UITabBarController {
+            if let tabBarController = sceneWindow?.rootViewController as? UITabBarController {
                 if tabBarController.selectedIndex == 0 && UIApplication.shared.applicationState == .active {
                     // We were already in Panel tab and app is in foregound so resume playing
                     pictureInPictureController.playerLayer.player?.play()
@@ -395,7 +403,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, restoreUserInterfaceForPictureInPictureStopWithCompletionHandler completionHandler: @escaping (Bool) -> Void) {
         pipClosedCallback?()
         // We could be in any tab so go back to Panel tab AND camera started PIP
-        if let tabBarController = (UIApplication.shared.delegate as! AppDelegate).window!.rootViewController as? UITabBarController {
+        if let tabBarController = sceneWindow?.rootViewController as? UITabBarController {
             if tabBarController.selectedIndex != 0 {
                 // Stop player since view will appear and will start a new player
                 pictureInPictureController.playerLayer.player?.pause()
@@ -410,5 +418,18 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         userStartedPIP = false
 
         completionHandler(true)
+    }
+
+    private var sceneWindow: UIWindow? {
+        let controllerWindow = view.window
+            ?? navigationController?.viewIfLoaded?.window
+            ?? tabBarController?.viewIfLoaded?.window
+            ?? parent?.viewIfLoaded?.window
+            ?? lastKnownWindow
+
+        guard #available(iOS 13.0, *), let windowScene = controllerWindow?.windowScene else {
+            return controllerWindow
+        }
+        return windowScene.windows.first(where: { $0.isKeyWindow }) ?? controllerWindow
     }
 }

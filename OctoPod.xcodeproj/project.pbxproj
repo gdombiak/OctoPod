@@ -140,6 +140,7 @@
 		3D450EC921AB56F40049FBC0 /* IntentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D450EC721AB56F40049FBC0 /* IntentsController.swift */; };
 		3D450ECB21AB5BCE0049FBC0 /* OctoPrintRESTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAD2DDB21816D62004A4223 /* OctoPrintRESTClient.swift */; };
 		3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D45280120E15A370094CCB7 /* AppDelegate.swift */; };
+		A1B2C3D4E5F60718293A4B5C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B5D /* SceneDelegate.swift */; };
 		3D45280720E15A370094CCB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280520E15A370094CCB7 /* Main.storyboard */; };
 		3D45280A20E15A370094CCB7 /* OctoPod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D45280820E15A370094CCB7 /* OctoPod.xcdatamodeld */; };
 		3D45280C20E15A380094CCB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D45280B20E15A380094CCB7 /* Assets.xcassets */; };
@@ -679,6 +680,7 @@
 		3D450EC721AB56F40049FBC0 /* IntentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentsController.swift; sourceTree = "<group>"; };
 		3D4527FE20E15A370094CCB7 /* OctoPod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OctoPod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D45280120E15A370094CCB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A4B5D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3D45280620E15A370094CCB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3D45280920E15A370094CCB7 /* OctoPod.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OctoPod.xcdatamodel; sourceTree = "<group>"; };
 		3D45280B20E15A380094CCB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1426,6 +1428,7 @@
 				3D831E542108540E0004B7A5 /* NavigationController.swift */,
 				3D6350F221083BE0001C10F7 /* TabBarController.swift */,
 				3D45280120E15A370094CCB7 /* AppDelegate.swift */,
+				A1B2C3D4E5F60718293A4B5D /* SceneDelegate.swift */,
 				3D8DA0192144716B00F5FD07 /* AppConfiguration.swift */,
 				3D42AC1021731494004D9FD0 /* AppConfigurationDelegate.swift */,
 				3D45280520E15A370094CCB7 /* Main.storyboard */,
@@ -2556,6 +2559,7 @@
 				3D49A09D21D41FE2005002E7 /* NotificationsManager.swift in Sources */,
 				084AC3332B0D5C0E00D99780 /* SpoolSelectionViewCell.swift in Sources */,
 				3D45280220E15A370094CCB7 /* AppDelegate.swift in Sources */,
+				A1B2C3D4E5F60718293A4B5C /* SceneDelegate.swift in Sources */,
 				3D968DE120E34612006774A5 /* PrinterDetailsViewController.swift in Sources */,
 				3D82873B20E407370035AE0B /* PrintersTableViewController.swift in Sources */,
 				3D67AA9525B51A3600302A2B /* Timelapse.swift in Sources */,

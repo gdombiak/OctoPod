@@ -10,41 +10,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static let coreDataReadyNotification = Notification.Name("AppDelegate.coreDataReady")
 
+    // iOS 12 remains a supported deployment target. This outlet is unavailable on
+    // iOS 13 and later, where SceneDelegate exclusively owns the window.
+    @available(iOS, introduced: 2.0, obsoleted: 13.0)
     var window: UIWindow?
     private let coreDataReadinessLock = NSLock()
     private var coreDataReady = false
     private var coreDataStartupAttempted = false
+    // On iOS 13+, this is only a fallback for a legacy callback received before
+    // SceneDelegate has connected. The scene owns all other URL delivery.
     private var pendingOpenURL: URL?
+    private weak var sceneDelegate: AnyObject?
+    private var persistentStoreFailure = false
+    private var appWideServicesStarted = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Storyboard controllers resolve their dependencies lazily; keep them from becoming
-        // visible until the store and the legacy migration have both completed.
-        window?.isHidden = true
+        // iOS 13+ receives cold-start URLs in SceneDelegate.connectionOptions. Keep
+        // launchOptions URL ownership only for the legacy iOS 12 lifecycle.
+        if #unavailable(iOS 13.0) {
+            pendingOpenURL = launchOptions?[.url] as? URL
+            window?.isHidden = true
+        }
         _ = persistentContainer
         return true
-    }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-
-        // Start synchronizing with iCloud (if available)
-        if isCoreDataReady {
-            self.cloudKitPrinterManager.start(nil)
-        }
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -59,6 +47,55 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        receiveOpenURL(url)
+    }
+
+    // MARK: - Scene coordination
+
+    /// The app delegate owns app-wide state; the connected scene owns its window and UI.
+    /// OctoPod supports one scene configuration, so retaining the active delegate is enough
+    /// to bridge legacy UIApplicationDelegate URL delivery without reintroducing window ownership.
+    @available(iOS 13.0, *)
+    func connect(sceneDelegate: SceneDelegate) {
+        self.sceneDelegate = sceneDelegate
+        if persistentStoreFailure {
+            sceneDelegate.presentPersistentStoreFailure()
+            return
+        }
+        if isCoreDataReady {
+            sceneDelegate.coreDataDidBecomeReady()
+            deliverPendingOpenURLIfPossible()
+        }
+    }
+
+    @available(iOS 13.0, *)
+    func disconnect(sceneDelegate: SceneDelegate) {
+        if self.sceneDelegate === sceneDelegate {
+            self.sceneDelegate = nil
+        }
+    }
+
+    func sceneWillEnterForeground() {
+        // CloudKit is app-wide, but a foreground scene is the appropriate lifecycle
+        // signal to resume it. CloudKitPrinterManager coalesces overlapping starts.
+        guard isCoreDataReady else {
+            return
+        }
+        cloudKitPrinterManager.start(nil)
+    }
+
+    func receiveOpenURL(_ url: URL) -> Bool {
+        if #available(iOS 13.0, *) {
+            guard let sceneDelegate = sceneDelegate as? SceneDelegate else {
+                if url.scheme == "octopod" {
+                    pendingOpenURL = url
+                    return true
+                }
+                return false
+            }
+            // A connected scene queues URLs until its Core Data-backed UI is ready.
+            return sceneDelegate.openURL(url)
+        }
         guard isCoreDataReady else {
             if url.scheme == "octopod" {
                 pendingOpenURL = url
@@ -66,57 +103,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             return false
         }
-        return processOpenURL(url)
+        return processLegacyOpenURL(url)
     }
 
-    private func processOpenURL(_ url: URL) -> Bool {
-        if url.absoluteString.starts(with: "octopod://x-coredata") {
-            // iOS 16 sends with : and iOS 17 without. Use Regex to handle both cases
-            let newURL = url.absoluteString.replacingOccurrences(of: "octopod://x-coredata(:)*//", with: "x-coredata://", options: [.regularExpression])
-            // Switch to printer user clicked on when using LiveActivities
-            if let printerURL = URL(string: newURL), let printer = printerManager?.getPrinterByObjectURL(url: printerURL) {
-                // Add some delay so app transitions to Active (camera will render only when app is active)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.defaultPrinterManager.changeToDefaultPrinter(printer: printer)
-                    
-                    // Go to main Panel window
-                    if let tabBarController = self.window!.rootViewController as? UITabBarController {
-                        tabBarController.selectedIndex = 0
-                    }
-                }
-                return true
-            }
-        } else if let printerName = url.host?.removingPercentEncoding {
-            // Switch to printer user clicked on when using Today's widget or notification or iOS 14 widget
-            if let printer = printerManager?.getPrinterByName(name: printerName) {
-                // Add some delay so app transitions to Active (camera will render only when app is active)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.defaultPrinterManager.changeToDefaultPrinter(printer: printer)
-
-                    // Go to main Panel window
-                    if let tabBarController = self.window!.rootViewController as? UITabBarController {
-                        tabBarController.selectedIndex = 0
-                    }
-                }
-                return true
-            } else if printerName == "goToDashboard" {
-                // User clicked on iOS14 widget that shows multiple printers. Go to dashboard when user
-                // clicks on this widget
-                // Add some delay so app transitions to Active (camera will render only when app is active)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    if let tabBarController = self.window!.rootViewController as? UITabBarController {
-                        // Select main Panel window
-                        tabBarController.selectedIndex = 0
-                        if let navigationVC = tabBarController.selectedViewController as? NavigationController, let panelVC = navigationVC.topViewController as? PanelViewController {
-                            // Go to dashboard of printers
-                            panelVC.performSegue(withIdentifier: "printers_dashboard", sender: self)
-                        }
-                    }
-                }
-                return true
-            }
+    private func deliverPendingOpenURLIfPossible() {
+        guard isCoreDataReady, let pendingURL = pendingOpenURL else {
+            return
         }
-        return false
+        if #available(iOS 13.0, *) {
+            guard let sceneDelegate = sceneDelegate as? SceneDelegate else {
+                return
+            }
+            pendingOpenURL = nil
+            _ = sceneDelegate.openURL(pendingURL)
+        } else {
+            pendingOpenURL = nil
+            _ = processLegacyOpenURL(pendingURL)
+        }
     }
 
     // MARK: - Core Data stack
@@ -174,15 +177,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         coreDataReady = true
         coreDataReadinessLock.unlock()
 
-        // If no printers were defined then send to Setup window, if not go to first tab
-        if let tabBarController = self.window?.rootViewController as? UITabBarController {
-            tabBarController.selectedIndex = printerManager!.getPrinters().count == 0 ? 4 : 0
-        }
-
+        // Existing storyboard controllers may already be loaded but deferred their setup.
         NotificationCenter.default.post(name: AppDelegate.coreDataReadyNotification, object: self)
-        if let pendingURL = pendingOpenURL {
-            self.pendingOpenURL = nil
-            _ = processOpenURL(pendingURL)
+        startAppWideServicesIfNeeded()
+        if #available(iOS 13.0, *) {
+            (sceneDelegate as? SceneDelegate)?.coreDataDidBecomeReady()
+        } else {
+            finishLegacyCoreDataStartup()
+        }
+        deliverPendingOpenURLIfPossible()
+    }
+
+    private func startAppWideServicesIfNeeded() {
+        coreDataReadinessLock.lock()
+        let shouldStart = !appWideServicesStarted
+        appWideServicesStarted = true
+        coreDataReadinessLock.unlock()
+
+        guard shouldStart else {
+            return
         }
 
         // Register to receive push notifications via APNs (CloudKit sends silent push notifications when records change)
@@ -211,7 +224,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient,
                                                          mode: AVAudioSession.Mode.moviePlayback,
                                                          options: [.mixWithOthers])
-        window?.makeKeyAndVisible()
     }
 
     private func beginCoreDataStartup() -> Bool {
@@ -225,6 +237,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func presentPersistentStoreFailure() {
+        persistentStoreFailure = true
+        if #available(iOS 13.0, *) {
+            (sceneDelegate as? SceneDelegate)?.presentPersistentStoreFailure()
+        } else {
+            presentLegacyPersistentStoreFailure()
+        }
+    }
+
+    // MARK: - iOS 12 compatibility
+
+    @available(iOS, introduced: 2.0, obsoleted: 13.0)
+    private func finishLegacyCoreDataStartup() {
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            tabBarController.selectedIndex = printerManager!.getPrinters().count == 0 ? 4 : 0
+        }
+        window?.makeKeyAndVisible()
+    }
+
+    @available(iOS, introduced: 2.0, obsoleted: 13.0)
+    private func presentLegacyPersistentStoreFailure() {
         let controller = UIViewController()
         controller.view.backgroundColor = .white
         let label = UILabel()
@@ -240,6 +272,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ])
         window?.rootViewController = controller
         window?.makeKeyAndVisible()
+    }
+
+    @available(iOS, introduced: 2.0, obsoleted: 13.0)
+    private func processLegacyOpenURL(_ url: URL) -> Bool {
+        guard url.scheme == "octopod" else {
+            return false
+        }
+        if url.absoluteString.starts(with: "octopod://x-coredata") {
+            let normalizedURL = url.absoluteString.replacingOccurrences(of: "octopod://x-coredata(:)*//",
+                                                                          with: "x-coredata://",
+                                                                          options: [.regularExpression])
+            if let printerURL = URL(string: normalizedURL),
+               let printer = printerManager?.getPrinterByObjectURL(url: printerURL) {
+                selectLegacyPrinterAndPanel(printer)
+                return true
+            }
+        } else if let printerName = url.host?.removingPercentEncoding {
+            if let printer = printerManager?.getPrinterByName(name: printerName) {
+                selectLegacyPrinterAndPanel(printer)
+                return true
+            } else if printerName == "goToDashboard" {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                    guard let self = self,
+                          let tabBarController = self.window?.rootViewController as? UITabBarController else {
+                        return
+                    }
+                    tabBarController.selectedIndex = 0
+                    if let navigationVC = tabBarController.selectedViewController as? NavigationController,
+                       let panelVC = navigationVC.topViewController as? PanelViewController {
+                        panelVC.performSegue(withIdentifier: "printers_dashboard", sender: self)
+                    }
+                }
+                return true
+            }
+        }
+        return false
+    }
+
+    @available(iOS, introduced: 2.0, obsoleted: 13.0)
+    private func selectLegacyPrinterAndPanel(_ printer: Printer) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.defaultPrinterManager.changeToDefaultPrinter(printer: printer)
+            (self.window?.rootViewController as? UITabBarController)?.selectedIndex = 0
+        }
     }
     
     // Core Data database was moved from local storage to shared app group in release 2.1

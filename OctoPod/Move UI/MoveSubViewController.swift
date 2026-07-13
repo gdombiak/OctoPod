@@ -128,7 +128,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillDisappear(animated)
         
         // Stop listening to PrintProfile events
         octoprintClient.remove(printerProfilesDelegate: self)
