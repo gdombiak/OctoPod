@@ -109,8 +109,12 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         // Round the corners of the progres bar
         progressView.layer.cornerRadius = 8
         progressView.clipsToBounds = true
-        progressView.layer.sublayers![1].cornerRadius = 8
-        progressView.subviews[1].clipsToBounds = true
+        if let sublayers = progressView.layer.sublayers, sublayers.indices.contains(1) {
+            sublayers[1].cornerRadius = 8
+        }
+        if progressView.subviews.indices.contains(1) {
+            progressView.subviews[1].clipsToBounds = true
+        }
         
         // Change color of Cancel button when enabled or disabled
         cancelButton.setTitleColor(UIColor.red, for: .normal)

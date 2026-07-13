@@ -2,9 +2,9 @@ import UIKit
 
 class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSettingsDelegate, CameraViewDelegate, DefaultPrinterManagerDelegate {
 
-    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
-    let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
-    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
+    lazy var printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
+    lazy var octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    lazy var defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
 
     var camerasViewController: CamerasViewController?
 
@@ -21,6 +21,8 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
     // Gestures to switch between printers
     var swipeLeftGestureRecognizer : UISwipeGestureRecognizer!
     var swipeRightGestureRecognizer : UISwipeGestureRecognizer!
+    private var coreDataAppearanceDeferred = false
+    private var coreDataAppearanceSetupActive = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,12 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
         
         // Calculate constraint for subpanel
         calculateCameraHeightConstraints()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(coreDataDidBecomeReady), name: AppDelegate.coreDataReadyNotification, object: nil)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,21 +52,40 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // Listen to events coming from OctoPrintClient
-        octoprintClient.delegates.append(self)
-        // Listen to changes to OctoPrint Settings in case the camera orientation has changed
-        octoprintClient.octoPrintSettingsDelegates.append(self)
-        // Listen to changes to default printer
-        defaultPrinterManager.delegates.append(self)
+        super.viewWillAppear(animated)
+        guard (UIApplication.shared.delegate as! AppDelegate).isCoreDataReady else {
+            coreDataAppearanceDeferred = true
+            return
+        }
+        configureForCoreDataReadyAppearance()
+    }
+
+    @objc private func coreDataDidBecomeReady() {
+        guard coreDataAppearanceDeferred else {
+            return
+        }
+        coreDataAppearanceDeferred = false
+        configureForCoreDataReadyAppearance()
+    }
+
+    private func configureForCoreDataReadyAppearance() {
+        if !coreDataAppearanceSetupActive {
+            // Listen to events coming from OctoPrintClient
+            octoprintClient.delegates.append(self)
+            // Listen to changes to OctoPrint Settings in case the camera orientation has changed
+            octoprintClient.octoPrintSettingsDelegates.append(self)
+            // Listen to changes to default printer
+            defaultPrinterManager.delegates.append(self)
+            // Add gestures to capture swipes and taps on navigation bar
+            addNavBarGestures()
+            coreDataAppearanceSetupActive = true
+        }
 
         // Set background color to the view
         let theme = Theme.currentTheme()
         view.backgroundColor = theme.backgroundColor()
 
         refreshNewSelectedPrinter()
-
-        // Add gestures to capture swipes and taps on navigation bar
-        addNavBarGestures()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,6 +94,14 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        coreDataAppearanceDeferred = false
+        guard (UIApplication.shared.delegate as! AppDelegate).isCoreDataReady else {
+            return
+        }
+        guard coreDataAppearanceSetupActive else {
+            return
+        }
         // Stop listening to changes from OctoPrintClient
         octoprintClient.remove(octoPrintClientDelegate: self)
         // Stop listening to changes to OctoPrint Settings
@@ -75,6 +110,7 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
         defaultPrinterManager.remove(defaultPrinterManagerDelegate: self)
         // Remove gestures that capture swipes and taps on navigation bar
         removeNavBarGestures()
+        coreDataAppearanceSetupActive = false
     }
 
     // MARK: - OctoPrintClientDelegate
@@ -105,6 +141,9 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
     // React when device orientation changes
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        guard (UIApplication.shared.delegate as! AppDelegate).isCoreDataReady else {
+            return
+        }
         if let printer = printerManager.getDefaultPrinter() {
             // Update layout depending on camera orientation
             updateForCameraOrientation(orientation: UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!, devicePortrait: size.height == screenHeight)
@@ -157,6 +196,9 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
     // MARK: - Private - Navigation Bar Gestures
 
     fileprivate func addNavBarGestures() {
+        guard swipeLeftGestureRecognizer == nil else {
+            return
+        }
         // Add gesture when we swipe from right to left
         swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
         swipeLeftGestureRecognizer.direction = .left
@@ -172,10 +214,16 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
 
     fileprivate func removeNavBarGestures() {
         // Remove gesture when we swipe from right to left
-        navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
+        if let swipeLeftGestureRecognizer = swipeLeftGestureRecognizer {
+            navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
+        }
         
         // Remove gesture when we swipe from left to right
-        navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
+        if let swipeRightGestureRecognizer = swipeRightGestureRecognizer {
+            navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
+        }
+        swipeLeftGestureRecognizer = nil
+        swipeRightGestureRecognizer = nil
     }
 
     @objc fileprivate func navigationBarSwiped(_ gesture: UIGestureRecognizer) {

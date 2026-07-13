@@ -4,10 +4,10 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     
     private var currentTheme: Theme.ThemeChoice!
 
-    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
-    let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
-    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
+    lazy var printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
+    lazy var octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    lazy var appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+    lazy var defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -19,6 +19,8 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     // Gestures to switch between printers
     var swipeLeftGestureRecognizer : UISwipeGestureRecognizer!
     var swipeRightGestureRecognizer : UISwipeGestureRecognizer!
+    private var coreDataAppearanceDeferred = false
+    private var coreDataAppearanceSetupActive = false
 
     var files: Array<PrintFile> = Array()
     var searching: Bool = false
@@ -58,13 +60,39 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
             // iPhone 5, 5s, 5c, SE
             sortByTextLabel.isHidden = true
         }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(coreDataDidBecomeReady), name: AppDelegate.coreDataReadyNotification, object: nil)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard (UIApplication.shared.delegate as! AppDelegate).isCoreDataReady else {
+            coreDataAppearanceDeferred = true
+            return
+        }
+        configureForCoreDataReadyAppearance()
+    }
 
-        // Listen to changes to default printer
-        defaultPrinterManager.delegates.append(self)
+    @objc private func coreDataDidBecomeReady() {
+        guard coreDataAppearanceDeferred else {
+            return
+        }
+        coreDataAppearanceDeferred = false
+        configureForCoreDataReadyAppearance()
+    }
+
+    private func configureForCoreDataReadyAppearance() {
+        if !coreDataAppearanceSetupActive {
+            // Listen to changes to default printer
+            defaultPrinterManager.delegates.append(self)
+            // Add gestures to capture swipes and taps on navigation bar
+            addNavBarGestures()
+            coreDataAppearanceSetupActive = true
+        }
 
         if currentTheme != Theme.currentTheme() {
             // Theme changed so repaint table now (to prevent quick flash in the UI with the old theme)
@@ -76,17 +104,22 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
         
         ThemeUIUtils.applyTheme(table: tableView, staticCells: false)
         applyTheme()
-
-        // Add gestures to capture swipes and taps on navigation bar
-        addNavBarGestures()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        coreDataAppearanceDeferred = false
+        guard (UIApplication.shared.delegate as! AppDelegate).isCoreDataReady else {
+            return
+        }
+        guard coreDataAppearanceSetupActive else {
+            return
+        }
         // Stop listening to changes to default printer
         defaultPrinterManager.remove(defaultPrinterManagerDelegate: self)
         // Remove gestures that capture swipes and taps on navigation bar
         removeNavBarGestures()
+        coreDataAppearanceSetupActive = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -412,6 +445,9 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: - Private - Navigation Bar Gestures
 
     fileprivate func addNavBarGestures() {
+        guard swipeLeftGestureRecognizer == nil else {
+            return
+        }
         // Add gesture when we swipe from right to left
         swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
         swipeLeftGestureRecognizer.direction = .left
@@ -427,10 +463,16 @@ class FilesTreeViewController: UIViewController, UITableViewDataSource, UITableV
 
     fileprivate func removeNavBarGestures() {
         // Remove gesture when we swipe from right to left
-        navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
+        if let swipeLeftGestureRecognizer = swipeLeftGestureRecognizer {
+            navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
+        }
         
         // Remove gesture when we swipe from left to right
-        navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
+        if let swipeRightGestureRecognizer = swipeRightGestureRecognizer {
+            navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
+        }
+        swipeLeftGestureRecognizer = nil
+        swipeRightGestureRecognizer = nil
     }
 
     @objc fileprivate func navigationBarSwiped(_ gesture: UIGestureRecognizer) {

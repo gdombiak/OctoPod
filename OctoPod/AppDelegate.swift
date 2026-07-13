@@ -8,61 +8,19 @@ import AVFoundation
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    static let coreDataReadyNotification = Notification.Name("AppDelegate.coreDataReady")
+
     var window: UIWindow?
+    private let coreDataReadinessLock = NSLock()
+    private var coreDataReady = false
+    private var coreDataStartupAttempted = false
+    private var pendingOpenURL: URL?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Migrate Core Data database to shared group container (if needed)
-        moveCoreDataToSharedSpace()
-        
-        // If no printers were defined then send to Setup window, if not go to first tab
-        if let tabBarController = self.window!.rootViewController as? UITabBarController {
-            tabBarController.selectedIndex = printerManager!.getPrinters().count == 0 ? 4 : 0
-        }
-
-        // Register to receive push notifications via APNs (CloudKit sends silent push notifications when records change)
-        UIApplication.shared.registerForRemoteNotifications()
-
-        // Requests authorization to interact with the user when local (and remote) notifications are delivered to the user's device
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .carPlay] , completionHandler: { (granted: Bool, error: Error?) -> Void in
-            if !granted {
-                NSLog("User did not grant to get notifications")
-            }
-            if let error = error {
-                NSLog("Error asking to allow local notifications. Error: \(error)")
-            }
-        })
-
-        // Start synchronizing with iCloud (if available)
-        self.cloudKitPrinterManager.start(nil)
-        
-        self.backgroundRefresher.start()
-        
-        self.liveActivitiesManager.start()
-        
-        // Enable background refresh and set minimum interval between fetches
-        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
-
-        // Request permission from the user to use Siri
-        INPreferences.requestSiriAuthorization{ (authStatus: INSiriAuthorizationStatus) in
-            NSLog("Siri Authorization Status authorized: \(authStatus == INSiriAuthorizationStatus.authorized)")
-        }
-
-        // Initialize Siri shortcuts for existing printers (this is a one time operation)
-        IntentsDonations.initIntentsForAllPrinters(printerManager: printerManager!)
-        
-        // Turn off/on idle timer that turns off display when app is idle. By default display
-        // will be turned off to save power
-        UIApplication.shared.isIdleTimerDisabled = appConfiguration.turnOffIdleDisabled()
-
-        // Activate WatchkitConnectionSession when iOS app is launched. We need to do it here since the app may
-        // be launched in background when requested from the AppleWatch app
-        watchSessionManager.start()
-        
-        // Configure audio to be in the AVAudioSessionCategoryAmbient category. HLS video may start playing audio
-        // and user may be listening to music so do not stop music automatically. Let user decide
-        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient,
-                                                         mode: AVAudioSession.Mode.moviePlayback,
-                                                         options: [.mixWithOthers])
+        // Storyboard controllers resolve their dependencies lazily; keep them from becoming
+        // visible until the store and the legacy migration have both completed.
+        window?.isHidden = true
+        _ = persistentContainer
         return true
     }
 
@@ -80,7 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
 
         // Start synchronizing with iCloud (if available)
-        self.cloudKitPrinterManager.start(nil)
+        if isCoreDataReady {
+            self.cloudKitPrinterManager.start(nil)
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -99,6 +59,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        guard isCoreDataReady else {
+            if url.scheme == "octopod" {
+                pendingOpenURL = url
+                return true
+            }
+            return false
+        }
+        return processOpenURL(url)
+    }
+
+    private func processOpenURL(_ url: URL) -> Bool {
         if url.absoluteString.starts(with: "octopod://x-coredata") {
             // iOS 16 sends with : and iOS 17 without. Use Regex to handle both cases
             let newURL = url.absoluteString.replacingOccurrences(of: "octopod://x-coredata(:)*//", with: "x-coredata://", options: [.regularExpression])
@@ -158,27 +129,121 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          error conditions that could cause the creation of the store to fail.
         */
         let container = SharedPersistentContainer(name: "OctoPod")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { [weak self] (storeDescription, error) in
             if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                DispatchQueue.main.async {
+                    let protectedDataAvailable = UIApplication.shared.isProtectedDataAvailable
+                    NSLog("""
+                    Core Data persistent store failed to load.
+                    Store URL: \(storeDescription.url?.absoluteString ?? "(nil)")
+                    Store type: \(storeDescription.type)
+                    Error: \(error)
+                    Domain: \(error.domain)
+                    Code: \(error.code)
+                    User info: \(error.userInfo)
+                    Protected data available: \(protectedDataAvailable)
+                    """)
+                    self?.presentPersistentStoreFailure()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self?.finishCoreDataStartup()
+                }
             }
         })
         return container
     }()
+
+    var isCoreDataReady: Bool {
+        coreDataReadinessLock.lock()
+        defer { coreDataReadinessLock.unlock() }
+        return coreDataReady
+    }
+
+    private func finishCoreDataStartup() {
+        precondition(Thread.isMainThread)
+        guard beginCoreDataStartup() else {
+            return
+        }
+        guard moveCoreDataToSharedSpace() else {
+            presentPersistentStoreFailure()
+            return
+        }
+
+        coreDataReadinessLock.lock()
+        coreDataReady = true
+        coreDataReadinessLock.unlock()
+
+        // If no printers were defined then send to Setup window, if not go to first tab
+        if let tabBarController = self.window?.rootViewController as? UITabBarController {
+            tabBarController.selectedIndex = printerManager!.getPrinters().count == 0 ? 4 : 0
+        }
+
+        NotificationCenter.default.post(name: AppDelegate.coreDataReadyNotification, object: self)
+        if let pendingURL = pendingOpenURL {
+            self.pendingOpenURL = nil
+            _ = processOpenURL(pendingURL)
+        }
+
+        // Register to receive push notifications via APNs (CloudKit sends silent push notifications when records change)
+        UIApplication.shared.registerForRemoteNotifications()
+
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .carPlay] , completionHandler: { (granted: Bool, error: Error?) -> Void in
+            if !granted {
+                NSLog("User did not grant to get notifications")
+            }
+            if let error = error {
+                NSLog("Error asking to allow local notifications. Error: \(error)")
+            }
+        })
+
+        self.cloudKitPrinterManager.start(nil)
+        self.backgroundRefresher.start()
+        self.liveActivitiesManager.start()
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+
+        INPreferences.requestSiriAuthorization{ (authStatus: INSiriAuthorizationStatus) in
+            NSLog("Siri Authorization Status authorized: \(authStatus == INSiriAuthorizationStatus.authorized)")
+        }
+        IntentsDonations.initIntentsForAllPrinters(printerManager: printerManager!)
+        UIApplication.shared.isIdleTimerDisabled = appConfiguration.turnOffIdleDisabled()
+        watchSessionManager.start()
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient,
+                                                         mode: AVAudioSession.Mode.moviePlayback,
+                                                         options: [.mixWithOthers])
+        window?.makeKeyAndVisible()
+    }
+
+    private func beginCoreDataStartup() -> Bool {
+        coreDataReadinessLock.lock()
+        defer { coreDataReadinessLock.unlock() }
+        guard !coreDataStartupAttempted else {
+            return false
+        }
+        coreDataStartupAttempted = true
+        return true
+    }
+
+    private func presentPersistentStoreFailure() {
+        let controller = UIViewController()
+        controller.view.backgroundColor = .white
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.text = "OctoPod could not open its saved data. Your saved data was not deleted. Please restart the app or check device storage and access settings."
+        label.translatesAutoresizingMaskIntoConstraints = false
+        controller.view.addSubview(label)
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: controller.view.layoutMarginsGuide.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: controller.view.layoutMarginsGuide.trailingAnchor),
+            label.centerYAnchor.constraint(equalTo: controller.view.centerYAnchor)
+        ])
+        window?.rootViewController = controller
+        window?.makeKeyAndVisible()
+    }
     
     // Core Data database was moved from local storage to shared app group in release 2.1
-    fileprivate func moveCoreDataToSharedSpace() {
+    fileprivate func moveCoreDataToSharedSpace() -> Bool {
         var storeOptions = [AnyHashable : Any]()
         storeOptions[NSMigratePersistentStoresAutomaticallyOption] = true
         storeOptions[NSInferMappingModelAutomaticallyOption] = true
@@ -207,27 +272,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if let existingStore = psc.persistentStores.last {
                     try psc.remove(existingStore)
                 }
+
+                let localStore = try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: oldStoreURL, options: storeOptions)
+                try psc.migratePersistentStore(localStore, to: newStoreURL, options: storeOptions, withType: NSSQLiteStoreType)
                 
-                try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: oldStoreURL, options: storeOptions)
-                if let localStore = psc.persistentStore(for: oldStoreURL) {
-                    try psc.migratePersistentStore(localStore, to: newStoreURL, options: storeOptions, withType: NSSQLiteStoreType)
-                    
-                    // Delete old db files of local storage
-                    SharedPersistentContainer.deleteStoreCoreDataFiles(directory: NSPersistentContainer.defaultDirectoryURL())
-                }
+                // Delete old db files of local storage only after migration succeeds.
+                SharedPersistentContainer.deleteStoreCoreDataFiles(directory: NSPersistentContainer.defaultDirectoryURL())
             } catch {
-                // Handle error
-                print("Error moving local Core Data store. Error: \(error)")
+                NSLog("Error moving local Core Data store. Error: \(error)")
+                // If removing the already-loaded app-group store succeeded but adding the
+                // legacy store failed, restore the original coordinator state before failing.
+                if psc.persistentStores.isEmpty {
+                    do {
+                        try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: newStoreURL, options: storeOptions)
+                    } catch {
+                        NSLog("Error restoring app-group Core Data store after migration failure. Error: \(error)")
+                    }
+                }
+                return false
             }
         } else if needDeleteOld {
             // Delete old files
             SharedPersistentContainer.deleteStoreCoreDataFiles(directory: NSPersistentContainer.defaultDirectoryURL())
         }
+        return true
     }
 
     // MARK: - Core Data Saving support
 
     func saveContext () {
+        guard isCoreDataReady else {
+            return
+        }
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -255,6 +331,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Remote notifications
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        guard isCoreDataReady else {
+            completionHandler(.noData)
+            return
+        }
         let dict = userInfo as! [String: NSObject]
         // Check if notification is coming from CloudKit
         if let notification = CKNotification(fromRemoteNotificationDictionary: dict), notification.subscriptionID == cloudKitPrinterManager.SUBSCRIPTION_ID {
@@ -296,6 +376,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     /// Applications with the "fetch" background mode may be given opportunities to fetch updated content in the background or when it is convenient for the system. This method will be called in these situations. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
     public func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        guard isCoreDataReady else {
+            completionHandler(.noData)
+            return
+        }
         // Run background refresh
         backgroundRefresher.refresh(completionHandler: completionHandler)
     }

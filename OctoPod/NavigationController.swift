@@ -2,14 +2,20 @@ import UIKit
 
 class NavigationController: UINavigationController, OctoPrintSettingsDelegate, DefaultPrinterManagerDelegate {
 
-    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
-    let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
-    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
+    lazy var printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
+    lazy var octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    lazy var defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
+    private var coreDataAppearanceDeferred = false
+    private var coreDataAppearanceSetupActive = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(coreDataDidBecomeReady), name: AppDelegate.coreDataReadyNotification, object: nil)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -19,22 +25,48 @@ class NavigationController: UINavigationController, OctoPrintSettingsDelegate, D
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Listen to changes to OctoPrint Settings in case the camera orientation has changed
-        octoprintClient.octoPrintSettingsDelegates.append(self)
-        // Listen to changes to default printer
-        defaultPrinterManager.delegates.append(self)
-
-        let printer = printerManager.getDefaultPrinter()
-        refreshForPrinterColors(color: printer?.color)
+        guard (UIApplication.shared.delegate as! AppDelegate).isCoreDataReady else {
+            coreDataAppearanceDeferred = true
+            return
+        }
+        configureForCoreDataReadyAppearance()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        coreDataAppearanceDeferred = false
+        guard (UIApplication.shared.delegate as! AppDelegate).isCoreDataReady else {
+            return
+        }
+        guard coreDataAppearanceSetupActive else {
+            return
+        }
         // Stop listening to changes to OctoPrint Settings
         octoprintClient.remove(octoPrintSettingsDelegate: self)
         // Stop listening to changes to default printer
         defaultPrinterManager.remove(defaultPrinterManagerDelegate: self)
+        coreDataAppearanceSetupActive = false
+    }
+
+    @objc private func coreDataDidBecomeReady() {
+        guard coreDataAppearanceDeferred else {
+            return
+        }
+        coreDataAppearanceDeferred = false
+        configureForCoreDataReadyAppearance()
+    }
+
+    private func configureForCoreDataReadyAppearance() {
+        if !coreDataAppearanceSetupActive {
+            // Listen to changes to OctoPrint Settings in case the camera orientation has changed
+            octoprintClient.octoPrintSettingsDelegates.append(self)
+            // Listen to changes to default printer
+            defaultPrinterManager.delegates.append(self)
+            coreDataAppearanceSetupActive = true
+        }
+
+        let printer = printerManager.getDefaultPrinter()
+        refreshForPrinterColors(color: printer?.color)
     }
     
     func refreshForPrinterColors(color: String?) {

@@ -7,13 +7,17 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     private static let REMINDERS_SHOWN = "PANEL_REMINDERS_SHOWN_3_2"  // Key that stores if we should show reminders about important new things to users. Key might change per version
     private static let TOOLTIP_SWIPE_PRINTERS = "PANEL_TOOLTIP_SWIPE_PRINTERS"
 
-    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
-    let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
-    let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
-    let defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
-    let pluginUpdatesManager: PluginUpdatesManager = { return (UIApplication.shared.delegate as! AppDelegate).pluginUpdatesManager }()
+    lazy var printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
+    lazy var octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    lazy var appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
+    lazy var defaultPrinterManager: DefaultPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).defaultPrinterManager }()
+    lazy var pluginUpdatesManager: PluginUpdatesManager = { return (UIApplication.shared.delegate as! AppDelegate).pluginUpdatesManager }()
 
     var printerConnected: Bool?
+    private var listeningToOctoPrintEvents = false
+    private var coreDataAppearanceDeferred = false
+    private var coreDataAppearanceSetupActive = false
+    private var coreDataDidAppearDeferred = false
 
     @IBOutlet weak var printerSelectButton: UIBarButtonItem!
     @IBOutlet weak var connectButton: UIBarButtonItem!
@@ -81,9 +85,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         // Listen to events when app goes to background and comes back from background
         NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        
-        // Listen to events coming from OctoPrintClient
-        octoprintClient.delegates.append(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(coreDataDidBecomeReady), name: AppDelegate.coreDataReadyNotification, object: nil)
         
         // Calculate constraint for subpanel
         calculateCameraHeightConstraints()
@@ -92,18 +94,53 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         // Use aspect fit so image keeps aspect ratio
         notRefreshingButton.imageView?.contentMode = .scaleAspectFit
     }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
-        // Listen to changes to OctoPrint Settings in case the camera orientation has changed
-        octoprintClient.octoPrintSettingsDelegates.append(self)
-        // Listen to changes when app is locked or unlocked
-        appConfiguration.delegates.append(self)
-        // Listen to changes to default printer
-        defaultPrinterManager.delegates.append(self)
-        // Listen to tab controller events
-        if let tabController = self.tabBarController {
-            tabController.delegate = self  // Not ideal solution since we might be overriding other delegates. Good for now
+        super.viewWillAppear(animated)
+        guard (UIApplication.shared.delegate as! AppDelegate).isCoreDataReady else {
+            coreDataAppearanceDeferred = true
+            return
         }
+        configureForCoreDataReadyAppearance()
+    }
+
+    @objc private func coreDataDidBecomeReady() {
+        guard coreDataAppearanceDeferred else {
+            return
+        }
+        coreDataAppearanceDeferred = false
+        configureForCoreDataReadyAppearance()
+        if coreDataDidAppearDeferred {
+            coreDataDidAppearDeferred = false
+            configureForCoreDataReadyDidAppear()
+        }
+    }
+
+    private func configureForCoreDataReadyAppearance() {
+        if !coreDataAppearanceSetupActive {
+            if !listeningToOctoPrintEvents {
+                octoprintClient.delegates.append(self)
+                listeningToOctoPrintEvents = true
+            }
+            // Listen to changes to OctoPrint Settings in case the camera orientation has changed
+            octoprintClient.octoPrintSettingsDelegates.append(self)
+            // Listen to changes when app is locked or unlocked
+            appConfiguration.delegates.append(self)
+            // Listen to changes to default printer
+            defaultPrinterManager.delegates.append(self)
+            // Listen to tab controller events
+            if let tabController = self.tabBarController {
+                tabController.delegate = self  // Not ideal solution since we might be overriding other delegates. Good for now
+            }
+            // Add gestures to capture swipes and taps on navigation bar
+            addNavBarGestures()
+            coreDataAppearanceSetupActive = true
+        }
+
         // Set background color to the view
         let theme = Theme.currentTheme()
         view.backgroundColor = theme.backgroundColor()
@@ -114,12 +151,18 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         configureBasedOnAppLockedState()
         // Enable or disable printer select button depending on number of printers configured
         printerSelectButton.isEnabled = printerManager.getPrinters().count > 1
-        
-        // Add gestures to capture swipes and taps on navigation bar
-        addNavBarGestures()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        coreDataAppearanceDeferred = false
+        coreDataDidAppearDeferred = false
+        guard (UIApplication.shared.delegate as! AppDelegate).isCoreDataReady else {
+            return
+        }
+        guard coreDataAppearanceSetupActive else {
+            return
+        }
         // Stop listening to changes to OctoPrint Settings
         octoprintClient.remove(octoPrintSettingsDelegate: self)
         // Stop listening to changes when app is locked or unlocked
@@ -132,9 +175,19 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
         // Remove gestures that capture swipes and taps on navigation bar
         removeNavBarGestures()
+        coreDataAppearanceSetupActive = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard (UIApplication.shared.delegate as! AppDelegate).isCoreDataReady else {
+            coreDataDidAppearDeferred = true
+            return
+        }
+        configureForCoreDataReadyDidAppear()
+    }
+
+    private func configureForCoreDataReadyDidAppear() {
         // Only display reminders and tooltips if at least a printer was configured
         if let _ = printerManager.getDefaultPrinter() {
             let test = false
@@ -511,6 +564,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     // React when device orientation changes
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        guard (UIApplication.shared.delegate as! AppDelegate).isCoreDataReady else {
+            return
+        }
         if subpanelsView != nil && subpanelsView.isHidden {
             // Do nothing if camera is in full screen
             return
@@ -617,6 +673,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     // MARK: - Private - Navigation Bar Gestures
 
     fileprivate func addNavBarGestures() {
+        guard swipeLeftGestureRecognizer == nil else {
+            return
+        }
         // Add gesture when we swipe from right to left
         swipeLeftGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(navigationBarSwiped(_:)))
         swipeLeftGestureRecognizer.direction = .left
@@ -645,16 +704,28 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
 
     fileprivate func removeNavBarGestures() {
         // Remove gesture when we swipe from right to left
-        navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
+        if let swipeLeftGestureRecognizer = swipeLeftGestureRecognizer {
+            navigationController?.navigationBar.removeGestureRecognizer(swipeLeftGestureRecognizer)
+        }
         
         // Remove gesture when we swipe from left to right
-        navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
+        if let swipeRightGestureRecognizer = swipeRightGestureRecognizer {
+            navigationController?.navigationBar.removeGestureRecognizer(swipeRightGestureRecognizer)
+        }
 
         // Remove gesture when we swipe down
-        navigationController?.navigationBar.removeGestureRecognizer(swipeDownGestureRecognizer)
+        if let swipeDownGestureRecognizer = swipeDownGestureRecognizer {
+            navigationController?.navigationBar.removeGestureRecognizer(swipeDownGestureRecognizer)
+        }
 
         // Remove gesture when we tap on nav bar
-        navigationController?.navigationBar.removeGestureRecognizer(tapGestureRecognizer)
+        if let tapGestureRecognizer = tapGestureRecognizer {
+            navigationController?.navigationBar.removeGestureRecognizer(tapGestureRecognizer)
+        }
+        swipeLeftGestureRecognizer = nil
+        swipeRightGestureRecognizer = nil
+        swipeDownGestureRecognizer = nil
+        tapGestureRecognizer = nil
     }
 
     @objc fileprivate func navigationBarSwiped(_ gesture: UIGestureRecognizer) {
@@ -883,11 +954,17 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
     
     @objc func appWillEnterForeground() {
+        guard (UIApplication.shared.delegate as! AppDelegate).isCoreDataReady else {
+            return
+        }
         // Show default printer
         showDefaultPrinter()
     }
     
     @objc func appDidEnterBackground() {
+        guard (UIApplication.shared.delegate as! AppDelegate).isCoreDataReady else {
+            return
+        }
         // Close websocket connection to stop network traffic
         octoprintClient.disconnectFromServer()
     }
