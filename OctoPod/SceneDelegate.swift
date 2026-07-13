@@ -6,6 +6,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     private var pendingOpenURL: URL?
     private var coreDataUIReady = false
+    private var initialTabSelectionComplete = false
 
     private var appDelegate: AppDelegate {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -48,10 +49,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         coreDataUIReady = true
 
-        // If no printers are configured, use Setup; otherwise preserve the Panel tab.
-        rootTabBarController?.selectedIndex = appDelegate.printerManager!.getPrinters().count == 0 ? 4 : 0
         window?.makeKeyAndVisible()
-        replayPendingOpenURLIfPossible()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {
+                return
+            }
+            // Select a tab only after UIKit has attached the storyboard hierarchy to
+            // the visible scene window, avoiding an unbalanced appearance transition.
+            self.rootTabBarController?.selectedIndex = self.appDelegate.printerManager!.getPrinters().count == 0 ? 4 : 0
+            self.initialTabSelectionComplete = true
+            self.replayPendingOpenURLIfPossible()
+        }
     }
 
     func presentPersistentStoreFailure() {
@@ -76,7 +84,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard url.scheme == "octopod" else {
             return false
         }
-        guard coreDataUIReady else {
+        guard coreDataUIReady, initialTabSelectionComplete else {
             pendingOpenURL = url
             return true
         }
