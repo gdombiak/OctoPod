@@ -5,7 +5,12 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if #available(iOS 18.0, *) {
+            mode = .tabBar
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                traitOverrides.horizontalSizeClass = .compact
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
