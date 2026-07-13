@@ -15,14 +15,17 @@ class PrinterManager {
 
     // MARK: Private context operations
     
-    /// Context to use when not running in main thread and using Core Data
-    func newPrivateContext() -> NSManagedObjectContext {
+    /// Context to use when not running in main thread and using Core Data.
+    ///
+    /// Each caller gets a sibling context, so a property-level merge policy is
+    /// required to preserve values written by other writers to different
+    /// Printer properties. If two writers change the same property, the
+    /// context saving last wins for that property.
+    func newPrivateContext(writer: String = #function) -> NSManagedObjectContext {
         // Create a new background managed object context
         let context = persistentContainer.newBackgroundContext()
-
-        // If needed, ensure the background context stays
-        // up to date with changes from the parent
-        context.automaticallyMergesChangesFromParent = true
+        context.name = "PrinterManager.\(writer)"
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
 
         return context
     }
@@ -305,39 +308,80 @@ class PrinterManager {
         }
     }
     
-    func updatePrinter(_ printer: Printer) {
-        updatePrinter(printer, context: managedObjectContext)
+    @discardableResult
+    func updatePrinter(_ printer: Printer) -> Bool {
+        return updatePrinter(printer, context: managedObjectContext)
     }
     
-    func updatePrinter(_ printer: Printer, context: NSManagedObjectContext) {
+    @discardableResult
+    func updatePrinter(_ printer: Printer, context: NSManagedObjectContext) -> Bool {
         switch context.concurrencyType {
         case .mainQueueConcurrencyType:
             // If context runs in main thread then just run this code
             do {
-                try managedObjectContext.save()
+                try context.save()
+                return true
             } catch let error as NSError {
-                NSLog("Error updating printer \(printer.hostname). Error: \(error)")
+                logPrinterSaveError(error, context: context, objectID: printer.objectID)
+                return false
             }
         case .privateQueueConcurrencyType, .confinementConcurrencyType:
             // If context runs in a non-main thread then just run this code
             // .confinementConcurrencyType is not used. Delete once removed from Swift
+            var saved = false
             context.performAndWait {
                 do {
                     try context.save()
-                } catch {
-                    NSLog("Error updating printer \(error)")
+                    saved = true
+                } catch let error as NSError {
+                    self.logPrinterSaveError(error, context: context, objectID: printer.objectID)
                 }
             }
-            managedObjectContext.performAndWait {
-                do {
-                    try managedObjectContext.save()
-                    // Refresh object in main context
-                    let toRefresh = try managedObjectContext.existingObject(with: printer.objectID)
-                    managedObjectContext.refresh(toRefresh, mergeChanges: false)
-                } catch {
-                    NSLog("Error updating printer \(error). Id: \(printer.objectID)")
-                }
+            // The view context automatically merges saves from sibling contexts.
+            // Do not save or refresh it here: it may have independent UI edits.
+            return saved
+        }
+    }
+
+    private func logPrinterSaveError(_ error: NSError, context: NSManagedObjectContext, objectID: NSManagedObjectID) {
+        NSLog("%@", Self.printerSaveDiagnostic(error, context: context, objectID: objectID))
+    }
+
+    static func printerSaveDiagnostic(_ error: NSError, context: NSManagedObjectContext, objectID: NSManagedObjectID) -> String {
+        var conflictDetails: [String] = []
+        if let conflicts = error.userInfo[NSPersistentStoreSaveConflictsErrorKey] as? [NSMergeConflict] {
+            conflictDetails = conflicts.map { conflict in
+                let object = conflict.objectSnapshot ?? [:]
+                let cached = conflict.cachedSnapshot ?? [:]
+                let persisted = conflict.persistedSnapshot ?? [:]
+                let keys = Self.conflictingPrinterPropertyKeys(objectSnapshot: object, cachedSnapshot: cached, persistedSnapshot: persisted)
+                return "keys=\(keys)"
             }
+        }
+        let details = conflictDetails.isEmpty ? "" : ". Conflicts: \(conflictDetails.joined(separator: "; "))"
+        return "Error updating printer. writer=\(context.name ?? "(unnamed)") objectID=\(objectID.uriRepresentation().absoluteString) domain=\(error.domain) code=\(error.code) description=\(error.localizedDescription)\(details)"
+    }
+
+    static func conflictingPrinterPropertyKeys(objectSnapshot: [String: Any], cachedSnapshot: [String: Any], persistedSnapshot: [String: Any]) -> [String] {
+        let changedInContext = changedPrinterPropertyKeys(current: objectSnapshot, baseline: cachedSnapshot)
+        let changedInStore = changedPrinterPropertyKeys(current: persistedSnapshot, baseline: cachedSnapshot)
+        return changedInContext.intersection(changedInStore).sorted()
+    }
+
+    private static func changedPrinterPropertyKeys(current: [String: Any], baseline: [String: Any]) -> Set<String> {
+        return Set(current.keys).union(baseline.keys).filter {
+            !coreDataValuesEqual(current[$0], baseline[$0])
+        }
+    }
+
+    private static func coreDataValuesEqual(_ lhs: Any?, _ rhs: Any?) -> Bool {
+        switch (lhs, rhs) {
+        case (nil, nil):
+            return true
+        case let (lhs?, rhs?):
+            return (lhs as? NSObject)?.isEqual(rhs) ?? false
+        default:
+            return false
         }
     }
     
