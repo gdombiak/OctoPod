@@ -2,6 +2,6 @@ Pods
 *.DS_Store
 xcuserdata
 */xcuserdata/*
-*/xcshareddata/*
+OctoPod.xcodeproj/xcshareddata/xcschemes/
 
 build/
