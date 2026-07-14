@@ -348,6 +348,11 @@ class PrinterManager {
     }
 
     static func printerSaveDiagnostic(_ error: NSError, context: NSManagedObjectContext, objectID: NSManagedObjectID) -> String {
+        let details = sanitizedConflictDetails(error)
+        return "Error updating printer. writer=\(context.name ?? "(unnamed)") objectID=\(objectID.uriRepresentation().absoluteString) domain=\(error.domain) code=\(error.code) description=\(error.localizedDescription)\(details)"
+    }
+
+    private static func sanitizedConflictDetails(_ error: NSError) -> String {
         var conflictDetails: [String] = []
         if let conflicts = error.userInfo[NSPersistentStoreSaveConflictsErrorKey] as? [NSMergeConflict] {
             conflictDetails = conflicts.map { conflict in
@@ -358,8 +363,7 @@ class PrinterManager {
                 return "keys=\(keys)"
             }
         }
-        let details = conflictDetails.isEmpty ? "" : ". Conflicts: \(conflictDetails.joined(separator: "; "))"
-        return "Error updating printer. writer=\(context.name ?? "(unnamed)") objectID=\(objectID.uriRepresentation().absoluteString) domain=\(error.domain) code=\(error.code) description=\(error.localizedDescription)\(details)"
+        return conflictDetails.isEmpty ? "" : ". Conflicts: \(conflictDetails.joined(separator: "; "))"
     }
 
     static func conflictingPrinterPropertyKeys(objectSnapshot: [String: Any], cachedSnapshot: [String: Any], persistedSnapshot: [String: Any]) -> [String] {
@@ -387,41 +391,34 @@ class PrinterManager {
     
     // MARK: Generic db operations
 
+    @discardableResult
     func saveObject(_ object: NSManagedObject, context: NSManagedObjectContext) -> Bool {
-        var saved = false
         switch context.concurrencyType {
         case .mainQueueConcurrencyType:
-            // If context runs in main thread then just run this code
             do {
-//                NSLog("** Saving object: \(object.hash) with managed context: \(managedObjectContext) in thread: \(Thread.current). Id: \(object.objectID)")
-                try managedObjectContext.save()
-                saved = true
+                try context.save()
+                return true
             } catch let error as NSError {
-                NSLog("Error saving object \(object). Error: \(error)")
+                logSaveObjectError(error, context: context, objectID: object.objectID)
+                return false
             }
         case .privateQueueConcurrencyType, .confinementConcurrencyType:
-            // If context runs in a non-main thread then just run this code
-            // .confinementConcurrencyType is not used. Delete once removed from Swift
+            var saved = false
             context.performAndWait {
                 do {
                     try context.save()
-                } catch {
-                    NSLog("Error saving object \(error). Id: \(object.objectID)")
-                }
-            }
-            managedObjectContext.performAndWait {
-                do {
-                    try managedObjectContext.save()
                     saved = true
-                    // Refresh object in main context
-                    let toRefresh = try managedObjectContext.existingObject(with: object.objectID)
-                    managedObjectContext.refresh(toRefresh, mergeChanges: false)
-                } catch {
-                    NSLog("Error saving object \(error). Id: \(object.objectID)")
+                } catch let error as NSError {
+                    self.logSaveObjectError(error, context: context, objectID: object.objectID)
                 }
             }
+            return saved
+        }
     }
-        return saved
+
+    private func logSaveObjectError(_ error: NSError, context: NSManagedObjectContext, objectID: NSManagedObjectID) {
+        let details = Self.sanitizedConflictDetails(error)
+        NSLog("Error saving object. writer=\(context.name ?? "(unnamed)") objectID=\(objectID.uriRepresentation().absoluteString) domain=\(error.domain) code=\(error.code) description=\(error.localizedDescription)\(details)")
     }
     
     func deleteObject(_ object: NSManagedObject, context: NSManagedObjectContext) {
