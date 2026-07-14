@@ -3697,7 +3697,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="OctoEverywhere" id="Z6o-ra-euk">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="dQL-6M-l5H">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="dQL-6M-l5H">
                             <connections>
                                 <action selector="cancelChanges:" destination="JXO-le-4sU" id="aYb-Rd-5p9"/>
                             </connections>
@@ -4037,72 +4037,6 @@
             </objects>
             <point key="canvasLocation" x="3695" y="3751"/>
         </scene>
-        <!--App Key Poll View Controller-->
-        <scene sceneID="VxV-W9-Qmy">
-            <objects>
-                <tableViewController id="reO-nw-PEk" customClass="AppKeyPollViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pWD-Ur-tgD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <sections>
-                            <tableViewSection id="h6X-cO-Vv5">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="9kd-RV-bLj">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9kd-RV-bLj" id="Mn4-g8-gYd">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4iR-7v-jJp">
-                                                    <rect key="frame" x="23" y="11" width="329" height="21.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="4iR-7v-jJp" secondAttribute="trailing" constant="7" id="6MT-DD-vcF"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="4iR-7v-jJp" secondAttribute="bottom" constant="0.5" id="TRX-g6-2Xg"/>
-                                                <constraint firstItem="4iR-7v-jJp" firstAttribute="leading" secondItem="Mn4-g8-gYd" secondAttribute="leadingMargin" constant="7" id="ZEA-im-uZR"/>
-                                                <constraint firstItem="4iR-7v-jJp" firstAttribute="top" secondItem="Mn4-g8-gYd" secondAttribute="topMargin" id="hCB-w6-fBt"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5GN-eo-98T">
-                                        <rect key="frame" x="0.0" y="94" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5GN-eo-98T" id="uoc-RH-aSr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HM-7E-tgN">
-                                                    <rect key="frame" x="7" y="6" width="361" height="30.5"/>
-                                                    <state key="normal" title="Button"/>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="7HM-7E-tgN" secondAttribute="trailing" constant="7" id="9kf-ZB-3vv"/>
-                                                <constraint firstItem="7HM-7E-tgN" firstAttribute="leading" secondItem="uoc-RH-aSr" secondAttribute="leading" constant="7" id="j4N-Hh-pUx"/>
-                                                <constraint firstItem="7HM-7E-tgN" firstAttribute="top" secondItem="uoc-RH-aSr" secondAttribute="top" constant="6" id="pvy-FK-NP7"/>
-                                                <constraint firstAttribute="bottom" secondItem="7HM-7E-tgN" secondAttribute="bottom" constant="7.5" id="ue1-54-iPo"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="reO-nw-PEk" id="LJI-TC-Kbg"/>
-                            <outlet property="delegate" destination="reO-nw-PEk" id="PL0-Cy-LRc"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BkP-Ve-jO6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4453" y="3766"/>
-        </scene>
         <!--Obico-->
         <scene sceneID="GdI-o6-MtG">
             <objects>
@@ -4305,7 +4239,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Obico" id="R0b-VP-E1V">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="7nD-qJ-VD0">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7nD-qJ-VD0">
                             <connections>
                                 <action selector="cancelChanges:" destination="A9g-sp-S6T" id="fAT-WO-AIb"/>
                             </connections>
