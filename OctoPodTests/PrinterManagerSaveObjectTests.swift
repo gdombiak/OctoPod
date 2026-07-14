@@ -1,4 +1,5 @@
 import XCTest
+import CoreData
 @testable import OctoPod
 
 final class PrinterManagerSaveObjectTests: PrinterManagerTestCase {
@@ -165,5 +166,94 @@ final class PrinterManagerSaveObjectTests: PrinterManagerTestCase {
         let camera = try persistentContainer.viewContext.existingObject(with: cameraID) as! MultiCamera
         XCTAssertEqual(camera.cameraURL, "http://camera.local/first")
         XCTAssertEqual(camera.streamRatio, "1:1")
+    }
+
+    func testDeleteObjectPrivateDeletionMergesIntoViewContextAndFreshContext() throws {
+        let printerID = try insertPrinter(defaultPrinter: false, hostname: "before")
+        let cameraID = try insertMultiCameraInViewContext(printerID: printerID, name: "Delete camera")
+        let context = printerManager.newPrivateContext(writer: "test.deleteObject.success")
+        let deleted = viewContextChangeExpectation {
+            (try? self.multiCameras(named: "Delete camera").isEmpty) == true
+        }
+
+        context.performAndWait {
+            XCTAssertTrue(printerManager.deleteObject(context.object(with: cameraID), context: context))
+        }
+
+        wait(for: [deleted], timeout: 2)
+        XCTAssertEqual(try freshMultiCameraCount(named: "Delete camera"), 0)
+    }
+
+    func testDeleteObjectPrivateContextOwnsQueueConfinement() throws {
+        let printerID = try insertPrinter(defaultPrinter: false, hostname: "before")
+        let cameraID = try insertMultiCameraInViewContext(printerID: printerID, name: "Direct delete camera")
+        let context = printerManager.newPrivateContext(writer: "test.deleteObject.ownsQueue")
+        var camera: NSManagedObject!
+        context.performAndWait {
+            camera = context.object(with: cameraID)
+        }
+
+        XCTAssertTrue(printerManager.deleteObject(camera, context: context))
+        XCTAssertEqual(try freshMultiCameraCount(named: "Direct delete camera"), 0)
+    }
+
+    func testDeleteObjectFailedPrivateDeletionDoesNotSaveViewContextOrPersistPendingEdit() throws {
+        let printerID = try insertPrinter(defaultPrinter: false, hostname: "before")
+        let cameraID = try insertMultiCameraInViewContext(printerID: printerID, name: "Failed delete camera")
+        let viewPrinter = try persistentContainer.viewContext.existingObject(with: printerID) as! Printer
+        viewPrinter.defaultPrinter = true
+        let failingContext = FailingSaveContext(concurrencyType: .privateQueueConcurrencyType)
+        failingContext.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
+        failingContext.name = "test.deleteObject.failing"
+        let viewContextSave = expectation(forNotification: .NSManagedObjectContextDidSave, object: persistentContainer.viewContext)
+        viewContextSave.isInverted = true
+
+        failingContext.performAndWait {
+            XCTAssertFalse(printerManager.deleteObject(failingContext.object(with: cameraID), context: failingContext))
+        }
+
+        wait(for: [viewContextSave], timeout: 0.2)
+        XCTAssertTrue(viewPrinter.defaultPrinter)
+        XCTAssertTrue(persistentContainer.viewContext.hasChanges)
+        XCTAssertFalse(try freshPrinterState(id: printerID).defaultPrinter)
+        XCTAssertEqual(try freshMultiCameraCount(named: "Failed delete camera"), 1)
+    }
+
+    func testDeleteObjectPrivateDeletionPreservesUnrelatedUnsavedPrinterProperty() throws {
+        let printerID = try insertPrinter(defaultPrinter: false, hostname: "before")
+        let cameraID = try insertMultiCameraInViewContext(printerID: printerID, name: "Pending edit camera")
+        let viewPrinter = try persistentContainer.viewContext.existingObject(with: printerID) as! Printer
+        viewPrinter.defaultPrinter = true
+        let context = printerManager.newPrivateContext(writer: "test.deleteObject.pendingViewEdit")
+        let deleted = viewContextChangeExpectation {
+            (try? self.multiCameras(named: "Pending edit camera").isEmpty) == true
+        }
+
+        context.performAndWait {
+            XCTAssertTrue(printerManager.deleteObject(context.object(with: cameraID), context: context))
+        }
+
+        wait(for: [deleted], timeout: 2)
+        XCTAssertTrue(viewPrinter.defaultPrinter)
+        XCTAssertTrue(persistentContainer.viewContext.hasChanges)
+    }
+
+    func testDeleteObjectMultiCameraPreservesOwningPrinter() throws {
+        let printerID = try insertPrinter(defaultPrinter: true, hostname: "printer.local")
+        let cameraID = try insertMultiCameraInViewContext(printerID: printerID, name: "Owned camera")
+        let context = printerManager.newPrivateContext(writer: "test.deleteObject.ownership")
+        let deleted = viewContextChangeExpectation {
+            (try? self.multiCameras(named: "Owned camera").isEmpty) == true
+        }
+
+        context.performAndWait {
+            XCTAssertTrue(printerManager.deleteObject(context.object(with: cameraID), context: context))
+        }
+
+        wait(for: [deleted], timeout: 2)
+        XCTAssertEqual(try freshMultiCameraCount(named: "Owned camera"), 0)
+        let printer = try freshPrinterState(id: printerID)
+        XCTAssertEqual(printer.hostname, "printer.local")
+        XCTAssertTrue(printer.defaultPrinter)
     }
 }

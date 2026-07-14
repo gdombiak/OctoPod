@@ -421,33 +421,35 @@ class PrinterManager {
         NSLog("Error saving object. writer=\(context.name ?? "(unnamed)") objectID=\(objectID.uriRepresentation().absoluteString) domain=\(error.domain) code=\(error.code) description=\(error.localizedDescription)\(details)")
     }
     
-    func deleteObject(_ object: NSManagedObject, context: NSManagedObjectContext) {
-        // Delete object from context
-        context.delete(object)
-        // Save context
+    @discardableResult
+    func deleteObject(_ object: NSManagedObject, context: NSManagedObjectContext) -> Bool {
         switch context.concurrencyType {
         case .mainQueueConcurrencyType:
-            // If context runs in main thread then just run this code
-            do {
-                try managedObjectContext.save()
-            } catch let error as NSError {
-                NSLog("Error deleting object \(object). Error: \(error)")
-            }
-        case .privateQueueConcurrencyType, .confinementConcurrencyType:
-            // If context runs in a non-main thread then just run this code
-            // .confinementConcurrencyType is not used. Delete once removed from Swift
-            do {
-                try context.save()
-                managedObjectContext.performAndWait {
-                    do {
-                        try managedObjectContext.save()
-                    } catch {
-                        NSLog("Error deleting object \(error)")
-                    }
+            var saved = false
+            context.performAndWait {
+                let objectID = object.objectID
+                context.delete(object)
+                do {
+                    try context.save()
+                    saved = true
+                } catch let error as NSError {
+                    self.logSaveObjectError(error, context: context, objectID: objectID)
                 }
-            } catch {
-                NSLog("Error deleting object \(error)")
             }
+            return saved
+        case .privateQueueConcurrencyType, .confinementConcurrencyType:
+            var saved = false
+            context.performAndWait {
+                let objectID = object.objectID
+                context.delete(object)
+                do {
+                    try context.save()
+                    saved = true
+                } catch let error as NSError {
+                    self.logSaveObjectError(error, context: context, objectID: objectID)
+                }
+            }
+            return saved
         }
     }
     
