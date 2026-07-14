@@ -361,7 +361,7 @@ class PanelInterfaceController: WKInterfaceController, PrinterManagerDelegate, P
                 }
             }
             self.palette2Group.setHidden(true)
-            if let palette2LastPing = panelInfo["palette2LastPing"] as? String, let palette2LastVariation = panelInfo["palette2LastVariation"] as? String, let palette2MaxVariation = panelInfo["palette2MaxVariation"] as? String {
+            if let palette2LastPing = panelInfo["palette2LastPing"] as? String, let palette2LastVariation = panelInfo["palette2LastVariation"] as? String, panelInfo["palette2MaxVariation"] as? String != nil {
                 self.palette2Group.setHidden(false)
                 self.lastPingLabel.setText(palette2LastPing)
                 self.lastVarianceLabel.setText(palette2LastVariation)
