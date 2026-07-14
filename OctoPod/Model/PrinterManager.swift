@@ -340,7 +340,14 @@ class PrinterManager {
             // The view context automatically merges saves from sibling contexts.
             // Do not save or refresh it here: it may have independent UI edits.
             return saved
+        @unknown default:
+            logUnknownContextConcurrencyType(operation: "updating printer", context: context)
+            return false
         }
+    }
+
+    private func logUnknownContextConcurrencyType(operation: String, context: NSManagedObjectContext) {
+        NSLog("Skipping %@ because the managed object context has an unknown concurrency type. writer=%@", operation, context.name ?? "(unnamed)")
     }
 
     private func logPrinterSaveError(_ error: NSError, context: NSManagedObjectContext, objectID: NSManagedObjectID) {
@@ -413,6 +420,9 @@ class PrinterManager {
                 }
             }
             return saved
+        @unknown default:
+            logUnknownContextConcurrencyType(operation: "saving object", context: context)
+            return false
         }
     }
 
@@ -450,6 +460,9 @@ class PrinterManager {
                 }
             }
             return saved
+        @unknown default:
+            logUnknownContextConcurrencyType(operation: "deleting object", context: context)
+            return false
         }
     }
     
@@ -532,6 +545,9 @@ class PrinterManager {
                     NSLog("Error updating printer \(error)")
                 }
             }
+        @unknown default:
+            logUnknownContextConcurrencyType(operation: "resetting printers for iCloud", context: context)
+            return
         }
     }
 }

@@ -1,7 +1,7 @@
 import Foundation
 import CoreData
 
-class SharedPersistentContainer: NSPersistentContainer {
+class SharedPersistentContainer: NSPersistentContainer, @unchecked Sendable {
     
     override class func defaultDirectoryURL() -> URL{
         return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.octopod.SharingData")!
