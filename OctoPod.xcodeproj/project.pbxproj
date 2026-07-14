@@ -61,6 +61,7 @@
 		A1B2C3DA26A20F2E00913754 /* PrinterManagerSaveObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D926A20F2E00913754 /* PrinterManagerSaveObjectTests.swift */; };
 		A1B2C3DC26A20F2E00913754 /* PrinterManagerCRUDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3DB26A20F2E00913754 /* PrinterManagerCRUDTests.swift */; };
 		A1B2C3DE26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3DD26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift */; };
+		A1B2C3E026A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3DF26A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift */; };
 		3D21CE0D254A8E720051449A /* LargetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D21CE0C254A8E720051449A /* LargetDetailsView.swift */; };
 		3D245AB129C6A07100B97339 /* Printer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D82873620E3EBC80035AE0B /* Printer.swift */; };
 		3D245AB229C6A08900B97339 /* EnclosureInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6F74512443FB8A006847B6 /* EnclosureInput.swift */; };
@@ -633,6 +634,7 @@
 		A1B2C3D926A20F2E00913754 /* PrinterManagerSaveObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManagerSaveObjectTests.swift; sourceTree = "<group>"; };
 		A1B2C3DB26A20F2E00913754 /* PrinterManagerCRUDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManagerCRUDTests.swift; sourceTree = "<group>"; };
 		A1B2C3DD26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManagerDiagnosticTests.swift; sourceTree = "<group>"; };
+		A1B2C3DF26A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClientPluginSyncTests.swift; sourceTree = "<group>"; };
 		3D1FDCC126A20F2E00913754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D21CE0C254A8E720051449A /* LargetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargetDetailsView.swift; sourceTree = "<group>"; };
 		3D245ABA29C6C10F00B97339 /* LockedRectangularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedRectangularView.swift; sourceTree = "<group>"; };
@@ -1299,6 +1301,7 @@
 				A1B2C3D926A20F2E00913754 /* PrinterManagerSaveObjectTests.swift */,
 				A1B2C3DB26A20F2E00913754 /* PrinterManagerCRUDTests.swift */,
 				A1B2C3DD26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift */,
+				A1B2C3DF26A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift */,
 				3D1FDCC126A20F2E00913754 /* Info.plist */,
 			);
 			path = OctoPodTests;
@@ -2386,6 +2389,7 @@
 				A1B2C3DA26A20F2E00913754 /* PrinterManagerSaveObjectTests.swift in Sources */,
 				A1B2C3DC26A20F2E00913754 /* PrinterManagerCRUDTests.swift in Sources */,
 				A1B2C3DE26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift in Sources */,
+				A1B2C3E026A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

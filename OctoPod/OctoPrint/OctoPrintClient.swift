@@ -1046,7 +1046,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         updatePrinterFromPrintTimeGeniusPlugin(printerID: printerID, plugins: plugins)
     }
     
-    fileprivate func updatePrinterFromMultiCamPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
+    func updatePrinterFromMultiCamPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         // Check if MultiCam plugin is installed. If so then copy cameras information
         var camerasURLs: Array<String> = Array()
         var count: Int16 = 0
@@ -1084,10 +1084,13 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                                 }
                                 if !found {
                                     // Add new camera
-                                    self.printerManager.addMultiCamera(index: count, name: name, cameraURL: url, cameraOrientation: Int16(newOrientation.rawValue), streamRatio: streamRatio, context: newObjectContext, printer: printerToUpdate)
-                                    camerasChanged = true
+                                    if self.printerManager.addMultiCamera(index: count, name: name, cameraURL: url, cameraOrientation: Int16(newOrientation.rawValue), streamRatio: streamRatio, context: newObjectContext, printer: printerToUpdate) {
+                                        camerasChanged = true
+                                        camerasURLs.append(url)
+                                    }
+                                } else {
+                                    camerasURLs.append(url)
                                 }
-                                camerasURLs.append(url)
                             }
                         }
                     }
@@ -1387,7 +1390,7 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
     }
     
-    fileprivate func updatePrinterFromEnclosurePlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
+    func updatePrinterFromEnclosurePlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
         if let enclosurePlugin = plugins[Plugins.ENCLOSURE] as? NSDictionary {
             let newObjectContext = printerManager.newPrivateContext()
             newObjectContext.performAndWait {
@@ -1422,8 +1425,9 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                             }
                             if !found {
                                 // Add new input
-                                self.printerManager.addEnclosureInput(index: index_id, type: inputType, label: label, useFahrenheit: useFahrenheit, context: newObjectContext, printer: printerToUpdate)
-                                inputsChanged = true
+                                if self.printerManager.addEnclosureInput(index: index_id, type: inputType, label: label, useFahrenheit: useFahrenheit, context: newObjectContext, printer: printerToUpdate) {
+                                    inputsChanged = true
+                                }
                             }
                         }
                     }
@@ -1479,8 +1483,9 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
                             }
                             if !found {
                                 // Add new input
-                                self.printerManager.addEnclosureOutput(index: index_id, type: outputType, label: label, context: newObjectContext, printer: printerToUpdate)
-                                outputsChanged = true
+                                if self.printerManager.addEnclosureOutput(index: index_id, type: outputType, label: label, context: newObjectContext, printer: printerToUpdate) {
+                                    outputsChanged = true
+                                }
                             }
                         }
                     }
