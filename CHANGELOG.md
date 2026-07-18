@@ -2,7 +2,37 @@
 
 ## [Unreleased](https://github.com/gdombiak/OctoPod/tree/HEAD)
 
-## [3.32](https://github.com/gdombiak/OctoPod/tree/3.32) (2025-01-20)
+## [3.32](https://github.com/gdombiak/OctoPod/tree/3.33) (2026-07-18)
+
+**Implemented enhancements:**
+
+- Migrate OctoPod to the UIScene lifecycle [\#727](https://github.com/gdombiak/OctoPod/issues/727)
+- Restore pre-iOS 26 UIKit appearance using compatibility mode [\#725](https://github.com/gdombiak/OctoPod/issues/725)
+
+**Fixed bugs:**
+
+- Honor persistence failures during OctoPrint plugin synchronization [\#733](https://github.com/gdombiak/OctoPod/issues/733)
+- Fix current SDK warnings and asset catalog collisions [\#732](https://github.com/gdombiak/OctoPod/issues/732)
+- Remove unnecessary main-context save from PrinterManager.deleteObject [\#731](https://github.com/gdombiak/OctoPod/issues/731)
+- Remove unsafe main-context save and refresh from PrinterManager.saveObject [\#730](https://github.com/gdombiak/OctoPod/issues/730)
+- Prevent Core Data merge conflicts between printer update contexts [\#728](https://github.com/gdombiak/OctoPod/issues/728)
+- Prevent startup crashes caused by Core Data initialization timing [\#726](https://github.com/gdombiak/OctoPod/issues/726)
+- Fix CloudKit account-change crash caused by invalid notification selector [\#724](https://github.com/gdombiak/OctoPod/issues/724)
+- Fix Core Data concurrency crash in OctoPrintClient.currentStateUpdated [\#723](https://github.com/gdombiak/OctoPod/issues/723)
+
+**Closed issues:**
+
+- Bump Starscream \(websockets lib\) to 4.0.0 [\#719](https://github.com/gdombiak/OctoPod/issues/719)
+- Thanks [\#716](https://github.com/gdombiak/OctoPod/issues/716)
+- Local Port Forwarding \(SSH\) Access [\#400](https://github.com/gdombiak/OctoPod/issues/400)
+
+**Merged pull requests:**
+
+- Feature/uikit scene lifecycle [\#729](https://github.com/gdombiak/OctoPod/pull/729) ([gdombiak](https://github.com/gdombiak))
+
+## [3.32](https://github.com/gdombiak/OctoPod/tree/3.32) (2025-01-21)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.31...3.32)
 
 **Implemented enhancements:**
 
@@ -356,7 +386,6 @@
 - Allow for QR code or NFC tag to select current printer [\#501](https://github.com/gdombiak/OctoPod/issues/501)
 - Add support for OctoEverywhere [\#498](https://github.com/gdombiak/OctoPod/issues/498)
 - Add support for Application Keys [\#496](https://github.com/gdombiak/OctoPod/issues/496)
-- Feature Request - Grid View of Cameras [\#495](https://github.com/gdombiak/OctoPod/issues/495)
 - Enclosure Temp Control - Enclosure Plugin [\#491](https://github.com/gdombiak/OctoPod/issues/491)
 - Feature request - Receive image from camera with shortcut [\#489](https://github.com/gdombiak/OctoPod/issues/489)
 - Allow printer selection by swiping from ALL pages [\#443](https://github.com/gdombiak/OctoPod/issues/443)
