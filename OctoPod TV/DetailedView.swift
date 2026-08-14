@@ -152,15 +152,15 @@ struct NormalCameraView: View {
                 self.print(enabled: false)
                 self.pause(enabled: false)
                 self.cancel(enabled: false)
-            } else if self.service.printing == true {
-                // We are printing so show Print (disabled), Pause and Cancel
-                self.print(enabled: false)
-                self.pause(enabled: !appConfiguration.appAutoLock() && !appConfiguration.appLocked()) // Button is enabled only if app is not locked
-                self.cancel(enabled: !appConfiguration.appAutoLock() && !appConfiguration.appLocked()) // Button is enabled only if app is not locked
             } else if self.service.paused == true {
                 // We are paused so offer Restart, Resume and Cancel
                 self.restart(enabled: !appConfiguration.appAutoLock() && !appConfiguration.appLocked()) // Button is enabled only if app is not locked)
                 self.resume(enabled: !appConfiguration.appAutoLock() && !appConfiguration.appLocked()) // Button is enabled only if app is not locked)
+                self.cancel(enabled: !appConfiguration.appAutoLock() && !appConfiguration.appLocked()) // Button is enabled only if app is not locked
+            } else if self.service.printing == true {
+                // We are printing so show Print (disabled), Pause and Cancel
+                self.print(enabled: false)
+                self.pause(enabled: !appConfiguration.appAutoLock() && !appConfiguration.appLocked()) // Button is enabled only if app is not locked
                 self.cancel(enabled: !appConfiguration.appAutoLock() && !appConfiguration.appLocked()) // Button is enabled only if app is not locked
             } else {
                 // We are not printing so show Print (disabled?), Pause (disabled) and Cancel (disabled)

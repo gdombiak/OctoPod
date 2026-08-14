@@ -295,10 +295,10 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                         if let state = json["state"] as? NSDictionary {
                             event.parseState(state: state)
 
-                            if event.printing  == true {
-                                reply["printer"] = "printing"
-                            } else if event.paused == true {
+                            if event.paused == true {
                                 reply["printer"] = "paused"
+                            } else if event.printing  == true {
+                                reply["printer"] = "printing"
                             } else if event.operational == true {
                                 reply["printer"] = "operational"
                             }                            

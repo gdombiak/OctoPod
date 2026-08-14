@@ -734,17 +734,6 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
 
             self.restartButton.isHidden = true
             self.resumeButton.isHidden = true
-        } else if let printing = event.printing, printing {
-            // We are printing so show Print (disabled), Pause and Cancel
-            self.printButton.isHidden = false
-            self.printButton.isEnabled = false
-            self.pauseButton.isHidden = false
-            self.pauseButton.isEnabled = !appConfiguration.appLocked()
-            self.cancelButton.isHidden = false
-            self.cancelButton.isEnabled = !appConfiguration.appLocked()
-
-            self.restartButton.isHidden = true
-            self.resumeButton.isHidden = true
         } else if let paused = event.paused, paused {
             // We are paused so offer Restart, Resume and Cancel
             self.restartButton.isHidden = false
@@ -756,6 +745,17 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
 
             self.pauseButton.isHidden = true
             self.printButton.isHidden = true
+        } else if let printing = event.printing, printing {
+            // We are printing so show Print (disabled), Pause and Cancel
+            self.printButton.isHidden = false
+            self.printButton.isEnabled = false
+            self.pauseButton.isHidden = false
+            self.pauseButton.isEnabled = !appConfiguration.appLocked()
+            self.cancelButton.isHidden = false
+            self.cancelButton.isEnabled = !appConfiguration.appLocked()
+
+            self.restartButton.isHidden = true
+            self.resumeButton.isHidden = true
         } else if let printFile = event.printFile {
             // We are not printing so show Print (disabled?), Pause (disabled) and Cancel (disabled)
             self.printButton.isHidden = false
