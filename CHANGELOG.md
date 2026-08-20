@@ -1,8 +1,21 @@
 # Changelog
 
-## [Unreleased](https://github.com/gdombiak/OctoPod/tree/HEAD)
+## [3.34](https://github.com/gdombiak/OctoPod/tree/3.34) (2026-08-19)
 
-## [3.32](https://github.com/gdombiak/OctoPod/tree/3.33) (2026-07-18)
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.33...3.34)
+
+**Implemented enhancements:**
+
+- Fullscreen camera incorrectly forces landscape for portrait-oriented streams [\#736](https://github.com/gdombiak/OctoPod/issues/736)
+
+**Fixed bugs:**
+
+- Handle overlapping printing and paused flags from OctoPrint 2.0 [\#735](https://github.com/gdombiak/OctoPod/issues/735)
+- Fix WebSocket use-after-free during heartbeat/teardown race [\#734](https://github.com/gdombiak/OctoPod/issues/734)
+
+## [3.33](https://github.com/gdombiak/OctoPod/tree/3.33) (2026-07-18)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.32...3.33)
 
 **Implemented enhancements:**
 
@@ -1044,7 +1057,7 @@
 
 **Merged pull requests:**
 
-- Add spanish translation from Spain [\#90](https://github.com/gdombiak/OctoPod/pull/90) ([ArtCC](https://github.com/ArtCC))
+- Add spanish translation from Spain [\#90](https://github.com/gdombiak/OctoPod/pull/90) ([artcc](https://github.com/artcc))
 
 ## [1.9](https://github.com/gdombiak/OctoPod/tree/1.9) (2018-09-26)
 
