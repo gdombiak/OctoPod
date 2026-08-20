@@ -167,3 +167,45 @@ class CameraUtils {
         }.resume()
     }
 }
+
+/// Fullscreen-only presentation helpers for portrait camera images.
+/// Detection uses displayed/oriented size, not raw JPEG pixels.
+enum CameraFullscreenPresentation {
+    static func isPortraitDisplay(_ size: CGSize) -> Bool {
+        return size.height > size.width
+    }
+
+    /// Displayed size after `UIImage` applies `orientation` to `pixelSize`.
+    static func displayedSize(pixelSize: CGSize, orientation: UIImage.Orientation) -> CGSize {
+        switch orientation {
+        case .left, .leftMirrored, .right, .rightMirrored:
+            return CGSize(width: pixelSize.height, height: pixelSize.width)
+        default:
+            return pixelSize
+        }
+    }
+
+    /// 90° clockwise on the already-displayed image.
+    /// Fullscreen requests `.landscapeRight` (clockwise interface rotation).
+    /// `.right` is UIKit's 90° clockwise image orientation, matching that turn.
+    static func orientationByRotating90Clockwise(_ orientation: UIImage.Orientation) -> UIImage.Orientation {
+        switch orientation {
+        case .up: return .right
+        case .right: return .down
+        case .down: return .left
+        case .left: return .up
+        case .upMirrored: return .rightMirrored
+        case .rightMirrored: return .downMirrored
+        case .downMirrored: return .leftMirrored
+        case .leftMirrored: return .upMirrored
+        @unknown default: return orientation
+        }
+    }
+
+    static func imageByReplacingOrientation(_ image: UIImage, orientation: UIImage.Orientation) -> UIImage {
+        guard let cgImage = image.cgImage else {
+            return image
+        }
+        return UIImage(cgImage: cgImage, scale: image.scale, orientation: orientation)
+    }
+}

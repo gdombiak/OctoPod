@@ -6,6 +6,9 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
     var streamingController: MjpegStreamingController?
     
     private var activityIndicator: UIActivityIndicatorView!
+    private var isFullscreenPresentation = false
+    private var appliedFullscreenPortraitRotation = false
+    private var orientationBeforeFullscreenRotation: UIImage.Orientation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,6 +134,8 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
         streamingController?.didRenderImage = { (image: UIImage) in
             // Notify that we got our first image and we know its ratio
             self.cameraViewDelegate?.imageAspectRatio(cameraIndex: self.cameraIndex, ratio: image.size.height / image.size.width)
+            // First frame may arrive after the user already entered fullscreen
+            self.applyFullscreenPortraitRotationIfNeeded()
         }
         
         streamingController?.didFetchImage = { (image: UIImage) in
@@ -144,6 +149,15 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
             // Skip a few images before checking if light is on/off
             if imageCount == 5 {
                 self.checkRoomLuminance(image: image)
+            }
+            if self.appliedFullscreenPortraitRotation, CameraFullscreenPresentation.isPortraitDisplay(image.size) {
+                // A frame decoded before the extra fullscreen orientation was applied
+                self.imageView.image = CameraFullscreenPresentation.imageByReplacingOrientation(
+                    image,
+                    orientation: CameraFullscreenPresentation.orientationByRotating90Clockwise(image.imageOrientation)
+                )
+            } else {
+                self.applyFullscreenPortraitRotationIfNeeded()
             }
         }
 
@@ -162,7 +176,12 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
     }
     
     override func setCameraOrientation(newOrientation: UIImage.Orientation) {
-        streamingController?.imageOrientation = newOrientation
+        if appliedFullscreenPortraitRotation {
+            orientationBeforeFullscreenRotation = newOrientation
+            streamingController?.imageOrientation = CameraFullscreenPresentation.orientationByRotating90Clockwise(newOrientation)
+        } else {
+            streamingController?.imageOrientation = newOrientation
+        }
         if newOrientation == UIImage.Orientation.left || newOrientation == UIImage.Orientation.leftMirrored || newOrientation == UIImage.Orientation.rightMirrored || newOrientation == UIImage.Orientation.right {
             DispatchQueue.main.async {
                 self.imageView.contentMode = .scaleAspectFit
@@ -172,6 +191,25 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
                 self.imageView.contentMode = .scaleAspectFit
             }
         }
+    }
+
+    override func setFullscreenPresentation(_ fullscreen: Bool) {
+        isFullscreenPresentation = fullscreen
+        if fullscreen {
+            applyFullscreenPortraitRotationIfNeeded()
+        } else {
+            restoreFullscreenPortraitRotationIfNeeded()
+        }
+    }
+
+    override func printerSelectedChanged() {
+        resetFullscreenPortraitRotationBookkeeping()
+        super.printerSelectedChanged()
+    }
+
+    override func cameraSelectedChanged() {
+        resetFullscreenPortraitRotationBookkeeping()
+        super.cameraSelectedChanged()
     }
     
     override func stopPlaying() {
@@ -188,6 +226,39 @@ class CameraMJPEGEmbeddedViewController: CameraEmbeddedViewController {
     }
     
     // MARK: - Private function
+
+    fileprivate func resetFullscreenPortraitRotationBookkeeping() {
+        appliedFullscreenPortraitRotation = false
+        orientationBeforeFullscreenRotation = nil
+    }
+
+    fileprivate func applyFullscreenPortraitRotationIfNeeded() {
+        guard isFullscreenPresentation, !appliedFullscreenPortraitRotation else {
+            return
+        }
+        guard let image = imageView.image, CameraFullscreenPresentation.isPortraitDisplay(image.size) else {
+            return
+        }
+        let baseOrientation = streamingController?.imageOrientation ?? cameraOrientation ?? .up
+        orientationBeforeFullscreenRotation = baseOrientation
+        appliedFullscreenPortraitRotation = true
+        let fullscreenOrientation = CameraFullscreenPresentation.orientationByRotating90Clockwise(baseOrientation)
+        streamingController?.imageOrientation = fullscreenOrientation
+        imageView.image = CameraFullscreenPresentation.imageByReplacingOrientation(image, orientation: CameraFullscreenPresentation.orientationByRotating90Clockwise(image.imageOrientation))
+    }
+
+    fileprivate func restoreFullscreenPortraitRotationIfNeeded() {
+        guard appliedFullscreenPortraitRotation else {
+            return
+        }
+        let baseOrientation = orientationBeforeFullscreenRotation ?? cameraOrientation ?? .up
+        appliedFullscreenPortraitRotation = false
+        orientationBeforeFullscreenRotation = nil
+        streamingController?.imageOrientation = baseOrientation
+        if let image = imageView.image {
+            imageView.image = CameraFullscreenPresentation.imageByReplacingOrientation(image, orientation: baseOrientation)
+        }
+    }
 
     fileprivate func showSpinnerView() {
         activityIndicator.startAnimating()

@@ -98,6 +98,23 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         return nil
     }
 
+    func setFullscreenPresentation(_ fullscreen: Bool) {
+        if fullscreen {
+            currentEmbeddedCamera()?.setFullscreenPresentation(true)
+        } else {
+            for camera in orderedViewControllers {
+                camera.setFullscreenPresentation(false)
+            }
+        }
+    }
+
+    func currentEmbeddedCamera() -> CameraEmbeddedViewController? {
+        if let index = currentIndex, index < orderedViewControllers.count {
+            return orderedViewControllers[index]
+        }
+        return nil
+    }
+
     func displayPrintStatus(enabled: Bool) {
         if displayPrintStatus != enabled {
             if let index = currentIndex, orderedViewControllers.count > index {

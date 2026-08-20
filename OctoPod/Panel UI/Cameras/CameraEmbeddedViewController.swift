@@ -399,6 +399,9 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     func setCameraOrientation(newOrientation: UIImage.Orientation) {
     }
 
+    func setFullscreenPresentation(_ fullscreen: Bool) {
+    }
+
     func renderPrinter(printer: Printer, url: URL) {
     }
 

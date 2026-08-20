@@ -640,6 +640,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
                 }
                 self.updateForCameraOrientation(orientation: orientation)
             }
+            if subpanelsView != nil && subpanelsView.isHidden {
+                camerasViewController?.setFullscreenPresentation(true)
+            }
             self.checkDisplayPrintStatusOverCamera()
         }
     }
@@ -920,6 +923,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             // Turn off idle timer that turns off display when app is idle. Full screen camera will prevent device from turning screen off
             previousIdleTimer = UIApplication.shared.isIdleTimerDisabled
             UIApplication.shared.isIdleTimerDisabled = true
+            camerasViewController?.setFullscreenPresentation(true)
         } else {
             // Show the navigation bar on this view controller
             self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -946,6 +950,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             }
             // Restore idle timer to previous value before going full screen
             UIApplication.shared.isIdleTimerDisabled = previousIdleTimer
+            camerasViewController?.setFullscreenPresentation(false)
         }
         // Add some delay before calculating if we should render temp info
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
