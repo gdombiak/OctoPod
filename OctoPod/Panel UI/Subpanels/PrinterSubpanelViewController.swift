@@ -696,7 +696,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                     // Prompt user to rate the app
                     // Wait 2 seconds before prompting so UI can refresh progress
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        SKStoreReviewController.requestReview()
+                        if let windowScene = SceneInterfaceOrientation.windowScene(for: self.view) {
+                            SKStoreReviewController.requestReview(in: windowScene)
+                        }
                     }
                 }
                 // Increment count

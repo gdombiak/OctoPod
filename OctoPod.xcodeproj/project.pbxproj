@@ -445,6 +445,8 @@
 		A1B2C3E026A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3DF26A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift */; };
 		A1B2C3E226A20F2E00913754 /* CameraFullscreenPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E126A20F2E00913754 /* CameraFullscreenPresentationTests.swift */; };
 		A1B2C3E426A20F2E00913754 /* CloudKitLegacyCompletionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E326A20F2E00913754 /* CloudKitLegacyCompletionTests.swift */; };
+		A1B2C3E626A20F2E00913754 /* SceneInterfaceOrientationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E526A20F2E00913754 /* SceneInterfaceOrientationTests.swift */; };
+		A1B2C3F126A20F2E00913754 /* SceneInterfaceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3F026A20F2E00913754 /* SceneInterfaceOrientation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1097,6 +1099,8 @@
 		A1B2C3DF26A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClientPluginSyncTests.swift; sourceTree = "<group>"; };
 		A1B2C3E126A20F2E00913754 /* CameraFullscreenPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFullscreenPresentationTests.swift; sourceTree = "<group>"; };
 		A1B2C3E326A20F2E00913754 /* CloudKitLegacyCompletionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitLegacyCompletionTests.swift; sourceTree = "<group>"; };
+		A1B2C3E526A20F2E00913754 /* SceneInterfaceOrientationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneInterfaceOrientationTests.swift; sourceTree = "<group>"; };
+		A1B2C3F026A20F2E00913754 /* SceneInterfaceOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneInterfaceOrientation.swift; sourceTree = "<group>"; };
 		CB66535B2160B6C100269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		CB66535C2160B6C200269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		CB66535D2160B6C200269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1308,6 +1312,7 @@
 				A1B2C3DF26A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift */,
 				A1B2C3E126A20F2E00913754 /* CameraFullscreenPresentationTests.swift */,
 				A1B2C3E326A20F2E00913754 /* CloudKitLegacyCompletionTests.swift */,
+				A1B2C3E526A20F2E00913754 /* SceneInterfaceOrientationTests.swift */,
 				3D1FDCC126A20F2E00913754 /* Info.plist */,
 			);
 			path = OctoPodTests;
@@ -1317,6 +1322,7 @@
 			isa = PBXGroup;
 			children = (
 				3D33B7A0213F6A0D002A4BE3 /* UIUtils.swift */,
+				A1B2C3F026A20F2E00913754 /* SceneInterfaceOrientation.swift */,
 				3D276C4525D05C7400B75EB3 /* PrinterUtils.swift */,
 				3DA0490C2687EE5500C98379 /* CameraUtils.swift */,
 				3DBFB2E7256E1B2300DC43E8 /* HLSThumbnailUtil.swift */,
@@ -2398,6 +2404,7 @@
 				A1B2C3E026A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift in Sources */,
 				A1B2C3E226A20F2E00913754 /* CameraFullscreenPresentationTests.swift in Sources */,
 				A1B2C3E426A20F2E00913754 /* CloudKitLegacyCompletionTests.swift in Sources */,
+				A1B2C3E626A20F2E00913754 /* SceneInterfaceOrientationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2576,6 +2583,7 @@
 				3DFBB8EF2569E07E00A7BD46 /* CameraHLSEmbeddedViewController.swift in Sources */,
 				3DC6DB352455589A0091E548 /* FilamentManagerViewController.swift in Sources */,
 				3D33B7A1213F6A0D002A4BE3 /* UIUtils.swift in Sources */,
+				A1B2C3F126A20F2E00913754 /* SceneInterfaceOrientation.swift in Sources */,
 				3D78BA9F21039D770090D79A /* Terminal.swift in Sources */,
 				3DD3F26C243A754800EA3F84 /* PrinterObserver.swift in Sources */,
 				3D8DA01E2144EDCE00F5FD07 /* SupportViewController.swift in Sources */,

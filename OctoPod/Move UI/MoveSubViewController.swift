@@ -85,7 +85,7 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
         addKeyboardButtons(field: feedRateField, slider: feedRateSlider, cancelSelector: #selector(MoveSubViewController.closeFeedKeyboard), applySelector: #selector(MoveSubViewController.applyFeedKeyboard))
 
         // Adjust space between move buttons depending on screen size
-        let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
+        let devicePortrait = SceneInterfaceOrientation.isPortrait(from: view.window)
         let screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
         if screenHeight <= 568 {
             // iPhone 5, 5s, 5c, SE (and older models)
@@ -906,7 +906,8 @@ class MoveSubViewController: ThemedStaticUITableViewController, PrinterProfilesD
     
     fileprivate func addKeyboardButtons(field: UITextField, slider: UISlider, cancelSelector: Selector, applySelector: Selector) {
         let numberToolbar: UIToolbar = UIToolbar()
-        numberToolbar.barStyle = UIBarStyle.blackTranslucent
+        numberToolbar.barStyle = .black
+        numberToolbar.isTranslucent = true
         numberToolbar.items=[
             UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: UIBarButtonItem.Style.plain, target: self, action: cancelSelector),
             UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil),

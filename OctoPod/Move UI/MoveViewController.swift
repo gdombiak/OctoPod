@@ -242,7 +242,8 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
         camerasViewController = camerasChild
     }
     
-    fileprivate func updateForCameraOrientation(orientation: UIImage.Orientation, devicePortrait: Bool = UIApplication.shared.statusBarOrientation.isPortrait) {
+    fileprivate func updateForCameraOrientation(orientation: UIImage.Orientation, devicePortrait: Bool? = nil) {
+        let isPortrait = devicePortrait ?? SceneInterfaceOrientation.isPortrait(from: view.window)
         if cameraHeightConstraint == nil {
             // Do nothing since view never rendered
             return
@@ -256,15 +257,15 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
             cameraHeightConstraint.constant = 281 + 50
         } else {
             if imageAspectRatio16_9 {
-                cameraHeightConstraint.constant = devicePortrait ? camera16_9HeightConstraintPortrait! : cameral16_9HeightConstraintLandscape!
+                cameraHeightConstraint.constant = isPortrait ? camera16_9HeightConstraintPortrait! : cameral16_9HeightConstraintLandscape!
             } else {
-                cameraHeightConstraint.constant = devicePortrait ? camera4_3HeightConstraintPortrait! : camera4_3HeightConstraintLandscape!
+                cameraHeightConstraint.constant = isPortrait ? camera4_3HeightConstraintPortrait! : camera4_3HeightConstraintLandscape!
             }
         }
     }
 
     fileprivate func calculateCameraHeightConstraints() {
-        let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
+        let devicePortrait = SceneInterfaceOrientation.isPortrait(from: view.window)
         screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
         let constraints = UIUtils.calculateCameraHeightConstraints(screenHeight: screenHeight)
         

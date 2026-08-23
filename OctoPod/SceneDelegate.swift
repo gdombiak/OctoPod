@@ -36,6 +36,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appDelegate.sceneWillEnterForeground()
     }
 
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        appDelegate.scheduleBackgroundAppRefresh()
+    }
+
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         for context in URLContexts {
             _ = openURL(context.url)

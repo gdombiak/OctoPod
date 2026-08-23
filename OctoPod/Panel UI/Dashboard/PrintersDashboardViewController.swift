@@ -163,7 +163,7 @@ class PrintersDashboardViewController: UIViewController, UICollectionViewDataSou
         if displayCameras {
             return videoCellSize(indexPath.row, collectionView)
         } else {
-            let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
+            let devicePortrait = SceneInterfaceOrientation.isPortrait(from: view.window)
             let portraitWidth = devicePortrait ? UIScreen.main.bounds.width : UIScreen.main.bounds.height
             if portraitWidth <= 320 {
                 // Set cell width to fit in SE screen

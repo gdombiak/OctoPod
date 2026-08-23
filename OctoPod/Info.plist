@@ -94,6 +94,10 @@
 		<string>SystemCommandIntent</string>
 		<string>TakeSnapshotIntent</string>
 	</array>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>org.OctoPod.OctoPod.refresh</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

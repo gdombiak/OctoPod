@@ -1,4 +1,5 @@
 import UIKit
+import UniformTypeIdentifiers
 
 // Ask user if they want to upload file to SD card of current folder
 class FileUploadViewController: ThemedStaticUITableViewController, UIDocumentPickerDelegate {
@@ -155,7 +156,7 @@ class FileUploadViewController: ThemedStaticUITableViewController, UIDocumentPic
     
     fileprivate func selectFileToUpload() {
         if let _ = cloudFilesManager.containerUrl {
-            let picker = UIDocumentPickerViewController(documentTypes: ["public.item"], in: .open)
+            let picker = UIDocumentPickerViewController(forOpeningContentTypes: [.item], asCopy: false)
             picker.delegate = self
             picker.modalPresentationStyle = .fullScreen
             self.present(picker, animated: false, completion: nil)

@@ -4,11 +4,13 @@ import CloudKit
 import UserNotifications
 import Intents
 import AVFoundation
+import BackgroundTasks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static let coreDataReadyNotification = Notification.Name("AppDelegate.coreDataReady")
+    static let backgroundRefreshTaskIdentifier = "org.OctoPod.OctoPod.refresh"
 
     // SceneDelegate owns the key window. UIApplicationDelegate still declares this
     // optional property, so keep a witness now that the deployment target is iOS 15+.
@@ -24,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var appWideServicesStarted = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        registerBackgroundAppRefreshTask()
         // Cold-start URLs are delivered via SceneDelegate.connectionOptions.
         _ = persistentContainer
         return true
@@ -186,7 +189,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.cloudKitPrinterManager.start(nil)
         self.backgroundRefresher.start()
         self.liveActivitiesManager.start()
-        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        scheduleBackgroundAppRefresh()
 
         INPreferences.requestSiriAuthorization{ (authStatus: INSiriAuthorizationStatus) in
             NSLog("Siri Authorization Status authorized: \(authStatus == INSiriAuthorizationStatus.authorized)")
@@ -354,6 +357,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         // Run background refresh
         backgroundRefresher.refresh(completionHandler: completionHandler)
+    }
+
+    /// Register the BGAppRefreshTask used as the iOS 13+ replacement for
+    /// `setMinimumBackgroundFetchInterval`. Must run before launch finishes.
+    private func registerBackgroundAppRefreshTask() {
+        // Main queue: BackgroundRefresher.refresh reads Printer from the main
+        // Core Data context. `using: nil` would run this on a background queue.
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: AppDelegate.backgroundRefreshTaskIdentifier, using: .main) { task in
+            self.handleBackgroundAppRefresh(task: task as! BGAppRefreshTask)
+        }
+    }
+
+    /// Ask the system to wake the app later so watch complications / local
+    /// notifications can update when the OctoPod plugin is not installed.
+    func scheduleBackgroundAppRefresh() {
+        let request = BGAppRefreshTaskRequest(identifier: AppDelegate.backgroundRefreshTaskIdentifier)
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
+        do {
+            try BGTaskScheduler.shared.submit(request)
+        } catch {
+            NSLog("Could not schedule background app refresh: \(error)")
+        }
+    }
+
+    private func handleBackgroundAppRefresh(task: BGAppRefreshTask) {
+        scheduleBackgroundAppRefresh()
+        guard isCoreDataReady else {
+            task.setTaskCompleted(success: true)
+            return
+        }
+        let lock = NSLock()
+        var completed = false
+        let complete = { (success: Bool) in
+            lock.lock()
+            defer { lock.unlock() }
+            guard !completed else {
+                return
+            }
+            completed = true
+            task.setTaskCompleted(success: success)
+        }
+        task.expirationHandler = {
+            complete(false)
+        }
+        backgroundRefresher.refresh { result in
+            complete(result != .failed)
+        }
     }
 
     // MARK: - My extensions

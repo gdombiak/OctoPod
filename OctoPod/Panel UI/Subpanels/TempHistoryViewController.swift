@@ -26,7 +26,7 @@ class TempHistoryViewController: UIViewController, SubpanelViewController, OctoP
 
         // If running in small screen then reduce height so page control (dots)
         // do not overlap the chart letters
-        let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
+        let devicePortrait = SceneInterfaceOrientation.isPortrait(from: view.window)
         let screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
         if screenHeight <= 568 {
             // iPhone 5, 5s, 5c, SE

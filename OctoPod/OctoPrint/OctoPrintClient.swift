@@ -40,16 +40,6 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         self.appConfiguration?.delegates.append(self)
         // Add AppConfiguration as a listener of this OctoPrintClient
         delegates.append(appConfiguration)
-
-        #if os(iOS)
-            // Configure REST client to show network activity in iOS app when making requests
-            self.octoPrintRESTClient.preRequest = {
-                DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = true })
-            }
-            self.octoPrintRESTClient.postRequest = {
-                DispatchQueue.main.async(execute: { () -> Void in UIApplication.shared.isNetworkActivityIndicatorVisible = false })
-            }
-        #endif
     }
     
     // MARK: - OctoPrint server connection

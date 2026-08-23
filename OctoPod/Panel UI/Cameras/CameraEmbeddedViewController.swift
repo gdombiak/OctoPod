@@ -214,7 +214,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     @IBAction func errorURLClicked(_ sender: Any) {
         if let url = URL(string: cameraURL), UIApplication.shared.canOpenURL(url) {
             let svc = SFSafariViewController(url: url)
-            UIApplication.shared.keyWindow?.rootViewController?.present(svc, animated: true, completion: nil)
+            SceneInterfaceOrientation.presenter(for: self).present(svc, animated: true, completion: nil)
         }
     }
     
@@ -581,10 +581,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     }
 
     fileprivate func fullscreenInterfaceOrientation() -> UIInterfaceOrientation {
-        if let sceneOrientation = view.window?.windowScene?.interfaceOrientation, sceneOrientation != .unknown {
-            return sceneOrientation
-        }
-        return UIApplication.shared.statusBarOrientation
+        SceneInterfaceOrientation.current(from: view.window)
     }
 
     fileprivate func wrapPrintStatusOverlayIfNeeded() {

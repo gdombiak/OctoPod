@@ -917,7 +917,8 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
-    fileprivate func updateForCameraOrientation(orientation: UIImage.Orientation, devicePortrait: Bool = UIApplication.shared.statusBarOrientation.isPortrait) {
+    fileprivate func updateForCameraOrientation(orientation: UIImage.Orientation, devicePortrait: Bool? = nil) {
+        let isPortrait = devicePortrait ?? SceneInterfaceOrientation.isPortrait(from: view.window)
         if cameraHeightConstraint == nil {
             // Do nothing if for some reason the weak var cameraHeightConstraint is no longer there. Will fix a reported crash but not sure if it will crash later
             return
@@ -931,9 +932,9 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             cameraHeightConstraint.constant = 281 + 50
         } else {
             if imageAspectRatio16_9 {
-                cameraHeightConstraint.constant = devicePortrait ? camera16_9HeightConstraintPortrait! : cameral16_9HeightConstraintLandscape!
+                cameraHeightConstraint.constant = isPortrait ? camera16_9HeightConstraintPortrait! : cameral16_9HeightConstraintLandscape!
             } else {
-                cameraHeightConstraint.constant = devicePortrait ? camera4_3HeightConstraintPortrait! : camera4_3HeightConstraintLandscape!
+                cameraHeightConstraint.constant = isPortrait ? camera4_3HeightConstraintPortrait! : camera4_3HeightConstraintLandscape!
             }
         }
     }
@@ -956,7 +957,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             snapshotPhysicalOrientationForFullscreenOverlay()
             updateFullscreenInterfaceOrientationSupport()
 
-            let uiOrientation = UIApplication.shared.statusBarOrientation
+            let uiOrientation = SceneInterfaceOrientation.current(from: view.window)
             let shouldForceLandscape = CameraFullscreenSession.shouldForceLandscapeGeometry(
                 userInterfaceIdiom: UIDevice.current.userInterfaceIdiom,
                 isFullscreen: true,
@@ -966,7 +967,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             if shouldForceLandscape && !currentlyLandscape {
                 uiOrientationBeforeFullScreen = uiOrientation
                 if #available(iOS 16.0, *) {
-                    let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                    let windowScene = SceneInterfaceOrientation.windowScene(for: view)
                     windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
                 } else {
                     UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeRight.rawValue), forKey: "orientation")
@@ -997,7 +998,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             if let orientation = uiOrientationBeforeFullScreen {
                 // When running full screen we are forcing landscape so we go back to portrait when leaving
                 if #available(iOS 16.0, *) {
-                    let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                    let windowScene = SceneInterfaceOrientation.windowScene(for: view)
                     windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: orientation.isPortrait ? .portrait : .landscape))
                 } else {
                     UIDevice.current.setValue(Int(orientation.rawValue), forKey: "orientation")
@@ -1049,7 +1050,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
     }
 
     fileprivate func calculateCameraHeightConstraints() {
-        let devicePortrait = UIApplication.shared.statusBarOrientation.isPortrait
+        let devicePortrait = SceneInterfaceOrientation.isPortrait(from: view.window)
         screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
         let constraints = UIUtils.calculateCameraHeightConstraints(screenHeight: screenHeight)
         
