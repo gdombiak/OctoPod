@@ -56,11 +56,9 @@ class UIUtils {
     
     static func calculateCameraHeightConstraints(screenHeight: CGFloat) -> (cameraHeight4_3ConstraintPortrait: CGFloat, cameraHeight4_3ConstraintLandscape: CGFloat, camera16_9HeightConstraintPortrait: CGFloat, cameral16_9HeightConstraintLandscape: CGFloat){
         // LiveActivities do not work on Mac (app will crash) so skip if running on mac
-        if #available(iOS 13.0, *) {
-            if ProcessInfo.processInfo.isMacCatalystApp {
-                // Running on Mac
-                return (624, 624, 624, 624)
-            }
+        if ProcessInfo.processInfo.isMacCatalystApp {
+            // Running on Mac
+            return (624, 624, 624, 624)
         }
 
         if screenHeight <= 568 {

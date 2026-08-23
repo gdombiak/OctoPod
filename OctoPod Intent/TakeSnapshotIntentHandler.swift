@@ -13,7 +13,7 @@ class TakeSnapshotIntentHandler: NSObject, TakeSnapshotIntentHandling {
     }
     
     func handle(intent: TakeSnapshotIntent, completion: @escaping (TakeSnapshotIntentResponse) -> Void) {
-        if let printerURL = intent.printerURL, let url = URL(string: printerURL), let printer = printerManager.getPrinterByObjectURL(url: url), #available(iOSApplicationExtension 14.0, *) {
+        if let printerURL = intent.printerURL, let url = URL(string: printerURL), let printer = printerManager.getPrinterByObjectURL(url: url) {
             let url = CameraUtils.shared.absoluteURL(hostname: printer.hostname, streamUrl: printer.getStreamPath())
             let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
             if let cameraURL = URL(string: url) {

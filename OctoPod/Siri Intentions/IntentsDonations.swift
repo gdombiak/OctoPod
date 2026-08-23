@@ -2,163 +2,130 @@ import Foundation
 import Intents
 
 class IntentsDonations {
-    
+
     private static let GROUP_IDENTIFIER = "org.OctoPod.Intentions"  // Unique & Global idenfier for all Intents created by this app
     private static let DONATIONS_INITIALIZED = "IntentsDonations.init"
-    
+
     // MARK: - Donate Printer Intents
 
     static func donateBedTemp(printer: Printer, temperature: Int) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = SetBedTempIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.temperature = temperature as NSNumber
-            if temperature > 0 {
-                intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Warm up printer bed", comment: "Siri suggested phrase"), printer.name)
-            } else {
-                intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cool down printer bed", comment: "Siri suggested phrase"), printer.name)
-            }
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "Bed")
+        let intent = SetBedTempIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.temperature = temperature as NSNumber
+        if temperature > 0 {
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Warm up printer bed", comment: "Siri suggested phrase"), printer.name)
+        } else {
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cool down printer bed", comment: "Siri suggested phrase"), printer.name)
         }
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "Bed")
     }
-    
+
     static func donateToolTemp(printer: Printer, tool: Int, temperature: Int) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = SetToolTempIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.tool = tool as NSNumber
-            intent.temperature = temperature as NSNumber
-            if temperature > 0 {
-                intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Warm up printer extruder", comment: "Siri suggested phrase"), printer.name)
-            } else {
-                intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cool down printer extruder", comment: "Siri suggested phrase"), printer.name)
-            }
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "Tool")
+        let intent = SetToolTempIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.tool = tool as NSNumber
+        intent.temperature = temperature as NSNumber
+        if temperature > 0 {
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Warm up printer extruder", comment: "Siri suggested phrase"), printer.name)
+        } else {
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cool down printer extruder", comment: "Siri suggested phrase"), printer.name)
         }
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "Tool")
     }
-    
+
     static func donateChamberTemp(printer: Printer, temperature: Int) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = SetChamberTempIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.temperature = temperature as NSNumber
-            if temperature > 0 {
-                intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Warm up heated chamber", comment: "Siri suggested phrase"), printer.name)
-            } else {
-                intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cool down heated chamber", comment: "Siri suggested phrase"), printer.name)
-            }
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "Chamber")
+        let intent = SetChamberTempIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.temperature = temperature as NSNumber
+        if temperature > 0 {
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Warm up heated chamber", comment: "Siri suggested phrase"), printer.name)
+        } else {
+            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cool down heated chamber", comment: "Siri suggested phrase"), printer.name)
         }
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "Chamber")
     }
-    
+
     static func donateCoolDownPrinter(printer: Printer) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = CoolDownPrinterIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cool down printer", comment: "Siri suggested phrase"), printer.name)
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "CoolDownPrinter")
-        }
+        let intent = CoolDownPrinterIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cool down printer", comment: "Siri suggested phrase"), printer.name)
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "CoolDownPrinter")
     }
 
     static func donatePauseJob(printer: Printer) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = PauseJobIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Pause current print job", comment: "Siri suggested phrase"), printer.name)
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "Pause")
-        }
+        let intent = PauseJobIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Pause current print job", comment: "Siri suggested phrase"), printer.name)
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "Pause")
     }
 
     static func donateResumeJob(printer: Printer) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = ResumeJobIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Resume current print job", comment: "Siri suggested phrase"), printer.name)
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "Resume")
-        }
+        let intent = ResumeJobIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Resume current print job", comment: "Siri suggested phrase"), printer.name)
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "Resume")
     }
 
     static func donateCancelJob(printer: Printer) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = CancelJobIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cancel current print job", comment: "Siri suggested phrase"), printer.name)
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "Cancel")
-        }
+        let intent = CancelJobIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Cancel current print job", comment: "Siri suggested phrase"), printer.name)
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "Cancel")
     }
-    
+
     static func donateRestartJob(printer: Printer) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = RestartJobIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Restart current print job", comment: "Siri suggested phrase"), printer.name)
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "Restart")
-        }
+        let intent = RestartJobIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Restart current print job", comment: "Siri suggested phrase"), printer.name)
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "Restart")
     }
-    
+
     static func donateRemainingTime(printer: Printer) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = RemainingTimeIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Remaining time current print job", comment: "Siri suggested phrase"), printer.name)
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "Remaining")
-        }
+        let intent = RemainingTimeIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Remaining time current print job", comment: "Siri suggested phrase"), printer.name)
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "Remaining")
     }
-    
+
     static func donateTakeSnapshot(printer: Printer) {
-        // Intent only available on iOS 14 or newer
-        if #available(iOS 14.0, *) {
-            let intent = TakeSnapshotIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Take snapshot", comment: "Siri suggested phrase") + " " + printer.name, printer.name)
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "Snapshot")
-        }
+        let intent = TakeSnapshotIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Take snapshot", comment: "Siri suggested phrase") + " " + printer.name, printer.name)
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "Snapshot")
     }
-    
+
     static func donateSystemCommand(printer: Printer, action: String, source: String, name: String) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = SystemCommandIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.commandAction = action
-            intent.commandSource = source
-            intent.commandName = name
-            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Execute System Command", comment: "Siri suggested phrase"), printer.name)
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "SystemCommand")
-        }
+        let intent = SystemCommandIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.commandAction = action
+        intent.commandSource = source
+        intent.commandName = name
+        intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Execute System Command", comment: "Siri suggested phrase"), printer.name)
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "SystemCommand")
     }
-    
+
     /// Suggest Siri shortcuts for the printer. These are intents created when a Printer is added or modified
     /// The other donations are done based on user interaction with the app
     static func donatePrinterIntents(printer: Printer) {
@@ -192,61 +159,49 @@ class IntentsDonations {
         }
         defaults.set(true, forKey: DONATIONS_INITIALIZED)
     }
-    
+
     // MARK: - Donate Enclosure Plugin Intents
-    
+
     static func donateEnclosureTurnOn(printer: Printer, switchLabel: String) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = EnclosureTurnOnIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.label = switchLabel
-            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn on Enclosure switch", comment: "Siri suggested phrase"), printer.name)
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "EnclosureTurnOn")
-        }
+        let intent = EnclosureTurnOnIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.label = switchLabel
+        intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn on Enclosure switch", comment: "Siri suggested phrase"), printer.name)
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "EnclosureTurnOn")
     }
-    
+
     static func donateEnclosureTurnOff(printer: Printer, switchLabel: String) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = EnclosureTurnOffIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.label = switchLabel
-            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn off Enclosure switch", comment: "Siri suggested phrase"), printer.name)
+        let intent = EnclosureTurnOffIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.label = switchLabel
+        intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn off Enclosure switch", comment: "Siri suggested phrase"), printer.name)
 
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "EnclosureTurnOff")
-        }
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "EnclosureTurnOff")
     }
-    
+
     // MARK: - Donate PSU Control Plugin Intents
-    
-    static func donatePSUControlTurnOn(printer: Printer) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = PSUControlOnIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn on PSU", comment: "Siri suggested phrase"), printer.name)
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "PSUControlTurnOn")
-        }
-    }
-    
-    static func donatePSUControlTurnOff(printer: Printer) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = PSUControlOffIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn off PSU", comment: "Siri suggested phrase"), printer.name)
 
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "PSUControlTurnOff")
-        }
+    static func donatePSUControlTurnOn(printer: Printer) {
+        let intent = PSUControlOnIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn on PSU", comment: "Siri suggested phrase"), printer.name)
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "PSUControlTurnOn")
     }
-    
+
+    static func donatePSUControlTurnOff(printer: Printer) {
+        let intent = PSUControlOffIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+        intent.suggestedInvocationPhrase = String(format: NSLocalizedString("Turn off PSU", comment: "Siri suggested phrase"), printer.name)
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "PSUControlTurnOff")
+    }
+
     // MARK: - Delete Intents
 
     /// Delete donate Siri commands that relate to the printer. This includes Palette intents as well
@@ -259,7 +214,7 @@ class IntentsDonations {
             }
         }
     }
-    
+
     /// Delete all donated Siri commands made by the app
     static func deleteAllDonatedIntents(done: ((Error?) -> Void)?) {
         INInteraction.deleteAll { (error: Error?) in
@@ -271,9 +226,9 @@ class IntentsDonations {
             done?(error)
         }
     }
-    
+
     // MARK: - Donate Palette Intents
-    
+
     /// Donate all Siri commands to control Palette
     static func donatePaletteIntents(printer: Printer) {
         donatePaletteConnect(printer: printer)
@@ -300,62 +255,47 @@ class IntentsDonations {
     }
 
     static func donatePaletteConnect(printer: Printer) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = PaletteConnectIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "PaletteConnect")
-        }
+        let intent = PaletteConnectIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "PaletteConnect")
     }
-    
+
     static func donatePaletteDisconnect(printer: Printer) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = PaletteDisconnectIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "PaletteDisconnect")
-        }
+        let intent = PaletteDisconnectIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "PaletteDisconnect")
     }
 
     static func donatePaletteClear(printer: Printer) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = PaletteClearIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "PaletteClear")
-        }
+        let intent = PaletteClearIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "PaletteClear")
     }
-    
+
     static func donatePaletteCut(printer: Printer) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = PaletteCutIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "PaletteCut")
-        }
+        let intent = PaletteCutIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "PaletteCut")
     }
 
     static func donatePalettePingStats(printer: Printer) {
-        // Intent only available on iOS 12 or newer
-        if #available(iOS 12.0, *) {
-            let intent = PalettePingStatsIntent()
-            intent.printer = printer.name
-            intent.printerURL = printer.objectID.uriRepresentation().absoluteString
-            
-            donateIntent(intent: intent, printer: printer, identifierSuffix: "PalettePingStats")
-        }
+        let intent = PalettePingStatsIntent()
+        intent.printer = printer.name
+        intent.printerURL = printer.objectID.uriRepresentation().absoluteString
+
+        donateIntent(intent: intent, printer: printer, identifierSuffix: "PalettePingStats")
     }
-    
+
     // MARK: - Private functions
-    
+
 fileprivate class func donateIntent(intent: INIntent, printer: Printer, identifierSuffix: String) {
     let interaction = INInteraction(intent: intent, response: nil)
     interaction.identifier = intentIdentifier(printer: printer, identifierSuffix: identifierSuffix)
@@ -369,7 +309,7 @@ fileprivate class func donateIntent(intent: INIntent, printer: Printer, identifi
         }
     }
 }
-    
+
     fileprivate class func intentIdentifier(printer: Printer, identifierSuffix: String) -> String {
         return "\(GROUP_IDENTIFIER).\(printer.objectID.uriRepresentation()).\(identifierSuffix))"
     }

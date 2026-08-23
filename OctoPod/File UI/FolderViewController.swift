@@ -146,11 +146,7 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
                 completionHandler(false)
             }
           })
-        if #available(iOS 13.0, *) {
-            deleteAction.image = UIImage(systemName: "trash")
-        } else {
-            // Fallback on earlier versions
-        }
+        deleteAction.image = UIImage(systemName: "trash")
 
         let files = searching ? searchedFiles : self.files
         let canDelete = indexPath.row < files.count && !files[indexPath.row].isFolder() && !appConfiguration.appLocked()
@@ -283,21 +279,10 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
         let disabledColor = tintColor.withAlphaComponent(0.35)
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.foregroundColor: tintColor], for: .normal)
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.foregroundColor: disabledColor], for: .disabled)
-        if #available(iOS 13.0, *) {
-            let searchTextField = self.searchBar.searchTextField
-            searchTextField.textColor = textColor
-            if let iconView = searchTextField.leftView {
-                iconView.tintColor = textLabelColor
-            }
-        } else {
-            // Fallback on earlier versions
-            if let textField = searchBar.value(forKey: "searchField") as? UITextField {
-                textField.textColor = textColor
-                if let iconView = textField.leftView as? UIImageView {
-                    //Magnifying glass
-                    iconView.tintColor = textLabelColor
-                }
-            }
+        let searchTextField = self.searchBar.searchTextField
+        searchTextField.textColor = textColor
+        if let iconView = searchTextField.leftView {
+            iconView.tintColor = textLabelColor
         }
         // Set color (and text) to refresh control
         if let refreshControl = refreshControl {

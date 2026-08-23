@@ -1,7 +1,6 @@
 import SwiftUI
 import WidgetKit
 
-@available(iOS 14.0, *)
 struct ProgressBarView: View {
     @Binding var progress: Double
     @Binding var color: Color
@@ -23,7 +22,7 @@ struct ProgressBarView: View {
                 .stroke(style: StrokeStyle(lineWidth: 10.0, lineCap: .round, lineJoin: .round))
                 .foregroundColor(color)
                 .rotationEffect(Angle(degrees: 270.0))
-                .animation(.linear)
+                .animation(.linear, value: progress)
             Text(String(format: "%.0f%%", min(self.progress, 1.0)*100.0))
                 .font(.callout)
                 .bold()

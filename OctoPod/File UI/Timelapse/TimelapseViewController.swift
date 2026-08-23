@@ -159,11 +159,7 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
                 completionHandler(false)
             }
           })
-        if #available(iOS 13.0, *) {
-            deleteAction.image = UIImage(systemName: "trash")
-        } else {
-            // Fallback on earlier versions
-        }
+        deleteAction.image = UIImage(systemName: "trash")
 
         let shareAction = UIContextualAction(style: .normal, title: NSLocalizedString("Share", comment: "Share action"), handler: { (action, view, completionHandler) in
             // Update data source when user taps action
@@ -215,11 +211,7 @@ class TimelapseViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
           })
-        if #available(iOS 13.0, *) {
-            shareAction.image = UIImage(systemName: "square.and.arrow.up")
-        } else {
-            // Fallback on earlier versions
-        }
+        shareAction.image = UIImage(systemName: "square.and.arrow.up")
         
         return UISwipeActionsConfiguration(actions: appConfiguration.appLocked() ? [shareAction] : [deleteAction, shareAction])
     }

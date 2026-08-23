@@ -228,7 +228,6 @@ struct OctoPodWidget14EntryView : View {
     }
 }
 
-@available(iOSApplicationExtension 14.0, *)
 @main
 struct OctoPodWidgets: WidgetBundle {
     @WidgetBundleBuilder
@@ -263,7 +262,6 @@ struct OctoPodWidget14: Widget {
     }
 }
 
-@available(iOSApplicationExtension 13.0, *)
 struct OctoPodWidget14_Previews: PreviewProvider {
     static var intent: WidgetConfigurationIntent = {
         let configuration = WidgetConfigurationIntent()

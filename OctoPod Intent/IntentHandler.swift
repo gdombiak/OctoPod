@@ -43,19 +43,9 @@ class IntentHandler: INExtension {
         } else if intent is PSUControlOffIntent {
             return PSUControlOffIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is WidgetConfigurationIntent {
-            if #available(iOSApplicationExtension 14.0, *) {
-                return WidgetConfigurationIntentHandler(printerManager: IntentHandler.printerManager)
-            } else {
-                // Fallback on earlier versions
-                fatalError("WidgetConfigurationIntent is only available on iOS 14 or newer")
-            }
+            return WidgetConfigurationIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is DashboardWidgetConfigurationIntent {
-            if #available(iOSApplicationExtension 14.0, *) {
-                return DashboardWidgetConfigurationIntentHandler(printerManager: IntentHandler.printerManager)
-            } else {
-                // Fallback on earlier versions
-                fatalError("WidgetConfigurationIntent is only available on iOS 14 or newer")
-            }
+            return DashboardWidgetConfigurationIntentHandler(printerManager: IntentHandler.printerManager)
         } else if intent is TakeSnapshotIntent {
             return TakeSnapshotIntentHandler(printerManager: IntentHandler.printerManager)
         } else {

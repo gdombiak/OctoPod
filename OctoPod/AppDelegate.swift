@@ -16,20 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private let coreDataReadinessLock = NSLock()
     private var coreDataReady = false
     private var coreDataStartupAttempted = false
-    // On iOS 13+, this is only a fallback for a legacy callback received before
+    // Fallback for a legacy UIApplicationDelegate URL callback received before
     // SceneDelegate has connected. The scene owns all other URL delivery.
     private var pendingOpenURL: URL?
-    private weak var sceneDelegate: AnyObject?
+    private weak var sceneDelegate: SceneDelegate?
     private var persistentStoreFailure = false
     private var appWideServicesStarted = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // iOS 13+ receives cold-start URLs in SceneDelegate.connectionOptions. Keep
-        // launchOptions URL ownership only for the legacy iOS 12 lifecycle.
-        if #unavailable(iOS 13.0) {
-            pendingOpenURL = launchOptions?[.url] as? URL
-            window?.isHidden = true
-        }
+        // Cold-start URLs are delivered via SceneDelegate.connectionOptions.
         _ = persistentContainer
         return true
     }
@@ -54,7 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// The app delegate owns app-wide state; the connected scene owns its window and UI.
     /// OctoPod supports one scene configuration, so retaining the active delegate is enough
     /// to bridge legacy UIApplicationDelegate URL delivery without reintroducing window ownership.
-    @available(iOS 13.0, *)
     func connect(sceneDelegate: SceneDelegate) {
         self.sceneDelegate = sceneDelegate
         if persistentStoreFailure {
@@ -67,7 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    @available(iOS 13.0, *)
     func disconnect(sceneDelegate: SceneDelegate) {
         if self.sceneDelegate === sceneDelegate {
             self.sceneDelegate = nil
@@ -84,41 +77,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func receiveOpenURL(_ url: URL) -> Bool {
-        if #available(iOS 13.0, *) {
-            guard let sceneDelegate = sceneDelegate as? SceneDelegate else {
-                if url.scheme == "octopod" {
-                    pendingOpenURL = url
-                    return true
-                }
-                return false
-            }
-            // A connected scene queues URLs until its Core Data-backed UI is ready.
-            return sceneDelegate.openURL(url)
-        }
-        guard isCoreDataReady else {
+        guard let sceneDelegate = sceneDelegate else {
             if url.scheme == "octopod" {
                 pendingOpenURL = url
                 return true
             }
             return false
         }
-        return processLegacyOpenURL(url)
+        // A connected scene queues URLs until its Core Data-backed UI is ready.
+        return sceneDelegate.openURL(url)
     }
 
     private func deliverPendingOpenURLIfPossible() {
         guard isCoreDataReady, let pendingURL = pendingOpenURL else {
             return
         }
-        if #available(iOS 13.0, *) {
-            guard let sceneDelegate = sceneDelegate as? SceneDelegate else {
-                return
-            }
-            pendingOpenURL = nil
-            _ = sceneDelegate.openURL(pendingURL)
-        } else {
-            pendingOpenURL = nil
-            _ = processLegacyOpenURL(pendingURL)
+        guard let sceneDelegate = sceneDelegate else {
+            return
         }
+        pendingOpenURL = nil
+        _ = sceneDelegate.openURL(pendingURL)
     }
 
     // MARK: - Core Data stack
@@ -179,11 +157,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Existing storyboard controllers may already be loaded but deferred their setup.
         NotificationCenter.default.post(name: AppDelegate.coreDataReadyNotification, object: self)
         startAppWideServicesIfNeeded()
-        if #available(iOS 13.0, *) {
-            (sceneDelegate as? SceneDelegate)?.coreDataDidBecomeReady()
-        } else {
-            finishLegacyCoreDataStartup()
-        }
+        sceneDelegate?.coreDataDidBecomeReady()
         deliverPendingOpenURLIfPossible()
     }
 
@@ -237,85 +211,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func presentPersistentStoreFailure() {
         persistentStoreFailure = true
-        if #available(iOS 13.0, *) {
-            (sceneDelegate as? SceneDelegate)?.presentPersistentStoreFailure()
-        } else {
-            presentLegacyPersistentStoreFailure()
-        }
+        sceneDelegate?.presentPersistentStoreFailure()
     }
 
-    // MARK: - iOS 12 compatibility
-
-    private func finishLegacyCoreDataStartup() {
-        if let tabBarController = window?.rootViewController as? UITabBarController {
-            tabBarController.selectedIndex = printerManager!.getPrinters().count == 0 ? 4 : 0
-        }
-        window?.makeKeyAndVisible()
-    }
-
-    private func presentLegacyPersistentStoreFailure() {
-        let controller = UIViewController()
-        controller.view.backgroundColor = .white
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.text = "OctoPod could not open its saved data. Your saved data was not deleted. Please restart the app or check device storage and access settings."
-        label.translatesAutoresizingMaskIntoConstraints = false
-        controller.view.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: controller.view.layoutMarginsGuide.leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: controller.view.layoutMarginsGuide.trailingAnchor),
-            label.centerYAnchor.constraint(equalTo: controller.view.centerYAnchor)
-        ])
-        window?.rootViewController = controller
-        window?.makeKeyAndVisible()
-    }
-
-    private func processLegacyOpenURL(_ url: URL) -> Bool {
-        guard url.scheme == "octopod" else {
-            return false
-        }
-        if url.absoluteString.starts(with: "octopod://x-coredata") {
-            let normalizedURL = url.absoluteString.replacingOccurrences(of: "octopod://x-coredata(:)*//",
-                                                                          with: "x-coredata://",
-                                                                          options: [.regularExpression])
-            if let printerURL = URL(string: normalizedURL),
-               let printer = printerManager?.getPrinterByObjectURL(url: printerURL) {
-                selectLegacyPrinterAndPanel(printer)
-                return true
-            }
-        } else if let printerName = url.host?.removingPercentEncoding {
-            if let printer = printerManager?.getPrinterByName(name: printerName) {
-                selectLegacyPrinterAndPanel(printer)
-                return true
-            } else if printerName == "goToDashboard" {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                    guard let self = self,
-                          let tabBarController = self.window?.rootViewController as? UITabBarController else {
-                        return
-                    }
-                    tabBarController.selectedIndex = 0
-                    if let navigationVC = tabBarController.selectedViewController as? NavigationController,
-                       let panelVC = navigationVC.topViewController as? PanelViewController {
-                        panelVC.performSegue(withIdentifier: "printers_dashboard", sender: self)
-                    }
-                }
-                return true
-            }
-        }
-        return false
-    }
-
-    private func selectLegacyPrinterAndPanel(_ printer: Printer) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.defaultPrinterManager.changeToDefaultPrinter(printer: printer)
-            (self.window?.rootViewController as? UITabBarController)?.selectedIndex = 0
-        }
-    }
-    
     // Core Data database was moved from local storage to shared app group in release 2.1
     fileprivate func moveCoreDataToSharedSpace() -> Bool {
         var storeOptions = [AnyHashable : Any]()

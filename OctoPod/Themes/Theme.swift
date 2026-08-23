@@ -25,14 +25,9 @@ class Theme {
             case .OctoPrint:
                 return octoprintNavTopColor(octoPrintColor)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        /// Return the color for Light Mode. Same as OctoPrint color
-                        return self.octoprintNavTopColor(octoPrintColor)
-                    }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor(red: 218/255, green: 218/255, blue: 219/255, alpha: 1.0)
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    /// Return the color for Light Mode. Same as OctoPrint color
+                    return self.octoprintNavTopColor(octoPrintColor)
                 }
             }
         }
@@ -46,14 +41,9 @@ class Theme {
             case .OctoPrint:
                 return octoprintNavTitleColor(octoPrintColor)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        /// Return the color for Light Mode. Same as OctoPrint color
-                        return self.octoprintNavTitleColor(octoPrintColor)
-                    }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor.black
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    /// Return the color for Light Mode. Same as OctoPrint color
+                    return self.octoprintNavTitleColor(octoPrintColor)
                 }
             }
         }
@@ -69,20 +59,15 @@ class Theme {
             case .OctoPrint:
                 return octoprintNavTintColor(octoPrintColor)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        if UITraitCollection.userInterfaceStyle == .dark {
-                            /// Return the color for Dark Mode. Same as Dark color
-                            /// Use title color when in dark mode and using system theme
-                            return self.octoprintNavTitleColor(octoPrintColor)
-                        } else {
-                            /// Return the color for Light Mode. Same as OctoPrint color
-                            return self.octoprintNavTintColor(octoPrintColor)
-                        }
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    if UITraitCollection.userInterfaceStyle == .dark {
+                        /// Return the color for Dark Mode. Same as Dark color
+                        /// Use title color when in dark mode and using system theme
+                        return self.octoprintNavTitleColor(octoPrintColor)
+                    } else {
+                        /// Return the color for Light Mode. Same as OctoPrint color
+                        return self.octoprintNavTintColor(octoPrintColor)
                     }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor(red: 0/255, green: 122.4/255, blue: 255/255, alpha: 1.0)
                 }
             }
         }
@@ -96,19 +81,14 @@ class Theme {
             case .Orange:
                 return UIColor(red: 53/255, green: 57/255, blue: 62/255, alpha: 1.0)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        if UITraitCollection.userInterfaceStyle == .dark {
-                            /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor(red: 53/255, green: 57/255, blue: 62/255, alpha: 1.0)
-                        } else {
-                            /// Return the color for Light Mode. Same as OctoPrint color
-                            return UIColor(red: 246/255, green: 246/255, blue: 248/255, alpha: 1.0)
-                        }
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    if UITraitCollection.userInterfaceStyle == .dark {
+                        /// Return the color for Dark Mode. Same as Dark color
+                        return UIColor(red: 53/255, green: 57/255, blue: 62/255, alpha: 1.0)
+                    } else {
+                        /// Return the color for Light Mode. Same as OctoPrint color
+                        return UIColor(red: 246/255, green: 246/255, blue: 248/255, alpha: 1.0)
                     }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor(red: 246/255, green: 246/255, blue: 248/255, alpha: 1.0)
                 }
             }
         }
@@ -124,19 +104,14 @@ class Theme {
             case .OctoPrint:
                 return UIColor(red: 212/255, green: 212/255, blue: 208/255, alpha: 1.0)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        if UITraitCollection.userInterfaceStyle == .dark {
-                            /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor(red: 47/255, green: 51/255, blue: 55/255, alpha: 1.0)
-                        } else {
-                            /// Return the color for Light Mode. Same as OctoPrint color
-                            return UIColor(red: 212/255, green: 212/255, blue: 208/255, alpha: 1.0)
-                        }
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    if UITraitCollection.userInterfaceStyle == .dark {
+                        /// Return the color for Dark Mode. Same as Dark color
+                        return UIColor(red: 47/255, green: 51/255, blue: 55/255, alpha: 1.0)
+                    } else {
+                        /// Return the color for Light Mode. Same as OctoPrint color
+                        return UIColor(red: 212/255, green: 212/255, blue: 208/255, alpha: 1.0)
                     }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1.0)
                 }
             }
         }
@@ -152,19 +127,14 @@ class Theme {
             case .OctoPrint:
                 return UIColor(red: 225/255, green: 225/255, blue: 220/255, alpha: 1.0)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        if UITraitCollection.userInterfaceStyle == .dark {
-                            /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor(red: 56/255, green: 58/255, blue: 63/255, alpha: 1.0)
-                        } else {
-                            /// Return the color for Light Mode. Same as OctoPrint color
-                            return UIColor(red: 225/255, green: 225/255, blue: 220/255, alpha: 1.0)
-                        }
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    if UITraitCollection.userInterfaceStyle == .dark {
+                        /// Return the color for Dark Mode. Same as Dark color
+                        return UIColor(red: 56/255, green: 58/255, blue: 63/255, alpha: 1.0)
+                    } else {
+                        /// Return the color for Light Mode. Same as OctoPrint color
+                        return UIColor(red: 225/255, green: 225/255, blue: 220/255, alpha: 1.0)
                     }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
                 }
             }
         }
@@ -180,19 +150,14 @@ class Theme {
             case .OctoPrint:
                 return UIColor(red: 235/255, green: 235/255, blue: 226/255, alpha: 1.0)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        if UITraitCollection.userInterfaceStyle == .dark {
-                            /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor(red: 40/255, green: 42/255, blue: 46/255, alpha: 1.0)
-                        } else {
-                            /// Return the color for Light Mode. Same as OctoPrint color
-                            return UIColor(red: 235/255, green: 235/255, blue: 226/255, alpha: 1.0)
-                        }
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    if UITraitCollection.userInterfaceStyle == .dark {
+                        /// Return the color for Dark Mode. Same as Dark color
+                        return UIColor(red: 40/255, green: 42/255, blue: 46/255, alpha: 1.0)
+                    } else {
+                        /// Return the color for Light Mode. Same as OctoPrint color
+                        return UIColor(red: 235/255, green: 235/255, blue: 226/255, alpha: 1.0)
                     }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor(red: 235/255, green: 234/255, blue: 236/255, alpha: 1.0)
                 }
             }
         }
@@ -206,19 +171,14 @@ class Theme {
             case .Orange:
                 return UIColor(red: 242/255, green: 105/255, blue: 45/255, alpha: 1.0)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        if UITraitCollection.userInterfaceStyle == .dark {
-                            /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor.white
-                        } else {
-                            /// Return the color for Light Mode. Same as OctoPrint color
-                            return UIColor.black
-                        }
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    if UITraitCollection.userInterfaceStyle == .dark {
+                        /// Return the color for Dark Mode. Same as Dark color
+                        return UIColor.white
+                    } else {
+                        /// Return the color for Light Mode. Same as OctoPrint color
+                        return UIColor.black
                     }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor.black
                 }
             }
         }
@@ -232,19 +192,14 @@ class Theme {
             case .Orange:
                 return UIColor(red: 134/255, green: 137/255, blue: 142/255, alpha: 1.0)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        if UITraitCollection.userInterfaceStyle == .dark {
-                            /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor(red: 134/255, green: 137/255, blue: 142/255, alpha: 1.0)
-                        } else {
-                            /// Return the color for Light Mode. Same as OctoPrint color
-                            return UIColor.darkGray
-                        }
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    if UITraitCollection.userInterfaceStyle == .dark {
+                        /// Return the color for Dark Mode. Same as Dark color
+                        return UIColor(red: 134/255, green: 137/255, blue: 142/255, alpha: 1.0)
+                    } else {
+                        /// Return the color for Light Mode. Same as OctoPrint color
+                        return UIColor.darkGray
                     }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor.darkGray
                 }
             }
         }
@@ -258,19 +213,14 @@ class Theme {
             case .Orange:
                 return UIColor(red: 247/255, green: 150/255, blue: 109/255, alpha: 1.0)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        if UITraitCollection.userInterfaceStyle == .dark {
-                            /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor(red: 75/255, green: 166/255, blue: 219/255, alpha: 1.0)
-                        } else {
-                            /// Return the color for Light Mode. Same as OctoPrint color
-                            return UIColor(red: 0/255, green: 122.4/255, blue: 255/255, alpha: 1.0)
-                        }
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    if UITraitCollection.userInterfaceStyle == .dark {
+                        /// Return the color for Dark Mode. Same as Dark color
+                        return UIColor(red: 75/255, green: 166/255, blue: 219/255, alpha: 1.0)
+                    } else {
+                        /// Return the color for Light Mode. Same as OctoPrint color
+                        return UIColor(red: 0/255, green: 122.4/255, blue: 255/255, alpha: 1.0)
                     }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor(red: 0/255, green: 122.4/255, blue: 255/255, alpha: 1.0)
                 }
             }
         }
@@ -284,19 +234,14 @@ class Theme {
             case .Orange:
                 return UIColor(red: 128/255, green: 128/255, blue: 128/255, alpha: 0.4)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        if UITraitCollection.userInterfaceStyle == .dark {
-                            /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor(red: 128/255, green: 128/255, blue: 128/255, alpha: 0.4)
-                        } else {
-                            /// Return the color for Light Mode. Same as OctoPrint color
-                            return UIColor(red: 61.2/255, green: 61.2/255, blue: 66.3/255, alpha: 0.3)
-                        }
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    if UITraitCollection.userInterfaceStyle == .dark {
+                        /// Return the color for Dark Mode. Same as Dark color
+                        return UIColor(red: 128/255, green: 128/255, blue: 128/255, alpha: 0.4)
+                    } else {
+                        /// Return the color for Light Mode. Same as OctoPrint color
+                        return UIColor(red: 61.2/255, green: 61.2/255, blue: 66.3/255, alpha: 0.3)
                     }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor(red: 61.2/255, green: 61.2/255, blue: 66.3/255, alpha: 0.3)
                 }
             }
         }
@@ -308,19 +253,14 @@ class Theme {
             case .Dark, .Orange:
                 return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        if UITraitCollection.userInterfaceStyle == .dark {
-                            /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-                        } else {
-                            /// Return the color for Light Mode. Same as OctoPrint color
-                            return UIColor(red: 93/255, green: 97/255, blue: 101/255, alpha: 1.0)
-                        }
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    if UITraitCollection.userInterfaceStyle == .dark {
+                        /// Return the color for Dark Mode. Same as Dark color
+                        return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
+                    } else {
+                        /// Return the color for Light Mode. Same as OctoPrint color
+                        return UIColor(red: 93/255, green: 97/255, blue: 101/255, alpha: 1.0)
                     }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor(red: 93/255, green: 97/255, blue: 101/255, alpha: 1.0)
                 }
             }
         }
@@ -332,19 +272,14 @@ class Theme {
             case .Dark, .Orange:
                 return UIColor(red: 93/255, green: 97/255, blue: 101/255, alpha: 1.0)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        if UITraitCollection.userInterfaceStyle == .dark {
-                            /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor(red: 93/255, green: 97/255, blue: 101/255, alpha: 1.0)
-                        } else {
-                            /// Return the color for Light Mode. Same as OctoPrint color
-                            return UIColor(red: 182/255, green: 182/255, blue: 182/255, alpha: 1.0)
-                        }
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    if UITraitCollection.userInterfaceStyle == .dark {
+                        /// Return the color for Dark Mode. Same as Dark color
+                        return UIColor(red: 93/255, green: 97/255, blue: 101/255, alpha: 1.0)
+                    } else {
+                        /// Return the color for Light Mode. Same as OctoPrint color
+                        return UIColor(red: 182/255, green: 182/255, blue: 182/255, alpha: 1.0)
                     }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor(red: 182/255, green: 182/255, blue: 182/255, alpha: 1.0)
                 }
             }
         }
@@ -356,19 +291,14 @@ class Theme {
             case .Dark, .Orange:
                 return UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 0.6)
             case .System:
-                if #available(iOS 13, *) {
-                    return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
-                        if UITraitCollection.userInterfaceStyle == .dark {
-                            /// Return the color for Dark Mode. Same as Dark color
-                            return UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 0.6)
-                        } else {
-                            /// Return the color for Light Mode. Same as OctoPrint color
-                            return UIColor(red: 61.2/255, green: 61.2/255, blue: 66.3/255, alpha: 0.6)
-                        }
+                return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+                    if UITraitCollection.userInterfaceStyle == .dark {
+                        /// Return the color for Dark Mode. Same as Dark color
+                        return UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 0.6)
+                    } else {
+                        /// Return the color for Light Mode. Same as OctoPrint color
+                        return UIColor(red: 61.2/255, green: 61.2/255, blue: 66.3/255, alpha: 0.6)
                     }
-                } else {
-                    /// Return a fallback color for iOS 12 and lower. Fall back to Light color
-                    return UIColor(red: 61.2/255, green: 61.2/255, blue: 66.3/255, alpha: 0.6)
                 }
             }
         }

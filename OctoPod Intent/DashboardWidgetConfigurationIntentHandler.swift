@@ -1,7 +1,6 @@
 import Foundation
 import Intents
 
-@available(iOSApplicationExtension 14.0, *)
 class DashboardWidgetConfigurationIntentHandler: NSObject, DashboardWidgetConfigurationIntentHandling {
     private let printerManager: PrinterManager
     

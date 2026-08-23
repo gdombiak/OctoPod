@@ -694,13 +694,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 }
                 if counter == firstAsk || counter == secondAsk || counter == thirdAsk {
                     // Prompt user to rate the app
-                    // Only prompt to rate the app if device has iOS 10.3 or later
-                    // Not many people use older than 10.3 based on App Store Connect so only implementing this
-                    if #available(iOS 10.3, *) {
-                        // Wait 2 seconds before prompting so UI can refresh progress
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            SKStoreReviewController.requestReview()
-                        }
+                    // Wait 2 seconds before prompting so UI can refresh progress
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        SKStoreReviewController.requestReview()
                     }
                 }
                 // Increment count

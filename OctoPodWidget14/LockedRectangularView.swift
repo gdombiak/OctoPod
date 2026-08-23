@@ -1,7 +1,6 @@
 import SwiftUI
 import WidgetKit
 
-@available(iOS 13.0, *)
 struct LockedRectangularView: View {
 
     var entry: Provider.Entry

@@ -144,7 +144,7 @@ class CloudKitPrinterManager {
             subscription.notificationInfo = notificationInfo
             
             let operation = CKModifySubscriptionsOperation(subscriptionsToSave: [subscription], subscriptionIDsToDelete: [])
-            operation.modifySubscriptionsCompletionBlock = { (saved: [CKSubscription]?, deletedIDs: [String]?, error: Error?) -> Void in
+            setModifySubscriptionsCompletion(operation) { (saved: [CKSubscription]?, deletedIDs: [CKSubscription.ID]?, error: Error?) -> Void in
                 if let error = error {
                     self.appendLog("Error saving subcription: \(error)")
                     return
@@ -165,7 +165,7 @@ class CloudKitPrinterManager {
     fileprivate func checkZone(completion: @escaping (Error?) -> Void) {
         // Check that we have our custom zone
         let operation = CKFetchRecordZonesOperation(recordZoneIDs: [zoneID])
-        operation.fetchRecordZonesCompletionBlock = { recordZonesByZoneID, error in
+        setFetchRecordZonesCompletion(operation) { recordZonesByZoneID, error in
             if let error = error {
                 if let ckerror = error as? CKError {
                     if ckerror.isZoneNotFound() || ckerror.isUserDeletedZone() {
@@ -208,7 +208,7 @@ class CloudKitPrinterManager {
     fileprivate func createZone(completion: @escaping (Error?) -> Void) {
         let recordZone = CKRecordZone(zoneID: zoneID)
         let operation = CKModifyRecordZonesOperation(recordZonesToSave: [recordZone], recordZoneIDsToDelete: [])
-        operation.modifyRecordZonesCompletionBlock = { savedRecordZones, deletedRecordZoneIDs, error in
+        setModifyRecordZonesCompletion(operation) { savedRecordZones, deletedRecordZoneIDs, error in
             guard error == nil else {
                 completion(error)
                 return
@@ -224,7 +224,7 @@ class CloudKitPrinterManager {
     
     fileprivate func deleteZone(completion: @escaping (Error?) -> Void) {
         let operation = CKModifyRecordZonesOperation(recordZonesToSave: [], recordZoneIDsToDelete: [zoneID])
-        operation.modifyRecordZonesCompletionBlock = { savedRecordZones, deletedRecordZoneIDs, error in
+        setModifyRecordZonesCompletion(operation) { savedRecordZones, deletedRecordZoneIDs, error in
             guard error == nil else {
                 completion(error)
                 return
@@ -270,7 +270,7 @@ class CloudKitPrinterManager {
         let operation = CKFetchRecordZoneChangesOperation(recordZoneIDs: [zoneID], configurationsByRecordZoneID: optionsMap)
         operation.fetchAllChanges = true
         // Block to process created or updated records
-        operation.recordChangedBlock = { record in
+        setRecordWasChanged(operation) { record in
             foundNewRecords = true
             self.recordChanged(record: record)
         }
@@ -280,7 +280,7 @@ class CloudKitPrinterManager {
             self.recordDeleted(recordID: recordID)
         }
         // Block that records change token (to track how far we read so we can do next incremental read)
-        operation.recordZoneChangeTokensUpdatedBlock = { recordZoneID, serverChangeToken, clientChangeTokenData in
+        setRecordZoneChangeTokensUpdated(operation) { recordZoneID, serverChangeToken, clientChangeTokenData in
             guard let serverChangeToken = serverChangeToken else {
                 return
             }
@@ -294,7 +294,7 @@ class CloudKitPrinterManager {
         }
         // Block to execute when the fetch for a zone "page" has completed
         // Works like pagination so more might be coming
-        operation.recordZoneFetchCompletionBlock = { recordZoneID, serverChangeToken, clientChangeTokenData, moreComing, error in
+        setRecordZoneFetchCompletion(operation) { recordZoneID, serverChangeToken, clientChangeTokenData, moreComing, error in
             if let error = error {
                 if let ckerror = error as? CKError {
                     if ckerror.isZoneNotFound() || ckerror.isUserDeletedZone() {
@@ -351,7 +351,7 @@ class CloudKitPrinterManager {
             }
         }
         // Done reading all zone changes
-        operation.fetchRecordZoneChangesCompletionBlock = { (error) in
+        setFetchRecordZoneChangesCompletion(operation) { (error) in
             if error == nil {
                 // Success. New data was downloaded
                 completionHandler?()
@@ -662,7 +662,7 @@ class CloudKitPrinterManager {
     fileprivate func loadRecord(name: String, completion: @escaping (CKRecord?, Error?) -> Void) {
         let recordID = CKRecord.ID(recordName: name, zoneID: self.zoneID)
         let operation = CKFetchRecordsOperation(recordIDs: [recordID])
-        operation.fetchRecordsCompletionBlock = { records, error in
+        setFetchRecordsCompletion(operation) { records, error in
             guard error == nil else {
                 completion(nil, error)
                 return
@@ -688,10 +688,10 @@ class CloudKitPrinterManager {
         let query = CKQuery(recordType: RECORD_TYPE, predicate: predicate)
         let operation = CKQueryOperation(query: query)
         var result: Array<CKRecord> = Array()
-        operation.recordFetchedBlock = { record in
+        setRecordMatched(operation) { record in
             result.append(record)
         }
-        operation.queryCompletionBlock = { cursor, error in
+        setQueryCompletion(operation) { cursor, error in
             if let error = error {
                 completion(nil, error)
             } else if cursor == nil {
@@ -710,7 +710,7 @@ class CloudKitPrinterManager {
     // Create zone if needed. Any other error is not handled and passed to completion block
     fileprivate func saveRecord(record: CKRecord, completion: @escaping (CKRecord?, Error?) -> Void) {
         let operation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: [])
-        operation.modifyRecordsCompletionBlock = { (savedRecords: [CKRecord]?, deletedRecordIDs: [CKRecord.ID]?, error: Error?) in
+        setModifyRecordsCompletion(operation) { (savedRecords: [CKRecord]?, deletedRecordIDs: [CKRecord.ID]?, error: Error?) in
             if let error = error {
                 if let ckerror = error as? CKError {
                     if ckerror.isZoneNotFound() {
@@ -754,7 +754,7 @@ class CloudKitPrinterManager {
     
     fileprivate func deleteRecord(recordID: CKRecord.ID, completion: @escaping (Error?) -> Void) {
         let operation = CKModifyRecordsOperation(recordsToSave: [], recordIDsToDelete: [recordID])
-        operation.modifyRecordsCompletionBlock = { (savedRecords: [CKRecord]?, deletedRecordIDs: [CKRecord.ID]?, error: Error?) in
+        setModifyRecordsCompletion(operation) { (savedRecords: [CKRecord]?, deletedRecordIDs: [CKRecord.ID]?, error: Error?) in
             if let error = error {
                 if let ckerror = error as? CKError {
                     if !ckerror.isZoneNotFound() {
@@ -1064,6 +1064,335 @@ class CloudKitPrinterManager {
         listeningToCloudKitEvents = true
     }
 
+    // MARK: - CloudKit completion adapters (iOS 15 / tvOS 15 APIs)
+
+    // CloudKitPrinterManager is compiled for both iOS (deployment 15) and tvOS (deployment 14).
+    // The Result-based completion APIs are required to silence iOS 15 deprecations, but they
+    // are not available on tvOS 14, so keep the pre-iOS 15 blocks only on that older tvOS path.
+    // Per-item Result failures are aggregated into CKError.partialFailure so existing
+    // callers keep the deprecated aggregate-completion contract.
+
+    private func setModifySubscriptionsCompletion(_ operation: CKModifySubscriptionsOperation, completion: @escaping ([CKSubscription]?, [CKSubscription.ID]?, Error?) -> Void) {
+#if os(tvOS)
+        if #available(tvOS 15.0, *) {
+            assignModifySubscriptionsResult(operation, completion: completion)
+        } else {
+            operation.modifySubscriptionsCompletionBlock = completion
+        }
+#else
+        assignModifySubscriptionsResult(operation, completion: completion)
+#endif
+    }
+
+    @available(tvOS 15.0, *)
+    private func assignModifySubscriptionsResult(_ operation: CKModifySubscriptionsOperation, completion: @escaping ([CKSubscription]?, [CKSubscription.ID]?, Error?) -> Void) {
+        var saved: [CKSubscription] = []
+        var deleted: [CKSubscription.ID] = []
+        let itemErrors = CloudKitItemFailureCollector()
+        operation.perSubscriptionSaveBlock = { subscriptionID, result in
+            switch result {
+            case .success(let subscription):
+                saved.append(subscription)
+            case .failure(let error):
+                itemErrors.record(itemID: subscriptionID, error: error)
+            }
+        }
+        operation.perSubscriptionDeleteBlock = { subscriptionID, result in
+            switch result {
+            case .success:
+                deleted.append(subscriptionID)
+            case .failure(let error):
+                itemErrors.record(itemID: subscriptionID, error: error)
+            }
+        }
+        operation.modifySubscriptionsResultBlock = { result in
+            completion(saved, deleted, CloudKitLegacyCompletion.combinedError(operationResult: result, itemErrors: itemErrors.snapshot))
+        }
+    }
+
+    private func setFetchRecordZonesCompletion(_ operation: CKFetchRecordZonesOperation, completion: @escaping ([CKRecordZone.ID : CKRecordZone]?, Error?) -> Void) {
+#if os(tvOS)
+        if #available(tvOS 15.0, *) {
+            assignFetchRecordZonesResult(operation, completion: completion)
+        } else {
+            operation.fetchRecordZonesCompletionBlock = completion
+        }
+#else
+        assignFetchRecordZonesResult(operation, completion: completion)
+#endif
+    }
+
+    @available(tvOS 15.0, *)
+    private func assignFetchRecordZonesResult(_ operation: CKFetchRecordZonesOperation, completion: @escaping ([CKRecordZone.ID : CKRecordZone]?, Error?) -> Void) {
+        var zones: [CKRecordZone.ID : CKRecordZone] = [:]
+        let itemErrors = CloudKitItemFailureCollector()
+        operation.perRecordZoneResultBlock = { zoneID, result in
+            switch result {
+            case .success(let zone):
+                zones[zoneID] = zone
+            case .failure(let error):
+                itemErrors.record(itemID: zoneID, error: error)
+            }
+        }
+        operation.fetchRecordZonesResultBlock = { result in
+            completion(zones, CloudKitLegacyCompletion.combinedError(operationResult: result, itemErrors: itemErrors.snapshot))
+        }
+    }
+
+    private func setModifyRecordZonesCompletion(_ operation: CKModifyRecordZonesOperation, completion: @escaping ([CKRecordZone]?, [CKRecordZone.ID]?, Error?) -> Void) {
+#if os(tvOS)
+        if #available(tvOS 15.0, *) {
+            assignModifyRecordZonesResult(operation, completion: completion)
+        } else {
+            operation.modifyRecordZonesCompletionBlock = completion
+        }
+#else
+        assignModifyRecordZonesResult(operation, completion: completion)
+#endif
+    }
+
+    @available(tvOS 15.0, *)
+    private func assignModifyRecordZonesResult(_ operation: CKModifyRecordZonesOperation, completion: @escaping ([CKRecordZone]?, [CKRecordZone.ID]?, Error?) -> Void) {
+        var saved: [CKRecordZone] = []
+        var deleted: [CKRecordZone.ID] = []
+        let itemErrors = CloudKitItemFailureCollector()
+        operation.perRecordZoneSaveBlock = { zoneID, result in
+            switch result {
+            case .success(let zone):
+                saved.append(zone)
+            case .failure(let error):
+                itemErrors.record(itemID: zoneID, error: error)
+            }
+        }
+        operation.perRecordZoneDeleteBlock = { zoneID, result in
+            switch result {
+            case .success:
+                deleted.append(zoneID)
+            case .failure(let error):
+                itemErrors.record(itemID: zoneID, error: error)
+            }
+        }
+        operation.modifyRecordZonesResultBlock = { result in
+            completion(saved, deleted, CloudKitLegacyCompletion.combinedError(operationResult: result, itemErrors: itemErrors.snapshot))
+        }
+    }
+
+    private func setRecordWasChanged(_ operation: CKFetchRecordZoneChangesOperation, completion: @escaping (CKRecord) -> Void) {
+#if os(tvOS)
+        if #available(tvOS 15.0, *) {
+            assignRecordWasChanged(operation, completion: completion)
+        } else {
+            operation.recordChangedBlock = completion
+        }
+#else
+        assignRecordWasChanged(operation, completion: completion)
+#endif
+    }
+
+    @available(tvOS 15.0, *)
+    private func assignRecordWasChanged(_ operation: CKFetchRecordZoneChangesOperation, completion: @escaping (CKRecord) -> Void) {
+        let itemErrors = CloudKitItemFailureCollector.associated(with: operation)
+        operation.recordWasChangedBlock = { recordID, result in
+            switch result {
+            case .success(let record):
+                completion(record)
+            case .failure(let error):
+                itemErrors.record(itemID: recordID, error: error)
+            }
+        }
+    }
+
+    private func setRecordZoneChangeTokensUpdated(_ operation: CKFetchRecordZoneChangesOperation, completion: @escaping (CKRecordZone.ID, CKServerChangeToken?, Data?) -> Void) {
+#if os(tvOS)
+        if #available(tvOS 15.0, *) {
+            assignRecordZoneChangeTokensUpdated(operation, completion: completion)
+        } else {
+            operation.recordZoneChangeTokensUpdatedBlock = completion
+        }
+#else
+        assignRecordZoneChangeTokensUpdated(operation, completion: completion)
+#endif
+    }
+
+    @available(tvOS 15.0, *)
+    private func assignRecordZoneChangeTokensUpdated(_ operation: CKFetchRecordZoneChangesOperation, completion: @escaping (CKRecordZone.ID, CKServerChangeToken?, Data?) -> Void) {
+        let itemErrors = CloudKitItemFailureCollector.associated(with: operation)
+        operation.recordZoneChangeTokensUpdatedBlock = { zoneID, serverChangeToken, clientChangeTokenData in
+            guard CloudKitLegacyCompletion.shouldForwardChangeTokenUpdate(itemErrors: itemErrors.snapshot) else {
+                return
+            }
+            completion(zoneID, serverChangeToken, clientChangeTokenData)
+        }
+    }
+
+    private func setRecordZoneFetchCompletion(_ operation: CKFetchRecordZoneChangesOperation, completion: @escaping (CKRecordZone.ID, CKServerChangeToken?, Data?, Bool, Error?) -> Void) {
+#if os(tvOS)
+        if #available(tvOS 15.0, *) {
+            assignRecordZoneFetchResult(operation, completion: completion)
+        } else {
+            operation.recordZoneFetchCompletionBlock = completion
+        }
+#else
+        assignRecordZoneFetchResult(operation, completion: completion)
+#endif
+    }
+
+    @available(tvOS 15.0, *)
+    private func assignRecordZoneFetchResult(_ operation: CKFetchRecordZoneChangesOperation, completion: @escaping (CKRecordZone.ID, CKServerChangeToken?, Data?, Bool, Error?) -> Void) {
+        let itemErrors = CloudKitItemFailureCollector.associated(with: operation)
+        operation.recordZoneFetchResultBlock = { zoneID, result in
+            switch result {
+            case .success(let fetchResult):
+                // Keep token / moreComing values, but do not let a batch with
+                // per-record failures look like success (caller will not persist the token).
+                completion(zoneID,
+                           fetchResult.serverChangeToken,
+                           fetchResult.clientChangeTokenData,
+                           fetchResult.moreComing,
+                           CloudKitLegacyCompletion.partialFailureError(itemErrors.snapshot))
+            case .failure(let error):
+                completion(zoneID, nil, nil, false, error)
+            }
+        }
+    }
+
+    private func setFetchRecordZoneChangesCompletion(_ operation: CKFetchRecordZoneChangesOperation, completion: @escaping (Error?) -> Void) {
+#if os(tvOS)
+        if #available(tvOS 15.0, *) {
+            assignFetchRecordZoneChangesResult(operation, completion: completion)
+        } else {
+            operation.fetchRecordZoneChangesCompletionBlock = completion
+        }
+#else
+        assignFetchRecordZoneChangesResult(operation, completion: completion)
+#endif
+    }
+
+    @available(tvOS 15.0, *)
+    private func assignFetchRecordZoneChangesResult(_ operation: CKFetchRecordZoneChangesOperation, completion: @escaping (Error?) -> Void) {
+        let itemErrors = CloudKitItemFailureCollector.associated(with: operation)
+        operation.fetchRecordZoneChangesResultBlock = { result in
+            completion(CloudKitLegacyCompletion.combinedError(operationResult: result, itemErrors: itemErrors.snapshot))
+        }
+    }
+
+    private func setFetchRecordsCompletion(_ operation: CKFetchRecordsOperation, completion: @escaping ([CKRecord.ID : CKRecord]?, Error?) -> Void) {
+#if os(tvOS)
+        if #available(tvOS 15.0, *) {
+            assignFetchRecordsResult(operation, completion: completion)
+        } else {
+            operation.fetchRecordsCompletionBlock = completion
+        }
+#else
+        assignFetchRecordsResult(operation, completion: completion)
+#endif
+    }
+
+    @available(tvOS 15.0, *)
+    private func assignFetchRecordsResult(_ operation: CKFetchRecordsOperation, completion: @escaping ([CKRecord.ID : CKRecord]?, Error?) -> Void) {
+        var records: [CKRecord.ID : CKRecord] = [:]
+        let itemErrors = CloudKitItemFailureCollector()
+        operation.perRecordResultBlock = { recordID, result in
+            switch result {
+            case .success(let record):
+                records[recordID] = record
+            case .failure(let error):
+                itemErrors.record(itemID: recordID, error: error)
+            }
+        }
+        operation.fetchRecordsResultBlock = { result in
+            completion(records, CloudKitLegacyCompletion.combinedError(operationResult: result, itemErrors: itemErrors.snapshot))
+        }
+    }
+
+    private func setRecordMatched(_ operation: CKQueryOperation, completion: @escaping (CKRecord) -> Void) {
+#if os(tvOS)
+        if #available(tvOS 15.0, *) {
+            assignRecordMatched(operation, completion: completion)
+        } else {
+            operation.recordFetchedBlock = completion
+        }
+#else
+        assignRecordMatched(operation, completion: completion)
+#endif
+    }
+
+    @available(tvOS 15.0, *)
+    private func assignRecordMatched(_ operation: CKQueryOperation, completion: @escaping (CKRecord) -> Void) {
+        let itemErrors = CloudKitItemFailureCollector.associated(with: operation)
+        operation.recordMatchedBlock = { recordID, result in
+            switch result {
+            case .success(let record):
+                completion(record)
+            case .failure(let error):
+                itemErrors.record(itemID: recordID, error: error)
+            }
+        }
+    }
+
+    private func setQueryCompletion(_ operation: CKQueryOperation, completion: @escaping (CKQueryOperation.Cursor?, Error?) -> Void) {
+#if os(tvOS)
+        if #available(tvOS 15.0, *) {
+            assignQueryResult(operation, completion: completion)
+        } else {
+            operation.queryCompletionBlock = completion
+        }
+#else
+        assignQueryResult(operation, completion: completion)
+#endif
+    }
+
+    @available(tvOS 15.0, *)
+    private func assignQueryResult(_ operation: CKQueryOperation, completion: @escaping (CKQueryOperation.Cursor?, Error?) -> Void) {
+        let itemErrors = CloudKitItemFailureCollector.associated(with: operation)
+        operation.queryResultBlock = { result in
+            switch result {
+            case .success(let cursor):
+                completion(cursor, CloudKitLegacyCompletion.partialFailureError(itemErrors.snapshot))
+            case .failure(let error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    private func setModifyRecordsCompletion(_ operation: CKModifyRecordsOperation, completion: @escaping ([CKRecord]?, [CKRecord.ID]?, Error?) -> Void) {
+#if os(tvOS)
+        if #available(tvOS 15.0, *) {
+            assignModifyRecordsResult(operation, completion: completion)
+        } else {
+            operation.modifyRecordsCompletionBlock = completion
+        }
+#else
+        assignModifyRecordsResult(operation, completion: completion)
+#endif
+    }
+
+    @available(tvOS 15.0, *)
+    private func assignModifyRecordsResult(_ operation: CKModifyRecordsOperation, completion: @escaping ([CKRecord]?, [CKRecord.ID]?, Error?) -> Void) {
+        var saved: [CKRecord] = []
+        var deleted: [CKRecord.ID] = []
+        let itemErrors = CloudKitItemFailureCollector()
+        operation.perRecordSaveBlock = { recordID, result in
+            switch result {
+            case .success(let record):
+                saved.append(record)
+            case .failure(let error):
+                itemErrors.record(itemID: recordID, error: error)
+            }
+        }
+        operation.perRecordDeleteBlock = { recordID, result in
+            switch result {
+            case .success:
+                deleted.append(recordID)
+            case .failure(let error):
+                itemErrors.record(itemID: recordID, error: error)
+            }
+        }
+        operation.modifyRecordsResultBlock = { result in
+            completion(saved, deleted, CloudKitLegacyCompletion.combinedError(operationResult: result, itemErrors: itemErrors.snapshot))
+        }
+    }
+
     private func beginStarting() -> Bool {
         synchronizationLock.lock()
         defer { synchronizationLock.unlock() }
@@ -1078,6 +1407,70 @@ class CloudKitPrinterManager {
         synchronizationLock.lock()
         starting = false
         synchronizationLock.unlock()
+    }
+}
+
+/// Reconstructs the deprecated CloudKit aggregate-completion contract from modern
+/// operation-level `Result` plus collected per-item failures.
+enum CloudKitLegacyCompletion {
+    static func partialFailureError(_ errorsByItemID: [AnyHashable: Error]) -> Error? {
+        guard !errorsByItemID.isEmpty else {
+            return nil
+        }
+        return CKError(.partialFailure, userInfo: [CKPartialErrorsByItemIDKey: errorsByItemID])
+    }
+
+    static func combinedError(operationError: Error?, itemErrors: [AnyHashable: Error]) -> Error? {
+        if let operationError {
+            return operationError
+        }
+        return partialFailureError(itemErrors)
+    }
+
+    static func combinedError(operationResult: Result<Void, Error>, itemErrors: [AnyHashable: Error]) -> Error? {
+        switch operationResult {
+        case .success:
+            return partialFailureError(itemErrors)
+        case .failure(let error):
+            return error
+        }
+    }
+
+    /// Token updates from a zone-change operation must not be forwarded once any
+    /// per-record failure has been collected for that operation.
+    static func shouldForwardChangeTokenUpdate(itemErrors: [AnyHashable: Error]) -> Bool {
+        itemErrors.isEmpty
+    }
+}
+
+private var cloudKitItemFailureCollectorAssociatedKey: UInt8 = 0
+
+/// Thread-safe collector for per-item CloudKit failures.
+/// Associated with a `CKOperation` when multiple modern callbacks must share state
+/// (zone-change record/zone/final completions, and query match/result completions).
+final class CloudKitItemFailureCollector {
+    private let lock = NSLock()
+    private var errors: [AnyHashable: Error] = [:]
+
+    func record(itemID: AnyHashable, error: Error) {
+        lock.lock()
+        errors[itemID] = error
+        lock.unlock()
+    }
+
+    var snapshot: [AnyHashable: Error] {
+        lock.lock()
+        defer { lock.unlock() }
+        return errors
+    }
+
+    static func associated(with operation: CKOperation) -> CloudKitItemFailureCollector {
+        if let existing = objc_getAssociatedObject(operation, &cloudKitItemFailureCollectorAssociatedKey) as? CloudKitItemFailureCollector {
+            return existing
+        }
+        let collector = CloudKitItemFailureCollector()
+        objc_setAssociatedObject(operation, &cloudKitItemFailureCollectorAssociatedKey, collector, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        return collector
     }
 }
 

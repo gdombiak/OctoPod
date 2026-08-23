@@ -52,14 +52,8 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         checkAppLockStatus()
         refreshSelectedTheme(theme: theme)
         
-        // Do not let user select iOS Dark mode if older than iOS 13
-        if #available(iOS 13.0, *) {
-            systemLabel.isEnabled = true
-            systemCell.isUserInteractionEnabled = true
-        } else {
-            systemLabel.isEnabled = false
-            systemCell.isUserInteractionEnabled = false
-        }
+        systemLabel.isEnabled = true
+        systemCell.isUserInteractionEnabled = true
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -81,15 +75,10 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         // Update navigation bar
         let theme = Theme.currentTheme()
         let printer = printerManager.getDefaultPrinter()
-        if #available(iOS 13.0, *) {
-            let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = theme.navigationTopColor(octoPrintColor: printer?.color)
-            navigationController?.navigationBar.standardAppearance = appearance;
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        } else {
-            // Fallback on earlier versions
-            navigationController?.navigationBar.barTintColor = theme.navigationTopColor(octoPrintColor: printer?.color)
-        }
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = theme.navigationTopColor(octoPrintColor: printer?.color)
+        navigationController?.navigationBar.standardAppearance = appearance;
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.tintColor = theme.navigationTintColor(octoPrintColor: printer?.color)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.navigationTitleColor(octoPrintColor: printer?.color)]
         tabBarController?.tabBar.barTintColor = theme.tabBarColor()

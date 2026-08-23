@@ -68,10 +68,7 @@ class AddOctoEverywherePrinterViewController: BasePrinterDetailsViewController, 
         }
         authSession = ASWebAuthenticationSession(url: url, callbackURLScheme: "octopod", completionHandler: handler)
 
-        // New in iOS 13
-        if #available(iOS 13.0, *) {
-            self.authSession?.presentationContextProvider = self
-        }
+        self.authSession?.presentationContextProvider = self
 
         authSession?.start()
         

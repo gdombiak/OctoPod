@@ -71,15 +71,10 @@ class NavigationController: UINavigationController, OctoPrintSettingsDelegate, D
     
     func refreshForPrinterColors(color: String?) {
         let theme = Theme.currentTheme()
-        if #available(iOS 13.0, *) {
-            let appearance = UINavigationBarAppearance()
-            appearance.backgroundColor = theme.navigationTopColor(octoPrintColor: color)
-            navigationBar.standardAppearance = appearance;
-            navigationBar.scrollEdgeAppearance = appearance
-        } else {
-            // Fallback on earlier versions
-            navigationBar.barTintColor = theme.navigationTopColor(octoPrintColor: color)
-        }
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = theme.navigationTopColor(octoPrintColor: color)
+        navigationBar.standardAppearance = appearance;
+        navigationBar.scrollEdgeAppearance = appearance
         navigationBar.tintColor = theme.navigationTintColor(octoPrintColor: color)
         navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.navigationTitleColor(octoPrintColor: color)]
     }

@@ -112,10 +112,10 @@ class OctoPrintRESTClient {
             
             client.post("/plugin/appkeys/request", json: json, expected: 201) { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
                 if response.statusCode == 201 {
-                    if #available(iOS 13.0, watchOSApplicationExtension 6.0, *) {
+                    if #available(watchOSApplicationExtension 6.0, *) {
                         callback(response.value(forHTTPHeaderField: "Location"), error, response)
                     } else {
-                        // Fallback on earlier versions
+                        // Fallback on watchOS 5
                         let location = response.allHeaderFields["Location"] as? String
                         callback(location, error, response)
                     }

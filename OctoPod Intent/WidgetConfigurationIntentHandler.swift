@@ -2,7 +2,6 @@ import Foundation
 import Intents
 import CoreData
 
-@available(iOSApplicationExtension 14.0, *)
 class WidgetConfigurationIntentHandler: NSObject, WidgetConfigurationIntentHandling {
 
     private let printerManager: PrinterManager
