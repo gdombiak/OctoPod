@@ -1,6 +1,20 @@
 # Changelog
 
-## [3.34](https://github.com/gdombiak/OctoPod/tree/3.34) (2026-08-19)
+## [3.35](https://github.com/gdombiak/OctoPod/tree/3.35) (2026-08-24)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.34...3.35)
+
+**Implemented enhancements:**
+
+- Future-proof camera height sizing for new iPhone and iPad sizes [\#740](https://github.com/gdombiak/OctoPod/issues/740)
+- Clean up remaining deprecated iOS APIs [\#739](https://github.com/gdombiak/OctoPod/issues/739)
+- Raise minimum iOS deployment target to iOS 15 [\#738](https://github.com/gdombiak/OctoPod/issues/738)
+
+**Fixed bugs:**
+
+- Stabilize fullscreen camera orientation and physical status overlay [\#737](https://github.com/gdombiak/OctoPod/issues/737)
+
+## [3.34](https://github.com/gdombiak/OctoPod/tree/3.34) (2026-08-20)
 
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.33...3.34)
 
