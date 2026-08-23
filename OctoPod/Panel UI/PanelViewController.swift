@@ -568,7 +568,14 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             return
         }
         if subpanelsView != nil && subpanelsView.isHidden {
-            // Do nothing if camera is in full screen
+            // Fullscreen camera image/overlay stay as-is. Re-query orientation
+            // policy so iPad Split View / Stage Manager can drop the landscape lock.
+            // Immediate invalidation may still see the old window mode; the
+            // completion re-query runs after destination geometry is committed.
+            updateFullscreenInterfaceOrientationSupport()
+            coordinator.animate(alongsideTransition: nil) { [weak self] _ in
+                self?.updateFullscreenInterfaceOrientationSupport()
+            }
             return
         }
         if let printer = printerManager.getDefaultPrinter() {
@@ -838,6 +845,47 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
         }
     }
     
+    override var shouldAutorotate: Bool {
+        return true
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return CameraFullscreenSession.supportedInterfaceOrientations(
+            userInterfaceIdiom: UIDevice.current.userInterfaceIdiom,
+            isFullscreen: subpanelsView?.isHidden == true,
+            canEnforceLandscapeSession: CameraFullscreenSession.canEnforceLandscapeSession(in: view.window),
+            fallback: super.supportedInterfaceOrientations
+        )
+    }
+
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return CameraFullscreenSession.preferredInterfaceOrientation(
+            userInterfaceIdiom: UIDevice.current.userInterfaceIdiom,
+            isFullscreen: subpanelsView?.isHidden == true,
+            canEnforceLandscapeSession: CameraFullscreenSession.canEnforceLandscapeSession(in: view.window),
+            fallback: super.preferredInterfaceOrientationForPresentation
+        )
+    }
+
+    fileprivate func updateFullscreenInterfaceOrientationSupport() {
+        if #available(iOS 16.0, *) {
+            var controller: UIViewController? = self
+            while let current = controller {
+                current.setNeedsUpdateOfSupportedInterfaceOrientations()
+                controller = current.parent
+            }
+        } else {
+            UIViewController.attemptRotationToDeviceOrientation()
+        }
+    }
+
+    fileprivate func snapshotPhysicalOrientationForFullscreenOverlay() {
+        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
+        let physicalOrientation = UIDevice.current.orientation
+        UIDevice.current.endGeneratingDeviceOrientationNotifications()
+        camerasViewController?.currentEmbeddedCamera()?.fullscreenPhysicalOrientationHint = physicalOrientation
+    }
+
     fileprivate func showCameraGridButton() -> Bool {
         // Show camera grid button only if printer has many cameras
         if let printer = printerManager.getDefaultPrinter(), let cameras = printer.getMultiCameras(), cameras.count > 1 && !printer.hideCamera {
@@ -905,17 +953,24 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             cameraToSubpanelConstraint.priority = UILayoutPriority(rawValue: 998)   // Ignore relationship to subpanel
             cameraToBottomConstraint.priority = UILayoutPriority(rawValue: 999)     // Activate distance to bottom of screen
 
-            // Flip orientation if needed
+            snapshotPhysicalOrientationForFullscreenOverlay()
+            updateFullscreenInterfaceOrientationSupport()
+
             let uiOrientation = UIApplication.shared.statusBarOrientation
-            if uiOrientation != UIInterfaceOrientation.landscapeLeft && uiOrientation != UIInterfaceOrientation.landscapeRight {
-                // We are not in landscape mode so change it to landscape
-                uiOrientationBeforeFullScreen = uiOrientation  // Set previous value so we can go back to what it was
-                // Rotate UI now
+            let shouldForceLandscape = CameraFullscreenSession.shouldForceLandscapeGeometry(
+                userInterfaceIdiom: UIDevice.current.userInterfaceIdiom,
+                isFullscreen: true,
+                canEnforceLandscapeSession: CameraFullscreenSession.canEnforceLandscapeSession(in: view.window)
+            )
+            let currentlyLandscape = uiOrientation == .landscapeLeft || uiOrientation == .landscapeRight
+            if shouldForceLandscape && !currentlyLandscape {
+                uiOrientationBeforeFullScreen = uiOrientation
                 if #available(iOS 16.0, *) {
                     let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                     windowScene?.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight))
                 } else {
                     UIDevice.current.setValue(Int(UIInterfaceOrientation.landscapeRight.rawValue), forKey: "orientation")
+                    camerasViewController?.currentEmbeddedCamera()?.usedLegacyDeviceOrientationForce = true
                 }
             } else {
                 uiOrientationBeforeFullScreen = nil
@@ -937,6 +992,7 @@ class PanelViewController: UIViewController, UIPopoverPresentationControllerDele
             cameraHeightConstraint.priority = UILayoutPriority(rawValue: 999)      // Activate height of camera view
             cameraToSubpanelConstraint.priority = UILayoutPriority(rawValue: 999)  // Activate relationship to subpanel
             cameraToBottomConstraint.priority = UILayoutPriority(rawValue: 998)    // Ignore distance to bottom of screen
+            updateFullscreenInterfaceOrientationSupport()
             // Flip orientation if needed
             if let orientation = uiOrientationBeforeFullScreen {
                 // When running full screen we are forcing landscape so we go back to portrait when leaving

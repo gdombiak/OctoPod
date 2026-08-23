@@ -25,4 +25,18 @@ class TabBarController: UITabBarController {
         tabBar.barTintColor = theme.tabBarColor()
         tabBar.tintColor = theme.tintColor()
     }
+
+    // The window scene consults the root tab controller, not the selected
+    // child's top VC. Forward so PanelViewController can own fullscreen policy.
+    override var shouldAutorotate: Bool {
+        selectedViewController?.shouldAutorotate ?? true
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        selectedViewController?.supportedInterfaceOrientations ?? super.supportedInterfaceOrientations
+    }
+
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        selectedViewController?.preferredInterfaceOrientationForPresentation ?? super.preferredInterfaceOrientationForPresentation
+    }
 }

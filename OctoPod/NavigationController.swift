@@ -100,4 +100,17 @@ class NavigationController: UINavigationController, OctoPrintSettingsDelegate, D
             self.refreshForPrinterColors(color: printer?.color)
         }
     }
+
+    // UITabBarController asks the selected navigation controller, not its top VC.
+    override var shouldAutorotate: Bool {
+        topViewController?.shouldAutorotate ?? true
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        topViewController?.supportedInterfaceOrientations ?? super.supportedInterfaceOrientations
+    }
+
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        topViewController?.preferredInterfaceOrientationForPresentation ?? super.preferredInterfaceOrientationForPresentation
+    }
 }

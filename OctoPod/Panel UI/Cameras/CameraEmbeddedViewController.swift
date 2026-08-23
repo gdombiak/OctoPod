@@ -1,4 +1,5 @@
 import UIKit
+import CoreMotion
 import SafariServices  // Used for opening browser in-app
 
 class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate, OctoPrintPluginsDelegate, UIScrollViewDelegate {
@@ -44,6 +45,29 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     
     var camerasViewController: CamerasViewController?
 
+    /// Physical orientation captured before fullscreen forces the interface to landscape.
+    var fullscreenPhysicalOrientationHint: UIDeviceOrientation?
+    /// Set when fullscreen used the iOS 15 `UIDevice.setValue` force, which mutates `UIDevice.orientation`.
+    var usedLegacyDeviceOrientationForce = false
+
+    private var isTrackingPhysicalOrientationForStatusOverlay = false
+    private var lastValidPhysicalOrientation: UIDeviceOrientation = .landscapeLeft
+    private var overlayMotionManager: CMMotionManager?
+    private var isGeneratingDeviceOrientationNotificationsForOverlay = false
+    private var didReceiveUsableOverlayMotion = false
+    private var didFallbackFromMotionToDeviceOrientation = false
+    private var printStatusOverlayView: UIView?
+    private var printStatusLabelsSuperview: UIView?
+    private var printStatusLabelConstraints: [NSLayoutConstraint] = []
+    private var printStatusOverlayInternalConstraints: [NSLayoutConstraint] = []
+    private var suppressForcedLandscapeArtifactUntil: Date?
+    private var isUpdatingPrintStatusOverlayPlacement = false
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updatePrintStatusOverlayPlacement()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Start listening to events when app comes back from background
@@ -84,6 +108,8 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         // Cancel the exponential backoff when the view controller is about to disappear
         cancelRetryingRenderingCamera()
 
+        stopPrintStatusOverlayPhysicalTracking()
+
         // Stop listening to events when app comes back from background
         NotificationCenter.default.removeObserver(self)
 
@@ -123,6 +149,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                     self.tool0ActualLabel.text = ""
                     self.bedActualLabel.text = ""
                 }
+                self.updatePrintStatusOverlayPlacement()
             }
         }
     }
@@ -158,6 +185,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                 if let bedActual = event.bedTempActual {
                     self.bedActualLabel.text = "\(String(format: "%.1f", bedActual))C"
                 }
+                self.updatePrintStatusOverlayPlacement()
             }
         }
     }
@@ -400,6 +428,301 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     }
 
     func setFullscreenPresentation(_ fullscreen: Bool) {
+        if fullscreen {
+            startPrintStatusOverlayPhysicalTracking()
+        } else {
+            stopPrintStatusOverlayPhysicalTracking()
+        }
+    }
+
+    // MARK: - Fullscreen print-status overlay
+
+    fileprivate func startPrintStatusOverlayPhysicalTracking() {
+        if !isTrackingPhysicalOrientationForStatusOverlay {
+            if let hint = fullscreenPhysicalOrientationHint, CameraFullscreenStatusOverlay.isValidPhysicalOrientation(hint) {
+                lastValidPhysicalOrientation = hint
+            } else {
+                lastValidPhysicalOrientation = CameraFullscreenStatusOverlay.resolvedPhysicalOrientation(
+                    UIDevice.current.orientation,
+                    lastValid: lastValidPhysicalOrientation
+                )
+            }
+            isTrackingPhysicalOrientationForStatusOverlay = true
+            wrapPrintStatusOverlayIfNeeded()
+            startFullscreenOverlayPhysicalSource()
+            if CameraFullscreenStatusOverlay.shouldSuppressLegacyForcedLandscapeArtifact(
+                usedLegacyDeviceOrientationForce: usedLegacyDeviceOrientationForce,
+                lastValidPhysicalOrientation: lastValidPhysicalOrientation
+            ) {
+                suppressForcedLandscapeArtifactUntil = Date().addingTimeInterval(0.4)
+            }
+        }
+        fullscreenPhysicalOrientationHint = nil
+        usedLegacyDeviceOrientationForce = false
+        updatePrintStatusOverlayPlacement()
+    }
+
+    fileprivate func stopPrintStatusOverlayPhysicalTracking() {
+        fullscreenPhysicalOrientationHint = nil
+        usedLegacyDeviceOrientationForce = false
+        suppressForcedLandscapeArtifactUntil = nil
+        guard isTrackingPhysicalOrientationForStatusOverlay else {
+            return
+        }
+        isTrackingPhysicalOrientationForStatusOverlay = false
+        stopFullscreenOverlayPhysicalSource()
+        unwrapPrintStatusOverlayIfNeeded()
+    }
+
+    fileprivate func startFullscreenOverlayPhysicalSource() {
+        didReceiveUsableOverlayMotion = false
+        didFallbackFromMotionToDeviceOrientation = false
+        if shouldUseGravitySourceForOverlay() {
+            let manager = overlayMotionManager ?? CMMotionManager()
+            overlayMotionManager = manager
+            manager.deviceMotionUpdateInterval = 0.2
+            manager.startDeviceMotionUpdates(to: .main) { [weak self] motion, error in
+                guard let self else {
+                    return
+                }
+                if CameraFullscreenPhysicalOrientation.shouldFallbackToDeviceOrientation(
+                    motionError: error != nil,
+                    receivedUsableMotion: self.didReceiveUsableOverlayMotion,
+                    alreadyFellBack: self.didFallbackFromMotionToDeviceOrientation
+                ) {
+                    self.fallbackOverlayPhysicalSourceToDeviceOrientationIfNeeded()
+                    return
+                }
+                guard let gravity = motion?.gravity else {
+                    return
+                }
+                self.didReceiveUsableOverlayMotion = true
+                self.handleResolvedPhysicalOrientation(
+                    CameraFullscreenPhysicalOrientation.orientation(
+                        gravityX: gravity.x,
+                        gravityY: gravity.y,
+                        gravityZ: gravity.z
+                    )
+                )
+            }
+            return
+        }
+        startDeviceOrientationNotificationsForOverlay()
+    }
+
+    fileprivate func stopFullscreenOverlayPhysicalSource() {
+        overlayMotionManager?.stopDeviceMotionUpdates()
+        didReceiveUsableOverlayMotion = false
+        if isGeneratingDeviceOrientationNotificationsForOverlay {
+            NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
+            UIDevice.current.endGeneratingDeviceOrientationNotifications()
+            isGeneratingDeviceOrientationNotificationsForOverlay = false
+        }
+    }
+
+    fileprivate func startDeviceOrientationNotificationsForOverlay() {
+        guard !isGeneratingDeviceOrientationNotificationsForOverlay else {
+            return
+        }
+        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
+        isGeneratingDeviceOrientationNotificationsForOverlay = true
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(physicalDeviceOrientationDidChange),
+            name: UIDevice.orientationDidChangeNotification,
+            object: nil
+        )
+    }
+
+    fileprivate func fallbackOverlayPhysicalSourceToDeviceOrientationIfNeeded() {
+        guard !didFallbackFromMotionToDeviceOrientation else {
+            return
+        }
+        didFallbackFromMotionToDeviceOrientation = true
+        overlayMotionManager?.stopDeviceMotionUpdates()
+        startDeviceOrientationNotificationsForOverlay()
+        handleResolvedPhysicalOrientation(UIDevice.current.orientation)
+    }
+
+    fileprivate func shouldUseGravitySourceForOverlay() -> Bool {
+        guard UIDevice.current.userInterfaceIdiom == .pad else {
+            return false
+        }
+        #if targetEnvironment(simulator)
+        let isSimulator = true
+        #else
+        let isSimulator = false
+        #endif
+        let manager = overlayMotionManager ?? CMMotionManager()
+        overlayMotionManager = manager
+        return CameraFullscreenPhysicalOrientation.usesGravitySource(
+            userInterfaceIdiom: .pad,
+            isDeviceMotionAvailable: manager.isDeviceMotionAvailable,
+            isSimulator: isSimulator
+        )
+    }
+
+    @objc fileprivate func physicalDeviceOrientationDidChange() {
+        let current = UIDevice.current.orientation
+        if let until = suppressForcedLandscapeArtifactUntil, Date() < until, current == .landscapeLeft {
+            return
+        }
+        suppressForcedLandscapeArtifactUntil = nil
+        handleResolvedPhysicalOrientation(current)
+    }
+
+    fileprivate func handleResolvedPhysicalOrientation(_ current: UIDeviceOrientation) {
+        let resolved = CameraFullscreenStatusOverlay.resolvedPhysicalOrientation(current, lastValid: lastValidPhysicalOrientation)
+        guard resolved != lastValidPhysicalOrientation else {
+            return
+        }
+        lastValidPhysicalOrientation = resolved
+        updatePrintStatusOverlayPlacement()
+    }
+
+    fileprivate func fullscreenInterfaceOrientation() -> UIInterfaceOrientation {
+        if let sceneOrientation = view.window?.windowScene?.interfaceOrientation, sceneOrientation != .unknown {
+            return sceneOrientation
+        }
+        return UIApplication.shared.statusBarOrientation
+    }
+
+    fileprivate func wrapPrintStatusOverlayIfNeeded() {
+        guard printStatusOverlayView == nil else {
+            return
+        }
+        guard let timeLabel = printTimeLeftLabel, let toolLabel = tool0ActualLabel, let bedLabel = bedActualLabel else {
+            return
+        }
+        guard let host = timeLabel.superview else {
+            return
+        }
+
+        printStatusLabelsSuperview = host
+        printStatusLabelConstraints = host.constraints.filter { constraint in
+            isPrintStatusLabel(constraint.firstItem) || isPrintStatusLabel(constraint.secondItem)
+        }
+
+        let overlay = UIView()
+        overlay.isUserInteractionEnabled = false
+        overlay.backgroundColor = .clear
+        overlay.translatesAutoresizingMaskIntoConstraints = true
+        overlay.autoresizingMask = []
+        // Host on the camera view, not the scroll view, so zoom/content-offset
+        // layout cannot reuse a transformed frame.
+        view.addSubview(overlay)
+
+        timeLabel.removeFromSuperview()
+        toolLabel.removeFromSuperview()
+        bedLabel.removeFromSuperview()
+        overlay.addSubview(timeLabel)
+        overlay.addSubview(toolLabel)
+        overlay.addSubview(bedLabel)
+
+        let internalConstraints = [
+            timeLabel.topAnchor.constraint(equalTo: overlay.topAnchor),
+            timeLabel.trailingAnchor.constraint(equalTo: overlay.trailingAnchor),
+            timeLabel.leadingAnchor.constraint(greaterThanOrEqualTo: overlay.leadingAnchor),
+            toolLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 3),
+            toolLabel.trailingAnchor.constraint(equalTo: overlay.trailingAnchor),
+            toolLabel.leadingAnchor.constraint(greaterThanOrEqualTo: overlay.leadingAnchor),
+            bedLabel.topAnchor.constraint(equalTo: toolLabel.bottomAnchor, constant: 3),
+            bedLabel.trailingAnchor.constraint(equalTo: overlay.trailingAnchor),
+            bedLabel.leadingAnchor.constraint(greaterThanOrEqualTo: overlay.leadingAnchor),
+            bedLabel.bottomAnchor.constraint(equalTo: overlay.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(internalConstraints)
+        printStatusOverlayInternalConstraints = internalConstraints
+        printStatusOverlayView = overlay
+        view.bringSubviewToFront(overlay)
+    }
+
+    fileprivate func unwrapPrintStatusOverlayIfNeeded() {
+        guard let overlay = printStatusOverlayView else {
+            return
+        }
+        overlay.transform = .identity
+        NSLayoutConstraint.deactivate(printStatusOverlayInternalConstraints)
+        printStatusOverlayInternalConstraints = []
+
+        if let host = printStatusLabelsSuperview {
+            for label in [printTimeLeftLabel, tool0ActualLabel, bedActualLabel] {
+                label?.removeFromSuperview()
+                if let label = label {
+                    host.addSubview(label)
+                }
+            }
+            NSLayoutConstraint.activate(printStatusLabelConstraints)
+        }
+        overlay.removeFromSuperview()
+        printStatusOverlayView = nil
+        printStatusLabelsSuperview = nil
+        printStatusLabelConstraints = []
+    }
+
+    fileprivate func updatePrintStatusOverlayPlacement() {
+        guard isTrackingPhysicalOrientationForStatusOverlay, let overlay = printStatusOverlayView, let host = overlay.superview else {
+            return
+        }
+        guard !isUpdatingPrintStatusOverlayPlacement else {
+            return
+        }
+        isUpdatingPrintStatusOverlayPlacement = true
+        defer { isUpdatingPrintStatusOverlayPlacement = false }
+
+        // Reset transform before measuring so a previous rotation cannot swap
+        // fitted size or leave a stale center from the last physical hold.
+        overlay.transform = .identity
+        let fittedSize = overlay.systemLayoutSizeFitting(
+            UIView.layoutFittingCompressedSize,
+            withHorizontalFittingPriority: .fittingSizeLevel,
+            verticalFittingPriority: .fittingSizeLevel
+        )
+        let size: CGSize
+        if fittedSize.width >= 1 && fittedSize.height >= 1 {
+            size = fittedSize
+        } else {
+            size = printStatusOverlayFallbackSize()
+        }
+        overlay.bounds = CGRect(origin: .zero, size: size)
+
+        // iPhone keeps the validated landscapeRight-identity mapping.
+        // iPad derives identity from the actual scene/interface orientation.
+        let placement: CameraFullscreenStatusOverlay.Placement
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            placement = CameraFullscreenStatusOverlay.placement(
+                physicalOrientation: lastValidPhysicalOrientation,
+                interfaceOrientation: fullscreenInterfaceOrientation()
+            )
+        } else {
+            placement = CameraFullscreenStatusOverlay.placement(physicalOrientation: lastValidPhysicalOrientation)
+        }
+        let target = CameraFullscreenStatusOverlay.targetPoint(
+            in: host.bounds,
+            safeAreaInsets: host.safeAreaInsets,
+            corner: placement.corner,
+            topInset: 6,
+            sideInset: 10
+        )
+        overlay.center = CameraFullscreenStatusOverlay.overlayCenter(
+            size: size,
+            targetTopRight: target,
+            rotationRadians: placement.rotationRadians
+        )
+        overlay.transform = CGAffineTransform(rotationAngle: placement.rotationRadians)
+    }
+
+    fileprivate func printStatusOverlayFallbackSize() -> CGSize {
+        let labels = [printTimeLeftLabel, tool0ActualLabel, bedActualLabel].compactMap { $0 }
+        let width = labels.map { $0.intrinsicContentSize.width }.max() ?? 0
+        let height = labels.reduce(CGFloat(0)) { partial, label in
+            partial + label.intrinsicContentSize.height
+        } + CGFloat(max(0, labels.count - 1)) * 3
+        return CGSize(width: max(width, 1), height: max(height, 1))
+    }
+
+    fileprivate func isPrintStatusLabel(_ item: AnyObject?) -> Bool {
+        return item === printTimeLeftLabel || item === tool0ActualLabel || item === bedActualLabel
     }
 
     func renderPrinter(printer: Printer, url: URL) {

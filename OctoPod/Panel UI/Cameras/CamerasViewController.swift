@@ -32,6 +32,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
 
     private var lastPrinterID: String?
     private weak var lastKnownWindow: UIWindow?
+    private var isFullscreenPresentation = false
     
     /// PrinterURL of pritner to show. If empty then show default printer
     var showPrinter: String?
@@ -99,13 +100,8 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     }
 
     func setFullscreenPresentation(_ fullscreen: Bool) {
-        if fullscreen {
-            currentEmbeddedCamera()?.setFullscreenPresentation(true)
-        } else {
-            for camera in orderedViewControllers {
-                camera.setFullscreenPresentation(false)
-            }
-        }
+        isFullscreenPresentation = fullscreen
+        applyFullscreenPresentationToCameras()
     }
 
     func currentEmbeddedCamera() -> CameraEmbeddedViewController? {
@@ -212,6 +208,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
                 pageControl.currentPage = index
                 displayPrintStatus = nil
             }
+            applyFullscreenPresentationToCameras()
             embeddedCameraDelegate?.finishedTransitionNewPage()
         }
     }
@@ -224,6 +221,8 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             // Stop PIP
             self.stopPictureInPicture(pause: true)
         }
+
+        let previousControllers = orderedViewControllers
 
         if cameraChanged, let index = currentIndex, index < orderedViewControllers.count {
             // Stop rendering current printer's camera
@@ -296,6 +295,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
                 renderFirstVC()
             }
         }
+        applyFullscreenPresentationToCameras(previousControllers: previousControllers)
     }
     
     fileprivate func renderFirstVC() {
@@ -306,6 +306,25 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
                                              completion: nil)
             pageControl.currentPage = 0
             currentIndex = 0
+            applyFullscreenPresentationToCameras()
+        }
+    }
+
+    fileprivate func applyFullscreenPresentationToCameras(previousControllers: [CameraEmbeddedViewController] = []) {
+        let current = currentEmbeddedCamera()
+        let remaining = Set(orderedViewControllers.map { ObjectIdentifier($0) })
+        for previous in previousControllers {
+            if !remaining.contains(ObjectIdentifier(previous)) {
+                previous.setFullscreenPresentation(false)
+            }
+        }
+        for camera in orderedViewControllers {
+            camera.setFullscreenPresentation(
+                CameraFullscreenContainer.isFullscreenActive(
+                    containerFullscreen: isFullscreenPresentation,
+                    isCurrentCamera: camera === current
+                )
+            )
         }
     }
     
