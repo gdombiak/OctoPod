@@ -10,9 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     static let coreDataReadyNotification = Notification.Name("AppDelegate.coreDataReady")
 
-    // iOS 12 remains a supported deployment target. This outlet is unavailable on
-    // iOS 13 and later, where SceneDelegate exclusively owns the window.
-    @available(iOS, introduced: 2.0, obsoleted: 13.0)
+    // SceneDelegate owns the key window. UIApplicationDelegate still declares this
+    // optional property, so keep a witness now that the deployment target is iOS 15+.
     var window: UIWindow?
     private let coreDataReadinessLock = NSLock()
     private var coreDataReady = false
@@ -247,7 +246,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - iOS 12 compatibility
 
-    @available(iOS, introduced: 2.0, obsoleted: 13.0)
     private func finishLegacyCoreDataStartup() {
         if let tabBarController = window?.rootViewController as? UITabBarController {
             tabBarController.selectedIndex = printerManager!.getPrinters().count == 0 ? 4 : 0
@@ -255,7 +253,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
     }
 
-    @available(iOS, introduced: 2.0, obsoleted: 13.0)
     private func presentLegacyPersistentStoreFailure() {
         let controller = UIViewController()
         controller.view.backgroundColor = .white
@@ -274,7 +271,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
     }
 
-    @available(iOS, introduced: 2.0, obsoleted: 13.0)
     private func processLegacyOpenURL(_ url: URL) -> Bool {
         guard url.scheme == "octopod" else {
             return false
@@ -310,7 +306,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
 
-    @available(iOS, introduced: 2.0, obsoleted: 13.0)
     private func selectLegacyPrinterAndPanel(_ printer: Printer) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let self = self else {
