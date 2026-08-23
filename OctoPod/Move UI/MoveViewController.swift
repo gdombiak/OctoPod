@@ -265,9 +265,13 @@ class MoveViewController: UIViewController, OctoPrintClientDelegate, OctoPrintSe
     }
 
     fileprivate func calculateCameraHeightConstraints() {
-        let devicePortrait = SceneInterfaceOrientation.isPortrait(from: view.window)
-        screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
-        let constraints = UIUtils.calculateCameraHeightConstraints(screenHeight: screenHeight)
+        let portraitScreen = UIUtils.cameraPortraitScreenDimensions(from: UIScreen.main.bounds)
+        screenHeight = portraitScreen.height
+        let constraints = UIUtils.calculateCameraHeightConstraints(
+            screenHeight: portraitScreen.height,
+            portraitWidth: portraitScreen.width,
+            idiom: UIDevice.current.userInterfaceIdiom
+        )
         
         camera4_3HeightConstraintPortrait = constraints.cameraHeight4_3ConstraintPortrait
         camera4_3HeightConstraintLandscape = constraints.cameraHeight4_3ConstraintLandscape

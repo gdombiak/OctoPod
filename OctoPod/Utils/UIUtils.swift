@@ -54,13 +54,54 @@ class UIUtils {
         }
     }
     
-    static func calculateCameraHeightConstraints(screenHeight: CGFloat) -> (cameraHeight4_3ConstraintPortrait: CGFloat, cameraHeight4_3ConstraintLandscape: CGFloat, camera16_9HeightConstraintPortrait: CGFloat, cameral16_9HeightConstraintLandscape: CGFloat){
+    /// Portrait-axis screen size from orientation-dependent `UIScreen` bounds.
+    /// `height` is the long edge, `width` is the short edge.
+    static func cameraPortraitScreenDimensions(from bounds: CGRect) -> (height: CGFloat, width: CGFloat) {
+        (max(bounds.width, bounds.height), min(bounds.width, bounds.height))
+    }
+
+    /// Camera container heights for the Panel and Move camera panes.
+    ///
+    /// Known iPhone and iPad sizes keep their hand-tuned tuples. Unknown iPhones
+    /// use `portraitWidth` × 3/4 and × 9/16, rounded half away from zero;
+    /// landscape stays 0. Unknown iPads stay on an iPad policy (aspect portrait,
+    /// established landscape bands). Idiom is required so a tall iPhone cannot
+    /// enter an iPad branch.
+    ///
+    /// `portraitWidth` is the portrait short side of the screen (the camera
+    /// spans full view width). It is not read from the camera view because this
+    /// is called from `viewDidLoad`, before layout.
+    static func calculateCameraHeightConstraints(
+        screenHeight: CGFloat,
+        portraitWidth: CGFloat? = nil,
+        idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom
+    ) -> (cameraHeight4_3ConstraintPortrait: CGFloat, cameraHeight4_3ConstraintLandscape: CGFloat, camera16_9HeightConstraintPortrait: CGFloat, cameral16_9HeightConstraintLandscape: CGFloat){
         // LiveActivities do not work on Mac (app will crash) so skip if running on mac
         if ProcessInfo.processInfo.isMacCatalystApp {
             // Running on Mac
             return (624, 624, 624, 624)
         }
 
+        switch idiom {
+        case .phone:
+            if let known = knownIPhoneCameraHeightConstraints(screenHeight: screenHeight) {
+                return known
+            }
+            return unknownIPhoneCameraHeightConstraints(portraitWidth: resolvedPortraitWidth(portraitWidth))
+        case .pad:
+            if let known = knownIPadCameraHeightConstraints(screenHeight: screenHeight) {
+                return known
+            }
+            return unknownIPadCameraHeightConstraints(portraitWidth: resolvedPortraitWidth(portraitWidth))
+        default:
+            // This file is compiled for tvOS/widget targets that do not call it.
+            // Keep the historical height-only table so unused targets are unchanged.
+            return historicalHeightOnlyCameraHeightConstraints(screenHeight: screenHeight)
+        }
+    }
+
+    /// Hand-tuned iPhone tuples. SE/5 (`<= 568`) is a compact-screen policy, not aspect math.
+    private static func knownIPhoneCameraHeightConstraints(screenHeight: CGFloat) -> (cameraHeight4_3ConstraintPortrait: CGFloat, cameraHeight4_3ConstraintLandscape: CGFloat, camera16_9HeightConstraintPortrait: CGFloat, cameral16_9HeightConstraintLandscape: CGFloat)? {
         if screenHeight <= 568 {
             // iPhone 5, 5s, 5c, SE (and older models)
             return (183, 0, 183, 0)
@@ -94,7 +135,13 @@ class UIUtils {
         } else if screenHeight == 956 {
             // iPhone 16 Pro Max
             return (330, 0, 247, 0)
-        } else if screenHeight == 1024 {
+        }
+        return nil
+    }
+
+    /// Hand-tuned iPad tuples, including the 12.9" and 13" height bands.
+    private static func knownIPadCameraHeightConstraints(screenHeight: CGFloat) -> (cameraHeight4_3ConstraintPortrait: CGFloat, cameraHeight4_3ConstraintLandscape: CGFloat, camera16_9HeightConstraintPortrait: CGFloat, cameral16_9HeightConstraintLandscape: CGFloat)? {
+        if screenHeight == 1024 {
             // iPad (9.7-inch)
             return (575, 348, 432, 348)
         } else if screenHeight == 1080 {
@@ -121,10 +168,58 @@ class UIUtils {
         } else if screenHeight >= 1376 {
             // iPad (13-inch M4)
             return (774, 604, 580, 604)
-        } else {
-            // Unknown device so use default value
-            return (281, 0, 211, 0)
         }
+        return nil
+    }
+
+    /// Pre-idiom height table, used only for non-phone/non-pad idioms.
+    private static func historicalHeightOnlyCameraHeightConstraints(screenHeight: CGFloat) -> (cameraHeight4_3ConstraintPortrait: CGFloat, cameraHeight4_3ConstraintLandscape: CGFloat, camera16_9HeightConstraintPortrait: CGFloat, cameral16_9HeightConstraintLandscape: CGFloat) {
+        if let phone = knownIPhoneCameraHeightConstraints(screenHeight: screenHeight) {
+            return phone
+        }
+        if let pad = knownIPadCameraHeightConstraints(screenHeight: screenHeight) {
+            return pad
+        }
+        return (281, 0, 211, 0)
+    }
+
+    /// Unknown iPhone: fill the portrait camera width at 4:3 / 16:9. Landscape stays 0.
+    /// Rounding is half away from zero (`toNearestOrAwayFromZero`).
+    private static func unknownIPhoneCameraHeightConstraints(portraitWidth: CGFloat) -> (cameraHeight4_3ConstraintPortrait: CGFloat, cameraHeight4_3ConstraintLandscape: CGFloat, camera16_9HeightConstraintPortrait: CGFloat, cameral16_9HeightConstraintLandscape: CGFloat) {
+        let height4By3 = roundedAspectHeight(width: portraitWidth, heightOverWidth: 3.0 / 4.0)
+        let height16By9 = roundedAspectHeight(width: portraitWidth, heightOverWidth: 9.0 / 16.0)
+        return (height4By3, 0, height16By9, 0)
+    }
+
+    /// Unknown iPad: aspect-based portrait; landscape uses the established 348 / 414 / 604 bands.
+    /// Not `portraitWidth - 420`, which does not match later tuned iPads.
+    private static func unknownIPadCameraHeightConstraints(portraitWidth: CGFloat) -> (cameraHeight4_3ConstraintPortrait: CGFloat, cameraHeight4_3ConstraintLandscape: CGFloat, camera16_9HeightConstraintPortrait: CGFloat, cameral16_9HeightConstraintLandscape: CGFloat) {
+        let height4By3 = roundedAspectHeight(width: portraitWidth, heightOverWidth: 3.0 / 4.0)
+        let height16By9 = roundedAspectHeight(width: portraitWidth, heightOverWidth: 9.0 / 16.0)
+        let landscape = iPadLandscapeCameraHeightBand(portraitWidth: portraitWidth)
+        return (height4By3, landscape, height16By9, landscape)
+    }
+
+    private static func iPadLandscapeCameraHeightBand(portraitWidth: CGFloat) -> CGFloat {
+        if portraitWidth <= 768 {
+            return 348
+        } else if portraitWidth < 1024 {
+            return 414
+        } else {
+            return 604
+        }
+    }
+
+    private static func roundedAspectHeight(width: CGFloat, heightOverWidth: CGFloat) -> CGFloat {
+        (width * heightOverWidth).rounded(.toNearestOrAwayFromZero)
+    }
+
+    private static func resolvedPortraitWidth(_ portraitWidth: CGFloat?) -> CGFloat {
+        if let portraitWidth = portraitWidth, portraitWidth > 0 {
+            return portraitWidth
+        }
+        let bounds = UIScreen.main.bounds
+        return min(bounds.width, bounds.height)
     }
     
     static func dateToString(date: Date?, dateStyle: DateFormatter.Style = .medium, timeStyle: DateFormatter.Style = .medium) -> String {
