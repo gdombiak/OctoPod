@@ -237,6 +237,76 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
         }
     }
     
+    /// GET that returns parsed JSON for any HTTP status.
+    /// A non-JSON or empty body is a nil result with no error, so a status such as 405 is distinct from a transport failure.
+    func get(_ service: String, redirects: HTTPRedirectPolicy, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        perform(service, method: "GET", json: nil, redirects: redirects, callback: callback)
+    }
+
+    /// POST that returns parsed JSON for any HTTP status.
+    /// A non-JSON or empty body is a nil result with no error.
+    func post(_ service: String, json: NSObject, redirects: HTTPRedirectPolicy, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        perform(service, method: "POST", json: json, redirects: redirects, callback: callback)
+    }
+
+    private func perform(_ service: String, method: String, json: NSObject?, redirects: HTTPRedirectPolicy, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
+        guard let url = buildURL(service) else {
+            NSLog("\(method) ignored. Invalid URL found. Server: \(serverURL!). Service: \(service)")
+            callback(nil, NSError(domain: "", code: 400, userInfo: nil), HTTPURLResponse(url: URL(string: "/")!, statusCode: 400, httpVersion: nil, headerFields: nil)!)
+            return
+        }
+
+        let redirectDelegate: HTTPRedirectTaskDelegate?
+        let sessionDelegate: URLSessionTaskDelegate
+        if redirects == .refuseMethodChange {
+            let delegate = HTTPRedirectTaskDelegate(httpClient: self)
+            redirectDelegate = delegate
+            sessionDelegate = delegate
+        } else {
+            redirectDelegate = nil
+            sessionDelegate = self
+        }
+        let session = Foundation.URLSession(configuration: getConfiguration(), delegate: sessionDelegate, delegateQueue: nil)
+        var request = URLRequest(url: url)
+        request.httpMethod = method
+        addApiKey(&request)
+        if let json = json {
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: json, options: [])
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.setValue("application/json", forHTTPHeaderField: "Accept")
+            } catch {
+                callback(nil, error, HTTPURLResponse(url: url, statusCode: 400, httpVersion: nil, headerFields: nil)!)
+                return
+            }
+        }
+
+        let task = session.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+            self.postRequest?()
+            guard let httpRes = response as? HTTPURLResponse else {
+                callback(nil, error, HTTPURLResponse(url: url, statusCode: (error! as NSError).code, httpVersion: nil, headerFields: nil)!)
+                return
+            }
+            if redirectDelegate?.refusedMethodChangingRedirect == true {
+                callback(nil, HTTPClientError.methodChangingRedirect, httpRes)
+                return
+            }
+            if let error = error {
+                callback(nil, error, httpRes)
+                return
+            }
+            callback(HTTPClient.jsonObject(from: data), nil, httpRes)
+        })
+        self.preRequest?()
+        task.resume()
+        session.finishTasksAndInvalidate()
+    }
+
+    private static func jsonObject(from data: Data?) -> NSObject? {
+        guard let data = data, !data.isEmpty else { return nil }
+        return try? JSONSerialization.jsonObject(with: data, options: [.mutableLeaves, .mutableContainers]) as? NSObject
+    }
+
     // MARK: Private functions
     
     fileprivate func requestWithBody(_ url: URL, verb: String, expected: Int, json: NSObject?, callback: @escaping (NSObject?, Error?, HTTPURLResponse) -> Void) {
@@ -390,6 +460,59 @@ class HTTPClient: NSObject, URLSessionTaskDelegate {
             let credential = URLCredential(user: self.username ?? "", password: self.password ?? "", persistence: .forSession)
             completionHandler(Foundation.URLSession.AuthChallengeDisposition.useCredential, credential)
         }
+    }
+}
+
+enum HTTPRedirectPolicy {
+    /// URLSession's default. A 301, 302, or 303 on POST becomes a GET and drops the body.
+    case follow
+    /// Follow a redirect that keeps the HTTP method. Refuse one that would change it.
+    case refuseMethodChange
+}
+
+enum HTTPClientError: Error, Equatable, LocalizedError {
+    case methodChangingRedirect
+
+    var errorDescription: String? {
+        switch self {
+        case .methodChangingRedirect:
+            return NSLocalizedString("The request was redirected to a different HTTP method, so its outcome is unknown.", comment: "A redirect would have changed the HTTP method")
+        }
+    }
+}
+
+/// Used only by requests that pass `HTTPRedirectPolicy.refuseMethodChange`. Other requests keep URLSession's default redirects.
+private final class HTTPRedirectTaskDelegate: NSObject, URLSessionTaskDelegate {
+    private let httpClient: HTTPClient
+    private let lock = NSLock()
+    private var refused = false
+
+    var refusedMethodChangingRedirect: Bool {
+        lock.lock()
+        defer { lock.unlock() }
+        return refused
+    }
+
+    init(httpClient: HTTPClient) {
+        self.httpClient = httpClient
+    }
+
+    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
+        let originalMethod = task.originalRequest?.httpMethod ?? "GET"
+        let redirectedMethod = request.httpMethod ?? "GET"
+        if originalMethod != redirectedMethod {
+            lock.lock()
+            refused = true
+            lock.unlock()
+            NSLog("Refusing HTTP redirect from \(originalMethod) to \(redirectedMethod).")
+            completionHandler(nil)
+            return
+        }
+        completionHandler(request)
+    }
+
+    func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        httpClient.urlSession(session, task: task, didReceive: challenge, completionHandler: completionHandler)
     }
 }
 

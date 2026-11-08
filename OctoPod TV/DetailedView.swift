@@ -171,9 +171,7 @@ struct NormalCameraView: View {
             Spacer()
             if let _ = self.service.octolightHALightOn {
                 Button(action: {
-                    self.service.toggleOctoLightHA { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
-                        NSLog("toggleOctoLightHA result: \(String(describing: on))")
-                    }
+                    self.service.toggleOctoLightHA()
                 }, label: {
                     Image(self.service.octolightHALightOn == true ? "Light_Off" : "Light_On")
                 })

@@ -8,6 +8,7 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
 
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
+    let octoLightHAService: OctoLightHAService = { return (UIApplication.shared.delegate as! AppDelegate).octoLightHAService }()
 
     @IBOutlet weak var topCameraLabel: UILabel!
     @IBOutlet weak var printTimeLeftLabel: UILabel!
@@ -194,16 +195,16 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
     func checkRoomLuminance(image: UIImage) {
         if let isDark = image.luminanceBelow(threshold: 40), !self.octolightHAButton.isHidden && isDark {
             // Turn on HA light
-            octoprintClient.turnOctoLightHA(on: true) { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
-                if let error = error {
-                    NSLog("Error requesting to power HA light on: \(String(describing: error.localizedDescription)). Http response: \(response.statusCode)")
-                }
-                if let isLightOn = on {
+            octoLightHAService.turn(on: true) { result in
+                switch result {
+                case .updated(let isLightOn):
                     DispatchQueue.main.async {
                         self.displayOctoLightHAButton(isLightOn: isLightOn)
                     }
-                } else {
-                    NSLog("Error requesting to power light on \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
+                case .stateUnknown:
+                    break
+                case .failed(let message, let statusCode):
+                    NSLog("Error requesting to power HA light on: \(message). Http response: \(statusCode)")
                 }
             }
         }
@@ -230,18 +231,18 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
         let generator = UINotificationFeedbackGenerator()
         generator.prepare()
 
-        octoprintClient.toggleOctoLightHA { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
-            if let error = error {
-                NSLog("Error requesting toggle power of HA light: \(String(describing: error.localizedDescription)). Http response: \(response.statusCode)")
-            }
-            if let isLightOn = on {
-                DispatchQueue.main.async {
+        octoLightHAService.toggle { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .updated(let isLightOn):
                     self.displayOctoLightHAButton(isLightOn: isLightOn)
                     generator.notificationOccurred(.success)
+                case .stateUnknown:
+                    generator.notificationOccurred(.success)
+                case .failed(let message, let statusCode):
+                    NSLog("Error requesting to toggle light \(message). Http response: \(statusCode)")
+                    self.showAlert(NSLocalizedString("Light", comment: ""), message: message)
                 }
-            } else {
-                NSLog("Error requesting to toggle light \(String(describing: error?.localizedDescription)). Http response: \(response.statusCode)")
-                self.showAlert(NSLocalizedString("Light", comment: ""), message: NSLocalizedString("Failed to toggle light", comment: ""))
             }
         }
     }
@@ -332,14 +333,16 @@ class CameraEmbeddedViewController: UIViewController, OctoPrintSettingsDelegate,
                     renderPrinter(printer: printer, url: url)
                     if printer.octolightHAInstalled {
                         // Fetch status of the HomeAssistant Light
-                        octoprintClient.getOctoLightHAState { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
-                            if let error = error {
-                                NSLog("Error requesting HA light status: \(String(describing: error.localizedDescription)). Http response: \(response.statusCode)")
-                            }
-                            if let isLightOn = on {
+                        octoLightHAService.readState { result in
+                            switch result {
+                            case .updated(let isLightOn):
                                 DispatchQueue.main.async {
                                     self.displayOctoLightHAButton(isLightOn: isLightOn)
                                 }
+                            case .stateUnknown:
+                                break
+                            case .failed(let message, let statusCode):
+                                NSLog("Error requesting HA light status: \(message). Http response: \(statusCode)")
                             }
                         }
                     }

@@ -30,6 +30,11 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     var lastKnownState: CurrentStateEvent?
     var octoPrintVersion: String?
     private var printerID: NSManagedObjectID?
+    /// Advances when a server connection is installed or cleared.
+    /// An older value identifies a request or response from a connection that has been replaced.
+    private var connectionChangeCounter: UInt = 0
+    /// Holds `connectionChangeCounter` and the REST client's HTTP client steady while a snapshot is taken.
+    private let connectionLock = NSLock()
     
     init(printerManager: PrinterManager, appConfiguration: AppConfiguration) {
         self.printerManager = printerManager
@@ -68,8 +73,11 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
             sharedNozzle = printerToRead.sharedNozzle
         }
 
-        // Create and keep httpClient while default printer does not change
+        // Publish the new counter and its HTTP client together. A snapshot cannot observe one without the other.
+        connectionLock.lock()
+        connectionChangeCounter += 1
         octoPrintRESTClient.connectToServer(serverURL: serverURL, apiKey: apiKey, username: username, password: password, headers: headers, preemptive: preemptive)
+        connectionLock.unlock()
         
         if webSocketClient?.isConnected(hostname: serverURL) == true {
             // Do nothing since we are already connected to the default printer
@@ -156,7 +164,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     /// Disconnect from OctoPrint server
     func disconnectFromServer() {
+        connectionLock.lock()
+        connectionChangeCounter += 1
         octoPrintRESTClient.disconnectFromServer()
+        connectionLock.unlock()
         webSocketClient?.closeConnection()
         webSocketClient = nil
     }
@@ -845,20 +856,38 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     }
     
     // MARK: - OctoLight Home Assistant Plugin
-    
-    /// Ask to toggle power of the Home Assistant Light
-    func toggleOctoLightHA(callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
-        octoPrintRESTClient.toggleOctoLightHA(callback: callback)
+
+    /// Change counter and HTTP client from one connection. Requests on the result keep that client if the printer changes.
+    func captureOctoLightConnection() -> OctoLightHAConnection? {
+        connectionLock.lock()
+        defer { connectionLock.unlock() }
+        guard let httpClient = octoPrintRESTClient.httpClient else { return nil }
+        return OctoLightHAConnection(
+            connectionChangeCounter: connectionChangeCounter,
+            readState: { api, callback in
+                OctoPrintRESTClient.getOctoLightHAState(api: api, client: httpClient, callback: callback)
+            },
+            toggle: { api, callback in
+                OctoPrintRESTClient.toggleOctoLightHA(api: api, client: httpClient, callback: callback)
+            },
+            turn: { on, api, callback in
+                OctoPrintRESTClient.turnOctoLightHA(on: on, api: api, client: httpClient, callback: callback)
+            })
     }
-    
-    /// Returns state of Home Assistant Light
-    func getOctoLightHAState(callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
-        octoPrintRESTClient.getOctoLightHAState(callback: callback)
+
+    /// Read the light on the connection installed now.
+    func getOctoLightHAState(api: OctoLightHAAPI, callback: @escaping (OctoLightHAResponse) -> Void) {
+        captureOctoLightConnection()?.getOctoLightHAState(api: api, callback: callback)
     }
-    
-    /// Turn Home Assistant Light on/off
-    func turnOctoLightHA(on: Bool, callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
-        octoPrintRESTClient.turnOctoLightHA(on: on, callback: callback)
+
+    /// Toggle the light on the connection installed now.
+    func toggleOctoLightHA(api: OctoLightHAAPI, callback: @escaping (OctoLightHAResponse) -> Void) {
+        captureOctoLightConnection()?.toggleOctoLightHA(api: api, callback: callback)
+    }
+
+    /// Turn the light on or off on the connection installed now.
+    func turnOctoLightHA(on: Bool, api: OctoLightHAAPI, callback: @escaping (OctoLightHAResponse) -> Void) {
+        captureOctoLightConnection()?.turnOctoLightHA(on: on, api: api, callback: callback)
     }
     
     // MARK: - Delegates operations

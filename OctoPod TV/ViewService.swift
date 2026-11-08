@@ -25,6 +25,8 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
 
     let tvPrinterManager: TVPrinterManager
     var octoPrintClient: OctoPrintClient!
+    /// One service per TV printer connection. It is not the phone's shared service.
+    private var octoLightHAService: OctoLightHAService!
     var printerName: String?
     
     init(tvPrinterManager: TVPrinterManager) {
@@ -33,6 +35,7 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
         let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
         self.octoPrintClient = OctoPrintClient(printerManager: printerManager, appConfiguration: appConfiguration)
+        self.octoLightHAService = OctoLightHAService(client: octoPrintClient)
         self.clearValues()
 
         // Listen to events coming from OctoPrintClient
@@ -72,16 +75,17 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
         printerName = printer.name
         octoPrintClient.connectToServer(printer: printer)
         if printer.octolightHAInstalled {
-            octoPrintClient.getOctoLightHAState { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
-                if let error = error {
-                    NSLog("Error fetching status of Home Assistant Light. Error: \(error.localizedDescription)")
-                }
-                if let lightIsOn = on {
+            octoLightHAService.readState { result in
+                switch result {
+                case .updated(let lightIsOn):
                     DispatchQueue.main.async {
                         self.octolightHALightOn = lightIsOn
-                        
                         NSLog("Updated \(self) with light on: \(lightIsOn)")
                     }
+                case .stateUnknown:
+                    break
+                case .failed(let message, _):
+                    NSLog("Error fetching status of Home Assistant Light. Error: \(message)")
                 }
             }
         }
@@ -123,16 +127,18 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     
     // MARK: - Octolight HA Plugin operations
     
-    func getOctoLightHAState(callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
-        octoPrintClient.getOctoLightHAState(callback: callback)
-    }
-    
-    func toggleOctoLightHA(callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
-        octoPrintClient.toggleOctoLightHA { (on: Bool?, error: (any Error)?, response: HTTPURLResponse) in
-            if let lightIsOn = on {
-                self.octolightHALightOn = lightIsOn
+    func toggleOctoLightHA() {
+        octoLightHAService.toggle { result in
+            switch result {
+            case .updated(let lightIsOn):
+                DispatchQueue.main.async {
+                    self.octolightHALightOn = lightIsOn
+                }
+            case .stateUnknown:
+                break
+            case .failed(let message, let statusCode):
+                NSLog("toggleOctoLightHA failed: \(message). Http response: \(statusCode)")
             }
-            callback(on, error, response)
         }
     }
 

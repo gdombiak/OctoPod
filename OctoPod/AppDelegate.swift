@@ -424,6 +424,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return OctoPrintClient(printerManager: self.printerManager!, appConfiguration: appConfiguration)
     }()
 
+    /// Shared by every camera controller that uses `octoprintClient`. Replacing or clearing that client's server connection advances its change counter.
+    lazy var octoLightHAService: OctoLightHAService = {
+        return OctoLightHAService(client: self.octoprintClient)
+    }()
+
     lazy var cloudFilesManager: CloudFilesManager = {
         return CloudFilesManager(octoprintClient: self.octoprintClient)
     }()

@@ -1283,64 +1283,126 @@ class OctoPrintRESTClient {
     }
 
     // MARK: - OctoLight Home Assistant Plugin
-    
-    /// Ask to toggle power of the Home Assistant Light
-    func toggleOctoLightHA(callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
-        if let client = httpClient {
-            client.get("/api/plugin/octolightHA?action=toggle") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
-                // Check if there was an error
-                if let _ = error {
-                    NSLog("Error switching OctoLightHA. Error: \(error!.localizedDescription)")
-                    callback(nil, error, response)
-                    return
-                }
-                if let json = result as? NSDictionary {
-                    if let isLightOn = json["state"] as? Bool {
-                        callback(isLightOn, error, response)
-                        return
-                    }
-                }
-                callback(nil, error, response)
-            }
+
+    /// Read the light using the supplied plugin contract. Both contracts use the same request.
+    func getOctoLightHAState(api: OctoLightHAAPI, callback: @escaping (OctoLightHAResponse) -> Void) {
+        guard let client = httpClient else { return }
+        Self.getOctoLightHAState(api: api, client: client, callback: callback)
+    }
+
+    /// Toggle the light using one plugin contract. This does not try the other contract.
+    func toggleOctoLightHA(api: OctoLightHAAPI, callback: @escaping (OctoLightHAResponse) -> Void) {
+        guard let client = httpClient else { return }
+        Self.toggleOctoLightHA(api: api, client: client, callback: callback)
+    }
+
+    /// Turn the light on or off using one plugin contract. This does not try the other contract.
+    func turnOctoLightHA(on: Bool, api: OctoLightHAAPI, callback: @escaping (OctoLightHAResponse) -> Void) {
+        guard let client = httpClient else { return }
+        Self.turnOctoLightHA(on: on, api: api, client: client, callback: callback)
+    }
+
+    /// Read the light through a client captured with its connection. Both contracts send `GET ?action=getState`.
+    static func getOctoLightHAState(api: OctoLightHAAPI, client: HTTPClient, callback: @escaping (OctoLightHAResponse) -> Void) {
+        switch api {
+        case .legacy, .commands:
+            get(action: "getState", client: client, callback: callback)
         }
     }
 
-    /// Returns state of Home Assistant Light
-    func getOctoLightHAState(callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
-        if let client = httpClient {
-            client.get("/api/plugin/octolightHA?action=getState") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
-                // Check if there was an error
-                if let _ = error {
-                    NSLog("Error getting OctoLightHA State. Error: \(error!.localizedDescription)")
-                }
-                if let json = result as? NSDictionary {
-                    if let isLightOn = json["state"] as? Bool {
-                        callback(isLightOn, error, response)
-                        return
-                    }
-                }
-                callback(nil, error, response)
-            }
+    /// Toggle the light through a client captured with its connection.
+    static func toggleOctoLightHA(api: OctoLightHAAPI, client: HTTPClient, callback: @escaping (OctoLightHAResponse) -> Void) {
+        switch api {
+        case .legacy:
+            get(action: "toggle", client: client, callback: callback)
+        case .commands:
+            post(command: "toggle", client: client, callback: callback)
         }
     }
-    
-    /// Turn Home Assistant Light on/off
-    func turnOctoLightHA(on: Bool, callback: @escaping (Bool?, Error?, HTTPURLResponse) -> Void) {
-        if let client = httpClient {
-            client.get("/api/plugin/octolightHA?action=\(on ? "turnOn" : "turnOff")") { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
-                // Check if there was an error
-                if let _ = error {
-                    NSLog("Error turning OctoLightHA \(on ? "on" : "off"). Error: \(error!.localizedDescription)")
-                }
-                if let json = result as? NSDictionary {
-                    if let isLightOn = json["state"] as? Bool {
-                        callback(isLightOn, error, response)
-                        return
-                    }
-                }
-                callback(nil, error, response)
-            }
+
+    /// Turn the light on or off through a client captured with its connection.
+    static func turnOctoLightHA(on: Bool, api: OctoLightHAAPI, client: HTTPClient, callback: @escaping (OctoLightHAResponse) -> Void) {
+        let command = on ? "turnOn" : "turnOff"
+        switch api {
+        case .legacy:
+            get(action: command, client: client, callback: callback)
+        case .commands:
+            post(command: command, client: client, callback: callback)
         }
+    }
+
+    /// Classify one plugin response. Callers choose compatibility and fallback from this value.
+    static func decodeOctoLightHA(result: NSObject?, error: Error?, statusCode: Int) -> OctoLightHAResponse {
+        if let error = error {
+            if let clientError = error as? HTTPClientError {
+                switch clientError {
+                case .methodChangingRedirect:
+                    return .methodChangingRedirect(statusCode: statusCode)
+                }
+            }
+            return .transport(message: error.localizedDescription, statusCode: statusCode)
+        }
+        if statusCode == 200 {
+            if let json = result as? NSDictionary, let document = lightDocument(json) {
+                return .light(document.state, api: document.api)
+            }
+            return .invalid(statusCode: statusCode, pluginMessage: pluginMessage(in: result))
+        }
+        if statusCode == 405 {
+            return .methodRejected(statusCode: statusCode, pluginMessage: pluginMessage(in: result))
+        }
+        return .rejected(statusCode: statusCode, pluginMessage: pluginMessage(in: result))
+    }
+
+    /// A missing action must not be sent. Plugins through 0.2.2 treat it as toggle.
+    private static func get(action: String, client: HTTPClient, callback: @escaping (OctoLightHAResponse) -> Void) {
+        client.get("/api/plugin/octolightHA?action=\(action)", redirects: .follow) { result, error, response in
+            callback(decodeOctoLightHA(result: result, error: error, statusCode: response.statusCode))
+        }
+    }
+
+    private static func post(command: String, client: HTTPClient, callback: @escaping (OctoLightHAResponse) -> Void) {
+        client.post("/api/plugin/octolightHA", json: ["command": command] as NSDictionary, redirects: .refuseMethodChange) { result, error, response in
+            callback(decodeOctoLightHA(result: result, error: error, statusCode: response.statusCode))
+        }
+    }
+
+    private static func lightDocument(_ json: NSDictionary) -> (state: OctoLightHALightState, api: OctoLightHAAPI?)? {
+        let stateValue = json["state"]
+        let lightValue = json["isLightOn"]
+        let state: OctoLightHALightState
+        if let value = boolean(stateValue) {
+            state = .boolean(value)
+        } else if let value = boolean(lightValue) {
+            state = .boolean(value)
+        } else if stateValue is NSNull || lightValue is NSNull {
+            state = .explicitNull
+        } else {
+            return nil
+        }
+
+        let api: OctoLightHAAPI?
+        if json["entities"] != nil || lightValue != nil {
+            api = .commands
+        } else if boolean(stateValue) != nil {
+            api = .legacy
+        } else {
+            api = nil
+        }
+        return (state, api)
+    }
+
+    /// JSON `true` and `false` are CFBoolean. Numeric 0 and 1 are CFNumber, and those two values also bridge to Swift Bool.
+    private static func boolean(_ value: Any?) -> Bool? {
+        guard let number = value as? NSNumber else { return nil }
+        guard CFGetTypeID(number) == CFBooleanGetTypeID() else { return nil }
+        return number.boolValue
+    }
+
+    private static func pluginMessage(in result: NSObject?) -> String? {
+        guard let json = result as? NSDictionary, let message = json["error"] as? String else { return nil }
+        let trimmed = message.trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmed.isEmpty ? nil : trimmed
     }
     
     // MARK: - Low level operations
@@ -1616,3 +1678,34 @@ class OctoPrintRESTClient {
         NSLog("Ignoring bogus ControlInput: \(json)")
         return nil
     }}
+
+/// Plugin contract for one OctoLight attempt. The service chooses it and remembers it per connection.
+enum OctoLightHAAPI: Equatable {
+    /// `GET /api/plugin/octolightHA?action=...` used by plugins through 0.2.2.
+    case legacy
+    /// JSON `POST /api/plugin/octolightHA` with `command` used by plugin 0.3.0.
+    case commands
+}
+
+/// Light value from a document the plugin actually recognized.
+enum OctoLightHALightState: Equatable {
+    case boolean(Bool)
+    /// The plugin sent JSON null. The light may not have reported yet.
+    case explicitNull
+}
+
+/// One attempt, already decoded. The service decides fallback and the words shown to the user.
+enum OctoLightHAResponse: Equatable {
+    /// `api` is set when the document identifies a plugin contract. It is not the connection change counter.
+    case light(OctoLightHALightState, api: OctoLightHAAPI?)
+    /// The server rejected the HTTP method. A control may try the other contract once.
+    case methodRejected(statusCode: Int, pluginMessage: String?)
+    /// The plugin accepted the route and refused the command, or returned another final status.
+    case rejected(statusCode: Int, pluginMessage: String?)
+    /// The body was not a light document. The command may already have run.
+    case invalid(statusCode: Int, pluginMessage: String?)
+    /// The POST was redirected onto a different HTTP method. The command may already have run.
+    case methodChangingRedirect(statusCode: Int)
+    /// Timeout, lost connection, or another transport failure.
+    case transport(message: String, statusCode: Int)
+}

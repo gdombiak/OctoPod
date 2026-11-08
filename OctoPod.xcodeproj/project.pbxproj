@@ -448,6 +448,10 @@
 		A1B2C3E626A20F2E00913754 /* SceneInterfaceOrientationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E526A20F2E00913754 /* SceneInterfaceOrientationTests.swift */; };
 		A1B2C3E826A20F2E00913754 /* CameraHeightConstraintsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E726A20F2E00913754 /* CameraHeightConstraintsTests.swift */; };
 		A1B2C3F126A20F2E00913754 /* SceneInterfaceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3F026A20F2E00913754 /* SceneInterfaceOrientation.swift */; };
+		B7E4A1D126A30F2E00913701 /* OctoLightHAContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D026A30F2E00913701 /* OctoLightHAContractTests.swift */; };
+		B7E4A1D326A30F2E00913702 /* OctoLightHAHTTPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D226A30F2E00913702 /* OctoLightHAHTTPTests.swift */; };
+		B7E4A1D526A30F2E00913703 /* OctoLightHAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */; };
+		B7E4A1D626A30F2E00913703 /* OctoLightHAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1103,6 +1107,9 @@
 		A1B2C3E526A20F2E00913754 /* SceneInterfaceOrientationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneInterfaceOrientationTests.swift; sourceTree = "<group>"; };
 		A1B2C3E726A20F2E00913754 /* CameraHeightConstraintsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHeightConstraintsTests.swift; sourceTree = "<group>"; };
 		A1B2C3F026A20F2E00913754 /* SceneInterfaceOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneInterfaceOrientation.swift; sourceTree = "<group>"; };
+		B7E4A1D026A30F2E00913701 /* OctoLightHAContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoLightHAContractTests.swift; sourceTree = "<group>"; };
+		B7E4A1D226A30F2E00913702 /* OctoLightHAHTTPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoLightHAHTTPTests.swift; sourceTree = "<group>"; };
+		B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoLightHAService.swift; sourceTree = "<group>"; };
 		CB66535B2160B6C100269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		CB66535C2160B6C200269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		CB66535D2160B6C200269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1316,6 +1323,8 @@
 				A1B2C3E326A20F2E00913754 /* CloudKitLegacyCompletionTests.swift */,
 				A1B2C3E526A20F2E00913754 /* SceneInterfaceOrientationTests.swift */,
 				A1B2C3E726A20F2E00913754 /* CameraHeightConstraintsTests.swift */,
+				B7E4A1D026A30F2E00913701 /* OctoLightHAContractTests.swift */,
+				B7E4A1D226A30F2E00913702 /* OctoLightHAHTTPTests.swift */,
 				3D1FDCC126A20F2E00913754 /* Info.plist */,
 			);
 			path = OctoPodTests;
@@ -1660,6 +1669,7 @@
 				3D8B292F20E5549B00296D9D /* HTTPClient.swift */,
 				3D8B293120E556D400296D9D /* OctoPrintClient.swift */,
 				3DAD2DDB21816D62004A4223 /* OctoPrintRESTClient.swift */,
+				B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */,
 				3D98C1D920E5D096007BB13F /* WebSocketClient.swift */,
 				3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */,
 				3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */,
@@ -2409,6 +2419,8 @@
 				A1B2C3E426A20F2E00913754 /* CloudKitLegacyCompletionTests.swift in Sources */,
 				A1B2C3E626A20F2E00913754 /* SceneInterfaceOrientationTests.swift in Sources */,
 				A1B2C3E826A20F2E00913754 /* CameraHeightConstraintsTests.swift in Sources */,
+				B7E4A1D126A30F2E00913701 /* OctoLightHAContractTests.swift in Sources */,
+				B7E4A1D326A30F2E00913702 /* OctoLightHAHTTPTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2530,6 +2542,7 @@
 				3DDB5FCB22D0F45E005F8A9F /* PluginUpdatesManager.swift in Sources */,
 				3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */,
 				3D8B293220E556D400296D9D /* OctoPrintClient.swift in Sources */,
+				B7E4A1D526A30F2E00913703 /* OctoLightHAService.swift in Sources */,
 				3D037164270ABAA200395B6F /* SponsorTableViewCell.swift in Sources */,
 				3D9C77B8266D3597003E6FD9 /* PrinterConnectionTypeTableViewController.swift in Sources */,
 				3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */,
@@ -2738,6 +2751,7 @@
 				3D537144240100FC00B28067 /* ContentView.swift in Sources */,
 				3DB15675279E6726006C945B /* Octorelay.swift in Sources */,
 				3D778F822402F81800B68942 /* OctoPrintClient.swift in Sources */,
+				B7E4A1D626A30F2E00913703 /* OctoLightHAService.swift in Sources */,
 				3DC23649240103F900D9EF28 /* WebSocketClientDelegate.swift in Sources */,
 				3DC23647240103E500D9EF28 /* CurrentStateEvent.swift in Sources */,
 				3D34B9E527DE6B740079F39C /* UIUtils.swift in Sources */,
