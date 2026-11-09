@@ -22,17 +22,6 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CLKComplicationPrincipalClass</key>
 	<string>$(PRODUCT_MODULE_NAME).ComplicationController</string>
-	<key>CLKComplicationSupportedFamilies</key>
-	<array>
-		<string>CLKComplicationFamilyCircularSmall</string>
-		<string>CLKComplicationFamilyExtraLarge</string>
-		<string>CLKComplicationFamilyGraphicCircular</string>
-		<string>CLKComplicationFamilyGraphicCorner</string>
-		<string>CLKComplicationFamilyGraphicRectangular</string>
-		<string>CLKComplicationFamilyModularLarge</string>
-		<string>CLKComplicationFamilyModularSmall</string>
-		<string>CLKComplicationFamilyUtilitarianSmall</string>
-	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

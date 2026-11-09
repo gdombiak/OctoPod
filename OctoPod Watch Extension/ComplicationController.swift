@@ -62,6 +62,20 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
     func getSupportedTimeTravelDirections(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimeTravelDirections) -> Void) {
         handler([])
     }
+
+    func complicationDescriptors() async -> [CLKComplicationDescriptor] {
+        let families: [CLKComplicationFamily] = [
+            .modularSmall,
+            .modularLarge,
+            .circularSmall,
+            .extraLarge,
+            .utilitarianSmall,
+            .graphicCorner,
+            .graphicCircular,
+            .graphicRectangular
+        ]
+        return [CLKComplicationDescriptor(identifier: "OctoPod", displayName: "OctoPod", supportedFamilies: families)]
+    }
     
     // MARK: - Timeline Population
     
@@ -75,81 +89,83 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
         case .modularSmall:
             let image: UIImage = UIImage(named: hasCompletion ? "Printing" : "Not Printing")!
 //            let image: UIImage = UIImage(named: "Complication/Modular")!
-            let template = CLKComplicationTemplateModularSmallRingImage()
-            template.imageProvider = CLKImageProvider(onePieceImage: image)
-            template.fillFraction = hasCompletion ? Float(completion / 100) : 0.0
+            let template = CLKComplicationTemplateModularSmallRingImage(
+                imageProvider: CLKImageProvider(onePieceImage: image),
+                fillFraction: hasCompletion ? Float(completion / 100) : 0.0,
+                ringStyle: .closed)
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
         case .modularLarge:
-            let template = CLKComplicationTemplateModularLargeStandardBody()
-            template.headerTextProvider = CLKSimpleTextProvider(text: currentPrinterName)
-            template.body1TextProvider = CLKSimpleTextProvider(text: currentPrinterState)
             let completionText: String = hasCompletion ? "\(String(format: "%.1f", completion!))%" : ""
-            template.body2TextProvider = CLKSimpleTextProvider(text: complicationText(initial: completionText, replace: false))
+            let template = CLKComplicationTemplateModularLargeStandardBody(
+                headerTextProvider: CLKSimpleTextProvider(text: currentPrinterName),
+                body1TextProvider: CLKSimpleTextProvider(text: currentPrinterState),
+                body2TextProvider: CLKSimpleTextProvider(text: complicationText(initial: completionText, replace: false)))
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
 
         case .circularSmall:
-            let template = CLKComplicationTemplateCircularSmallRingImage()
             let image: UIImage = UIImage(named: hasCompletion ? "Printing" : "Not Printing")!
-            template.imageProvider = CLKImageProvider(onePieceImage: image)
-            template.fillFraction = hasCompletion ? Float(completion / 100) : 0.0
+            let template = CLKComplicationTemplateCircularSmallRingImage(
+                imageProvider: CLKImageProvider(onePieceImage: image),
+                fillFraction: hasCompletion ? Float(completion / 100) : 0.0,
+                ringStyle: .closed)
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
 
         case .extraLarge:
-            let template = CLKComplicationTemplateExtraLargeRingText()
-            template.textProvider = CLKSimpleTextProvider(text: complicationText(initial: currentPrinterName, replace: true))
-            template.fillFraction = hasCompletion ? Float(completion / 100) : 0.0
-            template.ringStyle = .closed
+            let template = CLKComplicationTemplateExtraLargeRingText(
+                textProvider: CLKSimpleTextProvider(text: complicationText(initial: currentPrinterName, replace: true)),
+                fillFraction: hasCompletion ? Float(completion / 100) : 0.0,
+                ringStyle: .closed)
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
 
         case .utilitarianSmall:
-            let template = CLKComplicationTemplateUtilitarianSmallRingImage()
             let image: UIImage = UIImage(named: hasCompletion ? "Printing" : "Not Printing")!
-            template.imageProvider = CLKImageProvider(onePieceImage: image)
-            template.fillFraction = hasCompletion ? Float(completion / 100) : 0.0
-            template.ringStyle = .closed
+            let template = CLKComplicationTemplateUtilitarianSmallRingImage(
+                imageProvider: CLKImageProvider(onePieceImage: image),
+                fillFraction: hasCompletion ? Float(completion / 100) : 0.0,
+                ringStyle: .closed)
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
             
         case .utilitarianSmallFlat:
-            let template = CLKComplicationTemplateUtilitarianSmallFlat()
             let image: UIImage = UIImage(named: hasCompletion ? "Printing" : "Not Printing")!
-            template.imageProvider = CLKImageProvider(onePieceImage: image)
-            template.textProvider = CLKSimpleTextProvider(text: hasCompletion ? "\(String(format: "%.1f", completion!))%" : "")
+            let template = CLKComplicationTemplateUtilitarianSmallFlat(
+                textProvider: CLKSimpleTextProvider(text: hasCompletion ? "\(String(format: "%.1f", completion!))%" : ""),
+                imageProvider: CLKImageProvider(onePieceImage: image))
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
 
         case .graphicCorner:
             if hasCompletion {
-                let template = CLKComplicationTemplateGraphicCornerGaugeText()
-                template.outerTextProvider = CLKSimpleTextProvider(text: complicationText(initial: currentPrinterName, replace: true))
-                template.gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: Float(completion / 100))
+                let template = CLKComplicationTemplateGraphicCornerGaugeText(
+                    gaugeProvider: CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: Float(completion / 100)),
+                    outerTextProvider: CLKSimpleTextProvider(text: complicationText(initial: currentPrinterName, replace: true)))
                 let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
                 handler(entry)
             } else {
-                let template = CLKComplicationTemplateGraphicCornerStackText()
-                template.outerTextProvider = CLKSimpleTextProvider(text: complicationText(initial: currentPrinterName, replace: true))
                 let innerTextProvider = CLKSimpleTextProvider(text: currentPrinterState)
                 innerTextProvider.tintColor = notPrintColor
-                template.innerTextProvider = innerTextProvider
+                let template = CLKComplicationTemplateGraphicCornerStackText(
+                    innerTextProvider: innerTextProvider,
+                    outerTextProvider: CLKSimpleTextProvider(text: complicationText(initial: currentPrinterName, replace: true)))
                 let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
                 handler(entry)
             }
         case .graphicCircular:
-            let template = CLKComplicationTemplateGraphicCircularClosedGaugeImage()
             let image: UIImage = UIImage(named: hasCompletion ? "Printing" : "Not Printing")!
-            template.imageProvider = CLKFullColorImageProvider(fullColorImage: image)
-            template.gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: hasCompletion ? Float(completion / 100) : CLKSimpleGaugeProviderFillFractionEmpty)
+            let template = CLKComplicationTemplateGraphicCircularClosedGaugeImage(
+                gaugeProvider: CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: hasCompletion ? Float(completion / 100) : CLKSimpleGaugeProviderFillFractionEmpty),
+                imageProvider: CLKFullColorImageProvider(fullColorImage: image))
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
         case .graphicRectangular:
-            let template = CLKComplicationTemplateGraphicRectangularTextGauge()
-            template.headerTextProvider = CLKSimpleTextProvider(text: currentPrinterName)
-            template.body1TextProvider = CLKSimpleTextProvider(text: complicationText(initial: currentPrinterState, replace: false))
-            template.gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: hasCompletion ? Float(completion / 100) : CLKSimpleGaugeProviderFillFractionEmpty)
+            let template = CLKComplicationTemplateGraphicRectangularTextGauge(
+                headerTextProvider: CLKSimpleTextProvider(text: currentPrinterName),
+                body1TextProvider: CLKSimpleTextProvider(text: complicationText(initial: currentPrinterState, replace: false)),
+                gaugeProvider: CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: hasCompletion ? Float(completion / 100) : CLKSimpleGaugeProviderFillFractionEmpty))
             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
             handler(entry)
 
@@ -167,64 +183,66 @@ class ComplicationController: NSObject, CLKComplicationDataSource, PanelManagerD
         case .modularSmall:
 //            let image: UIImage = UIImage(named: "Complication/Modular")!
             let image: UIImage = UIImage(named: "Printing")!
-            let template = CLKComplicationTemplateModularSmallRingImage()
-            template.imageProvider = CLKImageProvider(onePieceImage: image)
-            template.fillFraction = 0.4
+            let template = CLKComplicationTemplateModularSmallRingImage(
+                imageProvider: CLKImageProvider(onePieceImage: image),
+                fillFraction: 0.4,
+                ringStyle: .closed)
             handler(template)
         case .modularLarge:
-            let template = CLKComplicationTemplateModularLargeStandardBody()
-            template.headerTextProvider = CLKSimpleTextProvider(text: NSLocalizedString("MK3", comment: ""))
-            template.body1TextProvider = CLKSimpleTextProvider(text: NSLocalizedString("Printing", comment: ""))
-            template.body2TextProvider = CLKSimpleTextProvider(text: "50.3%")
+            let template = CLKComplicationTemplateModularLargeStandardBody(
+                headerTextProvider: CLKSimpleTextProvider(text: NSLocalizedString("MK3", comment: "")),
+                body1TextProvider: CLKSimpleTextProvider(text: NSLocalizedString("Printing", comment: "")),
+                body2TextProvider: CLKSimpleTextProvider(text: "50.3%"))
             handler(template)
 
         case .circularSmall:
             let image: UIImage = UIImage(named: "Printing")!
 //            let image: UIImage = UIImage(named: "Complication/Circular")!
-            let template = CLKComplicationTemplateCircularSmallRingImage()
-            template.imageProvider = CLKImageProvider(onePieceImage: image)
-            template.fillFraction = 0.4
+            let template = CLKComplicationTemplateCircularSmallRingImage(
+                imageProvider: CLKImageProvider(onePieceImage: image),
+                fillFraction: 0.4,
+                ringStyle: .closed)
             handler(template)
             
         case .extraLarge:
-            let template = CLKComplicationTemplateExtraLargeRingText()
-            template.textProvider = CLKSimpleTextProvider(text: NSLocalizedString("MK3", comment: ""))
-            template.fillFraction = 0.4
-            template.ringStyle = .closed
+            let template = CLKComplicationTemplateExtraLargeRingText(
+                textProvider: CLKSimpleTextProvider(text: NSLocalizedString("MK3", comment: "")),
+                fillFraction: 0.4,
+                ringStyle: .closed)
             handler(template)
 
         case .utilitarianSmall:
-            let template = CLKComplicationTemplateUtilitarianSmallRingImage()
             let image: UIImage = UIImage(named: "Printing")!
-            template.imageProvider = CLKImageProvider(onePieceImage: image)
-            template.fillFraction = 0.4
-            template.ringStyle = .closed
+            let template = CLKComplicationTemplateUtilitarianSmallRingImage(
+                imageProvider: CLKImageProvider(onePieceImage: image),
+                fillFraction: 0.4,
+                ringStyle: .closed)
             handler(template)
 
         case .utilitarianSmallFlat:
-            let template = CLKComplicationTemplateUtilitarianSmallFlat()
             let image: UIImage = UIImage(named: "Printing")!
-            template.imageProvider = CLKImageProvider(onePieceImage: image)
-            template.textProvider = CLKSimpleTextProvider(text: "50.3%")
+            let template = CLKComplicationTemplateUtilitarianSmallFlat(
+                textProvider: CLKSimpleTextProvider(text: "50.3%"),
+                imageProvider: CLKImageProvider(onePieceImage: image))
             handler(template)
 
         case .graphicCorner:
-            let template = CLKComplicationTemplateGraphicCornerGaugeText()
-            template.outerTextProvider = CLKSimpleTextProvider(text: NSLocalizedString("MK3", comment: ""))
-            template.gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: 0.4)
+            let template = CLKComplicationTemplateGraphicCornerGaugeText(
+                gaugeProvider: CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: 0.4),
+                outerTextProvider: CLKSimpleTextProvider(text: NSLocalizedString("MK3", comment: "")))
             handler(template)
         case .graphicCircular:
             let image: UIImage = UIImage(named: "Printing")!
 //            let image: UIImage = UIImage(named: "Complication/Graphic Circular")!
-            let template = CLKComplicationTemplateGraphicCircularClosedGaugeImage()
-            template.imageProvider = CLKFullColorImageProvider(fullColorImage: image)
-            template.gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: 0.4)
+            let template = CLKComplicationTemplateGraphicCircularClosedGaugeImage(
+                gaugeProvider: CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: 0.4),
+                imageProvider: CLKFullColorImageProvider(fullColorImage: image))
             handler(template)
         case .graphicRectangular:
-            let template = CLKComplicationTemplateGraphicRectangularTextGauge()
-            template.headerTextProvider = CLKSimpleTextProvider(text: NSLocalizedString("MK3", comment: ""))
-            template.body1TextProvider = CLKSimpleTextProvider(text: NSLocalizedString("Printing", comment: ""))
-            template.gaugeProvider = CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: 0.4)
+            let template = CLKComplicationTemplateGraphicRectangularTextGauge(
+                headerTextProvider: CLKSimpleTextProvider(text: NSLocalizedString("MK3", comment: "")),
+                body1TextProvider: CLKSimpleTextProvider(text: NSLocalizedString("Printing", comment: "")),
+                gaugeProvider: CLKSimpleGaugeProvider(style: .fill, gaugeColor: .cyan, fillFraction: 0.4))
             handler(template)
 
         default:

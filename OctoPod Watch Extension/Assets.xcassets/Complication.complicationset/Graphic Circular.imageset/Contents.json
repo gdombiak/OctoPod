@@ -2,20 +2,8 @@
   "images" : [
     {
       "idiom" : "watch",
-      "filename" : "animals-frog-poison_dart_84x84.png",
-      "screen-width" : "<=145",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "watch",
       "filename" : "animals-frog-poison_dart_84x84-1.png",
       "screen-width" : ">161",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "watch",
-      "filename" : "animals-frog-poison_dart_84x84-2.png",
-      "screen-width" : ">145",
       "scale" : "2x"
     },
     {
