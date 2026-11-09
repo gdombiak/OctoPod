@@ -38,14 +38,13 @@ class LabelAndFieldViewCell: UITableViewCell {
     
     fileprivate func addKeyboardButtons(field: UITextField, cancelSelector: Selector, applySelector: Selector) {
         let numberToolbar: UIToolbar = UIToolbar()
-        numberToolbar.barStyle = .black
-        numberToolbar.isTranslucent = true
         numberToolbar.items=[
             UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: UIBarButtonItem.Style.plain, target: self, action: cancelSelector),
             UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil),
             UIBarButtonItem(title: NSLocalizedString("Apply", comment: ""), style: UIBarButtonItem.Style.plain, target: self, action: applySelector)
         ]
         numberToolbar.sizeToFit()
+        ThemeUIUtils.styleToolbar(numberToolbar)
         field.inputAccessoryView = numberToolbar
     }
 }

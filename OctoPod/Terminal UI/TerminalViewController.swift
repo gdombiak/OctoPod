@@ -41,8 +41,6 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         
         // Add numbers at the top of keyboard for sending GCODE
         let bar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
-        bar.tintColor = .white
-        bar.barTintColor = .darkGray
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let b0 = UIBarButtonItem(title: "0", style: .plain, target: self, action: #selector(addNumber(sender:)))
         let b1 = UIBarButtonItem(title: "1", style: .plain, target: self, action: #selector(addNumber(sender:)))
@@ -56,6 +54,7 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         let b9 = UIBarButtonItem(title: "9", style: .plain, target: self, action: #selector(addNumber(sender:)))
         bar.items = [b1, flexSpace, b2, flexSpace, b3, flexSpace, b4, flexSpace, b5, flexSpace, b6, flexSpace, b7, flexSpace, b8, flexSpace, b9, flexSpace, b0]
         bar.sizeToFit()
+        ThemeUIUtils.styleToolbar(bar)
         gcodeField.inputAccessoryView = bar
 
         NotificationCenter.default.addObserver(self, selector: #selector(coreDataDidBecomeReady), name: AppDelegate.coreDataReadyNotification, object: nil)
@@ -483,6 +482,7 @@ class TerminalViewController: UIViewController, OctoPrintClientDelegate, AppConf
         gcodeTextLabel.textColor = textLabelColor
         gcodeField.textColor = textColor
         popularGCodeButton.tintColor = tintColor
+        sendGCodeButton.tintColor = tintColor
         
         terminalTextView.backgroundColor = theme.cellBackgroundColor()
         terminalTextView.textColor = textColor

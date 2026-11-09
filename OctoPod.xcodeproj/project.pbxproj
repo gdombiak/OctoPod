@@ -446,6 +446,7 @@
 		A1B2C3E226A20F2E00913754 /* CameraFullscreenPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E126A20F2E00913754 /* CameraFullscreenPresentationTests.swift */; };
 		A1B2C3E426A20F2E00913754 /* CloudKitLegacyCompletionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E326A20F2E00913754 /* CloudKitLegacyCompletionTests.swift */; };
 		A1B2C3E626A20F2E00913754 /* SceneInterfaceOrientationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E526A20F2E00913754 /* SceneInterfaceOrientationTests.swift */; };
+		B7E4A1E126A30F2E00913710 /* PlainBackButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1E026A30F2E00913710 /* PlainBackButtonTests.swift */; };
 		A1B2C3E826A20F2E00913754 /* CameraHeightConstraintsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E726A20F2E00913754 /* CameraHeightConstraintsTests.swift */; };
 		A1B2C3F126A20F2E00913754 /* SceneInterfaceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3F026A20F2E00913754 /* SceneInterfaceOrientation.swift */; };
 		B7E4A1D126A30F2E00913701 /* OctoLightHAContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D026A30F2E00913701 /* OctoLightHAContractTests.swift */; };
@@ -1105,6 +1106,7 @@
 		A1B2C3E126A20F2E00913754 /* CameraFullscreenPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFullscreenPresentationTests.swift; sourceTree = "<group>"; };
 		A1B2C3E326A20F2E00913754 /* CloudKitLegacyCompletionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitLegacyCompletionTests.swift; sourceTree = "<group>"; };
 		A1B2C3E526A20F2E00913754 /* SceneInterfaceOrientationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneInterfaceOrientationTests.swift; sourceTree = "<group>"; };
+		B7E4A1E026A30F2E00913710 /* PlainBackButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainBackButtonTests.swift; sourceTree = "<group>"; };
 		A1B2C3E726A20F2E00913754 /* CameraHeightConstraintsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHeightConstraintsTests.swift; sourceTree = "<group>"; };
 		A1B2C3F026A20F2E00913754 /* SceneInterfaceOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneInterfaceOrientation.swift; sourceTree = "<group>"; };
 		B7E4A1D026A30F2E00913701 /* OctoLightHAContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoLightHAContractTests.swift; sourceTree = "<group>"; };
@@ -1322,6 +1324,7 @@
 				A1B2C3E126A20F2E00913754 /* CameraFullscreenPresentationTests.swift */,
 				A1B2C3E326A20F2E00913754 /* CloudKitLegacyCompletionTests.swift */,
 				A1B2C3E526A20F2E00913754 /* SceneInterfaceOrientationTests.swift */,
+				B7E4A1E026A30F2E00913710 /* PlainBackButtonTests.swift */,
 				A1B2C3E726A20F2E00913754 /* CameraHeightConstraintsTests.swift */,
 				B7E4A1D026A30F2E00913701 /* OctoLightHAContractTests.swift */,
 				B7E4A1D226A30F2E00913702 /* OctoLightHAHTTPTests.swift */,
@@ -2418,6 +2421,7 @@
 				A1B2C3E226A20F2E00913754 /* CameraFullscreenPresentationTests.swift in Sources */,
 				A1B2C3E426A20F2E00913754 /* CloudKitLegacyCompletionTests.swift in Sources */,
 				A1B2C3E626A20F2E00913754 /* SceneInterfaceOrientationTests.swift in Sources */,
+				B7E4A1E126A30F2E00913710 /* PlainBackButtonTests.swift in Sources */,
 				A1B2C3E826A20F2E00913754 /* CameraHeightConstraintsTests.swift in Sources */,
 				B7E4A1D126A30F2E00913701 /* OctoLightHAContractTests.swift in Sources */,
 				B7E4A1D326A30F2E00913702 /* OctoLightHAHTTPTests.swift in Sources */,

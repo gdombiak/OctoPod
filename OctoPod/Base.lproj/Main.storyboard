@@ -2595,6 +2595,7 @@
                     </tableView>
                     <connections>
                         <outlet property="changeLanguageButton" destination="2wA-7u-KgW" id="Dsc-2j-dm6"/>
+                        <outlet property="languageRestartLabel" destination="jxG-8a-4b3" id="Rst-Ln-4b3"/>
                         <outlet property="darkCell" destination="YIs-3W-xWQ" id="bfn-gK-Ewv"/>
                         <outlet property="darkLabel" destination="wHn-Dc-bWb" id="RUt-Tc-57o"/>
                         <outlet property="lightCell" destination="5JA-bz-vAF" id="KFR-kX-ZT4"/>

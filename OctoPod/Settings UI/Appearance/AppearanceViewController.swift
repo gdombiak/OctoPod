@@ -18,6 +18,7 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
     @IBOutlet weak var systemLabel: UILabel!
     
     @IBOutlet weak var changeLanguageButton: UIButton!
+    @IBOutlet weak var languageRestartLabel: UILabel!
     
     @IBOutlet weak var turnoffIdleLabel: UILabel!
     @IBOutlet weak var turnoffIdleSwitch: UISwitch!
@@ -45,6 +46,7 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
         turnoffIdleLabel.textColor = theme.textColor()
         zoomInEnabledLabel.textColor = theme.textColor()
         changeLanguageButton.tintColor = theme.tintColor()
+        languageRestartLabel.textColor = theme.tintColor()
         
         turnoffIdleSwitch.isOn = !appConfiguration.turnOffIdleDisabled()
         zoomInEnabledSwitch.isOn = !appConfiguration.tempChartZoomDisabled()
@@ -73,16 +75,13 @@ class AppearanceViewController: ThemedStaticUITableViewController, UIPopoverPres
             Theme.switchTheme(choice: Theme.ThemeChoice.System)
         }
         // Update navigation bar
-        let theme = Theme.currentTheme()
         let printer = printerManager.getDefaultPrinter()
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = theme.navigationTopColor(octoPrintColor: printer?.color)
-        navigationController?.navigationBar.standardAppearance = appearance;
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.tintColor = theme.navigationTintColor(octoPrintColor: printer?.color)
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: theme.navigationTitleColor(octoPrintColor: printer?.color)]
-        tabBarController?.tabBar.barTintColor = theme.tabBarColor()
-        tabBarController?.tabBar.tintColor = theme.tintColor()
+        (tabBarController as? TabBarController)?.refreshAppearance()
+        if let navigationController = navigationController as? NavigationController {
+            navigationController.refreshForPrinterColors(color: printer?.color)
+        } else if let navigationController = navigationController {
+            ThemeUIUtils.applyTheme(navigationController: navigationController, octoPrintColor: printer?.color)
+        }
         // Refresh table
         viewWillAppear(true)
     }

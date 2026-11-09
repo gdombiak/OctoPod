@@ -271,14 +271,11 @@ class FolderViewController: ThemedDynamicUITableViewController, UIPopoverPresent
     fileprivate func applyTheme() {
         let theme = Theme.currentTheme()
         let textLabelColor = theme.labelColor()
-        let tintColor = theme.tintColor()
         let textColor = theme.textColor()
 
         // Theme search bar
         searchBar.barTintColor = theme.backgroundColor()
-        let disabledColor = tintColor.withAlphaComponent(0.35)
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.foregroundColor: tintColor], for: .normal)
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes([.foregroundColor: disabledColor], for: .disabled)
+        ThemeUIUtils.styleSearchBarButtons()
         let searchTextField = self.searchBar.searchTextField
         searchTextField.textColor = textColor
         if let iconView = searchTextField.leftView {

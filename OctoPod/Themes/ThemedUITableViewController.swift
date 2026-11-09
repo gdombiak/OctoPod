@@ -13,6 +13,7 @@ class ThemedUITableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         ThemeUIUtils.applyTheme(table: tableView, staticCells: staticCells())
+        ThemeUIUtils.styleContentButtons(in: view)
 
         if currentTheme != Theme.currentTheme() {
             tableView.reloadData()

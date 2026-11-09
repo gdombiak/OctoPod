@@ -21,9 +21,23 @@ class TabBarController: UITabBarController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let theme = Theme.currentTheme()
-        tabBar.barTintColor = theme.tabBarColor()
-        tabBar.tintColor = theme.tintColor()
+        refreshAppearance()
+    }
+
+    func refreshAppearance() {
+        ThemeUIUtils.applyInterfaceStyle(to: self)
+        ThemeUIUtils.applyTheme(tabBar: tabBar)
+        // Theme switches happen on the settings tab. The other tabs stay offscreen,
+        // so recolor their bars now instead of waiting until the next layout.
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+              appDelegate.isCoreDataReady,
+              let printerManager = appDelegate.printerManager else {
+            return
+        }
+        let color = printerManager.getDefaultPrinter()?.color
+        for case let navigationController as NavigationController in viewControllers ?? [] where navigationController.isViewLoaded {
+            navigationController.refreshForPrinterColors(color: color)
+        }
     }
 
     // The window scene consults the root tab controller, not the selected
