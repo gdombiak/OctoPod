@@ -13,6 +13,7 @@ final class CamerasScreen: NSObject, ObservableObject, PrinterManagerDelegate {
     private var index = 0
     private var cameraId = "0"
     private var load = WatchCameraPlayback()
+    private var phone = WatchCameraPhoneSession()
     private lazy var streaming: MjpegStreaming = MjpegStreaming { _ in }
 
     func activate() {
@@ -25,6 +26,7 @@ final class CamerasScreen: NSObject, ObservableObject, PrinterManagerDelegate {
     func deactivate() {
         streaming.stop()
         load.invalidate()
+        phone = WatchCameraPhoneSession()
         PrinterManager.instance.remove(printerManagerDelegate: self)
     }
 
@@ -56,7 +58,8 @@ final class CamerasScreen: NSObject, ObservableObject, PrinterManagerDelegate {
 
     func imageReceived(image: UIImage?, cameraId: String) {
         DispatchQueue.main.async { [weak self] in
-            guard let self = self, WatchCameraPage.isSelected(cameraId, selectedCameraId: self.cameraId) else {
+            // cameraId is the echoed request token, not the local camera index.
+            guard let self = self, self.phone.matches(cameraId) else {
                 return
             }
             if let image = image {
@@ -76,6 +79,7 @@ final class CamerasScreen: NSObject, ObservableObject, PrinterManagerDelegate {
         // before stop() when its camera is no longer selected, so it must not be the only cancel.
         streaming.stop()
         load.invalidate()
+        phone = WatchCameraPhoneSession()
         let loadToken = load.token
         guard let printer = PrinterManager.instance.defaultPrinter(), let cameras = PrinterManager.instance.cameras(printer: printer) else {
             showsPrevious = false
@@ -104,19 +108,34 @@ final class CamerasScreen: NSObject, ObservableObject, PrinterManagerDelegate {
         let orientation = cameras[index].orientation
         let url = cameras[index].url
         let selectedId = cameraId
+        let requestToken = UUID().uuidString
+        phone.start(token: requestToken)
         refreshEnabled = false
-        OctoPrintClient.instance.camera_take(url: url, username: username, password: password, headers: headers, preemptive: preemptive, orientation: orientation, cameraId: selectedId) { [weak self] requested, error in
+        OctoPrintClient.instance.camera_take(url: url, username: username, password: password, headers: headers, preemptive: preemptive, orientation: orientation, cameraId: requestToken) { [weak self] requested, error in
             guard let self = self else {
                 return
             }
             if requested {
                 if let error = error {
-                    self.showStreamError(error, cameraId: selectedId, loadToken: loadToken)
+                    DispatchQueue.main.async {
+                        guard self.phone.matches(requestToken) else {
+                            return
+                        }
+                        self.phone.cancel(requestToken)
+                        self.showStreamError(error, cameraId: selectedId, loadToken: loadToken)
+                    }
                 }
             } else if WatchCameraPage.fallback(for: url) == .unsupportedHLS {
-                self.showStreamError(NSLocalizedString("HLS not supported", comment: "Apple Watch cannot render HTTP Live Streaming feeds"), cameraId: selectedId, loadToken: loadToken)
+                DispatchQueue.main.async {
+                    guard self.phone.matches(requestToken) else {
+                        return
+                    }
+                    self.phone.cancel(requestToken)
+                    self.showStreamError(NSLocalizedString("HLS not supported", comment: "Apple Watch cannot render HTTP Live Streaming feeds"), cameraId: selectedId, loadToken: loadToken)
+                }
             } else {
                 DispatchQueue.main.async {
+                    self.phone.cancel(requestToken)
                     guard self.load.isCurrent(loadToken), WatchCameraPage.isSelected(selectedId, selectedCameraId: self.cameraId) else {
                         return
                     }

@@ -95,21 +95,22 @@ class PrinterManager {
     // before returning since the file will be gone after this. Notify listeners
     // that a new UIImage has been received
     func fileReceived(file: URL, metadata: [String: Any]?) {
+        var readFailed = false
+        var image: UIImage?
         do {
-            if let metadata = metadata, let cameraId = metadata["cameraId"] as? String {
-                let image = try UIImage(data: Data(contentsOf: file))
-                // Notify listeners that reading image from receive file was successful
-                for delegate in delegates {
-                    delegate.imageReceived(image: image, cameraId: cameraId)
-                }
-            }
-        }
-        catch {
+            let data = try Data(contentsOf: file)
+            image = UIImage(data: data)
+        } catch {
             NSLog("Error reading image from file. Error: \(error)")
-            // Notify listeners that reading image from receive file failed
-            for delegate in delegates {
-                delegate.imageReceived(image: nil, cameraId: "-1")
-            }
+            readFailed = true
+        }
+        // The token is taken from metadata before the read, so a throw still identifies the request.
+        guard case let .deliver(token, failed) = WatchCameraFile.event(metadata: metadata, readFailed: readFailed) else {
+            return
+        }
+        let delivered = failed ? nil : image
+        for delegate in delegates {
+            delegate.imageReceived(image: delivered, cameraId: token)
         }
     }
     

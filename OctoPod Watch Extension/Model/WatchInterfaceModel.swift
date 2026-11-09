@@ -267,6 +267,44 @@ struct WatchPanelLifecycle {
     }
 }
 
+/// The phone image the Cameras page is waiting for. `token` is the opaque `cameraId` sent to the iPhone.
+/// The phone echoes that string in the file metadata, including an older iPhone that has no request id.
+struct WatchCameraPhoneSession: Equatable {
+    private(set) var token: String?
+
+    mutating func start(token: String) {
+        self.token = token
+    }
+
+    mutating func cancel(_ token: String) {
+        guard self.token == token else {
+            return
+        }
+        self.token = nil
+    }
+
+    /// Image, read-error, refresh, and message-error changes. Acknowledgment order does not matter.
+    func matches(_ token: String) -> Bool {
+        self.token == token
+    }
+}
+
+enum WatchCameraFileEvent: Equatable {
+    case deliver(token: String, failed: Bool)
+    case ignored
+}
+
+/// Decides which file transfer reaches the Cameras page. Metadata is read before the file bytes.
+enum WatchCameraFile {
+    static func event(metadata: [String: Any]?, readFailed: Bool) -> WatchCameraFileEvent {
+        // cameraId is an opaque string. Older watches send "0". Newer watches send a request token.
+        guard let token = metadata?["cameraId"] as? String, !token.isEmpty else {
+            return .ignored
+        }
+        return .deliver(token: token, failed: readFailed)
+    }
+}
+
 struct WatchCameraControls: Equatable {
     var index: Int
     var showsPrevious: Bool

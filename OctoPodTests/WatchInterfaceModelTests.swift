@@ -208,6 +208,69 @@ final class WatchInterfaceModelTests: XCTestCase {
         XCTAssertTrue(early.sceneChanged(to: .active, panelSelected: true))
     }
 
+    func testPhoneFileMatchesTokenBeforeAcknowledgment() {
+        // CamerasScreen.imageReceived calls matches before it changes the image, error, or refresh state.
+        // The iPhone echoes cameraId unchanged, so the file can arrive before the reply.
+        var phone = WatchCameraPhoneSession()
+        phone.start(token: "token-a")
+        XCTAssertTrue(phone.matches("token-a"))
+        XCTAssertFalse(phone.matches("0"))
+
+        phone.start(token: "token-b")
+        XCTAssertFalse(phone.matches("token-a"))
+        XCTAssertTrue(phone.matches("token-b"))
+
+        // A → B → A and a printer that reuses camera index 0 each get a new token.
+        phone.start(token: "token-a2")
+        XCTAssertTrue(phone.matches("token-a2"))
+        XCTAssertFalse(phone.matches("token-a"))
+        XCTAssertFalse(phone.matches("token-b"))
+        phone.start(token: "token-printer")
+        XCTAssertTrue(phone.matches("token-printer"))
+        XCTAssertFalse(phone.matches("token-a2"))
+    }
+
+    func testSameCameraRefreshRejectsThePreviousPhoneFile() {
+        var phone = WatchCameraPhoneSession()
+        phone.start(token: "refresh-1")
+        XCTAssertTrue(phone.matches("refresh-1"))
+        phone.start(token: "refresh-2")
+        XCTAssertFalse(phone.matches("refresh-1"))
+        XCTAssertTrue(phone.matches("refresh-2"))
+
+        // Direct playback cancels the phone request, so its file cannot update that stream.
+        phone.cancel("refresh-2")
+        XCTAssertFalse(phone.matches("refresh-2"))
+        phone.cancel("refresh-1")
+        XCTAssertNil(phone.token)
+    }
+
+    func testFileReadErrorKeepsTheCurrentTokenAndIgnoresAStaleOne() {
+        // PrinterManager.fileReceived uses this before it changes the image.
+        let current = WatchCameraFile.event(metadata: ["cameraId": "refresh-2"], readFailed: true)
+        let stale = WatchCameraFile.event(metadata: ["cameraId": "refresh-1"], readFailed: true)
+        let legacyIndex = WatchCameraFile.event(metadata: ["cameraId": "0"], readFailed: false)
+        let missing = WatchCameraFile.event(metadata: nil, readFailed: true)
+        let notAString = WatchCameraFile.event(metadata: ["cameraId": 0], readFailed: true)
+
+        XCTAssertEqual(current, .deliver(token: "refresh-2", failed: true))
+        XCTAssertEqual(stale, .deliver(token: "refresh-1", failed: true))
+        XCTAssertEqual(legacyIndex, .deliver(token: "0", failed: false))
+        XCTAssertEqual(missing, .ignored)
+        XCTAssertEqual(notAString, .ignored)
+
+        var phone = WatchCameraPhoneSession()
+        phone.start(token: "refresh-2")
+        guard case let .deliver(currentToken, currentFailed) = current,
+              case let .deliver(staleToken, staleFailed) = stale else {
+            return XCTFail("Expected both read errors to keep their tokens")
+        }
+        XCTAssertTrue(currentFailed)
+        XCTAssertTrue(staleFailed)
+        XCTAssertTrue(phone.matches(currentToken))
+        XCTAssertFalse(phone.matches(staleToken))
+    }
+
     func testLateCameraCallbackCannotUpdateOrStopANewerStream() {
         var playback = WatchCameraPlayback()
         let cameraA = playback.token

@@ -387,7 +387,8 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
                                 if let fileURL = self.session?.watchDirectoryURL?.appendingPathComponent(UUID().uuidString) {
                                     do {
                                         try data.write(to: fileURL)
-                                        // Send file to Apple Watch
+                                        // cameraId is an opaque string. Older watches send the index ("0").
+                                        // Newer watches send a per-request token. Echo it unchanged.
                                         self.session?.transferFile(fileURL, metadata: ["cameraId": cameraId])
                                         // Send back confirmation that image file was created (DO WE NEED THIS)
                                         replyHandler(["done": ""])
