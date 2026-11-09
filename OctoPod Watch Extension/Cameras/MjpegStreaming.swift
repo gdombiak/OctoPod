@@ -12,6 +12,8 @@ class MjpegStreaming: NSObject, URLSessionDataDelegate {
     fileprivate var dataTask: URLSessionDataTask?
     fileprivate var session: Foundation.URLSession!
     fileprivate var status: Status = .stopped
+    fileprivate var playback = WatchCameraPlayback()
+    fileprivate let callbackLock = NSLock()
     
     var authenticationHandler: ((URLAuthenticationChallenge) -> (Foundation.URLSession.AuthChallengeDisposition, URLCredential?))?
     var authenticationFailedHandler: (()->Void)?
@@ -22,13 +24,23 @@ class MjpegStreaming: NSObject, URLSessionDataDelegate {
     var contentURL: URL?
     var didRendered: (()->Void)?
 
-    var imageView: WKInterfaceImage!
+    var imageView: WKInterfaceImage?
+    var imageHandler: ((UIImage) -> Void)?
     var imageOrientation: UIImage.Orientation?
     
     public init(imageView: WKInterfaceImage) {
         self.imageView = imageView
         super.init()
-        
+        configureSession()
+    }
+
+    public init(imageHandler: @escaping (UIImage) -> Void) {
+        self.imageHandler = imageHandler
+        super.init()
+        configureSession()
+    }
+
+    private func configureSession() {
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         self.session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
@@ -39,91 +51,185 @@ class MjpegStreaming: NSObject, URLSessionDataDelegate {
         session.invalidateAndCancel()
     }
     
-    func play(url: URL){
-        if status == .playing || status == .loading {
+    /// Starts a stream. The closure runs before the task resumes and receives the token that
+    /// identifies this playback. A previous stream is invalidated first so its queued callbacks
+    /// cannot update the UI or stop this one. `stopIfCurrent` does not invalidate that token:
+    /// the first frame is already queued and still belongs to this playback.
+    func play(url: URL, configure: ((Int) -> Void)? = nil) {
+        callbackLock.lock()
+        let active = status == .playing || status == .loading
+        callbackLock.unlock()
+        if active {
             stop()
         }
+
+        callbackLock.lock()
         contentURL = url
-        play()
-    }
-    
-    fileprivate func play() {
-        guard let url = contentURL , status == .stopped else {
+        guard status == .stopped else {
+            callbackLock.unlock()
             return
         }
-        
         status = .loading
-        DispatchQueue.main.async { self.didStartLoading?() }
-        
+        let token = playback.token
         receivedData = NSMutableData()
-        let request = URLRequest(url: url)
-        dataTask = session.dataTask(with: request)
-        dataTask?.resume()
+        // Handlers are installed before the task exists. The closure must not call back into the stream.
+        configure?(token)
+        let start = didStartLoading
+        callbackLock.unlock()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self, self.isCurrentPlayback(token) else {
+                return
+            }
+            start?()
+        }
+
+        let task = session.dataTask(with: URLRequest(url: url))
+        callbackLock.lock()
+        let startTask = status == .loading && playback.isCurrent(token)
+        if startTask {
+            dataTask = task
+        }
+        callbackLock.unlock()
+        if startTask {
+            task.resume()
+        } else {
+            task.cancel()
+        }
     }
     
-    func stop(){
+    func isCurrentPlayback(_ token: Int) -> Bool {
+        callbackLock.lock()
+        defer { callbackLock.unlock() }
+        return playback.isCurrent(token)
+    }
+
+    /// User switch, refresh, or disappear. Invalidates the token before cancelling the task.
+    func stop() {
+        callbackLock.lock()
+        playback.invalidate()
+        let task = takeTaskLocked()
+        callbackLock.unlock()
+        task?.cancel()
+    }
+
+    /// First-frame teardown. Does nothing when `token` belongs to a stream that has already been replaced.
+    func stopIfCurrent(token: Int) {
+        callbackLock.lock()
+        guard playback.isCurrent(token) else {
+            callbackLock.unlock()
+            return
+        }
+        let task = takeTaskLocked()
+        callbackLock.unlock()
+        task?.cancel()
+    }
+
+    private func takeTaskLocked() -> URLSessionDataTask? {
         status = .stopped
-        dataTask?.cancel()
+        let task = dataTask
+        dataTask = nil
+        return task
     }
     
     // MARK: - NSURLSessionDataDelegate
     
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-        if let httpResponse =  response as? HTTPURLResponse, let httpErrorHandler = didFinishWithHTTPErrors {
-            if httpResponse.statusCode == 404 ||  httpResponse.statusCode > 500 {
+        let snapshot = callbackSnapshot(for: dataTask)
+        guard snapshot.isCurrent else {
+            completionHandler(.cancel)
+            return
+        }
+        if let httpResponse = response as? HTTPURLResponse, let httpErrorHandler = snapshot.httpErrorHandler {
+            if httpResponse.statusCode == 404 || httpResponse.statusCode > 500 {
                 httpErrorHandler(httpResponse)
                 return
             }
         }
-        if let imageData = receivedData, imageData.length > 0, var receivedImage = UIImage(data: imageData as Data) {
-            // Resize image to reduce UI workload
-//            receivedImage = receivedImage.resizeImageWith(newSize: CGSize(width: 380, height: 470))
-            if let orientation = imageOrientation, let cgImage = receivedImage.cgImage, orientation != UIImage.Orientation.up {
-                // Rotate image based on requested orientation
-                receivedImage = UIImage(cgImage: cgImage, scale: CGFloat(1.0), orientation: orientation)
+
+        var receivedImage: UIImage?
+        if let imageData = snapshot.bufferedImage, imageData.isEmpty == false, var image = UIImage(data: imageData) {
+            if let orientation = snapshot.imageOrientation, let cgImage = image.cgImage, orientation != .up {
+                image = UIImage(cgImage: cgImage, scale: 1, orientation: orientation)
             }
-            // I'm creating the UIImage before performing didFinishLoading to minimize the interval
-            // between the actions done by didFinishLoading and the appearance of the first image
-            if status == .loading {
+            receivedImage = image
+        }
+
+        callbackLock.lock()
+        let stillCurrent = dataTask === self.dataTask && playback.isCurrent(snapshot.token) && status != .stopped
+        var shouldFinish = false
+        if stillCurrent {
+            // The JPEG is the buffer accumulated before this response boundary.
+            receivedData = NSMutableData()
+            if receivedImage != nil && status == .loading {
                 status = .playing
-                DispatchQueue.main.async { self.didFinishLoading?() }
-            }
-            
-            DispatchQueue.main.async {
-                self.imageView.setImage(receivedImage)
-                self.didRendered?()
+                shouldFinish = true
             }
         }
-        
-        receivedData = NSMutableData()
+        callbackLock.unlock()
+        guard stillCurrent else {
+            completionHandler(.cancel)
+            return
+        }
+
+        // Capture the closures installed for this playback. A block queued here must not call the
+        // closures a newer camera installs, and a stale finish must not stop that newer stream.
+        let token = snapshot.token
+        let finish = snapshot.finish
+        let handler = snapshot.imageHandler
+        let rendered = snapshot.rendered
+        let view = snapshot.imageView
+        if shouldFinish {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self, self.isCurrentPlayback(token) else {
+                    return
+                }
+                finish?()
+            }
+        }
+        if let receivedImage = receivedImage {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self, self.isCurrentPlayback(token) else {
+                    return
+                }
+                view?.setImage(receivedImage)
+                handler?(receivedImage)
+                rendered?()
+            }
+        }
+
         completionHandler(.allow)
     }
     
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        receivedData?.append(data)
+        callbackLock.lock()
+        if dataTask === self.dataTask && status != .stopped {
+            receivedData?.append(data)
+        }
+        callbackLock.unlock()
     }
     
     // MARK: - NSURLSessionTaskDelegate
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        
+        let snapshot = callbackSnapshot(for: task)
+        guard snapshot.isCurrent else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+            return
+        }
+
         var credential: URLCredential?
         var disposition: Foundation.URLSession.AuthChallengeDisposition = .performDefaultHandling
         
         if challenge.previousFailureCount > 0 {
-            // User credentials are incorrect
-            if let onAuthenticationFailed = authenticationFailedHandler {
-                onAuthenticationFailed()
-            }
-            // Cancel authentication flow
-            completionHandler(Foundation.URLSession.AuthChallengeDisposition.cancelAuthenticationChallenge, nil)
+            snapshot.authenticationFailedHandler?()
+            completionHandler(.cancelAuthenticationChallenge, nil)
         } else {
             if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
                 if let trust = challenge.protectionSpace.serverTrust {
                     credential = URLCredential(trust: trust)
                     disposition = .useCredential
                 }
-            } else if let onAuthentication = authenticationHandler {
+            } else if let onAuthentication = snapshot.authenticationHandler {
                 (disposition, credential) = onAuthentication(challenge)
             }
             
@@ -132,17 +238,55 @@ class MjpegStreaming: NSObject, URLSessionDataDelegate {
     }
     
     public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        if let onError = didFinishWithErrors, let error = error {
-            if let nsError = error as NSError? {
-                if nsError.code == NSURLErrorCancelled {
-                    // Do nothing
-                    // Happens when view is disappearing and we cancelled
-                    // ongoing HTTP request
-                    return
-                }
-            }
-            onError(error)
+        let snapshot = callbackSnapshot(for: task)
+        guard snapshot.isCurrent, let error = error else {
+            return
         }
+        if (error as NSError).code == NSURLErrorCancelled {
+            // View disappeared or the user switched cameras and cancelled this task.
+            return
+        }
+        snapshot.errorHandler?(error)
+    }
+
+    private struct CallbackSnapshot {
+        var token: Int
+        var isCurrent: Bool
+        var bufferedImage: Data?
+        var imageOrientation: UIImage.Orientation?
+        var imageView: WKInterfaceImage?
+        var imageHandler: ((UIImage) -> Void)?
+        var finish: (() -> Void)?
+        var rendered: (() -> Void)?
+        var httpErrorHandler: ((HTTPURLResponse) -> Void)?
+        var errorHandler: ((Error) -> Void)?
+        var authenticationHandler: ((URLAuthenticationChallenge) -> (URLSession.AuthChallengeDisposition, URLCredential?))?
+        var authenticationFailedHandler: (() -> Void)?
+    }
+
+    private func callbackSnapshot(for task: URLSessionTask) -> CallbackSnapshot {
+        callbackLock.lock()
+        defer { callbackLock.unlock() }
+        let token = playback.token
+        let isCurrent = task === dataTask && status != .stopped && playback.isCurrent(token)
+        var bufferedImage: Data?
+        if isCurrent, let imageData = receivedData, imageData.length > 0 {
+            bufferedImage = Data(bytes: imageData.bytes, count: imageData.length)
+        }
+        return CallbackSnapshot(
+            token: token,
+            isCurrent: isCurrent,
+            bufferedImage: bufferedImage,
+            imageOrientation: imageOrientation,
+            imageView: imageView,
+            imageHandler: imageHandler,
+            finish: didFinishLoading,
+            rendered: didRendered,
+            httpErrorHandler: didFinishWithHTTPErrors,
+            errorHandler: didFinishWithErrors,
+            authenticationHandler: authenticationHandler,
+            authenticationFailedHandler: authenticationFailedHandler
+        )
     }
 }
 

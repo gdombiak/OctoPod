@@ -1,6 +1,6 @@
 import WatchKit
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate {
+class ExtensionDelegate: NSObject, WKApplicationDelegate {
 
     func applicationDidFinishLaunching() {
         // Initiate Watch Connectivity Session so we can talk to the iOS app

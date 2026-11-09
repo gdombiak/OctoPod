@@ -27,10 +27,7 @@ class PanelManager: PrinterManagerDelegate {
             if !forceRefresh {
                 // If not forced to refresh then check that we have all required data and it is not "stale"
                 if let _ = PanelManager.instance.printerName, let _ = PanelManager.instance.panelInfo, let lastRefresh = PanelManager.instance.lastRefresh {
-                    // Check if information is stale
-                    let diff = Int(Date().timeIntervalSince1970 - lastRefresh.timeIntervalSince1970)
-                    if diff < 10 {
-                        // Information is less than 10 seconds old so do not fetch new data
+                    if WatchPanelCache.isFresh(lastRefresh: lastRefresh, now: Date()) {
                         done?(false)
                         return
                     }
