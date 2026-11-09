@@ -425,40 +425,38 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
     }
     
     fileprivate func pause_job(printerName: String, replyHandler: @escaping ([String : Any]) -> Void) {
-        // Make sure that iOS app and Apple Watch are operating on the same printer
-        ensureDefaultPrinter(printerName: printerName)
-        // Execute request
-        self.octoprintClient.pauseCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if requested {
-                replyHandler(["" : ""])
-            } else {
-                replyHandler(["error" : error == nil ? "Failed with no error!!" : error!.localizedDescription])
-            }
+        performJobCommand(printerName: printerName, replyHandler: replyHandler) { client, callback in
+            client.pauseCurrentJob(callback: callback)
         }
     }
 
     fileprivate func resume_job(printerName: String, replyHandler: @escaping ([String : Any]) -> Void) {
-        // Make sure that iOS app and Apple Watch are operating on the same printer
-        ensureDefaultPrinter(printerName: printerName)
-        // Execute request
-        self.octoprintClient.resumeCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
-            if requested {
-                replyHandler(["" : ""])
-            } else {
-                replyHandler(["error" : error == nil ? "Failed with no error!!" : error!.localizedDescription])
-            }
+        performJobCommand(printerName: printerName, replyHandler: replyHandler) { client, callback in
+            client.resumeCurrentJob(callback: callback)
         }
     }
 
     fileprivate func cancel_job(printerName: String, replyHandler: @escaping ([String : Any]) -> Void) {
-        // Make sure that iOS app and Apple Watch are operating on the same printer
-        ensureDefaultPrinter(printerName: printerName)
-        // Execute request
-        self.octoprintClient.cancelCurrentJob { (requested: Bool, error: Error?, response: HTTPURLResponse) in
+        performJobCommand(printerName: printerName, replyHandler: replyHandler) { client, callback in
+            client.cancelCurrentJob(callback: callback)
+        }
+    }
+
+    private func performJobCommand(
+        printerName: String,
+        replyHandler: @escaping ([String: Any]) -> Void,
+        command: (OctoPrintRESTClient, @escaping (Bool, Error?, HTTPURLResponse) -> Void) -> Void
+    ) {
+        // The app's shared client can disconnect in the background or switch printers.
+        guard let client = restClientToPrinter(printerName: printerName, reuseDefaultClient: false).restClient else {
+            replyHandler(["error": NSLocalizedString("No printer", comment: "")])
+            return
+        }
+        command(client) { requested, error, response in
             if requested {
-                replyHandler(["" : ""])
+                replyHandler(["": ""])
             } else {
-                replyHandler(["error" : error == nil ? "Failed with no error!!" : error!.localizedDescription])
+                replyHandler(["error": error?.localizedDescription ?? "HTTP \(response.statusCode)"])
             }
         }
     }
@@ -479,14 +477,14 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         return nil
     }
     
-    fileprivate func restClientToPrinter(printerName: String) -> (restClient: OctoPrintRESTClient?, sharedNozzle: Bool, palette2PluginInstalled: Bool) {
+    fileprivate func restClientToPrinter(printerName: String, reuseDefaultClient: Bool = true) -> (restClient: OctoPrintRESTClient?, sharedNozzle: Bool, palette2PluginInstalled: Bool) {
         var restClient: OctoPrintRESTClient?
         var sharedNozzle = false
         var palette2PluginInstalled = false
 
         let newObjectContext = self.printerManager.safePrivateContext()
         newObjectContext.performAndWait {
-            if let printer = printerManager.getDefaultPrinter(context: newObjectContext) {
+            if reuseDefaultClient, let printer = printerManager.getDefaultPrinter(context: newObjectContext) {
                 if printer.name == printerName && octoprintClient.octoPrintRESTClient.isConfigured() {
                     restClient = octoprintClient.octoPrintRESTClient
                     sharedNozzle = printer.sharedNozzle
@@ -505,18 +503,6 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
 
         return (restClient, sharedNozzle, palette2PluginInstalled)
 
-    }
-    
-    fileprivate func ensureDefaultPrinter(printerName: String) {
-        let newObjectContext = self.printerManager.safePrivateContext()
-        newObjectContext.performAndWait {
-            if let printer = printerManager.getDefaultPrinter(context: newObjectContext) {
-                if printer.name != printerName {
-                    // Default printer in the iOS app and Apple Watch is out of sync, let's fix it
-                    changeDefaultPrinter(printerName: printerName)
-                }
-            }
-        }
     }
     
     fileprivate func encodePrinters() -> [String: [[String : Any]]] {
