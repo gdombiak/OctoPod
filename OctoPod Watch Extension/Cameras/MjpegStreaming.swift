@@ -141,7 +141,10 @@ class MjpegStreaming: NSObject, URLSessionDataDelegate {
         }
         if let httpResponse = response as? HTTPURLResponse, let httpErrorHandler = snapshot.httpErrorHandler {
             if httpResponse.statusCode == 404 || httpResponse.statusCode > 500 {
+                // The session stalls if this completion handler is skipped. .cancel is ignored
+                // in didCompleteWithError, so the HTTP message from the handler stays on screen.
                 httpErrorHandler(httpResponse)
+                completionHandler(.cancel)
                 return
             }
         }
