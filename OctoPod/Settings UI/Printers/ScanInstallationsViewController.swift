@@ -1,7 +1,7 @@
 import UIKit
 
 /// Discover OctoPrint instances via ZeroConf. See [Discovery Plugin](http://docs.octoprint.org/en/master/bundledplugins/discovery.html)
-class ScanInstallationsViewController: UITableViewController, NetServiceBrowserDelegate, NetServiceDelegate {
+class ScanInstallationsViewController: ThemedDynamicUITableViewController, NetServiceBrowserDelegate, NetServiceDelegate {
 
     var browser: NetServiceBrowser!
     var discovered: Array<NetService> = []
@@ -9,8 +9,18 @@ class ScanInstallationsViewController: UITableViewController, NetServiceBrowserD
     
     var selectedOctoPrint: (name: String, hostname: String)?
 
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        // This screen is presented as a popover, including on iPhone, so it does not
+        // inherit the navigation controller's interface style. Set it before the
+        // popover chrome is created.
+        ThemeUIUtils.applyInterfaceStyle(to: self)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Paint before the popover animates in. The storyboard table background is white.
+        applyScanChrome()
 
         // Setup the browser
         browser = NetServiceBrowser()
@@ -19,6 +29,7 @@ class ScanInstallationsViewController: UITableViewController, NetServiceBrowserD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        applyScanChrome()
         
         // Start the discovery
         selectedOctoPrint = nil
@@ -157,5 +168,12 @@ class ScanInstallationsViewController: UITableViewController, NetServiceBrowserD
         }
         
         return result
+    }
+
+    /// The plain list body uses the cell color. The popover arrow sits outside that
+    /// table, so it needs the same color or the empty popup keeps a light edge.
+    private func applyScanChrome() {
+        ThemeUIUtils.applyTheme(table: tableView, staticCells: false)
+        popoverPresentationController?.backgroundColor = Theme.currentTheme().cellBackgroundColor()
     }
 }
