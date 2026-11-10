@@ -5,7 +5,8 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
 
     @IBOutlet weak var pageControl: UIPageControl!
     
-    let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
+    /// Tests replace this before the first read. Production uses the app delegate's manager.
+    lazy var printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
 
     var infoGesturesAvailable: Bool = false // Flag that indicates if page wants to instruct user that gestures are available for full screen and zoom in/out
     var embeddedCameraTappedCallback: ((CameraEmbeddedViewController) -> Void)?
@@ -13,8 +14,10 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     
     private var displayPrintStatus: Bool?
 
-    // The UIPageViewController
-    private var pageContainer: UIPageViewController!
+    // The UIPageViewController. Nil until a camera page exists. An empty page
+    // controller throws NSInternalInconsistencyException ("No view controllers")
+    // when an iPad rotates.
+    private var pageContainer: UIPageViewController?
 
     private var orderedViewControllers: Array<CameraEmbeddedViewController> = Array()
     // Track the current index
@@ -40,17 +43,9 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Create the page container (seems that using .pageCurl avoids some assertion crash)
-        pageContainer = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: nil)
-        pageContainer.delegate = self
-        pageContainer.dataSource = self
-
-        // Add it to the view
-        addChild(pageContainer)
-        view.addSubview(pageContainer.view)
-        pageContainer.didMove(toParent: self)
-
-        // Configure our custom pageControl
+        // The page controller is created in updateViewControllersForPrinter once a
+        // camera page exists. .pageCurl is used there because .scroll asserts as
+        // cameras are added and removed.
         view.bringSubviewToFront(pageControl)
     }
     
@@ -63,6 +58,12 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             let cameraChanged = newPrinterID != lastPrinterID
             lastPrinterID = newPrinterID
             updateViewControllersForPrinter(cameraChanged: cameraChanged)
+        } else {
+            // Adding or deleting a printer does not notify this controller.
+            // Refresh when the panel is shown again, and keep the page
+            // controller out of the hierarchy while there is nothing to show.
+            lastPrinterID = nil
+            updateViewControllersForPrinter(cameraChanged: true)
         }
     }
 
@@ -274,16 +275,29 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
         }
         
         pageControl.isHidden = orderedViewControllers.count < 2
-        pageContainer.dataSource = pageControl.isHidden ? nil : self
-        
         pageControl.numberOfPages = orderedViewControllers.count
+
+        if orderedViewControllers.isEmpty {
+            // setViewControllers([]) asserts, so leave the hierarchy instead.
+            removePageContainer()
+            currentIndex = nil
+            pendingIndex = nil
+            applyFullscreenPresentationToCameras(previousControllers: previousControllers)
+            return
+        }
+
+        let container = ensurePageContainer()
+        container.dataSource = pageControl.isHidden ? nil : self
+
         // Try preserving existing selected camera, if none then indicate which is first view controller.
-        // If selection is bigger than existing cameras (since they were removed from server) then go to first one
-        if currentIndex == nil || currentIndex! >= orderedViewControllers.count {
+        // If selection is bigger than existing cameras (since they were removed from server) then go to first one.
+        // A controller created above has no pages yet and must receive one before it is inserted.
+        let hasPages = container.viewControllers?.isEmpty == false
+        if currentIndex == nil || currentIndex! >= orderedViewControllers.count || !hasPages {
             renderFirstVC()
         } else if cameraChanged {
             let cameraVC = orderedViewControllers[currentIndex!]
-            if let existingVCs = pageContainer.viewControllers {
+            if let existingVCs = container.viewControllers {
                 if existingVCs.contains(cameraVC) {
                     // Refresh valid VC
                     cameraVC.cameraSelectedChanged()
@@ -295,19 +309,62 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
                 renderFirstVC()
             }
         }
+        attachPageContainerIfReady()
         applyFullscreenPresentationToCameras(previousControllers: previousControllers)
     }
     
     fileprivate func renderFirstVC() {
-        if let firstViewController = orderedViewControllers.first {
-            pageContainer.setViewControllers([firstViewController],
-                                             direction: .forward,
-                                             animated: true,
-                                             completion: nil)
-            pageControl.currentPage = 0
-            currentIndex = 0
-            applyFullscreenPresentationToCameras()
+        guard let firstViewController = orderedViewControllers.first, let container = pageContainer else {
+            return
         }
+        // Animate only once the controller is on screen. The first page is
+        // installed before insertion so rotation never sees an empty controller.
+        container.setViewControllers([firstViewController],
+                                     direction: .forward,
+                                     animated: container.parent != nil,
+                                     completion: nil)
+        pageControl.currentPage = 0
+        currentIndex = 0
+        applyFullscreenPresentationToCameras()
+    }
+
+    fileprivate func ensurePageContainer() -> UIPageViewController {
+        if let pageContainer {
+            return pageContainer
+        }
+        // .pageCurl avoids an assertion .scroll hits as cameras are added and removed.
+        let container = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: nil)
+        container.delegate = self
+        container.dataSource = self
+        pageContainer = container
+        return container
+    }
+
+    fileprivate func attachPageContainerIfReady() {
+        guard let pageContainer, pageContainer.parent == nil else {
+            return
+        }
+        guard pageContainer.viewControllers?.isEmpty == false else {
+            return
+        }
+        addChild(pageContainer)
+        pageContainer.view.frame = view.bounds
+        pageContainer.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(pageContainer.view)
+        pageContainer.didMove(toParent: self)
+        view.bringSubviewToFront(pageControl)
+    }
+
+    fileprivate func removePageContainer() {
+        guard let pageContainer else {
+            return
+        }
+        pageContainer.delegate = nil
+        pageContainer.dataSource = nil
+        pageContainer.willMove(toParent: nil)
+        pageContainer.view.removeFromSuperview()
+        pageContainer.removeFromParent()
+        self.pageContainer = nil
     }
 
     fileprivate func applyFullscreenPresentationToCameras(previousControllers: [CameraEmbeddedViewController] = []) {
