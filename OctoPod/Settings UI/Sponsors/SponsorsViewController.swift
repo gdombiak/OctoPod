@@ -41,6 +41,33 @@ class SponsorsViewController: UIViewController, UITableViewDataSource, UITableVi
         // Set background color to the view
         view.backgroundColor = currentTheme.backgroundColor()
         becomeSponsorButton.tintColor = currentTheme.tintColor()
+        applySponsorButtonTypography()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+            applySponsorButtonTypography()
+            sponsorsTable.reloadData()
+        }
+    }
+
+    /// The storyboard button uses a fixed configuration title. Point it at the
+    /// body style so a long translation can wrap instead of truncating.
+    private func applySponsorButtonTypography() {
+        guard var config = becomeSponsorButton.configuration else { return }
+        config.titleLineBreakMode = .byWordWrapping
+        config.titleAlignment = .center
+        let font = UIFont.preferredFont(forTextStyle: .body)
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = font
+            return outgoing
+        }
+        becomeSponsorButton.configuration = config
+        becomeSponsorButton.titleLabel?.numberOfLines = 0
+        becomeSponsorButton.titleLabel?.lineBreakMode = .byWordWrapping
+        becomeSponsorButton.setContentCompressionResistancePriority(.required, for: .vertical)
     }
     
     @IBAction func becomeSponsorClicked(_ sender: Any) {
@@ -65,6 +92,7 @@ class SponsorsViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.delegate = self
         
         cell.sponsorNameLabel.text = sponsors[indexPath.row].name
+        cell.sponsorNameLabel.preferredMaxLayoutWidth = max(tableView.bounds.width - 64, 40)
         cell.sponsorLinkButton.isHidden = sponsors[indexPath.row].link == nil
 
         return cell

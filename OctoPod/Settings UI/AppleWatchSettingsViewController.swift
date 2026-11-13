@@ -2,6 +2,10 @@ import Foundation
 import UIKit
 
 class AppleWatchSettingsViewController: ThemedStaticUITableViewController {
+
+    override func usesDynamicTypeRows() -> Bool {
+        return true
+    }
     
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
     let watchSessionManager: WatchSessionManager = { return (UIApplication.shared.delegate as! AppDelegate).watchSessionManager }()

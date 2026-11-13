@@ -3,6 +3,10 @@ import SafariServices  // Used for opening browser in-app
 
 class SiriViewController: ThemedStaticUITableViewController {
 
+    override func usesDynamicTypeRows() -> Bool {
+        return true
+    }
+
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
     let printerManager: PrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).printerManager! }()
 

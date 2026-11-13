@@ -2,6 +2,18 @@ import UIKit
 
 class SettingsViewController: ThemedStaticUITableViewController {
 
+    override func usesDynamicTypeRows() -> Bool {
+        return true
+    }
+
+    override func allowsDynamicTypeRow(at indexPath: IndexPath) -> Bool {
+        // The Apple Watch row is removed on iPad by a zero height, not by deleting the cell.
+        if indexPath.row == 4 && UIDevice.current.userInterfaceIdiom == .pad {
+            return false
+        }
+        return true
+    }
+
     @IBOutlet weak var printersLabel: UILabel!
     @IBOutlet weak var appearanceLabel: UILabel!
     @IBOutlet weak var securityLabel: UILabel!
@@ -44,6 +56,13 @@ class SettingsViewController: ThemedStaticUITableViewController {
             // Hide Apple Watch settings when on the iPad
             return 0
         }
-        return 44
+        return super.tableView(tableView, heightForRowAt: indexPath)
+    }
+
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 4 && UIDevice.current.userInterfaceIdiom == .pad {
+            return 0
+        }
+        return 60
     }
 }

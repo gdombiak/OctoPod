@@ -9,7 +9,24 @@ class SponsorTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        sponsorNameLabel.numberOfLines = 0
+        sponsorNameLabel.lineBreakMode = .byWordWrapping
+        sponsorNameLabel.adjustsFontForContentSizeCategory = true
+        sponsorNameLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        sponsorLinkButton.setContentCompressionResistancePriority(.required, for: .horizontal)
+        sponsorLinkButton.setContentCompressionResistancePriority(.required, for: .vertical)
+    }
+
+    private var applyingNameWidth = false
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard !applyingNameWidth else { return }
+        let width = sponsorNameLabel.bounds.width
+        guard width > 1, abs(sponsorNameLabel.preferredMaxLayoutWidth - width) > 1 else { return }
+        applyingNameWidth = true
+        sponsorNameLabel.preferredMaxLayoutWidth = width
+        applyingNameWidth = false
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

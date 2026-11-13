@@ -3,6 +3,10 @@ import LocalAuthentication
 
 class SecurityViewController: ThemedStaticUITableViewController, AppConfigurationDelegate {
 
+    override func usesDynamicTypeRows() -> Bool {
+        return true
+    }
+
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     @IBOutlet weak var appLockBiometricsLabel: UILabel!

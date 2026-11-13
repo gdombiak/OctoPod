@@ -3,6 +3,10 @@ import SafariServices  // Used for opening browser in-app
 
 class SupportViewController: ThemedStaticUITableViewController {
 
+    override func usesDynamicTypeRows() -> Bool {
+        return true
+    }
+
     @IBOutlet weak var faqLabel: UILabel!
     @IBOutlet weak var siriIntegrationLabel: UILabel!
     @IBOutlet weak var issuesLabel: UILabel!

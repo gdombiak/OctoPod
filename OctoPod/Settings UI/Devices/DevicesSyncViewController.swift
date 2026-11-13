@@ -3,6 +3,10 @@ import CloudKit
 
 class DevicesSyncViewController: ThemedStaticUITableViewController {
 
+    override func usesDynamicTypeRows() -> Bool {
+        return true
+    }
+
     let cloudKitPrinterManager: CloudKitPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).cloudKitPrinterManager }()
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 

@@ -9,6 +9,22 @@ class ChangeLanguageViewController: ThemedDynamicUITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 60
+        updatePopoverSize()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updatePopoverSize()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+            updatePopoverSize()
+            tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
@@ -23,6 +39,11 @@ class ChangeLanguageViewController: ThemedDynamicUITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "language_cell", for: indexPath)
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.lineBreakMode = .byWordWrapping
+        cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        cell.textLabel?.adjustsFontForContentSizeCategory = true
+        cell.textLabel?.adjustsFontSizeToFitWidth = false
 
         // Retrieve language being used
         var languageOverride: String?
@@ -30,66 +51,53 @@ class ChangeLanguageViewController: ThemedDynamicUITableViewController {
             languageOverride = override
         }
 
+        cell.textLabel?.text = languageTitle(for: indexPath.row)
         switch indexPath.row {
         case 0:
-            cell.textLabel?.text = NSLocalizedString("iOS Language", comment: "")
             cell.accessoryType = languageOverride == nil ? .checkmark : .none
         case 1:
-            cell.textLabel?.text = "English"
             cell.accessoryType = languageOverride == "en" ? .checkmark : .none
         case 2:
-            // German
-            cell.textLabel?.text = "Deutsch"
             cell.accessoryType = languageOverride == "de" ? .checkmark : .none
         case 3:
-            // Italian
-            cell.textLabel?.text = "Italiano"
             cell.accessoryType = languageOverride == "it" ? .checkmark : .none
         case 4:
-            // Czech
-            cell.textLabel?.text = "Česky"
             cell.accessoryType = languageOverride == "cs" ? .checkmark : .none
         case 5:
-            // Norwegian
-            cell.textLabel?.text = "Norsk"
             cell.accessoryType = languageOverride == "nb" ? .checkmark : .none
         case 6:
-            // Spanish (Spain)
-            cell.textLabel?.text = "Español (España)"
             cell.accessoryType = languageOverride == "es" ? .checkmark : .none
         case 7:
-            // Spanish (Latin America)
-            cell.textLabel?.text = "Español (America Latina)"
             cell.accessoryType = languageOverride == "es-419" ? .checkmark : .none
         case 8:
-            // Lithuanian
-            cell.textLabel?.text = "Lietuvių"
             cell.accessoryType = languageOverride == "lt-LT" ? .checkmark : .none
         case 9:
-            // Swedish
-            cell.textLabel?.text = "Svenska"
             cell.accessoryType = languageOverride == "sv" ? .checkmark : .none
         case 10:
-            // French
-            cell.textLabel?.text = "Français"
             cell.accessoryType = languageOverride == "fr" ? .checkmark : .none
         case 11:
-            // Russian
-            cell.textLabel?.text = "Русский"
             cell.accessoryType = languageOverride == "ru" ? .checkmark : .none
         case 12:
-            // Nederlands
-            cell.textLabel?.text = "Nederlands"
             cell.accessoryType = languageOverride == "nl" ? .checkmark : .none
         case 13:
-            // Simplified Chinese
-            cell.textLabel?.text = "简体中文"
             cell.accessoryType = languageOverride == "zh-Hans" ? .checkmark : .none
         default:
             fatalError("ChangeLanguageViewController has more rows than languages")
         }
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let font = UIFont.preferredFont(forTextStyle: .body)
+        let width = max((tableView.bounds.width > 1 ? tableView.bounds.width : 320) - 88, 80)
+        let title = languageTitle(for: indexPath.row) as NSString
+        let rect = title.boundingRect(
+            with: CGSize(width: width, height: .greatestFiniteMagnitude),
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
+            attributes: [.font: font],
+            context: nil)
+        return max(44, ceil(rect.height) + 24)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -158,5 +166,70 @@ class ChangeLanguageViewController: ThemedDynamicUITableViewController {
         
         // Close this window
         self.dismiss(animated: true, completion: nil)
+    }
+
+    private func languageTitle(for row: Int) -> String {
+        switch row {
+        case 0:
+            return NSLocalizedString("iOS Language", comment: "")
+        case 1:
+            return "English"
+        case 2:
+            return "Deutsch"
+        case 3:
+            return "Italiano"
+        case 4:
+            return "Česky"
+        case 5:
+            return "Norsk"
+        case 6:
+            return "Español (España)"
+        case 7:
+            return "Español (America Latina)"
+        case 8:
+            return "Lietuvių"
+        case 9:
+            return "Svenska"
+        case 10:
+            return "Français"
+        case 11:
+            return "Русский"
+        case 12:
+            return "Nederlands"
+        case 13:
+            return "简体中文"
+        default:
+            return ""
+        }
+    }
+
+    /// The storyboard popover is 250 by 370. Long names and accessibility text
+    /// need a wider list that still scrolls inside the screen.
+    private func updatePopoverSize() {
+        let host = presentingViewController?.view
+        let bounds = host?.bounds ?? UIScreen.main.bounds
+        let safeArea = host?.safeAreaInsets ?? .zero
+        var sourceFrame: CGRect?
+        if let host, let source = popoverPresentationController?.sourceView {
+            let rect = popoverPresentationController?.sourceRect ?? source.bounds
+            sourceFrame = source.convert(rect, to: host)
+        }
+        preferredContentSize = ChangeLanguageViewController.popoverSize(fitting: bounds, sourceFrame: sourceFrame, safeArea: safeArea)
+    }
+
+    /// Width stays at most 440. Height prefers 55% of the host, and shrinks when
+    /// that would be taller than the space on either side of the source button.
+    static func popoverSize(fitting bounds: CGRect, sourceFrame: CGRect?, safeArea: UIEdgeInsets) -> CGSize {
+        let width = min(max(bounds.width - 40, 280), 440)
+        var height = min(max(bounds.height * 0.55, 280), 640)
+        if let sourceFrame {
+            let above = sourceFrame.minY - safeArea.top
+            let below = bounds.height - safeArea.bottom - sourceFrame.maxY
+            let room = max(above, below) - 16
+            if room >= 160 {
+                height = min(height, room)
+            }
+        }
+        return CGSize(width: width, height: height)
     }
 }
