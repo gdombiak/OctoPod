@@ -61,12 +61,12 @@ class AppKeyViewController: BasePrinterDetailsViewController, UIPopoverPresentat
     // MARK: - UITableViewDelegate
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 3 && indexPath.row == 0 {
-            if let _ = requestStatusLabel.text {
-                return UITableView.automaticDimension
-            }
-            // No message to display so hide the row
-            return 0
+        if indexPath.section == 3 {
+            return UITableView.automaticDimension
+        }
+        if indexPath.section == 4 && indexPath.row == 0 {
+            // No message to display so hide the request status row.
+            return requestStatusLabel.text == nil ? 0 : UITableView.automaticDimension
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
     }

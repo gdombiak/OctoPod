@@ -145,6 +145,9 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 3 {
+            return UITableView.automaticDimension
+        }
         if indexPath.section == 0 {
             if indexPath.row == 1 && !urlErrorMessageLabel.isHidden {
                 // Show higher row height so we can display error message
@@ -178,7 +181,20 @@ class PrinterDetailsViewController: BasePrinterDetailsViewController, CloudKitPr
 
     // MARK: - UITableViewDelegate
 
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if traitCollection.preferredContentSizeCategory.isAccessibilityCategory,
+           let height = SettingsDynamicTypeLayout.height(
+               for: self.tableView(tableView, titleForHeaderInSection: section),
+               width: tableView.bounds.width, style: .footnote) {
+            return height
+        }
+        return super.tableView(tableView, heightForHeaderInSection: section)
+    }
+
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.numberOfLines = traitCollection.preferredContentSizeCategory.isAccessibilityCategory ? 0 : 1
+        }
         // Remove old button from re-used header
         if let lastView = view.subviews.last, lastView.isKind(of: UIButton.self) {
             lastView.removeFromSuperview()
