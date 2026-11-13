@@ -1733,6 +1733,7 @@
                                 <constraint firstAttribute="trailing" secondItem="K5o-xJ-EiZ" secondAttribute="trailing" constant="2" id="QjG-Cx-D4w"/>
                                 <constraint firstAttribute="trailing" secondItem="or6-Pr-Z6f" secondAttribute="trailing" constant="2" id="Rav-Hx-fqB"/>
                                 <constraint firstItem="or6-Pr-Z6f" firstAttribute="top" secondItem="K5o-xJ-EiZ" secondAttribute="bottom" constant="2" id="hfV-CU-OU5"/>
+                                <constraint firstAttribute="bottom" secondItem="or6-Pr-Z6f" secondAttribute="bottom" constant="5" id="XW4-eC-Jm7"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -1784,6 +1785,9 @@
                     </refreshControl>
                     <connections>
                         <outlet property="footerView" destination="fEh-51-Gvx" id="VIp-Fa-gSe"/>
+                        <outlet property="helpFooterBottom" destination="XW4-eC-Jm7" id="ZQ8-NR-XP4"/>
+                        <outletCollection property="helpButtons" destination="K5o-xJ-EiZ" collectionClass="NSMutableArray" id="SL1-oq-TzR"/>
+                        <outletCollection property="helpButtons" destination="or6-Pr-Z6f" collectionClass="NSMutableArray" id="GvJ-sV-Wu7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bow-8y-52S" userLabel="First Responder" sceneMemberID="firstResponder"/>

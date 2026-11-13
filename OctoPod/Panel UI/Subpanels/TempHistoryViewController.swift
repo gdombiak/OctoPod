@@ -10,6 +10,8 @@ class TempHistoryViewController: UIViewController, SubpanelViewController, OctoP
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var chartTempButton: UIButton!
+
+    private let emptyHistoryLabel = UILabel()
     
     /// Chart will show printer temps by default
     var chartTemp = ChartTemps.printer
@@ -23,6 +25,20 @@ class TempHistoryViewController: UIViewController, SubpanelViewController, OctoP
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        lineChartView.noDataText = ""
+        emptyHistoryLabel.text = NSLocalizedString("No temperature history", comment: "No temperature history")
+        emptyHistoryLabel.font = .preferredFont(forTextStyle: .caption1)
+        emptyHistoryLabel.adjustsFontForContentSizeCategory = true
+        emptyHistoryLabel.numberOfLines = 0
+        emptyHistoryLabel.textAlignment = .center
+        emptyHistoryLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(emptyHistoryLabel, aboveSubview: lineChartView)
+        NSLayoutConstraint.activate([
+            emptyHistoryLabel.leadingAnchor.constraint(equalTo: lineChartView.leadingAnchor, constant: 16),
+            emptyHistoryLabel.trailingAnchor.constraint(equalTo: lineChartView.trailingAnchor, constant: -16),
+            emptyHistoryLabel.centerYAnchor.constraint(equalTo: lineChartView.centerYAnchor)
+        ])
 
         // If running in small screen then reduce height so page control (dots)
         // do not overlap the chart letters
@@ -38,6 +54,7 @@ class TempHistoryViewController: UIViewController, SubpanelViewController, OctoP
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let theme = Theme.currentTheme()
         let labelColor = theme.labelColor()
         view.backgroundColor = theme.backgroundColor()
@@ -47,11 +64,10 @@ class TempHistoryViewController: UIViewController, SubpanelViewController, OctoP
         lineChartView.rightAxis.drawLabelsEnabled = false
         lineChartView.chartDescription.textColor = labelColor
         lineChartView.legend.textColor = labelColor
-        lineChartView.noDataTextColor = labelColor
+        emptyHistoryLabel.textColor = labelColor
 
         lineChartView.chartDescription.font = .systemFont(ofSize: 10.0)
         updateChartDescription()
-        lineChartView.noDataText = NSLocalizedString("No temperature history", comment: "No temperature history")
         
         lineChartView.xAxis.axisMaximum = 0
         
@@ -171,6 +187,10 @@ class TempHistoryViewController: UIViewController, SubpanelViewController, OctoP
             paintPrinterChart()
         } else {
             paintSoCChart()
+        }
+        emptyHistoryLabel.isHidden = lineChartView.data != nil
+        if !emptyHistoryLabel.isHidden {
+            lineChartView.setNeedsDisplay()
         }
     }
 

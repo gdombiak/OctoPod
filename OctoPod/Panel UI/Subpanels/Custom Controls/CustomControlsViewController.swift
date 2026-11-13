@@ -5,9 +5,28 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
 
     let octoprintClient: OctoPrintClient = { return (UIApplication.shared.delegate as! AppDelegate).octoprintClient }()
 
-    @IBOutlet weak var footerView: UIView!
+    @IBOutlet var footerView: UIView!
+    @IBOutlet private var helpButtons: [UIButton]!
+    @IBOutlet private weak var helpFooterBottom: NSLayoutConstraint!
     
     var containers: Array<Container>?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateHelpButtonFonts()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        sizeHelpFooter()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard isViewLoaded, previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory else { return }
+        updateHelpButtonFonts()
+        tableView.reloadData()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -21,7 +40,7 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
         }
 
         // Hide footer. Will appear only if no custom controls were found
-        footerView.isHidden = true
+        tableView.tableFooterView = nil
         
         // Fetch and render custom controls
         refreshCustomControls(done: nil)
@@ -46,16 +65,23 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
         return NSLocalizedString("Custom Controls", comment: "http://docs.octoprint.org/en/master/features/custom_controls.html")
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if traitCollection.preferredContentSizeCategory.isAccessibilityCategory,
+           let height = SettingsDynamicTypeLayout.height(
+               for: self.tableView(tableView, titleForHeaderInSection: section),
+               width: tableView.bounds.width, style: .footnote) {
+            return height
+        }
+        return 36
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 36
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        super.tableView(tableView, willDisplayHeaderView: view, forSection: section)
+        (view as? UITableViewHeaderFooterView)?.textLabel?.numberOfLines = 0
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return footerView.isHidden ? 1 : 50
+        return tableView.tableFooterView == nil ? 1 : 50
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,6 +91,7 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
         if let containersArray = containers {
             cell.textLabel?.text = containersArray[indexPath.row].name()
             cell.textLabel?.textColor = Theme.currentTheme().labelColor()
+            cell.textLabel?.numberOfLines = 0
         }
 
         return cell
@@ -149,25 +176,58 @@ class CustomControlsViewController: ThemedDynamicUITableViewController, Subpanel
     }
 
     // MARK: - Private functions
+
+    private func updateHelpButtonFonts() {
+        // Leave scroll room above the panel's page indicator or connection banner.
+        helpFooterBottom.constant = traitCollection.preferredContentSizeCategory.isAccessibilityCategory ? 32 : 5
+        let font = UIFontMetrics(forTextStyle: .footnote).scaledFont(
+            for: .systemFont(ofSize: 14), compatibleWith: traitCollection)
+        for button in helpButtons {
+            var configuration = button.configuration ?? .plain()
+            configuration.title = button.title(for: .normal) ?? configuration.title
+            configuration.titleAlignment = .center
+            configuration.titleLineBreakMode = .byWordWrapping
+            configuration.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8)
+            configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { attributes in
+                var attributes = attributes
+                attributes.font = font
+                return attributes
+            }
+            button.configuration = configuration
+        }
+        view.setNeedsLayout()
+    }
+
+    private func sizeHelpFooter() {
+        guard tableView.tableFooterView != nil, tableView.bounds.width > 0 else { return }
+        let width = tableView.bounds.width
+        let height = ceil(footerView.systemLayoutSizeFitting(
+            CGSize(width: width, height: UIView.layoutFittingCompressedSize.height),
+            withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel).height)
+        let size = CGSize(width: width, height: height)
+        // UITableView uses the footer's frame height even when its contents use Auto Layout.
+        if footerView.frame.size != size {
+            footerView.frame.size = size
+            tableView.tableFooterView = footerView
+        }
+    }
     
     fileprivate func refreshCustomControls(done: (() -> Void)?) {
         octoprintClient.customControls { (containers: Array<Container>?, error: Error?, response: HTTPURLResponse) in
-            self.containers = containers
-            let show = self.containers == nil || self.containers!.isEmpty  // Show footer only if there are no custom controls defined
             DispatchQueue.main.async {
-                if self.footerView != nil {
-                    // We might not be initialized yet so need to protect from this
-                    self.footerView.isHidden = !show
+                self.containers = containers
+                if self.isViewLoaded {
+                    self.tableView.tableFooterView = containers?.isEmpty == false ? nil : self.footerView
+                    self.sizeHelpFooter()
+                    self.tableView.reloadData()
                 }
-                self.tableView.reloadData()
+                if let error {
+                    self.showAlert(NSLocalizedString("Warning", comment: ""), message: error.localizedDescription)
+                } else if response.statusCode != 200 {
+                    self.showAlert(NSLocalizedString("Warning", comment: ""), message: String(format: NSLocalizedString("Failed to get controls", comment: "Failed to get controls with HTTP Request error info"), response.statusCode))
+                }
+                done?()
             }
-            if let _ = error {
-                self.showAlert(NSLocalizedString("Warning", comment: ""), message: error!.localizedDescription)
-            } else if response.statusCode != 200 {
-                self.showAlert(NSLocalizedString("Warning", comment: ""), message: String(format: NSLocalizedString("Failed to get controls", comment: "Failed to get controls with HTTP Request error info"), response.statusCode))
-            }
-            // Execute done block when done
-            done?()
         }
     }
     
