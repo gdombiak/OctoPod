@@ -8,65 +8,14 @@
 
 import UIKit
 import CoreData
-import SwiftUI
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        // Disable screensaver when idle. Ideal for people that leave TV on diplaying print progress
-        UIApplication.shared.isIdleTimerDisabled = true
-
-        // Create the SwiftUI view and set the context as the value for the managedObjectContext environment keyPath.
-        // Add `@Environment(\.managedObjectContext)` in the views that will need the context.
-        let contentView = ContentView().environment(\.managedObjectContext, persistentContainer.viewContext)
-
-        // Use a UIHostingController as window root view controller.
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = UIHostingController(rootView: contentView)
-        self.window = window
-        window.makeKeyAndVisible()
+        // Keep the TV awake while displaying print progress.
+        application.isIdleTimerDisabled = true
         return true
-    }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        // Suspend websocket and camera connections
-        tvPrinterManager.suspendConnections()
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // Saves changes in the application's managed object context when the application transitions to the background.
-        self.saveContext()
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        // Start synchronizing with iCloud (if available)
-        self.cloudKitPrinterManager.start { () in
-            // If Apple TV cache was deleted then CoreData is lost and app may end up displaying "Retrieving printers information" forever
-            // We can force a refresh from iCloud when this happens
-            if let printManager = self.printerManager, printManager.getPrinters().isEmpty {
-                self.cloudKitPrinterManager.resetLocalPrinters {
-                    // Do nothing
-                } errorHandler: {
-                    // Do nothing
-                }
-
-            }
-        }
-        // Resume websocket and camera connections
-        tvPrinterManager.resumeConnections()
     }
 
     // MARK: - Core Data stack

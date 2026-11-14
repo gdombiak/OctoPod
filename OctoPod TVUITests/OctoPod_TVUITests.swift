@@ -23,13 +23,26 @@ class OctoPod_TVUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // UI tests must launch the application that they test.
+    func testPrintersScreenAppearsOnLaunchAndResume() {
         let app = XCUIApplication()
         app.launch()
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let printersScreen = app.staticTexts["Printers"].firstMatch
+        XCTAssertTrue(printersScreen.waitForExistence(timeout: 10))
+
+        XCUIRemote.shared.press(.menu)
+        let appEnteredBackground = XCTNSPredicateExpectation(
+            predicate: NSPredicate { _, _ in
+                let state = app.state
+                return state == .runningBackground || state == .runningBackgroundSuspended
+            },
+            object: nil
+        )
+        wait(for: [appEnteredBackground], timeout: 10)
+
+        app.activate()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 10))
+        XCTAssertTrue(printersScreen.waitForExistence(timeout: 10))
     }
 
     func testLaunchPerformance() {
