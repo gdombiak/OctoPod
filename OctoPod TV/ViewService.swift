@@ -32,6 +32,8 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     private var octoLightHAService: OctoLightHAService!
     private var printerID: NSManagedObjectID?
     private var lightStateRevision: UInt = 0
+    private var lightStateReadRevision: UInt?
+    private var refreshAfterFailedLightRead = false
     
     init(tvPrinterManager: TVPrinterManager) {
         self.tvPrinterManager = tvPrinterManager
@@ -139,14 +141,30 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
         }
     }
 
+    func refreshLightStateForDetails() {
+        if lightStateReadRevision == lightStateRevision {
+            // Opening details can coincide with the connection's initial read.
+            // Reuse that result if it succeeds, or give details its own read if it fails.
+            refreshAfterFailedLightRead = true
+        } else {
+            fetchLightState()
+        }
+    }
+
     private func fetchLightState() {
-        guard octoLightInstalled, !lightToggleInProgress else { return }
+        guard octoLightInstalled, !lightToggleInProgress, lightStateReadRevision != lightStateRevision else { return }
         let revision = lightStateRevision
+        lightStateReadRevision = revision
+        refreshAfterFailedLightRead = false
         octoLightHAService.readState { [weak self] result in
-            guard case .updated(let isOn) = result else { return }
             DispatchQueue.main.async {
                 guard let self, self.lightStateRevision == revision else { return }
-                self.octolightHALightOn = isOn
+                self.lightStateReadRevision = nil
+                if case .updated(let isOn) = result {
+                    self.octolightHALightOn = isOn
+                } else if self.refreshAfterFailedLightRead {
+                    self.fetchLightState()
+                }
             }
         }
     }

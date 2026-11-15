@@ -34,6 +34,7 @@ struct DetailedView : View {
             // Tell CameraService that it's being used by detailed view
             cameraService.changedView(detailed: true)
             self.tvPrinterManager.showDetails(for: printerID)
+            viewService.refreshLightStateForDetails()
         }.focusScope(self.namespace)
     }
 }
