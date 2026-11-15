@@ -505,6 +505,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "未能请求恢复工作";
 
+/* A filament change or pause is happening now */
+"Now" = "现在";
+
 /* Obico Is Not Watching */
 "Obico Is Not Watching" = "侦探没有在监测打印";
 

@@ -505,6 +505,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "Verzoek tot hervatten van printopdracht mislukt";
 
+/* A filament change or pause is happening now */
+"Now" = "Nu";
+
 /* Obico Is Not Watching */
 "Obico Is Not Watching" = "Obico let niet op";
 

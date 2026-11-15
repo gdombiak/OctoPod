@@ -1681,7 +1681,6 @@
                     </view>
                     <size key="freeformSize" width="375" height="370"/>
                     <connections>
-                        <outlet property="bottomConstraint" destination="3b4-OU-Qre" id="RJ0-J0-d71"/>
                         <outlet property="chartTempButton" destination="oRe-gF-tDD" id="imS-0V-hqJ"/>
                         <outlet property="lineChartView" destination="yvQ-Wh-oYL" id="jcp-yf-6wp"/>
                     </connections>
@@ -2182,7 +2181,7 @@
         <scene sceneID="aOv-h6-hBV">
             <objects>
                 <viewController id="Ssy-4U-x9b" customClass="SubpanelsViewController" customModule="OctoPod" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="V2n-bo-PZB">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="V2n-bo-PZB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -2191,10 +2190,10 @@
                             </pageControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="biJ-K9-jXt"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Heg-2U-jxe" firstAttribute="centerX" secondItem="V2n-bo-PZB" secondAttribute="centerX" id="ZM3-xJ-U9a"/>
-                            <constraint firstItem="Heg-2U-jxe" firstAttribute="bottom" secondItem="biJ-K9-jXt" secondAttribute="bottom" constant="5" id="haT-sr-fHF"/>
+                            <constraint firstItem="Heg-2U-jxe" firstAttribute="bottom" secondItem="biJ-K9-jXt" secondAttribute="bottom" id="haT-sr-fHF"/>
                         </constraints>
                     </view>
                     <connections>

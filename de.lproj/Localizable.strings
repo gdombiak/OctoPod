@@ -505,6 +505,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "Anfrage Auftrag fortsetzen fehlgeschlagen";
 
+/* A filament change or pause is happening now */
+"Now" = "Jetzt";
+
 /* Obico Is Not Watching */
 "Obico Is Not Watching" = "Obico ausgeschaltet";
 

@@ -33,7 +33,7 @@ protocol OctoPrintSettingsDelegate: AnyObject {
     /// - parameter installed: True if plugin is installed in OctoPrint
     func octorelayAvailabilityChanged(installed: Bool)
     
-    /// Notification that OctoPrint's appearance has changed. A new color or its transparency has changed
+    /// Notification that OctoPrint's appearance has changed. A new color or its transparency has changed.
     func octoPrintColorChanged(color: String)
 
     /// Notification that availability of OctoPod plugin has changed
@@ -73,6 +73,9 @@ protocol OctoPrintSettingsDelegate: AnyObject {
     /// Notification that availability of printTimeGenius plugin has changed
     /// - parameter installed: True if plugin is installed in OctoPrint
     func printTimeGeniusAvailabilityChanged(installed: Bool)
+
+    /// TimeToFilament display lines for one printer. An empty list means the plugin is not installed or has no lines.
+    func timeToFilamentLinesChanged(_ lines: [TimeToFilamentDisplayLine], printerURL: String)
 }
 
 
@@ -134,5 +137,8 @@ extension OctoPrintSettingsDelegate {
     }
     
     func printTimeGeniusAvailabilityChanged(installed: Bool) {
+    }
+
+    func timeToFilamentLinesChanged(_ lines: [TimeToFilamentDisplayLine], printerURL: String) {
     }
 }

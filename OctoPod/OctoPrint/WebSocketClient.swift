@@ -347,6 +347,8 @@ class WebSocketClient: NSObject, WebSocketAdvancedDelegate {
                 event.parseProgress(progress: progress)
             }
 
+            event.parseCurrentPlugins(current: current)
+
             if let logs = current["logs"] as? NSArray {
                 event.parseLogs(logs: logs)
             }

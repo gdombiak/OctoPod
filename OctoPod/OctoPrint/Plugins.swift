@@ -23,4 +23,5 @@ struct Plugins {
     static let OCTO_RELAY = "octorelay"
     static let OCTO_LIGHT_HA = "octolightHA"
     static let PRINT_TIME_GENIUS = "PrintTimeGenius"
+    static let TIME_TO_FILAMENT = "TimeToFilament"
 }

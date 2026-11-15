@@ -505,6 +505,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "Nepavyko pratęsti darbo";
 
+/* A filament change or pause is happening now */
+"Now" = "Dabar";
+
 /* Obico Is Not Watching */
 "Obico Is Not Watching" = "Makaronų Detektyvas nestebi";
 

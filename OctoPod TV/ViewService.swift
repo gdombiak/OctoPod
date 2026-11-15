@@ -9,6 +9,7 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     @Published var printTime: String = "--"
     @Published var printTimeLeft: String = "--"
     @Published var printEstimatedCompletion: String = "--"
+    @Published var timeToFilamentRows: [TimeToFilamentRow] = []
     @Published var tool0Actual: String = "--C"
     @Published var tool0Target: String = "--C"
     @Published var bedActual: String = "--C"
@@ -25,6 +26,8 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     @Published private(set) var octoLightInstalled = false
     @Published private(set) var octolightHALightOn: Bool?
     @Published private(set) var lightToggleInProgress = false
+
+    private var timeToFilament = TimeToFilamentPanelState()
 
     let tvPrinterManager: TVPrinterManager
     var octoPrintClient: OctoPrintClient!
@@ -67,6 +70,8 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
         bedTarget = "--C"
         currentHeight = nil
         layer = nil
+        timeToFilament.clearContents()
+        timeToFilamentRows = []
         
         printing = nil
         paused = nil
@@ -79,12 +84,22 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
 
     func connectToServer(printer: Printer) {
         printerID = printer.objectID
+        let url = printer.objectID.uriRepresentation().absoluteString
+        timeToFilament.noteSelectedPrinter(url)
+        refreshTimeToFilamentRows()
+
         octoPrintClient.connectToServer(printer: printer)
+        if let lines = octoPrintClient.cachedTimeToFilamentLines(printerURL: url) {
+            timeToFilament.apply(lines: lines, printerURL: url)
+            refreshTimeToFilamentRows()
+        }
         reloadLightAvailability()
     }
 
     func disconnectFromServer() {
         octoPrintClient.disconnectFromServer()
+        timeToFilament.noteSelectedPrinter(nil)
+        refreshTimeToFilamentRows()
         lightStateRevision &+= 1
         printerID = nil
         octoLightInstalled = false
@@ -221,6 +236,9 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
                 self.printEstimatedCompletion = ""
             }
 
+            self.timeToFilament.apply(event: event)
+            self.refreshTimeToFilamentRows()
+
             if let tool0Actual = event.tool0TempActual {
                 self.tool0Actual = "\(String(format: "%.1f", tool0Actual)) C"
             }
@@ -297,6 +315,24 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     func camerasChanged(camerasURLs: Array<String>) {
         if let printerID {
             tvPrinterManager.cameraChanged(printerID: printerID)
+        }
+    }
+
+    func timeToFilamentLinesChanged(_ lines: [TimeToFilamentDisplayLine], printerURL: String) {
+        // The client already accepted this delivery. `lines` is that captured list. Apply on the
+        // next turn from the cache, so a printer switch or hostname edit cannot paint it.
+        _ = lines
+        DispatchQueue.main.async {
+            let current = self.octoPrintClient.timeToFilamentService.linesIfCurrent(printerURL: printerURL)
+            self.timeToFilament.applyDeliveredLines(printerURL: printerURL, selectedPrinterURL: self.timeToFilament.selectedPrinterURL, currentLines: current)
+            self.refreshTimeToFilamentRows()
+        }
+    }
+
+    private func refreshTimeToFilamentRows() {
+        let rows = timeToFilament.rows(includesApproximationPhrase: false)
+        if rows != timeToFilamentRows {
+            timeToFilamentRows = rows
         }
     }
 

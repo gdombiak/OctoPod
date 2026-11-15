@@ -29,7 +29,13 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     // Remember last CurrentStateEvent that was reported from OctoPrint (via websockets)
     var lastKnownState: CurrentStateEvent?
     var octoPrintVersion: String?
+    /// Display definitions for this client. The shared settings fetch stays here.
+    let timeToFilamentService = TimeToFilamentService()
     private var printerID: NSManagedObjectID?
+    /// Identifies one TimeToFilament settings attempt. An older id cannot replace a newer accept.
+    private var nextTimeToFilamentRefreshID: UInt = 0
+    /// Test seam. Runs on the main queue after a TimeToFilament delivery was queued and before delegates see it.
+    var beforeDeliveringTimeToFilament: (() -> Void)?
     /// Advances when a server connection is installed or cleared.
     /// An older value identifies a request or response from a connection that has been replaced.
     private var connectionChangeCounter: UInt = 0
@@ -76,12 +82,18 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         // Publish the new counter and its HTTP client together. A snapshot cannot observe one without the other.
         connectionLock.lock()
         connectionChangeCounter += 1
+        let connection = connectionChangeCounter
         octoPrintRESTClient.connectToServer(serverURL: serverURL, apiKey: apiKey, username: username, password: password, headers: headers, preemptive: preemptive)
         connectionLock.unlock()
         
         if webSocketClient?.isConnected(hostname: serverURL) == true {
-            // Do nothing since we are already connected to the default printer
+            // Do nothing since we are already connected to the default printer.
+            // Leave the TimeToFilament connection unchanged so the settings response already in flight can still publish its lines.
             return
+        }
+
+        timeToFilamentService.noteServer(printerID: printer.objectID, hostname: serverURL, connection: connection) { lines in
+            self.deliverTimeToFilament(lines, printerID: printer.objectID, connection: connection, refreshID: nil)
         }
         
         for delegate in delegates {
@@ -166,8 +178,10 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     func disconnectFromServer() {
         connectionLock.lock()
         connectionChangeCounter += 1
+        let connection = connectionChangeCounter
         octoPrintRESTClient.disconnectFromServer()
         connectionLock.unlock()
+        timeToFilamentService.noteActiveConnection(connection)
         webSocketClient?.closeConnection()
         webSocketClient = nil
     }
@@ -920,11 +934,14 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     // MARK: - Private - Settings functions
     
     fileprivate func reviewOctoPrintSettings(printer: Printer) {
+        // Stamp TimeToFilament before the request. A later connection or a newer attempt can still reject this body.
+        let refresh = makeTimeToFilamentRefresh(printerID: printer.objectID, hostname: printer.hostname)
         // Update Printer from /api/settings information
         octoPrintSettings { (result: NSObject?, error: Error?, response: HTTPURLResponse) in
             if response.statusCode == 200 {
                 if let json = result as? NSDictionary {
                     self.updatePrinterFromSettings(printer: printer, json: json)
+                    self.publishTimeToFilament(json: json, refresh: refresh)
                     // if DisplayLayerProgress plugin is installed then request latest info
                     // (Otherwise info is not sent until there is a layer/height change)
                     if let plugins = json["plugins"] as? NSDictionary, let _ = plugins["DisplayLayerProgress"] as? NSDictionary {
@@ -943,6 +960,55 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
         }
         // Update Printer from /api/printerprofiles information
         reviewPrinterProfile(printer: printer)
+    }
+
+    /// Display lines are not stored on the printer. The open panel reads the cache and the delegate.
+    func cachedTimeToFilamentLines(printerURL: String) -> [TimeToFilamentDisplayLine]? {
+        timeToFilamentService.lines(printerURL: printerURL)
+    }
+
+    func updatePrinterFromTimeToFilamentPlugin(printerID: NSManagedObjectID, plugins: NSDictionary) {
+        publishTimeToFilament(plugins: plugins, refresh: makeTimeToFilamentRefresh(printerID: printerID, hostname: nil))
+    }
+
+    private func makeTimeToFilamentRefresh(printerID: NSManagedObjectID, hostname: String?) -> TimeToFilamentSettingsRefresh {
+        connectionLock.lock()
+        nextTimeToFilamentRefreshID += 1
+        let refreshID = nextTimeToFilamentRefreshID
+        connectionLock.unlock()
+        return TimeToFilamentSettingsRefresh(
+            printerID: printerID,
+            hostname: hostname,
+            connection: timeToFilamentService.activeConnectionStamp(),
+            refreshID: refreshID
+        )
+    }
+
+    /// A successful settings body always publishes lines. An omitted plugins key, a missing plugin, or unreadable lines publish an empty list.
+    /// A failed refresh does not call this, so the last accepted id stays put.
+    private func publishTimeToFilament(json: NSDictionary, refresh: TimeToFilamentSettingsRefresh) {
+        let plugins = json["plugins"] as? NSDictionary ?? NSDictionary()
+        publishTimeToFilament(plugins: plugins, refresh: refresh)
+    }
+
+    private func publishTimeToFilament(plugins: NSDictionary, refresh: TimeToFilamentSettingsRefresh) {
+        let lines = TimeToFilamentLines.parse(plugins: plugins)
+        timeToFilamentService.apply(lines: lines, refresh: refresh) { accepted in
+            self.deliverTimeToFilament(accepted, printerID: refresh.printerID, connection: refresh.connection, refreshID: refresh.refreshID)
+        }
+    }
+
+    private func deliverTimeToFilament(_ lines: [TimeToFilamentDisplayLine], printerID: NSManagedObjectID, connection: UInt, refreshID: UInt?) {
+        let printerURL = printerID.uriRepresentation().absoluteString
+        let delegates = octoPrintSettingsDelegates
+        DispatchQueue.main.async {
+            self.beforeDeliveringTimeToFilament?()
+            self.timeToFilamentService.deliverIfCurrent(printerURL: printerURL, connection: connection, refreshID: refreshID) {
+                for delegate in delegates {
+                    delegate.timeToFilamentLinesChanged(lines, printerURL: printerURL)
+                }
+            }
+        }
     }
     
     // Does not run in main thread

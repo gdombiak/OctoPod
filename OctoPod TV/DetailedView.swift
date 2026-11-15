@@ -88,6 +88,7 @@ struct NormalCameraView: View {
                         Spacer()
                         self.value(text: self.service.printTimeLeft)
                     }
+                    TimeToFilamentDetailRows(rows: self.service.timeToFilamentRows)
                     HStack() {
                         Text("Print Completion")
                         Spacer()
@@ -125,7 +126,7 @@ struct NormalCameraView: View {
                 Image(!appConfiguration.appAutoLock() && !appConfiguration.appLocked() ? "Unlocked" : "Locked")
                     .resizable()
                     .frame(width: 48, height: 48)
-            }.frame(minWidth: 510)
+            }.frame(width: 510)
             VStack {
                 if self.cameraService.image != nil {
                     Image(uiImage: self.cameraService.image!)
@@ -305,6 +306,7 @@ struct MaximizedCameraView: View {
                             Spacer()
                             self.value(text: self.service.printTimeLeft)
                         }
+                        TimeToFilamentDetailRows(rows: self.service.timeToFilamentRows)
                         HStack() {
                             Text("Print Completion")
                             Spacer()
@@ -355,6 +357,47 @@ struct MaximizedCameraView: View {
     fileprivate func value(text: String) -> Text {
         return Text(text)
             .foregroundColor(Color(red: 47/255, green: 79/255, blue: 79/256))
+    }
+}
+
+struct TimeToFilamentDetailRows: View {
+    let rows: [TimeToFilamentRow]
+
+    private var valueColor: Color {
+        Color(red: 47/255, green: 79/255, blue: 79/256)
+    }
+
+    var body: some View {
+        ForEach(rows) { row in
+            Group {
+                if #available(tvOS 16.0, *) {
+                    ViewThatFits(in: .horizontal) {
+                        HStack {
+                            Text(row.label)
+                                .fixedSize(horizontal: true, vertical: false)
+                            Spacer(minLength: 8)
+                            Text(row.value)
+                                .foregroundColor(valueColor)
+                                .fixedSize(horizontal: true, vertical: false)
+                        }
+                        stackedRow(row)
+                    }
+                } else {
+                    stackedRow(row)
+                }
+            }
+            .accessibilityElement(children: .combine)
+        }
+    }
+
+    private func stackedRow(_ row: TimeToFilamentRow) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(row.label)
+            Text(row.value)
+                .foregroundColor(valueColor)
+        }
+        .fixedSize(horizontal: false, vertical: true)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

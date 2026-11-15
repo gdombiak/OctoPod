@@ -16,6 +16,10 @@
 "Invalid camera URL" = "Invalid camera URL";
 
 "Still stabilizing" = "Still stabilizing...";
+
+/* A filament change or pause is happening now */
+"Now" = "Now";
+
 "Offline" = "Offline";
 
 "Temperature" = "Temperature";

@@ -41,6 +41,14 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
     @IBOutlet weak var printTimeLabel: UILabel!
     @IBOutlet weak var printTimeLeftLabel: UILabel!
     @IBOutlet weak var printEstimatedCompletionLabel: UILabel!
+
+    var timeToFilament = TimeToFilamentPanelState()
+    private var timeToFilamentRowsView: TimeToFilamentRowsView?
+    private var timeToFilamentTopConstraint: NSLayoutConstraint?
+    private var appliedPrintTimeLeftRowHeight: CGFloat = -1
+    private var isUpdatingTimeToFilamentRowHeight = false
+    /// Times beginUpdates ran because the filament block's height changed. Countdown ticks that keep the same height do not increment it.
+    private(set) var timeToFilamentHeightRefreshCount = 0
     
     @IBOutlet weak var currentHeightRow: UITableViewCell!
     @IBOutlet weak var currentHeightTextLabel: UILabel!
@@ -120,13 +128,33 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         cancelButton.setTitleColor(UIColor.red, for: .normal)
         cancelButton.setTitleColor(UIColor(red: 167/255, green: 88/255, blue: 88/255, alpha: 1.0), for: .disabled)
 
+        installTimeToFilamentRows()
         clearValues()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard traitCollection.preferredContentSizeCategory != previousTraitCollection?.preferredContentSizeCategory else {
+            return
+        }
+        timeToFilamentRowsView?.applyFonts(compatibleWith: traitCollection)
+        updateTimeToFilamentRowHeightIfNeeded()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateTimeToFilamentRowHeightIfNeeded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         themeLabels()
         
+        // The panel is not a settings delegate until it appears, so a response
+        // that arrived earlier is already in the client cache.
+        applyCachedTimeToFilamentLines()
+        renderTimeToFilament()
+
         // Listen to changes to OctoPrint Plugin messages
         octoprintClient.octoPrintPluginsDelegates.append(self)
 
@@ -216,6 +244,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             }
         } else if indexPath.section == 2 {
             return UITableView.automaticDimension
+        }
+        if indexPath.section == 0, indexPath.row == 4, let height = printTimeLeftRowHeight() {
+            return height
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
     }
@@ -409,6 +440,10 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
                 self.printTimeLeftLabel.text = NSLocalizedString("Still stabilizing", comment: "Print time is being calculated")
                 self.printEstimatedCompletionLabel.text = ""
             }
+
+            self.timeToFilament.noteSelectedPrinter(self.selectedPrinterURL())
+            self.timeToFilament.apply(event: event)
+            self.renderTimeToFilament()
             
             if let printing = event.printing, let paused = event.paused, let pausing = event.pausing {
                 self.layerNotificationsButton.isEnabled = (printing || paused || pausing)  // Cell will be hidden unless DisplayLayerProgress plugin is installed
@@ -855,6 +890,9 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
             self.printTimeLabel.text = ""
             self.printTimeLeftLabel.text = ""
             self.printEstimatedCompletionLabel.text = ""
+            self.timeToFilament.clearContents()
+            self.applyCachedTimeToFilamentLines()
+            self.renderTimeToFilament()
             
             self.currentHeightRow.isHidden = true   // Hide layer cell until we receive info that needs to be displayed. Comes from plugins, not OctoPrint itself
             self.currentHeightLabel.text = ""
@@ -945,6 +983,122 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         return tableView.bounds.contains(thePosition)
     }
     
+    func timeToFilamentLinesChanged(_ lines: [TimeToFilamentDisplayLine], printerURL: String) {
+        // The client already accepted this delivery. `lines` is that captured list. Apply on the
+        // next turn from the cache, so a printer switch or hostname edit cannot paint it.
+        _ = lines
+        DispatchQueue.main.async {
+            let current = self.octoprintClient.timeToFilamentService.linesIfCurrent(printerURL: printerURL)
+            self.timeToFilament.applyDeliveredLines(printerURL: printerURL, selectedPrinterURL: self.selectedPrinterURL(), currentLines: current)
+            self.renderTimeToFilament()
+        }
+    }
+
+    private func selectedPrinterURL() -> String? {
+        printerManager.getDefaultPrinter()?.objectID.uriRepresentation().absoluteString
+    }
+
+    /// Labels for the selected printer. Matches stay until a current message replaces them.
+    private func applyCachedTimeToFilamentLines() {
+        timeToFilament.noteSelectedPrinter(selectedPrinterURL())
+        if let url = timeToFilament.selectedPrinterURL,
+           let lines = octoprintClient.cachedTimeToFilamentLines(printerURL: url) {
+            timeToFilament.apply(lines: lines, printerURL: url)
+        }
+    }
+
+    private func installTimeToFilamentRows() {
+        guard let titleLabel = printTimeLeftTextLabel, let valueLabel = printTimeLeftLabel, let content = titleLabel.superview else {
+            return
+        }
+        let bottom = content.constraints.first { constraint in
+            constraint.firstAttribute == .bottom && constraint.secondItem as AnyObject === titleLabel
+        }
+        guard let bottom = bottom else {
+            return
+        }
+        bottom.isActive = false
+        let rowsView = TimeToFilamentRowsView()
+        rowsView.translatesAutoresizingMaskIntoConstraints = false
+        content.addSubview(rowsView)
+        let top = rowsView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor)
+        timeToFilamentTopConstraint = top
+        NSLayoutConstraint.activate([
+            top,
+            rowsView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            rowsView.trailingAnchor.constraint(equalTo: valueLabel.trailingAnchor),
+            content.bottomAnchor.constraint(equalTo: rowsView.bottomAnchor, constant: bottom.constant)
+        ])
+        timeToFilamentRowsView = rowsView
+    }
+
+    func renderTimeToFilament() {
+        let rows = timeToFilament.rows(includesApproximationPhrase: true)
+        timeToFilamentRowsView?.labelColor = Theme.currentTheme().labelColor()
+        timeToFilamentRowsView?.valueColor = Theme.currentTheme().textColor()
+        timeToFilamentRowsView?.rows = rows
+        let gap: CGFloat = rows.isEmpty ? 0 : 12
+        if timeToFilamentTopConstraint?.constant != gap {
+            timeToFilamentTopConstraint?.constant = gap
+        }
+        updateTimeToFilamentRowHeightIfNeeded()
+    }
+
+    /// Asks the table to resize the Print Time Left cell when wrapped text needs a different height.
+    /// A countdown that still fits the current lines does not reload or animate the table.
+    private func updateTimeToFilamentRowHeightIfNeeded() {
+        guard !isUpdatingTimeToFilamentRowHeight, let height = printTimeLeftRowHeight() else {
+            return
+        }
+        guard abs(height - appliedPrintTimeLeftRowHeight) > 1 else {
+            return
+        }
+        appliedPrintTimeLeftRowHeight = height
+        guard view.window != nil else {
+            return
+        }
+        if let cell = printTimeLeftTextLabel.superview?.superview as? UITableViewCell,
+           abs(cell.bounds.height - height) <= 1 {
+            return
+        }
+        isUpdatingTimeToFilamentRowHeight = true
+        timeToFilamentHeightRefreshCount += 1
+        UIView.performWithoutAnimation {
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
+        isUpdatingTimeToFilamentRowHeight = false
+    }
+
+    /// Print Time Left is the fifth static cell. Its storyboard height is the title line.
+    /// The filament block below that title has to be included or wrapped text is clipped.
+    private func printTimeLeftRowHeight() -> CGFloat? {
+        guard let title = printTimeLeftTextLabel, let rowsView = timeToFilamentRowsView else {
+            return nil
+        }
+        let width = currentTimeToFilamentWidth()
+        guard width > 1 else {
+            return nil
+        }
+        rowsView.layout(fittingWidth: width)
+        let titleHeight = ceil(title.intrinsicContentSize.height)
+        let gap = timeToFilamentTopConstraint?.constant ?? 0
+        return ceil(6.5 + titleHeight + gap + rowsView.requiredHeight(for: width) + 6)
+    }
+
+    private func currentTimeToFilamentWidth() -> CGFloat {
+        guard tableView.bounds.width > 1, let content = printTimeLeftTextLabel.superview else {
+            return 0
+        }
+        if let rowsView = timeToFilamentRowsView,
+           rowsView.bounds.width > 1,
+           abs(content.bounds.width - tableView.bounds.width) < 1 {
+            return rowsView.bounds.width
+        }
+        let margins = content.directionalLayoutMargins
+        return max(tableView.bounds.width - margins.leading - margins.trailing, 1)
+    }
+
     fileprivate func themeLabels() {
         let theme = Theme.currentTheme()
         let textLabelColor = theme.labelColor()
@@ -955,6 +1109,8 @@ class PrinterSubpanelViewController: ThemedStaticUITableViewController, UIPopove
         printTimeTextLabel.textColor = textLabelColor
         printTimeLeftTextLabel.textColor = textLabelColor
         printEstimatedCompletionTextLabel.textColor = textLabelColor
+        timeToFilamentRowsView?.labelColor = textLabelColor
+        timeToFilamentRowsView?.valueColor = textColor
         printerStatusTextLabel.textColor = textLabelColor
         currentHeightTextLabel.textColor = textLabelColor
         layerTextLabel.textColor = textLabelColor

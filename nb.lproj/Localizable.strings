@@ -505,6 +505,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "Kunne ikke be om å fortsette jobben";
 
+/* A filament change or pause is happening now */
+"Now" = "Nå";
+
 /* Obico Is Not Watching */
 "Obico Is Not Watching" = "Detektivet ser ikke på";
 

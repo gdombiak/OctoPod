@@ -505,6 +505,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "Не удалось выполнить запрос на возобновление задания";
 
+/* A filament change or pause is happening now */
+"Now" = "Сейчас";
+
 /* Obico Is Not Watching */
 "Obico Is Not Watching" = "Детектив не смотрит";
 

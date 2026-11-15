@@ -8,7 +8,6 @@ class TempHistoryViewController: UIViewController, SubpanelViewController, OctoP
     let appConfiguration: AppConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
 
     @IBOutlet weak var lineChartView: LineChartView!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var chartTempButton: UIButton!
 
     private let emptyHistoryLabel = UILabel()
@@ -39,18 +38,6 @@ class TempHistoryViewController: UIViewController, SubpanelViewController, OctoP
             emptyHistoryLabel.trailingAnchor.constraint(equalTo: lineChartView.trailingAnchor, constant: -16),
             emptyHistoryLabel.centerYAnchor.constraint(equalTo: lineChartView.centerYAnchor)
         ])
-
-        // If running in small screen then reduce height so page control (dots)
-        // do not overlap the chart letters
-        let devicePortrait = SceneInterfaceOrientation.isPortrait(from: view.window)
-        let screenHeight = devicePortrait ? UIScreen.main.bounds.height : UIScreen.main.bounds.width
-        if screenHeight <= 568 {
-            // iPhone 5, 5s, 5c, SE
-            bottomConstraint.constant = -15
-        } else {
-            // Bigger screens
-            bottomConstraint.constant = -12
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

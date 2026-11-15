@@ -53,6 +53,11 @@ class CurrentStateEvent {
     var progressCompletion: Double?
     var progressPrintTime: Int?
     var progressPrintTimeLeft: Int?
+
+    /// TimeToFilament matches from a printer message.
+    /// Nil means this was not a full `current` snapshot, so the previous matches stay.
+    /// An empty array means a full snapshot had no matches, including when OctoPrint omitted `plugins`.
+    var timeToFilamentMatches: [TimeToFilamentMatch]?
     
     var printFile: PrintFile?
     
@@ -143,6 +148,21 @@ class CurrentStateEvent {
         progressCompletion = progress["completion"] as? Double
         progressPrintTime = progress["printTime"] as? Int
         progressPrintTimeLeft = progress["printTimeLeft"] as? Int
+    }
+
+    /// Parse TimeToFilament matches from the `plugins` object of a current message.
+    func parsePlugins(plugins: NSDictionary) {
+        timeToFilamentMatches = TimeToFilamentMatches.parse(plugins: plugins)
+    }
+
+    /// Reads plugin data from a full websocket `current` message.
+    /// OctoPrint leaves `plugins` out when no plugin returned anything. That is an empty result, not a partial update.
+    func parseCurrentPlugins(current: NSDictionary) {
+        if let plugins = current["plugins"] as? NSDictionary {
+            parsePlugins(plugins: plugins)
+        } else {
+            timeToFilamentMatches = []
+        }
     }
     
     /// Parse received logs (coming from Serial port)

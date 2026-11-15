@@ -440,16 +440,10 @@
 		A1B2C3DE26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3DD26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift */; };
 		A1B2C3E026A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3DF26A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift */; };
 		A1B2C3E226A20F2E00913754 /* CameraFullscreenPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E126A20F2E00913754 /* CameraFullscreenPresentationTests.swift */; };
-		C746A1E226A20F2E00913754 /* CamerasPageControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C746A1E126A20F2E00913754 /* CamerasPageControllerTests.swift */; };
 		A1B2C3E426A20F2E00913754 /* CloudKitLegacyCompletionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E326A20F2E00913754 /* CloudKitLegacyCompletionTests.swift */; };
 		A1B2C3E626A20F2E00913754 /* SceneInterfaceOrientationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E526A20F2E00913754 /* SceneInterfaceOrientationTests.swift */; };
-		B7E4A1E126A30F2E00913710 /* PlainBackButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1E026A30F2E00913710 /* PlainBackButtonTests.swift */; };
 		A1B2C3E826A20F2E00913754 /* CameraHeightConstraintsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E726A20F2E00913754 /* CameraHeightConstraintsTests.swift */; };
 		A1B2C3F126A20F2E00913754 /* SceneInterfaceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3F026A20F2E00913754 /* SceneInterfaceOrientation.swift */; };
-		B7E4A1D126A30F2E00913701 /* OctoLightHAContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D026A30F2E00913701 /* OctoLightHAContractTests.swift */; };
-		B7E4A1D326A30F2E00913702 /* OctoLightHAHTTPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D226A30F2E00913702 /* OctoLightHAHTTPTests.swift */; };
-		B7E4A1D526A30F2E00913703 /* OctoLightHAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */; };
-		B7E4A1D626A30F2E00913703 /* OctoLightHAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */; };
 		A7C3E1B226A40F2E00913701 /* WatchInterfaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3E1B126A40F2E00913701 /* WatchInterfaceModel.swift */; };
 		A7C3E1B326A40F2E00913701 /* WatchInterfaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3E1B126A40F2E00913701 /* WatchInterfaceModel.swift */; };
 		A7C3E1B526A40F2E00913702 /* OctoPodWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3E1B426A40F2E00913702 /* OctoPodWatchApp.swift */; };
@@ -457,6 +451,18 @@
 		A7C3E1B926A40F2E00913704 /* PanelWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3E1B826A40F2E00913704 /* PanelWatchView.swift */; };
 		A7C3E1BB26A40F2E00913705 /* CamerasWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3E1BA26A40F2E00913705 /* CamerasWatchView.swift */; };
 		A7C3E1BD26A40F2E00913706 /* WatchInterfaceModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3E1BC26A40F2E00913706 /* WatchInterfaceModelTests.swift */; };
+		B7E4A1D126A30F2E00913701 /* OctoLightHAContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D026A30F2E00913701 /* OctoLightHAContractTests.swift */; };
+		B7E4A1D326A30F2E00913702 /* OctoLightHAHTTPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D226A30F2E00913702 /* OctoLightHAHTTPTests.swift */; };
+		B7E4A1D526A30F2E00913703 /* OctoLightHAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */; };
+		B7E4A1D626A30F2E00913703 /* OctoLightHAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */; };
+		B7E4A1E126A30F2E00913710 /* PlainBackButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1E026A30F2E00913710 /* PlainBackButtonTests.swift */; };
+		C4E1A10226A50F2E00913701 /* TimeToFilament.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1A10126A50F2E00913701 /* TimeToFilament.swift */; };
+		C4E1A10326A50F2E00913701 /* TimeToFilament.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1A10126A50F2E00913701 /* TimeToFilament.swift */; };
+		C4E1A10526A50F2E00913701 /* TimeToFilamentRowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1A10426A50F2E00913701 /* TimeToFilamentRowsView.swift */; };
+		C4E1A10726A50F2E00913701 /* TimeToFilamentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1A10626A50F2E00913701 /* TimeToFilamentTests.swift */; };
+		C4E1A10926A50F2E00913701 /* TimeToFilamentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1A10826A50F2E00913701 /* TimeToFilamentService.swift */; };
+		C4E1A10A26A50F2E00913701 /* TimeToFilamentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1A10826A50F2E00913701 /* TimeToFilamentService.swift */; };
+		C746A1E226A20F2E00913754 /* CamerasPageControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C746A1E126A20F2E00913754 /* CamerasPageControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1092,25 +1098,29 @@
 		A1B2C3DD26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManagerDiagnosticTests.swift; sourceTree = "<group>"; };
 		A1B2C3DF26A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClientPluginSyncTests.swift; sourceTree = "<group>"; };
 		A1B2C3E126A20F2E00913754 /* CameraFullscreenPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFullscreenPresentationTests.swift; sourceTree = "<group>"; };
-		C746A1E126A20F2E00913754 /* CamerasPageControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasPageControllerTests.swift; sourceTree = "<group>"; };
 		A1B2C3E326A20F2E00913754 /* CloudKitLegacyCompletionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitLegacyCompletionTests.swift; sourceTree = "<group>"; };
 		A1B2C3E526A20F2E00913754 /* SceneInterfaceOrientationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneInterfaceOrientationTests.swift; sourceTree = "<group>"; };
-		B7E4A1E026A30F2E00913710 /* PlainBackButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainBackButtonTests.swift; sourceTree = "<group>"; };
 		A1B2C3E726A20F2E00913754 /* CameraHeightConstraintsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHeightConstraintsTests.swift; sourceTree = "<group>"; };
 		A1B2C3F026A20F2E00913754 /* SceneInterfaceOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneInterfaceOrientation.swift; sourceTree = "<group>"; };
-		B7E4A1D026A30F2E00913701 /* OctoLightHAContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoLightHAContractTests.swift; sourceTree = "<group>"; };
-		B7E4A1D226A30F2E00913702 /* OctoLightHAHTTPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoLightHAHTTPTests.swift; sourceTree = "<group>"; };
-		B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoLightHAService.swift; sourceTree = "<group>"; };
-		CB66535B2160B6C100269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
-		CB66535C2160B6C200269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		CB66535D2160B6C200269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CB66535E2160B6C200269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A7C3E1B126A40F2E00913701 /* WatchInterfaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchInterfaceModel.swift; sourceTree = "<group>"; };
 		A7C3E1B426A40F2E00913702 /* OctoPodWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPodWatchApp.swift; sourceTree = "<group>"; };
 		A7C3E1B626A40F2E00913703 /* PrintersWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintersWatchView.swift; sourceTree = "<group>"; };
 		A7C3E1B826A40F2E00913704 /* PanelWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelWatchView.swift; sourceTree = "<group>"; };
 		A7C3E1BA26A40F2E00913705 /* CamerasWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasWatchView.swift; sourceTree = "<group>"; };
 		A7C3E1BC26A40F2E00913706 /* WatchInterfaceModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchInterfaceModelTests.swift; sourceTree = "<group>"; };
+		B7E4A1D026A30F2E00913701 /* OctoLightHAContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoLightHAContractTests.swift; sourceTree = "<group>"; };
+		B7E4A1D226A30F2E00913702 /* OctoLightHAHTTPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoLightHAHTTPTests.swift; sourceTree = "<group>"; };
+		B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoLightHAService.swift; sourceTree = "<group>"; };
+		B7E4A1E026A30F2E00913710 /* PlainBackButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainBackButtonTests.swift; sourceTree = "<group>"; };
+		C4E1A10126A50F2E00913701 /* TimeToFilament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeToFilament.swift; sourceTree = "<group>"; };
+		C4E1A10426A50F2E00913701 /* TimeToFilamentRowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeToFilamentRowsView.swift; sourceTree = "<group>"; };
+		C4E1A10626A50F2E00913701 /* TimeToFilamentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeToFilamentTests.swift; sourceTree = "<group>"; };
+		C4E1A10826A50F2E00913701 /* TimeToFilamentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeToFilamentService.swift; sourceTree = "<group>"; };
+		C746A1E126A20F2E00913754 /* CamerasPageControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasPageControllerTests.swift; sourceTree = "<group>"; };
+		CB66535B2160B6C100269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		CB66535C2160B6C200269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CB66535D2160B6C200269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CB66535E2160B6C200269730 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1316,6 +1326,7 @@
 				A1B2C3DB26A20F2E00913754 /* PrinterManagerCRUDTests.swift */,
 				A1B2C3DD26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift */,
 				A1B2C3DF26A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift */,
+				C4E1A10626A50F2E00913701 /* TimeToFilamentTests.swift */,
 				A1B2C3E126A20F2E00913754 /* CameraFullscreenPresentationTests.swift */,
 				C746A1E126A20F2E00913754 /* CamerasPageControllerTests.swift */,
 				A1B2C3E326A20F2E00913754 /* CloudKitLegacyCompletionTests.swift */,
@@ -1631,6 +1642,7 @@
 				3D9AAD4F22B324AB0051BB1B /* Notifications */,
 				3D1A935521326ACC0050ED9A /* Commands */,
 				3DBAE4A020E69D4900D2137D /* CurrentStateEvent.swift */,
+				C4E1A10126A50F2E00913701 /* TimeToFilament.swift */,
 				3D82873620E3EBC80035AE0B /* Printer.swift */,
 				3DF5CD00268009B1002295D2 /* PrinterConnectionType.swift */,
 				3D999B2024E9CDB4007AA99F /* MultiCamera.swift */,
@@ -1672,6 +1684,7 @@
 				3D8B293120E556D400296D9D /* OctoPrintClient.swift */,
 				3DAD2DDB21816D62004A4223 /* OctoPrintRESTClient.swift */,
 				B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */,
+				C4E1A10826A50F2E00913701 /* TimeToFilamentService.swift */,
 				3D98C1D920E5D096007BB13F /* WebSocketClient.swift */,
 				3DBAE4A220E6A02A00D2137D /* WebSocketClientDelegate.swift */,
 				3D4508A220F956AD00AC0EC8 /* OctoPrintClientDelegate.swift */,
@@ -1872,6 +1885,7 @@
 				3D89F88023E6324900E99110 /* SubpanelsVCDelegate.swift */,
 				3D3B45DD2123F07400812FFE /* SubpanelViewController.swift */,
 				3D8B292C20E5514A00296D9D /* PrinterSubpanelViewController.swift */,
+				C4E1A10426A50F2E00913701 /* TimeToFilamentRowsView.swift */,
 				3DF0157521227ACB002B4C14 /* TempHistoryViewController.swift */,
 				583827DF22E62D4D00784706 /* Mosaic */,
 				3D88C3E62193F17800BC84DD /* CancelObjectViewController.swift */,
@@ -2415,6 +2429,7 @@
 				A1B2C3DC26A20F2E00913754 /* PrinterManagerCRUDTests.swift in Sources */,
 				A1B2C3DE26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift in Sources */,
 				A1B2C3E026A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift in Sources */,
+				C4E1A10726A50F2E00913701 /* TimeToFilamentTests.swift in Sources */,
 				A1B2C3E226A20F2E00913754 /* CameraFullscreenPresentationTests.swift in Sources */,
 				C746A1E226A20F2E00913754 /* CamerasPageControllerTests.swift in Sources */,
 				A1B2C3E426A20F2E00913754 /* CloudKitLegacyCompletionTests.swift in Sources */,
@@ -2547,6 +2562,7 @@
 				3D4508A320F956AD00AC0EC8 /* OctoPrintClientDelegate.swift in Sources */,
 				3D8B293220E556D400296D9D /* OctoPrintClient.swift in Sources */,
 				B7E4A1D526A30F2E00913703 /* OctoLightHAService.swift in Sources */,
+				C4E1A10926A50F2E00913701 /* TimeToFilamentService.swift in Sources */,
 				3D037164270ABAA200395B6F /* SponsorTableViewCell.swift in Sources */,
 				3D9C77B8266D3597003E6FD9 /* PrinterConnectionTypeTableViewController.swift in Sources */,
 				3D3B45DE2123F07400812FFE /* SubpanelViewController.swift in Sources */,
@@ -2600,6 +2616,8 @@
 				084AC3302B0D5BC600D99780 /* Spool.swift in Sources */,
 				3D82873920E3EC3B0035AE0B /* PrinterManager.swift in Sources */,
 				3DBAE4A120E69D4900D2137D /* CurrentStateEvent.swift in Sources */,
+				C4E1A10226A50F2E00913701 /* TimeToFilament.swift in Sources */,
+				C4E1A10526A50F2E00913701 /* TimeToFilamentRowsView.swift in Sources */,
 				583827DE22E36B9100784706 /* Palette2ViewController.swift in Sources */,
 				3DFBB8EF2569E07E00A7BD46 /* CameraHLSEmbeddedViewController.swift in Sources */,
 				3DC6DB352455589A0091E548 /* FilamentManagerViewController.swift in Sources */,
@@ -2757,8 +2775,10 @@
 				3DB15675279E6726006C945B /* Octorelay.swift in Sources */,
 				3D778F822402F81800B68942 /* OctoPrintClient.swift in Sources */,
 				B7E4A1D626A30F2E00913703 /* OctoLightHAService.swift in Sources */,
+				C4E1A10A26A50F2E00913701 /* TimeToFilamentService.swift in Sources */,
 				3DC23649240103F900D9EF28 /* WebSocketClientDelegate.swift in Sources */,
 				3DC23647240103E500D9EF28 /* CurrentStateEvent.swift in Sources */,
+				C4E1A10326A50F2E00913701 /* TimeToFilament.swift in Sources */,
 				3D34B9E527DE6B740079F39C /* UIUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

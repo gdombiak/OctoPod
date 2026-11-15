@@ -29,10 +29,16 @@ class SubpanelsViewController: UIViewController, UIPageViewControllerDataSource,
         addChild(pageContainer)
 
         // Add it to the view
-        view.addSubview(pageContainer.view)
-        
-        // Configure our custom pageControl
-        view.bringSubviewToFront(pageControl)
+        let pageView = pageContainer.view!
+        pageView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(pageView, belowSubview: pageControl)
+        NSLayoutConstraint.activate([
+            pageView.topAnchor.constraint(equalTo: view.topAnchor),
+            pageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            pageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            pageView.bottomAnchor.constraint(equalTo: pageControl.topAnchor, constant: -4)
+        ])
+        pageContainer.didMove(toParent: self)
 
         // Reset subpanels
         orderedViewControllers = []

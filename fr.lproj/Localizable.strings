@@ -505,6 +505,9 @@
 /* (No Comment) */
 "Notify failed resume job" = "Échec de la demande de reprise";
 
+/* A filament change or pause is happening now */
+"Now" = "Maintenant";
+
 /* Obico Is Not Watching */
 "Obico Is Not Watching" = "Le détective n’est pas en surveillance";
 
