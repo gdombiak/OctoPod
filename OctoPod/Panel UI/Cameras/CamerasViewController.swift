@@ -520,7 +520,7 @@ class CamerasViewController: UIViewController, UIPageViewControllerDataSource, U
             ?? parent?.viewIfLoaded?.window
             ?? lastKnownWindow
 
-        guard #available(iOS 13.0, *), let windowScene = controllerWindow?.windowScene else {
+        guard let windowScene = controllerWindow?.windowScene else {
             return controllerWindow
         }
         return windowScene.windows.first(where: { $0.isKeyWindow }) ?? controllerWindow
