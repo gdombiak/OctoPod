@@ -1,8 +1,13 @@
+import Network
 import SwiftUI
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+
+    private var networkMonitor: NWPathMonitor?
+    private let networkMonitorQueue = DispatchQueue(label: "org.OctoPod.TV.network")
+    private var networkWasAvailable: Bool?
 
     private var appDelegate: AppDelegate {
         UIApplication.shared.delegate as! AppDelegate
@@ -21,12 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         let appDelegate = self.appDelegate
-        appDelegate.cloudKitPrinterManager.start {
-            // Restore printer data from iCloud if tvOS has purged the local store.
-            if let printerManager = appDelegate.printerManager, printerManager.getPrinters().isEmpty {
-                appDelegate.cloudKitPrinterManager.resetLocalPrinters {} errorHandler: {}
-            }
-        }
+        monitorNetworkChanges()
+        appDelegate.cloudKitPrinterManager.start(nil)
         appDelegate.tvPrinterManager.resumeConnections()
     }
 
@@ -35,6 +36,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
+        stopMonitoringNetwork()
         appDelegate.saveContext()
+    }
+
+    func sceneDidDisconnect(_ scene: UIScene) {
+        stopMonitoringNetwork()
+    }
+
+    private func monitorNetworkChanges() {
+        guard networkMonitor == nil else { return }
+        let monitor = NWPathMonitor()
+        monitor.pathUpdateHandler = { [weak self, weak monitor] path in
+            let isAvailable = path.status == .satisfied
+            DispatchQueue.main.async {
+                guard let self, let monitor, self.networkMonitor === monitor else { return }
+                let wasAvailable = self.networkWasAvailable
+                self.networkWasAvailable = isAvailable
+                if wasAvailable == false && isAvailable {
+                    self.appDelegate.cloudKitPrinterManager.start(nil)
+                }
+            }
+        }
+        networkMonitor = monitor
+        monitor.start(queue: networkMonitorQueue)
+    }
+
+    private func stopMonitoringNetwork() {
+        networkMonitor?.cancel()
+        networkMonitor = nil
+        networkWasAvailable = nil
     }
 }

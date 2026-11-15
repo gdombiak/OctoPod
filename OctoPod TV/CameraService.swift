@@ -3,7 +3,7 @@ import UIKit
 import AVKit
 import SwiftUI
 
-struct Camera {
+struct Camera: Equatable {
     var index: Int
     var url: String
     var orientation: UIImage.Orientation
@@ -53,22 +53,38 @@ class CameraService: ObservableObject {
 
     // MARK: - Connection handling
 
-    func connectToServer(printer: Printer) {
-        if playing {
-            return
+    struct Configuration: Equatable {
+        fileprivate let username: String?
+        fileprivate let password: String?
+        fileprivate let headers: String?
+        fileprivate let preemptiveAuthentication: Bool
+        fileprivate let isStreamPathFromSettings: Bool
+        fileprivate let cameras: [Camera]
+
+        init(printer: Printer) {
+            username = printer.username
+            password = printer.password
+            headers = printer.headers
+            preemptiveAuthentication = printer.preemptiveAuthentication()
+            isStreamPathFromSettings = printer.isStreamPathFromSettings()
+            cameras = CameraService.cameras(for: printer)
         }
-        username = printer.username
-        password = printer.password
-        headers = printer.headers
-        preemptiveAuthentication = printer.preemptiveAuthentication()
-        isStreamPathFromSettings = printer.isStreamPathFromSettings()
-        
-        initCameras(printer: printer)
-        
-        // Start rendering the last selected camera
-        renderCamera(index: cameraIndex)
     }
-    
+
+    private var configuration: Configuration?
+
+    func connect(configuration: Configuration) {
+        if playing && self.configuration == configuration { return }
+        self.configuration = configuration
+        username = configuration.username
+        password = configuration.password
+        headers = configuration.headers
+        preemptiveAuthentication = configuration.preemptiveAuthentication
+        isStreamPathFromSettings = configuration.isStreamPathFromSettings
+        cameras = configuration.cameras
+        renderCamera(index: min(cameraIndex, cameras.count - 1))
+    }
+
     func disconnectFromServer() {
         streamingController?.stop()
         tsdTimer?.invalidate()
@@ -81,14 +97,10 @@ class CameraService: ObservableObject {
 
     /// Notification that the camera service is being used by another view
     func changedView(detailed: Bool) {
+        playingInDetailedView = detailed
         // AVPlayer cannot be used in 2 views so we need to stop the current one
         // and create a new one
-        if let _ = player, let _ = detailedPlayer {
-            if detailed {
-                playingInDetailedView = true
-            } else {
-                playingInDetailedView = false
-            }
+        if playing, player != nil, detailedPlayer != nil {
             renderCamera(index: cameraIndex)
         }
     }
@@ -326,8 +338,8 @@ class CameraService: ObservableObject {
     }
     
     /// Discover and store number of cameras, their URL and image orientation
-    fileprivate func initCameras(printer: Printer) {
-        cameras = Array()
+    fileprivate static func cameras(for printer: Printer) -> [Camera] {
+        var cameras: [Camera] = []
         
         if let multiCameras = printer.getMultiCameras() {
             // MultiCam plugin is installed so show all cameras
@@ -362,5 +374,6 @@ class CameraService: ObservableObject {
             let cameraOrientation = UIImage.Orientation(rawValue: Int(printer.cameraOrientation))!
             cameras.append(Camera(index: 0, url: cameraURL, orientation: cameraOrientation, streamRatio: printer.firstCameraAspectRatio16_9 ? CGFloat(0.5625) : CGFloat(0.75)))
         }
+        return cameras
     }
 }

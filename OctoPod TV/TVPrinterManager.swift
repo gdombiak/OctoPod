@@ -1,221 +1,191 @@
+import CoreData
 import Foundation
 
 class TVPrinterManager: ObservableObject, CloudKitPrinterDelegate {
-    @Published var printers: [Printer] = []
-    @Published var iCloudConnected = true
+    @Published private(set) var printers: [Printer] = []
+    @Published private(set) var page = 1
+    @Published private(set) var iCloudConnected = true
 
     let printerManager: PrinterManager
     let cloudKitPrinterManager: CloudKitPrinterManager
-    
-    private(set) var connections: [Printer: (websocket: ViewService, cameraService: CameraService)] = [:]
-    /// Remember which connections should be active. Active printers are those that appear in main view.
-    /// When app becomes active these connections will be reestablished. Printer name is stored in Array
-    private var active: Array<String> = Array()
+
+    private struct ConnectionConfiguration: Equatable {
+        let hostname: String
+        let apiKey: String
+        let username: String?
+        let password: String?
+        let headers: String?
+        let connectionType: Int16
+        let sharedNozzle: Bool
+
+        init(printer: Printer) {
+            hostname = printer.hostname
+            apiKey = printer.apiKey
+            username = printer.username
+            password = printer.password
+            headers = printer.headers
+            connectionType = printer.connectionType
+            sharedNozzle = printer.sharedNozzle
+        }
+    }
+
+    private(set) var connections: [NSManagedObjectID: (websocket: ViewService, cameraService: CameraService)] = [:]
+    private var connected: [NSManagedObjectID: ConnectionConfiguration] = [:]
+    private var failedConnections: Set<NSManagedObjectID> = []
+    private var activeCameras: Set<NSManagedObjectID> = []
+    private var detailedPrinterID: NSManagedObjectID?
+    private var isActive = false
+    private let printersPerPage = 4
+
+    var pages: Int {
+        (printers.count + printersPerPage - 1) / printersPerPage
+    }
+
+    var visiblePrinters: [Printer] {
+        Array(printers.dropFirst((page - 1) * printersPerPage).prefix(printersPerPage))
+    }
 
     init(printerManager: PrinterManager, cloudKitPrinterManager: CloudKitPrinterManager) {
         self.printerManager = printerManager
         self.cloudKitPrinterManager = cloudKitPrinterManager
-
-        self.updatePrinters(newPrinters: self.printerManager.getPrinters())
-
+        updatePrinters(printerManager.getPrinters())
         cloudKitPrinterManager.delegates.append(self)
     }
-    
-    // MARK: - Connection handling
-    
-    /// Open websocket connection and refresh camera connection/thread for selected printer; and
-    /// keep printer in the list of active connections. This is useful for temporary halts (see #suspendConnections)
-    func connectToServer(printerIndex: Int) {
-        if printers.count - 1 >= printerIndex {
-            let printer = printers[printerIndex]
-            // Open websocket to printer
-            self.connections[printer]?.websocket.connectToServer(printer: printer)
-            // Start rendering camera of printer
-            self.connections[printer]?.cameraService.connectToServer(printer: printer)
-            // Track that connection to this printer is active
-            active.append(printer.name)
-        }
+
+    func showPage(_ page: Int) {
+        guard (1...max(1, pages)).contains(page), page != self.page else { return }
+        self.page = page
+        reconcileConnections()
     }
 
-    /// Close websocket connection and refresh camera connection/thread for selected printer; and
-    /// remove printer from list of active connections.
-    func disconnectFromServer(printerIndex: Int) {
-        if printers.count - 1 >= printerIndex {
-            self.disconnectFromServer(printer: printers[printerIndex])
-        }
-    }
-    
-    /// Close websocket connection and refresh camera connection/thread for active printers but
-    /// still remember active printers. This is useful when tvOS app is no longer active. User may be
-    /// in whatever page (pagination in Main view) so we need to remember which printers were active
     func suspendConnections() {
-        for printerName in active {
-            if let printer = printers.first(where: {$0.name == printerName}) {
-                // Close websocket to printer
-                self.connections[printer]?.websocket.disconnectFromServer()
-                // Stop rendering camera of printer
-                self.connections[printer]?.cameraService.disconnectFromServer()
-            }
-        }
+        isActive = false
+        reconcileConnections()
     }
 
-    /// Open websocket connection and refresh camera connection/thread for active printers for active
-    /// printers. This is useful when tvOS app becomes active again. Active printers are those that user see in
-    /// main view
     func resumeConnections() {
-        for printerName in active {
-            if let printer = printers.first(where: {$0.name == printerName}) {
-                // Open websocket to printer
-                self.connections[printer]?.websocket.connectToServer(printer: printer)
-                // Start rendering camera of printer
-                self.connections[printer]?.cameraService.connectToServer(printer: printer)
-            }
-        }
-    }
-    
-    /// Close refresh camera connection/thread for all active printers except for specified one. List
-    /// of active printers is not modified. Camera connections is what consumes most of the CPU
-    /// so closing them when not being displayed is a good thing to save on.
-    func suspendOtherCameraConnections(skip: String) {
-        for printerName in active {
-            if printerName == skip {
-                continue
-            }
-            if let printer = printers.first(where: {$0.name == printerName}) {
-                // Stop rendering camera of printer
-                self.connections[printer]?.cameraService.disconnectFromServer()
-            }
-        }
+        isActive = true
+        reconcileConnections()
     }
 
-    /// Open refresh camera connection/thread for all active printers except for specified one. List
-    /// of active printers is not modified. Camera connections is what consumes most of the CPU
-    /// so closing them when not being displayed is a good thing to save on.
-    func resumeOtherCameraConnections(skip: String) {
-        for printerName in active {
-            if printerName == skip {
-                continue
-            }
-            if let printer = printers.first(where: {$0.name == printerName}) {
-                // Start rendering camera of printer
-                self.connections[printer]?.cameraService.connectToServer(printer: printer)
-            }
-        }
+    func showDetails(for printerID: NSManagedObjectID) {
+        guard connections[printerID] != nil else { return }
+        detailedPrinterID = printerID
+        reconcileConnections()
     }
 
+    func hideDetails(for printerID: NSManagedObjectID) {
+        guard detailedPrinterID == printerID else { return }
+        detailedPrinterID = nil
+        reconcileConnections()
+    }
 
     // MARK: - CloudKitPrinterDelegate
-    
+
     func printersUpdated() {
-        refreshState()
+        DispatchQueue.main.async {
+            self.updatePrinters(self.printerManager.getPrinters())
+        }
     }
 
-    func printerAdded(printer: Printer) {
-        refreshState()
-    }
-    
-    func printerUpdated(printer: Printer) {
-        refreshState()
-    }
-    
-    func printerDeleted(printer: Printer) {
-        refreshState()
-    }
-    
     func iCloudStatusChanged(connected: Bool) {
         DispatchQueue.main.async {
             self.iCloudConnected = connected
+            self.reconcileConnections()
         }
     }
-    
-    // MARK: - Notifications
-    
-    func cameraChanged(printerName: String) {
+
+    // MARK: - Camera settings
+
+    func cameraChanged(printerID: NSManagedObjectID) {
         DispatchQueue.main.async {
-            // Fetch updated printer
-            if let updatedPrinter = self.printerManager.getPrinterByName(name: printerName) {
-                // Look for old printer
-                var exist: Printer?
-                for printer in self.printers {
-                    if self.samePrinter(printer, updatedPrinter) {
-                        // Found same printer
-                        exist = printer
-                        break
-                    }
-                }
-                if let oldPrinter = exist {
-                    // Retrieve existing cameraService that is rendering old camera info
-                    if let cameraService = self.connections[oldPrinter]?.cameraService {
-                        // Stop rendering old data
-                        cameraService.disconnectFromServer()
-                        // Update camera service to use newest camera info and render new camera
-                        cameraService.connectToServer(printer: updatedPrinter)
-                    }
-                }
+            guard self.activeCameras.contains(printerID),
+                  let camera = self.connections[printerID]?.cameraService else { return }
+
+            // The settings writer uses a sibling context. Load its saved camera settings.
+            let context = self.printerManager.newPrivateContext()
+            let configuration = context.performAndWait {
+                ((try? context.existingObject(with: printerID)) as? Printer).map(CameraService.Configuration.init)
+            }
+            if let configuration {
+                camera.connect(configuration: configuration)
             }
         }
     }
 
-    // MARK: - Private functions
-
-    fileprivate func samePrinter(_ printer: Printer, _ newPrinter: Printer) -> Bool {
-        return printer.name == newPrinter.name && printer.hostname == newPrinter.hostname && printer.recordName == newPrinter.recordName
+    func printerConnectionFailed(_ printerID: NSManagedObjectID) {
+        if connected[printerID] != nil {
+            failedConnections.insert(printerID)
+        }
     }
-    
-    fileprivate func updatePrinters(newPrinters: [Printer]) {
-        var newConnections: [Printer: (websocket: ViewService, cameraService: CameraService)] = [:]
-        var sortedPrinters = newPrinters
-        
-        // Create or reuse existing websocket and camera connections
-        for newPrinter in newPrinters {
-            var exist: Printer?
-            for printer in printers {
-                if samePrinter(printer, newPrinter) {
-                    // Found same printer
-                    exist = printer
-                    break
-                }
+
+    private func updatePrinters(_ newPrinters: [Printer]) {
+        let newIDs = Set(newPrinters.map(\.objectID))
+        for printerID in Array(connections.keys) where !newIDs.contains(printerID) {
+            disconnect(printerID)
+            connections.removeValue(forKey: printerID)
+        }
+        for printer in newPrinters where connections[printer.objectID] == nil {
+            connections[printer.objectID] = (ViewService(tvPrinterManager: self), CameraService())
+        }
+        if let detailedPrinterID, !newIDs.contains(detailedPrinterID) {
+            self.detailedPrinterID = nil
+        }
+
+        // Preserve the selected page while it exists, clamping before publishing a shorter list.
+        let newPageCount = (newPrinters.count + printersPerPage - 1) / printersPerPage
+        if page > max(1, newPageCount) {
+            page = max(1, newPageCount)
+        }
+        printers = newPrinters
+        reconcileConnections()
+    }
+
+    private func reconcileConnections() {
+        let canConnect = isActive && iCloudConnected
+        var desiredPrinters = canConnect ? visiblePrinters : []
+        if canConnect, let detailedPrinterID,
+           !desiredPrinters.contains(where: { $0.objectID == detailedPrinterID }),
+           let printer = printers.first(where: { $0.objectID == detailedPrinterID }) {
+            desiredPrinters.append(printer)
+        }
+
+        let desiredIDs = Set(desiredPrinters.map(\.objectID))
+        for printerID in Array(connected.keys) where !desiredIDs.contains(printerID) {
+            disconnect(printerID)
+        }
+        for printer in desiredPrinters {
+            let id = printer.objectID
+            guard let connection = connections[id] else { continue }
+
+            let configuration = ConnectionConfiguration(printer: printer)
+            if connected[id] != configuration || failedConnections.contains(id) {
+                // Force a new WebSocket as well as HTTP when credentials or other inputs change.
+                disconnect(id)
+                connection.websocket.connectToServer(printer: printer)
+                connected[id] = configuration
             }
-            if let existingPrinter = exist {
-                // Reuse existing connections
-                newConnections[newPrinter] = self.connections[existingPrinter]
+            if detailedPrinterID == nil || detailedPrinterID == id {
+                if activeCameras.insert(id).inserted {
+                    connection.cameraService.connect(configuration: CameraService.Configuration(printer: printer))
+                }
             } else {
-                // Setup new connections for new printer
-                newConnections[newPrinter] = (ViewService(tvPrinterManager: self), CameraService())
+                stopCamera(id)
             }
         }
-        // Close no longer needed connections
-        for printer in printers {
-            if !newPrinters.contains(where: { samePrinter($0, printer) }) {
-                disconnectFromServer(printer: printer)
-            }
-        }
-
-        // Store new valid conections for new printers
-        self.connections = newConnections
-        
-//        // Sort printers by name (in the future could be by status so printing appear first)
-//        sortedPrinters.sort { (left, right) -> Bool in
-//            return left.name < right.name
-//        }
-        
-        // Store sorted new printers
-        self.printers = sortedPrinters
-    }
-    
-    fileprivate func refreshState() {
-        DispatchQueue.main.async {
-            self.updatePrinters(newPrinters: self.printerManager.getPrinters())
-        }
-    }
-    
-    fileprivate func disconnectFromServer(printer: Printer) {
-        // Close websocket to printer
-        self.connections[printer]?.websocket.disconnectFromServer()
-        // Stop rendering camera of printer
-        self.connections[printer]?.cameraService.disconnectFromServer()
-        // Track that connection to this printer is no longer active
-        active.removeAll(where: { $0 == printer.name})
     }
 
+    private func disconnect(_ printerID: NSManagedObjectID) {
+        failedConnections.remove(printerID)
+        if connected.removeValue(forKey: printerID) != nil {
+            connections[printerID]?.websocket.disconnectFromServer()
+        }
+        stopCamera(printerID)
+    }
+
+    private func stopCamera(_ printerID: NSManagedObjectID) {
+        if activeCameras.remove(printerID) != nil {
+            connections[printerID]?.cameraService.disconnectFromServer()
+        }
+    }
 }

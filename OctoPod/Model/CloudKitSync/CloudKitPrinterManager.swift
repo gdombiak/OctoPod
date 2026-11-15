@@ -18,6 +18,8 @@ class CloudKitPrinterManager {
     private let printerManager: PrinterManager!
     private let synchronizationLock = NSLock()
     private var starting = false
+    private var startupRequested = false
+    private let recoverPurgedStore: Bool
     private var listeningToCloudKitEvents = false
     private let privateContext: NSManagedObjectContext!
     
@@ -28,7 +30,8 @@ class CloudKitPrinterManager {
     private(set) var log: Array<CloudKitPrinterLogEntry> = Array()
     private let LOG_MAX_SIZE = 30
     
-    init(printerManager: PrinterManager) {
+    init(printerManager: PrinterManager, recoverPurgedStore: Bool = false) {
+        self.recoverPurgedStore = recoverPurgedStore
         self.printerManager = printerManager
         self.privateContext = printerManager.newPrivateContext()
         
@@ -45,6 +48,7 @@ class CloudKitPrinterManager {
             return
         }
 
+        if recoverPurgedStore { listenToCloudKitEvents() }
         discoverAccountStatus {
             if self.iCloudAvailable {
                 // Wait 500ms before pushing local changes (of printers) to CloudKit (to sync other devices)
@@ -56,34 +60,55 @@ class CloudKitPrinterManager {
                     // when other devices of the same user, that is logged in iCloud, change their printers information)
                     self.checkNotificationsSubscription()
                     
-                    self.checkZone(completion: { (error) in
-                        if let error = error {
-                            self.appendLog("Error making sure app has its own CKRecordZone. \(error)")
-                            self.finishStarting()
-                            onceStarted?()
-                        } else {
-                            // Pull printer updates from iCloud and then push local printer changes to iCloud
-                            // If existing printers were never pushed to iCloud then pulling will update
-                            // printers with information. Push will end up pushing only printers that were
-                            // not present in inCloud or that were changed while not connected to iCloud
-                            // or that failed previously
-                            self.pullChanges(completionHandler: {
-                                self.pushChanges(completion: {
-                                    self.finishStarting()
-                                    onceStarted?()
-                                })
-                            }, errorHandler: {
-                                self.finishStarting()
-                                onceStarted?()
-                                // Do nothing
-                            })
-                        }
-                    })
+                    self.syncPrintersAtStartup(onceStarted: onceStarted)
                 }
             } else {
                 self.finishStarting()
                 onceStarted?()
             }
+        }
+    }
+
+    private func syncPrintersAtStartup(allowEmptyStoreRetry: Bool = true, onceStarted: (() -> Void)?) {
+        let handleFailure = {
+            if self.recoverPurgedStore, allowEmptyStoreRetry, !self.cloudKitSyncStopped(), self.localPrinterStoreIsEmpty() {
+                // Keep this attempt active so a foreground or account event cannot overlap the retry.
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    guard UIApplication.shared.applicationState != .background,
+                          !self.cloudKitSyncStopped(), self.localPrinterStoreIsEmpty() else {
+                        self.finishStarting()
+                        onceStarted?()
+                        return
+                    }
+                    DispatchQueue.global(qos: .utility).async {
+                        self.syncPrintersAtStartup(allowEmptyStoreRetry: false, onceStarted: onceStarted)
+                    }
+                }
+                return
+            }
+            self.finishStarting()
+            onceStarted?()
+        }
+
+        checkZone { error in
+            if let error {
+                self.appendLog("Error making sure app has its own CKRecordZone. \(error)")
+                handleFailure()
+                return
+            }
+            self.pullChanges(completionHandler: {
+                self.pushChanges(completion: {
+                    self.finishStarting()
+                    onceStarted?()
+                })
+            }, errorHandler: handleFailure)
+        }
+    }
+
+    private func localPrinterStoreIsEmpty() -> Bool {
+        privateContext.performAndWait {
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Printer")
+            return (try? privateContext.count(for: request)) == 0
         }
     }
 
@@ -96,6 +121,7 @@ class CloudKitPrinterManager {
         defer { synchronizationLock.unlock() }
         NotificationCenter.default.removeObserver(self, name: Notification.Name.CKAccountChanged, object: nil)
         listeningToCloudKitEvents = false
+        startupRequested = false
     }
     
     
@@ -243,17 +269,28 @@ class CloudKitPrinterManager {
     // Pull incremental changes since last pull
     // Printers stored in Core Data will get updated based on iCloud information
     func pullChanges(completionHandler: (() -> Void)?, errorHandler: (() -> Void)?) {
+        pullChanges(allowRecovery: true, completionHandler: completionHandler, errorHandler: errorHandler)
+    }
+
+    private func pullChanges(allowRecovery: Bool, completionHandler: (() -> Void)?, errorHandler: (() -> Void)?) {
         // If user disabled CloudKit sync then do nothing
         if cloudKitSyncStopped() || !iCloudAvailable {
             completionHandler?()
             return
         }
         var foundNewRecords = false
+        var zoneFetchError: Error?
         let defaults = UserDefaults.standard
         var changeToken: CKServerChangeToken? = nil
+        var changeTokenData = defaults.data(forKey: CHANGE_TOKEN)
+        // A purgeable cache can be recreated while its saved change token survives.
+        if recoverPurgedStore, changeTokenData != nil, localPrinterStoreIsEmpty() {
+            defaults.removeObject(forKey: CHANGE_TOKEN)
+            changeTokenData = nil
+        }
         // Retrieve stored token that tracks last set of changes that were processed.
         // Used for incremental reading
-        if let changeTokenData = defaults.data(forKey: CHANGE_TOKEN) {
+        if let changeTokenData {
             // Parse stored token
             do {
                 changeToken = try NSKeyedUnarchiver.unarchivedObject(ofClass: CKServerChangeToken.self, from: changeTokenData)
@@ -294,50 +331,10 @@ class CloudKitPrinterManager {
         }
         // Block to execute when the fetch for a zone "page" has completed
         // Works like pagination so more might be coming
-        setRecordZoneFetchCompletion(operation) { recordZoneID, serverChangeToken, clientChangeTokenData, moreComing, error in
+        setRecordZoneFetchCompletion(operation) { _, serverChangeToken, _, _, error in
             if let error = error {
-                if let ckerror = error as? CKError {
-                    if ckerror.isZoneNotFound() || ckerror.isUserDeletedZone() {
-                        // ZoneNotFound is the one error we can reasonably expect & handle here, since
-                        // the zone isn't created automatically for us until we've saved one record.
-                        // create the zone and, if successful, try again
-                        self.createZone() { error in
-                            if let error = error {
-                                // Failed to create zone for some reason
-                                self.appendLog("Error fetching zone changes. Failed to create zone due to: \(error)")
-                                return
-                            } else {
-                                // Zone created
-                                // Mark all printers as need to be updated in iCloud
-                                self.printerManager.resetPrintersForiCloud(context: self.privateContext)
-                                // Reset change token since it is no longer valid
-                                UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
-                                // Cancel this operation
-                                operation.cancel()
-                                // Zone created. Retry operation
-                                self.pullChanges(completionHandler: completionHandler, errorHandler: errorHandler)
-                            }
-                        }
-                    } else if ckerror.isChangeTokenExpired() {
-                        // Token for incremental reads is no longer good. We need start from scratch
-                        // Mark all printers as need to be updated in iCloud
-                        self.printerManager.resetPrintersForiCloud(context: self.privateContext)
-                        // Reset change token since it is no longer valid
-                        UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
-                        // Cancel this operation
-                        operation.cancel()
-                        // Retry operation
-                        self.pullChanges(completionHandler: completionHandler, errorHandler: errorHandler)
-                    } else {
-                        // Failed with some unknown CKError
-                        self.appendLog("Error fetching zone changes: \(error)")
-                        return
-                    }
-                } else {
-                    // Failed with some unknown Error
-                    self.appendLog("Error fetching zone changes: \(error)")
-                    return
-                }
+                zoneFetchError = error
+                return
             }
             guard let serverChangeToken = serverChangeToken else {
                 return
@@ -351,21 +348,45 @@ class CloudKitPrinterManager {
             }
         }
         // Done reading all zone changes
-        setFetchRecordZoneChangesCompletion(operation) { (error) in
-            if error == nil {
-                // Success. New data was downloaded
+        setFetchRecordZoneChangesCompletion(operation) { operationError in
+            guard let error = zoneFetchError ?? operationError else {
                 completionHandler?()
-                if foundNewRecords {
-                    // Alert delegates that printers have been updated
-                    self.notifyPrintersUpdated()
+                if foundNewRecords { self.notifyPrintersUpdated() }
+                return
+            }
+
+            // The per-zone error can carry a specific recovery reason when the operation reports a partial failure.
+            if allowRecovery, let cloudError = error as? CKError {
+                if cloudError.isZoneNotFound() || cloudError.isUserDeletedZone() {
+                    self.createZone { creationError in
+                        if let creationError {
+                            self.appendLog("Error fetching zone changes. Failed to create zone due to: \(creationError)")
+                            errorHandler?()
+                            return
+                        }
+                        self.retryPullFromBeginning(completionHandler: completionHandler, errorHandler: errorHandler)
+                    }
+                    return
+                }
+                if cloudError.isChangeTokenExpired() {
+                    self.retryPullFromBeginning(completionHandler: completionHandler, errorHandler: errorHandler)
+                    return
                 }
             }
+            self.appendLog("Error fetching zone changes: \(error)")
+            errorHandler?()
         }
         operation.qualityOfService = .utility
         
         let container = getiCloudContainer()
         let db = container.privateCloudDatabase
         db.add(operation)
+    }
+
+    private func retryPullFromBeginning(completionHandler: (() -> Void)?, errorHandler: (() -> Void)?) {
+        printerManager.resetPrintersForiCloud(context: privateContext)
+        UserDefaults.standard.removeObject(forKey: CHANGE_TOKEN)
+        pullChanges(allowRecovery: false, completionHandler: completionHandler, errorHandler: errorHandler)
     }
     
     /// CloudKit informed us that a record has been created or updated
@@ -453,6 +474,7 @@ class CloudKitPrinterManager {
     func pushChanges(completion: (() -> Void)?) {
         // If user disabled CloudKit sync then do nothing
         if cloudKitSyncStopped() || !iCloudAvailable {
+            completion?()
             return
         }
         privateContext.perform {
@@ -1397,6 +1419,7 @@ class CloudKitPrinterManager {
         synchronizationLock.lock()
         defer { synchronizationLock.unlock() }
         guard !starting else {
+            startupRequested = recoverPurgedStore
             return false
         }
         starting = true
@@ -1406,7 +1429,16 @@ class CloudKitPrinterManager {
     private func finishStarting() {
         synchronizationLock.lock()
         starting = false
+        let shouldRestart = startupRequested
+        startupRequested = false
         synchronizationLock.unlock()
+
+        if shouldRestart {
+            DispatchQueue.main.async {
+                guard UIApplication.shared.applicationState != .background else { return }
+                self.start(nil)
+            }
+        }
     }
 }
 

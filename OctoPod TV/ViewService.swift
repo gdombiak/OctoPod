@@ -1,3 +1,4 @@
+import CoreData
 import Foundation
 import UIKit
 
@@ -21,13 +22,16 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     @Published var cancelling: Bool?
     @Published var lastKnownPrintFile: PrintFile?
 
-    @Published var octolightHALightOn: Bool?
+    @Published private(set) var octoLightInstalled = false
+    @Published private(set) var octolightHALightOn: Bool?
+    @Published private(set) var lightToggleInProgress = false
 
     let tvPrinterManager: TVPrinterManager
     var octoPrintClient: OctoPrintClient!
     /// One service per TV printer connection. It is not the phone's shared service.
     private var octoLightHAService: OctoLightHAService!
-    var printerName: String?
+    private var printerID: NSManagedObjectID?
+    private var lightStateRevision: UInt = 0
     
     init(tvPrinterManager: TVPrinterManager) {
         self.tvPrinterManager = tvPrinterManager
@@ -72,27 +76,17 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     // MARK: - Connection handling
 
     func connectToServer(printer: Printer) {
-        printerName = printer.name
+        printerID = printer.objectID
         octoPrintClient.connectToServer(printer: printer)
-        if printer.octolightHAInstalled {
-            octoLightHAService.readState { result in
-                switch result {
-                case .updated(let lightIsOn):
-                    DispatchQueue.main.async {
-                        self.octolightHALightOn = lightIsOn
-                        NSLog("Updated \(self) with light on: \(lightIsOn)")
-                    }
-                case .stateUnknown:
-                    break
-                case .failed(let message, _):
-                    NSLog("Error fetching status of Home Assistant Light. Error: \(message)")
-                }
-            }
-        }
+        reloadLightAvailability()
     }
 
     func disconnectFromServer() {
         octoPrintClient.disconnectFromServer()
+        lightStateRevision &+= 1
+        printerID = nil
+        octoLightInstalled = false
+        octolightHALightOn = nil
     }
 
     // MARK: - File operations
@@ -127,17 +121,50 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     
     // MARK: - Octolight HA Plugin operations
     
+    private func reloadLightAvailability() {
+        guard let printerID else { return }
+        let context = tvPrinterManager.printerManager.newPrivateContext()
+        let installed = context.performAndWait {
+            let printer = (try? context.existingObject(with: printerID)) as? Printer
+            return printer?.octolightHAInstalled == true
+        }
+        guard installed != octoLightInstalled else { return }
+
+        lightStateRevision &+= 1
+        octoLightInstalled = installed
+        if installed {
+            fetchLightState()
+        } else {
+            octolightHALightOn = nil
+        }
+    }
+
+    private func fetchLightState() {
+        guard octoLightInstalled, !lightToggleInProgress else { return }
+        let revision = lightStateRevision
+        octoLightHAService.readState { [weak self] result in
+            guard case .updated(let isOn) = result else { return }
+            DispatchQueue.main.async {
+                guard let self, self.lightStateRevision == revision else { return }
+                self.octolightHALightOn = isOn
+            }
+        }
+    }
+
     func toggleOctoLightHA() {
-        octoLightHAService.toggle { result in
-            switch result {
-            case .updated(let lightIsOn):
-                DispatchQueue.main.async {
-                    self.octolightHALightOn = lightIsOn
+        guard octoLightInstalled, !lightToggleInProgress else { return }
+        lightToggleInProgress = true
+        lightStateRevision &+= 1
+        let revision = lightStateRevision
+        octoLightHAService.toggleUntilFinished { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self else { return }
+                self.lightToggleInProgress = false
+                if self.lightStateRevision == revision, case .updated(let isOn) = result {
+                    self.octolightHALightOn = isOn
+                } else {
+                    self.fetchLightState()
                 }
-            case .stateUnknown:
-                break
-            case .failed(let message, let statusCode):
-                NSLog("toggleOctoLightHA failed: \(message). Http response: \(statusCode)")
             }
         }
     }
@@ -207,7 +234,12 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     }
 
     func websocketConnectionFailed(error: Error) {
-        // TODO Update (new) variable for error message
+        guard let connection = octoPrintClient.captureOctoLightConnection()?.connectionChangeCounter else { return }
+        DispatchQueue.main.async { [weak self] in
+            guard let self, let printerID = self.printerID,
+                  self.octoPrintClient.captureOctoLightConnection()?.connectionChangeCounter == connection else { return }
+            self.tvPrinterManager.printerConnectionFailed(printerID)
+        }
     }
     
     // MARK: - OctoPrintPluginsDelegate
@@ -225,22 +257,28 @@ class ViewService: ObservableObject, OctoPrintClientDelegate, OctoPrintPluginsDe
     }
 
     // MARK: - OctoPrintSettingsDelegate
+
+    func octolightHAAvailabilityChanged(installed: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            self?.reloadLightAvailability()
+        }
+    }
     
     func cameraOrientationChanged(newOrientation: UIImage.Orientation) {
-        if let printerName = printerName {
-            tvPrinterManager.cameraChanged(printerName: printerName)
+        if let printerID {
+            tvPrinterManager.cameraChanged(printerID: printerID)
         }
     }
     
     func cameraPathChanged(streamUrl: String) {
-        if let printerName = printerName {
-            tvPrinterManager.cameraChanged(printerName: printerName)
+        if let printerID {
+            tvPrinterManager.cameraChanged(printerID: printerID)
         }
     }
     
     func camerasChanged(camerasURLs: Array<String>) {
-        if let printerName = printerName {
-            tvPrinterManager.cameraChanged(printerName: printerName)
+        if let printerID {
+            tvPrinterManager.cameraChanged(printerID: printerID)
         }
     }
 

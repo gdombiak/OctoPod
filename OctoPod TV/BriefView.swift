@@ -11,7 +11,7 @@ struct BriefView: View {
         VStack() {
             HStack {
                 VStack() {
-                    NavigationLink(destination: DetailedView(name: printer.name)
+                    NavigationLink(destination: DetailedView(printerID: printer.objectID, name: printer.name)
                         .environmentObject(service)
                         .environmentObject(cameraService)
                     ) {

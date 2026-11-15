@@ -91,23 +91,31 @@ final class OctoLightHAService {
         perform(.toggle, completion: completion)
     }
 
+    /// Report the end of the mutation even when the connection changes and the result is discarded.
+    func toggleUntilFinished(_ completion: @escaping (OctoLightHAResult?) -> Void) {
+        perform(.toggle, abandoned: { completion(nil) }, completion: completion)
+    }
+
     func turn(on: Bool, _ completion: @escaping (OctoLightHAResult) -> Void) {
         perform(.turn(on), completion: completion)
     }
 
-    private func perform(_ operation: Operation, allowFallback: Bool = true, completion: @escaping (OctoLightHAResult) -> Void) {
-        guard let connection = transport.captureOctoLightConnection() else { return }
+    private func perform(_ operation: Operation, abandoned: (() -> Void)? = nil, completion: @escaping (OctoLightHAResult) -> Void) {
+        guard let connection = transport.captureOctoLightConnection() else {
+            abandoned?()
+            return
+        }
         adoptConnectionChangeCounter(connection.connectionChangeCounter)
         let api = currentAPI()
         dispatch(operation, api: api, on: connection) { response in
-            self.finish(operation: operation, api: api, changeCounter: connection.connectionChangeCounter, response: response, allowFallback: allowFallback, completion: completion)
+            self.finish(operation: operation, api: api, changeCounter: connection.connectionChangeCounter, response: response, allowFallback: true, abandoned: abandoned, completion: completion)
         }
     }
 
-    private func finish(operation: Operation, api: OctoLightHAAPI, changeCounter: UInt, response: OctoLightHAResponse, allowFallback: Bool, completion: @escaping (OctoLightHAResult) -> Void) {
+    private func finish(operation: Operation, api: OctoLightHAAPI, changeCounter: UInt, response: OctoLightHAResponse, allowFallback: Bool, abandoned: (() -> Void)?, completion: @escaping (OctoLightHAResult) -> Void) {
         switch interpret(operation: operation, api: api, changeCounter: changeCounter, response: response, allowFallback: allowFallback) {
         case .stale:
-            return
+            abandoned?()
         case .done(let outcome):
             if case .failed(let message, let statusCode) = outcome {
                 NSLog("OctoLightHA \(operation.logName) failed. Error: \(message). Http response: \(statusCode)")
@@ -116,10 +124,13 @@ final class OctoLightHAService {
         case .retry(let nextAPI):
             // The counter check and the client that sends must be the same snapshot.
             // A printer switch between those two steps would otherwise run the fallback on the new printer.
-            guard let connection = transport.captureOctoLightConnection(), connection.connectionChangeCounter == changeCounter else { return }
+            guard let connection = transport.captureOctoLightConnection(), connection.connectionChangeCounter == changeCounter else {
+                abandoned?()
+                return
+            }
             NSLog("OctoLightHA \(operation.logName) via \(api) returned 405. Retrying with \(nextAPI).")
             dispatch(operation, api: nextAPI, on: connection) { retryResponse in
-                self.finish(operation: operation, api: nextAPI, changeCounter: changeCounter, response: retryResponse, allowFallback: false, completion: completion)
+                self.finish(operation: operation, api: nextAPI, changeCounter: changeCounter, response: retryResponse, allowFallback: false, abandoned: abandoned, completion: completion)
             }
         }
     }

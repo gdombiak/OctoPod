@@ -317,6 +317,20 @@ final class OctoLightHAContractTests: XCTestCase {
         ])
     }
 
+    func testToggleReportsTerminationWithoutSendingFallbackAfterReconnect() {
+        transport.hold = true
+        transport.script = [(nil, nil, 405)]
+        var outcomes: [OctoLightHAResult?] = []
+        service.toggleUntilFinished { outcomes.append($0) }
+        XCTAssertTrue(outcomes.isEmpty)
+
+        transport.connectionChangeCounter += 1
+        transport.releaseHeld()
+
+        XCTAssertEqual(outcomes, [nil])
+        XCTAssertEqual(transport.calls, [RecordedOctoLightCall(operation: .toggle, api: .commands)])
+    }
+
     private func learnLegacy() {
         transport.script = [(["state": false] as NSDictionary, nil, 200)]
         XCTAssertEqual(perform(service.readState), .updated(false))

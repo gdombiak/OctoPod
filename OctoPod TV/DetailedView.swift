@@ -1,7 +1,9 @@
+import CoreData
 import SwiftUI
 import AVKit
 
 struct DetailedView : View {
+    let printerID: NSManagedObjectID
     let name: String
     
     @ObservedObject private var tvPrinterManager = { return (UIApplication.shared.delegate as! AppDelegate).tvPrinterManager }()
@@ -20,18 +22,18 @@ struct DetailedView : View {
                 } else {
                     MaximizedCameraView(geometry: geometry, service: viewService, cameraService: cameraService, namespace: namespace, cameraMaximized: $cameraMaximized)
                 }
-            }.navigationTitle(self.name)
+            }.navigationTitle(name)
         }.onDisappear {
             // Ask TVPrinterManager to resume refreshing cameras that appear in main view
-            self.tvPrinterManager.resumeOtherCameraConnections(skip: self.name)
             // Tell CameraService that it's not longer being used by detailed view
             cameraService.changedView(detailed: false)
+            self.tvPrinterManager.hideDetails(for: printerID)
         }.onAppear() {
             // Ask TVPrinterManager to stop refreshing other cameras that appear in main view
             // This will save CPU usage, websockets do not consume much
-            self.tvPrinterManager.suspendOtherCameraConnections(skip: self.name)
             // Tell CameraService that it's being used by detailed view
             cameraService.changedView(detailed: true)
+            self.tvPrinterManager.showDetails(for: printerID)
         }.focusScope(self.namespace)
     }
 }
@@ -47,7 +49,7 @@ struct DetailedView : View {
 struct NormalCameraView: View {
     @ObservedObject var appConfiguration = { return (UIApplication.shared.delegate as! AppDelegate).appConfiguration }()
     let geometry: GeometryProxy
-    let service: ViewService
+    @ObservedObject var service: ViewService
     let cameraService: CameraService
     let namespace: Namespace.ID
     @Binding var cameraMaximized: Bool
@@ -169,12 +171,17 @@ struct NormalCameraView: View {
                 self.cancel(enabled: false)
             }
             Spacer()
-            if let _ = self.service.octolightHALightOn {
+            if self.service.octoLightInstalled {
                 Button(action: {
                     self.service.toggleOctoLightHA()
                 }, label: {
-                    Image(self.service.octolightHALightOn == true ? "Light_Off" : "Light_On")
+                    if let isLightOn = self.service.octolightHALightOn {
+                        Image(isLightOn ? "Light_Off" : "Light_On")
+                    } else {
+                        Image(systemName: "lightbulb")
+                    }
                 })
+                .accessibilityLabel(Text("Toggle light"))
                 
                 Spacer()
             }
