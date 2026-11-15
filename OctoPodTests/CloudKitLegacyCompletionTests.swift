@@ -1,5 +1,6 @@
 import XCTest
 import CloudKit
+import CoreData
 @testable import OctoPod
 
 final class CloudKitLegacyCompletionTests: XCTestCase {
@@ -187,6 +188,395 @@ final class CloudKitLegacyCompletionTests: XCTestCase {
         let collector = CloudKitItemFailureCollector.associated(with: operation)
         if CloudKitLegacyCompletion.shouldForwardChangeTokenUpdate(itemErrors: collector.snapshot) {
             onForward()
+        }
+    }
+}
+
+final class CloudKitPrinterPullTests: PrinterManagerTestCase {
+    private final class FailingPrinterManager: PrinterManager {
+        var failSaves = false
+
+        override func saveObject(_ object: NSManagedObject, context: NSManagedObjectContext) -> Bool {
+            !failSaves && super.saveObject(object, context: context)
+        }
+
+        override func updatePrinter(_ printer: Printer, context: NSManagedObjectContext) -> Bool {
+            !failSaves && super.updatePrinter(printer, context: context)
+        }
+    }
+
+    private final class Operations {
+        private let lock = NSLock()
+        private var submitted: [CKDatabaseOperation] = []
+        private let expectations: [XCTestExpectation]
+
+        init(_ expectations: [XCTestExpectation]) {
+            self.expectations = expectations
+        }
+
+        func submit(_ operation: CKDatabaseOperation) {
+            lock.lock()
+            let index = submitted.count
+            submitted.append(operation)
+            lock.unlock()
+            if expectations.indices.contains(index) {
+                expectations[index].fulfill()
+            } else {
+                XCTFail("Unexpected CloudKit operation: \(type(of: operation))")
+            }
+        }
+
+        func pull(_ index: Int) -> CKFetchRecordZoneChangesOperation {
+            operation(index) as! CKFetchRecordZoneChangesOperation
+        }
+
+        func operation(_ index: Int) -> CKDatabaseOperation {
+            lock.lock()
+            defer { lock.unlock() }
+            return submitted[index]
+        }
+    }
+
+    private var writer: FailingPrinterManager!
+    private var defaults: UserDefaults!
+    private var defaultsName: String!
+
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        writer = FailingPrinterManager(managedObjectContext: persistentContainer.viewContext, persistentContainer: persistentContainer)
+        defaultsName = "CloudKitPrinterPullTests.\(UUID().uuidString)"
+        defaults = try XCTUnwrap(UserDefaults(suiteName: defaultsName))
+    }
+
+    override func tearDownWithError() throws {
+        defaults?.removePersistentDomain(forName: defaultsName)
+        writer = nil
+        defaults = nil
+        try super.tearDownWithError()
+    }
+
+    func testFailedSaveBlocksCheckpointFromAnEarlierPage() {
+        let oldCheckpoint = Data([1])
+        let proposedCheckpoint = Data([2])
+        var stored = oldCheckpoint
+        var progress = CloudKitPrinterPullProgress()
+        progress.checkpoint = proposedCheckpoint
+        progress.localError = TestSaveError.forced
+
+        let failure = progress.finish(operationError: nil) { stored = $0 }
+        XCTAssertNotNil(failure as? TestSaveError)
+        XCTAssertEqual(stored, oldCheckpoint)
+
+        progress.localError = nil
+        XCTAssertNil(progress.finish(operationError: nil) { stored = $0 })
+        XCTAssertEqual(stored, proposedCheckpoint)
+    }
+
+    func testFailedInsertReplaysAndSavesIdentityWithTheNewRow() throws {
+        let first = expectation(description: "first pull submitted")
+        let replay = expectation(description: "replay submitted")
+        let operations = Operations([first, replay])
+        let manager = CloudKitPrinterManager(printerManager: writer, defaults: defaults) { [weak operations] in
+            operations?.submit($0)
+        }
+        let record = printerRecord(id: "remote-printer", name: "Test printer", hostname: "remote.local")
+        let otherID = try insertPrinter(defaultPrinter: true, hostname: "different.local")
+
+        writer.failSaves = true
+        let failed = pull(manager, succeeds: false)
+        wait(for: [first], timeout: 2)
+        operations.pull(0).recordWasChangedBlock?(record.recordID, .success(record))
+        operations.pull(0).fetchRecordZoneChangesResultBlock?(.success(()))
+        wait(for: [failed], timeout: 2)
+        XCTAssertEqual(try freshPrinterNamesInOrder(), ["Test printer"])
+        XCTAssertNil(try fetchPrinterState(id: otherID).recordName)
+
+        writer.failSaves = false
+        let recovered = pull(manager, succeeds: true)
+        wait(for: [replay], timeout: 2)
+        // Two deliveries of a record must update the same newly linked row.
+        for _ in 0..<2 {
+            operations.pull(1).recordWasChangedBlock?(record.recordID, .success(record))
+        }
+        operations.pull(1).fetchRecordZoneChangesResultBlock?(.success(()))
+        wait(for: [recovered], timeout: 2)
+
+        let state = allPrinterLinks()
+        XCTAssertEqual(state.count, 2)
+        XCTAssertEqual(state.first { $0.hostname == "remote.local" }?.recordName, "remote-printer")
+        XCTAssertNil(try fetchPrinterState(id: otherID).recordName)
+    }
+
+    func testFailedUpdateReplaysWithoutOverwritingNewerPendingLocalEdit() throws {
+        let first = expectation(description: "first pull submitted")
+        let replay = expectation(description: "replay submitted")
+        let operations = Operations([first, replay])
+        let manager = CloudKitPrinterManager(printerManager: writer, defaults: defaults) { [weak operations] in
+            operations?.submit($0)
+        }
+        let record = printerRecord(id: "linked", name: "Remote name", hostname: "printer.local")
+        let id = try insertPrinter(defaultPrinter: true, hostname: "printer.local")
+        let printer = try XCTUnwrap(persistentContainer.viewContext.existingObject(with: id) as? Printer)
+        printer.recordName = "linked"
+        printer.iCloudUpdate = false
+        try persistentContainer.viewContext.save()
+
+        writer.failSaves = true
+        let failed = pull(manager, succeeds: false)
+        wait(for: [first], timeout: 2)
+        operations.pull(0).recordWasChangedBlock?(record.recordID, .success(record))
+        operations.pull(0).fetchRecordZoneChangesResultBlock?(.success(()))
+        wait(for: [failed], timeout: 2)
+        XCTAssertEqual(try freshPrinterState(id: id).name, "Test printer")
+
+        printer.name = "Newer local name"
+        printer.userModified = Date(timeIntervalSince1970: 200)
+        printer.iCloudUpdate = true
+        try persistentContainer.viewContext.save()
+
+        writer.failSaves = false
+        let recovered = pull(manager, succeeds: true)
+        wait(for: [replay], timeout: 2)
+        operations.pull(1).recordWasChangedBlock?(record.recordID, .success(record))
+        operations.pull(1).fetchRecordZoneChangesResultBlock?(.success(()))
+        wait(for: [recovered], timeout: 2)
+        let stored = try freshPrinterState(id: id)
+        XCTAssertEqual(stored.name, "Newer local name")
+        XCTAssertTrue(stored.iCloudUpdate)
+        XCTAssertEqual(stored.recordName, "linked")
+        XCTAssertEqual(allPrinterLinks().count, 1)
+    }
+
+    func testPullPreservesPendingReorderWithSameModificationDate() throws {
+        let submitted = expectation(description: "pull submitted")
+        let operations = Operations([submitted])
+        let manager = CloudKitPrinterManager(printerManager: writer, defaults: defaults) { [weak operations] in
+            operations?.submit($0)
+        }
+        let (id, record) = try makeLinkedPrinter()
+        let finished = pull(manager, succeeds: true)
+        wait(for: [submitted], timeout: 2)
+
+        try reorderWhileSyncing(id)
+        let operation = operations.pull(0)
+        operation.recordWasChangedBlock?(record.recordID, .success(record))
+        operation.fetchRecordZoneChangesResultBlock?(.success(()))
+        wait(for: [finished], timeout: 2)
+
+        let stored = try freshPrinterState(id: id)
+        XCTAssertEqual(stored.position, 1)
+        XCTAssertTrue(stored.iCloudUpdate)
+    }
+
+    func testPushAcknowledgmentKeepsReorderForTheQueuedPush() throws {
+        let firstSubmitted = expectation(description: "original push submitted")
+        let nextSubmitted = expectation(description: "reordered push submitted")
+        let operations = Operations([firstSubmitted, nextSubmitted])
+        let manager = CloudKitPrinterManager(printerManager: writer, defaults: defaults) { [weak operations] in
+            operations?.submit($0)
+        }
+        let (id, _) = try makeLinkedPrinter()
+        let firstFinished = expectation(description: "original push completed")
+        manager.pushChanges { firstFinished.fulfill() }
+        wait(for: [firstSubmitted], timeout: 2)
+        let firstSave = try XCTUnwrap(operations.operation(0) as? CKModifyRecordsOperation)
+        let firstRecord = try XCTUnwrap(firstSave.recordsToSave?.first)
+        XCTAssertEqual(firstRecord["position"] as? Int16, 0)
+
+        try reorderWhileSyncing(id)
+        let nextFinished = expectation(description: "reordered push completed")
+        manager.pushChanges { nextFinished.fulfill() }
+        firstSave.perRecordSaveBlock?(firstRecord.recordID, .success(firstRecord))
+        firstSave.modifyRecordsResultBlock?(.success(()))
+        guard XCTWaiter.wait(for: [firstFinished, nextSubmitted], timeout: 2, enforceOrder: true) == .completed else {
+            XCTFail("The older push cleared the pending reorder")
+            return
+        }
+
+        let nextSave = try XCTUnwrap(operations.operation(1) as? CKModifyRecordsOperation)
+        let nextRecord = try XCTUnwrap(nextSave.recordsToSave?.first)
+        XCTAssertEqual(nextRecord["position"] as? Int16, 1)
+        XCTAssertEqual(nextRecord["modified"] as? Date, firstRecord["modified"] as? Date)
+        nextSave.perRecordSaveBlock?(nextRecord.recordID, .success(nextRecord))
+        nextSave.modifyRecordsResultBlock?(.success(()))
+        wait(for: [nextFinished], timeout: 2)
+        let stored = try freshPrinterState(id: id)
+        XCTAssertEqual(stored.position, 1)
+        XCTAssertFalse(stored.iCloudUpdate)
+    }
+
+    func testFailedDefaultDeletionReplaysWithAtomicReplacement() throws {
+        let first = expectation(description: "delete pull submitted")
+        let replay = expectation(description: "replay submitted")
+        let operations = Operations([first, replay])
+        let manager = CloudKitPrinterManager(printerManager: writer, defaults: defaults) { [weak operations] in
+            operations?.submit($0)
+        }
+        let oldID = try insertPrinter(defaultPrinter: true, hostname: "old.local")
+        let nextID = try insertPrinter(defaultPrinter: false, hostname: "next.local")
+        let old = try XCTUnwrap(persistentContainer.viewContext.existingObject(with: oldID) as? Printer)
+        old.recordName = "remote-old"
+        try persistentContainer.viewContext.save()
+        let recordID = CKRecord.ID(recordName: "remote-old")
+
+        writer.failSaves = true
+        let failed = pull(manager, succeeds: false)
+        wait(for: [first], timeout: 2)
+        operations.pull(0).recordWithIDWasDeletedBlock?(recordID, "OctoPrint")
+        operations.pull(0).fetchRecordZoneChangesResultBlock?(.success(()))
+        wait(for: [failed], timeout: 2)
+        XCTAssertTrue(try fetchPrinterState(id: oldID).defaultPrinter)
+        XCTAssertFalse(try fetchPrinterState(id: nextID).defaultPrinter)
+
+        writer.failSaves = false
+        let recovered = pull(manager, succeeds: true)
+        wait(for: [replay], timeout: 2)
+        operations.pull(1).recordWithIDWasDeletedBlock?(recordID, "OctoPrint")
+        operations.pull(1).fetchRecordZoneChangesResultBlock?(.success(()))
+        wait(for: [recovered], timeout: 2)
+        XCTAssertEqual(allPrinterLinks().map(\.hostname), ["next.local"])
+        XCTAssertTrue(try fetchPrinterState(id: nextID).defaultPrinter)
+    }
+
+    func testResetWaitsForActivePullAndNextPullWaitsForReset() throws {
+        let first = expectation(description: "active pull submitted")
+        let reset = expectation(description: "reset pull submitted")
+        let later = expectation(description: "queued pull submitted")
+        let operations = Operations([first, reset, later])
+        let manager = CloudKitPrinterManager(printerManager: writer, defaults: defaults) { [weak operations] in
+            operations?.submit($0)
+        }
+        let initial = printerRecord(id: "initial", name: "Before reset", hostname: "old.local")
+        let replacement = printerRecord(id: "replacement", name: "After reset", hostname: "new.local")
+        let firstFinished = pull(manager, succeeds: true)
+        wait(for: [first], timeout: 2)
+        operations.pull(0).recordWasChangedBlock?(initial.recordID, .success(initial))
+
+        let resetFinished = expectation(description: "reset completed")
+        manager.resetLocalPrinters(completionHandler: { resetFinished.fulfill() }, errorHandler: {
+            XCTFail("Reset failed")
+            resetFinished.fulfill()
+        })
+        let laterFinished = pull(manager, succeeds: true)
+        XCTAssertEqual(try freshPrinterNamesInOrder(), ["Before reset"])
+
+        operations.pull(0).fetchRecordZoneChangesResultBlock?(.success(()))
+        wait(for: [firstFinished, reset], timeout: 2, enforceOrder: true)
+        XCTAssertTrue(try freshPrinterNamesInOrder().isEmpty)
+        operations.pull(1).recordWasChangedBlock?(replacement.recordID, .success(replacement))
+        operations.pull(1).fetchRecordZoneChangesResultBlock?(.success(()))
+        wait(for: [resetFinished, later], timeout: 2, enforceOrder: true)
+        operations.pull(2).fetchRecordZoneChangesResultBlock?(.success(()))
+        wait(for: [laterFinished], timeout: 2)
+        XCTAssertEqual(try freshPrinterNamesInOrder(), ["After reset"])
+    }
+
+    func testCloudResetRecreatesZoneAndRepublishesLocalPrinterBeforeQueuedPull() throws {
+        let deleteZone = expectation(description: "delete zone")
+        let createZone = expectation(description: "create zone")
+        let newZonePull = expectation(description: "pull new zone")
+        let query = expectation(description: "query before publishing")
+        let publish = expectation(description: "publish local printer")
+        let later = expectation(description: "queued pull")
+        let operations = Operations([deleteZone, createZone, newZonePull, query, publish, later])
+        let manager = CloudKitPrinterManager(printerManager: writer, defaults: defaults) { [weak operations] in
+            operations?.submit($0)
+        }
+        let id = try insertPrinter(defaultPrinter: true, hostname: "printer.local")
+        let printer = try XCTUnwrap(persistentContainer.viewContext.existingObject(with: id) as? Printer)
+        printer.apiKey = "test-key"
+        printer.recordName = "old-record"
+        printer.iCloudUpdate = false
+        try persistentContainer.viewContext.save()
+
+        let resetFinished = expectation(description: "cloud reset completed")
+        manager.resetCloutKit(completionHandler: { resetFinished.fulfill() }, errorHandler: {
+            XCTFail("Cloud reset failed")
+            resetFinished.fulfill()
+        })
+        let laterFinished = pull(manager, succeeds: true)
+
+        wait(for: [deleteZone], timeout: 2)
+        let deleteOperation = try XCTUnwrap(operations.operation(0) as? CKModifyRecordZonesOperation)
+        XCTAssertEqual(deleteOperation.recordZoneIDsToDelete?.count, 1)
+        deleteOperation.modifyRecordZonesResultBlock?(.success(()))
+
+        wait(for: [createZone], timeout: 2)
+        let createOperation = try XCTUnwrap(operations.operation(1) as? CKModifyRecordZonesOperation)
+        XCTAssertEqual(createOperation.recordZonesToSave?.count, 1)
+        XCTAssertNil(try fetchPrinterState(id: id).recordName)
+        createOperation.modifyRecordZonesResultBlock?(.success(()))
+
+        wait(for: [newZonePull], timeout: 2)
+        operations.pull(2).fetchRecordZoneChangesResultBlock?(.success(()))
+        wait(for: [query], timeout: 2)
+        let queryOperation = try XCTUnwrap(operations.operation(3) as? CKQueryOperation)
+        queryOperation.queryResultBlock?(.success(nil))
+
+        wait(for: [publish], timeout: 2)
+        let saveOperation = try XCTUnwrap(operations.operation(4) as? CKModifyRecordsOperation)
+        let record = try XCTUnwrap(saveOperation.recordsToSave?.first)
+        saveOperation.perRecordSaveBlock?(record.recordID, .success(record))
+        saveOperation.modifyRecordsResultBlock?(.success(()))
+
+        wait(for: [resetFinished, later], timeout: 2, enforceOrder: true)
+        let restored = try freshPrinterState(id: id)
+        XCTAssertEqual(restored.recordName, record.recordID.recordName)
+        XCTAssertTrue(restored.defaultPrinter)
+        XCTAssertFalse(restored.iCloudUpdate)
+        operations.pull(5).fetchRecordZoneChangesResultBlock?(.success(()))
+        wait(for: [laterFinished], timeout: 2)
+    }
+
+    private func pull(_ manager: CloudKitPrinterManager, succeeds: Bool) -> XCTestExpectation {
+        let finished = expectation(description: "pull completed with expected result")
+        manager.pullChanges(completionHandler: {
+            XCTAssertTrue(succeeds, "Unexpected pull success")
+            finished.fulfill()
+        }, errorHandler: {
+            XCTAssertFalse(succeeds, "Unexpected pull failure")
+            finished.fulfill()
+        })
+        return finished
+    }
+
+    private func printerRecord(id: String, name: String, hostname: String) -> CKRecord {
+        let record = CKRecord(recordType: "OctoPrint", recordID: CKRecord.ID(recordName: id))
+        record["name"] = name as NSString
+        record["hostname"] = hostname as NSString
+        record["apiKey"] = "test-key" as NSString
+        record["modified"] = Date(timeIntervalSince1970: 100) as NSDate
+        return record
+    }
+
+    private func makeLinkedPrinter() throws -> (NSManagedObjectID, CKRecord) {
+        let id = try insertPrinter(defaultPrinter: true, hostname: "printer.local")
+        let printer = try XCTUnwrap(persistentContainer.viewContext.existingObject(with: id) as? Printer)
+        let record = printerRecord(id: "linked", name: printer.name, hostname: printer.hostname)
+        record["position"] = NSNumber(value: 0)
+        let coder = NSKeyedArchiver(requiringSecureCoding: true)
+        record.encodeSystemFields(with: coder)
+        printer.apiKey = "test-key"
+        printer.recordName = record.recordID.recordName
+        printer.recordData = coder.encodedData
+        printer.userModified = record["modified"] as? Date
+        printer.iCloudUpdate = true
+        try persistentContainer.viewContext.save()
+        return (id, record)
+    }
+
+    private func reorderWhileSyncing(_ id: NSManagedObjectID) throws {
+        let printer = try XCTUnwrap(persistentContainer.viewContext.existingObject(with: id) as? Printer)
+        // Simulate a pending reorder saved by a build that only updated position.
+        printer.position = 1
+        printer.iCloudUpdate = true
+        try persistentContainer.viewContext.save()
+    }
+
+    private func allPrinterLinks() -> [(hostname: String, recordName: String?)] {
+        let context = printerManager.newPrivateContext()
+        return context.performAndWait {
+            printerManager.getPrinters(context: context).map { ($0.hostname, $0.recordName) }
         }
     }
 }

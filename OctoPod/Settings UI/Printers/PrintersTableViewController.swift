@@ -166,11 +166,14 @@ class PrintersTableViewController: UIViewController, UITableViewDataSource, UITa
         printers.insert(toMove, at: destinationIndexPath.row)
         // Store new ordered printers
         NSLog("Storing new printers order")
+        let modified = Date()
         for (index, printer) in printers.enumerated() {
             let newObjectContext = printerManager.safePrivateContext()
             let printerToUpdate = newObjectContext.object(with: printer.objectID) as! Printer
+            guard printerToUpdate.position != Int16(index) else { continue }
             // Update printer position
             printerToUpdate.position = Int16(index)
+            printerToUpdate.userModified = modified
             // Mark that printer needs to be updated in iCloud (we now track position so we need to update this data in iCloud)
             printerToUpdate.iCloudUpdate = true
             // Persist updated printer

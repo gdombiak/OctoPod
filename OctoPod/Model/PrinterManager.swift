@@ -166,16 +166,16 @@ class PrinterManager {
     }
     
     func getPrinters(context: NSManagedObjectContext) -> [Printer] {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Printer.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "position", ascending: true), NSSortDescriptor(key: "name", ascending: true)]
-        
-        var results: [Printer] = []
         context.performAndWait {
-            if let fetchResults = (try? context.fetch(fetchRequest)) as? [Printer] {
-                results = fetchResults
-            }
-       }
-        return results
+            (try? fetchPrinters(in: context)) ?? []
+        }
+    }
+
+    /// Call on the context's queue when a failed fetch must be distinguished from an empty store.
+    func fetchPrinters(in context: NSManagedObjectContext) throws -> [Printer] {
+        let request = NSFetchRequest<Printer>(entityName: "Printer")
+        request.sortDescriptors = [NSSortDescriptor(key: "position", ascending: true), NSSortDescriptor(key: "name", ascending: true)]
+        return try context.fetch(request)
     }
     
     /// Fetch all printers using provided core data context and execute provided completion block in the same thread that fetched the printers
@@ -200,10 +200,8 @@ class PrinterManager {
     
     func addPrinter(connectionType: PrinterConnectionType, name: String, hostname: String, apiKey: String, username: String?, password: String?, headers: String?, position: Int16, iCloudUpdate: Bool, modified: Date = Date()) -> Bool {
         let context = newPrivateContext()
-        var saved = false
-        context.performAndWait {
-            let printer = NSEntityDescription.insertNewObject(forEntityName: "Printer", into: context) as! Printer
-            
+        return context.performAndWait {
+            let printer = insertPrinter(in: context, isDefault: getDefaultPrinter(context: context) == nil)
             printer.setPrinterConnectionType(connectionType: connectionType)
             printer.name = name
             printer.hostname = hostname
@@ -219,25 +217,20 @@ class PrinterManager {
             // Mark if printer needs to be updated in iCloud
             printer.iCloudUpdate = iCloudUpdate
             
-            printer.sdSupport = true // Assume that printer supports SD card. Will get updated later with actual value
-            printer.cameraOrientation = Int16(UIImage.Orientation.up.rawValue) // Assume no flips or rotations for camera. Will get updated later with actual value
-
-            printer.invertX = false // Assume control of X axis is not inverted. Will get updated later with actual value
-            printer.invertY = false // Assume control of Y axis is not inverted. Will get updated later with actual value
-            printer.invertZ = false // Assume control of Z axis is not inverted. Will get updated later with actual value
-
-            // Check if there is already a default Printer
-            if let _ = getDefaultPrinter(context: context) {
-                // We found an existing default printer
-                printer.defaultPrinter = false
-            } else {
-                // No default printer was found so make this new printer the default one
-                printer.defaultPrinter = true
-            }
-            saved = saveObject(printer, context: context)
+            return saveObject(printer, context: context)
         }
+    }
 
-        return saved
+    /// Prepare a printer on the context's queue so callers can save its identity with its fields.
+    func insertPrinter(in context: NSManagedObjectContext, isDefault: Bool) -> Printer {
+        let printer = NSEntityDescription.insertNewObject(forEntityName: "Printer", into: context) as! Printer
+        printer.defaultPrinter = isDefault
+        printer.sdSupport = true
+        printer.cameraOrientation = Int16(UIImage.Orientation.up.rawValue)
+        printer.invertX = false
+        printer.invertY = false
+        printer.invertZ = false
+        return printer
     }
     
     /// Make sure that printer was loaded with the provided context
@@ -468,86 +461,49 @@ class PrinterManager {
     
     // MARK: Delete operations
 
-    func deletePrinter(_ printer: Printer, context: NSManagedObjectContext) {
-        context.delete(printer)
-        
-        updatePrinter(printer, context: context)
-        
-        if printer.defaultPrinter {
-            // Find any printer and make it the default printer
-            for printer in getPrinters(context: context) {
-                changeToDefaultPrinter(printer, context: context)
-                break
-            }
-        }
-    }
-    
-    func deleteAllPrinters(context: NSManagedObjectContext) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Printer")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        deleteRequest.resultType = .resultTypeObjectIDs
-
+    @discardableResult
+    func deletePrinter(_ printer: Printer, context: NSManagedObjectContext) -> Bool {
         context.performAndWait {
-            do {
-                let result = try context.execute(deleteRequest) as! NSBatchDeleteResult
-                
-                let changes: [AnyHashable: Any] = [
-                    NSDeletedObjectsKey: result.result as! [NSManagedObjectID]
-                ]
-                NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [context])
-//
-//                // Reset the Managed Object Context
-//                context.reset()
-//                managedObjectContext.reset()
-            }
-            catch let error as NSError {
-                NSLog("Error deleting all printers. Error:\(error)")
-            }
-        }
-    }
-    
-    // MARK: CloudKit related operations
-    
-    func resetPrintersForiCloud(context: NSManagedObjectContext) {
-        switch context.concurrencyType {
-        case .mainQueueConcurrencyType:
-            // If context runs in main thread then just run this code
-            do {
-                for printer in getPrinters() {
-                    printer.recordName = nil
-                    printer.recordData = nil
-                    printer.iCloudUpdate = true
-                }
-                try managedObjectContext.save()
-            } catch let error as NSError {
-                NSLog("Error updating printer \(error)")
-            }
-        case .privateQueueConcurrencyType, .confinementConcurrencyType:
-            // If context runs in a non-main thread then just run this code
-            // .confinementConcurrencyType is not used. Delete once removed from Swift
-            context.performAndWait {
-                for printer in getPrinters(context: context) {
-                    printer.recordName = nil
-                    printer.recordData = nil
-                    printer.iCloudUpdate = true
-                }
-                
+            if printer.defaultPrinter {
                 do {
-                    try context.save()
-                    managedObjectContext.performAndWait {
-                        do {
-                            try managedObjectContext.save()
-                        } catch {
-                            NSLog("Error updating printer \(error)")
-                        }
+                    let remaining = try fetchPrinters(in: context).filter { $0 != printer }
+                    let replacement = remaining.first
+                    for candidate in remaining where candidate.defaultPrinter != (candidate == replacement) {
+                        candidate.defaultPrinter = candidate == replacement
                     }
                 } catch {
-                    NSLog("Error updating printer \(error)")
+                    NSLog("Error choosing a default printer before deletion: %@", String(describing: error))
+                    return false
                 }
             }
-        @unknown default:
-            logUnknownContextConcurrencyType(operation: "resetting printers for iCloud", context: context)
-            return
+            context.delete(printer)
+            return updatePrinter(printer, context: context)
         }
     }
+    
+    func deleteAllPrinters(context: NSManagedObjectContext) throws -> Bool {
+        try context.performAndWait {
+            let printers = try fetchPrinters(in: context)
+            guard !printers.isEmpty else { return false }
+            for printer in printers {
+                context.delete(printer)
+            }
+            try context.save()
+            return true
+        }
+    }
+
+    // MARK: CloudKit related operations
+
+    func resetPrintersForiCloud(context: NSManagedObjectContext) throws {
+        try context.performAndWait {
+            for printer in try fetchPrinters(in: context) {
+                printer.recordName = nil
+                printer.recordData = nil
+                printer.iCloudUpdate = true
+            }
+            if context.hasChanges { try context.save() }
+        }
+    }
+
 }

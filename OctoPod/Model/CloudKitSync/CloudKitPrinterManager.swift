@@ -6,7 +6,7 @@ import UIKit
 class CloudKitPrinterManager {
     
     private let SYNC_STOPPED = "CK_SYNC_STOPPED"  // Key to track if CloudKit sync is enabled or not in the app. Controlled by user from the app. Do not confuse with 'is user logged into iCloud'
-    private var iCloudAvailable = true // Assume default value. Will be updated with real one on start up and based on events
+    private var accountAvailable = true
     
     let SUBSCRIPTION_ID = "SUBSCRIPTION_ID"  // ID of one time subcription to receive push notifications
     private let SUBSCRIPTION_CREATED = "CK_SUBSCRIPTION_CREATED"  // Key to track creation of one time subcription to receive push notifications
@@ -17,11 +17,28 @@ class CloudKitPrinterManager {
     
     private let printerManager: PrinterManager!
     private let synchronizationLock = NSLock()
+    private let syncQueue = DispatchQueue(label: "org.OctoPod.CloudKitPrinterSync", qos: .utility)
+    private var syncInProgress = false
+    private var pendingSyncJobs: [(@escaping () -> Void) -> Void] = []
+    private let defaults: UserDefaults
+    private let submitOperation: (CKDatabaseOperation) -> Void
     private var starting = false
     private var startupRequested = false
     private let recoverPurgedStore: Bool
     private var listeningToCloudKitEvents = false
-    private let privateContext: NSManagedObjectContext!
+
+    private var iCloudAvailable: Bool {
+        get {
+            synchronizationLock.lock()
+            defer { synchronizationLock.unlock() }
+            return accountAvailable
+        }
+        set {
+            synchronizationLock.lock()
+            defer { synchronizationLock.unlock() }
+            accountAvailable = newValue
+        }
+    }
     
     var delegates: Array<CloudKitPrinterDelegate> = Array()
     var logDelegates: Array<CloudKitPrinterLogDelegate> = Array()
@@ -30,10 +47,14 @@ class CloudKitPrinterManager {
     private(set) var log: Array<CloudKitPrinterLogEntry> = Array()
     private let LOG_MAX_SIZE = 30
     
-    init(printerManager: PrinterManager, recoverPurgedStore: Bool = false) {
+    init(printerManager: PrinterManager, recoverPurgedStore: Bool = false, defaults: UserDefaults = .standard,
+         submitOperation: @escaping (CKDatabaseOperation) -> Void = {
+             CKContainer(identifier: "iCloud.org.OctoPod.OctoPod").privateCloudDatabase.add($0)
+         }) {
         self.recoverPurgedStore = recoverPurgedStore
         self.printerManager = printerManager
-        self.privateContext = printerManager.newPrivateContext()
+        self.defaults = defaults
+        self.submitOperation = submitOperation
         
         // Listen when app went to background so we stop listening to CloudKit events
         NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
@@ -90,25 +111,35 @@ class CloudKitPrinterManager {
             onceStarted?()
         }
 
-        checkZone { error in
-            if let error {
-                self.appendLog("Error making sure app has its own CKRecordZone. \(error)")
-                handleFailure()
-                return
+        enqueueSync { done in
+            self.checkZone { error in
+                if let error {
+                    self.appendLog("Error making sure app has its own CKRecordZone. \(error)")
+                    handleFailure()
+                    done()
+                    return
+                }
+                self.performPull { error in
+                    if error != nil {
+                        handleFailure()
+                        done()
+                    } else {
+                        self.performPush {
+                            self.finishStarting()
+                            onceStarted?()
+                            done()
+                        }
+                    }
+                }
             }
-            self.pullChanges(completionHandler: {
-                self.pushChanges(completion: {
-                    self.finishStarting()
-                    onceStarted?()
-                })
-            }, errorHandler: handleFailure)
         }
     }
 
     private func localPrinterStoreIsEmpty() -> Bool {
-        privateContext.performAndWait {
+        let context = printerManager.newPrivateContext()
+        return context.performAndWait {
             let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Printer")
-            return (try? privateContext.count(for: request)) == 0
+            return (try? context.count(for: request)) == 0
         }
     }
 
@@ -140,7 +171,6 @@ class CloudKitPrinterManager {
     // As a safety measure, because all this code is too complex, we want to let users
     // disable this feature and use OctoPod with no device synchronization via iCloud
     func stopCloudKitSync(stop: Bool) {
-        let defaults = UserDefaults.standard
         defaults.set(stop, forKey: SYNC_STOPPED)
     }
     
@@ -148,7 +178,6 @@ class CloudKitPrinterManager {
     // User can allow device synchronization but they need to be logged into
     // iCloud for this to work
     func cloudKitSyncStopped() -> Bool {
-        let defaults = UserDefaults.standard
         return defaults.bool(forKey: SYNC_STOPPED)
     }
     
@@ -157,7 +186,6 @@ class CloudKitPrinterManager {
     // Create a one time subscription to get silent push notifications when other devices make changes to CloudKit records
     // AppDelegate is configured to request to "listen to remote notifications" and call into #handleNotifications()
     fileprivate func checkNotificationsSubscription() {
-        let defaults = UserDefaults.standard
         let created = defaults.bool(forKey: SUBSCRIPTION_CREATED)
         if !created {
             let predicate = NSPredicate(value: true)
@@ -176,13 +204,11 @@ class CloudKitPrinterManager {
                     return
                 }
                 // Record that (one time) subscription has been created
-                defaults.set(true, forKey: self.SUBSCRIPTION_CREATED)
+                self.defaults.set(true, forKey: self.SUBSCRIPTION_CREATED)
             }
             operation.qualityOfService = .utility
             
-            let container = getiCloudContainer()
-            let db = container.privateCloudDatabase
-            db.add(operation)
+            submitOperation(operation)
         }
     }
     
@@ -195,20 +221,7 @@ class CloudKitPrinterManager {
             if let error = error {
                 if let ckerror = error as? CKError {
                     if ckerror.isZoneNotFound() || ckerror.isUserDeletedZone() {
-                        self.createZone(completion: { (error) in
-                            if let error = error {
-                                // Failed to create zone
-                                completion(error)
-                            } else {
-                                // Zone created
-                                // Mark all printers as need to be updated in iCloud
-                                self.printerManager.resetPrintersForiCloud(context: self.privateContext)
-                                // Reset change token since it is no longer valid
-                                UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
-                                // We can now execute completion block
-                                completion(nil)
-                            }
-                        })
+                        self.recoverMissingZone(completion: completion)
                     } else {
                         // Zone not available for some reason
                         completion(error)
@@ -223,9 +236,7 @@ class CloudKitPrinterManager {
             }
         }
         operation.qualityOfService = .utility
-        let container = getiCloudContainer()
-        let db = container.privateCloudDatabase
-        db.add(operation)
+        submitOperation(operation)
     }
     
     // Create a custom zone where we store our records. We need to use a custom zone
@@ -243,9 +254,7 @@ class CloudKitPrinterManager {
             completion(nil)
         }
         operation.qualityOfService = .utility
-        let container = getiCloudContainer()
-        let db = container.privateCloudDatabase
-        db.add(operation)
+        submitOperation(operation)
     }
     
     fileprivate func deleteZone(completion: @escaping (Error?) -> Void) {
@@ -259,208 +268,232 @@ class CloudKitPrinterManager {
             completion(nil)
         }
         operation.qualityOfService = .utility
-        let container = getiCloudContainer()
-        let db = container.privateCloudDatabase
-        db.add(operation)
+        submitOperation(operation)
     }
     
     // MARK: - Pull from iCloud
-    
-    // Pull incremental changes since last pull
-    // Printers stored in Core Data will get updated based on iCloud information
+
     func pullChanges(completionHandler: (() -> Void)?, errorHandler: (() -> Void)?) {
-        pullChanges(allowRecovery: true, completionHandler: completionHandler, errorHandler: errorHandler)
+        enqueueSync { done in
+            self.performPull { error in
+                if error == nil {
+                    completionHandler?()
+                } else {
+                    errorHandler?()
+                }
+                done()
+            }
+        }
     }
 
-    private func pullChanges(allowRecovery: Bool, completionHandler: (() -> Void)?, errorHandler: (() -> Void)?) {
-        // If user disabled CloudKit sync then do nothing
-        if cloudKitSyncStopped() || !iCloudAvailable {
-            completionHandler?()
+    private func performPull(allowRecovery: Bool = true, localPrintersChanged: Bool = false,
+                             completion: @escaping (Error?) -> Void) {
+        func finish(_ error: Error?, printersChanged: Bool) {
+            if let error {
+                appendLog("Error fetching zone changes: \(error)")
+            }
+            if printersChanged { notifyPrintersUpdated() }
+            completion(error)
+        }
+
+        guard !cloudKitSyncStopped(), iCloudAvailable else {
+            finish(nil, printersChanged: localPrintersChanged)
             return
         }
-        var foundNewRecords = false
-        var zoneFetchError: Error?
-        let defaults = UserDefaults.standard
-        var changeToken: CKServerChangeToken? = nil
-        var changeTokenData = defaults.data(forKey: CHANGE_TOKEN)
-        // A purgeable cache can be recreated while its saved change token survives.
-        if recoverPurgedStore, changeTokenData != nil, localPrinterStoreIsEmpty() {
-            defaults.removeObject(forKey: CHANGE_TOKEN)
-            changeTokenData = nil
-        }
-        // Retrieve stored token that tracks last set of changes that were processed.
-        // Used for incremental reading
-        if let changeTokenData {
-            // Parse stored token
-            do {
-                changeToken = try NSKeyedUnarchiver.unarchivedObject(ofClass: CKServerChangeToken.self, from: changeTokenData)
-            } catch {
-                self.appendLog("Error unarchivedObject due to: \(error)")
-            }
-        }
-        // Include change token in the query to get incremental changes
-        // If nil then we will get everything
-        let options = CKFetchRecordZoneChangesOperation.ZoneConfiguration()
-        options.previousServerChangeToken = changeToken
-        // Prepare query to custom zone and ask to get new changes (i.e. iterate through pagination transparently)
-        let optionsMap = [zoneID: options]
-        let operation = CKFetchRecordZoneChangesOperation(recordZoneIDs: [zoneID], configurationsByRecordZoneID: optionsMap)
-        operation.fetchAllChanges = true
-        // Block to process created or updated records
-        setRecordWasChanged(operation) { record in
-            foundNewRecords = true
-            self.recordChanged(record: record)
-        }
-        // Block to process deleted records
-        operation.recordWithIDWasDeletedBlock = { recordID, recordType in
-            foundNewRecords = true
-            self.recordDeleted(recordID: recordID)
-        }
-        // Block that records change token (to track how far we read so we can do next incremental read)
-        setRecordZoneChangeTokensUpdated(operation) { recordZoneID, serverChangeToken, clientChangeTokenData in
-            guard let serverChangeToken = serverChangeToken else {
-                return
-            }
-            
-            do {
-                let changeTokenData = try NSKeyedArchiver.archivedData(withRootObject: serverChangeToken, requiringSecureCoding: false)
-                defaults.set(changeTokenData, forKey: self.CHANGE_TOKEN)
-            } catch {
-                self.appendLog("Error archivedData of CHANGE_TOKEN due to: \(error)")
-            }
-        }
-        // Block to execute when the fetch for a zone "page" has completed
-        // Works like pagination so more might be coming
-        setRecordZoneFetchCompletion(operation) { _, serverChangeToken, _, _, error in
-            if let error = error {
-                zoneFetchError = error
-                return
-            }
-            guard let serverChangeToken = serverChangeToken else {
-                return
-            }
-            
-            do {
-                let changeTokenData = try NSKeyedArchiver.archivedData(withRootObject: serverChangeToken, requiringSecureCoding: false)
-                defaults.set(changeTokenData, forKey: self.CHANGE_TOKEN)
-            } catch {
-                self.appendLog("Error archivedData of CHANGE_TOKEN due to: \(error)")
-            }
-        }
-        // Done reading all zone changes
-        setFetchRecordZoneChangesCompletion(operation) { operationError in
-            guard let error = zoneFetchError ?? operationError else {
-                completionHandler?()
-                if foundNewRecords { self.notifyPrintersUpdated() }
-                return
-            }
 
-            // The per-zone error can carry a specific recovery reason when the operation reports a partial failure.
-            if allowRecovery, let cloudError = error as? CKError {
+        let context = printerManager.newPrivateContext(writer: "CloudKit.pull")
+        context.performAndWait { context.mergePolicy = NSErrorMergePolicy }
+        var progress = CloudKitPrinterPullProgress()
+        progress.printersChanged = localPrintersChanged
+        let options = CKFetchRecordZoneChangesOperation.ZoneConfiguration()
+        if let data = defaults.data(forKey: CHANGE_TOKEN) {
+            if recoverPurgedStore && localPrinterStoreIsEmpty() {
+                // The cache may be gone while its change token survives.
+                defaults.removeObject(forKey: CHANGE_TOKEN)
+            } else {
+                do {
+                    options.previousServerChangeToken = try NSKeyedUnarchiver.unarchivedObject(ofClass: CKServerChangeToken.self, from: data)
+                } catch {
+                    appendLog("Error unarchiving change token: \(error)")
+                }
+            }
+        }
+
+        let operation = CKFetchRecordZoneChangesOperation(recordZoneIDs: [zoneID], configurationsByRecordZoneID: [zoneID: options])
+        operation.fetchAllChanges = true
+
+        // CloudKit runs the callbacks for this operation serially. Each local save finishes
+        // before the next callback. The next sync job waits for the terminal completion.
+        func apply(_ change: () throws -> Bool) {
+            guard progress.localError == nil else { return }
+            // Fetch the latest committed fields on every record. Treat any concurrent
+            // writer during this save as a failure so the record can be replayed.
+            defer { context.performAndWait { context.reset() } }
+            do {
+                if try change() { progress.printersChanged = true }
+            } catch {
+                progress.localError = error
+            }
+        }
+
+        func stageCheckpoint(_ token: CKServerChangeToken?) {
+            guard progress.localError == nil, let token else { return }
+            do {
+                progress.checkpoint = try NSKeyedArchiver.archivedData(withRootObject: token, requiringSecureCoding: false)
+            } catch {
+                progress.localError = error
+            }
+        }
+
+        setRecordWasChanged(operation) { record in
+            apply { try self.recordChanged(record, in: context) }
+        }
+        operation.recordWithIDWasDeletedBlock = { recordID, _ in
+            apply { try self.recordDeleted(recordID, in: context) }
+        }
+        setRecordZoneChangeTokensUpdated(operation) { _, token, _ in
+            stageCheckpoint(token)
+        }
+        setRecordZoneFetchCompletion(operation) { _, token, _, _, error in
+            if let error {
+                progress.zoneError = error
+            } else {
+                stageCheckpoint(token)
+            }
+        }
+        setFetchRecordZoneChangesCompletion(operation) { operationError in
+            let error = progress.finish(operationError: operationError) { data in
+                self.defaults.set(data, forKey: self.CHANGE_TOKEN)
+            }
+            if allowRecovery, progress.localError == nil, let cloudError = error as? CKError {
                 if cloudError.isZoneNotFound() || cloudError.isUserDeletedZone() {
-                    self.createZone { creationError in
-                        if let creationError {
-                            self.appendLog("Error fetching zone changes. Failed to create zone due to: \(creationError)")
-                            errorHandler?()
-                            return
+                    self.recoverMissingZone { error in
+                        if let error {
+                            finish(error, printersChanged: progress.printersChanged)
+                        } else {
+                            self.performPull(allowRecovery: false, localPrintersChanged: progress.printersChanged, completion: completion)
                         }
-                        self.retryPullFromBeginning(completionHandler: completionHandler, errorHandler: errorHandler)
                     }
                     return
                 }
                 if cloudError.isChangeTokenExpired() {
-                    self.retryPullFromBeginning(completionHandler: completionHandler, errorHandler: errorHandler)
+                    do {
+                        try self.resetCloudKitLinks()
+                        self.performPull(allowRecovery: false, localPrintersChanged: progress.printersChanged, completion: completion)
+                    } catch {
+                        finish(error, printersChanged: progress.printersChanged)
+                    }
                     return
                 }
             }
-            self.appendLog("Error fetching zone changes: \(error)")
-            errorHandler?()
+            finish(error, printersChanged: progress.printersChanged)
         }
         operation.qualityOfService = .utility
-        
-        let container = getiCloudContainer()
-        let db = container.privateCloudDatabase
-        db.add(operation)
+        submitOperation(operation)
     }
 
-    private func retryPullFromBeginning(completionHandler: (() -> Void)?, errorHandler: (() -> Void)?) {
-        printerManager.resetPrintersForiCloud(context: privateContext)
-        UserDefaults.standard.removeObject(forKey: CHANGE_TOKEN)
-        pullChanges(allowRecovery: false, completionHandler: completionHandler, errorHandler: errorHandler)
+    private func recoverMissingZone(completion: @escaping (Error?) -> Void) {
+        do {
+            // If the local save fails, the next attempt can still detect the missing zone.
+            try resetCloudKitLinks()
+        } catch {
+            completion(error)
+            return
+        }
+        createZone(completion: completion)
     }
-    
-    /// CloudKit informed us that a record has been created or updated
-    fileprivate func recordChanged(record: CKRecord) {
+
+    private func resetCloudKitLinks() throws {
+        try printerManager.resetPrintersForiCloud(context: printerManager.newPrivateContext(writer: "CloudKit.resetLinks"))
+        defaults.removeObject(forKey: CHANGE_TOKEN)
+    }
+
+    private func recordChanged(_ record: CKRecord, in context: NSManagedObjectContext) throws -> Bool {
         let recordName = record.recordID.recordName
-        if let printer = printerManager.getPrinterByRecordName(context: privateContext, recordName: recordName) {
-            // A printer exists for this PK so update it
-            updateAndSave(printerID: printer.objectID, serverRecord: record)
-            // Alert delegates that printer has been updated from iCloud info
-            notifyPrinterUpdated(printerID: printer.objectID)
-            privateContext.perform {
-                self.appendLog("Updated printer: \(printer.hostname)")
-            }
-        } else {
-            // No printer was found for this PK
-            // Check if a printer with same data exists and no record name.
-            if let printer = printerManager.getPrinters(context: privateContext).first(where: { (printer: Printer) -> Bool in
-                return self.sameOctoPrint(record: record, printer: printer)
-            }) {
-                // Update printer with iCloud information and save it
-                updateAndSave(printerID: printer.objectID, serverRecord: record)
-                // Alert delegates that printer has been updated from iCloud info
-                notifyPrinterUpdated(printerID: printer.objectID)
-                privateContext.perform {
-                    self.appendLog("Linked existing printer: \(printer.hostname)")
-                }
+        let parsed = parseRecord(record: record)
+        guard PrinterConnectionType(rawValue: parsed.connectionType) != nil else {
+            appendLog("Ignored record with an unknown connection type: \(recordName)")
+            return false
+        }
+
+        let change: (NSManagedObjectID, Bool, String)? = try context.performAndWait {
+            let printers = try printerManager.fetchPrinters(in: context)
+            let linked = printers.first { $0.recordName == recordName }
+            let unlinked = printers.filter { $0.recordName == nil && $0.hostname == parsed.hostname }
+            // Match the ordinary single local printer by host. If there are multiple
+            // unlinked entries for the host, only link a uniquely matching API key.
+            let keyMatches = unlinked.filter { $0.apiKey == parsed.apiKey }
+            let existing = linked ?? (unlinked.count == 1 ? unlinked.first : (keyMatches.count == 1 ? keyMatches.first : nil))
+            let printer: Printer
+            if let existing {
+                printer = existing
             } else {
-                // Nothing was found in Core Data so create new printer and add to Core Data
-                let parsed = parseRecord(record: record)
-                if let name = parsed.name, let hostname = parsed.hostname, let apiKey = parsed.apiKey {
-                    let position: Int16
-                    if let parsedPosition = parsed.position {
-                        position = parsedPosition
-                    } else {
-                        position = Int16(printerManager.getPrinters().count)  // Not yet stored in iCloud so add new printers to bottom of list
-                    }
-                    let connectionType = PrinterConnectionType(rawValue: parsed.connectionType)!
-                    if printerManager.addPrinter(connectionType: connectionType, name: name, hostname: hostname, apiKey: apiKey, username: parsed.username, password: parsed.password, headers: parsed.headers, position: position, iCloudUpdate: false, modified: (parsed.modified == nil ? Date() : parsed.modified!)) {
-                        if let printer = printerManager.getPrinterByName(name: name) {
-                            // Update again to assign recordName and store encoded record
-                            updateAndSave(printerID: printer.objectID, serverRecord: record)
-                            // Alert delegates that printer has been added from iCloud info
-                            notifyPrinterAdded(printerID: printer.objectID)
-                            appendLog("Added new printer: \(hostname)")
-                        } else {
-                            appendLog("Missing newly added printer: \(hostname)")
-                        }
-                    } else {
-                        appendLog("Failed to add printer for record name: \(record.recordID.recordName)")
-                    }
-                } else {
-                    appendLog("Ignored record name: \(record.recordID.recordName)")
+                guard let name = parsed.name, let hostname = parsed.hostname, let apiKey = parsed.apiKey else {
+                    return nil
                 }
+                printer = printerManager.insertPrinter(in: context, isDefault: !printers.contains(where: \.defaultPrinter))
+                printer.name = name
+                printer.hostname = hostname
+                printer.apiKey = apiKey
+                printer.position = parsed.position ?? Int16(clamping: printers.count)
+                printer.userModified = parsed.modified ?? Date()
             }
-        }
-    }
-    
-    
-    // CloudKit informed us that a record has been deleted
-    fileprivate func recordDeleted(recordID: CKRecord.ID) {
-        let recordName = recordID.recordName
-        if let newObjectContext = privateContext {
-            newObjectContext.performAndWait {
-                if let printerToDelete = self.printerManager.getPrinterByRecordName(context: newObjectContext, recordName: recordName) {
-                    self.appendLog("Deleted printer: \(printerToDelete.hostname)")
-                    // A printer exists for this PK so delete it
-                    self.printerManager.deletePrinter(printerToDelete, context: newObjectContext)
-                    // Alert delegates that printer has been deleted from iCloud info
-                    self.notifyPrinterDeleted(printerID: printerToDelete.objectID)
-                }
+
+            let localDate = existing?.userModified ?? .distantPast
+            let remoteDate = parsed.modified ?? .distantPast
+            // Older versions changed the position without updating the modification date.
+            let pendingReorder = localDate == remoteDate && parsed.position.map { $0 != printer.position } == true
+            if let existing, existing.iCloudUpdate, localDate > remoteDate || pendingReorder {
+                // Keep pending local fields and use the incoming record as the base for the next push.
+                printer.recordName = recordName
+                printer.recordData = encodeRecord(record: record)
+            } else {
+                updatePrinterFields(printer: printer, from: record)
             }
+
+            let saved = existing == nil
+                ? printerManager.saveObject(printer, context: context)
+                : printerManager.updatePrinter(printer, context: context)
+            guard saved else {
+                context.rollback()
+                throw CloudKitPrinterSyncError.saveFailed(recordName)
+            }
+            return (printer.objectID, existing == nil, printer.hostname)
         }
+
+        guard let (id, added, hostname) = change else {
+            appendLog("Ignored incomplete record: \(recordName)")
+            return false
+        }
+        if added {
+            notifyPrinterAdded(printerID: id)
+            appendLog("Added new printer: \(hostname)")
+        } else {
+            notifyPrinterUpdated(printerID: id)
+            appendLog("Updated printer: \(hostname)")
+        }
+        return true
     }
-    
+
+    private func recordDeleted(_ recordID: CKRecord.ID, in context: NSManagedObjectContext) throws -> Bool {
+        let deleted: (NSManagedObjectID, String)? = try context.performAndWait {
+            let request = NSFetchRequest<Printer>(entityName: "Printer")
+            request.predicate = NSPredicate(format: "recordName = %@", recordID.recordName)
+            request.fetchLimit = 1
+            guard let printer = try context.fetch(request).first else { return nil }
+            let snapshot = (printer.objectID, printer.hostname)
+            guard printerManager.deletePrinter(printer, context: context) else {
+                context.rollback()
+                throw CloudKitPrinterSyncError.saveFailed(recordID.recordName)
+            }
+            return snapshot
+        }
+        guard let (id, hostname) = deleted else { return false }
+        notifyPrinterDeleted(printerID: id)
+        appendLog("Deleted printer: \(hostname)")
+        return true
+    }
+
     // MARK: - Push to iCloud
     
     // Printers with status iCloudUpdate will be pushed to iCloud
@@ -472,14 +505,24 @@ class CloudKitPrinterManager {
     // Updates to iCloud from this app will not trigger push notifications to
     // this app so there is no need to protect from endless loops
     func pushChanges(completion: (() -> Void)?) {
+        enqueueSync { done in
+            self.performPush {
+                completion?()
+                done()
+            }
+        }
+    }
+
+    private func performPush(completion: @escaping () -> Void) {
         // If user disabled CloudKit sync then do nothing
         if cloudKitSyncStopped() || !iCloudAvailable {
-            completion?()
+            completion()
             return
         }
-        privateContext.perform {
+        let context = printerManager.newPrivateContext(writer: "CloudKit.push")
+        context.perform {
             var toRemove: Array<PrinterData> = Array()
-            for printer in self.printerManager.getPrinters(context: self.privateContext) {
+            for printer in self.printerManager.getPrinters(context: context) {
                 if printer.iCloudUpdate {
                     var printerData = PrinterData(printerID: printer.objectID, name: printer.name, hostname: printer.hostname, apiKey: printer.apiKey, connectionType: printer.connectionType, position: printer.position)
                     printerData.username = printer.username
@@ -504,8 +547,8 @@ class CloudKitPrinterManager {
         if let recordData = printer.recordData {
             if let record = decodeRecordData(recordData: recordData) {
                 let hostname = printer.hostname
-                deleteRecord(recordID: record.recordID) { (error) in
-                    if let error = error {
+                deleteRecord(recordID: record.recordID) { error in
+                    if let error {
                         self.appendLog("Failed to delete printer: \(hostname). Error: \(error)")
                     } else {
                         self.appendLog("Pushed delete for printer: \(hostname)")
@@ -551,25 +594,22 @@ class CloudKitPrinterManager {
                         completion?(error)
                     } else if let newRecord = serverRecord {
                         // Record has been saved
-                        self.updateAndSave(printerID: printerData.printerID, serverRecord: newRecord)
-                        // Execute callback
-                        completion?(nil)
+                        let saveError = self.updateAndSave(printerData: printerData, serverRecord: newRecord)
                         
-                        if originalUpdated {
+                        if saveError == nil, originalUpdated {
                             // Record has been updated with iCloud information
                             // During the save we found another version on the server side and
                             // the merging logic determined we should update our local data to match
                             // what was in the iCloud database.
                             self.notifyPrinterUpdated(printerID: printerData.printerID)
                         }
+                        completion?(saveError)
                     } else {
-                        // Should not happen
-                        NSLog("No error and no CloudKit CKRecord")
+                        completion?(CloudKitPrinterSyncError.missingCloudKitResult)
                     }
                 }
             } else {
-                // We have a bug Houston!
-                NSLog("Failed to decode encoded CloudKit CKRecord")
+                completion?(CloudKitPrinterSyncError.invalidRecordData)
             }
         } else {
             // We don’t already have a record. See if there’s one up on iCloud
@@ -592,43 +632,45 @@ class CloudKitPrinterManager {
                                 completion?(error)
                             } else if let newRecord = record {
                                 // Record has been saved
-                                self.updateAndSave(printerID: printerData.printerID, serverRecord: newRecord)
-                                // Execute callback
-                                completion?(nil)
+                                completion?(self.updateAndSave(printerData: printerData, serverRecord: newRecord))
                             } else {
-                                // We have a bug Houston!
-                                NSLog("No error and no new record")
+                                completion?(CloudKitPrinterSyncError.missingCloudKitResult)
                             }
                         })
                     } else {
                         // iCloud has similar info to this printer
                         // Check if we have a printer (stored in Core Data) for the records we found
-                        for record in records {
-                            if let _ = self.printerManager.getPrinterByRecordName(context: self.privateContext, recordName: record.recordID.recordName) {
-                                // We have at least 2 printers in Core Data for the same OctoPrint instance. Let's reduce duplication
-                                // Keep the duplicate printer since it is already linked to iCloud and delete the printer we
-                                // were requested to save to iCloud
-                                let printerToDelete = self.privateContext.object(with: printerData.printerID) as! Printer
-                                self.printerManager.deletePrinter(printerToDelete, context: self.privateContext)
-                                // Alert delegates that we had to delete this printer
+                        let context = self.printerManager.newPrivateContext(writer: "CloudKit.link")
+                        do {
+                            let removedDuplicate = try context.performAndWait {
+                                let recordNames = Set(records.map { $0.recordID.recordName })
+                                let printers = try self.printerManager.fetchPrinters(in: context)
+                                guard printers.contains(where: { $0.objectID != printerData.printerID && $0.recordName.map(recordNames.contains) == true }),
+                                      let duplicate = printers.first(where: { $0.objectID == printerData.printerID }) else {
+                                    return false
+                                }
+                                guard self.printerManager.deletePrinter(duplicate, context: context) else {
+                                    throw CloudKitPrinterSyncError.saveFailed(duplicate.recordName ?? "duplicate printer")
+                                }
+                                return true
+                            }
+                            if removedDuplicate {
                                 self.notifyPrinterDeleted(printerID: printerData.printerID)
-                                // Execute callback
                                 completion?(nil)
-                                // We are done
                                 return
                             }
+                        } catch {
+                            completion?(error)
+                            return
                         }
                         // Records didn't match to any Core Data. Instead of duplicating
                         // in iCloud, let's update printer and link it to existing iCloud record
-                        self.updateAndSave(printerID: printerData.printerID, serverRecord: records[0])
-                        // Alert delegates that we had to update this printer
-                        self.notifyPrinterUpdated(printerID: printerData.printerID)
-                        // Execute callback
-                        completion?(nil)
+                        let saveError = self.updateAndSave(printerData: printerData, serverRecord: records[0])
+                        if saveError == nil { self.notifyPrinterUpdated(printerID: printerData.printerID) }
+                        completion?(saveError)
                     }
                 } else {
-                    // We have a bug Houston!
-                    NSLog("No error and no records!")
+                    completion?(CloudKitPrinterSyncError.missingCloudKitResult)
                 }
             }
         }
@@ -653,11 +695,11 @@ class CloudKitPrinterManager {
                     // will likely require more nuance here.
                     let clientModified = clientRecord["modified"] as? Date
                     let serverModified = serverRecord["modified"] as? Date
-                    if (clientModified?.compare(serverModified!) == .orderedDescending) {
+                    if let clientModified, clientModified > (serverModified ?? .distantPast) {
                         // We’ve decided ours is the winner, so do the update again
                         // using the current iCloud ServerRecord as the base CKRecord.
                         self.updateRecord(source: clientRecord, target: serverRecord)
-                        serverRecord["modified"] = clientModified! as NSDate
+                        serverRecord["modified"] = clientModified as NSDate
                         self.saveAndMerge(record: serverRecord) { savedRecord, modified, error in
                             completion(savedRecord, modified, error)
                         }
@@ -699,43 +741,39 @@ class CloudKitPrinterManager {
         }
         operation.qualityOfService = .utility
         
-        let container = getiCloudContainer()
-        let db = container.privateCloudDatabase
-        db.add(operation)
+        submitOperation(operation)
     }
     
     // Query records from the iCloud database that match the specified criteria
     fileprivate func queryRecord(hostname: String, apiKey: String, completion: @escaping ([CKRecord]?, Error?) -> Void) {
         let predicate = NSPredicate(format: "hostname = %@ && apiKey = %@", hostname, apiKey)
         let query = CKQuery(recordType: RECORD_TYPE, predicate: predicate)
-        let operation = CKQueryOperation(query: query)
-        var result: Array<CKRecord> = Array()
-        setRecordMatched(operation) { record in
-            result.append(record)
-        }
-        setQueryCompletion(operation) { cursor, error in
-            if let error = error {
-                completion(nil, error)
-            } else if cursor == nil {
-                // No more results. We are done
-                completion(result, nil)
+        var records: [CKRecord] = []
+        func fetchPage(_ operation: CKQueryOperation) {
+            setRecordMatched(operation) { records.append($0) }
+            setQueryCompletion(operation) { cursor, error in
+                if let error {
+                    completion(nil, error)
+                } else if let cursor {
+                    fetchPage(CKQueryOperation(cursor: cursor))
+                } else {
+                    completion(records, nil)
+                }
             }
+            operation.qualityOfService = .utility
+            submitOperation(operation)
         }
-        operation.qualityOfService = .utility
-        
-        let container = getiCloudContainer()
-        let db = container.privateCloudDatabase
-        db.add(operation)
+        fetchPage(CKQueryOperation(query: query))
     }
     
     // Save a record to the iCloud database
     // Create zone if needed. Any other error is not handled and passed to completion block
-    fileprivate func saveRecord(record: CKRecord, completion: @escaping (CKRecord?, Error?) -> Void) {
+    fileprivate func saveRecord(record: CKRecord, allowZoneCreation: Bool = true, completion: @escaping (CKRecord?, Error?) -> Void) {
         let operation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: [])
         setModifyRecordsCompletion(operation) { (savedRecords: [CKRecord]?, deletedRecordIDs: [CKRecord.ID]?, error: Error?) in
             if let error = error {
                 if let ckerror = error as? CKError {
-                    if ckerror.isZoneNotFound() {
+                    if allowZoneCreation && ckerror.isZoneNotFound() {
                         // ZoneNotFound is the one error we can reasonably expect & handle here, since
                         // the zone isn't created automatically for us until we've saved one record.
                         // create the zone and, if successful, try again
@@ -745,7 +783,7 @@ class CloudKitPrinterManager {
                                 completion(nil, error)
                             } else {
                                 // Zone created so save record now
-                                self.saveRecord(record: record, completion: completion)
+                                self.saveRecord(record: record, allowZoneCreation: false, completion: completion)
                             }
                         }
                     } else {
@@ -769,9 +807,7 @@ class CloudKitPrinterManager {
         }
         operation.qualityOfService = .utility
         
-        let container = getiCloudContainer()
-        let db = container.privateCloudDatabase
-        db.add(operation)
+        submitOperation(operation)
     }
     
     fileprivate func deleteRecord(recordID: CKRecord.ID, completion: @escaping (Error?) -> Void) {
@@ -780,7 +816,6 @@ class CloudKitPrinterManager {
             if let error = error {
                 if let ckerror = error as? CKError {
                     if !ckerror.isZoneNotFound() {
-                        // Failed with some unknown CKError
                         completion(error)
                     }
                 } else {
@@ -800,42 +835,100 @@ class CloudKitPrinterManager {
         }
         operation.qualityOfService = .utility
         
-        let container = getiCloudContainer()
-        let db = container.privateCloudDatabase
-        db.add(operation)
+        submitOperation(operation)
     }
     
     // MARK: - Reset operations
     
     // Delete CloudKit records and recreate from local stored data
     func resetCloutKit(completionHandler: (() -> Void)?, errorHandler: (() -> Void)?) {
-        // Delete zone which will delete all stored records
-        deleteZone { (error: Error?) in
-            if let error = error {
-                NSLog("Deleting zone failed. Error: \(error)")
-                // Delete failed. An error happened when deleting the zone
+        enqueueSync { done in
+            func fail(_ error: Error) {
+                self.appendLog("Error resetting CloudKit: \(error)")
                 errorHandler?()
-            } else {
-                // Zone deleted so now create one
-                // Pull just to force a new token for incremental reads. Nothing should be read
-                self.pullChanges(completionHandler: {
-                    self.pushChanges(completion: completionHandler)
-                }, errorHandler: {
-                    NSLog("Error pulling from iCloud during reset")
-                    errorHandler?()
-                })
+                done()
+            }
+
+            guard !self.cloudKitSyncStopped(), self.iCloudAvailable else {
+                fail(CloudKitPrinterSyncError.syncUnavailable)
+                return
+            }
+            self.deleteZone { error in
+                if let error {
+                    fail(error)
+                    return
+                }
+                self.recoverMissingZone { error in
+                    if let error {
+                        fail(error)
+                        return
+                    }
+                    self.performPull { error in
+                        if let error {
+                            fail(error)
+                        } else {
+                            self.performPush {
+                                completionHandler?()
+                                done()
+                            }
+                        }
+                    }
+                }
             }
         }
     }
-    
+
     /// Delete local stored data and recreate from CloudKit records
     func resetLocalPrinters(completionHandler: (() -> Void)?, errorHandler: (() -> Void)?) {
-        // Delete local printers
-        printerManager.deleteAllPrinters(context: privateContext)
-        // Delete CHANGE_TOKEN so all changes are fetched and processed
-        UserDefaults.standard.removeObject(forKey: self.CHANGE_TOKEN)
-        // Pull changes
-        pullChanges(completionHandler: completionHandler, errorHandler: errorHandler)
+        enqueueSync { done in
+            guard !self.cloudKitSyncStopped(), self.iCloudAvailable else {
+                self.appendLog("Cannot reset local printers while iCloud sync is unavailable")
+                errorHandler?()
+                done()
+                return
+            }
+            // Invalidate before deleting. An interruption between the two must leave
+            // a full pull pending, never an empty store with a valid incremental token.
+            self.defaults.removeObject(forKey: self.CHANGE_TOKEN)
+            let deleted: Bool
+            do {
+                deleted = try self.printerManager.deleteAllPrinters(context: self.printerManager.newPrivateContext(writer: "CloudKit.resetLocal"))
+            } catch {
+                self.appendLog("Error deleting local printers during reset: \(error)")
+                errorHandler?()
+                done()
+                return
+            }
+            self.performPull(localPrintersChanged: deleted) { error in
+                if error == nil {
+                    completionHandler?()
+                } else {
+                    errorHandler?()
+                }
+                done()
+            }
+        }
+    }
+
+    // A job owns the CloudKit printer store through its asynchronous completion.
+    // Enqueue and hand off on one queue without blocking it on a network request.
+    private func enqueueSync(_ work: @escaping (@escaping () -> Void) -> Void) {
+        syncQueue.async {
+            self.pendingSyncJobs.append(work)
+            self.startNextSync()
+        }
+    }
+
+    private func startNextSync() {
+        guard !syncInProgress, !pendingSyncJobs.isEmpty else { return }
+        syncInProgress = true
+        let work = pendingSyncJobs.removeFirst()
+        work {
+            self.syncQueue.async {
+                self.syncInProgress = false
+                self.startNextSync()
+            }
+        }
     }
     
     // MARK: - Delegate notifications operations
@@ -957,24 +1050,6 @@ class CloudKitPrinterManager {
         return CKContainer(identifier: "iCloud.org.OctoPod.OctoPod")
     }
     
-    /// Returns true if CKRecord and Printer represent same OctoPrint server
-    fileprivate func sameOctoPrint(record: CKRecord, printer: Printer) -> Bool {
-        if let ck_hostname = record["hostname"] as? String {
-            var result = false
-            privateContext.performAndWait {
-                if let recordName = printer.recordName {
-                    // Check that we have same PK and same hostname
-                    result = printer.hostname == ck_hostname && recordName == record.recordID.recordName
-                } else {
-                    // Only the same if no PK and same hostname
-                    result = printer.hostname == ck_hostname && printer.recordName == nil
-                }
-            }
-            return result
-        }
-        return false
-    }
-    
     fileprivate func updatePrinterFields(printer: Printer, from record: CKRecord) {
         let parsed = parseRecord(record: record)
         if let name = parsed.name {
@@ -1018,14 +1093,27 @@ class CloudKitPrinterManager {
         record["position"] = NSNumber(value: printerData.position)
     }
     
-    fileprivate func updateAndSave(printerID: NSManagedObjectID, serverRecord: CKRecord) {
-        let newObjectContext = privateContext
-        newObjectContext?.performAndWait {
-            let printerToUpdate = privateContext.object(with: printerID) as! Printer
-            // This will encode new record data and also update last modified date (for future merges)
-            self.updatePrinterFields(printer: printerToUpdate, from: serverRecord)
-            // Update printer in Core Data
-            self.printerManager.updatePrinter(printerToUpdate, context: privateContext)
+    private func updateAndSave(printerData: PrinterData, serverRecord: CKRecord) -> Error? {
+        let context = printerManager.newPrivateContext(writer: "CloudKit.savePush")
+        return context.performAndWait {
+            context.mergePolicy = NSErrorMergePolicy
+            do {
+                guard let printer = try context.existingObject(with: printerData.printerID) as? Printer else {
+                    return CloudKitPrinterSyncError.saveFailed(serverRecord.recordID.recordName)
+                }
+                if printer.iCloudUpdate, printerData.differsFromLocalFields(of: printer) {
+                    printer.recordName = serverRecord.recordID.recordName
+                    printer.recordData = encodeRecord(record: serverRecord)
+                } else {
+                    updatePrinterFields(printer: printer, from: serverRecord)
+                }
+                guard printerManager.updatePrinter(printer, context: context) else {
+                    return CloudKitPrinterSyncError.saveFailed(serverRecord.recordID.recordName)
+                }
+                return nil
+            } catch {
+                return error
+            }
         }
     }
     
@@ -1296,6 +1384,28 @@ class CloudKitPrinterManager {
     }
 }
 
+private enum CloudKitPrinterSyncError: Error {
+    case saveFailed(String)
+    case invalidRecordData
+    case missingCloudKitResult
+    case syncUnavailable
+}
+
+struct CloudKitPrinterPullProgress {
+    var printersChanged = false
+    var localError: Error?
+    var zoneError: Error?
+    var checkpoint: Data?
+
+    /// Only a complete pull can publish its proposed checkpoint. Previously
+    /// committed records are safe to replay from the last saved token.
+    func finish(operationError: Error?, saveCheckpoint: (Data) -> Void) -> Error? {
+        if let error = localError ?? zoneError ?? operationError { return error }
+        if let checkpoint { saveCheckpoint(checkpoint) }
+        return nil
+    }
+}
+
 /// Reconstructs the deprecated CloudKit aggregate-completion contract from modern
 /// operation-level `Result` plus collected per-item failures.
 enum CloudKitLegacyCompletion {
@@ -1449,4 +1559,17 @@ struct PrinterData {
     var headers: String?
     var userModified: Date?
     var recordData: Data?
+
+    /// Compare the locally persisted fields with the values captured for this push.
+    func differsFromLocalFields(of printer: Printer) -> Bool {
+        name != printer.name ||
+        hostname != printer.hostname ||
+        apiKey != printer.apiKey ||
+        connectionType != printer.connectionType ||
+        position != printer.position ||
+        username != printer.username ||
+        password != printer.password ||
+        headers != printer.headers ||
+        userModified != printer.userModified
+    }
 }
