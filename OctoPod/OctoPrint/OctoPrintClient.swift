@@ -26,8 +26,14 @@ class OctoPrintClient: WebSocketClientDelegate, AppConfigurationDelegate {
     
     var appConfiguration: AppConfiguration?
 
-    // Remember last CurrentStateEvent that was reported from OctoPrint (via websockets)
-    var lastKnownState: CurrentStateEvent?
+    private let printerStateLock = NSLock()
+    private var cachedPrinterState: CurrentStateEvent?
+
+    // HTTP and WebSocket callbacks access this reference from different queues.
+    var lastKnownState: CurrentStateEvent? {
+        get { printerStateLock.withLock { cachedPrinterState } }
+        set { printerStateLock.withLock { cachedPrinterState = newValue } }
+    }
     var octoPrintVersion: String?
     /// Display definitions for this client. The shared settings fetch stays here.
     let timeToFilamentService = TimeToFilamentService()

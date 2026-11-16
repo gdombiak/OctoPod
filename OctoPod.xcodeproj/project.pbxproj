@@ -439,6 +439,7 @@
 		A1B2C3DC26A20F2E00913754 /* PrinterManagerCRUDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3DB26A20F2E00913754 /* PrinterManagerCRUDTests.swift */; };
 		A1B2C3DE26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3DD26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift */; };
 		A1B2C3E026A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3DF26A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift */; };
+		AB4026A71DBD4E4C81C1C508 /* OctoPrintClientStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4026A81DBD4E4C81C1C508 /* OctoPrintClientStateTests.swift */; };
 		A1B2C3E226A20F2E00913754 /* CameraFullscreenPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E126A20F2E00913754 /* CameraFullscreenPresentationTests.swift */; };
 		A1B2C3E426A20F2E00913754 /* CloudKitLegacyCompletionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E326A20F2E00913754 /* CloudKitLegacyCompletionTests.swift */; };
 		A1B2C3E626A20F2E00913754 /* SceneInterfaceOrientationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3E526A20F2E00913754 /* SceneInterfaceOrientationTests.swift */; };
@@ -1097,6 +1098,7 @@
 		A1B2C3DB26A20F2E00913754 /* PrinterManagerCRUDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManagerCRUDTests.swift; sourceTree = "<group>"; };
 		A1B2C3DD26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinterManagerDiagnosticTests.swift; sourceTree = "<group>"; };
 		A1B2C3DF26A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClientPluginSyncTests.swift; sourceTree = "<group>"; };
+		AB4026A81DBD4E4C81C1C508 /* OctoPrintClientStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoPrintClientStateTests.swift; sourceTree = "<group>"; };
 		A1B2C3E126A20F2E00913754 /* CameraFullscreenPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFullscreenPresentationTests.swift; sourceTree = "<group>"; };
 		A1B2C3E326A20F2E00913754 /* CloudKitLegacyCompletionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitLegacyCompletionTests.swift; sourceTree = "<group>"; };
 		A1B2C3E526A20F2E00913754 /* SceneInterfaceOrientationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneInterfaceOrientationTests.swift; sourceTree = "<group>"; };
@@ -1326,6 +1328,7 @@
 				A1B2C3DB26A20F2E00913754 /* PrinterManagerCRUDTests.swift */,
 				A1B2C3DD26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift */,
 				A1B2C3DF26A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift */,
+				AB4026A81DBD4E4C81C1C508 /* OctoPrintClientStateTests.swift */,
 				C4E1A10626A50F2E00913701 /* TimeToFilamentTests.swift */,
 				A1B2C3E126A20F2E00913754 /* CameraFullscreenPresentationTests.swift */,
 				C746A1E126A20F2E00913754 /* CamerasPageControllerTests.swift */,
@@ -2429,6 +2432,7 @@
 				A1B2C3DC26A20F2E00913754 /* PrinterManagerCRUDTests.swift in Sources */,
 				A1B2C3DE26A20F2E00913754 /* PrinterManagerDiagnosticTests.swift in Sources */,
 				A1B2C3E026A20F2E00913754 /* OctoPrintClientPluginSyncTests.swift in Sources */,
+				AB4026A71DBD4E4C81C1C508 /* OctoPrintClientStateTests.swift in Sources */,
 				C4E1A10726A50F2E00913701 /* TimeToFilamentTests.swift in Sources */,
 				A1B2C3E226A20F2E00913754 /* CameraFullscreenPresentationTests.swift in Sources */,
 				C746A1E226A20F2E00913754 /* CamerasPageControllerTests.swift in Sources */,
