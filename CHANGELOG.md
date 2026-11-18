@@ -1,5 +1,41 @@
 # Changelog
 
+## 3.36 (2026-11-18)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.35...f8beaa4df136341fae010b458b3289f046e6f1c8)
+
+**Implemented enhancements**
+
+- Add support for the OctoPrint TimeToFilament plugin to show countdowns for upcoming filament changes and pauses in the printer panel. [#741](https://github.com/gdombiak/OctoPod/issues/741)
+- Rebuild the Apple Watch interface in SwiftUI and raise the Apple Watch minimum to watchOS 9. [#743](https://github.com/gdombiak/OctoPod/issues/743), [#745](https://github.com/gdombiak/OctoPod/issues/745)
+
+**Fixed bugs**
+
+- Restore theme colors in navigation and tab bars on iOS and iPadOS 27, and apply the active theme to the printer discovery popup. [#744](https://github.com/gdombiak/OctoPod/issues/744), [#747](https://github.com/gdombiak/OctoPod/issues/747)
+- Keep Settings, printer setup, Temperature History, and Custom Controls readable at larger text sizes. [#748](https://github.com/gdombiak/OctoPod/issues/748), [#751](https://github.com/gdombiak/OctoPod/issues/751), [#752](https://github.com/gdombiak/OctoPod/issues/752)
+- Fix an iPad rotation crash when no printer is configured. [#746](https://github.com/gdombiak/OctoPod/issues/746)
+- Keep Apple Watch print controls working while the iPhone app is in the background, and reject job commands when multiple printers share the requested name. [#745](https://github.com/gdombiak/OctoPod/issues/745), [Watch job command fix](https://github.com/gdombiak/OctoPod/commit/61f34dbabadb3faa6337f58f5de000b2b59d5173)
+- Prevent stale Apple Watch camera snapshots and restore Refresh after camera requests fail. [#749](https://github.com/gdombiak/OctoPod/issues/749), [#750](https://github.com/gdombiak/OctoPod/issues/750)
+- Restore light controls with OctoLight Home Assistant 0.3.0 and retain support for earlier plugin versions. [#742](https://github.com/gdombiak/OctoPod/issues/742)
+- Retry iCloud printer changes after a failed local save and preserve edits made during a duplicate lookup. [#755](https://github.com/gdombiak/OctoPod/issues/755), [#759](https://github.com/gdombiak/OctoPod/issues/759)
+- Fix a crash when HTTP and WebSocket callbacks update printer status at the same time. [#758](https://github.com/gdombiak/OctoPod/issues/758)
+
+## Apple TV 3.10 (2026-11-18)
+
+[Full Changelog](https://github.com/gdombiak/OctoPod/compare/d8a71350374d1586e91afcc4fbfebda314d9b3e0...f8beaa4df136341fae010b458b3289f046e6f1c8)
+
+**Implemented enhancements**
+
+- Add support for the OctoPrint TimeToFilament plugin to show countdowns for upcoming filament changes and pauses in printer details. Scroll long countdown lists with the remote while keeping print and camera controls visible. [#741](https://github.com/gdombiak/OctoPod/issues/741), [Apple TV layout fix](https://github.com/gdombiak/OctoPod/commit/f8beaa4df136341fae010b458b3289f046e6f1c8)
+- Control lights through OctoLight Home Assistant and refresh the light status when printer details open. Supports plugin version 0.3.0 and earlier versions. [#693](https://github.com/gdombiak/OctoPod/issues/693), [#742](https://github.com/gdombiak/OctoPod/issues/742)
+- Use custom HTTP headers from synced printer settings for supported reverse-proxy configurations. [#674](https://github.com/gdombiak/OctoPod/pull/674)
+
+**Fixed bugs**
+
+- Improve printer recovery after a cache purge or network loss and keep the selected page stable when the printer list refreshes. [#690](https://github.com/gdombiak/OctoPod/issues/690), [#755](https://github.com/gdombiak/OctoPod/issues/755)
+- Restore launch and foreground behavior on current tvOS versions. Apple TV now requires tvOS 15 or later. [#753](https://github.com/gdombiak/OctoPod/issues/753), [#754](https://github.com/gdombiak/OctoPod/issues/754)
+- Show the correct controls for paused prints on OctoPrint 2.0 and improve the stability of live printer status updates. [#735](https://github.com/gdombiak/OctoPod/issues/735), [#734](https://github.com/gdombiak/OctoPod/issues/734), [#758](https://github.com/gdombiak/OctoPod/issues/758)
+
 ## [3.35](https://github.com/gdombiak/OctoPod/tree/3.35) (2026-08-24)
 
 [Full Changelog](https://github.com/gdombiak/OctoPod/compare/3.34...3.35)
