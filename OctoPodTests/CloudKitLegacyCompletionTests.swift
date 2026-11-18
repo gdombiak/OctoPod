@@ -528,6 +528,69 @@ final class CloudKitPrinterPullTests: PrinterManagerTestCase {
         wait(for: [laterFinished], timeout: 2)
     }
 
+    func testDuplicateLookupDoesNotDeletePrinterEditedDuringQuery() throws {
+        let id = try completeMatchedLookup(linkedLocally: true, editWhileWaiting: true)
+        let printer = try freshPrinterState(id: id)
+        XCTAssertEqual(printer.hostname, "different-printer.local")
+        XCTAssertNil(printer.recordName)
+        XCTAssertTrue(printer.iCloudUpdate)
+    }
+
+    func testDuplicateLookupDoesNotLinkPrinterEditedDuringQuery() throws {
+        let id = try completeMatchedLookup(linkedLocally: false, editWhileWaiting: true)
+        let printer = try freshPrinterState(id: id)
+        XCTAssertEqual(printer.hostname, "different-printer.local")
+        XCTAssertNil(printer.recordName)
+        XCTAssertTrue(printer.iCloudUpdate)
+    }
+
+    func testDuplicateLookupStillRemovesAnUnchangedDuplicate() throws {
+        let id = try completeMatchedLookup(linkedLocally: true, editWhileWaiting: false)
+        XCTAssertFalse(writer.getPrinters().contains { $0.objectID == id })
+        XCTAssertEqual(allPrinterLinks().map(\.recordName), ["linked"])
+    }
+
+    func testDuplicateLookupStillLinksAnUnchangedPrinter() throws {
+        let id = try completeMatchedLookup(linkedLocally: false, editWhileWaiting: false)
+        let printer = try freshPrinterState(id: id)
+        XCTAssertEqual(printer.recordName, "linked")
+        XCTAssertFalse(printer.iCloudUpdate)
+    }
+
+    private func completeMatchedLookup(linkedLocally: Bool, editWhileWaiting: Bool) throws -> NSManagedObjectID {
+        let queryStarted = expectation(description: "duplicate lookup submitted")
+        let operations = Operations([queryStarted])
+        let manager = CloudKitPrinterManager(printerManager: writer, defaults: defaults) { [weak operations] in
+            operations?.submit($0)
+        }
+        let record = printerRecord(id: "linked", name: "Cloud printer", hostname: "printer.local")
+        if linkedLocally {
+            let linkedID = try insertPrinter(defaultPrinter: true, hostname: "printer.local")
+            let linked = try persistentContainer.viewContext.existingObject(with: linkedID) as! Printer
+            linked.recordName = record.recordID.recordName
+            linked.iCloudUpdate = false
+        }
+        let id = try insertPrinter(defaultPrinter: !linkedLocally, hostname: "printer.local")
+        let printer = try persistentContainer.viewContext.existingObject(with: id) as! Printer
+        printer.apiKey = "test-key"
+        printer.iCloudUpdate = true
+        try persistentContainer.viewContext.save()
+
+        let pushed = expectation(description: "push completed")
+        manager.pushChanges { pushed.fulfill() }
+        let submitted = XCTWaiter.wait(for: [queryStarted], timeout: 2) == .completed
+        let query = try XCTUnwrap(submitted ? operations.operation(0) as? CKQueryOperation : nil)
+        if editWhileWaiting {
+            printer.hostname = "different-printer.local"
+            printer.userModified = Date()
+            try persistentContainer.viewContext.save()
+        }
+        query.recordMatchedBlock?(record.recordID, .success(record))
+        query.queryResultBlock?(.success(nil))
+        wait(for: [pushed], timeout: 2)
+        return id
+    }
+
     private func pull(_ manager: CloudKitPrinterManager, succeeds: Bool) -> XCTestExpectation {
         let finished = expectation(description: "pull completed with expected result")
         manager.pullChanges(completionHandler: {

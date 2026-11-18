@@ -638,36 +638,40 @@ class CloudKitPrinterManager {
                             }
                         })
                     } else {
-                        // iCloud has similar info to this printer
-                        // Check if we have a printer (stored in Core Data) for the records we found
+                        // Apply the query result only to the version of the printer we looked up.
                         let context = self.printerManager.newPrivateContext(writer: "CloudKit.link")
                         do {
                             let removedDuplicate = try context.performAndWait {
-                                let recordNames = Set(records.map { $0.recordID.recordName })
+                                context.mergePolicy = NSErrorMergePolicy
                                 let printers = try self.printerManager.fetchPrinters(in: context)
-                                guard printers.contains(where: { $0.objectID != printerData.printerID && $0.recordName.map(recordNames.contains) == true }),
-                                      let duplicate = printers.first(where: { $0.objectID == printerData.printerID }) else {
-                                    return false
+                                guard let printer = printers.first(where: { $0.objectID == printerData.printerID }),
+                                      printer.iCloudUpdate,
+                                      printer.recordData == printerData.recordData,
+                                      !printerData.differsFromLocalFields(of: printer) else {
+                                    throw CloudKitPrinterSyncError.stalePrinterSnapshot
                                 }
-                                guard self.printerManager.deletePrinter(duplicate, context: context) else {
-                                    throw CloudKitPrinterSyncError.saveFailed(duplicate.recordName ?? "duplicate printer")
+                                let recordNames = Set(records.map { $0.recordID.recordName })
+                                if printers.contains(where: { $0.objectID != printer.objectID && $0.recordName.map(recordNames.contains) == true }) {
+                                    guard self.printerManager.deletePrinter(printer, context: context) else {
+                                        throw CloudKitPrinterSyncError.saveFailed("duplicate printer")
+                                    }
+                                    return true
                                 }
-                                return true
+                                self.updatePrinterFields(printer: printer, from: records[0])
+                                guard self.printerManager.updatePrinter(printer, context: context) else {
+                                    throw CloudKitPrinterSyncError.saveFailed(records[0].recordID.recordName)
+                                }
+                                return false
                             }
                             if removedDuplicate {
                                 self.notifyPrinterDeleted(printerID: printerData.printerID)
-                                completion?(nil)
-                                return
+                            } else {
+                                self.notifyPrinterUpdated(printerID: printerData.printerID)
                             }
+                            completion?(nil)
                         } catch {
                             completion?(error)
-                            return
                         }
-                        // Records didn't match to any Core Data. Instead of duplicating
-                        // in iCloud, let's update printer and link it to existing iCloud record
-                        let saveError = self.updateAndSave(printerData: printerData, serverRecord: records[0])
-                        if saveError == nil { self.notifyPrinterUpdated(printerID: printerData.printerID) }
-                        completion?(saveError)
                     }
                 } else {
                     completion?(CloudKitPrinterSyncError.missingCloudKitResult)
@@ -1386,6 +1390,7 @@ class CloudKitPrinterManager {
 
 private enum CloudKitPrinterSyncError: Error {
     case saveFailed(String)
+    case stalePrinterSnapshot
     case invalidRecordData
     case missingCloudKitResult
     case syncUnavailable
