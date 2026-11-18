@@ -1,6 +1,9 @@
 import Network
 import SwiftUI
 import UIKit
+#if DEBUG
+import CoreData
+#endif
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -20,11 +23,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .environment(\.managedObjectContext, appDelegate.persistentContainer.viewContext)
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = UIHostingController(rootView: contentView)
+        #if DEBUG
+        if isTestingCountdownOverflow {
+            window.rootViewController = makeCountdownTestController()
+        }
+        #endif
         self.window = window
         window.makeKeyAndVisible()
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
+        #if DEBUG
+        guard !isTestingCountdownOverflow else { return }
+        #endif
         let appDelegate = self.appDelegate
         monitorNetworkChanges()
         appDelegate.cloudKitPrinterManager.start(nil)
@@ -67,4 +78,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         networkMonitor = nil
         networkWasAvailable = nil
     }
+
+    #if DEBUG
+    private var isTestingCountdownOverflow: Bool {
+        ProcessInfo.processInfo.arguments.contains("--test-countdown-overflow")
+    }
+
+    private func makeCountdownTestController() -> UIViewController {
+        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        context.persistentStoreCoordinator = appDelegate.persistentContainer.persistentStoreCoordinator
+        let printerID = NSEntityDescription.insertNewObject(forEntityName: "Printer", into: context).objectID
+        let service = ViewService(tvPrinterManager: appDelegate.tvPrinterManager)
+        service.printing = true
+        service.printingFile = "Test.gcode"
+        service.timeToFilamentRows = (1...8).map { index in
+            TimeToFilamentRow(
+                id: String(index),
+                label: "Filament change at independently configured G-code marker number \(index)",
+                value: "12 min"
+            )
+        }
+        return UIHostingController(rootView: NavigationView {
+            DetailedView(printerID: printerID, name: "Test Printer")
+                .environmentObject(service)
+                .environmentObject(CameraService())
+        })
+    }
+    #endif
 }

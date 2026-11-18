@@ -45,6 +45,37 @@ class OctoPod_TVUITests: XCTestCase {
         XCTAssertTrue(printersScreen.waitForExistence(timeout: 10))
     }
 
+    func testTimeToFilamentOverflowKeepsJobAndCameraControlsOnScreen() {
+        let app = XCUIApplication()
+        app.launchArguments.append("--test-countdown-overflow")
+        app.launch()
+
+        let cancel = app.buttons.containing(.staticText, identifier: "Cancel").firstMatch
+        XCTAssertTrue(cancel.waitForExistence(timeout: 8))
+        XCTAssertTrue(app.frame.contains(cancel.frame), "Cancel must be on screen with wrapping countdown rows")
+        XCTAssertTrue(app.frame.contains(app.staticTexts["Print Completion"].frame))
+
+        let expand = app.buttons["expandCamera"]
+        let remote = XCUIRemote.shared
+        XCTAssertTrue(app.frame.contains(expand.frame))
+        let lastCountdown = app.descendants(matching: .any).matching(identifier: "countdown-8").firstMatch
+        for _ in 0..<8 where !lastCountdown.exists || !lastCountdown.hasFocus {
+            remote.press(.down)
+        }
+        XCTAssertTrue(lastCountdown.exists && lastCountdown.hasFocus, app.debugDescription)
+        XCTAssertTrue(app.scrollViews["countdownScroll"].frame.intersects(lastCountdown.frame))
+
+        for direction in [XCUIRemote.Button.down, .right, .right, .right] where !expand.hasFocus {
+            remote.press(direction)
+        }
+        XCTAssertTrue(expand.hasFocus, app.debugDescription)
+        remote.press(.select)
+        let restore = app.buttons["restoreCamera"]
+        XCTAssertTrue(restore.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.frame.contains(restore.frame))
+        XCTAssertTrue(app.frame.contains(app.staticTexts["Print Completion"].frame))
+    }
+
     func testLaunchPerformance() {
         measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
             XCUIApplication().launch()

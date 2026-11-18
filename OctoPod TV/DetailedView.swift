@@ -88,7 +88,7 @@ struct NormalCameraView: View {
                         Spacer()
                         self.value(text: self.service.printTimeLeft)
                     }
-                    TimeToFilamentDetailRows(rows: self.service.timeToFilamentRows)
+                    TimeToFilamentDetailRows(rows: self.service.timeToFilamentRows, maxHeight: geometry.size.height * 0.2)
                     HStack() {
                         Text("Print Completion")
                         Spacer()
@@ -212,6 +212,7 @@ struct NormalCameraView: View {
                     }) {
                         Image("Expand")
                     }
+                    .accessibilityIdentifier("expandCamera")
                     .prefersDefaultFocus(true, in: self.namespace)
                 }
                 .padding(.horizontal, 30)
@@ -306,7 +307,7 @@ struct MaximizedCameraView: View {
                             Spacer()
                             self.value(text: self.service.printTimeLeft)
                         }
-                        TimeToFilamentDetailRows(rows: self.service.timeToFilamentRows)
+                        TimeToFilamentDetailRows(rows: self.service.timeToFilamentRows, maxHeight: geometry.size.height * 0.2)
                         HStack() {
                             Text("Print Completion")
                             Spacer()
@@ -346,6 +347,7 @@ struct MaximizedCameraView: View {
                     }) {
                         Image("Restore")
                     }
+                    .accessibilityIdentifier("restoreCamera")
                     .prefersDefaultFocus(true, in: self.namespace)
                     .offset(x: 40)
                 }
@@ -362,32 +364,62 @@ struct MaximizedCameraView: View {
 
 struct TimeToFilamentDetailRows: View {
     let rows: [TimeToFilamentRow]
+    let maxHeight: CGFloat
 
     private var valueColor: Color {
         Color(red: 47/255, green: 79/255, blue: 79/256)
     }
 
     var body: some View {
-        ForEach(rows) { row in
-            Group {
-                if #available(tvOS 16.0, *) {
-                    ViewThatFits(in: .horizontal) {
-                        HStack {
-                            Text(row.label)
-                                .fixedSize(horizontal: true, vertical: false)
-                            Spacer(minLength: 8)
-                            Text(row.value)
-                                .foregroundColor(valueColor)
-                                .fixedSize(horizontal: true, vertical: false)
-                        }
-                        stackedRow(row)
+        if !rows.isEmpty {
+            if #available(tvOS 16.0, *) {
+                ViewThatFits(in: .vertical) {
+                    VStack(alignment: .leading) {
+                        ForEach(rows, content: rowView)
                     }
-                } else {
-                    stackedRow(row)
+                    .fixedSize(horizontal: false, vertical: true)
+                    scrollableRows
+                }
+                .frame(maxHeight: maxHeight)
+            } else {
+                scrollableRows
+                    .frame(maxHeight: maxHeight)
+            }
+        }
+    }
+
+    private var scrollableRows: some View {
+        ScrollView {
+            VStack(alignment: .leading) {
+                ForEach(rows) { row in
+                    rowView(row)
+                        .focusable()
+                        .accessibilityIdentifier("countdown-\(row.id)")
                 }
             }
-            .accessibilityElement(children: .combine)
         }
+        .accessibilityIdentifier("countdownScroll")
+    }
+
+    private func rowView(_ row: TimeToFilamentRow) -> some View {
+        Group {
+            if #available(tvOS 16.0, *) {
+                ViewThatFits(in: .horizontal) {
+                    HStack {
+                        Text(row.label)
+                            .fixedSize(horizontal: true, vertical: false)
+                        Spacer(minLength: 8)
+                        Text(row.value)
+                            .foregroundColor(valueColor)
+                            .fixedSize(horizontal: true, vertical: false)
+                    }
+                    stackedRow(row)
+                }
+            } else {
+                stackedRow(row)
+            }
+        }
+        .accessibilityElement(children: .combine)
     }
 
     private func stackedRow(_ row: TimeToFilamentRow) -> some View {
