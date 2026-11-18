@@ -202,13 +202,13 @@ private final class RESTBackedOctoLightTransport: OctoLightHATransport {
     }
 }
 
-private struct LoopbackHTTPResponse {
+struct LoopbackHTTPResponse {
     var status: Int
     var headers: [String: String] = [:]
     var body: String
 }
 
-private final class LoopbackHTTPServer {
+final class LoopbackHTTPServer {
     private let listenFD: Int32
     private let lock = NSLock()
     private var stopped = false

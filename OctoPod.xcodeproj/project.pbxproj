@@ -454,6 +454,7 @@
 		A7C3E1BD26A40F2E00913706 /* WatchInterfaceModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C3E1BC26A40F2E00913706 /* WatchInterfaceModelTests.swift */; };
 		B7E4A1D126A30F2E00913701 /* OctoLightHAContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D026A30F2E00913701 /* OctoLightHAContractTests.swift */; };
 		B7E4A1D326A30F2E00913702 /* OctoLightHAHTTPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D226A30F2E00913702 /* OctoLightHAHTTPTests.swift */; };
+		B7E4A1D726A30F2E00913707 /* WatchJobCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D626A30F2E00913707 /* WatchJobCommandTests.swift */; };
 		B7E4A1D526A30F2E00913703 /* OctoLightHAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */; };
 		B7E4A1D626A30F2E00913703 /* OctoLightHAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */; };
 		B7E4A1E126A30F2E00913710 /* PlainBackButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E4A1E026A30F2E00913710 /* PlainBackButtonTests.swift */; };
@@ -1112,6 +1113,7 @@
 		A7C3E1BC26A40F2E00913706 /* WatchInterfaceModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchInterfaceModelTests.swift; sourceTree = "<group>"; };
 		B7E4A1D026A30F2E00913701 /* OctoLightHAContractTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoLightHAContractTests.swift; sourceTree = "<group>"; };
 		B7E4A1D226A30F2E00913702 /* OctoLightHAHTTPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoLightHAHTTPTests.swift; sourceTree = "<group>"; };
+		B7E4A1D626A30F2E00913707 /* WatchJobCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchJobCommandTests.swift; sourceTree = "<group>"; };
 		B7E4A1D426A30F2E00913703 /* OctoLightHAService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OctoLightHAService.swift; sourceTree = "<group>"; };
 		B7E4A1E026A30F2E00913710 /* PlainBackButtonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainBackButtonTests.swift; sourceTree = "<group>"; };
 		C4E1A10126A50F2E00913701 /* TimeToFilament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeToFilament.swift; sourceTree = "<group>"; };
@@ -1339,6 +1341,7 @@
 				B7E4A1D026A30F2E00913701 /* OctoLightHAContractTests.swift */,
 				B7E4A1D226A30F2E00913702 /* OctoLightHAHTTPTests.swift */,
 				A7C3E1BC26A40F2E00913706 /* WatchInterfaceModelTests.swift */,
+				B7E4A1D626A30F2E00913707 /* WatchJobCommandTests.swift */,
 				3D1FDCC126A20F2E00913754 /* Info.plist */,
 			);
 			path = OctoPodTests;
@@ -2443,6 +2446,7 @@
 				B7E4A1D126A30F2E00913701 /* OctoLightHAContractTests.swift in Sources */,
 				B7E4A1D326A30F2E00913702 /* OctoLightHAHTTPTests.swift in Sources */,
 				A7C3E1BD26A40F2E00913706 /* WatchInterfaceModelTests.swift in Sources */,
+				B7E4A1D726A30F2E00913707 /* WatchJobCommandTests.swift in Sources */,
 				A7C3E1B326A40F2E00913701 /* WatchInterfaceModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -447,8 +447,15 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         replyHandler: @escaping ([String: Any]) -> Void,
         command: (OctoPrintRESTClient, @escaping (Bool, Error?, HTTPURLResponse) -> Void) -> Void
     ) {
-        // The app's shared client can disconnect in the background or switch printers.
-        guard let client = restClientToPrinter(printerName: printerName, reuseDefaultClient: false).restClient else {
+        // Watch requests carry a display name. An ambiguous name must never run a job command.
+        let context = printerManager.safePrivateContext()
+        let client = context.performAndWait { () -> OctoPrintRESTClient? in
+            let matches = printerManager.getPrinters(context: context).filter { $0.name == printerName }
+            guard matches.count == 1, let printer = matches.first else { return nil }
+            // The app's shared client can disconnect in the background or switch printers.
+            return makeRESTClient(for: printer)
+        }
+        guard let client else {
             replyHandler(["error": NSLocalizedString("No printer", comment: "")])
             return
         }
@@ -477,14 +484,14 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
         return nil
     }
     
-    fileprivate func restClientToPrinter(printerName: String, reuseDefaultClient: Bool = true) -> (restClient: OctoPrintRESTClient?, sharedNozzle: Bool, palette2PluginInstalled: Bool) {
+    fileprivate func restClientToPrinter(printerName: String) -> (restClient: OctoPrintRESTClient?, sharedNozzle: Bool, palette2PluginInstalled: Bool) {
         var restClient: OctoPrintRESTClient?
         var sharedNozzle = false
         var palette2PluginInstalled = false
 
         let newObjectContext = self.printerManager.safePrivateContext()
         newObjectContext.performAndWait {
-            if reuseDefaultClient, let printer = printerManager.getDefaultPrinter(context: newObjectContext) {
+            if let printer = printerManager.getDefaultPrinter(context: newObjectContext) {
                 if printer.name == printerName && octoprintClient.octoPrintRESTClient.isConfigured() {
                     restClient = octoprintClient.octoPrintRESTClient
                     sharedNozzle = printer.sharedNozzle
@@ -493,8 +500,7 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
             }
             if restClient == nil {
                 if let printer = printerManager.getPrinterByName(context: newObjectContext, name: printerName) {
-                    restClient = OctoPrintRESTClient()
-                    restClient?.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, headers: printer.headers, preemptive: printer.preemptiveAuthentication())
+                    restClient = makeRESTClient(for: printer)
                     sharedNozzle = printer.sharedNozzle
                     palette2PluginInstalled = printer.palette2Installed
                 }
@@ -503,6 +509,12 @@ class WatchSessionManager: NSObject, WCSessionDelegate, CloudKitPrinterDelegate,
 
         return (restClient, sharedNozzle, palette2PluginInstalled)
 
+    }
+
+    private func makeRESTClient(for printer: Printer) -> OctoPrintRESTClient {
+        let client = OctoPrintRESTClient()
+        client.connectToServer(serverURL: printer.hostname, apiKey: printer.apiKey, username: printer.username, password: printer.password, headers: printer.headers, preemptive: printer.preemptiveAuthentication())
+        return client
     }
     
     fileprivate func encodePrinters() -> [String: [[String : Any]]] {
